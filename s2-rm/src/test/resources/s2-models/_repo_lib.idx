@@ -1,0 +1,4 @@
+	name = <"S2 demonstration models">
+	short_name = <"models-demo">
+	description = <"S2 demo models based on CKM and CEMs">
+	maintainer = <"S2">

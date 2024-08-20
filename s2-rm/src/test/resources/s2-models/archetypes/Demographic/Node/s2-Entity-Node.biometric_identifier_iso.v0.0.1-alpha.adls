@@ -1,0 +1,239 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9c21ee2c-9913-4a78-bbd1-b63eef4f0419)
+    s2-Entity-Node.biometric_identifier_iso.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-20">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.biometric_identifier_iso.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.biometric_identifier_iso.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"Representation of data about a person's biometric identifier">
+            keywords = <"demographic service", "biometric identifier">
+            use = <"Used in demographic services to register the details of a person's biometric identifier">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Biometric identifier
+        items matches {
+            Node[id2] occurrences matches {1} matches {    -- Type of biometric
+                value matches {
+                    Coded_text[id11] matches {
+                        term matches {
+                            Terminology_term[id20] matches {
+                                concept matches {[ac3]}    -- Type of biometric (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id3] occurrences matches {0..1} matches {    -- Biometric data template
+                value matches {
+                    Coded_text[id12] matches {
+                        term matches {
+                            Terminology_term[id21] matches {
+                                concept matches {[ac1]}    -- Template code
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id4] occurrences matches {0..1} matches {    -- Biometric enrolment quality
+                value matches {
+                    Ratio[id13]
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Biometric creating authority
+                value matches {
+                    Text[id14]
+                }
+            }
+            Node[id6] matches {    -- Location of biometric identifier
+                value matches {
+                    Coded_text[id15] matches {
+                        term matches {
+                            Terminology_term[id22] matches {
+                                concept matches {[ac2]}    -- Localization code
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Biometric schema
+                value matches {
+                    Text[id16]
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Biometric device identification
+                value matches {
+                    Text[id17]
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Biometric version
+                value matches {
+                    Text[id18]
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Biometric date of creation
+                value matches {
+                    Date_value[id19]
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at20", "at21", "at22", "at23", "at24", "at25", "at26", "at27", "at28", "at29", "at30", "at31", "at32", "at33", "at34", "at35">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Template code">
+                description = <"Valid codes for the biometric template">
+            >
+            ["ac2"] = <
+                text = <"Localization code">
+                description = <"Valid codes for the biometric localization">
+            >
+            ["ac3"] = <
+                text = <"Type of biometric (synthesised)">
+                description = <"Identification of the type of biometric identifier described by this set of data (synthesised)">
+            >
+            ["at20"] = <
+                text = <"Finger print—rolled">
+                description = <"Finger print—rolled">
+            >
+            ["at21"] = <
+                text = <"Finger print—flat">
+                description = <"Finger print—flat">
+            >
+            ["at22"] = <
+                text = <"Facial features">
+                description = <"Facial features">
+            >
+            ["at23"] = <
+                text = <"Voice">
+                description = <"Voice">
+            >
+            ["at24"] = <
+                text = <"Iris">
+                description = <"Iris">
+            >
+            ["at25"] = <
+                text = <"Retina">
+                description = <"Retina">
+            >
+            ["at26"] = <
+                text = <"Hand geometry">
+                description = <"Hand geometry">
+            >
+            ["at27"] = <
+                text = <"Signature dynamics">
+                description = <"Signature dynamics">
+            >
+            ["at28"] = <
+                text = <"Keystroke dynamics">
+                description = <"Keystroke dynamics">
+            >
+            ["at29"] = <
+                text = <"Lip movement">
+                description = <"Lip movement">
+            >
+            ["at30"] = <
+                text = <"Thermal face image">
+                description = <"Thermal face image">
+            >
+            ["at31"] = <
+                text = <"Thermal hand image">
+                description = <"Thermal hand image">
+            >
+            ["at32"] = <
+                text = <"Gait">
+                description = <"Gait">
+            >
+            ["at33"] = <
+                text = <"Blood type (including rh factor)">
+                description = <"Blood type (including rh factor)">
+            >
+            ["at34"] = <
+                text = <"DNA">
+                description = <"DNA">
+            >
+            ["at35"] = <
+                text = <"Unknown">
+                description = <"Unknown">
+            >
+            ["id1"] = <
+                text = <"Biometric identifier">
+                description = <"A person's biometric identifier">
+            >
+            ["id10"] = <
+                text = <"Biometric date of creation">
+                description = <"The date upon which the biometric identifier was created">
+            >
+            ["id2"] = <
+                text = <"Type of biometric">
+                description = <"Identification of the type of biometric identifier described by this set of data">
+            >
+            ["id3"] = <
+                text = <"Biometric data template">
+                description = <"The format for a BIR that is fully-defined by a CBEFF patron">
+            >
+            ["id4"] = <
+                text = <"Biometric enrolment quality">
+                description = <"A numeric indicator of the quality of the biometric object">
+            >
+            ["id5"] = <
+                text = <"Biometric creating authority">
+                description = <"This indicates the organization that created the biometric">
+            >
+            ["id6"] = <
+                text = <"Location of biometric identifier">
+                description = <"Where the biometric could represent a number of alternative options, the specific location should be identified. If the biometric represents more than one, multiple locations should be indicated">
+            >
+            ["id7"] = <
+                text = <"Biometric schema">
+                description = <"An identifier assigned to a biometric product that unambiguously identifies the biometric product within the biometric products that have been assigned an identifier by a biometric product owner">
+            >
+            ["id8"] = <
+                text = <"Biometric device identification">
+                description = <"The transformation of a BIR in an initial patron format into a BIR in a target patron format">
+            >
+            ["id9"] = <
+                text = <"Biometric version">
+                description = <"Version of the process used to produce this biometric. This relates to the software used, rather than the device specification. Abstract value(s) defined by the patron format specification that identify a version of the patron format">
+            >
+        >
+    >
+    

@@ -1,0 +1,175 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fdff5851-463b-4545-8f05-487a34123cea)
+	s2-EHR-Node.electronic_communication.v1.0.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-03-09">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.electronic_communication.v1.0.2, copyright 2022 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.electronic_communication.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about a specified type of electronic communication as it is known or understood in the course of clinical documentation.">
+			use = <"Use to record details about a specified type of electronic communication for an individual or an organization as it is known or understood in the course of clinical documentation. This is commonly ad hoc or when it is not appropriate or possible to use a formal register or index.">
+			keywords = <"telephone", "phone", "mobile", "email", "fax", "pager", "chat", "social media", "asynchronous", "communication", "SoMe">
+			misuse = <"Not to be used for complex communication representation or management, such as preferred phone numbers or valid dates of usage. Use a formal Master Patient Index or Health Provider Index for this purpose, or archetypes based on the openEHR Demographic Information Model.
+            
+            Not to be used to represent or replace formal identification management or for the purposes of maintaining an official demographic register or index. Use a formal Master Patient Index or Health Provider Index for this purpose, or archetypes based on the openEHR Demographic Information Model.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Randi Brendberg, Helse Nord RHF, Norway", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Ludvig Eek Hofmann, Cambio Healthcare Systems AB, Sweden", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Rebecka Hansson, Cambio Healthcare Systems AB, Sweden", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Gunn-Lisbeth Kleiven, Oslo universitetssykehus HF, Norway", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Electronic communication
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Type
+				value matches {
+					Plain_text[id15] 
+					Coded_text[id16] matches {
+						term matches {
+							Terminology_term[id22] matches {
+								concept matches {[ac1]}		-- Type (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id3] matches {	-- Value
+				value matches {
+					Text[id17] 
+					Uri_ref[id18] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Purpose
+				value matches {
+					Plain_text[id19] 
+					Coded_text[id20] matches {
+						term matches {
+							Terminology_term[id23] matches {
+								concept matches {[ac2]}		-- Purpose (synthesised)
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id14, s2-EHR-Node.language.v1] 
+			Node[id5] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id21] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Type (synthesised)">
+				description = <"The type or form of electronic communication. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Purpose (synthesised)">
+				description = <"The purpose or use for the identified type of electronic communication. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Business use">
+				description = <"">
+			>
+			["at11"] = <
+				text = <"Personal use">
+				description = <"">
+			>
+			["at12"] = <
+				text = <"Both business and personal use">
+				description = <"">
+			>
+			["at5"] = <
+				text = <"Mobile (cellular) telephone">
+				description = <"For SMS or voice calls.">
+			>
+			["at6"] = <
+				text = <"Telephone (excluding mobile telephone)">
+				description = <"">
+			>
+			["at7"] = <
+				text = <"Email">
+				description = <"">
+			>
+			["at8"] = <
+				text = <"Pager">
+				description = <"">
+			>
+			["at9"] = <
+				text = <"Fax">
+				description = <"">
+			>
+			["id1"] = <
+				text = <"Electronic communication">
+				description = <"Details about a specified type of electronic communication.">
+			>
+			["id14"] = <
+				text = <"Additional details">
+				description = <"Additional details about the electronic communication.">
+			>
+			["id2"] = <
+				text = <"Type">
+				description = <"The type or form of electronic communication.">
+			>
+			["id3"] = <
+				text = <"Value">
+				description = <"The unique combination of alphanumeric characters, relevant for representation of 'Type'.">
+			>
+			["id4"] = <
+				text = <"Purpose">
+				description = <"The purpose or use for the identified type of electronic communication.">
+			>
+			["id5"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the electronic communication not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id2"] = <http://loinc.org/91878-9>
+			["id5"] = <http://loinc.org/106173-8>
+			["id1"] = <http://loinc.org/104902-2>
+			["id3"] = <http://loinc.org/104917-0>
+			["id4"] = <http://loinc.org/104911-3>
+		>
+	>
+	value_sets = <
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at10", "at11", "at12">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6", "at7", "at8", "at9">
+		>
+	>
+

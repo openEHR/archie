@@ -1,0 +1,167 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=20283bce-9188-47c1-8242-60aaa0eb2706)
+	s2-EHR-Assessment.financial_summary.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Silje Ljosland Bakke, Nasjonal IKT HF, <silje.ljosland.bakke@nasjonalikt.no>, 2017-10-09">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.financial_summary.v1.0.0, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.financial_summary.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary information about the financial situation of an individual, particularly the impact on social determinants of health.">
+			use = <"Use to record summary information about the financial situation of an individual, particularly the impact on social determinants of health.
+            
+            Multiple instances of the Node.financial_record used within the Financial record SLOT will allow aggregation of a history of both past and present finances.
+            
+            The 'Last updated' data Node will record the last time that the Financial summary as a whole, including individual financial records, was updated.
+            
+            Use to incorporate the narrative descriptions of financial history within existing or legacy clinical systems into an archetyped format, using the 'Description' data Node.">
+			misuse = <"Not to be used to record information about the occupation(s) of the individual. Use the EVALUATION.occupation_summary or Node.occupation_record archetypes for this purpose.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Terje Bektesevic Holmlund, UiT Norges arktiske universitet, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Heidi Koikkalainen, United Kingdom (openEHR Editor)", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "pirkko kortekangas, UNA oy, Finland", "Ronald Krawec, Alberta Health Services, Canada", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Neranga Liyanaarachchi, Ministry of Health, Postgraduate Institute of Medicine, Sri Lanka", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Tove Stenquist, Helseforetak, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Susanne Trønnes, Bergen kommune, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Assessment[id1] matches {	-- Financial summary
+		data cardinality matches {1..*; unordered} matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id15] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Financial security status
+				value matches {
+					Coded_text[id16] matches {
+						term matches {
+							Terminology_term[id21] matches {
+								concept matches {[ac1]}		-- Financial security status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Financial security description
+				value matches {
+					Text[id17] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Main source of income
+				value matches {
+					Text[id18] 
+				}
+			}
+			use_archetype Node[id9, s2-EHR-Node.financial_record.v0] 
+			Node[id10] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id19] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id12] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id20] 
+				}
+			}
+			allow_archetype Node[id13] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Financial security status (synthesised)">
+				description = <"Category describing the individual's perception about their income being adequate to cover their expenses. (synthesised)">
+			>
+			["at4"] = <
+				text = <"Secure">
+				description = <"The individual has a sense of certainty and peace of mind about their financial situation - their income is stable and/or adequate to cover their expenses.">
+			>
+			["at5"] = <
+				text = <"At risk">
+				description = <"The individual has a sense of uncertainty about their financial situation - their income may vary and/or sometimes may not be adequate to cover their expenses.">
+			>
+			["at6"] = <
+				text = <"Insecure">
+				description = <"The individual has a sense of worry and concern about financial hardship - their income is not stable and/or not adequate to cover their expenses.">
+			>
+			["id1"] = <
+				text = <"Financial summary">
+				description = <"Summary information about the financial situation of an individual.">
+			>
+			["id10"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the Financial summary not captured in other fields.">
+			>
+			["id12"] = <
+				text = <"Last updated">
+				description = <"The date this Financial summary was last updated.">
+			>
+			["id13"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id14"] = <
+				text = <"Financial security description">
+				description = <"Narrative description about the financial security status of the individual.">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"Narrative description about the financial situation of the individual.">
+			>
+			["id4"] = <
+				text = <"Financial security status">
+				description = <"Category describing the individual's perception about their income being adequate to cover their expenses.">
+			>
+			["id8"] = <
+				text = <"Main source of income">
+				description = <"The main source of income for the individual.">
+			>
+			["id9"] = <
+				text = <"Financial record">
+				description = <"">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/106173-8>
+			["id12"] = <http://loinc.org/106177-9>
+			["id3"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at4", "at5", "at6">
+		>
+	>
+

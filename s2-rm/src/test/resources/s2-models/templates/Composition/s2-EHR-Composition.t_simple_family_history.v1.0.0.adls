@@ -1,0 +1,81 @@
+template (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Composition.t_simple_family_history.v1.0.0
+
+specialize
+	s2-EHR-Composition.family_history.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Simplified family history template">
+		>
+	>
+
+definition
+	Composition[id1.1] matches {
+		content matches {
+			use_archetype Assessment[id2, s2-EHR-Assessment.t_family_history-1.v1]
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Simplified family history ">
+				description = <"Simplified family history record">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Assessment.t_family_history-1.v1.0.0
+
+specialize
+	s2-EHR-Assessment.family_history.v2
+
+definition
+	Assessment[id1.1] matches {
+		/data matches {
+			Node[id29] matches {	-- Per problem
+				items matches {
+					use_archetype Node[id60, s2-EHR-Node.family_prevalence.v1]  occurrences matches {0}
+				}
+			}
+			Node[id4] matches {	-- Per family member
+				items matches {
+					Node[id21] occurrences matches {0} 
+					use_archetype Node[id49, s2-EHR-Node.person.v1] occurrences matches {0}
+					Node[id25] occurrences matches {0}
+ 				}
+			}
+			use_archetype Node[id54, s2-EHR-Node.media_file.v1]  occurrences matches {0}
+		}
+		/qualifiers matches {
+			allow_archetype Node[id46] occurrences matches {0}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Simplified family history assessment">
+				description = <"Simplified family history assessment">
+			>
+		>
+	>

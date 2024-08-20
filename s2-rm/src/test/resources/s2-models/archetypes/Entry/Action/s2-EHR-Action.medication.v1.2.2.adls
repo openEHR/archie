@@ -1,0 +1,738 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e921b827-0ec9-47a2-a136-932de3e57c0d)
+    s2-EHR-Action.medication.v1.2.2
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Morten Aas, Oslo Universitetssykehus, Norway", "Ole Andreas Bjordal, Webmed, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Dionizio Brentano, UFRGS - Universidade Federal do Rio Grande do Sul, Brazil", "Laila Bruun, Oslo universitetssykehus HF, Norway", "Ady Angelica Castro Acosta, CIBERES-Hospital 12 de Octubre, Spain", "Ruth Caudwell, retired, United Kingdom", "Bjørn Christensen, Helse Bergen HF, Norway", "Stephen Chu, NEHTA, Australia (Editor)", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Inderjit Daphu, Helse Bergen, Norway", "Samo Drnovšek, Marand, Slovenia (Editor)", "Robert Eager, Healthways, Australia", "Tone Engen, Norway", "Peter Fedorcsak, Oslo universitetssykehus, Norway", "Samuel Frade, Marand, Portugal", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Jacquie Garton-Smith, Royal Perth Hospital and DoHWA, Australia", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Sam Heard, Ocean Health Systems, Australia", "Geir Hoff, Sykehuset Telemark HF, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS AS, Norway", "Roar Holm, Helse Vest IKT A/S, Norway", "Alfred Honore, Haukeland, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Gunnar Jårvik, Nasjonal IKT HF, Norway", "Hilde Karen Ofte, Nordlandssykehuset HF, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Anne Kristin Strand, Sykehuspartner HF, Norway", "Robert L'egan, NEHTA, Australia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Marit Ludvigsen, St Olavs Hospital, Norway", "Colin Macfarlane, Elsevier, United Kingdom", "Siv Marie Lien, DIPS ASA, Norway", "James McClay, University of Nebraska Medical Center, United States", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Jude Michel, Queensland Health, Australia", "Chris Mitchell, RACGP, Australia", "Lars Morgan Karlsen, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Doug Pankoski, Alberta Health Services, Canada", "Vladimir Pizzo, Clínica Parente Pizzo, Finland", "Jodie Pycroft, Adelaide Northern Division of General Practice Ltd, Australia", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Danielle Santos Alves, ARS Semantica, Brazil", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Sam Stokes, Citizen Scientist, United States", "Iztok Stotl, UKCLJ, Slovenia", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Nyree Taylor, Ocean Health Systems, Australia", "Tesfay Teame, Folkehelseinstituttet, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Anders Thurin, VGR, Sweden", "Gordon Tomes, Australian Institute of Health and Welfare, Australia", "Stian Torleif Varpe, Helse Bergen, Norway", "Richard Townley-O'Neill, NEHTA, Australia (Editor)", "Karl Trygve Kalleberg, Oslo Universitetssykehus, Norway", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Vest IKT, Norway (openEHR Editor)", "Ines Vaz, UFN, Portugal", "Kylie Young, The Royal Australian College of General Practitioners, Australia", "Iztok Štotl, UKCLJ, Slovenia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics UK, <ian@freshehr.com>, 2017-05-29">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ACTION.medication.v1.2.2, copyright 2017 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-ACTION.medication.v1.2.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"For recording details about any activity related to the planning, scheduling, prescription management, dispensing, administration, cessation and other use of a medication, vaccine, nutritional product or other therapeutic item.">
+            keywords = <"medication", "prescribe", "dispense", "administration", "cessation", "therapeutic good", "supply", "medicine", "drug", "preparation", "medicinal", "prescription", "vaccine", "vaccination", "dosage", "form", "route", "follow-up">
+            use = <"Use to record information about the activities required to support all aspects of medication management, including the planning, scheduling, suspension, cancellation and completion of medication orders, as well as the actual administration of medication items. This is done by the recording of data against specific activities, as defined by the 'Pathway' careflow steps in this archetype.
+            
+            This archetype is intended to be used for any type of medication and related order, whether prescribed by a health professional or available for purchase 'over the counter'. The scope of this medication archetype also includes orders for vaccinations, parenteral fluids or other therapeutic goods, such as bandages, nutritional products or other items that are applied or administered to have a therapeutic effect and which have a common pattern for data recording. Within the context of a Medication or Vaccination List, this archetype will be used to record only what medication or vaccination has been prescribed or administered.
+            
+            Additional structured and detailed information about the activity can be captured using purpose-specific archetypes inserted into the 'Preparations details', 'Amount', 'Structured body site', 'Administration device' or 'Additional details' SLOTs, where required.
+            
+            Timings related to medication management can be managed in one of two ways:
+            - Using the reference model - the time for performance of any pathway step will use the ACTION time attribute for each step.
+            - Archetyped data Nodes - the 'Original scheduled date/time' data Node is intended to record the time when the medication item was intended to be administered. Note: the corresponding ACTION time attribute for the Scheduled pathway step will record the time that the clinical activity was scheduled into a system, not the intended date/time on which the activity is intended to be carried out.
+            
+            In practice, some medications (for example, during resuscitation in the emergency department) will be administered on the basis of a protocol or verbal order and not be ordered in advance. The details about the medication will be added against the pathway step 'Dose administered'. For an ongoing course of medication, data about the medication item will be recorded against the 'Dose administered' step at each administration, leaving the instruction in the active state. When the last occurrence is recorded the ‘Medication course completed' step is recorded showing that this order is now in the completed state.
+            
+            In other situations, such as secondary care, there may be a formal order for a medication item using a corresponding INSTRUCTION.medication_order archetype. This ACTION archetype can then be used to record the workflow of when and how the order has been carried out.
+            
+            Recording information using this ACTION archetype indicates that some sort of activity has actually occurred; this will most commonly be the administration of the medication item itself, but may be a delayed supply attempt or another activity such as suspending the medication item in preparation for a procedure. If there is a formal order for the medication item, the state of this order is represented by the Pathway step against which the data is recorded. For example, using this archetype the progressing state of a Paracetamol order may be recorded through separate entries in the EHR progress notes at each 'Pathway' step. When documenting the reason for why an activity was performed or a pathway step was chosen, for example why a dose was omitted or the medication was ceased, the Node \\\"Reason\\\" may be used. 
+            
+            When this ACTION archetype is used with the corresponding INSTRUCTION.medication_order archetype, information which hasn't changed from the order to the management activity aren't generally repeated in the action. It's considered good practice, though not mandatory, to record the medication item in the ACTION.
+            
+            The pathway steps make a distinction between those which relate directly to fulfillment of the order, such as authorisation, preparation and dose administration, and those which relate to handling of the prescription such as issue, re-authorisation, dispensing. In some jurisdictions these are regarded as a single pathway, in others it may be helpful to handle order fulfillment and prescription in separate templates.
+            
+            The names of most of the pathway steps in this archetype start with either \\\"Medication\\\" or \\\"Prescription\\\" to make it easier to differentiate between the pathway steps that are associated with prescription handling and those that are associated with handling the medication order itself.
+            
+            In some jurisdictions, a prescription can be re-authorised for the purpose of continuing an ongoing medication order, while in others an entirely new prescription must be issued in these circumstances. In the latter, the pathway step 'Prescription re-authorised' is not applicable.">
+            misuse = <"Not to be used for recording a medication order or instruction. Use the INSTRUCTION.medication_order archetype for this purpose.
+            
+            Not to be used to record the administration or dispensing of blood products, which involves a fundamentally different clinical process and is likely to require different supporting information. Use a different appropriate ACTION archetype for this purpose.
+            
+            Not to be used for recording details about therapeutic adherence, secondary effects or toxicity. Use other archetypes for these purposes.
+            
+            Not to be used for medication reconcilliation. Use other appropriate archetypes for this purpose.
+            
+            Not to be used for a formal review of an entire medication list, for example by a pharmacist. Use other appropriate archetypes for this purpose.">
+        >
+    >
+    
+definition
+    Action[id1] matches {    -- Medication management
+        state_transition matches {
+            State_transition[id110] matches {    -- Medication recommended
+                current_state matches {"planned"}
+                careflow_step matches {
+                    Terminology_term[id159] matches {
+                        concept matches {[at110]}    -- Medication recommended
+                    }
+                }
+            }
+            State_transition[id146] matches {    -- Prescription awaiting authorisation
+                current_state matches {"planned", "active"}
+                careflow_step matches {
+                    Terminology_term[id161] matches {
+                        concept matches {[at146]}    -- Prescription awaiting authorisation
+                    }
+                }
+            }
+            State_transition[id14] matches {    -- Medication course postponed
+                current_state matches {"postponed"}
+                careflow_step matches {
+                    Terminology_term[id163] matches {
+                        concept matches {[at14]}    -- Medication course postponed
+                    }
+                }
+            }
+            State_transition[id13] matches {    -- Medication course cancelled
+                current_state matches {"cancelled"}
+                careflow_step matches {
+                    Terminology_term[id165] matches {
+                        concept matches {[at13]}    -- Medication course cancelled
+                    }
+                }
+            }
+            State_transition[id151] matches {    -- Prescription cancelled
+                current_state matches {"cancelled"}
+                careflow_step matches {
+                    Terminology_term[id167] matches {
+                        concept matches {[at151]}    -- Prescription cancelled
+                    }
+                }
+            }
+            State_transition[id17] matches {    -- Medication start date/condition set
+                current_state matches {"scheduled"}
+                careflow_step matches {
+                    Terminology_term[id169] matches {
+                        concept matches {[at17]}    -- Medication start date/condition set
+                    }
+                }
+            }
+            State_transition[id154] matches {    -- Medication authorised
+                current_state matches {"scheduled"}
+                careflow_step matches {
+                    Terminology_term[id171] matches {
+                        concept matches {[at154]}    -- Medication authorised
+                    }
+                }
+            }
+            State_transition[id3] matches {    -- Prescription issued
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id173] matches {
+                        concept matches {[at3]}    -- Prescription issued
+                    }
+                }
+            }
+            State_transition[id4] matches {    -- Prescription dispensed
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id175] matches {
+                        concept matches {[at4]}    -- Prescription dispensed
+                    }
+                }
+            }
+            State_transition[id107] matches {    -- Prescription re-authorised
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id177] matches {
+                        concept matches {[at107]}    -- Prescription re-authorised
+                    }
+                }
+            }
+            State_transition[id11] matches {    -- Prescription re-issued
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id179] matches {
+                        concept matches {[at11]}    -- Prescription re-issued
+                    }
+                }
+            }
+            State_transition[id149] matches {    -- Medication prepared
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id181] matches {
+                        concept matches {[at149]}    -- Medication prepared
+                    }
+                }
+            }
+            State_transition[id5] matches {    -- Medication course commenced
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id183] matches {
+                        concept matches {[at5]}    -- Medication course commenced
+                    }
+                }
+            }
+            State_transition[id42] matches {    -- Minor change to order
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id185] matches {
+                        concept matches {[at42]}    -- Minor change to order
+                    }
+                }
+            }
+            State_transition[id6] matches {    -- Medication reassessed
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id187] matches {
+                        concept matches {[at6]}    -- Medication reassessed
+                    }
+                }
+            }
+            State_transition[id7] matches {    -- Dose administered
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id189] matches {
+                        concept matches {[at7]}    -- Dose administered
+                    }
+                }
+            }
+            State_transition[id19] matches {    -- Dose administration omitted
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id191] matches {
+                        concept matches {[at19]}    -- Dose administration omitted
+                    }
+                }
+            }
+            State_transition[id45] matches {    -- Dose administration deferred
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id193] matches {
+                        concept matches {[at45]}    -- Dose administration deferred
+                    }
+                }
+            }
+            State_transition[id9] matches {    -- Prescription supply delayed
+                current_state matches {"suspended"}
+                careflow_step matches {
+                    Terminology_term[id195] matches {
+                        concept matches {[at9]}    -- Prescription supply delayed
+                    }
+                }
+            }
+            State_transition[id10] matches {    -- Administrations suspended
+                current_state matches {"suspended"}
+                careflow_step matches {
+                    Terminology_term[id197] matches {
+                        concept matches {[at10]}    -- Administrations suspended
+                    }
+                }
+            }
+            State_transition[id12] matches {    -- Prescription re-authorisation pending
+                current_state matches {"suspended"}
+                careflow_step matches {
+                    Terminology_term[id199] matches {
+                        concept matches {[at12]}    -- Prescription re-authorisation pending
+                    }
+                }
+            }
+            State_transition[id16] matches {    -- Medication course stopped
+                current_state matches {"aborted"}
+                careflow_step matches {
+                    Terminology_term[id201] matches {
+                        concept matches {[at16]}    -- Medication course stopped
+                    }
+                }
+            }
+            State_transition[id40] matches {    -- Major change to order
+                current_state matches {"aborted"}
+                careflow_step matches {
+                    Terminology_term[id203] matches {
+                        concept matches {[at40]}    -- Major change to order
+                    }
+                }
+            }
+            State_transition[id152] matches {    -- Prescription invalid or expired
+                current_state matches {"aborted"}
+                careflow_step matches {
+                    Terminology_term[id205] matches {
+                        concept matches {[at152]}    -- Prescription invalid or expired
+                    }
+                }
+            }
+            State_transition[id8] matches {    -- Medication course completed
+                current_state matches {"completed"}
+                careflow_step matches {
+                    Terminology_term[id207] matches {
+                        concept matches {[at8]}    -- Medication course completed
+                    }
+                }
+            }
+            State_transition[id153] matches {    -- Prescription fulfilled
+                current_state matches {"completed"}
+                careflow_step matches {
+                    Terminology_term[id209] matches {
+                        concept matches {[at153]}    -- Prescription fulfilled
+                    }
+                }
+            }
+        }
+        description matches {
+            Node[id21] occurrences matches {0..1} matches {    -- Medication item
+                value matches {
+                    Text[id210]
+                }
+            }
+            use_archetype Node[id105, s2-EHR-Node.medication.v2] occurrences matches {0..1}     -- Medication details
+            allow_archetype Node[id132] occurrences matches {0..1} matches {     -- Amount
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.medication_supply_amount(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.medication_supply_amount(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.dosage(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.dosage(-[a-zA-Z0-9_]+)*\.v2/}
+            }
+            Node[id157] occurrences matches {0..1} matches {    -- Clinical indication
+                value matches {
+                    Text[id211]
+                }
+            }
+            Node[id133] occurrences matches {0..1} matches {    -- Substitution
+                value matches {
+                    Coded_text[id212] matches {
+                        term matches {
+                            Terminology_term[id226] matches {
+                                concept matches {[ac2]}    -- Substitution (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id134] occurrences matches {0..1} matches {    -- Substitution reason
+                value matches {
+                    Text[id213]
+                }
+            }
+            Node[id44] occurrences matches {0..1} matches {    -- Original scheduled date/time
+                value matches {
+                    Date_time_value[id214]
+                }
+            }
+            Node[id155] occurrences matches {0..1} matches {    -- Restart date/time
+                value matches {
+                    Date_time_value[id215]
+                }
+            }
+            Node[id156] occurrences matches {0..1} matches {    -- Restart criterion
+                value matches {
+                    Text[id216]
+                }
+            }
+            Node[id22] matches {    -- Reason
+                value matches {
+                    Text[id217]
+                }
+            }
+            Node[id141] occurrences matches {0..1} matches {    -- Administration details
+                items matches {
+                    Node[id148] occurrences matches {0..1} matches {    -- Route
+                        value matches {
+                            Text[id218]
+                        }
+                    }
+                    Node[id142] occurrences matches {0..1} matches {    -- Body site
+                        value matches {
+                            Text[id219]
+                        }
+                    }
+                    allow_archetype Node[id143] occurrences matches {0..1} matches {     -- Structured body site
+                        include
+                            archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v2/}
+                    }
+                    Node[id144] matches {    -- Administration method
+                        value matches {
+                            Text[id220]
+                        }
+                    }
+                    use_archetype Node[id145, s2-EHR-Node.device.v1]    -- Administration device
+                }
+            }
+            use_archetype Node[id54, s2-EHR-Node.medication_authorisation.v0]    -- Additional details
+            Node[id34] matches {    -- Patient guidance
+                value matches {
+                    Text[id221]
+                }
+            }
+            Node[id150] occurrences matches {0..1} matches {    -- Double-checked?
+                value matches {
+                    Boolean_value[id222]
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Sequence number
+                value matches {
+                    Count[id223]
+                }
+            }
+            Node[id25] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id224]
+                }
+            }
+        }
+        qualifiers cardinality matches {1..*; unordered} matches {
+            Node[id104] matches {    -- Order ID
+                value matches {
+                    Rwe_id_ref[id225]
+                }
+            }
+            allow_archetype Node[id86] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at138", "at139">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac2"] = <
+                text = <"Substitution (synthesised)">
+                description = <"Subsitution action taken by the person administering or dispensing the drug. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Administrations suspended">
+                description = <"The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met. When setting the date/conditions for restart after suspending, a step from ‘Administrations suspended’ and back to 'Medication start date/condition set' should be performed.">
+            >
+            ["at107"] = <
+                text = <"Prescription re-authorised">
+                description = <"The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.">
+            >
+            ["at11"] = <
+                text = <"Prescription re-issued">
+                description = <"A prescription has been re-issued for an existing medication order.">
+            >
+            ["at110"] = <
+                text = <"Medication recommended">
+                description = <"The medication has been recommended but no steps have been taken to initiate prescribing.">
+            >
+            ["at12"] = <
+                text = <"Prescription re-authorisation pending">
+                description = <"Issue of the prescription is awaiting re-authorisation by a clinician.">
+            >
+            ["at13"] = <
+                text = <"Medication course cancelled">
+                description = <"The planned course of medication has been cancelled prior to any administration.">
+            >
+            ["at138"] = <
+                text = <"Substitution performed">
+                description = <"A medication was substituted which is bioequivalent to that ordered.">
+            >
+            ["at139"] = <
+                text = <"Substitution not performed">
+                description = <"Although allowed by the medication order a bioequvalent medication was not substituted.">
+            >
+            ["at14"] = <
+                text = <"Medication course postponed">
+                description = <"The scheduled medication course has been postponed prior to any administration.">
+            >
+            ["at146"] = <
+                text = <"Prescription awaiting authorisation">
+                description = <"Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.">
+            >
+            ["at149"] = <
+                text = <"Medication prepared">
+                description = <"The medication has been physically prepared. For example: preparation of an intravenous mixture.">
+            >
+            ["at151"] = <
+                text = <"Prescription cancelled">
+                description = <"The prescription was cancelled prior to being issued.">
+            >
+            ["at152"] = <
+                text = <"Prescription invalid or expired">
+                description = <"Prescription has been invalidated or has expired without being fulfilled.">
+            >
+            ["at153"] = <
+                text = <"Prescription fulfilled">
+                description = <"The prescription has been fulfilled successfully.">
+            >
+            ["at154"] = <
+                text = <"Medication authorised">
+                description = <"The medication has been formally authorised for use.">
+            >
+            ["at16"] = <
+                text = <"Medication course stopped">
+                description = <"Administration of the medication has been ceased during the period of the intended course.">
+            >
+            ["at163"] = <
+                text = <"planned">
+                description = <"planned">
+            >
+            ["at164"] = <
+                text = <"active">
+                description = <"active">
+            >
+            ["at17"] = <
+                text = <"Medication start date/condition set">
+                description = <"The time to start the medication, or other starting condition, has been set.">
+            >
+            ["at19"] = <
+                text = <"Dose administration omitted">
+                description = <"An administration of the medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.">
+            >
+            ["at3"] = <
+                text = <"Prescription issued">
+                description = <"A prescription has been issued for the medication.">
+            >
+            ["at4"] = <
+                text = <"Prescription dispensed">
+                description = <"The ordered medication has been dispensed, for example from a pharmacy to the patient.">
+            >
+            ["at40"] = <
+                text = <"Major change to order">
+                description = <"A major change to the order was required, resulting in this order being stopped and a replacement order being started.">
+            >
+            ["at42"] = <
+                text = <"Minor change to order">
+                description = <"The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.">
+            >
+            ["at45"] = <
+                text = <"Dose administration deferred">
+                description = <"An administration of a dose of the medication has been delayed but is expected to be given as soon as possible.">
+            >
+            ["at5"] = <
+                text = <"Medication course commenced">
+                description = <"The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.">
+            >
+            ["at6"] = <
+                text = <"Medication reassessed">
+                description = <"The individual medication has been reassessed, for example whether the medication should still be taken. This is not intended to capture review of the medication list.">
+            >
+            ["at7"] = <
+                text = <"Dose administered">
+                description = <"A single administration of the medication has taken place.">
+            >
+            ["at8"] = <
+                text = <"Medication course completed">
+                description = <"The medication course has been completed as planned.">
+            >
+            ["at9"] = <
+                text = <"Prescription supply delayed">
+                description = <"The prescription has not been dispensed due to a technical or pharamaceutical supply issue.">
+            >
+            ["id1"] = <
+                text = <"Medication management">
+                description = <"Any activity related to the planning, scheduling, prescription management, dispensing, administration, cessation and other use of a medication, vaccine, nutritional product or other therapeutic item.">
+            >
+            ["id10"] = <
+                text = <"Administrations suspended">
+                description = <"The administration of the medication has been suspended until further notice. No further doses should be given until the restart date or conditions have been met. When setting the date/conditions for restart after suspending, a step from ‘Administrations suspended’ and back to 'Medication start date/condition set' should be performed.">
+            >
+            ["id104"] = <
+                text = <"Order ID">
+                description = <"Unique identifier for the medication order.">
+            >
+            ["id105"] = <
+                text = <"Medication details">
+                description = <"Structured details about the medication including strength, form and constituent substances.">
+            >
+            ["id107"] = <
+                text = <"Prescription re-authorised">
+                description = <"The original medication order has been re-authorised to allow repeat prescription or dispensing. In some jurisdictions an entirely new order must be issued in these circumstances.">
+            >
+            ["id11"] = <
+                text = <"Prescription re-issued">
+                description = <"A prescription has been re-issued for an existing medication order.">
+            >
+            ["id110"] = <
+                text = <"Medication recommended">
+                description = <"The medication has been recommended but no steps have been taken to initiate prescribing.">
+            >
+            ["id12"] = <
+                text = <"Prescription re-authorisation pending">
+                description = <"Issue of the prescription is awaiting re-authorisation by a clinician.">
+            >
+            ["id13"] = <
+                text = <"Medication course cancelled">
+                description = <"The planned course of medication has been cancelled prior to any administration.">
+            >
+            ["id132"] = <
+                text = <"Amount">
+                description = <"Specific details about the amount of the medication item.">
+            >
+            ["id133"] = <
+                text = <"Substitution">
+                description = <"Subsitution action taken by the person administering or dispensing the drug.">
+            >
+            ["id134"] = <
+                text = <"Substitution reason">
+                description = <"The reason or justification for the substitution action taken.">
+            >
+            ["id14"] = <
+                text = <"Medication course postponed">
+                description = <"The scheduled medication course has been postponed prior to any administration.">
+            >
+            ["id141"] = <
+                text = <"Administration details">
+                description = <"Details of body site and administration of the medication.">
+            >
+            ["id142"] = <
+                text = <"Body site">
+                description = <"Structured description of the site of administration of the ordered item.">
+            >
+            ["id143"] = <
+                text = <"Structured body site">
+                description = <"Structured description of the site of administration of the medication, vaccine or therapeutic good.">
+            >
+            ["id144"] = <
+                text = <"Administration method">
+                description = <"The technique or device by which the ordered item was, or is to be, administered.">
+            >
+            ["id145"] = <
+                text = <"Administration device">
+                description = <"Details of the medical device used to assist administration of the medication.">
+            >
+            ["id146"] = <
+                text = <"Prescription awaiting authorisation">
+                description = <"Draft prescription has been prepared and is awaiting confirmation from an authorised clinician. May be used where reauthorisations are performed as a batch. This careflow_step may have a status of 'planned' or 'active', reflecting the need to to handle new orders as well as re-authorised orders.">
+            >
+            ["id148"] = <
+                text = <"Route">
+                description = <"The route by which the ordered item was, or is to be, administered into the subject's body.">
+            >
+            ["id149"] = <
+                text = <"Medication prepared">
+                description = <"The medication has been physically prepared. For example: preparation of an intravenous mixture.">
+            >
+            ["id150"] = <
+                text = <"Double-checked?">
+                description = <"The pathway step has been checked by a separate individual.">
+            >
+            ["id151"] = <
+                text = <"Prescription cancelled">
+                description = <"The prescription was cancelled prior to being issued.">
+            >
+            ["id152"] = <
+                text = <"Prescription invalid or expired">
+                description = <"Prescription has been invalidated or has expired without being fulfilled.">
+            >
+            ["id153"] = <
+                text = <"Prescription fulfilled">
+                description = <"The prescription has been fulfilled successfully.">
+            >
+            ["id154"] = <
+                text = <"Medication authorised">
+                description = <"The medication has been formally authorised for use.">
+            >
+            ["id155"] = <
+                text = <"Restart date/time">
+                description = <"The date/time on which the medication course is set to restart, as per the \\\"Administrations suspended\\\" pathway step.">
+            >
+            ["id156"] = <
+                text = <"Restart criterion">
+                description = <"The criterion which triggers the medication course to restart, as per the \\\"Administrations suspended\\\" pathway step.">
+            >
+            ["id157"] = <
+                text = <"Clinical indication">
+                description = <"The clinical reason for the medication activity.">
+            >
+            ["id16"] = <
+                text = <"Medication course stopped">
+                description = <"Administration of the medication has been ceased during the period of the intended course.">
+            >
+            ["id17"] = <
+                text = <"Medication start date/condition set">
+                description = <"The time to start the medication, or other starting condition, has been set.">
+            >
+            ["id19"] = <
+                text = <"Dose administration omitted">
+                description = <"An administration of the medication has been withheld and not given. There is no expectation that it will be given later, though the next dose (if any) should be administered according to the original order.">
+            >
+            ["id21"] = <
+                text = <"Medication item">
+                description = <"Name of the medication, vaccine or other therapeutic/prescribable item which was the focus of the activity.">
+            >
+            ["id22"] = <
+                text = <"Reason">
+                description = <"Reason that the pathway step for the identified medication was carried out.">
+            >
+            ["id25"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the activity or pathway step not captured in other fields, including details of any variance between the intended action and the action actually performed.">
+            >
+            ["id26"] = <
+                text = <"Sequence number">
+                description = <"The sequence number specific to the pathway step being recorded.">
+            >
+            ["id3"] = <
+                text = <"Prescription issued">
+                description = <"A prescription has been issued for the medication.">
+            >
+            ["id34"] = <
+                text = <"Patient guidance">
+                description = <"Any guidance, instructions or advice given to the subject of care or personal carer at the time of the pathway step.">
+            >
+            ["id4"] = <
+                text = <"Prescription dispensed">
+                description = <"The ordered medication has been dispensed, for example from a pharmacy to the patient.">
+            >
+            ["id40"] = <
+                text = <"Major change to order">
+                description = <"A major change to the order was required, resulting in this order being stopped and a replacement order being started.">
+            >
+            ["id42"] = <
+                text = <"Minor change to order">
+                description = <"The medication order has been changed in a manner which does not require a new instruction/order to be issued, according to local clinical rules.">
+            >
+            ["id44"] = <
+                text = <"Original scheduled date/time">
+                description = <"The datetime at which the medication action was scheduled to occur.">
+            >
+            ["id45"] = <
+                text = <"Dose administration deferred">
+                description = <"An administration of a dose of the medication has been delayed but is expected to be given as soon as possible.">
+            >
+            ["id5"] = <
+                text = <"Medication course commenced">
+                description = <"The medication has been taken by, or administered to, the patient for the first time. Although in some settings this significant date may be computable as the first of several administrations, in other settings, such as primary care, specific administration dates are not readily available.">
+            >
+            ["id54"] = <
+                text = <"Additional details">
+                description = <"Further structured details of the action, possibly specific to a pathway step.">
+            >
+            ["id6"] = <
+                text = <"Medication reassessed">
+                description = <"The individual medication has been reassessed, for example whether the medication should still be taken. This is not intended to capture review of the medication list.">
+            >
+            ["id7"] = <
+                text = <"Dose administered">
+                description = <"A single administration of the medication has taken place.">
+            >
+            ["id8"] = <
+                text = <"Medication course completed">
+                description = <"The medication course has been completed as planned.">
+            >
+            ["id86"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id9"] = <
+                text = <"Prescription supply delayed">
+                description = <"The prescription has not been dispensed due to a technical or pharamaceutical supply issue.">
+            >
+        >
+    >
+    term_bindings = <
+		["loinc"] = <
+			["id141"] = <http://loinc.org/80565-5>
+			["id142"] = <http://loinc.org/39111-0>
+			["id145"] = <http://loinc.org/74720-4>
+			["id148"] = <http://loinc.org/71468-3>
+		>
+	>

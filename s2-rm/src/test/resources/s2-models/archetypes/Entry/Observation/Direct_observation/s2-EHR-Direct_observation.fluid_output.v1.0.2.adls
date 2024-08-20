@@ -1,0 +1,269 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=29f66362-7125-4970-8551-0c43433a5a04)
+	s2-EHR-Direct_observation.fluid_output.v1.0.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, United Kingdom, <ian.mcnicoll@oceaninformatics.com>, 2009-11-11">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.fluid_output.v1.0.2, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.fluid_output.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about measured fluids lost or excreted via any mechanism.">
+			use = <"Use to record details about measured fluids lost or excreted via any mechanism.
+            
+            This archetype will be used to record details about:
+            - each single fluid output measurement, for example the volume of each vomit; or
+            - the total fluid output from a single source over a specified period of time, for example the total urine output over an 8 hour nursing shift.
+            
+            Each fluid measurement should be recorded using a separate instance of this archetype.
+            
+            The details recorded using this fluid output archetype may inform fluid balance calculations. 
+            
+            A fluid balance chart will typically require a combination of multiple instances of this archetype and multiple instances of OBSERVATION.fluid_input archetype to capture all of the various inputs and outputs, plus a single instance of the OBSERVATION.fluid_balance to record the overall fluid status.">
+			keywords = <"fluid", "balance", "output", "urine", "vomit", "drain", "drainage", "aspirate", "exudate", "loss">
+			misuse = <"Not to be used to record fluid input. Use OBSERVATION.fluid_input for this purpose.
+            
+            Not to be used to record fluid balance calculations or to record the calculation of insensible fluid loss. Use OBSERVATION.fluid_balance for this purpose.">
+		>
+	>
+	other_contributors = <"Tomas Alme, DIPS, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Ingeborg Berge, Direktoratet for e-helse, Norway", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Stephen Chu, NEHTA, Australia", "Stig Erik Hegrestad, Helse Førde, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Christian Ghan, The Chris O'Brien Lifehouse at RPA, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Cecilie Graver, Oslo universitetssykehus HF, Norway", "Sam Heard, Ocean Informatics, Australia (Editor)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Oliver Hosking, Remote Health NT, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Anne Kristin Strand, Sykehuspartner HF, Norway", "Heather Leslie, Ocean Health Systems, Australia", "Pedro Leuschner, Centro Hospitalar do Porto, Portugal", "Marit Ludvigsen, St Olavs Hospital, Norway", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Navin Ramachandran, NHS, United Kingdom", "Tanja Riise, Nasjonal IKT HF, Norway", "Fabian Schwarz, NT Health, Australia", "Anoop Shah, University College London, United Kingdom", "Gary Sinclair, NT DoH, Australia", "Iztok Stotl, UKCLJ, Slovenia", "Roy Støle, OUS, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstittutet, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Stian Torleif Varpe, Helse Bergen, Norway", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Fluid output
+		data cardinality matches {1..*; unordered} matches {
+			Node[id37] occurrences matches {0..1} matches {	-- Fluid name
+				value matches {
+					Text[id43] 
+				}
+			}
+			Node[id42] occurrences matches {0..1} matches {	-- Source
+				value matches {
+					Text[id44] 
+				}
+			}
+			Node[id36] occurrences matches {0..1} matches {	-- Volume
+				value matches {
+					Measured<Quantity>[id57] matches {
+						value matches {
+							Quantity[id48] matches {	-- Volume (ml)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id50] matches {
+										term matches {
+											Terminology_term[id49] matches {
+												concept matches {[at21]}
+											}
+										}
+									}
+								}
+								precision matches {|>=0|}
+							}
+						}
+					}
+					Measured<Quantity>[id58] matches {
+						value matches {
+							Quantity[id51] matches {	-- Volume (l)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id53] matches {
+										term matches {
+											Terminology_term[id52] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+								precision matches {3}
+							}
+						}
+					}
+					Measured<Quantity>[id59] matches {
+						value matches {
+							Quantity[id54] matches {	-- Volume ([foz_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id56] matches {
+										term matches {
+											Terminology_term[id55] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+								precision matches {|>=0|}
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id39] matches {	-- Fluid details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id33] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id46] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id32] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id47] matches {
+						term matches {
+							Terminology_term[id60] matches {
+								concept matches {[ac1]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id34, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			use_archetype Node[id29, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			allow_archetype Node[id41] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Method (synthesised)">
+				description = <"The approach used to quantify the volume of fluid. (synthesised)">
+			>
+			["at18"] = <
+				text = <"Estimated">
+				description = <"The fluid volume has been estimated.">
+			>
+			["at19"] = <
+				text = <"Measured">
+				description = <"The fluid volume has been directly measured.">
+			>
+			["at20"] = <
+				text = <"Volume">
+				description = <"Volume">
+			>
+			["at21"] = <
+				text = <"ml">
+				description = <"ml unit.">
+			>
+			["at22"] = <
+				text = <"l">
+				description = <"Liter unit.">
+			>
+			["at23"] = <
+				text = <"[foz_us]">
+				description = <"[foz_us] unit.">
+			>
+			["id1"] = <
+				text = <"Fluid output">
+				description = <"The measurement of fluid lost or excreted from the body via any mechanism.">
+			>
+			["id29"] = <
+				text = <"Measurement device">
+				description = <"Details of the device used to measure the fluid output.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id32"] = <
+				text = <"Method">
+				description = <"The approach used to quantify the volume of fluid.">
+			>
+			["id33"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the fluid output not captured in other fields.">
+			>
+			["id34"] = <
+				text = <"Output device">
+				description = <"Details of the device that was used to collect the fluid.">
+			>
+			["id36"] = <
+				text = <"Volume">
+				description = <"The volume of fluid.">
+			>
+			["id37"] = <
+				text = <"Fluid name">
+				description = <"Identification of the fluid lost or excreted.">
+			>
+			["id39"] = <
+				text = <"Fluid details">
+				description = <"Additional details about the fluid, including macroscopic appearance or other tests not currently captured in the structured data.">
+			>
+			["id41"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id42"] = <
+				text = <"Source">
+				description = <"The source from which the fluid is lost or excreted.">
+			>
+			["id48"] = <
+				text = <"Volume (ml)">
+				description = <"Volume (ml)">
+			>
+			["id51"] = <
+				text = <"Volume (l)">
+				description = <"Volume (l)">
+			>
+			["id54"] = <
+				text = <"Volume ([foz_us])">
+				description = <"Volume ([foz_us])">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at20"] = <http://openehr.org/id/129>
+		>
+		["ucum"] = <
+			["at21"] = <http://ucum.org/id/ml>
+			["at22"] = <http://ucum.org/id/l>
+			["at23"] = <http://ucum.org/id/%5Bfoz_us%5D>
+		>
+		["snomed"] = <
+			["at21"] = <http://snomed.info/id/258773002>
+			["at22"] = <http://snomed.info/id/258770004>
+			["at23"] = <http://snomed.info/id/282118007>
+		>
+		["loinc"] = <
+			["id1"] = <http://loinc.org/9255-1>
+			["id32"] = <http://loinc.org/106191-0>
+			["id33"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at18", "at19">
+		>
+	>
+

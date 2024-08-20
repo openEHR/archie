@@ -1,0 +1,221 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=31197ed7-d221-4e3f-989e-3387986f85d0)
+	s2-EHR-Node.tumour_resection_margins.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, <ian.mcnicoll@oceaninformatics.com>, 2009-05-17">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.tumour_resection_margins.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.tumour_resection_margins.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Details of surgical resection margin involvement of malignant tumours. May be used to describe scenarios where tumour is present at the resection margin, detailing the length of tumour involvement, or where tumour is absent from the margin, to indicate the distance of tumour from that margin.">
+			use = <"Normally used within a histopathology archetype.">
+			keywords = <"malignancy", "margins", "tumour", "cancer", "resection", "histopathology", "biopsy">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Sabine Leh, Helse Bergen HF, Norway", "John Tore Valand, Helse Bergen HF, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway", "Therese Högberg Mårder, Linköpings University, Sweden">
+
+definition
+	Node[id1] matches {	-- Surgical resection margins
+		items matches {
+			Node[id19] occurrences matches {0..1} matches {	-- Margin name
+				value matches {
+					Text[id23] 
+				}
+			}
+			allow_archetype Node[id20] matches {	-- Margin location
+				include
+					archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Marginal involvement
+				value matches {
+					Coded_text[id24] matches {
+						term matches {
+							Terminology_term[id30] matches {
+								concept matches {[ac1]}		-- Marginal involvement (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id7] matches {	-- Tumour present
+				items matches {
+					Node[id8] occurrences matches {0..1} matches {	-- Maximum linear involvement
+						value matches {
+							Quantity[id25] matches {
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id32] matches {
+										term matches {
+											Terminology_term[id31] matches {
+												concept matches {[at19]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id21] occurrences matches {0..1} matches {	-- Nature of involvement
+						value matches {
+							Text[id26] 
+						}
+					}
+				}
+			}
+			Node[id9] matches {	-- Tumour absent
+				items matches {
+					Node[id10] occurrences matches {0..1} matches {	-- Distance from resection margin
+						value matches {
+							Quantity[id27] matches {
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id34] matches {
+										term matches {
+											Terminology_term[id33] matches {
+												concept matches {[at19]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id22] occurrences matches {0..1} matches {	-- Tumour name
+						value matches {
+							Text[id28] 
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id29] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Marginal involvement (synthesised)">
+				description = <"Evidence of tumour at a surgical resection margin. (synthesised)">
+			>
+			["at14"] = <
+				text = <"Present">
+				description = <"Ttumour is present at the surgical resection margin.">
+			>
+			["at15"] = <
+				text = <"Absent">
+				description = <"Tumour is absent from the surgical resection margin.">
+			>
+			["at16"] = <
+				text = <"Indeterminate">
+				description = <"Presence of tumour at surgical resection margins has not been determined.">
+			>
+			["at17"] = <
+				text = <"Equivocal">
+				description = <"Presence of tumour at the surgical resection margin is equivocal.">
+			>
+			["at18"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at19"] = <
+				text = <"mm">
+				description = <"mm unit.">
+			>
+			["id1"] = <
+				text = <"Surgical resection margins">
+				description = <"Details of tumour involvement at margins of surgical resections/biopsies.">
+			>
+			["id10"] = <
+				text = <"Distance from resection margin">
+				description = <"When tumour is absent, the distance from tumour to the named surgical resection margin.">
+			>
+			["id11"] = <
+				text = <"Description">
+				description = <"A text description of tumour involvement at the surgical resection margin.">
+			>
+			["id19"] = <
+				text = <"Margin name">
+				description = <"The name of the margin being described.">
+			>
+			["id2"] = <
+				text = <"Marginal involvement">
+				description = <"Evidence of tumour at a surgical resection margin.">
+			>
+			["id20"] = <
+				text = <"Margin location">
+				description = <"The location of the margin being described.">
+			>
+			["id21"] = <
+				text = <"Nature of involvement">
+				description = <"The nature of involvement of the tumour with the surgical margin.">
+			>
+			["id22"] = <
+				text = <"Tumour name">
+				description = <"Name of the tumour for which the 'Distance from resection margin' applies.">
+			>
+			["id7"] = <
+				text = <"Tumour present">
+				description = <"Details where tumour is present at the surgical resection margin.">
+			>
+			["id8"] = <
+				text = <"Maximum linear involvement">
+				description = <"When tumour is present at surgical resection margin, the maximal length of involvement.">
+			>
+			["id9"] = <
+				text = <"Tumour absent">
+				description = <"Details where tumour is absent from surgical resection margins.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at18"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at19"] = <http://ucum.org/id/mm>
+		>
+		["snomed"] = <
+			["at19"] = <http://snomed.info/id/258673006>
+		>
+		["loinc"] = <
+			["id11"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at14", "at15", "at17", "at16">
+		>
+	>
+

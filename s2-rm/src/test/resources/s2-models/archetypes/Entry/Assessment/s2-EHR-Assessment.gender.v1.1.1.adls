@@ -1,0 +1,175 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8f46c5a3-84eb-4066-82d3-083ca8b4d3d6)
+	s2-EHR-Assessment.gender.v1.1.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Vebjørn Arntzen, Oslo University Hospital, <varntzen@ous-hf.no>, 2017-11-30">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.gender.v1.1.1, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.gender.v1.1.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the gender of an individual.">
+			use = <"Use to record details about the individual's gender, including administrative and legal gender and assigned sex at birth, in addition to gender identity, expression and preferred pronoun.
+            
+            The intent of this archetype is to record a broad range of details connected to the gender of an individual, due to modern thinking of gender as well as new knowledge of psychological, biological and social manifestations of gender.
+            
+            This archetype also allows the recording of, and differentiation between, legal and administrative gender.
+            
+            In most common use cases 'Administrative gender' will be used, as equivalent of the traditional definition of \\\"Sex\\\" in current or legacy systems.">
+			keywords = <"sex", "male", "female", "androgynous", "boy", "girl", "man", "woman", "transsexual", "bigender", "agender", "transgender", "transman", "transwoman">
+			misuse = <"Not to be used for recording information relating to the sexual orientation or sexual activity of an individual.
+            
+            Not to be used for recording genetic or chromosomal sex. Currently this is usually recorded as a laboratory test result. Formal representation of 'Genetic sex' is not yet well defined and may involve the combination of information axes, including chromosomal and receptor data, mosaic variants and diagnoses.">
+		>
+	>
+	other_contributors = <"Amund Aakerholt, Helse Stavanger, KORFOR, Norway", "Morten Aas, Oslo Universitetssykehus, Norway", "Tomas Alme, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Simon Chapman, King's College Hospital, United Kingdom", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Rupert Fawdry, WISDAM Enterprises & Electronic Encyclopaedia of Perinatal Data, United Kingdom", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Heather Grain, Llewelyn Grain Informatics, Australia", "Ira Haraldsen, Oslo universitetssykehus HF, Norway", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Hilde Hollås, DIPS AS, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "henrik haaland jahren, Tankeboksen AS, Norway", "Mikkel Johan Gaup Grønmo, Helse Nord RHF, Norway", "Pétur Júlíusson, Barneklinikken, HUS og K2, UIB, Norway", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Christian Jasmine Karud-Lund, Forbundet for Transpersoner i Norge, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Phuong Pedersen, DIPS, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Ragnhild Sandvold, Vestre Viken HF, Norway", "Danielle Santos Alves, Federal University of Pernambuco, Brazil", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Trine Strand, Oslo Universitetssykehus (OUS), Norway", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstituttet, Norway", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)">
+
+definition
+	Assessment[id1] matches {	-- Gender
+		data matches {
+			Node[id23] occurrences matches {0..1} matches {	-- Administrative gender
+				value matches {
+					Text[id29] 
+				}
+			}
+			Node[id27] occurrences matches {0..1} matches {	-- Legal gender
+				value matches {
+					Text[id30] 
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Sex assigned at birth
+				value matches {
+					Text[id31] 
+				}
+			}
+			Node[id26] occurrences matches {0..1} matches {	-- Gender expression
+				value matches {
+					Text[id32] 
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Gender identity
+				value matches {
+					Text[id33] 
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Preferred pronoun
+				value matches {
+					Text[id34] 
+				}
+			}
+			Node[id28] occurrences matches {0..1} matches {	-- Gender category
+				value matches {
+					Text[id35] 
+				}
+			}
+			allow_archetype Node[id24] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id36] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id37] 
+				}
+			}
+			allow_archetype Node[id6] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Gender">
+				description = <"Details about the gender of an individual.">
+			>
+			["id15"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the individual's gender not captured in other data Nodes.">
+			>
+			["id2"] = <
+				text = <"Gender identity">
+				description = <"The individual's perception of their own gender.">
+			>
+			["id20"] = <
+				text = <"Sex assigned at birth">
+				description = <"The sex of an individual determined by anatomical characteristics observed and registered at birth.">
+			>
+			["id21"] = <
+				text = <"Preferred pronoun">
+				description = <"The pronoun an individual chooses to identify with, and would prefer others to use when talking to or about that individual.">
+			>
+			["id23"] = <
+				text = <"Administrative gender">
+				description = <"The gender of an individual used for administrative purposes.">
+			>
+			["id24"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about the individuals gender.">
+			>
+			["id26"] = <
+				text = <"Gender expression">
+				description = <"The expression of the gender by the individual as demonstrated by behaviour, speech, clothes or other external characteristics.">
+			>
+			["id27"] = <
+				text = <"Legal gender">
+				description = <"The gender of an individual used for official or legal purposes.">
+			>
+			["id28"] = <
+				text = <"Gender category">
+				description = <"Category describing the alignment of an individual's gender identity with their sex assigned at birth.">
+			>
+			["id5"] = <
+				text = <"Last updated">
+				description = <"The date this gender data was last updated.">
+			>
+			["id6"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/76691-5>
+			["id2"] = <http://loinc.org/76691-5>
+			["id20"] = <http://loinc.org/76689-9>
+			["id23"] = <http://loinc.org/76691-5>
+			["id15"] = <http://loinc.org/106173-8>
+			["id5"] = <http://loinc.org/106177-9>
+		>
+	>
+

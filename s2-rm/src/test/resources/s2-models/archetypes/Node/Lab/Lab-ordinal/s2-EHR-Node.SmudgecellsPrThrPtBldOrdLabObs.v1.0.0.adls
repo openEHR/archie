@@ -1,0 +1,52 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+    s2-EHR-Node.SmudgecellsPrThrPtBldOrdLabObs.v1.0.0
+
+specialize
+    s2-EHR-Node.lab_analyte_ordinal.v0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Joey Coyle <joey.coyle@GraphiteHealth.io>">
+        ["organisation"] = <"S2 Health <http://s2health.org>">
+    >
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Smudge cells [Presence] in Blood">
+        >
+    >
+
+definition
+    Node[id1.1.1] matches {    -- Smudge cells [Presence] in Blood
+        /value[id0.1]/concept[id0.9]/term[id0.10]/concept matches {[ac0.0.1]}
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1.1"] = <
+                text = <"Smudge cells [Presence] in Blood">
+                description = <"-">
+            >
+            ["ac0.0.1"] = <
+                text = <"ZeroToFourPlus">
+                description = <"-">
+            >
+        >
+    >
+
+    term_bindings = <
+        ["s2"] = <
+            ["ac0.0.1"] = <http://s2health.org/s2.ZeroToFourPlus>
+        >
+        ["loinc"] = <
+            ["id1.1.1"] = <http://loinc.org/104751-3>
+            ["at4"] = <http://loinc.org/104751-3>
+        >
+    >

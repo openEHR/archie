@@ -1,0 +1,265 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0858cb11-0cbe-4d34-b78f-8a89e098efc0)
+    s2-EHR-Score.dash_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Dennis Forslund, Cambio Healthcare Systems, <models@cambiocds.com>, 2016-12-07">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.dash_score.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.dash_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record individual DASH prediction score parameters and total score.">
+            use = <"Use to record individual DASH prediction score parameters and total score as part of an evaluation for the need for ongoing anticoagulant therapy.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- DASH prediction score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- D-Dimer abnormal
+                value matches {
+                    Coded_ordinal[id25] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id27] matches {
+                                term matches {
+                                    Terminology_term[id26] matches {
+                                        concept matches {[at5]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id28] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id30] matches {
+                                term matches {
+                                    Terminology_term[id29] matches {
+                                        concept matches {[at6]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Age ≤ 50 years
+                value matches {
+                    Coded_ordinal[id31] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id33] matches {
+                                term matches {
+                                    Terminology_term[id32] matches {
+                                        concept matches {[at8]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id34] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id36] matches {
+                                term matches {
+                                    Terminology_term[id35] matches {
+                                        concept matches {[at9]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Male patient
+                value matches {
+                    Coded_ordinal[id37] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id39] matches {
+                                term matches {
+                                    Terminology_term[id38] matches {
+                                        concept matches {[at8]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id40] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id42] matches {
+                                term matches {
+                                    Terminology_term[id41] matches {
+                                        concept matches {[at9]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Hormone use at VTE onset
+                value matches {
+                    Coded_ordinal[id43] matches {
+                        magnitude matches {-2}
+                        concept matches {
+                            Coded_text[id45] matches {
+                                term matches {
+                                    Terminology_term[id44] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id46] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id48] matches {
+                                term matches {
+                                    Terminology_term[id47] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id24]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id19] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at8", "at9">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at8", "at9">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at15", "at14">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"D-Dimer abnormal (synthesised)">
+                description = <"Measured ~1 month after stopping anticoagulation. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Age ≤ 50 years (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac3"] = <
+                text = <"Male patient (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac4"] = <
+                text = <"Hormone use at VTE onset (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at14"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at8"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"DASH prediction score">
+                description = <"Assessment tool used to predict the risk of recurring venous thromboembolism (VTE).">
+            >
+            ["id11"] = <
+                text = <"Male patient">
+                description = <"">
+            >
+            ["id14"] = <
+                text = <"Hormone use at VTE onset">
+                description = <"">
+            >
+            ["id17"] = <
+                text = <"Total score">
+                description = <"The total sum of each component parameter for the DASH score.">
+            >
+            ["id19"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"D-Dimer abnormal">
+                description = <"Measured ~1 month after stopping anticoagulation.">
+            >
+            ["id8"] = <
+                text = <"Age ≤ 50 years">
+                description = <"">
+            >
+        >
+    >
+    

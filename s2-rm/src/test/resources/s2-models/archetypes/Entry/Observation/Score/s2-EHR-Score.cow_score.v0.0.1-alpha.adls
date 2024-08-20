@@ -1,0 +1,979 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=08860495-b5fb-41c2-b7f1-8718854bc3df)
+    s2-EHR-Score.cow_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Syeeda S Farruque, Cambio Healthcare Systems, <models@cambiocds.com>, 2017-02-20">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.cow_score.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.cow_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record individual COWS parameters and total score.">
+            use = <"Use to record individual COWS parameters and total score as part of an objective and subjective opiate withdrawal assessment.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Clinical Opiate Withdrawal Scale (COWS)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Resting pulse rate (BPM)
+                value matches {
+                    Coded_ordinal[id77] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id79] matches {
+                                term matches {
+                                    Terminology_term[id78] matches {
+                                        concept matches {[at17]}    -- ≤ 80
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id80] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id82] matches {
+                                term matches {
+                                    Terminology_term[id81] matches {
+                                        concept matches {[at18]}    -- 81-100
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id83] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id85] matches {
+                                term matches {
+                                    Terminology_term[id84] matches {
+                                        concept matches {[at19]}    -- 101-120
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id86] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id88] matches {
+                                term matches {
+                                    Terminology_term[id87] matches {
+                                        concept matches {[at20]}    -- > 120
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Sweating
+                value matches {
+                    Coded_ordinal[id89] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id91] matches {
+                                term matches {
+                                    Terminology_term[id90] matches {
+                                        concept matches {[at21]}    -- No report of chills or flushing
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id92] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id94] matches {
+                                term matches {
+                                    Terminology_term[id93] matches {
+                                        concept matches {[at22]}    -- Subjective report of chills or flushing
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id95] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id97] matches {
+                                term matches {
+                                    Terminology_term[id96] matches {
+                                        concept matches {[at23]}    -- Flushed or observable moistness on face
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id98] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id100] matches {
+                                term matches {
+                                    Terminology_term[id99] matches {
+                                        concept matches {[at24]}    -- Beads of sweat on brow or face
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id101] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id103] matches {
+                                term matches {
+                                    Terminology_term[id102] matches {
+                                        concept matches {[at25]}    -- Sweat streaming off face
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Restlessness observation during assessment
+                value matches {
+                    Coded_ordinal[id104] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id106] matches {
+                                term matches {
+                                    Terminology_term[id105] matches {
+                                        concept matches {[at26]}    -- Able to sit still
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id107] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id109] matches {
+                                term matches {
+                                    Terminology_term[id108] matches {
+                                        concept matches {[at27]}    -- Reports difficulty sitting still, but is able to do so
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id110] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id112] matches {
+                                term matches {
+                                    Terminology_term[id111] matches {
+                                        concept matches {[at28]}    -- Frequent shifting or extraneous movements of legs/arms
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id113] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id115] matches {
+                                term matches {
+                                    Terminology_term[id114] matches {
+                                        concept matches {[at29]}    -- Unable to sit still for more than a few seconds
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Pupil size
+                value matches {
+                    Coded_ordinal[id116] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id118] matches {
+                                term matches {
+                                    Terminology_term[id117] matches {
+                                        concept matches {[at30]}    -- Pupils pinned or normal size for room light
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id119] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id121] matches {
+                                term matches {
+                                    Terminology_term[id120] matches {
+                                        concept matches {[at31]}    -- Pupils possibly larger than normal for room light
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id122] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id124] matches {
+                                term matches {
+                                    Terminology_term[id123] matches {
+                                        concept matches {[at32]}    -- Pupils moderately dilated
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id125] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id127] matches {
+                                term matches {
+                                    Terminology_term[id126] matches {
+                                        concept matches {[at33]}    -- Pupils so dilated that only the rim of the iris is visible
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Bone or joint aches
+                value matches {
+                    Coded_ordinal[id128] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id130] matches {
+                                term matches {
+                                    Terminology_term[id129] matches {
+                                        concept matches {[at34]}    -- Not present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id131] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id133] matches {
+                                term matches {
+                                    Terminology_term[id132] matches {
+                                        concept matches {[at35]}    -- Mild diffuse discomfort
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id134] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id136] matches {
+                                term matches {
+                                    Terminology_term[id135] matches {
+                                        concept matches {[at36]}    -- Patient reports severe diffuse aching of joints/ muscles
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id137] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id139] matches {
+                                term matches {
+                                    Terminology_term[id138] matches {
+                                        concept matches {[at37]}    -- Patient is rubbing joints or muscles and is unable to sit still because of discomfort
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Runny nose or tearing
+                value matches {
+                    Coded_ordinal[id140] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id142] matches {
+                                term matches {
+                                    Terminology_term[id141] matches {
+                                        concept matches {[at38]}    -- Not present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id143] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id145] matches {
+                                term matches {
+                                    Terminology_term[id144] matches {
+                                        concept matches {[at39]}    -- Nasal stuffiness or unusually moist eyes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id146] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id148] matches {
+                                term matches {
+                                    Terminology_term[id147] matches {
+                                        concept matches {[at40]}    -- Nose running or tearing
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id149] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id151] matches {
+                                term matches {
+                                    Terminology_term[id150] matches {
+                                        concept matches {[at41]}    -- Nose constantly running or tears streaming down cheeks
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- GI upset
+                value matches {
+                    Coded_ordinal[id152] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id154] matches {
+                                term matches {
+                                    Terminology_term[id153] matches {
+                                        concept matches {[at42]}    -- No GI symptoms
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id155] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id157] matches {
+                                term matches {
+                                    Terminology_term[id156] matches {
+                                        concept matches {[at43]}    -- Stomach Cramps
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id158] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id160] matches {
+                                term matches {
+                                    Terminology_term[id159] matches {
+                                        concept matches {[at44]}    -- Nausea or loose stool
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id161] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id163] matches {
+                                term matches {
+                                    Terminology_term[id162] matches {
+                                        concept matches {[at45]}    -- Vomiting or diarrhea
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id164] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id166] matches {
+                                term matches {
+                                    Terminology_term[id165] matches {
+                                        concept matches {[at46]}    -- Multiple episodes of vomiting or diarrhea
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- Tremor observation of outstretched hands
+                value matches {
+                    Coded_ordinal[id167] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id169] matches {
+                                term matches {
+                                    Terminology_term[id168] matches {
+                                        concept matches {[at47]}    -- No tremor
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id170] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id172] matches {
+                                term matches {
+                                    Terminology_term[id171] matches {
+                                        concept matches {[at48]}    -- Tremor can be felt, but not observed
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id173] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id175] matches {
+                                term matches {
+                                    Terminology_term[id174] matches {
+                                        concept matches {[at49]}    -- Slight tremor observable
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id176] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id178] matches {
+                                term matches {
+                                    Terminology_term[id177] matches {
+                                        concept matches {[at50]}    -- Gross tremor or muscle twitching
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Yawning observation during assessment
+                value matches {
+                    Coded_ordinal[id179] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id181] matches {
+                                term matches {
+                                    Terminology_term[id180] matches {
+                                        concept matches {[at51]}    -- No yawning
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id182] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id184] matches {
+                                term matches {
+                                    Terminology_term[id183] matches {
+                                        concept matches {[at52]}    -- Yawning once or twice during assessment
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id185] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id187] matches {
+                                term matches {
+                                    Terminology_term[id186] matches {
+                                        concept matches {[at53]}    -- Yawning three or more times during assessment
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id188] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id190] matches {
+                                term matches {
+                                    Terminology_term[id189] matches {
+                                        concept matches {[at54]}    -- Yawning several times/minute
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Anxiety or irritability
+                value matches {
+                    Coded_ordinal[id191] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id193] matches {
+                                term matches {
+                                    Terminology_term[id192] matches {
+                                        concept matches {[at55]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id194] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id196] matches {
+                                term matches {
+                                    Terminology_term[id195] matches {
+                                        concept matches {[at56]}    -- Patient reports increasing irritability or anxiousness
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id197] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id199] matches {
+                                term matches {
+                                    Terminology_term[id198] matches {
+                                        concept matches {[at57]}    -- Patient obviously irritable/anxious
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id200] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id202] matches {
+                                term matches {
+                                    Terminology_term[id201] matches {
+                                        concept matches {[at58]}    -- Patient so irritable or anxious that participation in the assessment is difficult
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- Gooseflesh skin
+                value matches {
+                    Coded_ordinal[id203] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id205] matches {
+                                term matches {
+                                    Terminology_term[id204] matches {
+                                        concept matches {[at59]}    -- Skin is smooth
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id206] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id208] matches {
+                                term matches {
+                                    Terminology_term[id207] matches {
+                                        concept matches {[at60]}    -- Piloerection of skin can be felt or hairs standing up on arms
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id209] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id211] matches {
+                                term matches {
+                                    Terminology_term[id210] matches {
+                                        concept matches {[at61]}    -- Prominent piloerection
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id76] matches {
+                        magnitude matches {|0..48|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id64] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at17", "at18", "at19", "at20">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at21", "at22", "at23", "at24", "at25">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at26", "at27", "at28", "at29">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at30", "at31", "at32", "at33">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at34", "at35", "at36", "at37">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at38", "at39", "at40", "at41">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at42", "at43", "at44", "at45", "at46">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at47", "at48", "at49", "at50">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at51", "at52", "at53", "at54">
+        >
+        ["ac10"] = <
+            id = <"ac10">
+            members = <"at55", "at56", "at57", "at58">
+        >
+        ["ac11"] = <
+            id = <"ac11">
+            members = <"at59", "at60", "at61">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Resting pulse rate (BPM) (synthesised)">
+                description = <"Measure pulse rate after patient is sitting or lying down for 1 minute. (synthesised)">
+            >
+            ["ac10"] = <
+                text = <"Anxiety or irritability (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac11"] = <
+                text = <"Gooseflesh skin (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"Sweating (synthesised)">
+                description = <"Sweating not accounted for by room temperature or patient activity over the last 0.5 hours. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Restlessness observation during assessment (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac4"] = <
+                text = <"Pupil size (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac5"] = <
+                text = <"Bone or joint aches (synthesised)">
+                description = <"If patient was having pain previously, only the additional component attributed to opiate withdrawal is scored. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Runny nose or tearing (synthesised)">
+                description = <"Not accounted for by cold symptoms or allergies. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"GI upset (synthesised)">
+                description = <"Over last 0.5 hours. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Tremor observation of outstretched hands (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac9"] = <
+                text = <"Yawning observation during assessment (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at17"] = <
+                text = <"≤ 80">
+                description = <"">
+            >
+            ["at18"] = <
+                text = <"81-100">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"101-120">
+                description = <"">
+            >
+            ["at20"] = <
+                text = <"> 120">
+                description = <"">
+            >
+            ["at21"] = <
+                text = <"No report of chills or flushing">
+                description = <"">
+            >
+            ["at22"] = <
+                text = <"Subjective report of chills or flushing">
+                description = <"">
+            >
+            ["at23"] = <
+                text = <"Flushed or observable moistness on face">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"Beads of sweat on brow or face">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"Sweat streaming off face">
+                description = <"">
+            >
+            ["at26"] = <
+                text = <"Able to sit still">
+                description = <"">
+            >
+            ["at27"] = <
+                text = <"Reports difficulty sitting still, but is able to do so">
+                description = <"">
+            >
+            ["at28"] = <
+                text = <"Frequent shifting or extraneous movements of legs/arms">
+                description = <"">
+            >
+            ["at29"] = <
+                text = <"Unable to sit still for more than a few seconds">
+                description = <"">
+            >
+            ["at30"] = <
+                text = <"Pupils pinned or normal size for room light">
+                description = <"">
+            >
+            ["at31"] = <
+                text = <"Pupils possibly larger than normal for room light">
+                description = <"">
+            >
+            ["at32"] = <
+                text = <"Pupils moderately dilated">
+                description = <"">
+            >
+            ["at33"] = <
+                text = <"Pupils so dilated that only the rim of the iris is visible">
+                description = <"">
+            >
+            ["at34"] = <
+                text = <"Not present">
+                description = <"">
+            >
+            ["at35"] = <
+                text = <"Mild diffuse discomfort">
+                description = <"">
+            >
+            ["at36"] = <
+                text = <"Patient reports severe diffuse aching of joints/ muscles">
+                description = <"">
+            >
+            ["at37"] = <
+                text = <"Patient is rubbing joints or muscles and is unable to sit still because of discomfort">
+                description = <"">
+            >
+            ["at38"] = <
+                text = <"Not present">
+                description = <"">
+            >
+            ["at39"] = <
+                text = <"Nasal stuffiness or unusually moist eyes">
+                description = <"">
+            >
+            ["at40"] = <
+                text = <"Nose running or tearing">
+                description = <"">
+            >
+            ["at41"] = <
+                text = <"Nose constantly running or tears streaming down cheeks">
+                description = <"">
+            >
+            ["at42"] = <
+                text = <"No GI symptoms">
+                description = <"">
+            >
+            ["at43"] = <
+                text = <"Stomach Cramps">
+                description = <"">
+            >
+            ["at44"] = <
+                text = <"Nausea or loose stool">
+                description = <"">
+            >
+            ["at45"] = <
+                text = <"Vomiting or diarrhea">
+                description = <"">
+            >
+            ["at46"] = <
+                text = <"Multiple episodes of vomiting or diarrhea">
+                description = <"">
+            >
+            ["at47"] = <
+                text = <"No tremor">
+                description = <"">
+            >
+            ["at48"] = <
+                text = <"Tremor can be felt, but not observed">
+                description = <"">
+            >
+            ["at49"] = <
+                text = <"Slight tremor observable">
+                description = <"">
+            >
+            ["at50"] = <
+                text = <"Gross tremor or muscle twitching">
+                description = <"">
+            >
+            ["at51"] = <
+                text = <"No yawning">
+                description = <"">
+            >
+            ["at52"] = <
+                text = <"Yawning once or twice during assessment">
+                description = <"">
+            >
+            ["at53"] = <
+                text = <"Yawning three or more times during assessment">
+                description = <"">
+            >
+            ["at54"] = <
+                text = <"Yawning several times/minute">
+                description = <"">
+            >
+            ["at55"] = <
+                text = <"None">
+                description = <"">
+            >
+            ["at56"] = <
+                text = <"Patient reports increasing irritability or anxiousness">
+                description = <"">
+            >
+            ["at57"] = <
+                text = <"Patient obviously irritable/anxious">
+                description = <"">
+            >
+            ["at58"] = <
+                text = <"Patient so irritable or anxious that participation in the assessment is difficult">
+                description = <"">
+            >
+            ["at59"] = <
+                text = <"Skin is smooth">
+                description = <"">
+            >
+            ["at60"] = <
+                text = <"Piloerection of skin can be felt or hairs standing up on arms">
+                description = <"">
+            >
+            ["at61"] = <
+                text = <"Prominent piloerection">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Clinical Opiate Withdrawal Scale (COWS)">
+                description = <"Assessment tool used to measures the severity of opiate withdrawal.">
+            >
+            ["id10"] = <
+                text = <"Runny nose or tearing">
+                description = <"Not accounted for by cold symptoms or allergies.">
+            >
+            ["id11"] = <
+                text = <"GI upset">
+                description = <"Over last 0.5 hours.">
+            >
+            ["id12"] = <
+                text = <"Tremor observation of outstretched hands">
+                description = <"">
+            >
+            ["id13"] = <
+                text = <"Yawning observation during assessment">
+                description = <"">
+            >
+            ["id14"] = <
+                text = <"Anxiety or irritability">
+                description = <"">
+            >
+            ["id15"] = <
+                text = <"Gooseflesh skin">
+                description = <"">
+            >
+            ["id16"] = <
+                text = <"Total score">
+                description = <"The total sum of each component parameter for COWS.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Resting pulse rate (BPM)">
+                description = <"Measure pulse rate after patient is sitting or lying down for 1 minute.">
+            >
+            ["id6"] = <
+                text = <"Sweating">
+                description = <"Sweating not accounted for by room temperature or patient activity over the last 0.5 hours.">
+            >
+            ["id64"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id7"] = <
+                text = <"Restlessness observation during assessment">
+                description = <"">
+            >
+            ["id8"] = <
+                text = <"Pupil size">
+                description = <"">
+            >
+            ["id9"] = <
+                text = <"Bone or joint aches">
+                description = <"If patient was having pain previously, only the additional component attributed to opiate withdrawal is scored.">
+            >
+        >
+    >
+    

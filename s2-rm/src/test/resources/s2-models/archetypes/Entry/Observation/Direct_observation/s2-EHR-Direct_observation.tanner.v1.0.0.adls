@@ -1,0 +1,220 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2d05593d-1b41-4423-a4a5-8b78d00ea115)
+	s2-EHR-Direct_observation.tanner.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Malin Aas Berg, DIPS ASA, <mab@dips.no>, 2017-03-17">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.tanner.v1.0.0, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.tanner.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To describe progression of pubertal changes in genitals, breasts and pubic hair.">
+			use = <"Normally used to describe progression of pubertal changes in children, but can also be used to adults, for example evaluate gynaecomasty in adult men.
+            
+            Boys and girls are rated on a scale from 1 to 5. Boys are rated for genital development and
+            pubic hair growth, and girls are rated for breast development and pubic hair growth.">
+			keywords = <"pubertal", "puberty", "genitals", "breasts", "breast", "pubical", "pubic hair", "sexual", "maturity">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Tomas Alme, DIPS ASA, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "Malin Berg, DIPS ASA, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Heather Leslie, Ocean Health Systems, Australia", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "Priscila Maranhão, MEDCIDS-FMUP, Portugal", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Tanner stages
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Genitals
+				value matches {
+					Coded_text[id29] matches {
+						term matches {
+							Terminology_term[id33] matches {
+								concept matches {[ac1]}		-- Genitals (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Breasts
+				value matches {
+					Coded_text[id30] matches {
+						term matches {
+							Terminology_term[id34] matches {
+								concept matches {[ac2]}		-- Breasts (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Pubic hair
+				value matches {
+					Coded_text[id31] matches {
+						term matches {
+							Terminology_term[id35] matches {
+								concept matches {[ac3]}		-- Pubic hair (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id28] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id32] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id26] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Genitals (synthesised)">
+				description = <"The stages for development in male genitals. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Breasts (synthesised)">
+				description = <"The stages for breast development in young women. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Pubic hair (synthesised)">
+				description = <"The stages for pubic hair development in females and males. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Stage 4">
+				description = <"Increased size of penis with growth in breadth and development of glans; testes and scrotum larger, scrotal skin darker.">
+			>
+			["at11"] = <
+				text = <"Stage 5">
+				description = <"Adult genitalia.">
+			>
+			["at12"] = <
+				text = <"Stage 1">
+				description = <"Prepubertal.">
+			>
+			["at13"] = <
+				text = <"Stage 2">
+				description = <"Breast bud stage with elevation of breast and papilla; enlargement of areola.">
+			>
+			["at14"] = <
+				text = <"Stage 3">
+				description = <"Further enlargement of breast and areola; no separation of their contour.">
+			>
+			["at15"] = <
+				text = <"Stage 4">
+				description = <"Areola and papilla form a secondary mound above level of breast.">
+			>
+			["at16"] = <
+				text = <"Stage 5">
+				description = <"Mature stage: projection of papilla only, related to recession of areola.">
+			>
+			["at17"] = <
+				text = <"Stage 1">
+				description = <"Prepubertal (the pubic area may have vellus hair, similar to that of forearms).">
+			>
+			["at18"] = <
+				text = <"Stage 2">
+				description = <"Sparse growth of long, slightly pigmented hair, straight or curled, at base of penis or along labia.">
+			>
+			["at19"] = <
+				text = <"Stage 3">
+				description = <"Darker, coarser and more curled hair, spreading sparsely over junction of pubes.">
+			>
+			["at20"] = <
+				text = <"Stage 4">
+				description = <"Hair adult in type, but covering smaller area than in adult; no spread to medial surface of thighs.">
+			>
+			["at21"] = <
+				text = <"Stage 5">
+				description = <"Adult in type and quantity, with horizontal upper border.">
+			>
+			["at7"] = <
+				text = <"Stage 1">
+				description = <"Prepubertal.">
+			>
+			["at8"] = <
+				text = <"Stage 2">
+				description = <"Enlargement of scrotum and testes; scrotal skin reddens and changes in texture.">
+			>
+			["at9"] = <
+				text = <"Stage 3">
+				description = <"Enlargement of penis (length at first); further growth of testes.">
+			>
+			["id1"] = <
+				text = <"Tanner stages">
+				description = <"A scale to describe the onset and progression of pubertal changes.">
+			>
+			["id26"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id28"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the pubertal examination findings not captured in other fields.">
+			>
+			["id3"] = <
+				text = <"Any point in time event">
+				description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Genitals">
+				description = <"The stages for development in male genitals.">
+			>
+			["id6"] = <
+				text = <"Breasts">
+				description = <"The stages for breast development in young women.">
+			>
+			["id7"] = <
+				text = <"Pubic hair">
+				description = <"The stages for pubic hair development in females and males.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id28"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at7", "at8", "at9", "at10", "at11">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at12", "at13", "at14", "at15", "at16">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at17", "at18", "at19", "at20", "at21">
+		>
+	>
+

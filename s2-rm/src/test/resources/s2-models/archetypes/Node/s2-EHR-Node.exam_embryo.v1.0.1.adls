@@ -1,0 +1,272 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b9ea01d4-9281-4479-a337-8ba9caea880c)
+    s2-EHR-Node.exam_embryo.v1.0.1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Rosane Gotardo, Systema Ltda., Brazil", "Heather Grain, Llewelyn Grain Informatics, Australia", "Gareth Greggains, Oslo University Hospital", "Evelyn Hovenga, EJSH Consulting, Australia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Manisha Mantri, C-DAC, India", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Trine Skuland, Oslo University Hospital", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway", "Julius Hreinsson, Laboratory Director at Reproductive Medicine, Sahlgrenska University Hospital, Sweden">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Peter Fedorcsak, Oslo University Hospital, <peter.fedorcsak@medisin.uio.no>, 2021-10-26">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.exam_embryo.v1.0.1, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.exam_embryo.v1.0.1 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record structured observations about a human cleavage-stage embryo.">
+            keywords = <"in vitro", "fertilization", "IVF", "reproductive medicine", "zygote", "fertilised", "fertilized", "oocyte", "egg", "fertilisation", "embryo", "reproduction", "ART", "blastocyst">
+            use = <"Use to record morphological observations appropriate for the cleavage-stage of human embryo development, usually as part of assisted reproduction treatment. 
+            
+            This archetype has been specifically designed to be used in the 'Observations detail' SLOT within the 'OBSERVATION.embryo_assessment' or 'ACTION.procedure' archetype, but can also be used within other ENTRY or Node archetypes, where clinically appropriate.">
+            misuse = <"Not to be used for recording observations on oocytes, zygotes and blastocysts - use specific Node archetypes for this purpose.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Examination of a cleavage-stage embryo
+        items matches {
+            Node[id29] occurrences matches {0..1} matches {    -- Number of cells
+                value matches {
+                    Count[id57]
+                }
+            }
+            Node[id31] occurrences matches {0..1} matches {    -- Fragmentation
+                value matches {
+                    Coded_text[id58] matches {
+                        term matches {
+                            Terminology_term[id71] matches {
+                                concept matches {[ac1]}    -- Fragmentation (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id59]
+                    Ratio[id60]
+                }
+            }
+            Node[id36] occurrences matches {0..1} matches {    -- Blastomere size
+                value matches {
+                    Coded_text[id61] matches {
+                        term matches {
+                            Terminology_term[id72] matches {
+                                concept matches {[ac2]}    -- Blastomere size (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id62]
+                }
+            }
+            Node[id39] occurrences matches {0..1} matches {    -- Nucleation
+                value matches {
+                    Coded_text[id63] matches {
+                        term matches {
+                            Terminology_term[id73] matches {
+                                concept matches {[ac3]}    -- Nucleation (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id64]
+                }
+            }
+            Node[id43] occurrences matches {0..1} matches {    -- Cytoplasmic morphology
+                value matches {
+                    Text[id65]
+                }
+            }
+            Node[id44] occurrences matches {0..1} matches {    -- Spatial distribution of cells
+                value matches {
+                    Text[id66]
+                }
+            }
+            Node[id45] occurrences matches {0..1} matches {    -- Compaction
+                value matches {
+                    Coded_text[id67] matches {
+                        term matches {
+                            Terminology_term[id74] matches {
+                                concept matches {[ac4]}    -- Compaction (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id68]
+                }
+            }
+            Node[id50] matches {    -- Other morphological features
+                value matches {
+                    Text[id69]
+                }
+            }
+            Node[id56] occurrences matches {0..1} matches {    -- Morphology grade
+                value matches {
+                    Text[id70]
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at31", "at32", "at33", "at34">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at36", "at37", "at53", "at54">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at39", "at40", "at41", "at51", "at52">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at45", "at46", "at47", "at48">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Fragmentation (synthesised)">
+                description = <"Cytoplasmic fragmentation in a cleavage-stage embryo. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Blastomere size (synthesised)">
+                description = <"Relative blastomere size. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Nucleation (synthesised)">
+                description = <"Presence or absence of nuclei in the blastomeres of the cleavage-stage embryo. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Compaction (synthesised)">
+                description = <"Degree of compaction in a cleavage-stage embryo. (synthesised)">
+            >
+            ["at31"] = <
+                text = <"None">
+                description = <"Absence of cytoplasmic fragments.">
+            >
+            ["at32"] = <
+                text = <"Mild fragmentation">
+                description = <"Cytoplasmic fragments cover < 10% of the total cytoplasmic volume.">
+            >
+            ["at33"] = <
+                text = <"Moderate fragmentation">
+                description = <"Cytoplasmic fragments cover 10 - 25% of the total cytoplasmic volume.">
+            >
+            ["at34"] = <
+                text = <"Severe fragmentation">
+                description = <"Cytoplasmic fragments cover > 25% of the total cytoplasmic volume.">
+            >
+            ["at36"] = <
+                text = <"Equal, stage specific">
+                description = <"Equally sized blastomeres, stage specific cell size.">
+            >
+            ["at37"] = <
+                text = <"Unequal, stage specific">
+                description = <"Unequally sized blastomeres, stage specific cell size.">
+            >
+            ["at39"] = <
+                text = <"No visible nuclei">
+                description = <"Nuclei are not visible.">
+            >
+            ["at40"] = <
+                text = <"Mononucleation">
+                description = <"Only a single visible nucleus in all blastomeres.">
+            >
+            ["at41"] = <
+                text = <"Binucleation">
+                description = <"Two visible nuclei in one blastomere.">
+            >
+            ["at45"] = <
+                text = <"None">
+                description = <"Absence of compaction.">
+            >
+            ["at46"] = <
+                text = <"Minimal">
+                description = <"Less than 50% of the total embryonic volume is compacted.">
+            >
+            ["at47"] = <
+                text = <"Moderate">
+                description = <"Over 50% of the total embryonic volume is compacted.">
+            >
+            ["at48"] = <
+                text = <"Complete">
+                description = <"The complete volume of the embryo is compacted.">
+            >
+            ["at51"] = <
+                text = <"Multinucleation">
+                description = <"Multiple visible nuclei in one blastomere.">
+            >
+            ["at52"] = <
+                text = <"Broad multinucleation">
+                description = <"Two or more visible nuclei in two or more blastomeres.">
+            >
+            ["at53"] = <
+                text = <"Equal, non-stage specific">
+                description = <"Equally sized blastomeres, non-stage specific cell size.">
+            >
+            ["at54"] = <
+                text = <"Unequal, non-stage specific">
+                description = <"Unequally sized blastomeres, non-stage specific cell size.">
+            >
+            ["id1"] = <
+                text = <"Examination of a cleavage-stage embryo">
+                description = <"Morphological findings obtained by microscopy of the human cleavage-stage embryo.">
+            >
+            ["id29"] = <
+                text = <"Number of cells">
+                description = <"Number of cells in a cleavage-stage embryo.">
+            >
+            ["id31"] = <
+                text = <"Fragmentation">
+                description = <"Cytoplasmic fragmentation in a cleavage-stage embryo.">
+            >
+            ["id36"] = <
+                text = <"Blastomere size">
+                description = <"Relative blastomere size.">
+            >
+            ["id39"] = <
+                text = <"Nucleation">
+                description = <"Presence or absence of nuclei in the blastomeres of the cleavage-stage embryo.">
+            >
+            ["id43"] = <
+                text = <"Cytoplasmic morphology">
+                description = <"Morphology of the cytoplasm of cells in cleavage-stage embryo.">
+            >
+            ["id44"] = <
+                text = <"Spatial distribution of cells">
+                description = <"Spatial distribution of cells in a cleavage-stage embryo.">
+            >
+            ["id45"] = <
+                text = <"Compaction">
+                description = <"Degree of compaction in a cleavage-stage embryo.">
+            >
+            ["id50"] = <
+                text = <"Other morphological features">
+                description = <"Additional morphological features not captured by specific parameters.">
+            >
+            ["id56"] = <
+                text = <"Morphology grade">
+                description = <"Overall grading or score based on recorded morphological features of the cleavage-stage embryo.">
+            >
+        >
+    >
+    

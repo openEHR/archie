@@ -1,0 +1,274 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=34d63338-6bd7-4c46-bd8b-77bf6e190414)
+    s2-EHR-Score.karnofsky_performance_status_scale.v1.0.2
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Nuno Abreu, Oporto Hospital Center, Portugal", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Kashmira Bhake, Karkinos Healthcare, India", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Samanta Dallagnese, Prontmed, Brazil", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Siri Laronningen, Kreftregisteret, Norway", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Syeeda S Farruque, Cambio Healthcare Systems", "Alexandra Saraiva Leao, Sweden", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Ina Wille, Helse-Vest RHF, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Henry Lenzi, <hank.lenzi@gmail.com>, 2019-06-08">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.karnofsky_performance_status_scale.v1.0.2, copyright 2019 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.karnofsky_performance_status_scale.v1.0.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the result of a Karnofsky Performance Status (KPS) scale assessment.">
+            keywords = <"KPS", "assessment", "functional", "performance", "oncology", "cancer", "Karnofsky", "status", "quality", "score", "index">
+            use = <"Use to record the result of a Karnofsky Performance Status (KPS) scale assessment.
+            
+            While the original 1949 paper by Karnofsky et al is referenced in this archetype, it has not been possible to obtain a copy to verify the original content. However, this archetype has been designed to reflect the practical use of Karnofsky Performance Status scale rather than an academic construct and the current wording reflects descriptions found in common use within the other references.">
+            misuse = <"Not to be used to record variations of the KPS scale, such as the Thorne-modified Karnofsky (TKPS) or the Australia-modified Karnofsky (AKPS). Use purpose-specific archetypes for this purpose.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Karnofsky Performance Status (KPS) scale
+        data matches {
+            Node[id5] matches {    -- Karnofsky performance status
+                value matches {
+                    Coded_ordinal[id20] matches {
+                        magnitude matches {100}
+                        concept matches {
+                            Coded_text[id22] matches {
+                                term matches {
+                                    Terminology_term[id21] matches {
+                                        concept matches {[at15]}    -- Normal; no complaints; no evidence of disease
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id23] matches {
+                        magnitude matches {90}
+                        concept matches {
+                            Coded_text[id25] matches {
+                                term matches {
+                                    Terminology_term[id24] matches {
+                                        concept matches {[at14]}    -- Able to carry on normal activity; minor signs or symptoms of disease
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id26] matches {
+                        magnitude matches {80}
+                        concept matches {
+                            Coded_text[id28] matches {
+                                term matches {
+                                    Terminology_term[id27] matches {
+                                        concept matches {[at13]}    -- Normal activity with effort; some signs or symptoms of disease
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id29] matches {
+                        magnitude matches {70}
+                        concept matches {
+                            Coded_text[id31] matches {
+                                term matches {
+                                    Terminology_term[id30] matches {
+                                        concept matches {[at12]}    -- Cares for self; unable to carry on normal activity or to do active work
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id32] matches {
+                        magnitude matches {60}
+                        concept matches {
+                            Coded_text[id34] matches {
+                                term matches {
+                                    Terminology_term[id33] matches {
+                                        concept matches {[at11]}    -- Requires occasional assistance, but is able to care for most of his personal needs
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id35] matches {
+                        magnitude matches {50}
+                        concept matches {
+                            Coded_text[id37] matches {
+                                term matches {
+                                    Terminology_term[id36] matches {
+                                        concept matches {[at10]}    -- Requires considerable assistance and frequent medical care
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id38] matches {
+                        magnitude matches {40}
+                        concept matches {
+                            Coded_text[id40] matches {
+                                term matches {
+                                    Terminology_term[id39] matches {
+                                        concept matches {[at9]}    -- Disabled; requires special care and assistance
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id41] matches {
+                        magnitude matches {30}
+                        concept matches {
+                            Coded_text[id43] matches {
+                                term matches {
+                                    Terminology_term[id42] matches {
+                                        concept matches {[at8]}    -- Severely disabled; hospital admission is indicated although death not imminent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id44] matches {
+                        magnitude matches {20}
+                        concept matches {
+                            Coded_text[id46] matches {
+                                term matches {
+                                    Terminology_term[id45] matches {
+                                        concept matches {[at7]}    -- Very sick; hospital admission necessary; active supportive treatment necessary
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id47] matches {
+                        magnitude matches {10}
+                        concept matches {
+                            Coded_text[id49] matches {
+                                term matches {
+                                    Terminology_term[id48] matches {
+                                        concept matches {[at6]}    -- Moribund; fatal processes progressing rapidly.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id50] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id52] matches {
+                                term matches {
+                                    Terminology_term[id51] matches {
+                                        concept matches {[at5]}    -- Dead
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id18] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["id1"] = <http://snomed.info/id/273546003>
+            ["id5"] = <http://snomed.info/id/761869008>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at15", "at14", "at13", "at12", "at11", "at10", "at9", "at8", "at7", "at6", "at5">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Karnofsky performance status (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at10"] = <
+                text = <"Requires considerable assistance and frequent medical care">
+                description = <"">
+            >
+            ["at11"] = <
+                text = <"Requires occasional assistance, but is able to care for most of his personal needs">
+                description = <"">
+            >
+            ["at12"] = <
+                text = <"Cares for self; unable to carry on normal activity or to do active work">
+                description = <"">
+            >
+            ["at13"] = <
+                text = <"Normal activity with effort; some signs or symptoms of disease">
+                description = <"">
+            >
+            ["at14"] = <
+                text = <"Able to carry on normal activity; minor signs or symptoms of disease">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"Normal; no complaints; no evidence of disease">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"Dead">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Moribund; fatal processes progressing rapidly.">
+                description = <"">
+            >
+            ["at7"] = <
+                text = <"Very sick; hospital admission necessary; active supportive treatment necessary">
+                description = <"">
+            >
+            ["at8"] = <
+                text = <"Severely disabled; hospital admission is indicated although death not imminent">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"Disabled; requires special care and assistance">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Karnofsky Performance Status (KPS) scale">
+                description = <"An assessment scale used to quantify functional capacity in an individual.">
+            >
+            ["id18"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any point in time event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Karnofsky performance status">
+                description = <"">
+            >
+        >
+    >
+    

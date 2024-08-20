@@ -1,0 +1,331 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=550d3d53-8168-4c9d-ba73-6dfd26274e64)
+	s2-EHR-Node.anatomical_location_relative.v2.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2008-11-10">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.anatomical_location_relative.v2.0.1, copyright 2008 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.anatomical_location_relative.v2.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To identify and record structured details about a single physical site on, or within, the human body in terms of its relationship to other macroscopic anatomical landmarks.">
+			use = <"Use to record structured and consistent details about a single identified physical site on, or within, the human body by describing its location in relation to identified macroscopic anatomical landmarks. It may be necessary to describe the single physical location using more than one relative location - for example, 2 cm inferior to 'landmark A' AND 3 cm medial to 'landmark B'. 
+            
+            In practice, some archetypes carry a single data Node for carrying a simple description of body site - for example, OBSERVATION.blood_pressure and Node.symptom when describing ear pain. In this situation, where the value set is predictable and simple to define, this single data Node is a very accurate and pragmatic way to record the site in the body and to query at a later date. However in the situation where the anatomical location is not well defined or needs to be determined at run-time, it may be more flexible to use this structured archetype.
+            
+            This archetype is specifically designed to be used within the context of any appropriate ENTRY or Node archetypes which supply the context of the identified body site, including insertion within the Node.anatomical_location if 'Body site name' or other data Nodes are also required.
+            
+            Clinical use cases: 
+            - 5 cm inferior to the left tibial tuberosity;
+            - 2 cm medial to the right nipple; and
+            - 5 cm within the anal opening.
+            
+            In the situation where the Node.anatomical_location can only be used to name a large and/or non-specific body part, the use of this archetype within the 'Alternative Structure' SLOT will support recording of a more precise location - for example, 2 cm anterior to the cubital fossa of the left forearm or 4 cm below R costal margin on the chest wall in the mid-clavicular line.">
+			keywords = <"location", "site", "anatomical", "relative", "approximate", "anatomic region", "topographic anatomy", "macroscopic anatomy", "macroscopic", "anatomic", "anatomy">
+			misuse = <"Not to be used to record 'unilateral' and 'bilateral', as these terms are qualifiers for conclusions rather than anatomical locations.
+            
+            Not to be used to specify a simple location of a named physical site in the body.
+            
+            Not to be used to specify a simple location of a named physical site in the body, such as left femur or medial aspect of nose. Use the Node.anatomical_location archetype for this purpose.
+            
+            Not to be used to represent location of anatomical features at the microscopic level, for example in reporting histopathology. Use a Node archetype for histopathology nested within the OBSERVATION.laboratory_test_result archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Tomas Alme, DIPS, Norway", "Vebjoern Arntzen, Oslo university hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Gustavo Bacelar-Silva, Healthcare Designs, Brazil (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal ICT Norway, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Aitor Eguzkitza, UPNA (Public University of Navarre) - CHN (Complejo Hospitalario de Navarra), Spain", "Shahla Foozonkhah, Ocean Informatics, Australia", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "Heather Grain, Llewelyn Grain Informatics, Australia", "Dunmail Hodkinson, Black Pear Software Ltd, UK", "Lars Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Vesna Levasic, Orthopaedic Hospital Valdoltra, Slovenia", "Hallvard Lærum, Oslo University Hospital, Norway", "Luis Marco Ruiz, Norwegian Center for Integrated Care and Telemedicine, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjoern Naess, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Richard Townley-O'Neill, NEHTA, Australia", "John Tore Valand, Helse Bergen, Norway", "Dmitri Wall, Irish Skin Foundation, Ireland">
+
+definition
+	Node[id1] matches {	-- Relative anatomical location
+		items matches {
+			Node[id21] matches {	-- Relative location
+				items matches {
+					Node[id22] matches {	-- Landmark name
+						value matches {
+							Text[id64] 
+						}
+					}
+					Node[id63] occurrences matches {0..1} matches {	-- Laterality
+						value matches {
+							Coded_text[id65] matches {
+								term matches {
+									Terminology_term[id70] matches {
+										concept matches {[ac1]}		-- Laterality (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id23] occurrences matches {0..1} matches {	-- Distance from landmark
+						value matches {
+							Quantity[id71] matches {	-- Distance from landmark (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id73] matches {
+										term matches {
+											Terminology_term[id72] matches {
+												concept matches {[at71]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+							Quantity[id74] matches {	-- Distance from landmark ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id76] matches {
+										term matches {
+											Terminology_term[id75] matches {
+												concept matches {[at72]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+							Quantity[id77] matches {	-- Distance from landmark (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id79] matches {
+										term matches {
+											Terminology_term[id78] matches {
+												concept matches {[at73]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+					Node[id7] occurrences matches {0..6} matches {	-- Direction
+						value matches {
+							Coded_text[id67] matches {
+								term matches {
+									Terminology_term[id80] matches {
+										concept matches {[ac2]}		-- Direction (synthesised)
+									}
+								}
+							}
+							Plain_text[id68] 
+						}
+					}
+				}
+			}
+			Node[id24] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id69] 
+				}
+			}
+			use_archetype Node[id55, s2-EHR-Node.media_file.v1] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Laterality (synthesised)">
+				description = <"The side of the body on which the identified landmark is located. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Direction (synthesised)">
+				description = <"Detail about the relative direction of the body site to the landmark. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Inferior to">
+				description = <"Below the landmark.">
+			>
+			["at12"] = <
+				text = <"Anterior to">
+				description = <"Towards the front, or ventral aspect, from the landmark.">
+			>
+			["at13"] = <
+				text = <"Posterior to">
+				description = <"Towards the back, or dorsal aspect, from the landmark.">
+			>
+			["at55"] = <
+				text = <"Proximal to">
+				description = <"Closer to the body, relative to the landmark.">
+			>
+			["at56"] = <
+				text = <"Distal to">
+				description = <"Further from the body, relative to the landmark.">
+			>
+			["at57"] = <
+				text = <"Superficial to">
+				description = <"Nearer the outer surface, relative to the landmark.">
+			>
+			["at58"] = <
+				text = <"Deep to">
+				description = <"Further away from the outer surface, relative to the landmark.">
+			>
+			["at59"] = <
+				text = <"Within">
+				description = <"Inwards from the outer opening of a body cavity, for example outer ear canal, fistula or wound, relative to the landmark.">
+			>
+			["at60"] = <
+				text = <"External to">
+				description = <"Outwards from the inner opening of a body cavity, for example anal fistula or nasal cavity, relative to the landmark.">
+			>
+			["at63"] = <
+				text = <"Oral to">
+				description = <"Towards the mouth, relative to the landmark. Usually used to describe locations within the digestive system.">
+			>
+			["at64"] = <
+				text = <"Anal to">
+				description = <"Towards the anus, relative to the landmark. Usually used to describe locations within the digestive system.">
+			>
+			["at65"] = <
+				text = <"Caudal to">
+				description = <"Towards the tail, relative to the landmark.">
+			>
+			["at66"] = <
+				text = <"Cranial to">
+				description = <"Towards the head, relative to the landmark.">
+			>
+			["at67"] = <
+				text = <"Rostral to">
+				description = <"Towards the front of the head, relative to the landmark.">
+			>
+			["at68"] = <
+				text = <"Left">
+				description = <"Left side of the body.">
+			>
+			["at69"] = <
+				text = <"Right">
+				description = <"Right side of the body.">
+			>
+			["at7"] = <
+				text = <"Medial to">
+				description = <"Towards the middle, from the landmark.">
+			>
+			["at70"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at71"] = <
+				text = <"cm">
+				description = <"Centimetres length unit">
+			>
+			["at72"] = <
+				text = <"in_i">
+				description = <"Inches length unit">
+			>
+			["at73"] = <
+				text = <"mm">
+				description = <"mm unit.">
+			>
+			["at8"] = <
+				text = <"Lateral to">
+				description = <"Towards the side, from the landmark.">
+			>
+			["at9"] = <
+				text = <"Superior to">
+				description = <"Above the landmark.">
+			>
+			["id1"] = <
+				text = <"Relative anatomical location">
+				description = <"A physical site on or within the human body that is described in terms of its relationship to other body parts.">
+			>
+			["id21"] = <
+				text = <"Relative location">
+				description = <"Detail to identify a single physical site either on, or within, the human body in terms of its relationship to other macroscopic anatomical landmarks.">
+			>
+			["id22"] = <
+				text = <"Landmark name">
+				description = <"Identified body site used as a reference point for the actual body site.">
+			>
+			["id23"] = <
+				text = <"Distance from landmark">
+				description = <"Distance of location from the identified landmark.">
+			>
+			["id24"] = <
+				text = <"Description">
+				description = <"Narrative description that can be used to further refine and support the relative location structured data.">
+			>
+			["id55"] = <
+				text = <"Multimedia representation">
+				description = <"Image or other media used to support identification of the location on the body.">
+			>
+			["id63"] = <
+				text = <"Laterality">
+				description = <"The side of the body on which the identified landmark is located.">
+			>
+			["id7"] = <
+				text = <"Direction">
+				description = <"Detail about the relative direction of the body site to the landmark.">
+			>
+			["id71"] = <
+				text = <"Distance from landmark (cm)">
+				description = <"Distance from landmark (cm)">
+			>
+			["id74"] = <
+				text = <"Distance from landmark ([in_i])">
+				description = <"Distance from landmark ([in_i])">
+			>
+			["id77"] = <
+				text = <"Distance from landmark (mm)">
+				description = <"Distance from landmark (mm)">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["id63"] = <http://snomed.info/id/272741003>
+			["at68"] = <http://snomed.info/id/419161000>
+			["at69"] = <http://snomed.info/id/419465000>
+			["at71"] = <http://snomed.info/id/258672001>
+			["at72"] = <http://snomed.info/id/258677007>
+			["at73"] = <http://snomed.info/id/258673006>
+		>
+		["openehr"] = <
+			["at70"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at71"] = <http://ucum.org/id/cm>
+			["at72"] = <http://ucum.org/id/%5Bin_i%5D>
+			["at73"] = <http://ucum.org/id/mm>
+		>
+		["loinc"] = <
+			["id63"] = <http://loinc.org/63930-2>
+			["id22"] = <http://loinc.org/106185-2>
+			["id23"] = <http://loinc.org/106179-5>
+			["id24"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id55"] = <http://loinc.org/104973-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at68", "at69">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at7", "at8", "at9", "at10", "at12", "at13", "at55", "at56", "at57", "at58", "at59", "at60", "at63", "at64", "at65", "at66", "at67">
+		>
+	>
+

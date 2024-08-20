@@ -1,0 +1,349 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ea1d4a3c-b4f1-4fa5-82f2-632451d8e899)
+    s2-EHR-Node.tnm.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Vegar Dagenborg, OUS, Norway", "Kristin Eik, Kreftregisteret, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd. UK", "Morten Hørthe, DIPS, Norway", "Sergey Kovalenko, Chelyabinsk Regional Children Hospital, Russia", "Siri Laronningen, Kreftregisteret, Norway", "Liv Laugen, Oslo universitetssykehus, Norway", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Miha Lenic, Marand, Slovenia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Anne M Gromsrud, DIPS AS, Norway", "Ian McNicoll, freshEHR Clinical Informatics Ltd. UK", "Bjørn Næss, DIPS ASA, Norway", "SARA PRETE, Abinsula, Italy", "Trine Strand, Oslo Universitetssykehus (OUS), Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2016-08-26">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.tnm.v1.0.0, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.tnm.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the clinical classification and stage grouping of malignancies using the TNM system.">
+            keywords = <"TNM", "cancer", "tumour", "cTNM", "grading", "staging", "malignancy", "classification", "grouping", "stage", "neoplasia">
+            use = <"Use to record the clinical classification, designated as TNM or cTNM, and stage grouping of malignancies.
+            
+            This archetype has been designed to be nested inside an ENTRY archetype which will provide a clinical context and the tumour type for the TNM record - for example: the 'Specific details' SLOT within the EVALUATION.problem_diagnosis archetype.
+            
+            Each cancer has a set of unique TNM classification values. It is expected that this archetype will be further constrained to reflect the unique requirements for each tumour and edition of the TNM classification, using either an archetype specialisation or a template.
+            
+            With certain types of tumours, such as Hodgkin and other non-Hodgkin lymphomas, a different system for designating the extent of disease and prognosis is used. In these circumstances only the stage group is defined.">
+            misuse = <"Not to be used to record the TNM pathological classification - use the Node.tnm-pathological archetype for this purpose.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- TNM clinical classification
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Anatomical site
+                value matches {
+                    Text[id34]
+                }
+            }
+            Node[id3] occurrences matches {0..1} matches {    -- Anatomical subsite
+                value matches {
+                    Text[id35]
+                }
+            }
+            Node[id4] occurrences matches {0..1} matches {    -- Primary tumour (T)
+                value matches {
+                    Text[id36]
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Regional lymph nodes (N)
+                value matches {
+                    Text[id37]
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Distant metastasis (M)
+                value matches {
+                    Text[id38]
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Histopathological grade (G)
+                value matches {
+                    Text[id39]
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Residual tumour (R)
+                value matches {
+                    Coded_text[id40] matches {
+                        term matches {
+                            Terminology_term[id53] matches {
+                                concept matches {[ac1]}    -- Residual tumour (R) (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Lymphatic invasion (L)
+                value matches {
+                    Coded_text[id41] matches {
+                        term matches {
+                            Terminology_term[id54] matches {
+                                concept matches {[ac2]}    -- Lymphatic invasion (L) (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Venous invasion (V)
+                value matches {
+                    Coded_text[id42] matches {
+                        term matches {
+                            Terminology_term[id55] matches {
+                                concept matches {[ac3]}    -- Venous invasion (V) (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id22] occurrences matches {0..1} matches {    -- Perineural invasion (Pn)
+                value matches {
+                    Coded_text[id43] matches {
+                        term matches {
+                            Terminology_term[id56] matches {
+                                concept matches {[ac4]}    -- Perineural invasion (Pn) (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Multiple primary tumours (m)
+                value matches {
+                    Count[id44]
+                    Boolean_value[id45]
+                }
+            }
+            Node[id27] occurrences matches {0..1} matches {    -- Multimodality therapy (y)
+                value matches {
+                    Boolean_value[id46] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id28] occurrences matches {0..1} matches {    -- Recurrent (r)
+                value matches {
+                    Boolean_value[id47] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Autopsy (a)
+                value matches {
+                    Boolean_value[id48] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id30] occurrences matches {0..1} matches {    -- Carcinoma in situ (is)
+                value matches {
+                    Boolean_value[id49] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id31] occurrences matches {0..1} matches {    -- TNM assessment
+                value matches {
+                    Text[id50]
+                }
+            }
+            Node[id32] occurrences matches {0..1} matches {    -- Stage grouping
+                value matches {
+                    Text[id51]
+                }
+            }
+            Node[id33] occurrences matches {0..1} matches {    -- TNM Edition
+                value matches {
+                    Text[id52]
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at8", "at9", "at10", "at11">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at13", "at14", "at15">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at17", "at18", "at19", "at20">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at22", "at23", "at24">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Residual tumour (R) (synthesised)">
+                description = <"Assessment of the presence of residual tumour after treatment. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Lymphatic invasion (L) (synthesised)">
+                description = <"Assessment of invasion into the lymphatic system. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Venous invasion (V) (synthesised)">
+                description = <"Assessment of invasion into the venous system. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Perineural invasion (Pn) (synthesised)">
+                description = <"Assessment of invasion into the space surrounding nerves. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"R1">
+                description = <"Microscopic residual tumour.">
+            >
+            ["at11"] = <
+                text = <"R2">
+                description = <"Macroscopic residual tumour.">
+            >
+            ["at13"] = <
+                text = <"LX">
+                description = <"Lymphatic invasion cannot be assessed.">
+            >
+            ["at14"] = <
+                text = <"L0">
+                description = <"No lymphatic invasion.">
+            >
+            ["at15"] = <
+                text = <"L1">
+                description = <"Lymphatic invasion.">
+            >
+            ["at17"] = <
+                text = <"VX">
+                description = <"Venous invasion cannot be assessed.">
+            >
+            ["at18"] = <
+                text = <"V0">
+                description = <"No venous invasion.">
+            >
+            ["at19"] = <
+                text = <"V1">
+                description = <"Microscopic venous invasion.">
+            >
+            ["at20"] = <
+                text = <"V2">
+                description = <"Macroscopic venous invasion.">
+            >
+            ["at22"] = <
+                text = <"PnX">
+                description = <"Perineural invasion cannot be assessed.">
+            >
+            ["at23"] = <
+                text = <"Pn0">
+                description = <"No perineural invasion.">
+            >
+            ["at24"] = <
+                text = <"Pn1">
+                description = <"Perineural invasion.">
+            >
+            ["at8"] = <
+                text = <"RX">
+                description = <"Presence of residual tumour cannot be assessed.">
+            >
+            ["at9"] = <
+                text = <"R0">
+                description = <"No residual tumour.">
+            >
+            ["id1"] = <
+                text = <"TNM clinical classification">
+                description = <"A framework for the clinical classification and stage grouping of malignancies using the TNM system.">
+            >
+            ["id13"] = <
+                text = <"Lymphatic invasion (L)">
+                description = <"Assessment of invasion into the lymphatic system.">
+            >
+            ["id17"] = <
+                text = <"Venous invasion (V)">
+                description = <"Assessment of invasion into the venous system.">
+            >
+            ["id2"] = <
+                text = <"Anatomical site">
+                description = <"The anatomical site where the assessed tumour is situated.">
+            >
+            ["id22"] = <
+                text = <"Perineural invasion (Pn)">
+                description = <"Assessment of invasion into the space surrounding nerves.">
+            >
+            ["id26"] = <
+                text = <"Multiple primary tumours (m)">
+                description = <"Presence of multiple simultaneous primary tumours at a single site.">
+            >
+            ["id27"] = <
+                text = <"Multimodality therapy (y)">
+                description = <"Record as True if assessment is performed during or following initial multimodal therapy.">
+            >
+            ["id28"] = <
+                text = <"Recurrent (r)">
+                description = <"Record as True if assessment is performed for a recurring cancer after a disease-free interval.">
+            >
+            ["id29"] = <
+                text = <"Autopsy (a)">
+                description = <"Record as True if assessment is performed at postmortem examination.">
+            >
+            ["id3"] = <
+                text = <"Anatomical subsite">
+                description = <"The anatomical subsite where the assessed tumour is situated.">
+            >
+            ["id30"] = <
+                text = <"Carcinoma in situ (is)">
+                description = <"Record as True if presence of carcinoma in situ associated with the primary tumour.">
+            >
+            ["id31"] = <
+                text = <"TNM assessment">
+                description = <"Concatenation of 'T', 'N' and 'M' assessments plus any optional assessments of 'G', 'R', 'L', 'V', prefixes and/or suffixes, as applicable.">
+            >
+            ["id32"] = <
+                text = <"Stage grouping">
+                description = <"The categorisation of the anatomical stage of the tumour, usually based on TNM assessment.">
+            >
+            ["id33"] = <
+                text = <"TNM Edition">
+                description = <"The edition of the TNM classification system used for the assessment.">
+            >
+            ["id4"] = <
+                text = <"Primary tumour (T)">
+                description = <"Assessment of the the extent of the primary tumour.">
+            >
+            ["id5"] = <
+                text = <"Regional lymph nodes (N)">
+                description = <"Assessment of the the absence or presence and extent of regional lymph node metastasis.">
+            >
+            ["id6"] = <
+                text = <"Distant metastasis (M)">
+                description = <"Assessment of the absence or presence of distant metastasis.">
+            >
+            ["id7"] = <
+                text = <"Histopathological grade (G)">
+                description = <"Histopathological grading of the tumour.">
+            >
+            ["id8"] = <
+                text = <"Residual tumour (R)">
+                description = <"Assessment of the presence of residual tumour after treatment.">
+            >
+        >
+    >
+    

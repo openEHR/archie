@@ -1,0 +1,87 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d74b33db-90d4-449f-b056-8a0a6045b414)
+    s2-EHR-Section.medication_list.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Ian McNicoll, Ocean Informatics, United Kingdom", "Heath Frankel, Ocean Informatics, Australia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2010-03-07">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-SECTION.medication_list.v0.0.1-alpha, copyright 2010 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-SECTION.medication_list.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To provide a framework and design guidance for consistent modelling of content within a template for a Medication list.">
+            keywords = <"medication", "exclusion", "absence", "current", "list">
+            use = <"Use as a framework and suggested design guidance for consistent modelling of content within a template for an Medication list.
+            
+            This archetype is intended to be used within the COMPOSITION.medication_list or as one component of other COMPOSITION archetypes. For example: complex documents, such as a discharge summary or referral.
+            
+            This list can be comprised of three types of statements, each represented by specific archetypes:
+            - statements about the positive use of medications can be recorded using multiple instances of the INSTRUCTION.medication_order; OR
+            - statements about the positive exclusion of use of medications can be recorded using the specific EVALUATION.exclusion-global  - for example: 'No known adverse reactions'; OR
+            - statements about no information being available - neither a positive use of medications nor a positive exclusion - can be recorded using the EVALUATION.absence archetype..
+            
+            Statements about the absence of medication orders, either general or specific, can only indicate the state of the subject at the time that the information was actually recorded - that is, they are event based. It is not sensible to persist the recording of a positive absence of a medication order as it may subsequently be ordered or self-administered by the patient, which may render any or all previous positive statements of absence obsolete. 
+            
+            INSTRUCTION.medication is suggested as the best archetype to represent a Medication list in this instance as it generally provides the best representation of a local Current Medication List. Clinicians can enter patient-administered medications or 'over the counter' medications into a Prescribing system as INSTRUCTIONs, which in turn can enable adverse reaction checking against all INSTRUCTIONS, whether prescribed/printed or not. So Current Medication lists can effectively contain all orders for medications, given by both the recording clinician, other clinicians and the patient. An alternative form of the  Medication list comprising only ACTIONs can be used represent only those medication that have been prescribed/printed by the recording clinician.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Section[id1] matches {    -- Medication list
+        items matches {
+            allow_archetype Entry[id5] matches {     -- Medications
+                include
+                    archetype_id/value matches {/s2-EHR-Order\.medication_order(-[a-zA-Z0-9_]+)*\.v2|s2-EHR-Action\.medication(-[a-zA-Z0-9_]+)*\.v1/}
+            }
+            use_archetype Entry[id6, s2-EHR-Assessment.exclusion_global.v1]    -- Exclusion statement
+            use_archetype Entry[id7, s2-EHR-Assessment.absence.v2]    -- Absence statement
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Medication list">
+                description = <"Framework for consistent modelling of content within a template for a Medication list.">
+            >
+            ["id5"] = <
+                text = <"Medications">
+                description = <"Positive statements about the use of medications.">
+            >
+            ["id6"] = <
+                text = <"Exclusion statement">
+                description = <"A positive statement about the exclusion of the use of medications.">
+            >
+            ["id7"] = <
+                text = <"Absence statement">
+                description = <"A positive statement that no information is available about the use of medications.">
+            >
+        >
+    >
+    

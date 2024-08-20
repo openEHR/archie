@@ -1,0 +1,52 @@
+template (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Composition.t_encounter-medication_order.v1.0.0
+
+specialize
+	s2-EHR-Composition.encounter.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Data for encounter creating medication order">
+		>
+	>
+
+definition
+	Composition[id1.1] matches {
+		content matches {
+			use_archetype Order[id0.1, s2-EHR-Order.t_simple_medication_order.v1] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Medication order(s) created in an encounter">
+				description = <"Medication order created in an encounter">
+			>
+			["id0.1"] = <
+				text = <"Medication orders">
+				description = <"Medication orders">
+			>
+		>
+	>
+
+	term_bindings = <
+		["loinc"] = <
+			["id1.1"] = <http://loinc.org/cfa8c219-f249-ef11-886e-6045bdc71c8b>
+		>
+	>

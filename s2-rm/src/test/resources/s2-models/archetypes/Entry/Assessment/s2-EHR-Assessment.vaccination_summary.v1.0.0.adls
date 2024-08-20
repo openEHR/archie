@@ -1,0 +1,345 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; uid=5cc4d51e-ecdd-455e-bb9c-8af11e633fee)
+    s2-EHR-Assessment.vaccination_summary.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health">
+        ["organisation"] = <"S2 Health <http://www.S2Health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-07-26">
+    >
+    other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Sistine Barretto-Daniels, Ocean Informatics, Australia", "Merrilyn Curtis, AnalyzeIT, Australia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2012-11-23">
+        ["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+        ["openehr"] = <"Converted from openEHR archetype openEHR-EHR-EVALUATION.vaccination_summary.v0.0.1-alpha">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.vaccination_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"graphite_openehr_to_s2_adl">
+        ["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a summary of vaccine administration events targeting a single infectious disease or agent, or a group of infectious diseases or agents that are vaccinated simultaneously using a combination vaccine.">
+            keywords = <"immunisation", "immunisation", "immunization", "summary", "primary", "course", "booster">
+            use = <"Use to record a summary of vaccine administration events targeting a single infectious disease or agent, or a group of infectious diseases or agents that are vaccinated simultaneously using a combination vaccine.
+            
+            The intent of this archetype is to support a clinical determination about whether the individual is up-to-date with vaccinations for the targeted disease/s or agent/s. It is not intended to make a determination about the immunisation status, which is about whether the individual has developed an adequate immune response following vaccination or whether protective immunity has waned. 
+            
+            This archetype does not presume any particular schedule or protocol for immunisation.">
+            misuse = <"Not to be used to record the vaccination status of an individual at a point in time - use OBSERVATION.vaccination_status for this purpose. 
+            
+            Not to be used for documenting the detailed administration of a vaccine, including body site, route, manufacturer and batch number etc - use Action.vaccination or Action.medication for this purpose.
+            
+            Not to be used for recording screening question/answer pairs regarding vaccination activity - use OBSERVATION.vaccination_screening for this purpose.">
+        >
+    >
+    
+definition
+    Assessment[id1] matches {    -- Vaccination summary
+        data cardinality matches {1..*; unordered} matches {
+            Node[id53] occurrences matches {0..1} matches {    -- Vaccine name
+                value matches {
+                    Text[id55]
+                }
+            }
+            Node[id3] matches {    -- Targeted disease or agent
+                value matches {
+                    Text[id56]
+                }
+            }
+            Node[id36] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id57]
+                }
+            }
+            Node[id4] occurrences matches {0..1} matches {    -- Primary course status
+                value matches {
+                    Coded_text[id58] matches {
+                        term matches {
+                            Terminology_term[id78] matches {
+                                concept matches {[ac1]}    -- Primary course status (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id59]
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Date course completed
+                value matches {
+                    Date_time_value[id60]
+                }
+            }
+            Node[id48] occurrences matches {0..1} matches {    -- Total number of administrations
+                value matches {
+                    Count[id61] matches {
+                        magnitude matches {|>=0|}
+                    }
+                    Coded_text[id62] matches {
+                        term matches {
+                            Terminology_term[id79] matches {
+                                concept matches {[at48]}    -- Unknown
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Date of last vaccination
+                value matches {
+                    Date_time_value[id63]
+                }
+            }
+            Node[id34] occurrences matches {0..1} matches {    -- Next vaccination due
+                value matches {
+                    Date_time_value[id64]
+                }
+            }
+            allow_archetype Node[id52] occurrences matches {0..1}
+            Node[id50] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id65]
+                }
+            }
+            Node[id23] matches {    -- Per vaccine administration
+                items matches {
+                    Node[id24] matches {    -- Specific vaccine name
+                        value matches {
+                            Text[id66]
+                        }
+                    }
+                    use_archetype Node[id35, s2-EHR-Node.medication.v3]    -- Vaccine details
+                    Node[id39] occurrences matches {0..1} matches {    -- Administration category
+                        value matches {
+                            Coded_text[id67] matches {
+                                term matches {
+                                    Terminology_term[id80] matches {
+                                        concept matches {[ac2]}    -- Administration category (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id68]
+                        }
+                    }
+                    Node[id25] occurrences matches {0..1} matches {    -- Date of administration
+                        value matches {
+                            Date_time_value[id69]
+                        }
+                    }
+                    Node[id32] occurrences matches {0..1} matches {    -- Sequence in series
+                        value matches {
+                            Count[id70] matches {
+                                magnitude matches {|>=1|}
+                            }
+                            Text[id71]
+                        }
+                    }
+                    Node[id43] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            Text[id72]
+                        }
+                    }
+                    use_archetype Node[id28, s2-EHR-Node.organization.v1]    -- Administration location
+                    Node[id46] occurrences matches {0..1} matches {    -- Administration outcome
+                        value matches {
+                            Text[id73]
+                        }
+                    }
+                    Node[id47] occurrences matches {0..1} matches {    -- Information source
+                        value matches {
+                            Text[id74]
+                        }
+                    }
+                    use_archetype Node[id45, s2-EHR-Node.dosage.v2]    -- Additional details
+                    Node[id17] occurrences matches {0..1} matches {    -- Administration comment
+                        value matches {
+                            Text[id75]
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id16] occurrences matches {0..1} matches {    -- Last updated
+                value matches {
+                    Date_time_value[id76]
+                }
+            }
+            Node[id54] occurrences matches {0..1} matches {    -- Information source
+                value matches {
+                    Text[id77]
+                }
+            }
+            allow_archetype Node[id51] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at4", "at5", "at6", "at7">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at39", "at40">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Primary course status (synthesised)">
+                description = <"Status of the primary (or catch up) course of vaccinations. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Administration category (synthesised)">
+                description = <"Category of the vaccine administered. (synthesised)">
+            >
+            ["at39"] = <
+                text = <"Primary course">
+                description = <"">
+            >
+            ["at4"] = <
+                text = <"Course not commenced">
+                description = <"A course of vaccinations is planned but not commenced.">
+            >
+            ["at40"] = <
+                text = <"Booster">
+                description = <"">
+            >
+            ["at48"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"Course incomplete">
+                description = <"A course of vaccinations has been commenced but not completed.">
+            >
+            ["at6"] = <
+                text = <"Course complete">
+                description = <"A course of vaccinations has been completed.">
+            >
+            ["at7"] = <
+                text = <"Unknown">
+                description = <"It is not possible to determine if the primary course has been completed.">
+            >
+            ["id1"] = <
+                text = <"Vaccination summary">
+                description = <"Summary of vaccination administration for a single infectious disease or agent, or a group of infectious diseases or agents that are vaccinated simultaneously using a combination vaccine.">
+            >
+            ["id10"] = <
+                text = <"Date of last vaccination">
+                description = <"The date when the most recent vaccine was administered.">
+            >
+            ["id16"] = <
+                text = <"Last updated">
+                description = <"The date on which the immunisation summary was last updated.">
+            >
+            ["id17"] = <
+                text = <"Administration comment">
+                description = <"Additional narrative about the vaccine administration for the identified vaccinet, not captured in other fields.">
+            >
+            ["id23"] = <
+                text = <"Per vaccine administration">
+                description = <"Details about a specific vaccine administration.">
+            >
+            ["id24"] = <
+                text = <"Specific vaccine name">
+                description = <"Name of the specific vaccine administered.">
+            >
+            ["id25"] = <
+                text = <"Date of administration">
+                description = <"Date of administration of the specified vaccine.">
+            >
+            ["id28"] = <
+                text = <"Administration location">
+                description = <"">
+            >
+            ["id3"] = <
+                text = <"Targeted disease or agent">
+                description = <"Name of the infectious disease or agent targeted by the vaccine.">
+            >
+            ["id32"] = <
+                text = <"Sequence in series">
+                description = <"The sequence of the vaccine administered within a primary course or series.">
+            >
+            ["id34"] = <
+                text = <"Next vaccination due">
+                description = <"The date when the next vaccine is due to be administered.">
+            >
+            ["id35"] = <
+                text = <"Vaccine details">
+                description = <"Details about the vaccine, including generic components and batch number if required.">
+            >
+            ["id36"] = <
+                text = <"Description">
+                description = <"Narrative description about vaccination activity and experiences related to the targeted disease or agent.">
+            >
+            ["id39"] = <
+                text = <"Administration category">
+                description = <"Category of the vaccine administered.">
+            >
+            ["id4"] = <
+                text = <"Primary course status">
+                description = <"Status of the primary (or catch up) course of vaccinations.">
+            >
+            ["id43"] = <
+                text = <"Description">
+                description = <"Narrative description about the vaccine administration.">
+            >
+            ["id45"] = <
+                text = <"Additional details">
+                description = <"Additional details about the specific vaccine administration.">
+            >
+            ["id46"] = <
+                text = <"Administration outcome">
+                description = <"The observed response to the administration of vaccine.">
+            >
+            ["id47"] = <
+                text = <"Information source">
+                description = <"Identification of the source of the vaccine administration information.">
+            >
+            ["id48"] = <
+                text = <"Total number of administrations">
+                description = <"Total number of vaccine doses administered over the lifetime of the individual.">
+            >
+            ["id50"] = <
+                text = <"Comment">
+                description = <"Additional narrative about vaccination administrationfor the identified disease or agent, not captured in other fields.">
+            >
+            ["id51"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+            >
+            ["id52"] = <
+                text = <"Additional details">
+                description = <"Additional details about vaccinations related to the targeted disease or agent.">
+            >
+            ["id53"] = <
+                text = <"Vaccine name">
+                description = <"Name of the vaccine administered.">
+            >
+            ["id54"] = <
+                text = <"Information source">
+                description = <"Identification of the source of all vaccination information.">
+            >
+            ["id9"] = <
+                text = <"Date course completed">
+                description = <"The date on which the (primary or catch-up) course of vaccines was completed.">
+            >
+        >
+    >
+    

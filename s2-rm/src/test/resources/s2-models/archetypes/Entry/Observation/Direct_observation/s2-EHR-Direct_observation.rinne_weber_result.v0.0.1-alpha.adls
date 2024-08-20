@@ -1,0 +1,193 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=771ab163-8c96-44dd-9c4e-550c64afe2df)
+	s2-EHR-Direct_observation.rinne_weber_result.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, Australia, <heather.leslie@atomicainformatics.com>, 2013-03-26">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.rinne_weber_result.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.rinne_weber_result.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the results of the Rinne and Weber tests as part of screening for hearing loss.">
+			use = <"Use to record the results of the Rinne and Weber tests as part of screening for hearing loss.">
+			keywords = <"rinne", "weber", "test", "result", "air", "bone", "conduction", "lateralisation", "lateralization">
+			misuse = <"Not to be used to record the results of other hearing tests. Use other OBSERVATION archetypes specific for the purpose, for example, OBSERVATION.audiometry_result and OBSERVATION.tympanogram_226hz.">
+		>
+	>
+	other_contributors = <"Ian McNicoll, freshEHR Informatics, UK", ...>
+
+definition
+	Direct_observation[id1] matches {	-- Rinne and Weber test results
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Weber Test Result
+				value matches {
+					Coded_text[id20] matches {
+						term matches {
+							Terminology_term[id25] matches {
+								concept matches {[ac1]}		-- Weber Test Result (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id9] occurrences matches {0..2} matches {	-- Rinne Test
+				items matches {
+					Node[id11] occurrences matches {0..1} matches {	-- Ear Tested
+						value matches {
+							Coded_text[id21] matches {
+								term matches {
+									Terminology_term[id26] matches {
+										concept matches {[ac2]}		-- Ear Tested (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id10] occurrences matches {0..1} matches {	-- Rinne Test Result
+						value matches {
+							Coded_text[id22] matches {
+								term matches {
+									Terminology_term[id27] matches {
+										concept matches {[ac3]}		-- Rinne Test Result (synthesised)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id18] matches {	-- Clinical Interpretation
+				value matches {
+					Text[id23] 
+				}
+			}
+			Node[id19] matches {	-- Comment
+				value matches {
+					Text[id24] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Weber Test Result (synthesised)">
+				description = <"A test to compare bone conduction in both ears. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Ear Tested (synthesised)">
+				description = <"Identification of the ear being tested. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Rinne Test Result (synthesised)">
+				description = <"The result of the Rinne Test. (synthesised)">
+			>
+			["at11"] = <
+				text = <"Left">
+				description = <"The left ear was tested.">
+			>
+			["at12"] = <
+				text = <"Right">
+				description = <"The right ear was tested.">
+			>
+			["at13"] = <
+				text = <"Negative">
+				description = <"Air Conduction is less than bone conduction.">
+			>
+			["at14"] = <
+				text = <"Positive">
+				description = <"Air Conduction is greater than bone conduction.">
+			>
+			["at5"] = <
+				text = <"No Lateralisation">
+				description = <"The sound from vibration is heard equally in both ears.">
+			>
+			["at6"] = <
+				text = <"Lateralising Left">
+				description = <"The sound from the vibration is heard predominantly on the left.">
+			>
+			["at7"] = <
+				text = <"Lateralising Right">
+				description = <"The sound from the vibration is heard predominantly on the right.">
+			>
+			["id1"] = <
+				text = <"Rinne and Weber test results">
+				description = <"Two hearing screening tests, commonly recorded together to determine the presence and character of any detected hearing loss.">
+			>
+			["id10"] = <
+				text = <"Rinne Test Result">
+				description = <"The result of the Rinne Test.">
+			>
+			["id11"] = <
+				text = <"Ear Tested">
+				description = <"Identification of the ear being tested.">
+			>
+			["id18"] = <
+				text = <"Clinical Interpretation">
+				description = <"Single word, phrase or brief description represents the clinical meaning and significance of the physical examination findings.">
+			>
+			["id19"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the Rinne and Weber tests not captured in other fields.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Weber Test Result">
+				description = <"A test to compare bone conduction in both ears.">
+			>
+			["id9"] = <
+				text = <"Rinne Test">
+				description = <"A test to compare the subject's perception of sounds transmitted by air conduction to those transmitted by bone conduction through the mastoid.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id18"] = <http://loinc.org/64110-0>
+			["id19"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6", "at7">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at11", "at12">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at14", "at13">
+		>
+	>
+

@@ -1,0 +1,88 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f0a6d80f-a1d9-4e0a-9d34-0bc082795e25)
+    s2-EHR-Admin_entry.triage.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, Australia, <heather.leslie@atomicainformatics.com>, 2007-04-12">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ADMIN_ENTRY.triage.v0.0.1-alpha, copyright 2007 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-ADMIN_ENTRY.triage.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details about the assignment of a degree of urgency to wounds or illnesses, in order to decide the order of treatment of a large number of patients or casualties.">
+            keywords = <"triage", "evaluation", "assessment", "priority", "emergency", "screening", "disaster">
+            use = <"Use to record details about the assignment of a degree of urgency to wounds or illnesses, in order to decide the order of treatment of a large number of patients or casualties.
+            
+            This archetype has been designed to provide a generic framework for any triage priority, which may be specifically defined for a specific clinical location or event within a template for a specified clinical scenario. The triage priority may be time-related, indicating that the patient must be attended to within a specified timeframe.
+            
+            This archetype may be specialised to represent specific triage assessment tools.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Admin_entry[id1] matches {    -- Triage
+        data matches {
+            Node[id3] occurrences matches {0..1} matches {    -- Priority assignment
+                value matches {
+                    Text[id6]
+                }
+            }
+            Node[id4] occurrences matches {0..1} matches {    -- Rationale
+                value matches {
+                    Text[id7]
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Disposition
+                value matches {
+                    Text[id8]
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Triage">
+                description = <"The assignment of a degree of urgency to wounds or illnesses, in order to decide the order of treatment of a large number of patients or casualties.">
+            >
+            ["id3"] = <
+                text = <"Priority assignment">
+                description = <"Clinical assessment of the degree of urgency appropriate for treatement of an injury or illness.">
+            >
+            ["id4"] = <
+                text = <"Rationale">
+                description = <"The rationale for the assessment provided.">
+            >
+            ["id5"] = <
+                text = <"Disposition">
+                description = <"The immediate plan for continuing health care for an individual after triage has occurred.">
+            >
+        >
+    >
+    

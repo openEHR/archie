@@ -1,0 +1,246 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c675a1c7-94ba-4575-8412-bbc14e15c818)
+	s2-EHR-Assessment.food_nutrition_summary.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Hugh Leslie, Ocean Informatics, 2010-12-17">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.food_nutrition_summary.v0.0.1-alpha, copyright  openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.food_nutrition_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record an overview of the food and nutritional situation for an individual, including the impact on social determinants of health.">
+			use = <"Use to record an overview of the food and nutritional situation for an individual, including the impact on social determinants of health.">
+			keywords = <"nutrition", "obese", "overweight", "underweight", "malnourished">
+			misuse = <"Not to be used to record measurements such as body weight, height or Body Mass Index. Use specific archetypes to record these measurements - OBSERVATION.weight, OBSERVATION.height and OBSERVATION.body_mass_index.">
+		>
+	>
+	other_contributors = <"Stephen Chu, NEHTA, Australia", ...>
+
+definition
+	Assessment[id1] matches {	-- Food and nutrition summary
+		data matches {
+			Node[id12] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id23] 
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Food security status
+				value matches {
+					Coded_text[id24] matches {
+						term matches {
+							Terminology_term[id33] matches {
+								concept matches {[ac1]}		-- Food security status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Food security description
+				value matches {
+					Text[id25] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Nutrition status
+				value matches {
+					Text[id26] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Weight status
+				value matches {
+					Coded_text[id27] matches {
+						term matches {
+							Terminology_term[id34] matches {
+								concept matches {[ac2]}		-- Weight status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Dietary preference
+				value matches {
+					Text[id28] 
+				}
+			}
+			Node[id10] matches {	-- Dietary constraints
+				value matches {
+					Text[id29] 
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Milk supply
+				value matches {
+					Coded_text[id30] matches {
+						term matches {
+							Terminology_term[id35] matches {
+								concept matches {[ac3]}		-- Milk supply (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id31] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id19] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id32] 
+				}
+			}
+			allow_archetype Node[id20] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Food security status (synthesised)">
+				description = <"Category describing the individual's perception about about secure and reliable access to food that is adequate in quantity and nutritional quality; culturally acceptable; safe; and acquired in socially acceptable ways. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Weight status (synthesised)">
+				description = <"Assessment of the individual's weight status. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Milk supply (synthesised)">
+				description = <"The type of milk available for consumption. (synthesised)">
+			>
+			["at14"] = <
+				text = <"Secure">
+				description = <"The individual has a sense of certainty and peace of mind about their access to appropriate food.">
+			>
+			["at15"] = <
+				text = <"Changeable">
+				description = <"The individual has a sense of uncertainty about reliable and consistent access to appropriate food.">
+			>
+			["at16"] = <
+				text = <"Insecure">
+				description = <"The individual has a sense of worry and concern about their access to appropriate food.">
+			>
+			["at22"] = <
+				text = <"Pasteurised">
+				description = <"Available milk is pasteurised.">
+			>
+			["at23"] = <
+				text = <"Non-pasteurised">
+				description = <"Available milk is non-pasteurised.">
+			>
+			["at4"] = <
+				text = <"Underweight">
+				description = <"Is underweight for age and sex according to BMI or other measure.">
+			>
+			["at5"] = <
+				text = <"Overweight">
+				description = <"Is overweight for age and sex according to BMI or other measure.">
+			>
+			["at6"] = <
+				text = <"Obese">
+				description = <"Is obese for age and sex according to BMI or other measure.">
+			>
+			["at7"] = <
+				text = <"Normal">
+				description = <"Is normal weight for age and sex according to BMI or other measure.">
+			>
+			["id1"] = <
+				text = <"Food and nutrition summary">
+				description = <"Summary of the food and nutritional situation for an individual.">
+			>
+			["id10"] = <
+				text = <"Dietary constraints">
+				description = <"Description of a special dietary requirements or constraints.">
+			>
+			["id11"] = <
+				text = <"Comment">
+				description = <"Comment about the individual's nutrition.">
+			>
+			["id12"] = <
+				text = <"Description">
+				description = <"Narrative description about the individual's diet and eating patterns.">
+			>
+			["id14"] = <
+				text = <"Food security status">
+				description = <"Category describing the individual's perception about about secure and reliable access to food that is adequate in quantity and nutritional quality; culturally acceptable; safe; and acquired in socially acceptable ways.">
+			>
+			["id19"] = <
+				text = <"Last updated">
+				description = <"The date this summary was last updated.">
+			>
+			["id20"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+			>
+			["id21"] = <
+				text = <"Food security description">
+				description = <"Narrative description about the individual's ability to access appropriate food.">
+			>
+			["id22"] = <
+				text = <"Milk supply">
+				description = <"The type of milk available for consumption.">
+			>
+			["id3"] = <
+				text = <"Nutrition status">
+				description = <"Description of the individual's nutritional status as assessed by a clinician, for example, malnourished or well nourished. Coding with a terminology is desirable, where possible.">
+			>
+			["id4"] = <
+				text = <"Weight status">
+				description = <"Assessment of the individual's weight status.">
+			>
+			["id9"] = <
+				text = <"Dietary preference">
+				description = <"A description of an individual's dietary preference.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id3"] = <http://loinc.org/75305-3>
+			["id11"] = <http://loinc.org/106173-8>
+			["id12"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id19"] = <http://loinc.org/106177-9>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at14", "at15", "at16">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at4", "at7", "at5", "at6">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at22", "at23">
+		>
+	>
+

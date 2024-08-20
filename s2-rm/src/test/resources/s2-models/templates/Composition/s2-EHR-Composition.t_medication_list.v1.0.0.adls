@@ -1,0 +1,90 @@
+template (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Composition.t_medication_list.v1.0.0
+
+specialize
+	s2-EHR-Composition.medication_list.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"io.graphitehealth">
+	custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use">
+		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-OBSERVATION.body_weight.v2.1.6">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Deployable medication list template">
+		>
+	>
+
+definition
+	Composition[id1.1] matches {
+		content matches {
+			use_archetype Section[id0.1, s2-EHR-Section.t_medication_history_heading-1.v1]
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Medication List">
+				description = <"-">
+			>
+			["id0.1"] = <
+				text = <"Medication history content">
+				description = <"Medication List headings">
+			>
+		>
+	>
+
+-------------------------------------------------------------------------------------
+template_overlay
+	s2-EHR-Section.t_medication_history_heading-1.v1.0.0
+
+specialize
+	s2-EHR-Section.medication_history_heading.v1
+
+definition
+	Section[id1.1] matches {
+		/items matches {
+			use_archetype Order[id2.1, s2-EHR-Order.medication_order.v3] occurrences matches {0..1}
+			allow_archetype Order[id2] closed
+			Section[id3] matches {
+				items matches {
+					use_archetype Action[id4.1, s2-EHR-Action.medication.v1]
+					allow_archetype Action[id4] closed
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Basic headings structure for medication list">
+				description = <"Basic headings structure for medication list">
+			>
+			["id2.1"] = <
+				text = <"Medication order">
+				description = <"Medication order">
+			>
+			["id4.1"] = <
+				text = <"Medication action">
+				description = <"Medication action">
+			>
+		>
+	>

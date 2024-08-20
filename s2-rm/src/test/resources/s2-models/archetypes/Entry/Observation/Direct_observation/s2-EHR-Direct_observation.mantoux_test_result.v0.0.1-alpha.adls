@@ -1,0 +1,188 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f44a4bfb-e8c7-4165-ae74-dbd329b35d18)
+	s2-EHR-Direct_observation.mantoux_test_result.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2012-11-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.mantoux_test_result.v0.0.1-alpha, copyright 2012 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.mantoux_test_result.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record thetest result, including findings and interpretation, following administration of the Mantoux Tuberculin Skin Test (TST).">
+			use = <"Use to record the test result, including findings and interpretation, following administration of the Mantoux Tuberculin Skin Test (TST).">
+			keywords = <"TB", "Mantoux", "reaction", "tuburculin", "TST">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Merrilyn Curtis, AnalyzeIT, Australia", "Sistine Barretto-Daniels, Ocean Informatics, Australia">
+
+definition
+	Direct_observation[id1] matches {	-- Mantoux test result
+		data matches {
+			Node[id12] occurrences matches {0..3} matches {	-- Diameter
+				value matches {
+					Measured<Quantity>[id24] matches {
+						value matches {
+							Quantity[id18] matches {
+								magnitude matches {|>=0.0|}
+								precision matches {0}
+								units matches {
+									Coded_text[id26] matches {
+										term matches {
+											Terminology_term[id25] matches {
+												concept matches {[at12]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					Text[id19] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Interpretation
+				value matches {
+					Coded_text[id20] matches {
+						term matches {
+							Terminology_term[id27] matches {
+								concept matches {[ac1]}		-- Interpretation (synthesised)
+							}
+						}
+					}
+					Plain_text[id21] 
+				}
+			}
+			use_archetype Node[id17, s2-EHR-Node.media_file.v1] 
+			Node[id9] matches {	-- Comment
+				value matches {
+					Text[id22] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id8] matches {	-- Rationale for interpretation
+				value matches {
+					Text[id23] 
+				}
+			}
+			allow_archetype Node[id16] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Interpretation (synthesised)">
+				description = <"Clinical interpretation of the induration response. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Negative">
+				description = <"The reaction is negative, based on the specified patient criterion.">
+			>
+			["at11"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at12"] = <
+				text = <"mm">
+				description = <"mm unit.">
+			>
+			["at9"] = <
+				text = <"Positive">
+				description = <"The reaction is positive, based on the specified patient criterion.">
+			>
+			["id1"] = <
+				text = <"Mantoux test result">
+				description = <"The test result, including findings and interpretation, following administration of the Mantoux Tuberculin Skin Test (TST).">
+			>
+			["id12"] = <
+				text = <"Diameter">
+				description = <"The measured diameter of the induration reaction.">
+			>
+			["id13"] = <
+				text = <"Clinical description">
+				description = <"Narrative description about the Mantoux reaction findings.">
+			>
+			["id16"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id17"] = <
+				text = <"Multimedia representation">
+				description = <"Digital image, video or diagram representing the test result.">
+			>
+			["id3"] = <
+				text = <"Any point-in-time event">
+				description = <"Default, unspecified point-in-time event which may be more explicitly defined in a template or at run-time.">
+			>
+			["id6"] = <
+				text = <"Interpretation">
+				description = <"Clinical interpretation of the induration response.">
+			>
+			["id8"] = <
+				text = <"Rationale for interpretation">
+				description = <"Rationale used to interpret the reaction.">
+			>
+			["id9"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the Mantoux test result, not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at11"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at12"] = <http://ucum.org/id/mm>
+		>
+		["snomed"] = <
+			["at12"] = <http://snomed.info/id/258673006>
+		>
+		["loinc"] = <
+			["id13"] = <http://loinc.org/61133-5>
+			["id6"] = <http://loinc.org/64110-0>
+			["id9"] = <http://loinc.org/106173-8>
+			["id17"] = <http://loinc.org/104973-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at9", "at10">
+		>
+	>
+

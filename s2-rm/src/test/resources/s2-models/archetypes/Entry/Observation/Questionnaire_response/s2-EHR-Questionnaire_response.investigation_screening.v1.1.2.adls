@@ -1,0 +1,263 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c0c52c15-8abf-4cc2-add9-12e8bf0758e5)
+    s2-EHR-Questionnaire_response.investigation_screening.v1.1.2
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Terje Bektesevic Holmlund, UiT Norges arktiske universitet, Norway", "Ivar Berge, Oslo Universitetssykehus, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Randi Brendberg, Helse Nord RHF, Norway", "Yexuan Cheng, 浙江大学, China", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Heike Eichele, Regionalt fagmiljø for autimse, ADHD, Tourettes syndrom og narkolepsi Helse Vest, Kronstad DPS, Haukeland universitetssykehus, Bergen, Norway", "Alexander Eikrem-Lüthi, Lovisenberg Diakonale Sykehus, Norway", "Gunn Elin Blakkisrud, DIPS ASA, Norway", "Kåre Flø, DIPS ASA, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Anca Heyd, DIPS ASA, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Helse Nord IKT, Norway (Nasjonal IKT redaktør)", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Runar Kristiansen, DIPS AS, Norway", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, Oslo universitetssykehus, Norway (Nasjonal IKT redaktør)", "Øygunn Leite Kallevik, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Nina Louise Jebsen, Haukeland Universitetssykehus, Norway", "Martine Louise Nalum, DIPS AS, Norway", "Hanne Marte Bårholm, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Svenne Naumann, Finnmarkssykehuset, Norway", "Terje Nordberg, Helse Bergen, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Kritika Sarkar, Karkinos Healthcare, India", "Ragnhild Schultz, OUS, Norway", "Andre Smitt-Ingebretsen, Sørlandet sykehus HF, Norway", "Tove Stenquist, Helseforetak, Norway", "Frode Stenvik, Helse Sør-Øst, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Ina Wille, Helse-Vest RHF, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-10-21">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.investigation_screening.v1.1.2, copyright 2022 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.investigation_screening.v1.1.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To create a framework for recording answers to pre-defined screening questions about diagnostic investigations or group of investigations, including but not limited to imaging examinations and laboratory tests.">
+            keywords = <"investigation", "screening", "questionnaire", "prevention", "imaging", "laboratory", "pathology", "blood", "sample", "sputum", "EMG", "ECG", "hearing", "test", "examination", "spinal fluid", "biopsy", "EEG", "MRI", "CT", "X-ray", "PET", "ultrasound", "spirometry">
+            use = <"Use to create a framework for recording answers to pre-defined screening questions about diagnostic investigations or groups of investigations. The scope of diagnostic investigations includes all modalities of imaging examinations and the broadest range of laboratory and anatomical pathology tests. In addition, this archetype can also be used to record when other diagnostic tests have been carried out, such as cardiac stress testing, hearing and vision testing, electrocardiography (ECG) and electroencephalography (EEG).
+            
+            Common use cases include, but are not limited to:
+            - Patient self-reporting
+            - Creating a patient profile in a disease registry
+            - Systematic questioning in any consultation related to patterns of investigation administration
+            
+            The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. Each data Node would usually be renamed in a template to represent the specific question asked. Where value sets have been proposed for common use cases, these can be adapted to align with local requirements by using the DV_TEXT or the DV_BOOLEAN datatypes choice to match each specific use case. 
+            
+            Utilising this framework within a template can enable documentation of a broad range of question/answer pairs such as:
+            - Have you ever had your cholesterol level tested? Yes, No, Unknown.
+            - Have you been tested for rubella antibodies? Yes, No, Unknown.
+            - Have you ever been screened for sickle cell disease? Yes, No, Unknown.
+            - When was your last Chest X-ray?
+            - What was the result of your most recent INR test?
+            - What were the findings of the electrocardiogram?
+            - Did the infant pass/fail a Neonatal hearing screen?
+            
+            The EVENT structure from the reference model can be used to specify whether the questions relate to a point in time or over a period of time. Use a separate instance of this archetype to distinguish between a questionnaire recording information about an investigation or test that has been done at any time in the past and information about an investigation or test done within a specified time interval - for example, the difference between \\\"Have you ever had an INR test?\\\" compared to \\\"Have you had an INR test during the last four weeks?\\\".
+            
+            The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' Node in the Reference Model.
+            
+            This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening questionnaire identifies an investigation has been carried out, additional details required for persistence as part of a clinical record can be captured using specific test result archetypes.">
+            misuse = <"Not to be used for recording an order for an investigation - use INSTRUCTION.service_request for this purpose.
+            
+            Not to be used for recording the progress of activities performed as part of an investigation - use appropriate ACTION archetypes for this purpose.
+            
+            Not to be used to record formal diagnostic test results - use appropriate OBSERVATIONS for this purpose. For example, the OBSERVATION.laboratory_test_result or OBSERVATION.imaging_examination_result.">
+        >
+    >
+    
+definition
+    Questionnaire_response[id1] matches {    -- Diagnostic investigation screening questionnaire
+        data matches {
+            Node[id41] occurrences matches {0..1} matches {    -- Screening purpose
+                value matches {
+                    Text[id46]
+                }
+            }
+            Node[id28] matches {    -- Any investigations?
+                value matches {
+                    Coded_text[id47] matches {
+                        term matches {
+                            Terminology_term[id62] matches {
+                                concept matches {[ac1]}    -- Any investigations? (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id48]
+                    Boolean_value[id49]
+                }
+            }
+            Node[id44] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id50]
+                }
+            }
+            Node[id27] matches {    -- Specific investigation
+                items matches {
+                    Node[id22] matches {    -- Investigation name
+                        value matches {
+                            Text[id51]
+                        }
+                    }
+                    Node[id25] occurrences matches {0..1} matches {    -- Done?
+                        value matches {
+                            Coded_text[id52] matches {
+                                term matches {
+                                    Terminology_term[id63] matches {
+                                        concept matches {[ac2]}    -- Done? (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id53]
+                            Boolean_value[id54]
+                        }
+                    }
+                    Node[id4] matches {    -- Timing
+                        value matches {
+                            Date_time_value[id55]
+                            Text[id56]
+                            Range<Date_time_value>[id57]
+                            Range<Duration_value>[id58]
+                            Duration_value[id59]
+                        }
+                    }
+                    Node[id3] matches {    -- Conclusion
+                        value matches {
+                            Text[id60]
+                        }
+                    }
+                    allow_archetype Node[id42] matches {     -- Additional details
+                        include
+                            archetype_id/value matches {/s2-EHR-Node\.imaging_exam(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.laboratory_test_analyte(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization\.v1/}
+                    }
+                    Node[id26] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id61]
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id45] occurrences matches {0..1}
+        }
+        qualifiers matches {
+            allow_archetype Node[id20] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at30"] = <http://snomed.info/id/261665006>
+            ["at28"] = <http://snomed.info/id/373066001>
+            ["at29"] = <http://snomed.info/id/373067005>
+            ["at36"] = <http://snomed.info/id/373066001>
+            ["at37"] = <http://snomed.info/id/373067005>
+            ["at39"] = <http://snomed.info/id/261665006>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at28", "at29", "at30">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at36", "at37", "at39">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Any investigations? (synthesised)">
+                description = <"Is there a history of any diagnostic tests or investigations related to the screening purpose? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Done? (synthesised)">
+                description = <"Is there a history of the investigation being carried out? (synthesised)">
+            >
+            ["at28"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at29"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at30"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at36"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at37"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at39"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Diagnostic investigation screening questionnaire">
+                description = <"Series of questions and associated answers used to screen whether diagnostic investigations have been carried out.">
+            >
+            ["id20"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id22"] = <
+                text = <"Investigation name">
+                description = <"Name of the diagnostic investigation or grouping of investigations.">
+            >
+            ["id24"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id25"] = <
+                text = <"Done?">
+                description = <"Is there a history of the investigation being carried out?">
+            >
+            ["id26"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the diagnostic investigation test not captured in other fields.">
+            >
+            ["id27"] = <
+                text = <"Specific investigation">
+                description = <"Details about a specified investigation or grouping of investigations relevant for the screening purpose.">
+            >
+            ["id28"] = <
+                text = <"Any investigations?">
+                description = <"Is there a history of any diagnostic tests or investigations related to the screening purpose?">
+            >
+            ["id3"] = <
+                text = <"Conclusion">
+                description = <"Brief description, summary or interpretation of the investigation outcome.">
+            >
+            ["id4"] = <
+                text = <"Timing">
+                description = <"Indication of timing related to the investigation.">
+            >
+            ["id41"] = <
+                text = <"Screening purpose">
+                description = <"The context or reason for screening.">
+            >
+            ["id42"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about the specific investigation or group of investigations.">
+            >
+            ["id44"] = <
+                text = <"Description">
+                description = <"Narrative description about the history of any investigations relevant for the screening purpose.">
+            >
+            ["id45"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about screening for diagnostic investigations.">
+            >
+        >
+    >
+    

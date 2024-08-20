@@ -1,0 +1,326 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4fe05d16-1908-45c7-be38-d2887b9e096b)
+    s2-EHR-Score.atria_bleeding_risk.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Eneimi Allwell-Brown, Cambio Healthcare Systems, <models@cambiocds.com>, 2017-02-13">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.atria_bleeding_risk.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.atria_bleeding_risk.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the ATRIA bleeding risk score.
+            ">
+            keywords = <"anticoagulation", "atrial fibrillation", "warfarin", "major hemorrhage", "hemorrhage risk", "cardiology">
+            use = <"Use to record the results for each component parameter and their total sum for the ATRIA bleeding risk score.">
+            misuse = <"Do not use if the patient does not have atrial fibrillation.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- ATRIA bleeding risk score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Anemia
+                value matches {
+                    Coded_ordinal[id30] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at19]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id33] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at20]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Severe renal disease
+                value matches {
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at17]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at18]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Age ≥75 years
+                value matches {
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at15]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id45] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at16]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Prior hemorrhage diagnosis
+                value matches {
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at13]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at14]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- History of hypertension
+                value matches {
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at11]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id57] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id59] matches {
+                                term matches {
+                                    Terminology_term[id58] matches {
+                                        concept matches {[at12]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id29] matches {
+                        magnitude matches {|0..10|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id23] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at19", "at20">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at17", "at18">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at15", "at16">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at13", "at14">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at11", "at12">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Anemia (synthesised)">
+                description = <"Presence of hemoglobin concentration <13 g/dl (male) or <12 g/dl (female). (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Severe renal disease (synthesised)">
+                description = <"Presence of estimated glomerular filtration rate (eGFR) <30 ml/min or dialysis-dependent. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Age ≥75 years (synthesised)">
+                description = <"Individual is 75 years or older. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Prior hemorrhage diagnosis (synthesised)">
+                description = <"Any prior hemorrhage diagnosis (internal or external hemorrhage). (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"History of hypertension (synthesised)">
+                description = <"History of diagnosed hypertension. (synthesised)">
+            >
+            ["at11"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"ATRIA bleeding risk score">
+                description = <"An assessment score used to predict the risk of warfarin-associated haemorrhage and guide physician decision-making regarding warfarin use in atrial fibrillation.">
+            >
+            ["id10"] = <
+                text = <"Total score">
+                description = <"Sum of points assigned for each of the component parameters.">
+            >
+            ["id23"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any point in time event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Anemia">
+                description = <"Presence of hemoglobin concentration <13 g/dl (male) or <12 g/dl (female).">
+            >
+            ["id6"] = <
+                text = <"Severe renal disease">
+                description = <"Presence of estimated glomerular filtration rate (eGFR) <30 ml/min or dialysis-dependent.">
+            >
+            ["id7"] = <
+                text = <"Age ≥75 years">
+                description = <"Individual is 75 years or older.">
+            >
+            ["id8"] = <
+                text = <"Prior hemorrhage diagnosis">
+                description = <"Any prior hemorrhage diagnosis (internal or external hemorrhage).">
+            >
+            ["id9"] = <
+                text = <"History of hypertension">
+                description = <"History of diagnosed hypertension.">
+            >
+        >
+    >
+    

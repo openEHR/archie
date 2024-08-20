@@ -1,0 +1,197 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a6a05404-5e6d-4c5a-a11c-4e7b1053e57a)
+	s2-EHR-Direct_observation.head_circumference.v1.0.3
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, Australia, <heather.leslie@oceaninformatics.com>, 2016-08-22">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.head_circumference.v1.0.3, copyright 2016 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.head_circumference.v1.0.3 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the measurement of the longest distance around the head.">
+			use = <"Use to record the measurement of the longest distance around the head.
+            
+            This archetype can also be used for recording an approximation of the head circumference measurement in a clinical scenario where it is not possible to measure an accurate head circumference - for example, measuring an uncooperative child. This is not modelled explicitly in the archetype as the openEHR Reference model allows the attribute of Approximation for any Quantity data type. At implementation, for example, an application user interface could allow clinicians to select an appropriately labelled check box adjacent to the Head circumference data field to indicate that the recorded head circumference is an approximation, rather than actual. A statement identifying the physical incompleteness of the head can be recorded in the 'Confounding factors' protocol Node, if required.">
+			keywords = <"anthropometry", "measurement", "estimation", "circumference", "cephalic", "perimeter", "HC">
+			misuse = <"Not to be used to record the circumference of another body part. Use OBSERVATION.body_segment in these circumstances except where more specific archetypes exist such as OBSERVATION.waist_circumference.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "Malin Berg, DIPS ASA, Norway", "Ruth Caudwell, retired, United Kingdom", "Tone Engen, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Hilde Hollås, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Pétur Júlíusson, Barneklinikken, HUS og K2, UIB, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Adriana Kitajima, CORE Consulting, Brazil", "Harmony Kosola, Alberta Health Services, Canada", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Tove Stenquist, Helseforetak, Norway", "Terje Sundstrøm, Helse Bergen HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Stian Torleif Varpe, Helse Bergen, Norway">
+
+definition
+	Direct_observation[id1] matches {	-- Head circumference
+		data cardinality matches {1..*; unordered} matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Head circumference
+				value matches {
+					Measured<Quantity>[id25] matches {
+						value matches {
+							Quantity[id19] matches {	-- Head circumference (cm)
+								magnitude matches {|0.0..100.0|}
+								units matches {
+									Coded_text[id21] matches {
+										term matches {
+											Terminology_term[id20] matches {
+												concept matches {[at2]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id26] matches {
+						value matches {
+							Quantity[id22] matches {	-- Head circumference ([in_i])
+								magnitude matches {|0.0..40.0|}
+								units matches {
+									Coded_text[id24] matches {
+										term matches {
+											Terminology_term[id23] matches {
+												concept matches {[at3]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id15] 
+				}
+			}
+		}
+		state matches {
+			Node[id10] matches {	-- Confounding factors
+				value matches {
+					Text[id16] 
+				}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id7, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			allow_archetype Node[id13] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+		data_series matches {
+			Point_event[id12] occurrences matches {0..1} matches {	-- Birth
+				items matches {
+					use_node Node[id5] /data[id5]	-- /data[Head circumference]
+					use_node Node[id8] /data[id8]	-- /data[Comment]
+				}
+			}
+		}
+		state_series matches {
+			Point_event[id12] occurrences matches {0..1} matches {	-- Birth
+				items matches {
+					use_node Node[id10] /state[id10]	-- /state[Confounding factors]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at1"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at2"] = <
+				text = <"cm">
+				description = <"Centimetres length unit">
+			>
+			["at3"] = <
+				text = <"in_i">
+				description = <"Inches length unit">
+			>
+			["id1"] = <
+				text = <"Head circumference">
+				description = <"The measurement of the longest distance around the head.">
+			>
+			["id10"] = <
+				text = <"Confounding factors">
+				description = <"Narrative descripiton of any issues or factors that may impact on the measurement.">
+			>
+			["id11"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id12"] = <
+				text = <"Birth">
+				description = <"The first measurement of head circumference that is recorded soon after birth. This event should only be used once per record.">
+			>
+			["id13"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id19"] = <
+				text = <"Head circumference (cm)">
+				description = <"Head circumference (cm)">
+			>
+			["id22"] = <
+				text = <"Head circumference ([in_i])">
+				description = <"Head circumference ([in_i])">
+			>
+			["id5"] = <
+				text = <"Head circumference">
+				description = <"The measurement of the longest distance around the head.">
+			>
+			["id7"] = <
+				text = <"Device">
+				description = <"Details about the device used for the measurement.">
+			>
+			["id8"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the head circumference not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at1"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at2"] = <http://ucum.org/id/cm>
+			["at3"] = <http://ucum.org/id/%5Bin_i%5D>
+		>
+		["snomed"] = <
+			["at2"] = <http://snomed.info/id/258672001>
+			["at3"] = <http://snomed.info/id/258677007>
+		>
+		["loinc"] = <
+			["id5"] = <http://loinc.org/9843-4>
+			["id7"] = <http://loinc.org/74720-4>
+			["id10"] = <http://loinc.org/106176-1>
+			["id8"] = <http://loinc.org/106173-8>
+		>
+	>
+

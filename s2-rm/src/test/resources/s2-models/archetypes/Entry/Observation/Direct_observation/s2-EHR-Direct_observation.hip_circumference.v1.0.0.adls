@@ -1,0 +1,183 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=aa82ac69-0965-498c-8b65-4cba1d28f9cb)
+	s2-EHR-Direct_observation.hip_circumference.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway, <silje.ljosland.bakke@nasjonalikt.no>, 2017-05-11">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.hip_circumference.v1.0.0, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.hip_circumference.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the measurement of the distance around the hips.">
+			use = <"Use to record the measurement of the distance around the hips, usually taken at the largest circumference including the buttocks.
+            
+            Use to record change from repeated measurements. This can currently be modeled by constraining the 'Any event' to an interval in a template with an associated mathematical function, as appropriate.
+            
+            This archetype can also be used for recording an approximation of the hip circumference measurement in a clinical scenario where it is not possible to measure an accurate hip circumference - for example, measuring an uncooperative child. This is not modelled explicitly in the archetype as the openEHR Reference model allows the attribute of Approximation for any Quantity data type. At implementation, for example, an application user interface could allow clinicians to select an appropriately labelled check box adjacent to the 'Hip circumference' data field to indicate that the recorded hip circumference is an approximation, rather than actual.">
+			keywords = <"anthropometry", "measurement", "circumference">
+			misuse = <"Not to be used to record the speed of which the hip circumference is increasing or decreasing. Use the OBSERVATION.growth_velocity archetype for this purpose.
+            
+            Not to be used to record the circumference of another body part. Use OBSERVATION.body_segment in these circumstances except where more specific archetypes exist such as OBSERVATION.waist_circumference.">
+		>
+	>
+	other_contributors = <"Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Malin Berg, DIPS ASA, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Hilde Hollås, DIPS AS, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Priscila Maranhão, MEDCIDS-FMUP, Portugal", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Hugo Nilssen, UNN HF K3K/Tromsø, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Line Silsand, univertsity hospital of northern norway, Norway (openEHR Editor)", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Lene Thoresen, St. Olavs Hospital, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Hip circumference
+		data cardinality matches {1..*; unordered} matches {
+			Node[id5] matches {	-- Hip circumference
+				value matches {
+					Measured<Quantity>[id23] matches {
+						value matches {
+							Quantity[id17] matches {	-- Hip circumference (cm)
+								magnitude matches {|0.0..400.0|}
+								units matches {
+									Coded_text[id19] matches {
+										term matches {
+											Terminology_term[id18] matches {
+												concept matches {[at2]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+					Measured<Quantity>[id24] matches {
+						value matches {
+							Quantity[id20] matches {	-- Hip circumference ([in_i])
+								magnitude matches {|0.0..150.0|}
+								units matches {
+									Coded_text[id22] matches {
+										term matches {
+											Terminology_term[id21] matches {
+												concept matches {[at3]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id15] 
+				}
+			}
+		}
+		state matches {
+			Node[id10] matches {	-- Confounding factors
+				value matches {
+					Text[id16] 
+				}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id7, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			allow_archetype Node[id13] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at1"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at2"] = <
+				text = <"cm">
+				description = <"Centimetres length unit">
+			>
+			["at3"] = <
+				text = <"in_i">
+				description = <"Inches length unit">
+			>
+			["id1"] = <
+				text = <"Hip circumference">
+				description = <"The measurement of the distance around the hips.">
+			>
+			["id10"] = <
+				text = <"Confounding factors">
+				description = <"Narrative description of any issues or factors that may impact on the measurement.">
+			>
+			["id11"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id13"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id17"] = <
+				text = <"Hip circumference (cm)">
+				description = <"Hip circumference (cm)">
+			>
+			["id20"] = <
+				text = <"Hip circumference ([in_i])">
+				description = <"Hip circumference ([in_i])">
+			>
+			["id5"] = <
+				text = <"Hip circumference">
+				description = <"The measurement of the distance around the widest point of the hip and buttocks.">
+			>
+			["id7"] = <
+				text = <"Device">
+				description = <"Details about the device used for the measurement.">
+			>
+			["id8"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the hip circumference not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at1"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at2"] = <http://ucum.org/id/cm>
+			["at3"] = <http://ucum.org/id/%5Bin_i%5D>
+		>
+		["snomed"] = <
+			["at2"] = <http://snomed.info/id/258672001>
+			["at3"] = <http://snomed.info/id/258677007>
+		>
+		["loinc"] = <
+			["id7"] = <http://loinc.org/74720-4>
+			["id10"] = <http://loinc.org/106176-1>
+			["id8"] = <http://loinc.org/106173-8>
+		>
+	>
+

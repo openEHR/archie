@@ -1,0 +1,56 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Section.soap_headings.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"???">
+		>
+	>
+
+definition
+	Section[id1] 	matches {
+		items matches {
+			Section[id2] occurrences matches {0..1}
+			Section[id3] occurrences matches {0..1}
+			Section[id4] occurrences matches {0..1}
+			Section[id5] occurrences matches {0..1}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"SOAP heaedings">
+				description = <"SOAP heaedings for POMR recording">
+			>
+			["id2"] = <
+				text = <"Subjective (S)">
+				description = <"Subjective observations, e.g. presenting complaint, history of present illness, relevant medical history">
+			>
+			["id3"] = <
+				text = <"Objective (O)">
+				description = <"Objective findings, e.g. result of physical exam, measurements, diagnostic test results">
+			>
+			["id4"] = <
+				text = <"Assessment (A)">
+				description = <"Assessment, e.g. differential diagnosis, diagnosis, other problem, risk etc characterization">
+			>
+			["id5"] = <
+				text = <"Plan (P)">
+				description = <"Plan items, usually further investigations, recommendations, orders, monitoring">
+			>
+		>
+	>

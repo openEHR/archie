@@ -1,0 +1,160 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7ff7e321-b58d-4d28-99c6-5d303de18d90)
+    s2-EHR-Node.tos.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Kerrie Lee, Australia", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2013-01-14">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.tos.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.tos.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the grading of attic retraction of the tympanic membrane, based on the classification by Tos and Poulsen.">
+            keywords = <"retraction", "tympanic", "membrane", "pars flaccida", "attic", "drum">
+            use = <"Use to record the grading of tympanic membrane retraction, particularly by specialist physicians. 
+            
+            Designed to be optionally nested within the Node.exam_tympanic_membrane archetype to provide additional detail on tympanic membrane retraction, if it is useful within a given clinical scenario.
+            
+            This archetype extends the Tos Classification to allow recording of Tos Grade 5 which is described in some documentation but is not described in the original paper and appears not to be in common usage.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Tos Classification
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Tos Classification
+                value matches {
+                    Coded_ordinal[id4] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id6] matches {
+                                term matches {
+                                    Terminology_term[id5] matches {
+                                        concept matches {[at2]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id7] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id9] matches {
+                                term matches {
+                                    Terminology_term[id8] matches {
+                                        concept matches {[at3]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id10] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id12] matches {
+                                term matches {
+                                    Terminology_term[id11] matches {
+                                        concept matches {[at4]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id13] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id15] matches {
+                                term matches {
+                                    Terminology_term[id14] matches {
+                                        concept matches {[at5]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id16] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id18] matches {
+                                term matches {
+                                    Terminology_term[id17] matches {
+                                        concept matches {[at6]}    -- Grade 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at2", "at3", "at4", "at5", "at6">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Tos Classification (synthesised)">
+                description = <"Grading of the degree of tympanic membrane pars tensa retraction / atelectasis based on the Tos & Poulson Classification. (synthesised)">
+            >
+            ["at2"] = <
+                text = <"Grade 1">
+                description = <"Pars flaccida is dimpled and is more retracted than normal. It is not adherent to the malleus (airspace visible).">
+            >
+            ["at3"] = <
+                text = <"Grade 2">
+                description = <"Retraction onto neck of malleus - no airspace visible behind membrane.">
+            >
+            ["at4"] = <
+                text = <"Grade 3">
+                description = <"Retraction extends beyond osseous malleus full extent seen.">
+            >
+            ["at5"] = <
+                text = <"Grade 4">
+                description = <"Erosion of outer attic wall. Part of the retraction pocket may be hidden.">
+            >
+            ["at6"] = <
+                text = <"Grade 5">
+                description = <"Bottom of the retraction pocket can be seen only by using an endoscope.">
+            >
+            ["id1"] = <
+                text = <"Tos Classification">
+                description = <"A classification of the degree of tympanic membrane pars flaccida retraction, related to extent and severity and as described by Tos and Poulsen.">
+            >
+            ["id2"] = <
+                text = <"Tos Classification">
+                description = <"Grading of the degree of tympanic membrane pars tensa retraction / atelectasis based on the Tos & Poulson Classification.">
+            >
+        >
+    >
+    

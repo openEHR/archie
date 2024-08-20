@@ -1,0 +1,119 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4951ff5a-de12-44f7-8776-8dc7199de894)
+	s2-EHR-Direct_observation.telecommunication.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2013-01-25">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.telecommunication.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.telecommunication.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record evidence of interactions between healthcare providers that support the record of health care.">
+			use = <"Use to record the (bi-directional) text conversation, or video- or audio-conference recording, between two or more parties and which is captured as part of the record of health care. For example, capture a phone or online chat conversation between remote healthcare providers about patient management decisions; or audio- and video-conference recordings that record aspects of telemedicine consultations or case conferences. 
+            
+            The record of interaction may take place over a specified interval of time.">
+			keywords = <"chat", "videoconference", "audioconference", "conversation", "discussion", "teleconference", "telehealth", "telecommunication">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Stephen Chu, NEHTA, Australia", "Christian Ghan, The Chris O'Brien Lifehouse at RPA, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Oliver Hosking, Remote Health NT, Australia", "Heather Leslie, Atomica Informatics, Australia (Editor)", "Fabian Schwarz, NT Health, Australia", "Gary Sinclair, NT DoH, Australia">
+
+definition
+	Direct_observation[id1] matches {	-- Telecommunication Record
+		data matches {
+			Node[id6] occurrences matches {0..1} matches {	-- Record
+				value matches {
+					Multimedia[id12] matches {
+						media_type 
+					}
+				}
+			}
+			Node[id5] matches {	-- Comment
+				value matches {
+					Text[id13] 
+				}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id10, s2-EHR-Node.device.v1] 
+			allow_archetype Node[id11] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+		data_series matches {
+			Interval_event[id7] matches {	-- Recording Interval
+				sample_function matches {"actual"}
+				items matches {
+					use_node Node[id6] /data[id6]	-- /data[Record]
+					use_node Node[id5] /data[id5]	-- /data[Comment]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Telecommunication Record">
+				description = <"Record of a telecommunication, usually a text conversation, or video- or teleconference recording between two or more parties, captured as part of the record of health care.">
+			>
+			["id10"] = <
+				text = <"Device">
+				description = <"Details of device used to capture the telecommunication.">
+			>
+			["id11"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id3"] = <
+				text = <"Start Time">
+				description = <"The time that represents the start of the telecommunication.">
+			>
+			["id5"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the telecommunication.">
+			>
+			["id6"] = <
+				text = <"Record">
+				description = <"The actual record of any telecommunication between two or more healthcare providers.">
+			>
+			["id7"] = <
+				text = <"Recording Interval">
+				description = <"The period of time over which the telecommunication was recorded.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/99948-2>
+			["id10"] = <http://loinc.org/74720-4>
+			["id5"] = <http://loinc.org/106173-8>
+		>
+	>
+

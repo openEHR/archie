@@ -1,0 +1,530 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a028a213-2621-491f-a411-7cb92e43d0fc)
+    s2-EHR-Score.murray_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.highmed">
+    other_contributors = <"Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sarah Ballout, MHH-Hannover, <ballout.sarah@mh-hannover.de>, 2020-04-23">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.murray_score.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.murray_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the score for each component parameter and the calculated final score for the Murray score.">
+            keywords = <"lung", "injury", "ARDS">
+            use = <"Use to record the score for each component parameter and the calculated final score for the Murray score.">
+            misuse = <"The Murray score is a guide only and should not replace clinical evaluation by clinicians on the appropriateness of ECMO initiation.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Murray score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Consolidation on CXR
+                value matches {
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at6]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id57] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id59] matches {
+                                term matches {
+                                    Terminology_term[id58] matches {
+                                        concept matches {[at8]}    -- 1 quadrant
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id60] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id62] matches {
+                                term matches {
+                                    Terminology_term[id61] matches {
+                                        concept matches {[at9]}    -- 2 quadrants
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id63] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id65] matches {
+                                term matches {
+                                    Terminology_term[id64] matches {
+                                        concept matches {[at10]}    -- 3 quadrants
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id66] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id68] matches {
+                                term matches {
+                                    Terminology_term[id67] matches {
+                                        concept matches {[at11]}    -- 4 quadrants
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- PaO₂/FiO₂ ratio
+                value matches {
+                    Coded_ordinal[id69] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id71] matches {
+                                term matches {
+                                    Terminology_term[id70] matches {
+                                        concept matches {[at14]}    -- ≥300
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id72] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id74] matches {
+                                term matches {
+                                    Terminology_term[id73] matches {
+                                        concept matches {[at15]}    -- 225-299
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id75] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id77] matches {
+                                term matches {
+                                    Terminology_term[id76] matches {
+                                        concept matches {[at16]}    -- 175-224
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id78] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id80] matches {
+                                term matches {
+                                    Terminology_term[id79] matches {
+                                        concept matches {[at17]}    -- 100-174
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id81] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id83] matches {
+                                term matches {
+                                    Terminology_term[id82] matches {
+                                        concept matches {[at18]}    -- <100
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- PEEP
+                value matches {
+                    Coded_ordinal[id84] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id86] matches {
+                                term matches {
+                                    Terminology_term[id85] matches {
+                                        concept matches {[at21]}    -- ≤5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id87] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id89] matches {
+                                term matches {
+                                    Terminology_term[id88] matches {
+                                        concept matches {[at22]}    -- 6–8
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id90] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id92] matches {
+                                term matches {
+                                    Terminology_term[id91] matches {
+                                        concept matches {[at23]}    -- 9–11
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id93] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id95] matches {
+                                term matches {
+                                    Terminology_term[id94] matches {
+                                        concept matches {[at24]}    -- 12–14
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id96] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id98] matches {
+                                term matches {
+                                    Terminology_term[id97] matches {
+                                        concept matches {[at25]}    -- ≥15
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id27] occurrences matches {0..1} matches {    -- Compliance
+                value matches {
+                    Coded_ordinal[id99] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id101] matches {
+                                term matches {
+                                    Terminology_term[id100] matches {
+                                        concept matches {[at28]}    -- ≥80
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id102] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id104] matches {
+                                term matches {
+                                    Terminology_term[id103] matches {
+                                        concept matches {[at29]}    -- 60–79
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id105] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id107] matches {
+                                term matches {
+                                    Terminology_term[id106] matches {
+                                        concept matches {[at30]}    -- 40–59
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id108] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id110] matches {
+                                term matches {
+                                    Terminology_term[id109] matches {
+                                        concept matches {[at31]}    -- 20–39
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id111] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id113] matches {
+                                term matches {
+                                    Terminology_term[id112] matches {
+                                        concept matches {[at32]}    -- ≤19
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id40] occurrences matches {0..1} matches {    -- Score
+                value matches {
+                    Quantity[id52] matches {
+                        magnitude matches {|0.0..4.0|}
+                        precision matches {1}
+                        units matches {
+                            Coded_text[id115] matches {
+                                term matches {
+                                    Terminology_term[id114] matches {
+                                        concept matches {[at44]}    -- 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id47] occurrences matches {0..1} matches {    -- Severity assessment
+                value matches {
+                    Coded_text[id53] matches {
+                        term matches {
+                            Terminology_term[id116] matches {
+                                concept matches {[ac1]}    -- Severity assessment (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id46] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at43"] = <http://openehr.org/id/380>
+        >
+        ["ucum"] = <
+            ["at44"] = <http://ucum.org/id/1>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at40", "at41", "at42">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at6", "at8", "at9", "at10", "at11">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at14", "at15", "at16", "at17", "at18">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at21", "at22", "at23", "at24", "at25">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at28", "at29", "at30", "at31", "at32">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Severity assessment (synthesised)">
+                description = <"The assessment about severity of the lung injury, based on the Murray score. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Consolidation on CXR (synthesised)">
+                description = <"Radiographic findings on Xray of the lung. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"PaO₂/FiO₂ ratio (synthesised)">
+                description = <"Index of oxygenation (PaO2/FIO2). (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"PEEP (synthesised)">
+                description = <"The Positive End Expiratory Pressure (PEEP), measured in cm H₂O. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Compliance (synthesised)">
+                description = <"Lung compliance, calculated in ml/cm H₂O. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"3 quadrants">
+                description = <"Alveolar consolidation confined to 3 quadrants.">
+            >
+            ["at11"] = <
+                text = <"4 quadrants">
+                description = <"Alveolar consolidation in all 4 quadrants.">
+            >
+            ["at14"] = <
+                text = <"≥300">
+                description = <"Ratio is greater than or equal to 300.">
+            >
+            ["at15"] = <
+                text = <"225-299">
+                description = <"Ratio is between 225 and 299.">
+            >
+            ["at16"] = <
+                text = <"175-224">
+                description = <"Ratio is between 175 and 225.">
+            >
+            ["at17"] = <
+                text = <"100-174">
+                description = <"Ratio is between 100 and 174.">
+            >
+            ["at18"] = <
+                text = <"<100">
+                description = <"Ratio is less than 100.">
+            >
+            ["at21"] = <
+                text = <"≤5">
+                description = <"PEEP is less than or equal to 5 cmH₂O.">
+            >
+            ["at22"] = <
+                text = <"6–8">
+                description = <"PEEP is between 6 and 8 cmH₂O.">
+            >
+            ["at23"] = <
+                text = <"9–11">
+                description = <"PEEP is between 9 and 11 cmH₂O.">
+            >
+            ["at24"] = <
+                text = <"12–14">
+                description = <"PEEP is between 12 and 14 cmH₂O.">
+            >
+            ["at25"] = <
+                text = <"≥15">
+                description = <"PEEP is greater than or equal to 15 cmH₂O.">
+            >
+            ["at28"] = <
+                text = <"≥80">
+                description = <"Compliance is greater than or equal to 80 ml/cmH₂O.">
+            >
+            ["at29"] = <
+                text = <"60–79">
+                description = <"Compliance is between 60 and 79 ml/cmH₂O.">
+            >
+            ["at30"] = <
+                text = <"40–59">
+                description = <"Compliance is between 40 and 59 ml/cmH₂O.">
+            >
+            ["at31"] = <
+                text = <"20–39">
+                description = <"Compliance is between 20 and 39 ml/cmH₂O.">
+            >
+            ["at32"] = <
+                text = <"≤19">
+                description = <"Compliance is less than or equal to 19 ml/cmH₂O.">
+            >
+            ["at40"] = <
+                text = <"0">
+                description = <"No lung injury.">
+            >
+            ["at41"] = <
+                text = <"1–2.5">
+                description = <"Mild to moderate lung injury.">
+            >
+            ["at42"] = <
+                text = <">2.5">
+                description = <"Severe lung injury (ARDS).">
+            >
+            ["at43"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["at44"] = <
+                text = <"1">
+                description = <"1 unit.">
+            >
+            ["at6"] = <
+                text = <"None">
+                description = <"No alveolar consolidation.">
+            >
+            ["at8"] = <
+                text = <"1 quadrant">
+                description = <"Alveolar consolidation confined to 1 quadrant.">
+            >
+            ["at9"] = <
+                text = <"2 quadrants">
+                description = <"Alveolar consolidation confined to 2 quadrants.">
+            >
+            ["id1"] = <
+                text = <"Murray score">
+                description = <"Clinical tool used to estimate the severity of acute lung injury.">
+            >
+            ["id13"] = <
+                text = <"PaO₂/FiO₂ ratio">
+                description = <"Index of oxygenation (PaO2/FIO2).">
+            >
+            ["id20"] = <
+                text = <"PEEP">
+                description = <"The Positive End Expiratory Pressure (PEEP), measured in cm H₂O.">
+            >
+            ["id27"] = <
+                text = <"Compliance">
+                description = <"Lung compliance, calculated in ml/cm H₂O.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id40"] = <
+                text = <"Score">
+                description = <"Sum of points assigned for each of the component parameters divided by the number of parameters.">
+            >
+            ["id46"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id47"] = <
+                text = <"Severity assessment">
+                description = <"The assessment about severity of the lung injury, based on the Murray score.">
+            >
+            ["id5"] = <
+                text = <"Consolidation on CXR">
+                description = <"Radiographic findings on Xray of the lung.">
+            >
+        >
+    >
+    

@@ -1,0 +1,114 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7d505fc2-fffc-4b95-8b36-1c3da7ef638d)
+    s2-EHR-Direct_observation.third_party_observation.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"????, 2008-08-07">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.third_party_observation.v0.0.1-alpha, copyright  openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.third_party_observation.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record a third party observer/carer's observations or concerns about an individual.">
+            use = <"Use to record a third party observer/carer's observations or concerns about an individual.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Carer observation
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Stimulus
+                value matches {
+                    Text[id18]
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id19]
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Level of concern
+                value matches {
+                    Text[id20]
+                }
+            }
+            allow_archetype Node[id15] matches {     -- Third party details
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.individual_personal\.v1/}
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id21]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id17] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Carer observation">
+                description = <"Third party observer/carer's observations or concerns about an individual.">
+            >
+            ["id15"] = <
+                text = <"Third party details">
+                description = <"Information about the observer.">
+            >
+            ["id17"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Stimulus">
+                description = <"Stimulus triggering the response being observed.">
+            >
+            ["id6"] = <
+                text = <"Description">
+                description = <"Narrative description about the observation or concern.">
+            >
+            ["id7"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the observation or concern, not captured in other fields.">
+            >
+            ["id8"] = <
+                text = <"Level of concern">
+                description = <"Degree of concern displayed by third party.">
+            >
+        >
+    >
+    

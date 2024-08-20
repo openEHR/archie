@@ -1,0 +1,263 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4316eaee-177d-4bb9-9eee-e249fdefc208)
+	s2-EHR-Direct_observation.child_growth.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, freshEHR Clinical Informatics, <ian@freshehr.com>, 2011-04-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.child_growth.v0.0.1-alpha, copyright 2011 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.child_growth.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about parameters plotted as percentiles on a growth chart.">
+			use = <"Use to record details about parameters plotted as percentiles on a growth chart.
+            
+            Use the URI to explicitly link the original measurement as recorded.
+            
+            Use in a template alongside OBSERVATION.age to record the adjusted age of an infant as part of monitoring child growth patterns.">
+			keywords = <"growth", "calculation", "centile", "percentile", "z-score", "SD", "height", "weight", "head cicrumference">
+			misuse = <"Not to be used to record actual measurements. Use appropriate OBSERVATION archetypes for this purpose - for example OBSERVATION.height, OBSERVATION.weight, OBSERVATION.head_circumference, OBSERVATION.body_segment or OBSERVATION.blood_pressure.">
+		>
+	>
+	other_contributors = <"Heather Leslie, Ocean Informatics, Australia", "Sam Heard, Ocean Informatics, Australia">
+
+definition
+	Direct_observation[id1] matches {	-- Child growth indicators
+		data matches {
+			Node[id15] occurrences matches {0..1} matches {	-- Growth indicator
+				value matches {
+					Coded_text[id43] matches {
+						term matches {
+							Terminology_term[id49] matches {
+								concept matches {[ac1]}		-- Growth indicator (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id36] occurrences matches {0..1} matches {	-- URI to original measurement
+				value matches {
+					Uri_ref[id44] 
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Percentile
+				value matches {
+					Measured<Quantity>[id52] matches {
+						value matches {
+							Quantity[id45] matches {
+								magnitude matches {|0.0..100.0|}
+								units matches {
+									Coded_text[id51] matches {
+										term matches {
+											Terminology_term[id50] matches {
+												concept matches {[at42]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Z-score
+				value matches {
+					Measured<Quantity>[id53] matches {
+						value matches {
+							Quantity[id46] matches {
+								units matches {
+									Coded_text[id55] matches {
+										term matches {
+											Terminology_term[id54] matches {
+												concept matches {[at43]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id42] occurrences matches {0..1} matches {	-- Clinical interpretation
+				value matches {
+					Text[id47] 
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id48] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id33] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Growth indicator (synthesised)">
+				description = <"The name of the growth parameter. (synthesised)">
+			>
+			["at20"] = <
+				text = <"Length/height-for-age">
+				description = <"Length or height plotted against age, or adjusted age.">
+			>
+			["at21"] = <
+				text = <"Sitting height-for-age">
+				description = <"Sitting height plotted against age, or adjusted age.">
+			>
+			["at22"] = <
+				text = <"Leg length-for-age">
+				description = <"Subischial leg length plotted against age, or adjusted age.">
+			>
+			["at23"] = <
+				text = <"Weight-for-age">
+				description = <"Weight plotted against age, or adjusted age.">
+			>
+			["at24"] = <
+				text = <"Head circumference-for-age">
+				description = <"Head circumference plotted against age, or adjusted age.">
+			>
+			["at25"] = <
+				text = <"Weight-for-length/height">
+				description = <"Weight plotted against height/length.">
+			>
+			["at26"] = <
+				text = <"Systolic blood pressure-for-age-and-height">
+				description = <"Systolic blood pressure plotted against age (or adjusted age) and height/length.">
+			>
+			["at27"] = <
+				text = <"Diastolic blood pressure-for-age-and-height">
+				description = <"Diastolic blood pressure plotted against age (or adjusted age) and height/length.">
+			>
+			["at29"] = <
+				text = <"Body mass index-for-age (BMI-for-age)">
+				description = <"Body mass index plotted against age, or adjusted age.">
+			>
+			["at34"] = <
+				text = <"Arm circumference-for-age">
+				description = <"Arm circumference plotted against age, or adjusted age.">
+			>
+			["at36"] = <
+				text = <"Subscapular skinfold-for-age">
+				description = <"Subscapular skinfold plotted against age, or adjusted age.">
+			>
+			["at37"] = <
+				text = <"Triceps skinfold-for-age">
+				description = <"Triceps skinfold plotted against age, or adjusted age.">
+			>
+			["at38"] = <
+				text = <"Weight velocity">
+				description = <"Weight velocity plotted against age, or adjusted age.">
+			>
+			["at39"] = <
+				text = <"Length velocity">
+				description = <"Length velociy plotted against age, or adjusted age.">
+			>
+			["at40"] = <
+				text = <"Head circumference velocity">
+				description = <"Head circumference velocity plotted against age, or adjusted age.">
+			>
+			["at41"] = <
+				text = <"Qualified real">
+				description = <"Qualified real">
+			>
+			["at42"] = <
+				text = <"%">
+				description = <"Percent">
+			>
+			["at43"] = <
+				text = <"1">
+				description = <"1 unit.">
+			>
+			["id1"] = <
+				text = <"Child growth indicators">
+				description = <"Details about parameters plotted on a growth chart to allow monitoring of a child's growth over time, relative to a reference population.">
+			>
+			["id11"] = <
+				text = <"Percentile">
+				description = <"Percentile calculated using standard normal distribution for the age (or adjusted age).">
+			>
+			["id12"] = <
+				text = <"Z-score">
+				description = <"The deviation of an individual's value from the median value for a reference population, divided by the standard deviation of the reference population.">
+			>
+			["id15"] = <
+				text = <"Growth indicator">
+				description = <"The name of the growth parameter.">
+			>
+			["id20"] = <
+				text = <"Comment">
+				description = <"A comment about the growth indicator, not captured in other fields.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id33"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id36"] = <
+				text = <"URI to original measurement">
+				description = <"Link to the original measurement.">
+			>
+			["id42"] = <
+				text = <"Clinical interpretation">
+				description = <"Clinical interpretation of the growth indicator chart.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at41"] = <http://openehr.org/id/380>
+		>
+		["ucum"] = <
+			["at42"] = <http://ucum.org/id/%25>
+			["at43"] = <http://ucum.org/id/1>
+		>
+		["snomed"] = <
+			["at42"] = <http://snomed.info/id/415067009>
+		>
+		["loinc"] = <
+			["id42"] = <http://loinc.org/64110-0>
+			["id20"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at20", "at23", "at25", "at29", "at24", "at34", "at36", "at37", "at38", "at39", "at40", "at21", "at22", "at26", "at27">
+		>
+	>
+

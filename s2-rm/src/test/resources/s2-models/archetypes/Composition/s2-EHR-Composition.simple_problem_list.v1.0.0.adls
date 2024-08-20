@@ -1,0 +1,71 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Composition.simple_problem_list.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Simple problem list">
+		>
+	>
+
+definition
+	Composition[id1] matches {	-- Master problem List
+		code matches {
+			Terminology_term[id10] matches {
+				concept matches {[at1]}
+			}
+		}
+		category matches {
+			Terminology_term[id11] matches {
+				concept matches {[at2]}
+				description matches {"persistent"}
+			}
+		}
+		content matches {
+			use_archetype Assessment[id2, s2-EHR-Assessment.problem_diagnosis.v1] occurrences matches {0..*} 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Master problem List">
+				description = <"-">
+			>
+			["id2"] = <
+				text = <"Problem">
+				description = <"Problem details">
+			>
+			["at1"] = <
+				text = <"Simple problem list">
+				description = <"Is-about code for this Composition: simple problem list">
+			>
+			["at2"] = <
+				text = <"Persistent Composition category">
+				description = <"Persistent Composition category">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/11450-4>
+			["at1"] = <http://loinc.org/11450-4>
+			["id2"] = <http://loinc.org/75326-9>
+		>
+		["openehr"] = <
+			["at2"] = <http://openehr.org/id/431>
+		>
+	>
+

@@ -1,0 +1,176 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=87c2c830-49c3-4e2f-85e4-737a41642f61)
+	s2-EHR-Assessment.exposure.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2013-03-08">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.exposure.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.exposure.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary details of exposure of the subject to a chemical, physical or biological agent within their environment that has caused, or may possibly cause in the future, a negative impact on health.">
+			use = <"Use to record summary details of exposure of the subject to a chemical, physical or biological agent within their environment that has caused, or may possibly cause in the future, a negative impact on health.
+            
+            This archetype has been designed primarily to capture a simple amount of details about exposure, fitting current requirements for NT Hearing Health exposure to passive smoking, campfire smoke and noise. However additional research should be conducted to enhance this archetype to cater for the detailed occupation exposure summaries etc.">
+			keywords = <"substance", "chemical", "smoke", "passive", "noise", "pollution", "chemical">
+			misuse = <"">
+		>
+	>
+
+definition
+	Assessment[id1] matches {	-- Exposure
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Agent
+				value matches {
+					Text[id15] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Overall Description
+				value matches {
+					Text[id16] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Category
+				value matches {
+					Coded_text[id17] matches {
+						term matches {
+							Terminology_term[id23] matches {
+								concept matches {[ac1]}		-- Category (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Ongoing Exposure
+				value matches {
+					Boolean_value[id18] matches {
+						value matches {True}
+					}
+				}
+			}
+			Node[id11] matches {	-- Exposure Details
+				items matches {
+					Node[id12] occurrences matches {0..1} matches {	-- Date of Onset
+						value matches {
+							Date_time_value[id19] 
+						}
+					}
+					Node[id14] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id20] 
+						}
+					}
+					Node[id13] occurrences matches {0..1} matches {	-- Date Ceased
+						value matches {
+							Date_time_value[id21] 
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id10] occurrences matches {0..1} matches {	-- Date Updated
+				value matches {
+					Date_time_value[id22] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Category (synthesised)">
+				description = <"Type of exposure. (synthesised)">
+			>
+			["at6"] = <
+				text = <"Environmental">
+				description = <"Exposure occurred in the environment.">
+			>
+			["at7"] = <
+				text = <"Occupational">
+				description = <"Exposure occurred in the occupational environment or workplace.">
+			>
+			["id1"] = <
+				text = <"Exposure">
+				description = <"Exposure of the subject to a chemical, physical or biological agent within their environment that has caused, or may possibly cause in the future, a negative impact on health.">
+			>
+			["id10"] = <
+				text = <"Date Updated">
+				description = <"The date this exposure summary was last updated.">
+			>
+			["id11"] = <
+				text = <"Exposure Details">
+				description = <"Detailed information about an episode of exposure to the agent.">
+			>
+			["id12"] = <
+				text = <"Date of Onset">
+				description = <"Date of onset of exposure to the agent.">
+			>
+			["id13"] = <
+				text = <"Date Ceased">
+				description = <"Date of cessation of exposure to the agent.">
+			>
+			["id14"] = <
+				text = <"Description">
+				description = <"Detailed description of an episode of exposure to the identified substance.">
+			>
+			["id3"] = <
+				text = <"Agent">
+				description = <"Identification of the chemical, physical or biological agent to which the subject was exposed.">
+			>
+			["id4"] = <
+				text = <"Overall Description">
+				description = <"Overall description of the exposure to the identified substance.">
+			>
+			["id5"] = <
+				text = <"Ongoing Exposure">
+				description = <"Does the subject remain exposed to the substance to a degree that could be regarded as a potential risk to health?">
+			>
+			["id6"] = <
+				text = <"Category">
+				description = <"Type of exposure.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/94654-1>
+			["id12"] = <http://loinc.org/76425-8>
+			["id14"] = <http://loinc.org/89793-4>
+			["id10"] = <http://loinc.org/106177-9>
+			["id4"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at6", "at7">
+		>
+	>
+

@@ -1,0 +1,658 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e82d264f-2791-4ab4-8d58-bb419ae514cd)
+    s2-EHR-Node.imaging_exam-uterus.v0.0.1-alpha
+
+specialize
+    s2-EHR-Node.imaging_exam.v1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Anjali Kulkarni, Karkinos, India", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Arunakiry Natarajan, medondo, Germany", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-11-24">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-uterus.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-uterus.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the findings on radiological examination of the uterus, and their interpretation.">
+            keywords = <"uterus", "fundus", "myometrium", "endometrium", "junction">
+            use = <"Use to record the findings on radiological examination of the uterus, and their interpretation.
+            
+            The intended scope for this archetype is to eventually record all detailed findings on radiological examination of the uterus using any modality. It is anticipated that further data Nodes may be added as requirements are identified and confirmed.
+            
+            This archetype is designed to be nested within the 'Structured imaging findings' SLOT in the OBSERVATION.imaging_exam_result, but can also be used within other ENTRY or Node archetypes, where clinically appropriate. Use to provide a framework in which Node archetypes can be nested in appropriate SLOTs: 
+            - Details about the imaging examination of one or more gestations will be recorded using the 'Pregnancy findings' SLOT; 
+            - Details about the imaging examination of the uterine cervix will be recorded within the 'Cervical findings' SLOT; 
+            - Details about the imaging examination an intrauterine device (IUD) will be recorded within the 'IUD findings' SLOT; and
+            - Details about other imaging findings such as structural abnormalities or lesions will be recorded using the 'Additional findings' SLOT.">
+            misuse = <"Not to be used to record imaging examination findings for any body structure or region other than the uterus. Use other archetypes from the Node.imaging_exam family for this purpose.
+            
+            Not to be used to record details related to the overall findings, context or technical details related to a complete imaging examination test result. Use the OBERSERVATION.imaging_exam_result for this purpose. For example, comments on the study quality, differential diagnoses, and overall impression.">
+        >
+    >
+    
+definition
+    Node[id1.1] matches {    -- Imaging examination of the uterus
+        /items matches {
+            after [id8]
+            Node[id0.13] occurrences matches {0..1} matches {    -- Length
+                value matches {
+                    Quantity[id0.76] matches {    -- Length (mm)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.78] matches {
+                                term matches {
+                                    Terminology_term[id0.77] matches {
+                                        concept matches {[at0.69]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {0}
+                    }
+                    Quantity[id0.79] matches {    -- Length (cm)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.81] matches {
+                                term matches {
+                                    Terminology_term[id0.80] matches {
+                                        concept matches {[at0.70]}    -- cm
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {1}
+                    }
+                }
+            }
+            Node[id0.45] occurrences matches {0..1} matches {    -- Body length
+                value matches {
+                    Quantity[id0.82] matches {    -- Body length (mm)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.84] matches {
+                                term matches {
+                                    Terminology_term[id0.83] matches {
+                                        concept matches {[at0.69]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {0}
+                    }
+                    Quantity[id0.85] matches {    -- Body length (cm)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.87] matches {
+                                term matches {
+                                    Terminology_term[id0.86] matches {
+                                        concept matches {[at0.70]}    -- cm
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {1}
+                    }
+                }
+            }
+            Node[id0.14] occurrences matches {0..1} matches {    -- Width
+                value matches {
+                    Quantity[id0.61] matches {
+                        magnitude matches {|>=0.0|}
+                        precision matches {0}
+                        units matches {
+                            Coded_text[id0.89] matches {
+                                term matches {
+                                    Terminology_term[id0.88] matches {
+                                        concept matches {[at0.69]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.15] occurrences matches {0..1} matches {    -- Height (AP)
+                value matches {
+                    Quantity[id0.90] matches {    -- Height (AP) (mm)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.92] matches {
+                                term matches {
+                                    Terminology_term[id0.91] matches {
+                                        concept matches {[at0.69]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {0}
+                    }
+                    Quantity[id0.93] matches {    -- Height (AP) (cm)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.95] matches {
+                                term matches {
+                                    Terminology_term[id0.94] matches {
+                                        concept matches {[at0.70]}    -- cm
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {1}
+                    }
+                }
+            }
+            Node[id0.25] occurrences matches {0..1} matches {    -- Uterine version
+                value matches {
+                    Coded_text[id0.63] matches {
+                        term matches {
+                            Terminology_term[id0.96] matches {
+                                concept matches {[ac0.1]}    -- Uterine version (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.29] occurrences matches {0..1} matches {    -- Uterine flexion
+                value matches {
+                    Coded_text[id0.64] matches {
+                        term matches {
+                            Terminology_term[id0.97] matches {
+                                concept matches {[ac0.2]}    -- Uterine flexion (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.16] occurrences matches {0..1} matches {    -- Endometrium description
+                value matches {
+                    Text[id0.65]
+                }
+            }
+            Node[id0.17] occurrences matches {0..1} matches {    -- Endometrial thickness
+                value matches {
+                    Quantity[id0.66] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.99] matches {
+                                term matches {
+                                    Terminology_term[id0.98] matches {
+                                        concept matches {[at0.69]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.52] occurrences matches {0..1} matches {    -- Endometrial homogeneity
+                value matches {
+                    Coded_text[id0.67] matches {
+                        term matches {
+                            Terminology_term[id0.100] matches {
+                                concept matches {[ac0.3]}    -- Endometrial homogeneity (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.18] occurrences matches {0..1} matches {    -- Endometrial echogenicity
+                value matches {
+                    Coded_text[id0.68] matches {
+                        term matches {
+                            Terminology_term[id0.101] matches {
+                                concept matches {[ac0.4]}    -- Endometrial echogenicity (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.55] occurrences matches {0..1} matches {    -- Endometrial uniformity
+                value matches {
+                    Coded_text[id0.69] matches {
+                        term matches {
+                            Terminology_term[id0.102] matches {
+                                concept matches {[ac0.5]}    -- Endometrial uniformity (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.58] occurrences matches {0..1} matches {    -- Endometrial midline
+                value matches {
+                    Coded_text[id0.70] matches {
+                        term matches {
+                            Terminology_term[id0.103] matches {
+                                concept matches {[ac0.6]}    -- Endometrial midline (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.24] occurrences matches {0..1} matches {    -- Junctional zone
+                value matches {
+                    Coded_text[id0.71] matches {
+                        term matches {
+                            Terminology_term[id0.104] matches {
+                                concept matches {[ac0.7]}    -- Junctional zone (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.37] occurrences matches {0..1} matches {    -- Junctional zone thickness
+                value matches {
+                    Quantity[id0.72] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.106] matches {
+                                term matches {
+                                    Terminology_term[id0.105] matches {
+                                        concept matches {[at0.69]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.19] occurrences matches {0..1} matches {    -- Myometrium description
+                value matches {
+                    Text[id0.73]
+                }
+            }
+            use_archetype Node[id0.46, s2-EHR-Node.imaging_exam-cervix.v1]    -- Cervical findings
+            Node[id0.5] occurrences matches {0..1} matches {    -- Pregnancy presence
+                value matches {
+                    Coded_text[id0.74] matches {
+                        term matches {
+                            Terminology_term[id0.107] matches {
+                                concept matches {[ac0.8]}    -- Pregnancy presence (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id0.47] matches {     -- Pregnancy findings
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.imaging_exam-foetus(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.imaging_exam-pregnant_uterus\.v0/}
+            }
+            Node[id0.32] occurrences matches {0..1} matches {    -- IUD presence
+                value matches {
+                    Coded_text[id0.75] matches {
+                        term matches {
+                            Terminology_term[id0.108] matches {
+                                concept matches {[ac0.9]}    -- IUD presence (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id0.48] matches {     -- IUD findings
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v2|s2-EHR-Node\.device(-[a-zA-Z0-9_]+)*\.v1/}
+            }
+        }
+        /items[id2.1]/value matches {
+            Coded_text[id9.1] matches {
+                term matches {
+                    Terminology_term[id0.109] matches {
+                        concept matches {[at0.1]}    -- Uterus
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at0.1"] = <http://snomed.info/id/35039007>
+            ["at0.69"] = <http://snomed.info/id/258673006>
+            ["at0.70"] = <http://snomed.info/id/258672001>
+        >
+        ["openehr"] = <
+            ["at0.68"] = <http://openehr.org/id/122>
+        >
+        ["ucum"] = <
+            ["at0.69"] = <http://ucum.org/id/mm>
+            ["at0.70"] = <http://ucum.org/id/cm>
+        >
+    >
+    value_sets = <
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at0.26", "at0.27", "at0.28">
+        >
+        ["ac0.2"] = <
+            id = <"ac0.2">
+            members = <"at0.30", "at0.31">
+        >
+        ["ac0.3"] = <
+            id = <"ac0.3">
+            members = <"at0.53", "at0.54">
+        >
+        ["ac0.4"] = <
+            id = <"ac0.4">
+            members = <"at0.49", "at0.50", "at0.51", "at0.63">
+        >
+        ["ac0.5"] = <
+            id = <"ac0.5">
+            members = <"at0.56", "at0.57">
+        >
+        ["ac0.6"] = <
+            id = <"ac0.6">
+            members = <"at0.59", "at0.60", "at0.61", "at0.62">
+        >
+        ["ac0.7"] = <
+            id = <"ac0.7">
+            members = <"at0.64", "at0.65", "at0.66", "at0.67">
+        >
+        ["ac0.8"] = <
+            id = <"ac0.8">
+            members = <"at0.6", "at0.7", "at0.8">
+        >
+        ["ac0.9"] = <
+            id = <"ac0.9">
+            members = <"at0.33", "at0.34", "at0.35">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac0.1"] = <
+                text = <"Uterine version (synthesised)">
+                description = <"The relation between uterus and the vagina in the sagittal plane. (synthesised)">
+            >
+            ["ac0.2"] = <
+                text = <"Uterine flexion (synthesised)">
+                description = <"The relation between uterine body and the cervix in the sagittal plane. (synthesised)">
+            >
+            ["ac0.3"] = <
+                text = <"Endometrial homogeneity (synthesised)">
+                description = <"Description about the endometrial homogeneity. (synthesised)">
+            >
+            ["ac0.4"] = <
+                text = <"Endometrial echogenicity (synthesised)">
+                description = <"Description about the endometrial echogenicity compared with the echogenicity of the myometrium. (synthesised)">
+            >
+            ["ac0.5"] = <
+                text = <"Endometrial uniformity (synthesised)">
+                description = <"Description about the homogeneity and symmetry of the endometrium. (synthesised)">
+            >
+            ["ac0.6"] = <
+                text = <"Endometrial midline (synthesised)">
+                description = <"Description about the interface between the opposing surfaces of the two endometrial walls. (synthesised)">
+            >
+            ["ac0.7"] = <
+                text = <"Junctional zone (synthesised)">
+                description = <"Description about the junctional zone between the endometrium and the myometrium. (synthesised)">
+            >
+            ["ac0.8"] = <
+                text = <"Pregnancy presence (synthesised)">
+                description = <"The presence or absence of an intrauterine pregnancy. (synthesised)">
+            >
+            ["ac0.9"] = <
+                text = <"IUD presence (synthesised)">
+                description = <"The presence or absence of an intrauterine device. (synthesised)">
+            >
+            ["at0.1"] = <
+                text = <"Uterus">
+                description = <"">
+            >
+            ["at0.26"] = <
+                text = <"Anteverted">
+                description = <"The uterus is angled forward relative to the vagina.">
+            >
+            ["at0.27"] = <
+                text = <"Neutral">
+                description = <"The uterus and the vagina are in the same plane.">
+            >
+            ["at0.28"] = <
+                text = <"Retroverted">
+                description = <"The uterus is angled backward relative to the vagina.">
+            >
+            ["at0.30"] = <
+                text = <"Anteflexed">
+                description = <"The cervix-body angle faces anteriorly.">
+            >
+            ["at0.31"] = <
+                text = <"Retroflexed">
+                description = <"The cervix-body angle faces posteriorly.">
+            >
+            ["at0.33"] = <
+                text = <"Present">
+                description = <"An IUD is observed in the uterus.">
+            >
+            ["at0.34"] = <
+                text = <"Absent">
+                description = <"No IUD is observed in the uterus.">
+            >
+            ["at0.35"] = <
+                text = <"Indeterminate">
+                description = <"It is not possible to determine if an IUD is present or absent.">
+            >
+            ["at0.49"] = <
+                text = <"Hyperechoic">
+                description = <"Increased echogenicity of the endometrium, compared to the myometrium.">
+            >
+            ["at0.50"] = <
+                text = <"Isoechoic">
+                description = <"Similar echogenicity of the endometrium, compared to the myometrium.">
+            >
+            ["at0.51"] = <
+                text = <"Trilaminar">
+                description = <"A triple line pattern of the endometrium is observed.">
+            >
+            ["at0.53"] = <
+                text = <"Homogeneous">
+                description = <"The echotexture of the endometrium is uniform.">
+            >
+            ["at0.54"] = <
+                text = <"Heterogeneous">
+                description = <"The echotexture of the endometrium is not uniform.">
+            >
+            ["at0.56"] = <
+                text = <"Uniform">
+                description = <"Endometrium appears homogeous with symmetrical anterior and posterior sides. It may also include the three-layer pattern.">
+            >
+            ["at0.57"] = <
+                text = <"Non-uniform">
+                description = <"Endometrium appears heterogenous with asymmetrical anterior and posterior sides and cysts.">
+            >
+            ["at0.59"] = <
+                text = <"Linear">
+                description = <"A straight hyperechogenic interface within the endometrium is observed.">
+            >
+            ["at0.6"] = <
+                text = <"Present">
+                description = <"Evidence of one or more intrauterine pregnancies are observed - gestational sac, embryo or foetus.">
+            >
+            ["at0.60"] = <
+                text = <"Non-linear">
+                description = <"A wavy hyperechogenic interface within the endometrium is observed.">
+            >
+            ["at0.61"] = <
+                text = <"Irregular">
+                description = <"An irregular or interrupted hyperechogenic interface within the endometrium is observed.">
+            >
+            ["at0.62"] = <
+                text = <"Not defined">
+                description = <"The absence of a hyperechogenic interface within the endometrium is observed.">
+            >
+            ["at0.63"] = <
+                text = <"Hypoechoic">
+                description = <"Decreased echogenicity of the endometrium, compared to the myometrium.">
+            >
+            ["at0.64"] = <
+                text = <"Regular">
+                description = <"The junctional zone appears regular.">
+            >
+            ["at0.65"] = <
+                text = <"Irregular">
+                description = <"The junctional zone appears irregular.">
+            >
+            ["at0.66"] = <
+                text = <"Interrupted">
+                description = <"The junctional zone appears interrupted.">
+            >
+            ["at0.67"] = <
+                text = <"Not defined">
+                description = <"The junctional zone is not visible or well defined.">
+            >
+            ["at0.68"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["at0.69"] = <
+                text = <"mm">
+                description = <"mm unit.">
+            >
+            ["at0.7"] = <
+                text = <"Absent">
+                description = <"No intrauterine pregnancy is observed.">
+            >
+            ["at0.70"] = <
+                text = <"cm">
+                description = <"Centimetres length unit">
+            >
+            ["at0.8"] = <
+                text = <"Indeterminate">
+                description = <"It is not possible to determine if an intrauterine pregnancy is present or absent.">
+            >
+            ["id0.13"] = <
+                text = <"Length">
+                description = <"The length of the entire uterus.">
+            >
+            ["id0.14"] = <
+                text = <"Width">
+                description = <"The width of the uterus.">
+            >
+            ["id0.15"] = <
+                text = <"Height (AP)">
+                description = <"The anteroposterior height of the uterus.">
+            >
+            ["id0.16"] = <
+                text = <"Endometrium description">
+                description = <"Narrative description about the endometrium.">
+            >
+            ["id0.17"] = <
+                text = <"Endometrial thickness">
+                description = <"Maximal measured thickness of the endometrium.">
+            >
+            ["id0.18"] = <
+                text = <"Endometrial echogenicity">
+                description = <"Description about the endometrial echogenicity compared with the echogenicity of the myometrium.">
+            >
+            ["id0.19"] = <
+                text = <"Myometrium description">
+                description = <"Narrative description about the myometrium.">
+            >
+            ["id0.24"] = <
+                text = <"Junctional zone">
+                description = <"Description about the junctional zone between the endometrium and the myometrium.">
+            >
+            ["id0.25"] = <
+                text = <"Uterine version">
+                description = <"The relation between uterus and the vagina in the sagittal plane.">
+            >
+            ["id0.29"] = <
+                text = <"Uterine flexion">
+                description = <"The relation between uterine body and the cervix in the sagittal plane.">
+            >
+            ["id0.32"] = <
+                text = <"IUD presence">
+                description = <"The presence or absence of an intrauterine device.">
+            >
+            ["id0.37"] = <
+                text = <"Junctional zone thickness">
+                description = <"Measured thickness of the junctional zone.">
+            >
+            ["id0.45"] = <
+                text = <"Body length">
+                description = <"The length of the body of the uterus.">
+            >
+            ["id0.46"] = <
+                text = <"Cervical findings">
+                description = <"Additional structured details about imaging findings about examination of the uterine cervix.">
+            >
+            ["id0.47"] = <
+                text = <"Pregnancy findings">
+                description = <"Additional structured details about imaging findings about one or more intrauterine pregnancies.">
+            >
+            ["id0.48"] = <
+                text = <"IUD findings">
+                description = <"Structured details about imaging findings for an intrauterine device.">
+            >
+            ["id0.5"] = <
+                text = <"Pregnancy presence">
+                description = <"The presence or absence of an intrauterine pregnancy.">
+            >
+            ["id0.52"] = <
+                text = <"Endometrial homogeneity">
+                description = <"Description about the endometrial homogeneity.">
+            >
+            ["id0.55"] = <
+                text = <"Endometrial uniformity">
+                description = <"Description about the homogeneity and symmetry of the endometrium.">
+            >
+            ["id0.58"] = <
+                text = <"Endometrial midline">
+                description = <"Description about the interface between the opposing surfaces of the two endometrial walls.">
+            >
+            ["id0.76"] = <
+                text = <"Length (mm)">
+                description = <"Length (mm)">
+            >
+            ["id0.79"] = <
+                text = <"Length (cm)">
+                description = <"Length (cm)">
+            >
+            ["id0.82"] = <
+                text = <"Body length (mm)">
+                description = <"Body length (mm)">
+            >
+            ["id0.85"] = <
+                text = <"Body length (cm)">
+                description = <"Body length (cm)">
+            >
+            ["id0.90"] = <
+                text = <"Height (AP) (mm)">
+                description = <"Height (AP) (mm)">
+            >
+            ["id0.93"] = <
+                text = <"Height (AP) (cm)">
+                description = <"Height (AP) (cm)">
+            >
+            ["id1.1"] = <
+                text = <"Imaging examination of the uterus">
+                description = <"Findings on radiological examination of the uterus.">
+            >
+            ["id2.1"] = <
+                text = <"Body structure">
+                description = <"Identification of the body structure or region examined.">
+            >
+        >
+    >
+    

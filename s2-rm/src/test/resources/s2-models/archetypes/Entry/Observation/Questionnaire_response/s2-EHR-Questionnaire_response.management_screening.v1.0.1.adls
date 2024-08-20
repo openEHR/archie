@@ -1,0 +1,266 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7231907d-b9fe-4035-972d-71ab9aa2815e)
+    s2-EHR-Questionnaire_response.management_screening.v1.0.1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Yexuan Cheng, 浙江大学, China", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Alexander Eikrem-Lüthi, Lovisenberg Diakonale Sykehus, Norway", "Kåre Flø, DIPS ASA, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anca Heyd, DIPS ASA, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway", "Øygunn Leite Kallevik, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hanne Marte Bårholm, Helse Vest IKT, Norway", "Per Meinich, Helse Sør-Øst RHF, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Andre Smitt-Ingebretsen, Sørlandet sykehus HF, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Ina Wille, Helse-Vest RHF, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-03-13">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.management_screening.v1.0.1, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.management_screening.v1.0.1 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To create a framework for recording answers to pre-defined screening questions about the broad range of clinical management that has been carried out in the past, with the exception of medications or surgical/operative procedures.">
+            keywords = <"treatment", "screening", "intervention", "questionnaire", "care", "support", "therapy">
+            use = <"Use to create a framework for recording answers to pre-defined screening questions about the broad range of clinical management that has been carried out in the past, with the exception of medications or surgical/operative procedures.
+            
+            Common use cases include, but are not limited to:
+            - Systematic questioning in any consultation, for example:
+            --- Have you ever been admitted to hospital? 
+            --- Have you ever worn compression stockings? 
+            --- Have you ever been placed on a ventilator? 
+            --- Have you ever been on dialysis?
+            
+            - Specific questioning related to disease surveillance.
+            --- Was the patient isolated on admission? Yes, No, Unkown.
+            --- Did the patient receive home oxygen therapy? Yes, No, Unkown.
+            --- Was the patient admitted to ICU? Yes, No, Unkown.
+            
+            The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data Node would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the DV_TEXT or the DV_BOOLEAN datatypes choice to match each specific use case.
+            
+            The EVENT structure from the reference model can be used to specify whether the questions relate to point in time or over a period of time. Use a separate instance of this archetype to distinguish between a questionnaire recording information about management that has been performed at any time in the past and information about management performed within a specified time interval - for example the difference between \\\"Have you been admitted to hospital?\\\" compared to \\\"Have you been admitted to hospital in the past 4 weeks.
+            
+            The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' Node in the Reference Model.
+            
+            This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening questionnaire identifies the presence of management or treatment, it is recommended that clinical system record and persist the specific details about the management or treatment using archetypes specific for the clinical purpose.">
+            misuse = <"Not to be used to record answers to pre-defined screening questions about surgical/operative procedures that have been carried out in the past.
+            Use the OBSERVATION.procedure_screening for this purpose.
+            
+            Not to be used to record answers to pre-defined screening questions about medications that have been used in the past. Use the OBSERVATION.medication_screening for this purpose.
+            
+            Not to be used to record details about a simple selection list where a question may be recorded as either \\\"present\\\" or \\\"indeterminate\\\". Use OBSERVATION.selection_list for this purpose.">
+        >
+    >
+    
+definition
+    Questionnaire_response[id1] matches {    -- Management screening questionnaire
+        data matches {
+            Node[id35] occurrences matches {0..1} matches {    -- Screening purpose
+                value matches {
+                    Text[id46]
+                }
+            }
+            Node[id40] matches {    -- Any management?
+                value matches {
+                    Coded_text[id47] matches {
+                        term matches {
+                            Terminology_term[id66] matches {
+                                concept matches {[ac1]}    -- Any management? (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id48]
+                    Boolean_value[id49]
+                }
+            }
+            Node[id45] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id50]
+                }
+            }
+            Node[id23] matches {    -- Management activity
+                items matches {
+                    Node[id5] matches {    -- Management name
+                        value matches {
+                            Text[id51]
+                        }
+                    }
+                    Node[id6] occurrences matches {0..1} matches {    -- Specific management?
+                        value matches {
+                            Coded_text[id52] matches {
+                                term matches {
+                                    Terminology_term[id67] matches {
+                                        concept matches {[ac2]}    -- Specific management? (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id53]
+                            Boolean_value[id54]
+                        }
+                    }
+                    Node[id38] matches {    -- Start
+                        value matches {
+                            Date_time_value[id55]
+                            Range<Date_time_value>[id56]
+                            Text[id57]
+                            Duration_value[id58]
+                            Range<Duration_value>[id59]
+                        }
+                    }
+                    Node[id39] matches {    -- Stopped
+                        value matches {
+                            Date_time_value[id60]
+                            Range<Date_time_value>[id61]
+                            Text[id62]
+                            Duration_value[id63]
+                            Range<Duration_value>[id64]
+                        }
+                    }
+                    use_archetype Node[id37, s2-EHR-Node.organization.v1]    -- Additional details
+                    Node[id36] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id65]
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id44] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id22] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at27"] = <http://snomed.info/id/261665006>
+            ["at23"] = <http://snomed.info/id/373066001>
+            ["at24"] = <http://snomed.info/id/373067005>
+            ["at40"] = <http://snomed.info/id/373066001>
+            ["at41"] = <http://snomed.info/id/373067005>
+            ["at42"] = <http://snomed.info/id/261665006>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at40", "at41", "at42">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at23", "at24", "at27">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Any management? (synthesised)">
+                description = <"Is there a history of management or treatment activities relevant for the screening purpose? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Specific management? (synthesised)">
+                description = <"Is there a history of the specific management or treatment activity? (synthesised)">
+            >
+            ["at23"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at27"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at40"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at41"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at42"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Management screening questionnaire">
+                description = <"Series of questions and associated answers used to screen for clinical management including, but not limited to treatments, therapies and hospitalisation.">
+            >
+            ["id22"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id23"] = <
+                text = <"Management activity">
+                description = <"Details about a specific management or treatment activity or grouping of management or treatment activities relevant for the screening purpose.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id35"] = <
+                text = <"Screening purpose">
+                description = <"The context or reason for screening.">
+            >
+            ["id36"] = <
+                text = <"Comment">
+                description = <"Additional narrative about a specific management or treatment question, not captured in other fields.">
+            >
+            ["id37"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about the specific management or treatment activity.">
+            >
+            ["id38"] = <
+                text = <"Start">
+                description = <"When the managment or treatment started.">
+            >
+            ["id39"] = <
+                text = <"Stopped">
+                description = <"When the managment or treatment ceased.">
+            >
+            ["id40"] = <
+                text = <"Any management?">
+                description = <"Is there a history of management or treatment activities relevant for the screening purpose?">
+            >
+            ["id44"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about screening for management or treatment.">
+            >
+            ["id45"] = <
+                text = <"Description">
+                description = <"Narrative description about the history of any management or treatment activities relevant for the screening purpose.">
+            >
+            ["id5"] = <
+                text = <"Management name">
+                description = <"Name of a specific management or treatment activity or grouping of management or treatment activities.">
+            >
+            ["id6"] = <
+                text = <"Specific management?">
+                description = <"Is there a history of the specific management or treatment activity?">
+            >
+        >
+    >
+    

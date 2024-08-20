@@ -1,0 +1,1375 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=41fbe253-887c-42ac-b5ee-97ba8c5f6ed2)
+    s2-EHR-Score.hirsutism_scales.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Nelio Borrozzino, Prontmed, Brazil", "Peter Fedorcsak, University of Oslo, Norway", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Jan Mellembakken, Oslo universitetssykehus, Norway", "Elisabeth Qvigstad, Oslo universitetssykehus, Norway", "Tom Tanbo, Oslo universitetssykehus, Norway", "Eszter Vanky, St Olavs hospital, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Peter Fedorcsak, Oslo University Hospital, <peter.fedorcsak@medisin.uio.no>, 2021-09-21">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.hirsutism_scales.v1.0.0, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.hirsutism_scales.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record hair scores for up to thirteen body areas and a total sum of scores, in order to quantify excessive male-pattern hair growth in women.">
+            keywords = <"Ferriman Gallwey score", "hirsutes", "hirsutism", "hyperandrogenism", "body hair growth", "terminal hair", "virilization", "male-pattern hair growth", "androgen-sensitive hair growth", "androgenic hair">
+            use = <"Use to record pattern of growth of androgen-sensitive terminal hair in women.
+            
+            This archetype has been designed to be inclusive of all hirsutism scales that are associated with the original scale originally proposed by Ferriman and Gallwey which includes eleven body sites. The extended version is inclusive of all the original sites plus the sideburn area and the perineum. The modified Ferriman-Gallwey score, includes nine body sites, excluding the lower arm, lower leg, sideburn area and perineum.
+            
+            Use a template to constrain the data Nodes to represent the dataset for the required scale.">
+            misuse = <"Not to be used to record information about generalised or excessive hair growth that does not represent hirsutism.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Hirsutism scales
+        data matches {
+            Node[id6] occurrences matches {0..1} matches {    -- Upper lip hair
+                value matches {
+                    Coded_ordinal[id109] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id111] matches {
+                                term matches {
+                                    Terminology_term[id110] matches {
+                                        concept matches {[at7]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id112] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id114] matches {
+                                term matches {
+                                    Terminology_term[id113] matches {
+                                        concept matches {[at8]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id115] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id117] matches {
+                                term matches {
+                                    Terminology_term[id116] matches {
+                                        concept matches {[at9]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id118] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id120] matches {
+                                term matches {
+                                    Terminology_term[id119] matches {
+                                        concept matches {[at10]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id121] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id123] matches {
+                                term matches {
+                                    Terminology_term[id122] matches {
+                                        concept matches {[at11]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- Chin hair
+                value matches {
+                    Coded_ordinal[id124] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id126] matches {
+                                term matches {
+                                    Terminology_term[id125] matches {
+                                        concept matches {[at20]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id127] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id129] matches {
+                                term matches {
+                                    Terminology_term[id128] matches {
+                                        concept matches {[at21]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id130] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id132] matches {
+                                term matches {
+                                    Terminology_term[id131] matches {
+                                        concept matches {[at22]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id133] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id135] matches {
+                                term matches {
+                                    Terminology_term[id134] matches {
+                                        concept matches {[at23]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id136] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id138] matches {
+                                term matches {
+                                    Terminology_term[id137] matches {
+                                        concept matches {[at24]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id83] occurrences matches {0..1} matches {    -- Sideburn hair
+                value matches {
+                    Coded_ordinal[id139] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id141] matches {
+                                term matches {
+                                    Terminology_term[id140] matches {
+                                        concept matches {[at83]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id142] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id144] matches {
+                                term matches {
+                                    Terminology_term[id143] matches {
+                                        concept matches {[at84]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id145] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id147] matches {
+                                term matches {
+                                    Terminology_term[id146] matches {
+                                        concept matches {[at85]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id148] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id150] matches {
+                                term matches {
+                                    Terminology_term[id149] matches {
+                                        concept matches {[at86]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id151] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id153] matches {
+                                term matches {
+                                    Terminology_term[id152] matches {
+                                        concept matches {[at87]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Chest hair
+                value matches {
+                    Coded_ordinal[id154] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id156] matches {
+                                term matches {
+                                    Terminology_term[id155] matches {
+                                        concept matches {[at26]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id157] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id159] matches {
+                                term matches {
+                                    Terminology_term[id158] matches {
+                                        concept matches {[at27]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id160] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id162] matches {
+                                term matches {
+                                    Terminology_term[id161] matches {
+                                        concept matches {[at28]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id163] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id165] matches {
+                                term matches {
+                                    Terminology_term[id164] matches {
+                                        concept matches {[at29]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id166] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id168] matches {
+                                term matches {
+                                    Terminology_term[id167] matches {
+                                        concept matches {[at30]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id32] occurrences matches {0..1} matches {    -- Upper back hair
+                value matches {
+                    Coded_ordinal[id169] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id171] matches {
+                                term matches {
+                                    Terminology_term[id170] matches {
+                                        concept matches {[at32]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id172] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id174] matches {
+                                term matches {
+                                    Terminology_term[id173] matches {
+                                        concept matches {[at33]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id175] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id177] matches {
+                                term matches {
+                                    Terminology_term[id176] matches {
+                                        concept matches {[at34]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id178] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id180] matches {
+                                term matches {
+                                    Terminology_term[id179] matches {
+                                        concept matches {[at35]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id181] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id183] matches {
+                                term matches {
+                                    Terminology_term[id182] matches {
+                                        concept matches {[at36]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id38] occurrences matches {0..1} matches {    -- Lower back hair
+                value matches {
+                    Coded_ordinal[id184] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id186] matches {
+                                term matches {
+                                    Terminology_term[id185] matches {
+                                        concept matches {[at38]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id187] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id189] matches {
+                                term matches {
+                                    Terminology_term[id188] matches {
+                                        concept matches {[at39]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id190] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id192] matches {
+                                term matches {
+                                    Terminology_term[id191] matches {
+                                        concept matches {[at40]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id193] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id195] matches {
+                                term matches {
+                                    Terminology_term[id194] matches {
+                                        concept matches {[at41]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id196] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id198] matches {
+                                term matches {
+                                    Terminology_term[id197] matches {
+                                        concept matches {[at42]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id44] occurrences matches {0..1} matches {    -- Upper abdomen hair
+                value matches {
+                    Coded_ordinal[id199] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id201] matches {
+                                term matches {
+                                    Terminology_term[id200] matches {
+                                        concept matches {[at44]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id202] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id204] matches {
+                                term matches {
+                                    Terminology_term[id203] matches {
+                                        concept matches {[at45]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id205] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id207] matches {
+                                term matches {
+                                    Terminology_term[id206] matches {
+                                        concept matches {[at46]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id208] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id210] matches {
+                                term matches {
+                                    Terminology_term[id209] matches {
+                                        concept matches {[at47]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id211] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id213] matches {
+                                term matches {
+                                    Terminology_term[id212] matches {
+                                        concept matches {[at48]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id50] occurrences matches {0..1} matches {    -- Lower abdomen hair
+                value matches {
+                    Coded_ordinal[id214] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id216] matches {
+                                term matches {
+                                    Terminology_term[id215] matches {
+                                        concept matches {[at50]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id217] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id219] matches {
+                                term matches {
+                                    Terminology_term[id218] matches {
+                                        concept matches {[at51]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id220] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id222] matches {
+                                term matches {
+                                    Terminology_term[id221] matches {
+                                        concept matches {[at52]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id223] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id225] matches {
+                                term matches {
+                                    Terminology_term[id224] matches {
+                                        concept matches {[at53]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id226] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id228] matches {
+                                term matches {
+                                    Terminology_term[id227] matches {
+                                        concept matches {[at54]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id56] occurrences matches {0..1} matches {    -- Upper arm hair
+                value matches {
+                    Coded_ordinal[id229] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id231] matches {
+                                term matches {
+                                    Terminology_term[id230] matches {
+                                        concept matches {[at56]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id232] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id234] matches {
+                                term matches {
+                                    Terminology_term[id233] matches {
+                                        concept matches {[at57]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id235] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id237] matches {
+                                term matches {
+                                    Terminology_term[id236] matches {
+                                        concept matches {[at58]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id238] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id240] matches {
+                                term matches {
+                                    Terminology_term[id239] matches {
+                                        concept matches {[at59]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id241] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id243] matches {
+                                term matches {
+                                    Terminology_term[id242] matches {
+                                        concept matches {[at60]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id62] occurrences matches {0..1} matches {    -- Lower arm hair
+                value matches {
+                    Coded_ordinal[id244] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id246] matches {
+                                term matches {
+                                    Terminology_term[id245] matches {
+                                        concept matches {[at62]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id247] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id249] matches {
+                                term matches {
+                                    Terminology_term[id248] matches {
+                                        concept matches {[at63]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id250] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id252] matches {
+                                term matches {
+                                    Terminology_term[id251] matches {
+                                        concept matches {[at64]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id253] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id255] matches {
+                                term matches {
+                                    Terminology_term[id254] matches {
+                                        concept matches {[at65]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id256] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id258] matches {
+                                term matches {
+                                    Terminology_term[id257] matches {
+                                        concept matches {[at66]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id68] occurrences matches {0..1} matches {    -- Thigh hair
+                value matches {
+                    Coded_ordinal[id259] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id261] matches {
+                                term matches {
+                                    Terminology_term[id260] matches {
+                                        concept matches {[at68]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id262] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id264] matches {
+                                term matches {
+                                    Terminology_term[id263] matches {
+                                        concept matches {[at69]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id265] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id267] matches {
+                                term matches {
+                                    Terminology_term[id266] matches {
+                                        concept matches {[at70]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id268] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id270] matches {
+                                term matches {
+                                    Terminology_term[id269] matches {
+                                        concept matches {[at71]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id271] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id273] matches {
+                                term matches {
+                                    Terminology_term[id272] matches {
+                                        concept matches {[at72]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id74] occurrences matches {0..1} matches {    -- Lower leg hair
+                value matches {
+                    Coded_ordinal[id274] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id276] matches {
+                                term matches {
+                                    Terminology_term[id275] matches {
+                                        concept matches {[at74]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id277] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id279] matches {
+                                term matches {
+                                    Terminology_term[id278] matches {
+                                        concept matches {[at75]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id280] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id282] matches {
+                                term matches {
+                                    Terminology_term[id281] matches {
+                                        concept matches {[at76]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id283] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id285] matches {
+                                term matches {
+                                    Terminology_term[id284] matches {
+                                        concept matches {[at77]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id286] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id288] matches {
+                                term matches {
+                                    Terminology_term[id287] matches {
+                                        concept matches {[at78]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id92] occurrences matches {0..1} matches {    -- Perineum hair
+                value matches {
+                    Coded_ordinal[id289] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id291] matches {
+                                term matches {
+                                    Terminology_term[id290] matches {
+                                        concept matches {[at92]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id292] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id294] matches {
+                                term matches {
+                                    Terminology_term[id293] matches {
+                                        concept matches {[at93]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id295] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id297] matches {
+                                term matches {
+                                    Terminology_term[id296] matches {
+                                        concept matches {[at94]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id298] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id300] matches {
+                                term matches {
+                                    Terminology_term[id299] matches {
+                                        concept matches {[at95]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id301] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id303] matches {
+                                term matches {
+                                    Terminology_term[id302] matches {
+                                        concept matches {[at96]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id80] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id106] matches {
+                        magnitude matches {|0..52|}
+                    }
+                }
+            }
+            Node[id90] occurrences matches {0..1} matches {    -- Ferriman-Gallwey score
+                value matches {
+                    Count[id107] matches {
+                        magnitude matches {|0..44|}
+                    }
+                }
+            }
+            Node[id91] occurrences matches {0..1} matches {    -- Modified Ferriman-Gallwey score
+                value matches {
+                    Count[id108] matches {
+                        magnitude matches {|0..36|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id89] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["id6"] = <http://snomed.info/id/302095008>
+            ["id20"] = <http://snomed.info/id/302096009>
+            ["id26"] = <http://snomed.info/id/302098005>
+            ["id32"] = <http://snomed.info/id/302101009>
+            ["id38"] = <http://snomed.info/id/302102002>
+            ["id44"] = <http://snomed.info/id/302099002>
+            ["id50"] = <http://snomed.info/id/302100005>
+            ["id56"] = <http://snomed.info/id/302103007>
+            ["id62"] = <http://snomed.info/id/302104001>
+            ["id68"] = <http://snomed.info/id/302105000>
+            ["id74"] = <http://snomed.info/id/302106004>
+            ["id83"] = <http://snomed.info/id/302097000>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at7", "at8", "at9", "at10", "at11">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at20", "at21", "at22", "at23", "at24">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at83", "at84", "at85", "at86", "at87">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at26", "at27", "at28", "at29", "at30">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at32", "at33", "at34", "at35", "at36">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at38", "at39", "at40", "at41", "at42">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at44", "at45", "at46", "at47", "at48">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at50", "at51", "at52", "at53", "at54">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at56", "at57", "at58", "at59", "at60">
+        >
+        ["ac10"] = <
+            id = <"ac10">
+            members = <"at62", "at63", "at64", "at65", "at66">
+        >
+        ["ac11"] = <
+            id = <"ac11">
+            members = <"at68", "at69", "at70", "at71", "at72">
+        >
+        ["ac12"] = <
+            id = <"ac12">
+            members = <"at74", "at75", "at76", "at77", "at78">
+        >
+        ["ac13"] = <
+            id = <"ac13">
+            members = <"at92", "at93", "at94", "at95", "at96">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Upper lip hair (synthesised)">
+                description = <"Hair score on the upper lip. (synthesised)">
+            >
+            ["ac10"] = <
+                text = <"Lower arm hair (synthesised)">
+                description = <"Hair score on the lower arms. (synthesised)">
+            >
+            ["ac11"] = <
+                text = <"Thigh hair (synthesised)">
+                description = <"Hair score on the thighs. (synthesised)">
+            >
+            ["ac12"] = <
+                text = <"Lower leg hair (synthesised)">
+                description = <"Hair score on the lower legs. (synthesised)">
+            >
+            ["ac13"] = <
+                text = <"Perineum hair (synthesised)">
+                description = <"Hair score on the perineum. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Chin hair (synthesised)">
+                description = <"Hair score on the chin. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Sideburn hair (synthesised)">
+                description = <"Hair score on the sideburns. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Chest hair (synthesised)">
+                description = <"Hair score on the chest. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Upper back hair (synthesised)">
+                description = <"Hair score on the upper back. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Lower back hair (synthesised)">
+                description = <"Hair score on the lower back. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Upper abdomen hair (synthesised)">
+                description = <"Hair score on the upper abdomen. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Lower abdomen hair (synthesised)">
+                description = <"Hair score on the lower abdomen. (synthesised)">
+            >
+            ["ac9"] = <
+                text = <"Upper arm hair (synthesised)">
+                description = <"Hair score on the upper arms. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Grade 3">
+                description = <"A moustache extending halfway from outer margin.">
+            >
+            ["at11"] = <
+                text = <"Grade 4">
+                description = <"A moustache extending to mid-line.">
+            >
+            ["at20"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at21"] = <
+                text = <"Grade 1">
+                description = <"A few scattered hairs.">
+            >
+            ["at22"] = <
+                text = <"Grade 2">
+                description = <"Scattered hairs with small concentrations.">
+            >
+            ["at23"] = <
+                text = <"Grade 3">
+                description = <"Complete light cover.">
+            >
+            ["at24"] = <
+                text = <"Grade 4">
+                description = <"Complete heavy cover.">
+            >
+            ["at26"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at27"] = <
+                text = <"Grade 1">
+                description = <"Circumareolar hairs.">
+            >
+            ["at28"] = <
+                text = <"Grade 2">
+                description = <"Circumareolar hairs with midline hair in addition.">
+            >
+            ["at29"] = <
+                text = <"Grade 3">
+                description = <"Fusion of circumareolar and midline areas, with three-quarter cover.">
+            >
+            ["at30"] = <
+                text = <"Grade 4">
+                description = <"Complete cover.">
+            >
+            ["at32"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at33"] = <
+                text = <"Grade 1">
+                description = <"A few scattered hairs.">
+            >
+            ["at34"] = <
+                text = <"Grade 2">
+                description = <"Rather more hairs, still scattered.">
+            >
+            ["at35"] = <
+                text = <"Grade 3">
+                description = <"Complete light cover.">
+            >
+            ["at36"] = <
+                text = <"Grade 4">
+                description = <"Complete heavy cover.">
+            >
+            ["at38"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at39"] = <
+                text = <"Grade 1">
+                description = <"A sacral tuft of hair.">
+            >
+            ["at40"] = <
+                text = <"Grade 2">
+                description = <"A sacral tuft of hair with some lateral extension.">
+            >
+            ["at41"] = <
+                text = <"Grade 3">
+                description = <"Three-quarter cover.">
+            >
+            ["at42"] = <
+                text = <"Grade 4">
+                description = <"Complete cover.">
+            >
+            ["at44"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at45"] = <
+                text = <"Grade 1">
+                description = <"A few mid-line hairs.">
+            >
+            ["at46"] = <
+                text = <"Grade 2">
+                description = <"Rather more hairs, still mid-line.">
+            >
+            ["at47"] = <
+                text = <"Grade 3">
+                description = <"Half cover.">
+            >
+            ["at48"] = <
+                text = <"Grade 4">
+                description = <"Full cover.">
+            >
+            ["at50"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at51"] = <
+                text = <"Grade 1">
+                description = <"A few mid-line hairs.">
+            >
+            ["at52"] = <
+                text = <"Grade 2">
+                description = <"A mid-line streak of hair.">
+            >
+            ["at53"] = <
+                text = <"Grade 3">
+                description = <"A mid-line band of hair.">
+            >
+            ["at54"] = <
+                text = <"Grade 4">
+                description = <"An inverted V-shaped growth.">
+            >
+            ["at56"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at57"] = <
+                text = <"Grade 1">
+                description = <"Sparse growth not affecting more than a quarter of the limb surface.">
+            >
+            ["at58"] = <
+                text = <"Grade 2">
+                description = <"More than sparse growth, cover still incomplete.">
+            >
+            ["at59"] = <
+                text = <"Grade 3">
+                description = <"Complete light cover.">
+            >
+            ["at60"] = <
+                text = <"Grade 4">
+                description = <"Complete heavy cover.">
+            >
+            ["at62"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at63"] = <
+                text = <"Grade 1">
+                description = <"Light cover of dorsal surface.">
+            >
+            ["at64"] = <
+                text = <"Grade 2">
+                description = <"Complete light cover of dorsal surface.">
+            >
+            ["at65"] = <
+                text = <"Grade 3">
+                description = <"Heavy cover of dorsal surface.">
+            >
+            ["at66"] = <
+                text = <"Grade 4">
+                description = <"Complete heavy cover of dorsal surface.">
+            >
+            ["at68"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at69"] = <
+                text = <"Grade 1">
+                description = <"Sparse growth affecting not more than a quarter of the limb surface.">
+            >
+            ["at7"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at70"] = <
+                text = <"Grade 2">
+                description = <"More than sparse growth, cover still incomplete.">
+            >
+            ["at71"] = <
+                text = <"Grade 3">
+                description = <"Complete light cover.">
+            >
+            ["at72"] = <
+                text = <"Grade 4">
+                description = <"Complete heavy cover.">
+            >
+            ["at74"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at75"] = <
+                text = <"Grade 1">
+                description = <"Sparse growth affecting not more than a quarter of the limb surface.">
+            >
+            ["at76"] = <
+                text = <"Grade 2">
+                description = <"More than sparse growth, cover still incomplete.">
+            >
+            ["at77"] = <
+                text = <"Grade 3">
+                description = <"Complete light growth.">
+            >
+            ["at78"] = <
+                text = <"Grade 4">
+                description = <"Complete heavy growth.">
+            >
+            ["at8"] = <
+                text = <"Grade 1">
+                description = <"A few hairs at outer margin.">
+            >
+            ["at83"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at84"] = <
+                text = <"Grade 1">
+                description = <"A few scattered hairs.">
+            >
+            ["at85"] = <
+                text = <"Grade 2">
+                description = <"Scattered hairs with small concentrations.">
+            >
+            ["at86"] = <
+                text = <"Grade 3">
+                description = <"Complete light cover.">
+            >
+            ["at87"] = <
+                text = <"Grade 4">
+                description = <"Complete heavy cover.">
+            >
+            ["at9"] = <
+                text = <"Grade 2">
+                description = <"A small moustache at outer margin.">
+            >
+            ["at92"] = <
+                text = <"None">
+                description = <"No excess hair.">
+            >
+            ["at93"] = <
+                text = <"Grade 1">
+                description = <"Perianal terminal hair.">
+            >
+            ["at94"] = <
+                text = <"Grade 2">
+                description = <"Lateral extension of terminal hair to edge of gluteal cleft.">
+            >
+            ["at95"] = <
+                text = <"Grade 3">
+                description = <"Three-quarter coverage of buttocks.">
+            >
+            ["at96"] = <
+                text = <"Grade 4">
+                description = <"Complete coverage of buttocks.">
+            >
+            ["id1"] = <
+                text = <"Hirsutism scales">
+                description = <"A grouping of related assessment scales used to quantify distribution and growth of body hair in women.">
+            >
+            ["id20"] = <
+                text = <"Chin hair">
+                description = <"Hair score on the chin.">
+            >
+            ["id26"] = <
+                text = <"Chest hair">
+                description = <"Hair score on the chest.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id32"] = <
+                text = <"Upper back hair">
+                description = <"Hair score on the upper back.">
+            >
+            ["id38"] = <
+                text = <"Lower back hair">
+                description = <"Hair score on the lower back.">
+            >
+            ["id44"] = <
+                text = <"Upper abdomen hair">
+                description = <"Hair score on the upper abdomen.">
+            >
+            ["id50"] = <
+                text = <"Lower abdomen hair">
+                description = <"Hair score on the lower abdomen.">
+            >
+            ["id56"] = <
+                text = <"Upper arm hair">
+                description = <"Hair score on the upper arms.">
+            >
+            ["id6"] = <
+                text = <"Upper lip hair">
+                description = <"Hair score on the upper lip.">
+            >
+            ["id62"] = <
+                text = <"Lower arm hair">
+                description = <"Hair score on the lower arms.">
+            >
+            ["id68"] = <
+                text = <"Thigh hair">
+                description = <"Hair score on the thighs.">
+            >
+            ["id74"] = <
+                text = <"Lower leg hair">
+                description = <"Hair score on the lower legs.">
+            >
+            ["id80"] = <
+                text = <"Total score">
+                description = <"The total sum of the hair scores recorded for each of the body area.">
+            >
+            ["id83"] = <
+                text = <"Sideburn hair">
+                description = <"Hair score on the sideburns.">
+            >
+            ["id89"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id90"] = <
+                text = <"Ferriman-Gallwey score">
+                description = <"The total sum of the hair scores recorded for each of eleven body areas.">
+            >
+            ["id91"] = <
+                text = <"Modified Ferriman-Gallwey score">
+                description = <"The total sum of the hair scores recorded for each of nine body areas.">
+            >
+            ["id92"] = <
+                text = <"Perineum hair">
+                description = <"Hair score on the perineum.">
+            >
+        >
+    >
+    

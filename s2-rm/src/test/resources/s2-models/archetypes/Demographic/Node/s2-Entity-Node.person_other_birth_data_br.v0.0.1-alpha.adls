@@ -1,0 +1,141 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=73717198-4a36-4cd1-96f1-523cdc2c005d)
+    s2-Entity-Node.person_other_birth_data_br.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+    translations = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            author = <
+                ["name"] = <"Sergio Miranda Freire">
+                ["organisation"] = <"Universidade do Estado do Rio de Janeiro - UERJ">
+                ["email"] = <"sergio@lampada.uerj.br">
+            >
+        >
+    >
+    
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-20">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.person_other_birth_data_br.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.person_other_birth_data_br.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"Representation of a person's birth data.">
+            keywords = <"demographic service", "birth certificate data">
+            use = <"Used in demographic service to collect other birth certificate data.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Outros dados da certidão de nascimento
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Estado/território/província
+                value matches {
+                    Coded_text[id8] matches {
+                        term matches {
+                            Terminology_term[id14] matches {
+                                concept matches {[ac2]}    -- Códigos de estados
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id3] occurrences matches {0..1} matches {    -- Cidade/localidade
+                value matches {
+                    Coded_text[id9] matches {
+                        term matches {
+                            Terminology_term[id15] matches {
+                                concept matches {[ac3]}    -- Códigos de cidades
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id4] matches {    -- Cartório
+                value matches {
+                    Text[id10]
+                }
+            }
+            Node[id5] matches {    -- Livro
+                value matches {
+                    Text[id11]
+                }
+            }
+            Node[id6] matches {    -- Folha
+                value matches {
+                    Text[id12]
+                }
+            }
+            Node[id7] matches {    -- Termo
+                value matches {
+                    Text[id13]
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac2"] = <
+                text = <"State codes">
+                description = <"Valid codes for state/territory/province">
+            >
+            ["ac3"] = <
+                text = <"City codes">
+                description = <"Valid codes for city/town/locality">
+            >
+            ["id1"] = <
+                text = <"Other birth certificate data">
+                description = <"Other birth certificate data still used in Brazil.">
+            >
+            ["id2"] = <
+                text = <"State/territory/province">
+                description = <"The State/territory/province where the person was born.">
+            >
+            ["id3"] = <
+                text = <"City/town/locality">
+                description = <"The city/town/locality where the person was born.">
+            >
+            ["id4"] = <
+                text = <"Registry">
+                description = <"Registry office that issued the birth certificate.">
+            >
+            ["id5"] = <
+                text = <"Book number">
+                description = <"Book number where the birth was registered.">
+            >
+            ["id6"] = <
+                text = <"Page number">
+                description = <"Page number in the book where the birth was registered.">
+            >
+            ["id7"] = <
+                text = <"Section">
+                description = <"Section in the page where the birth was registered.">
+            >
+        >
+    >
+    

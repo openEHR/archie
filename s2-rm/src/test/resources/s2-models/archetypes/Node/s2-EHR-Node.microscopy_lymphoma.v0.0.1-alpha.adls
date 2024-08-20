@@ -1,0 +1,442 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7ca17ced-bf6f-4102-b57b-518e28095bd7)
+    s2-EHR-Node.microscopy_lymphoma.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Koray Atalag, University of Auckland, New Zealand", "Matt Cordell, NEHTA, Australia", "David Ellis, RCPA, Australia", "Sam Heard, Ocean Informatics, Australia", "Heather Leslie, Ocean Informatics, Australia", "David McKillop, NEHTA, Australia", "Cathy Richardson, NEHTA, Australia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, UK, <ian.mcnicoll@oceaninformatics.com>, 26/04/2009">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.microscopy_lymphoma.v0.0.1-alpha, copyright 26/0 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.microscopy_lymphoma.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record detailed findings about lymphoma and other haematopoietic tumours, excluding leukaemias,  found on microscopic examination.">
+            keywords = <"lab", "pathology", "laboratory", "lymphoma", "haematopoietic", "malignancy", "haematology", "hodgkin", "histopathology", "cancer", "non-hodgkin">
+            use = <"To record detailed findings about microscopic examination of tissue related to lymphoma or other hameatopietic tumour, excluding leukaemias
+            Use as a component archetype in the context of a suite of archetypes that make up a histopathology report ie OBSERVATION.lab_test.histopathology.">
+            misuse = <"Not designed to be used within any other archetype other than OBSERVATION.lab_test.histopathology.
+            Not designed to be used to record microscopic findings for leukaemias.">
+        >
+    >
+    
+definition
+    Node[id1] occurrences matches {0..1} matches {    -- Microscopic findings - Lymphoma
+        items matches {
+            Node[id79] occurrences matches {0..1} matches {    -- Infiltration pattern
+                value matches {
+                    Text[id139]
+                }
+            }
+            Node[id80] occurrences matches {0..1} matches {    -- Tumour cell size
+                value matches {
+                    Coded_text[id140] matches {
+                        term matches {
+                            Terminology_term[id151] matches {
+                                concept matches {[ac1]}    -- Tumour cell size (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id126] occurrences matches {0..1} matches {    -- Proliferative indicators
+                value matches {
+                    Text[id141]
+                }
+            }
+            Node[id81] occurrences matches {0..1} matches {    -- Abnormal cytomorphology
+                items matches {
+                    Node[id132] occurrences matches {0..1} matches {    -- Cytomorphology findings
+                        items matches {
+                            Node[id82] matches {    -- Generic features
+                                value matches {
+                                    Coded_text[id142] matches {
+                                        term matches {
+                                            Terminology_term[id152] matches {
+                                                concept matches {[ac2]}    -- Generic features (synthesised)
+                                            }
+                                        }
+                                    }
+                                    Plain_text[id143]
+                                }
+                            }
+                            Node[id83] matches {    -- Specific features
+                                value matches {
+                                    Coded_text[id144] matches {
+                                        term matches {
+                                            Terminology_term[id153] matches {
+                                                concept matches {[ac3]}    -- Specific features (synthesised)
+                                            }
+                                        }
+                                    }
+                                    Plain_text[id145]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id138] occurrences matches {0..1} matches {    -- Grade (follicular lymphoma)
+                value matches {
+                    Coded_text[id146] matches {
+                        term matches {
+                            Terminology_term[id154] matches {
+                                concept matches {[ac4]}    -- Grade (follicular lymphoma) (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id76] occurrences matches {0..1} matches {    -- Host cell/tissue reactions
+                items matches {
+                    Node[id77] matches {    -- Host cell reaction
+                        value matches {
+                            Coded_text[id147] matches {
+                                term matches {
+                                    Terminology_term[id155] matches {
+                                        concept matches {[ac5]}    -- Host cell reaction (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id148]
+                        }
+                    }
+                    Node[id78] matches {    -- Host tissue reaction
+                        value matches {
+                            Coded_text[id149] matches {
+                                term matches {
+                                    Terminology_term[id156] matches {
+                                        concept matches {[ac6]}    -- Host tissue reaction (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id150]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at98", "at99", "at100", "at101", "at136">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at102", "at103", "at104", "at105", "at106", "at107", "at108", "at109", "at110">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at111", "at112", "at113", "at114", "at115", "at116", "at117", "at118", "at119", "at120", "at121", "at122", "at123", "at133">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at138", "at139", "at140", "at141", "at142">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at92", "at93", "at94", "at95", "at96", "at97", "at134">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at84", "at85", "at86", "at87", "at88", "at89", "at90", "at91", "at135">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Tumour cell size (synthesised)">
+                description = <"Estimates of tumour cell size. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Generic features (synthesised)">
+                description = <"Finding of generic cytomorphology features. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Specific features (synthesised)">
+                description = <"Finding of specific cytomorphology features. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Grade (follicular lymphoma) (synthesised)">
+                description = <"Histological grade - follicular lymphoma only. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Host cell reaction (synthesised)">
+                description = <"Finding of a host cell reaction to tumour. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Host tissue reaction (synthesised)">
+                description = <"Finding of host tissue reactions to tumour. (synthesised)">
+            >
+            ["at100"] = <
+                text = <"Large">
+                description = <"Large tumour cell size (larger than a histiocyte nucleus).">
+            >
+            ["at101"] = <
+                text = <"Indeterminate">
+                description = <"The tumour cell size has not been determined.">
+            >
+            ["at102"] = <
+                text = <"Pleomorphic">
+                description = <"Pleomorphic features are present.">
+            >
+            ["at103"] = <
+                text = <"Hyperbolate">
+                description = <"Hyperbolate features are present.">
+            >
+            ["at104"] = <
+                text = <"Anaplastic">
+                description = <"Anaplastic features are present.">
+            >
+            ["at105"] = <
+                text = <"Clear cell">
+                description = <"Clear cell features are present.">
+            >
+            ["at106"] = <
+                text = <"Giant cell">
+                description = <"Giant cell features are present.">
+            >
+            ["at107"] = <
+                text = <"Spindle cell">
+                description = <"Spindle cell features are present.">
+            >
+            ["at108"] = <
+                text = <"Signet ring cell">
+                description = <"Signet ring cell features are present.">
+            >
+            ["at109"] = <
+                text = <"Blastic">
+                description = <"Blastic features are present.">
+            >
+            ["at110"] = <
+                text = <"Indeterminate">
+                description = <"Generic abnormal cell features have not been determined.">
+            >
+            ["at111"] = <
+                text = <"Centroblastic">
+                description = <"Centroblastic features are present.">
+            >
+            ["at112"] = <
+                text = <"Centrocytic">
+                description = <"Centrocytic features are present.">
+            >
+            ["at113"] = <
+                text = <"Immunoblastic">
+                description = <"Immunoblastic features are present.">
+            >
+            ["at114"] = <
+                text = <"Plasmacytic">
+                description = <"Plasmacytic features are present.">
+            >
+            ["at115"] = <
+                text = <"Lymphoplasmacytic">
+                description = <"Lymphoplasmacytic features are present.">
+            >
+            ["at116"] = <
+                text = <"Lymphoplasmacytoid">
+                description = <"Lymphoplasmacytoid features are present.">
+            >
+            ["at117"] = <
+                text = <"Prolymphocytic">
+                description = <"Prolymphocytic features are present.">
+            >
+            ["at118"] = <
+                text = <"Paraimmunoblastic">
+                description = <"Paraimmunoblastic features are present.">
+            >
+            ["at119"] = <
+                text = <"Plasmablastic">
+                description = <"Plasmablastic features are present.">
+            >
+            ["at120"] = <
+                text = <"Monocytoid">
+                description = <"Monocytoid features are present.">
+            >
+            ["at121"] = <
+                text = <"Centrocyte-like">
+                description = <"Centrocyte-like features are present.">
+            >
+            ["at122"] = <
+                text = <"Popcorn cell">
+                description = <"Popcorn cell features are present.">
+            >
+            ["at123"] = <
+                text = <"Reed-Sternberg cell-like">
+                description = <"Reed-Sternberg cell-like cytomorphology features are present.">
+            >
+            ["at133"] = <
+                text = <"Indeterminate">
+                description = <"Specific cytomorphology features have not been determined.">
+            >
+            ["at134"] = <
+                text = <"Indeterminate">
+                description = <"Presence of a host cell reaction has not been determined.">
+            >
+            ["at135"] = <
+                text = <"Indeterminate">
+                description = <"Presence of a host tissue reaction has not been determined.">
+            >
+            ["at136"] = <
+                text = <"Mixed">
+                description = <"Mixed tumour cell size.">
+            >
+            ["at138"] = <
+                text = <"Grade 1">
+                description = <"Follicular lymphoma Grade 1.">
+            >
+            ["at139"] = <
+                text = <"Grade 2">
+                description = <"Follicular lymphoma Grade 2.">
+            >
+            ["at140"] = <
+                text = <"Grade 3">
+                description = <"Follicular lymphoma Grade 3.">
+            >
+            ["at141"] = <
+                text = <"Grade 3a">
+                description = <"Follicular lymphoma Grade 3a.">
+            >
+            ["at142"] = <
+                text = <"Grade 3b">
+                description = <"Follicular lymphoma Grade 3b.">
+            >
+            ["at84"] = <
+                text = <"Necrotic">
+                description = <"Necrotic host tissue reaction is present.">
+            >
+            ["at85"] = <
+                text = <"Sclerotic">
+                description = <"Sclerotic host tissue reaction is present.">
+            >
+            ["at86"] = <
+                text = <"Granulomatous">
+                description = <"Granulomatous host tissue reaction is present.">
+            >
+            ["at87"] = <
+                text = <"Suppurative">
+                description = <"Suppurative host tissue reaction to tumour is present.">
+            >
+            ["at88"] = <
+                text = <"High Endothelial Venule (HEV) hyperplasia">
+                description = <"High Endothelial Venule (HEV) hyperplasia is present.">
+            >
+            ["at89"] = <
+                text = <"Starry sky pattern">
+                description = <"Starry sky pattern is present.">
+            >
+            ["at90"] = <
+                text = <"Amyloid">
+                description = <"Amyloid host tissue reaction is present.">
+            >
+            ["at91"] = <
+                text = <"Increased reticulin">
+                description = <"Increased reticulin is present.">
+            >
+            ["at92"] = <
+                text = <"T-cell rich">
+                description = <"T-cell rich host cell reaction is present.">
+            >
+            ["at93"] = <
+                text = <"Eosinophil-rich">
+                description = <"Eosinophil-rich host cell reaction is present.">
+            >
+            ["at94"] = <
+                text = <"Histiocyte-rich">
+                description = <"Histiocyte-rich host cell reaction is present.">
+            >
+            ["at95"] = <
+                text = <"Neutrophil-rich">
+                description = <"Neutrophil-rich host cell reaction is present.">
+            >
+            ["at96"] = <
+                text = <"Plasma cell-rich">
+                description = <"Plasma cell-rich host cell reaction is present.">
+            >
+            ["at97"] = <
+                text = <"Erythrophagocytic">
+                description = <"Erythrophagocytic host cell reaction is present.">
+            >
+            ["at98"] = <
+                text = <"Small">
+                description = <"Small or intermediate tumour cell size (smaller than a histiocyte  nucleus).">
+            >
+            ["at99"] = <
+                text = <"Medium">
+                description = <"Medium tumour cell size (equal to a histiocyte nucleus).">
+            >
+            ["id1"] = <
+                text = <"Microscopic findings - Lymphoma">
+                description = <"Microscopic anatomical pathology findings related to lymphoma and other haematopoietic tumours, excluding leukaemias.">
+            >
+            ["id126"] = <
+                text = <"Proliferative indicators">
+                description = <"Proilerative indicators of abnormal cells.">
+            >
+            ["id132"] = <
+                text = <"Cytomorphology findings">
+                description = <"Findings of generic cytomorphology.">
+            >
+            ["id138"] = <
+                text = <"Grade (follicular lymphoma)">
+                description = <"Histological grade - follicular lymphoma only.">
+            >
+            ["id76"] = <
+                text = <"Host cell/tissue reactions">
+                description = <"Findings of host cell reactions to tumour.">
+            >
+            ["id77"] = <
+                text = <"Host cell reaction">
+                description = <"Finding of a host cell reaction to tumour.">
+            >
+            ["id78"] = <
+                text = <"Host tissue reaction">
+                description = <"Finding of host tissue reactions to tumour.">
+            >
+            ["id79"] = <
+                text = <"Infiltration pattern">
+                description = <"Findings of pattern of abnormal cell infiltration.">
+            >
+            ["id80"] = <
+                text = <"Tumour cell size">
+                description = <"Estimates of tumour cell size.">
+            >
+            ["id81"] = <
+                text = <"Abnormal cytomorphology">
+                description = <"Findings of abnormal cell morphology.">
+            >
+            ["id82"] = <
+                text = <"Generic features">
+                description = <"Finding of generic cytomorphology features.">
+            >
+            ["id83"] = <
+                text = <"Specific features">
+                description = <"Finding of specific cytomorphology features.">
+            >
+        >
+    >
+    

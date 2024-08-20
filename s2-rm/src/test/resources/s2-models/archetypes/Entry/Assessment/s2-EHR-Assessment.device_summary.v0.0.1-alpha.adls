@@ -1,0 +1,250 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2907fab5-8c86-415e-b71f-85d5afbab683)
+	s2-EHR-Assessment.device_summary.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2015-10-05">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.device_summary.v0.0.1-alpha, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.device_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record an ongoing and persistent overview about medical devices that have been fitted or implanted.">
+			use = <"Use to record a summary of medical devices that have been fitted or implanted including, but not limited to:
+            - assisted hearing devices, such as hearing aids or auditory implants;
+            - orthotics or artificial limbs; 
+            - dentures or dental implants; and
+            - eyeglasses or contact lenses.
+            
+            This archetype has been specifically designed to assist in providing an overview of management of medical devices over time. It may be used to share as a summary within messages or between clinical systems, where the detail is not required. If specific devices have been used in the past, as much detail as is available can be added in this archetype to create a context which may influence decisions about current or future devices of the same type.
+            
+            In practice, some clinical systems will need to record specific and detailed INSTRUCTION and ACTION archetypes to reflect the request for an medical device and subseqent activities that need to be recorded as that request is carried out. It is inevitable that there will be some overlap in this summary and these detailed archetypes. All are neccessary in various situations. 
+            
+            If clinicians are recording the process of request and provision of medical devices, then this summary should be derived from those recordings, to ensure that there is no duplication of clinical input.">
+			misuse = <"Not to be used to request a medical device - use the INSTRUCTION.request family for this purpose.
+            
+            Not to be used to record the activities that occur in the planning and fitting of a device - use the ACTION.device_fitting archetype for this purpose.
+            
+            Not to be used to record the activities that occur in the planning and fitting of an implant - use the ACTION.procedure archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Kathy Currie, NT Hearing Health Program Leader, Australia", ...>
+
+definition
+	Assessment[id1] matches {	-- Medical device summary
+		data matches {
+			Node[id21] occurrences matches {0..1} matches {	-- Device type
+				value matches {
+					Text[id25] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Status
+				value matches {
+					Coded_text[id26] matches {
+						term matches {
+							Terminology_term[id36] matches {
+								concept matches {[ac1]}		-- Status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id27] 
+				}
+			}
+			Node[id23] matches {	-- Device details
+				items matches {
+					Node[id8] occurrences matches {0..1} matches {	-- Device name
+						value matches {
+							Text[id28] 
+						}
+					}
+					Node[id9] occurrences matches {0..1} matches {	-- Start date
+						value matches {
+							Date_time_value[id29] 
+						}
+					}
+					Node[id13] occurrences matches {0..1} matches {	-- Body site
+						value matches {
+							Text[id30] 
+						}
+					}
+					use_archetype Node[id14, s2-EHR-Node.anatomical_location.v1] 
+					Node[id15] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id31] 
+						}
+					}
+					use_archetype Node[id11, s2-EHR-Node.device.v1] 
+					use_archetype Node[id22, s2-EHR-Node.media_file.v1] 
+					Node[id10] occurrences matches {0..1} matches {	-- End date
+						value matches {
+							Date_time_value[id32] 
+						}
+					}
+					Node[id24] occurrences matches {0..1} matches {	-- URI to original data
+						value matches {
+							Uri_ref[id33] 
+						}
+					}
+					Node[id20] occurrences matches {0..1} matches {	-- Next review due
+						value matches {
+							Date_time_value[id34] 
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id19] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id18] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id35] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Status (synthesised)">
+				description = <"Assertion about the fitting or implanting of devices, as at the date 'Last updated'. (synthesised)">
+			>
+			["at3"] = <
+				text = <"Never">
+				description = <"The device type has never been fitted or implanted.">
+			>
+			["at4"] = <
+				text = <"Current">
+				description = <"The device type is currently fitted or implanted.">
+			>
+			["at5"] = <
+				text = <"Previous">
+				description = <"The device type has been fitted or implanted in the past.">
+			>
+			["id1"] = <
+				text = <"Medical device summary">
+				description = <"An ongoing and persistent overview about medical devices that have been fitted or implanted.">
+			>
+			["id10"] = <
+				text = <"End date">
+				description = <"Date when the device stopped being used or was removed.">
+			>
+			["id11"] = <
+				text = <"Structured detail">
+				description = <"Additional structured detail about the device.">
+			>
+			["id13"] = <
+				text = <"Body site">
+				description = <"Identification of the body site where the device is fitted/implanted.">
+			>
+			["id14"] = <
+				text = <"Structured body site">
+				description = <"A structured anatomical location of the body site where the device is fitted/implanted.">
+			>
+			["id15"] = <
+				text = <"Description">
+				description = <"Narrative description about the device.">
+			>
+			["id16"] = <
+				text = <"Description">
+				description = <"Narrative description about the use of the fitted device type.">
+			>
+			["id18"] = <
+				text = <"Last updated">
+				description = <"The date this summary was last updated.">
+			>
+			["id19"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id20"] = <
+				text = <"Next review due">
+				description = <"Date on which this device should be reviewed.">
+			>
+			["id21"] = <
+				text = <"Device type">
+				description = <"Name of the type of medical device.">
+			>
+			["id22"] = <
+				text = <"Multimedia">
+				description = <"Digital image, video or diagram about the device.">
+			>
+			["id23"] = <
+				text = <"Device details">
+				description = <"Details about each device.">
+			>
+			["id24"] = <
+				text = <"URI to original data">
+				description = <"Link to the original data about the fitting or insertion.">
+			>
+			["id3"] = <
+				text = <"Status">
+				description = <"Assertion about the fitting or implanting of devices, as at the date 'Last updated'.">
+			>
+			["id8"] = <
+				text = <"Device name">
+				description = <"Identification of the specific device, by name.">
+			>
+			["id9"] = <
+				text = <"Start date">
+				description = <"Date of fitting or implant of the device.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/104972-5>
+			["id13"] = <http://loinc.org/39111-0>
+			["id14"] = <http://loinc.org/72369-2>
+			["id21"] = <http://loinc.org/67715-3>
+			["id8"] = <http://loinc.org/74720-4>
+			["id9"] = <http://loinc.org/106197-7>
+			["id10"] = <http://loinc.org/106180-3>
+			["id15"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id16"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id18"] = <http://loinc.org/106177-9>
+			["id20"] = <http://loinc.org/104962-6>
+			["id23"] = <http://loinc.org/104971-7>
+			["id24"] = <http://loinc.org/104985-7>
+			["id3"] = <http://loinc.org/104959-2>
+			["id22"] = <http://loinc.org/104973-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at3", "at4", "at5">
+		>
+	>
+

@@ -1,0 +1,447 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=dff36025-516e-41da-91b5-eb6daa63d083)
+	s2-EHR-Node.occupation_record.v1.1.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2010-12-17">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.occupation_record.v1.1.0, copyright 2010 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.occupation_record.v1.1.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about a single job or role carried out by an individual during a specified period of time.">
+			use = <"Use to record details about a single job or role carried out by an individual during a specified period of time. 
+            
+            The scope of this archetype is inclusive of all occupations or activities undertaken by an individual. For example: a paid job or employment; unpaid work of any type such as a volunteer position; or roles such as being retired or a student. 
+            
+            Multiple instances of this archetype captured over time will result in the aggregation of a history of past and present jobs and/or roles.
+            
+            An active, or current occupation may be implied from a 'Date commenced' but no 'Date ceased'. 
+            
+            An individual may carry out many simultaneous occupations, each of which may be paid or unpaid. Each occupation should be recorded in a separate instance of this archetype.
+            
+            If occupation attributes change significantly, such as a change of role/title or number of hours, then this should be recorded as a separate instance of this archetype.
+            
+            This archetype has been specifically designed to be used in the 'Occupation episode' SLOT within the EVALUATION.occupation_summary archetype, but can also be used within any other ENTRY or Node archetypes, where clinically appropriate.
+            
+            There may be some apparent or real overlap between the data Nodes in this archetype and occupation/employment details that may be stored as demographic details in clinical or administrative systems. These data Nodes have been designed specifically to support clinical purposes including generation of a medical certificate to a current employer.">
+			keywords = <"employment", "employer", "job", "occupation", "work", "profession", "unemployed", "employee", "unemployment", "studying", "employed", "student", "sector", "profession", "volunteer", "vocation", "trade", "worker", "volunteer", "position">
+			misuse = <"Not to be used to record temporary changes or episodes within a single occupation record, such as being on leave. This is out of scope for this archetype and should be part of an employer's human relations system.
+            
+            Not to be used for detailed descriptions of health risks or exposure to hazardous substances in the workplace. Use the archetypes EVALUATION.health_risk or EVALUATION.exposure for this purpose.
+            
+            Not to be used to record information about sources of income or income details for the individual. Use the EVALUATION.income_summary archetype for this purpose.
+            
+            Not to be used to record information about the occupation of an individual at a specific point in time (for example, on June 16, 2014) or during a relative interval of time (for example 'in the past 30 days'. Use an appropriate OBSERVATION archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Morten Aas, Diakonhjemmet Sykehus, Norway", "Tomas Alme, DIPS ASA, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Ivar Berge, Oslo Universitetssykehus, Norway", "Anita Bjørnnes, Helse Bergen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Angela Crovetti, CDC/NIOSH, United States", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Jayne Donaldson, University of Stirling, United Kingdom", "Bjørg Eli Hollund, helse-bergen, Norway", "Stig Erik Hegrestad, Helse Førde, Norway", "Samuel Frade, Marand, Portugal", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sergio Freire, State University of Rio de Janeiro, Brazil", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anne Gunn Haugland, Helse Bergen HF, Norway", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Jørn Henrik Vold, Helse Bergen, Avdeling for rusmedisin, Norway", "Anca Heyd, DIPS ASA, Norway", "Teresa Highway, Alberta Health Services, Canada", "Annette Hole Sjøborg, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Kaja Irgens-Hansen, Yrkesmedisinsk avdeling, Haukeland universitetssykehus, Norway", "Susanna Jönsson, Landstinget i Värmland, Sweden", "Tom K. Grimsrud, Kreftregisteret, Norway", "Tone Klund, DIPS AS, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Ron Krawec, Alberta Health Services, Canada", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Pedro Leuschner, Centro Hospitalar do Porto, Portugal", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Rose Mari Eikås, Helse Bergen, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "John Meredith, NHS Wales Informatics Service, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Erik Nissen, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Martin Paulson, Sykehuset i Vestfold, Norway", "Georg Reinhardt, Helse Fonna, Norway", "Tanja Riise, Nasjonal IKT HF, Norway", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Niclas Skyttberg, Karolinska Institutet, Sweden", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Andreas Sundstrom, Capio S:t Gorans Hospital, Sweden", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstittutet, Norway", "Susanne Trønnes, Norway", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Occupation record
+		items matches {
+			Node[id6] occurrences matches {0..1} matches {	-- Job title/role
+				value matches {
+					Text[id21] 
+				}
+			}
+			use_archetype Node[id5, s2-EHR-Node.organization.v1] 
+			Node[id17] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id22] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Date commenced
+				value matches {
+					Date_time_value[id23] 
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Paid employment status
+				value matches {
+					Text[id24] 
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Full time equivalent
+				value matches {
+					Ratio[id25] matches {
+						numerator matches {|>=0.0|}
+						type matches {2, 2}
+					}
+					Coded_text[id26] matches {
+						term matches {
+							Terminology_term[id32] matches {
+								concept matches {[ac1]}		-- Full time equivalent (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Time allocated
+				value matches {
+					Quantity[id33] matches {	-- Time allocated (h/d)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id35] matches {
+								term matches {
+									Terminology_term[id34] matches {
+										concept matches {[at22]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+					Quantity[id36] matches {	-- Time allocated (h/wk)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id38] matches {
+								term matches {
+									Terminology_term[id37] matches {
+										concept matches {[at23]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+					Quantity[id39] matches {	-- Time allocated (h/mo)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id41] matches {
+								term matches {
+									Terminology_term[id40] matches {
+										concept matches {[at24]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+					Quantity[id42] matches {	-- Time allocated (h/a)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id44] matches {
+								term matches {
+									Terminology_term[id43] matches {
+										concept matches {[at25]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+					Quantity[id45] matches {	-- Time allocated (d/wk)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id47] matches {
+								term matches {
+									Terminology_term[id46] matches {
+										concept matches {[at26]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+					Quantity[id48] matches {	-- Time allocated (d/mo)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id50] matches {
+								term matches {
+									Terminology_term[id49] matches {
+										concept matches {[at27]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+					Quantity[id51] matches {	-- Time allocated (wk/mo)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id53] matches {
+								term matches {
+									Terminology_term[id52] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+					Quantity[id54] matches {	-- Time allocated (d/a)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id56] matches {
+								term matches {
+									Terminology_term[id55] matches {
+										concept matches {[at29]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+					Quantity[id57] matches {	-- Time allocated (wk/a)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id59] matches {
+								term matches {
+									Terminology_term[id58] matches {
+										concept matches {[at30]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+					Quantity[id60] matches {	-- Time allocated (mo/a)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id62] matches {
+								term matches {
+									Terminology_term[id61] matches {
+										concept matches {[at31]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Industry category
+				value matches {
+					Text[id28] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Job category
+				value matches {
+					Text[id29] 
+				}
+			}
+			allow_archetype Node[id19] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Date ceased
+				value matches {
+					Date_time_value[id30] 
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id31] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Full time equivalent (synthesised)">
+				description = <"The time spent in this job or role relative to full-time. (synthesised)">
+			>
+			["at20"] = <
+				text = <"Full-time">
+				description = <"The individual carries out this occupation for equal to or more than the amount of time that is officially regarded as 'full-time' for the occupation.">
+			>
+			["at21"] = <
+				text = <"Part-time">
+				description = <"The individual carries out this occupation for less than the amount of time that is officially regarded as 'full-time' for the occupation.">
+			>
+			["at22"] = <
+				text = <"h/d">
+				description = <"h/d unit.">
+			>
+			["at23"] = <
+				text = <"h/wk">
+				description = <"h/wk unit.">
+			>
+			["at24"] = <
+				text = <"h/mo">
+				description = <"h/mo unit.">
+			>
+			["at25"] = <
+				text = <"h/a">
+				description = <"h/a unit.">
+			>
+			["at26"] = <
+				text = <"d/wk">
+				description = <"d/wk unit.">
+			>
+			["at27"] = <
+				text = <"d/mo">
+				description = <"d/mo unit.">
+			>
+			["at28"] = <
+				text = <"wk/mo">
+				description = <"wk/mo unit.">
+			>
+			["at29"] = <
+				text = <"d/a">
+				description = <"d/a unit.">
+			>
+			["at30"] = <
+				text = <"wk/a">
+				description = <"wk/a unit.">
+			>
+			["at31"] = <
+				text = <"mo/a">
+				description = <"mo/a unit.">
+			>
+			["id1"] = <
+				text = <"Occupation record">
+				description = <"A single job or role carried out by an individual during a specified period of time.">
+			>
+			["id14"] = <
+				text = <"Full time equivalent">
+				description = <"The time spent in this job or role relative to full-time.">
+			>
+			["id15"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the occupation record not captured in other fields.">
+			>
+			["id17"] = <
+				text = <"Description">
+				description = <"Narrative description about the job or role carried out by the individual.">
+			>
+			["id19"] = <
+				text = <"Additional details">
+				description = <"Further detail about an occupation record.">
+			>
+			["id2"] = <
+				text = <"Paid employment status">
+				description = <"The status of a worker in terms of being paid or unpaid.">
+			>
+			["id20"] = <
+				text = <"Time allocated">
+				description = <"The amount of time an individual is allocated to carry out the job or role per specified period of this occupation record.">
+			>
+			["id3"] = <
+				text = <"Industry category">
+				description = <"The type of industry in which the individual works.">
+			>
+			["id33"] = <
+				text = <"Time allocated (h/d)">
+				description = <"Time allocated (h/d)">
+			>
+			["id36"] = <
+				text = <"Time allocated (h/wk)">
+				description = <"Time allocated (h/wk)">
+			>
+			["id39"] = <
+				text = <"Time allocated (h/mo)">
+				description = <"Time allocated (h/mo)">
+			>
+			["id42"] = <
+				text = <"Time allocated (h/a)">
+				description = <"Time allocated (h/a)">
+			>
+			["id45"] = <
+				text = <"Time allocated (d/wk)">
+				description = <"Time allocated (d/wk)">
+			>
+			["id48"] = <
+				text = <"Time allocated (d/mo)">
+				description = <"Time allocated (d/mo)">
+			>
+			["id5"] = <
+				text = <"Organization details">
+				description = <"Details about the employer or institution.">
+			>
+			["id51"] = <
+				text = <"Time allocated (wk/mo)">
+				description = <"Time allocated (wk/mo)">
+			>
+			["id54"] = <
+				text = <"Time allocated (d/a)">
+				description = <"Time allocated (d/a)">
+			>
+			["id57"] = <
+				text = <"Time allocated (wk/a)">
+				description = <"Time allocated (wk/a)">
+			>
+			["id6"] = <
+				text = <"Job title/role">
+				description = <"The main job title or the role of the individual.">
+			>
+			["id60"] = <
+				text = <"Time allocated (mo/a)">
+				description = <"Time allocated (mo/a)">
+			>
+			["id7"] = <
+				text = <"Job category">
+				description = <"The type of job undertaken by the individual.">
+			>
+			["id8"] = <
+				text = <"Date commenced">
+				description = <"The date when an individual commenced the job or role.">
+			>
+			["id9"] = <
+				text = <"Date ceased">
+				description = <"The date when an individual ceased working in a job or role.">
+			>
+		>
+	>
+	term_bindings = <
+		["ucum"] = <
+			["at22"] = <http://ucum.org/id/h%2Fd>
+			["at23"] = <http://ucum.org/id/h%2Fwk>
+			["at24"] = <http://ucum.org/id/h%2Fmo>
+			["at25"] = <http://ucum.org/id/h%2Fa>
+			["at26"] = <http://ucum.org/id/d%2Fwk>
+			["at27"] = <http://ucum.org/id/d%2Fmo>
+			["at28"] = <http://ucum.org/id/wk%2Fmo>
+			["at29"] = <http://ucum.org/id/d%2Fa>
+			["at30"] = <http://ucum.org/id/wk%2Fa>
+			["at31"] = <http://ucum.org/id/mo%2Fa>
+		>
+		["snomed"] = <
+			["at22"] = <http://snomed.info/id/229788003>
+			["at23"] = <http://snomed.info/id/229791003>
+			["at26"] = <http://snomed.info/id/229784001>
+			["at27"] = <http://snomed.info/id/229785000>
+			["at28"] = <http://snomed.info/id/224915000>
+			["at29"] = <http://snomed.info/id/229786004>
+			["at30"] = <http://snomed.info/id/224916004>
+		>
+		["loinc"] = <
+			["id2"] = <http://loinc.org/67875-5>
+			["id6"] = <http://loinc.org/71591-2>
+			["id15"] = <http://loinc.org/106173-8>
+			["id17"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at20", "at21">
+		>
+	>
+

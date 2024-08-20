@@ -1,0 +1,148 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fe409117-e9b4-4b6f-9033-8652596694c8)
+	s2-EHR-Direct_observation.avpu.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2013-02-07">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.avpu.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.avpu.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record an individual's level of consciousness.">
+			use = <"Use to record a quick and simple assessment of an individual's level of consciousness, especially in an emergency situation.">
+			keywords = <"avpu", "alert", "voice", "pain", "unresponsive", "awake", "speech", "pain", "unconscious", "voice", "consciousness", "verbal", "verbal response", "semicomatose", "conscious", "level of consciousness", "comatose">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Magnus Alvestad, Helse Bergen HF, Norway", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Merete Eide, Mottaksklinikken, Helse Bergen HF, Norway", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Erling Are Hole, Helse Bergen, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Hallvard Lærum, Oslo Universitetssykehus HF, Norway", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Mette Monsen, Helse Bergen HF, Norway", "Nils Thomas Songstad, UNN HF, BUK, Barneavdelingen., Norway", "Micaela Thierley, Helse Bergen, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Nils Widnes, Helse-Bergen, Norway", "Ole Øyen, Oslo University Hospital, Norway">
+
+definition
+	Direct_observation[id1] matches {	-- AVPU
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Observation
+				value matches {
+					Coded_text[id16] matches {
+						term matches {
+							Terminology_term[id20] matches {
+								concept matches {[ac1]}		-- Observation (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id17] 
+				}
+			}
+		}
+		state matches {
+			Node[id15] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id18] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id11] occurrences matches {0..1} matches {	-- Pain stimulus
+				value matches {
+					Text[id19] 
+				}
+			}
+			allow_archetype Node[id12] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Observation (synthesised)">
+				description = <"The observation of the patient's level of consciousness. (synthesised)">
+			>
+			["at5"] = <
+				text = <"Alert">
+				description = <"Eyes open spontaneously, oriented speech, obeys commands.">
+			>
+			["at6"] = <
+				text = <"Voice">
+				description = <"Any verbal, motor or eye response to a voice stimulus.">
+			>
+			["at7"] = <
+				text = <"Pain">
+				description = <"Any verbal, motor or eye response to a pain stimulus, such as pressing the nail root, but not to voice stimulus.">
+			>
+			["at8"] = <
+				text = <"Unresponsive">
+				description = <"No response to voice or pain stimuli.">
+			>
+			["id1"] = <
+				text = <"AVPU">
+				description = <"Simple scale used as part of an assessment to measure and record an individual's level of consciousness. AVPU is an acronym for 'Alert', 'Voice', 'Pain', 'Unresponsive'.">
+			>
+			["id11"] = <
+				text = <"Pain stimulus">
+				description = <"Description of the type of pain stimulus used to elicit the observation.">
+			>
+			["id12"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id13"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the observation, not captured in other fields.">
+			>
+			["id15"] = <
+				text = <"Confounding factors">
+				description = <"Narrative description of any issues or factors that may impact on the observation.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Observation">
+				description = <"The observation of the patient's level of consciousness.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id13"] = <http://loinc.org/106173-8>
+			["id15"] = <http://loinc.org/106176-1>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6", "at7", "at8">
+		>
+	>
+

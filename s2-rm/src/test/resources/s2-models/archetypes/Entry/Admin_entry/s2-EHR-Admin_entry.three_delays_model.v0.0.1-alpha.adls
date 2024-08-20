@@ -1,0 +1,176 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=894842a5-9bcb-40bb-bb53-068521409f32)
+    s2-EHR-Admin_entry.three_delays_model.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-06-22">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ADMIN_ENTRY.three_delays_model.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-ADMIN_ENTRY.three_delays_model.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record information about identified delays in seeking, reaching or receiving healthcare using the \\\"Three Delays\\\" framework.">
+            use = <"Use to record information about identified delays in seeking, reaching or receiving healthcare using the \\\"Three Delays\\\" framework.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Admin_entry[id1] matches {    -- Three Delays Model (3DM)
+        data matches {
+            Node[id6] occurrences matches {0..1} matches {    -- Delay category
+                value matches {
+                    Coded_text[id25] matches {
+                        term matches {
+                            Terminology_term[id32] matches {
+                                concept matches {[ac1]}    -- Delay category (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id26]
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Delay presence?
+                value matches {
+                    Coded_text[id27] matches {
+                        term matches {
+                            Terminology_term[id33] matches {
+                                concept matches {[ac2]}    -- Delay presence? (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            use_archetype Node[id13, s2-EHR-Node.delay_details.v0]    -- Delay details
+            Node[id9] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id28]
+                }
+            }
+            use_archetype Node[id23, s2-EHR-Node.person.v1] occurrences matches {0..1}     -- Solution responsibility
+            Node[id24] occurrences matches {0..1} matches {    -- Solution timeline
+                value matches {
+                    Date_time_value[id29]
+                    Duration_value[id30] matches {
+                        magnitude matches {|>=PT0S|}
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id31]
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at14"] = <http://snomed.info/id/373066001>
+            ["at15"] = <http://snomed.info/id/373067005>
+            ["at18"] = <http://snomed.info/id/261665006>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at19", "at20", "at21">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at14", "at15", "at18">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Delay category (synthesised)">
+                description = <"The type of delay. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Delay presence? (synthesised)">
+                description = <"Was the delay recognised as present, relevant to the identified 'Delay category'? (synthesised)">
+            >
+            ["at14"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at18"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"Seeking care">
+                description = <"Deciding to seek additional care">
+            >
+            ["at20"] = <
+                text = <"Reaching care">
+                description = <"Reaching an appropriate health facility">
+            >
+            ["at21"] = <
+                text = <"Receiving care">
+                description = <"Receiving appropriate care from the health facility">
+            >
+            ["id1"] = <
+                text = <"Three Delays Model (3DM)">
+                description = <"A framework to identify factors that lead to delays or problems in the provision of healthcare and poor outcomes.">
+            >
+            ["id10"] = <
+                text = <"Comment">
+                description = <"Narrative description about the delay category, not captured in other fields.">
+            >
+            ["id13"] = <
+                text = <"Delay details">
+                description = <"Additional details about subcategories of delay or specific delays.">
+            >
+            ["id14"] = <
+                text = <"Delay presence?">
+                description = <"Was the delay recognised as present, relevant to the identified 'Delay category'?">
+            >
+            ["id23"] = <
+                text = <"Solution responsibility">
+                description = <"The name of the person or organization assigned responsibility to solve or mitigate the identified delay category.">
+            >
+            ["id24"] = <
+                text = <"Solution timeline">
+                description = <"The due date or proposed timeframe for resolution or mitigation of the delay category.">
+            >
+            ["id6"] = <
+                text = <"Delay category">
+                description = <"The type of delay.">
+            >
+            ["id9"] = <
+                text = <"Description">
+                description = <"Narrative description about the delay category.">
+            >
+        >
+    >
+    

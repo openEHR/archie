@@ -1,0 +1,515 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b8e52eed-2534-48d9-a206-6d06c223321a)
+    s2-EHR-Score.air_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Dennis Forslund, Cambio Healthcare Systems, <models@cambiocds.com>, 2016-07-19">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.air_score.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.air_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To assist the diagnosis and prediction of severity of suspected acute appendicitis.">
+            keywords = <"AIR Score", "appendicitis inflammatory response score", "appendicitis", "surgery">
+            use = <"Use to assist the diagnosis and prediction of severity of suspected acute appendicitis.
+            
+            AIR is an acronym for Appendicitis Inflammatory Response and consists of seven components, each contributing points to the total score generating an estimated probability as well as a recommendation based on the risk level; 
+            - Vomiting 0-1
+            - Pain in right inferior fossa 0-1
+            - Rebound tenderness or muscular defense 0-3
+            - Body temperature ≥38.5 0-1
+            - Neutrophils 0-2
+            - White blood cell count 0-2
+            - CRP 0-2
+            
+            The tool has a maximum score of 12 points, and the result is associated with one of three categories estimating probability along with a recommendation on appropriate action;
+            Sum 0-4 - low probability. Consider outpatient follow-up if unaltered general condition.
+            Sum 5-8 - indeterminate group. Consider in-hospital active observation with rescoring and/or further examination in accordance with local tradition.
+            Sum 9-12 - high probability. Consider surgical exploration.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Appendicitis Inflammatory Response (AIR) Score 
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Vomiting
+                value matches {
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at8]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at9]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Pain in right inferior fossa
+                value matches {
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at10]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id57] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id59] matches {
+                                term matches {
+                                    Terminology_term[id58] matches {
+                                        concept matches {[at11]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Rebound tenderness or muscular defense
+                value matches {
+                    Coded_ordinal[id60] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id62] matches {
+                                term matches {
+                                    Terminology_term[id61] matches {
+                                        concept matches {[at12]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id63] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id65] matches {
+                                term matches {
+                                    Terminology_term[id64] matches {
+                                        concept matches {[at13]}    -- Light
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id66] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id68] matches {
+                                term matches {
+                                    Terminology_term[id67] matches {
+                                        concept matches {[at14]}    -- Medium
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id69] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id71] matches {
+                                term matches {
+                                    Terminology_term[id70] matches {
+                                        concept matches {[at15]}    -- Strong
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Body temperature ≥38.5 C
+                value matches {
+                    Coded_ordinal[id72] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id74] matches {
+                                term matches {
+                                    Terminology_term[id73] matches {
+                                        concept matches {[at16]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id75] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id77] matches {
+                                term matches {
+                                    Terminology_term[id76] matches {
+                                        concept matches {[at17]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Neutrophils, %
+                value matches {
+                    Coded_ordinal[id78] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id80] matches {
+                                term matches {
+                                    Terminology_term[id79] matches {
+                                        concept matches {[at28]}    -- <70%
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id81] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id83] matches {
+                                term matches {
+                                    Terminology_term[id82] matches {
+                                        concept matches {[at29]}    -- 70-84%
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id84] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id86] matches {
+                                term matches {
+                                    Terminology_term[id85] matches {
+                                        concept matches {[at30]}    -- ≥85%
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id27] occurrences matches {0..1} matches {    -- WBC count, x10^9/L
+                value matches {
+                    Coded_ordinal[id87] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id89] matches {
+                                term matches {
+                                    Terminology_term[id88] matches {
+                                        concept matches {[at31]}    -- <10
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id90] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id92] matches {
+                                term matches {
+                                    Terminology_term[id91] matches {
+                                        concept matches {[at32]}    -- 10-14,9
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id93] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id95] matches {
+                                term matches {
+                                    Terminology_term[id94] matches {
+                                        concept matches {[at33]}    -- ≥15
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id28] occurrences matches {0..1} matches {    -- CRP level, mg/L
+                value matches {
+                    Coded_ordinal[id96] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id98] matches {
+                                term matches {
+                                    Terminology_term[id97] matches {
+                                        concept matches {[at34]}    -- <10
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id99] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id101] matches {
+                                term matches {
+                                    Terminology_term[id100] matches {
+                                        concept matches {[at35]}    -- 10-49
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id102] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id104] matches {
+                                term matches {
+                                    Terminology_term[id103] matches {
+                                        concept matches {[at36]}    -- ≥50
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id22] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id47] matches {
+                        magnitude matches {|0..12|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id39] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at8", "at9">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at10", "at11">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at12", "at13", "at14", "at15">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at16", "at17">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at28", "at29", "at30">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at31", "at32", "at33">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at34", "at35", "at36">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Vomiting (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Pain in right inferior fossa (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Rebound tenderness or muscular defense (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Body temperature ≥38.5 C (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Neutrophils, % (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"WBC count, x10^9/L (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"CRP level, mg/L (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at10"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at11"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"None">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Light">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Medium">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Strong">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"<70%">
+                description = <"*">
+            >
+            ["at29"] = <
+                text = <"70-84%">
+                description = <"*">
+            >
+            ["at30"] = <
+                text = <"≥85%">
+                description = <"*">
+            >
+            ["at31"] = <
+                text = <"<10">
+                description = <"*">
+            >
+            ["at32"] = <
+                text = <"10-14,9">
+                description = <"*">
+            >
+            ["at33"] = <
+                text = <"≥15">
+                description = <"*">
+            >
+            ["at34"] = <
+                text = <"<10">
+                description = <"*">
+            >
+            ["at35"] = <
+                text = <"10-49">
+                description = <"*">
+            >
+            ["at36"] = <
+                text = <"≥50">
+                description = <"*">
+            >
+            ["at8"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at9"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Appendicitis Inflammatory Response (AIR) Score ">
+                description = <"Tool to assist the diagnosis and prediction of severity of suspected acute appendicitis.">
+            >
+            ["id22"] = <
+                text = <"Total score">
+                description = <"The sum of each ordinal score recorded for each of the seven component responses.">
+            >
+            ["id26"] = <
+                text = <"Neutrophils, %">
+                description = <"*">
+            >
+            ["id27"] = <
+                text = <"WBC count, x10^9/L">
+                description = <"*">
+            >
+            ["id28"] = <
+                text = <"CRP level, mg/L">
+                description = <"*">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"*">
+            >
+            ["id39"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id5"] = <
+                text = <"Vomiting">
+                description = <"*">
+            >
+            ["id6"] = <
+                text = <"Pain in right inferior fossa">
+                description = <"*">
+            >
+            ["id7"] = <
+                text = <"Rebound tenderness or muscular defense">
+                description = <"*">
+            >
+            ["id8"] = <
+                text = <"Body temperature ≥38.5 C">
+                description = <"*">
+            >
+        >
+    >
+    

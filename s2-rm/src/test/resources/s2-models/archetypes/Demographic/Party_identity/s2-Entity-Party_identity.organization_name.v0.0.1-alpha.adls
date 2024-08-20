@@ -1,0 +1,124 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=67d3e06f-87bf-4395-9d4b-aec67fd1b7fe)
+	s2-Entity-Party_identity.organization_name.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-22">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-PARTY_IDENTITY.organisation_name.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-PARTY_IDENTITY.organisation_name.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Representation of an organization name.">
+			use = <"Used in demographic services to represent an organization name.">
+			keywords = <"demographic service", "organisation name">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Sebastian Garde, Ocean Informatics, Germany (Editor)", "Omer Hotomaroglu, Turkey (Editor)", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+
+definition
+	Party_identity[id1] matches {	-- Organization name
+		name matches {"Organisational unit/section/division name", "Service location name", "Business name", "Locally used name", "Abbreviated name", "Enterprise name", "Other", "Unknown"}
+		description matches {
+			Node[id11] occurrences matches {1} matches {	-- Name
+				value matches {
+					Text[id15] 
+				}
+			}
+			Node[id12] occurrences matches {1} matches {	-- Identifier
+				value matches {
+					Text[id16] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Organization name (synthesised)">
+				description = <"An organization name. (synthesised)">
+			>
+			["at20"] = <
+				text = <"Organizational unit/section/division name">
+				description = <"Used where a business unit, section, or division within an organization mat have its own separate identity.">
+			>
+			["at21"] = <
+				text = <"Service location name">
+				description = <"Used where the service location name is an important part of the organization name and is used for identification purposes, e.g. Mobile immunization Unit at Bankstown.">
+			>
+			["at22"] = <
+				text = <"Business name">
+				description = <"Business name used only for trading purposes.">
+			>
+			["at23"] = <
+				text = <"Locally used name">
+				description = <"Used for local names, e.g. where a medical practice is known by a name that is different from the company registration name or business name.">
+			>
+			["at24"] = <
+				text = <"Abbreviated name">
+				description = <"A short name or an abbreviated name by which the organization is known, e.g., HIC.">
+			>
+			["at25"] = <
+				text = <"Enterprise name">
+				description = <"Generally the complete organization name should be used to avoid any ambiguity in identification. This should usually be the same as the company registration name.">
+			>
+			["at26"] = <
+				text = <"Other">
+				description = <"Used when the organization name does not fit into any one of the categories listed above.">
+			>
+			["at27"] = <
+				text = <"Unknown">
+				description = <"Used when the organization name type is unknown.">
+			>
+			["id1"] = <
+				text = <"Organization name">
+				description = <"An organization name.">
+			>
+			["id11"] = <
+				text = <"Name">
+				description = <"The name by which an organization is known or called.">
+			>
+			["id12"] = <
+				text = <"Identifier">
+				description = <"The unique identifier of this name for this organization.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/76469-6>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at20", "at21", "at22", "at23", "at24", "at25", "at26", "at27">
+		>
+	>
+

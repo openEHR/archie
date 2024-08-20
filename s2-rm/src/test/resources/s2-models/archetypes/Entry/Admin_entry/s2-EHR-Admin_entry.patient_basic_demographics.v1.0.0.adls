@@ -1,0 +1,155 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Admin_entry.patient_basic_demographics.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Graphite Health">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+		["email"] = <"models@s2.org">
+		["date"] = <"$today (date is disabled during testing)">
+	>
+	custodian_organisation = <"S2 Health <http://graphitehealth.io>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record basic demographics of a patient in admission or similar situation.">
+			use = <"Use at admission, clinic new patient situation etc.">
+		>
+	>
+
+definition
+	Admin_entry[id1] matches {	-- Patient basic demographics
+		data matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Name
+				value matches {
+					Text[id12] 	-- Date of birth
+				}
+				items matches {
+					use_archetype Node[id3, s2-EHR-Node.structured_name.v1] 
+				}
+			}
+			Node[id12] matches {	-- Date of birth
+				value matches {
+					Date_value[id79] matches {
+						magnitude matches {yyyy-??-??}
+					}
+				}
+			}
+			Node[id4] matches {	-- Identifiers
+				items matches {
+					Node[id10] matches {	-- Identifier
+						value matches {
+							Rwe_id_ref[id15] 
+						}
+					}
+				}
+			}
+			Node[id5] matches {	-- Sex
+				value matches {
+					Coded_text[id15] matches {
+						term matches {
+							Terminology_term[id25] matches {
+								concept matches {[ac1]}		-- Biological sex
+							}
+						}
+					}
+				}
+			}
+			Node[id9] matches {	-- Administrative gender
+				value matches {
+					Coded_text[id19] matches {
+						term matches {
+							Terminology_term[id29] matches {
+								concept matches {[ac2]}		-- Administrative gender
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id6, s2-EHR-Node.address.v1] 
+			use_archetype Node[id7, s2-EHR-Node.electronic_communication.v1] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Patient basic demographics">
+				description = <"Patient basic demographics">
+			>
+			["id2"] = <
+				text = <"Name">
+				description = <"The unstructured name for the individual.">
+			>
+			["id3"] = <
+				text = <"Structured name">
+				description = <"Structured name.">
+			>
+			["id5"] = <
+				text = <"Sex">
+				description = <"Biological sex">
+			>
+			["id9"] = <
+				text = <"Administrative gender">
+				description = <"Patient-provided gender">
+			>
+			["id6"] = <
+				text = <"Physical address">
+				description = <"Physical address for the individual.">
+			>
+			["id7"] = <
+				text = <"Electronic address">
+				description = <"Electronic address for the individual.">
+			>
+			["id4"] = <
+				text = <"Identifiers">
+				description = <"Real world identifiers for the individual.">
+			>
+			["id10"] = <
+				text = <"Identifier">
+				description = <"Identifier associated with the individual.">
+			>
+			["id12"] = <
+				text = <"Date of birth">
+				description = <"Patient date of birth, may be partial.">
+			>
+			["ac1"] = <
+				text = <"Biological sex">
+				description = <"Biological sex of the individual.">
+			>
+			["ac2"] = <
+				text = <"Administrative gender">
+				description = <"Gender identity provided by the patient.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/76435-7>
+			["id6"] = <http://loinc.org/99953-2>
+			["id5"] = <http://loinc.org/46098-0>
+			["id9"] = <http://loinc.org/76691-5>
+			["id12"] = <http://loinc.org/21112-8>
+			["id1"] = <http://loinc.org/52460-3>
+			["id2"] = <http://loinc.org/106188-6>
+			["id3"] = <http://loinc.org/97845-2>
+			["id4"] = <http://loinc.org/106193-6>
+			["id7"] = <http://loinc.org/104902-2>
+		>
+		["s2"] = <
+			["ac1"] = <http://s2health.org/id/s2.Sex>
+			["ac2"] = <http://s2health.org/id/s2.AdministrativeGender>
+		>
+	>
+

@@ -1,0 +1,516 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9ee76d04-ab8a-4871-820f-e50272a64c8a)
+    s2-EHR-Score.child_pugh_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"John Meredith, NHS Wales Informatics Service", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Hildegard McNicoll, freshEHR Clinical Informatics Ltd., <hildi@freshehr.com>, 2017-09-27">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.child_pugh_score.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.child_pugh_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record an assessment of prognosis for chronic liver disease.">
+            keywords = <"Child-Pugh", "liver", "cirrhosis", "score", "Hepatitis C">
+            use = <"Use to record an assessment of prognosis for chronic liver disease.">
+            misuse = <"Not to be used to record the results of various liver function tests or the INR test- use the Laboratory test result family of archetypes for this purpose.
+            
+            Not to be used to record the diagnosis of hepatic encephalopathy - use EVALUATION.problem_diagnosis for this purpose.
+            
+            Not to be used to record the finding of ascites - use the Physical examination family of archetypes for this purpose.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Child-Pugh score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Total bilirubin
+                value matches {
+                    Coded_ordinal[id47] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id49] matches {
+                                term matches {
+                                    Terminology_term[id48] matches {
+                                        concept matches {[at5]}    -- Less than 34
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id50] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id52] matches {
+                                term matches {
+                                    Terminology_term[id51] matches {
+                                        concept matches {[at6]}    -- 34 to 50
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id53] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id55] matches {
+                                term matches {
+                                    Terminology_term[id54] matches {
+                                        concept matches {[at7]}    -- Greater than 50
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Serum albumin
+                value matches {
+                    Coded_ordinal[id56] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id58] matches {
+                                term matches {
+                                    Terminology_term[id57] matches {
+                                        concept matches {[at9]}    -- Greater than 35
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id59] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id61] matches {
+                                term matches {
+                                    Terminology_term[id60] matches {
+                                        concept matches {[at10]}    -- 28 to 35
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id62] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id64] matches {
+                                term matches {
+                                    Terminology_term[id63] matches {
+                                        concept matches {[at11]}    -- Less than 28
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- INR
+                value matches {
+                    Coded_ordinal[id65] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id67] matches {
+                                term matches {
+                                    Terminology_term[id66] matches {
+                                        concept matches {[at13]}    -- Less than 1.7
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id68] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id70] matches {
+                                term matches {
+                                    Terminology_term[id69] matches {
+                                        concept matches {[at14]}    -- 1.7 to 2.3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id71] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id73] matches {
+                                term matches {
+                                    Terminology_term[id72] matches {
+                                        concept matches {[at15]}    -- Greater than 2.3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Ascites
+                value matches {
+                    Coded_ordinal[id74] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id76] matches {
+                                term matches {
+                                    Terminology_term[id75] matches {
+                                        concept matches {[at17]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id77] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id79] matches {
+                                term matches {
+                                    Terminology_term[id78] matches {
+                                        concept matches {[at18]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id80] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id82] matches {
+                                term matches {
+                                    Terminology_term[id81] matches {
+                                        concept matches {[at19]}    -- Moderate to severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Hepatic encephalopathy
+                value matches {
+                    Coded_ordinal[id83] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id85] matches {
+                                term matches {
+                                    Terminology_term[id84] matches {
+                                        concept matches {[at21]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id86] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id88] matches {
+                                term matches {
+                                    Terminology_term[id87] matches {
+                                        concept matches {[at22]}    -- Grade I to II or suppressed with medication
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id89] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id91] matches {
+                                term matches {
+                                    Terminology_term[id90] matches {
+                                        concept matches {[at23]}    -- Grade III to IV or refractory
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id25] occurrences matches {0..1} matches {    -- Adjusted bilirubin
+                value matches {
+                    Coded_ordinal[id92] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id94] matches {
+                                term matches {
+                                    Terminology_term[id93] matches {
+                                        concept matches {[at25]}    -- Less than 68
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id95] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id97] matches {
+                                term matches {
+                                    Terminology_term[id96] matches {
+                                        concept matches {[at26]}    -- 68 to 170
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id98] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id100] matches {
+                                term matches {
+                                    Terminology_term[id99] matches {
+                                        concept matches {[at27]}    -- Greater than 170
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id45] matches {
+                        magnitude matches {|5..15|}
+                    }
+                }
+            }
+            Node[id30] occurrences matches {0..1} matches {    -- Grade
+                value matches {
+                    Coded_text[id46] matches {
+                        term matches {
+                            Terminology_term[id101] matches {
+                                concept matches {[ac1]}    -- Grade (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id38] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["id29"] = <http://snomed.info/id/710066005>
+            ["at30"] = <http://snomed.info/id/710065009>
+            ["at31"] = <http://snomed.info/id/710066005>
+            ["at32"] = <http://snomed.info/id/710067001>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at30", "at31", "at32">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at5", "at6", "at7">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at9", "at10", "at11">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at13", "at14", "at15">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at17", "at18", "at19">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at21", "at22", "at23">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at25", "at26", "at27">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Grade (synthesised)">
+                description = <"Grading, based on total score. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Total bilirubin (synthesised)">
+                description = <"Score for total bilirubin in micromole per litre. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Serum albumin (synthesised)">
+                description = <"Score for serum albumin in grams per litre. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"INR (synthesised)">
+                description = <"Score for INR. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Ascites (synthesised)">
+                description = <"Score for presence of ascites. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Hepatic encephalopathy (synthesised)">
+                description = <"Score for presence of hepatic encephalopathy. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Adjusted bilirubin (synthesised)">
+                description = <"Score for total bilirubin if the patient has primary biliary cirrhosis or sclerosing cholangitis. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"28 to 35">
+                description = <"Serum albumin is between 28 and 35.">
+            >
+            ["at11"] = <
+                text = <"Less than 28">
+                description = <"Serum albumin is less than 28.">
+            >
+            ["at13"] = <
+                text = <"Less than 1.7">
+                description = <"INR is less than 1.7.">
+            >
+            ["at14"] = <
+                text = <"1.7 to 2.3">
+                description = <"INR is between 1.7 and 2.3.">
+            >
+            ["at15"] = <
+                text = <"Greater than 2.3">
+                description = <"INR is greater than 2.3.">
+            >
+            ["at17"] = <
+                text = <"None">
+                description = <"No ascites is present.">
+            >
+            ["at18"] = <
+                text = <"Mild">
+                description = <"Mild ascites is present.">
+            >
+            ["at19"] = <
+                text = <"Moderate to severe">
+                description = <"Moderate to severe ascites is present.">
+            >
+            ["at21"] = <
+                text = <"None">
+                description = <"No hepatic encephalopathy is present.">
+            >
+            ["at22"] = <
+                text = <"Grade I to II or suppressed with medication">
+                description = <"Grade I or Grade II hepatic encephalopathy is present or hepatic encephalopathy is suppressed with medication.">
+            >
+            ["at23"] = <
+                text = <"Grade III to IV or refractory">
+                description = <"Grade III or Grade IV hepatic encephalopathy is present or hepatic encephalopathy is refractory.">
+            >
+            ["at25"] = <
+                text = <"Less than 68">
+                description = <"Total bilirubin is less than 68.">
+            >
+            ["at26"] = <
+                text = <"68 to 170">
+                description = <"Total bilirubin is between 68 and 170.">
+            >
+            ["at27"] = <
+                text = <"Greater than 170">
+                description = <"Total bilirubin is greater than 170.">
+            >
+            ["at30"] = <
+                text = <"Class A 5 to 6 points">
+                description = <"The Child-Pugh grade is Class A with a total score of 5 to 6 points.">
+            >
+            ["at31"] = <
+                text = <"Class B 7 to 9 points">
+                description = <"The Child-Pugh grade is Class B with a total score of 7 to 9 points.">
+            >
+            ["at32"] = <
+                text = <"Class C 10 to 15 points">
+                description = <"The Child-Pugh grade is Class C with a total score of 10 to 15 points.">
+            >
+            ["at5"] = <
+                text = <"Less than 34">
+                description = <"Total bilirubin is less than 34.">
+            >
+            ["at6"] = <
+                text = <"34 to 50">
+                description = <"Total bilirubin is between 34 and 50.">
+            >
+            ["at7"] = <
+                text = <"Greater than 50">
+                description = <"Total bilirubin is more than 50.">
+            >
+            ["at9"] = <
+                text = <"Greater than 35">
+                description = <"Serum albumin is greater than 35.">
+            >
+            ["id1"] = <
+                text = <"Child-Pugh score">
+                description = <"Tool used to assess the prognosis of chronic liver disease, mainly cirrhosis.">
+            >
+            ["id13"] = <
+                text = <"INR">
+                description = <"Score for INR.">
+            >
+            ["id17"] = <
+                text = <"Ascites">
+                description = <"Score for presence of ascites.">
+            >
+            ["id21"] = <
+                text = <"Hepatic encephalopathy">
+                description = <"Score for presence of hepatic encephalopathy.">
+            >
+            ["id25"] = <
+                text = <"Adjusted bilirubin">
+                description = <"Score for total bilirubin if the patient has primary biliary cirrhosis or sclerosing cholangitis.">
+            >
+            ["id29"] = <
+                text = <"Total score">
+                description = <"Sum of the individual scores assigned for each of the contributing variables.">
+            >
+            ["id3"] = <
+                text = <"Any Event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id30"] = <
+                text = <"Grade">
+                description = <"Grading, based on total score.">
+            >
+            ["id38"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id5"] = <
+                text = <"Total bilirubin">
+                description = <"Score for total bilirubin in micromole per litre.">
+            >
+            ["id9"] = <
+                text = <"Serum albumin">
+                description = <"Score for serum albumin in grams per litre.">
+            >
+        >
+    >
+    

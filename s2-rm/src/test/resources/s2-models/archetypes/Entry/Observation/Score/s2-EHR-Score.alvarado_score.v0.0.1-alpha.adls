@@ -1,0 +1,484 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9d9dbf81-fb5a-480e-a7c1-88e12def3a36)
+    s2-EHR-Score.alvarado_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Syeeda S Farruque, Cambio Healthcare Systems, <models@cambiocds.com>, 2016-12-28">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.alvarado_score.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.alvarado_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To determine the likelihood of appendicitis based on symptoms, signs and laboratory test results.">
+            keywords = <"acute appendicitis", "appendicitis">
+            use = <"Use to determine the likelihood of appendicitis based on symptoms, signs and laboratory test results.
+            
+            The total score, derived by adding up the individual scores for each of the 8 items ranges from 0 to 10 with score weights allocated thus:
+            
+            +2 points - Right lower quadrant tenderness
+            +1 point - Elevated temperature (>37.3°C or 99.1°F)
+            +1 point - Rebound tenderness
+            +1 point - Migration of pain to the right lower quadrant
+            +1 point - Anorexia
+            +1 point - Nausea or vomiting
+            +2 point - Leukocytosis > 10,000
+            +1 point - Leukocyte left shift 
+            
+            - A CT scan is recommended for scores 4-6 
+            - A surgical consultation for scores  ≥ 7. 
+            - For scores  ≤ 3: a CT scan is not needed due to the low probability of appendicitis.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Alvarado score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Right lower quadrant tenderness?
+                value matches {
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id45] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Elevated temperature (>37.3°C or 99.1°F)?
+                value matches {
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at16]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at17]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Rebound tenderness?
+                value matches {
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at18]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id57] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id59] matches {
+                                term matches {
+                                    Terminology_term[id58] matches {
+                                        concept matches {[at19]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Migration of pain to the right lower quadrant?
+                value matches {
+                    Coded_ordinal[id60] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id62] matches {
+                                term matches {
+                                    Terminology_term[id61] matches {
+                                        concept matches {[at20]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id63] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id65] matches {
+                                term matches {
+                                    Terminology_term[id64] matches {
+                                        concept matches {[at21]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Anorexia?
+                value matches {
+                    Coded_ordinal[id66] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id68] matches {
+                                term matches {
+                                    Terminology_term[id67] matches {
+                                        concept matches {[at22]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id69] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id71] matches {
+                                term matches {
+                                    Terminology_term[id70] matches {
+                                        concept matches {[at23]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Nausea or vomiting?
+                value matches {
+                    Coded_ordinal[id72] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id74] matches {
+                                term matches {
+                                    Terminology_term[id73] matches {
+                                        concept matches {[at24]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id75] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id77] matches {
+                                term matches {
+                                    Terminology_term[id76] matches {
+                                        concept matches {[at25]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Leukocytosis > 10,000?
+                value matches {
+                    Coded_ordinal[id78] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id80] matches {
+                                term matches {
+                                    Terminology_term[id79] matches {
+                                        concept matches {[at26]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id81] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id83] matches {
+                                term matches {
+                                    Terminology_term[id82] matches {
+                                        concept matches {[at27]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- Leukocyte left shift
+                value matches {
+                    Coded_ordinal[id84] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id86] matches {
+                                term matches {
+                                    Terminology_term[id85] matches {
+                                        concept matches {[at28]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id87] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id89] matches {
+                                term matches {
+                                    Terminology_term[id88] matches {
+                                        concept matches {[at29]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id41] matches {
+                        magnitude matches {|0..10|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id32] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at14", "at15">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at16", "at17">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at18", "at19">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at20", "at21">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at22", "at23">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at24", "at25">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at26", "at27">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at28", "at29">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Right lower quadrant tenderness? (synthesised)">
+                description = <"Score 2 if positive. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Elevated temperature (>37.3°C or 99.1°F)? (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Rebound tenderness? (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Migration of pain to the right lower quadrant? (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Anorexia? (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Nausea or vomiting? (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Leukocytosis > 10,000? (synthesised)">
+                description = <"Score 2 if positive. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Leukocyte left shift (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["at14"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at22"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at29"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Alvarado score">
+                description = <"Clinical scoring system used to determine the likelihood of appendicitis based on symptoms, signs and laboratory test results.">
+            >
+            ["id10"] = <
+                text = <"Nausea or vomiting?">
+                description = <"Score 1 if positive.">
+            >
+            ["id11"] = <
+                text = <"Leukocytosis > 10,000?">
+                description = <"Score 2 if positive.">
+            >
+            ["id12"] = <
+                text = <"Leukocyte left shift">
+                description = <"Score 1 if positive.">
+            >
+            ["id13"] = <
+                text = <"Total score">
+                description = <"The sum of each ordinal score recorded for each of the eight component responses.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id32"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id5"] = <
+                text = <"Right lower quadrant tenderness?">
+                description = <"Score 2 if positive.">
+            >
+            ["id6"] = <
+                text = <"Elevated temperature (>37.3°C or 99.1°F)?">
+                description = <"Score 1 if positive.">
+            >
+            ["id7"] = <
+                text = <"Rebound tenderness?">
+                description = <"Score 1 if positive.">
+            >
+            ["id8"] = <
+                text = <"Migration of pain to the right lower quadrant?">
+                description = <"Score 1 if positive.">
+            >
+            ["id9"] = <
+                text = <"Anorexia?">
+                description = <"Score 1 if positive.">
+            >
+        >
+    >
+    

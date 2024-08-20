@@ -1,0 +1,209 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=12ad73d1-6a74-4d77-b4ee-5494dd84e60f)
+    s2-Entity-Party_identity.person_name-individual_provider.v0.0.1-alpha
+
+specialize
+    s2-Entity-Party_identity.person_name.v0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Rigoleta Dutra & Sergio Miranda Freire, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-20">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-PARTY_IDENTITY.person_name-individual_provider.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-PARTY_IDENTITY.person_name-individual_provider.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"Representation of a individual healthcare provider name">
+            keywords = <"demographic service", "individual healthcar provider's name">
+            use = <"Used in demographic services to represent the names that an individual healthcare provider is known by">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Party_identity[id1.1] matches {    -- Individual healthcare provider name
+        /details[id2]/items matches {
+            Node[id3] matches {
+                items matches {
+                    Node[id11] matches {
+                        value matches {
+                            Text[id0.6]
+                        }
+                    }
+                    Node[id12] matches {
+                        value matches {
+                            Count[id0.7]
+                        }
+                    }
+                }
+            }
+            Node[id4] occurrences matches {1..*} matches {
+                items matches {
+                    Node[id13] matches {
+                        value matches {
+                            Text[id0.8]
+                        }
+                    }
+                    Node[id14] matches {
+                        value matches {
+                            Count[id0.9]
+                        }
+                    }
+                }
+            }
+            Node[id5] matches {
+                items matches {
+                    Node[id15] matches {
+                        value matches {
+                            Coded_text[id0.10] matches {
+                                term matches {
+                                    Terminology_term[id0.19] matches {
+                                        concept matches {[ac1]}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id16] matches {
+                        value matches {
+                            Count[id0.11]
+                        }
+                    }
+                }
+            }
+            Node[id6] matches {
+                items matches {
+                    Node[id17] matches {
+                        value matches {
+                            Coded_text[id0.12] matches {
+                                term matches {
+                                    Terminology_term[id0.20] matches {
+                                        concept matches {[ac2]}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id18] matches {
+                        value matches {
+                            Count[id0.13]
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {1..*} matches {
+                items matches {
+                    Node[id19] matches {
+                        value matches {
+                            Coded_text[id0.14] matches {
+                                term matches {
+                                    Terminology_term[id0.21] matches {
+                                        concept matches {[ac0.1]}    -- Name usage (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id20] matches {
+                        value matches {
+                            Range<Date_value>[id0.15]
+                        }
+                    }
+                    Node[id21] occurrences matches {0..1} matches {
+                        value matches {
+                            Text[id0.16]
+                        }
+                    }
+                }
+            }
+            Node[id10.1] occurrences matches {0}     -- Conditional Use
+            Node[id0.2] matches {    -- Restricted name usage
+                items matches {
+                    Node[id0.3]     -- Type of restriction
+                    Node[id0.4] matches {    -- Restriction interval
+                        value matches {
+                            Interval[id0.17]
+                        }
+                    }
+                    Node[id0.5] matches {    -- Available provider
+                        value matches {
+                            Text[id0.18]
+                        }
+                    }
+                }
+            }
+        }
+        /details[id2]/items[id8]/items[id22]/value matches {
+            Coded_text[id32.1] matches {
+                term matches {
+                    Terminology_term[id0.22] matches {
+                        concept matches {[ac3]}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at23", "at24", "at25", "at26", "at27", "at28">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac0.1"] = <
+                text = <"Name usage (synthesised)">
+                description = <"A classification that enables differentiation between the usage of names for a person. An individual name may have many name uses (synthesised)">
+            >
+            ["id0.2"] = <
+                text = <"Restricted name usage">
+                description = <"This set of data Nodes apply to a specific name set and are used within computer systems to restrict the way a name is used or displayed in that system">
+            >
+            ["id0.3"] = <
+                text = <"Type of restriction">
+                description = <"An indicator of special conditions or rules that shall be applied to an individual provider name">
+            >
+            ["id0.4"] = <
+                text = <"Restriction interval">
+                description = <"Indicates the period of time where this restriction applies">
+            >
+            ["id0.5"] = <
+                text = <"Available provider">
+                description = <"This field indicates those providers who should be able to see this name and the details assoociated with it">
+            >
+            ["id1.1"] = <
+                text = <"Individual healthcare provider name">
+                description = <"Person name when performing the role of a healthcare provider">
+            >
+            ["id10.1"] = <
+                text = <"Conditional Use">
+                description = <"An indicator of specific conditions or rules that should be applied to a person's name">
+            >
+        >
+    >
+    

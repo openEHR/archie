@@ -1,0 +1,205 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b21a9ffa-82da-48ac-9f75-1ab0e4873c79)
+	s2-EHR-Direct_observation.ecog.v1.0.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Christian Ghan, The Chris O'Brien Lifehouse at RPA, <christian.ghan@lifehouserpa.org.au>, 2012-12-07">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.ecog.v1.0.2, copyright 2012 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.ecog.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the measurement of the functional performance status of a patient with a diagnosis of cancer.">
+			use = <"Used to record the measurement of the functional performance status of a patient with a diagnosis of cancer, to:
+            - assess how a patient's disease is progressing;
+            - assess how the disease affects the daily living abilities of the patient; and 
+            - determine appropriate treatment and prognosis. 
+            
+            The ECOG performance status is in the public domain therefore available for public use. For more information, contact the Eastern Cooperative Oncology Group, Robert Comis M.D., Group Chair - http://www.ecog.org/general/perf_stat.html.">
+			keywords = <"performance", "status", "oncology", "who", "zubrod", "World Health Organization">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Kristin Eik, Kreftregisteret, Norway", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Hilde Hollås, DIPS AS, Norway", "Alfred Honore, Haukeland, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Thomas Kilvær, Universitetssykehuset Nord Norge, Norway", "Siri Laronningen, Kreftregisteret, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Cailin Lowry, Lifehouse, Australia", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Omar Peña-Curiel, TECSalud, Mexico", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Laila Storesund, Haraldsplass diakonale sykehus, Norway", "Nyree Taylor, Ocean Informatics, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- ECOG performance status
+		data cardinality matches {1..*; unordered} matches {
+			Node[id5] matches {	-- ECOG performance status
+				value matches {
+					Coded_ordinal[id17] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id19] matches {
+								term matches {
+									Terminology_term[id18] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id20] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id22] matches {
+								term matches {
+									Terminology_term[id21] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id23] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id25] matches {
+								term matches {
+									Terminology_term[id24] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id26] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id28] matches {
+								term matches {
+									Terminology_term[id27] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id29] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id31] matches {
+								term matches {
+									Terminology_term[id30] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id32] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id34] matches {
+								term matches {
+									Terminology_term[id33] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id16] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id13] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"ECOG performance status (synthesised)">
+				description = <"The functional performance status of a patient with a diagnosis of cancer. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Dead">
+				description = <"Patient has died.">
+			>
+			["at5"] = <
+				text = <"Asymptomatic">
+				description = <"Fully active, able to carry on all pre-disease performance without restriction.">
+			>
+			["at6"] = <
+				text = <"Symptomatic, fully ambulatory">
+				description = <"Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work.">
+			>
+			["at7"] = <
+				text = <"Symptomatic, in bed <50% of the day">
+				description = <"Ambulatory and capable of all selfcare but unable to carry out any work activities; up and about more than 50% of waking hours.">
+			>
+			["at8"] = <
+				text = <"Symptomatic, in bed >50% of the day (but not bedridden)">
+				description = <"Capable of only limited selfcare; confined to bed or chair more than 50% of waking hours.">
+			>
+			["at9"] = <
+				text = <"Bedridden">
+				description = <"Completely disabled; cannot carry on any selfcare; totally confined to bed or chair.">
+			>
+			["id1"] = <
+				text = <"ECOG performance status">
+				description = <"A scale used by clinicians to assess the functional performance status of a patient with a diagnosis of cancer. Also known as the WHO performance status or Zubrod performance status.">
+			>
+			["id13"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id14"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the overall ECOG performance status not captured in other fields.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"ECOG performance status">
+				description = <"The functional performance status of a patient with a diagnosis of cancer.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id14"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6", "at7", "at8", "at9", "at10">
+		>
+	>
+

@@ -1,0 +1,136 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=88ca785f-d51d-4a65-b56c-904af7306336)
+	s2-EHR-Node.notifiable_condition.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, United Kingdom, <ian.mcnicoll@oceaninformatics.com>, 08/12/2009">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.notifiable_condition.v0.0.1-alpha, copyright 08/1 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.notifiable_condition.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details of a notifiable condition as part of a microbiology result.">
+			use = <"">
+			keywords = <"microbiology", "public health">
+			misuse = <"">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Notifiable condition
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Specimen surce
+				value matches {
+					Text[id9] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Status
+				value matches {
+					Coded_text[id10] matches {
+						term matches {
+							Terminology_term[id14] matches {
+								concept matches {[ac1]}		-- Status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Date of notification
+				value matches {
+					Date_time_value[id11] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Notifiable condition
+				value matches {
+					Text[id12] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Record of notifiable condition
+				value matches {
+					Ehr_uri_ref[id13] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Status (synthesised)">
+				description = <"A status of completed means the patient has been associated with the given notifiable condition.
+                A status of aborted means the patient was associated with the notifiable condition in error. (synthesised)">
+			>
+			["at3"] = <
+				text = <"Completed">
+				description = <"Patient correctly associated with notifiable condition.">
+			>
+			["at4"] = <
+				text = <"Aborted">
+				description = <"Patient associated with notifiable condition in error.">
+			>
+			["id1"] = <
+				text = <"Notifiable condition">
+				description = <"To record details of a notifiable condition as part of a microbiology result.">
+			>
+			["id2"] = <
+				text = <"Specimen surce">
+				description = <"Identifies the specimen source of the condition – patient, food, soil,...">
+			>
+			["id3"] = <
+				text = <"Status">
+				description = <"A status of completed means the patient has been associated with the given notifiable condition.
+                A status of aborted means the patient was associated with the notifiable condition in error.">
+			>
+			["id6"] = <
+				text = <"Date of notification">
+				description = <"The data and time that the notification was made.">
+			>
+			["id7"] = <
+				text = <"Notifiable condition">
+				description = <"A description or coded entry for the notifiable condition.">
+			>
+			["id8"] = <
+				text = <"Record of notifiable condition">
+				description = <"A link to the original record identifying the notifiable condition.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/77993-4>
+			["id2"] = <http://loinc.org/31208-2>
+			["id7"] = <http://loinc.org/77993-4>
+			["id3"] = <http://loinc.org/106199-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at3", "at4">
+		>
+	>
+

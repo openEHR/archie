@@ -1,0 +1,484 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=447a2371-a9cf-4335-ad02-6273541d6161)
+	s2-EHR-Node.art_container_details.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-11-30">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.art_container_details.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.art_container_details.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record specific details about the contents of a container stored for the purposes of assisted reproduction treatment.">
+			use = <"Use to record specific details about the cells or tissue products stored in a container for the purposes of assisted reproduction treatment.
+            
+            The container may contain sperm, testicular tissue, ovarian tissue, or one or more oocyte or embryos.">
+			keywords = <"container", "assister reproduction", "sperm", "testicular", "ovarian", "tissue", "oocyte", "zygote", "embryo", "blastocyst">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital", "Liv Laugen, Oslo University Hospital", "Peter Fedorcsak, Oslo University Hospital">
+
+definition
+	Node[id1] matches {	-- ART container details
+		items matches {
+			Node[id2] matches {	-- Product ID
+				value matches {
+					Rwe_id_ref[id67] 
+				}
+			}
+			Node[id27] matches {	-- Product class
+				value matches {
+					Coded_text[id68] matches {
+						term matches {
+							Terminology_term[id89] matches {
+								concept matches {[ac1]}		-- Product class (synthesised)
+							}
+						}
+					}
+					Plain_text[id69] 
+				}
+			}
+			Node[id35] occurrences matches {0..1} matches {	-- Oocyte maturation stage
+				value matches {
+					Coded_text[id70] matches {
+						term matches {
+							Terminology_term[id90] matches {
+								concept matches {[ac2]}		-- Oocyte maturation stage (synthesised)
+							}
+						}
+					}
+					Plain_text[id71] 
+				}
+			}
+			Node[id36] occurrences matches {0..1} matches {	-- Embryo development stage
+				value matches {
+					Coded_text[id72] matches {
+						term matches {
+							Terminology_term[id91] matches {
+								concept matches {[ac3]}		-- Embryo development stage (synthesised)
+							}
+						}
+					}
+					Plain_text[id73] 
+				}
+			}
+			Node[id43] occurrences matches {0..1} matches {	-- Embryo preservation day
+				value matches {
+					Coded_text[id74] matches {
+						term matches {
+							Terminology_term[id92] matches {
+								concept matches {[ac4]}		-- Embryo preservation day (synthesised)
+							}
+						}
+					}
+					Plain_text[id75] 
+				}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Type of preservation
+				value matches {
+					Coded_text[id76] matches {
+						term matches {
+							Terminology_term[id93] matches {
+								concept matches {[ac5]}		-- Type of preservation (synthesised)
+							}
+						}
+					}
+					Plain_text[id77] 
+				}
+			}
+			Node[id38] occurrences matches {0..1} matches {	-- Sperm procurement method
+				value matches {
+					Coded_text[id78] matches {
+						term matches {
+							Terminology_term[id94] matches {
+								concept matches {[ac6]}		-- Sperm procurement method (synthesised)
+							}
+						}
+					}
+					Plain_text[id79] 
+				}
+			}
+			Node[id66] occurrences matches {0..1} matches {	-- Sperm preparation
+				value matches {
+					Coded_text[id80] matches {
+						term matches {
+							Terminology_term[id95] matches {
+								concept matches {[ac7]}		-- Sperm preparation (synthesised)
+							}
+						}
+					}
+					Plain_text[id81] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Date of preservation
+				value matches {
+					Date_time_value[id82] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Preservation protocol ID
+				value matches {
+					Text[id83] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Disposition date
+				value matches {
+					Date_time_value[id84] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Disposition
+				value matches {
+					Plain_text[id85] 
+					Coded_text[id86] matches {
+						term matches {
+							Terminology_term[id96] matches {
+								concept matches {[ac8]}		-- Disposition (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Expiry date
+				value matches {
+					Date_time_value[id87] 
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id88] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Product class (synthesised)">
+				description = <"Class of cell or tissue product stored in the container. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Oocyte maturation stage (synthesised)">
+				description = <"The stage of maturation of the oocyte. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Embryo development stage (synthesised)">
+				description = <"The stage of development of the embryo. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Embryo preservation day (synthesised)">
+				description = <"The number of days following insemination on which the embryo was preserved (calendar days).
+                 (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Type of preservation (synthesised)">
+				description = <"The technique used to preserve the tissue or cells. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Sperm procurement method (synthesised)">
+				description = <"The method used to procure sperm. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Sperm preparation (synthesised)">
+				description = <"Information about the preparation of sperm. (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Disposition (synthesised)">
+				description = <"The reason for disposing the contents of the container. (synthesised)">
+			>
+			["at20"] = <
+				text = <"None">
+				description = <"The contents of the container are not used.">
+			>
+			["at21"] = <
+				text = <"Autologous treatment">
+				description = <"The contents of the container are used for autologous treatment.">
+			>
+			["at22"] = <
+				text = <"Donation to treatment">
+				description = <"The contents of the container are donated to heterologous treatment.">
+			>
+			["at23"] = <
+				text = <"Donation to research">
+				description = <"The contents of the container are donated to research.">
+			>
+			["at24"] = <
+				text = <"Transferred to other biobank">
+				description = <"The container is transferred to an other biobank.">
+			>
+			["at25"] = <
+				text = <"Discarded">
+				description = <"The contents of the container are discarded.">
+			>
+			["at28"] = <
+				text = <"Sperm">
+				description = <"The male gamete.">
+			>
+			["at29"] = <
+				text = <"Testicular tissue">
+				description = <"Fragment of testicular tissue.">
+			>
+			["at30"] = <
+				text = <"Oocyte">
+				description = <"The female gamete.">
+			>
+			["at31"] = <
+				text = <"Ovarian tissue">
+				description = <"Fragment of the ovary.">
+			>
+			["at32"] = <
+				text = <"Zygote">
+				description = <"A single cell resulting from fertilization of a mature oocyte by a spermatozoon and before completion of the first mitotic division.">
+			>
+			["at33"] = <
+				text = <"Embryo">
+				description = <"The biological organism resulting from the development of the zygote, until eight completed weeks after fertilization, equivalent to 10 weeks of gestational age.">
+			>
+			["at38"] = <
+				text = <"Not specified">
+				description = <"No information about the oocyte maturation stage is provided or not applicable.">
+			>
+			["at39"] = <
+				text = <"Immature">
+				description = <"An oocyte at prophase of meiosis I (i.e. an oocyte at the germinal vesicle (GV) stage).">
+			>
+			["at40"] = <
+				text = <"Maturing">
+				description = <"An oocyte that has progressed from prophase I but has not completed telophase I, thus does not exhibit the first polar body.">
+			>
+			["at41"] = <
+				text = <"Mature">
+				description = <"An oocyte at metaphase of meiosis II, exhibiting the first polar body and with the ability to become fertilized.">
+			>
+			["at43"] = <
+				text = <"Not specified">
+				description = <"No information about the embryo preservation day is provided or not applicable.">
+			>
+			["at44"] = <
+				text = <"Day 1">
+				description = <"Embryo preserved on day 1 after insemination.">
+			>
+			["at45"] = <
+				text = <"Day 2">
+				description = <"Embryo preserved on day 2 after insemination.">
+			>
+			["at46"] = <
+				text = <"Day 3">
+				description = <"Embryo preserved on day 3 after insemination.">
+			>
+			["at47"] = <
+				text = <"Day 4">
+				description = <"Embryo preserved on day 4 after insemination.">
+			>
+			["at48"] = <
+				text = <"Day 5">
+				description = <"Embryo preserved on day 5 after insemination.">
+			>
+			["at49"] = <
+				text = <"Day 6">
+				description = <"Embryo preserved on day 6 after insemination.">
+			>
+			["at50"] = <
+				text = <"Day 7">
+				description = <"Embryo preserved on day 7 after insemination.">
+			>
+			["at51"] = <
+				text = <"Not specified">
+				description = <"No information about the embryo development stage is provided or not applicable.">
+			>
+			["at52"] = <
+				text = <"Cleavage stage">
+				description = <"Embryo beginning at the two cell stage and up to, but not including, the morula stage.">
+			>
+			["at53"] = <
+				text = <"Morula stage">
+				description = <"Embryo after completion of compaction, typically 4 days after insemination or ICSI.">
+			>
+			["at54"] = <
+				text = <"Blastocyst stage">
+				description = <"Embryo at the blastocyst stage, containing a fluid filled central cavity, an outer layer of cells and an inner group of cells. Typically occurs at day 5–6 after insemination.">
+			>
+			["at55"] = <
+				text = <"Not specified">
+				description = <"No coded information is provided about the type of preservation.">
+			>
+			["at56"] = <
+				text = <"Vitrification">
+				description = <"Product cryopreserved using a technique that leads to a glass-like solidification.">
+			>
+			["at57"] = <
+				text = <"Slow active freezing">
+				description = <"Product cryopreserved using a computerized controlled-rate freezer.">
+			>
+			["at58"] = <
+				text = <"Slow passive freezing">
+				description = <"Product cryopreserved without using a computerized controlled-rate freezer.">
+			>
+			["at59"] = <
+				text = <"Not cryopreserved">
+				description = <"Fresh or refrigerated product.">
+			>
+			["at60"] = <
+				text = <"Not specified">
+				description = <"Collection or recovery method is not specified, or not applicable.">
+			>
+			["at61"] = <
+				text = <"Ejaculated">
+				description = <"Sperm procured from ejaculate.">
+			>
+			["at62"] = <
+				text = <"Aspirated epididymal">
+				description = <"Sperm procured by aspiration from epididymis.">
+			>
+			["at63"] = <
+				text = <"Aspirated testicular">
+				description = <"Sperm procured by percutaneous aspiration from testis.">
+			>
+			["at64"] = <
+				text = <"Biopsy testicular">
+				description = <"Sperm procured by biopsy of testis.">
+			>
+			["at66"] = <
+				text = <"Not specified">
+				description = <"No information about the preparation of sperm is provided, or not applicable.">
+			>
+			["at67"] = <
+				text = <"Unwashed">
+				description = <"Raw ejaculate.">
+			>
+			["at68"] = <
+				text = <"Washed">
+				description = <"he ejaculate has been washed by centrifugation in a buffer solution.">
+			>
+			["at69"] = <
+				text = <"Prepared">
+				description = <"Viable sperm cells have been isolated from other contents of the seminal fluid.">
+			>
+			["id1"] = <
+				text = <"ART container details">
+				description = <"Details about the contents of a container stored for the purposes of assisted reproduction treatment.">
+			>
+			["id10"] = <
+				text = <"Disposition">
+				description = <"The reason for disposing the contents of the container.">
+			>
+			["id11"] = <
+				text = <"Expiry date">
+				description = <"The date beyond the contents are not to be used.">
+			>
+			["id13"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the ART straw contents, not captured in other fields.">
+			>
+			["id2"] = <
+				text = <"Product ID">
+				description = <"The unique identifier for the reproductive cell or tissue product in the container.">
+			>
+			["id27"] = <
+				text = <"Product class">
+				description = <"Class of cell or tissue product stored in the container.">
+			>
+			["id3"] = <
+				text = <"Date of preservation">
+				description = <"The date and/or time when the container and its' contents were preserved.">
+			>
+			["id35"] = <
+				text = <"Oocyte maturation stage">
+				description = <"The stage of maturation of the oocyte.">
+			>
+			["id36"] = <
+				text = <"Embryo development stage">
+				description = <"The stage of development of the embryo.">
+			>
+			["id37"] = <
+				text = <"Type of preservation">
+				description = <"The technique used to preserve the tissue or cells.">
+			>
+			["id38"] = <
+				text = <"Sperm procurement method">
+				description = <"The method used to procure sperm.">
+			>
+			["id43"] = <
+				text = <"Embryo preservation day">
+				description = <"The number of days following insemination on which the embryo was preserved (calendar days).
+                ">
+			>
+			["id66"] = <
+				text = <"Sperm preparation">
+				description = <"Information about the preparation of sperm.">
+			>
+			["id7"] = <
+				text = <"Preservation protocol ID">
+				description = <"The identifier for the cryopreservation procedure.">
+			>
+			["id9"] = <
+				text = <"Disposition date">
+				description = <"The date and/or time when the container and its' contents were disposed of.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/59775-7>
+			["id13"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at51", "at52", "at53", "at54">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at28", "at29", "at30", "at31", "at32", "at33">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at38", "at39", "at40", "at41">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at43", "at44", "at45", "at46", "at47", "at48", "at49", "at50">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at55", "at56", "at57", "at58", "at59">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at60", "at61", "at62", "at63", "at64">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at66", "at67", "at68", "at69">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at20", "at21", "at22", "at23", "at24", "at25">
+		>
+	>
+

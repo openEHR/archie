@@ -1,0 +1,157 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=70cfa7e1-88c8-4e97-8e79-4d5b454525b0)
+    s2-EHR-Assessment.estimated_date_delivery.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-02-04">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.estimated_date_delivery.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.estimated_date_delivery.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record estimated due dated for a pregnancy, calculated or estimated by a variety of methods.">
+            keywords = <"EDD", "EDB", "EDC">
+            use = <"Use to record one or more estimated date of delivery (EDD), calculated or estimated by a variety of methods during the span of a single pregnancy. 
+            
+            The agreed EDD is used as the basis for management of the pregnancy.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Assessment[id1] matches {    -- Estimated date of delivery
+        data matches {
+            Node[id4] occurrences matches {0..1} matches {    -- By date of conception
+                value matches {
+                    Date_time_value[id15]
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- By cycle
+                value matches {
+                    Date_time_value[id16]
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- By ultrasound
+                items matches {
+                    Node[id6] occurrences matches {0..1} matches {    -- Date of ultrasound
+                        value matches {
+                            Date_time_value[id17]
+                        }
+                    }
+                    Node[id8] occurrences matches {0..1} matches {    -- Gestation by scan
+                        value matches {
+                            Duration_value[id18]
+                        }
+                    }
+                    Node[id9] matches {    -- Estimated date by ultrasound
+                        value matches {
+                            Date_time_value[id19]
+                        }
+                    }
+                }
+            }
+            Node[id10] matches {    -- Agreed EDD
+                items matches {
+                    Node[id11] occurrences matches {0..1} matches {    -- Agreed date
+                        value matches {
+                            Date_time_value[id20]
+                        }
+                    }
+                    Node[id12] occurrences matches {0..1} matches {    -- Rationale
+                        value matches {
+                            Text[id21]
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id14] occurrences matches {0..1} matches {    -- Last updated
+                value matches {
+                    Date_time_value[id22]
+                }
+            }
+            allow_archetype Node[id13] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Estimated date of delivery">
+                description = <"Estimated date of delivery for a pregnancy.">
+            >
+            ["id10"] = <
+                text = <"Agreed EDD">
+                description = <"Details about the agreed EDD which is used as the basis for clinical decision-making during the pregnancy.">
+            >
+            ["id11"] = <
+                text = <"Agreed date">
+                description = <"The EDD which is to be used as the basis for clinical decision-making.">
+            >
+            ["id12"] = <
+                text = <"Rationale">
+                description = <"The rationale which explains why the 'Agreed date' has been selected.">
+            >
+            ["id13"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id14"] = <
+                text = <"Last updated">
+                description = <"The date any EDD was last updated.">
+            >
+            ["id4"] = <
+                text = <"By date of conception">
+                description = <"The EDD calculated from a known date of conception.">
+            >
+            ["id5"] = <
+                text = <"By cycle">
+                description = <"The EDD estimated from an LNMP and characteristics of the menstrual cycle.">
+            >
+            ["id6"] = <
+                text = <"Date of ultrasound">
+                description = <"The date on which the ultrasound was carried out.">
+            >
+            ["id7"] = <
+                text = <"By ultrasound">
+                description = <"Details about an EDD estimated from the findings on a pregnancy ultrasound.">
+            >
+            ["id8"] = <
+                text = <"Gestation by scan">
+                description = <"The gestation estimated from the scan.">
+            >
+            ["id9"] = <
+                text = <"Estimated date by ultrasound">
+                description = <"Details about an EDD estimated from the findings on a pregnancy ultrasound.">
+            >
+        >
+    >
+    

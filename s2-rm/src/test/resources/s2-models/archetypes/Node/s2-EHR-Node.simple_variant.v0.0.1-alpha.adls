@@ -1,0 +1,221 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a903a99e-5a55-4683-b2e7-93454408e6eb)
+    s2-EHR-Node.simple_variant.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Florian Kaercher, Charité Berlin, Germany", "Francesca Frexia, CRS4, Italy", "Gianluigi Zanetti, CRS4, Italy", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Gideon Giacomelli, Charité Berlin, Germany", "Paolo Uva, CRS4, Italy", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Simon Schumacher, HiGHmed, Germany">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Aurelie Tomczak, Institute of Pathology, University Hospital Heidelberg, Germany, <au.tomczak@yahoo.com>, 2020-06-18">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.simple_variant.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.simple_variant.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To describe a variant observed in a sequence, where the variant type is unknown, for example, because no annotation of the data has yet been made, or because the specific variant is not covered by the specialized variant archetypes.">
+            keywords = <"variation", "genetic", "genomic", "variant", "simple generic variant">
+            use = <"This archetype should be used inside the \\\"Variant\\\" SLOT of the \\\"Genetic variant\\\" archetype.">
+            misuse = <"This archetype should only be used for import of vcf-data if no annotation of the variant type (substitution, insertion etc.) is available, and, therefore, the right specific archetypes cannot be picked to store the variant results.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Simple genetic variant
+        items cardinality matches {2..*; unordered} matches {
+            Node[id13] matches {    -- Chromosome label
+                value matches {
+                    Coded_text[id40] matches {
+                        term matches {
+                            Terminology_term[id46] matches {
+                                concept matches {[ac1]}    -- Chromosome label (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id41]
+                }
+            }
+            Node[id4] matches {    -- Start position of variant
+                value matches {
+                    Count[id42]
+                }
+            }
+            Node[id5] matches {    -- End position of variant
+                value matches {
+                    Count[id43]
+                }
+            }
+            Node[id10] matches {    -- Alternate nucleotide sequence
+                value matches {
+                    Text[id44]
+                }
+            }
+            Node[id11] matches {    -- Reference nucleotide sequence
+                value matches {
+                    Text[id45]
+                }
+            }
+            use_archetype Node[id39, s2-EHR-Node.reference_sequence.v1]    -- Reference sequence
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at13", "at14", "at15", "at16", "at17", "at18", "at19", "at20", "at21", "at22", "at23", "at24", "at25", "at26", "at27", "at28", "at29", "at30", "at31", "at32", "at33", "at34", "at35", "at36">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Chromosome label (synthesised)">
+                description = <"Chromosome identifier. (synthesised)">
+            >
+            ["at13"] = <
+                text = <"Chromosome 1">
+                description = <"Chromosome 1.">
+            >
+            ["at14"] = <
+                text = <"Chromosome 2">
+                description = <"Chromosome 2.">
+            >
+            ["at15"] = <
+                text = <"Chromosome 3">
+                description = <"Chromosome 3.">
+            >
+            ["at16"] = <
+                text = <"Chromosome 4">
+                description = <"Chromosome 4.">
+            >
+            ["at17"] = <
+                text = <"Chromosome 5">
+                description = <"Chromosome 5.">
+            >
+            ["at18"] = <
+                text = <"Chromosome 6">
+                description = <"Chromosome 6.">
+            >
+            ["at19"] = <
+                text = <"Chromosome 7">
+                description = <"Chromosome 7.">
+            >
+            ["at20"] = <
+                text = <"Chromosome 8">
+                description = <"Chromosome 8.">
+            >
+            ["at21"] = <
+                text = <"Chromosome 9">
+                description = <"Chromosome 9.">
+            >
+            ["at22"] = <
+                text = <"Chromosome 10">
+                description = <"Chromosome 10.">
+            >
+            ["at23"] = <
+                text = <"Chromosome 11">
+                description = <"Chromosome 11.">
+            >
+            ["at24"] = <
+                text = <"Chromosome 12">
+                description = <"Chromosome 12.">
+            >
+            ["at25"] = <
+                text = <"Chromosome 13">
+                description = <"Chromosome 13.">
+            >
+            ["at26"] = <
+                text = <"Chromosome 14">
+                description = <"Chromosome 14.">
+            >
+            ["at27"] = <
+                text = <"Chromosome 15">
+                description = <"Chromosome 15.">
+            >
+            ["at28"] = <
+                text = <"Chromosome 16">
+                description = <"Chromosome 16.">
+            >
+            ["at29"] = <
+                text = <"Chromosome 17">
+                description = <"Chromosome 17.">
+            >
+            ["at30"] = <
+                text = <"Chromosome 18">
+                description = <"Chromosome 18.">
+            >
+            ["at31"] = <
+                text = <"Chromosome 19">
+                description = <"Chromosome 19.">
+            >
+            ["at32"] = <
+                text = <"Chromosome 20">
+                description = <"Chromosome 20.">
+            >
+            ["at33"] = <
+                text = <"Chromosome 21">
+                description = <"Chromosome 21.">
+            >
+            ["at34"] = <
+                text = <"Chromosome 22">
+                description = <"Chromosome 22.">
+            >
+            ["at35"] = <
+                text = <"Chromosome X">
+                description = <"Chromosome X.">
+            >
+            ["at36"] = <
+                text = <"Chromosome Y">
+                description = <"Chromosome Y.">
+            >
+            ["id1"] = <
+                text = <"Simple genetic variant">
+                description = <"A sequence change where, compared to a reference sequence, a one or more nucleotides are changed.">
+            >
+            ["id10"] = <
+                text = <"Alternate nucleotide sequence">
+                description = <"The observed alternate nucleotide or nucleotide sequence (\\\"Alt\\\" in vcf-file).">
+            >
+            ["id11"] = <
+                text = <"Reference nucleotide sequence">
+                description = <"The reference nucleotide or nucleotide sequence. (\\\"Ref\\\" in vcf-file).">
+            >
+            ["id13"] = <
+                text = <"Chromosome label">
+                description = <"Chromosome identifier.">
+            >
+            ["id39"] = <
+                text = <"Reference sequence">
+                description = <"The sequence file that has been used as a reference to describe the variant.">
+            >
+            ["id4"] = <
+                text = <"Start position of variant">
+                description = <"The position of the first nucleotide of the changed range for a simple variant. (\\\"Start\\\" in vcf-file).">
+            >
+            ["id5"] = <
+                text = <"End position of variant">
+                description = <"The position of the last nucleotide of the changed range for a simple variant. (\\\"End\\\" in vcf-file).">
+            >
+        >
+    >
+    

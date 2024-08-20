@@ -1,0 +1,102 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e77db5f4-484e-4e8c-b953-a232484c55a3)
+    s2-EHR-Direct_observation.speech.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Ocean Informatics, 10/11/2007">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.speech.v0.0.1-alpha, copyright  openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.speech.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record obervations of a patient's speech">
+            keywords = <"speech", ...>
+            use = <"">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Speech
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Clarity of speech
+                value matches {
+                    Coded_text[id6] matches {
+                        term matches {
+                            Terminology_term[id7] matches {
+                                concept matches {[ac1]}    -- Clarity of speech (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6", "at7", "at8">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Clarity of speech (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at5"] = <
+                text = <"Incomprehensible">
+                description = <"*">
+            >
+            ["at6"] = <
+                text = <"Unclear to parents">
+                description = <"*">
+            >
+            ["at7"] = <
+                text = <"Unclear to strangers">
+                description = <"*">
+            >
+            ["at8"] = <
+                text = <"Clear">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Speech">
+                description = <"To record observations of a ptient's speech pattern or quality">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"*">
+            >
+            ["id5"] = <
+                text = <"Clarity of speech">
+                description = <"*">
+            >
+        >
+    >
+    

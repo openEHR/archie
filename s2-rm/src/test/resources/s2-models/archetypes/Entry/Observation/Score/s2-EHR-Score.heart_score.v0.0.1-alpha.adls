@@ -1,0 +1,438 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=359573e7-cd2f-4a64-9f21-c72284dc0603)
+    s2-EHR-Score.heart_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Marit Alice Venheim, Helse Vest IKT, <marit.alice.venheim@helse-vest-ikt.no>, 2020-02-12">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.heart_score.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.heart_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the HEART score.">
+            use = <"Use to record the results for each component parameter and their total sum for the HEART score.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- HEART score
+        data matches {
+            Node[id9] occurrences matches {0..1} matches {    -- History
+                value matches {
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at9]}    -- Nonspecific history for ACS.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id45] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at10]}    -- Mixed historic Nodes.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at11]}    -- Specific history for ACS
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Electrocardiogram
+                value matches {
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at12]}    -- Normal ECG.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at13]}    -- Abnormal ECG.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id57] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id59] matches {
+                                term matches {
+                                    Terminology_term[id58] matches {
+                                        concept matches {[at14]}    -- Abnormal ECG, with significant ST deviation (depression ± elevation).
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Age
+                value matches {
+                    Coded_ordinal[id60] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id62] matches {
+                                term matches {
+                                    Terminology_term[id61] matches {
+                                        concept matches {[at15]}    -- <45 years.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id63] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id65] matches {
+                                term matches {
+                                    Terminology_term[id64] matches {
+                                        concept matches {[at16]}    -- Between 45 and 64 years.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id66] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id68] matches {
+                                term matches {
+                                    Terminology_term[id67] matches {
+                                        concept matches {[at17]}    -- ≤65 years or older.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Risk factors
+                value matches {
+                    Coded_ordinal[id69] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id71] matches {
+                                term matches {
+                                    Terminology_term[id70] matches {
+                                        concept matches {[at18]}    -- No risk factors.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id72] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id74] matches {
+                                term matches {
+                                    Terminology_term[id73] matches {
+                                        concept matches {[at19]}    -- 1 to 2 risk factors
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id75] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id77] matches {
+                                term matches {
+                                    Terminology_term[id76] matches {
+                                        concept matches {[at20]}    -- 3 or more risk factors
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Troponin
+                value matches {
+                    Coded_ordinal[id78] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id80] matches {
+                                term matches {
+                                    Terminology_term[id79] matches {
+                                        concept matches {[at21]}    -- Troponin < discriminative level.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id81] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id83] matches {
+                                term matches {
+                                    Terminology_term[id82] matches {
+                                        concept matches {[at22]}    -- Troponin elevated 1–3 times discriminative level.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id84] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id86] matches {
+                                term matches {
+                                    Terminology_term[id85] matches {
+                                        concept matches {[at23]}    -- Troponin elevated > 3 times discriminative Level.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id27] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id40] matches {
+                        magnitude matches {|0..10|}
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Risk category
+                value matches {
+                    Coded_text[id41] matches {
+                        term matches {
+                            Terminology_term[id87] matches {
+                                concept matches {[ac1]}    -- Risk category (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id34] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at29", "at30", "at31">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at9", "at10", "at11">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at12", "at13", "at14">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at15", "at16", "at17">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at18", "at19", "at20">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at21", "at22", "at23">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Risk category (synthesised)">
+                description = <"Risk category & recommended management strategy. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"History (synthesised)">
+                description = <"The level of suspicion from patient history or anamnesis. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Electrocardiogram (synthesised)">
+                description = <"The interpretation of an electrocardiograph. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Age (synthesised)">
+                description = <"The age of the patient, defined in years. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Risk factors (synthesised)">
+                description = <"Presence of risk factors for the development of coronary artery disease (CAD). (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Troponin (synthesised)">
+                description = <"The single serum troponin obtained during the emergency department assessment. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Mixed historic Nodes.">
+                description = <"A history that contains traditional & non-traditional Nodes of typical ACS presentation.">
+            >
+            ["at11"] = <
+                text = <"Specific history for ACS">
+                description = <"A history with traditional features of ACS.">
+            >
+            ["at12"] = <
+                text = <"Normal ECG.">
+                description = <"A normal ECG tracing.">
+            >
+            ["at13"] = <
+                text = <"Abnormal ECG.">
+                description = <"Abnormal ECG, with repolarization abnormalities* yet lacking significant ST depression. *BBB, LVH, digoxin effect, implanted right-ventricular pacemaker, past Ml, +/− unchanged repolarization abnormalities.">
+            >
+            ["at14"] = <
+                text = <"Abnormal ECG, with significant ST deviation (depression ± elevation).">
+                description = <"Either new or not known to be old significant ST deviation (i.e., no prior ECG available for comparison).">
+            >
+            ["at15"] = <
+                text = <"<45 years.">
+                description = <"The patient is less than 45 years of age.">
+            >
+            ["at16"] = <
+                text = <"Between 45 and 64 years.">
+                description = <"The patient is aged between 45 and 64 years.">
+            >
+            ["at17"] = <
+                text = <"≤65 years or older.">
+                description = <"The patient is 65 years of age or older.">
+            >
+            ["at18"] = <
+                text = <"No risk factors.">
+                description = <"The patient has no identifiable risk factors.">
+            >
+            ["at19"] = <
+                text = <"1 to 2 risk factors">
+                description = <"Risk factors: DM, tobacco smoker, HTN, hypercholesterolemia, obesity, +/− family history of CAD.">
+            >
+            ["at20"] = <
+                text = <"3 or more risk factors">
+                description = <"Automatic score of 2 with established diagnosis of the any of the following conditions: peripheral arterial disease, myocardial infarction, past coronary revascularization procedure, or stroke.">
+            >
+            ["at21"] = <
+                text = <"Troponin < discriminative level.">
+                description = <"Hospital lab discriminative level and/or AccuTroponin <0.04 ng/ml.">
+            >
+            ["at22"] = <
+                text = <"Troponin elevated 1–3 times discriminative level.">
+                description = <"Hospital lab discriminative level and/or AccuTroponin 0.04–0.12 ng/ml.">
+            >
+            ["at23"] = <
+                text = <"Troponin elevated > 3 times discriminative Level.">
+                description = <"Hospital lab discriminative level and/or AccuTroponin >0.12 ng/ml.">
+            >
+            ["at29"] = <
+                text = <"0-3">
+                description = <"Low risk, potential candidate for early discharge.">
+            >
+            ["at30"] = <
+                text = <"4-6">
+                description = <"Moderate risk, potential candidate for observation & further evaluation.">
+            >
+            ["at31"] = <
+                text = <"7-10">
+                description = <"High risk, candidate for urgent or emergent intervention.">
+            >
+            ["at9"] = <
+                text = <"Nonspecific history for ACS.">
+                description = <"A history that is not consistent with chest pain concerning for ACS.">
+            >
+            ["id1"] = <
+                text = <"HEART score">
+                description = <"An assessment tool tool used to identify patients at low, intermediate, and high risk for short-term adverse outcome resulting from Acute Coronary Syndrome (ACS).">
+            >
+            ["id27"] = <
+                text = <"Total score">
+                description = <"Sum of points assigned for each of the component parameters.">
+            >
+            ["id29"] = <
+                text = <"Risk category">
+                description = <"Risk category & recommended management strategy.">
+            >
+            ["id3"] = <
+                text = <"Any point in time event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id34"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+            >
+            ["id5"] = <
+                text = <"Troponin">
+                description = <"The single serum troponin obtained during the emergency department assessment.">
+            >
+            ["id6"] = <
+                text = <"Electrocardiogram">
+                description = <"The interpretation of an electrocardiograph.">
+            >
+            ["id7"] = <
+                text = <"Age">
+                description = <"The age of the patient, defined in years.">
+            >
+            ["id8"] = <
+                text = <"Risk factors">
+                description = <"Presence of risk factors for the development of coronary artery disease (CAD).">
+            >
+            ["id9"] = <
+                text = <"History">
+                description = <"The level of suspicion from patient history or anamnesis.">
+            >
+        >
+    >
+    

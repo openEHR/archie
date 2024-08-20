@@ -1,0 +1,683 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6d085bfe-1c34-42cb-a879-345fd33e9514)
+	s2-EHR-Score.braden_scale_q.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics, UK, <ian@freshehr.com>, 2011-08-01">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.braden_scale_q.v0.0.1-alpha, copyright 2011 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.braden_scale_q.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record information about factors used to assess the risk of pressure ulcer development, and the total Braden Scale score.">
+			use = <"Use to assess risk of pressure ulcer development in children aged between 21 days and 5 years.
+            
+            There are two commonly used variants - one intended for hospital use and the other for home use. They differ only in the description of the Moisture data Node where the frequency of bedding change is described as \\\"three times per 24 hours\\\" for home use or \\\"once per shift\\\" for hospital use. As these two descriptions have the same essential meaning, this archetype has used the most generally applicable wording, based on the home use variant.
+            
+            While openEHR archetypes are all freely available under an open license, the specific content of this Braden Scale archetype is copyright protected. Any use of this archetype within implementations must be in compliance with the terms established by the copyright owners. 
+            
+            Copyright statement: Barbara Braden and Nancy Bergstrom, 1988 All rights reserved
+            
+            Copyright information: http://bradenscale.com/copyright.htm.">
+			keywords = <"pressure", "sore", "ulcer", "Braden", "adult", "score", "assessment">
+			misuse = <"Not to be used unless the terms of copyright have been observed -see http://bradenscale.com/copyright.htm for details.
+            
+            The Braden Scale should not be used for children between 21 days and 5 years. Use the Braden Q scale for this purpose - OBSERVATION.braden_scale-q.
+            
+            The Braden Scale should not be used for children aged less than 21 days. Use the Neonatal Skin Risk Assessment Scale (NSRAS) for this purpose - OBSERVATION.nsras.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, National ICT Norway, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Karen Bjøro, Norsk Sykepleierforbund, Norway", "Rui Coutinho, Centro Hospitalar do Porto, Portugal", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Øygunn Leite Kallevik, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Lars Morgan Karlsen, DIPS ASA, Norway", "Knut Nesheim, Helse Bergen, Norway", "Mona Oppedal, Helse Bergen, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Navin Ramachandran, NHS, United Kingdom", "Tanja Riise, Nasjonal IKT HF, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)">
+
+definition
+	Score[id1] matches {	-- Modified Braden Q scale
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Sensory perception
+				value matches {
+					Coded_ordinal[id53] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id55] matches {
+								term matches {
+									Terminology_term[id54] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id56] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id58] matches {
+								term matches {
+									Terminology_term[id57] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id59] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id61] matches {
+								term matches {
+									Terminology_term[id60] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id62] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id64] matches {
+								term matches {
+									Terminology_term[id63] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Moisture
+				value matches {
+					Coded_ordinal[id65] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id67] matches {
+								term matches {
+									Terminology_term[id66] matches {
+										concept matches {[at15]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id68] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id70] matches {
+								term matches {
+									Terminology_term[id69] matches {
+										concept matches {[at16]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id71] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id73] matches {
+								term matches {
+									Terminology_term[id72] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id74] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id76] matches {
+								term matches {
+									Terminology_term[id75] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Activity
+				value matches {
+					Coded_ordinal[id77] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id79] matches {
+								term matches {
+									Terminology_term[id78] matches {
+										concept matches {[at37]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id80] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id82] matches {
+								term matches {
+									Terminology_term[id81] matches {
+										concept matches {[at38]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id83] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id85] matches {
+								term matches {
+									Terminology_term[id84] matches {
+										concept matches {[at39]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id86] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id88] matches {
+								term matches {
+									Terminology_term[id87] matches {
+										concept matches {[at40]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Mobility
+				value matches {
+					Coded_ordinal[id89] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id91] matches {
+								term matches {
+									Terminology_term[id90] matches {
+										concept matches {[at26]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id92] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id94] matches {
+								term matches {
+									Terminology_term[id93] matches {
+										concept matches {[at27]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id95] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id97] matches {
+								term matches {
+									Terminology_term[id96] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id98] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id100] matches {
+								term matches {
+									Terminology_term[id99] matches {
+										concept matches {[at29]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Nutrition
+				value matches {
+					Coded_ordinal[id101] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id103] matches {
+								term matches {
+									Terminology_term[id102] matches {
+										concept matches {[at30]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id104] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id106] matches {
+								term matches {
+									Terminology_term[id105] matches {
+										concept matches {[at31]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id107] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id109] matches {
+								term matches {
+									Terminology_term[id108] matches {
+										concept matches {[at32]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id110] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id112] matches {
+								term matches {
+									Terminology_term[id111] matches {
+										concept matches {[at33]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Friction and shear
+				value matches {
+					Coded_ordinal[id113] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id115] matches {
+								term matches {
+									Terminology_term[id114] matches {
+										concept matches {[at23]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id116] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id118] matches {
+								term matches {
+									Terminology_term[id117] matches {
+										concept matches {[at24]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id119] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id121] matches {
+								term matches {
+									Terminology_term[id120] matches {
+										concept matches {[at25]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id43] occurrences matches {0..1} matches {	-- Tissue perfusion & oxygenation
+				value matches {
+					Coded_ordinal[id122] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id124] matches {
+								term matches {
+									Terminology_term[id123] matches {
+										concept matches {[at43]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id125] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id127] matches {
+								term matches {
+									Terminology_term[id126] matches {
+										concept matches {[at44]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id128] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id130] matches {
+								term matches {
+									Terminology_term[id129] matches {
+										concept matches {[at45]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id131] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id133] matches {
+								term matches {
+									Terminology_term[id132] matches {
+										concept matches {[at46]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id35] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id51] 
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Total score
+				value matches {
+					Count[id52] matches {
+						magnitude matches {|7..28|}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id37] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Sensory perception (synthesised)">
+				description = <"Ability to respond meaningfully to pressure-related discomfort. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Moisture (synthesised)">
+				description = <"Degree to which skin is exposed to moisture. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Activity (synthesised)">
+				description = <"Degree of physical ability. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Mobility (synthesised)">
+				description = <"Ability to change and control body position. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Nutrition (synthesised)">
+				description = <"Usual food intake pattern. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Friction and shear (synthesised)">
+				description = <"Friction occurs when skin moves against support surfaces. Shear occurs when skin and adjacent bony surface slide across one another. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Tissue perfusion & oxygenation (synthesised)">
+				description = <"* (synthesised)">
+			>
+			["at15"] = <
+				text = <"Constantly moist">
+				description = <"Skin is kept moist almost constantly by perspiration, urine, drainage etc. Dampness is detected every time patient is moved or turned.">
+			>
+			["at16"] = <
+				text = <"Very moist">
+				description = <"Skin is often, but not always, moist. Linen must be changed at least every 8 hours.">
+			>
+			["at17"] = <
+				text = <"Occasionally moist">
+				description = <"Skin is occasionally moist, requiring linen change every 12 hours.">
+			>
+			["at18"] = <
+				text = <"Rarely moist">
+				description = <"Skin is usually dry, routine diaper changes; linen only requires changing every 24 hours.">
+			>
+			["at23"] = <
+				text = <"Significant problem">
+				description = <"Spasticity, contractures, itching or agitation leads to almost constant thrashing and friction.">
+			>
+			["at24"] = <
+				text = <"Problem">
+				description = <"Requires moderate to maximum assistance in moving. Complete lifting without sliding against sheets is impossible. Frequently slides down in bed or chair, requiring frequent repositioning with maximum assistance.">
+			>
+			["at25"] = <
+				text = <"Potential problem">
+				description = <"Moves feebly or requires minimum assistance. During a move, skin probably slides to some extent against sheets, chair, restraint or other devices. Maintains relative good position in chair or bed most of the time but occasionally slides down.">
+			>
+			["at26"] = <
+				text = <"Completely immobile">
+				description = <"Does not make even slight changes in body or extremity position without assistance.">
+			>
+			["at27"] = <
+				text = <"Very limited">
+				description = <"Makes occasional slight changes in body or extremity position but unable to completely turn self independently.">
+			>
+			["at28"] = <
+				text = <"Slightly limited">
+				description = <"Makes frequent though slight changes in body or extremity position independently.">
+			>
+			["at29"] = <
+				text = <"No limitations">
+				description = <"Makes major and frequent changes in position without assistance.">
+			>
+			["at30"] = <
+				text = <"Very poor">
+				description = <"NPO and/or maintained on clear fluids, or IVs for more than 5 days OR albumin < 2.5 mg/dl OR never eats a complete meal. Rarely eats more than half of any food offered. Protein intake includes only 2 servings of meat or dairy products per day. Takes fluids poorly. Does not take a liquid dietary supplement.">
+			>
+			["at31"] = <
+				text = <"Inadequate">
+				description = <"Is on a liquid diet or tube feedings/TPN, which provide inadequate calories and minerals for age OR albumin<3mg/dl OR rarely eats a complete meal and generally eats only half of any food offered. Protein intake includes only 3 servings of meat or dairy products per day. Occasionally will take a dietary supplement.">
+			>
+			["at32"] = <
+				text = <"Adequate">
+				description = <"Is on tube feedings or TPN, which provides adequate calories and minerals for age OR eats over half of most meals. Eats a total of 4 servings of protein each day. Occasionally eats between meals. Does not require supplementation.">
+			>
+			["at33"] = <
+				text = <"Excellent">
+				description = <"Is on a normal diet providing adequate calories for age. For example, eats most of every meal. Never refuses a meal. Usually eats a total of 4 or more servings of meat and dairy products. Occasionally eats between meals. Does not require supplementation.">
+			>
+			["at37"] = <
+				text = <"Bedfast">
+				description = <"Confined to bed.">
+			>
+			["at38"] = <
+				text = <"Chairfast">
+				description = <"Ability to walk severely limited or non-existent. Cannot bear own weight and/or must be assisted into chair or wheelchair.">
+			>
+			["at39"] = <
+				text = <"Walks occasionally">
+				description = <"Walks occasionally during day, but for very short distances, with or without assistance. Spends majority of each shift in bed or chair.">
+			>
+			["at40"] = <
+				text = <"All patients too young to ambulate OR walks frequently">
+				description = <"Walks outside the room at least twice a day.">
+			>
+			["at43"] = <
+				text = <"Extremely compromised">
+				description = <"Hypotensive (MAP<50mmHg; <40 in newborn) or the patient does not physiologicvally tolerate position changes.">
+			>
+			["at44"] = <
+				text = <"Compromised">
+				description = <"Normotensive oxygen saturation may be <95%; haemoglobin may be <10mg/dl; capillary refill may be> 2 seconds; serum pH is < 7.40.">
+			>
+			["at45"] = <
+				text = <"Adequate">
+				description = <"Normotensive oxygen saturation may be <95%; haemoglobin may be <10mg/dl; capillary refill may be 2 seconds; serum pH is normal.">
+			>
+			["at46"] = <
+				text = <"Excellent">
+				description = <"Normotensive, oxygen saturation >95%; normal haemoglobin; capillary refill <2 seconds.">
+			>
+			["at5"] = <
+				text = <"Completely Limited">
+				description = <"Unresponsive (does not moan, flinch or grasp) to painful stimuli due to diminished level of consciousness or sedation. OR, limited ability to feel pain over most of body surface.">
+			>
+			["at6"] = <
+				text = <"Very Limited">
+				description = <"Responds to only painful stimuli. Cannot communicate discomfort except by moaning or restlessness; OR has sensory impairment that limits the ability to feel pain or discomfort over half of body.">
+			>
+			["at7"] = <
+				text = <"Slightly Limited">
+				description = <"Responds to verbal commands, but cannot always communicate discomfort or need to be turned; OR, has sensory impairment that limits the ability to feel pain or discomfort in one or two extremities.">
+			>
+			["at8"] = <
+				text = <"No Impairment">
+				description = <"Responds to verbal commands. Has no sensory deficit that would limit ability to feel or communicate pain or discomfort.">
+			>
+			["id1"] = <
+				text = <"Modified Braden Q scale">
+				description = <"The Modified Braden Q scale is a tool used to assess the risk of pressure ulcer development in children aged between 21 days and 5 years.">
+			>
+			["id10"] = <
+				text = <"Moisture">
+				description = <"Degree to which skin is exposed to moisture.">
+			>
+			["id11"] = <
+				text = <"Activity">
+				description = <"Degree of physical ability.">
+			>
+			["id20"] = <
+				text = <"Mobility">
+				description = <"Ability to change and control body position.">
+			>
+			["id21"] = <
+				text = <"Nutrition">
+				description = <"Usual food intake pattern.">
+			>
+			["id22"] = <
+				text = <"Friction and shear">
+				description = <"Friction occurs when skin moves against support surfaces. Shear occurs when skin and adjacent bony surface slide across one another.">
+			>
+			["id23"] = <
+				text = <"Total score">
+				description = <"The sum of the ordinal scores recorded for each of the seven component responses.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+			>
+			["id35"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the assessment of the Braden scale, not captured in other fields.">
+			>
+			["id37"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id43"] = <
+				text = <"Tissue perfusion & oxygenation">
+				description = <"*">
+			>
+			["id5"] = <
+				text = <"Sensory perception">
+				description = <"Ability to respond meaningfully to pressure-related discomfort.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/38222-6>
+			["at5"] = <http://loinc.org/LA9603-7>
+			["at6"] = <http://loinc.org/LA9605-4>
+			["at7"] = <http://loinc.org/LA9605-2>
+			["at8"] = <http://loinc.org/LA9606-0>
+			["id10"] = <http://loinc.org/38229-1>
+			["id11"] = <http://loinc.org/73786-6>
+			["at15"] = <http://loinc.org/LA9607-8>
+			["at16"] = <http://loinc.org/LA9608-6>
+			["at17"] = <http://loinc.org/LA9609-4>
+			["at18"] = <http://loinc.org/LA9610-2>
+			["id20"] = <http://loinc.org/73787-4>
+			["id21"] = <http://loinc.org/73785-8>
+			["id22"] = <http://loinc.org/38226-7>
+			["id23"] = <http://loinc.org/38227-5>
+			["at23"] = <http://loinc.org/LA9617-7>
+			["at24"] = <http://loinc.org/LA9618-5>
+			["at25"] = <http://loinc.org/LA9619-3>
+			["at26"] = <http://loinc.org/LA9614-4>
+			["at29"] = <http://loinc.org/LA120-8>
+			["at30"] = <http://loinc.org/LA9615-1>
+			["at31"] = <http://loinc.org/LA9616-9>
+			["at32"] = <http://loinc.org/LA8913-1>
+			["at33"] = <http://loinc.org/LA9206-9>
+			["id35"] = <http://loinc.org/106173-8>
+		>
+		["snomed"] = <
+			["id1"] = <http://snomed.info/id/413139004>
+			["id23"] = <http://snomed.info/id/443428004>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6", "at7", "at8">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at15", "at16", "at17", "at18">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at37", "at38", "at39", "at40">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at26", "at27", "at28", "at29">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at30", "at31", "at32", "at33">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at23", "at24", "at25">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at43", "at44", "at45", "at46">
+		>
+	>
+

@@ -1,0 +1,334 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e473b407-ca1d-425e-8cc0-35a2c0a4f4d9)
+    s2-EHR-Questionnaire_response.scoff_questionnaire.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Vesa Peltola, Tieto Finland, 2019-03-22">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.scoff_questionnaire.v0.0.1-alpha, copyright  openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.scoff_questionnaire.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"A simple five question test devised for use by non-professionals to assess the possible presence of an eating disorder.
+            
+            The letters in the full acronym are taken from key words in the questions:
+            - Sick
+            - Control
+            - One stone (14 lbs./6.5 kg.)
+            - Fat
+            - Food">
+            keywords = <"eating", "disorder", "screening">
+            use = <"One point is assigned for every \\\"yes\\\"; a score greater than two (≥2) indicates a possible case of anorexia nervosa or bulimia nervosa.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Questionnaire_response[id1] matches {    -- Eating disorder screening (SCOFF)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Do you make yourself sick because you feel uncomfortably full?
+                value matches {
+                    Coded_ordinal[id29] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id31] matches {
+                                term matches {
+                                    Terminology_term[id30] matches {
+                                        concept matches {[at5]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id32] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id34] matches {
+                                term matches {
+                                    Terminology_term[id33] matches {
+                                        concept matches {[at6]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Do you worry that you have lost control over how much you eat?
+                value matches {
+                    Coded_ordinal[id35] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id37] matches {
+                                term matches {
+                                    Terminology_term[id36] matches {
+                                        concept matches {[at8]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id38] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id40] matches {
+                                term matches {
+                                    Terminology_term[id39] matches {
+                                        concept matches {[at9]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Have you recently lost more than one stone (14 lb, 6,5 kg) in a 3-month period?
+                value matches {
+                    Coded_ordinal[id41] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id43] matches {
+                                term matches {
+                                    Terminology_term[id42] matches {
+                                        concept matches {[at11]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id44] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id46] matches {
+                                term matches {
+                                    Terminology_term[id45] matches {
+                                        concept matches {[at12]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Do you believe yourself to be fat when others say you are too thin?
+                value matches {
+                    Coded_ordinal[id47] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id49] matches {
+                                term matches {
+                                    Terminology_term[id48] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id50] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id52] matches {
+                                term matches {
+                                    Terminology_term[id51] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Would you say that food dominates your life?
+                value matches {
+                    Coded_ordinal[id53] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id55] matches {
+                                term matches {
+                                    Terminology_term[id54] matches {
+                                        concept matches {[at17]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id56] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id58] matches {
+                                term matches {
+                                    Terminology_term[id57] matches {
+                                        concept matches {[at18]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id27] matches {
+                        magnitude matches {|0..5|}
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id28]
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at8", "at9">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at11", "at12">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at14", "at15">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at17", "at18">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Do you make yourself sick because you feel uncomfortably full? (synthesised)">
+                description = <"Do you make yourself sick because you feel uncomfortably full? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Do you worry that you have lost control over how much you eat? (synthesised)">
+                description = <"Do you worry that you have lost control over how much you eat? (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Have you recently lost more than one stone (14 lb, 6,5 kg) in a 3-month period? (synthesised)">
+                description = <"Have you recently lost more than one stone (14 lb, 6,5 kg) in a 3-month period? (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Do you believe yourself to be fat when others say you are too thin? (synthesised)">
+                description = <"Do you believe yourself to be fat when others say you are too thin? (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Would you say that food dominates your life? (synthesised)">
+                description = <"Would you say that food dominates your life? (synthesised)">
+            >
+            ["at11"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at5"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at6"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at8"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at9"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Eating disorder screening (SCOFF)">
+                description = <"Screening tool for eating disorders.">
+            >
+            ["id11"] = <
+                text = <"Have you recently lost more than one stone (14 lb, 6,5 kg) in a 3-month period?">
+                description = <"Have you recently lost more than one stone (14 lb, 6,5 kg) in a 3-month period?">
+            >
+            ["id14"] = <
+                text = <"Do you believe yourself to be fat when others say you are too thin?">
+                description = <"Do you believe yourself to be fat when others say you are too thin?">
+            >
+            ["id17"] = <
+                text = <"Would you say that food dominates your life?">
+                description = <"Would you say that food dominates your life?">
+            >
+            ["id2"] = <
+                text = <"History">
+                description = <"*">
+            >
+            ["id20"] = <
+                text = <"Total score">
+                description = <"One point is assigned for every \\\"yes\\\"; a score greater than two (≥2) indicates a possible case of anorexia nervosa or bulimia nervosa.">
+            >
+            ["id21"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the assessment of the SCOFF questionnaire, not captured in the structured Nodes.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"*">
+            >
+            ["id5"] = <
+                text = <"Do you make yourself sick because you feel uncomfortably full?">
+                description = <"Do you make yourself sick because you feel uncomfortably full?">
+            >
+            ["id8"] = <
+                text = <"Do you worry that you have lost control over how much you eat?">
+                description = <"Do you worry that you have lost control over how much you eat?">
+            >
+        >
+    >
+    

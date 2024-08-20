@@ -1,0 +1,109 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=32ef73a4-741f-47f1-bb89-3bb20702dba3)
+	s2-EHR-Node.macroscopy_lung_carcinoma.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics, <ian.mcnicoll@freshehr.com>, 2009-10-11">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.macroscopy_lung_carcinoma.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.macroscopy_lung_carcinoma.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record detailed findings about lung cancer found on macroscopic histopathological examination.">
+			use = <"To record detailed findings about macroscopic examination of tissue related to lung cancer.
+            
+            This archetype has been designed to be used within the 'Structured findings' SLOT in the Node.histopathology_findings archetype.">
+			keywords = <"histopathology", "cancer", "laboratory", "lab", "malignancy", "pathology", "lung", "bronchial">
+			misuse = <"">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Macroscopic findings - Lung cancer
+		items matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Number of tumours
+				value matches {
+					Count[id9] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			use_archetype Node[id4, s2-EHR-Node.anatomical_location.v1] 
+			use_archetype Node[id2, s2-EHR-Node.physical_properties.v0] 
+			use_archetype Node[id5, s2-EHR-Node.tumour_invasion.v0] 
+			use_archetype Node[id6, s2-EHR-Node.tumour_resection_margins.v0] 
+			use_archetype Node[id7, s2-EHR-Node.lymph_node_metastases.v0] 
+			Node[id8] occurrences matches {0..1} matches {	-- Non-neoplastic lung findings
+				value matches {
+					Text[id10] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Macroscopic findings - Lung cancer">
+				description = <"Macroscopic anatomical pathology findings related to lung cancer.">
+			>
+			["id2"] = <
+				text = <"Tumour dimensions">
+				description = <"Details of maximum dimensions of the tumour.">
+			>
+			["id3"] = <
+				text = <"Number of tumours">
+				description = <"The overall number of tumours.">
+			>
+			["id4"] = <
+				text = <"Tumour site">
+				description = <"The site of the tumour.">
+			>
+			["id5"] = <
+				text = <"Direct spread of tumour">
+				description = <"Details of direct spread of the tumour.">
+			>
+			["id6"] = <
+				text = <"Tumour resection margin">
+				description = <"Details of medial or bronchial resection margins.">
+			>
+			["id7"] = <
+				text = <"Lymph node involvement">
+				description = <"Details of lymph node involvement by tumour.">
+			>
+			["id8"] = <
+				text = <"Non-neoplastic lung findings">
+				description = <"Findings of non-neoplastic lung pathology.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id7"] = <http://loinc.org/76397-9>
+		>
+	>
+

@@ -1,0 +1,105 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5d7bbd21-4802-405e-b0a3-47d406dab82b)
+	s2-EHR-Assessment.social_summary.v1.1.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"au.org.nehta">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2011-05-24">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.social_summary.v1.1.1, copyright 2011 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.social_summary.v1.1.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a narrative summary about social circumstances or experiences that may have a potential impact on an individual's health, and to provide a framework in which to nest detailed Node archetypes, each of which will describe the various aspects of social circumstances or experiences in detail.">
+			use = <"Use to record a narrative summary about social circumstances or experiences that may have a potential impact on an individual's health.
+            
+            Use to incorporate the narrative descriptions of social circumstances or experiences already captured within existing clinical systems into an archetyped format.
+            
+            Use as a container archetype - to provide a common, queryable ENTRY archetype in which specific, detailed Node archetypes can be nested. Examples of appropriate Node archetypes may include, and are not limited to, relationships with others, social supports, living arrangements, employment, education and religion.
+            
+            The use of the term 'social summary' varies enormously in practice. This archetype has been designed to allow the concepts that express social history in varying clincial contexts to be represented with the appropriate mix of re-useable archetypes.">
+			keywords = <"social", "family", "education", "occupation", "environment", "housing", "finances", "social history">
+			misuse = <"Not to be used to record Lifestyle-related information - for example, use specific archetypes for alcohol, tobacco and other substance use; diet and nutrition; and physical activity.">
+		>
+	>
+	other_contributors = <"Rita Apelt, Department of Health,NT, Australia", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Maria Beate Nupen, Oslo Universitetssykehus, Norway", "Stephen Chu, NEHTA, Australia", "Margaret Cotter, AMSANT, Australia", "Bell Eapen, McMaster University, Canada", "Tanya Gardner, CAAC, Australia", "Bente Gjelsvik, Helse Bergen, Norway", "Sam Heard, Ocean Informatics, Australia (Editor)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Kristian Heldal, Telemark Hospital Trust, Norway", "Anca Heyd, DIPS ASA, Norway", "Hilde Hollås, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "hanne joensen, Helse- bergen HUS, Norway", "Thiago Julio, HIAE, Brazil", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Jeremy Oats, NT Health, Australia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Tanja Riise, Nasjonal IKT HF, Norway", "Steven Schatz, Department of Health (Northern Territory), Australia", "Thomas Schopf, University Hospital of North-Norway, Norway", "Rosalie Schultz, Central Australia Remote Health, Australia", "Anoop Shah, University College London, United Kingdom", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Jo Wright, NT Dept of Health, Australia (Editor)">
+
+definition
+	Assessment[id1] matches {	-- Social summary
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Summary
+				value matches {
+					Text[id8] 
+				}
+			}
+			allow_archetype Node[id4] matches {	-- Details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.education(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.housing(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.household(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.employment(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+		}
+		qualifiers matches {
+			Node[id7] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id9] 
+				}
+			}
+			allow_archetype Node[id6] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Social summary">
+				description = <"Summary information about social circumstances or experiences that may have a potential impact on an individual's health.">
+			>
+			["id3"] = <
+				text = <"Summary">
+				description = <"Narrative description about social circumstances or experiences that may have a potential impact on an individual's health.">
+			>
+			["id4"] = <
+				text = <"Details">
+				description = <"Structured detail about the social circumstances and experiences.">
+			>
+			["id6"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id7"] = <
+				text = <"Last updated">
+				description = <"The date this social summary was last updated.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id7"] = <http://loinc.org/106177-9>
+		>
+	>
+

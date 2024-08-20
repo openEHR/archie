@@ -1,0 +1,432 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f14b36dc-65b5-491f-9ae8-06d46d8f276f)
+    s2-EHR-Node.promis_bank_v10_sleep_disturbance.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Silje Ljosland Bakke, Helse Vest IKT AS, <silje.ljosland.bakke@helse-vest-ikt.no>, 2020-06-04">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.promis_bank_v10_sleep_disturbance.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.promis_bank_v10_sleep_disturbance.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record PROMIS bank v1.0 items about sleep disturbance.">
+            use = <"Use to record PROMIS bank v1.0 items about sleep disturbance.
+            
+            This archetype has been designed to be used within the OBSERVATION.promis archetype, and along with other PROMIS bank archetypes constrained to represent a specific PROMIS profile such as PROMIS-29.
+            
+            The archetype is incomplete at initial modelling, and should be grown as additional items from the relevant item bank are required.
+            
+            While openEHR archetypes are all freely available under an open license, the specific content of this archetype is copyright protected. Any use of this archetype within implementations must be in compliance with the terms established by the copyright owners.
+            
+            Copyright statement: PROMIS tests, test protocols, test items, norms, norms tables, scoring programs, scoring keys (including scoring algorithms, scale definitions, scale membership, and scoring directions), score reports, software, and other PROMIS-related materials are ©2006-2017 PROMIS Health Organization or other individuals/entities that have contributed information and materials, and are being used with the permission of the copyright holders.
+            
+            Terms and conditions for use: https://www.healthmeasures.net/images/PROMIS/Terms_of_Use_HM_approved_1-12-17_-_Updated_Copyright_Notices.pdf">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- PROMIS Item Bank v1.0 - Sleep Disturbance
+        items matches {
+            Node[id8] occurrences matches {0..1} matches {    -- In the past 7 days: My sleep quality was
+                value matches {
+                    Coded_ordinal[id15] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id17] matches {
+                                term matches {
+                                    Terminology_term[id16] matches {
+                                        concept matches {[at15]}    -- Very poor
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id18] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id20] matches {
+                                term matches {
+                                    Terminology_term[id19] matches {
+                                        concept matches {[at16]}    -- Poor
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id21] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id23] matches {
+                                term matches {
+                                    Terminology_term[id22] matches {
+                                        concept matches {[at17]}    -- Fair
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id24] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id26] matches {
+                                term matches {
+                                    Terminology_term[id25] matches {
+                                        concept matches {[at18]}    -- Good
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id27] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id29] matches {
+                                term matches {
+                                    Terminology_term[id28] matches {
+                                        concept matches {[at19]}    -- Very good
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id2] occurrences matches {0..1} matches {    -- In the past 7 days: My sleep was refreshing
+                value matches {
+                    Coded_ordinal[id30] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at10]}    -- Not at all
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id33] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at11]}    -- A little bit
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at12]}    -- Somewhat
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at13]}    -- Quite a bit
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at14]}    -- Very much
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- In the past 7 days: I had a problem with my sleep
+                value matches {
+                    Coded_ordinal[id45] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at20]}    -- Not at all
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at21]}    -- A little bit
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at22]}    -- Somewhat
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at23]}    -- Quite a bit
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id57] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id59] matches {
+                                term matches {
+                                    Terminology_term[id58] matches {
+                                        concept matches {[at24]}    -- Very much
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- In the past 7 days: I had difficulty falling asleep
+                value matches {
+                    Coded_ordinal[id60] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id62] matches {
+                                term matches {
+                                    Terminology_term[id61] matches {
+                                        concept matches {[at20]}    -- Not at all
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id63] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id65] matches {
+                                term matches {
+                                    Terminology_term[id64] matches {
+                                        concept matches {[at21]}    -- A little bit
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id66] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id68] matches {
+                                term matches {
+                                    Terminology_term[id67] matches {
+                                        concept matches {[at22]}    -- Somewhat
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id69] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id71] matches {
+                                term matches {
+                                    Terminology_term[id70] matches {
+                                        concept matches {[at23]}    -- Quite a bit
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id72] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id74] matches {
+                                term matches {
+                                    Terminology_term[id73] matches {
+                                        concept matches {[at24]}    -- Very much
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at15", "at16", "at17", "at18", "at19">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at10", "at11", "at12", "at13", "at14">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at20", "at21", "at22", "at23", "at24">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at20", "at21", "at22", "at23", "at24">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"In the past 7 days: My sleep quality was (synthesised)">
+                description = <"My sleep quality was: (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"In the past 7 days: My sleep was refreshing (synthesised)">
+                description = <"My sleep was refreshing. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"In the past 7 days: I had a problem with my sleep (synthesised)">
+                description = <"I had a problem with my sleep. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"In the past 7 days: I had difficulty falling asleep (synthesised)">
+                description = <"I had difficulty falling asleep. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Not at all">
+                description = <"">
+            >
+            ["at11"] = <
+                text = <"A little bit">
+                description = <"">
+            >
+            ["at12"] = <
+                text = <"Somewhat">
+                description = <"">
+            >
+            ["at13"] = <
+                text = <"Quite a bit">
+                description = <"">
+            >
+            ["at14"] = <
+                text = <"Very much">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"Very poor">
+                description = <"">
+            >
+            ["at16"] = <
+                text = <"Poor">
+                description = <"">
+            >
+            ["at17"] = <
+                text = <"Fair">
+                description = <"">
+            >
+            ["at18"] = <
+                text = <"Good">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"Very good">
+                description = <"">
+            >
+            ["at20"] = <
+                text = <"Not at all">
+                description = <"">
+            >
+            ["at21"] = <
+                text = <"A little bit">
+                description = <"">
+            >
+            ["at22"] = <
+                text = <"Somewhat">
+                description = <"">
+            >
+            ["at23"] = <
+                text = <"Quite a bit">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"Very much">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"PROMIS Item Bank v1.0 - Sleep Disturbance">
+                description = <"The PROMIS item bank v1.0 for sleep disturbance.">
+            >
+            ["id10"] = <
+                text = <"In the past 7 days: I had difficulty falling asleep">
+                description = <"I had difficulty falling asleep.">
+            >
+            ["id2"] = <
+                text = <"In the past 7 days: My sleep was refreshing">
+                description = <"My sleep was refreshing.">
+            >
+            ["id8"] = <
+                text = <"In the past 7 days: My sleep quality was">
+                description = <"My sleep quality was:">
+            >
+            ["id9"] = <
+                text = <"In the past 7 days: I had a problem with my sleep">
+                description = <"I had a problem with my sleep.">
+            >
+        >
+    >
+    

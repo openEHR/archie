@@ -1,0 +1,260 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1dfdbf1a-6cce-42b5-9a28-ac769909ca1e)
+    s2-EHR-Questionnaire_response.symptom_sign_screening.v1.0.3
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Yexuan Cheng, 浙江大学, China", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Alexander Eikrem-Lüthi, Lovisenberg Diakonale Sykehus, Norway", "Kåre Flø, DIPS ASA, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anca Heyd, DIPS ASA, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway", "Øygunn Leite Kallevik, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, UK", "Per Meinich, Helse Sør-Øst RHF, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Vanessa Pereira, Luxembourg Institute of Health (LIH), Portugal", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Andre Smitt-Ingebretsen, Sørlandet sykehus HF, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Ina Wille, Helse-Vest RHF, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-03-13">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.symptom_sign_screening.v1.0.3, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.symptom_sign_screening.v1.0.3 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To create a framework for recording answers to pre-defined screening questions about symptoms or signs.">
+            keywords = <"screening", "questionnaire", "complaint", "symptom", "disturbance", "problem", "discomfort", "sign">
+            use = <"Use to create a framework for recording answers to pre-defined screening questions about symptoms or signs.
+            
+            Common use cases include, but are not limited to:
+            - Systematic inquiry in any consultation, for example:
+            --- Do you have headaches? Yes, No, Unknown.
+            --- Have you had dizziness in the past four weeks? Yes, No, Unknown.
+            - Specific questioning related to disease surveillance.
+            
+            The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data Node would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the DV_TEXT or the DV_BOOLEAN datatypes choice to match each specific use case.
+            
+            The EVENT structure from the reference model can be used to specify whether the questions relate to point in time or over a period of time. Use a separate instance of this archetype to distinguish between a questionnaire recording information about a symptom that has been present at any time in the past and information about a symptom within a specified time interval - for example the difference between \\\"\\\"Are you dizzy now?\\\" compared to \\\"Have you had any dizziness in the past 4 weeks?
+            
+            The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' Node in the Reference Model.
+            
+            This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening questionnaire identifies the presence of a symptom or sign, it is recommended that clinical system record and persist the specific details about the symptom or sign using the Node.symptom_sign archetype nested within the Additional details SLOT in this archetype.">
+            misuse = <"Not to be used to record details about the presence or absence of a symptom, outside of a screening context. Use Node.symptom_sign or Node.exclusion_symptom_sign for these purposes.
+            
+            Not to be used to record details about a simple selection list where a question may be recorded as either \\\"present\\\" or \\\"indeterminate\\\". Use OBSERVATION.selection_list for this purpose.">
+        >
+    >
+    
+definition
+    Questionnaire_response[id1] matches {    -- Symptom/sign screening questionnaire
+        data matches {
+            Node[id35] occurrences matches {0..1} matches {    -- Screening purpose
+                value matches {
+                    Text[id41]
+                }
+            }
+            Node[id29] matches {    -- Any symptoms or signs?
+                value matches {
+                    Coded_text[id42] matches {
+                        term matches {
+                            Terminology_term[id61] matches {
+                                concept matches {[ac1]}    -- Any symptoms or signs? (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id43]
+                    Boolean_value[id44]
+                }
+            }
+            Node[id30] matches {    -- Onset
+                value matches {
+                    Date_time_value[id45]
+                    Range<Date_time_value>[id46]
+                    Text[id47]
+                    Duration_value[id48]
+                    Range<Duration_value>[id49]
+                }
+            }
+            Node[id37] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id50]
+                }
+            }
+            Node[id23] matches {    -- Specific symptom/sign
+                items matches {
+                    Node[id5] matches {    -- Symptom/sign name
+                        value matches {
+                            Text[id51]
+                        }
+                    }
+                    Node[id6] occurrences matches {0..1} matches {    -- Presence?
+                        value matches {
+                            Coded_text[id52] matches {
+                                term matches {
+                                    Terminology_term[id62] matches {
+                                        concept matches {[ac2]}    -- Presence? (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id53]
+                            Boolean_value[id54]
+                        }
+                    }
+                    Node[id38] matches {    -- Timing
+                        value matches {
+                            Duration_value[id55]
+                            Range<Duration_value>[id56]
+                            Date_time_value[id57]
+                            Range<Date_time_value>[id58]
+                            Text[id59]
+                        }
+                    }
+                    allow_archetype Node[id27] matches {     -- Additional details
+                        include
+                            archetype_id/value matches {/s2-EHR-Node\.symptom_sign(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.exclusion_symptom_sign\.v0/}
+                    }
+                    Node[id36] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id60]
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id40] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id22] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at23"] = <http://snomed.info/id/373066001>
+            ["at24"] = <http://snomed.info/id/373067005>
+            ["at31"] = <http://snomed.info/id/373066001>
+            ["at32"] = <http://snomed.info/id/373067005>
+            ["at33"] = <http://snomed.info/id/261665006>
+            ["at27"] = <http://snomed.info/id/261665006>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at31", "at32", "at33">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at23", "at24", "at27">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Any symptoms or signs? (synthesised)">
+                description = <"Is there a history of any symptoms or signs relevant for the screening purpose? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Presence? (synthesised)">
+                description = <"Is there a history of the specific symptom or sign being present? (synthesised)">
+            >
+            ["at23"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at27"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at31"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at32"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at33"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Symptom/sign screening questionnaire">
+                description = <"Series of questions and associated answers used to screen for symptoms or signs.">
+            >
+            ["id22"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id23"] = <
+                text = <"Specific symptom/sign">
+                description = <"Details about a specific symptom or sign or grouping of symptoms or signs relatevant for the screening purpose.">
+            >
+            ["id27"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about the specific symptom or sign.">
+            >
+            ["id29"] = <
+                text = <"Any symptoms or signs?">
+                description = <"Is there a history of any symptoms or signs relevant for the screening purpose?">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id30"] = <
+                text = <"Onset">
+                description = <"Timing of the inital recognition of any symptom or sign relevant for the screening purpose.">
+            >
+            ["id35"] = <
+                text = <"Screening purpose">
+                description = <"The context or reason for screening.">
+            >
+            ["id36"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the specific symptom/sign question, not captured in other fields.">
+            >
+            ["id37"] = <
+                text = <"Description">
+                description = <"Narrative description about the history of any symptoms or signs relevant for the screening purpose.">
+            >
+            ["id38"] = <
+                text = <"Timing">
+                description = <"Indication of timing related to the specific symptom or sign.">
+            >
+            ["id40"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about screening for symptoms or signs.">
+            >
+            ["id5"] = <
+                text = <"Symptom/sign name">
+                description = <"Identification of a specific symptom or sign or grouping of symptoms or signs, by name.">
+            >
+            ["id6"] = <
+                text = <"Presence?">
+                description = <"Is there a history of the specific symptom or sign being present?">
+            >
+        >
+    >
+    

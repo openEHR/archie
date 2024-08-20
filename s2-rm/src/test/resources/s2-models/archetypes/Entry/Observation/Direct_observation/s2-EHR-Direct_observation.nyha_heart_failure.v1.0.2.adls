@@ -1,0 +1,180 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=932df832-dc6e-454a-b27f-224718c2bc1f)
+	s2-EHR-Direct_observation.nyha_heart_failure.v1.0.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, freshEHR Informatics, UK, , <ian@freshehr.com>, 2012-04-12">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.nyha_heart_failure.v1.0.2, copyright 2012 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.nyha_heart_failure.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record one or both of:
+            - a functional assessment of heart failure based on symptoms; and 
+            - an objective assessment based on both evidence of cardiovascular disease and symptoms.">
+			use = <"Use to record one or both of:
+            - a functional assessment of heart failure based on symptoms; and 
+            - an objective assessment based on both evidence of cardiovascular disease and symptoms.">
+			keywords = <"heart", "failure", "cardiac", "breathlessness", "fatigue", "dysfunction", "ventricular">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Tomas Alme, DIPS ASA, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Tom Dahlberg, Helgelandssykehuset HF, Fagstab, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Are Edvardsen, SKDE, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Morten Grundtvig, Norsk hjertesviktregister, Norway", "Kristian Heldal, Telemark Hospital Trust, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Eugene Igras, IRIS Systems, Inc., Canada", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Kerrie Lee, Australia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Andrej Orel, Marand d.o.o., Slovenia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Anoop Shah, University College London, United Kingdom", "Nyree Taylor, Ocean Informatics, Australia", "Anders Thurin, SU, Sweden", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Jon Tysdahl, Furst medlab AS, Norway", "Thomas Wilson, Finnmarkssykehuset HF Klinikk Hammerfest, Norway">
+
+definition
+	Direct_observation[id1] matches {	-- New York Heart Association functional classification
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Functional capacity
+				value matches {
+					Coded_text[id21] matches {
+						term matches {
+							Terminology_term[id24] matches {
+								concept matches {[ac1]}		-- Functional capacity (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Objective assessment
+				value matches {
+					Coded_text[id22] matches {
+						term matches {
+							Terminology_term[id25] matches {
+								concept matches {[ac2]}		-- Objective assessment (synthesised)
+							}
+						}
+					}
+				}
+			}
+		}
+		state matches {
+			Node[id18] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id23] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id20] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Functional capacity (synthesised)">
+				description = <"Assessment of heart failure based on how a patient with cardiac disease feels during physical activity. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Objective assessment (synthesised)">
+				description = <"Assessment of heart failure based on evidence of cardiovascular disease and symptoms. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Class IV">
+				description = <"Unable to carry on any physical activity without discomfort. Symptoms of heart failure at rest. If any physical activity is undertaken, discomfort increases.">
+			>
+			["at12"] = <
+				text = <"Class A">
+				description = <"No objective evidence of cardiovascular disease. No symptoms and no limitation in ordinary physical activity.">
+			>
+			["at13"] = <
+				text = <"Class B">
+				description = <"Objective evidence of minimal cardiovascular disease. Mild symptoms and slight limitation during ordinary activity. Comfortable at rest.">
+			>
+			["at14"] = <
+				text = <"Class C">
+				description = <"Objective evidence of moderately severe cardiovascular disease. Marked limitation in activity due to symptoms, even during less-than-ordinary activity. Comfortable only at rest.">
+			>
+			["at15"] = <
+				text = <"Class D">
+				description = <"Objective evidence of severe cardiovascular disease. Severe limitations. Experiences symptoms even while at rest.">
+			>
+			["at5"] = <
+				text = <"Class I">
+				description = <"No limitation of physical activity. Ordinary physical activity does not cause undue fatigue, palpitation, dyspnea (shortness of breath).">
+			>
+			["at6"] = <
+				text = <"Class II">
+				description = <"Slight limitation of physical activity. Comfortable at rest. Ordinary physical activity results in fatigue, palpitation, dyspnea (shortness of breath).">
+			>
+			["at7"] = <
+				text = <"Class III">
+				description = <"Marked limitation of physical activity. Comfortable at rest. Less than ordinary activity causes fatigue, palpitation, or dyspnea.">
+			>
+			["at8"] = <
+				text = <"Class IIIa">
+				description = <"As per Class III; no dyspnoea at rest.">
+			>
+			["at9"] = <
+				text = <"Class IIIb">
+				description = <"As per Class III; recent dyspnoea at rest.">
+			>
+			["id1"] = <
+				text = <"New York Heart Association functional classification">
+				description = <"A simple method of classifying the extent of heart failure, as defined by the New York Heart Association.">
+			>
+			["id12"] = <
+				text = <"Objective assessment">
+				description = <"Assessment of heart failure based on evidence of cardiovascular disease and symptoms.">
+			>
+			["id18"] = <
+				text = <"Confounding factors">
+				description = <"Narrative description of any issues or factors that may impact on the assessment.">
+			>
+			["id20"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Functional capacity">
+				description = <"Assessment of heart failure based on how a patient with cardiac disease feels during physical activity.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id18"] = <http://loinc.org/106176-1>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6", "at7", "at8", "at9", "at10">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at12", "at13", "at14", "at15">
+		>
+	>
+

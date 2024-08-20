@@ -1,0 +1,150 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=904ab053-eec4-444b-b288-635715819aa1)
+	s2-EHR-Assessment.sexual_health_summary.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-02-13">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.sexual_health_summary.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.sexual_health_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary or persistent information about an individual's sexual health and history.">
+			use = <"Use to record summary or persistent information about an individual's sexual health and history.">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Vebjorn Arntzen, Oslo University Hospital, Norway", ...>
+
+definition
+	Assessment[id1] matches {	-- Sexual health summary
+		data matches {
+			Node[id13] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id17] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Status
+				value matches {
+					Coded_text[id18] matches {
+						term matches {
+							Terminology_term[id22] matches {
+								concept matches {[ac1]}		-- Status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- First ever sex
+				value matches {
+					Duration_value[id19] matches {
+						magnitude matches {|>=PT0S|}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id20] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id21] 
+				}
+			}
+			allow_archetype Node[id15] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Status (synthesised)">
+				description = <"Is the individual sexually active? (synthesised)">
+			>
+			["at10"] = <
+				text = <"Sexually active, no regular partner">
+				description = <"The individual is sexually active but not with a regular partner, has no current partner or has been sexually active in the past..">
+			>
+			["at11"] = <
+				text = <"Never sexually active">
+				description = <"The individual has never been sexually active.">
+			>
+			["at9"] = <
+				text = <"Sexually active, regular partner">
+				description = <"The individual is sexually active with a regular partner.">
+			>
+			["id1"] = <
+				text = <"Sexual health summary">
+				description = <"Summary or persistent information about an individual's sexual health and history.">
+			>
+			["id13"] = <
+				text = <"Description">
+				description = <"Narrative description about the sexual health history of an individual.">
+			>
+			["id15"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+			>
+			["id16"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the sexual health history not captured in other fields.">
+			>
+			["id3"] = <
+				text = <"Status">
+				description = <"Is the individual sexually active?">
+			>
+			["id4"] = <
+				text = <"First ever sex">
+				description = <"The age when the individual first had sex.">
+			>
+			["id5"] = <
+				text = <"Last updated">
+				description = <"The date this summary was last updated.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id13"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id16"] = <http://loinc.org/106173-8>
+			["id3"] = <http://loinc.org/106199-3>
+			["id5"] = <http://loinc.org/106177-9>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at9", "at10", "at11">
+		>
+	>
+

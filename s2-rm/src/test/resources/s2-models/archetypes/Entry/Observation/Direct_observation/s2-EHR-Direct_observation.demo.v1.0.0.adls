@@ -1,0 +1,964 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=47c34f05-de6a-435b-9d4c-3e30e816bf63)
+    s2-EHR-Direct_observation.demo.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Individual A, Argentina", "Individual B, Belgium", "Individual C, Canada (Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2008-12-23">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.demo.v1.0.0, copyright 2008 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.demo.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To provide an overview of the display of each of the datatypes available in an openEHR archetype, and of the Data, State, Event and Protocol models within the context of a HTML display and associated ADL.">
+            keywords = <"demonstration", "test", "prototype", "datatypes", "state", "protocol", "event", "data">
+            use = <"To provide a visual overview of archetype data types and archetype components to potential and current clinical content reviewers in the openEHR Clinical Knowledge Manager.">
+            misuse = <"Not to carry any real clinical data.">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Demonstration
+        data matches {
+            Node[id33] occurrences matches {0..1}     -- Data - Definition
+            Node[id5] matches {    -- Heading1
+                items matches {
+                    Node[id6] occurrences matches {0..1} matches {    -- Free Text or Coded
+                        value matches {
+                            Text[id47]
+                        }
+                    }
+                    Node[id7] matches {    -- Text That Uses Internal Codes
+                        value matches {
+                            Coded_text[id48] matches {
+                                term matches {
+                                    Terminology_term[id80] matches {
+                                        concept matches {[ac5]}    -- Text That Uses Internal Codes (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id12] matches {    -- Text That is Sourced From an External Terminology
+                        value matches {
+                            Coded_text[id49] matches {
+                                term matches {
+                                    Terminology_term[id81] matches {
+                                        concept matches {[ac2]}    -- SubsetA
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id13] occurrences matches {0..1} matches {    -- Quantity
+                        value matches {
+                            Measured<Quantity>[id94] matches {
+                                value matches {
+                                    Quantity[id82] matches {    -- Quantity (cm)
+                                        magnitude matches {|0.0..100.0|}
+                                        units matches {
+                                            Coded_text[id84] matches {
+                                                term matches {
+                                                    Terminology_term[id83] matches {
+                                                        concept matches {[at96]}    -- cm
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        precision matches {1}
+                                    }
+                                }
+                            }
+                            Measured<Quantity>[id95] matches {
+                                value matches {
+                                    Quantity[id85] matches {    -- Quantity (mm)
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id87] matches {
+                                                term matches {
+                                                    Terminology_term[id86] matches {
+                                                        concept matches {[at97]}    -- mm
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        precision matches {|>=0|}
+                                    }
+                                }
+                            }
+                            Measured<Quantity>[id96] matches {
+                                value matches {
+                                    Quantity[id88] matches {    -- Quantity ([in_i])
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id90] matches {
+                                                term matches {
+                                                    Terminology_term[id89] matches {
+                                                        concept matches {[at98]}    -- in_i
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        precision matches {|>=0|}
+                                    }
+                                }
+                            }
+                            Measured<Quantity>[id97] matches {
+                                value matches {
+                                    Quantity[id91] matches {    -- Quantity ([ft_i])
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id93] matches {
+                                                term matches {
+                                                    Terminology_term[id92] matches {
+                                                        concept matches {[at99]}    -- [ft_i]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        precision matches {|>=0|}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id24] occurrences matches {0..1} matches {    -- Interval of Quantity
+                        value matches {
+                            Range<Quantity>[id51] matches {
+                                upper matches {
+                                    Measured<Quantity>[id98] matches {
+                                        value matches {
+                                            Quantity[id52] matches {
+                                                units matches {
+                                                    Coded_text[id101] matches {
+                                                        term matches {
+                                                            Terminology_term[id100] matches {
+                                                                concept matches {[at96]}    -- cm
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                lower matches {
+                                    Measured<Quantity>[id99] matches {
+                                        value matches {
+                                            Quantity[id53] matches {
+                                                units matches {
+                                                    Coded_text[id103] matches {
+                                                        term matches {
+                                                            Terminology_term[id102] matches {
+                                                                concept matches {[at96]}    -- cm
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id14] occurrences matches {0..1} matches {    -- Count
+                        value matches {
+                            Count[id54] matches {
+                                magnitude matches {|>=0|}
+                            }
+                        }
+                    }
+                    Node[id23] occurrences matches {0..1} matches {    -- Interval of Integer
+                        value matches {
+                            Range<Count>[id55] matches {
+                                upper matches {
+                                    Count[id56]
+                                }
+                                lower matches {
+                                    Count[id57]
+                                }
+                            }
+                        }
+                    }
+                    Node[id29] occurrences matches {0..1} matches {    -- Proportion
+                        value matches {
+                            Ratio[id58] matches {
+                                type matches {2, 2, 3, 4}
+                            }
+                        }
+                    }
+                    Node[id15] occurrences matches {0..1} matches {    -- Date/Time
+                        value matches {
+                            Date_time_value[id59]
+                        }
+                    }
+                    Node[id25] occurrences matches {0..1} matches {    -- Interval of Date
+                        value matches {
+                            Range<Date_time_value>[id60] matches {
+                                upper matches {
+                                    Date_time_value[id61]
+                                }
+                                lower matches {
+                                    Date_time_value[id62]
+                                }
+                            }
+                        }
+                    }
+                    Node[id22] occurrences matches {0..1} matches {    -- Duration
+                        value matches {
+                            Duration_value[id63]
+                        }
+                    }
+                    Node[id16] occurrences matches {0..1} matches {    -- Ordinal
+                        value matches {
+                            Coded_ordinal[id104] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id106] matches {
+                                        term matches {
+                                            Terminology_term[id105] matches {
+                                                concept matches {[at38]}    -- No pain
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id107] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id109] matches {
+                                        term matches {
+                                            Terminology_term[id108] matches {
+                                                concept matches {[at39]}    -- Slight pain
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id110] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id112] matches {
+                                        term matches {
+                                            Terminology_term[id111] matches {
+                                                concept matches {[at40]}    -- Mild pain
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id113] matches {
+                                magnitude matches {5}
+                                concept matches {
+                                    Coded_text[id115] matches {
+                                        term matches {
+                                            Terminology_term[id114] matches {
+                                                concept matches {[at41]}    -- Moderate pain
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id116] matches {
+                                magnitude matches {9}
+                                concept matches {
+                                    Coded_text[id118] matches {
+                                        term matches {
+                                            Terminology_term[id117] matches {
+                                                concept matches {[at42]}    -- Severe pain
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id119] matches {
+                                magnitude matches {10}
+                                concept matches {
+                                    Coded_text[id121] matches {
+                                        term matches {
+                                            Terminology_term[id120] matches {
+                                                concept matches {[at43]}    -- Most severe pain imaginable
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id17] occurrences matches {0..1} matches {    -- Boolean
+                        value matches {
+                            Boolean_value[id65] matches {
+                                value matches {True, False}
+                            }
+                        }
+                    }
+                    Node[id18] occurrences matches {0..1}     -- Any
+                    Node[id26] occurrences matches {0..1} matches {    -- Choice
+                        value matches {
+                            Measured<Quantity>[id122] matches {
+                                value matches {
+                                    Quantity[id67] matches {
+                                        units matches {
+                                            Coded_text[id124] matches {
+                                                term matches {
+                                                    Terminology_term[id123] matches {
+                                                        concept matches {[at100]}    -- g
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_text[id68] matches {
+                                term matches {
+                                    Terminology_term[id125] matches {
+                                        concept matches {[ac4]}    -- SubsetB
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id27] occurrences matches {0..1} matches {    -- Multimedia
+                        value matches {
+                            Multimedia[id69] matches {
+                                media_type matches {[ac7]}    -- Multimedia (synthesised)
+                            }
+                        }
+                    }
+                    Node[id28] occurrences matches {0..1} matches {    -- URI - resource identifier
+                        value matches {
+                            Uri_ref[id70]
+                        }
+                    }
+                    Node[id45] occurrences matches {0..1} matches {    -- Identifier
+                        value matches {
+                            Rwe_id_ref[id71]
+                        }
+                    }
+                }
+            }
+            Node[id19] occurrences matches {0..1} matches {    -- Heading 2
+                items matches {
+                    allow_archetype Node[id20] matches {     -- Slot To Contain Other Node Archetypes
+                        include
+                            archetype_id/value matches {/s2-EHR-Node\.anatomical_location\.v1|s2-EHR-Node\.device\.v1/}
+                    }
+                    allow_archetype Node[id21] matches {     -- Slot To Contain Other Node Archetypes
+                        include
+                            archetype_id/value matches {/s2-EHR-Node\.ctg_codes\.v1/}
+                        exclude
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+        state matches {
+            Node[id32] occurrences matches {0..1}     -- State - Definition
+        }
+        qualifiers matches {
+            Node[id38] occurrences matches {0..1}     -- Protocol - Definition
+            allow_archetype Node[id46] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+        data_series matches {
+            Point_event[id34] occurrences matches {0..1} matches {    -- Named Point In Time
+                items matches {
+                    use_node Node[id33] /data[id33]    -- Data - Definition
+                    use_node Node[id5] /data[id5]    -- Heading1
+                    use_node Node[id19] /data[id19]    -- Heading 2
+                }
+            }
+            Interval_event[id35] occurrences matches {0..1} matches {    -- Named Interval
+                sample_function matches {"change"}
+                items matches {
+                    use_node Node[id33] /data[id33]    -- Data - Definition
+                    use_node Node[id5] /data[id5]    -- Heading1
+                    use_node Node[id19] /data[id19]    -- Heading 2
+                }
+            }
+            Point_event[id36] occurrences matches {0..1} matches {    -- Offset Point In Time
+                offset matches {
+                    Duration_value[id77] matches {
+                        magnitude matches {PT5M}
+                    }
+                }
+                items matches {
+                    use_node Node[id33] /data[id33]    -- Data - Definition
+                    use_node Node[id5] /data[id5]    -- Heading1
+                    use_node Node[id19] /data[id19]    -- Heading 2
+                }
+            }
+        }
+        state_series matches {
+            Point_event[id34] occurrences matches {0..1} matches {    -- Named Point In Time
+                items matches {
+                    use_node Node[id32] /state[id32]    -- State - Definition
+                }
+            }
+            Interval_event[id35] occurrences matches {0..1} matches {    -- Named Interval
+                sample_function matches {"change"}
+                items matches {
+                    use_node Node[id32] /state[id32]    -- State - Definition
+                }
+            }
+            Point_event[id36] occurrences matches {0..1} matches {    -- Offset Point In Time
+                offset matches {
+                    Duration_value[id77] matches {
+                        magnitude matches {PT5M}
+                    }
+                }
+                items matches {
+                    use_node Node[id32] /state[id32]    -- State - Definition
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at44"] = <http://openehr.org/id/122>
+            ["at45"] = <http://openehr.org/id/124>
+            ["at47"] = <http://openehr.org/id/271>
+            ["at48"] = <http://openehr.org/id/272>
+            ["at49"] = <http://openehr.org/id/273>
+            ["at50"] = <http://openehr.org/id/253>
+            ["at51"] = <http://openehr.org/id/387>
+            ["at52"] = <http://openehr.org/id/388>
+            ["at53"] = <http://openehr.org/id/389>
+            ["at54"] = <http://openehr.org/id/390>
+            ["at55"] = <http://openehr.org/id/391>
+            ["at56"] = <http://openehr.org/id/392>
+            ["at57"] = <http://openehr.org/id/393>
+            ["at58"] = <http://openehr.org/id/394>
+            ["at59"] = <http://openehr.org/id/395>
+            ["at60"] = <http://openehr.org/id/396>
+            ["at61"] = <http://openehr.org/id/397>
+            ["at62"] = <http://openehr.org/id/398>
+            ["at63"] = <http://openehr.org/id/399>
+            ["at64"] = <http://openehr.org/id/400>
+            ["at65"] = <http://openehr.org/id/409>
+            ["at66"] = <http://openehr.org/id/410>
+            ["at67"] = <http://openehr.org/id/411>
+            ["at68"] = <http://openehr.org/id/412>
+            ["at69"] = <http://openehr.org/id/413>
+            ["at70"] = <http://openehr.org/id/425>
+            ["at71"] = <http://openehr.org/id/426>
+            ["at72"] = <http://openehr.org/id/427>
+            ["at73"] = <http://openehr.org/id/428>
+            ["at74"] = <http://openehr.org/id/429>
+            ["at75"] = <http://openehr.org/id/415>
+            ["at76"] = <http://openehr.org/id/416>
+            ["at77"] = <http://openehr.org/id/417>
+            ["at78"] = <http://openehr.org/id/418>
+            ["at79"] = <http://openehr.org/id/419>
+            ["at80"] = <http://openehr.org/id/420>
+            ["at81"] = <http://openehr.org/id/421>
+            ["at82"] = <http://openehr.org/id/422>
+            ["at83"] = <http://openehr.org/id/423>
+            ["at84"] = <http://openehr.org/id/424>
+            ["at85"] = <http://openehr.org/id/401>
+            ["at86"] = <http://openehr.org/id/402>
+            ["at87"] = <http://openehr.org/id/404>
+            ["at88"] = <http://openehr.org/id/405>
+            ["at89"] = <http://openehr.org/id/406>
+            ["at90"] = <http://openehr.org/id/407>
+            ["at91"] = <http://openehr.org/id/414>
+            ["at92"] = <http://openehr.org/id/517>
+            ["at93"] = <http://openehr.org/id/518>
+            ["at94"] = <http://openehr.org/id/519>
+            ["at95"] = <http://openehr.org/id/637>
+        >
+        ["ucum"] = <
+            ["at96"] = <http://ucum.org/id/cm>
+            ["at97"] = <http://ucum.org/id/mm>
+            ["at98"] = <http://ucum.org/id/%5Bin_i%5D>
+            ["at99"] = <http://ucum.org/id/%5Bft_i%5D>
+            ["at100"] = <http://ucum.org/id/g>
+        >
+        ["snomed"] = <
+            ["at96"] = <http://snomed.info/id/258672001>
+            ["at97"] = <http://snomed.info/id/258673006>
+            ["at98"] = <http://snomed.info/id/258677007>
+            ["at99"] = <http://snomed.info/id/259051005>
+            ["at100"] = <http://snomed.info/id/258682000>
+        >
+    >
+    value_sets = <
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at7", "at8", "at9", "at10">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at47", "at48", "at49", "at50">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at51", "at52", "at53", "at54", "at55", "at56", "at57", "at58", "at59", "at60", "at61", "at62", "at63", "at64", "at65", "at66", "at67", "at68", "at69", "at70", "at71", "at72", "at73", "at74", "at75", "at76", "at77", "at78", "at79", "at80", "at81", "at82", "at83", "at84", "at85", "at86", "at87", "at88", "at89", "at90", "at91", "at92", "at93", "at94", "at95">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at38", "at39", "at40", "at41", "at42", "at43">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac2"] = <
+                text = <"SubsetA">
+                description = <"Terminology subset derived from XXX">
+            >
+            ["ac4"] = <
+                text = <"SubsetB">
+                description = <"XYZ codes from Terminology 123">
+            >
+            ["ac5"] = <
+                text = <"Text That Uses Internal Codes (synthesised)">
+                description = <"Text data type which can use an internal vocabulary.  Each of these 'internal codes' can be bound to a terminology code. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Boolean (synthesised)">
+                description = <"Boolean datatype that allows for true or false answers. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Multimedia (synthesised)">
+                description = <"Multimedia datatypes allow for the recording of many types of multimedia files to be captured.  All available types have been explicitly selected in this example. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Ordinal (synthesised)">
+                description = <"Ordinal datatypes pair a number and text - in this way scores can be calculated in software, or progression can be assessed eg if used in a pain score. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Standing">
+                description = <"Patient is standing.">
+            >
+            ["at100"] = <
+                text = <"g">
+                description = <"Gram unit.">
+            >
+            ["at38"] = <
+                text = <"No pain">
+                description = <"No pain at all.">
+            >
+            ["at39"] = <
+                text = <"Slight pain">
+                description = <"Pain level rated as 1 out of a possible maximum score of 10.">
+            >
+            ["at40"] = <
+                text = <"Mild pain">
+                description = <"Pain level rated as 2 out of a possible maximum score of 10.">
+            >
+            ["at41"] = <
+                text = <"Moderate pain">
+                description = <"Pain level rated as 5 out of a possible maximum score of 10.">
+            >
+            ["at42"] = <
+                text = <"Severe pain">
+                description = <"Pain level rated as 9 out of a possible maximum score of 10.">
+            >
+            ["at43"] = <
+                text = <"Most severe pain imaginable">
+                description = <"Pain level rated as 10 out of a possible maximum score of 10.">
+            >
+            ["at44"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["at45"] = <
+                text = <"Mass">
+                description = <"Mass">
+            >
+            ["at47"] = <
+                text = <"no information">
+                description = <"no information">
+            >
+            ["at48"] = <
+                text = <"masked">
+                description = <"masked">
+            >
+            ["at49"] = <
+                text = <"not applicable">
+                description = <"not applicable">
+            >
+            ["at50"] = <
+                text = <"unknown">
+                description = <"unknown">
+            >
+            ["at51"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at52"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at53"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at54"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at55"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at56"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at57"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at58"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at59"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at60"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at61"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at62"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at63"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at64"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at65"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at66"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at67"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at68"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at69"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at7"] = <
+                text = <"Lying">
+                description = <"Patient is lying supine.">
+            >
+            ["at70"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at71"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at72"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at73"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at74"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at75"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at76"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at77"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at78"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at79"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at8"] = <
+                text = <"Reclining">
+                description = <"Patient is reclining, propped up on one medium pillow.">
+            >
+            ["at80"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at81"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at82"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at83"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at84"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at85"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at86"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at87"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at88"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at89"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at9"] = <
+                text = <"Sitting">
+                description = <"Patient is sitting on a chair.">
+            >
+            ["at90"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at91"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at92"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at93"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at94"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at95"] = <
+                text = <"(added by post-parse processor)">
+                description = <"(added by post-parse processor)">
+            >
+            ["at96"] = <
+                text = <"cm">
+                description = <"Centimetres length unit">
+            >
+            ["at97"] = <
+                text = <"mm">
+                description = <"mm unit.">
+            >
+            ["at98"] = <
+                text = <"in_i">
+                description = <"Inches length unit">
+            >
+            ["at99"] = <
+                text = <"[ft_i]">
+                description = <"[ft_i] unit.">
+            >
+            ["id1"] = <
+                text = <"Demonstration">
+                description = <"Demonstration archetype with descriptions and explanations.">
+            >
+            ["id12"] = <
+                text = <"Text That is Sourced From an External Terminology">
+                description = <"Text data type utilising codes derived from an external terminology source eg a SNOMED-CT, LOINC or ICD subset.">
+            >
+            ["id13"] = <
+                text = <"Quantity">
+                description = <"A quantity data type used to record a measurement associated with its' appropriate units.  These are derived from ISO standards and the Reference model enables conversion between these units. The example shown here is length.">
+            >
+            ["id14"] = <
+                text = <"Count">
+                description = <"Count data types are composed of an integer with no units eg for recording the number of children - in this example the minimum is set at 0 and the maximum not specified.">
+            >
+            ["id15"] = <
+                text = <"Date/Time">
+                description = <"Date/Time datatype allows recording of a date and/or time, including partial dates such as year only or month and year only.  Allow all is the default - so all forms of date/time are permitted.">
+            >
+            ["id16"] = <
+                text = <"Ordinal">
+                description = <"Ordinal datatypes pair a number and text - in this way scores can be calculated in software, or progression can be assessed eg if used in a pain score.">
+            >
+            ["id17"] = <
+                text = <"Boolean">
+                description = <"Boolean datatype that allows for true or false answers.">
+            >
+            ["id18"] = <
+                text = <"Any">
+                description = <"The datatype for this 'any' Node can be specified or constrained in a template or at run-time, but is not explicitly modelled in the archetype.">
+            >
+            ["id19"] = <
+                text = <"Heading 2">
+                description = <"This is a symbol for a Node which can have other Nodes 'nested' within it.">
+            >
+            ["id20"] = <
+                text = <"Slot To Contain Other Node Archetypes">
+                description = <"List of Node archetypes allowed to be included or excluded within this OBSERVATION archetype.">
+            >
+            ["id21"] = <
+                text = <"Slot To Contain Other Node Archetypes">
+                description = <"List of Node archetypes allowed to be included or excluded within this OBSERVATION archetype.">
+            >
+            ["id22"] = <
+                text = <"Duration">
+                description = <"Duration datatype allows recording of the duration of clinical concepts.  'Allow all time units' is the default, although specific time units can be explicitly modelled.  Maximum and minum values can be set for each time unit.">
+            >
+            ["id23"] = <
+                text = <"Interval of Integer">
+                description = <"Interval of integer datatype allows for recording of a range of counts eg 1-2 tablets prescribed.  Maximum and minimum values can be set for the lower count and the upper count.">
+            >
+            ["id24"] = <
+                text = <"Interval of Quantity">
+                description = <"Interval of quantity datatypes allow for the recording of a range of measurements in association with appropriate units eg 1-2cm (prescribed amount of cream for a rash).">
+            >
+            ["id25"] = <
+                text = <"Interval of Date">
+                description = <"Interval of integer datatype allows for recording of a range of dates eg between September 1, 2008 and September 8, 2008.">
+            >
+            ["id26"] = <
+                text = <"Choice">
+                description = <"Choice datatype allows for a number of types of Node to be specified simultaneously and which can constrained or selected within a template or at run-time.  In this example, a text datatype set to Free text or Coded and another that is constrained to Terminology record data about the same data Node.">
+            >
+            ["id27"] = <
+                text = <"Multimedia">
+                description = <"Multimedia datatypes allow for the recording of many types of multimedia files to be captured.  All available types have been explicitly selected in this example.">
+            >
+            ["id28"] = <
+                text = <"URI - resource identifier">
+                description = <"URI datatypes allow for recording of relationships from this data to data recorded elsewhere.  These links can be within the same EHR, or external eg to a  URL.">
+            >
+            ["id29"] = <
+                text = <"Proportion">
+                description = <"Proportion datatypes allow for ratios, percent, fractions and proportions to be modelled.">
+            >
+            ["id3"] = <
+                text = <"Any Event">
+                description = <"All archetypes of the OBSERVATION class contain a HISTORY or EVENT model which contains information about the timing of the observation and the 'width' of the information - either a point in time or an interval.  The default is 'Any event' and it is not specified if this is a Point in time or an Interval.">
+            >
+            ["id32"] = <
+                text = <"State - Definition">
+                description = <"All archetypes of the OBSERVATION class can  contain a STATE model which contains information about the subject of data at the time the information was collected, and this information is required for safe clinical interpretation of the core information. An example is the position of the patient at the time of measuring a blood pressure.  Datatypes are identical to those explained in the Data model, above.">
+            >
+            ["id33"] = <
+                text = <"Data - Definition">
+                description = <"All archetypes of the OBSERVATION class contain a DATA model  which contains the core information e.g. the systolic and diastolic pressures when measuring a blood pressure.">
+            >
+            ["id34"] = <
+                text = <"Named Point In Time">
+                description = <"An event that is both named (eg Birth) and constrained as a Point in time event records the data Nodes in relation to a specified point in time eg Weight at Birth.">
+            >
+            ["id35"] = <
+                text = <"Named Interval">
+                description = <"An event that is both named and constrained as an Interval event records the data Nodes in relation to a period of time eg Weight Loss over time.  The interval can be fixed or left unspecified.  In addition there are mathematical functions that can be specified to capture concepts such as change, decrease, increase, maximum, minimum, mean etc.">
+            >
+            ["id36"] = <
+                text = <"Offset Point In Time">
+                description = <"Offset Point in time records data at a point in time with a fixed offset of 5 minutes from another specified event eg recording a 2 minute Apgar reading at 2 minutes offset from Birth.">
+            >
+            ["id38"] = <
+                text = <"Protocol - Definition">
+                description = <"All archetypes of the OBSERVATION class can contain a PROTOCOL model which records information on how the information was gathered or measured, and any other information that is not required for safe clinical interpretation of the core Data. Datatypes are identical to those explained in the Data model, above.">
+            >
+            ["id45"] = <
+                text = <"Identifier">
+                description = <"Identifier datatypes enable recording of formal data identifiers.">
+            >
+            ["id46"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+            >
+            ["id5"] = <
+                text = <"Heading1">
+                description = <"This is a symbol for a Node which can have other Nodes 'nested' within it.">
+            >
+            ["id6"] = <
+                text = <"Free Text or Coded">
+                description = <"Text data type in which free text can be entered or coding can be incorporated either in the template or at run time.">
+            >
+            ["id7"] = <
+                text = <"Text That Uses Internal Codes">
+                description = <"Text data type which can use an internal vocabulary.  Each of these 'internal codes' can be bound to a terminology code.">
+            >
+            ["id82"] = <
+                text = <"Quantity (cm)">
+                description = <"Quantity (cm)">
+            >
+            ["id85"] = <
+                text = <"Quantity (mm)">
+                description = <"Quantity (mm)">
+            >
+            ["id88"] = <
+                text = <"Quantity ([in_i])">
+                description = <"Quantity ([in_i])">
+            >
+            ["id91"] = <
+                text = <"Quantity ([ft_i])">
+                description = <"Quantity ([ft_i])">
+            >
+        >
+    >
+    

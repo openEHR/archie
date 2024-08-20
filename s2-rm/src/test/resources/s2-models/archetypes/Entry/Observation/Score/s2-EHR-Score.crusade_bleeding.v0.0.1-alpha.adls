@@ -1,0 +1,814 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=549b6f36-18cd-4143-acb9-5c7811fd4d1b)
+    s2-EHR-Score.crusade_bleeding.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"John Meredith, NHS Wales Informatics Service, <john.meredith@wales.nhs.uk>, 2019-04-03">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.crusade_bleeding.v0.0.1-alpha, copyright 2019 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.crusade_bleeding.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter, the total sum and grade for the CRUSADE bleeding score.">
+            keywords = <"ACS", "Acute coronary syndrome", "Bleeding", "CBRS", "CRUSADE bleeding risk score", "NSTEMI", "Non-ST segment elevation myocardial infarction", "PCI", "percutaneous coronary intervention", "prognosis", "ST segment elevation myocardial infarction", "STEMI", "ischaemic heart disease", "myocardial infarction", "primary percutaneous coronary intervention", "risk score">
+            use = <"Use to record the results for each component parameter, the total sum and grade for the CRUSADE bleeding score.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- CRUSADE bleeding score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Baseline haematocrit
+                value matches {
+                    Coded_ordinal[id86] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id88] matches {
+                                term matches {
+                                    Terminology_term[id87] matches {
+                                        concept matches {[at9]}    -- >=40
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id89] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id91] matches {
+                                term matches {
+                                    Terminology_term[id90] matches {
+                                        concept matches {[at8]}    -- 37-39.9
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id92] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id94] matches {
+                                term matches {
+                                    Terminology_term[id93] matches {
+                                        concept matches {[at7]}    -- 34-36.9
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id95] matches {
+                        magnitude matches {7}
+                        concept matches {
+                            Coded_text[id97] matches {
+                                term matches {
+                                    Terminology_term[id96] matches {
+                                        concept matches {[at6]}    -- 31-33.9
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id98] matches {
+                        magnitude matches {9}
+                        concept matches {
+                            Coded_text[id100] matches {
+                                term matches {
+                                    Terminology_term[id99] matches {
+                                        concept matches {[at5]}    -- <31
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Creatinine clearance
+                value matches {
+                    Coded_ordinal[id101] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id103] matches {
+                                term matches {
+                                    Terminology_term[id102] matches {
+                                        concept matches {[at16]}    -- >120
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id104] matches {
+                        magnitude matches {7}
+                        concept matches {
+                            Coded_text[id106] matches {
+                                term matches {
+                                    Terminology_term[id105] matches {
+                                        concept matches {[at15]}    -- >90-120
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id107] matches {
+                        magnitude matches {17}
+                        concept matches {
+                            Coded_text[id109] matches {
+                                term matches {
+                                    Terminology_term[id108] matches {
+                                        concept matches {[at14]}    -- >60-90
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id110] matches {
+                        magnitude matches {28}
+                        concept matches {
+                            Coded_text[id112] matches {
+                                term matches {
+                                    Terminology_term[id111] matches {
+                                        concept matches {[at13]}    -- >30-60
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id113] matches {
+                        magnitude matches {35}
+                        concept matches {
+                            Coded_text[id115] matches {
+                                term matches {
+                                    Terminology_term[id114] matches {
+                                        concept matches {[at12]}    -- >15-30
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id116] matches {
+                        magnitude matches {39}
+                        concept matches {
+                            Coded_text[id118] matches {
+                                term matches {
+                                    Terminology_term[id117] matches {
+                                        concept matches {[at11]}    -- <=15
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Heart rate
+                value matches {
+                    Coded_ordinal[id119] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id121] matches {
+                                term matches {
+                                    Terminology_term[id120] matches {
+                                        concept matches {[at18]}    -- <=70
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id122] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id124] matches {
+                                term matches {
+                                    Terminology_term[id123] matches {
+                                        concept matches {[at19]}    -- 71-80
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id125] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id127] matches {
+                                term matches {
+                                    Terminology_term[id126] matches {
+                                        concept matches {[at20]}    -- 81-90
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id128] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id130] matches {
+                                term matches {
+                                    Terminology_term[id129] matches {
+                                        concept matches {[at21]}    -- 91-100
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id131] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id133] matches {
+                                term matches {
+                                    Terminology_term[id132] matches {
+                                        concept matches {[at22]}    -- 101-110
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id134] matches {
+                        magnitude matches {10}
+                        concept matches {
+                            Coded_text[id136] matches {
+                                term matches {
+                                    Terminology_term[id135] matches {
+                                        concept matches {[at23]}    -- 111-120
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id137] matches {
+                        magnitude matches {11}
+                        concept matches {
+                            Coded_text[id139] matches {
+                                term matches {
+                                    Terminology_term[id138] matches {
+                                        concept matches {[at24]}    -- >=121
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Sex
+                value matches {
+                    Coded_ordinal[id140] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id142] matches {
+                                term matches {
+                                    Terminology_term[id141] matches {
+                                        concept matches {[at27]}    -- Male
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id143] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id145] matches {
+                                term matches {
+                                    Terminology_term[id144] matches {
+                                        concept matches {[at26]}    -- Female
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Signs of heart failure
+                value matches {
+                    Coded_ordinal[id146] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id148] matches {
+                                term matches {
+                                    Terminology_term[id147] matches {
+                                        concept matches {[at29]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id149] matches {
+                        magnitude matches {7}
+                        concept matches {
+                            Coded_text[id151] matches {
+                                term matches {
+                                    Terminology_term[id150] matches {
+                                        concept matches {[at30]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id32] occurrences matches {0..1} matches {    -- Prior vascular disease
+                value matches {
+                    Coded_ordinal[id152] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id154] matches {
+                                term matches {
+                                    Terminology_term[id153] matches {
+                                        concept matches {[at32]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id155] matches {
+                        magnitude matches {7}
+                        concept matches {
+                            Coded_text[id157] matches {
+                                term matches {
+                                    Terminology_term[id156] matches {
+                                        concept matches {[at33]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id35] occurrences matches {0..1} matches {    -- Diabetes mellitus
+                value matches {
+                    Coded_ordinal[id158] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id160] matches {
+                                term matches {
+                                    Terminology_term[id159] matches {
+                                        concept matches {[at35]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id161] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id163] matches {
+                                term matches {
+                                    Terminology_term[id162] matches {
+                                        concept matches {[at36]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id74] occurrences matches {0..1} matches {    -- Systolic blood pressure
+                value matches {
+                    Coded_ordinal[id164] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id166] matches {
+                                term matches {
+                                    Terminology_term[id165] matches {
+                                        concept matches {[at77]}    -- 121-180
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id167] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id169] matches {
+                                term matches {
+                                    Terminology_term[id168] matches {
+                                        concept matches {[at78]}    -- 181-200
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id170] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id172] matches {
+                                term matches {
+                                    Terminology_term[id171] matches {
+                                        concept matches {[at76]}    -- 101-120 or >=201
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id173] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id175] matches {
+                                term matches {
+                                    Terminology_term[id174] matches {
+                                        concept matches {[at75]}    -- 91-100
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id176] matches {
+                        magnitude matches {10}
+                        concept matches {
+                            Coded_text[id178] matches {
+                                term matches {
+                                    Terminology_term[id177] matches {
+                                        concept matches {[at74]}    -- <=90
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id65] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id83] matches {
+                        magnitude matches {|0..91|}
+                    }
+                }
+            }
+            Node[id64] occurrences matches {0..1} matches {    -- Risk grade
+                value matches {
+                    Coded_ordinal[id179] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id181] matches {
+                                term matches {
+                                    Terminology_term[id180] matches {
+                                        concept matches {[at65]}    -- <=20
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id182] matches {
+                        magnitude matches {21}
+                        concept matches {
+                            Coded_text[id184] matches {
+                                term matches {
+                                    Terminology_term[id183] matches {
+                                        concept matches {[at66]}    -- 21-30
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id185] matches {
+                        magnitude matches {31}
+                        concept matches {
+                            Coded_text[id187] matches {
+                                term matches {
+                                    Terminology_term[id186] matches {
+                                        concept matches {[at67]}    -- 31-40
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id188] matches {
+                        magnitude matches {41}
+                        concept matches {
+                            Coded_text[id190] matches {
+                                term matches {
+                                    Terminology_term[id189] matches {
+                                        concept matches {[at68]}    -- 41-50
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id191] matches {
+                        magnitude matches {51}
+                        concept matches {
+                            Coded_text[id193] matches {
+                                term matches {
+                                    Terminology_term[id192] matches {
+                                        concept matches {[at69]}    -- >=51
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id47] occurrences matches {0..1} matches {    -- Score version
+                value matches {
+                    Text[id85]
+                }
+            }
+            allow_archetype Node[id72] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at9", "at8", "at7", "at6", "at5">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at16", "at15", "at14", "at13", "at12", "at11">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at18", "at19", "at20", "at21", "at22", "at23", "at24">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at27", "at26">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at29", "at30">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at32", "at33">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at35", "at36">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at77", "at78", "at76", "at75", "at74">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at65", "at66", "at67", "at68", "at69">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Baseline haematocrit (synthesised)">
+                description = <"Haematocrit measured in %. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Creatinine clearance (synthesised)">
+                description = <"Creatinine clearance estimated using the Cockcroft-Gault equation. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Heart rate (synthesised)">
+                description = <"Heart rate measured in beats/min. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Sex (synthesised)">
+                description = <"Patient sex. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Signs of heart failure (synthesised)">
+                description = <"Signs of congestive heart failure at presentation? (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Prior vascular disease (synthesised)">
+                description = <"History of vascular disease? (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Diabetes mellitus (synthesised)">
+                description = <"History of diabetes mellitus? (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Systolic blood pressure (synthesised)">
+                description = <"Systolic blood pressure measured in mm Hg. (synthesised)">
+            >
+            ["ac9"] = <
+                text = <"Risk grade (synthesised)">
+                description = <"Overall CRUSADE risk score. (synthesised)">
+            >
+            ["at11"] = <
+                text = <"<=15">
+                description = <"Less than or equal to 15 mL/min.">
+            >
+            ["at12"] = <
+                text = <">15-30">
+                description = <"Greater than 15 to 30 mL/min.">
+            >
+            ["at13"] = <
+                text = <">30-60">
+                description = <"Greater than 30 to 60 mL/min.">
+            >
+            ["at14"] = <
+                text = <">60-90">
+                description = <"Greater than 60 to 90 mL/min.">
+            >
+            ["at15"] = <
+                text = <">90-120">
+                description = <"Greater than 90 to 120 mL/min.">
+            >
+            ["at16"] = <
+                text = <">120">
+                description = <"Greater than 120 mL/min.">
+            >
+            ["at18"] = <
+                text = <"<=70">
+                description = <"Less than or equal to 70 bpm.">
+            >
+            ["at19"] = <
+                text = <"71-80">
+                description = <"Between 71 and 80 bpm.">
+            >
+            ["at20"] = <
+                text = <"81-90">
+                description = <"Between 81 and 90 bpm.">
+            >
+            ["at21"] = <
+                text = <"91-100">
+                description = <"Between 91 and 100 bpm.">
+            >
+            ["at22"] = <
+                text = <"101-110">
+                description = <"Between 101 and 110 bpm.">
+            >
+            ["at23"] = <
+                text = <"111-120">
+                description = <"Between 111 and 120 bpm.">
+            >
+            ["at24"] = <
+                text = <">=121">
+                description = <"Greater than or equal to 121.">
+            >
+            ["at26"] = <
+                text = <"Female">
+                description = <"Patient sex is female.">
+            >
+            ["at27"] = <
+                text = <"Male">
+                description = <"Patient sex is male.">
+            >
+            ["at29"] = <
+                text = <"No">
+                description = <"No signs of congestive heart failure at presentation.">
+            >
+            ["at30"] = <
+                text = <"Yes">
+                description = <"Signs of Congestive Heart Failure at presentation.">
+            >
+            ["at32"] = <
+                text = <"No">
+                description = <"No history of vascular disease.">
+            >
+            ["at33"] = <
+                text = <"Yes">
+                description = <"Patient has history of vascular disease.">
+            >
+            ["at35"] = <
+                text = <"No">
+                description = <"No history of diabetes mellitus.">
+            >
+            ["at36"] = <
+                text = <"Yes">
+                description = <"Patient has history of diabetes mellitus.">
+            >
+            ["at5"] = <
+                text = <"<31">
+                description = <"Less than 31%.">
+            >
+            ["at6"] = <
+                text = <"31-33.9">
+                description = <"Between 31 and 33.9%.">
+            >
+            ["at65"] = <
+                text = <"<=20">
+                description = <"Very low risk.">
+            >
+            ["at66"] = <
+                text = <"21-30">
+                description = <"Low risk.">
+            >
+            ["at67"] = <
+                text = <"31-40">
+                description = <"Moderate risk.">
+            >
+            ["at68"] = <
+                text = <"41-50">
+                description = <"High risk.">
+            >
+            ["at69"] = <
+                text = <">=51">
+                description = <"Very high risk.">
+            >
+            ["at7"] = <
+                text = <"34-36.9">
+                description = <"Between 34 and 36.9%.">
+            >
+            ["at74"] = <
+                text = <"<=90">
+                description = <"Systolic blood pressure is less than or equal to 90 mm Hg.">
+            >
+            ["at75"] = <
+                text = <"91-100">
+                description = <"Between 91 and 100 mm Hg.">
+            >
+            ["at76"] = <
+                text = <"101-120 or >=201">
+                description = <"Between 101 and 120 mm Hg or greater than or equal to 201.">
+            >
+            ["at77"] = <
+                text = <"121-180">
+                description = <"Between 121 and 180 mm Hg.">
+            >
+            ["at78"] = <
+                text = <"181-200">
+                description = <"Between 181 and 200 mm Hg.">
+            >
+            ["at8"] = <
+                text = <"37-39.9">
+                description = <"Between 37 and 39.9%.">
+            >
+            ["at9"] = <
+                text = <">=40">
+                description = <"Greater than or equal to 40%.">
+            >
+            ["id1"] = <
+                text = <"CRUSADE bleeding score">
+                description = <"An assessment tool used to stratify risk for major bleeding in patients presenting with NSTEMI or STEMI prior to initiation of treatment.">
+            >
+            ["id11"] = <
+                text = <"Creatinine clearance">
+                description = <"Creatinine clearance estimated using the Cockcroft-Gault equation.">
+            >
+            ["id18"] = <
+                text = <"Heart rate">
+                description = <"Heart rate measured in beats/min.">
+            >
+            ["id26"] = <
+                text = <"Sex">
+                description = <"Patient sex.">
+            >
+            ["id29"] = <
+                text = <"Signs of heart failure">
+                description = <"Signs of congestive heart failure at presentation?">
+            >
+            ["id3"] = <
+                text = <"Any point in time event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id32"] = <
+                text = <"Prior vascular disease">
+                description = <"History of vascular disease?">
+            >
+            ["id35"] = <
+                text = <"Diabetes mellitus">
+                description = <"History of diabetes mellitus?">
+            >
+            ["id47"] = <
+                text = <"Score version">
+                description = <"The version of the score used, normally recorded as the year.">
+            >
+            ["id5"] = <
+                text = <"Baseline haematocrit">
+                description = <"Haematocrit measured in %.">
+            >
+            ["id64"] = <
+                text = <"Risk grade">
+                description = <"Overall CRUSADE risk score.">
+            >
+            ["id65"] = <
+                text = <"Total score">
+                description = <"Sum of the individual scores assigned for each of the contributing variables.">
+            >
+            ["id72"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+            >
+            ["id74"] = <
+                text = <"Systolic blood pressure">
+                description = <"Systolic blood pressure measured in mm Hg.">
+            >
+        >
+    >
+    

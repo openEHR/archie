@@ -1,0 +1,239 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a25531f6-d7f5-48d6-ab6d-98eb5b9af97a)
+    s2-EHR-Score.richmond_agitation_sedation_scale.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Alan D. March, Hospital Universitario Austral, Pilar, Buenos Aires, Argentina, <alandmarch@gmail.com>, 2016-08-31">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.richmond_agitation_sedation_scale.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.richmond_agitation_sedation_scale.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To measure the agitation or sedation level of a hospitalized patients.">
+            keywords = <"Richmond Agitation Sedation Scale", "RASS", "scale", "agitation", "sedation", "mechanical ventilation", "intensive care unit">
+            use = <"RASS is mostly used in the setting of mechanically ventilated patients in the intensive care unit to avoid over- and under-sedation. Also as the first step in administering the Confusion Assessment Method in the ICU (CAM-ICU), a tool to detect delirium in intensive care unit patients.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Richmond agitation sedation scale (RASS)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Scale
+                value matches {
+                    Coded_ordinal[id7] matches {
+                        magnitude matches {-5}
+                        concept matches {
+                            Coded_text[id9] matches {
+                                term matches {
+                                    Terminology_term[id8] matches {
+                                        concept matches {[at14]}    -- Unarousable
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id10] matches {
+                        magnitude matches {-4}
+                        concept matches {
+                            Coded_text[id12] matches {
+                                term matches {
+                                    Terminology_term[id11] matches {
+                                        concept matches {[at13]}    -- Deep sedation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id13] matches {
+                        magnitude matches {-3}
+                        concept matches {
+                            Coded_text[id15] matches {
+                                term matches {
+                                    Terminology_term[id14] matches {
+                                        concept matches {[at12]}    -- Moderate sedation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id16] matches {
+                        magnitude matches {-2}
+                        concept matches {
+                            Coded_text[id18] matches {
+                                term matches {
+                                    Terminology_term[id17] matches {
+                                        concept matches {[at11]}    -- Light sedation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id19] matches {
+                        magnitude matches {-1}
+                        concept matches {
+                            Coded_text[id21] matches {
+                                term matches {
+                                    Terminology_term[id20] matches {
+                                        concept matches {[at10]}    -- Drowsy
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id22] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id24] matches {
+                                term matches {
+                                    Terminology_term[id23] matches {
+                                        concept matches {[at9]}    -- Alert and calm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id25] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id27] matches {
+                                term matches {
+                                    Terminology_term[id26] matches {
+                                        concept matches {[at8]}    -- Restless
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id28] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id30] matches {
+                                term matches {
+                                    Terminology_term[id29] matches {
+                                        concept matches {[at7]}    -- Agitated
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id31] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id33] matches {
+                                term matches {
+                                    Terminology_term[id32] matches {
+                                        concept matches {[at6]}    -- Very agitated
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id34] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id36] matches {
+                                term matches {
+                                    Terminology_term[id35] matches {
+                                        concept matches {[at5]}    -- Combative
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at14", "at13", "at12", "at11", "at10", "at9", "at8", "at7", "at6", "at5">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Scale (synthesised)">
+                description = <"The Richmond agitation/sedation scale. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Drowsy">
+                description = <"Patient has eye opening and eye contact, which is sustained for more than 10 seconds.">
+            >
+            ["at11"] = <
+                text = <"Light sedation">
+                description = <"Patient has eye opening and eye contact, but this is not sustained for 10 seconds.">
+            >
+            ["at12"] = <
+                text = <"Moderate sedation">
+                description = <"Patient has any movement in response to voice, excluding eye contact.">
+            >
+            ["at13"] = <
+                text = <"Deep sedation">
+                description = <"Patient has any movement to physical stimulation.">
+            >
+            ["at14"] = <
+                text = <"Unarousable">
+                description = <"Patient has no response to voice or physical stimulation.">
+            >
+            ["at5"] = <
+                text = <"Combative">
+                description = <"	Overtly combative or violent; immediate danger to staff.">
+            >
+            ["at6"] = <
+                text = <"Very agitated">
+                description = <"Pulls on or removes tube(s) or catheter(s) or has aggressive behavior toward staff.">
+            >
+            ["at7"] = <
+                text = <"Agitated">
+                description = <"Frequent nonpurposeful movement or patient–ventilator dyssynchrony.">
+            >
+            ["at8"] = <
+                text = <"Restless">
+                description = <"	Anxious or apprehensive but movements not aggressive or vigorous.">
+            >
+            ["at9"] = <
+                text = <"Alert and calm">
+                description = <"Spontaneously pays attention to caregiver">
+            >
+            ["id1"] = <
+                text = <"Richmond agitation sedation scale (RASS)">
+                description = <"A scale used to measure the agitation or sedation level of a patient.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"*">
+            >
+            ["id5"] = <
+                text = <"Scale">
+                description = <"The Richmond agitation/sedation scale.">
+            >
+        >
+    >
+    

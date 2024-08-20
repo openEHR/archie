@@ -1,0 +1,475 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=801a127a-b026-4a99-bf91-cc71fabe9d5a)
+    s2-EHR-Score.six_cit.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Ian McNicoll, freshEHR Clinical Informatics Ltd.", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Hildegard Franke, freshEHR Clinical Informatics Ltd., <hildi@freshehr.com>, 2016-02-26">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.six_cit.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.six_cit.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the 6CIT.">
+            keywords = <"6CIT", "cognitive", "impairment", "dementia">
+            use = <"Use to record the results for each component parameter and their total sum for the 6CIT.
+            
+            While openEHR archetypes are all freely available under an open license, the specific content of this 6CIT archetype is copyright protected. Any use of this archetype within implementations must be in compliance with the terms established by the copyright owners. 
+            
+            The Kingshill Research Centre, Swindon, UK owns the copyright to The Kingshill Version 2000 of the 6CIT but allows free usage to healthcare professionals.
+            
+            Copyright information: https://6cit.co.uk/.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- 6 Item Cognitive Impairment Test (6CIT)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- What year is it?
+                value matches {
+                    Coded_ordinal[id41] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id43] matches {
+                                term matches {
+                                    Terminology_term[id42] matches {
+                                        concept matches {[at5]}    -- Correct
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id44] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id46] matches {
+                                term matches {
+                                    Terminology_term[id45] matches {
+                                        concept matches {[at6]}    -- Incorrect
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- What month is it?
+                value matches {
+                    Coded_ordinal[id47] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id49] matches {
+                                term matches {
+                                    Terminology_term[id48] matches {
+                                        concept matches {[at8]}    -- Correct
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id50] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id52] matches {
+                                term matches {
+                                    Terminology_term[id51] matches {
+                                        concept matches {[at9]}    -- Incorrect
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- About what time is it?
+                value matches {
+                    Coded_ordinal[id53] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id55] matches {
+                                term matches {
+                                    Terminology_term[id54] matches {
+                                        concept matches {[at11]}    -- Correct
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id56] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id58] matches {
+                                term matches {
+                                    Terminology_term[id57] matches {
+                                        concept matches {[at12]}    -- Incorrect
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Count backwards from 20
+                value matches {
+                    Coded_ordinal[id59] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id61] matches {
+                                term matches {
+                                    Terminology_term[id60] matches {
+                                        concept matches {[at14]}    -- Correct
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id62] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id64] matches {
+                                term matches {
+                                    Terminology_term[id63] matches {
+                                        concept matches {[at15]}    -- 1 error
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id65] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id67] matches {
+                                term matches {
+                                    Terminology_term[id66] matches {
+                                        concept matches {[at16]}    -- More than 1 error
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Say the months of the year in reverse
+                value matches {
+                    Coded_ordinal[id68] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id70] matches {
+                                term matches {
+                                    Terminology_term[id69] matches {
+                                        concept matches {[at18]}    -- Correct
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id71] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id73] matches {
+                                term matches {
+                                    Terminology_term[id72] matches {
+                                        concept matches {[at19]}    -- 1 error
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id74] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id76] matches {
+                                term matches {
+                                    Terminology_term[id75] matches {
+                                        concept matches {[at20]}    -- More than 1 error
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id22] occurrences matches {0..1} matches {    -- Repeat address phrase
+                value matches {
+                    Coded_ordinal[id77] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id79] matches {
+                                term matches {
+                                    Terminology_term[id78] matches {
+                                        concept matches {[at22]}    -- Correct
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id80] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id82] matches {
+                                term matches {
+                                    Terminology_term[id81] matches {
+                                        concept matches {[at23]}    -- 1 error
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id83] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id85] matches {
+                                term matches {
+                                    Terminology_term[id84] matches {
+                                        concept matches {[at24]}    -- 2 errors
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id86] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id88] matches {
+                                term matches {
+                                    Terminology_term[id87] matches {
+                                        concept matches {[at25]}    -- 3 errors
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id89] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id91] matches {
+                                term matches {
+                                    Terminology_term[id90] matches {
+                                        concept matches {[at26]}    -- 4 errors
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id92] matches {
+                        magnitude matches {10}
+                        concept matches {
+                            Coded_text[id94] matches {
+                                term matches {
+                                    Terminology_term[id93] matches {
+                                        concept matches {[at27]}    -- All wrong
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id40] matches {
+                        magnitude matches {|0..28|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id33] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at8", "at9">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at11", "at12">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at14", "at15", "at16">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at18", "at19", "at20">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at22", "at23", "at24", "at25", "at26", "at27">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"What year is it? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"What month is it? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac3"] = <
+                text = <"About what time is it? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac4"] = <
+                text = <"Count backwards from 20 (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac5"] = <
+                text = <"Say the months of the year in reverse (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac6"] = <
+                text = <"Repeat address phrase (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at11"] = <
+                text = <"Correct">
+                description = <"">
+            >
+            ["at12"] = <
+                text = <"Incorrect">
+                description = <"">
+            >
+            ["at14"] = <
+                text = <"Correct">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"1 error">
+                description = <"">
+            >
+            ["at16"] = <
+                text = <"More than 1 error">
+                description = <"">
+            >
+            ["at18"] = <
+                text = <"Correct">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"1 error">
+                description = <"">
+            >
+            ["at20"] = <
+                text = <"More than 1 error">
+                description = <"">
+            >
+            ["at22"] = <
+                text = <"Correct">
+                description = <"">
+            >
+            ["at23"] = <
+                text = <"1 error">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"2 errors">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"3 errors">
+                description = <"">
+            >
+            ["at26"] = <
+                text = <"4 errors">
+                description = <"">
+            >
+            ["at27"] = <
+                text = <"All wrong">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"Correct">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Incorrect">
+                description = <"">
+            >
+            ["at8"] = <
+                text = <"Correct">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"Incorrect">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"6 Item Cognitive Impairment Test (6CIT)">
+                description = <"An assessment score used to screen for dementia.">
+            >
+            ["id11"] = <
+                text = <"About what time is it?">
+                description = <"">
+            >
+            ["id14"] = <
+                text = <"Count backwards from 20">
+                description = <"">
+            >
+            ["id18"] = <
+                text = <"Say the months of the year in reverse">
+                description = <"">
+            >
+            ["id22"] = <
+                text = <"Repeat address phrase">
+                description = <"">
+            >
+            ["id29"] = <
+                text = <"Total score">
+                description = <"The total sum of each component parameter for the 6CIT.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id33"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id5"] = <
+                text = <"What year is it?">
+                description = <"">
+            >
+            ["id8"] = <
+                text = <"What month is it?">
+                description = <"">
+            >
+        >
+    >
+    

@@ -1,0 +1,64 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Section.problem_list_headings.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Problem list headings for one problem, within a problem list. Structured with inline content. Should be upgraded to references.">
+		>
+	>
+
+definition
+	Section[id1] matches {	-- Problem
+		items matches {
+			use_archetype Assessment[id4, s2-EHR-Assessment.problem_diagnosis.v1] occurrences matches {1} 
+			Section[id5] occurrences matches {0..1} matches {	-- Related issues
+				items matches {
+					allow_archetype Assessment[id6] matches {	-- Related assessment
+						include
+							archetype_id/value matches {/s2-EHR-Assessment\.[^.]+\.v.+/}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Problem">
+				description = <"Heading for one problem">
+			>
+			["id4"] = <
+				text = <"Problem / diagnosis">
+				description = <"Specific problem or diagnosis">
+			>
+			["id5"] = <
+				text = <"Related issues">
+				description = <"Heading for related issues">
+			>
+			["id6"] = <
+				text = <"Related assessment">
+				description = <"-">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/75326-9>
+			["id5"] = <http://loinc.org/104895-8>
+		>
+	>
+

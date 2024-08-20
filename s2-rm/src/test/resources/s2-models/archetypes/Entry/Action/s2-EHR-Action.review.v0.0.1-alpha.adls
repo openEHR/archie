@@ -1,0 +1,249 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a1fdfb10-05b6-4dba-8735-49d34fa80beb)
+    s2-EHR-Action.review.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2011-03-09">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ACTION.review.v0.0.1-alpha, copyright 2011 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-ACTION.review.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details of clinical activity regarding the performance of a formal clinical review of a subject's clinical situation, a specific aspect of their clinical care or a specified part of the health record.">
+            keywords = <"record", "review", "medication", "vaccination", "adverse reaction", "allergy", "medicine">
+            use = <"Use to record details of clinical activity regarding the performance of a formal clinical review of a subject's clinical situation, a specific aspect of their clinical care or a specified part of the health record. For example: recording activity around the performance of a formal Medicines Review; or a care coordinator reviewing progress of Care Plans; or a file review by a case worker.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Action[id1] matches {    -- Review
+        state_transition matches {
+            State_transition[id4] matches {    -- Review planned
+                current_state matches {"planned"}
+                careflow_step matches {
+                    Terminology_term[id23] matches {
+                        concept matches {[at4]}    -- Review planned
+                    }
+                }
+            }
+            State_transition[id11] matches {    -- Review postponed
+                current_state matches {"postponed"}
+                careflow_step matches {
+                    Terminology_term[id25] matches {
+                        concept matches {[at11]}    -- Review postponed
+                    }
+                }
+            }
+            State_transition[id13] matches {    -- Review cancelled
+                current_state matches {"cancelled"}
+                careflow_step matches {
+                    Terminology_term[id27] matches {
+                        concept matches {[at13]}    -- Review cancelled
+                    }
+                }
+            }
+            State_transition[id5] matches {    -- Review scheduled
+                current_state matches {"scheduled"}
+                careflow_step matches {
+                    Terminology_term[id29] matches {
+                        concept matches {[at5]}    -- Review scheduled
+                    }
+                }
+            }
+            State_transition[id20] matches {    -- Review rescheduled
+                current_state matches {"scheduled"}
+                careflow_step matches {
+                    Terminology_term[id31] matches {
+                        concept matches {[at20]}    -- Review rescheduled
+                    }
+                }
+            }
+            State_transition[id7] matches {    -- Review performed
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id33] matches {
+                        concept matches {[at7]}    -- Review performed
+                    }
+                }
+            }
+            State_transition[id12] matches {    -- Review suspended
+                current_state matches {"suspended"}
+                careflow_step matches {
+                    Terminology_term[id35] matches {
+                        concept matches {[at12]}    -- Review suspended
+                    }
+                }
+            }
+            State_transition[id14] matches {    -- Review aborted
+                current_state matches {"aborted"}
+                careflow_step matches {
+                    Terminology_term[id37] matches {
+                        concept matches {[at14]}    -- Review aborted
+                    }
+                }
+            }
+            State_transition[id17] matches {    -- Review completed
+                current_state matches {"completed"}
+                careflow_step matches {
+                    Terminology_term[id39] matches {
+                        concept matches {[at17]}    -- Review completed
+                    }
+                }
+            }
+        }
+        description matches {
+            Node[id3] occurrences matches {0..1} matches {    -- Review activity
+                value matches {
+                    Text[id40]
+                }
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id41]
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- Reason
+                value matches {
+                    Text[id42]
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id19] occurrences matches {0..1} matches {    -- Start date/time
+                value matches {
+                    Date_time_value[id43]
+                }
+            }
+            allow_archetype Node[id21] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at11"] = <
+                text = <"Review postponed">
+                description = <"The review has been postponed.">
+            >
+            ["at12"] = <
+                text = <"Review suspended">
+                description = <"The review activity has been suspended.">
+            >
+            ["at13"] = <
+                text = <"Review cancelled">
+                description = <"The review activity has been cancelled.">
+            >
+            ["at14"] = <
+                text = <"Review aborted">
+                description = <"The review activity has been aborted.">
+            >
+            ["at17"] = <
+                text = <"Review completed">
+                description = <"The review activity has been completed.">
+            >
+            ["at20"] = <
+                text = <"Review rescheduled">
+                description = <"The review activity has been rescheduled.">
+            >
+            ["at4"] = <
+                text = <"Review planned">
+                description = <"The review activity is planned.">
+            >
+            ["at5"] = <
+                text = <"Review scheduled">
+                description = <"The review activity has been scheduled.">
+            >
+            ["at7"] = <
+                text = <"Review performed">
+                description = <"The review activity has been performed.">
+            >
+            ["id1"] = <
+                text = <"Review">
+                description = <"Clinical activity regarding the performance of a formal clinical review of a subject's clinical situation, a specific aspect of their clinical care or a specified part of the health record.">
+            >
+            ["id11"] = <
+                text = <"Review postponed">
+                description = <"The review has been postponed.">
+            >
+            ["id12"] = <
+                text = <"Review suspended">
+                description = <"The review activity has been suspended.">
+            >
+            ["id13"] = <
+                text = <"Review cancelled">
+                description = <"The review activity has been cancelled.">
+            >
+            ["id14"] = <
+                text = <"Review aborted">
+                description = <"The review activity has been aborted.">
+            >
+            ["id15"] = <
+                text = <"Reason">
+                description = <"Reason that the care pathway step for the identified Review Activity was carried out.">
+            >
+            ["id16"] = <
+                text = <"Description">
+                description = <"Narrative description of the Review Activity relevant for the care pathway step.">
+            >
+            ["id17"] = <
+                text = <"Review completed">
+                description = <"The review activity has been completed.">
+            >
+            ["id19"] = <
+                text = <"Start date/time">
+                description = <"The start date and/or time for the Review activity.">
+            >
+            ["id20"] = <
+                text = <"Review rescheduled">
+                description = <"The review activity has been rescheduled.">
+            >
+            ["id21"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Review activity">
+                description = <"Identification of the item or activity that is being reviewed.">
+            >
+            ["id4"] = <
+                text = <"Review planned">
+                description = <"The review activity is planned.">
+            >
+            ["id5"] = <
+                text = <"Review scheduled">
+                description = <"The review activity has been scheduled.">
+            >
+            ["id7"] = <
+                text = <"Review performed">
+                description = <"The review activity has been performed.">
+            >
+        >
+    >
+    

@@ -1,0 +1,268 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=41dabf9b-98d9-4a30-b6a5-5fa2a0307684)
+    s2-EHR-Node.imaging_exam-rectouterine_pouch.v1.0.0
+
+specialize
+    s2-EHR-Node.imaging_exam.v1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Randi Brendberg, Helse Nord RHF, Norway", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hanne Marte Bårholm, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Tina Tellum, Oslo Universitetssykehus, Norway", "Anders Thurin, VGR, Sweden", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Ina Wille, Helse-Vest RHF, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-11-24">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-rectouterine_pouch.v1.0.0, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-rectouterine_pouch.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the findings on radiological examination of the rectouterine pouch, and their interpretation.">
+            keywords = <"Rectovaginal", "Douglas", "pouch", "cul-de-sac">
+            use = <"Use to record the findings on radiological examination of the rectouterine pouch, and their interpretation.
+            
+            The intended scope for this archetype is to eventually record all detailed findings on radiological examination of the rectouterine pouch using any modality. It is anticipated that further data Nodes may be added as requirements are identified and confirmed.
+            
+            This archetype is designed to be nested within the 'Structured imaging findings' SLOT in the OBSERVATION.imaging_exam_result or within other relevant Node.imaging_exam archetypes, but can also be used within other ENTRY or Node archetypes, where clinically appropriate. If this archetype needs to be extended with further levels of structured findings, additional instances of the Node.imaging_exam or its specialisations can be nested in the 'Additional details' SLOT.">
+            misuse = <"Not to be used to record imaging examination findings for any body structure or region other than the rectouterine pouch. Use other archetypes from the Node.imaging_exam family for this purpose.
+            
+            Not to be used to record details related to the overall findings, context or technical details related to a complete imaging examination test result. Use the OBERSERVATION.imaging_exam_result for this purpose. For example, comments on the study quality, differential diagnoses, and overall impression.">
+        >
+    >
+    
+definition
+    Node[id1.1] matches {    -- Imaging examination of the rectouterine pouch
+        /items matches {
+            after [id8]
+            Node[id0.2] occurrences matches {0..1} matches {    -- Fluid presence
+                value matches {
+                    Coded_text[id0.10] matches {
+                        term matches {
+                            Terminology_term[id0.14] matches {
+                                concept matches {[ac0.1]}    -- Fluid presence (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.9] occurrences matches {0..3} matches {    -- Diameter
+                value matches {
+                    Quantity[id0.15] matches {    -- Diameter (mm)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.17] matches {
+                                term matches {
+                                    Terminology_term[id0.16] matches {
+                                        concept matches {[at0.11]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Quantity[id0.18] matches {    -- Diameter (cm)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.20] matches {
+                                term matches {
+                                    Terminology_term[id0.19] matches {
+                                        concept matches {[at0.12]}    -- cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.5] occurrences matches {0..1} matches {    -- Amount of free fluid
+                value matches {
+                    Coded_text[id0.12] matches {
+                        term matches {
+                            Terminology_term[id0.27] matches {
+                                concept matches {[ac0.2]}    -- Amount of free fluid (synthesised)
+                            }
+                        }
+                    }
+                    Quantity[id0.21] matches {    -- Amount of free fluid (L)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.23] matches {
+                                term matches {
+                                    Terminology_term[id0.22] matches {
+                                        concept matches {[at0.13]}    -- L
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Quantity[id0.24] matches {    -- Amount of free fluid (mL)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.26] matches {
+                                term matches {
+                                    Terminology_term[id0.25] matches {
+                                        concept matches {[at0.14]}    -- mL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /items[id2.1]/value matches {
+            Coded_text[id9.1] matches {
+                term matches {
+                    Terminology_term[id0.28] matches {
+                        concept matches {[at0.1]}    -- Rectouterine pouch
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at0.1"] = <http://snomed.info/id/53843000>
+            ["at0.11"] = <http://snomed.info/id/258673006>
+            ["at0.12"] = <http://snomed.info/id/258672001>
+            ["at0.13"] = <http://snomed.info/id/258770004>
+            ["at0.14"] = <http://snomed.info/id/258773002>
+        >
+        ["openehr"] = <
+            ["at0.9"] = <http://openehr.org/id/122>
+            ["at0.10"] = <http://openehr.org/id/129>
+        >
+        ["ucum"] = <
+            ["at0.11"] = <http://ucum.org/id/mm>
+            ["at0.12"] = <http://ucum.org/id/cm>
+            ["at0.13"] = <http://ucum.org/id/L>
+            ["at0.14"] = <http://ucum.org/id/mL>
+        >
+    >
+    value_sets = <
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at0.3", "at0.4">
+        >
+        ["ac0.2"] = <
+            id = <"ac0.2">
+            members = <"at0.6", "at0.7", "at0.8">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac0.1"] = <
+                text = <"Fluid presence (synthesised)">
+                description = <"Observation of the presence of free fluid. (synthesised)">
+            >
+            ["ac0.2"] = <
+                text = <"Amount of free fluid (synthesised)">
+                description = <"The amount of fluid observed. (synthesised)">
+            >
+            ["at0.1"] = <
+                text = <"Rectouterine pouch">
+                description = <"">
+            >
+            ["at0.10"] = <
+                text = <"Volume">
+                description = <"Volume">
+            >
+            ["at0.11"] = <
+                text = <"mm">
+                description = <"mm unit.">
+            >
+            ["at0.12"] = <
+                text = <"cm">
+                description = <"Centimetres length unit">
+            >
+            ["at0.13"] = <
+                text = <"L">
+                description = <"Liter unit.">
+            >
+            ["at0.14"] = <
+                text = <"mL">
+                description = <"mL unit.">
+            >
+            ["at0.3"] = <
+                text = <"Present">
+                description = <"Free fluid is observed in the rectouterine pouch.">
+            >
+            ["at0.4"] = <
+                text = <"Absent">
+                description = <"No free fluid is observed in the rectouterine pouch.">
+            >
+            ["at0.6"] = <
+                text = <"Small">
+                description = <"">
+            >
+            ["at0.7"] = <
+                text = <"Medium">
+                description = <"">
+            >
+            ["at0.8"] = <
+                text = <"Large">
+                description = <"">
+            >
+            ["at0.9"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["id0.15"] = <
+                text = <"Diameter (mm)">
+                description = <"Diameter (mm)">
+            >
+            ["id0.18"] = <
+                text = <"Diameter (cm)">
+                description = <"Diameter (cm)">
+            >
+            ["id0.2"] = <
+                text = <"Fluid presence">
+                description = <"Observation of the presence of free fluid.">
+            >
+            ["id0.21"] = <
+                text = <"Amount of free fluid (L)">
+                description = <"Amount of free fluid (L)">
+            >
+            ["id0.24"] = <
+                text = <"Amount of free fluid (mL)">
+                description = <"Amount of free fluid (mL)">
+            >
+            ["id0.5"] = <
+                text = <"Amount of free fluid">
+                description = <"The amount of fluid observed.">
+            >
+            ["id0.9"] = <
+                text = <"Diameter">
+                description = <"A measured diameter of the recto-uterine pouch.">
+            >
+            ["id1.1"] = <
+                text = <"Imaging examination of the rectouterine pouch">
+                description = <"Findings on radiological examination of the rectouterine pouch.">
+            >
+            ["id2.1"] = <
+                text = <"Body structure">
+                description = <"Identification of the body structure or region examined.">
+            >
+        >
+    >
+    

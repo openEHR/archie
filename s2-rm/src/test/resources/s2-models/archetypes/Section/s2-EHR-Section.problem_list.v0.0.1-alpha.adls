@@ -1,0 +1,94 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=68bcbbe5-c91c-47a9-8eac-677bf7e9e807)
+	s2-EHR-Section.problem_list.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2010-07-03">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-SECTION.problem_list.v0.0.1-alpha, copyright 2010 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-SECTION.problem_list.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To provide a framework and design guidance for consistent modelling of content within a template for a Problem list.">
+			use = <"Use to provide a framework and design guidance for consistent modelling of content within a template for a Problem list as a persistent and managed list of any combination of diagnoses, problems and/or procedures that may influence clinical decision-making and care provision for the individual.
+            
+            This archetype is intended to be used within the COMPOSITION.problem_list or as one component of other COMPOSITION archetypes. For example: complex documents, such as a discharge summary or referral.
+            
+            This list can be comprised of three types of statements, each represented by specific archetypes:
+            - statements about the positive presence of problems, diagnoses or previous procedures are recorded using the EVALUATION.problem_diagnosis and/or ACTION.procedure archetypes; OR
+            - statements about the positive exclusion of problems, diagnoses or previous procedures can be recorded using the specific EVALUATION.exclusion_global archetype - for example: 'No significant problems or diagnoses' and/or 'No history of significant operations or procedures'; OR
+            - statements about no information being available - neither a positive presence of a problem, diagnosis or procedure performed nor a positive exclusion - can be recorded using the EVALUATION.absence archetype.
+            
+            While it may be ideal to have only one Problem list for each subject of care, it is more realistic to expect that in a distributed environment, multiple Problem lists for a single individual may coexist, each managed and prioritised for a specific clinician, episode of care or other context. For example, a Problem list for a primary care clinician may be a very different configuration to that which is useful for a specialist surgeon or for reference during a hospital inpatient episode. In primary care it is common to organise the Problem list based on active or inactive problems or diagnoses; specialists may prefer to see their list organised around primary diagnoses which are related to their specific speciality and secondary ones which are not; an inpatient admission may include additional issues related to immediate nursing priorities that would not be relevant once discharged home. For these purposes, the Node.problem_qualifier archetype, nested within the Status SLOT in the Problem/Diagnosis archetype supports the use of qualifiers that will supprt clinical systems to organise Problem lists according to the preference of the clinical users of the system, without perpetuating these contextual status labels to other clinical scenarios or for persistence.
+            
+            In order for this list to be accurate and safe to use as the basis for decision support activities and for exchange, the content of this Problem List should ideally be curated by a clinician responsible for the health record, rather than managed automatically by the clinical system through business rules alone.">
+			keywords = <"problem", "diagnosis", "exclusion", "absence", "known", "list", "diagnoses", "procedure">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Nadim Anani, Karolinska Institutet, Sweden", "Vebjoern Arntzen, Oslo university hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Bergen Hospital Trust, Norway (openEHR Editor)", "Sistine Barretto-Daniels, Ocean Informatics, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Shahla Foozonkhah, Ocean Informatics, Australia", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "Heather Grain, Llewelyn Grain Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Lars Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Oslo University Hospital, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Andrej Orel, Marand d.o.o., Slovenia", "Jussara Rotzsch, UNB, Brazil", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Heath Frankel, Ocean Informatics, Australia">
+
+definition
+	Section[id1] matches {	-- Problem list
+		items matches {
+			use_archetype Assessment[id2, s2-EHR-Assessment.problem_diagnosis.v1] 
+			use_archetype Action[id3, s2-EHR-Action.procedure.v1] 
+			use_archetype Assessment[id4, s2-EHR-Assessment.exclusion_global.v1] 
+			use_archetype Assessment[id5, s2-EHR-Assessment.absence.v2] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Problem list">
+				description = <"Framework for consistent modelling of content within a template for a Problem list.">
+			>
+			["id2"] = <
+				text = <"Problems, diagnoses, concerns or health issue threads">
+				description = <"Positive statements about the presence of problems, diagnoses, concerns or health issue threads.">
+			>
+			["id3"] = <
+				text = <"Procedures">
+				description = <"Positive statements about the presence of procedures that have been performed.">
+			>
+			["id4"] = <
+				text = <"Exclusion statement">
+				description = <"A positive statement about the exclusion of known problems, diagnoses and procedures.">
+			>
+			["id5"] = <
+				text = <"Absent information">
+				description = <"A positive statement that no information is available about problems, diagnoses or procedures.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/11450-4>
+		>
+	>
+

@@ -1,0 +1,143 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Composition.care_plan.v0.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use">
+		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Care plan">
+		>
+	>
+
+definition
+	Composition[id1] matches {	-- -
+		code matches {
+			Terminology_term[id10] matches {
+				concept matches {[at1]}
+			}
+		}
+		category matches {
+			Terminology_term[id900] matches {
+				concept matches {[at2]}
+				description matches {"persistent"}
+			}
+		}
+		content matches {
+			Section[id2] occurrences matches {1} matches {	-- Primary problem
+				items matches {
+					use_archetype Assessment[id12, s2-EHR-Assessment.problem_diagnosis.v1]
+				}
+			}
+			Section[id3] occurrences matches {0..1} matches {
+				items matches {
+					use_archetype Assessment[id12, s2-EHR-Assessment.problem_diagnosis.v1]
+				}
+			}
+			Section[id4] occurrences matches {0..1} matches {	-- Goals
+				items matches {
+					use_archetype Assessment[id14, s2-EHR-Assessment.goal.v1]
+				}
+			}
+			Section[id5] occurrences matches {0..1} 	-- Plan description
+			Section[id6] occurrences matches {0..1} matches {	-- Interventions
+				items matches {
+					Section[id7] occurrences matches {0..*} matches {	-- Intervention
+						items matches {
+							use_archetype Order[id8, s2-EHR-Order.medication_order.v4]
+							allow_archetype Assessment[id9] occurrences matches {0..*} 	-- Targets
+							use_archetype Action[id10, s2-EHR-Action.medication.v1]
+						}
+					}
+				}
+			}
+			Section[id11] occurrences matches {1} 	-- Monitoring
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Care plan">
+				description = <"Generic care plan">
+			>
+			["id2"] = <
+				text = <"Primary problem">
+				description = <"-">
+			>
+			["id3"] = <
+				text = <"Related problems">
+				description = <"-">
+			>
+			["id4"] = <
+				text = <"Goals">
+				description = <"-">
+			>
+			["id14"] = <
+				text = <"Goal">
+				description = <"-">
+			>
+			["id5"] = <
+				text = <"Plan description">
+				description = <"-">
+			>
+			["id6"] = <
+				text = <"Interventions">
+				description = <"-">
+			>
+			["id7"] = <
+				text = <"Intervention">
+				description = <"-">
+			>
+			["id8"] = <
+				text = <"Orders">
+				description = <"One or more orders that are intended to produce a single effect">
+			>
+			["id9"] = <
+				text = <"Targets">
+				description = <"-">
+			>
+			["id10"] = <
+				text = <"Actions">
+				description = <"-">
+			>
+			["id11"] = <
+				text = <"Monitoring">
+				description = <"-">
+			>
+			["id12"] = <
+				text = <"Problem / diagnoses">
+				description = <"-">
+			>
+			["at1"] = <
+				text = <"Care Plan">
+				description = <"Is-about code for this Composition - Care Plan">
+			>
+			["at2"] = <
+				text = <"Persistent Composition category">
+				description = <"Persistent Composition category">
+			>
+		>
+	>
+
+        term_bindings = <
+		["openehr"] = <
+			["at2"] = <http://openehr.org/id/431>
+		>
+	>

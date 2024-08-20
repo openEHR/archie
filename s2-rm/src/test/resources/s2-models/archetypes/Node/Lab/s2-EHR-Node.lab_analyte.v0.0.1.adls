@@ -1,0 +1,134 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Node.lab_analyte.v0.0.1
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Abstract parent lab analyte model">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Lab analyte result structure
+		code matches {
+			Terminology_term[id10] matches {
+				concept matches {[at4]}
+			}
+		}
+		items matches {
+			Node[id3] matches {	-- Result status
+				value matches {
+					Coded_text[id4] matches {
+						term matches {
+							Terminology_term[id10] matches {
+								concept matches {[ac1]}		-- Result status value set
+							}
+						}
+					}
+				}
+			}
+			Node[id5] matches {	-- Result time
+				value matches {
+					Date_time_value[id6] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {
+				value matches {
+					Coded_text[id4] matches {
+						term matches {
+							Terminology_term[id10] matches {
+								concept matches {[ac2]}
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id9, s2-EHR-Node.specimen_details.v1] occurrences matches {0..1} 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Lab analyte result structure">
+				description = <"-">
+			>
+			["id3"] = <
+				text = <"Result status">
+				description = <"-">
+			>
+			["id5"] = <
+				text = <"Result time">
+				description = <"-">
+			>
+			["id8"] = <
+				text = <"Test method">
+				description = <"-">
+			>
+			["id9"] = <
+				text = <"Specimen">
+				description = <"Details of specimen">
+			>
+			["ac1"] = <
+				text = <"Result status value set">
+				description = <"-">
+			>
+			["ac2"] = <
+				text = <"Lab test method">
+				description = <"Specific laboratory testing method">
+			>
+			["at4"] = <
+				text = <"Is-about code for this Node">
+				description = <"Is-about code for this Node">
+			>
+			["at1"] = <
+				text = <"Complete">
+				description = <"Result is complete">
+			>
+			["at2"] = <
+				text = <"Preliminary">
+				description = <"Result is preliminary">
+			>
+			["at3"] = <
+				text = <"Registered">
+				description = <"Result is registered">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at1"] = <http://snomed.info/id/255594003>
+			["at2"] = <http://snomed.info/id/261420005>
+			["at3"] = <http://snomed.info/id/24561000205107>
+		>
+		["s2"] = <
+			["ac1"] = <http://s2health.org/id/s2.LabResultStatus>
+			["ac2"] = <http://s2health.org/id/s2.LabTestMethod>
+		>
+		["loinc"] = <
+			["id3"] = <http://loinc.org/92236-9>
+			["id5"] = <http://loinc.org/90056-3>
+			["id8"] = <http://loinc.org/85069-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at1", "at2", "at3">
+		>
+	>
+

@@ -1,0 +1,123 @@
+template (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Composition.t_allergies_intolerances_list.v1.0.0
+
+specialize
+	s2-EHR-Composition.allergies_intolerances_list.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Allergies and intolerances list template">
+		>
+	>
+
+definition
+	Composition[id1.1] matches {
+		content matches {
+			use_archetype Assessment[id2, s2-EHR-Assessment.t_allergies_intolerances-adverse.v1]
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Allergies and intolerances">
+				description = <"-">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Assessment.t_allergies_intolerances-adverse.v1.0.0
+
+specialize
+	s2-EHR-Assessment.adverse_reaction_risk.v2
+
+definition
+	Assessment[id1.1] matches {
+		name matches {"{{SUBSTANCE name}}"}
+		/data matches {
+			Node[id3] occurrences matches {0..1} matches {
+				name matches {"Substance"}
+				value matches {
+					Coded_text[id135] matches {
+						term matches {
+							Terminology_term[id0.1] matches {
+								concept matches {[ac0.1]}
+							}
+						}
+					}
+				}
+			}
+			Node[id131] occurrences matches {0} 
+			Node[id64] occurrences matches {0} 
+			Node[id121] occurrences matches {0} 
+			Node[id118] occurrences matches {0} 
+			Node[id134] occurrences matches {0} 
+			Node[id59] occurrences matches {0} 
+			use_archetype Node[id130, s2-EHR-Node.adverse_reaction_event.v1] occurrences matches {0} 
+			Node[id0.1] occurrences matches {0..1} matches {
+				name matches {"Substance reaction"}
+				value matches {
+					Coded_text[id240] matches {
+						term matches {
+							Terminology_term[id0.2] matches {
+								concept matches {[ac0.2]}
+							}
+						}
+					}
+				}
+			}
+		}
+		/qualifiers matches {
+			Node[id48] occurrences matches {0} 
+			allow_archetype Node[id129] occurrences matches {0} 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Allergy or intolerance">
+				description = <"Allergy or intolerance description">
+			>
+			["id0.1"] = <
+				text = <"Substance reaction">
+				description = <"Substance reaction description">
+			>
+			["ac0.1"] = <
+				text = <"Substance / category">
+				description = <"Substance or substance category causing allergy or intolerance">
+			>
+			["ac0.2"] = <
+				text = <"Substance reaction value">
+				description = <"Substance reaction value set">
+			>
+		>
+	>
+
+	term_bindings = <
+		["s2"] = <
+			["ac0.1"] = <http://s2health.org/id/s2.Substance>
+			["ac0.2"] = <http://s2health.org/id/s2.ReactionToSubstance>
+		>
+		["loinc"] = <
+			["id0.1"] = <http://loinc.org/66947-3>
+		>
+	>

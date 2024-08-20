@@ -1,0 +1,464 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8203525d-cbab-40bf-b6eb-d26b93dbae4b)
+    s2-EHR-Score.apgar.v2.0.2
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Paul Donaldson, Nursing Informatics Australia, Australia", "Sebastian Garde, Ocean Informatics, Germany", "Anneke Goossen, Results 4 Care, Netherlands", "Anne Harbison, CPCER, Australia", "Sam Heard, Ocean Informatics, Australia", "Omer Hotomaroglu, Turkey", "Pieter Hummel, Medisch Centrum Alkmaar, Netherlands", "Andrew James, University of Toronto, Canada", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2004-05-18">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.apgar.v2.0.2, copyright 2004 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.apgar.v2.0.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the Apgar score.">
+            keywords = <"newborn", "index", "score", "birth", "infant", "neonate", "assessment">
+            use = <"Use to record the results for each component parameter and their total sum for the Apgar score.
+            
+            This archetype has been designed to support the explicit recording of Apgar scores at 1, 2, 3, 5 and/or 10 minute points in time offset from the time of birth, plus additional events as required.
+            
+            Usual practice is to document the Apgar score at 1 and 5 minutes; further scores can be recorded as clinically indicated.  It is possible to record the Apgar score at any time after birth using this archetype.
+            
+            Common clinical practice is to record all 5 parameters plus the total, however this archetype allows any partial information to be recorded, if that is all that is available for example from historical data.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Apgar score
+        data matches {
+            Node[id10] occurrences matches {0..1} matches {    -- Respiratory effort
+                value matches {
+                    Coded_ordinal[id58] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id60] matches {
+                                term matches {
+                                    Terminology_term[id59] matches {
+                                        concept matches {[at10]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id61] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id63] matches {
+                                term matches {
+                                    Terminology_term[id62] matches {
+                                        concept matches {[at11]}    -- Weak or irregular
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id64] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id66] matches {
+                                term matches {
+                                    Terminology_term[id65] matches {
+                                        concept matches {[at12]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Heart rate
+                value matches {
+                    Coded_ordinal[id67] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id69] matches {
+                                term matches {
+                                    Terminology_term[id68] matches {
+                                        concept matches {[at6]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id70] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id72] matches {
+                                term matches {
+                                    Terminology_term[id71] matches {
+                                        concept matches {[at7]}    -- <100 beats per minute
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id73] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id75] matches {
+                                term matches {
+                                    Terminology_term[id74] matches {
+                                        concept matches {[at8]}    -- ≥100 beats per minute
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Muscle tone
+                value matches {
+                    Coded_ordinal[id76] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id78] matches {
+                                term matches {
+                                    Terminology_term[id77] matches {
+                                        concept matches {[at14]}    -- Limp or flaccid
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id79] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id81] matches {
+                                term matches {
+                                    Terminology_term[id80] matches {
+                                        concept matches {[at15]}    -- Reduced tone
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id82] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id84] matches {
+                                term matches {
+                                    Terminology_term[id83] matches {
+                                        concept matches {[at16]}    -- Normal tone
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Reflex irritability
+                value matches {
+                    Coded_ordinal[id85] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id87] matches {
+                                term matches {
+                                    Terminology_term[id86] matches {
+                                        concept matches {[at18]}    -- No response
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id88] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id90] matches {
+                                term matches {
+                                    Terminology_term[id89] matches {
+                                        concept matches {[at19]}    -- Reduced response
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id91] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id93] matches {
+                                term matches {
+                                    Terminology_term[id92] matches {
+                                        concept matches {[at20]}    -- Normal response
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id22] occurrences matches {0..1} matches {    -- Skin colour
+                value matches {
+                    Coded_ordinal[id94] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id96] matches {
+                                term matches {
+                                    Terminology_term[id95] matches {
+                                        concept matches {[at22]}    -- Completely blue
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id97] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id99] matches {
+                                term matches {
+                                    Terminology_term[id98] matches {
+                                        concept matches {[at23]}    -- Body pink; extremities blue
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id100] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id102] matches {
+                                term matches {
+                                    Terminology_term[id101] matches {
+                                        concept matches {[at24]}    -- Completely pink
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Total
+                value matches {
+                    Count[id48] matches {
+                        magnitude matches {|0..10|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id41] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["id26"] = <http://snomed.info/id/249228009>
+            ["id22"] = <http://snomed.info/id/249227004>
+            ["id6"] = <http://snomed.info/id/249223000>
+            ["id14"] = <http://snomed.info/id/249225007>
+            ["id10"] = <http://snomed.info/id/249224006>
+            ["id18"] = <http://snomed.info/id/249226008>
+            ["id4"] = <http://snomed.info/id/169895004>
+            ["id29"] = <http://snomed.info/id/169909004>
+            ["id32"] = <http://snomed.info/id/169922007>
+        >
+        ["loinc"] = <
+            ["/data[id3]/events[id4]"] = <http://loinc.org/48334-7>
+            ["/data[id3]/events[id29]"] = <http://loinc.org/48333-9>
+            ["/data[id3]/events[id32]"] = <http://loinc.org/48332-1>
+            ["at6"] = <http://loinc.org/LA6716-0>
+            ["at7"] = <http://loinc.org/LA6717-8>
+            ["at8"] = <http://loinc.org/LA6718-6>
+            ["at10"] = <http://loinc.org/LA6725-1>
+            ["at11"] = <http://loinc.org/LA6726-9>
+            ["at12"] = <http://loinc.org/LA6727-7>
+            ["at14"] = <http://loinc.org/LA6713-7>
+            ["at15"] = <http://loinc.org/LA6714-5>
+            ["at16"] = <http://loinc.org/LA6715-2>
+            ["at18"] = <http://loinc.org/LA6719-4>
+            ["at19"] = <http://loinc.org/LA6720-2>
+            ["at20"] = <http://loinc.org/LA6721-0>
+            ["at22"] = <http://loinc.org/LA6722-8>
+            ["at23"] = <http://loinc.org/LA6723-6>
+            ["at24"] = <http://loinc.org/LA6724-4>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at10", "at11", "at12">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at6", "at7", "at8">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at14", "at15", "at16">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at18", "at19", "at20">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at22", "at23", "at24">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Respiratory effort (synthesised)">
+                description = <"Observation of the infant's respiratory effort. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Heart rate (synthesised)">
+                description = <"Recording of the infant's heart rate. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Muscle tone (synthesised)">
+                description = <"Observation of the infant's muscle tone. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Reflex irritability (synthesised)">
+                description = <"Observation of the response of the infant to an irritant stimulation, for example, suctioning the oropharynx and nares with a soft rubber catheter. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Skin colour (synthesised)">
+                description = <"Observation of the skin colour of the infant. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Absent">
+                description = <"No effort to breath.">
+            >
+            ["at11"] = <
+                text = <"Weak or irregular">
+                description = <"Some effort to breath, moving chest.">
+            >
+            ["at12"] = <
+                text = <"Normal">
+                description = <"Breathing normally or crying.">
+            >
+            ["at14"] = <
+                text = <"Limp or flaccid">
+                description = <"No spontaneous movement.">
+            >
+            ["at15"] = <
+                text = <"Reduced tone">
+                description = <"Some flexion of extremities.">
+            >
+            ["at16"] = <
+                text = <"Normal tone">
+                description = <"Normal, vigorous movements.">
+            >
+            ["at18"] = <
+                text = <"No response">
+                description = <"No response to stimulation.">
+            >
+            ["at19"] = <
+                text = <"Reduced response">
+                description = <"Grimace or feeble cry when stimulated.">
+            >
+            ["at20"] = <
+                text = <"Normal response">
+                description = <"Grimace, sneeze, cough or pulls away when stimulated.">
+            >
+            ["at22"] = <
+                text = <"Completely blue">
+                description = <"Body and extremities are blue.">
+            >
+            ["at23"] = <
+                text = <"Body pink; extremities blue">
+                description = <"Body is pink; extremities are blue.">
+            >
+            ["at24"] = <
+                text = <"Completely pink">
+                description = <"Body and extremities are pink; no cyanosis.">
+            >
+            ["at6"] = <
+                text = <"Absent">
+                description = <"No heart beat is seen, felt or heard.">
+            >
+            ["at7"] = <
+                text = <"<100 beats per minute">
+                description = <"Heart rate less than 100 beats per minute.">
+            >
+            ["at8"] = <
+                text = <"≥100 beats per minute">
+                description = <"Heart rate greater than or equal to 100 beats per minute.">
+            >
+            ["id1"] = <
+                text = <"Apgar score">
+                description = <"A tool to assess the clinical status of the newborn infant immediately after birth and their response to resuscitation.">
+            >
+            ["id10"] = <
+                text = <"Respiratory effort">
+                description = <"Observation of the infant's respiratory effort.">
+            >
+            ["id14"] = <
+                text = <"Muscle tone">
+                description = <"Observation of the infant's muscle tone.">
+            >
+            ["id18"] = <
+                text = <"Reflex irritability">
+                description = <"Observation of the response of the infant to an irritant stimulation, for example, suctioning the oropharynx and nares with a soft rubber catheter.">
+            >
+            ["id22"] = <
+                text = <"Skin colour">
+                description = <"Observation of the skin colour of the infant.">
+            >
+            ["id26"] = <
+                text = <"Total">
+                description = <"The total sum of each component parameter for the Apgar score.">
+            >
+            ["id27"] = <
+                text = <"2 minute">
+                description = <"Apgar score 2 minutes after birth.">
+            >
+            ["id28"] = <
+                text = <"3 minute">
+                description = <"Apgar score 3 minutes after birth.">
+            >
+            ["id29"] = <
+                text = <"5 minute">
+                description = <"Apgar score 5 minutes after birth.">
+            >
+            ["id32"] = <
+                text = <"10 minute">
+                description = <"Apgar score 10 minutes after birth.">
+            >
+            ["id38"] = <
+                text = <"Any event">
+                description = <"Apgar score at any additional time, as required.">
+            >
+            ["id4"] = <
+                text = <"1 minute">
+                description = <"Apgar score 1 minute after birth.">
+            >
+            ["id41"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id6"] = <
+                text = <"Heart rate">
+                description = <"Recording of the infant's heart rate.">
+            >
+        >
+    >
+    

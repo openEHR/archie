@@ -1,0 +1,79 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Composition.encounter.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Nathan Davis<nathan.davis@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Generic encounter note">
+		>
+	>
+
+definition
+	Composition[id1] matches {	-- Encounter
+		code matches {
+			Terminology_term[id10] matches {
+				concept matches {[at1]}
+			}
+		}
+		category matches {
+			Terminology_term[id11] matches {
+				concept matches {[at2]}
+				description matches {"persistent"}
+			}
+		}
+		context matches {
+			Event_context[id2] occurrences matches {1} matches {
+				other_context matches {
+					Node[id3] occurrences matches {0..1} matches {	-- Encounter Id
+						value matches {
+							Rwe_id_ref[id4] 
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Encounter">
+				description = <"Encounter">
+			>
+			["id3"] = <
+				text = <"Encounter Id">
+				description = <"-">
+			>
+			["at1"] = <
+				text = <"Encounter">
+				description = <"Is-about code for this Composition: encounter">
+			>
+			["at2"] = <
+				text = <"Persistent Composition category">
+				description = <"Persistent Composition category">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id3"] = <http://loinc.org/75519-9>
+		>
+		["openehr"] = <
+			["at2"] = <http://openehr.org/id/431>
+		>
+	>
+

@@ -1,0 +1,163 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fc5f1b5e-97af-4c2a-9f70-898d4e232265)
+	s2-EHR-Assessment.physical_appearance.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Peter Fedorcsak, University of Oslo, <peterfe@uio.no>, 2022-01-11">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.physical_appearance.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.physical_appearance.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the long-term or enduring physical appearance of an individual, common to all people.">
+			use = <"To record details about the long-term or enduring physical appearance of an individual, common to all people and that would not usually be recorded as part of a physical examination. 
+            
+            This archetype has been designed to be used alongside the Physical examination family and other archetypes to support a detailed description of the phenotype of an individual. 
+            Examples of use cases include:
+            - gamete donor matching; or 
+            - assisting in post-mortem identification.
+            
+            The initial scope of this archetype has been kept simple and it is likely that it will be extended further in the future as use cases are identified. Potential future additions for consideration have been captured in Change request CR-867.">
+			keywords = <"phenotype", "skin", "iris", "stature", "hair", "characteristics", "appearance">
+			misuse = <"Not to be used to record aspects of physical appearance which are not enduring, such as the temporary dyeing of hair.
+            
+            Not to be used to record measured physical characteristics, such as height, weight and body mass index. Use the specific OBSERVATION archetypes for these purposes.
+            
+            Not to be used to record physical characteristics that would commonly be documented as part of a physical examination, such as walking with a limp, facial palsy, alopecia, and skin depigmentation. Use specific archetypes for physical examination for these purposes, including inspection of gait and the face.
+            
+            Not to be used to record a photograph or image of the individual - use the Node.media_file nested within the 'Photo' SLOT in the Node.person archetype.">
+		>
+	>
+	other_contributors = <"Nuno Abreu, Oporto Hospital Center, Portugal", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Aleocidio Balzanelo, DASA, Brazil", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Sigrid Daae Mæland, Helse Vest IKT, Norway", "Samanta Dallagnese, Prontmed, Brazil", "Kieran Dang, Big Picture Medical, Australia", "Stefan Dubois, Dep't of Pathology and Genetics, University Hospitals of Lund and Malmö, Sweden", "Gunn Elin Blakkisrud, DIPS ASA, Norway", "Kåre Flø, DIPS ASA, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Stefan Girsberger, University Hospital Bern, Switzerland", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Lise Kristin Knutsen, Oslo universitetssykehus, Norway", "Kanika Kuwelker, Helse Vest IKT, Norway (openEHR Editor)", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Christine Mikalsen, Regional forvaltning EPJ, Norway", "Svenne Naumann, Finnmarkssykehuset, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Terje Sagmyr, DIPS AS, Norway", "Benjamin Senst, Germany", "Tove Stenquist, Helseforetak, Norway", "Frode Stenvik, Helse Sør-Øst, Norway", "Roy Støle, OUS, Norway", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Assessment[id1] matches {	-- Physical appearance of an individual
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id15] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Hair colour
+				value matches {
+					Text[id16] 
+				}
+			}
+			Node[id5] occurrences matches {0..2} matches {	-- Iris colour
+				value matches {
+					Text[id17] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Skin colour
+				value matches {
+					Text[id18] 
+				}
+			}
+			Node[id7] matches {	-- Body build
+				value matches {
+					Text[id19] 
+				}
+			}
+			allow_archetype Node[id14] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id20] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id11] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id21] 
+				}
+			}
+			allow_archetype Node[id12] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Physical appearance of an individual">
+				description = <"Enduring physical appearance of an individual, common to all people.">
+			>
+			["id11"] = <
+				text = <"Last updated">
+				description = <"The date the physical appearance was last updated.">
+			>
+			["id12"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id13"] = <
+				text = <"Comment">
+				description = <"Additional narrative about physical appearance, not captured in other fields.">
+			>
+			["id14"] = <
+				text = <"Additional details">
+				description = <"Additional details about the physical characteristics.">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"Narrative descripition about the physical appearance and characteristics of an individual.">
+			>
+			["id4"] = <
+				text = <"Hair colour">
+				description = <"Description of the natural hair colour.">
+			>
+			["id5"] = <
+				text = <"Iris colour">
+				description = <"Description of the colour of the iris in the eye.">
+			>
+			["id6"] = <
+				text = <"Skin colour">
+				description = <"Description of the normal colour of the skin of the whole body.">
+			>
+			["id7"] = <
+				text = <"Body build">
+				description = <"Description of the body size and/or shape.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/32434-3>
+			["id4"] = <http://loinc.org/94536-0>
+			["id5"] = <http://loinc.org/67576-9>
+			["id6"] = <http://loinc.org/39107-8>
+			["id11"] = <http://loinc.org/106177-9>
+			["id13"] = <http://loinc.org/106173-8>
+			["id3"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+

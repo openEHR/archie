@@ -1,0 +1,200 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ccebf947-88ed-403e-80b1-11a32bbe5267)
+	s2-EHR-Assessment.precaution.v1.0.4
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Silje Ljosland Bakke / John Tore Valand, Nasjonal IKT HF / Helse Bergen HF, <silje.ljosland.bakke@nasjonalikt.no/ john.tore.valand@helse-bergen.no>, 2016-02-29">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.precaution.v1.0.4, copyright 2016 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.precaution.v1.0.4 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a condition or state of the individual that is clinically significant and unique or idiosyncratic for this individual, and is considered vital information when making treatment decisions.">
+			use = <"Use to record a condition or state of the individual that is clinically significant and unique or idiosyncratic for this individual, and which are considered vital information when making treatment decisions.
+            
+            This archetype should be regarded as a critical archetype by any clinical decision support system testing for any relevant therapeutic precautions as a clinician commences a new clinical intervention for an individual. 
+            
+            Examples of conditions that warrant creation of a precaution include, but are not limited to:
+            - Immunosuppressed/on immunosuppressive therapy – linked to medication order for chemo or steroids; or diagnosis of leukaemia;
+            - Renal failure – linked to renal function tests and/or a formal diagnosis of renal failure;
+            - Waiting for organ transplant;
+            - Undergoing a regular treatment such as radiation therapy or dialysis;
+            - Transplanted organ or metal implant in situ;
+            - Ongoing investigation or follow up of suspected or verified malignant disease;
+            - Participation in a pharmacological trial; or
+            - Using anticoagulant treatment.">
+			keywords = <"precaution", "prevent", "avoid", "adverse event", "prevention", "caution", "alert", "warning">
+			misuse = <"Not to be used to record a clinical intervention (including, but not limited to, use of a treatment or performance of a test or procedure) that should not be carried out due to the likelihood, or possibility, of harm being caused to an individual. Use the EVALUATION.contraindication for this purpose.
+            
+            Not to be used to record advance directives for care or personal preferences of the individual. Use EVALUATION.advance_care_directive for this purpose.">
+		>
+	>
+	other_contributors = <"Morten Aas, Oslo Universitetssykehus, Norway", "Tomas Alme, DIPS, Norway", "Ole Andreas Bjordal, Webmed, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Cecilie Graver, Oslo universitetssykehus HF, Norway", "Daniel Habashi, PasientSky AS, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Tanja Riise, Nasjonal IKT HF, Norway", "Anoop Shah, University College London, United Kingdom", "Arild Stangeland, Helse Bergen, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, OUS, Norway", "John Tore Valand, Helse Bergen, Norway">
+
+definition
+	Assessment[id1] matches {	-- Precaution
+		data cardinality matches {1..*; unordered} matches {
+			Node[id3] matches {	-- Condition
+				value matches {
+					Text[id26] 
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Status
+				value matches {
+					Coded_text[id27] matches {
+						term matches {
+							Terminology_term[id36] matches {
+								concept matches {[ac1]}		-- Status (synthesised)
+							}
+						}
+					}
+					Plain_text[id28] 
+				}
+			}
+			Node[id4] matches {	-- Evidence
+				value matches {
+					Text[id29] 
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Category
+				value matches {
+					Text[id30] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id31] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id21] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Valid period start
+				value matches {
+					Date_time_value[id32] 
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Valid period end
+				value matches {
+					Date_time_value[id33] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Review date
+				value matches {
+					Date_time_value[id34] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id35] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Status (synthesised)">
+				description = <"Assertion about the current state of the identified 'Precaution'. (synthesised)">
+			>
+			["at15"] = <
+				text = <"Active">
+				description = <"The precaution is currently active.">
+			>
+			["at18"] = <
+				text = <"Resolved">
+				description = <"The previously asserted precaution has been clinically reassessed and considered no longer to be an active risk.">
+			>
+			["at19"] = <
+				text = <"Refuted">
+				description = <"The precaution has been clinically reassessed or has been disproved with a high level of clinical certainty by testing.">
+			>
+			["id1"] = <
+				text = <"Precaution">
+				description = <"A condition or state of the individual that is clinically significant and unique or idiosyncratic for this individual, and is considered vital information when making treatment decisions.">
+			>
+			["id10"] = <
+				text = <"Review date">
+				description = <"Date when next due for review by a clinician.">
+			>
+			["id14"] = <
+				text = <"Category">
+				description = <"Type of the 'Condition' identified.">
+			>
+			["id15"] = <
+				text = <"Status">
+				description = <"Assertion about the current state of the identified 'Precaution'.">
+			>
+			["id21"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id23"] = <
+				text = <"Valid period start">
+				description = <"Date/time after which the 'Condition' is regarded as active.">
+			>
+			["id25"] = <
+				text = <"Valid period end">
+				description = <"Date/time after which the 'Condition' is regarded as inactive.">
+			>
+			["id3"] = <
+				text = <"Condition">
+				description = <"Identification, by name, of a condition or state.">
+			>
+			["id4"] = <
+				text = <"Evidence">
+				description = <"Description of the evidence identified to support the precaution.">
+			>
+			["id5"] = <
+				text = <"Last updated">
+				description = <"Date when the precaution information was last updated.">
+			>
+			["id9"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the precaution, not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id3"] = <http://loinc.org/75323-6>
+			["id15"] = <http://loinc.org/106199-3>
+			["id5"] = <http://loinc.org/106177-9>
+			["id9"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at15", "at18", "at19">
+		>
+	>
+

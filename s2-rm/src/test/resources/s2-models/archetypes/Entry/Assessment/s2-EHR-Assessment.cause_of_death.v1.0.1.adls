@@ -1,0 +1,286 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f39d7bbc-a233-4be9-a206-e0cea688c10b)
+	s2-EHR-Assessment.cause_of_death.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord RHF, <mikkel.johan.gaup.gronmo@helse-nord.no>, 2020-08-03">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.cause_of_death.v1.0.1, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.cause_of_death.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about specific diseases, conditions or injuries that caused or contributed to the death of an individual.">
+			use = <"Use to record details about specific diseases, conditions or injuries that caused or contributed to the death of an individual.
+            
+            Examples of use cases include, but are not limited to:
+            - a death certificate or notification, nested within the COMPOSITION.certificate archetype;
+            - a post mortem report, nested within the COMPOSITION.report-post_mortem archetype, as one of a number of components of a post mortem report; or
+            - disease registries and epidemiological surveillance, nested within the COMPOSITION.report-case_investigation archetype, as one of a number of components of a case investigation, such as a maternal mortality investigation.
+            
+            Example 1:
+            - Cerebral haemorrhage (as 'Direct cause', A) 
+            -- 'due to' Metastasis of the brain (as 'Antecedent cause B');
+            -- 'due to' Breast cancer (as the earliest 'Antecedent cause C'). As Breast cancer is the earliest recorded antecedent cause, this condition may also be known as the 'Underlying cause'.
+            
+            Example 2: 
+            - Pulmonary embolus (as 'Direct cause', A) 
+            -- 'due to' Fractured femur (as 'Antecedent cause B')
+            -- 'due to' Accidental fall (as 'Antecedent/Underlying cause C').">
+			keywords = <"certificate", "cause", "reason", "death", "condition", "antecedent", "post mortem", "surveillance", "notification", "injury", "disease", "summary", "autopsy">
+			misuse = <"Not to be used to record details about diseases, conditions or injuries that have not contributed to the death of an individual. Use the EVALUATION.problem_diagnosis or ACTION.procedure archetypes for this purpose.">
+		>
+	>
+	other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (Nasjonal IKT redaktør)", "Aleocidio Balzanelo, DASA, Brazil", "Malin Berg, DIPS ASA, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Marte Rime Bø, Direktoratet for e-helse, Norway", "Yexuan Cheng, 浙江大学, China", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Stefan Dubois, Dep't of Pathology and Genetics, University Hospitals of Lund and Malmö, Sweden", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Kåre Flø, DIPS ASA, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Rosane Gotardo, Systema Ltda., Brazil", "Heather Grain, Llewelyn Grain Informatics, Australia", "Martin Grundberg, Cambio Healthcare Systems, Sweden", "Maria Grønmo, Norway", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Amanda Herbrand, University Hospital Basel, Switzerland", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Siri Laronningen, Kreftregisteret, Norway", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Michael Lutz, BITsoft, Germany", "Manisha Mantri, C-DAC, India", "James McClay, University of Nebraska Medical Center, United States", "Paul Miller, NES Digital Service, NHS Scotland, United Kingdom", "Hilde Mjærfoss, Norsk Helsenett SF, Norway", "Svenne Naumann, Finnmarkssykehuset, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "FREDERICO RIBEIRO, Hospital das Clínicas da UFPE, Brazil", "Terje Sagmyr, Helse Vest IKT, Norway", "Alan Smith, OXLEAS NHS Mental Health Foundation Trust, United Kingdom", "Frode Stenvik, Helse Sør-Øst, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Olav Thorsen, Stavanger University Hospital, Norway", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Lars Uhlin Hansen, UNN, Norway", "Martijn van Eenennaam, Nedap Healthcare, Netherlands", "Ina Wille, Helse-Vest RHF, Norway", "Lin Zhang, Taikang Insurance Group, China">
+
+definition
+	Assessment[id1] matches {	-- Cause of death
+		data matches {
+			Node[id20] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id23] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Direct cause
+				value matches {
+					Text[id24] 
+				}
+			}
+			Node[id18] occurrences matches {0..1} matches {	-- Direct cause duration
+				value matches {
+					Duration_value[id25] matches {
+						magnitude matches {|>=PT0S|}
+					}
+					Range<Duration_value>[id26] matches {
+						lower matches {
+							Duration_value[id27] matches {
+								magnitude matches {|>=PT0S|}
+							}
+						}
+						upper matches {
+							Duration_value[id28] matches {
+								magnitude matches {|>=PT0S|}
+							}
+						}
+					}
+					Text[id29] 
+				}
+			}
+			Node[id4] matches {	-- Antecedent cause(s)
+				items matches {
+					Node[id5] matches {	-- Cause
+						value matches {
+							Text[id30] 
+						}
+					}
+					Node[id6] occurrences matches {0..1} matches {	-- Order
+						value matches {
+							Plain_text[id31] 
+							Coded_text[id32] matches {
+								term matches {
+									Terminology_term[id48] matches {
+										concept matches {[ac1]}		-- Order (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id10] occurrences matches {0..1} matches {	-- Duration
+						value matches {
+							Text[id33] 
+							Range<Duration_value>[id34] matches {
+								lower matches {
+									Duration_value[id35] matches {
+										magnitude matches {|>=PT0S|}
+									}
+								}
+								upper matches {
+									Duration_value[id36] matches {
+										magnitude matches {|>=PT0S|}
+									}
+								}
+							}
+							Duration_value[id37] matches {
+								magnitude matches {|>=PT0S|}
+							}
+							Date_time_value[id38] 
+						}
+					}
+				}
+			}
+			Node[id21] matches {	-- Contributing conditions
+				items matches {
+					Node[id19] matches {	-- Condition
+						value matches {
+							Text[id39] 
+						}
+					}
+					Node[id22] occurrences matches {0..1} matches {	-- Duration
+						value matches {
+							Text[id40] 
+							Range<Duration_value>[id41] matches {
+								lower matches {
+									Duration_value[id42] matches {
+										magnitude matches {|>=PT0S|}
+									}
+								}
+								upper matches {
+									Duration_value[id43] matches {
+										magnitude matches {|>=PT0S|}
+									}
+								}
+							}
+							Duration_value[id44] matches {
+								magnitude matches {|>=PT0S|}
+							}
+							Date_time_value[id45] 
+						}
+					}
+				}
+			}
+			allow_archetype Node[id13] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id46] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id16] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id47] 
+				}
+			}
+			allow_archetype Node[id17] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Order (synthesised)">
+				description = <"Order of onset of the identified 'Antecedent cause' in the sequence of events leading to death. (synthesised)">
+			>
+			["at6"] = <
+				text = <"B">
+				description = <"The disease, condition or injury most closely preceding the 'Direct cause (A)'.">
+			>
+			["at7"] = <
+				text = <"C">
+				description = <"The disease, condition or injury most closely preceding the 'Cause' order 'B'.">
+			>
+			["at8"] = <
+				text = <"D">
+				description = <"The disease, condition or injury considered the earliest in the sequence of events leading to death.">
+			>
+			["id1"] = <
+				text = <"Cause of death">
+				description = <"Details about specific diseases, conditions or injuries that caused or contributed to the death of an individual.">
+			>
+			["id10"] = <
+				text = <"Duration">
+				description = <"The approximate interval from onset of the identified 'Cause' to death.">
+			>
+			["id13"] = <
+				text = <"Additional details">
+				description = <"Additional details about the cause of death.">
+			>
+			["id14"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the cause of death, not captured in other fields.">
+			>
+			["id16"] = <
+				text = <"Last updated">
+				description = <"The date when the cause of death was last updated.">
+			>
+			["id17"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+			>
+			["id18"] = <
+				text = <"Direct cause duration">
+				description = <"The approximate interval from onset of the identified 'Direct cause' to death.">
+			>
+			["id19"] = <
+				text = <"Condition">
+				description = <"Name of a significant condition that may have contributed to the death, but without a causal association.">
+			>
+			["id20"] = <
+				text = <"Description">
+				description = <"Narrative description about the contributing diseases, injuries, conditions and events leading to death.">
+			>
+			["id21"] = <
+				text = <"Contributing conditions">
+				description = <"Details about other significant conditions that may have contributed to the death, but without a causal association.">
+			>
+			["id22"] = <
+				text = <"Duration">
+				description = <"The approximate interval from onset of the identified 'Condition' to death.">
+			>
+			["id3"] = <
+				text = <"Direct cause">
+				description = <"The disease, condition or injury that directly led to, or occurred closest to, the time of death.">
+			>
+			["id4"] = <
+				text = <"Antecedent cause(s)">
+				description = <"Details about one or more diseases, conditions or injuries in the sequence of events preceding death, recorded in order from most recent onset to the earliest onset.">
+			>
+			["id5"] = <
+				text = <"Cause">
+				description = <"Identification of an antecedent disease, condition or injury that directly contributed to the 'Direct cause'.">
+			>
+			["id6"] = <
+				text = <"Order">
+				description = <"Order of onset of the identified 'Antecedent cause' in the sequence of events leading to death.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/79378-6>
+			["id19"] = <http://loinc.org/75323-6>
+			["id21"] = <http://loinc.org/68345-8>
+			["id3"] = <http://loinc.org/68343-3>
+			["id4"] = <http://loinc.org/69441-4>
+			["id5"] = <http://loinc.org/68346-6>
+			["id14"] = <http://loinc.org/106173-8>
+			["id16"] = <http://loinc.org/106177-9>
+			["id20"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at6", "at7", "at8">
+		>
+	>
+

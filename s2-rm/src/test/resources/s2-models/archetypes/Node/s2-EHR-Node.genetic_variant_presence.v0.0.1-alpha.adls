@@ -1,0 +1,127 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=010f7467-ce50-4def-9b09-217e9067bbd2)
+	s2-EHR-Node.genetic_variant_presence.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Silje Ljosland Bakke, Helse Vest IKT AS, <silje.ljosland.bakke@helse-vest-ikt.no>, 2020-03-16">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.genetic_variant_presence.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.genetic_variant_presence.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record an assessment of the presence or absence of a specific genetic variant in a sequenced specimen.">
+			use = <"Use to record an assessment of the presence or absence of a specific genetic variant in a sequenced specimen, for example for panel sequencing.
+            
+            This archetype has been designed to be used within the \\\"Test result\\\" SLOT of the OBSERVATION.laboratory_test_result archetype, but may also be used in other ENTRY or Node archetype where clinically appropriate.">
+			misuse = <"">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Genetic variant presence
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Variant name
+				value matches {
+					Text[id5] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Finding
+				value matches {
+					Coded_text[id6] matches {
+						term matches {
+							Terminology_term[id8] matches {
+								concept matches {[ac1]}		-- Finding (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id7] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Finding (synthesised)">
+				description = <"The presence or absence of the variant. (synthesised)">
+			>
+			["at4"] = <
+				text = <"Present">
+				description = <"The target variant is present.">
+			>
+			["at5"] = <
+				text = <"Absent">
+				description = <"The target variant is absent.">
+			>
+			["at6"] = <
+				text = <"No call">
+				description = <"No data are available to confirm the presence/absence of the variant.">
+			>
+			["at7"] = <
+				text = <"Indeterminate">
+				description = <"The result is indeterminate.">
+			>
+			["id1"] = <
+				text = <"Genetic variant presence">
+				description = <"Assessment of the presence or absence of a specific genetic variant in a sequenced specimen.">
+			>
+			["id2"] = <
+				text = <"Variant name">
+				description = <"The name of the variant.">
+			>
+			["id3"] = <
+				text = <"Finding">
+				description = <"The presence or absence of the variant.">
+			>
+			["id4"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the genetic variant presence not captured in other Nodes.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id3"] = <http://loinc.org/69548-6>
+			["at4"] = <http://loinc.org/LA9633-4>
+			["at5"] = <http://loinc.org/LA9634-2>
+			["at6"] = <http://loinc.org/LA18198-4>
+			["at7"] = <http://loinc.org/LA11884-6>
+			["id4"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at4", "at5", "at6", "at7">
+		>
+	>
+

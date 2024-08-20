@@ -1,0 +1,243 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5d00bd94-4dfd-4cf7-ae76-8f73dafc4a75)
+	s2-EHR-Node.family_prevalence.v1.0.5
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2015-05-05">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.family_prevalence.v1.0.5, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.family_prevalence.v1.0.5 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record information about the prevalence of an identified risk factor, problem or diagnosis in genetic and non-genetic family members.">
+			use = <"Use to record information about the prevalence of an identified risk factor, problem or diagnosis in genetic and non-genetic family members.
+            
+            This archetype has specifically been designed to be used in the 'Detail' SLOT within the EVALUATION.health_risk archetype to support assessment of risk in the subject of care for the identified 'Risk factor' and the 'Family prevalence' SLOT in the EVALUATION.family_history archetype. It can also be used in the 'Specific details' SLOT within the EVALUATION.problem_diagnosis archetype or other EVALUATION or Node archetypes, where clinically appropriate.">
+			keywords = <"family history", "prevalence", "affected", "genetic">
+			misuse = <"Not to be used to record actual health information about problems or diagnoses in individual family members - use EVALUATION.family_history for this purpose.">
+		>
+	>
+	other_contributors = <"Vebjoern Arntzen, Oslo university hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, National ICT Norway, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Shahla Foozonkhah, Ocean Informatics, Australia", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Lars Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hugh Leslie, Ocean Informatics, Australia", "Hallvard Lærum, Oslo University Hospital, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Andrej Orel, Marand d.o.o., Slovenia", "Jussara Rotzsch, UNB, Brazil">
+
+definition
+	Node[id1] matches {	-- Family prevalence
+		items matches {
+			Node[id31] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id58] 
+				}
+			}
+			Node[id56] occurrences matches {0..1} matches {	-- Genetic predisposition?
+				value matches {
+					Boolean_value[id59] matches {
+						value matches {True}
+					}
+				}
+			}
+			Node[id57] occurrences matches {0..1} matches {	-- Inheritance type
+				value matches {
+					Text[id60] 
+				}
+			}
+			Node[id32] matches {	-- Affected family
+				items matches {
+					Node[id33] occurrences matches {0..1} matches {	-- Relationship
+						value matches {
+							Coded_text[id61] matches {
+								term matches {
+									Terminology_term[id66] matches {
+										concept matches {[ac1]}		-- Relationship (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id52] occurrences matches {0..1} matches {	-- Family line
+						value matches {
+							Coded_text[id62] matches {
+								term matches {
+									Terminology_term[id67] matches {
+										concept matches {[ac2]}		-- Family line (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id34] occurrences matches {0..1} matches {	-- Biological sex
+						value matches {
+							Coded_text[id63] matches {
+								term matches {
+									Terminology_term[id68] matches {
+										concept matches {[ac3]}		-- Biological sex (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id35] occurrences matches {0..1} matches {	-- Number affected
+						value matches {
+							Count[id64] matches {
+								magnitude matches {|>=0|}
+							}
+						}
+					}
+					Node[id55] occurrences matches {0..1} matches {	-- Number eligible
+						value matches {
+							Count[id65] matches {
+								magnitude matches {|>=0|}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Relationship (synthesised)">
+				description = <"The degree of relationship between the subject of care and a selected group of family members. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Family line (synthesised)">
+				description = <"Identification of the maternal or paternal family line in the relationship. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Biological sex (synthesised)">
+				description = <"The biological sex of the family member/s. (synthesised)">
+			>
+			["at37"] = <
+				text = <"First degree relative">
+				description = <"50% genetic share with the subject - for example, parent, sibling or child.">
+			>
+			["at38"] = <
+				text = <"Second degree relative">
+				description = <"25% genetic share with the subject - for example, grandparent, aunt, uncle, niece, nephew, grandchildren and half siblings.">
+			>
+			["at39"] = <
+				text = <"Third degree relative">
+				description = <"12.5% genetic share with the subject - for example, great grandparent, great aunt, great uncle, first cousin, children of nieces and nephews, and great grandchildren.">
+			>
+			["at40"] = <
+				text = <"Maternal line">
+				description = <"Related through the subject's mother.">
+			>
+			["at41"] = <
+				text = <"Paternal line">
+				description = <"Related through the subject's father.">
+			>
+			["at42"] = <
+				text = <"Genetic family">
+				description = <"All genetically-related family members.">
+			>
+			["at43"] = <
+				text = <"Male">
+				description = <"Family member who is biologically male.">
+			>
+			["at44"] = <
+				text = <"Female">
+				description = <"Family member who is biologically female.">
+			>
+			["at50"] = <
+				text = <"Non-genetic family">
+				description = <"All non-genetic family members.">
+			>
+			["at52"] = <
+				text = <"Indeterminate/Intersex/Unspecified">
+				description = <"Family member who either has the biological attributes of both sexes or lacks some of the biological attributes considered necessary to be defined as one or the other sex.">
+			>
+			["id1"] = <
+				text = <"Family prevalence">
+				description = <"Summary information about the prevalence of a risk factor, problem or diagnosis in all family members.">
+			>
+			["id31"] = <
+				text = <"Description">
+				description = <"Narrative description about occurrence in family members.">
+			>
+			["id32"] = <
+				text = <"Affected family">
+				description = <"Details about the numbers of family members affected.">
+			>
+			["id33"] = <
+				text = <"Relationship">
+				description = <"The degree of relationship between the subject of care and a selected group of family members.">
+			>
+			["id34"] = <
+				text = <"Biological sex">
+				description = <"The biological sex of the family member/s.">
+			>
+			["id35"] = <
+				text = <"Number affected">
+				description = <"The number of family members known to be affected.">
+			>
+			["id52"] = <
+				text = <"Family line">
+				description = <"Identification of the maternal or paternal family line in the relationship.">
+			>
+			["id55"] = <
+				text = <"Number eligible">
+				description = <"The number of eligible family members.">
+			>
+			["id56"] = <
+				text = <"Genetic predisposition?">
+				description = <"Is there a genetic basis for the identified risk factor, problem or diagnosis?">
+			>
+			["id57"] = <
+				text = <"Inheritance type">
+				description = <"Category of inheritance for the identified risk factor, problem or diagnosis.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id33"] = <http://loinc.org/54136-7>
+			["id34"] = <http://loinc.org/46098-0>
+			["id1"] = <http://loinc.org/104979-0>
+			["id31"] = <http://loinc.org/104978-2>
+			["id32"] = <http://loinc.org/104929-5>
+			["id35"] = <http://loinc.org/104899-0>
+			["id55"] = <http://loinc.org/104892-5>
+			["id56"] = <http://loinc.org/104894-1>
+			["id57"] = <http://loinc.org/104909-7>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at37", "at38", "at39", "at42", "at50">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at40", "at41">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at43", "at44", "at52">
+		>
+	>
+

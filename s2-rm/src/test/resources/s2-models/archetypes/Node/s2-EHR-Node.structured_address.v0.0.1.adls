@@ -1,0 +1,57 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=eb914b32-3177-48d7-976e-af7f2da4092f)
+	s2-EHR-Node.structured_address.v0.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Thomas Beale, Graphite Health, <thomas.beale@graphitehealth.io>, 2023-12-18">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.structured_address.v0.0.1, copyright 2023 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.structured_address.v0.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the structured address of an individual or organization.">
+			use = <"TBD">
+		>
+	>
+
+definition
+	Node[id1] 	-- Structured address
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Structured address">
+				description = <"Discrete components of an individual's address.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/99952-4>
+		>
+	>
+

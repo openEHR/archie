@@ -1,0 +1,616 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8911bf8f-1fb0-4444-a81e-a13b3f23d7f1)
+    s2-EHR-Score.neonatal_skin_risk_assessment.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Dr Ian McNicoll, freshEHR Clinical Informatics, UK, <ian@freshehr.com>, 2011-08-08">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.neonatal_skin_risk_assessment.v0.0.1-alpha, copyright 2011 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.neonatal_skin_risk_assessment.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details of a clinical assessment of neonates at risk of skin breakdown or pressure sore development.">
+            keywords = <"braden", "neonate", "score", "skin", "pressure", "ulcer", "sore">
+            use = <"Use record details of a clinical assessment of neonates at risk of skin breakdown or pressure sore development. 
+            
+            It should be noted that although the purpose of the scale is similar to that of the adult Braden Scale and Braden-Q scale for older children, the scoring methodology is completely different, particularly that a high score is associated with high risk, the opposite from these other Braden scales where a low score equates to high risk.
+            
+            The Neonatal Skin Risk Assessment Scale (NSRAS) should only be used to assess nenoates under 21 days of age.">
+            misuse = <"Not to be used for pressure sore risk assessment in children aged over 21 days. Use OBSERVATION.braden_scale-q for children between 21 days and 5 years of age. Use  OBSERVATION.braden_scale for children over 5 years of age and adults.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Neonatal Skin Risk Assessment Scale (NSRAS)
+        data matches {
+            Node[id12] occurrences matches {0..1} matches {    -- General physical condition
+                value matches {
+                    Coded_ordinal[id27] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id29] matches {
+                                term matches {
+                                    Terminology_term[id28] matches {
+                                        concept matches {[at12]}    -- Best
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id30] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at13]}    -- Good
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id33] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at14]}    -- Poor
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at15]}    -- Very poor
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Moisture
+                value matches {
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at17]}    -- Rarely moist
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at18]}    -- Occasionally moist
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id45] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at19]}    -- Moist
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at20]}    -- Constantly moist
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Nutrition
+                value matches {
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at21]}    -- Excellent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at22]}    -- Adequate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id57] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id59] matches {
+                                term matches {
+                                    Terminology_term[id58] matches {
+                                        concept matches {[at23]}    -- Inadequate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id60] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id62] matches {
+                                term matches {
+                                    Terminology_term[id61] matches {
+                                        concept matches {[at24]}    -- Very poor
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Activity
+                value matches {
+                    Coded_ordinal[id63] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id65] matches {
+                                term matches {
+                                    Terminology_term[id64] matches {
+                                        concept matches {[at25]}    -- Unlimited
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id66] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id68] matches {
+                                term matches {
+                                    Terminology_term[id67] matches {
+                                        concept matches {[at26]}    -- Slightly limited
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id69] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id71] matches {
+                                term matches {
+                                    Terminology_term[id70] matches {
+                                        concept matches {[at27]}    -- Limited bed-bound
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id72] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id74] matches {
+                                term matches {
+                                    Terminology_term[id73] matches {
+                                        concept matches {[at28]}    -- Completely bed-bound
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Mobility
+                value matches {
+                    Coded_ordinal[id75] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id77] matches {
+                                term matches {
+                                    Terminology_term[id76] matches {
+                                        concept matches {[at29]}    -- No limitation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id78] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id80] matches {
+                                term matches {
+                                    Terminology_term[id79] matches {
+                                        concept matches {[at30]}    -- Slightly limited
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id81] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id83] matches {
+                                term matches {
+                                    Terminology_term[id82] matches {
+                                        concept matches {[at31]}    -- Very limited
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id84] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id86] matches {
+                                term matches {
+                                    Terminology_term[id85] matches {
+                                        concept matches {[at32]}    -- Completely immobile
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Mental status
+                value matches {
+                    Coded_ordinal[id87] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id89] matches {
+                                term matches {
+                                    Terminology_term[id88] matches {
+                                        concept matches {[at33]}    -- No impairment
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id90] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id92] matches {
+                                term matches {
+                                    Terminology_term[id91] matches {
+                                        concept matches {[at34]}    -- Slightly limited
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id93] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id95] matches {
+                                term matches {
+                                    Terminology_term[id94] matches {
+                                        concept matches {[at35]}    -- Very limited
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id96] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id98] matches {
+                                term matches {
+                                    Terminology_term[id97] matches {
+                                        concept matches {[at36]}    -- Completely limited
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id24] matches {
+                        magnitude matches {|2..24|}
+                    }
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Graded risk
+                value matches {
+                    Coded_ordinal[id99] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id101] matches {
+                                term matches {
+                                    Terminology_term[id100] matches {
+                                        concept matches {[at38]}    -- Not at risk - Total score less than 13
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id102] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id104] matches {
+                                term matches {
+                                    Terminology_term[id103] matches {
+                                        concept matches {[at37]}    -- At risk - Total score 13 or over
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id26]
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at12", "at13", "at14", "at15">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at17", "at18", "at19", "at20">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at21", "at22", "at23", "at24">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at25", "at26", "at27", "at28">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at29", "at30", "at31", "at32">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at33", "at34", "at35", "at36">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at38", "at37">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"General physical condition (synthesised)">
+                description = <"An assessment of general condition, based on gestational age. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Moisture (synthesised)">
+                description = <"The degree to which the infant's skin is exposed to moisture. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Nutrition (synthesised)">
+                description = <"The usual food intake of the neonate. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Activity (synthesised)">
+                description = <"The amount of physical activity of the neonate. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Mobility (synthesised)">
+                description = <"The neonate's ability to change and control body position. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Mental status (synthesised)">
+                description = <"An evaluation of the mental status or sensory preception of the neonate. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Graded risk (synthesised)">
+                description = <"A graded risk derived from the 'Total score'. (synthesised)">
+            >
+            ["at12"] = <
+                text = <"Best">
+                description = <"Gestational Age > 38 Weeks To Posterm.">
+            >
+            ["at13"] = <
+                text = <"Good">
+                description = <"Gestational Age > 33 Weeks But < 38 weeks.">
+            >
+            ["at14"] = <
+                text = <"Poor">
+                description = <"Gestational Age > 28 Weeks But < 33 weeks.">
+            >
+            ["at15"] = <
+                text = <"Very poor">
+                description = <"Gestational Age > 28 Weeks But < 33 weeks.">
+            >
+            ["at17"] = <
+                text = <"Rarely moist">
+                description = <"Skin is usually dry, linen requires changing only every 24 hours.">
+            >
+            ["at18"] = <
+                text = <"Occasionally moist">
+                description = <"Skin is occasionally moist/damp. Requiring an extra linen change approximately once a day.">
+            >
+            ["at19"] = <
+                text = <"Moist">
+                description = <"Skin is often but not always moist/damp; linen must be changed at least once a shift.">
+            >
+            ["at20"] = <
+                text = <"Constantly moist">
+                description = <"Skin is moist/damp every time infant is moved or turned.">
+            >
+            ["at21"] = <
+                text = <"Excellent">
+                description = <"Bottlehreastfeeds every meal which  meets nutritional needs  for growth.">
+            >
+            ["at22"] = <
+                text = <"Adequate">
+                description = <"Is on tube feedings which  meet nutritional needs for growth.">
+            >
+            ["at23"] = <
+                text = <"Inadequate">
+                description = <"Receives less than  optimum amount of liquid diet for growth (formula/breast milk) and supplemented with intravenous fluids.">
+            >
+            ["at24"] = <
+                text = <"Very poor">
+                description = <"NPO on intravenous  fluids.">
+            >
+            ["at25"] = <
+                text = <"Unlimited">
+                description = <"In an open crib.">
+            >
+            ["at26"] = <
+                text = <"Slightly limited">
+                description = <"In a double walled isolette.">
+            >
+            ["at27"] = <
+                text = <"Limited bed-bound">
+                description = <"In a radiant warmer without a clear plastic “saran” tent.">
+            >
+            ["at28"] = <
+                text = <"Completely bed-bound">
+                description = <"In a radiant warmer with a clear plastic “saran” tent.">
+            >
+            ["at29"] = <
+                text = <"No limitation">
+                description = <"Makes major and frequent changes in position without assistance (e.g., turn  head).">
+            >
+            ["at30"] = <
+                text = <"Slightly limited">
+                description = <"Makes frequent though slight changes in body or extremity position independently.">
+            >
+            ["at31"] = <
+                text = <"Very limited">
+                description = <"Makes occasional slight changes in body or extremity position but unable to make frequent or significant changes independently.">
+            >
+            ["at32"] = <
+                text = <"Completely immobile">
+                description = <"Does not make even slight changes in body or extremity position without assistance (e.g., Pavulon).">
+            >
+            ["at33"] = <
+                text = <"No impairment">
+                description = <"Alert and active.">
+            >
+            ["at34"] = <
+                text = <"Slightly limited">
+                description = <"Lethargic.">
+            >
+            ["at35"] = <
+                text = <"Very limited">
+                description = <"Responds only to painful stimuli (flinches, grasps, moans, increased blood pressure or heart rate).">
+            >
+            ["at36"] = <
+                text = <"Completely limited">
+                description = <"Unresponsive (does not flinch, grasp, moan, increase blood pressure, or heart rate) to painful stimuli due to diminished level of consciousness or sedation.">
+            >
+            ["at37"] = <
+                text = <"At risk - Total score 13 or over">
+                description = <"The neonate is not at risk of developing a pressure ulcer.">
+            >
+            ["at38"] = <
+                text = <"Not at risk - Total score less than 13">
+                description = <"The neonate is at risk of developing a pressure ulcer.">
+            >
+            ["id1"] = <
+                text = <"Neonatal Skin Risk Assessment Scale (NSRAS)">
+                description = <"A clinical assessment for neonates at risk for skin breakdown, based on the Braden Scale used in adults.">
+            >
+            ["id10"] = <
+                text = <"Mental status">
+                description = <"An evaluation of the mental status or sensory preception of the neonate.">
+            >
+            ["id11"] = <
+                text = <"Total score">
+                description = <"The sum of all sub-scores.">
+            >
+            ["id12"] = <
+                text = <"General physical condition">
+                description = <"An assessment of general condition, based on gestational age.">
+            >
+            ["id17"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the Neonatal Skin Risk Assessment Scale, not captured in other fields.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Graded risk">
+                description = <"A graded risk derived from the 'Total score'.">
+            >
+            ["id6"] = <
+                text = <"Moisture">
+                description = <"The degree to which the infant's skin is exposed to moisture.">
+            >
+            ["id7"] = <
+                text = <"Nutrition">
+                description = <"The usual food intake of the neonate.">
+            >
+            ["id8"] = <
+                text = <"Activity">
+                description = <"The amount of physical activity of the neonate.">
+            >
+            ["id9"] = <
+                text = <"Mobility">
+                description = <"The neonate's ability to change and control body position.">
+            >
+        >
+    >
+    

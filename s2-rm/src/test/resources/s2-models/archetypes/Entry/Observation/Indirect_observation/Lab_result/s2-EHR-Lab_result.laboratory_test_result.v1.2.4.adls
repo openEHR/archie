@@ -1,0 +1,361 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e18809ef-cd51-4b49-adf6-3e945c78621c)
+	s2-EHR-Lab_result.laboratory_test_result.v1.2.4
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics, <ian@freshehr.com>, 2015-07-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.4, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.laboratory_test_result.v1.2.4 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the result, including findings and the laboratory's interpretation, of an investigation performed on specimens collected from an individual or related to that individual.">
+			use = <"Use to record the result, including findings and the laboratory's interpretation, of an investigation performed on specimens collected from an individual or related to that individual. This is typically done in a laboratory, but may be done in other environments such as at the point of care.
+            
+            This archetype is intended to cover the result of a single ordered investigation where the specimen(s) are collected as a single procedure, and may include multiple analyte results or other components. Examples of this could include 'Full blood count', which would yield a separate analyte result for the count of each type of blood cell, or 'kidney biopsy non-neoplastic', which would yield findings from microscopy, immunohistochemistry and electron microscopy.
+            
+            This archetype has been designed to be a framework that will usually be extended with Node archetypes to enable appropriate recording of specific laboratory test result patterns. This includes, but is not limited to, tests for biochemistry, haematology, immunology and transfusion services etc and specific patterns for the unique requirements for microbiology and anatomical pathology. If the ordered tests or investigations do not commonly belong together in a named group or panel, each test result would normally be represented using separate instances of this archetype. There is, however, considerable variation in actual reporting/messaging practice and this archetype/related archetypes are designed to handle such variation.
+            
+            This archetype supports multiple approaches to recording of specimen, reflecting current practice which varies enormously. A Laboratory test result has a high degree of alignment to an HL7 FHIR Diagnostic Report resource.
+            
+            It is anticipated that one or more instances of this archetype, or archetype family, will be sent back to a requesting clinician within a laboratory report document comprising COMPOSITION.report_result archetype, or similar, and other relevant ENTRY archetypes.
+            
+            The recording of confounding factors may be inconsistent, often depending on the analysing laboratory and on clinical information sent by the requester. In the State section of the archetype there is a simple 'Confounding factors' data Node that is optional and can be repeated as one way to record a variety of simple factors that need to be made explicit as they may influence interpretation of the results. If the confounding factors are more complex, it may be appropriate to create a local/shared Node archetype that can be nested in the 'Confounding factors details' SLOT. 
+            Note 1: Known or required pre-conditions, such as 'fasting' or 'Day 1 of menstrual cycle', should be reported in the 'Sampling conditions' data Node in the Node.specimen archetype, nested within this OBSERVATION archetype.
+            Note 2: Known issues with specimen collection or handling, such as 'sample haemolysed' or 'prolonged use of tourniquet' should be reported within 'Specimen quality' in the Node.specimen archetype, nested within this OBSERVATION archetype.
+            
+            Where 'reflex tests' are performed by the laboratory, these may be handled as per US/FHIR guidance (see https://www.hl7.org/fhir/2015may/uslabreport-guide.html) or other local policy. For example, one of the following ...
+            1. Record the reflex test results additional 'Test findings' within the same 'openEHR-EHR-OBSERVATION.laboratory_test_result'
+            2. Record the reflex test results as 'Test findings' within a new 'openEHR-EHR-OBSERVATION.laboratory_test_result' but refer to the original lab test request via 'Test request details'.
+            3. Record the reflex test results as 'Test findings' within a new 'openEHR-EHR-OBSERVATION.laboratory_test_result' but reference a new lab test request as well as the original lab test request via 'Test request details'.">
+			keywords = <"lab", "pathology", "biochemistry", "haematology", "microbiology", "immunology", "laboratory", "anatomical", "chemical", "clinical", "immunopathology", "cytology", "histopathology", "test", "biopsy", "specimen", "forensic", "genetic", "laboratory medicine", "results", "analysis">
+			misuse = <"Not to be used to record an Autopsy or a Forensic report, although tests on some specimens that are taken in such situations may be represented using this archetype. For these, additional or specialised archetypes will be required to represent the data.
+            
+            This archetype is suitable for representation of general laboratory test results, but not intended to cover full synoptic reports. For these, additional specialising archetypes are required to represent the data.">
+		>
+	>
+	other_contributors = <"Andreas Abildgaard, OUS, Norway", "Yaser Abuhajjaj, United Arab Emirates", "Marit Alice Venheim, Helse Vest IKT, Norway", "Tomas Alme, DIPS ASA, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Ryan Julius Banez, AC Health, Philippines", "Marcos Barreto, Universidade Federal da Bahia, Brazil", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Sharmila Biswas, Dr Sharmila Biswas GP, Australia", "Johan Bjerner, Fürst, Norway", "Greg Burch, Tiny Medical Apps, United Kingdom", "Fatemeh Chalabianloo, Helse Bergen, Norway", "Doug Chesher, PaLMS, Australia", "Bjørn Christensen, Helse Bergen HF, Norway", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Andre de Wolf, NeHTA, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "Stig Erik Hegrestad, Helse Førde, Norway", "David Evans, Queensland Health, Australia", "David Fallas, Sysmex NZ Ltd, New Zealand", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Heath Frankel, Ocean Informatics, Australia", "Frode Gilberg, PRIDOK AS, Norway", "Rosane Gotardo, Systema Ltda., Brazil", "Heather Grain, Llewelyn Grain Informatics, Australia", "Grahame Grieve, Health Intersections Pyty Ltd, Australia (Editor)", "Åshild Halvorsen, Helse Nord RHF, Norway", "martin hanlon, Careworks, United Kingdom", "Sam Heard, Ocean Informatics, Australia", "Anca Heyd, DIPS ASA, Norway", "Geir Hoff, Sykehuset Telemark HF, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Silje Kaada, Helse-Bergen, Avdeling for immunologi og transfusjonsmedisin, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Mary Kelaher, NEHTA, Australia", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Anne Kristin Strand, Sykehuspartner HF, Norway", "Tomi Laptoš, Marand, Slovenia", "Liv Laugen, Oslo universitetssykehus, Norway", "Michael Legg, Michael Legg & associates, Australia", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Neranga Liyanaarachchi, Ministry of Health, Postgraduate Institute of Medicine, Sri Lanka", "Zijian Li, China", "Jan-Arne Ludvigsen, DIPS AS, Norway", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Manisha Mantri, C-DAC, India", "Siv Marie Lien, DIPS ASA, Norway", "Ole Martin Sand, DIPS ASA, Norway", "Mike Martyn, The Hobart Anaesthetic Group, Australia", "James McClay, University of Nebraska Medical Center, United States", "Andrew McIntyre, Medical-Objects, Australia", "David McKillop, NEHTA, Australia", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Angela Merzweiler, University Hospital of Heidelberg, Germany", "Paul Miller, SCIMP NHS Scotland, United Kingdom", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "George Nikolaidis, Ergobyte Informatics S.A., Greece", "Bjørn Næss, DIPS AS, Norway", "Bjørn Odvar Eriksen, UNN, Norway", "Masafumi Okada, University of Tokyo, Japan", "Andrej Orel, Marand d.o.o., Slovenia", "Michael Osborne, Mater Health Services, Australia", "Vaclav Papez, University of West Bohemia, Czech Republic", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Ana Pereira, CINTESIS, CUF-Porto, Portugal", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Navin Ramachandran, NHS, United Kingdom", "Lars Retterstøl, OUS, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "David Rowed, VAMC Clinic, Australia (Editor)", "Marcus vinicius de Régis, NUTES, Brazil", "Mona Saleh (Translator)", "Diogo Schmidt, UNISINOS, Brazil", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Anoop Shah, University College London, United Kingdom", "Kyle Shore, Charm Health, Australia", "Hildegunn Siv Aase, Helse Bergen, Norway", "Niclas Skyttberg, Karolinska Institutet, Sweden", "Matt Stibbs, Digi-M Ltd., United Kingdom", "Iztok Stotl, UKCLJ, Slovenia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "Sveinung Sørbye, UNN HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstittutet, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Michael Thompson, Queensland Health, Australia", "Gordon Tomes, Australian Institute of Health and Welfare, Australia", "Richard Townley-O'Neill, NEHTA, Australia", "Katrin Troeltzsch, Nationales Centrum für Tumorerkrankungen (NCT); Universitätsklinikum Heidelberg, Germany", "Torleif Trydal, Fürst AS, Norway", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Wouter Zanen, Eurotranplant, Netherlands", "Lin Zhang, Taikang Insurance Group, China">
+
+definition
+	Lab_result[id1] matches {	-- Laboratory test result
+		data cardinality matches {1..*; unordered} matches {
+			Node[id6] matches {	-- Test name
+				value matches {
+					Text[id124] 
+				}
+			}
+			use_archetype Node[id66, s2-EHR-Node.specimen.v1] 
+			Node[id74] matches {	-- Overall test status
+				value matches {
+					Coded_text[id125] matches {
+						term matches {
+							Terminology_term[id142] matches {
+								concept matches {[ac1]}		-- Overall test status (synthesised)
+							}
+						}
+					}
+					Plain_text[id126] 
+				}
+			}
+			Node[id76] occurrences matches {0..1} matches {	-- Overall test status timestamp
+				value matches {
+					Date_time_value[id127] 
+				}
+			}
+			Node[id78] occurrences matches {0..1} matches {	-- Diagnostic service category
+				value matches {
+					Text[id128] 
+				}
+			}
+			Node[id101] occurrences matches {0..1} matches {	-- Clinical information provided
+				value matches {
+					Text[id129] 
+				}
+			}
+			allow_archetype Node[id98] matches {	-- Test result
+				include
+					archetype_id/value matches {/s2-EHR-Node\.laboratory_test_analyte(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.laboratory_test_panel(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.laboratory_test_panel(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			Node[id58] occurrences matches {0..1} matches {	-- Conclusion
+				value matches {
+					Text[id130] 
+				}
+			}
+			Node[id99] matches {	-- Test diagnosis
+				value matches {
+					Text[id131] 
+				}
+			}
+			allow_archetype Node[id123] matches {	-- Structured test diagnosis
+				include
+					archetype_id/value matches {/.*/}
+			}
+			use_archetype Node[id119, s2-EHR-Node.media_file.v1] 
+			Node[id102] matches {	-- Comment
+				value matches {
+					Text[id132] 
+				}
+			}
+		}
+		state matches {
+			Node[id114] matches {	-- Confounding factors
+				value matches {
+					Text[id133] 
+				}
+			}
+			allow_archetype Node[id115] matches {	-- Structured confounding factors
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id18, s2-EHR-Node.organization.v1] 
+			Node[id69] occurrences matches {0..1} matches {	-- Laboratory internal identifier
+				value matches {
+					Rwe_id_ref[id134] 
+					Text[id135] 
+				}
+			}
+			Node[id95] matches {	-- Test request details
+				items matches {
+					Node[id107] matches {	-- Original test requested name
+						value matches {
+							Text[id136] 
+						}
+					}
+					Node[id63] occurrences matches {0..1} matches {	-- Requester order identifier
+						value matches {
+							Rwe_id_ref[id137] 
+							Text[id138] 
+						}
+					}
+					Node[id64] occurrences matches {0..1} matches {	-- Receiver order identifier
+						value matches {
+							Rwe_id_ref[id139] 
+							Text[id140] 
+						}
+					}
+					use_archetype Node[id91, s2-EHR-Node.person.v1] occurrences matches {0..1} 
+					use_archetype Node[id36, s2-EHR-Node.distribution.v0] 
+				}
+			}
+			Node[id112] occurrences matches {0..1} matches {	-- Point-of-care test
+				value matches {
+					Boolean_value[id141] 
+				}
+			}
+			Node[id122] occurrences matches {0..1} 	-- Test method
+			use_archetype Node[id111, s2-EHR-Node.device.v1] 
+			allow_archetype Node[id118] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Overall test status (synthesised)">
+				description = <"The status of the laboratory test result as a whole. (synthesised)">
+			>
+			["at107"] = <
+				text = <"Registered">
+				description = <"The existence of the test is registered in the Laboratory Information System, but there is nothing yet available.">
+			>
+			["at115"] = <
+				text = <"Corrected">
+				description = <"The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist. This is a sub-category of 'Amended'.">
+			>
+			["at116"] = <
+				text = <"Entered in error">
+				description = <"The Test Result has been withdrawn following previous Final release.">
+			>
+			["at119"] = <
+				text = <"Appended">
+				description = <"Subsequent to being final, the report has been modified by adding new content. The existing content is unchanged. This is a sub-category of 'Amended'.">
+			>
+			["at120"] = <
+				text = <"Preliminary">
+				description = <"Verified early results are available, but not all results are final. This is a sub-category of 'Partial'.">
+			>
+			["at37"] = <
+				text = <"Partial">
+				description = <"This is a partial (e.g. initial, interim or preliminary) Test Result: data in the Test Result may be incomplete or unverified.">
+			>
+			["at38"] = <
+				text = <"Final">
+				description = <"The Test result is complete and verified by an authorised person.">
+			>
+			["at40"] = <
+				text = <"Amended">
+				description = <"The result has been modified subsequent to being Final, and is complete and verified by the responsible pathologist, and result data has been changed.">
+			>
+			["at74"] = <
+				text = <"Cancelled">
+				description = <"The result is unavailable because the test was not started or not completed (also sometimes called 'aborted').">
+			>
+			["id1"] = <
+				text = <"Laboratory test result">
+				description = <"The result, including findings and the laboratory's interpretation, of an investigation performed on specimens collected from an individual or related to that individual.">
+			>
+			["id101"] = <
+				text = <"Clinical information provided">
+				description = <"Description of clinical information available at the time of interpretation of results.">
+			>
+			["id102"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the test result not captured in other fields.">
+			>
+			["id107"] = <
+				text = <"Original test requested name">
+				description = <"Name of the original laboratory test requested.">
+			>
+			["id111"] = <
+				text = <"Testing details">
+				description = <"Structured details about the method of analysis, device or interpretation used.">
+			>
+			["id112"] = <
+				text = <"Point-of-care test">
+				description = <"This indicates whether the test was performed directly at Point-of-Care (POCT) as opposed to a formal result from a laboratory or other service delivery organization.">
+			>
+			["id114"] = <
+				text = <"Confounding factors">
+				description = <"Issues or circumstances that impact on the accurate interpretation of the measurement or test result.">
+			>
+			["id115"] = <
+				text = <"Structured confounding factors">
+				description = <"Details of issues or circumstances that impact on the accurate interpretation of the measurement or test result.">
+			>
+			["id118"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id119"] = <
+				text = <"Multimedia representation">
+				description = <"Digital image, video or diagram representing the test result.">
+			>
+			["id122"] = <
+				text = <"Test method">
+				description = <"Description about the method used to perform the test.">
+			>
+			["id123"] = <
+				text = <"Structured test diagnosis">
+				description = <"A structured or complex diagnosis for the laboratory test.">
+			>
+			["id18"] = <
+				text = <"Receiving laboratory">
+				description = <"Details of the laboratory which received the request and has overall responsibility to manage reporting of the test, even if other labs perform specific aspects.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id36"] = <
+				text = <"Distribution list">
+				description = <"Details of additional clinicians or organizations who require a copy of the test result.">
+			>
+			["id58"] = <
+				text = <"Conclusion">
+				description = <"Narrative description of the key findings.">
+			>
+			["id6"] = <
+				text = <"Test name">
+				description = <"Name of the laboratory investigation performed on the specimen(s).">
+			>
+			["id63"] = <
+				text = <"Requester order identifier">
+				description = <"The local identifier assigned by the requesting clinical system.">
+			>
+			["id64"] = <
+				text = <"Receiver order identifier">
+				description = <"The local identifier assigned to the test order by the order filler, usually by the Laboratory Information System (LIS).">
+			>
+			["id66"] = <
+				text = <"Specimen detail">
+				description = <"Details about the physical substance that has been analysed.">
+			>
+			["id69"] = <
+				text = <"Laboratory internal identifier">
+				description = <"A local identifier assigned by the receiving Laboratory Information System (LIS) to track the test process.">
+			>
+			["id74"] = <
+				text = <"Overall test status">
+				description = <"The status of the laboratory test result as a whole.">
+			>
+			["id76"] = <
+				text = <"Overall test status timestamp">
+				description = <"The date and/or time that ‘Overall test status’ was issued.">
+			>
+			["id78"] = <
+				text = <"Diagnostic service category">
+				description = <"The diagnostic service or discipline that is responsible for the laboratory test result.">
+			>
+			["id91"] = <
+				text = <"Requester">
+				description = <"Details of the clinician or organization requesting the laboratory test result.">
+			>
+			["id95"] = <
+				text = <"Test request details">
+				description = <"Details about the test request.">
+			>
+			["id98"] = <
+				text = <"Test result">
+				description = <"Results of the test performed on the specimen(s).">
+			>
+			["id99"] = <
+				text = <"Test diagnosis">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the laboratory test result.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id102"] = <http://loinc.org/106173-8>
+			["id111"] = <http://loinc.org/74720-4>
+			["id114"] = <http://loinc.org/106176-1>
+			["id119"] = <http://loinc.org/104973-3>
+			["id122"] = <http://loinc.org/85069-3>
+			["id18"] = <http://loinc.org/68994-3>
+			["id58"] = <http://loinc.org/64110-0>
+			["id63"] = <http://loinc.org/106194-4>
+			["id64"] = <http://loinc.org/106183-7>
+			["id66"] = <http://loinc.org/68992-7>
+			["id69"] = <http://loinc.org/91562-9>
+			["id74"] = <http://loinc.org/92236-9>
+			["id76"] = <http://loinc.org/106197-7>
+			["id91"] = <http://loinc.org/104976-6>
+			["id99"] = <http://loinc.org/29308-4>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at107", "at37", "at120", "at38", "at40", "at115", "at119", "at74", "at116">
+		>
+	>
+

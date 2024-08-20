@@ -1,0 +1,120 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=751d42dc-bc4e-4ce8-92ea-eb179bc957f4)
+	s2-EHR-Admin_entry.translation_requirements.v1.1.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"John Tore Valand, Helse Bergen HF, <john.tore.valand@helse-bergen.no>, 2018-11-06">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ADMIN_ENTRY.translation_requirements.v1.1.1, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-ADMIN_ENTRY.translation_requirements.v1.1.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the need for language translation in order to provide delivery of health care or related services.">
+			use = <"Use to record the need for language translation in order to provide delivery of health care or related services.
+            
+            This archetype is intended to support logistics within the local clinical information system. It may not be appropriate to exchange this content with another clinical system in another location. If there is more than one administrative language a separate assessment should be made of the need for translation of each language. A new instance of this archetype should be created for each administration language.">
+			misuse = <"Not to be used to record details about the practical ability of an individual to communicate, including impairments and need for communication aids - use EVALUATION.communication_capability for this purpose.
+            
+            Not to be used to record details about a language - use Node.language for this purpose.
+            
+            Not to be used to record details about a request for interpreter services - use Node.Interpreter_requirements nested within a suitable INSTRUCTION archetype, for example INSTRUCTION.service_request.
+            
+            Not to be used to record details about an interpretation that was performed - use the proposed ACTION.interpretation.">
+		>
+	>
+	other_contributors = <"Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Birgitte Bjerkely, Senter for sjeldne diagnoser, OUS, Norway", "Anita Bjørnnes, Helse Bergen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Valborg Ellingsen, Haraldsplass Diakonale sykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Susanne Trønnes, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Admin_entry[id1] matches {	-- Translation requirement
+		data cardinality matches {1..*; unordered} matches {
+			use_archetype Node[id3, s2-EHR-Node.language.v1] 
+			Node[id4] occurrences matches {0..1} matches {	-- Translation required?
+				value matches {
+					Boolean_value[id6] 
+					Plain_text[id7] 
+					Coded_text[id8] matches {
+						term matches {
+							Terminology_term[id10] matches {
+								concept matches {[ac1]}		-- Translation required? (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id9] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Translation required? (synthesised)">
+				description = <"Is translation required? (synthesised)">
+			>
+			["at5"] = <
+				text = <"Interpreter not needed">
+				description = <"The individual does not normally need an interpreter.">
+			>
+			["at6"] = <
+				text = <"Interpreter needed">
+				description = <"The individual normally needs an interpreter.">
+			>
+			["id1"] = <
+				text = <"Translation requirement">
+				description = <"The need for language translation in order to provide delivery of health care or related services.">
+			>
+			["id3"] = <
+				text = <"Administrative language">
+				description = <"The language used for provision of health care or related services.">
+			>
+			["id4"] = <
+				text = <"Translation required?">
+				description = <"Is translation required?">
+			>
+			["id5"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the administrative language not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id3"] = <http://loinc.org/54505-3>
+			["id5"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6">
+		>
+	>
+

@@ -1,0 +1,144 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=599e0dd5-835e-4ac4-acdc-f392e056af3f)
+	s2-EHR-Node.ear_cleaning.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2012-12-05">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.ear_cleaning.v0.0.1-alpha, copyright 2012 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.ear_cleaning.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about cleaning of the external auditory canal.">
+			use = <"Use to record details about the cleaning of the external auditory canal.
+            
+            This archetype has been designed to provide structured details as part of a request for ear cleaning or recording an ear cleaning activity - use within INSTRUCTION.procedure or ACTION.procedure archetypes.">
+			keywords = <"ear", "cleaning", "method", "canal", "external", "auditory", "pus", "discharge", "wax", "instrument", "suction", "irrigation", "flushing", "tissue">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Stephen Chu, NEHTA, Australia", "Kimberley Crebbin, NT Hearing Services, Australia", "Kathy Currie, Northern Territory Health, Australia", "Jade Frederikson, Hearing Health Program, DoH, NT", "Sam Heard, Ocean Informatics, Australia", "Oliver Hosking, Remote Health NT, Australia", "Anthony Leech, Hearing Health, Australia", "Kerrie Lee, Ngaanyatjarra Health Service, Australia (Editor)", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Ian McNicoll, Ocean Informatics UK, United Kingdom", "Vanessa Rotumah, NT Government - Health DEvelopment, Australia">
+
+definition
+	Node[id1] matches {	-- Ear Cleaning Details
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Ear Cleaned
+				value matches {
+					Coded_text[id11] matches {
+						term matches {
+							Terminology_term[id17] matches {
+								concept matches {[ac1]}		-- Ear Cleaned (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id12] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Text[id13] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Wash Agent
+				value matches {
+					Text[id14] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Instrument
+				value matches {
+					Text[id15] 
+				}
+			}
+			Node[id8] matches {	-- Outcome
+				value matches {
+					Text[id16] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Ear Cleaned (synthesised)">
+				description = <"Identification of the ear being cleaned. (synthesised)">
+			>
+			["at2"] = <
+				text = <"Left Ear">
+				description = <"The left ear was cleaned.">
+			>
+			["at3"] = <
+				text = <"Right Ear">
+				description = <"The right ear was cleaned.">
+			>
+			["id1"] = <
+				text = <"Ear Cleaning Details">
+				description = <"Details about method for cleaning the external ear canal.">
+			>
+			["id10"] = <
+				text = <"Description">
+				description = <"Narrative description of the ear cleaning activity.">
+			>
+			["id2"] = <
+				text = <"Ear Cleaned">
+				description = <"Identification of the ear being cleaned.">
+			>
+			["id5"] = <
+				text = <"Wash Agent">
+				description = <"Substance used for ear wash.">
+			>
+			["id6"] = <
+				text = <"Method">
+				description = <"Method used for ear wash.">
+			>
+			["id7"] = <
+				text = <"Instrument">
+				description = <"Instrument used to assist cleaning.">
+			>
+			["id8"] = <
+				text = <"Outcome">
+				description = <"Description of the outcome of ear cleaning.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id6"] = <http://loinc.org/106191-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at2", "at3">
+		>
+	>
+

@@ -1,0 +1,346 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fe7c7f13-f0ea-4e9c-90df-e67af9f80ce9)
+	s2-EHR-Node.address.v1.1.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-04-14">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.address.v1.1.0, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.address.v1.1.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the location of a person, physical building or landmark as they are known or understood in the course of clinical documentation.">
+			use = <"Use to record details about the location of a person, physical building or landmark as they are known or understood in the course of clinical documentation, often ad hoc or when it is not appropriate or possible to use an address lookup service. Examples include:
+            - the business address of an organization providing home care to an individual; or
+            - the postal address of the copyholder of an advanced care record, within the EVALUATION.advance_care_directive archetype; or
+            - the physical location of a fall or accident.
+            
+            The scope of this archetype has been constrained to carry the commonest structured components for identifying a specific physical building or landmark. In this context, a complete address may be described using:
+            - One or more free text 'Address line' data Nodes to represent the huge variety of ways that ‘street-level' details may need to be recorded; and
+            - 'Town' to represent a suburb, town, city, village, or community;
+            - 'District/County' to represent a local government district;
+            - 'State/Territory/Province’ to represent a major government district;
+            - ‘Postcode’, and 
+            - ‘Country'.
+            However, this archetype can be extended to include additional fine-grained details about the address by nesting the Node.structured_address within the 'Structured address' SLOT.
+            
+            This Node.address archetype can also be used as a proxy for an address in formal demographic address data when reviewing a template with domain experts - for example, an assessment where reviewers would expect to see the individual's full contact details at the top of the assessment form.">
+			keywords = <"address", "postal", "mailing", "home", "business", "physical", "landmark">
+			misuse = <"Not to be used to record a fully structured address, such as described in ISO standards or as part of maintaining an official demographic register or index. Use an address lookup service, a formal Master Patient Index or a Health Provider Index for this purpose, or archetypes based on the openEHR Demographic Information Model.
+            
+            Not to be used to represent digital addresses for use in electronic communication. Use Node.electronic_communication for this purpose.
+            
+            Not to be used to record details about housing or homelessness. Use the EVALUATION.housing_summary for this purpose.">
+		>
+	>
+	other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Yexuan Cheng, 浙江大学, China", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Ludvig Eek Hofmann, Cambio Healthcare Systems AB, Sweden", "Valborg Ellingsen, Haraldsplass Diakonale sykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Martin Grundberg, Cambio Healthcare Systems, Sweden", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Rebecka Hansson, Cambio Healthcare Systems AB, Sweden", "Anca Heyd, DIPS ASA, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Gunn-Lisbeth Kleiven, Oslo universitetssykehus HF, Norway", "Shinji Kobayashi, National Institute of Public Health, Japan", "Kanika Kuwelker, Helse Vest IKT, Norway", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Jayashree Panickar, Karolinska Institute, Sweden", "Erik Skjemstad, Helse Nord RHF, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Nyree Taylor, Ocean Health Systems, Australia", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Ina Wille, Helse-Vest RHF, Norway">
+
+definition
+	Node[id1] matches {	-- Address
+		items matches {
+			Node[id2] matches {	-- Address line
+				value matches {
+					Text[id23] 
+				}
+			}
+			Node[id3] matches {	-- City/Town
+				value matches {
+					Text[id24] 
+				}
+			}
+			Node[id4] matches {	-- District/County
+				value matches {
+					Text[id25] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- State/Territory/Province
+				value matches {
+					Text[id26] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Postal code
+				value matches {
+					Text[id27] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Country
+				value matches {
+					Text[id28] 
+				}
+			}
+			use_archetype Node[id21, s2-EHR-Node.structured_address.v0] 
+			Node[id22] occurrences matches {0..1} matches {	-- Geolocation code
+				value matches {
+					Text[id29] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Latitude
+				value matches {
+					Quantity[id30] matches {
+						magnitude matches {|-90.0..90.0|}
+						precision matches {6}
+						units matches {
+							Coded_text[id40] matches {
+								term matches {
+									Terminology_term[id39] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Longitude
+				value matches {
+					Quantity[id31] matches {
+						magnitude matches {|-180.0..180.0|}
+						precision matches {6}
+						units matches {
+							Coded_text[id42] matches {
+								term matches {
+									Terminology_term[id41] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Altitude
+				value matches {
+					Quantity[id32] matches {
+						precision matches {2}
+						units matches {
+							Coded_text[id44] matches {
+								term matches {
+									Terminology_term[id43] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Map URL
+				value matches {
+					Text[id33] 
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Type
+				value matches {
+					Coded_text[id34] matches {
+						term matches {
+							Terminology_term[id45] matches {
+								concept matches {[ac1]}		-- Type (synthesised)
+							}
+						}
+					}
+					Plain_text[id35] 
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Use
+				value matches {
+					Coded_text[id36] matches {
+						term matches {
+							Terminology_term[id46] matches {
+								concept matches {[ac2]}		-- Use (synthesised)
+							}
+						}
+					}
+					Plain_text[id37] 
+				}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id38] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Type (synthesised)">
+				description = <"The type of address. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Use (synthesised)">
+				description = <"The primary purpose or use for the address. (synthesised)">
+			>
+			["at11"] = <
+				text = <"Physical">
+				description = <"A physical location that can be visited.">
+			>
+			["at12"] = <
+				text = <"Postal">
+				description = <"Address used as a destination for mailing letters or parcels.">
+			>
+			["at13"] = <
+				text = <"Both">
+				description = <"Address of a physical location, also used as a destination for mail.">
+			>
+			["at15"] = <
+				text = <"Business">
+				description = <"Address of the physical location of a business or office.">
+			>
+			["at16"] = <
+				text = <"Residential">
+				description = <"Address of where a person is living on a regular basis.">
+			>
+			["at17"] = <
+				text = <"Temporary accommodation">
+				description = <"Address of where a person is living on a temporary basis.">
+			>
+			["at18"] = <
+				text = <"Angle, plane">
+				description = <"Angle, plane">
+			>
+			["at19"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at20"] = <
+				text = <"deg">
+				description = <"Angular degrees">
+			>
+			["at21"] = <
+				text = <"m">
+				description = <"meter unit.">
+			>
+			["id1"] = <
+				text = <"Address">
+				description = <"Details about the location of a person, physical building or landmark.">
+			>
+			["id10"] = <
+				text = <"Altitude">
+				description = <"The vertical coordinate of a geolocation representing height or depth of the address.">
+			>
+			["id11"] = <
+				text = <"Type">
+				description = <"The type of address.">
+			>
+			["id15"] = <
+				text = <"Use">
+				description = <"The primary purpose or use for the address.">
+			>
+			["id19"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the address not captured in other fields.">
+			>
+			["id2"] = <
+				text = <"Address line">
+				description = <"An unstructured address line representing all relevant street-level or post-box details that would support the identification of a location.">
+			>
+			["id20"] = <
+				text = <"Map URL">
+				description = <"Link to a location on an online map.">
+			>
+			["id21"] = <
+				text = <"Structured address">
+				description = <"Structured details or extensions to the address.">
+			>
+			["id22"] = <
+				text = <"Geolocation code">
+				description = <"Unique identifier that represents a precise geographical location.">
+			>
+			["id3"] = <
+				text = <"City/Town">
+				description = <"The name of the lowest level locality that contains the address.">
+			>
+			["id4"] = <
+				text = <"District/County">
+				description = <"The name of a local government district or geographical area that contains the address.">
+			>
+			["id5"] = <
+				text = <"State/Territory/Province">
+				description = <"The name of a major government district or geographical area that contains the address.">
+			>
+			["id6"] = <
+				text = <"Postal code">
+				description = <"The code for a postal delivery area containing the address, as defined by the relevant postal delivery service.">
+			>
+			["id7"] = <
+				text = <"Country">
+				description = <"The name of the country containing the address.">
+			>
+			["id8"] = <
+				text = <"Latitude">
+				description = <"Horizontal (y) coordinate of a geolocation for the address.">
+			>
+			["id9"] = <
+				text = <"Longitude">
+				description = <"Horizontal (x) coordinate of a geolocation for the address.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at18"] = <http://openehr.org/id/497>
+			["at19"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at20"] = <http://ucum.org/id/deg>
+			["at21"] = <http://ucum.org/id/m>
+		>
+		["snomed"] = <
+			["at20"] = <http://snomed.info/id/277255000>
+			["at21"] = <http://snomed.info/id/258669008>
+		>
+		["loinc"] = <
+			["id1"] = <http://loinc.org/99953-2>
+			["id10"] = <http://loinc.org/41905-1>
+			["id11"] = <http://loinc.org/99957-3>
+			["id15"] = <http://loinc.org/99958-1>
+			["id19"] = <http://loinc.org/106173-8>
+			["id2"] = <http://loinc.org/106181-1>
+			["id21"] = <http://loinc.org/99952-4>
+			["id3"] = <http://loinc.org/68997-6>
+			["id4"] = <http://loinc.org/104933-7>
+			["id5"] = <http://loinc.org/99950-8>
+			["id6"] = <http://loinc.org/99951-6>
+			["id7"] = <http://loinc.org/99955-7>
+			["id20"] = <http://loinc.org/104970-9>
+			["id22"] = <http://loinc.org/104912-1>
+			["id8"] = <http://loinc.org/104966-7>
+			["id9"] = <http://loinc.org/104897-4>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at11", "at12", "at13">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at15", "at16", "at17">
+		>
+	>
+

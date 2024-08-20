@@ -1,0 +1,73 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=da6df559-9629-41db-b7de-f9f161aa6874)
+	s2-EHR-Section.vital_signs.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-10-28">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-SECTION.vital_signs.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-SECTION.vital_signs.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To provide a framework for consistent modelling of Vital signs within a template.">
+			use = <"Use to provide a framework and suggested design guidance for consistent modelling of Vital signs within a template.
+            
+            This archetype is intended to be used within a template in which the content is clinically appropriate, nested within any relevant COMPOSITION archetype. For example: a consultation note or nursing observations.">
+			keywords = <"blood pressure", "temperature", "pulse", "oxygen saturation", "respirations", "observations", "vital", "signs">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Sam Heard, Ocean Informatics, Australia">
+
+definition
+	Section[id1] matches {	-- Vital signs
+		items matches {
+			allow_archetype Direct_observation[id2] matches {	-- Vital signs
+				include
+					archetype_id/value matches {/s2-EHR-Direct_observation\.pulse_oximetry(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Direct_observation\.respiration(-[a-zA-Z0-9_]+)*\.v2|s2-EHR-Direct_observation\.pulse(-[a-zA-Z0-9_]+)*\.v2|s2-EHR-Direct_observation\.blood_pressure(-[a-zA-Z0-9_]+)*\.v2|s2-EHR-Direct_observation\.body_temperature(-[a-zA-Z0-9_]+)*\.v2/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Vital signs">
+				description = <"Framework for consistent modelling of observations and measurements about essential physiological functions.">
+			>
+			["id2"] = <
+				text = <"Vital signs">
+				description = <"">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/85353-1>
+		>
+	>
+

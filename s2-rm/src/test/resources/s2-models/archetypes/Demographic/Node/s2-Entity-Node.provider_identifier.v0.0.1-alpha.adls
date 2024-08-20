@@ -1,0 +1,197 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=28186c15-625d-49ff-a4eb-4b4684f8155d)
+    s2-Entity-Node.provider_identifier.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-22">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.provider_identifier.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.provider_identifier.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"Representation of data about a healthcare provider (individual/organization) identifier">
+            keywords = <"demographic service", "healthcare provider identifier">
+            use = <"Used in demographic services to register data about a healthcare provider (individual/organization) identifier">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Healthcare provider identifier
+        items cardinality matches {4..*; unordered} matches {
+            Node[id2] occurrences matches {1} matches {    -- Identifier designation
+                value matches {
+                    Text[id26]
+                }
+            }
+            Node[id3] occurrences matches {1} matches {    -- Geographic area
+                value matches {
+                    Coded_text[id27] matches {
+                        term matches {
+                            Terminology_term[id35] matches {
+                                concept matches {[ac2]}    -- Geographic area (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id4] occurrences matches {1..*} matches {    -- Issuer
+                value matches {
+                    Text[id28]
+                }
+            }
+            Node[id5] occurrences matches {1..*} matches {    -- Identifier Usage
+                value matches {
+                    Coded_text[id29] matches {
+                        term matches {
+                            Terminology_term[id36] matches {
+                                concept matches {[ac1]}    -- Identifier usage code
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] matches {    -- Duplicate resolution
+                items cardinality matches {3..*; unordered} matches {
+                    Node[id21] occurrences matches {0..1} matches {    -- Not a duplicate of
+                        value matches {
+                            Text[id30]
+                        }
+                    }
+                    Node[id22] occurrences matches {0..1} matches {    -- Duplicate of
+                        value matches {
+                            Text[id31]
+                        }
+                    }
+                    Node[id23] occurrences matches {1..*} matches {    -- Confirmed by organization
+                        value matches {
+                            Text[id32]
+                        }
+                    }
+                    Node[id24] occurrences matches {1..*} matches {    -- Date confirmed
+                        value matches {
+                            Date_value[id33]
+                        }
+                    }
+                    Node[id25] occurrences matches {1..*} matches {    -- Retired identifider
+                        value matches {
+                            Text[id34]
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id7] matches {     -- Other data
+                include
+                    archetype_id/value matches {/s2-Entity-Node\.identifier[a-zA-Z0-9_-]*\.v0/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at10", "at11", "at12", "at13">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Identifier usage code">
+                description = <"Valid codes for usage of identifiers">
+            >
+            ["ac2"] = <
+                text = <"Geographic area (synthesised)">
+                description = <"Indicates the geographic area within which the identifier is used (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Local">
+                description = <"Indicates that this identifier is used locally">
+            >
+            ["at11"] = <
+                text = <"Area/Regional/District">
+                description = <"Indicates that this identifier is used within a specific area">
+            >
+            ["at12"] = <
+                text = <"State/Province/Territory">
+                description = <"Indicates that this identifier is used within a political boundary such as a state or territory or province">
+            >
+            ["at13"] = <
+                text = <"National">
+                description = <"Indicates that this identifier is used nationally">
+            >
+            ["id1"] = <
+                text = <"Healthcare provider identifier">
+                description = <"Healthcare provider identifier">
+            >
+            ["id2"] = <
+                text = <"Identifier designation">
+                description = <"A number or code assigned to a healthcare provider in order to identify that provider">
+            >
+            ["id21"] = <
+                text = <"Not a duplicate of">
+                description = <"The identifier entered into this field is not a duplicate entry of this identifier">
+            >
+            ["id22"] = <
+                text = <"Duplicate of">
+                description = <"The identifier entered into this field is a duplicate entry of this identifier">
+            >
+            ["id23"] = <
+                text = <"Confirmed by organization">
+                description = <"The organization that has confirmed the duplicate or not duplicate status of this identifier">
+            >
+            ["id24"] = <
+                text = <"Date confirmed">
+                description = <"The date upon which this identifier was determined as a duplicate or not a duplicate">
+            >
+            ["id25"] = <
+                text = <"Retired identifider">
+                description = <"For a duplicate identifier set this field indicates if this number is the one retired (nor for further use) or not">
+            >
+            ["id3"] = <
+                text = <"Geographic area">
+                description = <"Indicates the geographic area within which the identifier is used">
+            >
+            ["id4"] = <
+                text = <"Issuer">
+                description = <"Identifier issuer">
+            >
+            ["id5"] = <
+                text = <"Identifier Usage">
+                description = <"The purpose or intended use of this unique identifier">
+            >
+            ["id6"] = <
+                text = <"Duplicate resolution">
+                description = <"This group of data allow users to identify where they have determined that two identifiers which appears to be duplicates are not duplicated, or to indicate that where they are discovered to be duplicates -  which number is retired and no longer used, and which is retained">
+            >
+            ["id7"] = <
+                text = <"Other data">
+                description = <"Other data about a specific identifier">
+            >
+        >
+    >
+    

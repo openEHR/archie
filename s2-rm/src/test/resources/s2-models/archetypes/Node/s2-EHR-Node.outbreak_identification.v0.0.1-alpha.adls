@@ -1,0 +1,123 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5759e997-c269-44c9-8689-d2d5da83508e)
+	s2-EHR-Node.outbreak_identification.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, United Kingdom, <ian.mcnicoll@oceaninformatics.com>, 08/12/2009">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.outbreak_identification.v0.0.1-alpha, copyright 08/1 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.outbreak_identification.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record Outbreak identification details for public health purposes.">
+			use = <"">
+			misuse = <"">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Outbreak identification
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Outbreak identifier
+				value matches {
+					Text[id8] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Date outbreak identified
+				value matches {
+					Date_time_value[id9] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Status
+				value matches {
+					Coded_text[id10] matches {
+						term matches {
+							Terminology_term[id12] matches {
+								concept matches {[ac1]}		-- Status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Outbreak
+				value matches {
+					Text[id11] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Status (synthesised)">
+				description = <"The status of the outbreak association with the subject.  A status of completed means the patient has been associated with the outbreak. 
+                A status of aborted means the patient was associated with the outbreak in error. (synthesised)">
+			>
+			["at4"] = <
+				text = <"Completed">
+				description = <"The case has been associated with the given case identifier.">
+			>
+			["at5"] = <
+				text = <"Aborted">
+				description = <"The subject was associated with the case identifier in error.">
+			>
+			["id1"] = <
+				text = <"Outbreak identification">
+				description = <"To record Outbreak identification details for public health purposes.">
+			>
+			["id2"] = <
+				text = <"Outbreak identifier">
+				description = <"*">
+			>
+			["id3"] = <
+				text = <"Date outbreak identified">
+				description = <"The date that the outbreak was identified.">
+			>
+			["id4"] = <
+				text = <"Status">
+				description = <"The status of the outbreak association with the subject.  A status of completed means the patient has been associated with the outbreak. 
+                A status of aborted means the patient was associated with the outbreak in error.">
+			>
+			["id7"] = <
+				text = <"Outbreak">
+				description = <"Text or coded description of the outbreak identified e.g. Salmonella.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/106199-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at4", "at5">
+		>
+	>
+

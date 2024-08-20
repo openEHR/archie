@@ -1,0 +1,266 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f66fd89c-13e8-4cd7-9c76-199df660fa96)
+	s2-EHR-Assessment.specimen_summary.v1.1.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-01-25">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.specimen_summary.v1.1.0, copyright 2022 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.specimen_summary.v1.1.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary or persistent record about the use and storage of a single specimen until final disposition.">
+			use = <"Use to record summary or persistent record about the use and storage of a single specimen until final disposition.
+            
+            Use cases include, but are not limited to:
+            - oocytes, zygotes, embryos, or semen in assisted reproduction; 
+            - autologous skin graft;
+            - Formalin Fixed Paraffin Embedded (FFPE) tissue specimens; and
+            - Histopathology slides.
+            
+            Details about the specimen, including specimen type, description, type of fixative, can be recorded using the Node.specimen in the 'Specimen details' SLOT.">
+			keywords = <"biobank", "biospecimen", "biofluids", "samples", "biopsy", "assisted reproduction", "sperm", "testicular", "ovarian", "tissue", "oocyte", "zygote", "embryo", "blastocyst", "graft", "blood", "tissue", "DTC", "TMA", "FFPE", "PBMC", "BMMC", "Leukopak", "DTC", "cytology", "bacterial cultures", "genebank", "biological materials", "PCR">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Ivar Berge, Oslo Universitetssykehus, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Samanta Dallagnese, Private Office, Brazil", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Hanne Marte Bårholm, Helse Vest IKT, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Shaileshkumar Patel, Government Medical College Surat, India", "Terje Sagmyr, Helse Vest IKT, Norway", "Andre Smitt-Ingebretsen, Sørlandet sykehus HF, Norway", "Frode Stenvik, Helse Sør-Øst, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Vest IKT, Norway (openEHR Editor)", "Ina Wille, Helse-Vest RHF, Norway">
+
+definition
+	Assessment[id1] matches {	-- Specimen summary
+		data matches {
+			Node[id33] matches {	-- Specimen label
+				value matches {
+					Text[id35] 
+				}
+			}
+			Node[id32] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id36] 
+				}
+			}
+			Node[id3] matches {	-- Stored specimen ID
+				value matches {
+					Rwe_id_ref[id37] 
+					Text[id38] 
+				}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Storage started
+				value matches {
+					Date_time_value[id39] 
+				}
+			}
+			use_archetype Node[id9, s2-EHR-Node.specimen.v1] 
+			Node[id23] matches {	-- Use
+				items matches {
+					Node[id24] occurrences matches {0..1} matches {	-- Reason for use
+						value matches {
+							Text[id40] 
+						}
+					}
+					Node[id25] occurrences matches {0..1} matches {	-- Date of use
+						value matches {
+							Text[id41] 
+						}
+					}
+					use_archetype Node[id27, s2-EHR-Node.specimen_measurements.v1] 
+					Node[id30] occurrences matches {0..1} matches {	-- Number used
+						value matches {
+							Count[id42] 
+						}
+					}
+					Node[id28] occurrences matches {0..1} matches {	-- Use comment
+						value matches {
+							Text[id43] 
+						}
+					}
+				}
+			}
+			use_archetype Node[id29, s2-EHR-Node.specimen_measurements.v1] occurrences matches {0..1} 
+			Node[id31] occurrences matches {0..1} matches {	-- Number remaining
+				value matches {
+					Count[id44] 
+				}
+			}
+			Node[id13] matches {	-- Use by date
+				value matches {
+					Date_time_value[id45] 
+				}
+			}
+			Node[id34] occurrences matches {0..1} matches {	-- Legally expiry date
+				value matches {
+					Date_time_value[id46] 
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Disposal reason
+				value matches {
+					Text[id47] 
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Date of disposal
+				value matches {
+					Date_time_value[id48] 
+				}
+			}
+			use_archetype Node[id10, s2-EHR-Node.organization.v1] 
+			Node[id21] matches {	-- Specimen storage
+				value matches {
+					Text[id49] 
+				}
+			}
+			allow_archetype Node[id18] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id50] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id15] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id51] 
+				}
+			}
+			allow_archetype Node[id16] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Specimen summary">
+				description = <"Summary or persistent information about a single specimen.">
+			>
+			["id10"] = <
+				text = <"Biobank location">
+				description = <"Details about the biobank/storage of the specimen.">
+			>
+			["id11"] = <
+				text = <"Disposal reason">
+				description = <"The reason for disposal of the specimen.">
+			>
+			["id12"] = <
+				text = <"Date of disposal">
+				description = <"The date/time for the final disposal of the specimen.">
+			>
+			["id13"] = <
+				text = <"Use by date">
+				description = <"The date beyond the specimen is not to be used.">
+			>
+			["id15"] = <
+				text = <"Last updated">
+				description = <"The date this specimen summary was last updated.">
+			>
+			["id16"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id17"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the specimen, not captured in other fields.">
+			>
+			["id18"] = <
+				text = <"Additional details">
+				description = <"Additional structured details related to the stored specimen.">
+			>
+			["id19"] = <
+				text = <"Storage started">
+				description = <"The date/time when the specimen was stored.">
+			>
+			["id21"] = <
+				text = <"Specimen storage">
+				description = <"The storage location of the specimen within the biobank/organization.">
+			>
+			["id23"] = <
+				text = <"Use">
+				description = <"Details about use of the specimen.">
+			>
+			["id24"] = <
+				text = <"Reason for use">
+				description = <"The reason for the use of the specimen.">
+			>
+			["id25"] = <
+				text = <"Date of use">
+				description = <"The date and time when the specimen was used.">
+			>
+			["id27"] = <
+				text = <"Amount used">
+				description = <"The amount of the specimen that was used.">
+			>
+			["id28"] = <
+				text = <"Use comment">
+				description = <"Comment about the use of the specimen.">
+			>
+			["id29"] = <
+				text = <"Amount remaining">
+				description = <"The residual amount of the specimen available for use.">
+			>
+			["id3"] = <
+				text = <"Stored specimen ID">
+				description = <"Unique identifier for the specimen.">
+			>
+			["id30"] = <
+				text = <"Number used">
+				description = <"The number of units of the specimen used.">
+			>
+			["id31"] = <
+				text = <"Number remaining">
+				description = <"The remaining units of the specimen available for use.">
+			>
+			["id32"] = <
+				text = <"Description">
+				description = <"Narrative description about the history or/and the context of the specimen.">
+			>
+			["id33"] = <
+				text = <"Specimen label">
+				description = <"Name, type or label of the specimen.">
+			>
+			["id34"] = <
+				text = <"Legally expiry date">
+				description = <"The date beyond the specimen is not to be used based on a expiration date determend by operation of law.">
+			>
+			["id9"] = <
+				text = <"Specimen details">
+				description = <"Details about the biospecimen.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/68992-7>
+			["id15"] = <http://loinc.org/106177-9>
+			["id17"] = <http://loinc.org/106173-8>
+			["id28"] = <http://loinc.org/106173-8>
+			["id32"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+

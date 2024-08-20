@@ -1,0 +1,161 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=88f00338-90c2-4466-9d40-60b53e794cd6)
+    s2-EHR-Node.vascularisation_ultrasound.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-11-15">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.vascularisation_ultrasound.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.vascularisation_ultrasound.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record findings related to vascularisation of structures or lesions using ultrasound.">
+            use = <"Use to record findings related to vascularisation of structures or lesions using ultrasound. 
+            
+            This archetype is intended to be nested within relevant imaging archetypes - for example, vascularisation patterns observed during ultrasound of the uterus (Node.imaging_exam-uterus) or a specified myometrial lesion (Node.imaging_myometrial_lesion).">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Vascularisation findings on ultrasound
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Vascularisation pattern
+                value matches {
+                    Coded_text[id9] matches {
+                        term matches {
+                            Terminology_term[id12] matches {
+                                concept matches {[ac1]}    -- Vascularisation pattern (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Vascularisation type
+                value matches {
+                    Coded_text[id10] matches {
+                        term matches {
+                            Terminology_term[id13] matches {
+                                concept matches {[ac2]}    -- Vascularisation type (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Colour score
+                value matches {
+                    Coded_text[id11] matches {
+                        term matches {
+                            Terminology_term[id14] matches {
+                                concept matches {[ac3]}    -- Colour score (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at2", "at3">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at5", "at6">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at8", "at9", "at10", "at11">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Vascularisation pattern (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"Vascularisation type (synthesised)">
+                description = <"The type of valsular flow observed. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Colour score (synthesised)">
+                description = <"The colour hue indicating the level of vascularisation in the lesion. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Moderate colour">
+                description = <"">
+            >
+            ["at11"] = <
+                text = <"Abundant colour">
+                description = <"">
+            >
+            ["at2"] = <
+                text = <"Uniform">
+                description = <"">
+            >
+            ["at3"] = <
+                text = <"Non-uniform">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"Circumferential flow">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Translesional flow">
+                description = <"">
+            >
+            ["at8"] = <
+                text = <"No colour">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"Minimal colour">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Vascularisation findings on ultrasound">
+                description = <"Findings related to vascularisation of structures or lesions using ultrasound.">
+            >
+            ["id2"] = <
+                text = <"Vascularisation pattern">
+                description = <"">
+            >
+            ["id5"] = <
+                text = <"Vascularisation type">
+                description = <"The type of valsular flow observed.">
+            >
+            ["id8"] = <
+                text = <"Colour score">
+                description = <"The colour hue indicating the level of vascularisation in the lesion.">
+            >
+        >
+    >
+    

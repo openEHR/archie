@@ -1,0 +1,89 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Lab_result.lab_panel.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Lab result panel (may be a panel of one)">
+		>
+	>
+
+definition
+	Lab_result[id1] matches {	-- Lab panel result
+		data matches {
+			use_archetype Node[id90, s2-EHR-Node.lab_analyte.v0] 
+		}
+		qualifiers matches {
+			Node[id10] matches {	-- Device
+				value matches {
+					Coded_text[id101] 
+				}
+			}
+			Node[id11] matches {	-- Method
+				value matches {
+					Coded_text[id102] 
+				}
+			}
+			Node[id1060] occurrences matches {0..1} matches {	-- Clinical interpretation
+				value matches {
+					Text[id1065] 
+				}
+			}
+			use_archetype Node[id20, s2-EHR-Node.organization.v1] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Lab panel result">
+				description = <"-">
+			>
+			["id3"] = <
+				text = <"Analytes">
+				description = <"-">
+			>
+			["id10"] = <
+				text = <"Device">
+				description = <"-">
+			>
+			["id11"] = <
+				text = <"Method">
+				description = <"-">
+			>
+			["id20"] = <
+				text = <"Performing laboratory">
+				description = <"-">
+			>
+			["id90"] = <
+				text = <"Analyte">
+				description = <"-">
+			>
+			["id1060"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the blood pressure measurement.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/74720-4>
+			["id11"] = <http://loinc.org/106191-0>
+			["id1060"] = <http://loinc.org/64110-0>
+			["id20"] = <http://loinc.org/68994-3>
+			["id1"] = <http://loinc.org/104922-0>
+		>
+	>
+

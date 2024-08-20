@@ -1,0 +1,161 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d796fcc5-36c1-4ca4-b4ab-230acfcf2630)
+    s2-EHR-Node.imaging_exam-spine.v0.0.1-alpha
+
+specialize
+    s2-EHR-Node.imaging_exam.v1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Andreas Abildgaard, OUS, Norway", "Marit Alice Venheim, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Randi Brendberg, Helse Nord RHF, Norway", "Gunn Elin Blakkisrud, DIPS ASA, Norway", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Kåre Flø, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Kija Indrearne, Helse Bergen, Norway", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Aud Jorunn Mjelstad, Helse Bergen, Norway", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Svenne Naumann, Finnmarkssykehuset, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-11-24">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-spine.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-spine.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the findings on radiological examination of the entire spine, and their interpretation.">
+            keywords = <"finding", "imaging", "body", "system", "structure", "region", "observation", "diagnostic", "radiology", "image">
+            use = <"Use to record the findings on radiological examinations that cover the entire spine, and their interpretation.
+            
+            The intended scope for this archetype is to eventually record all detailed findings on radiological examination of the entire spine using any modality. It is anticipated that further data Nodes may be added as requirements are identified and confirmed.
+            
+            This archetype and its related family of specialisations are designed to be nested within the 'Structured imaging findings' SLOT in the OBSERVATION.imaging_exam_result or within the 'Additional details' SLOT in other relevant Node.imaging_exam archetypes, but can also be used within other ENTRY or Node archetypes, where clinically appropriate. If this archetype or its specialisations need to be extended with further levels of detailed findings, additional instances of the Node.imaging_exam or its specialisations can be nested in the 'Additional details' SLOT.">
+            misuse = <"Not to be used to record imaging examination findings for any body structure or region other than the entire spine. Examinations on specific areas of the spine is to be record using other archetypes from the Node.imaging_exam family for this purpose. For example: Node.imaging_exam-cervical_spine or Node.imaging_exam-sacrum.
+            
+            Not to be used to record details related to the overall findings, context or technical details related to a complete imaging examination test result. Use the OBSERVATION.imaging_exam_result for this purpose. For example, comments on the study quality, differential diagnoses, and overall impression.">
+        >
+    >
+    
+definition
+    Node[id1.1] matches {    -- Imaging examination of the entire spine
+        /items matches {
+            after [id8]
+            Node[id0.1] occurrences matches {0..1} matches {    -- Sagittal vertical axis
+                value matches {
+                    Quantity[id0.3] matches {
+                        units matches {
+                            Coded_text[id0.6] matches {
+                                term matches {
+                                    Terminology_term[id0.5] matches {
+                                        concept matches {[at0.8]}    -- cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.2] occurrences matches {0..1} matches {    -- C7 Plumb Line
+                value matches {
+                    Coded_text[id0.4] matches {
+                        term matches {
+                            Terminology_term[id0.7] matches {
+                                concept matches {[ac0.1]}    -- C7 Plumb Line (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /items[id2.1]/value matches {
+            Coded_text[id9.1] matches {
+                term matches {
+                    Terminology_term[id0.8] matches {
+                        concept matches {[at0.6]}    -- Spine
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at0.6"] = <http://snomed.info/id/44300000>
+            ["at0.8"] = <http://snomed.info/id/258672001>
+        >
+        ["openehr"] = <
+            ["at0.7"] = <http://openehr.org/id/122>
+        >
+        ["ucum"] = <
+            ["at0.8"] = <http://ucum.org/id/cm>
+        >
+    >
+    value_sets = <
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at0.3", "at0.4", "at0.5">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac0.1"] = <
+                text = <"C7 Plumb Line (synthesised)">
+                description = <"The vertical line drawn from the center of the C7 vertebral body in a caudal direction. (synthesised)">
+            >
+            ["at0.3"] = <
+                text = <"Positive">
+                description = <"The plumb line passes more than 2 cm in front of the posterosuperior corner of the S1 vertebral body.">
+            >
+            ["at0.4"] = <
+                text = <"Neutral">
+                description = <"The plumb line passes within 2 cm of the posterosuperior corner of the S1 vertebral body.">
+            >
+            ["at0.5"] = <
+                text = <"Negative">
+                description = <"The plumb line passes more than 2 cm behind the posterosuperior corner of the S1 vertebral body.">
+            >
+            ["at0.6"] = <
+                text = <"Spine">
+                description = <"">
+            >
+            ["at0.7"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["at0.8"] = <
+                text = <"cm">
+                description = <"Centimetres length unit">
+            >
+            ["id0.1"] = <
+                text = <"Sagittal vertical axis">
+                description = <"The measured length of a horizontal line connecting the posterior superior sacral endplate with a vertical plumb line from C7.">
+            >
+            ["id0.2"] = <
+                text = <"C7 Plumb Line">
+                description = <"The vertical line drawn from the center of the C7 vertebral body in a caudal direction.">
+            >
+            ["id1.1"] = <
+                text = <"Imaging examination of the entire spine">
+                description = <"Findings on radiological examination of the entire spine.">
+            >
+            ["id2.1"] = <
+                text = <"Body structure">
+                description = <"Identification of the body structure or region examined.">
+            >
+        >
+    >
+    

@@ -1,0 +1,242 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2b1e8722-54b7-4dff-ac17-f347349a0c2d)
+    s2-EHR-Score.qsofa_score.v1.0.1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Andreas Barratt-Due, Akuttklinikken, Rikshopsitalet, OUS, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Greg Burch, Tiny Medical Apps, United Kingdom", "Ady Angelica Castro Acosta, CIBERES-Hospital 12 de Octubre, Spain", "Merete Eide, Mottaksklinikken, Helse Bergen HF, Norway", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Evelyn Hovenga, EJSH Consulting, Australia", "Morten Hørthe, DIPS, Norway", "Lars Ivar Mehlum, Nasjonal IKT HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Liv Laugen, Oslo universitetssykehus, Norway", "Henry Lenzi, Academia Nacional de Cuidados Paliativos (DISCLAIMER: member - I do not represent it any offical capacity), Brazil", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Neranga Liyanaarachchi, Ministry of Health, Postgraduate Institute of Medicine, Sri Lanka", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Ana Pereira, CINTESIS, CUF-Porto, Portugal", "sam philip, NHS Grampian, United Kingdom", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Trine Strand, Oslo Universitetssykehus (OUS), Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Anders Thurin, SU, Sweden", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Karl Trygve Kalleberg, Oslo Universitetssykehus, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Silje Ljosland Bakke, Nasjonal IKT HF, 2018-04-04">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.qsofa_score.v1.0.1, copyright  openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.qsofa_score.v1.0.1 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record qSOFA answers and score.">
+            keywords = <"sepsis", "organ failure", "organ dysfunction", "septic shock", "infection", "assessment", "multi organ failure">
+            use = <"Use to record qSOFA answers and score.">
+            misuse = <"Not to be used to record ordinary SOFA scores. Use the archetype SOFA score for this purpose.
+            
+            Not to be used to record the actual values of respiration frequency, blood pressure, or Glasgow Coma Scale. Use the archetypes Respiration, Blood pressure or Glasgow Coma Scale for these purposes.
+            
+            Not to be used for individuals under 18 years of age.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- qSOFA score
+        data matches {
+            Node[id7] occurrences matches {0..1} matches {    -- Respiratory rate
+                value matches {
+                    Coded_ordinal[id25] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id27] matches {
+                                term matches {
+                                    Terminology_term[id26] matches {
+                                        concept matches {[at9]}    -- Respiration rate <22
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id28] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id30] matches {
+                                term matches {
+                                    Terminology_term[id29] matches {
+                                        concept matches {[at10]}    -- Respiration rate ≥22
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Blood pressure
+                value matches {
+                    Coded_ordinal[id31] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id33] matches {
+                                term matches {
+                                    Terminology_term[id32] matches {
+                                        concept matches {[at14]}    -- Systolic blood pressure >100
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id34] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id36] matches {
+                                term matches {
+                                    Terminology_term[id35] matches {
+                                        concept matches {[at15]}    -- Systolic blood pressure ≤100
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Mental status
+                value matches {
+                    Coded_ordinal[id37] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id39] matches {
+                                term matches {
+                                    Terminology_term[id38] matches {
+                                        concept matches {[at11]}    -- No altered mental status
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id40] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id42] matches {
+                                term matches {
+                                    Terminology_term[id41] matches {
+                                        concept matches {[at12]}    -- Altered mental status
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- qSOFA score
+                value matches {
+                    Count[id23] matches {
+                        magnitude matches {|0..3|}
+                    }
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id24]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id19] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at9", "at10">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at14", "at15">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at11", "at12">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Respiratory rate (synthesised)">
+                description = <"If the respiration rate is ≥22/min, one point is recorded. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Blood pressure (synthesised)">
+                description = <"If the systolic blood pressure is ≤100 mmHg, one point is recorded. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Mental status (synthesised)">
+                description = <"If the individual has an altered mental status, one point is recorded. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Respiration rate ≥22">
+                description = <"The individual's respiration rate is ≥22/min.">
+            >
+            ["at11"] = <
+                text = <"No altered mental status">
+                description = <"The individual doesn't have an altered mental status.">
+            >
+            ["at12"] = <
+                text = <"Altered mental status">
+                description = <"The individual has an altered mental status.">
+            >
+            ["at14"] = <
+                text = <"Systolic blood pressure >100">
+                description = <"The individual's systolic blood pressure is >100 mmHg.">
+            >
+            ["at15"] = <
+                text = <"Systolic blood pressure ≤100">
+                description = <"The individual's systolic blood pressure is ≤100 mmHg.">
+            >
+            ["at9"] = <
+                text = <"Respiration rate <22">
+                description = <"The individual's respiration rate is <22/min.">
+            >
+            ["id1"] = <
+                text = <"qSOFA score">
+                description = <"Quick Sepsis-related Organ Failure Assessment (qSOFA) is a simplified version of the SOFA score, which is used outside intensive care units to quickly assess sepsis risk in adults.">
+            >
+            ["id19"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any point in time event">
+                description = <"Unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Comment">
+                description = <"Additional comment about the qSOFA score not captured in other fields.">
+            >
+            ["id6"] = <
+                text = <"qSOFA score">
+                description = <"The qSOFA score is the sum of the scores for the three parameters.">
+            >
+            ["id7"] = <
+                text = <"Respiratory rate">
+                description = <"If the respiration rate is ≥22/min, one point is recorded.">
+            >
+            ["id8"] = <
+                text = <"Blood pressure">
+                description = <"If the systolic blood pressure is ≤100 mmHg, one point is recorded.">
+            >
+            ["id9"] = <
+                text = <"Mental status">
+                description = <"If the individual has an altered mental status, one point is recorded.">
+            >
+        >
+    >
+    

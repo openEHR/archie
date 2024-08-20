@@ -1,0 +1,137 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=24b58968-e966-4646-900e-d049aa50e55b)
+	s2-EHR-Node.gait.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2015-11-23">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.gait.v0.0.1-alpha, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.gait.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a narrative description and clinical interpretation of the findings observed about an individual's manner of walking.">
+			use = <"Use to record a narrative description and clinical interpretation of the findings observed about an individual's manner of walking.
+            
+            This archetype has been specifically designed to be used in the 'Examination detail' SLOT within the Node.exam-nervous_system or OBSERVATION.exam archetypes, but can also be used within other ENTRY or Node archetypes, where clinically appropriate.
+            
+            Use to provide a framework in which Node archetypes can be nested in the 'Examination findings' SLOT to record additional structured physical examination findings.
+            
+            The Node.exclusion_exam archetype can be nested within the 'Examination not done' SLOT to optionally record explicit details about the examination not being performed.
+            
+            Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data Node.">
+			misuse = <"Not to be used for recording the clinical history - use specific OBSERVATION and Node archetypes. For example OBSERVATION.story and Node.symptom_sign.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom (openEHR Editor)", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Hilde Hollås, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, DIPS ASA, Norway", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Jussara Rotzsch, UNB, Brazil", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia (openEHR Editor)", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Gait
+		items matches {
+			Node[id3] occurrences matches {0..1} matches {	-- No abnormality detected
+				value matches {
+					Boolean_value[id11] matches {
+						value matches {True}
+					}
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					Text[id12] 
+				}
+			}
+			Node[id10] matches {	-- Character
+				value matches {
+					Text[id13] 
+				}
+			}
+			allow_archetype Node[id5] matches {	-- Examination findings
+				include
+					archetype_id/value matches {/.*/}
+			}
+			use_archetype Node[id6, s2-EHR-Node.media_file.v1] 
+			Node[id7] matches {	-- Clinical interpretation
+				value matches {
+					Text[id14] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id15] 
+				}
+			}
+			use_archetype Node[id9, s2-EHR-Node.exclusion_exam.v1] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Gait">
+				description = <"Findings observed about an individual's manner of walking.">
+			>
+			["id10"] = <
+				text = <"Character">
+				description = <"Description about the nature of the gait.">
+			>
+			["id3"] = <
+				text = <"No abnormality detected">
+				description = <"Statement that no abnormality was detected (NAD) on physical examination.">
+			>
+			["id4"] = <
+				text = <"Clinical description">
+				description = <"Narrative description of the overall findings observed during the physical examination.">
+			>
+			["id5"] = <
+				text = <"Examination findings">
+				description = <"Structured details about the physical examination findings.">
+			>
+			["id6"] = <
+				text = <"Multimedia representation">
+				description = <"Digital image, video or diagram representing the physical examination findings.">
+			>
+			["id7"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the physical examination findings.">
+			>
+			["id8"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the physical examination findings, not captured in other fields.">
+			>
+			["id9"] = <
+				text = <"Examination not done">
+				description = <"Details to explicitly record that this examination was not performed.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id7"] = <http://loinc.org/64110-0>
+			["id8"] = <http://loinc.org/106173-8>
+			["id6"] = <http://loinc.org/104973-3>
+		>
+	>
+

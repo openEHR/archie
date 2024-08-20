@@ -1,0 +1,647 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6c5a7e0b-e3ab-42a8-bec7-8d251b0ea5d7)
+	s2-EHR-Score.news_uk_rcp.v1.2.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"no.nasjonalikt">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics Ltd., <ian@freshehr.com>, 2013-06-02">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.news_uk_rcp.v1.2.2, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.news_uk_rcp.v1.2.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a composite score based on categorising physiological readings and observations, as a simple method to support objective assessment of the degree of clinical deterioration in an unwell patient over the age of 16 years.">
+			use = <"Use to record a composite score to support assessment of the degree of clinical deterioration in an unwell patient, over the age of 16 years.">
+			keywords = <"warning", "AVPU", "RR", "HR", "BP", "Temp", "SBP", "triage", "NEWS", "Sats", "MEWS", "EWS", "oxygen", "saturation", "illness", "degree", "score">
+			misuse = <"Not to be used to record each physical measurement or clinical observation. Use specific OBSERVATION archetypes for this purpose - OBSERVATION.blood_pressure, OBSERVATION.pulse, OBSERVATION.respirations, OBSERVATION.body_temperature, OBSERVATION.avpu, Node.ambient_oxygen or OBSERVATION.indirect_oximetry.
+            
+            Not to be used for children/teens under the age of 16 years or in pregnancy.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Kristian Berg, Universitetssykehuset Nord Norge, Norway", "Mauricio Botero, Universidad de Caldas, Colombia", "Bjørn Christensen, HUS, Norway", "Rui Coutinho, Centro Hospitalar do Porto, Portugal", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Cecilie Graver, Oslo universitetssykehus HF, Norway", "Kristian Heldal, Telemark Hospital Trust, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Karl Trygve Kalleberg, Oslo Universitetssykehus, Norway", "Lars Karlsen, DIPS ASA, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Siv Marie Lien, DIPS ASA, Norway", "Hallvard Lærum, Oslo Universitetssykehus HF, Norway", "Vincent McCauley, Medical Software Industry Association, Australia", "James McClay, University of Nebraska Medical Center, United States", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjoern Naess, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Martin Paulson, Sykehuset i Vestfold, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Navin Ramachandran, NHS, United Kingdom", "Norwegian Review Summary, National ICT Norway, Norway", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Lisbeth Sommervoll, Akershus Universitetssykehus, Norway", "Iztok Stotl, UKCLJ, Slovenia", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)">
+
+definition
+	Score[id1] matches {	-- National Early Warning Score (NEWS)
+		data matches {
+			Node[id7] occurrences matches {0..1} matches {	-- Respiration rate
+				value matches {
+					Coded_ordinal[id60] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id62] matches {
+								term matches {
+									Terminology_term[id61] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id63] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id65] matches {
+								term matches {
+									Terminology_term[id64] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id66] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id68] matches {
+								term matches {
+									Terminology_term[id67] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id69] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id71] matches {
+								term matches {
+									Terminology_term[id70] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id30] occurrences matches {0..1} matches {	-- Oxygen saturation
+				value matches {
+					Coded_ordinal[id72] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id74] matches {
+								term matches {
+									Terminology_term[id73] matches {
+										concept matches {[at30]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id75] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id77] matches {
+								term matches {
+									Terminology_term[id76] matches {
+										concept matches {[at31]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id78] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id80] matches {
+								term matches {
+									Terminology_term[id79] matches {
+										concept matches {[at32]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id81] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id83] matches {
+								term matches {
+									Terminology_term[id82] matches {
+										concept matches {[at33]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id35] occurrences matches {0..1} matches {	-- Supplemental oxygen
+				value matches {
+					Coded_ordinal[id84] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id86] matches {
+								term matches {
+									Terminology_term[id85] matches {
+										concept matches {[at36]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id87] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id89] matches {
+								term matches {
+									Terminology_term[id88] matches {
+										concept matches {[at37]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Body temperature
+				value matches {
+					Coded_ordinal[id90] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id92] matches {
+								term matches {
+									Terminology_term[id91] matches {
+										concept matches {[at22]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id93] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id95] matches {
+								term matches {
+									Terminology_term[id94] matches {
+										concept matches {[at23]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id96] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id98] matches {
+								term matches {
+									Terminology_term[id97] matches {
+										concept matches {[at38]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id99] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id101] matches {
+								term matches {
+									Terminology_term[id100] matches {
+										concept matches {[at39]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Systolic blood pressure
+				value matches {
+					Coded_ordinal[id102] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id104] matches {
+								term matches {
+									Terminology_term[id103] matches {
+										concept matches {[at14]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id105] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id107] matches {
+								term matches {
+									Terminology_term[id106] matches {
+										concept matches {[at15]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id108] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id110] matches {
+								term matches {
+									Terminology_term[id109] matches {
+										concept matches {[at16]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id111] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id113] matches {
+								term matches {
+									Terminology_term[id112] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Heart rate
+				value matches {
+					Coded_ordinal[id114] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id116] matches {
+								term matches {
+									Terminology_term[id115] matches {
+										concept matches {[at13]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id117] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id119] matches {
+								term matches {
+									Terminology_term[id118] matches {
+										concept matches {[at12]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id120] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id122] matches {
+								term matches {
+									Terminology_term[id121] matches {
+										concept matches {[at11]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id123] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id125] matches {
+								term matches {
+									Terminology_term[id124] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Level of consciousness
+				value matches {
+					Coded_ordinal[id126] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id128] matches {
+								term matches {
+									Terminology_term[id127] matches {
+										concept matches {[at24]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id129] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id131] matches {
+								term matches {
+									Terminology_term[id130] matches {
+										concept matches {[at25]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id29] occurrences matches {0..1} matches {	-- Total score
+				value matches {
+					Count[id56] matches {
+						magnitude matches {|0..20|}
+					}
+				}
+			}
+			Node[id48] occurrences matches {0..1} matches {	-- Clinical risk category
+				value matches {
+					Coded_text[id57] matches {
+						term matches {
+							Terminology_term[id132] matches {
+								concept matches {[ac1]}		-- Clinical risk category (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id45] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id58] 
+				}
+			}
+		}
+		state matches {
+			Node[id44] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id59] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id47] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Clinical risk category (synthesised)">
+				description = <"Overall category representing the urgency and scale of the clinical response required in response to the physiological parameters. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Respiration rate (synthesised)">
+				description = <"Range category for the respiratory rate (RR) measurement of a patient. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Oxygen saturation (synthesised)">
+				description = <"Range category for the oxygen saturation measurement of a patient. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Supplemental oxygen (synthesised)">
+				description = <"Range category depending on whether the patient is receiving supplemental oxygen. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Body temperature (synthesised)">
+				description = <"Range category for the body temperature (Temp) measurement of a patient. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Systolic blood pressure (synthesised)">
+				description = <"Range category for the systolic blood pressure (SBP) measurement of a patient. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Heart rate (synthesised)">
+				description = <"Range category for the heart rate (HR) measurement of a patient. (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Level of consciousness (synthesised)">
+				description = <"Observed category for the AVPU scale rating of a patient's conscious state. (synthesised)">
+			>
+			["at10"] = <
+				text = <"<=40 or >=131">
+				description = <"The heart rate measurement is less than/equal to 40 beats/min or greater than/equal to 131 beats/min; scored as 3 points.">
+			>
+			["at11"] = <
+				text = <"111-130">
+				description = <"The heart rate measurement is between 111 and 130 beats/min; scored as 2 points.">
+			>
+			["at12"] = <
+				text = <"41-50 or 91-110">
+				description = <"The heart rate measurement is between 41 and 50 beats/min or between 91 and 110 beats/min; scored as 1 point.">
+			>
+			["at13"] = <
+				text = <"51-90">
+				description = <"The heart rate measurement is between 51 and 90 beats/min; scored as 0 points.">
+			>
+			["at14"] = <
+				text = <"111-219">
+				description = <"The systolic blood pressure measurement is between 111 and 219 mmHg; scored as 0 points.">
+			>
+			["at15"] = <
+				text = <"101-110">
+				description = <"The systolic blood pressure measurement is between 101 and 110 mmHg; scored as 1 point.">
+			>
+			["at16"] = <
+				text = <"91-100">
+				description = <"The systolic blood pressure measurement is between 91 and 100 mmHg; scored as 2 points.">
+			>
+			["at17"] = <
+				text = <"<=90 or >= 220">
+				description = <"The systolic blood pressure measurement is less than/equal to 90 mmHg or greater than/equal to 220 mmHg; scored as 3 points.">
+			>
+			["at18"] = <
+				text = <"12-20">
+				description = <"The respiratory rate measurement is between 12 and 20 breaths/min; scored as 0 points.">
+			>
+			["at19"] = <
+				text = <"9-11">
+				description = <"The respiratory rate measurement is between 9 and 11 breaths/min; scored as 1 point.">
+			>
+			["at20"] = <
+				text = <"21-24">
+				description = <"The respiratory rate measurement is between 21 and 24 breaths/min; scored as 2 points.">
+			>
+			["at21"] = <
+				text = <"<=8 or >=25">
+				description = <"The respiratory rate measurement is less than/equal to 8 breaths/min or greater than/equal to 25 breaths/min; scored as 3 points.">
+			>
+			["at22"] = <
+				text = <"36.1-38.0">
+				description = <"The body temperature measurement is between 36.1 and 38.0 degrees Celsius; scored as 0 points.">
+			>
+			["at23"] = <
+				text = <"35.1-36.0 or 38.1-39.0">
+				description = <"The body temperature measurement is between 35.1 and 36.0 degrees Celsius or between 38.1 and 39.0 degrees Celsius; scored as 1 point.">
+			>
+			["at24"] = <
+				text = <"A">
+				description = <"The patient is alert or awake; scored as 0 points.">
+			>
+			["at25"] = <
+				text = <"V, P or U">
+				description = <"The patient responds only to voice or pain, or is unresponsive; scored as 3 points.">
+			>
+			["at30"] = <
+				text = <">= 96">
+				description = <"The oxygen saturation level is greater than/equal to 96%;scored as 0 points.">
+			>
+			["at31"] = <
+				text = <"94-95">
+				description = <"The oxygen saturation level is between 94% and 95%; scored as 1 point.">
+			>
+			["at32"] = <
+				text = <"92-93">
+				description = <"The oxygen saturation level is between 92% and 93%; scored as 2 points.">
+			>
+			["at33"] = <
+				text = <"<=91">
+				description = <"The oxygen saturation level is less than/equal to 91%; scored as 3 points.">
+			>
+			["at36"] = <
+				text = <"No">
+				description = <"The patient is not receiving supplemental oxygen; scored as 0 points.">
+			>
+			["at37"] = <
+				text = <"Yes">
+				description = <"The patient is receiving supplemental oxygen; scored as 2 points.">
+			>
+			["at38"] = <
+				text = <">=39.1">
+				description = <"The body temperature is greater than/equal to 39.1 degrees Celcius; scored as 2 points.">
+			>
+			["at39"] = <
+				text = <"<=35.0">
+				description = <"The body temperature is less than/equal to 35 degrees Celcius ; scored as 3 points.">
+			>
+			["at48"] = <
+				text = <"Low">
+				description = <"Ward-based response.">
+			>
+			["at49"] = <
+				text = <"Low-medium">
+				description = <"Urgent ward-based response.">
+			>
+			["at50"] = <
+				text = <"Medium">
+				description = <"Key threshold for urgent response.">
+			>
+			["at51"] = <
+				text = <"High">
+				description = <"Urgent or emergency response.">
+			>
+			["id1"] = <
+				text = <"National Early Warning Score (NEWS)">
+				description = <"NEWS (National Early Warning Score) is a simple score used to provide an objective indication of a patient's degree of clinical deterioration. This version follows guidance issued by the UK Royal College of Physicians.">
+			>
+			["id29"] = <
+				text = <"Total score">
+				description = <"The total sum of all the NEWS parameter ordinals.">
+			>
+			["id3"] = <
+				text = <"Point in time">
+				description = <"A specific date and/or time which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Oxygen saturation">
+				description = <"Range category for the oxygen saturation measurement of a patient.">
+			>
+			["id35"] = <
+				text = <"Supplemental oxygen">
+				description = <"Range category depending on whether the patient is receiving supplemental oxygen.">
+			>
+			["id44"] = <
+				text = <"Confounding factors">
+				description = <"Description of any incidental factors that may have contributed to the score.">
+			>
+			["id45"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the overall NEWS score not captured in other fields.">
+			>
+			["id47"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id48"] = <
+				text = <"Clinical risk category">
+				description = <"Overall category representing the urgency and scale of the clinical response required in response to the physiological parameters.">
+			>
+			["id5"] = <
+				text = <"Systolic blood pressure">
+				description = <"Range category for the systolic blood pressure (SBP) measurement of a patient.">
+			>
+			["id6"] = <
+				text = <"Heart rate">
+				description = <"Range category for the heart rate (HR) measurement of a patient.">
+			>
+			["id7"] = <
+				text = <"Respiration rate">
+				description = <"Range category for the respiratory rate (RR) measurement of a patient.">
+			>
+			["id8"] = <
+				text = <"Body temperature">
+				description = <"Range category for the body temperature (Temp) measurement of a patient.">
+			>
+			["id9"] = <
+				text = <"Level of consciousness">
+				description = <"Observed category for the AVPU scale rating of a patient's conscious state.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id45"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at48", "at49", "at50", "at51">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at18", "at19", "at20", "at21">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at30", "at31", "at32", "at33">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at36", "at37">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at22", "at23", "at38", "at39">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at14", "at15", "at16", "at17">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at13", "at12", "at11", "at10">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at24", "at25">
+		>
+	>
+

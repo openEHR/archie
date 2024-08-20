@@ -1,0 +1,765 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ac2d2b59-4e9c-4715-a0c6-c9ea33eb0219)
+	s2-EHR-Assessment.tobacco_smoking_summary.v1.1.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2009-06-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.tobacco_smoking_summary.v1.1.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.tobacco_smoking_summary.v1.1.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary information about the individual's pattern of smoking of tobacco and tobacco-containing products.">
+			use = <"Use to record summary information about the individual's pattern of smoking of tobacco and tobacco-containing products.
+            
+            This archetype is to be used to record information about both current and previous smoking behaviour.
+            
+            The specific scope of this archetype is on documentation about the use of all types of inhaled tobacco smoke because of the associated health risks from direct inhalation of tobacco and associated chemicals. Amount of nicotine and tar, use of filters and additives has been left outside of scope for the core archetype, but could be added into the Episode SLOT if required. Please note that the scope of this archetype does not include unintentional exposure to tobacco smoke (see Misuse). 
+            
+            The 'Per type' Node of data Nodes allows for recording of specific details and episodes about each type of tobacco smoked and can be repeated once per type.
+            
+            In many situations the individual will only smoke one type of tobacco, such as manufactured cigarettes.  If other types of tobacco are smoked, the details will be recorded in another instance of the 'Per type' Node.
+            
+            The history of waxing and waning of use for each type of tobacco over time can be captured using the repeatable 'Per episode' Node. This Node of data Nodes allows for a very detailed pattern of smoking behaviour to be recorded for each type of tobacco smoked such as daily 'roll-your-own' cigarette smoking, alongside weekly cigar smoking every Friday night and occasional Bidi smoking while on holiday in Bali. 
+            
+            Triggers for closing one episode and commencing a new one will largely reflect local data collection preferences, including if the individual: 
+            - quits for a significant period of time (which will likely be locally defined); or
+            - significantly changes their amount of use or pattern of their smoking.
+            
+            If only one type of tobacco is smoked, the value for 'Pack years' will be identical to the 'Overall pack years' data Node. If more than one type of tobacco is smoked, the calculation for the value for 'Overall pack years' will require a more complex algorithm such as http://smokingpackyears.com/.
+            
+            Use to incorporate the narrative descriptions of tobacco smoking habits within existing or legacy clinical systems into an archetyped format, using the 'Overall description' data Node.
+            
+            Note: Definitions of 'Current smoker' may vary. For example: the CDC uses 1 month/31 days and New Zealand uses 28 days.">
+			keywords = <"tobacco", "cigarette", "cigar", "pipe", "smoking", "kretek", "beedi", "bidi", "cigarillo", "smoker", "waterpipe", "shisha", "hookah", "narguileh", "hubble-bubble", "roll-up", "RYO", "rollie", "roll-your-own">
+			misuse = <"Not to be used to record event-or period-based information about tobacco smoking, such as actual daily use or the average use over a specified period of time - use the OBSERVATION.tobacco_smoking archetype.
+            
+            Not to be used to record information about smokeless tobacco use - for example: snus; snuff; chewing tobacco; dip; and gutka. Use the archetype EVALUATION.smokeless_tobacco_summary archetype for this purpose.
+            
+            Not to be used to record evidence of nicotine dependency. Use the OBSERVATION.fagerstrom for this purpose.
+            
+            Not to be used to record details about unintended exposure to tobacco smoke or passive smoking. Use the archetype EVALUATION.exposure for this purpose.
+            
+            Not to be used for recording any other administration of nicotine, such as e-cigarettes, nicotine patches or nicotine chewing gum. Use separate archetypes for this purpose.">
+		>
+	>
+	other_contributors = <"Amund Aakerholt, Helse Stavanger, KORFOR, Norway", "Morten Aas, Oslo Universitetssykehus, Norway", "Tomas Alme, DIPS ASA, Norway", "Ole Andreas Bjordal, Webmed, Norway", "Rita Apelt, Department of Health,NT, Australia", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT editor)", "Koray Atalag, University of Auckland, New Zealand", "Gustavo Bacelar-Silva, Healthcare Designs, Brazil", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Kristian Berg, Universitetssykehuset Nord Norge, Norway", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Fredrik Borchsenius, Oslo universitetssykehus, Norway", "Chris Bullen, University of Auckland, New Zealand", "Fatemeh Chalabianloo, Helse Bergen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Stephen Chu, NEHTA, Australia", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Are Edvardsen, SKDE, Norway", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Liv Grøtvedt, Folkehelseinstituttet, Norway", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Jørn Henrik Vold, Helse Bergen, Avdeling for rusmedisin, Norway", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Adriana Kitajima, CORE Consulting, Brazil", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Ole Kristian Losvik, Losol AS, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Camilla Lund, Institute for Cancer Genetics and Informatics, Norway", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Arne Løberg Sæter, DIPS ASA, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Bjørn Næss, DIPS ASA, Norway", "Jeremy Oats, NT Health, Australia", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Tanja Riise, Nasjonal IKT HF, Norway", "Rosalie Schultz, Anyinginyi Health Aboriginal Corporation, Australia", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Raymond Simkus, Brookswood Family Practice, Canada", "Lisbeth Sommervoll, Akershus Universitetssykehus, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway", "Ping-Cheng Wei, New Zealand">
+
+definition
+	Assessment[id1] matches {	-- Tobacco smoking summary
+		data matches {
+			Node[id90] occurrences matches {0..1} matches {	-- Overall status
+				value matches {
+					Coded_text[id97] matches {
+						term matches {
+							Terminology_term[id130] matches {
+								concept matches {[ac1]}		-- Overall status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id44] occurrences matches {0..1} matches {	-- Overall description
+				value matches {
+					Text[id98] 
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Regular smoking commenced
+				value matches {
+					Date_value[id99] 
+				}
+			}
+			Node[id81] occurrences matches {0..1} matches {	-- Daily smoking commenced
+				value matches {
+					Date_value[id100] 
+				}
+			}
+			Node[id30] matches {	-- Per type
+				items matches {
+					Node[id96] matches {	-- Type
+						value matches {
+							Coded_text[id101] matches {
+								term matches {
+									Terminology_term[id131] matches {
+										concept matches {[ac2]}		-- Type (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id53] occurrences matches {0..1} matches {	-- Status
+						value matches {
+							Coded_text[id102] matches {
+								term matches {
+									Terminology_term[id132] matches {
+										concept matches {[ac3]}		-- Status (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id54] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id103] 
+						}
+					}
+					Node[id65] matches {	-- Per episode
+						items matches {
+							Node[id82] occurrences matches {0..1} matches {	-- Episode label
+								value matches {
+									Count[id104] matches {
+										magnitude matches {|>=1|}
+									}
+									Text[id105] 
+								}
+							}
+							Node[id14] occurrences matches {0..1} matches {	-- Episode start date
+								value matches {
+									Date_value[id106] 
+								}
+							}
+							Node[id83] occurrences matches {0..1} matches {	-- Episode end date
+								value matches {
+									Date_value[id107] 
+								}
+							}
+							Node[id31] occurrences matches {0..1} matches {	-- Pattern
+								value matches {
+									Coded_text[id108] matches {
+										term matches {
+											Terminology_term[id133] matches {
+												concept matches {[ac4]}		-- Pattern (synthesised)
+											}
+										}
+									}
+									Plain_text[id109] 
+								}
+							}
+							Node[id24] occurrences matches {0..1} matches {	-- Typical use (units)
+								value matches {
+									Quantity[id134] matches {	-- Typical use (units) (1/d)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id136] matches {
+												term matches {
+													Terminology_term[id135] matches {
+														concept matches {[at94]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+									Quantity[id137] matches {	-- Typical use (units) (1/wk)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id139] matches {
+												term matches {
+													Terminology_term[id138] matches {
+														concept matches {[at95]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+							Node[id66] occurrences matches {0..1} matches {	-- Typical use (mass)
+								value matches {
+									Quantity[id140] matches {	-- Typical use (mass) (g/d)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id142] matches {
+												term matches {
+													Terminology_term[id141] matches {
+														concept matches {[at96]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+									Quantity[id143] matches {	-- Typical use (mass) (g/wk)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id145] matches {
+												term matches {
+													Terminology_term[id144] matches {
+														concept matches {[at97]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+									Quantity[id146] matches {	-- Typical use (mass) ([oz_av]/d)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id148] matches {
+												term matches {
+													Terminology_term[id147] matches {
+														concept matches {[at98]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+									Quantity[id149] matches {	-- Typical use (mass) ([oz_av]/wk)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id151] matches {
+												term matches {
+													Terminology_term[id150] matches {
+														concept matches {[at99]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+							Node[id26] occurrences matches {0..1} matches {	-- Number of quit attempts
+								value matches {
+									Count[id112] matches {
+										magnitude matches {|>=0|}
+									}
+								}
+							}
+							use_archetype Node[id27, s2-EHR-Node.cessation_attempts.v0] 
+							Node[id88] occurrences matches {0..1} matches {	-- Episode comment
+								value matches {
+									Text[id113] 
+								}
+							}
+						}
+					}
+					Node[id15] occurrences matches {0..1} matches {	-- Quit date
+						value matches {
+							Date_value[id114] 
+						}
+					}
+					allow_archetype Node[id78] matches {	-- Type details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					Node[id18] occurrences matches {0..1} matches {	-- Pack years
+						value matches {
+							Count[id115] matches {
+								magnitude matches {|>=0|}
+							}
+						}
+					}
+					Node[id70] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id116] 
+						}
+					}
+				}
+			}
+			use_archetype Node[id87, s2-EHR-Node.change.v0] 
+			Node[id17] occurrences matches {0..1} matches {	-- Overall quit date
+				value matches {
+					Date_value[id117] 
+				}
+			}
+			Node[id94] occurrences matches {0..1} matches {	-- Overall years of smoking
+				value matches {
+					Quantity[id118] matches {
+						magnitude matches {|>=0.0|}
+						precision matches {2}
+						units matches {
+							Coded_text[id153] matches {
+								term matches {
+									Terminology_term[id152] matches {
+										concept matches {[at100]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id95] occurrences matches {0..1} matches {	-- Smoking index
+				value matches {
+					Count[id119] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			Node[id75] occurrences matches {0..1} matches {	-- Overall pack years
+				value matches {
+					Count[id120] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Overall comment
+				value matches {
+					Text[id121] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id74] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id72] matches {	-- Quit date definition
+				value matches {
+					Text[id122] 
+				}
+			}
+			Node[id86] occurrences matches {0..1} matches {	-- Quit attempt definition
+				value matches {
+					Text[id123] 
+				}
+			}
+			Node[id76] matches {	-- Current smoker definition
+				value matches {
+					Text[id124] 
+				}
+			}
+			Node[id77] matches {	-- Former smoker definition
+				value matches {
+					Text[id125] 
+				}
+			}
+			Node[id80] matches {	-- Never smoked definition
+				value matches {
+					Text[id126] 
+				}
+			}
+			Node[id73] matches {	-- Pack definition
+				value matches {
+					Count[id127] matches {
+						magnitude matches {|>=0|}
+					}
+					Quantity[id154] matches {	-- Pack definition (g)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id156] matches {
+								term matches {
+									Terminology_term[id155] matches {
+										concept matches {[at101]}
+									}
+								}
+							}
+						}
+						precision matches {0}
+					}
+					Quantity[id157] matches {	-- Pack definition ([oz_av])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id159] matches {
+								term matches {
+									Terminology_term[id158] matches {
+										concept matches {[at102]}
+									}
+								}
+							}
+						}
+						precision matches {0}
+					}
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id129] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Overall status (synthesised)">
+				description = <"Statement about current smoking behaviour for all types of tobacco. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Type (synthesised)">
+				description = <"The type of tobacco smoked by the individual. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Status (synthesised)">
+				description = <"Statement about current smoking behaviour for the specified type of tobacco. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Pattern (synthesised)">
+				description = <"The typical pattern of smoking for the specified type of tobacco. (synthesised)">
+			>
+			["at100"] = <
+				text = <"a">
+				description = <"a unit.">
+			>
+			["at101"] = <
+				text = <"g">
+				description = <"Gram unit.">
+			>
+			["at102"] = <
+				text = <"[oz_av]">
+				description = <"[oz_av] unit.">
+			>
+			["at3"] = <
+				text = <"Current smoker">
+				description = <"Individual is a current smoker of tobacco.">
+			>
+			["at5"] = <
+				text = <"Former smoker">
+				description = <"Individual has previously smoked tobacco but is not a current smoker.">
+			>
+			["at54"] = <
+				text = <"Cigarettes">
+				description = <"Also known as manufactured cigarettes, 'factory made' cigarettes or 'tailor made' cigarettes. Processed tobacco, manufactured into cylinder made of paper or a substance that does not contain tobacco.">
+			>
+			["at55"] = <
+				text = <"Hand-rolled cigarettes">
+				description = <"Also known as \\\"rollies\\\" or \\\"roll-ups\\\". Loose tobacco, hand rolled into a cylinder using cigarette papers.">
+			>
+			["at56"] = <
+				text = <"Cigars">
+				description = <"Also known as \\\"large cigar\\\". Roll of tobacco wrapped within a leaf tobacco or in a substance that contains tobacco.">
+			>
+			["at57"] = <
+				text = <"Pipe">
+				description = <"Loose tobacco placed inside a pipe bowl.">
+			>
+			["at59"] = <
+				text = <"Former smoker">
+				description = <"Individual has previously smoked the specified type of tobacco but is not a current smoker.">
+			>
+			["at6"] = <
+				text = <"Never smoked">
+				description = <"Individual has never smoked any type of tobacco.">
+			>
+			["at61"] = <
+				text = <"Current smoker">
+				description = <"Individual is a current smoker of the specified type of tobacco.">
+			>
+			["at62"] = <
+				text = <"Waterpipe">
+				description = <"Also known as \\\"hookah\\\", \\\"shisha\\\", \\\"narguileh\\\" and \\\"hubble-bubble\\\". Tobacco, often flavoured, is burned then cooled through a basin of water and consumed through a hose and mouthpiece.">
+			>
+			["at66"] = <
+				text = <"Cigarillos">
+				description = <"Also known as mini cigars. Short and narrow cigar.">
+			>
+			["at78"] = <
+				text = <"Bidis">
+				description = <"Also known as Beedis. Thin hand-rolled cigarettes filled with tobacco and wrapped in a leaf, often tied with colorful string at one or both ends. They can be flavoured or unflavoured.">
+			>
+			["at83"] = <
+				text = <"Daily">
+				description = <"Smoking the specified type of tobacco at least once every day.">
+			>
+			["at84"] = <
+				text = <"Non-daily">
+				description = <"Not smoking the specified type of tobacco every day.">
+			>
+			["at88"] = <
+				text = <"Kreteks">
+				description = <"Also known as clove cigarettes. Cigarettes that contain a mixture of tobacco, cloves and other additives.">
+			>
+			["at91"] = <
+				text = <"Never smoked">
+				description = <"Individual has never smoked the specified type of tobacco.">
+			>
+			["at92"] = <
+				text = <"Flow rate, mass">
+				description = <"Flow rate, mass">
+			>
+			["at93"] = <
+				text = <"Mass">
+				description = <"Mass">
+			>
+			["at94"] = <
+				text = <"1/d">
+				description = <"1/d unit.">
+			>
+			["at95"] = <
+				text = <"1/wk">
+				description = <"1/wk unit.">
+			>
+			["at96"] = <
+				text = <"g/d">
+				description = <"g/d unit.">
+			>
+			["at97"] = <
+				text = <"g/wk">
+				description = <"g/wk unit.">
+			>
+			["at98"] = <
+				text = <"[oz_av]/d">
+				description = <"[oz_av]/d unit.">
+			>
+			["at99"] = <
+				text = <"[oz_av]/wk">
+				description = <"[oz_av]/wk unit.">
+			>
+			["id1"] = <
+				text = <"Tobacco smoking summary">
+				description = <"Summary or persistent information about the tobacco smoking habits of an individual.">
+			>
+			["id134"] = <
+				text = <"Typical use (units) (1/d)">
+				description = <"Typical use (units) (1/d)">
+			>
+			["id137"] = <
+				text = <"Typical use (units) (1/wk)">
+				description = <"Typical use (units) (1/wk)">
+			>
+			["id14"] = <
+				text = <"Episode start date">
+				description = <"Date when this episode commenced.">
+			>
+			["id140"] = <
+				text = <"Typical use (mass) (g/d)">
+				description = <"Typical use (mass) (g/d)">
+			>
+			["id143"] = <
+				text = <"Typical use (mass) (g/wk)">
+				description = <"Typical use (mass) (g/wk)">
+			>
+			["id146"] = <
+				text = <"Typical use (mass) ([oz_av]/d)">
+				description = <"Typical use (mass) ([oz_av]/d)">
+			>
+			["id149"] = <
+				text = <"Typical use (mass) ([oz_av]/wk)">
+				description = <"Typical use (mass) ([oz_av]/wk)">
+			>
+			["id15"] = <
+				text = <"Quit date">
+				description = <"Date when the individual last smoked the specified type of tobacco.">
+			>
+			["id154"] = <
+				text = <"Pack definition (g)">
+				description = <"Pack definition (g)">
+			>
+			["id157"] = <
+				text = <"Pack definition ([oz_av])">
+				description = <"Pack definition ([oz_av])">
+			>
+			["id16"] = <
+				text = <"Regular smoking commenced">
+				description = <"The date or partial date when the individual first started frequent or regular, but usually non-daily, smoking of tobacco of any type.">
+			>
+			["id17"] = <
+				text = <"Overall quit date">
+				description = <"The date when the individual last ceased using tobacco of any type.">
+			>
+			["id18"] = <
+				text = <"Pack years">
+				description = <"Estimate of the cumulative amount of tobacco smoked using the specified type of tobacco.">
+			>
+			["id20"] = <
+				text = <"Overall comment">
+				description = <"Additional narrative about all tobacco smoking that has not been captured in other fields.">
+			>
+			["id23"] = <
+				text = <"Last updated">
+				description = <"The date this tobacco smoking summary was last updated.">
+			>
+			["id24"] = <
+				text = <"Typical use (units)">
+				description = <"Estimate of number of units of the specified type of tobacco consumed.">
+			>
+			["id26"] = <
+				text = <"Number of quit attempts">
+				description = <"Total number of times the individual has attempted to stop smoking the specified type of tobacco within this episode.">
+			>
+			["id27"] = <
+				text = <"Episode details">
+				description = <"Additional structured details about the specified episode of tobacco smoking.">
+			>
+			["id30"] = <
+				text = <"Per type">
+				description = <"Details about smoking activity for a specified type of smoked tobacco.">
+			>
+			["id31"] = <
+				text = <"Pattern">
+				description = <"The typical pattern of smoking for the specified type of tobacco.">
+			>
+			["id44"] = <
+				text = <"Overall description">
+				description = <"Narrative summary about the individual's overall tobacco smoking pattern and history.">
+			>
+			["id53"] = <
+				text = <"Status">
+				description = <"Statement about current smoking behaviour for the specified type of tobacco.">
+			>
+			["id54"] = <
+				text = <"Description">
+				description = <"Narrative summary about smoking behaviour for the specified type of tobacco.">
+			>
+			["id65"] = <
+				text = <"Per episode">
+				description = <"Details about a discrete period of smoking activity for the specified type of tobacco.">
+			>
+			["id66"] = <
+				text = <"Typical use (mass)">
+				description = <"Estimate of the weight of loose leaf tobacco smoked.">
+			>
+			["id70"] = <
+				text = <"Comment">
+				description = <"Additional narrative about smoking of the specified type of tobacco, not captured in other fields.">
+			>
+			["id72"] = <
+				text = <"Quit date definition">
+				description = <"The applied definition for the 'Quit date' data Nodes used in this archetype.">
+			>
+			["id73"] = <
+				text = <"Pack definition">
+				description = <"The definition of the size of pack used as part of the algorithm for calculating 'Pack years' data Nodes used in this archetype.">
+			>
+			["id74"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id75"] = <
+				text = <"Overall pack years">
+				description = <"Estimate of the cumulative amount for all types of tobacco smoked.">
+			>
+			["id76"] = <
+				text = <"Current smoker definition">
+				description = <"The applied definition for the 'Current smoker' value in each of the 'Status' data Nodes used in this archetype.">
+			>
+			["id77"] = <
+				text = <"Former smoker definition">
+				description = <"The applied definition for the 'Former smoker' value in each of the 'Status' data Nodes used in this archetype.">
+			>
+			["id78"] = <
+				text = <"Type details">
+				description = <"Additional structured details about the specified type of tobacco smoking.">
+			>
+			["id80"] = <
+				text = <"Never smoked definition">
+				description = <"The applied definition for the 'Never smoked' value in each of the 'Status' data Nodes used in this archetype.">
+			>
+			["id81"] = <
+				text = <"Daily smoking commenced">
+				description = <"The date or partial date when the individual first started daily smoking of tobacco of any type.">
+			>
+			["id82"] = <
+				text = <"Episode label">
+				description = <"Identification of an episode of smoking activity - either as a number in a sequence and/or a named event.">
+			>
+			["id83"] = <
+				text = <"Episode end date">
+				description = <"Date when this episode ceased.">
+			>
+			["id86"] = <
+				text = <"Quit attempt definition">
+				description = <"The applied definition for a Quit attempt used to determine value for the 'Number of quit attempts' data Node used in this archetype.">
+			>
+			["id87"] = <
+				text = <"Overall details">
+				description = <"Additional structured details about the overall tobacco smoking behaviour.">
+			>
+			["id88"] = <
+				text = <"Episode comment">
+				description = <"Additional narrative about tobacco smoking during the specified episode, not captured in other fields.">
+			>
+			["id90"] = <
+				text = <"Overall status">
+				description = <"Statement about current smoking behaviour for all types of tobacco.">
+			>
+			["id94"] = <
+				text = <"Overall years of smoking">
+				description = <"The cumulative number of years that the individual has smoked tobacco.">
+			>
+			["id95"] = <
+				text = <"Smoking index">
+				description = <"An indication of the cumulative amount of tobacco smoking exposure.">
+			>
+			["id96"] = <
+				text = <"Type">
+				description = <"The type of tobacco smoked by the individual.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at92"] = <http://openehr.org/id/347>
+			["at93"] = <http://openehr.org/id/124>
+		>
+		["ucum"] = <
+			["at94"] = <http://ucum.org/id/1%2Fd>
+			["at95"] = <http://ucum.org/id/1%2Fwk>
+			["at96"] = <http://ucum.org/id/g%2Fd>
+			["at97"] = <http://ucum.org/id/g%2Fwk>
+			["at98"] = <http://ucum.org/id/%5Boz_av%5D%2Fd>
+			["at99"] = <http://ucum.org/id/%5Boz_av%5D%2Fwk>
+			["at100"] = <http://ucum.org/id/a>
+			["at101"] = <http://ucum.org/id/g>
+			["at102"] = <http://ucum.org/id/%5Boz_av%5D>
+		>
+		["snomed"] = <
+			["at94"] = <http://snomed.info/id/259032004>
+			["at95"] = <http://snomed.info/id/259038000>
+			["at96"] = <http://snomed.info/id/258830000>
+			["at97"] = <http://snomed.info/id/229793000>
+			["at98"] = <http://snomed.info/id/228933004>
+			["at99"] = <http://snomed.info/id/229792005>
+			["at100"] = <http://snomed.info/id/258707000>
+			["at101"] = <http://snomed.info/id/258682000>
+			["at102"] = <http://snomed.info/id/258692008>
+		>
+		["loinc"] = <
+			["id14"] = <http://loinc.org/106197-7>
+			["id23"] = <http://loinc.org/106177-9>
+			["id44"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id53"] = <http://loinc.org/106199-3>
+			["id54"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id70"] = <http://loinc.org/106173-8>
+			["id83"] = <http://loinc.org/106180-3>
+			["id88"] = <http://loinc.org/106173-8>
+			["id90"] = <http://loinc.org/106199-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at6", "at3", "at5">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at54", "at55", "at56", "at66", "at57", "at62", "at78", "at88">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at61", "at59", "at91">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at83", "at84">
+		>
+	>
+

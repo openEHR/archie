@@ -1,0 +1,136 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8d4eae90-bd21-435c-a7f3-2b35b334c6fb)
+	s2-EHR-Node.crowding.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-03-13">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.crowding.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.crowding.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record parameters used to identify a mismatch between the number of available rooms in a dwelling and the composition of the household.">
+			use = <"Use to record parameters used to identify a mismatch between the number of available rooms in a dwelling and the composition of the household.
+            
+            The identification of crowding, or overcrowding, is complex and varies between jurisdictions. It is usually assessed based on the number of people sharing the dwelling, their ages, their relationship and their gender. See https://www.ncbi.nlm.nih.gov/books/NBK535289/table/ch3.tab2/ for a range of examples.
+            
+            This archetype has been designed to be nested within the EVALUATION.living_arrangement, the EVALUATION.housing_summary or the Node.housing_record archetypes.">
+			keywords = <"overcrowding", ...>
+			misuse = <"">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Household crowding
+		items matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id7] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Status
+				value matches {
+					Coded_text[id8] matches {
+						term matches {
+							Terminology_term[id12] matches {
+								concept matches {[ac1]}		-- Status (synthesised)
+							}
+						}
+					}
+					Plain_text[id9] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Number of rooms
+				value matches {
+					Count[id10] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Persons per room
+				value matches {
+					Count[id11] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Status (synthesised)">
+				description = <"Assessed crowding status. (synthesised)">
+			>
+			["at6"] = <
+				text = <"No crowding">
+				description = <"The number of occupants is appropriate for the available dwelling space.">
+			>
+			["at7"] = <
+				text = <"Crowding">
+				description = <"The number of occupants exceeds the available dwelling space. May also be known as 'Overcrowding'.">
+			>
+			["at8"] = <
+				text = <"Severe crowding">
+				description = <"The number of occupants markedly exceeds the available dwelling space. May also be known as 'Critical overcrowding'.">
+			>
+			["id1"] = <
+				text = <"Household crowding">
+				description = <"A mismatch between the number of available rooms in a dwelling and the composition of the household.">
+			>
+			["id2"] = <
+				text = <"Persons per room">
+				description = <"Number of household members per available room.">
+			>
+			["id4"] = <
+				text = <"Number of rooms">
+				description = <"Number of habitable rooms available to the household.">
+			>
+			["id5"] = <
+				text = <"Description">
+				description = <"Narrative description about household crowding.">
+			>
+			["id6"] = <
+				text = <"Status">
+				description = <"Assessed crowding status.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id6"] = <http://loinc.org/106199-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at6", "at7", "at8">
+		>
+	>
+

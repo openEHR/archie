@@ -1,0 +1,127 @@
+template (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Composition.t_encounter-basic_demographics.v1.0.0
+
+specialize
+	s2-EHR-Composition.encounter.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Record basic demographics of patient">
+		>
+	>
+
+definition
+	Composition[id1.1] matches {
+		content matches {
+			use_archetype Admin_entry[id0.1, s2-EHR-Admin_entry.t_patient_basic_demographics-simple.v1] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Record of basic demographics of patient">
+				description = <"Record of basic demographics of patient">
+			>
+			["id0.1"] = <
+				text = <"Patient demographics information">
+				description = <"Patient demographics information">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Admin_entry.t_patient_basic_demographics-simple.v1.0.0
+
+specialize
+	s2-EHR-Admin_entry.patient_basic_demographics.v1
+
+definition
+	Admin_entry[id1.1] matches {	
+		/data matches {
+			use_archetype Node[id6, s2-EHR-Node.t_patient_basic_demographics-address.v1] 
+			use_archetype Node[id7, s2-EHR-Node.t_patient_basic_demographics-electronic_communication.v1] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Demographics with simplified addresses">
+				description = <"Demographics with simplified addresses">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Node.t_patient_basic_demographics-address.v1.0.0
+
+specialize
+	s2-EHR-Node.address.v1
+
+definition
+	Node[id1.1] matches {	-- Address
+		items matches {
+			use_archetype Node[id21, s2-EHR-Node.structured_address.v0] occurrences matches {0}
+			Node[id22] occurrences matches {0}
+			Node[id8] occurrences matches {0}
+			Node[id9] occurrences matches {0}
+			Node[id10] occurrences matches {0}
+			Node[id20] occurrences matches {0}
+			Node[id11] occurrences matches {0}
+			Node[id19] occurrences matches {0}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Simplified physical address">
+				description = <"Simplified physical address">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Node.t_patient_basic_demographics-electronic_communication.v1.0.0
+
+specialize
+	s2-EHR-Node.electronic_communication.v1
+
+definition
+	Node[id1.1] matches {	-- Electronic communication
+		/items matches {
+			use_archetype Node[id14, s2-EHR-Node.language.v1]  occurrences matches {0}
+			Node[id5] occurrences matches {0}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Simplified electronic address">
+				description = <"Simplified electronic address">
+			>
+		>
+	>

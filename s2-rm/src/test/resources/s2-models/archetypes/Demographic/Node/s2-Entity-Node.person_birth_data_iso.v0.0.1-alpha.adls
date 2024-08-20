@@ -1,0 +1,149 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b076cb91-73bf-4dda-96d9-c5187765dfde)
+	s2-Entity-Node.person_birth_data_iso.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.person_birth_data_iso.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.person_birth_data_iso.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Representation of a person's birth data">
+			use = <"Used in demographic services to collect a person's birth data">
+			keywords = <"demographic service", "birth demographic data">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Birth data
+		items matches {
+			Node[id2] occurrences matches {1} matches {	-- Birth date
+				value matches {
+					Date_value[id8] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Country of birth
+				value matches {
+					Coded_text[id9] matches {
+						term matches {
+							Terminology_term[id13] matches {
+								concept matches {[ac1]}		-- Country codes
+							}
+						}
+					}
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Birth plurality
+				value matches {
+					Coded_text[id10] matches {
+						term matches {
+							Terminology_term[id14] matches {
+								concept matches {[ac2]}		-- Birth plurality codes
+							}
+						}
+					}
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Birth order
+				value matches {
+					Coded_text[id11] matches {
+						term matches {
+							Terminology_term[id15] matches {
+								concept matches {[ac3]}		-- Birth order codes
+							}
+						}
+					}
+				}
+			}
+			Node[id6] matches {	-- Date of birth follow-up indicator
+				value matches {
+					Boolean_value[id12] 
+				}
+			}
+			allow_archetype Node[id7] occurrences matches {0..1} matches {	-- Country specific data
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Country codes">
+				description = <"valid codes for countries">
+			>
+			["ac2"] = <
+				text = <"Birth plurality codes">
+				description = <"valid codes for birth plurality">
+			>
+			["ac3"] = <
+				text = <"Birth order codes">
+				description = <"valid codes for birth order">
+			>
+			["id1"] = <
+				text = <"Birth data">
+				description = <"Birth demographic data">
+			>
+			["id2"] = <
+				text = <"Birth date">
+				description = <"The date of birth of a person">
+			>
+			["id3"] = <
+				text = <"Country of birth">
+				description = <"The country where a person was born">
+			>
+			["id4"] = <
+				text = <"Birth plurality">
+				description = <"An indicator of multiple birth, showing the total number of births resulting from a single pregnancy">
+			>
+			["id5"] = <
+				text = <"Birth order">
+				description = <"The sequential order of this person in a multiple birth regardless of live or still birth">
+			>
+			["id6"] = <
+				text = <"Date of birth follow-up indicator">
+				description = <"Flag that indicates when the current date of birth requires follow-up to obtain a more accurate date">
+			>
+			["id7"] = <
+				text = <"Country specific data">
+				description = <"Additional birth data that are country specific">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id2"] = <http://loinc.org/21112-8>
+			["id3"] = <http://loinc.org/78746-5>
+			["id4"] = <http://loinc.org/57722-1>
+			["id5"] = <http://loinc.org/73771-8>
+		>
+	>
+

@@ -1,0 +1,130 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=80d3b0b7-b097-4d76-b112-4329c524b424)
+	s2-EHR-Direct_observation.nutrition_intake.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Silje Ljosland Bakke, Nasjonal IKT HF, <silje.ljosland.bakke@nasjonalikt.no>, 2018-11-29">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.nutrition_intake.v0.0.1-alpha, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.nutrition_intake.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"For recording the total intake of nutrients at a point in time or interval of time, such as a meal or a day.">
+			use = <"Use for recording the total intake of nutrients at a point in time or interval of time, such as a meal or a day.">
+			keywords = <"nutrition", "nutrients">
+			misuse = <"Not to be used for recording the details of food items consumed. Use the OBSERVATION.food_item archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Terje Sagmyr, DIPS AS, Norway">
+
+definition
+	Direct_observation[id1] matches {	-- Nutrition intake
+		data matches {
+			allow_archetype Node[id11] matches {	-- Nutrients
+				include
+					archetype_id/value matches {/s2-EHR-Node\.dietary_nutrients(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.dietary_nutrients(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.macronutrients(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.macronutrients(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.micronutrients(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.micronutrients(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id17] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id14] occurrences matches {0..1} matches {	-- Nutritional day definition
+				value matches {
+					Time_value[id21] 
+				}
+			}
+			allow_archetype Node[id15] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+		data_series matches {
+			Event[id16] matches {	-- Meal
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Nutrients]
+					use_node Node[id12] /data[id12]	-- /data[Comment]
+				}
+			}
+			Interval_event[id5] matches {	-- Cumulative total
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Nutrients]
+					use_node Node[id12] /data[id12]	-- /data[Comment]
+				}
+				sample_function matches {"total"}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Nutrition intake">
+				description = <"The total intake of nutrients at a point in time or interval of time, such as a meal or a day.">
+			>
+			["id11"] = <
+				text = <"Nutrients">
+				description = <"Details about the component nutrients for the event.">
+			>
+			["id12"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the nutrition intake not captured in other fields.">
+			>
+			["id14"] = <
+				text = <"Nutritional day definition">
+				description = <"The applied definition for the starting time of the 'Cumulative total' event used in this archetype.">
+			>
+			["id15"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id16"] = <
+				text = <"Meal">
+				description = <"A unspecified meal, either as a point in time or interval event, which should be explicitly defined and renamed in a template or at run-time.">
+			>
+			["id2"] = <
+				text = <"History">
+				description = <"*">
+			>
+			["id3"] = <
+				text = <"Any Event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Cumulative total">
+				description = <"Cumulative nutritional intake within a specified interval of time, which should be explicitly defined in a template or at run-time.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id12"] = <http://loinc.org/106173-8>
+		>
+	>
+

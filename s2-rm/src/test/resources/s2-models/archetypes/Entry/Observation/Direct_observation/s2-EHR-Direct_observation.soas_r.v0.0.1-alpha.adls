@@ -1,0 +1,574 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=bca23581-d135-44df-b0ed-8084e19c3cf1)
+    s2-EHR-Direct_observation.soas_r.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Marit Alice Venheim, Helse Vest IKT AS, 2021-04-14">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.soas_r.v0.0.1-alpha, copyright  openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.soas_r.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the frequency, nature, and severity of aggressive incidents.">
+            keywords = <"verbal", "physical", "attacking", "violent", "behaviour">
+            use = <"Use to record the frequency, nature, and severity of aggressive incidents.
+            
+            While openEHR archetypes are all freely available under an open license, the specific content of this Staff Observation Aggression Scale – Revised archetype is copyright protected. Any use of this archetype within implementations must be in compliance with the terms established by the copyright owners. Copyright statement: ©Henk Nijman, Tom Palmstierna1999 –Not to be copied without express written permission by one of the author or Frenzs B.V. Copyright information: https://www.frenzs.org/soas-r/.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Staff Observation Aggression Scale - Revised (SOAS-R)
+        data matches {
+            Node[id6] occurrences matches {0..1} matches {    -- Incident number
+                value matches {
+                    Text[id76]
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Provocation
+                items matches {
+                    Node[id15] occurrences matches {0..1} matches {    -- No understandle provocation
+                        value matches {
+                            Boolean_value[id77] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                    Node[id16] matches {    -- Provoked by
+                        value matches {
+                            Coded_text[id78] matches {
+                                term matches {
+                                    Terminology_term[id97] matches {
+                                        concept matches {[ac1]}    -- Provoked by (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id22] occurrences matches {0..1} matches {    -- Other named provocations
+                        value matches {
+                            Text[id79]
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- Means used by the patient
+                items matches {
+                    Node[id23] occurrences matches {0..1} matches {    -- Verbal aggression
+                        value matches {
+                            Boolean_value[id80] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                    Node[id24] matches {    -- Ordinary objects
+                        value matches {
+                            Coded_text[id81] matches {
+                                term matches {
+                                    Terminology_term[id98] matches {
+                                        concept matches {[ac2]}    -- Ordinary objects (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id28] occurrences matches {0..1} matches {    -- Other named objects
+                        value matches {
+                            Text[id82]
+                        }
+                    }
+                    Node[id29] matches {    -- Parts of the body
+                        value matches {
+                            Coded_text[id83] matches {
+                                term matches {
+                                    Terminology_term[id99] matches {
+                                        concept matches {[ac3]}    -- Parts of the body (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id34] occurrences matches {0..1} matches {    -- Other
+                        value matches {
+                            Text[id84]
+                        }
+                    }
+                    Node[id35] matches {    -- Dangerous objects or methods
+                        value matches {
+                            Coded_text[id85] matches {
+                                term matches {
+                                    Terminology_term[id100] matches {
+                                        concept matches {[ac4]}    -- Dangerous objects or methods (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id39] occurrences matches {0..1} matches {    -- Other objects or methods
+                        value matches {
+                            Text[id86]
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Target of aggression
+                items matches {
+                    Node[id40] occurrences matches {0..1} matches {    -- Nothing/nobody
+                        value matches {
+                            Boolean_value[id87] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                    Node[id41] matches {    -- Target
+                        value matches {
+                            Coded_text[id88] matches {
+                                term matches {
+                                    Terminology_term[id101] matches {
+                                        concept matches {[ac5]}    -- Target (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id47] occurrences matches {0..1} matches {    -- Other persons
+                        value matches {
+                            Text[id89]
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Consequence(s) for victim(s)
+                items matches {
+                    Node[id48] occurrences matches {0..1} matches {    -- No
+                        value matches {
+                            Boolean_value[id90] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                    Node[id49] matches {    -- Objects
+                        value matches {
+                            Coded_text[id91] matches {
+                                term matches {
+                                    Terminology_term[id102] matches {
+                                        concept matches {[ac6]}    -- Objects (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id52] matches {    -- Persons
+                        value matches {
+                            Coded_text[id92] matches {
+                                term matches {
+                                    Terminology_term[id103] matches {
+                                        concept matches {[ac7]}    -- Persons (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id60] occurrences matches {0..1} matches {    -- Other, namely
+                        value matches {
+                            Text[id93]
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Measures to stop aggression
+                items matches {
+                    Node[id61] occurrences matches {0..1} matches {    -- None
+                        value matches {
+                            Boolean_value[id94] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                    Node[id62] matches {    -- Measures
+                        value matches {
+                            Coded_text[id95] matches {
+                                term matches {
+                                    Terminology_term[id104] matches {
+                                        concept matches {[ac8]}    -- Measures (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id71] occurrences matches {0..1} matches {    -- Other measures
+                        value matches {
+                            Text[id96]
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id75] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at52", "at53", "at54", "at55", "at56", "at57", "at58">
+        >
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at16", "at17", "at18", "at19", "at20">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at24", "at25", "at26">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at29", "at30", "at31", "at32">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at35", "at36", "at37">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at41", "at42", "at43", "at44", "at45">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at49", "at50">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at62", "at63", "at64", "at65", "at66", "at67", "at68", "at69">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Provoked by (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"Ordinary objects (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac3"] = <
+                text = <"Parts of the body (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac4"] = <
+                text = <"Dangerous objects or methods (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac5"] = <
+                text = <"Target (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac6"] = <
+                text = <"Objects (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac7"] = <
+                text = <"Persons (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac8"] = <
+                text = <"Measures (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at16"] = <
+                text = <"Other patient(s)">
+                description = <"">
+            >
+            ["at17"] = <
+                text = <"Help with ADL">
+                description = <"">
+            >
+            ["at18"] = <
+                text = <"Patient being denied something">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"Staff requiering patient to take medication">
+                description = <"">
+            >
+            ["at20"] = <
+                text = <"Other provocations, namely">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"Chari(s)">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"Glass(ware)">
+                description = <"">
+            >
+            ["at26"] = <
+                text = <"Other, namely">
+                description = <"">
+            >
+            ["at29"] = <
+                text = <"Hand">
+                description = <"Hitting, puncing etc.">
+            >
+            ["at30"] = <
+                text = <"Foot">
+                description = <"Kicking.">
+            >
+            ["at31"] = <
+                text = <"Teeth">
+                description = <"Biting.">
+            >
+            ["at32"] = <
+                text = <"Other, namely">
+                description = <"">
+            >
+            ["at35"] = <
+                text = <"Knife">
+                description = <"">
+            >
+            ["at36"] = <
+                text = <"Strangulation">
+                description = <"">
+            >
+            ["at37"] = <
+                text = <"Other, namely">
+                description = <"">
+            >
+            ["at41"] = <
+                text = <"Objetc(s)">
+                description = <"">
+            >
+            ["at42"] = <
+                text = <"Other patient(s)">
+                description = <"">
+            >
+            ["at43"] = <
+                text = <"Patient self">
+                description = <"">
+            >
+            ["at44"] = <
+                text = <"Staff member(s)">
+                description = <"">
+            >
+            ["at45"] = <
+                text = <"Other persons, namely">
+                description = <"">
+            >
+            ["at49"] = <
+                text = <"Damaged, replacement not necessary">
+                description = <"">
+            >
+            ["at50"] = <
+                text = <"Damaged, replacement necessary">
+                description = <"">
+            >
+            ["at52"] = <
+                text = <"Felt threatened">
+                description = <"">
+            >
+            ["at53"] = <
+                text = <"Pain < 10 min">
+                description = <"">
+            >
+            ["at54"] = <
+                text = <"Pain > 10 min">
+                description = <"">
+            >
+            ["at55"] = <
+                text = <"Visible injury">
+                description = <"">
+            >
+            ["at56"] = <
+                text = <"Need for treatment">
+                description = <"">
+            >
+            ["at57"] = <
+                text = <"Need for treatment by a physician">
+                description = <"">
+            >
+            ["at58"] = <
+                text = <"Other, namely">
+                description = <"">
+            >
+            ["at62"] = <
+                text = <"Talk to patient">
+                description = <"">
+            >
+            ["at63"] = <
+                text = <"Calmly brought away">
+                description = <"">
+            >
+            ["at64"] = <
+                text = <"Peroral medication">
+                description = <"">
+            >
+            ["at65"] = <
+                text = <"Parenteral medication">
+                description = <"">
+            >
+            ["at66"] = <
+                text = <"Held with force">
+                description = <"">
+            >
+            ["at67"] = <
+                text = <"Seclusion/isolation">
+                description = <"Locked door.">
+            >
+            ["at68"] = <
+                text = <"Mechanical restraints">
+                description = <"">
+            >
+            ["at69"] = <
+                text = <"Other measures, namely">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Staff Observation Aggression Scale - Revised (SOAS-R)">
+                description = <"An instrument for monitoring the frequency, nature, and severity of aggressive incidents.">
+            >
+            ["id10"] = <
+                text = <"Provocation">
+                description = <"">
+            >
+            ["id11"] = <
+                text = <"Target of aggression">
+                description = <"">
+            >
+            ["id12"] = <
+                text = <"Means used by the patient">
+                description = <"">
+            >
+            ["id13"] = <
+                text = <"Consequence(s) for victim(s)">
+                description = <"">
+            >
+            ["id14"] = <
+                text = <"Measures to stop aggression">
+                description = <"">
+            >
+            ["id15"] = <
+                text = <"No understandle provocation">
+                description = <"">
+            >
+            ["id16"] = <
+                text = <"Provoked by">
+                description = <"">
+            >
+            ["id22"] = <
+                text = <"Other named provocations">
+                description = <"Related to the 'Other, provocations, namely:' option from the 'Provocation' Node.">
+            >
+            ["id23"] = <
+                text = <"Verbal aggression">
+                description = <"">
+            >
+            ["id24"] = <
+                text = <"Ordinary objects">
+                description = <"">
+            >
+            ["id28"] = <
+                text = <"Other named objects">
+                description = <"Related to the 'Other, objects:' option from the 'Ordinary objects' Node.">
+            >
+            ["id29"] = <
+                text = <"Parts of the body">
+                description = <"">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"">
+            >
+            ["id34"] = <
+                text = <"Other">
+                description = <"Related to the 'Other, namely:' option from the 'Parts of the body' Node.">
+            >
+            ["id35"] = <
+                text = <"Dangerous objects or methods">
+                description = <"">
+            >
+            ["id39"] = <
+                text = <"Other objects or methods">
+                description = <"Related to the 'Other, namely:' option from the 'Dangerous objects or methods' Node.">
+            >
+            ["id40"] = <
+                text = <"Nothing/nobody">
+                description = <"">
+            >
+            ["id41"] = <
+                text = <"Target">
+                description = <"">
+            >
+            ["id47"] = <
+                text = <"Other persons">
+                description = <"Related to the 'Other, persons:' option from the 'Target' Node.">
+            >
+            ["id48"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["id49"] = <
+                text = <"Objects">
+                description = <"">
+            >
+            ["id52"] = <
+                text = <"Persons">
+                description = <"">
+            >
+            ["id6"] = <
+                text = <"Incident number">
+                description = <"A number that can be used as a refrence. For exsample a refrence number recorded in a incident reporting system.">
+            >
+            ["id60"] = <
+                text = <"Other, namely">
+                description = <"Related to the 'Other, namely:' option from the 'Persons' Node.">
+            >
+            ["id61"] = <
+                text = <"None">
+                description = <"">
+            >
+            ["id62"] = <
+                text = <"Measures">
+                description = <"">
+            >
+            ["id71"] = <
+                text = <"Other measures">
+                description = <"Related to the 'Other, measures:' option from the 'Measures' Node.">
+            >
+            ["id75"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+        >
+    >
+    

@@ -1,0 +1,286 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a9e5cb92-0a11-4dde-a0c8-c79b33cd7e3d)
+    s2-EHR-Direct_observation.paced_auditory_serial_addition_test.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+    translations = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            author = <
+                ["name"] = <"Michael Braun">
+                ["organisation"] = <"University Medical Center Freiburg, Germany">
+                ["email"] = <"braun@imbi.uni-freiburg.de">
+            >
+        >
+    >
+    
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    other_contributors = <"Sebastian Bischoff, gfnmediber GmbH, Germany", "Martin Boeker, University Medical Center Freiburg, Germany", "Michael Braun, University Medical Center Freiburg, Germany (Editor)", "Sebastian Garde, Ocean Informatics, Germany", "Heather Leslie, Ocean Informatics, Australia", "Sebastian Mansow-Model, gfnmediber GmbH, Germany", "Catalina Martínez-Costa, Medical University of Graz, Austria", "Vyacheslav Mavrin, JSC Comsoft, Russia", "Ian McNicoll, Ocean Informatics, United Kingdom (Editor)", "Alexander U. Brandt, gfnmediber GmbH, Germany", "Susanne Walter, University Medical Center Freiburg, Germany">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Michael Braun, University Medical Center Freiburg, Germany, <braun@imbi.uni-freiburg.de>, 2012-10-17">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.paced_auditory_serial_addition_test.v1.0.0, copyright 2012 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.paced_auditory_serial_addition_test.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the measurements recorded during a Paced Auditory Serial Addition Test, normally as part of the Multiple Sclerosis Functional Composite suite of tests.">
+            keywords = <"PASAT", "Multiple Sclerosis Functional Composite", "MSFC", "Multiple Sclerosis", "MS", "Neurology">
+            use = <"Use to record the measurements recorded during a Paced Auditory Serial Addition Test. This test is commonly carried out as one component of the Multiple Sclerosis Functional Composite, but may be performed independently. 61 single-digit numbers are presented to the subject one by one. During PASAT-3'' a new number is presented every three seconds, in the optional PASAT-2'' every two seconds. In each case the subject is asked to respond with the sum of the last two digits (not the running total). That is, there is a maximum of 60 possible correct sums.
+            
+            Use the MSFC Manual for detailed administration instructions. Prior to the recording of the actual tests at least one practice trial has to be performed (this training sequence is part of the PASAT). If less than three correct answers were given, the practice trial should be repeated (up to three times). If more than two correct answers were given, the PASAT-3'' can be administered (the patient should have understood the task sufficiently). To obtain additional information about the cognitive functions, the PASAT-2'' can be performed optionally after the 3'' test. The tests should only be administered by a suitably trained person.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Paced Auditory Serial Addition Test
+        data matches {
+            Node[id16] occurrences matches {0..1} matches {    -- Anzahl korrekter Ergebnisse
+                value matches {
+                    Count[id72] matches {
+                        magnitude matches {|0..60|}
+                    }
+                }
+            }
+            Node[id30] occurrences matches {0..1} matches {    -- Anzahl korrekter Ergebnisse in der ersten Hälfte
+                value matches {
+                    Count[id73] matches {
+                        magnitude matches {|0..30|}
+                    }
+                }
+            }
+            Node[id31] occurrences matches {0..1} matches {    -- Anzahl korrekter Ergebnisse in der zweiten Hälfte
+                value matches {
+                    Count[id74] matches {
+                        magnitude matches {|0..30|}
+                    }
+                }
+            }
+            Node[id32] occurrences matches {0..1} matches {    -- Anzahl der Rechenfehler
+                value matches {
+                    Count[id75] matches {
+                        magnitude matches {|0..60|}
+                    }
+                }
+            }
+            Node[id33] occurrences matches {0..1} matches {    -- Anzahl der Auslassungsfehler
+                value matches {
+                    Count[id76] matches {
+                        magnitude matches {|0..60|}
+                    }
+                }
+            }
+            Node[id64] occurrences matches {0..1} matches {    -- Prozentwert korrekter Ergebnisse
+                value matches {
+                    Measured<Quantity>[id89] matches {
+                        value matches {
+                            Quantity[id77] matches {
+                                magnitude matches {|0.0..60.0|; 0.0}
+                                units matches {
+                                    Coded_text[id88] matches {
+                                        term matches {
+                                            Terminology_term[id87] matches {
+                                                concept matches {[at15]}    -- %
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id56] occurrences matches {0..1} matches {    -- Test nicht beendet?
+                value matches {
+                    Boolean_value[id78] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id50] matches {    -- Grund für Nichtbeenden
+                value matches {
+                    Text[id79]
+                }
+            }
+        }
+        state matches {
+            Node[id55] matches {    -- Begleitumstände
+                value matches {
+                    Text[id80]
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id13] occurrences matches {0..1} matches {    -- Verwendete Zahlensequenz
+                value matches {
+                    Coded_text[id83] matches {
+                        term matches {
+                            Terminology_term[id90] matches {
+                                concept matches {[ac1]}    -- Verwendete Zahlensequenz (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id69] occurrences matches {0..1} matches {    -- Übungssequenz durchgeführt?
+                value matches {
+                    Boolean_value[id84] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id70] occurrences matches {0..1} matches {    -- Zusätzliche Anläufe?
+                value matches {
+                    Boolean_value[id85] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id71] matches {    -- Grund für zusätzliche Anläufe
+                value matches {
+                    Text[id86]
+                }
+            }
+        }
+        data_series matches {
+            Point_event[id66] occurrences matches {0..1} matches {    -- PASAT-2''
+                items matches {
+                    use_node Node[id16] /data[id16]    -- Anzahl korrekter Ergebnisse
+                    use_node Node[id30] /data[id30]    -- Anzahl korrekter Ergebnisse in der ersten Hälfte
+                    use_node Node[id31] /data[id31]    -- Anzahl korrekter Ergebnisse in der zweiten Hälfte
+                    use_node Node[id32] /data[id32]    -- Anzahl der Rechenfehler
+                    use_node Node[id33] /data[id33]    -- Anzahl der Auslassungsfehler
+                    use_node Node[id64] /data[id64]    -- Prozentwert korrekter Ergebnisse
+                    use_node Node[id56] /data[id56]    -- Test nicht beendet?
+                    use_node Node[id50] /data[id50]    -- Grund für Nichtbeenden
+                }
+            }
+        }
+        state_series matches {
+            Point_event[id66] occurrences matches {0..1} matches {    -- PASAT-2''
+                items matches {
+                    use_node Node[id55] /state[id55]    -- Begleitumstände
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["ucum"] = <
+            ["at15"] = <http://ucum.org/id/%25>
+        >
+        ["snomed"] = <
+            ["at15"] = <http://snomed.info/id/415067009>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at13", "at14">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Number Sequence Used (synthesised)">
+                description = <"Record which sequence of numbers was used. (synthesised)">
+            >
+            ["at13"] = <
+                text = <"Form A">
+                description = <"The Form A number sequence was used.">
+            >
+            ["at14"] = <
+                text = <"Form B">
+                description = <"The Form B number sequence was used.">
+            >
+            ["at15"] = <
+                text = <"%">
+                description = <"Percent">
+            >
+            ["id1"] = <
+                text = <"Paced Auditory Serial Addition Test">
+                description = <"The Paced Auditory Serial Addition Test (PASAT) measures the cognitive function that specifically assesses auditory information processing speed and flexibility, as well as calculation ability of a patient. It is the third component of the Multiple Sclerosis Functional Composite (MSFC), a series of three tests to document the course of Multiple Sclerosis.">
+            >
+            ["id13"] = <
+                text = <"Number Sequence Used">
+                description = <"Record which sequence of numbers was used.">
+            >
+            ["id16"] = <
+                text = <"Total Correct Answers">
+                description = <"The number of correctly summed answers.">
+            >
+            ["id30"] = <
+                text = <"First Half Total Correct Answers">
+                description = <"The number of correctly summed answers in the first half of the test.">
+            >
+            ["id31"] = <
+                text = <"Second Half Total Correct Answers">
+                description = <"The number of correctly summed answers in the second half of the test.">
+            >
+            ["id32"] = <
+                text = <"Total Errors of Commission">
+                description = <"The total number of occasions where the subject was able to give a response but the answer was incorrect.">
+            >
+            ["id33"] = <
+                text = <"Total Errors of Omission">
+                description = <"The total number of occasions where the subject was unable to perform the calculation.">
+            >
+            ["id50"] = <
+                text = <"Reason for Non-completion">
+                description = <"If the trial was terminated prematurely, record any reasons for this.">
+            >
+            ["id55"] = <
+                text = <"Confounding Factors">
+                description = <"Record any circumstances that may have affected the patient's perfomance.">
+            >
+            ["id56"] = <
+                text = <"Test Not Completed?">
+                description = <"Was the test incomplete?">
+            >
+            ["id64"] = <
+                text = <"Percentage of Correct Answers">
+                description = <"Percentage of correctly summed answers.">
+            >
+            ["id65"] = <
+                text = <"PASAT-3''">
+                description = <"PASAT where stimuli are given to the subject every three seconds.">
+            >
+            ["id66"] = <
+                text = <"PASAT-2''">
+                description = <"PASAT where stimuli are given to the subject every two seconds (not to be used if the subject is unable to give single correct answer on PASAT-3'').">
+            >
+            ["id69"] = <
+                text = <"Practice Trial Conducted?">
+                description = <"Has a practice trial been conducted?">
+            >
+            ["id70"] = <
+                text = <"Additional Attempts?">
+                description = <"Did it take more than one attempt to achieve one successful trial?">
+            >
+            ["id71"] = <
+                text = <"Reason for Additional Attempts">
+                description = <"If more than one attempted trial was needed to complete the test, please specify reasons.">
+            >
+        >
+    >
+    

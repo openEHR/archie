@@ -1,0 +1,388 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5a9ff52a-be91-43b3-889e-ed0f6e28d776)
+    s2-EHR-Score.padss.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-02-19">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.padss.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.padss.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the PADSS.">
+            keywords = <"recovery", "anaesthesia", "post-anaesthesia", "discharge", "ambulatory">
+            use = <"Use to record the results for each component parameter and their total sum for the PADSS.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Post Anaesthesia Discharge Scoring System (PADSS)
+        data matches {
+            Node[id13] occurrences matches {0..1} matches {    -- Vital signs
+                value matches {
+                    Coded_ordinal[id34] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id36] matches {
+                                term matches {
+                                    Terminology_term[id35] matches {
+                                        concept matches {[at13]}    -- BP and pulse ±>40% of pre-operative baseline
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id37] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id39] matches {
+                                term matches {
+                                    Terminology_term[id38] matches {
+                                        concept matches {[at14]}    -- BP and pulse ±20-40% of pre-operative baseline
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id40] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id42] matches {
+                                term matches {
+                                    Terminology_term[id41] matches {
+                                        concept matches {[at15]}    -- BP and pulse ±<20% of pre-operative baseline
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Activity level
+                value matches {
+                    Coded_ordinal[id43] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id45] matches {
+                                term matches {
+                                    Terminology_term[id44] matches {
+                                        concept matches {[at5]}    -- Unable to ambulate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id46] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id48] matches {
+                                term matches {
+                                    Terminology_term[id47] matches {
+                                        concept matches {[at6]}    -- Requires assistance
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id49] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id51] matches {
+                                term matches {
+                                    Terminology_term[id50] matches {
+                                        concept matches {[at7]}    -- Steady gait, no dizziness, or meets preoperative level
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Nausea and vomiting
+                value matches {
+                    Coded_ordinal[id52] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id54] matches {
+                                term matches {
+                                    Terminology_term[id53] matches {
+                                        concept matches {[at9]}    -- Severe: continues after repeated treatment
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id55] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id57] matches {
+                                term matches {
+                                    Terminology_term[id56] matches {
+                                        concept matches {[at10]}    -- Moderate: successfully treated with IM medication
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id58] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id60] matches {
+                                term matches {
+                                    Terminology_term[id59] matches {
+                                        concept matches {[at11]}    -- Minimal: successfully treated with PO medication
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Pain acceptable
+                value matches {
+                    Coded_ordinal[id61] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id63] matches {
+                                term matches {
+                                    Terminology_term[id62] matches {
+                                        concept matches {[at18]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id64] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id66] matches {
+                                term matches {
+                                    Terminology_term[id65] matches {
+                                        concept matches {[at19]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Surgical bleeding
+                value matches {
+                    Coded_ordinal[id67] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id69] matches {
+                                term matches {
+                                    Terminology_term[id68] matches {
+                                        concept matches {[at21]}    -- Severe: more than three dressing changes required
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id70] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id72] matches {
+                                term matches {
+                                    Terminology_term[id71] matches {
+                                        concept matches {[at22]}    -- Moderate: up to two dressing changes required
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id73] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id75] matches {
+                                term matches {
+                                    Terminology_term[id74] matches {
+                                        concept matches {[at23]}    -- Minimal: does not require dressing change
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id25] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id33] matches {
+                        magnitude matches {|0..10|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id27] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at13", "at14", "at15">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at5", "at6", "at7">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at9", "at10", "at11">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at18", "at19">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at21", "at22", "at23">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Vital signs (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"Activity level (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac3"] = <
+                text = <"Nausea and vomiting (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac4"] = <
+                text = <"Pain acceptable (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac5"] = <
+                text = <"Surgical bleeding (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at10"] = <
+                text = <"Moderate: successfully treated with IM medication">
+                description = <"">
+            >
+            ["at11"] = <
+                text = <"Minimal: successfully treated with PO medication">
+                description = <"">
+            >
+            ["at13"] = <
+                text = <"BP and pulse ±>40% of pre-operative baseline">
+                description = <"">
+            >
+            ["at14"] = <
+                text = <"BP and pulse ±20-40% of pre-operative baseline">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"BP and pulse ±<20% of pre-operative baseline">
+                description = <"">
+            >
+            ["at18"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at21"] = <
+                text = <"Severe: more than three dressing changes required">
+                description = <"">
+            >
+            ["at22"] = <
+                text = <"Moderate: up to two dressing changes required">
+                description = <"">
+            >
+            ["at23"] = <
+                text = <"Minimal: does not require dressing change">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"Unable to ambulate">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Requires assistance">
+                description = <"">
+            >
+            ["at7"] = <
+                text = <"Steady gait, no dizziness, or meets preoperative level">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"Severe: continues after repeated treatment">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Post Anaesthesia Discharge Scoring System (PADSS)">
+                description = <"An assessment score used to evaluate recovery after anaesthesia for determining home-readiness.">
+            >
+            ["id13"] = <
+                text = <"Vital signs">
+                description = <"">
+            >
+            ["id17"] = <
+                text = <"Pain acceptable">
+                description = <"">
+            >
+            ["id21"] = <
+                text = <"Surgical bleeding">
+                description = <"">
+            >
+            ["id25"] = <
+                text = <"Total score">
+                description = <"The total sum of each component parameter for the PADSS.">
+            >
+            ["id27"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Activity level">
+                description = <"">
+            >
+            ["id9"] = <
+                text = <"Nausea and vomiting">
+                description = <"">
+            >
+        >
+    >
+    

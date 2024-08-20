@@ -1,0 +1,119 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=7c7360a6-8cf6-4e38-95fe-02822f160a0a)
+    s2-EHR-Direct_observation.das28-CRP.v0.0.1-alpha
+
+specialize
+    s2-EHR-Direct_observation.das28.v0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Mark Greenhalgh, Operon Limited, UK", "Ian McNicoll, freshEHR Clinical Informatics, UK", "Hildi McNicoll, freshEHR Clinical Informatics, UK", "Nadim Anani, Sweden">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2016-11-18">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.das28-CRP.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.das28-CRP.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the individual DAS28-CRP parameters and total score.">
+            keywords = <"DAS28", "rheumatoid arthritis", "disease activity">
+            use = <"Use to record the individual DAS28-CRP parameters and total score as an assessment of disease activity in rheumatoid arthritis.">
+            misuse = <"Not to be used to record the DAS28 score using the ESR result. Use OBSERVATION.das28 for this purpose.">
+        >
+    >
+    
+definition
+    Direct_observation[id1.1] matches {    -- Disease Activity Score-28 with CRP (DAS28‐CRP)
+        /data matches {
+            Node[id7] occurrences matches {0} 
+            Node[id9.1]     -- DAS28-CRP score
+            Node[id16.1]     -- DAS28-CRP(3) score
+            Node[id0.1] occurrences matches {0..1} matches {    -- CRP result
+                value matches {
+                    Measured<Quantity>[id0.3] matches {
+                        value matches {
+                            Quantity[id0.2] matches {
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id0.5] matches {
+                                        term matches {
+                                            Terminology_term[id0.4] matches {
+                                                concept matches {[at0.2]}    -- mg/L
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at0.1"] = <http://openehr.org/id/119>
+        >
+        ["ucum"] = <
+            ["at0.2"] = <http://ucum.org/id/mg%2FL>
+        >
+        ["snomed"] = <
+            ["at0.2"] = <http://snomed.info/id/258796002>
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["at0.1"] = <
+                text = <"Concentration">
+                description = <"Concentration">
+            >
+            ["at0.2"] = <
+                text = <"mg/L">
+                description = <"mg/L unit.">
+            >
+            ["id0.1"] = <
+                text = <"CRP result">
+                description = <"C-reactive protein test result.">
+            >
+            ["id1.1"] = <
+                text = <"Disease Activity Score-28 with CRP (DAS28‐CRP)">
+                description = <"Assessment tool used as a measure of disease activity in rheumatoid arthritis (RA), using CRP result.">
+            >
+            ["id16.1"] = <
+                text = <"DAS28-CRP(3) score">
+                description = <"DAS 28-CRP score using only 3 variables, when the Global health parameter is not available.">
+            >
+            ["id7.1"] = <
+                text = <"ESR result">
+                description = <"Erythrocyte sedimentation rate test result.">
+            >
+            ["id9.1"] = <
+                text = <"DAS28-CRP score">
+                description = <"Total DAS 28-CRP score.">
+            >
+        >
+    >
+    

@@ -1,0 +1,143 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9876c96a-005a-42bf-a680-b15506f181de)
+	s2-EHR-Node.bioreagent.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-01-28">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.bioreagent.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.bioreagent.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the details about a bioreagent or laboratory consumable used as part of a diagnostic or therapeutic procedure in healthcare.">
+			use = <"Use to record the details about a bioreagent or laboratory consumable used as part of a diagnostic or therapeutic procedure in healthcare.
+            
+            This archetype has been designed for broad reuse within other archetypes that need to identify the use of a specific bioreagent. For example, to nest within the 'Procedure detail' SLOT in the ACTION.procedure archetype in assisted reproduction treatment procedures such as: 
+            - oocyte denudation; 
+            - assisted oocyte activation; 
+            - cryopreservation and thawing of cells or embryos; and
+            - fertilisation by intracytoplasmic sperm injection (ICSI).">
+			keywords = <"chemical", "biochemical", "reagent", "biosubstance", "substance", "laboratory", "product", "material", "medium">
+			misuse = <"Not to be used to record data about medicinal products that exert a direct pharmacological, metabolic or immunologic effect. For example: a medicine that requires a prescription should be recorded using the  INSTRUCTION.medication_order archetype, focused on the active ingredients, dosage etc.
+            
+            Not to be used to record data about medical devices, instruments or equipment used during diagnostic or therapeutic procedures - use the appropriate archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Bioreagent
+		items matches {
+			Node[id2] matches {	-- Name
+				value matches {
+					Text[id24] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Type
+				value matches {
+					Text[id25] 
+				}
+			}
+			Node[id22] matches {	-- Identifier
+				value matches {
+					Rwe_id_ref[id26] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Manufacturer
+				value matches {
+					Text[id27] 
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Catalogue number
+				value matches {
+					Text[id28] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Batch number
+				value matches {
+					Text[id29] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Date of expiry
+				value matches {
+					Date_time_value[id30] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id31] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Bioreagent">
+				description = <"A substance, compound, product or material used to identify or manipulate the chemical matter, or used to support the growth of cells or tissues, as part of a diagnostic or therapeutic procedure in healthcare.">
+			>
+			["id2"] = <
+				text = <"Name">
+				description = <"Identification of the reagent or consumable, preferably by a common name, a formal fully descriptive name or, if required, by class or category.">
+			>
+			["id22"] = <
+				text = <"Identifier">
+				description = <"A unique identifier allocated by a specified registry.">
+			>
+			["id23"] = <
+				text = <"Catalogue number">
+				description = <"The number assigned by the manufacturer, as it appears in the manufacturer's catalogue, labeling, or accompanying packaging.">
+			>
+			["id4"] = <
+				text = <"Type">
+				description = <"The category or type of reagent or consumable.">
+			>
+			["id5"] = <
+				text = <"Manufacturer">
+				description = <"Name of manufacturer.">
+			>
+			["id7"] = <
+				text = <"Batch number">
+				description = <"The number assigned by the manufacturer which identifies a group of items manufactured at the same time, usually found on the label or packaging material.">
+			>
+			["id8"] = <
+				text = <"Date of expiry">
+				description = <"Date after which the device/product is no longer fit for use, usually found on the reagent itself or printed on the accompanying packaging.">
+			>
+			["id9"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the bioreagent not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id9"] = <http://loinc.org/106173-8>
+		>
+	>
+

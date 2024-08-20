@@ -1,0 +1,200 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=68f07423-8a36-49eb-bc19-aa42dd5384ee)
+    s2-EHR-Direct_observation.lenke_classification.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Randi Brendberg, Helse Nord RHF, Norway", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Kanika Kuwelker, Helse Vest IKT, Norway", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hanne Marte Bårholm, Helse Vest IKT, Norway", "Thomas Natvik, Helse Bergen, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Terje Sagmyr, Helse Vest IKT, Norway", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"John Tore Valand, Helse Vest IKT AS, <john.tore.valand@helse-vest-ikt.no>, 2022-06-17">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.lenke_classification.v1.0.0, copyright 2022 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.lenke_classification.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and the classification for the Lenke classification system.">
+            keywords = <"scoliosis", "orthopedics">
+            use = <"Use to record the results for each component parameter and the classification for the Lenke classification system.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Lenke classification system
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Curve type
+                value matches {
+                    Coded_text[id23] matches {
+                        term matches {
+                            Terminology_term[id27] matches {
+                                concept matches {[ac1]}    -- Curve type (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- Lumbar spine modifier
+                value matches {
+                    Coded_text[id24] matches {
+                        term matches {
+                            Terminology_term[id28] matches {
+                                concept matches {[ac2]}    -- Lumbar spine modifier (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- Thoracic sagittal modifier
+                value matches {
+                    Coded_text[id25] matches {
+                        term matches {
+                            Terminology_term[id29] matches {
+                                concept matches {[ac3]}    -- Thoracic sagittal modifier (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- Classification
+                value matches {
+                    Text[id26]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id21] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at22", "at23", "at24", "at25", "at26", "at27">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at12", "at13", "at14">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at16", "at17", "at18">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Curve type (synthesised)">
+                description = <"Based on evaluation of each of the three major spinal column regions; Proximal Thoracic, Main Thoracic, and Thoracolumbar/Lumbar. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Lumbar spine modifier (synthesised)">
+                description = <"Based on the position of the center sacral vertical line (CSVL) to the apex of the lumbar curve. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Thoracic sagittal modifier (synthesised)">
+                description = <"Based on the T5–T12 sagittal Cobb measurement on the standing lateral radiograph. (synthesised)">
+            >
+            ["at12"] = <
+                text = <"A">
+                description = <"Between pedicles.">
+            >
+            ["at13"] = <
+                text = <"B">
+                description = <"Touches apical body(ies).">
+            >
+            ["at14"] = <
+                text = <"C">
+                description = <"Completly medial.">
+            >
+            ["at16"] = <
+                text = <"-">
+                description = <"(Hypo), < 10°.">
+            >
+            ["at17"] = <
+                text = <"N">
+                description = <"(Normal), 10° - 40°.">
+            >
+            ["at18"] = <
+                text = <"+">
+                description = <"(Hyper), < 40°.">
+            >
+            ["at22"] = <
+                text = <"1">
+                description = <"Main Thoracic.">
+            >
+            ["at23"] = <
+                text = <"2">
+                description = <"Double Thoracic.">
+            >
+            ["at24"] = <
+                text = <"3">
+                description = <"Double Major.">
+            >
+            ["at25"] = <
+                text = <"4">
+                description = <"Triple Major.">
+            >
+            ["at26"] = <
+                text = <"5">
+                description = <"Thoracolumbar/Lumbar.">
+            >
+            ["at27"] = <
+                text = <"6">
+                description = <"Thoracolumbar/Lumbar-Main Thoracic.">
+            >
+            ["id1"] = <
+                text = <"Lenke classification system">
+                description = <"A system for classification of adolescent idiopathic scoliosis.">
+            >
+            ["id12"] = <
+                text = <"Lumbar spine modifier">
+                description = <"Based on the position of the center sacral vertical line (CSVL) to the apex of the lumbar curve.">
+            >
+            ["id16"] = <
+                text = <"Thoracic sagittal modifier">
+                description = <"Based on the T5–T12 sagittal Cobb measurement on the standing lateral radiograph.">
+            >
+            ["id20"] = <
+                text = <"Classification">
+                description = <"Concatenation of the three discrete components.">
+            >
+            ["id21"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Curve type">
+                description = <"Based on evaluation of each of the three major spinal column regions; Proximal Thoracic, Main Thoracic, and Thoracolumbar/Lumbar.">
+            >
+        >
+    >
+    

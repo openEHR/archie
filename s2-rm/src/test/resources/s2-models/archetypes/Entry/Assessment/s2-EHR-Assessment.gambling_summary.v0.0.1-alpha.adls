@@ -1,0 +1,90 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=14463181-9044-470a-a8cd-5410aa3f32a4)
+	s2-EHR-Assessment.gambling_summary.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-02-12">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.gambling_summary.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.gambling_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record an overview of the gambling activity by an individual or the impact of gambling on them by others.">
+			use = <"Use to record an overview of the gambling activity by an individual or the impact of gambling on them by others.">
+			misuse = <"">
+		>
+	>
+
+definition
+	Assessment[id1] matches {	-- Gambling summary
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id7] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id8] 
+				}
+			}
+			allow_archetype Node[id6] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Gambling summary">
+				description = <"Summary about the gambling activity by an individual or the impact of gambling on them by others.">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"Narrative description about the individual's gambling activity or the impact of gambling on them by others.">
+			>
+			["id5"] = <
+				text = <"Last updated">
+				description = <"The date this summary was last updated.">
+			>
+			["id6"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id3"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id5"] = <http://loinc.org/106177-9>
+		>
+	>
+

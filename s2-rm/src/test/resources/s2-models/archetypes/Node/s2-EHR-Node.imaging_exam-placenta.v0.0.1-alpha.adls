@@ -1,0 +1,169 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=801ce528-930f-4746-b12b-1214bb1c502f)
+    s2-EHR-Node.imaging_exam-placenta.v0.0.1-alpha
+
+specialize
+    s2-EHR-Node.imaging_exam.v1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Randi Brendberg, Helse Nord RHF, Norway", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anne Helbig, MD PhD, Oslo University Hospital, Norway", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Anjali Kulkarni, Karkinos, India", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Tina Tellum, Oslo Universitetssykehus, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Ina Wille, Helse-Vest RHF, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-11-24">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-placenta.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-placenta.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the findings on radiological examination of a placenta, and their interpretation.">
+            use = <"Use to record the findings on radiological examination of a placenta, and their interpretation.
+            
+            The intended scope for this archetype is to eventually record all detailed findings on radiological examination of the placenta using any modality. It is anticipated that further data Nodes may be added as requirements are identified and confirmed.
+            
+            This archetype is designed to be nested within the 'Placental findings' SLOT in the Node.imaging_exam-pregnant_uterus or within other relevant Node.imaging_exam archetypes, but can also be used within other ENTRY or Node archetypes, where clinically appropriate. If this archetype needs to be extended with further levels of structured findings, additional instances of the Node.imaging_exam or its specialisations can be nested in the 'Additional details' SLOT.">
+            misuse = <"Not to be used to record imaging examination findings for any body structure or region other than a placenta. Use other archetypes from the Node.imaging_exam family for this purpose.
+            
+            Not to be used to record details related to the overall findings, context or technical details related to a complete imaging examination test result. Use the OBERSERVATION.imaging_exam_result for this purpose. For example, comments on the study quality, differential diagnoses, and overall impression.">
+        >
+    >
+    
+definition
+    Node[id1.1] matches {    -- Imaging examination of a placenta
+        /items matches {
+            Node[id3.1]     -- Placental site
+            allow_archetype Node[id4] matches { 
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v2|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1/}
+            }
+            after [id5]
+            use_archetype Node[id0.3, s2-EHR-Node.imaging_exam-umbilical_cord.v0]    -- Umbilical cord findings
+            before [id6]
+            Node[id0.2] occurrences matches {0..1} matches {    -- Thickness
+                value matches {
+                    Quantity[id0.5] matches {    -- Thickness (mm)
+                        magnitude matches {|0.0..100.0|}
+                        units matches {
+                            Coded_text[id0.7] matches {
+                                term matches {
+                                    Terminology_term[id0.6] matches {
+                                        concept matches {[at0.3]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Quantity[id0.8] matches {    -- Thickness (cm)
+                        magnitude matches {|0.0..10.0|}
+                        units matches {
+                            Coded_text[id0.10] matches {
+                                term matches {
+                                    Terminology_term[id0.9] matches {
+                                        concept matches {[at0.4]}    -- cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /items[id2.1]/value matches {
+            Coded_text[id9.1] matches {
+                term matches {
+                    Terminology_term[id0.11] matches {
+                        concept matches {[at0.1]}    -- Placenta
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at0.1"] = <http://snomed.info/id/78067005>
+            ["at0.3"] = <http://snomed.info/id/258673006>
+            ["at0.4"] = <http://snomed.info/id/258672001>
+        >
+        ["openehr"] = <
+            ["at0.2"] = <http://openehr.org/id/122>
+        >
+        ["ucum"] = <
+            ["at0.3"] = <http://ucum.org/id/mm>
+            ["at0.4"] = <http://ucum.org/id/cm>
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["at0.1"] = <
+                text = <"Placenta">
+                description = <"">
+            >
+            ["at0.2"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["at0.3"] = <
+                text = <"mm">
+                description = <"mm unit.">
+            >
+            ["at0.4"] = <
+                text = <"cm">
+                description = <"Centimetres length unit">
+            >
+            ["id0.2"] = <
+                text = <"Thickness">
+                description = <"Measured thickness of the placenta.">
+            >
+            ["id0.3"] = <
+                text = <"Umbilical cord findings">
+                description = <"Structured details about a single umbilical cord.">
+            >
+            ["id0.5"] = <
+                text = <"Thickness (mm)">
+                description = <"Thickness (mm)">
+            >
+            ["id0.8"] = <
+                text = <"Thickness (cm)">
+                description = <"Thickness (cm)">
+            >
+            ["id1.1"] = <
+                text = <"Imaging examination of a placenta">
+                description = <"Findings on radiological examination of a placenta.">
+            >
+            ["id2.1"] = <
+                text = <"Body structure">
+                description = <"Identification of the body structure or region examined.">
+            >
+            ["id3.1"] = <
+                text = <"Placental site">
+                description = <"Identification of the area of the uterus where the placenta/placental mass is located.">
+            >
+            ["id4.1"] = <
+                text = <"Structured placental site">
+                description = <"Structured details about the area of the uterus where the placenta/placental mass is located.">
+            >
+        >
+    >
+    

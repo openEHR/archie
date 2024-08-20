@@ -1,0 +1,646 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8ce3c53d-13ff-4ee7-abae-5759cda91abe)
+	s2-EHR-Direct_observation.fundoscopic_examination.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2008-07-27">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.fundoscopic_examination.v0.0.1-alpha, copyright 2008 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.fundoscopic_examination.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about clinical findings on fundoscopy of eyes.">
+			use = <"">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Aitor Eguzkitza, Universidad Pública de Navarra - Complejo Hospitalario de Navarra, aitor.eguzkiza@unavarra.es", "Luis Serrano, Universidad Pública de Navarra (UPNA), lserrano@unavarra.es", "José Andonegui, Hospital de Navarra, jose.andonegui.navarro@cfnavarra.es", "Heather Leslie, Atomica Informatics, Australia">
+
+definition
+	Direct_observation[id1] matches {	-- Fundoscopic examination of eyes
+		data matches {
+			Node[id137] occurrences matches {0..2} matches {	-- Test Result
+				items matches {
+					Node[id5] occurrences matches {0..1} matches {	-- Eye examined
+						value matches {
+							Coded_text[id146] matches {
+								term matches {
+									Terminology_term[id173] matches {
+										concept matches {[ac4]}		-- Eye examined (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id9] occurrences matches {0..1} matches {	-- Clinical description
+						value matches {
+							Text[id147] 
+						}
+					}
+					Node[id54] occurrences matches {0..1} matches {	-- Red reflex
+						value matches {
+							Boolean_value[id148] matches {
+								value matches {True, False; False}
+							}
+						}
+					}
+					Node[id92] occurrences matches {0..1} matches {	-- Optic disc description
+						value matches {
+							Text[id149] 
+						}
+					}
+					Node[id91] occurrences matches {0..1} matches {	-- Macula description
+						value matches {
+							Text[id150] 
+						}
+					}
+					Node[id93] occurrences matches {0..1} matches {	-- Retinal arteries description
+						value matches {
+							Text[id151] 
+						}
+					}
+					Node[id94] occurrences matches {0..1} matches {	-- Retinal veins description
+						value matches {
+							Text[id152] 
+						}
+					}
+					Node[id95] occurrences matches {0..1} matches {	-- Retinal background description
+						value matches {
+							Text[id153] 
+						}
+					}
+					Node[id99] occurrences matches {0..1} matches {	-- Vitreous description
+						value matches {
+							Text[id154] 
+						}
+					}
+					Node[id144] occurrences matches {0..1} matches {	-- Clinical interpretation
+						value matches {
+							Text[id155] 
+						}
+					}
+					use_archetype Node[id143, s2-EHR-Node.media_file.v1] 
+					allow_archetype Node[id140] matches {	-- Additional findings
+						include
+							archetype_id/value matches {/s2-EHR-Node\.clinical_findings(-[a-zA-Z0-9_]+)*\.v1/}
+						exclude
+							archetype_id/value matches {/.*/}
+					}
+					use_archetype Node[id142, s2-EHR-Node.exclusion_exam.v1] 
+					Node[id127] matches {	-- Comment
+						value matches {
+							Text[id156] 
+						}
+					}
+				}
+			}
+		}
+		state matches {
+			Node[id141] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id157] 
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Mydriatic used
+				value matches {
+					Boolean_value[id158] matches {
+						value matches {True, False}
+					}
+				}
+			}
+			Node[id55] occurrences matches {0..1} matches {	-- Small pupil
+				value matches {
+					Boolean_value[id159] matches {
+						value matches {True, False; False}
+					}
+				}
+			}
+			Node[id125] occurrences matches {0..1} matches {	-- Uncooperative patient
+				value matches {
+					Boolean_value[id160] matches {
+						value matches {True, False; False}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id30] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id161] matches {
+						term matches {
+							Terminology_term[id174] matches {
+								concept matches {[ac5]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id90, s2-EHR-Node.device.v1] 
+			Node[id68] occurrences matches {0..1} matches {	-- Field angle
+				value matches {
+					Coded_text[id162] matches {
+						term matches {
+							Terminology_term[id175] matches {
+								concept matches {[ac6]}		-- Field angle (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id73] occurrences matches {0..1} matches {	-- Attempts
+				value matches {
+					Count[id163] matches {
+						magnitude matches {|1..3|}
+					}
+				}
+			}
+			Node[id74] occurrences matches {0..1} matches {	-- Subdivision of the retina
+				items matches {
+					Node[id75] matches {	-- ETRDS fields
+						value matches {
+							Coded_text[id166] matches {
+								term matches {
+									Terminology_term[id176] matches {
+										concept matches {[ac7]}		-- ETRDS fields (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id83] matches {	-- Mosaic and peripherals
+						value matches {
+							Coded_text[id167] matches {
+								term matches {
+									Terminology_term[id177] matches {
+										concept matches {[ac8]}		-- Mosaic and peripherals (synthesised)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id57] occurrences matches {0..1} matches {	-- Shadow artifact
+				value matches {
+					Boolean_value[id168] matches {
+						value matches {True, False; False}
+					}
+				}
+			}
+			Node[id56] occurrences matches {0..1} matches {	-- Cataract artifact
+				value matches {
+					Boolean_value[id169] matches {
+						value matches {True, False; False}
+					}
+				}
+			}
+			Node[id60] occurrences matches {0..1} matches {	-- Quality of visualisation
+				value matches {
+					Coded_ordinal[id178] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id180] matches {
+								term matches {
+									Terminology_term[id179] matches {
+										concept matches {[at60]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id181] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id183] matches {
+								term matches {
+									Terminology_term[id182] matches {
+										concept matches {[at61]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id184] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id186] matches {
+								term matches {
+									Terminology_term[id185] matches {
+										concept matches {[at62]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id187] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id189] matches {
+								term matches {
+									Terminology_term[id188] matches {
+										concept matches {[at63]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id190] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id192] matches {
+								term matches {
+									Terminology_term[id191] matches {
+										concept matches {[at64]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id59] occurrences matches {0..1} matches {	-- Visualisation description
+				value matches {
+					Text[id171] 
+				}
+			}
+			Node[id124] occurrences matches {0..1} matches {	-- High refraction
+				value matches {
+					Boolean_value[id172] matches {
+						value matches {True, False; False}
+					}
+				}
+			}
+			allow_archetype Node[id145] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac2"] = <
+				text = <"Subdivision of retina">
+				description = <"*">
+			>
+			["ac3"] = <
+				text = <"Diabetic Retinopathy Study field">
+				description = <"*">
+			>
+			["ac4"] = <
+				text = <"Eye examined (synthesised)">
+				description = <"Identification of the eye which is being examined. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Method (synthesised)">
+				description = <"Method chosen to perform the funduscopic examination. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Field angle (synthesised)">
+				description = <"Describes the optical acceptance angle of the lens used during the test. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"ETRDS fields (synthesised)">
+				description = <"Subdivision of the retina based on Diabetic Retinopathy Study fields. (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Mosaic and peripherals (synthesised)">
+				description = <"Division of the retina in quadrants + mosaic obtained from the combination of them. (synthesised)">
+			>
+			["ac9"] = <
+				text = <"Quality of visualisation (synthesised)">
+				description = <"Levels quantifying the quality of each acquisition, based in the ease to visualize the structures on the eye fundus. (synthesised)">
+			>
+			["at122"] = <
+				text = <"60º">
+				description = <"60º angle used to acquire eye fundus in some DR screening studies.">
+			>
+			["at129"] = <
+				text = <"Mydriatic retinography">
+				description = <"Observation of retina through funduscopic images acquired by previous dilatation of patient's pupils.">
+			>
+			["at130"] = <
+				text = <"Non-mydriatic retinography">
+				description = <"Observation of retina through funduscopic images acquired without previous dilatation of patient's pupils.">
+			>
+			["at131"] = <
+				text = <"Contact lens biomicroscopy">
+				description = <"Eye fundus viewing through biomicroscopy lens in contact to patient's eye surface.">
+			>
+			["at132"] = <
+				text = <"Non-contact lens biomicroscopy">
+				description = <"Eye fundus viewing through biomicroscopy lens without contact to patient's eye surface.">
+			>
+			["at135"] = <
+				text = <"Angiography">
+				description = <"Observation of the eye fundus using a fluorescent dye inyected to emphasize the blood vessels in the eye retina.">
+			>
+			["at137"] = <
+				text = <"Left eye">
+				description = <"The left eye was examined.">
+			>
+			["at138"] = <
+				text = <"Right eye">
+				description = <"The right eye was examined.">
+			>
+			["at30"] = <
+				text = <"Direct">
+				description = <"Study performed by direct ophthalmoscopy.">
+			>
+			["at31"] = <
+				text = <"Indirect">
+				description = <"Study of eye fundus by indirect ophthalmoscopy method.">
+			>
+			["at60"] = <
+				text = <"Quality inadequate for any diagnostic purpose">
+				description = <"*">
+			>
+			["at61"] = <
+				text = <"Unable to exclude all emergent findings">
+				description = <"*">
+			>
+			["at62"] = <
+				text = <"Only able to exclude emergent findings">
+				description = <"*">
+			>
+			["at63"] = <
+				text = <"Quality not ideal, but is possible to exclude subtle findings">
+				description = <"*">
+			>
+			["at64"] = <
+				text = <"Ideal quality">
+				description = <"*">
+			>
+			["at68"] = <
+				text = <"30º">
+				description = <"30º angle used for small pupil (SP) capture (for patients with pupil diameter <3.3mm).">
+			>
+			["at69"] = <
+				text = <"45º">
+				description = <"45º angle used to acquire eye fundus of normal pupils.">
+			>
+			["at70"] = <
+				text = <"100º">
+				description = <"Wide angle acquisition.">
+			>
+			["at71"] = <
+				text = <"200º">
+				description = <"Ultra-wide angle acquisition.">
+			>
+			["at75"] = <
+				text = <"Study field 1">
+				description = <"*">
+			>
+			["at76"] = <
+				text = <"Study field 2">
+				description = <"*">
+			>
+			["at77"] = <
+				text = <"Study field 3">
+				description = <"*">
+			>
+			["at78"] = <
+				text = <"Study field 4">
+				description = <"*">
+			>
+			["at79"] = <
+				text = <"Study field 5">
+				description = <"*">
+			>
+			["at80"] = <
+				text = <"Study field 6">
+				description = <"*">
+			>
+			["at81"] = <
+				text = <"Study field 7">
+				description = <"*">
+			>
+			["at83"] = <
+				text = <"Mosaic">
+				description = <"Mosaic obtained from combining every peripheral acquisitions and the center one.">
+			>
+			["at84"] = <
+				text = <"Central">
+				description = <"Image centered on the macula.">
+			>
+			["at85"] = <
+				text = <"Nasal">
+				description = <"Image centered on the optic nerve or papila.">
+			>
+			["at86"] = <
+				text = <"Temporal">
+				description = <"Image centered on the temporal quadrant of the retina.">
+			>
+			["at87"] = <
+				text = <"Superior">
+				description = <"Image centered on the superior half of the retina.">
+			>
+			["at88"] = <
+				text = <"Inferior">
+				description = <"Image centered on the inferior half of the retina.">
+			>
+			["id1"] = <
+				text = <"Fundoscopic examination of eyes">
+				description = <"Record of clinical findings on fundoscopy of eyes.">
+			>
+			["id124"] = <
+				text = <"High refraction">
+				description = <"True if the refraction of the eye exceeds the range from -12D to +15D.">
+			>
+			["id125"] = <
+				text = <"Uncooperative patient">
+				description = <"True if patient doesn't collaborate during the image acquisition.">
+			>
+			["id127"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the physical examination findings, not captured in other fields.">
+			>
+			["id137"] = <
+				text = <"Test Result">
+				description = <"Details of the funduscopic examination test result for each eye.">
+			>
+			["id140"] = <
+				text = <"Additional findings">
+				description = <"Additional structured details about the physical examination findings.">
+			>
+			["id141"] = <
+				text = <"Confounding factors">
+				description = <"Narrative description of factors, not recorded elsewhere, that may influence the clinical findings.">
+			>
+			["id142"] = <
+				text = <"Examination not done">
+				description = <"Details to explicitly record that this examination was not performed.">
+			>
+			["id143"] = <
+				text = <"Multimedia representation">
+				description = <"Digital image, video or diagram representing the physical examination findings.">
+			>
+			["id144"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the physical examination findings for the eye examined.">
+			>
+			["id145"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id15"] = <
+				text = <"Mydriatic used">
+				description = <"True if mydriatic is used.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Method">
+				description = <"Method chosen to perform the funduscopic examination.">
+			>
+			["id5"] = <
+				text = <"Eye examined">
+				description = <"Identification of the eye which is being examined.">
+			>
+			["id54"] = <
+				text = <"Red reflex">
+				description = <"True if Red Reflex is present.">
+			>
+			["id55"] = <
+				text = <"Small pupil">
+				description = <"True if during the acquisition, pupil diameter is smaller than normal (3,3mm).">
+			>
+			["id56"] = <
+				text = <"Cataract artifact">
+				description = <"True if cataract obstructs the visualization of eye fundus.">
+			>
+			["id57"] = <
+				text = <"Shadow artifact">
+				description = <"True if shadow artifact is present on the border of the image.">
+			>
+			["id59"] = <
+				text = <"Visualisation description">
+				description = <"Narrative description about visualisation.">
+			>
+			["id60"] = <
+				text = <"Quality of visualisation">
+				description = <"Levels quantifying the quality of each acquisition, based in the ease to visualize the structures on the eye fundus.">
+			>
+			["id68"] = <
+				text = <"Field angle">
+				description = <"Describes the optical acceptance angle of the lens used during the test.">
+			>
+			["id73"] = <
+				text = <"Attempts">
+				description = <"Number of attempts before obtaining the acquisition (doesn't compute if test is repeated by a specific recognized technical failure).">
+			>
+			["id74"] = <
+				text = <"Subdivision of the retina">
+				description = <"Subdivision of the retina identifying eye fundus image locations.">
+			>
+			["id75"] = <
+				text = <"ETRDS fields">
+				description = <"Subdivision of the retina based on Diabetic Retinopathy Study fields.">
+			>
+			["id83"] = <
+				text = <"Mosaic and peripherals">
+				description = <"Division of the retina in quadrants + mosaic obtained from the combination of them.">
+			>
+			["id9"] = <
+				text = <"Clinical description">
+				description = <"Narrative description of the overall findings observed during the physical examination of the eye examined.">
+			>
+			["id90"] = <
+				text = <"Device details">
+				description = <"Details of the device used to acquire eye fundus images.">
+			>
+			["id91"] = <
+				text = <"Macula description">
+				description = <"Narrative description about the macula.">
+			>
+			["id92"] = <
+				text = <"Optic disc description">
+				description = <"Narrative description about the optic disc.">
+			>
+			["id93"] = <
+				text = <"Retinal arteries description">
+				description = <"Narrative description about the retinal arteries.">
+			>
+			["id94"] = <
+				text = <"Retinal veins description">
+				description = <"Narrative description about the retinal veins.">
+			>
+			["id95"] = <
+				text = <"Retinal background description">
+				description = <"Narrative description about the retinal background.">
+			>
+			["id99"] = <
+				text = <"Vitreous description">
+				description = <"Narrative description about the vitreous humour.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at137"] = <http://snomed.info/id/362503005>
+			["at138"] = <http://snomed.info/id/362502000>
+			["ac3"] = <http://snomed.info/id/terminology:SNOMED-CT/408733002?subset=Diabetic%20Retinopathy%20Study%20field>
+		>
+		["loinc"] = <
+			["id144"] = <http://loinc.org/64110-0>
+			["id9"] = <http://loinc.org/61133-5>
+			["ac3"] = <http://loinc.org/terminology:SNOMED-CT/408733002?subset=Diabetic%20Retinopathy%20Study%20field>
+			["id127"] = <http://loinc.org/106173-8>
+			["id141"] = <http://loinc.org/106176-1>
+			["id30"] = <http://loinc.org/106191-0>
+			["id143"] = <http://loinc.org/104973-3>
+		>
+	>
+	value_sets = <
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at137", "at138">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at30", "at31", "at131", "at132", "at129", "at130", "at135">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at68", "at69", "at122", "at70", "at71">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at75", "at76", "at77", "at78", "at79", "at80", "at81">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at83", "at84", "at85", "at86", "at87", "at88">
+		>
+		["ac9"] = <
+			id = <"ac9">
+			members = <"at60", "at61", "at62", "at63", "at64">
+		>
+	>
+

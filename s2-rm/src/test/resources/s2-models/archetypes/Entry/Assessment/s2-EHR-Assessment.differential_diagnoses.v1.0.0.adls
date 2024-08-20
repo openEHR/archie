@@ -1,0 +1,177 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c43cf5f4-ddc1-4f95-81bf-b6efc1157149)
+    s2-EHR-Assessment.differential_diagnoses.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Andreas Abildgaard, OUS, Norway", "Sanyaolu Ameye, imhtech, Nigeria", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips ASA, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Terje Bektesevic Holmlund, UiT Norges arktiske universitet, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Fatemeh Chalabianloo, Helse Bergen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Vegar Dagenborg, OUS, Norway", "Einar Engtrø, DIPS AS, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Mikkel Gaup Grønmo, Helse-Nord, FSE, Norway (openEHR Editor)", "Maria G, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anne Grimstvedt Kvalvik, Haraldsplass Diakonale sykehus, Norway", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Dipak Kalra, United Kingdom", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia", "Pedro Leuschner, Centro Hospitalar do Porto, Portugal", "Domingo Liotta, University of Morón, Argentina", "Mark Luciani, Bath and North East Somerset, Swindon and Wiltshire Clinical Commisioning Group, United Kingdom", "James McClay, University of Nebraska Medical Center, United States", "Per Meinich, Helse Sør-Øst RHF, Norway", "Svenne Naumann, Finnmarkssykehuset, Norway", "Sam Philip, NHS Grampian, United Kingdom", "Sidharth Ramesh, Kasturba Medical College, India", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Benjamin Senst, Germany", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Micaela Thierley, Helse Vest IKT, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Anders Thurin, VGR, Sweden", "Jeremy Tong, NHS, United Kingdom", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sam Heard, Ocean Informatics, Australia, <Sam.Heard@OceanInformatics.com>, 2004-12-08">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.differential_diagnoses.v1.0.0, copyright 2004 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.differential_diagnoses.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details about one or more differential diagnoses that may be responsible for a single clinical presentation, examination findings and/or test results.">
+            keywords = <"differential", "diagnosis", "hypothesis", "alternative", "diagnostic">
+            use = <"To record details about one or more differential diagnoses that may be responsible for a single clinical presentation, examination findings and/or test results.
+            
+            This archetype has been designed to ensure that all differential diagnoses are recorded using a single model. In a clinical system, it would be expected that each differential diagnosis would be recorded using a separate instance of the 'Per differential' Node.
+            
+            Each differential diagnosis should be regarded as a temporary diagnostic hypothesis and should only be used in the earliest phases of the diagnostic process. In practice, clinicians may identify a list of one or more differential diagnoses, any one of which may explain the clinical presentation. As more information is gathered from the examination, diagnostic test results, or referrals, the list of differential diagnoses is gradually refined and outliers eliminated until one or more working, provisional, or preliminary diagnosis is determined. If a differential diagnosis is accepted as a likely diagnosis, it is anticipated that it will be formally entered into the health record as a Problem/Diagnosis using the EVALUATION.problem_diagnosis archetype. The Node.problem_qualifier archetype may be nested within the Problem/Diagnosis archetype to support annotation of the diagnosis as 'working' or 'preliminary'.">
+            misuse = <"Not to be used to record detailed information about a persistent problem or formal diagnosis - use the EVALUATION.problem_diagnosis for this purpose.">
+        >
+    >
+    
+definition
+    Assessment[id1] matches {    -- Differential diagnoses
+        data cardinality matches {1..*; unordered} matches {
+            Node[id3] occurrences matches {0..1} matches {    -- Overall description
+                value matches {
+                    Text[id17]
+                }
+            }
+            Node[id4] matches {    -- Per differential
+                items matches {
+                    Node[id5] matches {    -- Diagnosis name
+                        value matches {
+                            Text[id18]
+                        }
+                    }
+                    Node[id6] occurrences matches {0..1} matches {    -- Status
+                        value matches {
+                            Coded_text[id19] matches {
+                                term matches {
+                                    Terminology_term[id25] matches {
+                                        concept matches {[ac1]}    -- Status (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id20]
+                        }
+                    }
+                    Node[id10] occurrences matches {0..1} matches {    -- Rationale
+                        value matches {
+                            Text[id21]
+                        }
+                    }
+                    use_archetype Node[id11, s2-EHR-Node.clinical_evidence.v1]    -- Clinical evidence
+                    Node[id12] occurrences matches {0..1} matches {    -- Order
+                        value matches {
+                            Count[id22]
+                        }
+                    }
+                    Node[id13] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id23]
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id15] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- Last updated
+                value matches {
+                    Date_time_value[id24]
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at6", "at7", "at8">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Status (synthesised)">
+                description = <"Likelihood of the differential diagnosis being responsible for the clinical situation. (synthesised)">
+            >
+            ["at6"] = <
+                text = <"Possible">
+                description = <"Under investigation; neither accepted as a formal diagnosis, nor excluded.">
+            >
+            ["at7"] = <
+                text = <"Accepted">
+                description = <"Accepted as a formal diagnosis.">
+            >
+            ["at8"] = <
+                text = <"Excluded">
+                description = <"Ruled out as a formal diagnosis.">
+            >
+            ["id1"] = <
+                text = <"Differential diagnoses">
+                description = <"One or more possible conditions, problems or diagnoses that may be responsible for a clinical presentation, examination findings and/or test results.">
+            >
+            ["id10"] = <
+                text = <"Rationale">
+                description = <"Narrative description about the rationale for the diagnosis being accepted or excluded.">
+            >
+            ["id11"] = <
+                text = <"Clinical evidence">
+                description = <"Structured details about clinical evidence supporting or excluding the differential diagnosis.">
+            >
+            ["id12"] = <
+                text = <"Order">
+                description = <"Tag assigned to supporting ordering within a list of differential diagnoses.">
+            >
+            ["id13"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the differential diagnosis, not captured in other fields.">
+            >
+            ["id15"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id16"] = <
+                text = <"Last updated">
+                description = <"The date/time the differential diagnoses were last updated.">
+            >
+            ["id3"] = <
+                text = <"Overall description">
+                description = <"Narrative overview about all of the differential diagnoses identified.">
+            >
+            ["id4"] = <
+                text = <"Per differential">
+                description = <"Details about a single differential diagnosis.">
+            >
+            ["id5"] = <
+                text = <"Diagnosis name">
+                description = <"Identification of the differential diagnosis, by name.">
+            >
+            ["id6"] = <
+                text = <"Status">
+                description = <"Likelihood of the differential diagnosis being responsible for the clinical situation.">
+            >
+        >
+    >
+    

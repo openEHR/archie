@@ -1,0 +1,184 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=afb0c9df-aa95-437f-b609-0ec471fc16b3)
+    s2-EHR-Node.tnm-pathological.v1.0.2
+
+specialize
+    s2-EHR-Node.tnm.v1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Vegar Dagenborg, OUS, Norway", "Kristin Eik, Kreftregisteret, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd. UK", "Sergey Kovalenko, Chelyabinsk Regional Children Hospital, Russia", "Siri Laronningen, Kreftregisteret, Norway", "Liv Laugen, Oslo universitetssykehus, Norway", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Miha Lenic, Marand, Slovenia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics Ltd. UK", "Bjørn Næss, DIPS ASA, Norway", "SARA PRETE, Abinsula, Italy", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2016-08-26">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.tnm-pathological.v1.0.2, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.tnm-pathological.v1.0.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the pathological classification and stage grouping of malignancies using the TNM system.">
+            keywords = <"TNM", "cancer", "tumour", "pTNM", "grading", "staging", "malignancy", "classification", "grouping", "stage", "neoplasia">
+            use = <"Use to record the pathological classification, designated as pTNM, and stage grouping of malignancies.
+            
+            This archetype has been designed to be nested inside an ENTRY or appropriate Node archetype which will provide a clinical or pathological context and the tumour type for the TNM record - for example: the 'Specific details' SLOT within the EVALUATION.problem_diagnosis archetype; or nested in an appropriate histopathology-related Node archetype within the OBSERVATION.laboratory_test_result context.
+            
+            Each cancer has a set of unique pTNM classification values. It is expected that this archetype will be further constrained to reflect the unique requirements for each tumour and edition of the TNM classification, using either an archetype specialisation or a template.
+            
+            With certain types of tumours, such as Hodgkin and other non-Hodgkin lymphomas, a different system for designating the extent of disease and prognosis is used. In these circumstances only the stage group is defined.">
+            misuse = <"Not to be used to record the TNM clinical classification - use the Node.tnm archetype for this purpose.">
+        >
+    >
+    
+definition
+    Node[id1.1] matches {    -- TNM pathological classification
+        /items matches {
+            Node[id4.1]     -- Primary tumour (pT)
+            Node[id5.1]     -- Regional lymph nodes (pN)
+            Node[id6.1]     -- Distant metastasis (pM)
+            Node[id26.1]     -- Multiple primary tumours (m)
+            Node[id31.1]     -- pTNM assessment
+            Node[id32.1]     -- Stage grouping
+            after [id33]
+            Node[id0.1] occurrences matches {0..1} matches {    -- Sentinel node (sn)
+                value matches {
+                    Boolean_value[id0.9] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id0.2] occurrences matches {0..1} matches {    -- Micrometastases (mi)
+                value matches {
+                    Boolean_value[id0.10] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id0.3] occurrences matches {0..1} matches {    -- Regional lymph node ITC
+                value matches {
+                    Coded_text[id0.11] matches {
+                        term matches {
+                            Terminology_term[id0.13] matches {
+                                concept matches {[ac0.1]}    -- Regional lymph node ITC (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.8] occurrences matches {0..1} matches {    -- Distant metastasis ITC
+                value matches {
+                    Coded_text[id0.12] matches {
+                        term matches {
+                            Terminology_term[id0.14] matches {
+                                concept matches {[ac0.2]}    -- Distant metastasis ITC (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at0.4", "at0.5", "at0.6", "at0.7">
+        >
+        ["ac0.2"] = <
+            id = <"ac0.2">
+            members = <"at0.4", "at0.5", "at0.6", "at0.7">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac0.1"] = <
+                text = <"Regional lymph node ITC (synthesised)">
+                description = <"Presence of isolated tumour cells (ITC) detected by H&E stains or immunohistochemistry in regional lymph nodes. (synthesised)">
+            >
+            ["ac0.2"] = <
+                text = <"Distant metastasis ITC (synthesised)">
+                description = <"Presence of isolated tumour cells (ITC) detected by H&E stains or immunohistochemistry as distant metastases, such as bone marrow. (synthesised)">
+            >
+            ["at0.4"] = <
+                text = <"i-">
+                description = <"Negative morphological findings for ITC.">
+            >
+            ["at0.5"] = <
+                text = <"i+">
+                description = <"Positive morphological findings for ITC.">
+            >
+            ["at0.6"] = <
+                text = <"mol-">
+                description = <"Negative non-morphological findings for ITC.">
+            >
+            ["at0.7"] = <
+                text = <"mol+">
+                description = <"Positive non-morphological findings for ITC.">
+            >
+            ["id0.1"] = <
+                text = <"Sentinel node (sn)">
+                description = <"Record as True if presence of metastasis within one or more sentinel node(s).">
+            >
+            ["id0.2"] = <
+                text = <"Micrometastases (mi)">
+                description = <"Record as True if presence of micrometastases in the regional lymph drainage area of the primary tumour.">
+            >
+            ["id0.3"] = <
+                text = <"Regional lymph node ITC">
+                description = <"Presence of isolated tumour cells (ITC) detected by H&E stains or immunohistochemistry in regional lymph nodes.">
+            >
+            ["id0.8"] = <
+                text = <"Distant metastasis ITC">
+                description = <"Presence of isolated tumour cells (ITC) detected by H&E stains or immunohistochemistry as distant metastases, such as bone marrow.">
+            >
+            ["id1.1"] = <
+                text = <"TNM pathological classification">
+                description = <"A framework for the pathological classification and stage grouping of malignancies using the TNM system.">
+            >
+            ["id26.1"] = <
+                text = <"Multiple primary tumours (m)">
+                description = <"Presence of multiple simultaneous primary tumours at a single site.">
+            >
+            ["id31.1"] = <
+                text = <"pTNM assessment">
+                description = <"Concatenation of 'pT', 'pN' and 'pM' assessments plus any optional assessments of 'G', 'R', 'L', 'V', prefixes and/or suffixes, as applicable.">
+            >
+            ["id32.1"] = <
+                text = <"Stage grouping">
+                description = <"The categorisation of the anatomical stage of the tumour, usually based on pTNM assessment.">
+            >
+            ["id4.1"] = <
+                text = <"Primary tumour (pT)">
+                description = <"Assessment of the extent of the primary tumour.">
+            >
+            ["id5.1"] = <
+                text = <"Regional lymph nodes (pN)">
+                description = <"Assessment of the absence or presence and extent of regional lymph node metastasis.">
+            >
+            ["id6.1"] = <
+                text = <"Distant metastasis (pM)">
+                description = <"Assessment of the absence or presence of distant metastasis.">
+            >
+        >
+    >
+    

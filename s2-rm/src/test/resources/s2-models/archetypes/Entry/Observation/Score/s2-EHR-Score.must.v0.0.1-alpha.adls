@@ -1,0 +1,470 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=63c202ed-a5bc-4d2a-949c-b602f9e19316)
+    s2-EHR-Score.must.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Alan D. March, Hospital Universitario Austral, Pilar, Buenos Aires, Argentina, <alandmarch@gmail.com>, 2016-06-12">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.must.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.must.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"The Malnutrition Universal Screening Tool (MUST) is a scoring system designed to help identify adults who are malnourished, at risk of malnutrition (undernutrition), or obese. It intends to identify risk of poor protein-energy status, rather than status of individual nutrients. It has not been designed to detect deficiencies in or excessive intakes of vitamins and minerals. It was developed and is maintained by the British Association for Parenteral and Enteral Nutrition (BAPEN).">
+            keywords = <"MUST", "malnutrition", "undernutrition", "obesity", "nutrition", "nourishment">
+            use = <"MUST is a five-step screening tool:
+            Step 1.- Measure height and weight to get a BMI score. If unable to obtain height and weight, the alternative procedures shown in the MUST Explanatory Booklet should be used.
+            Step 2.- Note percentage unplanned weight loss and score using tool specific tables.
+            Step 3.- Establish acute disease effect and score.
+            Step 4.- Add scores from steps 1, 2 and 3 together to obtain overall risk of malnutrition.
+            Step 5.- Use management guidelines and/or local policy to develop care plan.
+            This archetype registers data for calculation of the overall risk of malnutrition score.">
+            misuse = <"Not to be used for children.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Malnutrition Universal Screening Tool (MUST)
+        data cardinality matches {5..*; unordered} matches {
+            Node[id5] matches {    -- Body mass index score
+                value matches {
+                    Coded_ordinal[id55] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id57] matches {
+                                term matches {
+                                    Terminology_term[id56] matches {
+                                        concept matches {[at5]}    -- >20 (>30 Obese)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id58] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id60] matches {
+                                term matches {
+                                    Terminology_term[id59] matches {
+                                        concept matches {[at6]}    -- 18.5 -20
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id61] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id63] matches {
+                                term matches {
+                                    Terminology_term[id62] matches {
+                                        concept matches {[at7]}    -- <18.5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] matches {    -- Weight loss score
+                value matches {
+                    Coded_ordinal[id64] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id66] matches {
+                                term matches {
+                                    Terminology_term[id65] matches {
+                                        concept matches {[at9]}    -- <5 %
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id67] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id69] matches {
+                                term matches {
+                                    Terminology_term[id68] matches {
+                                        concept matches {[at10]}    -- 5-10 %
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id70] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id72] matches {
+                                term matches {
+                                    Terminology_term[id71] matches {
+                                        concept matches {[at11]}    -- >10 %
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] matches {    -- Acute disease effect score
+                value matches {
+                    Coded_ordinal[id73] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id75] matches {
+                                term matches {
+                                    Terminology_term[id74] matches {
+                                        concept matches {[at13]}    -- Not acutely ill and sufficient nutritional intake for >5 days
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id76] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id78] matches {
+                                term matches {
+                                    Terminology_term[id77] matches {
+                                        concept matches {[at14]}    -- Acutely ill and there has been or is likely to be no nutritional intake for >5 days
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id16] matches {    -- Total score
+                value matches {
+                    Count[id47] matches {
+                        magnitude matches {|0..6|}
+                    }
+                }
+            }
+            Node[id17] matches {    -- Risk category
+                value matches {
+                    Coded_text[id48] matches {
+                        term matches {
+                            Terminology_term[id79] matches {
+                                concept matches {[ac1]}    -- Risk category (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id40] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id49]
+                }
+            }
+        }
+        state matches {
+            Node[id39] matches {    -- Confounding factors
+                value matches {
+                    Text[id50]
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id22] occurrences matches {0..1} matches {    -- Height determination method for body mass index
+                value matches {
+                    Coded_text[id51] matches {
+                        term matches {
+                            Terminology_term[id80] matches {
+                                concept matches {[ac2]}    -- Height determination method for body mass index (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id23] occurrences matches {0..1} matches {    -- Weight determination method for body mass index
+                value matches {
+                    Coded_text[id52] matches {
+                        term matches {
+                            Terminology_term[id81] matches {
+                                concept matches {[ac3]}    -- Weight determination method for body mass index (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id31] occurrences matches {0..1} matches {    -- Body mass index estimation method
+                value matches {
+                    Coded_text[id53] matches {
+                        term matches {
+                            Terminology_term[id82] matches {
+                                concept matches {[ac4]}    -- Body mass index estimation method (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id34] occurrences matches {0..1} matches {    -- Weight loss determination method
+                value matches {
+                    Coded_text[id54] matches {
+                        term matches {
+                            Terminology_term[id83] matches {
+                                concept matches {[ac5]}    -- Weight loss determination method (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id43] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["id16"] = <http://snomed.info/id/444297006>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at17", "at18", "at19">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at23", "at24", "at25", "at26", "at27">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at28", "at29">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at31", "at32">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at34", "at35", "at36", "at37">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at5", "at6", "at7">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at9", "at10", "at11">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at13", "at14">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Risk category (synthesised)">
+                description = <"The overall risk of malnutrition as derived from the total score. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Height determination method for body mass index (synthesised)">
+                description = <"Method used for determining height as a part of body mass index calculation. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Weight determination method for body mass index (synthesised)">
+                description = <"Method used for determining weight as a part of body mass index calculation. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Body mass index estimation method (synthesised)">
+                description = <"Method used for determining body mass index. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Weight loss determination method (synthesised)">
+                description = <"Method used for determining weight change. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Body mass index score (synthesised)">
+                description = <"Derived from the subject’s body mass index. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Weight loss score (synthesised)">
+                description = <"To establish the subject’s weight loss score, ask if there has been any weight loss in the last 3 – 6 months, and if so how much (or look in their medical records). (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Acute disease effect score (synthesised)">
+                description = <"If the subject is currently affected by an acute patho-physiological or psychological condition, and there has been no nutritional intake or likelihood of no intake for more than 5 days, they are likely to be at nutritional risk. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"5-10 %">
+                description = <"*">
+            >
+            ["at11"] = <
+                text = <">10 %">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Not acutely ill and sufficient nutritional intake for >5 days">
+                description = <"If patient is not acutely ill and there has not been or is not likely to be no nutritional intake for >5 days.">
+            >
+            ["at14"] = <
+                text = <"Acutely ill and there has been or is likely to be no nutritional intake for >5 days">
+                description = <"If patient is acutely ill and there has been or is likely to be no nutritional intake for >5 days.">
+            >
+            ["at17"] = <
+                text = <"Low risk">
+                description = <"Total score equal to 0.">
+            >
+            ["at18"] = <
+                text = <"Medium risk">
+                description = <"Total score equal to 1.">
+            >
+            ["at19"] = <
+                text = <"High risk">
+                description = <"Total score equal or greater than 2.">
+            >
+            ["at23"] = <
+                text = <"Direct height measurement">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"Recently documented or self-reported height">
+                description = <"Recently documented or self-reported height (if reliable and realistic).">
+            >
+            ["at25"] = <
+                text = <"Derived from ulna length">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"Derived from knee height">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Derived from demispan">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Direct weight measurement">
+                description = <"*">
+            >
+            ["at29"] = <
+                text = <"Recently documented or self-reported weight">
+                description = <"Recently documented or self-reported weight (if reliable and realistic).">
+            >
+            ["at31"] = <
+                text = <"Calculation from height and weight measurements">
+                description = <"*">
+            >
+            ["at32"] = <
+                text = <"Derived from mid upper arm circumference measurement">
+                description = <"*">
+            >
+            ["at34"] = <
+                text = <"Direct weight change measurement">
+                description = <"*">
+            >
+            ["at35"] = <
+                text = <"Recently documented or self-reported weight change">
+                description = <"*">
+            >
+            ["at36"] = <
+                text = <"Clinical impression">
+                description = <"*">
+            >
+            ["at37"] = <
+                text = <"Derived from changes in mid upper arm circumference measurement">
+                description = <"*">
+            >
+            ["at5"] = <
+                text = <">20 (>30 Obese)">
+                description = <"*">
+            >
+            ["at6"] = <
+                text = <"18.5 -20">
+                description = <"*">
+            >
+            ["at7"] = <
+                text = <"<18.5">
+                description = <"*">
+            >
+            ["at9"] = <
+                text = <"<5 %">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Malnutrition Universal Screening Tool (MUST)">
+                description = <"Screening tool for malnourishment, undernutrition or obesity.">
+            >
+            ["id13"] = <
+                text = <"Acute disease effect score">
+                description = <"If the subject is currently affected by an acute patho-physiological or psychological condition, and there has been no nutritional intake or likelihood of no intake for more than 5 days, they are likely to be at nutritional risk.">
+            >
+            ["id16"] = <
+                text = <"Total score">
+                description = <"The sum of scores for body mass index, weight loss and acute disease effect.">
+            >
+            ["id17"] = <
+                text = <"Risk category">
+                description = <"The overall risk of malnutrition as derived from the total score.">
+            >
+            ["id22"] = <
+                text = <"Height determination method for body mass index">
+                description = <"Method used for determining height as a part of body mass index calculation.">
+            >
+            ["id23"] = <
+                text = <"Weight determination method for body mass index">
+                description = <"Method used for determining weight as a part of body mass index calculation.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id31"] = <
+                text = <"Body mass index estimation method">
+                description = <"Method used for determining body mass index.">
+            >
+            ["id34"] = <
+                text = <"Weight loss determination method">
+                description = <"Method used for determining weight change.">
+            >
+            ["id39"] = <
+                text = <"Confounding factors">
+                description = <"Some variables used in the calculation of the MUST score may be influenced by confunding factors, specially in the case of weight and BMI determination.">
+            >
+            ["id40"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the screening, not captured in other fields.">
+            >
+            ["id43"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+            >
+            ["id5"] = <
+                text = <"Body mass index score">
+                description = <"Derived from the subject’s body mass index.">
+            >
+            ["id9"] = <
+                text = <"Weight loss score">
+                description = <"To establish the subject’s weight loss score, ask if there has been any weight loss in the last 3 – 6 months, and if so how much (or look in their medical records).">
+            >
+        >
+    >
+    

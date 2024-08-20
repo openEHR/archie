@@ -1,0 +1,660 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ffcc4857-3a9e-4a19-a618-6217dd1c3066)
+    s2-EHR-Direct_observation.visual_field_measurement.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"José Andonegui, Hospital de Navarra, jose.andonegui.navarro@cfnavarra.es", "Gustavo Bacelar-Silva, Healthcare Designs, Brazil (openEHR Editor)", "Aitor Eguzkitza, Universidad Pública de Navarra - Complejo Hospitalario de Navarra, aitor.eguzkiza@unavarra.es", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Luis Serrano, Universidad Pública de Navarra (UPNA), lserrano@unavarra.es", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Ian McNicoll, Ocean Informatics UK, <ian.mcnicoll@oceaninformatics.com>, 2012-09-19">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.visual_field_measurement.v0.0.1-alpha, copyright 2012 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.visual_field_measurement.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results of visual field testing or perimetry.">
+            keywords = <"perimetry", "ophthalmic", "optometry", "eye", "vision", "visual">
+            use = <"Use to record the results of visual field testing or perimetry. 
+            
+            Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data Node. 
+            
+            Detailed, structured visual acuity results are preferred and are generally recorded for each eye in turn.
+            
+            If the method of measurement or device is changed for the testing of the second eye, record the second eye's data in another instance of data which captures the new method or device.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Visual field measurement
+        data matches {
+            Node[id53] occurrences matches {0..1} matches {    -- Test result name
+                value matches {
+                    Coded_text[id177] matches {
+                        term matches {
+                            Terminology_term[id202] matches {
+                                concept matches {[ac1; at63]}    -- Test result name (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Clinical description
+                value matches {
+                    Text[id178]
+                }
+            }
+            Node[id8] occurrences matches {0..2} matches {    -- Test result
+                items matches {
+                    Node[id9] occurrences matches {0..1} matches {    -- Eye examined
+                        value matches {
+                            Coded_text[id179] matches {
+                                term matches {
+                                    Terminology_term[id203] matches {
+                                        concept matches {[ac2]}    -- Eye examined (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id165] occurrences matches {0..1} matches {    -- Glaucoma Hemifield Test (GHT)
+                        value matches {
+                            Coded_text[id180] matches {
+                                term matches {
+                                    Terminology_term[id204] matches {
+                                        concept matches {[ac3]}    -- Glaucoma Hemifield Test (GHT) (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id55] occurrences matches {0..1} matches {    -- Foveal sensitivity measured
+                        value matches {
+                            Boolean_value[id181] matches {
+                                value matches {True, False; False}
+                            }
+                        }
+                    }
+                    Node[id56] occurrences matches {0..1} matches {    -- Foveal sensitivity
+                        value matches {
+                            Measured<Quantity>[id205] matches {
+                                value matches {
+                                    Quantity[id182] matches {
+                                        magnitude matches {|-100.0..100.0|}
+                                        precision matches {2}
+                                        units matches {
+                                            Coded_text[id207] matches {
+                                                term matches {
+                                                    Terminology_term[id206] matches {
+                                                        concept matches {[at171]}    -- dB
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id38] occurrences matches {0..1} matches {    -- Visual Field Index (VFI)
+                        value matches {
+                            Measured<Quantity>[id210] matches {
+                                value matches {
+                                    Quantity[id183] matches {
+                                        magnitude matches {|0.0..100.0|}
+                                        units matches {
+                                            Coded_text[id209] matches {
+                                                term matches {
+                                                    Terminology_term[id208] matches {
+                                                        concept matches {[at172]}    -- %
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id35] occurrences matches {0..1} matches {    -- Mean Deviation (MD)
+                        value matches {
+                            Measured<Quantity>[id211] matches {
+                                value matches {
+                                    Quantity[id184] matches {
+                                        magnitude matches {|-30.0..10.0|}
+                                        precision matches {2}
+                                        units matches {
+                                            Coded_text[id213] matches {
+                                                term matches {
+                                                    Terminology_term[id212] matches {
+                                                        concept matches {[at171]}    -- dB
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id39] occurrences matches {0..1} matches {    -- Mean Deviation P (MD)
+                        value matches {
+                            Measured<Quantity>[id216] matches {
+                                value matches {
+                                    Quantity[id185] matches {
+                                        magnitude matches {|0.0..5.0|}
+                                        units matches {
+                                            Coded_text[id215] matches {
+                                                term matches {
+                                                    Terminology_term[id214] matches {
+                                                        concept matches {[at172]}    -- %
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id36] occurrences matches {0..1} matches {    -- Pattern Standard Deviation (PSD)
+                        value matches {
+                            Measured<Quantity>[id217] matches {
+                                value matches {
+                                    Quantity[id186] matches {
+                                        magnitude matches {|0.0..25.0|}
+                                        precision matches {2}
+                                        units matches {
+                                            Coded_text[id219] matches {
+                                                term matches {
+                                                    Terminology_term[id218] matches {
+                                                        concept matches {[at171]}    -- dB
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id40] occurrences matches {0..1} matches {    -- Pattern Standard Deviation P (PSD)
+                        value matches {
+                            Measured<Quantity>[id222] matches {
+                                value matches {
+                                    Quantity[id187] matches {
+                                        magnitude matches {|0.0..5.0|}
+                                        units matches {
+                                            Coded_text[id221] matches {
+                                                term matches {
+                                                    Terminology_term[id220] matches {
+                                                        concept matches {[at172]}    -- %
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id59] occurrences matches {0..1} matches {    -- Short-Term Fluctuation (SF)
+                        value matches {
+                            Measured<Quantity>[id223] matches {
+                                value matches {
+                                    Quantity[id188] matches {
+                                        units matches {
+                                            Coded_text[id225] matches {
+                                                term matches {
+                                                    Terminology_term[id224] matches {
+                                                        concept matches {[at171]}    -- dB
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id60] occurrences matches {0..1} matches {    -- Corrected Pattern Standard Deviation (CPSD)
+                        value matches {
+                            Measured<Quantity>[id226] matches {
+                                value matches {
+                                    Quantity[id189] matches {
+                                        precision matches {3}
+                                        units matches {
+                                            Coded_text[id228] matches {
+                                                term matches {
+                                                    Terminology_term[id227] matches {
+                                                        concept matches {[at171]}    -- dB
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id28] occurrences matches {0..1} matches {    -- Perimetry test interpretation
+                        value matches {
+                            Coded_text[id190] matches {
+                                term matches {
+                                    Terminology_term[id229] matches {
+                                        concept matches {[ac4; at32]}    -- Perimetry test interpretation (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id175] occurrences matches {0..1} matches {    -- No test result
+                        value matches {
+                            Boolean_value[id191] matches {
+                                value matches {True, False}
+                            }
+                        }
+                    }
+                    Node[id176] occurrences matches {0..1} matches {    -- Reason for no test result
+                        value matches {
+                            Text[id192]
+                        }
+                    }
+                    use_archetype Node[id172, s2-EHR-Node.media_file.v1]    -- Multimedia
+                    Node[id10] matches {    -- Clinical interpretation
+                        value matches {
+                            Text[id193]
+                        }
+                    }
+                    Node[id174] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id194]
+                        }
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Overall interpretation
+                value matches {
+                    Text[id195]
+                }
+            }
+            use_archetype Node[id173, s2-EHR-Node.exclusion_exam.v1]    -- Test not done
+            Node[id25] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id196]
+                }
+            }
+        }
+        state matches {
+            Node[id49] occurrences matches {0..1} matches {    -- Fixation checked quantity
+                value matches {
+                    Count[id197] matches {
+                        magnitude matches {|0..100|}
+                    }
+                }
+            }
+            Node[id50] occurrences matches {0..1} matches {    -- Patient not properly fixated quantity
+                value matches {
+                    Count[id198] matches {
+                        magnitude matches {|0..100|}
+                    }
+                }
+            }
+            Node[id57] occurrences matches {0..1} matches {    -- False positives estimate
+                value matches {
+                    Measured<Quantity>[id232] matches {
+                        value matches {
+                            Quantity[id199] matches {
+                                magnitude matches {|0.0..100.0|}
+                                units matches {
+                                    Coded_text[id231] matches {
+                                        term matches {
+                                            Terminology_term[id230] matches {
+                                                concept matches {[at172]}    -- %
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id58] occurrences matches {0..1} matches {    -- False negatives estimate
+                value matches {
+                    Measured<Quantity>[id235] matches {
+                        value matches {
+                            Quantity[id200] matches {
+                                magnitude matches {|0.0..100.0|}
+                                units matches {
+                                    Coded_text[id234] matches {
+                                        term matches {
+                                            Terminology_term[id233] matches {
+                                                concept matches {[at172]}    -- %
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id24] matches {    -- Confounding factors
+                value matches {
+                    Text[id201]
+                }
+            }
+            use_archetype Node[id37, s2-EHR-Node.refraction_details.v0] occurrences matches {0..2}     -- Refractive correction
+            allow_archetype Node[id43] matches {     -- Examination findings - pupils
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.exam_pupils(-[a-zA-Z0-9_]+)*\.v1/}
+            }
+        }
+        qualifiers matches {
+            use_archetype Node[id27, s2-EHR-Node.device.v1] occurrences matches {0..1}     -- Device details
+            allow_archetype Node[id171] matches {     -- Acquisition details
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.acquisition_details_on_visual_field_test(-[a-zA-Z0-9_]+)*\.v0/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["id28"] = <http://snomed.info/id/423083007>
+            ["id35"] = <http://snomed.info/id/422859007>
+            ["id36"] = <http://snomed.info/id/421362004>
+            ["id38"] = <http://snomed.info/id/421140005>
+            ["at171"] = <http://snomed.info/id/259042002>
+            ["at172"] = <http://snomed.info/id/415067009>
+        >
+        ["openehr"] = <
+            ["at170"] = <http://openehr.org/id/123>
+        >
+        ["ucum"] = <
+            ["at171"] = <http://ucum.org/id/dB>
+            ["at172"] = <http://ucum.org/id/%25>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at60", "at61", "at62", "at63", "at64">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at19", "at20">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at165", "at166", "at167", "at168", "at169">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at28", "at29", "at31", "at30", "at53", "at32">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Test result name (synthesised)">
+                description = <"Identification of the visual field test being performed, by name. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Eye examined (synthesised)">
+                description = <"The eye which is being examined. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Glaucoma Hemifield Test (GHT) (synthesised)">
+                description = <"A coded intepretation of the Glaucoma Hemifield Test (GHT). (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Perimetry test interpretation (synthesised)">
+                description = <"A coded intepretation of the Visual field test result. (synthesised)">
+            >
+            ["at165"] = <
+                text = <"Outside normal limits">
+                description = <"Differences between a matched pair of corresponding zones exceeds the difference found in 99% of the normal population, or when both members of a pair of zones are more abnormal than 99.5% of the individuals with the normative population.">
+            >
+            ["at166"] = <
+                text = <"Borderline">
+                description = <"Matched pairs of zones are abnormal at the 97th percentile within the normative database.">
+            >
+            ["at167"] = <
+                text = <"General reduction of sensitivity">
+                description = <"Conditions for “outside normal limits” are not met, and the best region of the visual field is at or below the 99.5th percentile of the normative population.">
+            >
+            ["at168"] = <
+                text = <"Abnormally high sensitivity">
+                description = <"Overall sensitivity in the affected  region of the VF is better than 99.5% of individuals within the normative population.">
+            >
+            ["at169"] = <
+                text = <"Within normal limits">
+                description = <"None of the abnormal conditions are met.">
+            >
+            ["at170"] = <
+                text = <"Loudness">
+                description = <"Loudness">
+            >
+            ["at171"] = <
+                text = <"dB">
+                description = <"dB unit.">
+            >
+            ["at172"] = <
+                text = <"%">
+                description = <"Percent">
+            >
+            ["at19"] = <
+                text = <"Left eye">
+                description = <"The left eye was examined.">
+            >
+            ["at20"] = <
+                text = <"Right eye">
+                description = <"The right eye was examined.">
+            >
+            ["at28"] = <
+                text = <"Outside normal limits">
+                description = <"Differences between a matched pair of corresponding zones exceeds the difference found in 99% of the normal population, or when both members of a pair of zones are more abnormal than 99.5% of the individuals with the normative population. Corresponds to DICOM Code value 111847.">
+            >
+            ["at29"] = <
+                text = <"Borderline">
+                description = <"Matched pairs of zones are abnormal at the 97th percentile within the normative database. Corresponds to DICOM Code value 111848.">
+            >
+            ["at30"] = <
+                text = <"General reduction of sensitivity">
+                description = <"Conditions for “outside normal limits” are not met, and the best region of the visual field is at or below the 99.5th percentile of the normative population. Corresponds to DICOM Code value 111850.">
+            >
+            ["at31"] = <
+                text = <"Abnormally high sensitivity">
+                description = <"Overall sensitivity in the affected  region of the VF is better than 99.5% of individuals within the normative population. Corresponds to DICOM Code value 111849.">
+            >
+            ["at32"] = <
+                text = <"Within normal limits">
+                description = <"None of the abnormal conditions are met. Corresponds to DICOM Code value M-00101.">
+            >
+            ["at53"] = <
+                text = <"Borderline and general reduction in sensitivity">
+                description = <"Analysis Results identify Borderline and general reduction in sensitivity. Corresponds to DICOM Code value 111851.">
+            >
+            ["at60"] = <
+                text = <"Visual field index">
+                description = <"Index of a patient’s remaining visual field normalized for both age and generalized defect. Corresponds to DICOM Code value 111852.">
+            >
+            ["at61"] = <
+                text = <"Visual field loss due to diffuse defect">
+                description = <"Estimate of the portion of a patient’s visual field loss that is diffuse (i.e. spread evenly across all portions of the visual field). Corresponds to DICOM Code value 111853.">
+            >
+            ["at62"] = <
+                text = <"Visual field loss due to local defect">
+                description = <"Estimate of the portion of a patient’s visual field loss that is local (i.e. not spread evenly across all portions of the visual field). Corresponds to DICOM Code value 111854.">
+            >
+            ["at63"] = <
+                text = <"Glaucoma Hemifield Test Analysis (GHT)">
+                description = <"An analysis of asymmetry between zones of the superior and inferior visual field. It is designed to be specific for defects due to glaucoma. Corresponds to DICOM Code value 111855.">
+            >
+            ["at64"] = <
+                text = <"Optical fixation measurements">
+                description = <"The data output of an optical fixation monitoring process, consisting of a list of positive and negative numbers indicating the quality of patient fixation over the course of a visual field test. The value 0 represents the initial fixation. Negative numbers indicate a measuring error (i.e. the patient blinked). Positive numbers quantify the degree of eccentricity from initial fixation. Corresponds to DICOM Code value 111856.">
+            >
+            ["id1"] = <
+                text = <"Visual field measurement">
+                description = <"Results of visual field testing / perimetry.">
+            >
+            ["id10"] = <
+                text = <"Clinical interpretation">
+                description = <"Clinical interpretation of all measurements for the test eye.">
+            >
+            ["id165"] = <
+                text = <"Glaucoma Hemifield Test (GHT)">
+                description = <"A coded intepretation of the Glaucoma Hemifield Test (GHT).">
+            >
+            ["id171"] = <
+                text = <"Acquisition details">
+                description = <"Details about the strategy to conduct the visual field test.">
+            >
+            ["id172"] = <
+                text = <"Multimedia">
+                description = <"Digital representation of the test results.">
+            >
+            ["id173"] = <
+                text = <"Test not done">
+                description = <"Details to explicitly record that this test was not performed.">
+            >
+            ["id174"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the visual field testing for the eye examined, not captured in other fields.">
+            >
+            ["id175"] = <
+                text = <"No test result">
+                description = <"No visual field test result is available for the eye examined.">
+            >
+            ["id176"] = <
+                text = <"Reason for no test result">
+                description = <"Reason why no visual field test result is available for the eye examined.">
+            >
+            ["id24"] = <
+                text = <"Confounding factors">
+                description = <"Patient circumstances which may affect interpretation of the result.">
+            >
+            ["id25"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the overall test results and intepretation not captured in other fields.">
+            >
+            ["id26"] = <
+                text = <"Overall interpretation">
+                description = <"Overall clinical interpretation of the measurements and related findings of visual field testing.">
+            >
+            ["id27"] = <
+                text = <"Device details">
+                description = <"Details of the device used to measure visual fields.">
+            >
+            ["id28"] = <
+                text = <"Perimetry test interpretation">
+                description = <"A coded intepretation of the Visual field test result.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id35"] = <
+                text = <"Mean Deviation (MD)">
+                description = <"Weighted average deviation from the age corrected normal field, in dB.">
+            >
+            ["id36"] = <
+                text = <"Pattern Standard Deviation (PSD)">
+                description = <"Average of non-uniform visual field loss or weighted square root of loss variance, in dB.">
+            >
+            ["id37"] = <
+                text = <"Refractive correction">
+                description = <"Details of refractive correction applied to each eye.">
+            >
+            ["id38"] = <
+                text = <"Visual Field Index (VFI)">
+                description = <"Visual Field Index result.">
+            >
+            ["id39"] = <
+                text = <"Mean Deviation P (MD)">
+                description = <"The P value of the Mean Deviation result.">
+            >
+            ["id40"] = <
+                text = <"Pattern Standard Deviation P (PSD)">
+                description = <"The P value of the Pattern Standard deviation result.">
+            >
+            ["id43"] = <
+                text = <"Examination findings - pupils">
+                description = <"Details of pupils from the patient during the test.">
+            >
+            ["id49"] = <
+                text = <"Fixation checked quantity">
+                description = <"The number of times that the patient’s gaze fixation is checked.">
+            >
+            ["id50"] = <
+                text = <"Patient not properly fixated quantity">
+                description = <"The number of times the patient’s gaze is not properly fixated.">
+            >
+            ["id53"] = <
+                text = <"Test result name">
+                description = <"Identification of the visual field test being performed, by name.">
+            >
+            ["id55"] = <
+                text = <"Foveal sensitivity measured">
+                description = <"Whether foveal sensitivity was measured.">
+            >
+            ["id56"] = <
+                text = <"Foveal sensitivity">
+                description = <"Foveal Sensitivity is the reciprocal of foveal threshold (1/foveal threshold), in dB.">
+            >
+            ["id57"] = <
+                text = <"False positives estimate">
+                description = <"Estimated percentage of all patient responses that occurred at a time when no visual stimulus was present (false positive responses), as percent.">
+            >
+            ["id58"] = <
+                text = <"False negatives estimate">
+                description = <"Estimated percentage of all stimuli that were not seen by the patient but were previously seen at a lower luminance earlier in the visual field test (false negative responses), as percent. Matches to DICOM (0024,0046) attribute.">
+            >
+            ["id59"] = <
+                text = <"Short-Term Fluctuation (SF)">
+                description = <"Average deviation of sensitivity for the repeated test locations, in dB. This is used to determine the consistency of the patient’s responses.">
+            >
+            ["id6"] = <
+                text = <"Clinical description">
+                description = <"Narrative description of the overall findings observed during the test.">
+            >
+            ["id60"] = <
+                text = <"Corrected Pattern Standard Deviation (CPSD)">
+                description = <"Weighted square root of loss variance corrected for short term fluctuation, in dB.">
+            >
+            ["id8"] = <
+                text = <"Test result">
+                description = <"Details of the visual field test result for each eye.">
+            >
+            ["id9"] = <
+                text = <"Eye examined">
+                description = <"The eye which is being examined.">
+            >
+        >
+    >
+    

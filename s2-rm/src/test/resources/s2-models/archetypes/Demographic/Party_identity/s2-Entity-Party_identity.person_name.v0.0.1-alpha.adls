@@ -1,0 +1,251 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6dfb791a-4ea6-4cd2-9767-95d0262d5bad)
+	s2-Entity-Party_identity.person_name.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Rigoleta Dutra & Sergio Miranda Freire, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-PARTY_IDENTITY.person_name.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-PARTY_IDENTITY.person_name.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Representation of a personal name, based on ISO/TS 22220 standard.">
+			use = <"Used to represent the names by which a person is known. ISO 22220 allows more than one usage for a name. openEHR reference model allows a single usage for a person name (indicated by the LOCATABLE class name attribute. This attribute should not be confused with the person name). Besides, two different names for a single person cannot have the same usage. If it is necessary to represent two or more usages for the same name, two PARTY_IDENTITY (ies) for the same person name (differing in the name attribute and possibly in the Nodes time validity and identifier) must be created. In case a person has two names with the same usage (for example, two aliases), the system must use different values in each name attribute ('alias1', 'alias2' ..., for instance). In this case, the ISO 22220 list of values allowed for name usage cannot be used. The application should ensure that either full name or family name be present.">
+			keywords = <"demographic service", "person name">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Rong Chen, Cambio Healthcare Systems, Sweden", "Ricardo Correia, CINTESIS/FMUP, Portugal", "Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Heath Frankel, Ocean Informatics, Australia", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Grahame Grieve, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+
+definition
+	Party_identity[id1] matches {	-- Person name
+		name matches {"Reporting name", "Newborn name", "Professional or business name", "Maiden name", "Legal name", "Other name"}
+		description cardinality matches {1..*; unordered} matches {
+			Node[id3] matches {	-- Given name
+				value matches {
+					Text[id26] 
+				}
+			}
+			Node[id4] matches {	-- Family name
+				value matches {
+					Text[id27] 
+				}
+			}
+			Node[id5] matches {	-- Title
+				value matches {
+					Text[id28] 
+				}
+			}
+			Node[id6] matches {	-- Suffix
+				value matches {
+					Text[id29] 
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Usage interval
+				value matches {
+					Range<Date_value>[id30] 
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Usage identifier
+				value matches {
+					Rwe_id_ref[id31] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Alternative name representations
+				items matches {
+					Node[id22] occurrences matches {1} matches {	-- Representation usage
+						value matches {
+							Text[id32] 
+						}
+					}
+					Node[id23] occurrences matches {1} matches {	-- Alternative representation
+						value matches {
+							Text[id33] 
+						}
+					}
+				}
+			}
+			Node[id9] occurrences matches {1} matches {	-- Preferred name
+				value matches {
+					Boolean_value[id34] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Issues of accuracy and privacy
+				value matches {
+					Plain_text[id35] 
+					Coded_text[id36] matches {
+						term matches {
+							Terminology_term[id38] matches {
+								concept matches {[ac2]}		-- Issues of accuracy and privacy (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Full Name
+				value matches {
+					Text[id37] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Person name (synthesised)">
+				description = <"Person name details. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Issues of accuracy and privacy (synthesised)">
+				description = <"An indicator of specific conditions or rules that should be applied to the use of the person name. (synthesised)">
+			>
+			["at23"] = <
+				text = <"Reporting name">
+				description = <"The subject's name as it is to be used for reporting, when used with a specific identifier.">
+			>
+			["at24"] = <
+				text = <"Newborn name">
+				description = <"A type reserved for the identification of unnamed newborn babies.">
+			>
+			["at25"] = <
+				text = <"Professional or business name">
+				description = <"The name used by the subject for business or professional purposes.">
+			>
+			["at26"] = <
+				text = <"Maiden name">
+				description = <"The name used by the subject of care prior to marriage.">
+			>
+			["at27"] = <
+				text = <"Legal name">
+				description = <"Registered name (Legal name).">
+			>
+			["at28"] = <
+				text = <"Other name">
+				description = <"Any other name by which the subject is known, or has been known by in the past.">
+			>
+			["at31"] = <
+				text = <"Unreliable information">
+				description = <"The name recorded is a fictitious or partial name.">
+			>
+			["at32"] = <
+				text = <"Known misspelling">
+				description = <"This is a misspelling, but should be retained for potential future matching.">
+			>
+			["at33"] = <
+				text = <"Name not to be used">
+				description = <"This name should not be used when referring to this subject.">
+			>
+			["at34"] = <
+				text = <"Name linkage forbidden by law">
+				description = <"By Law, this name and all names prior to it in the name sequence are not to be displayed or indicated in any way when searching for or dealing with information and events associated with a name that is subsequent to this one in the name sequence.">
+			>
+			["at35"] = <
+				text = <"Special privacy/security requirements">
+				description = <"A name for which episodes are attached that should only be accessible to specified authorised persons.">
+			>
+			["at36"] = <
+				text = <"Temporary name">
+				description = <"A temporary name issued where the subject's name has not been determined.">
+			>
+			["id1"] = <
+				text = <"Person name">
+				description = <"Person name details.">
+			>
+			["id10"] = <
+				text = <"Issues of accuracy and privacy">
+				description = <"An indicator of specific conditions or rules that should be applied to the use of the person name.">
+			>
+			["id11"] = <
+				text = <"Full Name">
+				description = <"The person's full name as a concatenation of its name parts.">
+			>
+			["id20"] = <
+				text = <"Usage interval">
+				description = <"The period of time for which the name usage applies.">
+			>
+			["id21"] = <
+				text = <"Usage identifier">
+				description = <"The combination of identifier type, identifier issuer and identifier name that specify the link between this name and reporting or other unique identifier usage.">
+			>
+			["id22"] = <
+				text = <"Representation usage">
+				description = <"Name of the representational form used.">
+			>
+			["id23"] = <
+				text = <"Alternative representation">
+				description = <"Alternative Representation of this subject of care name using alternative styles of representation such as characters or language character set variations for local display.">
+			>
+			["id3"] = <
+				text = <"Given name">
+				description = <"The person's identifying name(s) within the family group or by which he/she is uniquely socially identified.">
+			>
+			["id4"] = <
+				text = <"Family name">
+				description = <"The part of a name a person usually has in common with some other members of his/her family, as distinguished from his/her given names.">
+			>
+			["id5"] = <
+				text = <"Title">
+				description = <"An honorific form of address commencing a name, used when addressing a person by name, whether by mail, by phone, or depending upon cultural situation in person.">
+			>
+			["id6"] = <
+				text = <"Suffix">
+				description = <"Additional term used following a person name.">
+			>
+			["id8"] = <
+				text = <"Alternative name representations">
+				description = <"Details of alternative representations such as local codesets or language variations.">
+			>
+			["id9"] = <
+				text = <"Preferred name">
+				description = <"Indicates that this is the name by which a person chooses to be identified.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/97845-2>
+			["id21"] = <http://loinc.org/97846-0>
+			["id11"] = <http://loinc.org/106188-6>
+			["id23"] = <http://loinc.org/56798-2>
+			["id3"] = <http://loinc.org/97848-6>
+			["id4"] = <http://loinc.org/97847-8>
+			["id5"] = <http://loinc.org/106190-2>
+			["id6"] = <http://loinc.org/97850-2>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at23", "at24", "at25", "at26", "at27", "at28">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at31", "at32", "at33", "at34", "at35", "at36">
+		>
+	>
+

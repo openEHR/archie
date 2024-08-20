@@ -1,0 +1,459 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=683455fa-5e76-427d-bcf5-a1b59867e945)
+    s2-EHR-Assessment.advance_intervention_decisions.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Nuno Abreu, Oporto Hospital Center, Portugal", "Tor Aksel Aasmundstad, Oslo University Hospital, Norway", "Tomas Alme, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Kari-Ann Baarlid, Nasjonalforeningen for folkehelsen, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Terje Bektesevic Holmlund, UiT Norges arktiske universitet, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Colin Brown, NHS Scotland SCIMP, United Kingdom", "Greg Burch, Tiny Medical Apps, United Kingdom", "Gry Caroline Aarnes, Nasjonalforeningen for folkehelsen, Norway", "Fatemeh Chalabianloo, Helse Bergen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Oona Dunlop, Oslo University Hospital, Norway", "Vibeche Fashing, Norwegian Cancer Society, Norway", "Arild Faxvaag, NTNU, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Reidun Førde, Prof emirata, University of Oslo, Norway", "Maria G, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anne Grimstvedt Kvalvik, Haraldsplass Diakonale sykehus, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Keltie Jamieson, NSHA, Canada", "Lars Morgan Karlsen, DIPS ASA, Norway", "Heidi Koikkalainen, United Kingdom", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Tomi Laptoš, Marand, Slovenia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Manisha Mantri, C-DAC, India", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Per Meinich, Helse Sør-Øst RHF, Norway", "Paul Miller, NES Digital Service, NHS Scotland, United Kingdom", "Bjoern Naess, DIPS ASA, Norway", "Arunakiry Natarajan, management4health, Germany", "Svenne Naumann, Finnmarkssykehuset, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Vanessa Pereira, Better - Pathfinder, Portugal", "Anne Rita Øksengård, Nasjonalforeningen for folkehelsen, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Nina Saastad, Norwegian Cancer Society, Norway", "Joran Slaaen, Norwegian Cancer Society, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marc Vali Ahmed, Oslo University Hospital, Norway", "Lin Zhang, Taikang Insurance Group, China">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, Australia, <heather.leslie@atomicainformatics.com>, 2020-07-31">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.advance_intervention_decisions.v1.0.0, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.advance_intervention_decisions.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record anticipatory decisions about the overall intent of care and possible interventions, usually asserted by a clinician.">
+            keywords = <"DNR", "DNAR", "DNACPR", "NFR", "resuscitation", "resuscitate", "EoL", "end of life", "directive", "preference", "goal", "care", "intervention", "ceiling", "limit", "limitation", "treatment", "scope", "escalation", "intent", "EOLC", "life-prolonging", "life-saving", "palliative", "decision", "direction">
+            use = <"Use to record anticipatory decisions about the overall intent of care and possible interventions for an individual. The decisions will support clinicians by providing guidance regarding possible treatments, activities, and diagnostic or therapeutic procedures that may be life-saving, life-prolonging or cause undesirable side effects. 
+            
+            This archetype is intended to be used as part of integrated care or end-of-life planning, and not as a reaction to an acute or emergency situation. Each decision should be made in response to the individual's overall health and general circumstances, and usually asserted by a clinician after consideration of the individual's advance care directives or stated preferences.
+            
+            It may be necessary to record temporary overrides to usual advance intervention decisions in specific circumstances, for example during pregnancy or preoperatively. In this situation it will be necessary to record a separate instance of this archetype, using a combination of relevant validity and review dates.">
+            misuse = <"Not to be used to record an 'Advance care directive' or the individual's preferences for care - use EVALUATION.advance_care_directive for this purpose.
+            
+            Not to be used to record the orders required as a consequence of the decisions made and recorded using this archetype. Use specific INSTRUCTION or ACTION archetypes for this purpose.">
+        >
+    >
+    
+definition
+    Assessment[id1] matches {    -- Advance intervention decisions
+        data matches {
+            Node[id3] occurrences matches {0..1} matches {    -- Intent of care
+                value matches {
+                    Coded_text[id58] matches {
+                        term matches {
+                            Terminology_term[id80] matches {
+                                concept matches {[ac1]}    -- Intent of care (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id59]
+                }
+            }
+            Node[id57] occurrences matches {0..1} matches {    -- Rationale
+                value matches {
+                    Text[id60]
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Decisions description
+                value matches {
+                    Text[id61]
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- CPR decision
+                value matches {
+                    Plain_text[id62]
+                    Coded_text[id63] matches {
+                        term matches {
+                            Terminology_term[id81] matches {
+                                concept matches {[ac2]}    -- CPR decision (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] matches {    -- Per intervention
+                items matches {
+                    Node[id16] matches {    -- Intervention
+                        value matches {
+                            Coded_text[id64] matches {
+                                term matches {
+                                    Terminology_term[id82] matches {
+                                        concept matches {[ac3]}    -- Intervention (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id65]
+                        }
+                    }
+                    Node[id35] occurrences matches {0..1} matches {    -- Decision
+                        value matches {
+                            Coded_text[id66] matches {
+                                term matches {
+                                    Terminology_term[id83] matches {
+                                        concept matches {[ac4]}    -- Decision (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id40] matches {    -- Precondition
+                        value matches {
+                            Text[id67]
+                        }
+                    }
+                    Node[id41] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id68]
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id42] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            Node[id43] occurrences matches {0..1} matches {    -- Patient awareness
+                value matches {
+                    Text[id69]
+                }
+            }
+            Node[id44] occurrences matches {0..1} matches {    -- Carer awareness
+                value matches {
+                    Text[id70]
+                }
+            }
+            Node[id45] occurrences matches {0..1} matches {    -- Overall comment
+                value matches {
+                    Text[id71]
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id47] occurrences matches {0..1} matches {    -- Last updated
+                value matches {
+                    Date_time_value[id72]
+                }
+            }
+            Node[id48] occurrences matches {0..1} matches {    -- Valid period start
+                value matches {
+                    Date_time_value[id73]
+                }
+            }
+            Node[id49] occurrences matches {0..1} matches {    -- Valid period end
+                value matches {
+                    Date_time_value[id74]
+                }
+            }
+            Node[id50] occurrences matches {0..1} matches {    -- Review due
+                value matches {
+                    Date_time_value[id75]
+                }
+            }
+            Node[id51] occurrences matches {0..1} matches {    -- Mandate
+                value matches {
+                    Text[id76]
+                    Ehr_uri_ref[id77]
+                }
+            }
+            allow_archetype Node[id52] matches {     -- Digital representation
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.media_file_source\.v0/}
+            }
+            Node[id53] occurrences matches {0..1} matches {    -- Document location
+                items matches {
+                    Node[id54] occurrences matches {0..1} matches {    -- Location
+                        value matches {
+                            Text[id78]
+                            Uri_ref[id79]
+                        }
+                    }
+                    allow_archetype Node[id55] matches {     -- Copy holder
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+            allow_archetype Node[id56] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at12"] = <http://snomed.info/id/450476008>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at3", "at4", "at5", "at6", "at7">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at10", "at11", "at12", "at13">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at16", "at17", "at18", "at19", "at20", "at21", "at22", "at23", "at24", "at25", "at26", "at27", "at28", "at29", "at30", "at31", "at32", "at33">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at35", "at36", "at37", "at38">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Intent of care (synthesised)">
+                description = <"The overall intent for future care and treatment for the individual. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"CPR decision (synthesised)">
+                description = <"Decision about the extent of cardiopulmonary resuscitation (CPR) intervention appropriate for this individual. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Intervention (synthesised)">
+                description = <"Name of the possible treatment, procedure or activity. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Decision (synthesised)">
+                description = <"Decision about the identified intervention. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Full CPR">
+                description = <"All appropriate cardiopulmonary resuscitation treatments should be attempted to save or prolong life.">
+            >
+            ["at11"] = <
+                text = <"Limited CPR">
+                description = <"Cardiopulmonary resuscitation treatments should be attempted, as specified in the 'Decisions description' narrative or as structured data in the 'Per intervention' Node.">
+            >
+            ["at12"] = <
+                text = <"No CPR">
+                description = <"No cardiopulmonary resuscitation treatments should be attempted to save or prolong life. Also known as 'Do not resuscitate (DNR)'; 'Do not attempt resuscitation (DNAR)'; 'Not for resuscitation (NFR)' or similar.">
+            >
+            ["at13"] = <
+                text = <"Unknown">
+                description = <"The CPR decision is not known.">
+            >
+            ["at16"] = <
+                text = <"Chest compressions">
+                description = <"Technique used to manually pump blood around the body during a cardiac arrest.">
+            >
+            ["at17"] = <
+                text = <"Defibrillation">
+                description = <"Use of electric shock to reset the electrical state of the heart.">
+            >
+            ["at18"] = <
+                text = <"Intubation">
+                description = <"Placement of a tube into the trachea to maintain an open airway, including a tracheostomy.">
+            >
+            ["at19"] = <
+                text = <"Invasive ventilation">
+                description = <"Artificial ventilation where invasive means are used to assist or replace spontaneous breathing.">
+            >
+            ["at20"] = <
+                text = <"Non-invasive ventilation">
+                description = <"Artificial ventilation where non-invasive means are used to assist or replace spontaneous breathing.">
+            >
+            ["at21"] = <
+                text = <"Peripheral intravenous line">
+                description = <"Insertion of a peripheral intravenous line.">
+            >
+            ["at22"] = <
+                text = <"Central venous line or any arterial line">
+                description = <"Insertion of a central venous line or any arterial line.">
+            >
+            ["at23"] = <
+                text = <"Parenteral fluids">
+                description = <"Maintenance of hydration by means other than eating or drinking.">
+            >
+            ["at24"] = <
+                text = <"Parenteral or artificial nutrition">
+                description = <"Provision of nutrients by means other than eating or drinking.">
+            >
+            ["at25"] = <
+                text = <"Arrest medications">
+                description = <"Medications used during an emergency resuscitation to prolong life. For example: adrenaline, atropine, sodium bicarbonate, calcium, other vasoactive medications.">
+            >
+            ["at26"] = <
+                text = <"Circulatory regulation medications">
+                description = <"Medication that supports heart function, including but not limited to: vasopressors, inotropes and chronotropes.">
+            >
+            ["at27"] = <
+                text = <"Antibiotics, antiviral or antifungal agents">
+                description = <"Medications to treat infections.">
+            >
+            ["at28"] = <
+                text = <"Blood products">
+                description = <"Therapeutic substance prepared from human blood including, but not limited to: whole blood; blood components; and plasma derivatives.">
+            >
+            ["at29"] = <
+                text = <"Chest tube insertion">
+                description = <"Insertion of a tube into the pleural space.">
+            >
+            ["at3"] = <
+                text = <"Curative">
+                description = <"The condition is curable; all appropriate life-prolonging treatment will be offered.">
+            >
+            ["at30"] = <
+                text = <"Cardiac pacemaker">
+                description = <"Insertion of an artificial pacemaker to control the heart beat.">
+            >
+            ["at31"] = <
+                text = <"Dialysis">
+                description = <"Process of removing excess water, solutes, and toxins from the blood.">
+            >
+            ["at32"] = <
+                text = <"Transfer to hospital">
+                description = <"Transfer to hospital for assessment or admission.">
+            >
+            ["at33"] = <
+                text = <"Transfer to Intensive Care">
+                description = <"Transfer and admission to an intensive care or high dependency unit.">
+            >
+            ["at35"] = <
+                text = <"Recommended">
+                description = <"The intervention is recommended.">
+            >
+            ["at36"] = <
+                text = <"Conditional recommendation">
+                description = <"The intervention is recommended only in specific circumstances, captured using the 'Preconditions' data Node.">
+            >
+            ["at37"] = <
+                text = <"Not recommended">
+                description = <"The intervention is not recommended.">
+            >
+            ["at38"] = <
+                text = <"Unknown">
+                description = <"The intervention decision is not known.">
+            >
+            ["at4"] = <
+                text = <"Restorative">
+                description = <"The condition is treatable with potential for restoration to the previous state of health or a prolonged remission; all appropriate life-prolonging treatment will be offered.">
+            >
+            ["at5"] = <
+                text = <"Supportive">
+                description = <"The condition is incurable and progressive; active treatment of the underlying disease may be appropriate for specific symptom relief and/or short term life expectancy gains; focused on comfort, quality of life and dignity. Also referred to as 'Palliative'.">
+            >
+            ["at6"] = <
+                text = <"Terminal">
+                description = <"Life expectancy is short (hours or days); no active treatment of the underlying disease or treatment-related harm; focus on comfort, quality of life and dignity.">
+            >
+            ["at7"] = <
+                text = <"Unknown">
+                description = <"The intent of care decision is not known.">
+            >
+            ["id1"] = <
+                text = <"Advance intervention decisions">
+                description = <"Anticipatory decisions about the overall intent of care and possible interventions (including treatments, activities, and diagnostic or therapeutic procedures), asserted by a clinician.">
+            >
+            ["id10"] = <
+                text = <"CPR decision">
+                description = <"Decision about the extent of cardiopulmonary resuscitation (CPR) intervention appropriate for this individual.">
+            >
+            ["id15"] = <
+                text = <"Per intervention">
+                description = <"Details of the decision about possible treatments or activities that may be life-saving, life-prolonging or cause undesirable side effects.">
+            >
+            ["id16"] = <
+                text = <"Intervention">
+                description = <"Name of the possible treatment, procedure or activity.">
+            >
+            ["id3"] = <
+                text = <"Intent of care">
+                description = <"The overall intent for future care and treatment for the individual.">
+            >
+            ["id35"] = <
+                text = <"Decision">
+                description = <"Decision about the identified intervention.">
+            >
+            ["id40"] = <
+                text = <"Precondition">
+                description = <"Description of the circumstance/s in which a 'Conditional recommendation' is applicable.">
+            >
+            ["id41"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the intervention decision, not captured in other fields.">
+            >
+            ["id42"] = <
+                text = <"Additional details">
+                description = <"Additional structured details about advance intervention decisions.">
+            >
+            ["id43"] = <
+                text = <"Patient awareness">
+                description = <"Narrative description about awareness of the Advance intervention decisions by the individual.">
+            >
+            ["id44"] = <
+                text = <"Carer awareness">
+                description = <"Narrative description about awareness of the Advance intervention decisions by family, carers or legal proxy.">
+            >
+            ["id45"] = <
+                text = <"Overall comment">
+                description = <"Additional narrative about all advance intervention decisions, not captured in other fields.">
+            >
+            ["id47"] = <
+                text = <"Last updated">
+                description = <"The date and/or time when the Advance intervention decisions were last updated.">
+            >
+            ["id48"] = <
+                text = <"Valid period start">
+                description = <"The date/time that marks the beginning of the valid period of time for the Advance intervention decisions.">
+            >
+            ["id49"] = <
+                text = <"Valid period end">
+                description = <"The date/time that marks the conclusion of the valid period of time for the Advance intervention decisions.">
+            >
+            ["id50"] = <
+                text = <"Review due">
+                description = <"The date when review of the Advance intervention decisions are due.">
+            >
+            ["id51"] = <
+                text = <"Mandate">
+                description = <"Description of any legislation or other authoritative guidance that apply.">
+            >
+            ["id52"] = <
+                text = <"Digital representation">
+                description = <"Digital document, image or video representing these Advance intervention decisions.">
+            >
+            ["id53"] = <
+                text = <"Document location">
+                description = <"Information about the physical or digital location of the advance intervention decisions record.">
+            >
+            ["id54"] = <
+                text = <"Location">
+                description = <"Physical or digital location of the Advance intervention decisions record.">
+            >
+            ["id55"] = <
+                text = <"Copy holder">
+                description = <"Details of a person who has a copy of the Advance intervention decisions record.">
+            >
+            ["id56"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id57"] = <
+                text = <"Rationale">
+                description = <"Narrative description about the logic and justification for the 'Intent of care' decision.">
+            >
+            ["id9"] = <
+                text = <"Decisions description">
+                description = <"Narrative description about all advance intervention decisions, including the CPR decision.">
+            >
+        >
+    >
+    

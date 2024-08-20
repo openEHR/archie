@@ -1,0 +1,202 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=186b4925-eb3d-475e-a8f9-56e3aed86c99)
+    s2-EHR-Score.modified_rankin_scale.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"no.nasjonalikt">
+    other_contributors = <"Erling Are Hole, Helse Bergen, Norway", "Stein Arne Rimehaug, Sunnaas sykehus, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips ASA, Norway", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Rui Coutinho, University Hospital Southampton, United Kingdom", "Veronica Dahl Hvitstein, Finnmarkssykehuset HF, Norway", "Tom Dahlberg, Helgelandssykehuset HF, Fag, forskning og utdanning, Norway", "Celeste Dias, Faculty of Medicine, Portugal", "Stig Erik Hegrestad, Helse Førde, Norway", "Kåre Flø, DIPS ASA, Norway", "Mikkel Gaup Grønmo, Helse-Nord, FSE, Norway (openEHR Editor)", "Roar Holm, Helse Vest IKT A/S, Norway", "Morten Hørthe, DIPS, Norway", "Hanne Joensen, Helse Bergen HUS, Norway", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Tone Løkse, UNN, Norway", "Anne M Gromsrud, DIPS AS, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjørn Næss, DIPS ASA, Norway", "Nils Ottar Henryson Talle, Seksjon for Ergoterapi og Velferdsteknologi, Helse Førde, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Mikkel Johan Gaup Grønmo, Helse Nord RHF, <mikkel.johan.gaup.gronmo@helse-nord.no>, 2020-03-09">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.modified_rankin_scale.v1.0.0, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.modified_rankin_scale.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the degree of disability and level of assistance required after a stroke or another neurological event.">
+            keywords = <"Stroke", "function", "neurological", "disability", "nursing", "ADL", "mrs">
+            use = <"Use to record the degree of disability and level of assistance required after a stroke or another neurological event.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Modified Rankin Scale (mRS)
+        data matches {
+            Node[id8] matches {    -- Modified Rankin Scale
+                value matches {
+                    Coded_ordinal[id10] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id12] matches {
+                                term matches {
+                                    Terminology_term[id11] matches {
+                                        concept matches {[at8]}    -- No symptoms
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id13] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id15] matches {
+                                term matches {
+                                    Terminology_term[id14] matches {
+                                        concept matches {[at9]}    -- No significant disability
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id16] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id18] matches {
+                                term matches {
+                                    Terminology_term[id17] matches {
+                                        concept matches {[at10]}    -- Slight disability
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id19] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id21] matches {
+                                term matches {
+                                    Terminology_term[id20] matches {
+                                        concept matches {[at11]}    -- Moderate disability
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id22] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id24] matches {
+                                term matches {
+                                    Terminology_term[id23] matches {
+                                        concept matches {[at12]}    -- Moderately severe disability
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id25] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id27] matches {
+                                term matches {
+                                    Terminology_term[id26] matches {
+                                        concept matches {[at13]}    -- Severe disability
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id28] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id30] matches {
+                                term matches {
+                                    Terminology_term[id29] matches {
+                                        concept matches {[at14]}    -- Death
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id6] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at8", "at9", "at10", "at11", "at12", "at13", "at14">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Modified Rankin Scale (synthesised)">
+                description = <"Degree of disability and level of assistance required after a stroke or another neurological event. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Slight disability">
+                description = <"Unable to perform all previous activities but able to look after own affairs without assistance.">
+            >
+            ["at11"] = <
+                text = <"Moderate disability">
+                description = <"Requiring some help but able to walk without assistance.">
+            >
+            ["at12"] = <
+                text = <"Moderately severe disability">
+                description = <"Unable to walk without assistance and unable to attend to own bodily needs without assistance.">
+            >
+            ["at13"] = <
+                text = <"Severe disability">
+                description = <"Bedridden, incontinent and requiring constant nursing care and attention.">
+            >
+            ["at14"] = <
+                text = <"Death">
+                description = <"Death.">
+            >
+            ["at8"] = <
+                text = <"No symptoms">
+                description = <"No symptoms at all.">
+            >
+            ["at9"] = <
+                text = <"No significant disability">
+                description = <"Despite symptoms, able to carry out all usual duties and activities.">
+            >
+            ["id1"] = <
+                text = <"Modified Rankin Scale (mRS)">
+                description = <"An assessment tool used to measure the degree of disability and level of assistance required after a stroke or another neurological event.">
+            >
+            ["id3"] = <
+                text = <"Any point in time event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id6"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id8"] = <
+                text = <"Modified Rankin Scale">
+                description = <"Degree of disability and level of assistance required after a stroke or another neurological event.">
+            >
+        >
+    >
+    

@@ -1,0 +1,177 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; uid=579713aa-f7e7-4853-a1b3-6d47eb3abc20)
+	s2-EHR-Direct_observation.adverse_reaction_monitoring.v2.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health">
+		["organisation"] = <"S2 Health <http://www.S2Health.io>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-07-26">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-08-04">
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-OBSERVATION.adverse_reaction_monitoring.v1.0.0">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.adverse_reaction_monitoring.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"graphite_openehr_to_s2_adl">
+		["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record information about the outcome of monitoring for adverse reactions, during or after the administration of a substance.">
+			use = <"Use to record information about the outcome of monitoring for adverse reactions, during or after the administration of a substance. This can include both immune mediated or non-immune mediated reactions.
+            
+            This archetype has been designed to capture whether a reaction occurred after administration of an agent to an individual. This includes but is not limited to montoring during or after vaccinations, chemotherapy, or blood transfusions. It includes details about any mitigation efforts in the context of administration, such as corticosteroid cover, or ICU admission. Details about a reaction that occurred can be recorded using the Node.reaction_event archetype in the 'Reaction event' SLOT.">
+			misuse = <"Not to be used to record a propensity of the individual to have adverse reactions to specific substances or groups or classes of substances. Use the EVALUATION.adverse_reaction_risk archetype for this purpose.
+            
+            Not to be used to record the result of the administration of a substance with the intention of provoking a reaction, for example Mantoux or skin prick tests. Use other appropriate OBSERVATION archetypes for this purpose.
+            
+            Not to be used to record details about an adverse reaction event. Use the Node.adverse_reaction_event archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Ivar Berge, Oslo Universitetssykehus, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Gunn Elin Blakkisrud, DIPS ASA, Norway", "Fabian Franzeck, University Hospital Basel, Switzerland", "Ana Garcia, cONSULTANT, Portugal", "Heather Grain, Llewelyn Grain Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Mika Kiviaho, Tietoevry, Finland", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, Oslo universitetssykehus, Norway (Nasjonal IKT redaktør)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hanne Marte Bårholm, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Svenne Naumann, Finnmarkssykehuset, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Marte Rime Bø, Direktoratet for e-helse, Norway", "Terje Sagmyr, Helse Vest IKT, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Vest IKT, Norway (Nasjonal IKT redaktør)">
+
+definition
+	Direct_observation[id1] matches {	-- Adverse reaction monitoring
+		data matches {
+			Node[id14] occurrences matches {0..1} matches {	-- Purpose
+				value matches {
+					Text[id19] 
+				}
+			}
+			Node[id5] matches {	-- Substance
+				value matches {
+					Text[id20] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Reaction?
+				value matches {
+					Coded_text[id21] matches {
+						term matches {
+							Terminology_term[id26] matches {
+								concept matches {[ac1]}		-- Reaction? (synthesised)
+							}
+						}
+					}
+					Plain_text[id22] 
+				}
+			}
+			use_archetype Node[id15, s2-EHR-Node.medication.v3] 
+			use_archetype Node[id17, s2-EHR-Node.adverse_reaction_event.v1] occurrences matches {0..1} 
+			Node[id9] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id23] 
+				}
+			}
+		}
+		state matches {
+			Node[id12] matches {	-- Mitigation factor
+				value matches {
+					Text[id24] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id18] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Text[id25] 
+				}
+			}
+			allow_archetype Node[id11] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Reaction? (synthesised)">
+				description = <"Was there a reaction to the agent administered? (synthesised)">
+			>
+			["at15"] = <
+				text = <"Indeterminate">
+				description = <"It cannot be determined whether the individual reacted or not.">
+			>
+			["at6"] = <
+				text = <"Yes">
+				description = <"The individual reacted.">
+			>
+			["at7"] = <
+				text = <"No">
+				description = <"The individual did not react.">
+			>
+			["id1"] = <
+				text = <"Adverse reaction monitoring">
+				description = <"Information about the outcome of monitoring for adverse reactions, during or after the administration of a substance.">
+			>
+			["id11"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id12"] = <
+				text = <"Mitigation factor">
+				description = <"Description of actions undertaken prior to or during substance administration to prevent an anticipated reaction or reduce an actual reaction.">
+			>
+			["id14"] = <
+				text = <"Purpose">
+				description = <"The reason why the reaction monitoring was carried out.">
+			>
+			["id15"] = <
+				text = <"Substance details">
+				description = <"Structured details about the substance administered to the individual.">
+			>
+			["id17"] = <
+				text = <"Reaction event">
+				description = <"Details about the adverse reaction event.">
+			>
+			["id18"] = <
+				text = <"Method">
+				description = <"The method of how the presence or absence of an adverse reaction was assessed.">
+			>
+			["id3"] = <
+				text = <"Monitoring interval">
+				description = <"The interval of time from onset of monitoring to end of monitoring.">
+			>
+			["id5"] = <
+				text = <"Substance">
+				description = <"Identification of a substance administered to the individual.">
+			>
+			["id6"] = <
+				text = <"Reaction?">
+				description = <"Was there a reaction to the agent administered?">
+			>
+			["id9"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the monitoring, not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id15"] = <http://loinc.org/74078-7>
+			["id17"] = <http://loinc.org/89793-4>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at6", "at7", "at15">
+		>
+	>
+

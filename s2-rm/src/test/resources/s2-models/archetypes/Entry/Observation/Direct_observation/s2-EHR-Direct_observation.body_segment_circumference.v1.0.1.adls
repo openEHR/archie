@@ -1,0 +1,384 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0bca86bb-cd56-4e5b-a924-3367f0e630de)
+	s2-EHR-Direct_observation.body_segment_circumference.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, Australia, <heather.leslie@atomicainformatics.com>, 2019-03-07">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.body_segment_circumference.v1.0.1, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.body_segment_circumference.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the measurement of the distance around a part of the body, usually identified in relation to points of surface anatomy.">
+			use = <"Use to record the measurement of the distance around a part of the body, usually identified in relation to points of surface anatomy, including an indication of the relative location of the measurement start/endpoint, if required. For example: to record that a measurement around the calf was taken 10cm distal to the tibial tuberosity.
+            
+            Body segment measurements that are ubiquitous and, most commonly, used as part of growth charting in childhood have been modelled as unique and discrete archetypes. Rather than create an archetype for every single possible body segment measurement, the intent of this archetype is to use a common recording pattern to capture any, or all, other possible measurements of measurements around a part of the body, identified by the 'Body segment name' data Node.
+            
+            This measurement may be recorded and tracked over time, for example to provide insight into the shape and proportions of an individual's body for purposes of clinical, anthropometric or ergonomic assessment, to record the measurement of abnormal clinical findings or observations in order to track the progress of a condition or disease.
+            
+            Common parameters that are measured as circumferences have been added to the DV_CODED_TEXT data type in the 'Body segment name' data Node. As further parameters are identified, these can be added to this list over time.">
+			keywords = <"anthropometry", "measurement", "circumference">
+			misuse = <"Not to be used to record common body segment measurements that have been modelled as separate archetypes, including, but not limited to:
+            - for Head circumference - use OBSERVATION.head_circumference;
+            - for Hip circumference - use OBSERVATION.hip_circumference;
+            - for Waist circumference - use OBSERVATION.waist_circumference; and
+            - for Chest circumference - use OBSERVATION.chest_circumference.
+            
+            Not to be used to record the circumference of an internal body organ or a lesion.
+            
+            Not to be used to record the length, height or width measured between two identified points on the body - use OBSERVATION.body_segment_length for this purpose.
+            
+            Not to be used to record the area of a body segment - use OBSERVATION.body_segment_area for this purpose.">
+		>
+	>
+	other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Randi Brendberg, Helse Nord RHF, Norway", "Angela Crovetti, CDC/NIOSH, United States", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Nasjonal IKT HF, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Heidi Koikkalainen, United Kingdom (openEHR Editor)", "Tomi Laptoš, Marand, Slovenia", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Anne M Gromsrud, DIPS AS, Norway", "Priscila Maranhão, MEDCIDS-FMUP, Portugal", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Johannes Michael Strehle, Helse-Nord, Norway", "Svenne Naumann, Finnmarkssykehuset, Norway", "Bjørn Næss, DIPS ASA, Norway", "Jayashree Panickar, Karolinska Institute, Sweden", "Line Silsand, univertsity hospital of northern norway, Norway (openEHR Editor)", "Trine Strand, Oslo Universitetssykehus (OUS), Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Micaela Thierley, Helse Bergen, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Body segment circumference
+		data cardinality matches {2..*; unordered} matches {
+			Node[id5] matches {	-- Body segment name
+				value matches {
+					Plain_text[id33] 
+					Coded_text[id34] matches {
+						term matches {
+							Terminology_term[id46] matches {
+								concept matches {[ac1]}		-- Body segment name (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Laterality
+				value matches {
+					Coded_text[id35] matches {
+						term matches {
+							Terminology_term[id47] matches {
+								concept matches {[ac2]}		-- Laterality (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id9] matches {	-- Circumference
+				value matches {
+					Measured<Quantity>[id57] matches {
+						value matches {
+							Quantity[id48] matches {	-- Circumference (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id50] matches {
+										term matches {
+											Terminology_term[id49] matches {
+												concept matches {[at44]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+					Measured<Quantity>[id58] matches {
+						value matches {
+							Quantity[id51] matches {	-- Circumference ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id53] matches {
+										term matches {
+											Terminology_term[id52] matches {
+												concept matches {[at45]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+					Measured<Quantity>[id59] matches {
+						value matches {
+							Quantity[id54] matches {	-- Circumference (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id56] matches {
+										term matches {
+											Terminology_term[id55] matches {
+												concept matches {[at46]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id37] 
+				}
+			}
+		}
+		state matches {
+			Node[id12] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id38] 
+				}
+			}
+			Node[id32] occurrences matches {0..1} matches {	-- Body position
+				value matches {
+					Coded_text[id39] matches {
+						term matches {
+							Terminology_term[id60] matches {
+								concept matches {[ac3]}		-- Body position (synthesised)
+							}
+						}
+					}
+					Plain_text[id40] 
+				}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id16, s2-EHR-Node.device.v1] 
+			Node[id28] occurrences matches {0..1} matches {	-- Measurement method
+				value matches {
+					Text[id44] 
+				}
+			}
+			Node[id30] occurrences matches {0..1} matches {	-- Measurement origin/endpoint
+				value matches {
+					Text[id45] 
+				}
+			}
+			allow_archetype Node[id31] matches {	-- Structured origin/endpoint
+				include
+					archetype_id/value matches {/s2-EHR-Node\.anatomical_location\.v1|s2-EHR-Node\.anatomical_location_relative\.v1/}
+			}
+			allow_archetype Node[id17] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+		data_series matches {
+			Interval_event[id13] occurrences matches {0..1} matches {	-- Average measurement
+				sample_function matches {"mean"}
+				items matches {
+					use_node Node[id5] /data[id5]	-- /data[Body segment name]
+					use_node Node[id6] /data[id6]	-- /data[Laterality]
+					use_node Node[id9] /data[id9]	-- /data[Circumference]
+					use_node Node[id10] /data[id10]	-- /data[Comment]
+				}
+			}
+		}
+		state_series matches {
+			Interval_event[id13] occurrences matches {0..1} matches {	-- Average measurement
+				sample_function matches {"mean"}
+				items matches {
+					use_node Node[id12] /state[id12]	-- /state[Confounding factors]
+					use_node Node[id32] /state[id32]	-- /state[Body position]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Body segment name (synthesised)">
+				description = <"Name of the measured body segment. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Laterality (synthesised)">
+				description = <"Side of the segment measured. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Body position (synthesised)">
+				description = <"The position of the individual at the time of measurement. (synthesised)">
+			>
+			["at17"] = <
+				text = <"Arm Circumference">
+				description = <"Girth of the upper arm.">
+			>
+			["at18"] = <
+				text = <"Thigh circumference">
+				description = <"Girth of the upper leg.">
+			>
+			["at19"] = <
+				text = <"Calf circumference">
+				description = <"Girth of the calf muscle of the lower leg.">
+			>
+			["at36"] = <
+				text = <"Standing">
+				description = <"Standing at the time of measurement.">
+			>
+			["at37"] = <
+				text = <"Sitting">
+				description = <"Sitting (for example on bed or chair) at the time of measurement.">
+			>
+			["at39"] = <
+				text = <"Lying">
+				description = <"Lying flat at the time of measurement.">
+			>
+			["at41"] = <
+				text = <"Forearm circumference">
+				description = <"Girth of the forearm.">
+			>
+			["at42"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at44"] = <
+				text = <"cm">
+				description = <"Centimetres length unit">
+			>
+			["at45"] = <
+				text = <"in_i">
+				description = <"Inches length unit">
+			>
+			["at46"] = <
+				text = <"mm">
+				description = <"mm unit.">
+			>
+			["at6"] = <
+				text = <"Left">
+				description = <"Left side of the body.">
+			>
+			["at7"] = <
+				text = <"Right">
+				description = <"Right side of the body.">
+			>
+			["id1"] = <
+				text = <"Body segment circumference">
+				description = <"Measurement of the distance around an identified part of the body, usually identified in relation to points of surface anatomy.">
+			>
+			["id10"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the circumference measurement of the body segment, not captured in other fields.">
+			>
+			["id12"] = <
+				text = <"Confounding factors">
+				description = <"Record any issues or factors that may impact on the measurement of the body segment.">
+			>
+			["id13"] = <
+				text = <"Average measurement">
+				description = <"The average of several measurements of the same body segment taken during a single examination.">
+			>
+			["id16"] = <
+				text = <"Measuring device">
+				description = <"Details of the device used for measuring the body part.">
+			>
+			["id17"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id28"] = <
+				text = <"Measurement method">
+				description = <"Narrative description of the method used for measurement.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Measurement origin/endpoint">
+				description = <"Identification of a simple body site for the location of the start/end point of the measurement.">
+			>
+			["id31"] = <
+				text = <"Structured origin/endpoint">
+				description = <"A structured anatomical location for the start/end point of the measurement including relative location, if required.">
+			>
+			["id32"] = <
+				text = <"Body position">
+				description = <"The position of the individual at the time of measurement.">
+			>
+			["id48"] = <
+				text = <"Circumference (cm)">
+				description = <"Circumference (cm)">
+			>
+			["id5"] = <
+				text = <"Body segment name">
+				description = <"Name of the measured body segment.">
+			>
+			["id51"] = <
+				text = <"Circumference ([in_i])">
+				description = <"Circumference ([in_i])">
+			>
+			["id54"] = <
+				text = <"Circumference (mm)">
+				description = <"Circumference (mm)">
+			>
+			["id6"] = <
+				text = <"Laterality">
+				description = <"Side of the segment measured.">
+			>
+			["id9"] = <
+				text = <"Circumference">
+				description = <"Measured girth of the identified body segment.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at42"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at44"] = <http://ucum.org/id/cm>
+			["at45"] = <http://ucum.org/id/%5Bin_i%5D>
+			["at46"] = <http://ucum.org/id/mm>
+		>
+		["snomed"] = <
+			["at44"] = <http://snomed.info/id/258672001>
+			["at45"] = <http://snomed.info/id/258677007>
+			["at46"] = <http://snomed.info/id/258673006>
+		>
+		["loinc"] = <
+			["id1"] = <http://loinc.org/9844-2>
+			["id16"] = <http://loinc.org/74720-4>
+			["id32"] = <http://loinc.org/8361-8>
+			["id5"] = <http://loinc.org/39111-0>
+			["id6"] = <http://loinc.org/63930-2>
+			["id10"] = <http://loinc.org/106173-8>
+			["id12"] = <http://loinc.org/106176-1>
+			["id28"] = <http://loinc.org/106191-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at17", "at18", "at19", "at41">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at6", "at7">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at36", "at37", "at39">
+		>
+	>
+

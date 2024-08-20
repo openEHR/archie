@@ -1,0 +1,130 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0bbc226a-1585-4ed0-a7fb-913a6f5ebd56)
+	s2-EHR-Assessment.occupation_summary.v1.0.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2010-12-17">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.occupation_summary.v1.0.2, copyright 2010 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.occupation_summary.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a summary or persistent information about an individual's current and past jobs and/or roles.">
+			use = <"Use to record a summary or persistent information about an individual's current and past jobs and/or roles.
+            
+            This archetype has been designed to be used as a standalone archetype within the context of a Social History (or similar) template. It is intended to provide a summary of all occupations, considered in the broadest sense. For each job or role, use a separate instance of the Node.occupation_record within the SLOT for 'Occupation episode'.">
+			keywords = <"employment", "study", "job", "work", "carer", "role", "pensioner", "student", "employee", "employer", "profession", "unemployment", "occupation", "child", "retiree", "disabled">
+			misuse = <"Not to be used for recording structured details about a specific job or role. Use the Node.occupation_record archetype within 'Occupation record' SLOT for this purpose.
+            
+            Not to be used for detailed descriptions of health risks or exposure to hazardous substances in the workplace. Use the EVALUATION.health_risk or EVALUATION.exposure archetype for these purposes.
+            
+            Not to be used to record information about sources of income or income details for the individual. Use the Node.income_summary archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Paula Anderson, UCLH, United Kingdom", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Maria Beate Nupen-Stieng, Oslo Universitetssykehus, Norway", "Ivar Berge, Oslo Universitetssykehus, Norway", "Anita Bjørnnes, Helse Bergen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Angela Crovetti, CDC/NIOSH, United States", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Jayne Donaldson, University of Stirling, United Kingdom", "Bjørg Eli Hollund, helse-bergen, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sergio Freire, State University of Rio de Janeiro, Brazil", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anne Gunn Haugland, Helse Bergen HF, Norway", "Kristian Heldal, Telemark Hospital Trust, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Kaja Irgens-Hansen, Yrkesmedisinsk avdeling, Haukeland universitetssykehus, Norway", "Susanna Jönsson, Landstinget i Värmland, Sweden", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Ron Krawec, Alberta Health Services, Canada", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rose Mari Eikås, Helse Bergen, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "John Meredith, NHS Wales Informatics Service, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Erik Nissen, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Martin Paulson, Sykehuset i Vestfold, Norway", "Tanja Riise, Nasjonal IKT HF, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Niclas Skyttberg, Karolinska Institutet, Sweden", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstittutet, Norway", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Pelle Viana Lindén, Capio, Sweden">
+
+definition
+	Assessment[id1] matches {	-- Occupation summary
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id11] 
+				}
+			}
+			Node[id5] matches {	-- Employment status
+				value matches {
+					Text[id12] 
+				}
+			}
+			use_archetype Node[id4, s2-EHR-Node.occupation_record.v1] 
+			allow_archetype Node[id6] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id13] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id9] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id14] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Occupation summary">
+				description = <"Summary or persistent information about an individual's current and past jobs and/or roles.">
+			>
+			["id10"] = <
+				text = <"Last updated">
+				description = <"Date when the occupation summary or associated occupation records were was updated.">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"Narrative description about the entire occupation history of the individual.">
+			>
+			["id4"] = <
+				text = <"Occupation episode">
+				description = <"Structured details about each job or role, both current and past.">
+			>
+			["id5"] = <
+				text = <"Employment status">
+				description = <"Statement about the individual's current employment.">
+			>
+			["id6"] = <
+				text = <"Additional details">
+				description = <"Additional details about the current jobs or roles, or previous occupation history of an individual.">
+			>
+			["id7"] = <
+				text = <"Comment">
+				description = <"Additional narrative about an individual's current occupation or history of occupations not captured in other fields.">
+			>
+			["id9"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/106177-9>
+			["id3"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id7"] = <http://loinc.org/106173-8>
+		>
+	>
+

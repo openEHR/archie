@@ -1,0 +1,200 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=054a9fe4-163e-4330-826a-b24088ded437)
+	s2-EHR-Node.interpreter_request.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"no.nasjonalikt">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2015-05-04">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.interpreter_request.v1.0.0, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.interpreter_request.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record requirements and preferences for appropriate interpretation to assist with communication.">
+			use = <"Use to record requirements and preferences for appropriate interpretation to assist with communication, commonly with a specific activity or provision of a clinical service.
+            
+            This archetype is specifically designed to be nested within the 'Patient requirements' SLOT in the INSTRUCTION.service_request archetype but could be used within other INSTRUCTION archetypes which require participation of an interpreter.">
+			keywords = <"interpreter", "language", "translator", "sign", "signing">
+			misuse = <"Not to be used to record details about a language - use Node.language for this purpose.
+            
+            Not to be used to record capability and means for exchanging information with an individual - use EVALUATION.communication_capability for this purpose.
+            
+            Not to be used to record details about an interpretation that was performed - use the proposed ACTION.interpretation.
+            
+            Not to be used to record administrative information about the ability of the healthcare provider or clinical system to communicate with an indivdual - for this purpose use ADMIN_ENTRY.translation_requirements.">
+		>
+	>
+	other_contributors = <"Paula Anderson, UCLH, United Kingdom", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Birgitte Bjerkely, Senter for sjeldne diagnoser, OUS, Norway", "Anita Bjørnnes, Helse Bergen, Norway", "Randi Brendberg, Helse Nord RHF, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Valborg Ellingsen, Haraldsplass Diakonale sykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Jessica Hansen, Universitetet i Oslo, Norway", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Sanjeev Hiremath, IDEAMED International, Australia", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS AS, Norway", "Roar Holm, Helse Vest IKT A/S, Norway", "Liv Ingrid Svela, Helse Bergen HF, Norway", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Siren Kraakenes, Helse Vest IKT, Norway", "Panita Laksuktom, Haukeland universitetssjukehus, Norway", "Øygunn Leite Kallevik, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rose Mari Eikås, Helse Bergen, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Jagan Mohan, Mahatma Gandhi Medical College and Research Institute, India", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anine Ramberg, DIPS ASA, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Laila Storesund, Haraldsplass diakonale sykehus, Norway", "Eivind Stormo, DIPS AS, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Susanne Trønnes, Norway", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Interpreter request
+		items matches {
+			Node[id10] occurrences matches {0..1} matches {	-- Communication channel
+				value matches {
+					Coded_text[id41] matches {
+						term matches {
+							Terminology_term[id47] matches {
+								concept matches {[ac1]}		-- Communication channel (synthesised)
+							}
+						}
+					}
+					Plain_text[id42] 
+				}
+			}
+			Node[id40] occurrences matches {1..*} matches {	-- Per language
+				name matches {"Preferred language", "Alternative language"}
+				items matches {
+					use_archetype Node[id32, s2-EHR-Node.language.v1] 
+					Node[id36] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id44] 
+						}
+					}
+				}
+			}
+			Node[id28] occurrences matches {0..1} matches {	-- Preferred gender
+				value matches {
+					Coded_text[id45] matches {
+						term matches {
+							Terminology_term[id48] matches {
+								concept matches {[ac3]}		-- Preferred gender (synthesised)
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id5] matches {	-- Preferred interpreter
+				include
+					archetype_id/value matches {/s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.person_name(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.individual_professional(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id46] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Communication channel (synthesised)">
+				description = <"The preferred way of delivery for the interpretation. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Per language (synthesised)">
+				description = <"Details about the requested language. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Preferred gender (synthesised)">
+				description = <"The preferred gender of the interpreter. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Face-to-face meeting">
+				description = <"Physical attendence of the interpreter.">
+			>
+			["at11"] = <
+				text = <"Videoconference">
+				description = <"Remote video and audio interpretation.">
+			>
+			["at12"] = <
+				text = <"Audioconference">
+				description = <"Audio interpretation only.">
+			>
+			["at28"] = <
+				text = <"Male">
+				description = <"A male interpreter is preferred.">
+			>
+			["at29"] = <
+				text = <"Female">
+				description = <"A female interpreter is preferred.">
+			>
+			["at34"] = <
+				text = <"No preference">
+				description = <"There is no gender preference for the interpreter.">
+			>
+			["at40"] = <
+				text = <"Preferred language">
+				description = <"Preferred language and/or method of communication for an individual.">
+			>
+			["at41"] = <
+				text = <"Alternative language">
+				description = <"Other language, and/or method of communication that could be used for an individual.">
+			>
+			["id1"] = <
+				text = <"Interpreter request">
+				description = <"Requirements and preferences for appropriate interpretation to assist with communication.">
+			>
+			["id10"] = <
+				text = <"Communication channel">
+				description = <"The preferred way of delivery for the interpretation.">
+			>
+			["id28"] = <
+				text = <"Preferred gender">
+				description = <"The preferred gender of the interpreter.">
+			>
+			["id32"] = <
+				text = <"Language">
+				description = <"Language and method of communication for the interpretation.">
+			>
+			["id36"] = <
+				text = <"Comment">
+				description = <"Additional narrative description about the requested language not captured in other fields.">
+			>
+			["id4"] = <
+				text = <"Comment">
+				description = <"Additional narrative description about the requirements for the interpretation not captured in other fields.">
+			>
+			["id40"] = <
+				text = <"Per language">
+				description = <"Details about the requested language.">
+			>
+			["id5"] = <
+				text = <"Preferred interpreter">
+				description = <"Identification of the individual interpreter that is preferred for the interpretation.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at10", "at11", "at12">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at40", "at41">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at28", "at29", "at34">
+		>
+	>
+

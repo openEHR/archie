@@ -1,0 +1,367 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8ec967af-49a7-49ef-b03c-9bb78aca4276)
+    s2-EHR-Questionnaire_response.substance_use_screening.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT, Norway", "Marit Alice Venheim, Helse Vest IKT, Norway", "John Tore Valand, Helse Vest IKT, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Silje Ljosland Bakke, Nasjonal IKT HF, <silje.ljosland.bakke@nasjonalikt.no>, 2018-11-07">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.substance_use_screening.v0.0.1-alpha, copyright 2018 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.substance_use_screening.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To create a framework for recording answers to pre-defined screening questions about the harmful or hazardous use of medications, and other legal and illegal substances.">
+            keywords = <"substance", "screening", "questionnaire", "drug">
+            use = <"Use to create a framework for recording answers to pre-defined screening questions about the use of any specified substance or a grouping of substances without a prescription or beyond its intended scope or expected use.
+            
+            Common use cases include, but are not limited to:
+            - Systematic questioning in any consultation, for example:
+            --- Do you smoke? Yes, No, Unknown
+            --- For how long have you been smoking?
+            --- Have you ever injected drugs? Yes, No, Unknown.
+            --- Do you use performance enhancing substances? Yes, No, Unknown.
+            --- Have you been drinking alcohol the last four weeks? Yes, No, Unknown.
+            - Questions related to use of specific substances.	
+            
+            The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data Node would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the DV_TEXT or the DV_BOOLEAN datatypes choice to match each specific use case.
+            
+            The EVENT structure from the reference model can be used to specify whether the questions relate to point in time or over a period of time. Use a separate instance of this archetype to distinguish between a questionnaire recording information about a medication that has been used at any time in the past and information about a medication used within a specified time interval - for example the difference between \\\"Do you drink alcohol?\\\" compared to \\\"Have you been drinking any alcohol during the last four weeks?\\\". 
+            
+            The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' Node in the Reference Model.
+            
+            This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening questionnaire identifies the presence of a substance it is recommended that clinical system record and persist the specific details about the substance using a relevant archetype, for example the EVALUATION.tobacco_smoking_summary or the EVALUATION.substance_use_summary archetypes.">
+            misuse = <"Not to be used for recording a summary of use of a substance over the lifetime of the individual - use EVALUATION.substance_use_summary for this purpose.
+            
+            Not to be used for recording a summary of use of tobacco over the lifetime of the individual - use EVALUATION.smokeless_tobacco_summary or EVALUATION.tobacco_smoking_summary for this purpose.
+            
+            Not to be used for recording a summary of use of alcohol over the lifetime of the individual - use EVALUATION.alcohol_consumption_summary for this purpose.
+            
+            Not to be used to record event-or period-based information about the use of a substance, outside of a screening context - use a relevant OBSERVATION.archetype for this purpose.
+            
+            Not to be used for recording information about the use of a medication, putside of a screening context. Use a relevant medication archetype for this purpose.">
+        >
+    >
+    
+definition
+    Questionnaire_response[id1] matches {    -- Substance use screening questionnaire
+        data matches {
+            Node[id41] occurrences matches {0..1} matches {    -- Screening purpose
+                value matches {
+                    Text[id54]
+                }
+            }
+            Node[id28] matches {    -- Any substance used?
+                value matches {
+                    Coded_text[id55] matches {
+                        term matches {
+                            Terminology_term[id80] matches {
+                                concept matches {[ac1]}    -- Any substance used? (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id56]
+                    Boolean_value[id57]
+                }
+            }
+            Node[id45] occurrences matches {0..1} matches {    -- Tobacco smoker?
+                value matches {
+                    Coded_text[id58] matches {
+                        term matches {
+                            Terminology_term[id81] matches {
+                                concept matches {[ac2]}    -- Tobacco smoker? (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id59]
+                    Boolean_value[id60]
+                }
+            }
+            Node[id49] occurrences matches {0..1} matches {    -- Alcohol use?
+                value matches {
+                    Coded_text[id61] matches {
+                        term matches {
+                            Terminology_term[id82] matches {
+                                concept matches {[ac3]}    -- Alcohol use? (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id62]
+                    Boolean_value[id63]
+                }
+            }
+            Node[id53] occurrences matches {0..1} matches {    -- Other substance use?
+                value matches {
+                    Coded_text[id64] matches {
+                        term matches {
+                            Terminology_term[id83] matches {
+                                concept matches {[ac4]}    -- Other substance use? (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id65]
+                    Boolean_value[id66]
+                }
+            }
+            Node[id43] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id67]
+                }
+            }
+            Node[id27] matches {    -- Specific substance
+                items matches {
+                    Node[id22] matches {    -- Substance name
+                        value matches {
+                            Text[id68]
+                        }
+                    }
+                    Node[id25] occurrences matches {0..1} matches {    -- Used?
+                        value matches {
+                            Coded_text[id69] matches {
+                                term matches {
+                                    Terminology_term[id84] matches {
+                                        concept matches {[ac5]}    -- Used? (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id70]
+                            Boolean_value[id71]
+                        }
+                    }
+                    Node[id4] occurrences matches {0..1} matches {    -- Latest dose
+                        value matches {
+                            Date_time_value[id72]
+                            Text[id73]
+                        }
+                    }
+                    Node[id3] matches {    -- Timing
+                        value matches {
+                            Duration_value[id74]
+                            Range<Duration_value>[id75]
+                            Text[id76]
+                            Date_time_value[id77]
+                            Range<Date_time_value>[id78]
+                        }
+                    }
+                    allow_archetype Node[id42] matches {     -- Additional details
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    Node[id26] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id79]
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id44] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id20] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at28", "at29", "at30">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at45", "at46", "at47">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at49", "at50", "at51">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at53", "at54", "at55">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at36", "at37", "at39">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Any substance used? (synthesised)">
+                description = <"Is there a history of use of any substance related to the screening purpose? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Tobacco smoker? (synthesised)">
+                description = <"Is there a history of use of any substance related to the screening purpose? (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Alcohol use? (synthesised)">
+                description = <"Is there a history of use of any substance related to the screening purpose? (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Other substance use? (synthesised)">
+                description = <"Is there a history of use of any substance related to the screening purpose? (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Used? (synthesised)">
+                description = <"Is there a history of use of a specific substance or group of substances. (synthesised)">
+            >
+            ["at28"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at29"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at30"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at36"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at37"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at39"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at45"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at46"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at47"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at49"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at50"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at51"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at53"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at54"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at55"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Substance use screening questionnaire">
+                description = <"Series of questions and associated answers used to screen for the harmful or hazardous use of medications, and other legal and illegal substances.">
+            >
+            ["id20"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id22"] = <
+                text = <"Substance name">
+                description = <"Name of substance or grouping of substances.">
+            >
+            ["id24"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id25"] = <
+                text = <"Used?">
+                description = <"Is there a history of use of a specific substance or group of substances.">
+            >
+            ["id26"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the specific substance question, not captured in other fields.">
+            >
+            ["id27"] = <
+                text = <"Specific substance">
+                description = <"Details about a specified substance or grouping of substances relevant for the screening purpose.">
+            >
+            ["id28"] = <
+                text = <"Any substance used?">
+                description = <"Is there a history of use of any substance related to the screening purpose?">
+            >
+            ["id3"] = <
+                text = <"Timing">
+                description = <"Indication of timing related to the use of the substance or grouping of substances.">
+            >
+            ["id4"] = <
+                text = <"Latest dose">
+                description = <"The date and/or time of administation of the most recent dose of the substance or group of substances.">
+            >
+            ["id41"] = <
+                text = <"Screening purpose">
+                description = <"The context or reason for screening.">
+            >
+            ["id42"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about the specific substance or grouping of substances.">
+            >
+            ["id43"] = <
+                text = <"Description">
+                description = <"Narrative description about the history of use of any substance relevant for the screening purpose.">
+            >
+            ["id44"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about the screening for substance or grouping of substances.">
+            >
+            ["id45"] = <
+                text = <"Tobacco smoker?">
+                description = <"Is there a history of use of any substance related to the screening purpose?">
+            >
+            ["id49"] = <
+                text = <"Alcohol use?">
+                description = <"Is there a history of use of any substance related to the screening purpose?">
+            >
+            ["id53"] = <
+                text = <"Other substance use?">
+                description = <"Is there a history of use of any substance related to the screening purpose?">
+            >
+        >
+    >
+    

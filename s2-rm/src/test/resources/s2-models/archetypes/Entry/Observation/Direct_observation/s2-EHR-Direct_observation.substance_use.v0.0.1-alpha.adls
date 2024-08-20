@@ -1,0 +1,173 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=04d30c0b-332a-41e4-b73c-ea65eedf6ebd)
+	s2-EHR-Direct_observation.substance_use.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 6/05/2009">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.substance_use.v0.0.1-alpha, copyright 6/05 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.substance_use.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"This is a generic archetype used to record details of the use of any and all substances. ">
+			use = <"This is a generic archetype used to record details of the use of any and all substances that have not had specific specialisation archetypes created.  This includes use at specific point in time, over intervals of time, and use of mathematical functions such as average or minimum eg average consumption over a week.  
+            A typical use of this archetype will be related to a diary record of use or consumption of substances, especially those with addictive properties.  ">
+			keywords = <"substance", "addiction", "consumption", "use">
+			misuse = <"Do not use this archetype for recording summary details about the use of the substance - this should be captured using the EVALUATION.substance_use_summary archetype.  
+            Do not use this archetype for recording use or consumption histories for common substances such as tobacco smoking and alcohol consumption.  As these are so commonly consumed, data should be recorded using detailed and specific specialisations of this archetype.">
+		>
+	>
+	other_contributors = <"Sam Heard, Ocean Informatics, Australia", ...>
+
+definition
+	Direct_observation[id1] matches {	-- Substance Use
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Substance
+				value matches {
+					Text[id20] 
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Consumption details
+				items matches {
+					Node[id12] occurrences matches {0..1} matches {	-- Form
+						value matches {
+							Text[id21] 
+						}
+					}
+					Node[id19] occurrences matches {0..1} matches {	-- Method of use
+						value matches {
+							Text[id22] 
+						}
+					}
+					Node[id6] occurrences matches {0..1} matches {	-- Frequency
+						value matches {
+							Coded_text[id23] matches {
+								term matches {
+									Terminology_term[id26] matches {
+										concept matches {[ac1]}		-- Frequency (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id13] 	-- Amount
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Triggers
+				value matches {
+					Text[id24] 
+				}
+			}
+			use_archetype Node[id15, s2-EHR-Node.change.v0] 
+			Node[id17] occurrences matches {0..1} matches {	-- Evidence of dependence
+				value matches {
+					Text[id25] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Frequency (synthesised)">
+				description = <"Frequency of use of substance (synthesised)">
+			>
+			["at6"] = <
+				text = <"Daily use">
+				description = <"Used every day">
+			>
+			["at7"] = <
+				text = <"Weekly use">
+				description = <"Used at least weekly">
+			>
+			["at8"] = <
+				text = <"Irregular use">
+				description = <"Used irregularly">
+			>
+			["at9"] = <
+				text = <"No use">
+				description = <"Not used at all">
+			>
+			["id1"] = <
+				text = <"Substance Use">
+				description = <"Generic archetype to record the actual use or consumption of a defined substance at the present time, a specific time or over a period of time. ">
+			>
+			["id11"] = <
+				text = <"Consumption details">
+				description = <"Details about the consumption of the substance">
+			>
+			["id12"] = <
+				text = <"Form">
+				description = <"Form of the substance used">
+			>
+			["id13"] = <
+				text = <"Amount">
+				description = <"Amount of substance consumed.  Data type can be further specified in specialised archetypes or in templates">
+			>
+			["id14"] = <
+				text = <"Triggers">
+				description = <"Identified triggers which stimulate or cause use">
+			>
+			["id15"] = <
+				text = <"Readiness for change">
+				description = <"Details about the readiness to change use or consumption of substance">
+			>
+			["id17"] = <
+				text = <"Evidence of dependence">
+				description = <"Description of any evidence of dependence on the substance">
+			>
+			["id19"] = <
+				text = <"Method of use">
+				description = <"Method of use or consumption of the substance">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Any event">
+			>
+			["id5"] = <
+				text = <"Substance">
+				description = <"Identification of substance ">
+			>
+			["id6"] = <
+				text = <"Frequency">
+				description = <"Frequency of use of substance">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/106200-9>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at6", "at7", "at8", "at9">
+		>
+	>
+

@@ -1,0 +1,109 @@
+template (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Composition.t_lab_report-CBC.v1.0.0
+
+specialize
+	s2-EHR-Composition.t_lab_report-generic.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2024 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Complete blood count (CBC) lab result report">
+		>
+	>
+
+definition
+	Composition[id1.1.1] matches {	-- Cholesterol lab report
+		/content[id0.1.1]/data matches {
+			use_archetype Node[id0.90.1, s2-EHR-Node.LeukocytesNCncPtBldQnLabObs.v1] 
+			use_archetype Node[id0.90.2, s2-EHR-Node.ErythrocytesNCncPtBldQnLabObs.v1] 
+			use_archetype Node[id0.90.3, s2-EHR-Node.HemoglobinMCncPtBldQnLabObs.v1] 
+			use_archetype Node[id0.90.4, s2-EHR-Node.HematocritVFrPtBldQnLabObs.v1] 
+			use_archetype Node[id0.90.5, s2-EHR-Node.ErythrocytemeancorpuscularvolumeEntVolPtRBCQnLabObs.v1] 
+			use_archetype Node[id0.90.6, s2-EHR-Node.ErythrocyteMeanCorpuscularHemoglobinEntMassPtRBCQnLabObs.v1] 
+			use_archetype Node[id0.90.7, s2-EHR-Node.ErythrocyteMeanCorpuscularHemoglobinConcentrationMCncPtRBCQnLabObs.v1] 
+			use_archetype Node[id0.90.8, s2-EHR-Node.ErythrocyteDistributionWidthRatioPtRBCQnLabObs.v1] 
+			use_archetype Node[id0.90.9, s2-EHR-Node.ErythrocyteDistributionWidthRatioPtRBCQnLabObs.v1] 
+			use_archetype Node[id0.90.10, s2-EHR-Node.PlateletsNCncPtBldQnLabObs.v1] 
+			use_archetype Node[id0.90.11, s2-EHR-Node.PlateletdistributionwidthEntVolPtBldQnLabObs.v1] 
+			use_archetype Node[id0.90.12, s2-EHR-Node.PlateletMeanVolumeEntVolPtBldQnLabObs.v1] 
+			use_archetype Node[id0.90, s2-EHR-Node.lab_analyte.v0] occurrences matches {0} 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1.1"] = <
+				text = <"CBC lab report">
+				description = <"-">
+			>
+			["id0.1.1"] = <
+				text = <"CBC lab panel">
+				description = <"-">
+			>
+			["id0.90.1"] = <
+				text = <"Leukocytes [#/volume] in Blood by Automated count">
+				description = <"-">
+			>
+			["id0.90.2"] = <
+				text = <"Erythrocytes [#/volume] in Blood by Automated count">
+				description = <"-">
+			>
+			["id0.90.3"] = <
+				text = <"Hemoglobin [Mass/volume] in Blood">
+				description = <"-">
+			>
+			["id0.90.4"] = <
+				text = <"Hematocrit [Volume Fraction] of Blood by Automated count">
+				description = <"-">
+			>
+			["id0.90.5"] = <
+				text = <"MCV [Entitic volume] by Automated count">
+				description = <"-">
+			>
+			["id0.90.6"] = <
+				text = <"MCH [Entitic mass] by Automated count">
+				description = <"-">
+			>
+			["id0.90.7"] = <
+				text = <"MCHC [Mass/volume] by Automated count">
+				description = <"-">
+			>
+			["id0.90.8"] = <
+				text = <"Erythtocyte distribution width [Entitic volume] by Automated count">
+				description = <"-">
+			>
+			["id0.90.9"] = <
+				text = <"Erythrocyte distribution width [Ratio] by Automated count">
+				description = <"-">
+			>
+			["id0.90.10"] = <
+				text = <"Platelets [#/volume] in Blood by Automated count">
+				description = <"-">
+			>
+			["id0.90.11"] = <
+				text = <"Platelet distrubution width [Entitic volume] in Blood by Automated count">
+				description = <"-">
+			>
+			["id0.90.12"] = <
+				text = <"Platelet mean volume [Entitic volume] in Blood by Automated count">
+				description = <"-">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1.1"] = <http://loinc.org/58410-2>
+		>
+	>

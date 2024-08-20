@@ -1,0 +1,297 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a45b1848-8bdd-4622-b7a0-ef73dd93177e)
+	s2-EHR-Node.sequencing_assay.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+	translations = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			author = <
+				["name"] = <"Aurelie Tomczak">
+				["organisation"] = <"Institute of Pathology, University Hospital Heidelberg">
+				["email"] = <"au.tomczak@yahoo.com">
+			>
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Aurelie Tomczak, Institute of Pathology, University Hospital Heidelberg, <au.tomczak@yahoo.com>, 2019-06-24">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.sequencing_assay.v0.0.1-alpha, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.sequencing_assay.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details of the performed sequencing analysis including a list of all tested genes if panel sequencing was performed. ">
+			use = <"One or more instances of this archetype may be nested within the 'Testing details' SLOT in the OBSERVATION.laboratory_test_result. ">
+			keywords = <"Sequencing", "Genomics", "Panel", "Assay", "Pathology", "Sequencing analysis", "Panel sequencing", "Gene", "Specimen">
+			misuse = <"Used only to document the analysis protocol but not to document the results of the sequence analysis. The results are documented with the archetype 'genetic variant'.">
+		>
+	>
+	other_contributors = <"Simon Schumacher, HiGHmed, Germany", "Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Gideon Giacomelli, Charité Berlin, Germany", "Florian Kaercher, Charité Berlin, Germany", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Francesca Frexia, CRS4 - Center for advanced studies, research and development in Sardinia, Italy", "Cecilia Mascia, CRS4, Italy (openEHR Editor)", "Paolo Uva, CRS4, Italy", "Gianluigi Zanetti, CRS4, Italy">
+
+definition
+	Node[id1] matches {	-- Sequencing assay
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Sequencing technology
+				value matches {
+					Coded_text[id39] matches {
+						term matches {
+							Terminology_term[id53] matches {
+								concept matches {[ac1]}		-- Sequencing technology (synthesised)
+							}
+						}
+					}
+					Plain_text[id40] 
+				}
+			}
+			use_archetype Node[id37, s2-EHR-Node.device.v1] 
+			Node[id3] occurrences matches {0..1} matches {	-- Kit name
+				value matches {
+					Plain_text[id41] 
+					Coded_text[id42] matches {
+						term matches {
+							Terminology_term[id54] matches {
+								concept matches {[at21]}
+							}
+						}
+					}
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Nucleic acid
+				value matches {
+					Plain_text[id43] 
+					Coded_text[id44] matches {
+						term matches {
+							Terminology_term[id55] matches {
+								concept matches {[ac2]}		-- Nucleic acid (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Tumor cell percentage
+				value matches {
+					Count[id45] matches {
+						magnitude matches {|0..100|}
+					}
+				}
+			}
+			Node[id7] matches {	-- Tested Genes
+				items matches {
+					Node[id8] matches {	-- Gen symbol
+						value matches {
+							Text[id46] 
+						}
+					}
+					Node[id9] occurrences matches {0..1} matches {	-- Gen name
+						value matches {
+							Text[id47] 
+						}
+					}
+					use_archetype Node[id26, s2-EHR-Node.reference_sequence.v1] 
+				}
+			}
+			Node[id31] matches {	-- Tested Region
+				items matches {
+					Node[id32] occurrences matches {0..1} matches {	-- Chromosomal location
+						value matches {
+							Plain_text[id48] 
+							Coded_text[id49] 
+						}
+					}
+					Node[id33] occurrences matches {0..1} matches {	-- Start
+						value matches {
+							Count[id50] 
+						}
+					}
+					Node[id34] occurrences matches {0..1} matches {	-- End
+						value matches {
+							Count[id51] 
+						}
+					}
+					use_archetype Node[id36, s2-EHR-Node.reference_sequence.v1] 
+				}
+			}
+			allow_archetype Node[id27] matches {	-- Extensions
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id38] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id52] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Sequencing technology (synthesised)">
+				description = <"Name of the technology used for sequencing analysis. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Nucleic acid (synthesised)">
+				description = <"Type of nucleic acid used for sequencing, e.g. DNA, RNA oder cf-DNA. (synthesised)">
+			>
+			["at10"] = <
+				text = <"NGS (hybrid-capture)">
+				description = <"*">
+			>
+			["at11"] = <
+				text = <"NGS (amplicon)">
+				description = <"*">
+			>
+			["at12"] = <
+				text = <"Genome sequencing">
+				description = <"*">
+			>
+			["at13"] = <
+				text = <"Array-CGH">
+				description = <"*">
+			>
+			["at14"] = <
+				text = <"MLPA">
+				description = <"*">
+			>
+			["at15"] = <
+				text = <"Sanger sequencing">
+				description = <"*">
+			>
+			["at16"] = <
+				text = <"Fragment analysis">
+				description = <"*">
+			>
+			["at17"] = <
+				text = <"Methylation assay">
+				description = <"*">
+			>
+			["at18"] = <
+				text = <"Miscellaneous">
+				description = <"*">
+			>
+			["at21"] = <
+				text = <"Oncomine Comprehensive Panel V3">
+				description = <"*">
+			>
+			["at22"] = <
+				text = <"DNA">
+				description = <"*">
+			>
+			["at23"] = <
+				text = <"RNA">
+				description = <"*">
+			>
+			["at24"] = <
+				text = <"cf-DNA">
+				description = <"*">
+			>
+			["id1"] = <
+				text = <"Sequencing assay">
+				description = <"To record details of the sequencing analysis including a list of all tested genes if panel sequencing was performed. ">
+			>
+			["id2"] = <
+				text = <"Sequencing technology">
+				description = <"Name of the technology used for sequencing analysis.">
+			>
+			["id21"] = <
+				text = <"Tumor cell percentage">
+				description = <"To record the tumor cell content in percent.">
+			>
+			["id26"] = <
+				text = <"Gene reference sequence">
+				description = <"Structured details on the reference sequence of the gene.">
+			>
+			["id27"] = <
+				text = <"Extensions">
+				description = <"Additional details to be captured.">
+			>
+			["id3"] = <
+				text = <"Kit name">
+				description = <"Name of the kit used for the experiment.">
+			>
+			["id31"] = <
+				text = <"Tested Region">
+				description = <"List of all tested regions, if panel sequencing was performed.">
+			>
+			["id32"] = <
+				text = <"Chromosomal location">
+				description = <"Chromosomal location of tested region.">
+			>
+			["id33"] = <
+				text = <"Start">
+				description = <"Start position of the tested region.">
+			>
+			["id34"] = <
+				text = <"End">
+				description = <"End position of the tested region.">
+			>
+			["id36"] = <
+				text = <"Reference sequence of region">
+				description = <"Structured details on the reference sequence of the region.">
+			>
+			["id37"] = <
+				text = <"Sequencing or analysis device">
+				description = <"Used to specify devices and tools used for the sequencing analysis or result annotation. ">
+			>
+			["id38"] = <
+				text = <"Comment">
+				description = <"Comment on the sequencing assay that was not captured in other fields.">
+			>
+			["id4"] = <
+				text = <"Nucleic acid">
+				description = <"Type of nucleic acid used for sequencing, e.g. DNA, RNA oder cf-DNA.">
+			>
+			["id7"] = <
+				text = <"Tested Genes">
+				description = <"List of all tested genes, if panel sequencing was performed.">
+			>
+			["id8"] = <
+				text = <"Gen symbol">
+				description = <"The official gene symbol approved by the HGNC, which is a short abbreviated form of the gene name.">
+			>
+			["id9"] = <
+				text = <"Gen name">
+				description = <"The full gene name approved by the HGNC that convey the character or function of the gene.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id8"] = <http://loinc.org/48018-6>
+			["id38"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at22", "at23", "at24">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at10", "at11", "at12", "at13", "at14", "at15", "at16", "at17", "at18">
+		>
+	>
+

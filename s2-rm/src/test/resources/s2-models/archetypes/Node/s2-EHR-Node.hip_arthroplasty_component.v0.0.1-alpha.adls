@@ -1,0 +1,223 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=92f6b1d4-90f1-42db-a0fe-439f3524411c)
+    s2-EHR-Node.hip_arthroplasty_component.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics, UK, <ian.mcnicoll@freshEHR.com>, 2014-03-27">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.hip_arthroplasty_component.v0.0.1-alpha, copyright 2014 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.hip_arthroplasty_component.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record additional details of a hip arthropasty component.">
+            use = <"">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Hip arthroplasty component
+        items matches {
+            Node[id9] matches {    -- Material
+                value matches {
+                    Text[id18]
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Size
+                value matches {
+                    Quantity[id19] matches {
+                        magnitude matches {|0.0..20.0|}
+                        precision matches {1}
+                        units matches {
+                            Coded_text[id30] matches {
+                                term matches {
+                                    Terminology_term[id29] matches {
+                                        concept matches {[at17]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id3] occurrences matches {0..1} matches {    -- Cement name
+                value matches {
+                    Text[id20]
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- HA-Coating
+                value matches {
+                    Text[id21]
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Depth of cement
+                value matches {
+                    Quantity[id22] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at17]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Fixation type
+                value matches {
+                    Coded_text[id23] matches {
+                        term matches {
+                            Terminology_term[id33] matches {
+                                concept matches {[ac1]}    -- Fixation type (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Fixation sub-type
+                value matches {
+                    Text[id24]
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Tesla level
+                value matches {
+                    Count[id25] matches {
+                        magnitude matches {|0..5|}
+                    }
+                }
+            }
+            Node[id11] matches {    -- Potential safety issue
+                value matches {
+                    Text[id26]
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- Manufacturer safety information
+                value matches {
+                    Uri_ref[id27]
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Antibacterial in cement?
+                value matches {
+                    Boolean_value[id28]
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at16"] = <http://openehr.org/id/122>
+        >
+        ["ucum"] = <
+            ["at17"] = <http://ucum.org/id/mm>
+        >
+        ["snomed"] = <
+            ["at17"] = <http://snomed.info/id/258673006>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at14", "at15">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Fixation type (synthesised)">
+                description = <"The type of fixation used. (synthesised)">
+            >
+            ["at14"] = <
+                text = <"Cemented">
+                description = <"Cemented.">
+            >
+            ["at15"] = <
+                text = <"Non-cemented">
+                description = <"Non-cemented.">
+            >
+            ["at16"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["at17"] = <
+                text = <"mm">
+                description = <"mm unit.">
+            >
+            ["id1"] = <
+                text = <"Hip arthroplasty component">
+                description = <"Additional details of hip arthropasty component.">
+            >
+            ["id10"] = <
+                text = <"Size">
+                description = <"The size of the component.">
+            >
+            ["id11"] = <
+                text = <"Potential safety issue">
+                description = <"Issues identified or excluded that may have a safety impact e.g MRI risk.">
+            >
+            ["id12"] = <
+                text = <"Manufacturer safety information">
+                description = <"Link to manufacturer safety information.">
+            >
+            ["id13"] = <
+                text = <"Fixation type">
+                description = <"The type of fixation used.">
+            >
+            ["id14"] = <
+                text = <"Fixation sub-type">
+                description = <"The fixation sub-type.">
+            >
+            ["id17"] = <
+                text = <"Tesla level">
+                description = <"The tested MRI Tesla safety level.">
+            >
+            ["id3"] = <
+                text = <"Cement name">
+                description = <"The name of the cement used.">
+            >
+            ["id6"] = <
+                text = <"HA-Coating">
+                description = <"The name of the coating used.">
+            >
+            ["id7"] = <
+                text = <"Depth of cement">
+                description = <"The depth of cement applied.">
+            >
+            ["id8"] = <
+                text = <"Antibacterial in cement?">
+                description = <"True if antibiotics/antibacterials were added to the cement.">
+            >
+            ["id9"] = <
+                text = <"Material">
+                description = <"The material  used in the manufacture of the arthroplasty component.">
+            >
+        >
+    >
+    

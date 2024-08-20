@@ -1,0 +1,165 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=aadaf58b-77a1-45b1-af4a-f03724a9de38)
+	s2-EHR-Node.housing_record.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2018-05-29">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.housing_record.v1.0.0, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.housing_record.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about a single home or other residential setting of an individual during a specified period of time.">
+			use = <"Use to record details about a single home or other residential setting of an individual during a specified period of time.
+            
+            The scope of this archetype is inclusive of all residential settings occupied by an individual. For example: all rented homes over time; alternating between two homes during a specified period of time; transience, such as nomadic herders moving between seasonal pastures; itinerant travellers; or homeless.
+            
+            An individual may require more than one active housing record at a time. Each new residential setting or address should be recorded in a separate instance of this archetype. For example if an individual is moving from a house to another house or apartment, or moving the same mobile home from one address to another.
+            
+            Multiple instances of this archetype captured over time will result in the aggregation of a history of past and present housing situations.
+            
+            An active, or current housing situation may be implied from a 'Date commenced' but no 'Date ceased'. 
+            
+            If the housing situation changes significantly, such as a change of address or type of tenure, then this should also be recorded as a separate instance of this archetype.
+            
+            This archetype has been specifically designed to be used in the 'Housing record' SLOT within the EVALUATION.housing_summary archetype, but can also be used within any other ENTRY or Node archetypes, where clinically appropriate.
+            
+            There may be some apparent or real overlap between the data Nodes in this archetype and housing/address details that may be stored as demographic details in clinical or administrative systems. These data Nodes have been designed specifically to support clinical purposes.">
+			keywords = <"housing", "accommodation", "residential care", "home", "house", "apartment", "homeless", "rent", "owner", "shared", "temporary", "institution", "flat", "condo", "condominium", "hospice">
+			misuse = <"Not to be used to record information about a physical building where an individual lives. Use Node.dwelling for this purpose.
+            
+            Not to be used to record information about the living arrangements for an individual. Use Node.household for this purpose.
+            
+            Not to be used to record who an individual lives with. Use EVALUATION.social_network for this purpose.
+            
+            Not to be used to record temporary changes or episodes within a single housing record, such as being on holiday.
+            
+            Not to be used for detailed descriptions of health risks or exposure to hazardous substances in the home or residential setting. Use the archetypes EVALUATION.health_risk or EVALUATION.exposure for this purpose.
+            
+            Not to be used to record information about the housing situation of an individual at a specific point in time (for example, on June 16, 2014) or during a relative interval of time (for example 'in the past 30 days'. Use an appropriate OBSERVATION archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Amund Aakerholt, Helse Stavanger, KORFOR, Norway", "Morten Aas, Diakonhjemmet Sykehus, Norway", "Marit Alice Venheim, Helse Vest IKT, Norway", "Tomas Alme, DIPS ASA, Norway", "Erling Are Hole, Helse Bergen, Norway", "Stein Arne Rimehaug, Sunnaas sykehus, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Ivar Berge, Oslo Universitetssykehus, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Angela Crovetti, CDC/NIOSH, United States", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Jayne Donaldson, University of Stirling, United Kingdom", "Bjørg Eli Hollund, helse-bergen, Norway", "Stig Erik Hegrestad, Helse Førde, Norway", "Samuel Frade, Marand, Portugal", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sergio Freire, State University of Rio de Janeiro, Brazil", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Carrick Gillespie, Omniq AB, Sweden", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anne Gunn Haugland, Helse Bergen HF, Norway", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Jørn Henrik Vold, Helse Bergen, Avdeling for rusmedisin, Norway", "Anca Heyd, DIPS ASA, Norway", "Teresa Highway, Alberta Health Services, Canada", "Annette Hole Sjøborg, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Susanna Jönsson, Landstinget i Värmland, Sweden", "Lars Morgan Karlsen, DIPS ASA, Norway", "Tone Klund, DIPS AS, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Ron Krawec, Alberta Health Services, Canada", "Ronald Krawec, Alberta Health Services, Canada", "Anita Lagos, Haraldsplass Diakonale Sykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Pedro Leuschner, Centro Hospitalar do Porto, Portugal", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Anne M Gromsrud, DIPS AS, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "John Meredith, NHS Wales Informatics Service, United Kingdom", "Erik Nissen, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Martin Paulson, Sykehuset i Vestfold, Norway", "Georg Reinhardt, Helse Fonna, Norway", "Tanja Riise, Nasjonal IKT HF, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Ragnhild Sandvold, Vestre Viken HF, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Ingrid Skard, Edproof, Norway", "Niclas Skyttberg, Karolinska Institutet, Sweden", "Andreas Sundstrom, Capio S:t Gorans Hospital, Sweden", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstittutet, Norway", "Susanne Trønnes, Norway", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ingrid Vange, Helse Bergen, Norway">
+
+definition
+	Node[id1] matches {	-- Housing record
+		items matches {
+			Node[id6] occurrences matches {0..1} matches {	-- Name/label
+				value matches {
+					Text[id20] 
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id21] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Date commenced
+				value matches {
+					Date_time_value[id22] 
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Residential setting
+				value matches {
+					Text[id23] 
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Tenure
+				value matches {
+					Text[id24] 
+				}
+			}
+			use_archetype Node[id5, s2-EHR-Node.address.v1] occurrences matches {0..1} 
+			allow_archetype Node[id19] matches {	-- Additional details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.living_arrangement(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.dwelling(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Date ceased
+				value matches {
+					Date_time_value[id25] 
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id26] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Housing record">
+				description = <"Details about a single home or other residential setting of an individual during a specified period of time.">
+			>
+			["id14"] = <
+				text = <"Tenure">
+				description = <"The legal right of the individual to occupy the home or residential setting.">
+			>
+			["id15"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the home or residential setting not captured in other fields.">
+			>
+			["id17"] = <
+				text = <"Description">
+				description = <"Narrative description about the home or residential setting.">
+			>
+			["id19"] = <
+				text = <"Additional details">
+				description = <"Further details about the home or residential setting.">
+			>
+			["id2"] = <
+				text = <"Residential setting">
+				description = <"The category that describes the place where an individual lives.">
+			>
+			["id5"] = <
+				text = <"Address details">
+				description = <"The address of the residential setting.">
+			>
+			["id6"] = <
+				text = <"Name/label">
+				description = <"A name or label associated with this home or residential setting, to allow it to be distinguished from other housing records.">
+			>
+			["id8"] = <
+				text = <"Date commenced">
+				description = <"The date when an individual commenced living in the home or residential setting.">
+			>
+			["id9"] = <
+				text = <"Date ceased">
+				description = <"The date when an individual ceased living in the home or residential setting.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/99952-4>
+			["id15"] = <http://loinc.org/106173-8>
+			["id17"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+

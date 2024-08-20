@@ -1,0 +1,382 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8c96d3ee-1052-4477-832b-78552f4b4703)
+	s2-EHR-Node.exam-tooth.v0.0.1-alpha
+
+specialize
+	s2-EHR-Node.exam.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2019-05-16">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.exam-tooth.v0.0.1-alpha, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.exam-tooth.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a narrative description and clinical interpretation of the findings observed during the physical examination of a single tooth.">
+			use = <"Use to record a narrative description and clinical interpretation of the findings observed during the physical examination of a single tooth.
+            
+            This archetype has been specifically designed to be used in the 'Examination detail' SLOT within the OBSERVATION.exam archetype, but can also be used within other ENTRY or Node archetypes, where clinically appropriate.
+            
+            Use to provide a framework in which Node archetypes can be nested in the 'Examination findings' SLOT to record additional structured physical examination findings.
+            
+            The Node.exclusion_exam archetype can be nested within the 'Examination not done' SLOT to optionally record explicit details about the examination not being performed.
+            
+            Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data Node.">
+			misuse = <"Not to be used for recording the clinical history - use specific OBSERVATION and Node archetypes. For example OBSERVATION.story and Node.symptom_sign.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom (openEHR Editor)", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Hilde Hollås, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, DIPS ASA, Norway", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Jussara Rotzsch, UNB, Brazil", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia (openEHR Editor)", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Node[id1.1] matches {	-- Examination of a tooth
+		/items matches {
+			Node[id0.2] occurrences matches {0..1} matches {	-- Tooth label
+				value matches {
+					Text[id0.38] 
+				}
+			}
+			Node[id0.3] occurrences matches {0..1} matches {	-- Presence
+				value matches {
+					Coded_text[id0.39] matches {
+						term matches {
+							Terminology_term[id0.47] matches {
+								concept matches {[ac0.1]}		-- Presence (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id13.1] 	-- Tooth position
+			allow_archetype Node[id12] matches {
+				include
+					archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			after [id4]
+			Node[id0.6] occurrences matches {0..1} matches {	-- Condition
+				value matches {
+					Coded_text[id0.40] matches {
+						term matches {
+							Terminology_term[id0.48] matches {
+								concept matches {[ac0.2]}		-- Condition (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id0.9] occurrences matches {0..1} matches {	-- Gum description
+				value matches {
+					Text[id0.41] 
+				}
+			}
+			Node[id0.10] occurrences matches {0..1} matches {	-- Pocket depth
+				value matches {
+					Quantity[id0.42] matches {
+						magnitude matches {|0.0..10.0|}
+						precision matches {0}
+						units matches {
+							Coded_text[id0.50] matches {
+								term matches {
+									Terminology_term[id0.49] matches {
+										concept matches {[at0.38]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			before [id5]
+			Node[id0.11] matches {	-- Findings
+				items matches {
+					Node[id0.12] occurrences matches {0..1} matches {	-- Finding
+						value matches {
+							Coded_text[id0.43] matches {
+								term matches {
+									Terminology_term[id0.51] matches {
+										concept matches {[ac0.3]}		-- Finding (synthesised)
+									}
+								}
+							}
+							Plain_text[id0.44] 
+						}
+					}
+					Node[id0.30] occurrences matches {0..1} matches {	-- Surface
+						value matches {
+							Coded_text[id0.45] matches {
+								term matches {
+									Terminology_term[id0.52] matches {
+										concept matches {[ac0.4]}		-- Surface (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id0.37] occurrences matches {0..1} matches {	-- Clinical description
+						value matches {
+							Text[id0.46] 
+						}
+					}
+				}
+			}
+		}
+		/items[id2.1]/value matches {
+			Coded_text[id14.1] matches {
+				term matches {
+					Terminology_term[id0.53] matches {
+						concept matches {[at0.1]}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac0.1"] = <
+				text = <"Presence (synthesised)">
+				description = <"Presence or absence of the identified tooth. (synthesised)">
+			>
+			["ac0.2"] = <
+				text = <"Condition (synthesised)">
+				description = <"Has the tooth been restored? (synthesised)">
+			>
+			["ac0.3"] = <
+				text = <"Finding (synthesised)">
+				description = <"* (synthesised)">
+			>
+			["ac0.4"] = <
+				text = <"Surface (synthesised)">
+				description = <"Surface of the tooth where the finding is observed. (synthesised)">
+			>
+			["at0.1"] = <
+				text = <"Tooth">
+				description = <"A hard, bony enamel-coated structure in the jaw used, for biting and chewing.">
+			>
+			["at0.13"] = <
+				text = <"Cavity">
+				description = <"*">
+			>
+			["at0.14"] = <
+				text = <"Amalgam">
+				description = <"*">
+			>
+			["at0.15"] = <
+				text = <"Gold inlay">
+				description = <"*">
+			>
+			["at0.16"] = <
+				text = <"Gold foil">
+				description = <"*">
+			>
+			["at0.17"] = <
+				text = <"Other metal restoration">
+				description = <"*">
+			>
+			["at0.18"] = <
+				text = <"Composite resin">
+				description = <"*">
+			>
+			["at0.19"] = <
+				text = <"Traumatic avulsion">
+				description = <"*">
+			>
+			["at0.20"] = <
+				text = <"Fractured crown">
+				description = <"*">
+			>
+			["at0.21"] = <
+				text = <"Root tip">
+				description = <"*">
+			>
+			["at0.22"] = <
+				text = <"Rotated">
+				description = <"*">
+			>
+			["at0.23"] = <
+				text = <"Root apical filling">
+				description = <"*">
+			>
+			["at0.24"] = <
+				text = <"Apicoectomy">
+				description = <"*">
+			>
+			["at0.25"] = <
+				text = <"Intermediate restoration">
+				description = <"*">
+			>
+			["at0.26"] = <
+				text = <"Crown - temporary">
+				description = <"*">
+			>
+			["at0.27"] = <
+				text = <"Crown - full">
+				description = <"*">
+			>
+			["at0.28"] = <
+				text = <"Crown - partial">
+				description = <"*">
+			>
+			["at0.29"] = <
+				text = <"Crown veneer">
+				description = <"*">
+			>
+			["at0.31"] = <
+				text = <"Mesial">
+				description = <"The surface that is closest to the midline of the face.">
+			>
+			["at0.32"] = <
+				text = <"Distal">
+				description = <"The surface that is furthest from the midline of the face.">
+			>
+			["at0.33"] = <
+				text = <"Buccal">
+				description = <"The surface that faces towards the cheeks.">
+			>
+			["at0.34"] = <
+				text = <"Lingual">
+				description = <"The surface that faces towards the tongue.">
+			>
+			["at0.35"] = <
+				text = <"Incisal">
+				description = <"The biting edge of an anterior tooth.">
+			>
+			["at0.36"] = <
+				text = <"Occlusal">
+				description = <"The chewing surface of a posterior tooth.">
+			>
+			["at0.37"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at0.38"] = <
+				text = <"mm">
+				description = <"mm unit.">
+			>
+			["at0.4"] = <
+				text = <"Present">
+				description = <"The identified tooth is present.">
+			>
+			["at0.5"] = <
+				text = <"Absent">
+				description = <"The identified tooth is absent.">
+			>
+			["at0.7"] = <
+				text = <"Unrestored">
+				description = <"The tooth has no repairs or restorations observed.">
+			>
+			["at0.8"] = <
+				text = <"Restored.">
+				description = <"The tooth has repairs or restorations.">
+			>
+			["id0.10"] = <
+				text = <"Pocket depth">
+				description = <"The depth of the gum pocket.">
+			>
+			["id0.11"] = <
+				text = <"Findings">
+				description = <"Details about the findings observed.">
+			>
+			["id0.12"] = <
+				text = <"Finding">
+				description = <"*">
+			>
+			["id0.2"] = <
+				text = <"Tooth label">
+				description = <"Name or nomenclature of the tooth examined.">
+			>
+			["id0.3"] = <
+				text = <"Presence">
+				description = <"Presence or absence of the identified tooth.">
+			>
+			["id0.30"] = <
+				text = <"Surface">
+				description = <"Surface of the tooth where the finding is observed.">
+			>
+			["id0.37"] = <
+				text = <"Clinical description">
+				description = <"Narrative description about the finding.">
+			>
+			["id0.6"] = <
+				text = <"Condition">
+				description = <"Has the tooth been restored?">
+			>
+			["id0.9"] = <
+				text = <"Gum description">
+				description = <"Narrative description about the gum of the identified tooth.">
+			>
+			["id1.1"] = <
+				text = <"Examination of a tooth">
+				description = <"Findings observed during the physical examination of a single tooth.">
+			>
+			["id12.1"] = <
+				text = <"Structured tooth position">
+				description = <"A structured description of the position of the identified tooth.">
+			>
+			["id13.1"] = <
+				text = <"Tooth position">
+				description = <"Identification of the position of the identified tooth.">
+			>
+			["id2.1"] = <
+				text = <"System or structure examined">
+				description = <"Identification of the examined body system or anatomical structure.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at0.1"] = <http://snomed.info/id/38199008>
+			["at0.38"] = <http://snomed.info/id/258673006>
+		>
+		["openehr"] = <
+			["at0.37"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at0.38"] = <http://ucum.org/id/mm>
+		>
+		["loinc"] = <
+			["id13.1"] = <http://loinc.org/34002-6>
+		>
+	>
+	value_sets = <
+		["ac0.1"] = <
+			id = <"ac0.1">
+			members = <"at0.4", "at0.5">
+		>
+		["ac0.2"] = <
+			id = <"ac0.2">
+			members = <"at0.7", "at0.8">
+		>
+		["ac0.3"] = <
+			id = <"ac0.3">
+			members = <"at0.13", "at0.14", "at0.15", "at0.16", "at0.17", "at0.18", "at0.19", "at0.20", "at0.21", "at0.22", "at0.23", "at0.24", "at0.25", "at0.26", "at0.27", "at0.28", "at0.29">
+		>
+		["ac0.4"] = <
+			id = <"ac0.4">
+			members = <"at0.31", "at0.32", "at0.33", "at0.34", "at0.35", "at0.36">
+		>
+	>
+

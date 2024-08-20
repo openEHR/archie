@@ -1,0 +1,302 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=aa282031-ef91-4f44-81f3-cc353f75153b)
+	s2-EHR-Direct_observation.nine_hole_peg_test.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+	translations = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			author = <
+				["name"] = <"Michael Braun">
+				["organisation"] = <"University Medical Center Freiburg, Germany">
+				["email"] = <"braun@imbi.uni-freiburg.de">
+			>
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Michael Braun, University Medical Center Freiburg, Germany, <braun@imbi.uni-freiburg.de>, 2012-06-25">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.nine_hole_peg_test.v1.0.0, copyright 2012 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.nine_hole_peg_test.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the measurements recorded during a Nine Hole Peg Test, normally as part of the Multiple Sclerosis Functional Composite suite of tests.">
+			use = <"Use to record the measurements recorded during a Nine Hole Peg Test. This test is commonly carried out as one component of the Multiple Sclerosis Functional Composite (MSFC) assessment, but may be performed independently. Both the dominant and non-dominant hand of the patient are tested twice (two consecutive trials of the dominant hand, followed by two consecutive trials of the non-dominant hand). For each trial nine pegs are picked one by one from a container, placed in the holes on a pegboard and then separately returned to the container. The subject may only use one hand at each trial, but may hold the pegboard with the free hand.
+            
+            This archetype covers variations of the test. According to Mathiowetz et al. (1985) an untimed practice trial should be administered prior to the timed trial for each hand. The MSFC Manual stipulates two timed trials for each hand, but no practice trial. Use the MSFC Manual or see Mathiowetz et al. (1985) for detailed administration instructions. The test should only be administered by a suitably trained person.">
+			keywords = <"NHPT", "9-Hole Peg Test", "9-HPT", "Multiple Sclerosis Functional Composite", "MSFC", "Multiple Sclerosis", "MS", "Neurology">
+			misuse = <"Not to be used for the assessment of patients with serious physical impairments.">
+		>
+	>
+	other_contributors = <"Sebastian Bischoff, gfnmediber GmbH, Germany", "Martin Boeker, University Medical Center Freiburg, Germany", "Alexander Brandt, gfnmediber GmbH, Germany", "Michael Braun, University Medical Center Freiburg, Germany (Editor)", "Sebastian Garde, Ocean Informatics, Germany", "Heather Leslie, Ocean Informatics, Australia", "Sebastian Mansow-Model, gfnmediber GmbH, Germany", "Catalina Martínez-Costa, Medical University of Graz, Austria", "Vyacheslav Mavrin, JSC Comsoft, Russia", "Ian McNicoll, Ocean Informatics, United Kingdom (Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Nine Hole Peg Test
+		data matches {
+			Node[id36] occurrences matches {0..1} matches {	-- Interim Time
+				value matches {
+					Duration_value[id90] matches {
+						magnitude matches {|PT0S..PT1000S|}
+					}
+				}
+			}
+			Node[id18] occurrences matches {0..1} matches {	-- Total Time
+				value matches {
+					Duration_value[id91] matches {
+						magnitude matches {|PT0S..PT1000S|}
+					}
+				}
+			}
+			Node[id51] occurrences matches {0..1} matches {	-- Number Of Pegs Placed
+				value matches {
+					Count[id92] matches {
+						magnitude matches {|0..9|}
+					}
+				}
+			}
+			Node[id52] occurrences matches {0..1} matches {	-- Number Of Pegs Returned
+				value matches {
+					Count[id93] matches {
+						magnitude matches {|0..9|}
+					}
+				}
+			}
+			Node[id81] occurrences matches {0..1} matches {	-- Trial Not Completed?
+				value matches {
+					Boolean_value[id94] matches {
+						value matches {True}
+					}
+				}
+			}
+			Node[id82] matches {	-- Reason For Non-completion
+				value matches {
+					Text[id95] 
+				}
+			}
+		}
+		state matches {
+			Node[id65] matches {	-- Confounding Factors
+				value matches {
+					Text[id96] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id84] occurrences matches {0..1} matches {	-- Dominant Hand
+				value matches {
+					Coded_text[id103] matches {
+						term matches {
+							Terminology_term[id109] matches {
+								concept matches {[ac1]}		-- Dominant Hand (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Practice Trial For Dominant Hand?
+				value matches {
+					Boolean_value[id104] matches {
+						value matches {True, False}
+					}
+				}
+			}
+			Node[id83] occurrences matches {0..1} matches {	-- Practice Trial For Non-dominant Hand?
+				value matches {
+					Boolean_value[id105] matches {
+						value matches {True, False}
+					}
+				}
+			}
+			Node[id88] occurrences matches {0..1} matches {	-- More Than Two Attempts?
+				value matches {
+					Boolean_value[id106] matches {
+						value matches {True}
+					}
+				}
+			}
+			Node[id89] matches {	-- Reason For More Than Two Attempts
+				value matches {
+					Text[id107] 
+				}
+			}
+			Node[id85] occurrences matches {0..1} matches {	-- Pegs Placed But Not Returned
+				value matches {
+					Boolean_value[id108] matches {
+						value matches {True}
+					}
+				}
+			}
+		}
+		data_series matches {
+			Point_event[id76] occurrences matches {0..1} matches {	-- Dominant Hand - Trial 2
+				items matches {
+					use_node Node[id36] /data[id36]	-- /data[Interim Time]
+					use_node Node[id18] /data[id18]	-- /data[Total Time]
+					use_node Node[id51] /data[id51]	-- /data[Number Of Pegs Placed]
+					use_node Node[id52] /data[id52]	-- /data[Number Of Pegs Returned]
+					use_node Node[id81] /data[id81]	-- /data[Trial Not Completed?]
+					use_node Node[id82] /data[id82]	-- /data[Reason For Non-completion]
+				}
+			}
+			Point_event[id77] occurrences matches {0..1} matches {	-- Non-dominant Hand - Trial 1
+				items matches {
+					use_node Node[id36] /data[id36]	-- /data[Interim Time]
+					use_node Node[id18] /data[id18]	-- /data[Total Time]
+					use_node Node[id51] /data[id51]	-- /data[Number Of Pegs Placed]
+					use_node Node[id52] /data[id52]	-- /data[Number Of Pegs Returned]
+					use_node Node[id81] /data[id81]	-- /data[Trial Not Completed?]
+					use_node Node[id82] /data[id82]	-- /data[Reason For Non-completion]
+				}
+			}
+			Point_event[id78] occurrences matches {0..1} matches {	-- Non-dominant Hand - Trial 2
+				items matches {
+					use_node Node[id36] /data[id36]	-- /data[Interim Time]
+					use_node Node[id18] /data[id18]	-- /data[Total Time]
+					use_node Node[id51] /data[id51]	-- /data[Number Of Pegs Placed]
+					use_node Node[id52] /data[id52]	-- /data[Number Of Pegs Returned]
+					use_node Node[id81] /data[id81]	-- /data[Trial Not Completed?]
+					use_node Node[id82] /data[id82]	-- /data[Reason For Non-completion]
+				}
+			}
+		}
+		state_series matches {
+			Point_event[id76] occurrences matches {0..1} matches {	-- Dominant Hand - Trial 2
+				items matches {
+					use_node Node[id65] /state[id65]	-- /state[Confounding Factors]
+				}
+			}
+			Point_event[id77] occurrences matches {0..1} matches {	-- Non-dominant Hand - Trial 1
+				items matches {
+					use_node Node[id65] /state[id65]	-- /state[Confounding Factors]
+				}
+			}
+			Point_event[id78] occurrences matches {0..1} matches {	-- Non-dominant Hand - Trial 2
+				items matches {
+					use_node Node[id65] /state[id65]	-- /state[Confounding Factors]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Dominant Hand (synthesised)">
+				description = <"Indication of the dominant hand (if the subject uses both hands equally, the hand that is prefered for writing). (synthesised)">
+			>
+			["at85"] = <
+				text = <"Right hand dominant">
+				description = <"The subject's right hand is dominant.">
+			>
+			["at86"] = <
+				text = <"Left hand dominant">
+				description = <"The subject's left hand is dominant.">
+			>
+			["id1"] = <
+				text = <"Nine Hole Peg Test">
+				description = <"The Nine Hole Peg Test is a quantitative measure of upper extremity function, and used for rapid assessment of finger dexterity of a subject. It is the second component of the Multiple Sclerosis Functional Composite (MSFC), a series of three tests to document the course of Multiple Sclerosis. It is also known as NHTP, as 9-Hole Peg Test, or 9-HPT.">
+			>
+			["id14"] = <
+				text = <"Practice Trial For Dominant Hand?">
+				description = <"Was an untimed practice trial conducted with the dominant hand prior to the timed dominant hand trial?">
+			>
+			["id18"] = <
+				text = <"Total Time">
+				description = <"The time taken to successfully complete the trial for one hand.">
+			>
+			["id36"] = <
+				text = <"Interim Time">
+				description = <"Interim time measured after the placement of the last peg on the pegboard, before returning them to the container.">
+			>
+			["id51"] = <
+				text = <"Number Of Pegs Placed">
+				description = <"The number of pegs successfully placed on the pegboard.">
+			>
+			["id52"] = <
+				text = <"Number Of Pegs Returned">
+				description = <"The number of pegs successfully returned to the container.">
+			>
+			["id65"] = <
+				text = <"Confounding Factors">
+				description = <"Record any circumstances that are believed to have affected the patient's perfomance.">
+			>
+			["id75"] = <
+				text = <"Dominant Hand - Trial 1">
+				description = <"First trial of the dominant hand.">
+			>
+			["id76"] = <
+				text = <"Dominant Hand - Trial 2">
+				description = <"Second trial of the dominant hand.">
+			>
+			["id77"] = <
+				text = <"Non-dominant Hand - Trial 1">
+				description = <"First trial of the non-dominant hand.">
+			>
+			["id78"] = <
+				text = <"Non-dominant Hand - Trial 2">
+				description = <"Second trial of the non-dominant hand.">
+			>
+			["id81"] = <
+				text = <"Trial Not Completed?">
+				description = <"Was the trial incomplete?">
+			>
+			["id82"] = <
+				text = <"Reason For Non-completion">
+				description = <"If the trial was terminated prematurely, record any reasons.">
+			>
+			["id83"] = <
+				text = <"Practice Trial For Non-dominant Hand?">
+				description = <"Was an untimed practice trial conducted with the non-dominant hand prior to the timed non-dominant hand trial?">
+			>
+			["id84"] = <
+				text = <"Dominant Hand">
+				description = <"Indication of the dominant hand (if the subject uses both hands equally, the hand that is prefered for writing).">
+			>
+			["id85"] = <
+				text = <"Pegs Placed But Not Returned">
+				description = <"Mark as true if the trial only consists in placing the pegs on the board, i.e. without returning them to the container.">
+			>
+			["id88"] = <
+				text = <"More Than Two Attempts?">
+				description = <"Did it take more than two attempts to get two successful trials per hand? ">
+			>
+			["id89"] = <
+				text = <"Reason For More Than Two Attempts">
+				description = <"If multiple attempts were needed to complete the trials, please specify reasons.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id65"] = <http://loinc.org/106176-1>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at85", "at86">
+		>
+	>
+

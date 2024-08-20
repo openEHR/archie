@@ -1,0 +1,231 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7418005b-5efa-4c4f-b3f4-c0619314d7b4)
+    s2-EHR-Direct_observation.testicular_volume.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Malin Berg, DIPS ASA, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Stig Erik Hegrestad, Helse Førde, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS AS, Norway", "Alfred Honore, Haukeland, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Pétur Júlíusson, Barneklinikken, HUS og K2, UIB, Norway", "Heather Leslie, Atomica Informatics, Australia", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Stian Torleif Varpe, Helse Bergen, Norway", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"John Tore Valand, Helse Bergen University Hospital, <john.tore.valand@helse-bergen.no>, 2017-04-26">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.testicular_volume.v1.0.0, copyright 2017 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.testicular_volume.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the volume of an individual's testicle.">
+            keywords = <"testis", "testicle", "orchiometer", "orchidometer", "volume">
+            use = <"Use to record the volume of an individual's testicle.
+            
+            While the measurement of testicular volume may be one component of a full genital examination, this archetype for recording testicular volume has been developed as a standalone OBSERVATION to support the common monitoring of testicular volume by use of growth charts in childhood and puberty.
+            
+            Use to record change from repeated measurements. This can currently be modeled by constraining the 'any event' to an interval in a template with an associated mathematical function, as appropriate.">
+            misuse = <"Not to be used to record the volume of an object or other bodypart than testicles. Use an appropriate archetype for this purpose.">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Testicular volume
+        data cardinality matches {2..*; unordered} matches {
+            Node[id21] matches {    -- Testicle examined
+                value matches {
+                    Plain_text[id22]
+                    Coded_text[id23] matches {
+                        term matches {
+                            Terminology_term[id29] matches {
+                                concept matches {[ac1]}    -- Testicle examined (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] matches {    -- Testicular volume
+                value matches {
+                    Measured<Quantity>[id36] matches {
+                        value matches {
+                            Quantity[id30] matches {    -- Testicular volume (ml)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id32] matches {
+                                        term matches {
+                                            Terminology_term[id31] matches {
+                                                concept matches {[at24]}    -- ml
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {2}
+                            }
+                        }
+                    }
+                    Measured<Quantity>[id37] matches {
+                        value matches {
+                            Quantity[id33] matches {    -- Testicular volume (cm3)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id35] matches {
+                                        term matches {
+                                            Terminology_term[id34] matches {
+                                                concept matches {[at25]}    -- cm3
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {2}
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id25]
+                }
+            }
+        }
+        state matches {
+            Node[id13] occurrences matches {0..1} matches {    -- Confounding factors
+                value matches {
+                    Text[id26]
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id14] occurrences matches {0..1} matches {    -- Method
+                value matches {
+                    Text[id27]
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Formula
+                value matches {
+                    Text[id28]
+                }
+            }
+            use_archetype Node[id8, s2-EHR-Node.device.v1]    -- Device
+            allow_archetype Node[id20] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["id11"] = <http://snomed.info/id/251828008>
+            ["at21"] = <http://snomed.info/id/63239009>
+            ["at22"] = <http://snomed.info/id/15598003>
+            ["at24"] = <http://snomed.info/id/258773002>
+            ["at25"] = <http://snomed.info/id/258773002>
+        >
+        ["openehr"] = <
+            ["at23"] = <http://openehr.org/id/129>
+        >
+        ["ucum"] = <
+            ["at24"] = <http://ucum.org/id/ml>
+            ["at25"] = <http://ucum.org/id/cm3>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at21", "at22">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Testicle examined (synthesised)">
+                description = <"Identification of the testicle that was measured. (synthesised)">
+            >
+            ["at21"] = <
+                text = <"Left testicle">
+                description = <"Measurement of the left testicle.">
+            >
+            ["at22"] = <
+                text = <"Right testicle">
+                description = <"Measurement of the right testicle.">
+            >
+            ["at23"] = <
+                text = <"Volume">
+                description = <"Volume">
+            >
+            ["at24"] = <
+                text = <"ml">
+                description = <"ml unit.">
+            >
+            ["at25"] = <
+                text = <"cm3">
+                description = <"cm3 unit.">
+            >
+            ["id1"] = <
+                text = <"Testicular volume">
+                description = <"The estimated or calculated volume of a testicle.">
+            >
+            ["id11"] = <
+                text = <"Testicular volume">
+                description = <"Estimated or calculated volume of a testicle.">
+            >
+            ["id13"] = <
+                text = <"Confounding factors">
+                description = <"Issues or factors that may impact on the measurement.">
+            >
+            ["id14"] = <
+                text = <"Method">
+                description = <"The method used to measure the testicles.">
+            >
+            ["id20"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+            >
+            ["id21"] = <
+                text = <"Testicle examined">
+                description = <"Identification of the testicle that was measured.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id30"] = <
+                text = <"Testicular volume (ml)">
+                description = <"Testicular volume (ml)">
+            >
+            ["id33"] = <
+                text = <"Testicular volume (cm3)">
+                description = <"Testicular volume (cm3)">
+            >
+            ["id6"] = <
+                text = <"Comment">
+                description = <"Additional narrative not covered in other fields.">
+            >
+            ["id8"] = <
+                text = <"Device">
+                description = <"Structured details about the device used to measure the testicles.">
+            >
+            ["id9"] = <
+                text = <"Formula">
+                description = <"The formula used to calculate the testicular volume.">
+            >
+        >
+    >
+    

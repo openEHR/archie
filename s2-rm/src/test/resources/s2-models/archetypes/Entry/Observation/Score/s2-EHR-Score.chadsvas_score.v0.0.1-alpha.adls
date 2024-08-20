@@ -1,0 +1,414 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=3a3c4788-9c15-4b09-9030-15bf7982b64b)
+	s2-EHR-Score.chadsvas_score.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Rong Chen, Cambio Healthcare Systems, <rong.chen@cambio.se>, 2013-03-08">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.chadsvas_score.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.chadsvas_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record individual CHA₂DS₂-VASc score parameters and total score.">
+			use = <"Use to record individual CHA₂DS₂-VASc score parameters and total score as part of stroke risk stratification in patients with atrial fibrillation.">
+			keywords = <"atrial fibrillation", "stroke", "diabetes", "hypertension", "congestive heart failure", "CHF", "vascular disease", "age", "gender">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Dr Carlos Valladares", "Heather Leslie, Atomica Informatics, Australia">
+
+definition
+	Score[id1] matches {	-- CHA₂DS₂-VASc score
+		data matches {
+			Node[id27] occurrences matches {0..1} matches {	-- Congestive Heart Failure
+				value matches {
+					Coded_ordinal[id111] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id113] matches {
+								term matches {
+									Terminology_term[id112] matches {
+										concept matches {[at27]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id114] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id116] matches {
+								term matches {
+									Terminology_term[id115] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id30] occurrences matches {0..1} matches {	-- Hypertension
+				value matches {
+					Coded_ordinal[id117] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id119] matches {
+								term matches {
+									Terminology_term[id118] matches {
+										concept matches {[at27]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id120] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id122] matches {
+								term matches {
+									Terminology_term[id121] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id33] occurrences matches {0..1} matches {	-- Diabetes
+				value matches {
+					Coded_ordinal[id123] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id125] matches {
+								term matches {
+									Terminology_term[id124] matches {
+										concept matches {[at27]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id126] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id128] matches {
+								term matches {
+									Terminology_term[id127] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id36] occurrences matches {0..1} matches {	-- Age
+				value matches {
+					Coded_ordinal[id129] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id131] matches {
+								term matches {
+									Terminology_term[id130] matches {
+										concept matches {[at36]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id132] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id134] matches {
+								term matches {
+									Terminology_term[id133] matches {
+										concept matches {[at37]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id135] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id137] matches {
+								term matches {
+									Terminology_term[id136] matches {
+										concept matches {[at38]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id40] occurrences matches {0..1} matches {	-- Previous stroke
+				value matches {
+					Coded_ordinal[id138] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id140] matches {
+								term matches {
+									Terminology_term[id139] matches {
+										concept matches {[at27]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id141] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id143] matches {
+								term matches {
+									Terminology_term[id142] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id47] occurrences matches {0..1} matches {	-- Vascular disease
+				value matches {
+					Coded_ordinal[id144] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id146] matches {
+								term matches {
+									Terminology_term[id145] matches {
+										concept matches {[at27]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id147] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id149] matches {
+								term matches {
+									Terminology_term[id148] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id43] occurrences matches {0..1} matches {	-- Gender
+				value matches {
+					Coded_ordinal[id150] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id152] matches {
+								term matches {
+									Terminology_term[id151] matches {
+										concept matches {[at43]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id153] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id155] matches {
+								term matches {
+									Terminology_term[id154] matches {
+										concept matches {[at44]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id100] occurrences matches {0..1} matches {	-- Total score
+				value matches {
+					Count[id110] matches {
+						magnitude matches {|0..9|}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id102] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Congestive Heart Failure (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac2"] = <
+				text = <"Hypertension (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac3"] = <
+				text = <"Diabetes (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac4"] = <
+				text = <"Age (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac5"] = <
+				text = <"Previous stroke (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac6"] = <
+				text = <"Vascular disease (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac7"] = <
+				text = <"Gender (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["at27"] = <
+				text = <"Absent">
+				description = <"">
+			>
+			["at28"] = <
+				text = <"Present">
+				description = <"">
+			>
+			["at36"] = <
+				text = <"Under 65">
+				description = <"">
+			>
+			["at37"] = <
+				text = <"Between 65-74">
+				description = <"">
+			>
+			["at38"] = <
+				text = <"Above or equals to 75">
+				description = <"">
+			>
+			["at43"] = <
+				text = <"Male">
+				description = <"">
+			>
+			["at44"] = <
+				text = <"Female">
+				description = <"">
+			>
+			["id1"] = <
+				text = <"CHA₂DS₂-VASc score">
+				description = <"Risk stratification for stroke based on the CHA₂DS₂-VASc score defined by the European Society of Cardiology (ESC) guidelines for management of atrial fibrillation.">
+			>
+			["id100"] = <
+				text = <"Total score">
+				description = <"The total sum of each component parameter for the CHA₂DS₂-VASc score.">
+			>
+			["id102"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id27"] = <
+				text = <"Congestive Heart Failure">
+				description = <"">
+			>
+			["id3"] = <
+				text = <"history">
+				description = <"">
+			>
+			["id30"] = <
+				text = <"Hypertension">
+				description = <"">
+			>
+			["id33"] = <
+				text = <"Diabetes">
+				description = <"">
+			>
+			["id36"] = <
+				text = <"Age">
+				description = <"">
+			>
+			["id4"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id40"] = <
+				text = <"Previous stroke">
+				description = <"">
+			>
+			["id43"] = <
+				text = <"Gender">
+				description = <"">
+			>
+			["id47"] = <
+				text = <"Vascular disease">
+				description = <"">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id36"] = <http://loinc.org/46251-5>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at27", "at28">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at27", "at28">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at27", "at28">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at36", "at37", "at38">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at27", "at28">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at27", "at28">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at43", "at44">
+		>
+	>
+

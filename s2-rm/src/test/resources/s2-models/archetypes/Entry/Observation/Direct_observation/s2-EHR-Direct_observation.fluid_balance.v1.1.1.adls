@@ -1,0 +1,413 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=62fb0955-5989-407a-9cc3-6a51726dfb7a)
+    s2-EHR-Direct_observation.fluid_balance.v1.1.1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Tomas Alme, DIPS, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Ingeborg Berge, Direktoratet for e-helse, Norway", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Stig Erik Hegrestad, Helse Førde, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Cecilie Graver, Oslo universitetssykehus HF, Norway", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Anne Kristin Strand, Sykehuspartner HF, Norway", "Heather Leslie, Ocean Health Systems, Australia", "Marit Ludvigsen, St Olavs Hospital, Norway", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Navin Ramachandran, NHS, United Kingdom", "Tanja Riise, Nasjonal IKT HF, Norway", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Iztok Stotl, UKCLJ, Slovenia", "Roy Støle, OUS, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstittutet, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2013-02-22">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.fluid_balance.v1.1.1, copyright 2013 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.fluid_balance.v1.1.1 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the cumulative or total amounts of fluid input and output, plus an estimation of the fluid balance status of an individual over specified intervals of time.
+            
+            To record the estimation of the difference between fluid input and output during a specified interval of time.">
+            keywords = <"fluid", "balance", "input", "output", "loss", "sweat", "insensible", "evaporation", "perspiration">
+            use = <"Use to record cumulative or total amounts of fluid input and output, plus an estimation of the fluid balance status of a subject over specified periods of time.
+            
+            A fluid balance chart will typically require a combination of multiple instances of both the OBSERVATION.fluid_output archetype and the OBSERVATION.fluid_input archetype to capture all of the various inputs and outputs, plus a single instance of the OBSERVATION.fluid_balance to record the overall fluid status.">
+            misuse = <"Not to be used to record individual measurements of fluid input or output. Use the OBSERVATION.fluid_input or OBSERVATION.fluid_output archetypes for these purposes.">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Fluid balance
+        data matches {
+            Node[id6] occurrences matches {0..1} matches {    -- Total input
+                value matches {
+                    Measured<Quantity>[id30] matches {
+                        value matches {
+                            Quantity[id21] matches {    -- Total input (ml)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id23] matches {
+                                        term matches {
+                                            Terminology_term[id22] matches {
+                                                concept matches {[at3]}    -- ml
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {|>=0|}
+                            }
+                        }
+                    }
+                    Measured<Quantity>[id31] matches {
+                        value matches {
+                            Quantity[id24] matches {    -- Total input (l)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id26] matches {
+                                        term matches {
+                                            Terminology_term[id25] matches {
+                                                concept matches {[at4]}    -- l
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {3}
+                            }
+                        }
+                    }
+                    Measured<Quantity>[id32] matches {
+                        value matches {
+                            Quantity[id27] matches {    -- Total input ([foz_us])
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id29] matches {
+                                        term matches {
+                                            Terminology_term[id28] matches {
+                                                concept matches {[at5]}    -- [foz_us]
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {|>=0|}
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Total output
+                value matches {
+                    Measured<Quantity>[id42] matches {
+                        value matches {
+                            Quantity[id33] matches {    -- Total output (ml)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id35] matches {
+                                        term matches {
+                                            Terminology_term[id34] matches {
+                                                concept matches {[at3]}    -- ml
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {|>=0|}
+                            }
+                        }
+                    }
+                    Measured<Quantity>[id43] matches {
+                        value matches {
+                            Quantity[id36] matches {    -- Total output (l)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id38] matches {
+                                        term matches {
+                                            Terminology_term[id37] matches {
+                                                concept matches {[at4]}    -- l
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {3}
+                            }
+                        }
+                    }
+                    Measured<Quantity>[id44] matches {
+                        value matches {
+                            Quantity[id39] matches {    -- Total output ([foz_us])
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id41] matches {
+                                        term matches {
+                                            Terminology_term[id40] matches {
+                                                concept matches {[at5]}    -- [foz_us]
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {|>=0|}
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Insensible loss
+                value matches {
+                    Measured<Quantity>[id54] matches {
+                        value matches {
+                            Quantity[id45] matches {    -- Insensible loss (ml)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id47] matches {
+                                        term matches {
+                                            Terminology_term[id46] matches {
+                                                concept matches {[at3]}    -- ml
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {|>=0|}
+                            }
+                        }
+                    }
+                    Measured<Quantity>[id55] matches {
+                        value matches {
+                            Quantity[id48] matches {    -- Insensible loss (l)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id50] matches {
+                                        term matches {
+                                            Terminology_term[id49] matches {
+                                                concept matches {[at4]}    -- l
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {3}
+                            }
+                        }
+                    }
+                    Measured<Quantity>[id56] matches {
+                        value matches {
+                            Quantity[id51] matches {    -- Insensible loss ([foz_us])
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id53] matches {
+                                        term matches {
+                                            Terminology_term[id52] matches {
+                                                concept matches {[at5]}    -- [foz_us]
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {|>=0|}
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Fluid balance
+                value matches {
+                    Measured<Quantity>[id66] matches {
+                        value matches {
+                            Quantity[id57] matches {    -- Fluid balance (ml)
+                                units matches {
+                                    Coded_text[id59] matches {
+                                        term matches {
+                                            Terminology_term[id58] matches {
+                                                concept matches {[at3]}    -- ml
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {|>=0|}
+                            }
+                        }
+                    }
+                    Measured<Quantity>[id67] matches {
+                        value matches {
+                            Quantity[id60] matches {    -- Fluid balance (l)
+                                units matches {
+                                    Coded_text[id62] matches {
+                                        term matches {
+                                            Terminology_term[id61] matches {
+                                                concept matches {[at4]}    -- l
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {3}
+                            }
+                        }
+                    }
+                    Measured<Quantity>[id68] matches {
+                        value matches {
+                            Quantity[id63] matches {    -- Fluid balance ([foz_us])
+                                units matches {
+                                    Coded_text[id65] matches {
+                                        term matches {
+                                            Terminology_term[id64] matches {
+                                                concept matches {[at5]}    -- [foz_us]
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {|>=0|}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id11] occurrences matches {0..1} matches {    -- Insensible loss formula
+                value matches {
+                    Text[id20]
+                }
+            }
+            allow_archetype Node[id12] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+        data_series matches {
+            Interval_event[id9] occurrences matches {0..1} matches {    -- 24 hour total
+                sample_function matches {"total"}
+                width matches {PT24H}
+                items matches {
+                    use_node Node[id6] /data[id6]    -- Total input
+                    use_node Node[id7] /data[id7]    -- Total output
+                    use_node Node[id5] /data[id5]    -- Insensible loss
+                    use_node Node[id8] /data[id8]    -- Fluid balance
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at1"] = <http://openehr.org/id/129>
+        >
+        ["ucum"] = <
+            ["at3"] = <http://ucum.org/id/ml>
+            ["at4"] = <http://ucum.org/id/l>
+            ["at5"] = <http://ucum.org/id/%5Bfoz_us%5D>
+        >
+        ["snomed"] = <
+            ["at3"] = <http://snomed.info/id/258773002>
+            ["at4"] = <http://snomed.info/id/258770004>
+            ["at5"] = <http://snomed.info/id/282118007>
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["at1"] = <
+                text = <"Volume">
+                description = <"Volume">
+            >
+            ["at3"] = <
+                text = <"ml">
+                description = <"ml unit.">
+            >
+            ["at4"] = <
+                text = <"l">
+                description = <"Liter unit.">
+            >
+            ["at5"] = <
+                text = <"[foz_us]">
+                description = <"[foz_us] unit.">
+            >
+            ["id1"] = <
+                text = <"Fluid balance">
+                description = <"The difference between fluid input and output during a specified interval of time.">
+            >
+            ["id11"] = <
+                text = <"Insensible loss formula">
+                description = <"The formula used to calculate the amount of insensible loss.">
+            >
+            ["id12"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id21"] = <
+                text = <"Total input (ml)">
+                description = <"Total input (ml)">
+            >
+            ["id24"] = <
+                text = <"Total input (l)">
+                description = <"Total input (l)">
+            >
+            ["id27"] = <
+                text = <"Total input ([foz_us])">
+                description = <"Total input ([foz_us])">
+            >
+            ["id3"] = <
+                text = <"Any interval event">
+                description = <"Unspecified interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id33"] = <
+                text = <"Total output (ml)">
+                description = <"Total output (ml)">
+            >
+            ["id36"] = <
+                text = <"Total output (l)">
+                description = <"Total output (l)">
+            >
+            ["id39"] = <
+                text = <"Total output ([foz_us])">
+                description = <"Total output ([foz_us])">
+            >
+            ["id45"] = <
+                text = <"Insensible loss (ml)">
+                description = <"Insensible loss (ml)">
+            >
+            ["id48"] = <
+                text = <"Insensible loss (l)">
+                description = <"Insensible loss (l)">
+            >
+            ["id5"] = <
+                text = <"Insensible loss">
+                description = <"The amount of fluid loss by evaporation from the skin and respiratory tract.">
+            >
+            ["id51"] = <
+                text = <"Insensible loss ([foz_us])">
+                description = <"Insensible loss ([foz_us])">
+            >
+            ["id57"] = <
+                text = <"Fluid balance (ml)">
+                description = <"Fluid balance (ml)">
+            >
+            ["id6"] = <
+                text = <"Total input">
+                description = <"The total amount of fluid administered or ingested during a specified interval of time.">
+            >
+            ["id60"] = <
+                text = <"Fluid balance (l)">
+                description = <"Fluid balance (l)">
+            >
+            ["id63"] = <
+                text = <"Fluid balance ([foz_us])">
+                description = <"Fluid balance ([foz_us])">
+            >
+            ["id7"] = <
+                text = <"Total output">
+                description = <"The total amount of fluid lost or excreted during a specified interval of time.">
+            >
+            ["id8"] = <
+                text = <"Fluid balance">
+                description = <"The difference between fluid input and output during a specified interval of time.">
+            >
+            ["id9"] = <
+                text = <"24 hour total">
+                description = <"Total fluid volume recorded during an interval of 24 hour duration.">
+            >
+        >
+    >
+    

@@ -1,0 +1,347 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b298c6bf-5953-423d-bcdb-582b1c743279)
+	s2-EHR-Action.screening.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2015-02-19">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ACTION.screening.v0.0.1-alpha, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-ACTION.screening.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record information about a health-related activity or test carried out to screen a patient for a health condition or assessment of health risk.">
+			use = <"Use to record information about a health-related activity or test carried out to screen a patient for a health condition or assessment of health risk.">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Kathy Curry, HHIMS program, Northern Territory, Australia", ...>
+
+definition
+	Action[id1] matches {	-- Screening Activity
+		state_transition matches {
+			State_transition[id3] matches {	-- Screening planned
+				current_state matches {"planned"}
+				careflow_step matches {
+					Terminology_term[id34] matches {
+						concept matches {[at3]}
+					}
+				}
+			}
+			State_transition[id9] matches {	-- Screening postponed
+				current_state matches {"postponed"}
+				careflow_step matches {
+					Terminology_term[id36] matches {
+						concept matches {[at9]}
+					}
+				}
+			}
+			State_transition[id10] matches {	-- Screening cancelled
+				current_state matches {"cancelled"}
+				careflow_step matches {
+					Terminology_term[id38] matches {
+						concept matches {[at10]}
+					}
+				}
+			}
+			State_transition[id31] matches {	-- Screening declined
+				current_state matches {"cancelled"}
+				careflow_step matches {
+					Terminology_term[id40] matches {
+						concept matches {[at31]}
+					}
+				}
+			}
+			State_transition[id24] matches {	-- Screening expired
+				current_state matches {"cancelled"}
+				careflow_step matches {
+					Terminology_term[id42] matches {
+						concept matches {[at24]}
+					}
+				}
+			}
+			State_transition[id4] matches {	-- Screening scheduled
+				current_state matches {"scheduled"}
+				careflow_step matches {
+					Terminology_term[id44] matches {
+						concept matches {[at4]}
+					}
+				}
+			}
+			State_transition[id30] matches {	-- Screening rescheduled
+				current_state matches {"scheduled"}
+				careflow_step matches {
+					Terminology_term[id46] matches {
+						concept matches {[at30]}
+					}
+				}
+			}
+			State_transition[id5] matches {	-- Screening performed
+				current_state matches {"active"}
+				careflow_step matches {
+					Terminology_term[id48] matches {
+						concept matches {[at5]}
+					}
+				}
+			}
+			State_transition[id25] matches {	-- Screening incomplete
+				current_state matches {"active"}
+				careflow_step matches {
+					Terminology_term[id50] matches {
+						concept matches {[at25]}
+					}
+				}
+			}
+			State_transition[id11] matches {	-- Screening suspended
+				current_state matches {"suspended"}
+				careflow_step matches {
+					Terminology_term[id52] matches {
+						concept matches {[at11]}
+					}
+				}
+			}
+			State_transition[id7] matches {	-- Screening abandoned
+				current_state matches {"aborted"}
+				careflow_step matches {
+					Terminology_term[id54] matches {
+						concept matches {[at7]}
+					}
+				}
+			}
+			State_transition[id6] matches {	-- Screening activities complete
+				current_state matches {"completed"}
+				careflow_step matches {
+					Terminology_term[id56] matches {
+						concept matches {[at6]}
+					}
+				}
+			}
+		}
+		description matches {
+			Node[id28] occurrences matches {0..1} matches {	-- Activity Name
+				value matches {
+					Text[id57] 
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Service type
+				value matches {
+					Text[id58] 
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id59] 
+				}
+			}
+			Node[id29] occurrences matches {0..1} matches {	-- Reason
+				value matches {
+					Text[id60] 
+				}
+			}
+			Node[id32] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id61] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id17] occurrences matches {0..1} matches {	-- Requestor identifier
+				value matches {
+					Rwe_id_ref[id62] 
+				}
+			}
+			allow_archetype Node[id18] matches {	-- Requestor
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Receiver identifier
+				value matches {
+					Rwe_id_ref[id63] 
+				}
+			}
+			allow_archetype Node[id20] matches {	-- Receiver
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id26] occurrences matches {0..1} matches {	-- Screening Date/Time
+				value matches {
+					Date_time_value[id64] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at10"] = <
+				text = <"Screening cancelled">
+				description = <"The planned Screening has been cancelled prior to commencement.">
+			>
+			["at11"] = <
+				text = <"Screening suspended">
+				description = <"The Screening has been suspended without completion.">
+			>
+			["at24"] = <
+				text = <"Screening expired">
+				description = <"The Screening has expired before the Screening episode has been completed.">
+			>
+			["at25"] = <
+				text = <"Screening incomplete">
+				description = <"The Screening was commenced but unable to be completed.">
+			>
+			["at3"] = <
+				text = <"Screening planned">
+				description = <"Screening is planned.">
+			>
+			["at30"] = <
+				text = <"Screening rescheduled">
+				description = <"Appointment for a repeat screening service has been made.">
+			>
+			["at31"] = <
+				text = <"Screening declined">
+				description = <"The planned Screening was offered but was declined prior to commencement.">
+			>
+			["at4"] = <
+				text = <"Screening scheduled">
+				description = <"Appointment for a screening service has been made.">
+			>
+			["at5"] = <
+				text = <"Screening performed">
+				description = <"The healthcare provider has performed the Screening activity.">
+			>
+			["at6"] = <
+				text = <"Screening activities complete">
+				description = <"All planned screening activities have been completed.">
+			>
+			["at7"] = <
+				text = <"Screening abandoned">
+				description = <"The Screening has been ceased before the activity has been completed.">
+			>
+			["at9"] = <
+				text = <"Screening postponed">
+				description = <"The planned Screening has been postponed.">
+			>
+			["id1"] = <
+				text = <"Screening Activity">
+				description = <"Health-related activity or test used to screen a patient for a health condition or assessment of health risks.">
+			>
+			["id10"] = <
+				text = <"Screening cancelled">
+				description = <"The planned Screening has been cancelled prior to commencement.">
+			>
+			["id11"] = <
+				text = <"Screening suspended">
+				description = <"The Screening has been suspended without completion.">
+			>
+			["id14"] = <
+				text = <"Description">
+				description = <"Description of the service provided.">
+			>
+			["id15"] = <
+				text = <"Service type">
+				description = <"Type of service to be carried out or being carried out.">
+			>
+			["id17"] = <
+				text = <"Requestor identifier">
+				description = <"The local ID assigned to the order by the healthcare provider or organization requesting the service. This is also referred to as Placer Order Identifier.">
+			>
+			["id18"] = <
+				text = <"Requestor">
+				description = <"Details about the healthcare provider or organization requesting the service.">
+			>
+			["id19"] = <
+				text = <"Receiver identifier">
+				description = <"The ID assigned to the order by the healthcare provider or organization receiving the request for Screening. This is also referred to as Filler Order Identifier.">
+			>
+			["id20"] = <
+				text = <"Receiver">
+				description = <"Details about the healthcare provider or organization receiving the request for Screening.">
+			>
+			["id24"] = <
+				text = <"Screening expired">
+				description = <"The Screening has expired before the Screening episode has been completed.">
+			>
+			["id25"] = <
+				text = <"Screening incomplete">
+				description = <"The Screening was commenced but unable to be completed.">
+			>
+			["id26"] = <
+				text = <"Screening Date/Time">
+				description = <"The scheduled date and/or time for the Screening service. This will indicate the scheduled date/time when recorded against the Scheduled care pathway step or the actual Start date/time in the Screening Performed step.">
+			>
+			["id28"] = <
+				text = <"Activity Name">
+				description = <"Identification of the screening activity.">
+			>
+			["id29"] = <
+				text = <"Reason">
+				description = <"Reason for activity, for example reason the screening test was aborted or reason the screening test was performed.">
+			>
+			["id3"] = <
+				text = <"Screening planned">
+				description = <"Screening is planned.">
+			>
+			["id30"] = <
+				text = <"Screening rescheduled">
+				description = <"Appointment for a repeat screening service has been made.">
+			>
+			["id31"] = <
+				text = <"Screening declined">
+				description = <"The planned Screening was offered but was declined prior to commencement.">
+			>
+			["id32"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the screening test not captured in other fields.">
+			>
+			["id4"] = <
+				text = <"Screening scheduled">
+				description = <"Appointment for a screening service has been made.">
+			>
+			["id5"] = <
+				text = <"Screening performed">
+				description = <"The healthcare provider has performed the Screening activity.">
+			>
+			["id6"] = <
+				text = <"Screening activities complete">
+				description = <"All planned screening activities have been completed.">
+			>
+			["id7"] = <
+				text = <"Screening abandoned">
+				description = <"The Screening has been ceased before the activity has been completed.">
+			>
+			["id9"] = <
+				text = <"Screening postponed">
+				description = <"The planned Screening has been postponed.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id14"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id32"] = <http://loinc.org/106173-8>
+		>
+	>
+

@@ -1,0 +1,254 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9a746172-0464-46f8-8eb1-545e11da2b24)
+	s2-EHR-Assessment.advance_care_directive.v2.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heidi Koikkalainen, NES Digital Service, Edinburgh Napier University, <hk.koikkalainen@gmail.com>, 2019-10-23">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.advance_care_directive.v2.0.1, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.advance_care_directive.v2.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the preferences of an individual for future medical treatment and care.">
+			use = <"Use to record the preferences of an individual for future medical treatment and care.
+            
+            Advance care directive may also be known as living will, advance directive, advance decision, advance decision to refuse treatment, personal directive, advance healthcare directive, or medical directive. An advance care directive is commonly used to refuse life-sustaining treatment which may include, but is not limited to: cardiopulmonary resuscitation (CPR); clinically assisted nutrition and hydration; assisted ventilation; and antibiotics for life-threatening infections. It could also include positive preferences and instructions for future health care priorities, living arrangements and personal matters. An individual with capacity may create an advance care directive to record their preferences for medical care and treatment in advance, which is intended to guide decision-making in future situations in which the individual is unable to make or communicate decisions. 
+            
+            This archetype has been specifically designed as a framework or structure that can be extended for the complex range of use cases and local requirements by nesting a variety of possible Node archetypes which will contain specific details as per national or other local requirements. 
+            
+            In some countries, an advance care directive is legally persuasive without having an official legal status. In others it is a legally-binding document, and it MUST be ensured that the advance care directive archetype and any nested archetypes adhere to relevant legal requirements.">
+			keywords = <"living", "will", "advance", "advanced", "directive", "decision", "legal", "preference", "EoL", "DNR", "DNACPR", "resuscitation">
+			misuse = <"Not to be used to record organ donation preferences. Use a specific archetype for this purpose.
+            
+            Not to be used to record details about a Power of Attorney or other legal representative/proxy. Use a specific archetype for this purpose.
+            
+            Not to be used to record anticipatory decisions about CPR decisions, other possible intervention decisions, and intent of care as asserted by a clinician in a health record. Use the EVALUATION.advance_intervention_decisions archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "steve baguley, NDS, United Kingdom", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Marcos Barreto, Universidade Federal da Bahia (UFBA), Brazil", "Ivar Berge, Oslo Universitetssykehus, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Greg Burch, Tiny Medical Apps, United Kingdom", "Santiago Cammi, Argentina", "Ady Angelica Castro Acosta, CIBERES-Hospital 12 de Octubre, Spain", "Kåre Flø, DIPS ASA, Norway", "Grant Forrest, NHS Scotland, United Kingdom", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Anne Grimstvedt Kvalvik, Haraldsplass Diakonale sykehus, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Keltie Jamieson, NSHA, Canada", "Gorazd Kalan, University Medical Centre Ljubljana, Slovenia", "Lars Morgan Karlsen, DIPS ASA, Norway", "Heidi Koikkalainen, United Kingdom (openEHR Editor)", "Tomi Laptoš, Marand, Slovenia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Neranga Liyanaarachchi, Ministry of Health, Postgraduate Institute of Medicine, Sri Lanka", "Manisha Mantri, C-DAC, India", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Paul Miller, SCIMP NHS Scotland, United Kingdom", "Bjoern Naess, DIPS ASA, Norway", "Arunakiry Natarajan, management4health, Germany", "Svenne Naumann, Finnmarkssykehuset, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Jayashree Panickar, Karolinska Institute, Sweden", "Martin Paulson, Sykehuset i Vestfold, Norway", "Vanessa Pereira, Better, Portugal", "SARA PRETE, Abinsula, Italy", "clovis puttini, Core Consulting, Brazil", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Laila Storesund, Haraldsplass diakonale sykehus, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Carita Teien, Retten til en verdig død, Norge", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Katrin Troeltzsch, Nationales Centrum für Tumorerkrankungen (NCT); Universitätsklinikum Heidelberg, Germany", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway", "Olav Weyergang-Nielsen, Retten til en verdig død, Norge", "Wouter Zanen, Eurotranplant, Netherlands", "Lin Zhang, Taikang Insurance Group, China">
+
+definition
+	Assessment[id1] matches {	-- Advance care directive
+		data matches {
+			Node[id6] occurrences matches {0..1} matches {	-- Type of directive
+				value matches {
+					Text[id63] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Status
+				value matches {
+					Coded_text[id64] matches {
+						term matches {
+							Terminology_term[id77] matches {
+								concept matches {[ac1]}		-- Status (synthesised)
+							}
+						}
+					}
+					Plain_text[id65] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id66] 
+				}
+			}
+			Node[id8] matches {	-- Condition
+				value matches {
+					Text[id67] 
+				}
+			}
+			allow_archetype Node[id53] matches {	-- Directive detail
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id39] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id68] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id54] occurrences matches {0..1} matches {	-- Valid period start
+				value matches {
+					Date_time_value[id69] 
+				}
+			}
+			Node[id55] occurrences matches {0..1} matches {	-- Valid period end
+				value matches {
+					Date_time_value[id70] 
+				}
+			}
+			Node[id57] occurrences matches {0..1} matches {	-- Review due date
+				value matches {
+					Date_time_value[id71] 
+				}
+			}
+			Node[id56] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id72] 
+				}
+			}
+			use_archetype Node[id26, s2-EHR-Node.person.v1] 
+			Node[id28] matches {	-- Mandate
+				value matches {
+					Text[id73] 
+					Uri_ref[id74] 
+				}
+			}
+			use_archetype Node[id61, s2-EHR-Node.media_file.v1] occurrences matches {0..1} 
+			Node[id59] matches {	-- Directive location
+				items matches {
+					Node[id31] occurrences matches {0..1} matches {	-- Location
+						value matches {
+							Text[id75] 
+							Uri_ref[id76] 
+						}
+					}
+					use_archetype Node[id60, s2-EHR-Node.person.v1] occurrences matches {0..1} 
+				}
+			}
+			allow_archetype Node[id62] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Status (synthesised)">
+				description = <"The status of the advance care directive. (synthesised)">
+			>
+			["at44"] = <
+				text = <"Present">
+				description = <"The individual has an advance care directive.">
+			>
+			["at45"] = <
+				text = <"Absent">
+				description = <"The individual does not have an advance care directive.">
+			>
+			["at47"] = <
+				text = <"Unknown">
+				description = <"It is not known whether the individual has an advance care directive.">
+			>
+			["id1"] = <
+				text = <"Advance care directive">
+				description = <"A framework to communicate the preferences of an individual for future medical treatment and care.">
+			>
+			["id26"] = <
+				text = <"Witness">
+				description = <"Personal details of a person who witnesses the completion of the advance care directive.">
+			>
+			["id28"] = <
+				text = <"Mandate">
+				description = <"Description of any legislation or other authoritative guidance that apply.">
+			>
+			["id31"] = <
+				text = <"Location">
+				description = <"Physical or digital location of the Advance care directive.">
+			>
+			["id39"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the advance care directive not captured in other fields.">
+			>
+			["id5"] = <
+				text = <"Status">
+				description = <"The status of the advance care directive.">
+			>
+			["id53"] = <
+				text = <"Directive detail">
+				description = <"Structured details about the advance care directive decisions.">
+			>
+			["id54"] = <
+				text = <"Valid period start">
+				description = <"The date/time that marks the beginning of the valid period of time for this advance care directive.">
+			>
+			["id55"] = <
+				text = <"Valid period end">
+				description = <"The date/time that marks the conclusion of the valid period of time for this advance care directive.">
+			>
+			["id56"] = <
+				text = <"Last updated">
+				description = <"The date when this advance directive record was last updated.">
+			>
+			["id57"] = <
+				text = <"Review due date">
+				description = <"The date at which the advance care directive is due to be reviewed.">
+			>
+			["id59"] = <
+				text = <"Directive location">
+				description = <"Information about the physical or digital location of the Advance care directive.">
+			>
+			["id6"] = <
+				text = <"Type of directive">
+				description = <"The type of advance care directive.">
+			>
+			["id60"] = <
+				text = <"Copy holder">
+				description = <"Details of a person who has a copy of the Advance care directive.">
+			>
+			["id61"] = <
+				text = <"Digital representation">
+				description = <"Digital document, image or video representing the Advance care directive.">
+			>
+			["id62"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+			>
+			["id7"] = <
+				text = <"Description">
+				description = <"Narrative description of the overall advance care directive.">
+			>
+			["id8"] = <
+				text = <"Condition">
+				description = <"The conditions or situations in which the individual wishes the advance care directive to apply.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at44"] = <http://snomed.info/id/410515003>
+			["at45"] = <http://snomed.info/id/410516002>
+			["at47"] = <http://snomed.info/id/261665006>
+		>
+		["loinc"] = <
+			["id1"] = <http://loinc.org/75320-2>
+			["id8"] = <http://loinc.org/75323-6>
+			["id39"] = <http://loinc.org/106173-8>
+			["id5"] = <http://loinc.org/106199-3>
+			["id56"] = <http://loinc.org/106177-9>
+			["id7"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at44", "at45", "at47">
+		>
+	>
+

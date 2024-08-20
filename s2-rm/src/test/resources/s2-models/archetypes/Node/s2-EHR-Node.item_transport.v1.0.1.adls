@@ -1,0 +1,218 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5eca060a-3492-4271-9976-6cc68cbba086)
+	s2-EHR-Node.item_transport.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR, <ian@freshehr.com>, 2018-11-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.item_transport.v1.0.1, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.item_transport.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details of the transportation process of an identified item between two or more sites.">
+			use = <"Use to record details of the transportation process of an identified item between two or more sites, particularly when this is relevant to identify any issues, time delays or problems that may impact the quality of transported items for critical activities such as laboratory analysis or tissue transplantation.
+            
+            This archetype is intended to be nested within the 'Transportation details' SLOT in any archetypes where it is context- & content-appropriate. 
+            
+            In addition, it is possible to record fine details about each phase of a multi-step transportation process by nesting this archetype, one instance per step, within the 'Transportation step' SLOT within this archetype.
+            
+            Example use cases include, but are not limited to:
+            - within the INSTRUCTION.service_request to describe the required transportation for a specimen, specimen container or biological specimen such as a donated organ.
+            - within a laboratory-related ACTION archetype to describe how a specimen or specimen container has been transported, particularly where this is relevant to potential issues with the quality of the specimen for analysis.
+            - within OBSERVATION.laboratory_test_result to record details of the specimen or container transportation.">
+			keywords = <"specimen", "transport", "collection", "delivery", "container", "handling", "process", "step", "biospecimen">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Michael Anywar, Universitätsklinikum SH, Germany", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Paulo Bandiera-Paiva, Federal University of Sao Paulo, Brazil", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Marand d.o.o", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Rosane Gotardo, Systema Ltda., Brazil", "Heather Grain, Llewelyn Grain Informatics, Australia", "Martin Grundberg, Cambio Healthcare Systems, Sweden", "Evelyn Hovenga, EJSH Consulting, Australia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Neranga Liyanaarachchi, Ministry of Health, Postgraduate Institute of Medicine, Sri Lanka", "Pramil Liyanage, Ministry of Health, Sri Lanka", "Manisha Mantri, C-DAC, India", "Cecilia Mascia, CRS4, Italy", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Arunakiry Natarajan, medondo, Germany", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Jayashree Panickar, Karolinska Institute, Sweden", "Vanessa Pereira, Luxembourg Institute of Health & Better, Portugal", "Saeed Samie, Pars Hospital, Iran", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Wouter Zanen, Eurotranplant, Netherlands", "Lin Zhang, Taikang Insurance Group, China", "Michael Anywar, Universitätsklinikum SH, Germany", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Paulo Bandiera-Paiva, Federal University of Sao Paulo, Brazil", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Johan Bjerner, Fürst, Norway", "Marand d.o.o", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Rosane Gotardo, Systema Ltda., Brazil", "Heather Grain, Llewelyn Grain Informatics, Australia", "Martin Grundberg, Cambio Healthcare Systems, Sweden", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Liv Laugen, Oslo universitetssykehus, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Neranga Liyanaarachchi, Ministry of Health, Postgraduate Institute of Medicine, Sri Lanka", "Pramil Liyanage, Ministry of Health, Sri Lanka", "Manisha Mantri, C-DAC, India", "Cecilia Mascia, CRS4, Italy", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Arunakiry Natarajan, medondo, Germany", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Jayashree Panickar, Karolinska Institute, Sweden", "Vanessa Pereira, Luxembourg Institute of Health & Better, Portugal", "Lars Retterstøl, OUS, Norway", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Saeed Samie, Pars Hospital, Iran", "Ole Martin Sand, DIPS ASA, Norway", "Frode Stenvik, Helse Sør-Øst, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Anders Thurin, VGR, Sweden", "John Tore Valand, Haukeland Universitetssjukehus, Norway (openEHR Editor)", "Wouter Zanen, Eurotranplant, Netherlands", "Lin Zhang, Taikang Insurance Group, China">
+
+definition
+	Node[id1] matches {	-- Transportation of an item
+		items matches {
+			Node[id29] occurrences matches {0..1} matches {	-- Item transported
+				value matches {
+					Text[id30] 
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Transport status
+				value matches {
+					Text[id31] 
+				}
+			}
+			Node[id28] matches {	-- Transport instruction
+				value matches {
+					Text[id32] 
+				}
+			}
+			Node[id11] matches {	-- Transport description
+				value matches {
+					Text[id33] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Pickup site
+				value matches {
+					Text[id34] 
+				}
+			}
+			allow_archetype Node[id24] occurrences matches {0..1} matches {	-- Pickup details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.person(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Pick up date/time
+				value matches {
+					Date_time_value[id35] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Delivery site
+				value matches {
+					Text[id36] 
+				}
+			}
+			allow_archetype Node[id23] matches {	-- Delivery details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.person(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Delivery date/time
+				value matches {
+					Date_time_value[id37] 
+				}
+			}
+			Node[id3] matches {	-- Transporter identifier
+				value matches {
+					Rwe_id_ref[id38] 
+					Text[id39] 
+				}
+			}
+			allow_archetype Node[id18] matches {	-- Transporter details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.person(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			Node[id26] matches {	-- Transportation step
+				items matches {
+					Node[id16] occurrences matches {0..1} matches {	-- Transport sequence
+						value matches {
+							Count[id40] 
+							Text[id41] 
+						}
+					}
+					use_archetype Node[id27, s2-EHR-Node.item_transport.v1] 
+				}
+			}
+			allow_archetype Node[id25] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id42] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Transportation of an item">
+				description = <"Details about the transportation process of an identified item between two or more sites.">
+			>
+			["id10"] = <
+				text = <"Delivery site">
+				description = <"Narrative description about the place where the item is located after the transport.">
+			>
+			["id11"] = <
+				text = <"Transport description">
+				description = <"Description about the actual transport process and handling of the item.">
+			>
+			["id16"] = <
+				text = <"Transport sequence">
+				description = <"The transport sequence/step number.">
+			>
+			["id18"] = <
+				text = <"Transporter details">
+				description = <"Structured details about the transporter.">
+			>
+			["id2"] = <
+				text = <"Transport status">
+				description = <"The status of the transportation process for the item.">
+			>
+			["id23"] = <
+				text = <"Delivery details">
+				description = <"Structured details about the receiver of the item.">
+			>
+			["id24"] = <
+				text = <"Pickup details">
+				description = <"Structured details about the sender of the item.">
+			>
+			["id25"] = <
+				text = <"Additional details">
+				description = <"Additional details about the transportation process.">
+			>
+			["id26"] = <
+				text = <"Transportation step">
+				description = <"">
+			>
+			["id27"] = <
+				text = <"Transport step detail">
+				description = <"Details about a single component step within a multistep transportation process.">
+			>
+			["id28"] = <
+				text = <"Transport instruction">
+				description = <"Description about the intended transport process for the item.">
+			>
+			["id29"] = <
+				text = <"Item transported">
+				description = <"The type or name of the item being transported.">
+			>
+			["id3"] = <
+				text = <"Transporter identifier">
+				description = <"Identifier of person or agency responsible for transporting the item.">
+			>
+			["id5"] = <
+				text = <"Pick up date/time">
+				description = <"The date/time when the item departed the sending site.">
+			>
+			["id6"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the transportation process not captured in other fields.">
+			>
+			["id8"] = <
+				text = <"Delivery date/time">
+				description = <"The date/time when the item arrived at the receiving site.">
+			>
+			["id9"] = <
+				text = <"Pickup site">
+				description = <"Narrative description about the location of the item prior to transport.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id6"] = <http://loinc.org/106173-8>
+		>
+	>
+

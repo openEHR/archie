@@ -1,0 +1,245 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=386c9a55-7aef-49cc-9d00-525c28577b9b)
+    s2-EHR-Direct_observation.estimated_glomerular_filtration_rate.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Rong Chen, Cambio Healthcare Systems, Sweden", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "José Hilário Patriarca de Almeida, Faculty of Medicine of Porto University, Portugal", "Ricardo Cruz-Correia, Faculty of Medicine of Porto University, Portugal", "Heather Leslie, Atomica Informatics, Australia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Gustavo Bacelar-Silva, Faculty of Medicine of Porto University, <mail@gustavobacelar.com>, 2012-05-03">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v0.0.1-alpha, copyright 2012 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.estimated_glomerular_filtration_rate.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the estimated glomerular filtration rate (eGFR) of an individual.">
+            keywords = <"kidney function", "glomerular filtration rate", "GFR", "creatinine", "kidney", "chronic kidney disease", "CKD-EPI formula", "MDRD formula", "Schwartz equation">
+            use = <"Use to record the estimated glomerular filtration rate (eGFR) of an individual.
+            
+            There are multiple formulas used to calculate the eGFR. The formula used to calculate the eGFR can be recorded in the Protocol.
+            
+            It is also possible to record the method of recording - either calculated and directly entered by the clinician or calculated and entered by the clinical software system.">
+            misuse = <"Not to be used to record values of formula components, such as creatinine. These should be recorded using archetypes designed for this purpose, such as OBSERVATION.laboratory_test_result.
+            			Not to be used to record the directly measured Glomerular filtration rate - Use the OBSERVATION.laboratory_test_result for this purpose.">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Estimated glomerular filtration rate (eGFR)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Relative eGFR
+                value matches {
+                    Measured<Quantity>[id32] matches {
+                        value matches {
+                            Quantity[id26] matches {
+                                units matches {
+                                    Coded_text[id34] matches {
+                                        term matches {
+                                            Terminology_term[id33] matches {
+                                                concept matches {[at28]}    -- mL/min/{1.73_m2}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Absolute eGFR
+                value matches {
+                    Measured<Quantity>[id35] matches {
+                        value matches {
+                            Quantity[id27] matches {
+                                units matches {
+                                    Coded_text[id37] matches {
+                                        term matches {
+                                            Terminology_term[id36] matches {
+                                                concept matches {[at29]}    -- ml/min
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id19] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id28]
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id11] occurrences matches {0..1} matches {    -- Formula
+                value matches {
+                    Coded_text[id29] matches {
+                        term matches {
+                            Terminology_term[id38] matches {
+                                concept matches {[ac1]}    -- Formula (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id30]
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Method
+                value matches {
+                    Coded_text[id31] matches {
+                        term matches {
+                            Terminology_term[id39] matches {
+                                concept matches {[ac2]}    -- Method (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id25] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at27"] = <http://openehr.org/id/126>
+        >
+        ["ucum"] = <
+            ["at28"] = <http://ucum.org/id/mL%2Fmin%2F%7B1.73_m2%7D>
+            ["at29"] = <http://ucum.org/id/ml%2Fmin>
+        >
+        ["snomed"] = <
+            ["at29"] = <http://snomed.info/id/258859000>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at13", "at14", "at15", "at17", "at16", "at21", "at25", "at26">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at7", "at8">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Formula (synthesised)">
+                description = <"Formula used to calculate the Estimated Glomerular Filtration Rate. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Method (synthesised)">
+                description = <"The method of entering the Estimated Glomerular Filtration Rate. (synthesised)">
+            >
+            ["at13"] = <
+                text = <"MDRD formula - non-IDMS-normalized serum Cr">
+                description = <"Modification of Diet in Renal Disease study formula using standard creatinine measurement.">
+            >
+            ["at14"] = <
+                text = <"MDRD formula - IDMS-normalized serum Cr">
+                description = <"Modification of Diet in Renal Disease study formula using creatinine measured by an IDMS-calibrated assay.">
+            >
+            ["at15"] = <
+                text = <"CKD-EPI Creatinine">
+                description = <"Chronic Kidney Disease Epidemiology Collaboration formula using creatinine.">
+            >
+            ["at16"] = <
+                text = <"Cockcroft-Gault formula">
+                description = <"Estimated creatinine clearance rate (eCCr) using Cockcroft-Gault formula.">
+            >
+            ["at17"] = <
+                text = <"Bedside Schwartz equation">
+                description = <"Bedside IDMS-traceable Schwartz GFR Calculator for Children.">
+            >
+            ["at21"] = <
+                text = <"LM Revised">
+                description = <"Revised Lund-Malmö Study equation.">
+            >
+            ["at25"] = <
+                text = <"CKD-EPI Cystatin C">
+                description = <"Chronic Kidney Disease Epidemiology Collaboration formula using cystatin C.">
+            >
+            ["at26"] = <
+                text = <"CKD-EPI Creatinine-Cystatin C">
+                description = <"Chronic Kidney Disease Epidemiology Collaboration formula using creatinine and cystatin C.">
+            >
+            ["at27"] = <
+                text = <"Flow rate, volume">
+                description = <"Flow rate, volume">
+            >
+            ["at28"] = <
+                text = <"mL/min/{1.73_m2}">
+                description = <"mL/min/{1.73_m2} unit.">
+            >
+            ["at29"] = <
+                text = <"ml/min">
+                description = <"ml/min unit.">
+            >
+            ["at7"] = <
+                text = <"Automatic entry">
+                description = <"Calculated and entered automatically by the clinical system.">
+            >
+            ["at8"] = <
+                text = <"Direct entry">
+                description = <"Calculated and entered directly by user.">
+            >
+            ["id1"] = <
+                text = <"Estimated glomerular filtration rate (eGFR)">
+                description = <"Calculated estimate of glomerular filtration rate as an indicator of renal function.">
+            >
+            ["id11"] = <
+                text = <"Formula">
+                description = <"Formula used to calculate the Estimated Glomerular Filtration Rate.">
+            >
+            ["id19"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the eGFR, not captured in other fields.">
+            >
+            ["id21"] = <
+                text = <"Absolute eGFR">
+                description = <"Estimation of glomerular filtration rate calculated using the relative eGFR, weight and height.">
+            >
+            ["id25"] = <
+                text = <"Extension">
+                description = <"">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Any timed recording of Body Mass Index.">
+            >
+            ["id5"] = <
+                text = <"Relative eGFR">
+                description = <"Estimation of glomerular filtration rate normalised to a body surface area of 1.73m² (mL/min/1.73m²).">
+            >
+            ["id7"] = <
+                text = <"Method">
+                description = <"The method of entering the Estimated Glomerular Filtration Rate.">
+            >
+        >
+    >
+    

@@ -1,0 +1,314 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=928dabfc-ccd6-4638-bd83-807f29ab4a74)
+    s2-EHR-Score.mskcc_motzer.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Maryam Razavi, Cambio CDS, <maryam.razavi@cambio.se>, 2021-01-09">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.mskcc_motzer.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.mskcc_motzer.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the MSKCC/Motzer score.">
+            keywords = <"renal", "cell", "carcinoma", "RCC", "cancer", "metastatic ">
+            use = <"Use to record the results for each component parameter and their total sum for the MSKCC/Motzer score.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Memorial Sloan-Kettering Cancer Center (MSKCC/Motzer) score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Time from diagnosis to systemic treatment <1 year
+                value matches {
+                    Coded_ordinal[id27] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id29] matches {
+                                term matches {
+                                    Terminology_term[id28] matches {
+                                        concept matches {[at5]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id30] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at6]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Hemoglobin < Lower Limit of Normal
+                value matches {
+                    Coded_ordinal[id33] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at8]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at9]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Calcium >10mg/dL (>2.5 mmol/L)
+                value matches {
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at11]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at12]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- LDH > 1.5x Upper Limit of Normal
+                value matches {
+                    Coded_ordinal[id45] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Performance status <80% (Karnofsky)
+                value matches {
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at17]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at18]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- Total score 
+                value matches {
+                    Count[id26] matches {
+                        magnitude matches {|0..5|}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at8", "at9">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at11", "at12">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at14", "at15">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at17", "at18">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Time from diagnosis to systemic treatment <1 year (synthesised)">
+                description = <"Measured ~1 month after stopping anticoagulation (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Hemoglobin < Lower Limit of Normal (synthesised)">
+                description = <"Men (Normal): 13.5-17.5 g/dL- Women (Normal): 12.0-15.5 g/dL (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Calcium >10mg/dL (>2.5 mmol/L) (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"LDH > 1.5x Upper Limit of Normal (synthesised)">
+                description = <"Normal: 140 U/L (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Performance status <80% (Karnofsky) (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at11"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at5"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at6"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at8"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at9"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Memorial Sloan-Kettering Cancer Center (MSKCC/Motzer) score">
+                description = <"An assessment score used for metastatic renal cell carcinoma (RCC) to predict survival based on clinical and laboratory data in metastatic RCC patients.">
+            >
+            ["id11"] = <
+                text = <"Calcium >10mg/dL (>2.5 mmol/L)">
+                description = <"*">
+            >
+            ["id14"] = <
+                text = <"LDH > 1.5x Upper Limit of Normal">
+                description = <"Normal: 140 U/L">
+            >
+            ["id17"] = <
+                text = <"Performance status <80% (Karnofsky)">
+                description = <"*">
+            >
+            ["id20"] = <
+                text = <"Total score ">
+                description = <"*">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"*">
+            >
+            ["id5"] = <
+                text = <"Time from diagnosis to systemic treatment <1 year">
+                description = <"Measured ~1 month after stopping anticoagulation">
+            >
+            ["id8"] = <
+                text = <"Hemoglobin < Lower Limit of Normal">
+                description = <"Men (Normal): 13.5-17.5 g/dL- Women (Normal): 12.0-15.5 g/dL">
+            >
+        >
+    >
+    

@@ -1,0 +1,208 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=3194d066-3de4-4b7a-b2f2-e06b2f2bc4f6)
+    s2-EHR-Node.medication_order_summary.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics Ltd., <ian@freshehr.com>, 2015-11-01">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.medication_order_summary.v0.0.1-alpha, copyright 2015 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.medication_order_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To provide an overall summary of the status and key dates, related to a medication order.">
+            use = <"Use within the context of a medication order instruction where a summary of the overall order is required. This will normally be where the order is is being used within the context of a medicaton summary list, and not in the context of an orderable prescription record, where medication ctions will normally carry the primary record of the status of the order and key date information.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Medication order summary
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Order status
+                value matches {
+                    Coded_text[id30] matches {
+                        term matches {
+                            Terminology_term[id34] matches {
+                                concept matches {[ac1]}    -- Order status (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id3] matches {    -- Key order dates
+                name matches {"Date ordered/recommended", "Date first prescription issued", "Date last prescription issued", "Date first authorised", "Date last authorised", "Date first dispensed", "Date last dispensed", "Date first administered", "Date last administered", "Date discontinued", "Date authorised", "Date prescription issued", "Date dispensed", "Date administered", "Date administration withheld", "Date reviewed", "Date last reviewed", "Date changed"}
+                value matches {
+                    Date_time_value[id32]
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Date reported
+                value matches {
+                    Date_time_value[id33]
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at21", "at22", "at23", "at24", "at25", "at26", "at27">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at3", "at4", "at5", "at6", "at7", "at8", "at9", "at10", "at11", "at12", "at13", "at14", "at15", "at16", "at17", "at18", "at19", "at20">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Order status (synthesised)">
+                description = <"The overall status of this order. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Key order dates (synthesised)">
+                description = <"Key medication event dates. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Date first administered">
+                description = <"The date at which the medication was first administered to the patient.">
+            >
+            ["at11"] = <
+                text = <"Date last administered">
+                description = <"The date at which the medication was last administered.">
+            >
+            ["at12"] = <
+                text = <"Date discontinued">
+                description = <"The date at which the medication was discontinued.">
+            >
+            ["at13"] = <
+                text = <"Date authorised">
+                description = <"The date at which the medication was authorised or re-authorised.">
+            >
+            ["at14"] = <
+                text = <"Date prescription issued">
+                description = <"The date at which a medication prescription was issued i.e the physical or electronic prescription token was created.">
+            >
+            ["at15"] = <
+                text = <"Date dispensed">
+                description = <"The date at which a medication was dispensed.">
+            >
+            ["at16"] = <
+                text = <"Date administered">
+                description = <"The date at which a medication was administered.">
+            >
+            ["at17"] = <
+                text = <"Date administration withheld">
+                description = <"The data at which administration of a medication was withheld or suspended.">
+            >
+            ["at18"] = <
+                text = <"Date reviewed">
+                description = <"The date at which the medication order was reviewed.">
+            >
+            ["at19"] = <
+                text = <"Date last reviewed">
+                description = <"The date at which the medication order was last reviewed.">
+            >
+            ["at20"] = <
+                text = <"Date changed">
+                description = <"The date at which the medication instruction was modified.">
+            >
+            ["at21"] = <
+                text = <"Active">
+                description = <"This is an active medication.">
+            >
+            ["at22"] = <
+                text = <"Stopped">
+                description = <"This is a medication that has previously been issued, dispensed or administered but has now been discontinued.">
+            >
+            ["at23"] = <
+                text = <"Never active">
+                description = <"A medication which was ordered or authorised but has been cancelled prior to being issued, dispensed or adiminstered.">
+            >
+            ["at24"] = <
+                text = <"Completed">
+                description = <"The medication order has been completed.">
+            >
+            ["at25"] = <
+                text = <"Obsolete">
+                description = <"This medication order has been superseded by another.">
+            >
+            ["at26"] = <
+                text = <"Suspended">
+                description = <"Actions resulting from the order are to be temporarily halted, but are expected to continue later. May also be called 'on-hold'.">
+            >
+            ["at27"] = <
+                text = <"Draft">
+                description = <"The medication order has been made but further processes e.g. sign-off or verification are required before it becomes actionable.">
+            >
+            ["at3"] = <
+                text = <"Date ordered/recommended">
+                description = <"The data at which the medication course was first ordered or recommended.">
+            >
+            ["at4"] = <
+                text = <"Date first prescription issued">
+                description = <"The date at which the medication was first issued. 'Issued' refers to the prescription 'token' electronic or paper which authorises supply of a medication.">
+            >
+            ["at5"] = <
+                text = <"Date last prescription issued">
+                description = <"The date at which the medication prescription was last issued. This refers to the prescription 'token' electronic or paper which authorises supply of a medication.">
+            >
+            ["at6"] = <
+                text = <"Date first authorised">
+                description = <"The date at which the medication was first authorised.For a repeat prescription, authorisation refers to the creation of the repeat prescription 'master' which is followed by the production of one or more prescription issues.">
+            >
+            ["at7"] = <
+                text = <"Date last authorised">
+                description = <"The data at which the medication was last authorised. For a repeat prescription, authorisation refers to the creation of the repeat prescription 'master' which is followed by the production of one or more prescription issues. Authorisation is generally only given for a limited period or limited number of issues, after which re-authorisation is required.">
+            >
+            ["at8"] = <
+                text = <"Date first dispensed">
+                description = <"The date at which the medicaton was first physically dispensed.">
+            >
+            ["at9"] = <
+                text = <"Date last dispensed">
+                description = <"The date at which the medication was last dispensed.">
+            >
+            ["id1"] = <
+                text = <"Medication order summary">
+                description = <"Overall summary of the medication order.">
+            >
+            ["id2"] = <
+                text = <"Order status">
+                description = <"The overall status of this order.">
+            >
+            ["id29"] = <
+                text = <"Date reported">
+                description = <"The date at which this medication summary was reported to be correct.">
+            >
+            ["id3"] = <
+                text = <"Key order dates">
+                description = <"Key medication event dates.">
+            >
+        >
+    >
+    

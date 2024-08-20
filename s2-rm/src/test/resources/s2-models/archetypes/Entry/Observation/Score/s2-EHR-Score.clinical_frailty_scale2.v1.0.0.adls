@@ -1,0 +1,240 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=91aaf1e4-68df-46e4-93bf-d2d048eaeabb)
+    s2-EHR-Score.clinical_frailty_scale2.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Hans Flaatten, Helse Bergen HF, Norway", "Tormod Førland, Dips Front, Norway", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Merete Havn Torland, Helse Vest IKT, Norway", "Lise Kristin Knutsen, Oslo universitetssykehus, Norway", "Kanika Kuwelker, Helse Vest IKT, Norway (openEHR Editor)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia", "Ian McNicoll, NDS, Scotland", "Bjørn Næss, DIPS ASA, Norway", "Dr Paul Miller, NDS, Scotland", "Elisabeth Skaar, Helse Bergen, Norway", "Arild Stangeland, Helse Bergen, Norway", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"John Tore Valand, Helse Vest IKT, <john.tore.valand@helse-vest-ikt.no>, 2022-01-24">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.clinical_frailty_scale2.v1.0.0, copyright 2022 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.clinical_frailty_scale2.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the Clinical Frailty Scale (CFS) 2.0 assessment.">
+            keywords = <"frailty", "geriatric", "old age", "activity", "end of life", "rockwood", "elderly", "aging">
+            use = <"Use to record the Clinical Frailty Scale (CFS) 2.0 assessment.
+            
+            In 2020 the CFS was revised (version 2.0) with minor clarifying edits to the level descriptions and their corresponding labels. Most notably, CFS level 2 changed from \\\"Well\\\" to \\\"Fit\\\", level 4 from \\\"Vulnerable\\\" to \\\"Living with Very Mild Frailty\\\", and levels 5-8 were each restated as \\\"Living with...\\\"and added their respective grades of frailty.
+            
+            While openEHR archetypes are all freely available under an open license, the specific content of this Clinical Frailty Scale archetype is copyright protected. Any use of this archetype within implementations must be in compliance with the terms established by the copyright owners.
+            Copyright statement: Clinical Frailty Scale ©2005-2020 Rockwood, Version 2.0(EN). All rights reserved. 
+            For permission: https://www.geriatricmedicineresearch.ca.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Clinical Frailty Scale (CFS 2.0)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Assessment
+                value matches {
+                    Coded_ordinal[id18] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id20] matches {
+                                term matches {
+                                    Terminology_term[id19] matches {
+                                        concept matches {[at34]}    -- Very fit
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id21] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id23] matches {
+                                term matches {
+                                    Terminology_term[id22] matches {
+                                        concept matches {[at35]}    -- Fit
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id24] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id26] matches {
+                                term matches {
+                                    Terminology_term[id25] matches {
+                                        concept matches {[at36]}    -- Managing well
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id27] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id29] matches {
+                                term matches {
+                                    Terminology_term[id28] matches {
+                                        concept matches {[at37]}    -- Living with very mild frailty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id30] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at38]}    -- Living with mild frailty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id33] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at39]}    -- Living with moderate frailty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {7}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at40]}    -- Living with severe frailty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at41]}    -- Living with very severe frailty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {9}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at42]}    -- Terminally Ill
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id16] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at34", "at35", "at36", "at37", "at38", "at39", "at40", "at41", "at42">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Assessment (synthesised)">
+                description = <"Assessed level of frailty. (synthesised)">
+            >
+            ["at34"] = <
+                text = <"Very fit">
+                description = <"People who are robust, active, energetic and motivated. They tend to exercise regularly and are among the fittest for their age.">
+            >
+            ["at35"] = <
+                text = <"Fit">
+                description = <"People who have no active disease symptoms but are less fit than category 1. Often, they exercise or are very active occasionally, e.g., seasonally.">
+            >
+            ["at36"] = <
+                text = <"Managing well">
+                description = <"People whose medical problems are well controlled, even if occasionally symptomatic, but often are not regularly active beyond routine walking.">
+            >
+            ["at37"] = <
+                text = <"Living with very mild frailty">
+                description = <"Previously 'Vulnerable', this category marks early transition from complete independence. While not dependent on others for daily help, often symptoms limit activities. A common complaint is being 'slowed up' and/or being tired during the day.">
+            >
+            ["at38"] = <
+                text = <"Living with mild frailty">
+                description = <"People who often have more evident slowing, and need help with high order instrumental activities of daily living (finances, transportation, heavy housework). Typically, mild frailty progressively impairs shopping and walking outside alone, meal preparation, medications and begins to restrict light housework.">
+            >
+            ["at39"] = <
+                text = <"Living with moderate frailty">
+                description = <"People who need help with all outside activities and with keeping house. Inside, they often have problems with stairs and need help with bathing and might need minimal assistance (cuing, standby) with dressing.">
+            >
+            ["at40"] = <
+                text = <"Living with severe frailty">
+                description = <"Completely dependent for personal care, from whatever cause (physical or cognitive). Even so, they seem stable and not at high risk of dying (within ~6 months).">
+            >
+            ["at41"] = <
+                text = <"Living with very severe frailty">
+                description = <"Completely dependent for personal care and approaching end of life. Typically, they could not recover even from a minor illness.">
+            >
+            ["at42"] = <
+                text = <"Terminally Ill">
+                description = <"Approaching the end of life. This category applies to people with a life expectancy <6 months, who are not otherwise living with severe frailty. (Many terminally ill people can still exercise until very close to death).">
+            >
+            ["id1"] = <
+                text = <"Clinical Frailty Scale (CFS 2.0)">
+                description = <"An assessment scale used to screen for frailty and to broadly stratify degrees of fitness and frailty in an individual over the age of 65.">
+            >
+            ["id16"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any point in time event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Assessment">
+                description = <"Assessed level of frailty.">
+            >
+        >
+    >
+    

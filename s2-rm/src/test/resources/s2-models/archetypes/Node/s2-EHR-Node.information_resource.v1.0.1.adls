@@ -1,0 +1,170 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a083f131-fa0b-4522-83ea-733a0f409413)
+	s2-EHR-Node.information_resource.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2019-12-10">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.information_resource.v1.0.1, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.information_resource.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about information, instructional or educational material supplied to the individual, or their carer, as part of the provision of healthcare.">
+			use = <"Use to record details about text, audio, images, animations, video and interactive content that is supplied to an individual, or their carer, as part of the provision of healthcare.
+            
+            Examples include but are not limited to:
+            - A book; 
+            - A patient-education leaflet;
+            - A mobile application;
+            - A website, web portal or web-based platform; 
+            - A podcast; or
+            - An instructional video.
+            
+            The 'Content' data Node allows for the media content to be captured and stored using the Multimedia data type, or to be referenced elsewhere using the URI data type.
+            
+            If more than one resource is supplied as part of a single activity, use one instance of this archetype to represent each resource.
+            
+            The context of each resource should be contained within the parent archetype. For example: details about healthcare education material provided as part of a course will be captured within the ACTION.health_education archetype.">
+			keywords = <"image", "audio", "text", "video", "application", "file", "pamphlet", "form">
+			misuse = <"Not to be used to represent media, including images, video and audio files, that are generated or captured during provision of healthcare, such as an X-ray or image of a wound - use Node.media_file for this purpose.">
+		>
+	>
+	other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Michael Anywar, Universitätsklinikum SH, Germany", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Mikkel Gaup Grønmo, Helse-Nord, FSE, Norway (openEHR Editor)", "Roar Holm, Helse Vest IKT A/S, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia", "Cecilia Mascia, CRS4, Italy", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Ana Pina, Future Healthcare, Portugal", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Information resource
+		items matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Resource name
+				value matches {
+					Text[id18] 
+				}
+			}
+			Node[id11] matches {	-- Identifier
+				value matches {
+					Rwe_id_ref[id19] 
+					Text[id20] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id21] 
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Type of media
+				value matches {
+					Text[id22] 
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Content
+				value matches {
+					Multimedia[id23] 
+					Uri_ref[id24] 
+				}
+			}
+			allow_archetype Node[id13] matches {	-- Author
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Published
+				value matches {
+					Date_time_value[id25] 
+					Range<Date_time_value>[id26] 
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Version
+				value matches {
+					Text[id27] 
+				}
+			}
+			allow_archetype Node[id14] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id28] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Information resource">
+				description = <"Information, instructional or educational material supplied to an individual, or their carer, as part of the provision of healthcare.">
+			>
+			["id11"] = <
+				text = <"Identifier">
+				description = <"Identifier for the information resource.">
+			>
+			["id13"] = <
+				text = <"Author">
+				description = <"Details about the individual or organization who created or authored the information resource.">
+			>
+			["id14"] = <
+				text = <"Additional details">
+				description = <"Further details about the information resource.">
+			>
+			["id15"] = <
+				text = <"Published">
+				description = <"The date or period when the information resource was published or released.">
+			>
+			["id16"] = <
+				text = <"Version">
+				description = <"The version or edition of the information resource.">
+			>
+			["id17"] = <
+				text = <"Type of media">
+				description = <"The type of material provided.">
+			>
+			["id2"] = <
+				text = <"Content">
+				description = <"Digital representation of the information resource.">
+			>
+			["id3"] = <
+				text = <"Resource name">
+				description = <"Name or title of the information resource.">
+			>
+			["id6"] = <
+				text = <"Description">
+				description = <"Narrative description about the information resource.">
+			>
+			["id8"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the information resource not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/48766-0>
+			["id6"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id8"] = <http://loinc.org/106173-8>
+		>
+	>
+

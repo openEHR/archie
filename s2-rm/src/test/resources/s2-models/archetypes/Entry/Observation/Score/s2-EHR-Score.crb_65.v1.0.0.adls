@@ -1,0 +1,312 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=af0350c9-0858-4491-a111-44fb2bdaa3ab)
+    s2-EHR-Score.crb_65.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Greg Burch, Tiny Medical Apps, United Kingdom", "Grant Forrest, NHS Scotland, United Kingdom", "Mikkel Gaup Grønmo, Helse-Nord, FSE, Norway (openEHR Editor)", "Morten Hørthe, DIPS, Norway", "Henrik Kockum, Cambio, Sweden", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Liv Laugen, Oslo universitetssykehus, Norway (Nasjonal IKT redaktør)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Pramil Liyanage, Ministry of Health, Sri Lanka", "Mark Luciani, Bath and North East Somerset, Swindon and Wiltshire Clinical Commisioning Group, United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjørn Næss, DIPS ASA, Norway", "Ana Pereira, CINTESIS, CUF-Porto, Portugal", "Anoop Shah, University College London, United Kingdom", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Anders Thurin, VGR, Sweden", "Jeremy Tong, NHS, United Kingdom", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Silje Ljosland Bakke, Helse Vest IKT AS, <silje.ljosland.bakke@helse-vest-ikt.no>, 2020-04-29">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.crb_65.v1.0.0, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.crb_65.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the CRB-65 score.">
+            keywords = <"pneumonia", "CAP", "community", "acquired", "LRTI", "community-acquired">
+            use = <"Use to record the results for each component parameter and their total sum for the CRB-65 score.">
+            misuse = <"Not to be used to record the CURB-65 score, which is intended for use in a hospital setting. Use the OBSERVATION.curb_65 archetype for this purpose.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- CRB-65 score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Confusion
+                value matches {
+                    Coded_ordinal[id30] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at5]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id33] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at6]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Respiratory rate
+                value matches {
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at8]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at9]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Blood pressure
+                value matches {
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at11]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id45] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at12]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- Age
+                value matches {
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at15]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at16]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id28] matches {
+                        magnitude matches {|0..4|}
+                    }
+                }
+            }
+            Node[id19] occurrences matches {0..1} matches {    -- Grade
+                value matches {
+                    Coded_text[id29] matches {
+                        term matches {
+                            Terminology_term[id54] matches {
+                                concept matches {[ac1]}    -- Grade (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id23] matches {     -- Extension SLOT
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at19", "at20", "at21">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at5", "at6">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at8", "at9">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at11", "at12">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at15", "at16">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Grade (synthesised)">
+                description = <"Assessment of severity based on the CRB-65 score. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Confusion (synthesised)">
+                description = <"Does the patient have recent onset confusion? (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Respiratory rate (synthesised)">
+                description = <"Does the patient have a respiratory rate equal to or greater than 30 /min? (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Blood pressure (synthesised)">
+                description = <"Does the patient have a systolic blood pressure <90 OR a diastolic blood pressure ≤60 mmHg? (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Age (synthesised)">
+                description = <"Is the patient 65 years or older? (synthesised)">
+            >
+            ["at11"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at12"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at16"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"Low severity">
+                description = <"CRB-65 score 0: Low risk of death.">
+            >
+            ["at20"] = <
+                text = <"Moderate severity">
+                description = <"CRB-65 score 1-2: Moderate risk of death.">
+            >
+            ["at21"] = <
+                text = <"High severity">
+                description = <"CRB-65 score 3-4: High risk of death.">
+            >
+            ["at5"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at8"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"CRB-65 score">
+                description = <"An assessment score used within a community or primary care setting to estimate the severity of community-acquired pneumonia.">
+            >
+            ["id11"] = <
+                text = <"Blood pressure">
+                description = <"Does the patient have a systolic blood pressure <90 OR a diastolic blood pressure ≤60 mmHg?">
+            >
+            ["id15"] = <
+                text = <"Age">
+                description = <"Is the patient 65 years or older?">
+            >
+            ["id18"] = <
+                text = <"Total score">
+                description = <"The total sum of each component variable for the CRB-65 score.">
+            >
+            ["id19"] = <
+                text = <"Grade">
+                description = <"Assessment of severity based on the CRB-65 score.">
+            >
+            ["id23"] = <
+                text = <"Extension SLOT">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any point in time event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Confusion">
+                description = <"Does the patient have recent onset confusion?">
+            >
+            ["id8"] = <
+                text = <"Respiratory rate">
+                description = <"Does the patient have a respiratory rate equal to or greater than 30 /min?">
+            >
+        >
+    >
+    

@@ -1,0 +1,122 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=eb8b9910-8534-4cb1-9fb1-9d48f86595cc)
+    s2-EHR-Node.imaging_series.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-01-25">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.imaging_series.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.imaging_series.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details about a DICOM series.">
+            keywords = <"DICOM", "radiology", "series", "image">
+            use = <"Use to record details about a DICOM series.
+            
+            This archetype has been designed to be nested within the 'Series details' and 'Comparison series details' SLOTs in the OBSERVATION.imaging_exam_result or other archetypes where clinically relevant.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Imaging series
+        items matches {
+            Node[id17] occurrences matches {0..1} matches {    -- Series instance identifier
+                value matches {
+                    Rwe_id_ref[id24]
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Series number
+                value matches {
+                    Count[id25]
+                }
+            }
+            Node[id23] occurrences matches {0..1} matches {    -- Series description
+                value matches {
+                    Text[id26]
+                }
+            }
+            Node[id19] occurrences matches {0..1} matches {    -- Modality
+                value matches {
+                    Text[id27]
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Number of instances
+                value matches {
+                    Count[id28]
+                }
+            }
+            Node[id20] matches {    -- Series end point
+                value matches {
+                    Uri_ref[id29]
+                    Text[id30]
+                }
+            }
+            allow_archetype Node[id22] matches {     -- Device
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Imaging series">
+                description = <"Details about a series of images, as part of a DICOM study.">
+            >
+            ["id11"] = <
+                text = <"Number of instances">
+                description = <"The number of instances contained in the series.">
+            >
+            ["id17"] = <
+                text = <"Series instance identifier">
+                description = <"Unique identifier for the imaging series assigned by the radiology service.">
+            >
+            ["id18"] = <
+                text = <"Series number">
+                description = <"The numeric identifier of this series in the study.">
+            >
+            ["id19"] = <
+                text = <"Modality">
+                description = <"The type of diagnostic equipment, or function or technique of that equipment, that originally acquired, the data used to create the image series.">
+            >
+            ["id20"] = <
+                text = <"Series end point">
+                description = <"Location of where to query for imaging content and metadata (QIDO-RS, WADO-RS, or WADO-URI).">
+            >
+            ["id22"] = <
+                text = <"Device">
+                description = <"Details about imaging device/s used to capture the series.">
+            >
+            ["id23"] = <
+                text = <"Series description">
+                description = <"Description about the series.">
+            >
+        >
+    >
+    

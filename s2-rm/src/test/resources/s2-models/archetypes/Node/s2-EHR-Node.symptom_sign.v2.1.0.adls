@@ -1,0 +1,582 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fc2d70b7-74c1-40de-ba27-02b98eaae2a5)
+	s2-EHR-Node.symptom_sign.v2.1.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Tony Shannon, UK NHS, Connecting for Health, <tony.shannon@nhs.net>, 2007-02-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.symptom_sign.v2.1.0, copyright 2007 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.symptom_sign.v2.1.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about a single episode of a reported symptom or sign including context, but not details, of previous episodes if appropriate.">
+			use = <"Use to record details about a single episode of a symptom or reported sign in an individual, as reported by the individual, parent, care-giver or other party. It may be recorded by a clinician as part of a clinical history record as reported to them, observed by the clinician or self-recorded as part of a clinical questionnaire or personal health record. A complete clinical history or patient story may include varying level of details about multiple episodes of an identified symptom or reported sign, as well as multiple symptoms/signs.
+            
+            This archetype has been designed to record the positive presence of the symptom or sign as part of history taking using OBSERVATION.story, or in conjunction with a positive response to OBSERVATION.symptom_sign_screening.
+            
+            In the purest sense, symptoms are subjective observations of a physical or mental disturbance and signs are objective observations of the same, as experienced by an individual and reported to the history taker by the same individual or another party. From this logic it follows that we will need two archetypes to record clinical history - one for reported symptoms and another for reported signs. In reality this is impractical as it will require clinical data entry into either one of these models which adds signficant overheads to modellers and those entering data. In addition, there is often overlap in clinical concepts - for example, is previous vomiting or bleeding to be categorised as a symptom or reported sign? In response, this archetype has been specifically designed to provide a single information model that allows for recording of the entire continuum between clearly identifiable symptoms and reported signs.
+            
+            This archetype has been intended to be used as a generic pattern for all symptoms and reported signs. The 'Specific details' SLOT can be used to extend the archetype to include additional, specific data Nodes for more complex symptoms or signs. 
+            
+            This archetype has been specifically designed to be used in the 'Structured detail' SLOT within the OBSERVATION.story archetype, but can also be used within other OBSERVATION or Node archetypes and in the 'Associated symptom/sign' or 'Previous episode' SLOT within other instances of this Node.symptom_sign archetype.">
+			keywords = <"complaint", "symptom", "disturbance", "problem", "discomfort", "presenting complaint", "presenting symptom", "sign">
+			misuse = <"Not to be used to record screening questionnaire responses about the presence or absence of specific symptoms - use the OBSERVATION.symptom_sign_screening archetype for this purpose. However, this Node.symptom_sign archetype may be nested within the 'Screening details' SLOT in the OBSERVATION.symptom_sign_screening archetype if it is necessary to extend the questionnaire by recording details about symptom or sign.
+            
+            Not to be used to record that a symptom or sign was explicitly reported as not present - use Node.exclusion_symptom_sign carefully for specific purposes where the overheads of recording in this way warrant the additional complexity.
+            
+            Not to be used for recording objective findings as part of a physical examination - use OBSERVATION.exam and related examination Node archetypes for this purpose.
+            
+            Not to be used for diagnoses and problems that form part of a persisting Problem List - use EVALUATION.problem_diagnosis.
+            
+            Not to be used to record a formal and repeatable severity scale such as VAS or NRS. Use appropriate OBSERVATION archetypes for this purpose.">
+		>
+	>
+	other_contributors = <"Grethe Almenning, Bergen kommune, Norway", "Tomas Alme, DIPS, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Rong Chen, Cambio Healthcare Systems, Sweden", "Stephen Chu, Queensland Health, Australia", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Arild Faxvaag, NTNU, Norway", "Kåre Flø, DIPS ASA, Norway", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Samuel Frade, Marand, Portugal", "Sebastian Garde, Ocean Informatics, Germany", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Yves Genevier, Privantis SA, Switzerland", "Gyri Gradek, Senter for medisinsk genetikk og molekylærmedisin, Haukeland Universitetssykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Dag Hanoa, Oslo universitetssykehus, Norway", "Knut Harboe, Stavanger Universitetssjukehus, Norway", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Anca Heyd, DIPS ASA, Norway", "Roar Holm, Helse Vest IKT A/S, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Nasjonal IKT HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Hanne Joensen, Helse Bergen HUS, Norway", "Gunnar Jårvik, Nasjonal IKT HF, Norway", "Lars Karlsen, DIPS ASA, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Goran Karlstrom, County Of Värmland, Sweden", "Shinji Kobayashi, NPO openEHR Japan, Japan", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Elisabeth Kvile, Fysioterapiavdelingen, Haukeland Universitets Sykehus, Norway", "Siri Laronningen, Kreftregisteret, Norway", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Norwegian Directorate of e-health, Norway", "alberto maldonado, UPV, Spain", "Luis Marco Ruiz, Norwegian Center for Integrated Care and Telemedicine, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Bjoern Naess, DIPS ASA, Norway", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Magne Rekdal, DIPS AS, Norway", "Tanja Riise, Nasjonal IKT HF, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Thomas Schopf, University Hospital of North-Norway, Norway", "Anoop Shah, University College London, United Kingdom", "Hildegunn Siv Aase, Helse Bergen, Norway", "Arild Stangeland, Helse Bergen, Norway", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "Line Sørensen, Helse Bergen, Norway", "Nils Thomas Songstad, UNN HF, BUK, Barneavdelingen., Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Lene Thoresen, St. Olavs Hospital, Norway", "Jon Tysdahl, Furst medlab AS, Norway", "Till Uhlig, Nasjonal kompetansetjeneste for revmatologisk rehabilitering, Revmatologisk avd. , Diakonhjemmet Sykehus, Oslo, Norway", "John Tore Valand, Helse Bergen, Norway">
+
+definition
+	Node[id1] matches {	-- Symptom/Sign
+		items matches {
+			Node[id2] matches {	-- Symptom/Sign name
+				value matches {
+					Text[id202] 
+				}
+			}
+			Node[id152] matches {	-- Body site
+				value matches {
+					Text[id203] 
+				}
+			}
+			allow_archetype Node[id148] matches {	-- Structured body site
+				include
+					archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v2/}
+				exclude
+					archetype_id/value matches {/.*/}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id204] 
+				}
+			}
+			Node[id176] occurrences matches {0..1} matches {	-- Episodicity
+				value matches {
+					Coded_text[id205] matches {
+						term matches {
+							Terminology_term[id239] matches {
+								concept matches {[ac1]}		-- Episodicity (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id187] occurrences matches {0..1} matches {	-- Occurrence
+				value matches {
+					Coded_text[id206] matches {
+						term matches {
+							Terminology_term[id240] matches {
+								concept matches {[ac2]}		-- Occurrence (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id153] occurrences matches {0..1} matches {	-- Episode onset
+				value matches {
+					Date_time_value[id207] 
+					Range<Date_time_value>[id208] 
+				}
+			}
+			Node[id165] occurrences matches {0..1} matches {	-- Onset timing
+				value matches {
+					Text[id209] 
+					Duration_value[id210] 
+					Range<Duration_value>[id211] 
+				}
+			}
+			Node[id201] occurrences matches {0..1} matches {	-- Nadir
+				value matches {
+					Date_time_value[id212] 
+				}
+			}
+			Node[id29] occurrences matches {0..1} matches {	-- Episode duration
+				value matches {
+					Duration_value[id213] matches {
+						magnitude matches {|>=PT0S|}
+					}
+					Range<Duration_value>[id214] matches {
+						lower matches {
+							Duration_value[id215] matches {
+								magnitude matches {|>=PT0S|}
+							}
+						}
+						upper matches {
+							Duration_value[id216] matches {
+								magnitude matches {|>=PT0S|}
+							}
+						}
+					}
+					Text[id217] 
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Severity category
+				value matches {
+					Coded_text[id218] matches {
+						term matches {
+							Terminology_term[id241] matches {
+								concept matches {[ac3]}		-- Severity category (synthesised)
+							}
+						}
+					}
+					Plain_text[id219] 
+				}
+			}
+			use_archetype Node[id199, s2-EHR-Node.severity_rating_scale.v0] 
+			Node[id190] matches {	-- Character
+				value matches {
+					Text[id220] 
+				}
+			}
+			Node[id181] matches {	-- Progression
+				value matches {
+					Coded_text[id221] matches {
+						term matches {
+							Terminology_term[id242] matches {
+								concept matches {[ac4]}		-- Progression (synthesised)
+							}
+						}
+					}
+					Plain_text[id222] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Pattern
+				value matches {
+					Text[id223] 
+				}
+			}
+			Node[id19] matches {	-- Modifying factor
+				items matches {
+					Node[id20] occurrences matches {0..1} matches {	-- Factor
+						value matches {
+							Text[id224] 
+						}
+					}
+					allow_archetype Node[id198] occurrences matches {0..1} matches {	-- Factor detail
+						include
+							archetype_id/value matches {/s2-EHR-Node\.health_event(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.symptom_sign(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.symptom_sign(-[a-zA-Z0-9_]+)*\.v2/}
+					}
+					Node[id18] occurrences matches {0..1} matches {	-- Effect
+						value matches {
+							Coded_text[id225] matches {
+								term matches {
+									Terminology_term[id243] matches {
+										concept matches {[ac5]}		-- Effect (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id57] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id226] 
+						}
+					}
+				}
+			}
+			Node[id166] matches {	-- Precipitating factor
+				items matches {
+					Node[id171] occurrences matches {0..1} matches {	-- Factor
+						value matches {
+							Text[id227] 
+						}
+					}
+					allow_archetype Node[id155] matches {	-- Factor detail
+						include
+							archetype_id/value matches {/s2-EHR-Node\.health_event(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.symptom_sign(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.symptom_sign(-[a-zA-Z0-9_]+)*\.v2/}
+					}
+					Node[id172] occurrences matches {0..1} matches {	-- Time interval
+						value matches {
+							Duration_value[id228] 
+						}
+					}
+					Node[id186] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id229] 
+						}
+					}
+				}
+			}
+			Node[id191] matches {	-- Resolving factor
+				items matches {
+					Node[id194] occurrences matches {0..1} matches {	-- Factor
+						value matches {
+							Text[id230] 
+						}
+					}
+					allow_archetype Node[id195] matches {	-- Factor detail
+						include
+							archetype_id/value matches {/s2-EHR-Node\.health_event(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.symptom_sign(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.symptom_sign(-[a-zA-Z0-9_]+)*\.v2/}
+					}
+					Node[id196] occurrences matches {0..1} matches {	-- Time interval
+						value matches {
+							Duration_value[id231] 
+						}
+					}
+					Node[id197] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id232] 
+						}
+					}
+				}
+			}
+			Node[id156] matches {	-- Impact
+				value matches {
+					Text[id233] 
+				}
+			}
+			Node[id38] occurrences matches {0..1} matches {	-- Episode description
+				value matches {
+					Text[id234] 
+				}
+			}
+			allow_archetype Node[id154] matches {	-- Specific details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id162] occurrences matches {0..1} matches {	-- Resolution date/time
+				value matches {
+					Date_time_value[id235] 
+				}
+			}
+			Node[id58] occurrences matches {0..1} matches {	-- Description of previous episodes
+				value matches {
+					Text[id236] 
+				}
+			}
+			Node[id32] occurrences matches {0..1} matches {	-- Number of previous episodes
+				value matches {
+					Count[id237] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			use_archetype Node[id147, s2-EHR-Node.symptom_sign.v2] 
+			use_archetype Node[id64, s2-EHR-Node.symptom_sign.v2] 
+			Node[id164] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id238] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Episodicity (synthesised)">
+				description = <"Category of this episode for the identified symptom or sign. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Occurrence (synthesised)">
+				description = <"Type of occurrence for this symptom or sign? (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Severity category (synthesised)">
+				description = <"Category representing the overall severity of the symptom or sign. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Progression (synthesised)">
+				description = <"Description progression of the symptom or sign at the time of reporting. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Effect (synthesised)">
+				description = <"Perceived effect of the modifying factor on the symptom or sign. (synthesised)">
+			>
+			["at156"] = <
+				text = <"No effect">
+				description = <"The factor has no impact on the symptom or sign.">
+			>
+			["at158"] = <
+				text = <"Worsens">
+				description = <"The factor increases the severity or impact of the symptom or sign.">
+			>
+			["at159"] = <
+				text = <"Relieves">
+				description = <"The factor decreases the severity or impact of the symptom or sign, but does not fully resolve it.">
+			>
+			["at176"] = <
+				text = <"New">
+				description = <"A new episode of the symptom or sign - either the first ever occurrence or a reoccurrence where the previous episode had completely resolved.">
+			>
+			["at177"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to determine if this occurrence of the symptom or sign is new or ongoing.">
+			>
+			["at178"] = <
+				text = <"Ongoing">
+				description = <"This symptom or sign is ongoing, effectively a single, continuous episode.">
+			>
+			["at181"] = <
+				text = <"Improving">
+				description = <"The severity of the symptom or sign has improved overall during this episode.">
+			>
+			["at182"] = <
+				text = <"Unchanged">
+				description = <"The severity of the symptom or sign has not changed overall during this episode.">
+			>
+			["at183"] = <
+				text = <"Worsening">
+				description = <"The severity of the symptom or sign has worsened overall during this episode.">
+			>
+			["at184"] = <
+				text = <"Resolved">
+				description = <"The severity of the symptom or sign has resolved.">
+			>
+			["at187"] = <
+				text = <"First occurrence">
+				description = <"This is the first ever occurrence of this symptom or sign.">
+			>
+			["at188"] = <
+				text = <"Recurrence">
+				description = <"New occurrence of the same symptom or sign after a previous episode was resolved.">
+			>
+			["at23"] = <
+				text = <"Mild">
+				description = <"The intensity of the symptom or sign does not cause interference with normal activity.">
+			>
+			["at24"] = <
+				text = <"Moderate">
+				description = <"The intensity of the symptom or sign causes interference with normal activity.">
+			>
+			["at25"] = <
+				text = <"Severe">
+				description = <"The intensity of the symptom or sign causes prevents normal activity.">
+			>
+			["id1"] = <
+				text = <"Symptom/Sign">
+				description = <"Reported observation of a physical or mental disturbance in an individual.">
+			>
+			["id147"] = <
+				text = <"Previous episodes">
+				description = <"Structured details of the symptom or sign during a previous episode.">
+			>
+			["id148"] = <
+				text = <"Structured body site">
+				description = <"Structured body site where the symptom or sign was reported.">
+			>
+			["id152"] = <
+				text = <"Body site">
+				description = <"Simple body site where the symptom or sign was reported.">
+			>
+			["id153"] = <
+				text = <"Episode onset">
+				description = <"The onset for this episode of the symptom or sign.">
+			>
+			["id154"] = <
+				text = <"Specific details">
+				description = <"Specific data Nodes that are additionally required to record as unique attributes of the identified symptom or sign.">
+			>
+			["id155"] = <
+				text = <"Factor detail">
+				description = <"Structured detail about the factor associated with the identified symptom or sign.">
+			>
+			["id156"] = <
+				text = <"Impact">
+				description = <"Description of the impact of this symptom or sign.">
+			>
+			["id162"] = <
+				text = <"Resolution date/time">
+				description = <"The timing of the cessation of this episode of the symptom or sign.">
+			>
+			["id164"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the symptom or sign not captured in other fields.">
+			>
+			["id165"] = <
+				text = <"Onset timing">
+				description = <"Timing of the onset and development of the symptom or sign.">
+			>
+			["id166"] = <
+				text = <"Precipitating factor">
+				description = <"Details about specified factors that are associated with the precipitation of the symptom or sign.">
+			>
+			["id171"] = <
+				text = <"Factor">
+				description = <"Name of the health event, symptom, reported sign or other factor.">
+			>
+			["id172"] = <
+				text = <"Time interval">
+				description = <"The interval of time between the occurrence or onset of the factor and onset of the symptom or sign.">
+			>
+			["id176"] = <
+				text = <"Episodicity">
+				description = <"Category of this episode for the identified symptom or sign.">
+			>
+			["id18"] = <
+				text = <"Effect">
+				description = <"Perceived effect of the modifying factor on the symptom or sign.">
+			>
+			["id181"] = <
+				text = <"Progression">
+				description = <"Description progression of the symptom or sign at the time of reporting.">
+			>
+			["id186"] = <
+				text = <"Description">
+				description = <"Narrative description about the effect of the factor on the identified symptom or sign.">
+			>
+			["id187"] = <
+				text = <"Occurrence">
+				description = <"Type of occurrence for this symptom or sign?">
+			>
+			["id19"] = <
+				text = <"Modifying factor">
+				description = <"Detail about how a specific factor effects the identified symptom or sign during this episode.">
+			>
+			["id190"] = <
+				text = <"Character">
+				description = <"Word or short phrase describing the nature of the symptom or sign.">
+			>
+			["id191"] = <
+				text = <"Resolving factor">
+				description = <"Details about specified factors that are associated with the resolution of the symptom or sign.">
+			>
+			["id194"] = <
+				text = <"Factor">
+				description = <"Name of the health event, symptom, reported sign or other factor.">
+			>
+			["id195"] = <
+				text = <"Factor detail">
+				description = <"Structured detail about the factor associated with the identified symptom or sign.">
+			>
+			["id196"] = <
+				text = <"Time interval">
+				description = <"The interval of time between the occurrence or onset of the factor and resolution of the symptom or sign.">
+			>
+			["id197"] = <
+				text = <"Description">
+				description = <"Narrative description about the effect of the factor on the identified symptom or sign.">
+			>
+			["id198"] = <
+				text = <"Factor detail">
+				description = <"Structured detail about the factor associated with the identified symptom or sign.">
+			>
+			["id199"] = <
+				text = <"Severity rating">
+				description = <"Numerical rating scale representing the overall severity of the symptom or sign.">
+			>
+			["id2"] = <
+				text = <"Symptom/Sign name">
+				description = <"The name of the reported symptom or sign.">
+			>
+			["id20"] = <
+				text = <"Factor">
+				description = <"Name of the modifying factor.">
+			>
+			["id201"] = <
+				text = <"Nadir">
+				description = <"Date/time when a monophasic, progressive symptom or sign reached its' maximal intensity or functional impact.">
+			>
+			["id22"] = <
+				text = <"Severity category">
+				description = <"Category representing the overall severity of the symptom or sign.">
+			>
+			["id29"] = <
+				text = <"Episode duration">
+				description = <"The duration of this episode of the symptom or sign since initial onset.">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"Narrative description about the reported symptom or sign.">
+			>
+			["id32"] = <
+				text = <"Number of previous episodes">
+				description = <"The number of times this symptom or sign has previously occurred.">
+			>
+			["id38"] = <
+				text = <"Episode description">
+				description = <"Narrative description about the course of the symptom or sign during this episode.">
+			>
+			["id4"] = <
+				text = <"Pattern">
+				description = <"Narrative description about the pattern of the symptom or sign during this episode.">
+			>
+			["id57"] = <
+				text = <"Description">
+				description = <"Narrative description of the effect of the modifying factor on the symptom or sign.">
+			>
+			["id58"] = <
+				text = <"Description of previous episodes">
+				description = <"Narrative description of any or all previous episodes.">
+			>
+			["id64"] = <
+				text = <"Associated symptom/sign">
+				description = <"Structured details about any associated symptoms or signs that are concurrent.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at23"] = <http://snomed.info/id/162468002>
+			["at24"] = <http://snomed.info/id/162469005>
+			["at25"] = <http://snomed.info/id/162470006>
+			["id29"] = <http://snomed.info/id/162434008>
+			["id22"] = <http://snomed.info/id/405162009>
+			["id153"] = <http://snomed.info/id/405795006>
+		>
+		["loinc"] = <
+			["id152"] = <http://loinc.org/39111-0>
+			["id162"] = <http://loinc.org/95382-8>
+			["id22"] = <http://loinc.org/64750-3>
+			["id164"] = <http://loinc.org/106173-8>
+			["id186"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id194"] = <http://loinc.org/100753-3>
+			["id197"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id3"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id57"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at159", "at156", "at158">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at176", "at178", "at177">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at187", "at188">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at23", "at24", "at25">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at183", "at182", "at181", "at184">
+		>
+	>
+

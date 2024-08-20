@@ -1,0 +1,1187 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=535ff512-dd0e-4184-8730-473b59bcef68)
+    s2-EHR-Score.glasgow_outcome_scale_extended.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Stein Arne Rimehaug, Sunnaas sykehus, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Anne Brit Øglend, SUS, Norway", "Hanne Marte Bårholm, Helse Vest IKT, Norway (openEHR Editor)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Birgitte Heide, Stavanger Universitetssykehus, Norway", "Ylva Hivand Hiorth, sus, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Christine Johansen, Helse Stavanger, Norway", "Kanika Kuwelker, Helse Vest IKT, Norway (openEHR Editor)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Terje Sagmyr, Helse Vest IKT, Norway (openEHR Editor)", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Hanne Marte Sandal Bårholm, Helse Vest IKT, <hanne.marte.sandal.barholm@helse-vest-ikt.no>, 2022-11-24">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.glasgow_outcome_scale_extended.v1.0.0, copyright 2022 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.glasgow_outcome_scale_extended.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the result for each component parameter and the total score for Glasgow Outcome Scale - Extended.">
+            keywords = <"Head injury", "trauma", "outcome", "function", "activity">
+            use = <"Use to record the result for each component parameter and the total score for Glasgow Outcome Scale - Extended.
+            
+            A valid outcome of a GOSE assessment is that the 'Category' will have no result. The ordinal '99' in some Nodes is intended to represent an unscored value, and any Category calculation should take this into account. The 'Category' data Node should remain empty if the lowest recorded ordinal value is '99'.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Glasgow Outcome Scale - Extended (GOSE)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Date of injury
+                value matches {
+                    Date_value[id97]
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Age at injury
+                value matches {
+                    Duration_value[id98] matches {
+                        magnitude matches {PY}
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Interval post-injury
+                value matches {
+                    Duration_value[id99] matches {
+                        magnitude matches {PYMWDTH}
+                    }
+                }
+            }
+            Node[id38] occurrences matches {0..1} matches {    -- Respondent
+                value matches {
+                    Coded_text[id100] matches {
+                        term matches {
+                            Terminology_term[id124] matches {
+                                concept matches {[ac1]}    -- Respondent (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Consciousness
+                items matches {
+                    Node[id12] occurrences matches {0..1} matches {    -- 1. Is the head injured person able to obey simple commands, or say any words?
+                        value matches {
+                            Coded_ordinal[id125] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id127] matches {
+                                        term matches {
+                                            Terminology_term[id126] matches {
+                                                concept matches {[at41]}    -- No
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id128] matches {
+                                magnitude matches {99}
+                                concept matches {
+                                    Coded_text[id130] matches {
+                                        term matches {
+                                            Terminology_term[id129] matches {
+                                                concept matches {[at42]}    -- Yes
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Independence in the home
+                items matches {
+                    Node[id13] occurrences matches {0..1} matches {    -- 2a Is the assistance of another person at home essential every day for some activities of daily living?
+                        value matches {
+                            Coded_text[id102] matches {
+                                term matches {
+                                    Terminology_term[id131] matches {
+                                        concept matches {[ac2]}    -- 2a Is the assistance of another person at home essential every day for some activities of daily living? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id14] occurrences matches {0..1} matches {    -- 2b Do they need frequent help or someone to be around at home most of the time?
+                        value matches {
+                            Coded_ordinal[id132] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id134] matches {
+                                        term matches {
+                                            Terminology_term[id133] matches {
+                                                concept matches {[at45]}    -- No
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id135] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id137] matches {
+                                        term matches {
+                                            Terminology_term[id136] matches {
+                                                concept matches {[at46]}    -- Yes
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id15] occurrences matches {0..1} matches {    -- 2c Was the assistance at home essential before the injury?
+                        value matches {
+                            Coded_text[id104] matches {
+                                term matches {
+                                    Terminology_term[id138] matches {
+                                        concept matches {[ac3]}    -- 2c Was the assistance at home essential before the injury? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- Independence outside the home
+                items matches {
+                    Node[id17] occurrences matches {0..1} matches {    -- 3a Are they able to shop without assistance?
+                        value matches {
+                            Coded_ordinal[id139] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id141] matches {
+                                        term matches {
+                                            Terminology_term[id140] matches {
+                                                concept matches {[at49]}    -- No
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id142] matches {
+                                magnitude matches {99}
+                                concept matches {
+                                    Coded_text[id144] matches {
+                                        term matches {
+                                            Terminology_term[id143] matches {
+                                                concept matches {[at50]}    -- Yes
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id18] occurrences matches {0..1} matches {    -- 3b Were they able to shop without assistance before the injury?
+                        value matches {
+                            Coded_text[id106] matches {
+                                term matches {
+                                    Terminology_term[id145] matches {
+                                        concept matches {[ac4]}    -- 3b Were they able to shop without assistance before the injury? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id19] occurrences matches {0..1} matches {    -- 4a Are they able to travel locally without assistance?
+                        value matches {
+                            Coded_ordinal[id146] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id148] matches {
+                                        term matches {
+                                            Terminology_term[id147] matches {
+                                                concept matches {[at53]}    -- No
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id149] matches {
+                                magnitude matches {99}
+                                concept matches {
+                                    Coded_text[id151] matches {
+                                        term matches {
+                                            Terminology_term[id150] matches {
+                                                concept matches {[at54]}    -- Yes
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id20] occurrences matches {0..1} matches {    -- 4b Were they able to travel without assistance before the injury?
+                        value matches {
+                            Coded_text[id108] matches {
+                                term matches {
+                                    Terminology_term[id152] matches {
+                                        concept matches {[ac5]}    -- 4b Were they able to travel without assistance before the injury? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Work
+                items matches {
+                    Node[id23] occurrences matches {0..1} matches {    -- 5a Are they currently able to work to their previous capacity?
+                        value matches {
+                            Coded_text[id109] matches {
+                                term matches {
+                                    Terminology_term[id153] matches {
+                                        concept matches {[ac6]}    -- 5a Are they currently able to work to their previous capacity? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id24] occurrences matches {0..1} matches {    -- 5b How restricted are they?
+                        value matches {
+                            Coded_ordinal[id154] matches {
+                                magnitude matches {6}
+                                concept matches {
+                                    Coded_text[id156] matches {
+                                        term matches {
+                                            Terminology_term[id155] matches {
+                                                concept matches {[at59]}    -- Reduced work capacity.
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id157] matches {
+                                magnitude matches {5}
+                                concept matches {
+                                    Coded_text[id159] matches {
+                                        term matches {
+                                            Terminology_term[id158] matches {
+                                                concept matches {[at60]}    -- Able to work only in a sheltered workshop or non-competitive job, or currently unable to work.
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id25] occurrences matches {0..1} matches {    -- 5c Were they either working or seeking employment before the injury (answer 'yes') or were they doing neither (answer 'no')?
+                        value matches {
+                            Coded_text[id111] matches {
+                                term matches {
+                                    Terminology_term[id160] matches {
+                                        concept matches {[ac7]}    -- 5c Were they either working or seeking employment before the injury (answer 'yes') or were they doing neither (answer 'no')? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Social & leisure activities
+                items matches {
+                    Node[id27] occurrences matches {0..1} matches {    -- 6a Are they able to resume regular social and leisure activities outside home?
+                        value matches {
+                            Coded_text[id112] matches {
+                                term matches {
+                                    Terminology_term[id161] matches {
+                                        concept matches {[ac8]}    -- 6a Are they able to resume regular social and leisure activities outside home? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id28] occurrences matches {0..1} matches {    -- 6b What is the extent of restricition on their social and leisure activities?
+                        value matches {
+                            Coded_ordinal[id162] matches {
+                                magnitude matches {7}
+                                concept matches {
+                                    Coded_text[id164] matches {
+                                        term matches {
+                                            Terminology_term[id163] matches {
+                                                concept matches {[at65]}    -- Participate a bit less: at least half as often as before injury.
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id165] matches {
+                                magnitude matches {6}
+                                concept matches {
+                                    Coded_text[id167] matches {
+                                        term matches {
+                                            Terminology_term[id166] matches {
+                                                concept matches {[at66]}    -- Participate much less: less than half as often.
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id168] matches {
+                                magnitude matches {5}
+                                concept matches {
+                                    Coded_text[id170] matches {
+                                        term matches {
+                                            Terminology_term[id169] matches {
+                                                concept matches {[at67]}    -- Unable to participate: rarely, if ever, take part.
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id29] occurrences matches {0..1} matches {    -- 6c Did they engage in regular social and leisure activities outside home before the injury?
+                        value matches {
+                            Coded_text[id114] matches {
+                                term matches {
+                                    Terminology_term[id171] matches {
+                                        concept matches {[ac9]}    -- 6c Did they engage in regular social and leisure activities outside home before the injury? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id30] occurrences matches {0..1} matches {    -- Family & friendships
+                items matches {
+                    Node[id31] occurrences matches {0..1} matches {    -- 7a Have there been psychological problems which have resulted in ongoing family disruption or disruption to friendships?
+                        value matches {
+                            Coded_text[id115] matches {
+                                term matches {
+                                    Terminology_term[id172] matches {
+                                        concept matches {[ac10]}    -- 7a Have there been psychological problems which have resulted in ongoing family disruption or disruption to friendships? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id32] occurrences matches {0..1} matches {    -- 7b What has been the extent of disruption or strain?
+                        value matches {
+                            Coded_ordinal[id173] matches {
+                                magnitude matches {7}
+                                concept matches {
+                                    Coded_text[id175] matches {
+                                        term matches {
+                                            Terminology_term[id174] matches {
+                                                concept matches {[at72]}    -- Occasional - less than weekly
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id176] matches {
+                                magnitude matches {6}
+                                concept matches {
+                                    Coded_text[id178] matches {
+                                        term matches {
+                                            Terminology_term[id177] matches {
+                                                concept matches {[at73]}    -- Frequent - once a week or more, but tolerable.
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id179] matches {
+                                magnitude matches {5}
+                                concept matches {
+                                    Coded_text[id181] matches {
+                                        term matches {
+                                            Terminology_term[id180] matches {
+                                                concept matches {[at74]}    -- Constant - daily and intolerable.
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id33] occurrences matches {0..1} matches {    -- 7c Were there problems with family or friends before the injury?
+                        value matches {
+                            Coded_text[id117] matches {
+                                term matches {
+                                    Terminology_term[id182] matches {
+                                        concept matches {[ac11]}    -- 7c Were there problems with family or friends before the injury? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id34] occurrences matches {0..1} matches {    -- Return to normal life
+                items matches {
+                    Node[id35] occurrences matches {0..1} matches {    -- 8a Are there any other current problems relating to the injury which affect daily life?
+                        value matches {
+                            Coded_ordinal[id183] matches {
+                                magnitude matches {8}
+                                concept matches {
+                                    Coded_text[id185] matches {
+                                        term matches {
+                                            Terminology_term[id184] matches {
+                                                concept matches {[at77]}    -- No
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id186] matches {
+                                magnitude matches {7}
+                                concept matches {
+                                    Coded_text[id188] matches {
+                                        term matches {
+                                            Terminology_term[id187] matches {
+                                                concept matches {[at78]}    -- Yes
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id90] occurrences matches {0..1} matches {    -- 8b Were similar problems present before the injury?
+                        value matches {
+                            Coded_text[id119] matches {
+                                term matches {
+                                    Terminology_term[id189] matches {
+                                        concept matches {[ac12]}    -- 8b Were similar problems present before the injury? (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id93] occurrences matches {0..1} matches {    -- Since the injury has the head injured person had any epileptic fits?
+                value matches {
+                    Coded_text[id120] matches {
+                        term matches {
+                            Terminology_term[id190] matches {
+                                concept matches {[ac13]}    -- Since the injury has the head injured person had any epileptic fits? (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id94] occurrences matches {0..1} matches {    -- Have they been told that they are currently at risk of developing epilepsy?
+                value matches {
+                    Coded_text[id121] matches {
+                        term matches {
+                            Terminology_term[id191] matches {
+                                concept matches {[ac14]}    -- Have they been told that they are currently at risk of developing epilepsy? (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id95] occurrences matches {0..1} matches {    -- What is the most important factor in outcome?
+                value matches {
+                    Coded_text[id122] matches {
+                        term matches {
+                            Terminology_term[id192] matches {
+                                concept matches {[ac15]}    -- What is the most important factor in outcome? (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id37] occurrences matches {0..1} matches {    -- Category
+                value matches {
+                    Coded_ordinal[id193] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id195] matches {
+                                term matches {
+                                    Terminology_term[id194] matches {
+                                        concept matches {[at81]}    -- Dead
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id196] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id198] matches {
+                                term matches {
+                                    Terminology_term[id197] matches {
+                                        concept matches {[at82]}    -- Vegetative state
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id199] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id201] matches {
+                                term matches {
+                                    Terminology_term[id200] matches {
+                                        concept matches {[at83]}    -- Lower severe disability
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id202] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id204] matches {
+                                term matches {
+                                    Terminology_term[id203] matches {
+                                        concept matches {[at84]}    -- Upper severe disability
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id205] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id207] matches {
+                                term matches {
+                                    Terminology_term[id206] matches {
+                                        concept matches {[at85]}    -- Lower moderate disability
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id208] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id210] matches {
+                                term matches {
+                                    Terminology_term[id209] matches {
+                                        concept matches {[at86]}    -- Upper moderate disability
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id211] matches {
+                        magnitude matches {7}
+                        concept matches {
+                            Coded_text[id213] matches {
+                                term matches {
+                                    Terminology_term[id212] matches {
+                                        concept matches {[at87]}    -- Lower good recovery
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id214] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id216] matches {
+                                term matches {
+                                    Terminology_term[id215] matches {
+                                        concept matches {[at88]}    -- Upper good recovery
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers
+    }
+
+terminology
+    value_sets = <
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at57", "at58">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at63", "at64">
+        >
+        ["ac10"] = <
+            id = <"ac10">
+            members = <"at70", "at71">
+        >
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at38", "at39", "at40">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at43", "at44">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at47", "at48">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at51", "at52">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at55", "at56">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at61", "at62">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at68", "at69">
+        >
+        ["ac11"] = <
+            id = <"ac11">
+            members = <"at75", "at76">
+        >
+        ["ac12"] = <
+            id = <"ac12">
+            members = <"at90", "at91">
+        >
+        ["ac13"] = <
+            id = <"ac13">
+            members = <"at96", "at97">
+        >
+        ["ac14"] = <
+            id = <"ac14">
+            members = <"at98", "at99">
+        >
+        ["ac15"] = <
+            id = <"ac15">
+            members = <"at100", "at101", "at102">
+        >
+        ["ac16"] = <
+            id = <"ac16">
+            members = <"at41", "at42">
+        >
+        ["ac17"] = <
+            id = <"ac17">
+            members = <"at45", "at46">
+        >
+        ["ac18"] = <
+            id = <"ac18">
+            members = <"at49", "at50">
+        >
+        ["ac19"] = <
+            id = <"ac19">
+            members = <"at53", "at54">
+        >
+        ["ac20"] = <
+            id = <"ac20">
+            members = <"at59", "at60">
+        >
+        ["ac21"] = <
+            id = <"ac21">
+            members = <"at65", "at66", "at67">
+        >
+        ["ac22"] = <
+            id = <"ac22">
+            members = <"at72", "at73", "at74">
+        >
+        ["ac23"] = <
+            id = <"ac23">
+            members = <"at77", "at78">
+        >
+        ["ac24"] = <
+            id = <"ac24">
+            members = <"at81", "at82", "at83", "at84", "at85", "at86", "at87", "at88">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Respondent (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac10"] = <
+                text = <"7a Have there been psychological problems which have resulted in ongoing family disruption or disruption to friendships? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac11"] = <
+                text = <"7c Were there problems with family or friends before the injury? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac12"] = <
+                text = <"8b Were similar problems present before the injury? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac13"] = <
+                text = <"Since the injury has the head injured person had any epileptic fits? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac14"] = <
+                text = <"Have they been told that they are currently at risk of developing epilepsy? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac15"] = <
+                text = <"What is the most important factor in outcome? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac16"] = <
+                text = <"1. Is the head injured person able to obey simple commands, or say any words? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac17"] = <
+                text = <"2b Do they need frequent help or someone to be around at home most of the time? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac18"] = <
+                text = <"3a Are they able to shop without assistance? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac19"] = <
+                text = <"4a Are they able to travel locally without assistance? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"2a Is the assistance of another person at home essential every day for some activities of daily living? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac20"] = <
+                text = <"5b How restricted are they? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac21"] = <
+                text = <"6b What is the extent of restricition on their social and leisure activities? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac22"] = <
+                text = <"7b What has been the extent of disruption or strain? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac23"] = <
+                text = <"8a Are there any other current problems relating to the injury which affect daily life? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac24"] = <
+                text = <"Category (synthesised)">
+                description = <"The overall rating based on the lowest outcome value indicated on the scale. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"2c Was the assistance at home essential before the injury? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac4"] = <
+                text = <"3b Were they able to shop without assistance before the injury? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac5"] = <
+                text = <"4b Were they able to travel without assistance before the injury? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac6"] = <
+                text = <"5a Are they currently able to work to their previous capacity? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac7"] = <
+                text = <"5c Were they either working or seeking employment before the injury (answer 'yes') or were they doing neither (answer 'no')? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac8"] = <
+                text = <"6a Are they able to resume regular social and leisure activities outside home? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac9"] = <
+                text = <"6c Did they engage in regular social and leisure activities outside home before the injury? (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at100"] = <
+                text = <"Effects of head injury">
+                description = <"">
+            >
+            ["at101"] = <
+                text = <"Effects of illness or injury to another part of the body">
+                description = <"">
+            >
+            ["at102"] = <
+                text = <"A mixture of these">
+                description = <"">
+            >
+            ["at38"] = <
+                text = <"Patient alone">
+                description = <"">
+            >
+            ["at39"] = <
+                text = <"Relative/friend/carer alone">
+                description = <"">
+            >
+            ["at40"] = <
+                text = <"Patient + relative/friend/carer">
+                description = <"">
+            >
+            ["at41"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at42"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at43"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at44"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at45"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at46"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at47"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at48"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at49"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at50"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at51"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at52"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at53"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at54"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at55"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at56"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at57"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at58"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at59"] = <
+                text = <"Reduced work capacity.">
+                description = <"">
+            >
+            ["at60"] = <
+                text = <"Able to work only in a sheltered workshop or non-competitive job, or currently unable to work.">
+                description = <"">
+            >
+            ["at61"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at62"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at63"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at64"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at65"] = <
+                text = <"Participate a bit less: at least half as often as before injury.">
+                description = <"">
+            >
+            ["at66"] = <
+                text = <"Participate much less: less than half as often.">
+                description = <"">
+            >
+            ["at67"] = <
+                text = <"Unable to participate: rarely, if ever, take part.">
+                description = <"">
+            >
+            ["at68"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at69"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at70"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at71"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at72"] = <
+                text = <"Occasional - less than weekly">
+                description = <"">
+            >
+            ["at73"] = <
+                text = <"Frequent - once a week or more, but tolerable.">
+                description = <"">
+            >
+            ["at74"] = <
+                text = <"Constant - daily and intolerable.">
+                description = <"">
+            >
+            ["at75"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at76"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at77"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at78"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at81"] = <
+                text = <"Dead">
+                description = <"">
+            >
+            ["at82"] = <
+                text = <"Vegetative state">
+                description = <"">
+            >
+            ["at83"] = <
+                text = <"Lower severe disability">
+                description = <"">
+            >
+            ["at84"] = <
+                text = <"Upper severe disability">
+                description = <"">
+            >
+            ["at85"] = <
+                text = <"Lower moderate disability">
+                description = <"">
+            >
+            ["at86"] = <
+                text = <"Upper moderate disability">
+                description = <"">
+            >
+            ["at87"] = <
+                text = <"Lower good recovery">
+                description = <"">
+            >
+            ["at88"] = <
+                text = <"Upper good recovery">
+                description = <"">
+            >
+            ["at90"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at91"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at96"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at97"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at98"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at99"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Glasgow Outcome Scale - Extended (GOSE)">
+                description = <"A scale for assessing outcome after head injury and non-traumatic acute brain insults.">
+            >
+            ["id11"] = <
+                text = <"Independence in the home">
+                description = <"">
+            >
+            ["id12"] = <
+                text = <"1. Is the head injured person able to obey simple commands, or say any words?">
+                description = <"">
+            >
+            ["id13"] = <
+                text = <"2a Is the assistance of another person at home essential every day for some activities of daily living?">
+                description = <"">
+            >
+            ["id14"] = <
+                text = <"2b Do they need frequent help or someone to be around at home most of the time?">
+                description = <"">
+            >
+            ["id15"] = <
+                text = <"2c Was the assistance at home essential before the injury?">
+                description = <"">
+            >
+            ["id16"] = <
+                text = <"Independence outside the home">
+                description = <"">
+            >
+            ["id17"] = <
+                text = <"3a Are they able to shop without assistance?">
+                description = <"">
+            >
+            ["id18"] = <
+                text = <"3b Were they able to shop without assistance before the injury?">
+                description = <"">
+            >
+            ["id19"] = <
+                text = <"4a Are they able to travel locally without assistance?">
+                description = <"">
+            >
+            ["id20"] = <
+                text = <"4b Were they able to travel without assistance before the injury?">
+                description = <"">
+            >
+            ["id21"] = <
+                text = <"Work">
+                description = <"">
+            >
+            ["id23"] = <
+                text = <"5a Are they currently able to work to their previous capacity?">
+                description = <"">
+            >
+            ["id24"] = <
+                text = <"5b How restricted are they?">
+                description = <"">
+            >
+            ["id25"] = <
+                text = <"5c Were they either working or seeking employment before the injury (answer 'yes') or were they doing neither (answer 'no')?">
+                description = <"">
+            >
+            ["id26"] = <
+                text = <"Social & leisure activities">
+                description = <"">
+            >
+            ["id27"] = <
+                text = <"6a Are they able to resume regular social and leisure activities outside home?">
+                description = <"">
+            >
+            ["id28"] = <
+                text = <"6b What is the extent of restricition on their social and leisure activities?">
+                description = <"">
+            >
+            ["id29"] = <
+                text = <"6c Did they engage in regular social and leisure activities outside home before the injury?">
+                description = <"">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which   may be explicitly defined in a template or at run-time.">
+            >
+            ["id30"] = <
+                text = <"Family & friendships">
+                description = <"">
+            >
+            ["id31"] = <
+                text = <"7a Have there been psychological problems which have resulted in ongoing family disruption or disruption to friendships?">
+                description = <"">
+            >
+            ["id32"] = <
+                text = <"7b What has been the extent of disruption or strain?">
+                description = <"">
+            >
+            ["id33"] = <
+                text = <"7c Were there problems with family or friends before the injury?">
+                description = <"">
+            >
+            ["id34"] = <
+                text = <"Return to normal life">
+                description = <"">
+            >
+            ["id35"] = <
+                text = <"8a Are there any other current problems relating to the injury which affect daily life?">
+                description = <"">
+            >
+            ["id37"] = <
+                text = <"Category">
+                description = <"The overall rating based on the lowest outcome value indicated on the scale.">
+            >
+            ["id38"] = <
+                text = <"Respondent">
+                description = <"">
+            >
+            ["id5"] = <
+                text = <"Date of injury">
+                description = <"">
+            >
+            ["id6"] = <
+                text = <"Age at injury">
+                description = <"">
+            >
+            ["id7"] = <
+                text = <"Interval post-injury">
+                description = <"">
+            >
+            ["id9"] = <
+                text = <"Consciousness">
+                description = <"">
+            >
+            ["id90"] = <
+                text = <"8b Were similar problems present before the injury?">
+                description = <"">
+            >
+            ["id93"] = <
+                text = <"Since the injury has the head injured person had any epileptic fits?">
+                description = <"">
+            >
+            ["id94"] = <
+                text = <"Have they been told that they are currently at risk of developing epilepsy?">
+                description = <"">
+            >
+            ["id95"] = <
+                text = <"What is the most important factor in outcome?">
+                description = <"">
+            >
+        >
+    >
+    

@@ -1,0 +1,338 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=aca3de89-bd1f-480e-8788-2c61319ea644)
+	s2-EHR-Action.transfusion.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, Australia, <healther.leslie@oceaninformatics.com>, 2012-09-08">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ACTION.transfusion.v0.0.1-alpha, copyright 2012 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-ACTION.transfusion.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"For recording the actions taken during transfusion.">
+			use = <"">
+			keywords = <"transfusion", "blood">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Heather Leslie, Ocean Informatics, Australia (Editor)", "Ian McNicoll, Ocean Informatics, United Kingdom (Editor)">
+
+definition
+	Action[id1] matches {	-- Transfusion
+		state_transition matches {
+			State_transition[id3] matches {	-- Planned
+				current_state matches {"initial"}
+				careflow_step matches {
+					Terminology_term[id25] matches {
+						concept matches {[at3]}
+					}
+				}
+			}
+			State_transition[id5] matches {	-- Prepared (Matching)
+				current_state matches {"initial"}
+				careflow_step matches {
+					Terminology_term[id27] matches {
+						concept matches {[at5]}
+					}
+				}
+			}
+			State_transition[id13] matches {	-- Consent obtained
+				current_state matches {"initial"}
+				careflow_step matches {
+					Terminology_term[id29] matches {
+						concept matches {[at13]}
+					}
+				}
+			}
+			State_transition[id6] matches {	-- Postponed
+				current_state matches {"postponed"}
+				careflow_step matches {
+					Terminology_term[id31] matches {
+						concept matches {[at6]}
+					}
+				}
+			}
+			State_transition[id7] matches {	-- Cancelled
+				current_state matches {"cancelled"}
+				careflow_step matches {
+					Terminology_term[id33] matches {
+						concept matches {[at7]}
+					}
+				}
+			}
+			State_transition[id4] matches {	-- Blood products ordered
+				current_state matches {"scheduled"}
+				careflow_step matches {
+					Terminology_term[id35] matches {
+						concept matches {[at4]}
+					}
+				}
+			}
+			State_transition[id8] matches {	-- Blood and patient identification checked
+				current_state matches {"active"}
+				careflow_step matches {
+					Terminology_term[id37] matches {
+						concept matches {[at8]}
+					}
+				}
+			}
+			State_transition[id9] matches {	-- Transfusion unit commenced
+				current_state matches {"active"}
+				careflow_step matches {
+					Terminology_term[id39] matches {
+						concept matches {[at9]}
+					}
+				}
+			}
+			State_transition[id14] matches {	-- Transfusion unit completed
+				current_state matches {"active"}
+				careflow_step matches {
+					Terminology_term[id41] matches {
+						concept matches {[at14]}
+					}
+				}
+			}
+			State_transition[id10] matches {	-- Transfusion suspended
+				current_state matches {"suspended"}
+				careflow_step matches {
+					Terminology_term[id43] matches {
+						concept matches {[at10]}
+					}
+				}
+			}
+			State_transition[id11] matches {	-- Transfusion stopped
+				current_state matches {"aborted"}
+				careflow_step matches {
+					Terminology_term[id45] matches {
+						concept matches {[at11]}
+					}
+				}
+			}
+			State_transition[id12] matches {	-- Transfusion has been completed
+				current_state matches {"completed"}
+				careflow_step matches {
+					Terminology_term[id47] matches {
+						concept matches {[at12]}
+					}
+				}
+			}
+		}
+		description matches {
+			Node[id15] occurrences matches {0..1} matches {	-- Type of blood unit
+				value matches {
+					Text[id48] 
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Administration details
+				items matches {
+					Node[id16] occurrences matches {0..1} matches {	-- Sequence number
+						value matches {
+							Count[id49] 
+						}
+					}
+					Node[id17] occurrences matches {0..1} matches {	-- Proportion administered
+						value matches {
+							Ratio[id50] matches {
+								numerator matches {|>=0.0|}
+							}
+						}
+					}
+				}
+			}
+			Node[id18] occurrences matches {0..1} matches {	-- Reason
+				value matches {
+					Text[id51] 
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Reaction details
+				items matches {
+					Node[id20] occurrences matches {0..1} matches {	-- Clinical description
+						value matches {
+							Text[id52] 
+						}
+					}
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Related records
+				value matches {
+					Uri_ref[id53] 
+				}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Country of origin of blood product
+				value matches {
+					Text[id54] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at10"] = <
+				text = <"Transfusion suspended">
+				description = <"The transfusion has been suspended and may restart.">
+			>
+			["at11"] = <
+				text = <"Transfusion stopped">
+				description = <"Transfusion has been ceased and will not continue.">
+			>
+			["at12"] = <
+				text = <"Transfusion has been completed">
+				description = <"The transfusion has been completed.">
+			>
+			["at13"] = <
+				text = <"Consent obtained">
+				description = <"Consent for the transfusion has been obtained.">
+			>
+			["at14"] = <
+				text = <"Transfusion unit completed">
+				description = <"A unit of blood product has been transfused.">
+			>
+			["at3"] = <
+				text = <"Planned">
+				description = <"Transfusion has been planned.">
+			>
+			["at4"] = <
+				text = <"Blood products ordered">
+				description = <"The blood products have been ordered.">
+			>
+			["at5"] = <
+				text = <"Prepared (Matching)">
+				description = <"Blood sent for testing appropriate blood products.">
+			>
+			["at6"] = <
+				text = <"Postponed">
+				description = <"Transfusion has been postponed.">
+			>
+			["at7"] = <
+				text = <"Cancelled">
+				description = <"The transfusion has been cancelled as no longer appropriate or required.">
+			>
+			["at8"] = <
+				text = <"Blood and patient identification checked">
+				description = <"The transfusion product identification and patient identification have been matched.">
+			>
+			["at9"] = <
+				text = <"Transfusion unit commenced">
+				description = <"Transfusion has begun on a unit of blood product.">
+			>
+			["id1"] = <
+				text = <"Transfusion">
+				description = <"Recording the actions taken during transfusion.">
+			>
+			["id10"] = <
+				text = <"Transfusion suspended">
+				description = <"The transfusion has been suspended and may restart.">
+			>
+			["id11"] = <
+				text = <"Transfusion stopped">
+				description = <"Transfusion has been ceased and will not continue.">
+			>
+			["id12"] = <
+				text = <"Transfusion has been completed">
+				description = <"The transfusion has been completed.">
+			>
+			["id13"] = <
+				text = <"Consent obtained">
+				description = <"Consent for the transfusion has been obtained.">
+			>
+			["id14"] = <
+				text = <"Transfusion unit completed">
+				description = <"A unit of blood product has been transfused.">
+			>
+			["id15"] = <
+				text = <"Type of blood unit">
+				description = <"The blood product transfused.">
+			>
+			["id16"] = <
+				text = <"Sequence number">
+				description = <"The number of the unit completed or commenced.">
+			>
+			["id17"] = <
+				text = <"Proportion administered">
+				description = <"The proportion of the unit(s) administered.">
+			>
+			["id18"] = <
+				text = <"Reason">
+				description = <"Reason for action.">
+			>
+			["id19"] = <
+				text = <"Country of origin of blood product">
+				description = <"The country of origin of the blood product.">
+			>
+			["id20"] = <
+				text = <"Clinical description">
+				description = <"Any reaction to the transfusion.">
+			>
+			["id21"] = <
+				text = <"Reaction details">
+				description = <"Any details of a reaction.">
+			>
+			["id22"] = <
+				text = <"Related records">
+				description = <"A pointer to any related observations or record entries.">
+			>
+			["id23"] = <
+				text = <"Administration details">
+				description = <"Details about the administration.">
+			>
+			["id3"] = <
+				text = <"Planned">
+				description = <"Transfusion has been planned.">
+			>
+			["id4"] = <
+				text = <"Blood products ordered">
+				description = <"The blood products have been ordered.">
+			>
+			["id5"] = <
+				text = <"Prepared (Matching)">
+				description = <"Blood sent for testing appropriate blood products.">
+			>
+			["id6"] = <
+				text = <"Postponed">
+				description = <"Transfusion has been postponed.">
+			>
+			["id7"] = <
+				text = <"Cancelled">
+				description = <"The transfusion has been cancelled as no longer appropriate or required.">
+			>
+			["id8"] = <
+				text = <"Blood and patient identification checked">
+				description = <"The transfusion product identification and patient identification have been matched.">
+			>
+			["id9"] = <
+				text = <"Transfusion unit commenced">
+				description = <"Transfusion has begun on a unit of blood product.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id20"] = <http://loinc.org/61133-5>
+		>
+	>
+

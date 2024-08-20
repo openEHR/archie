@@ -1,0 +1,322 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=db404efc-aa62-4352-b142-b15712251a3d)
+	s2-EHR-Assessment.death_summary.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord RHF, <mikkel.johan.gaup.gronmo@helse-nord.no>, 2021-11-19">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.death_summary.v1.0.0, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.death_summary.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary information about the circumstances and context of the death of an individual, excluding the cause(s) of death.">
+			use = <"Use to record summary information about the circumstances and context of the death of an individual, excluding the cause(s) of death.
+            
+            This archetype has been designed to carry the details about the death of an individual that only need to be recorded once within a health record, including, but not limited to:
+            - the date and time of death;
+            - the place of death, as a category, named place or an address; 
+            - context about the death of a mother giving birth;
+            - context about the death of a newborn; and
+            - manner and circumstances related to the death.
+            
+            It is anticipated that one or more data Nodes in this archetype may be used in the following use cases:
+            - Death certificate - date/time of death and location of death;
+            - Post mortem report - describing known circumstances related to the death, including information related to maternal, fetal or neonatal death.
+            - Disease registries.">
+			keywords = <"certificate", "death", "MCCD", "dead", "summary", "note", "killed", "attestation", "fatal accident">
+			misuse = <"Not to be used to record information about the formal cause(s) of death - use EVALUATION.cause_of_death for this purpose.
+            
+            Not to be used to record information about post-mortem examination findings such as lividity or rigor mortis - use appropriate examination-related findings within the COMPOSITION.report-post_mortem container archetype.
+            
+            Not to be used to record information about vital status - use OBSERVATION.vital_status for this purpose.">
+		>
+	>
+	other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (Nasjonal IKT redaktør)", "Aleocidio Balzanelo, UHG Brasil, Brazil", "Malin Berg, DIPS ASA, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Ian Bull, ACT Health, Australia", "Marte Rime Bø, Direktoratet for e-helse, Norway", "Yexuan Cheng, 浙江大学, China", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Stefan Dubois, Dep't of Pathology and Genetics, University Hospitals of Lund and Malmö, Sweden", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Kåre Flø, DIPS ASA, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Rosane Gotardo, Systema Ltda., Brazil", "Heather Grain, Llewelyn Grain Informatics, Australia", "Maria Grønmo, Norway", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Finn Harald Stokland, DIPS AS", "Amanda Herbrand, University Hospital Basel, Switzerland", "Anca Heyd, DIPS AS", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Kjetil Jørgensen, DIPS AS", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway (openEHR Editor)", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Siri Laronningen, Kreftregisteret, Norway", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Michael Lutz, BITsoft, Germany", "Manisha Mantri, C-DAC, India", "Hanne Marte Bårholm, Helse Vest IKT, Norway (openEHR Editor)", "James McClay, University of Nebraska Medical Center, United States", "Hilde Mjærfoss, Norsk Helsenett SF, Norway", "Arunakiry Natarajan, medondo, Germany", "Svenne Naumann, Finnmarkssykehuset, Norway", "Anna Navarro Serra, IN2, Spain", "Karin Nilsson, Region Västmanland, Sweden", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Azra Resulbegovic, DIPS AS", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Terje Sagmyr, Helse Vest IKT, Norway", "Benjamin Senst, Germany", "Frode Stenvik, Helse Sør-Øst, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Olav Thorsen, Stavanger University Hospital, Norway", "Anders Thurin, VGR, Sweden", "Pencho Tonchev, Medical University- Pleven, Bulgaria", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Lars Uhlin Hansen, UNN, Norway", "Martijn van Eenennaam, Nedap Healthcare, Netherlands", "Ina Wille, Helse-Vest RHF, Norway", "Lin Zhang, Taikang Insurance Group, China">
+
+definition
+	Assessment[id1] matches {	-- Death summary
+		data matches {
+			Node[id93] occurrences matches {0..1} matches {	-- Date/time of death
+				value matches {
+					Date_time_value[id123] 
+					Range<Date_time_value>[id124] 
+				}
+			}
+			use_archetype Node[id105, s2-EHR-Node.dod_alternative.v0] 
+			Node[id11] occurrences matches {0..1} matches {	-- Manner of death
+				value matches {
+					Text[id125] 
+				}
+			}
+			Node[id94] occurrences matches {0..1} matches {	-- Manner description
+				value matches {
+					Text[id126] 
+				}
+			}
+			Node[id22] matches {	-- Place category
+				value matches {
+					Text[id127] 
+				}
+			}
+			Node[id110] matches {	-- Place of death
+				value matches {
+					Text[id128] 
+				}
+			}
+			allow_archetype Node[id101] matches {	-- Structured place of death
+				include
+					archetype_id/value matches {/s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			Node[id55] occurrences matches {0..1} matches {	-- Age at death
+				value matches {
+					Duration_value[id129] matches {
+						magnitude matches {|>=PT0S|}
+					}
+				}
+			}
+			Node[id120] occurrences matches {0..1} matches {	-- Place of injury
+				value matches {
+					Text[id130] 
+				}
+			}
+			Node[id121] occurrences matches {0..1} matches {	-- Date of injury
+				value matches {
+					Date_time_value[id131] 
+				}
+			}
+			Node[id122] occurrences matches {0..1} matches {	-- Activity at the time of injury
+				value matches {
+					Text[id132] 
+				}
+			}
+			Node[id111] occurrences matches {0..1} matches {	-- Pregnancy context
+				value matches {
+					Coded_text[id133] matches {
+						term matches {
+							Terminology_term[id142] matches {
+								concept matches {[ac1]}		-- Pregnancy context (synthesised)
+							}
+						}
+					}
+					Plain_text[id134] 
+				}
+			}
+			Node[id107] occurrences matches {0..1} matches {	-- Days post partum
+				value matches {
+					Duration_value[id135] matches {
+						magnitude matches {|PT0S..P365D|}
+					}
+				}
+			}
+			Node[id45] occurrences matches {0..1} matches {	-- Gestation at death
+				value matches {
+					Duration_value[id136] matches {
+						magnitude matches {|PT0S..P50W|}
+					}
+				}
+			}
+			Node[id117] occurrences matches {0..1} matches {	-- Stillbirth context
+				value matches {
+					Coded_text[id137] matches {
+						term matches {
+							Terminology_term[id143] matches {
+								concept matches {[ac2]}		-- Stillbirth context (synthesised)
+							}
+						}
+					}
+					Plain_text[id138] 
+				}
+			}
+			allow_archetype Node[id43] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id106] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id139] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id104] matches {	-- Information source(s)
+				value matches {
+					Text[id140] 
+				}
+			}
+			Node[id102] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id141] 
+				}
+			}
+			allow_archetype Node[id103] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Pregnancy context (synthesised)">
+				description = <"Timing of a woman's death categorised as a phase of the active pregnancy. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Stillbirth context (synthesised)">
+				description = <"Timing of a stillborn foetus' death categorised as a phase of pregnancy. (synthesised)">
+			>
+			["at112"] = <
+				text = <"Antenatal">
+				description = <"The woman died while pregnant and before labour commenced.">
+			>
+			["at113"] = <
+				text = <"During labour/delivery">
+				description = <"The woman died during labour or delivery.">
+			>
+			["at114"] = <
+				text = <"Postnatal">
+				description = <"The woman died ≤42 days after delivery.">
+			>
+			["at115"] = <
+				text = <"Late postnatal">
+				description = <"The woman died >42 days and ≤1 year after delivery.">
+			>
+			["at117"] = <
+				text = <"Antenatal">
+				description = <"The foetus died before labour commenced.">
+			>
+			["at118"] = <
+				text = <"During labour/delivery">
+				description = <"The foetus died during labour or delivery.">
+			>
+			["id1"] = <
+				text = <"Death summary">
+				description = <"Summary information about the circumstances and context of the death of an individual, excluding the cause(s) of death.">
+			>
+			["id101"] = <
+				text = <"Structured place of death">
+				description = <"Structured detail about the place where the individual died.">
+			>
+			["id102"] = <
+				text = <"Last updated">
+				description = <"The date when the death summary was last updated.">
+			>
+			["id103"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+			>
+			["id104"] = <
+				text = <"Information source(s)">
+				description = <"Narrative description about source(s) of information.">
+			>
+			["id105"] = <
+				text = <"Date of death alternatives">
+				description = <"Additional details about possible alternative dates of death.">
+			>
+			["id106"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the death, not captured in other fields.">
+			>
+			["id107"] = <
+				text = <"Days post partum">
+				description = <"The number of days after birth to the death of a mother.">
+			>
+			["id11"] = <
+				text = <"Manner of death">
+				description = <"Context or setting of the death.">
+			>
+			["id110"] = <
+				text = <"Place of death">
+				description = <"The simple name, address or landmark of the place where the individual died.">
+			>
+			["id111"] = <
+				text = <"Pregnancy context">
+				description = <"Timing of a woman's death categorised as a phase of the active pregnancy.">
+			>
+			["id117"] = <
+				text = <"Stillbirth context">
+				description = <"Timing of a stillborn foetus' death categorised as a phase of pregnancy.">
+			>
+			["id120"] = <
+				text = <"Place of injury">
+				description = <"The category of the place where the injury contributing to death occurred.">
+			>
+			["id121"] = <
+				text = <"Date of injury">
+				description = <"The known, or assumed, date and time of injury.">
+			>
+			["id122"] = <
+				text = <"Activity at the time of injury">
+				description = <"Type of activity at the time of injury.">
+			>
+			["id22"] = <
+				text = <"Place category">
+				description = <"The category of the place where the individual died.">
+			>
+			["id43"] = <
+				text = <"Additional details">
+				description = <"Additional structured details related to the death.">
+			>
+			["id45"] = <
+				text = <"Gestation at death">
+				description = <"Number of completed weeks of gestation of the foetus at the time of foetal death.">
+			>
+			["id55"] = <
+				text = <"Age at death">
+				description = <"The age of the individual at the time of death.">
+			>
+			["id93"] = <
+				text = <"Date/time of death">
+				description = <"The known, or assumed, date and time of death.">
+			>
+			["id94"] = <
+				text = <"Manner description">
+				description = <"Narrative description about the context or setting of the death.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id11"] = <http://loinc.org/69449-7>
+			["id120"] = <http://loinc.org/69450-5>
+			["id55"] = <http://loinc.org/39016-1>
+			["id93"] = <http://loinc.org/81956-5>
+			["id102"] = <http://loinc.org/106177-9>
+			["id106"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at112", "at113", "at114", "at115">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at117", "at118">
+		>
+	>
+

@@ -1,0 +1,559 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c712a543-796f-4923-af4f-6cec85a1ffa4)
+    s2-EHR-Score.abbey_pain_scale.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Syeeda S Farruque, Cambio Healthcare Systems, <models@cambiocds.com>, 2017-03-07">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.abbey_pain_scale.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.abbey_pain_scale.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To assess and record the severity of pain in cognitively impaired and non-verbal individuals.">
+            keywords = <"dementia", ...>
+            use = <"Use to assess and record the severity of pain in cognitively impaired and non-verbal individuals.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Abbey pain scale
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Vocalization
+                value matches {
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at10]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at11]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at12]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id45] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at13]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Facial expression
+                value matches {
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at10]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at11]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at12]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id57] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id59] matches {
+                                term matches {
+                                    Terminology_term[id58] matches {
+                                        concept matches {[at13]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Change in body language
+                value matches {
+                    Coded_ordinal[id60] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id62] matches {
+                                term matches {
+                                    Terminology_term[id61] matches {
+                                        concept matches {[at10]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id63] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id65] matches {
+                                term matches {
+                                    Terminology_term[id64] matches {
+                                        concept matches {[at11]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id66] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id68] matches {
+                                term matches {
+                                    Terminology_term[id67] matches {
+                                        concept matches {[at12]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id69] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id71] matches {
+                                term matches {
+                                    Terminology_term[id70] matches {
+                                        concept matches {[at13]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Behavioural change
+                value matches {
+                    Coded_ordinal[id72] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id74] matches {
+                                term matches {
+                                    Terminology_term[id73] matches {
+                                        concept matches {[at10]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id75] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id77] matches {
+                                term matches {
+                                    Terminology_term[id76] matches {
+                                        concept matches {[at11]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id78] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id80] matches {
+                                term matches {
+                                    Terminology_term[id79] matches {
+                                        concept matches {[at12]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id81] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id83] matches {
+                                term matches {
+                                    Terminology_term[id82] matches {
+                                        concept matches {[at13]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Physiological change
+                value matches {
+                    Coded_ordinal[id84] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id86] matches {
+                                term matches {
+                                    Terminology_term[id85] matches {
+                                        concept matches {[at10]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id87] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id89] matches {
+                                term matches {
+                                    Terminology_term[id88] matches {
+                                        concept matches {[at11]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id90] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id92] matches {
+                                term matches {
+                                    Terminology_term[id91] matches {
+                                        concept matches {[at12]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id93] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id95] matches {
+                                term matches {
+                                    Terminology_term[id94] matches {
+                                        concept matches {[at13]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Physical changes
+                value matches {
+                    Coded_ordinal[id96] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id98] matches {
+                                term matches {
+                                    Terminology_term[id97] matches {
+                                        concept matches {[at10]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id99] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id101] matches {
+                                term matches {
+                                    Terminology_term[id100] matches {
+                                        concept matches {[at11]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id102] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id104] matches {
+                                term matches {
+                                    Terminology_term[id103] matches {
+                                        concept matches {[at12]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id105] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id107] matches {
+                                term matches {
+                                    Terminology_term[id106] matches {
+                                        concept matches {[at13]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- Total pain score
+                value matches {
+                    Count[id33] matches {
+                        magnitude matches {|0..15|}
+                    }
+                }
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- Pain score category
+                value matches {
+                    Coded_text[id34] matches {
+                        term matches {
+                            Terminology_term[id108] matches {
+                                concept matches {[ac1]}    -- Pain score category (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Type of pain
+                value matches {
+                    Coded_text[id35] matches {
+                        term matches {
+                            Terminology_term[id109] matches {
+                                concept matches {[ac2]}    -- Type of pain (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id26] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at21", "at22", "at23">
+        >
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at16", "at17", "at18", "at19">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at10", "at11", "at12", "at13">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at10", "at11", "at12", "at13">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at10", "at11", "at12", "at13">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at10", "at11", "at12", "at13">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at10", "at11", "at12", "at13">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at10", "at11", "at12", "at13">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Pain score category (synthesised)">
+                description = <"Category of pain, based on the total score. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Type of pain (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac3"] = <
+                text = <"Vocalization (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac4"] = <
+                text = <"Facial expression (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac5"] = <
+                text = <"Change in body language (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac6"] = <
+                text = <"Behavioural change (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac7"] = <
+                text = <"Physiological change (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac8"] = <
+                text = <"Physical changes (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at10"] = <
+                text = <"Absent">
+                description = <"">
+            >
+            ["at11"] = <
+                text = <"Mild">
+                description = <"">
+            >
+            ["at12"] = <
+                text = <"Moderate">
+                description = <"">
+            >
+            ["at13"] = <
+                text = <"Severe">
+                description = <"">
+            >
+            ["at16"] = <
+                text = <"No pain">
+                description = <"Total pain score 0-2.">
+            >
+            ["at17"] = <
+                text = <"Mild pain">
+                description = <"Total pain score 3-7.">
+            >
+            ["at18"] = <
+                text = <"Moderate pain">
+                description = <"Total pain score 8-13.">
+            >
+            ["at19"] = <
+                text = <"Severe pain">
+                description = <"Total pain score 14+.">
+            >
+            ["at21"] = <
+                text = <"Chronic">
+                description = <"">
+            >
+            ["at22"] = <
+                text = <"Acute">
+                description = <"">
+            >
+            ["at23"] = <
+                text = <"Acute on chronic">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Abbey pain scale">
+                description = <"Rapid tool to assess the severity of pain in cognitively impaired and non-verbal individuals.">
+            >
+            ["id10"] = <
+                text = <"Physical changes">
+                description = <"">
+            >
+            ["id15"] = <
+                text = <"Total pain score">
+                description = <"The total sum of each component parameter for the Abbey pain scale.">
+            >
+            ["id16"] = <
+                text = <"Pain score category">
+                description = <"Category of pain, based on the total score.">
+            >
+            ["id21"] = <
+                text = <"Type of pain">
+                description = <"">
+            >
+            ["id26"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Vocalization">
+                description = <"">
+            >
+            ["id6"] = <
+                text = <"Facial expression">
+                description = <"">
+            >
+            ["id7"] = <
+                text = <"Change in body language">
+                description = <"">
+            >
+            ["id8"] = <
+                text = <"Behavioural change">
+                description = <"">
+            >
+            ["id9"] = <
+                text = <"Physiological change">
+                description = <"">
+            >
+        >
+    >
+    

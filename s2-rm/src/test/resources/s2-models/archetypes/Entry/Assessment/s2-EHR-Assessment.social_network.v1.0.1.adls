@@ -1,0 +1,141 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=476b1393-3cd4-4098-a6d8-8288749815e6)
+	s2-EHR-Assessment.social_network.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2018-05-29">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.social_network.v1.0.1, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.social_network.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record information about the key people who are connected to the individual through social interactions and personal relationships.">
+			use = <"Use to record information about the key people who are connected to the individual through social interactions and personal relationships, by the provision of personal support or care.
+            
+            This archetype has been designed to be recorded as part of a single, persistent template within the health record, such that any network changes are recorded as a new or updated version of the template.
+            
+            The scope of this archetype includes all types of interactions, such as face-to-face or using social media, with a broad range of people including family members, friends, community members or organizations. The social network can be self-identified or documented by a carer or healthcare provider.
+            
+            Details about each person or organization within the individual's social network is recorded using the Node.person or Node.organization archetypes nested within the 'Network' SLOT, including their role or relationship.
+            
+            In most jurisdictions, there will be limitations on what is legal to record about other people within the health record. All implementations will need to consider the legal constraints relevant to using this archetype.">
+			keywords = <"partner", "partnership", "relationship", "family", "support", "marital", "married", "defacto", "marriage", "single", "widowed", "widow", "widower", "divorced", "unmarried", "friend", "neighbour">
+			misuse = <"Not to be used to record details about healthcare providers or care teams.
+            
+            Not to be used to record details about legal constraints or directives such as custody arrangements or guardianship - use EVALUATION.legal_directive for this purpose.
+            
+            Not to be used to represent or replace formal identification management or for the purposes of maintaining an official demographic register or index. Use a formal Demographic index for this purpose, or archetypes based on the openEHR Demographic Information Model.
+            
+            Not to be used to represent the subject of care, participants or author of the record and similar data Nodes that should be represented formally in the health record using the Reference Model attributes.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Samanta Dallagnese, Prontmed, Brazil", "Stefan Dubois, Dep't of Pathology and Genetics, University Hospitals of Lund and Malmö, Sweden", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Akriti Jamwal, DCHIKITSA Pvt Ltd, India", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Michael Lutz, BITsoft, Germany", "Anna Navarro Serra, IN2, Spain", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Albert Reyes Morente, IN2, Spain", "Bjoern Schreiweis, UKSH, Germany", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Michael Zampaglione, Australia">
+
+definition
+	Assessment[id1] matches {	-- Social network
+		data matches {
+			Node[id16] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id20] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Partnership status
+				value matches {
+					Text[id21] 
+				}
+			}
+			allow_archetype Node[id17] matches {	-- Network
+				include
+					archetype_id/value matches {/s2-EHR-Node\.person(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype Node[id18] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id22] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id12] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id23] 
+				}
+			}
+			allow_archetype Node[id13] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Social network">
+				description = <"Group of individuals connected by social interactions and personal relationships.">
+			>
+			["id12"] = <
+				text = <"Last updated">
+				description = <"Date when the social network was updated.">
+			>
+			["id13"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id16"] = <
+				text = <"Description">
+				description = <"Narrative description about the social network and connections for the individual.">
+			>
+			["id17"] = <
+				text = <"Network">
+				description = <"Structured details about people or community organizations who are connected to the individual.">
+			>
+			["id18"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about the social network.">
+			>
+			["id19"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the social network, not captured in other fields.">
+			>
+			["id3"] = <
+				text = <"Partnership status">
+				description = <"Single word or phrase that describes an individual's current relationship with a life partner.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id12"] = <http://loinc.org/106177-9>
+			["id16"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id19"] = <http://loinc.org/106173-8>
+		>
+	>
+

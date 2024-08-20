@@ -1,0 +1,904 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0f2cdf3f-b72b-4a0f-8489-0cdfe67b43b7)
+	s2-EHR-Node.microscopy_prostate_carcinoma.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, UK, <ian.mcnicoll@oceaninformatics.com>, 17/06/2009">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.microscopy_prostate_carcinoma.v0.0.1-alpha, copyright 17/0 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.microscopy_prostate_carcinoma.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record detailed findings about prostate cancer found on microscopic examination.">
+			use = <"To record detailed findings about microscopic examination of prostate cancer as part of an anatomical pathology result.
+            Use as a component archetype in the context of a suite of archetypes that make up a histopathology report ie OBSERVATION.lab_test.histopathology.">
+			keywords = <"histopathology", "cancer", "laboratory", "prostate", "histology", "malignancy", "lab", "pathology">
+			misuse = <"Not designed to be used within any other archetype other than OBSERVATION.lab_test.histopathology.">
+		>
+	>
+	other_contributors = <"David Rowed, Ocean Informatics, Australia", "Heather Leslie, Ocean Informatics, Australia", "Matt Cordell, NEHTA, Australia", "David McKillop, NEHTA, Australia", "Cathy Richardson, NEHTA, Australia", "Koray Atalag, University of Auckland, New Zealand", "David Ellis, RCPA, Australia">
+
+definition
+	Node[id1] matches {	-- Microscopic findings - Prostate cancer
+		items matches {
+			Node[id161] occurrences matches {0..1} matches {	-- Tumour quantification
+				items matches {
+					Node[id235] occurrences matches {0..1} matches {	-- Surgical resection specimen
+						items matches {
+							Node[id162] occurrences matches {0..1} matches {	-- Proportion of tumour involvement
+								value matches {
+									Quantity[id276] matches {
+										magnitude matches {|0.0..100.0|}
+										units matches {
+											Coded_text[id299] matches {
+												term matches {
+													Terminology_term[id298] matches {
+														concept matches {[at278]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Node[id157] occurrences matches {0..1} matches {	-- 3D volume estimation
+								items matches {
+									Node[id159] occurrences matches {0..1} matches {	-- Qualitative estimation 
+										value matches {
+											Coded_text[id277] matches {
+												term matches {
+													Terminology_term[id300] matches {
+														concept matches {[ac1]}		-- Qualitative estimation  (synthesised)
+													}
+												}
+											}
+										}
+									}
+									use_archetype Node[id37, s2-EHR-Node.physical_properties.v0] occurrences matches {0..1} 
+									Node[id186] occurrences matches {0..1} matches {	-- Estimation methodology
+										value matches {
+											Text[id278] 
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id222] occurrences matches {0..1} matches {	-- Fine needle aspiration biopsy (FNAB) specimen
+						items matches {
+							Node[id166] occurrences matches {0..1} matches {	-- Proportion of positive cores
+								value matches {
+									Ratio[id279] matches {
+										numerator matches {|0.0..100.0|}
+										type matches {2, 2}
+									}
+								}
+							}
+							Node[id199] occurrences matches {0..1} matches {	-- Ratio of linear distance of carcinoma to length of cores
+								value matches {
+									Ratio[id280] matches {
+										numerator matches {|0.0..100.0|}
+										type matches {2}
+									}
+								}
+							}
+							Node[id200] occurrences matches {0..1} matches {	-- Other quantification
+								value matches {
+									Text[id281] 
+								}
+							}
+						}
+					}
+					Node[id223] occurrences matches {0..1} matches {	-- Transurethral resection(TUR) specimen
+						items matches {
+							Node[id225] occurrences matches {0..1} matches {	-- Proportion of positive chips
+								value matches {
+									Ratio[id282] matches {
+										numerator matches {|0.0..100.0|}
+										type matches {2, 2}
+									}
+								}
+							}
+							Node[id163] occurrences matches {0..1} matches {	-- Tumour found incidentally at histopathology
+								value matches {
+									Coded_text[id283] matches {
+										term matches {
+											Terminology_term[id301] matches {
+												concept matches {[ac2]}		-- Tumour found incidentally at histopathology (synthesised)
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Gleason Score
+				items matches {
+					Node[id167] occurrences matches {0..1} matches {	-- Primary Gleason grade
+						value matches {
+							Coded_ordinal[id302] matches {
+								magnitude matches {1}
+								concept matches {
+									Coded_text[id304] matches {
+										term matches {
+											Terminology_term[id303] matches {
+												concept matches {[at250]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id305] matches {
+								magnitude matches {2}
+								concept matches {
+									Coded_text[id307] matches {
+										term matches {
+											Terminology_term[id306] matches {
+												concept matches {[at251]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id308] matches {
+								magnitude matches {3}
+								concept matches {
+									Coded_text[id310] matches {
+										term matches {
+											Terminology_term[id309] matches {
+												concept matches {[at252]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id311] matches {
+								magnitude matches {4}
+								concept matches {
+									Coded_text[id313] matches {
+										term matches {
+											Terminology_term[id312] matches {
+												concept matches {[at253]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id314] matches {
+								magnitude matches {5}
+								concept matches {
+									Coded_text[id316] matches {
+										term matches {
+											Terminology_term[id315] matches {
+												concept matches {[at254]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id183] occurrences matches {0..1} matches {	-- Secondary Gleason grade
+						value matches {
+							Coded_ordinal[id317] matches {
+								magnitude matches {1}
+								concept matches {
+									Coded_text[id319] matches {
+										term matches {
+											Terminology_term[id318] matches {
+												concept matches {[at255]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id320] matches {
+								magnitude matches {2}
+								concept matches {
+									Coded_text[id322] matches {
+										term matches {
+											Terminology_term[id321] matches {
+												concept matches {[at256]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id323] matches {
+								magnitude matches {3}
+								concept matches {
+									Coded_text[id325] matches {
+										term matches {
+											Terminology_term[id324] matches {
+												concept matches {[at257]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id326] matches {
+								magnitude matches {4}
+								concept matches {
+									Coded_text[id328] matches {
+										term matches {
+											Terminology_term[id327] matches {
+												concept matches {[at258]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id329] matches {
+								magnitude matches {5}
+								concept matches {
+									Coded_text[id331] matches {
+										term matches {
+											Terminology_term[id330] matches {
+												concept matches {[at259]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id184] occurrences matches {0..1} matches {	-- Tertiary Gleason grade
+						value matches {
+							Coded_ordinal[id332] matches {
+								magnitude matches {1}
+								concept matches {
+									Coded_text[id334] matches {
+										term matches {
+											Terminology_term[id333] matches {
+												concept matches {[at260]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id335] matches {
+								magnitude matches {2}
+								concept matches {
+									Coded_text[id337] matches {
+										term matches {
+											Terminology_term[id336] matches {
+												concept matches {[at261]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id338] matches {
+								magnitude matches {3}
+								concept matches {
+									Coded_text[id340] matches {
+										term matches {
+											Terminology_term[id339] matches {
+												concept matches {[at262]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id341] matches {
+								magnitude matches {4}
+								concept matches {
+									Coded_text[id343] matches {
+										term matches {
+											Terminology_term[id342] matches {
+												concept matches {[at263]}
+											}
+										}
+									}
+								}
+							}
+							Coded_ordinal[id344] matches {
+								magnitude matches {5}
+								concept matches {
+									Coded_text[id346] matches {
+										term matches {
+											Terminology_term[id345] matches {
+												concept matches {[at264]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id198] occurrences matches {0..1} matches {	-- Total Gleason score
+						value matches {
+							Count[id287] matches {
+								magnitude matches {|>=0|}
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id246, s2-EHR-Node.tumour_invasion.v0] 
+			Node[id22] occurrences matches {0..1} matches {	-- Surgical resection margins
+				items matches {
+					Node[id238] matches {	-- Surgical resection margin
+						items matches {
+							use_archetype Node[id85, s2-EHR-Node.tumour_resection_margins.v0] occurrences matches {0..1} 
+							Node[id185] occurrences matches {0..1} matches {	-- Gleason score at involved margin
+								value matches {
+									Count[id288] matches {
+										magnitude matches {|>=0|}
+									}
+								}
+							}
+							Node[id239] occurrences matches {0..1} matches {	-- Relation to prostatic capsule
+								value matches {
+									Coded_text[id289] matches {
+										term matches {
+											Terminology_term[id347] matches {
+												concept matches {[ac3]}		-- Relation to prostatic capsule (synthesised)
+											}
+										}
+									}
+								}
+							}
+							Node[id250] occurrences matches {0..1} matches {	-- Benign glands
+								value matches {
+									Coded_text[id290] matches {
+										term matches {
+											Terminology_term[id348] matches {
+												concept matches {[ac4]}		-- Benign glands (synthesised)
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id182] occurrences matches {0..1} matches {	-- Seminal vesicle
+				items matches {
+					Node[id173] occurrences matches {0..1} matches {	-- Seminal vesicle involvement
+						value matches {
+							Coded_text[id291] matches {
+								term matches {
+									Terminology_term[id349] matches {
+										concept matches {[ac5]}		-- Seminal vesicle involvement (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id248] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id292] 
+						}
+					}
+				}
+			}
+			Node[id31] occurrences matches {0..1} matches {	-- Lymph node findings
+				items matches {
+					use_archetype Node[id88, s2-EHR-Node.lymph_node_metastases.v0] 
+				}
+			}
+			Node[id270] occurrences matches {0..1} matches {	-- Bladder neck involvement
+				value matches {
+					Coded_text[id293] matches {
+						term matches {
+							Terminology_term[id350] matches {
+								concept matches {[ac6]}		-- Bladder neck involvement (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id274] occurrences matches {0..1} matches {	-- Tumour zones
+				items matches {
+					Node[id275] matches {	-- Tumour zone
+						value matches {
+							Coded_text[id294] matches {
+								term matches {
+									Terminology_term[id351] matches {
+										concept matches {[ac7]}		-- Tumour zone (synthesised)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id180] occurrences matches {0..1} matches {	-- Additional findings
+				items matches {
+					Node[id179] matches {	-- Addtional finding
+						value matches {
+							Coded_text[id295] matches {
+								term matches {
+									Terminology_term[id352] matches {
+										concept matches {[ac8]}		-- Addtional finding (synthesised)
+									}
+								}
+							}
+							Plain_text[id296] 
+						}
+					}
+					Node[id221] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id297] 
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Qualitative estimation  (synthesised)">
+				description = <"Qualitative estimate of the amount of primary prostate tumour. (synthesised)">
+			>
+			["ac10"] = <
+				text = <"Secondary Gleason grade (synthesised)">
+				description = <"The secondary Gleason score. (synthesised)">
+			>
+			["ac11"] = <
+				text = <"Tertiary Gleason grade (synthesised)">
+				description = <"The tertiary Gleason score. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Tumour found incidentally at histopathology (synthesised)">
+				description = <"Where tumour has been found incidentally on histopathological examination, the extent of tumour found. This is used as part of the cTNM classification of prostate cancer. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Relation to prostatic capsule (synthesised)">
+				description = <"Findings of the relation of the resection margin to the prostatic capsule. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Benign glands (synthesised)">
+				description = <"Finding of benign glands at the surgical margin (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Seminal vesicle involvement (synthesised)">
+				description = <"Findings of tumour involvement in seminal vesicles. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Bladder neck involvement (synthesised)">
+				description = <"Finding of involvement by tumour of the bladder neck. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Tumour zone (synthesised)">
+				description = <"Finding of zone(s) involved by tumour. (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Addtional finding (synthesised)">
+				description = <"Additional histological finding related to prostate cancer. (synthesised)">
+			>
+			["ac9"] = <
+				text = <"Primary Gleason grade (synthesised)">
+				description = <"The primary Gleason score. (synthesised)">
+			>
+			["at163"] = <
+				text = <"Tumour incidental histologic finding in no more than 5% of tissue resected">
+				description = <"Prostate tumour is an incidental histologic finding in no more than 5% of tissue resected.">
+			>
+			["at164"] = <
+				text = <"Tumour incidental histologic finding in more than 5% of tissue resected">
+				description = <"Prostate tumour is an incidental histological finding in more than 5% of tissue resected.">
+			>
+			["at173"] = <
+				text = <"Present - bilateral">
+				description = <"Tumour is present in both seminal vesicles.">
+			>
+			["at174"] = <
+				text = <"Present - left">
+				description = <"Tumour is present in only the left seminal vesicle.">
+			>
+			["at175"] = <
+				text = <"Present - right">
+				description = <"Tumour is present in only the right seminal vesicle.">
+			>
+			["at176"] = <
+				text = <"Absent">
+				description = <"Tumour is absent from both seminal vesicle.">
+			>
+			["at177"] = <
+				text = <"Indeterminate">
+				description = <"Presence of tumour in seminal vesicles has not been determined.">
+			>
+			["at194"] = <
+				text = <"Inflammation">
+				description = <"Tissue inflammation is present.">
+			>
+			["at195"] = <
+				text = <"High grade prostatic intraepithelial neoplasia (PIN)">
+				description = <"High grade prostatic intraepithelial neoplasia (PIN) is present.">
+			>
+			["at196"] = <
+				text = <"Atypical adenomatous hyperplasia">
+				description = <"Atypical adenomatous hyperplasia is present.">
+			>
+			["at214"] = <
+				text = <"Minimal tumour">
+				description = <"Minimal tumour is present.">
+			>
+			["at215"] = <
+				text = <"Unifocal tumour">
+				description = <"Unifocal tumour is present.">
+			>
+			["at216"] = <
+				text = <"Multifocal or extensive tumour">
+				description = <"Multifocal or extensive tumour is present.">
+			>
+			["at217"] = <
+				text = <"Indeterminate">
+				description = <"A qualitative estimate of tumour volume has not been determined.">
+			>
+			["at218"] = <
+				text = <"Nodular prostatic hyperplasia">
+				description = <"Nodular prostatic hyperplasia is present.">
+			>
+			["at219"] = <
+				text = <"Absent">
+				description = <"Additional pathological findings are absent.">
+			>
+			["at239"] = <
+				text = <"Intraprostatic">
+				description = <"The surgical margin has been developed within the prostatic capsule. Sometimes termed 'capsular incision' (CI).">
+			>
+			["at240"] = <
+				text = <"Extraprostatic">
+				description = <"The surgical margin has been developed external to the prostatic capsule.">
+			>
+			["at241"] = <
+				text = <"Indeterminate">
+				description = <"The relation of the surgical margin to the prostatic capsule has not been determined.">
+			>
+			["at246"] = <
+				text = <"Indeterminate">
+				description = <"The extent of tumour incidental histologic finding has not been determined.">
+			>
+			["at248"] = <
+				text = <"Present">
+				description = <"Tumour is present in seminal vesicles..">
+			>
+			["at250"] = <
+				text = <"Grade 1">
+				description = <"The cancerous prostate closely resembles normal prostate tissue. The glands are small, well-formed, and closely packed.">
+			>
+			["at251"] = <
+				text = <"Grade 2">
+				description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
+			>
+			["at252"] = <
+				text = <"Grade 3">
+				description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
+			>
+			["at253"] = <
+				text = <"Grade 4">
+				description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
+			>
+			["at254"] = <
+				text = <"Grade 5">
+				description = <"The tissue does not have recognizable glands. There are often just sheets of cells throughout the surrounding tissue.">
+			>
+			["at255"] = <
+				text = <"Grade 1">
+				description = <"The cancerous prostate closely resembles normal prostate tissue. The glands are small, well-formed, and closely packed.">
+			>
+			["at256"] = <
+				text = <"Grade 2">
+				description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
+			>
+			["at257"] = <
+				text = <"Grade 3">
+				description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
+			>
+			["at258"] = <
+				text = <"Grade 4">
+				description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
+			>
+			["at259"] = <
+				text = <"Grade 5">
+				description = <"The tissue does not have recognizable glands. There are often just sheets of cells throughout the surrounding tissue.">
+			>
+			["at260"] = <
+				text = <"Grade 1">
+				description = <"The cancerous prostate closely resembles normal prostate tissue. The glands are small, well-formed, and closely packed.">
+			>
+			["at261"] = <
+				text = <"Grade 2">
+				description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
+			>
+			["at262"] = <
+				text = <"Grade 3">
+				description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
+			>
+			["at263"] = <
+				text = <"Grade 4">
+				description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
+			>
+			["at264"] = <
+				text = <"Grade 5">
+				description = <"The tissue does not have recognizable glands. There are often just sheets of cells throughout the surrounding tissue.">
+			>
+			["at265"] = <
+				text = <"Present">
+				description = <"Benign glands are present at the surgical margin.">
+			>
+			["at266"] = <
+				text = <"Absent">
+				description = <"Benign glands are absent from the surgical margin">
+			>
+			["at267"] = <
+				text = <"Indeterminate">
+				description = <"Presence of benign glands at the surgical margin has not been determined.">
+			>
+			["at270"] = <
+				text = <"Present">
+				description = <"Blaader neck involvement by tumour is present.">
+			>
+			["at271"] = <
+				text = <"Absent">
+				description = <"Bladder neck involvement by tumour is absent.">
+			>
+			["at272"] = <
+				text = <"Indeterminate">
+				description = <"Bladder neck involvement by tumour has not been determined.">
+			>
+			["at275"] = <
+				text = <"Peripheral">
+				description = <"Peripheral zone is involved by tumour.">
+			>
+			["at276"] = <
+				text = <"Central">
+				description = <"Central zone is involved by tumour.">
+			>
+			["at277"] = <
+				text = <"Transition">
+				description = <"Transition zone is involved by tumour.">
+			>
+			["at278"] = <
+				text = <"%">
+				description = <"Percent">
+			>
+			["id1"] = <
+				text = <"Microscopic findings - Prostate cancer">
+				description = <"Microscopic anatomical pathology findings related to prostate cancer.">
+			>
+			["id157"] = <
+				text = <"3D volume estimation">
+				description = <"Estimate of 3D volume of the primary prostate tumour.">
+			>
+			["id159"] = <
+				text = <"Qualitative estimation ">
+				description = <"Qualitative estimate of the amount of primary prostate tumour.">
+			>
+			["id16"] = <
+				text = <"Gleason Score">
+				description = <"Gleason Score (ISUP2005 version) - a prostate cancer grading score ratified by the International Society of Urological Pathologists  (ISUP).">
+			>
+			["id161"] = <
+				text = <"Tumour quantification">
+				description = <"Estimate of the amount of primary prostate tumour.">
+			>
+			["id162"] = <
+				text = <"Proportion of tumour involvement">
+				description = <"Proportion of prostate tissue involved by tumour.">
+			>
+			["id163"] = <
+				text = <"Tumour found incidentally at histopathology">
+				description = <"Where tumour has been found incidentally on histopathological examination, the extent of tumour found. This is used as part of the cTNM classification of prostate cancer.">
+			>
+			["id166"] = <
+				text = <"Proportion of positive cores">
+				description = <"Proportion of tumour positive prostate cores out of the total number of prostate cores. ">
+			>
+			["id167"] = <
+				text = <"Primary Gleason grade">
+				description = <"The primary Gleason score.">
+			>
+			["id173"] = <
+				text = <"Seminal vesicle involvement">
+				description = <"Findings of tumour involvement in seminal vesicles.">
+			>
+			["id179"] = <
+				text = <"Addtional finding">
+				description = <"Additional histological finding related to prostate cancer.">
+			>
+			["id180"] = <
+				text = <"Additional findings">
+				description = <"Additional histological findings related to prostate cancer.">
+			>
+			["id182"] = <
+				text = <"Seminal vesicle">
+				description = <"Findings related to tumour involvement in seminal vesicles.">
+			>
+			["id183"] = <
+				text = <"Secondary Gleason grade">
+				description = <"The secondary Gleason score.">
+			>
+			["id184"] = <
+				text = <"Tertiary Gleason grade">
+				description = <"The tertiary Gleason score.">
+			>
+			["id185"] = <
+				text = <"Gleason score at involved margin">
+				description = <"The Gleason score at a surgical margin involved with tumour.">
+			>
+			["id186"] = <
+				text = <"Estimation methodology">
+				description = <"A description of the methodology used to estimate tumour volume.">
+			>
+			["id198"] = <
+				text = <"Total Gleason score">
+				description = <"The sum of the primary, secondary and tertiary Gleason scores.">
+			>
+			["id199"] = <
+				text = <"Ratio of linear distance of carcinoma to length of cores">
+				description = <"Ratio of the linear distance of prostatic carcinoma to the length of prostatic cores.">
+			>
+			["id200"] = <
+				text = <"Other quantification">
+				description = <"A description of the method and result of other type of quantification.">
+			>
+			["id22"] = <
+				text = <"Surgical resection margins">
+				description = <"Findings related to tumour at multiple surgical resection margins.">
+			>
+			["id221"] = <
+				text = <"Description">
+				description = <"A text description of additional pathological findings.">
+			>
+			["id222"] = <
+				text = <"Fine needle aspiration biopsy (FNAB) specimen">
+				description = <"Quantification results from specimens obtained by fine needle aspiration biopsy (FNAB).">
+			>
+			["id223"] = <
+				text = <"Transurethral resection(TUR) specimen">
+				description = <"Quantification results from a specimen obtained by transurethral resection (TUR).">
+			>
+			["id225"] = <
+				text = <"Proportion of positive chips">
+				description = <"Proportion of tumour positive prostatic chips out of the total number of prostatic chips. ">
+			>
+			["id235"] = <
+				text = <"Surgical resection specimen">
+				description = <"Quantification results from specimens obtained from open surgical resection.">
+			>
+			["id238"] = <
+				text = <"Surgical resection margin">
+				description = <"Findings related to a single surgical resection margin.">
+			>
+			["id239"] = <
+				text = <"Relation to prostatic capsule">
+				description = <"Findings of the relation of the resection margin to the prostatic capsule.">
+			>
+			["id246"] = <
+				text = <"Tumour invasion">
+				description = <"Details of tumour invasion to local tissues.">
+			>
+			["id248"] = <
+				text = <"Description">
+				description = <"A text description of seminal vesicle involvement by tumour.">
+			>
+			["id250"] = <
+				text = <"Benign glands">
+				description = <"Finding of benign glands at the surgical margin">
+			>
+			["id270"] = <
+				text = <"Bladder neck involvement">
+				description = <"Finding of involvement by tumour of the bladder neck.">
+			>
+			["id274"] = <
+				text = <"Tumour zones">
+				description = <"Findings of tumour zone.">
+			>
+			["id275"] = <
+				text = <"Tumour zone">
+				description = <"Finding of zone(s) involved by tumour.">
+			>
+			["id31"] = <
+				text = <"Lymph node findings">
+				description = <"Findings related to the involvement of tumour in lymph nodes.">
+			>
+			["id37"] = <
+				text = <"Dominant tumour node dimensions">
+				description = <"Dimensions of the dominant tumour node.">
+			>
+			["id85"] = <
+				text = <"Resection margin detail  ">
+				description = <"Details of  tumour at an individual surgical resection margin.">
+			>
+			["id88"] = <
+				text = <"Lymph node detail ">
+				description = <"Details  of tumour at a single lymph node.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["id167"] = <http://snomed.info/id/384994009>
+			["id183"] = <http://snomed.info/id/384995005>
+			["id184"] = <http://snomed.info/id/385002007>
+			["id198"] = <http://snomed.info/id/372278000>
+			["at278"] = <http://snomed.info/id/415067009>
+		>
+		["ucum"] = <
+			["at278"] = <http://ucum.org/id/%25>
+		>
+		["loinc"] = <
+			["id221"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id248"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at214", "at215", "at216", "at217">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at163", "at164", "at246">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at239", "at240", "at241">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at265", "at266", "at267">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at173", "at174", "at175", "at176", "at177", "at248">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at270", "at271", "at272">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at275", "at276", "at277">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at194", "at195", "at196", "at218", "at219">
+		>
+		["ac9"] = <
+			id = <"ac9">
+			members = <"at250", "at251", "at252", "at253", "at254">
+		>
+		["ac10"] = <
+			id = <"ac10">
+			members = <"at255", "at256", "at257", "at258", "at259">
+		>
+		["ac11"] = <
+			id = <"ac11">
+			members = <"at260", "at261", "at262", "at263", "at264">
+		>
+	>
+

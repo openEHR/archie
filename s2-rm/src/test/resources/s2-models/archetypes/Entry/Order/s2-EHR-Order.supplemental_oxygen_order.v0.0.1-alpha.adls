@@ -1,0 +1,686 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=168f8789-cadd-4d22-aa88-dc61f3cc5d7a)
+	s2-EHR-Order.supplemental_oxygen_order.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-07-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-INSTRUCTION.supplemental_oxygen_order.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-INSTRUCTION.supplemental_oxygen_order.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details of a request for supplemental oxygen for an individual, in both acute care and at home.">
+			use = <"Use to record details of a request for supplemental oxygen for an identified individual, in both acute care and at home.">
+			keywords = <"oxygen", "supplemental">
+			misuse = <"">
+		>
+	>
+
+definition
+	Order[id1] matches {	-- Supplemental oxygen order
+		activities matches {
+			Activity[id2] matches {	-- Current Activity
+				description matches {
+					Node[id4] occurrences matches {0..1} matches {	-- Target O₂ saturation
+						value matches {
+							Coded_text[id50] matches {
+								term matches {
+									Terminology_term[id87] matches {
+										concept matches {[ac1]}		-- Target O₂ saturation (synthesised)
+									}
+								}
+							}
+							Plain_text[id51] 
+							Range<Quantity>[id52] matches {
+								lower matches {
+									Quantity[id53] matches {
+										magnitude matches {|0.0..<100.0|}
+										precision matches {1}
+										units matches {
+											Coded_text[id89] matches {
+												term matches {
+													Terminology_term[id88] matches {
+														concept matches {[at40]}
+													}
+												}
+											}
+										}
+									}
+								}
+								upper matches {
+									Quantity[id54] matches {
+										magnitude matches {|>0.0..100.0|}
+										precision matches {1}
+										units matches {
+											Coded_text[id91] matches {
+												term matches {
+													Terminology_term[id90] matches {
+														concept matches {[at40]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id55] matches {
+								magnitude matches {|0.0..100.0|}
+								precision matches {1}
+								units matches {
+									Coded_text[id93] matches {
+										term matches {
+											Terminology_term[id92] matches {
+												concept matches {[at40]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id7] occurrences matches {0..1} matches {	-- Flow rate
+						value matches {
+							Quantity[id56] matches {
+								magnitude matches {|>=0.0|}
+								precision matches {1}
+								units matches {
+									Coded_text[id95] matches {
+										term matches {
+											Terminology_term[id94] matches {
+												concept matches {[at41]}
+											}
+										}
+									}
+								}
+							}
+							Range<Quantity>[id57] matches {
+								lower matches {
+									Quantity[id58] matches {
+										magnitude matches {|>=0.0|}
+										precision matches {1}
+										units matches {
+											Coded_text[id97] matches {
+												term matches {
+													Terminology_term[id96] matches {
+														concept matches {[at41]}
+													}
+												}
+											}
+										}
+									}
+								}
+								upper matches {
+									Quantity[id59] matches {
+										magnitude matches {|>=0.0|}
+										precision matches {1}
+										units matches {
+											Coded_text[id99] matches {
+												term matches {
+													Terminology_term[id98] matches {
+														concept matches {[at41]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id22] occurrences matches {0..1} matches {	-- Delivery device
+						value matches {
+							Coded_text[id60] matches {
+								term matches {
+									Terminology_term[id100] matches {
+										concept matches {[ac2]}		-- Delivery device (synthesised)
+									}
+								}
+							}
+							Plain_text[id61] 
+						}
+					}
+					Node[id8] occurrences matches {0..1} matches {	-- Pattern
+						value matches {
+							Coded_text[id62] matches {
+								term matches {
+									Terminology_term[id101] matches {
+										concept matches {[ac3]}		-- Pattern (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id42] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id63] 
+						}
+					}
+					Node[id29] matches {	-- Clinical indication
+						value matches {
+							Text[id64] 
+						}
+					}
+					Node[id30] occurrences matches {0..1} matches {	-- Therapeutic intent
+						value matches {
+							Text[id65] 
+						}
+					}
+					Node[id31] occurrences matches {0..1} matches {	-- Urgency
+						value matches {
+							Coded_text[id66] matches {
+								term matches {
+									Terminology_term[id102] matches {
+										concept matches {[ac4]}		-- Urgency (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id11] occurrences matches {0..1} matches {	-- Duration per administration
+						value matches {
+							Quantity[id67] matches {
+								magnitude matches {|0.0..<24.0|}
+								precision matches {1}
+								units matches {
+									Coded_text[id104] matches {
+										term matches {
+											Terminology_term[id103] matches {
+												concept matches {[at42]}
+											}
+										}
+									}
+								}
+							}
+							Range<Quantity>[id68] matches {
+								lower matches {
+									Quantity[id69] matches {
+										magnitude matches {|0.0..<24.0|}
+										precision matches {1}
+										units matches {
+											Coded_text[id106] matches {
+												term matches {
+													Terminology_term[id105] matches {
+														concept matches {[at42]}
+													}
+												}
+											}
+										}
+									}
+								}
+								upper matches {
+									Quantity[id70] matches {
+										magnitude matches {|0.0..<24.0|}
+										precision matches {1}
+										units matches {
+											Coded_text[id108] matches {
+												term matches {
+													Terminology_term[id107] matches {
+														concept matches {[at42]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					allow_archetype Node[id21] matches {	-- Delivery device details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					Node[id14] occurrences matches {0..1} matches {	-- Duration per day
+						value matches {
+							Quantity[id71] matches {
+								magnitude matches {|0.0..<24.0|}
+								precision matches {1}
+								units matches {
+									Coded_text[id110] matches {
+										term matches {
+											Terminology_term[id109] matches {
+												concept matches {[at43]}
+											}
+										}
+									}
+								}
+							}
+							Range<Quantity>[id72] matches {
+								lower matches {
+									Quantity[id73] matches {
+										magnitude matches {|0.0..<24.0|}
+										precision matches {1}
+										units matches {
+											Coded_text[id112] matches {
+												term matches {
+													Terminology_term[id111] matches {
+														concept matches {[at43]}
+													}
+												}
+											}
+										}
+									}
+								}
+								upper matches {
+									Quantity[id74] matches {
+										magnitude matches {|0.0..<24.0|}
+										precision matches {1}
+										units matches {
+											Coded_text[id114] matches {
+												term matches {
+													Terminology_term[id113] matches {
+														concept matches {[at43]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					use_archetype Node[id12, s2-EHR-Node.timing_daily.v1] 
+					Node[id16] matches {	-- Activity
+						value matches {
+							Coded_text[id75] matches {
+								term matches {
+									Terminology_term[id115] matches {
+										concept matches {[ac5]}		-- Activity (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id20] occurrences matches {0..1} matches {	-- Used with PAP
+						value matches {
+							Boolean_value[id76] 
+						}
+					}
+					Node[id35] occurrences matches {0..1} matches {	-- Equipment type
+						value matches {
+							Coded_text[id77] matches {
+								term matches {
+									Terminology_term[id116] matches {
+										concept matches {[ac6]}		-- Equipment type (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id38] occurrences matches {0..1} matches {	-- Order start
+						value matches {
+							Date_time_value[id78] 
+						}
+					}
+					Node[id39] occurrences matches {0..1} matches {	-- Order end
+						value matches {
+							Date_time_value[id79] 
+						}
+					}
+					Node[id40] occurrences matches {0..1} matches {	-- Indefinite
+						value matches {
+							Boolean_value[id80] 
+						}
+					}
+					Node[id41] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id81] 
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id43] occurrences matches {0..1} matches {	-- Requester order identifier
+				value matches {
+					Text[id82] 
+					Rwe_id_ref[id83] 
+				}
+			}
+			allow_archetype Node[id44] occurrences matches {0..1} matches {	-- Requester
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id45] occurrences matches {0..1} matches {	-- Receiver order identifier
+				value matches {
+					Text[id84] 
+					Rwe_id_ref[id85] 
+				}
+			}
+			allow_archetype Node[id46] occurrences matches {0..1} matches {	-- Receiver
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id47] occurrences matches {0..1} matches {	-- Request status
+				value matches {
+					Text[id86] 
+				}
+			}
+			use_archetype Node[id48, s2-EHR-Node.distribution.v0] 
+			allow_archetype Node[id49] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Target O₂ saturation (synthesised)">
+				description = <"The target levels of oxygenation that is appropriate for the individual. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Delivery device (synthesised)">
+				description = <"Type of oxygen delivery device. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Pattern (synthesised)">
+				description = <"The intended approach for administration. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Urgency (synthesised)">
+				description = <"Urgency of the request for oxygen. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Activity (synthesised)">
+				description = <"Specific activity that requires supplemental oxygen. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Equipment type (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["at12"] = <
+				text = <"As required">
+				description = <"Also known as 'PRN (pro re nata)' or 'PN (per necessare)'.">
+			>
+			["at16"] = <
+				text = <"At rest/awake">
+				description = <"Delivered while at rest and awake.">
+			>
+			["at17"] = <
+				text = <"Nocturnal/asleep">
+				description = <"Delivered at night or while sleeping.">
+			>
+			["at18"] = <
+				text = <"During exertion">
+				description = <"Delivered during exercise or activities of daily living.">
+			>
+			["at22"] = <
+				text = <"Standard nasal cannulae">
+				description = <"">
+			>
+			["at23"] = <
+				text = <"High-flow nasal cannulae">
+				description = <"">
+			>
+			["at24"] = <
+				text = <"Simple face mask">
+				description = <"">
+			>
+			["at25"] = <
+				text = <"Non-rebreather reservoir mask">
+				description = <"">
+			>
+			["at26"] = <
+				text = <"Venturi mask">
+				description = <"">
+			>
+			["at27"] = <
+				text = <"Transtracheal catheter">
+				description = <"">
+			>
+			["at31"] = <
+				text = <"Emergency">
+				description = <"The order requires immediate attention.">
+			>
+			["at32"] = <
+				text = <"Urgent">
+				description = <"The order requires prioritised attention.">
+			>
+			["at33"] = <
+				text = <"Routine">
+				description = <"The order does not require immediate or prioritised attention.">
+			>
+			["at35"] = <
+				text = <"Portable">
+				description = <"The individual will require equipment that allows them to be ambulatory or mobile.">
+			>
+			["at36"] = <
+				text = <"Stationary">
+				description = <"The individual will not require equipment that allows them to be ambulatory or mobile.">
+			>
+			["at37"] = <
+				text = <"Proportion">
+				description = <"Proportion">
+			>
+			["at38"] = <
+				text = <"Flow rate, volume">
+				description = <"Flow rate, volume">
+			>
+			["at39"] = <
+				text = <"Time">
+				description = <"Time">
+			>
+			["at4"] = <
+				text = <"94-98%">
+				description = <"">
+			>
+			["at40"] = <
+				text = <"%">
+				description = <"Percent">
+			>
+			["at41"] = <
+				text = <"L/min">
+				description = <"L/min unit.">
+			>
+			["at42"] = <
+				text = <"h">
+				description = <"h unit.">
+			>
+			["at43"] = <
+				text = <"h/d">
+				description = <"h/d unit.">
+			>
+			["at5"] = <
+				text = <"88-92%">
+				description = <"">
+			>
+			["at8"] = <
+				text = <"Continuous">
+				description = <"Oxygen is delivered at a constant flow rate throughout the 24 hour period.">
+			>
+			["at9"] = <
+				text = <"Intermittent">
+				description = <"At various times of the day or during activities specified using the 'Timing' Node.">
+			>
+			["id1"] = <
+				text = <"Supplemental oxygen order">
+				description = <"A request for supplemental oxygen for an individual who is breathing spontaneously.">
+			>
+			["id11"] = <
+				text = <"Duration per administration">
+				description = <"Duration of each administration of supplemental oxygen.">
+			>
+			["id12"] = <
+				text = <"Timing">
+				description = <"Structured desciption of the timing of intermittent administration within a 24 hour period.">
+			>
+			["id14"] = <
+				text = <"Duration per day">
+				description = <"Total administration of supplemental oxygen over a 24 hour period.">
+			>
+			["id16"] = <
+				text = <"Activity">
+				description = <"Specific activity that requires supplemental oxygen.">
+			>
+			["id2"] = <
+				text = <"Current Activity">
+				description = <"">
+			>
+			["id20"] = <
+				text = <"Used with PAP">
+				description = <"Flag if the order requires PAP.">
+			>
+			["id21"] = <
+				text = <"Delivery device details">
+				description = <"Structured details about the delivery device.">
+			>
+			["id22"] = <
+				text = <"Delivery device">
+				description = <"Type of oxygen delivery device.">
+			>
+			["id29"] = <
+				text = <"Clinical indication">
+				description = <"The clinical reason for supplemental use of oxygen.">
+			>
+			["id30"] = <
+				text = <"Therapeutic intent">
+				description = <"The therapeutic goal for use of supplemental oxygen.">
+			>
+			["id31"] = <
+				text = <"Urgency">
+				description = <"Urgency of the request for oxygen.">
+			>
+			["id35"] = <
+				text = <"Equipment type">
+				description = <"">
+			>
+			["id38"] = <
+				text = <"Order start">
+				description = <"The date/time when supplemental oxygen order commences.">
+			>
+			["id39"] = <
+				text = <"Order end">
+				description = <"The date/time when supplemental oxygen order ceases.">
+			>
+			["id4"] = <
+				text = <"Target O₂ saturation">
+				description = <"The target levels of oxygenation that is appropriate for the individual.">
+			>
+			["id40"] = <
+				text = <"Indefinite">
+				description = <"The order is open ended and has no end date.">
+			>
+			["id41"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the supplemental oxygen order not captured in other fields.">
+			>
+			["id42"] = <
+				text = <"Description">
+				description = <"Narrative description about the supplemental oxygen order.">
+			>
+			["id43"] = <
+				text = <"Requester order identifier">
+				description = <"The local identifier assigned by the requesting clinical system.">
+			>
+			["id44"] = <
+				text = <"Requester">
+				description = <"Details about the clinician or organization ordering the supplemental oxygen.">
+			>
+			["id45"] = <
+				text = <"Receiver order identifier">
+				description = <"The local identifier assigned to the request by the clinician or organization receiving the order.">
+			>
+			["id46"] = <
+				text = <"Receiver">
+				description = <"Details about the clinician or organization receiving the order.">
+			>
+			["id47"] = <
+				text = <"Request status">
+				description = <"The status of the order as indicated by the requester.">
+			>
+			["id48"] = <
+				text = <"Distribution list">
+				description = <"Details of additional clinicians, organizations or agencies who require copies of any communication.">
+			>
+			["id49"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id7"] = <
+				text = <"Flow rate">
+				description = <"The rate of flow of oxygen delivered to the delivery device.">
+			>
+			["id8"] = <
+				text = <"Pattern">
+				description = <"The intended approach for administration.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at37"] = <http://openehr.org/id/507>
+			["at38"] = <http://openehr.org/id/126>
+			["at39"] = <http://openehr.org/id/128>
+		>
+		["ucum"] = <
+			["at40"] = <http://ucum.org/id/%25>
+			["at41"] = <http://ucum.org/id/l%2Fmin>
+			["at42"] = <http://ucum.org/id/h>
+			["at43"] = <http://ucum.org/id/h%2Fd>
+		>
+		["snomed"] = <
+			["at40"] = <http://snomed.info/id/415067009>
+			["at41"] = <http://snomed.info/id/258994006>
+			["at42"] = <http://snomed.info/id/258702006>
+			["at43"] = <http://snomed.info/id/229788003>
+		>
+		["loinc"] = <
+			["id16"] = <http://loinc.org/73786-6>
+			["id29"] = <http://loinc.org/104720-8>
+			["id30"] = <http://loinc.org/104803-2>
+			["id41"] = <http://loinc.org/106173-8>
+			["id42"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at4", "at5">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at22", "at23", "at24", "at25", "at26", "at27">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at8", "at9", "at12">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at31", "at32", "at33">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at16", "at17", "at18">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at35", "at36">
+		>
+	>
+

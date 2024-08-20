@@ -1,0 +1,39 @@
+template (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Composition.t_family_history.v1.0.0
+
+specialize
+	s2-EHR-Composition.family_history.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Family history template">
+		>
+	>
+
+definition
+	Composition[id1.1] 	-- -
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"-">
+				description = <"-">
+			>
+		>
+	>
+

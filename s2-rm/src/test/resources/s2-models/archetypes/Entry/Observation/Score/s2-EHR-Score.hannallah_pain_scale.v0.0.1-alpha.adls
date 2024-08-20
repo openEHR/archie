@@ -1,0 +1,430 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=feeef0a9-fe68-4a0b-83ea-1cbca3380908)
+	s2-EHR-Score.hannallah_pain_scale.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Alan D. March, Hospital Universitario Austral, Pilar, Buenos Aires, Argentina, <alandmarch@gmail.com>, 2016-07-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.hannallah_pain_scale.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.hannallah_pain_scale.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"A numerical scale for monitoring pain in children after surgery. Also used for monitoring pain in children outside postoperative setting.">
+			use = <"To be user only in patients age 8 months to 13 years.">
+			keywords = <"pain", "score", "blood pressure", "crying", "movements", "agitation", "Hannallah">
+			misuse = <"Not to be used for patients outside the intended age range.">
+		>
+	>
+
+definition
+	Score[id1] matches {	-- Hannallah Objective Pain Scale (OPS)
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Systolic blood pressure
+				value matches {
+					Coded_ordinal[id39] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id41] matches {
+								term matches {
+									Terminology_term[id40] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id42] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id44] matches {
+								term matches {
+									Terminology_term[id43] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id45] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id47] matches {
+								term matches {
+									Terminology_term[id46] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Crying
+				value matches {
+					Coded_ordinal[id48] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id50] matches {
+								term matches {
+									Terminology_term[id49] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id51] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id53] matches {
+								term matches {
+									Terminology_term[id52] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id54] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id56] matches {
+								term matches {
+									Terminology_term[id55] matches {
+										concept matches {[at11]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Movements
+				value matches {
+					Coded_ordinal[id57] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id59] matches {
+								term matches {
+									Terminology_term[id58] matches {
+										concept matches {[at13]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id60] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id62] matches {
+								term matches {
+									Terminology_term[id61] matches {
+										concept matches {[at14]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id63] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id65] matches {
+								term matches {
+									Terminology_term[id64] matches {
+										concept matches {[at15]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Agitation
+				value matches {
+					Coded_ordinal[id66] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id68] matches {
+								term matches {
+									Terminology_term[id67] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id69] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id71] matches {
+								term matches {
+									Terminology_term[id70] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id72] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id74] matches {
+								term matches {
+									Terminology_term[id73] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Complaints of pain
+				value matches {
+					Coded_ordinal[id75] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id77] matches {
+								term matches {
+									Terminology_term[id76] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id78] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id80] matches {
+								term matches {
+									Terminology_term[id79] matches {
+										concept matches {[at22]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id81] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id83] matches {
+								term matches {
+									Terminology_term[id82] matches {
+										concept matches {[at23]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Total score
+				value matches {
+					Count[id36] matches {
+						magnitude matches {|0..10|}
+					}
+				}
+			}
+			Node[id28] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id37] 
+				}
+			}
+		}
+		state matches {
+			Node[id27] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id38] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id30] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Systolic blood pressure (synthesised)">
+				description = <"Changes in systolic blood pressure. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Crying (synthesised)">
+				description = <"Presence and degree of crying. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Movements (synthesised)">
+				description = <"Patient's movements. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Agitation (synthesised)">
+				description = <"Presence and degree of agitation. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Complaints of pain (synthesised)">
+				description = <"Presence and degree of pain. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Responds to age appropriate nurturing (tender loving care)">
+				description = <"Patient responds to age appropriate nurturing (tender loving care).">
+			>
+			["at11"] = <
+				text = <"Does not respond to nurturing">
+				description = <"Patient does not respond to nurturing.">
+			>
+			["at13"] = <
+				text = <"No movements, relaxed">
+				description = <"Patient shows no movements and/or is relaxed.">
+			>
+			["at14"] = <
+				text = <"Restless, moving about in bed constantly">
+				description = <"Patient is restless, moving about in bed constantly.">
+			>
+			["at15"] = <
+				text = <"Thrashing (moving wildly) or rigid (stiff)">
+				description = <"Patient thrashing (moving wildly) or rigid (stiff).">
+			>
+			["at17"] = <
+				text = <"Asleep or calm">
+				description = <"Patient asleep or calm.">
+			>
+			["at18"] = <
+				text = <"Can be comforted to lessen the agitation (mild)">
+				description = <"Patient can be comforted to lessen the agitation (mild).">
+			>
+			["at19"] = <
+				text = <"Cannot be comforted (hysterical)">
+				description = <"Patient cannot be comforted (hysterical).">
+			>
+			["at21"] = <
+				text = <"Asleep or states no pain">
+				description = <"Patient asleep or states no pain.">
+			>
+			["at22"] = <
+				text = <"Cannot localize">
+				description = <"Patient cannot localize pain.">
+			>
+			["at23"] = <
+				text = <"Localizes pain">
+				description = <"Patient localizes pain.">
+			>
+			["at5"] = <
+				text = <"Increase < 20% of preoperative blood pressure">
+				description = <"Increase of preoperative blood pressure below 20%.">
+			>
+			["at6"] = <
+				text = <"Increase 20-30% of preoperative blood pressure">
+				description = <"Increase of preoperative blood pressure between 20 and 30%.">
+			>
+			["at7"] = <
+				text = <"Increase > 30% of preoperative blood pressure">
+				description = <"Increase of preoperative blood pressure above 30%.">
+			>
+			["at9"] = <
+				text = <"Not crying">
+				description = <"Patient not crying.">
+			>
+			["id1"] = <
+				text = <"Hannallah Objective Pain Scale (OPS)">
+				description = <"Numerical scale for monitoring pain in children after surgery.">
+			>
+			["id13"] = <
+				text = <"Movements">
+				description = <"Patient's movements.">
+			>
+			["id17"] = <
+				text = <"Agitation">
+				description = <"Presence and degree of agitation.">
+			>
+			["id21"] = <
+				text = <"Complaints of pain">
+				description = <"Presence and degree of pain.">
+			>
+			["id25"] = <
+				text = <"Total score">
+				description = <"Total score.">
+			>
+			["id27"] = <
+				text = <"Confounding factors">
+				description = <"Factors that may interfere with interpretation of the measurement.">
+			>
+			["id28"] = <
+				text = <"Comment">
+				description = <"Any information not captured in the structured variables but important for adequate interpretation of the score.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Specified point in time which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id5"] = <
+				text = <"Systolic blood pressure">
+				description = <"Changes in systolic blood pressure.">
+			>
+			["id9"] = <
+				text = <"Crying">
+				description = <"Presence and degree of crying.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/8480-6>
+			["id28"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6", "at7">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at9", "at10", "at11">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at13", "at14", "at15">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at17", "at18", "at19">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at21", "at22", "at23">
+		>
+	>
+

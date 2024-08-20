@@ -1,0 +1,604 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5b2c556d-750f-4fa1-9f99-5eb4f192b9ee)
+    s2-EHR-Node.timing_nondaily.v1.1.2
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Syed Ajaz, Alberta Health Services, Canada", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Laila Bruun, Oslo universitetssykehus HF, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS AS, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Heather Leslie, Ocean Health Systems, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Isaiah Nyabuto, GIZ, Kenya", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Anoop Shah, University College London, United Kingdom", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Anders Thurin, SU, Sweden", "Stian Torleif Varpe, Helse Bergen, Norway", "Karl Trygve Kalleberg, Oslo Universitetssykehus, Norway", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Lars Ivar Mehlum, Nasjonal IKT HF, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics Ltd., <ian@freshehr.com>, 2015-09-11">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.timing_nondaily.v1.1.2, copyright 2015 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.timing_nondaily.v1.1.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record structured information about the intended timing pattern for a therapeutic or diagnostic activity occurring over days, weeks, months or years.">
+            keywords = <"timing", "administration", "dosing", "frequency", "interval", "order", "recommendation", "schedule", "plan", "repetition">
+            use = <"Use to record structured information about the intended timing pattern for a therapeutic or diagnostic activity occurring over days, weeks, months or years.
+            
+            This archetype is designed to be used within the 'Direction repetition' SLOT within the Node.therapeutic_direction archetype, but can also be used in other Node and ENTRY class archetypes where clinically appropriate.
+            
+            In use cases where it's necessary to specify explicitly that an activity is to take place every day, the \\\"Repetition interval\\\" Node can be set to \\\"1 day\\\".">
+            misuse = <"Not to be used to record timing details within a single 24 hour time period. Use the Node.timing_daily archetype for this purpose.
+            
+            In use cases where it can be safely assumed that an activity should be carried out every single day, this archetype is redundant.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Timing - non-daily
+        items matches {
+            Node[id3] occurrences matches {0..1} matches {    -- Repetition interval
+                value matches {
+                    Duration_value[id24] matches {
+                        magnitude matches {|>PT0S|}
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- Days per time period
+                value matches {
+                    Quantity[id48] matches {    -- Days per time period (1/wk)
+                        magnitude matches {|1.0..7.0|}
+                        units matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at21]}    -- 1/wk
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {0}
+                    }
+                    Quantity[id51] matches {    -- Days per time period (1/mo)
+                        magnitude matches {|1.0..31.0|}
+                        units matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at22]}    -- 1/mo
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {0}
+                    }
+                    Quantity[id54] matches {    -- Days per time period (1/a)
+                        magnitude matches {|1.0..366.0|}
+                        units matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at23]}    -- 1/a
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {0}
+                    }
+                    Range<Quantity>[id26] matches {
+                        lower matches {
+                            Quantity[id57] matches {    -- n/a (1/wk)
+                                magnitude matches {|1.0..7.0|}
+                                units matches {
+                                    Coded_text[id59] matches {
+                                        term matches {
+                                            Terminology_term[id58] matches {
+                                                concept matches {[at21]}    -- 1/wk
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                            Quantity[id60] matches {    -- n/a (1/mo)
+                                magnitude matches {|1.0..31.0|}
+                                units matches {
+                                    Coded_text[id62] matches {
+                                        term matches {
+                                            Terminology_term[id61] matches {
+                                                concept matches {[at22]}    -- 1/mo
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                            Quantity[id63] matches {    -- n/a (1/a)
+                                magnitude matches {|1.0..366.0|}
+                                units matches {
+                                    Coded_text[id65] matches {
+                                        term matches {
+                                            Terminology_term[id64] matches {
+                                                concept matches {[at23]}    -- 1/a
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                        }
+                        upper matches {
+                            Quantity[id66] matches {    -- n/a (1/wk)
+                                magnitude matches {|1.0..7.0|}
+                                units matches {
+                                    Coded_text[id68] matches {
+                                        term matches {
+                                            Terminology_term[id67] matches {
+                                                concept matches {[at21]}    -- 1/wk
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                            Quantity[id69] matches {    -- n/a (1/mo)
+                                magnitude matches {|1.0..31.0|}
+                                units matches {
+                                    Coded_text[id71] matches {
+                                        term matches {
+                                            Terminology_term[id70] matches {
+                                                concept matches {[at22]}    -- 1/mo
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                            Quantity[id72] matches {    -- n/a (1/a)
+                                magnitude matches {|1.0..366.0|}
+                                units matches {
+                                    Coded_text[id74] matches {
+                                        term matches {
+                                            Terminology_term[id73] matches {
+                                                concept matches {[at23]}    -- 1/a
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id23] occurrences matches {0..1} matches {    -- Activities per time period
+                value matches {
+                    Quantity[id75] matches {    -- Activities per time period (1/wk)
+                        magnitude matches {|>=1.0|}
+                        units matches {
+                            Coded_text[id77] matches {
+                                term matches {
+                                    Terminology_term[id76] matches {
+                                        concept matches {[at21]}    -- 1/wk
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {0}
+                    }
+                    Quantity[id78] matches {    -- Activities per time period (1/mo)
+                        magnitude matches {|>=1.0|}
+                        units matches {
+                            Coded_text[id80] matches {
+                                term matches {
+                                    Terminology_term[id79] matches {
+                                        concept matches {[at22]}    -- 1/mo
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {0}
+                    }
+                    Quantity[id81] matches {    -- Activities per time period (1/a)
+                        magnitude matches {|>=1.0|}
+                        units matches {
+                            Coded_text[id83] matches {
+                                term matches {
+                                    Terminology_term[id82] matches {
+                                        concept matches {[at23]}    -- 1/a
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {0}
+                    }
+                    Range<Quantity>[id30] matches {
+                        lower matches {
+                            Quantity[id84] matches {    -- n/a (1/wk)
+                                magnitude matches {|>=1.0|}
+                                units matches {
+                                    Coded_text[id86] matches {
+                                        term matches {
+                                            Terminology_term[id85] matches {
+                                                concept matches {[at21]}    -- 1/wk
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                            Quantity[id87] matches {    -- n/a (1/mo)
+                                magnitude matches {|>=1.0|}
+                                units matches {
+                                    Coded_text[id89] matches {
+                                        term matches {
+                                            Terminology_term[id88] matches {
+                                                concept matches {[at22]}    -- 1/mo
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                            Quantity[id90] matches {    -- n/a (1/a)
+                                magnitude matches {|>=1.0|}
+                                units matches {
+                                    Coded_text[id92] matches {
+                                        term matches {
+                                            Terminology_term[id91] matches {
+                                                concept matches {[at23]}    -- 1/a
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                        }
+                        upper matches {
+                            Quantity[id93] matches {    -- n/a (1/wk)
+                                magnitude matches {|>=1.0|}
+                                units matches {
+                                    Coded_text[id95] matches {
+                                        term matches {
+                                            Terminology_term[id94] matches {
+                                                concept matches {[at21]}    -- 1/wk
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                            Quantity[id96] matches {    -- n/a (1/mo)
+                                magnitude matches {|>=1.0|}
+                                units matches {
+                                    Coded_text[id98] matches {
+                                        term matches {
+                                            Terminology_term[id97] matches {
+                                                concept matches {[at22]}    -- 1/mo
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                            Quantity[id99] matches {    -- n/a (1/a)
+                                magnitude matches {|>=1.0|}
+                                units matches {
+                                    Coded_text[id101] matches {
+                                        term matches {
+                                            Terminology_term[id100] matches {
+                                                concept matches {[at23]}    -- 1/a
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {0}
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id2] matches {    -- Specific date
+                value matches {
+                    Date_value[id33]
+                    Range<Date_value>[id34] matches {
+                        upper matches {
+                            Date_value[id35]
+                        }
+                        lower matches {
+                            Date_value[id36]
+                        }
+                    }
+                }
+            }
+            Node[id4] occurrences matches {0..7} matches {    -- Specific day of week
+                value matches {
+                    Coded_text[id37] matches {
+                        term matches {
+                            Terminology_term[id102] matches {
+                                concept matches {[ac1]}    -- Specific day of week (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id5] occurrences matches {0..31} matches {    -- Specific day of month
+                value matches {
+                    Count[id38] matches {
+                        magnitude matches {|1..31|}
+                    }
+                    Range<Count>[id39] matches {
+                        upper matches {
+                            Count[id40] matches {
+                                magnitude matches {|1..31|}
+                            }
+                        }
+                        lower matches {
+                            Count[id41] matches {
+                                magnitude matches {|1..31|}
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id22] occurrences matches {0..1} matches {    -- Timing description
+                value matches {
+                    Text[id42]
+                }
+            }
+            Node[id7] matches {    -- Specific event
+                items matches {
+                    Node[id6] occurrences matches {0..1} matches {    -- Event name
+                        value matches {
+                            Text[id43]
+                        }
+                    }
+                    Node[id10] occurrences matches {0..1} matches {    -- Time offset
+                        value matches {
+                            Duration_value[id44] matches {
+                                magnitude matches {PYMWD}
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- On / off cycle
+                items matches {
+                    Node[id12] occurrences matches {0..1} matches {    -- On
+                        value matches {
+                            Duration_value[id45] matches {
+                                magnitude matches {|>PT0S|}
+                            }
+                        }
+                    }
+                    Node[id13] occurrences matches {0..1} matches {    -- Off
+                        value matches {
+                            Duration_value[id46] matches {
+                                magnitude matches {|>PT0S|}
+                            }
+                        }
+                    }
+                    Node[id14] occurrences matches {0..1} matches {    -- Repetitions
+                        value matches {
+                            Count[id47] matches {
+                                magnitude matches {|>=0|}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["ucum"] = <
+            ["at21"] = <http://ucum.org/id/1%2Fwk>
+            ["at22"] = <http://ucum.org/id/1%2Fmo>
+            ["at23"] = <http://ucum.org/id/1%2Fa>
+        >
+        ["snomed"] = <
+            ["at21"] = <http://snomed.info/id/259038000>
+            ["at22"] = <http://snomed.info/id/259036001>
+            ["at23"] = <http://snomed.info/id/259039008>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at7", "at8", "at16", "at17", "at18", "at19", "at20">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Specific day of week (synthesised)">
+                description = <"The activity should take place on a specific day of the week. (synthesised)">
+            >
+            ["at16"] = <
+                text = <"Wednesday">
+                description = <"The activity should take place on Wednesday.">
+            >
+            ["at17"] = <
+                text = <"Thursday">
+                description = <"The activity should take place on Thursday.">
+            >
+            ["at18"] = <
+                text = <"Friday">
+                description = <"The activity should take place on Friday.">
+            >
+            ["at19"] = <
+                text = <"Saturday">
+                description = <"The activity should take place on Saturday.">
+            >
+            ["at20"] = <
+                text = <"Sunday">
+                description = <"The activity should take place on Sunday.">
+            >
+            ["at21"] = <
+                text = <"1/wk">
+                description = <"1/wk unit.">
+            >
+            ["at22"] = <
+                text = <"1/mo">
+                description = <"1/mo unit.">
+            >
+            ["at23"] = <
+                text = <"1/a">
+                description = <"1/a unit.">
+            >
+            ["at7"] = <
+                text = <"Monday">
+                description = <"The activity should take place on Monday.">
+            >
+            ["at8"] = <
+                text = <"Tuesday">
+                description = <"The activity should take place on Tuesday.">
+            >
+            ["id1"] = <
+                text = <"Timing - non-daily">
+                description = <"Structured information about the intended timing pattern for a therapeutic or diagnostic activity occurring over days, weeks, months or years.">
+            >
+            ["id10"] = <
+                text = <"Time offset">
+                description = <"The period of time before or after the named event when the activity should take place. Negative durations can be used to signify that the activity should be taken before a known event.">
+            >
+            ["id11"] = <
+                text = <"On / off cycle">
+                description = <"A cycle of activity where an on-off pattern is required.">
+            >
+            ["id12"] = <
+                text = <"On">
+                description = <"The period of time for which the activity should take place.">
+            >
+            ["id13"] = <
+                text = <"Off">
+                description = <"The period of time for which the activity should NOT take place.">
+            >
+            ["id14"] = <
+                text = <"Repetitions">
+                description = <"The number of repetitions of the on/off cycle.">
+            >
+            ["id15"] = <
+                text = <"Days per time period">
+                description = <"The number of days per time period on which the activity takes place.">
+            >
+            ["id2"] = <
+                text = <"Specific date">
+                description = <"The activity should take place on a specific date or a specific range of dates.">
+            >
+            ["id22"] = <
+                text = <"Timing description">
+                description = <"Text description of the timing.">
+            >
+            ["id23"] = <
+                text = <"Activities per time period">
+                description = <"The number of activities per time period.">
+            >
+            ["id3"] = <
+                text = <"Repetition interval">
+                description = <"The interval between repetitions of the activity.">
+            >
+            ["id4"] = <
+                text = <"Specific day of week">
+                description = <"The activity should take place on a specific day of the week.">
+            >
+            ["id48"] = <
+                text = <"Days per time period (1/wk)">
+                description = <"Days per time period (1/wk)">
+            >
+            ["id5"] = <
+                text = <"Specific day of month">
+                description = <"The activity should take place on a specific day or interval of days of the month.">
+            >
+            ["id51"] = <
+                text = <"Days per time period (1/mo)">
+                description = <"Days per time period (1/mo)">
+            >
+            ["id54"] = <
+                text = <"Days per time period (1/a)">
+                description = <"Days per time period (1/a)">
+            >
+            ["id57"] = <
+                text = <"n/a (1/wk)">
+                description = <"n/a (1/wk)">
+            >
+            ["id6"] = <
+                text = <"Event name">
+                description = <"The name of the event that triggers the activity to take place.">
+            >
+            ["id60"] = <
+                text = <"n/a (1/mo)">
+                description = <"n/a (1/mo)">
+            >
+            ["id63"] = <
+                text = <"n/a (1/a)">
+                description = <"n/a (1/a)">
+            >
+            ["id66"] = <
+                text = <"n/a (1/wk)">
+                description = <"n/a (1/wk)">
+            >
+            ["id69"] = <
+                text = <"n/a (1/mo)">
+                description = <"n/a (1/mo)">
+            >
+            ["id7"] = <
+                text = <"Specific event">
+                description = <"The activity should take place in relation to a specific named event.">
+            >
+            ["id72"] = <
+                text = <"n/a (1/a)">
+                description = <"n/a (1/a)">
+            >
+            ["id75"] = <
+                text = <"Activities per time period (1/wk)">
+                description = <"Activities per time period (1/wk)">
+            >
+            ["id78"] = <
+                text = <"Activities per time period (1/mo)">
+                description = <"Activities per time period (1/mo)">
+            >
+            ["id81"] = <
+                text = <"Activities per time period (1/a)">
+                description = <"Activities per time period (1/a)">
+            >
+            ["id84"] = <
+                text = <"n/a (1/wk)">
+                description = <"n/a (1/wk)">
+            >
+            ["id87"] = <
+                text = <"n/a (1/mo)">
+                description = <"n/a (1/mo)">
+            >
+            ["id90"] = <
+                text = <"n/a (1/a)">
+                description = <"n/a (1/a)">
+            >
+            ["id93"] = <
+                text = <"n/a (1/wk)">
+                description = <"n/a (1/wk)">
+            >
+            ["id96"] = <
+                text = <"n/a (1/mo)">
+                description = <"n/a (1/mo)">
+            >
+            ["id99"] = <
+                text = <"n/a (1/a)">
+                description = <"n/a (1/a)">
+            >
+        >
+    >
+    

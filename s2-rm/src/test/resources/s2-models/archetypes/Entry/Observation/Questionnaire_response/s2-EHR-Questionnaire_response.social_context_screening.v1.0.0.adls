@@ -1,0 +1,211 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e608b9fc-b3f9-43f9-95ee-c93c791dbd08)
+    s2-EHR-Questionnaire_response.social_context_screening.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Nuno Abreu, Oporto Hospital Center, Portugal", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Ivar Berge, Oslo Universitetssykehus, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Hugo Claudio Briceño García, Catsalut, Spain", "Stefan Dubois, Dep't of Pathology and Genetics, University Hospitals of Lund and Malmö, Sweden", "Gunn Elin Blakkisrud, DIPS ASA, Norway", "Kåre Flø, DIPS ASA, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Sølvi Johansen, Oslo Universitetssykehus, Ullevål, Norway", "Mika Kiviaho, Tietoevry, Finland", "Lise Kristin Knutsen, Oslo universitetssykehus, Norway", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Jamie LaPaglia, Claim Clarity, United States", "Liv Laugen, Oslo universitetssykehus, Norway (Nasjonal IKT redaktør)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hanne Marte Bårholm, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Svenne Naumann, Finnmarkssykehuset, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Sobath Premaratne, Barts Health NHS Trust, United Kingdom", "FREDERICO RIBEIRO, Hospital das Clínicas da UFPE, Brazil", "Marte Rime Bø, Direktoratet for e-helse, Norway", "Michael Seneviratne, NHS, United Kingdom", "Andre Smitt-Ingebretsen, Sørlandet sykehus HF, Norway", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Kanthan Theivendran, NHS, United Kingdom", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-03-13">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.social_context_screening.v1.0.0, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.social_context_screening.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To create a framework for recording answers to pre-defined screening questions about the social context.">
+            keywords = <"homelessness", "housing", "gambling", "employment", "safety", "domestic", "violence", "dependent", "guardian", "situation", "circumstances", "abuse", "education", "insecurity", "inclusion", "exclusion", "transportation", "equity", "hardship", "unemployment", "stress", "connection", "literacy", "wellness", "social", "sociological", "socioeconomic", "poverty", "hunger", "refugee", "immigrant", "minority">
+            use = <"Use to create a framework for recording answers to pre-defined screening questions about the social context.
+            
+            Common use cases include, but are not limited to:
+            - Systematic enquiry in any consultation, for example:
+            --- Are you homeless? Yes, No, Unknown
+            --- Do you feel socially isolated?
+            --- Do you feel safe at home/school/work?
+            --- Do you think you are a problem gambler?
+            --- Are any individuals dependent on you?
+            --- Do you need an interpreter when you visit the clinic?
+            
+            The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data Node would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the DV_TEXT or the DV_BOOLEAN datatypes choice to match each specific use case.
+            
+            The EVENT structure from the reference model can be used to specify whether the questions relate to a point in time or over a period of time. Use a separate instance of this archetype to distinguish between a questionnaire recording information about a social context issue that has been present at any time in the past and information about a social context issue within a specified time interval - for example, the difference between \\\"Are you safe at home now?\\\" compared to \\\"Have you experienced any domestic violence in the past 4 weeks?\\\"
+            
+            The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' Node in the Reference Model.
+            
+            This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening process identifies a social context circumstance, issue or concern and it is intended that the details are to be recorded and persisted as part of an ongoing health record, any further specific details about the social context should be recorded using archetypes specific for the clinical purpose.">
+            misuse = <"Not to be used to record persistent details about social context-related concepts. Use existing archetypes for this purpose - for example EVALUATION.housing, EVALUATION.education, EVALUATION. occupation, EVALUATION.social_network and other archetypes within the Social context project - https://ckm.openehr.org/ckm/projects/1013.30.39.">
+        >
+    >
+    
+definition
+    Questionnaire_response[id1] matches {    -- Social context screening questionnaire
+        data matches {
+            Node[id35] occurrences matches {0..1} matches {    -- Screening purpose
+                value matches {
+                    Text[id46]
+                }
+            }
+            Node[id23] matches {    -- Specific social context
+                items matches {
+                    Node[id5] matches {    -- Context
+                        value matches {
+                            Plain_text[id47]
+                            Coded_text[id48] matches {
+                                term matches {
+                                    Terminology_term[id53] matches {
+                                        concept matches {[ac1]}    -- Context (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id6] occurrences matches {0..1} matches {    -- Presence?
+                        value matches {
+                            Coded_text[id49] matches {
+                                term matches {
+                                    Terminology_term[id54] matches {
+                                        concept matches {[ac2]}    -- Presence? (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id50]
+                            Boolean_value[id51]
+                        }
+                    }
+                    allow_archetype Node[id27] matches {     -- Additional details
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    Node[id26] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id52]
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id45] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id22] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at23"] = <http://snomed.info/id/373066001>
+            ["at24"] = <http://snomed.info/id/373067005>
+            ["at27"] = <http://snomed.info/id/261665006>
+            ["at48"] = <http://snomed.info/id/32911000>
+            ["at49"] = <http://snomed.info/id/315594003>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at48", "at49">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at23", "at24", "at27">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Context (synthesised)">
+                description = <"Identification of a specific social circumstance, issue or concern relevant for the questionnaire or grouping of such, by name. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Presence? (synthesised)">
+                description = <"Has there been experience of the specified 'Context'? (synthesised)">
+            >
+            ["at23"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at27"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at48"] = <
+                text = <"Homeless">
+                description = <"The individual does not have a stable place to live.">
+            >
+            ["at49"] = <
+                text = <"Interpreter needed">
+                description = <"The individual needs assistance with language translation.">
+            >
+            ["id1"] = <
+                text = <"Social context screening questionnaire">
+                description = <"Series of questions and associated answers used to screen about the social environment and social situation which may impact the health and well-being of the individual, especially to identify potential issues or risks.">
+            >
+            ["id22"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id23"] = <
+                text = <"Specific social context">
+                description = <"Details about a specified social context or issue, or a grouping of these, relevant for the screening purpose.">
+            >
+            ["id26"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the specific social context, not captured in other fields.">
+            >
+            ["id27"] = <
+                text = <"Additional details">
+                description = <"Additional details or questions about the specific social context.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id35"] = <
+                text = <"Screening purpose">
+                description = <"The context or reason for screening.">
+            >
+            ["id45"] = <
+                text = <"Additional details">
+                description = <"Additional structured details or questions about screening for social context items.">
+            >
+            ["id5"] = <
+                text = <"Context">
+                description = <"Identification of a specific social circumstance, issue or concern relevant for the questionnaire or grouping of such, by name.">
+            >
+            ["id6"] = <
+                text = <"Presence?">
+                description = <"Has there been experience of the specified 'Context'?">
+            >
+        >
+    >
+    

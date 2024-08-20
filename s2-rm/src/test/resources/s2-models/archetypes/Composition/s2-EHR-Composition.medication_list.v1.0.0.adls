@@ -1,0 +1,65 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Composition.medication_list.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Medication List Composition - container for links to existing medication Orders and Actions">
+		>
+	>
+
+definition
+	Composition[id1] matches {
+		code matches {
+			Terminology_term[id10] matches {
+				concept matches {[at1]}
+			}
+		}
+		category matches {
+			Terminology_term[id11] matches {
+				concept matches {[at2]}
+				description matches {"persistent"}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Medication List">
+				description = <"Patient current medications list">
+			>
+			["at1"] = <
+				text = <"Is-about code for this Composition">
+				description = <"Is-about code for this Composition">
+			>
+			["at2"] = <
+				text = <"Persistent Composition category">
+				description = <"Persistent Composition category">
+			>
+		>
+	>
+
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/104207-6>
+			["at1"] = <http://loinc.org/104207-6>
+		>
+		["openehr"] = <
+			["at2"] = <http://openehr.org/id/431>
+		>
+	>

@@ -1,0 +1,441 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=096766df-cac8-4505-bf5e-39755c5422ec)
+	s2-EHR-Direct_observation.uterine_contractions.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, Australia, <heather.leslie@atomicainformatics.com>, 2008-07-27">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.uterine_contractions.v0.0.1-alpha, copyright 2008 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.uterine_contractions.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Documenting details about uterine contractions.">
+			use = <"">
+			misuse = <"">
+		>
+	>
+
+definition
+	Direct_observation[id1] matches {	-- Uterine contractions
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Strength
+				value matches {
+					Coded_ordinal[id50] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id52] matches {
+								term matches {
+									Terminology_term[id51] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id53] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id55] matches {
+								term matches {
+									Terminology_term[id54] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id56] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id58] matches {
+								term matches {
+									Terminology_term[id57] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id59] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id61] matches {
+								term matches {
+									Terminology_term[id60] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id62] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id64] matches {
+								term matches {
+									Terminology_term[id63] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id65] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id67] matches {
+								term matches {
+									Terminology_term[id66] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Pattern
+				value matches {
+					Coded_text[id41] matches {
+						term matches {
+							Terminology_term[id68] matches {
+								concept matches {[ac1]}		-- Pattern (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Duration
+				value matches {
+					Duration_value[id42] matches {
+						magnitude matches {PTMS}
+					}
+				}
+			}
+			Node[id38] occurrences matches {0..1} matches {	-- Duration comment
+				value matches {
+					Text[id43] 
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Frequency
+				items matches {
+					Node[id14] occurrences matches {0..1} matches {	-- Begin every...
+						value matches {
+							Duration_value[id44] matches {
+								magnitude matches {PTMS}
+							}
+						}
+					}
+					Node[id15] occurrences matches {0..1} matches {	-- Frequency per 10 minutes
+						value matches {
+							Measured<Quantity>[id69] matches {
+								value matches {
+									Quantity[id45] matches {
+										units matches {
+											Coded_text[id71] matches {
+												term matches {
+													Terminology_term[id70] matches {
+														concept matches {[at39]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id36] occurrences matches {0..1} matches {	-- Frequency per hour
+						value matches {
+							Measured<Quantity>[id72] matches {
+								value matches {
+									Quantity[id46] matches {
+										units matches {
+											Coded_text[id74] matches {
+												term matches {
+													Terminology_term[id73] matches {
+														concept matches {[at40]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Effectiveness
+				value matches {
+					Coded_text[id47] matches {
+						term matches {
+							Terminology_term[id75] matches {
+								concept matches {[ac2]}		-- Effectiveness (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Intra-uterine pressure
+				value matches {
+					Measured<Quantity>[id76] matches {
+						value matches {
+							Quantity[id48] matches {
+								units matches {
+									Coded_text[id78] matches {
+										term matches {
+											Terminology_term[id77] matches {
+												concept matches {[at41]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id29] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id49] matches {
+						term matches {
+							Terminology_term[id79] matches {
+								concept matches {[ac3]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id39] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Pattern (synthesised)">
+				description = <"The rhythm of the contractions. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Effectiveness (synthesised)">
+				description = <"The effectiveness of the contractions. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Method (synthesised)">
+				description = <"The method used to determine the uterine contraction features. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Strength (synthesised)">
+				description = <"The strength of uterine contractions. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Very strong">
+				description = <"Possibly excessively strong contractions.">
+			>
+			["at17"] = <
+				text = <"Regular">
+				description = <"The contractions are regular or equally spaced.">
+			>
+			["at18"] = <
+				text = <"Irregular">
+				description = <"The contractions are irregular or at different intervals.">
+			>
+			["at19"] = <
+				text = <"Continuous">
+				description = <"The uterus is not relaxing between contractions.">
+			>
+			["at23"] = <
+				text = <"Not effective">
+				description = <"Contractions are not effective.">
+			>
+			["at25"] = <
+				text = <"Effective">
+				description = <"Contractions are effective.">
+			>
+			["at26"] = <
+				text = <"Expulsive">
+				description = <"Uterine contractions are expelling the baby.">
+			>
+			["at29"] = <
+				text = <"Manual">
+				description = <"By palpation.">
+			>
+			["at30"] = <
+				text = <"Maternal report">
+				description = <"By the subjects report.">
+			>
+			["at31"] = <
+				text = <"Tocogram">
+				description = <"Measurement with a tocogram.">
+			>
+			["at36"] = <
+				text = <"Diminishing">
+				description = <"*">
+			>
+			["at37"] = <
+				text = <"Frequency">
+				description = <"Frequency">
+			>
+			["at38"] = <
+				text = <"Pressure">
+				description = <"Pressure">
+			>
+			["at39"] = <
+				text = <"/min">
+				description = <"/min unit for heart rate">
+			>
+			["at40"] = <
+				text = <"/h">
+				description = <"/h unit">
+			>
+			["at41"] = <
+				text = <"mm[Hg]">
+				description = <"mmHg unit for blood pressure">
+			>
+			["at5"] = <
+				text = <"Not noticable to mother">
+				description = <"The contractions are not noticable.">
+			>
+			["at6"] = <
+				text = <"Very mild">
+				description = <"Noticable but not effective.">
+			>
+			["at7"] = <
+				text = <"Mild">
+				description = <"Causing some sensation in the back or lower pelvis.">
+			>
+			["at8"] = <
+				text = <"Moderate">
+				description = <"Causing discomfort or strong pressure in the back or lower pelvis.">
+			>
+			["at9"] = <
+				text = <"Strong">
+				description = <"Fully active uterus during labour.">
+			>
+			["id1"] = <
+				text = <"Uterine contractions">
+				description = <"The strength, duration and frequency of uterine contractions.">
+			>
+			["id12"] = <
+				text = <"Duration">
+				description = <"The duration of the contractions.">
+			>
+			["id13"] = <
+				text = <"Frequency">
+				description = <"A group of frequency statements.">
+			>
+			["id14"] = <
+				text = <"Begin every...">
+				description = <"The time from the begining of one contraction to the beginning of the next.">
+			>
+			["id15"] = <
+				text = <"Frequency per 10 minutes">
+				description = <"*">
+			>
+			["id16"] = <
+				text = <"Intra-uterine pressure">
+				description = <"The peak intra-uterine pressure during the contraction.">
+			>
+			["id17"] = <
+				text = <"Pattern">
+				description = <"The rhythm of the contractions.">
+			>
+			["id25"] = <
+				text = <"Effectiveness">
+				description = <"The effectiveness of the contractions.">
+			>
+			["id29"] = <
+				text = <"Method">
+				description = <"The method used to determine the uterine contraction features.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id36"] = <
+				text = <"Frequency per hour">
+				description = <"*">
+			>
+			["id38"] = <
+				text = <"Duration comment">
+				description = <"A textual comment on the duration of contractions - e.g. '10 to 20 seconds'.">
+			>
+			["id39"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id5"] = <
+				text = <"Strength">
+				description = <"The strength of uterine contractions.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at37"] = <http://openehr.org/id/382>
+			["at38"] = <http://openehr.org/id/125>
+		>
+		["ucum"] = <
+			["at39"] = <http://ucum.org/id/%2Fmin>
+			["at40"] = <http://ucum.org/id/%2Fh>
+			["at41"] = <http://ucum.org/id/mm%5BHg%5D>
+		>
+		["snomed"] = <
+			["at39"] = <http://snomed.info/id/258983007>
+			["at40"] = <http://snomed.info/id/286551008>
+			["at41"] = <http://snomed.info/id/259018001>
+		>
+		["loinc"] = <
+			["id14"] = <http://loinc.org/70183-9>
+			["id29"] = <http://loinc.org/106191-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at17", "at18", "at19", "at36">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at23", "at25", "at26">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at29", "at30", "at31">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at5", "at6", "at7", "at8", "at9", "at10">
+		>
+	>
+

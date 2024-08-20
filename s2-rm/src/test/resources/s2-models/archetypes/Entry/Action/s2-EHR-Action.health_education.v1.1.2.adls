@@ -1,0 +1,369 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=79ab3a9a-2565-4933-9469-b646d6fe61eb)
+    s2-EHR-Action.health_education.v1.1.2
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Siw Anita Bratli, Nasjonal kompetansetjeneste for læring og mestring innen helse, Norway", "Rita Apelt, Department of Health,NT, Australia", "Erling Are Hole, Helse Bergen, Norway", "Stein Arne Rimehaug, Sunnaas sykehus, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Nsah Bernard, UCL Institute of Health Informatics, United Kingdom", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Birgitte Bjerkely, Senter for sjeldne diagnoser, OUS, Norway", "Fatemeh Chalabianloo, Helse Bergen, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Kåre Flø, DIPS ASA, Norway", "Tim Garden, NTG Department of Health, Australia", "Tanya Gardner, CAAC, Australia", "Sam Heard, Ocean Informatics, Australia", "Hilde Hollås, DIPS AS, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Brit Jorun Liseth, Haukeland Universitetssykehus, Norway", "Sabine Leh, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Chunlan Ma, Ocean Informatics, Australia", "Alan March, Hospital Universitario Austral, Argentina", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Jeremy Oats, NT Health, Australia", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Rosalie Schultz, Anyinginyi Health Aboriginal Corporation, Australia", "Ingrid Skard, Edproof, Norway", "Eivind Stormo, DIPS AS, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Susanne Trønnes, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Jo Wright, NT Dept of Health, Australia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2011-05-24">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ACTION.health_education.v1.1.2, copyright 2011 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-ACTION.health_education.v1.1.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details about communication to improve health literacy and life skills.">
+            keywords = <"information", "education", "fact sheet", "instruction", "demonstration", "teaching", "literacy", "guidance", "training", "advice", "coaching">
+            use = <"Use to record details about communication to improve health literacy and life skills.
+            
+            Provision of health education may include, but is not limited to: 
+            - verbal advice; 
+            - a demonstration of a technique; or 
+            - handing out physical material, for example, fact sheets about the risks of a vasectomy.
+            
+            The life skills may include, but are not limited to, medication administration, self-injection, and post-operative self-care.
+            
+            If the education provided is a course or series of activities then details about each activity or visit will be recorded against the 'Education provided' pathway step and when the entire course is completed then the data will be recorded against the 'Education completed' pathway step. If the education provided is a single activity or visit, then data will be recorded simultaneously for 'Education provided' and 'Education completed'.">
+            misuse = <"Not to be used to record consent about health education - for example, consent to a vasectomy after provision of a fact sheet. Use ACTION.informed_consent for this purpose.">
+        >
+    >
+    
+definition
+    Action[id1] matches {    -- Health education
+        state_transition matches {
+            State_transition[id7] matches {    -- Education planned
+                current_state matches {"planned"}
+                careflow_step matches {
+                    Terminology_term[id38] matches {
+                        concept matches {[at7]}    -- Education planned
+                    }
+                }
+            }
+            State_transition[id19] matches {    -- Education recommended
+                current_state matches {"planned"}
+                careflow_step matches {
+                    Terminology_term[id40] matches {
+                        concept matches {[at19]}    -- Education recommended
+                    }
+                }
+            }
+            State_transition[id15] matches {    -- Education postponed
+                current_state matches {"postponed"}
+                careflow_step matches {
+                    Terminology_term[id42] matches {
+                        concept matches {[at15]}    -- Education postponed
+                    }
+                }
+            }
+            State_transition[id16] matches {    -- Education cancelled
+                current_state matches {"cancelled"}
+                careflow_step matches {
+                    Terminology_term[id44] matches {
+                        concept matches {[at16]}    -- Education cancelled
+                    }
+                }
+            }
+            State_transition[id8] matches {    -- Education scheduled
+                current_state matches {"scheduled"}
+                careflow_step matches {
+                    Terminology_term[id46] matches {
+                        concept matches {[at8]}    -- Education scheduled
+                    }
+                }
+            }
+            State_transition[id9] matches {    -- Education provided
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id48] matches {
+                        concept matches {[at9]}    -- Education provided
+                    }
+                }
+            }
+            State_transition[id18] matches {    -- Education suspended
+                current_state matches {"suspended"}
+                careflow_step matches {
+                    Terminology_term[id50] matches {
+                        concept matches {[at18]}    -- Education suspended
+                    }
+                }
+            }
+            State_transition[id17] matches {    -- Education not completed
+                current_state matches {"aborted"}
+                careflow_step matches {
+                    Terminology_term[id52] matches {
+                        concept matches {[at17]}    -- Education not completed
+                    }
+                }
+            }
+            State_transition[id14] matches {    -- Education completed
+                current_state matches {"completed"}
+                careflow_step matches {
+                    Terminology_term[id54] matches {
+                        concept matches {[at14]}    -- Education completed
+                    }
+                }
+            }
+        }
+        description cardinality matches {1..*; unordered} matches {
+            Node[id3] matches {    -- Topic name
+                value matches {
+                    Text[id55]
+                }
+            }
+            Node[id4] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id56]
+                }
+            }
+            Node[id36] matches {    -- Clinical indication
+                value matches {
+                    Text[id57]
+                }
+            }
+            Node[id5] matches {    -- Method
+                value matches {
+                    Text[id58]
+                }
+            }
+            use_archetype Node[id26, s2-EHR-Node.media_file.v1]    -- Material details
+            allow_archetype Node[id34] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Session Number
+                value matches {
+                    Count[id59]
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Reason
+                value matches {
+                    Text[id60]
+                }
+            }
+            Node[id20] matches {    -- Outcome
+                value matches {
+                    Text[id61]
+                }
+            }
+            Node[id27] occurrences matches {0..1} matches {    -- Scheduled date/ time
+                value matches {
+                    Date_time_value[id62]
+                }
+            }
+            Node[id28] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id63]
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id31] occurrences matches {0..1} matches {    -- Requestor order identifier
+                value matches {
+                    Text[id64]
+                    Rwe_id_ref[id65]
+                }
+            }
+            allow_archetype Node[id29] matches {     -- Requestor
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.individual_professional(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v0/}
+            }
+            Node[id32] occurrences matches {0..1} matches {    -- Receiver order identifier
+                value matches {
+                    Text[id66]
+                    Rwe_id_ref[id67]
+                }
+            }
+            allow_archetype Node[id30] matches {     -- Receiver
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.individual_professional(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v0/}
+            }
+            allow_archetype Node[id33] matches {     -- Recipient
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.individual_personal(-[a-zA-Z0-9_]+)*\.v1/}
+            }
+            allow_archetype Node[id35] matches {     -- Interpreter details
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.interpreter_details(-[a-zA-Z0-9_]+)*\.v0/}
+            }
+            allow_archetype Node[id24] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at14"] = <
+                text = <"Education completed">
+                description = <"All planned activities for education have been successfully completed.">
+            >
+            ["at15"] = <
+                text = <"Education postponed">
+                description = <"Education has been postponed prior to commencement.">
+            >
+            ["at16"] = <
+                text = <"Education cancelled">
+                description = <"Education has been cancelled prior to commencement.">
+            >
+            ["at17"] = <
+                text = <"Education not completed">
+                description = <"Education session was abandoned before complete.">
+            >
+            ["at18"] = <
+                text = <"Education suspended">
+                description = <"Planned education sessions were suspended after commencement.">
+            >
+            ["at19"] = <
+                text = <"Education recommended">
+                description = <"Education has been recommended but no steps have been taken to initiate education.">
+            >
+            ["at7"] = <
+                text = <"Education planned">
+                description = <"Education has been planned but no steps have been taken to initiate education.">
+            >
+            ["at8"] = <
+                text = <"Education scheduled">
+                description = <"Appointment for education scheduled.">
+            >
+            ["at9"] = <
+                text = <"Education provided">
+                description = <"Education session or material provided.">
+            >
+            ["id1"] = <
+                text = <"Health education">
+                description = <"Communication to improve health literacy and life skills.">
+            >
+            ["id11"] = <
+                text = <"Reason">
+                description = <"Reason that the pathway step for the identified health education was carried out.">
+            >
+            ["id14"] = <
+                text = <"Education completed">
+                description = <"All planned activities for education have been successfully completed.">
+            >
+            ["id15"] = <
+                text = <"Education postponed">
+                description = <"Education has been postponed prior to commencement.">
+            >
+            ["id16"] = <
+                text = <"Education cancelled">
+                description = <"Education has been cancelled prior to commencement.">
+            >
+            ["id17"] = <
+                text = <"Education not completed">
+                description = <"Education session was abandoned before complete.">
+            >
+            ["id18"] = <
+                text = <"Education suspended">
+                description = <"Planned education sessions were suspended after commencement.">
+            >
+            ["id19"] = <
+                text = <"Education recommended">
+                description = <"Education has been recommended but no steps have been taken to initiate education.">
+            >
+            ["id20"] = <
+                text = <"Outcome">
+                description = <"Description of the outcome of health education.">
+            >
+            ["id21"] = <
+                text = <"Session Number">
+                description = <"Number of the education session in an multi-session course.">
+            >
+            ["id24"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+            >
+            ["id26"] = <
+                text = <"Material details">
+                description = <"Structured details about the education material provided to the individual.">
+            >
+            ["id27"] = <
+                text = <"Scheduled date/ time">
+                description = <"The date and/or time on which the education activity is intended to be performed.">
+            >
+            ["id28"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the activity or care pathway step not captured in other fields.">
+            >
+            ["id29"] = <
+                text = <"Requestor">
+                description = <"Details about the healthcare provider or organization requesting the education.">
+            >
+            ["id3"] = <
+                text = <"Topic name">
+                description = <"Identification of the topic of health education, by name.">
+            >
+            ["id30"] = <
+                text = <"Receiver">
+                description = <"Details about the healthcare provider or organization who received the request for education.">
+            >
+            ["id31"] = <
+                text = <"Requestor order identifier">
+                description = <"The local ID assigned to the order by the healthcare provider or organization requesting the education.">
+            >
+            ["id32"] = <
+                text = <"Receiver order identifier">
+                description = <"The ID assigned to the order by the healthcare provider or organization receiving the request for education. This is also referred to as Filler Order Identifier.">
+            >
+            ["id33"] = <
+                text = <"Recipient">
+                description = <"Recipient of the health education.">
+            >
+            ["id34"] = <
+                text = <"Additional details">
+                description = <"Additional structured details about the health education.">
+            >
+            ["id35"] = <
+                text = <"Interpreter details">
+                description = <"Details about the interpretation.">
+            >
+            ["id36"] = <
+                text = <"Clinical indication">
+                description = <"The clinical reason for the education activity.">
+            >
+            ["id4"] = <
+                text = <"Description">
+                description = <"Narrative description about the health education.">
+            >
+            ["id5"] = <
+                text = <"Method">
+                description = <"Method by which the health education was communicated to the individual.">
+            >
+            ["id7"] = <
+                text = <"Education planned">
+                description = <"Education has been planned but no steps have been taken to initiate education.">
+            >
+            ["id8"] = <
+                text = <"Education scheduled">
+                description = <"Appointment for education scheduled.">
+            >
+            ["id9"] = <
+                text = <"Education provided">
+                description = <"Education session or material provided.">
+            >
+        >
+    >
+    

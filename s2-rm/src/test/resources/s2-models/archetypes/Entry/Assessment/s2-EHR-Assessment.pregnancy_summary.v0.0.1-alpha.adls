@@ -1,0 +1,781 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a7288744-40f3-4c48-95c9-a3e352c47639)
+	s2-EHR-Assessment.pregnancy_summary.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"openEHR Foundation">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2007-02-28">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.pregnancy_summary.v0.0.1-alpha, copyright 2007 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.pregnancy_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To support the recording of an overview or summary record of an identified pregnancy and outcome, including the antenatal period, labor, birth and the immediate postnatal period.">
+			use = <"Use to record an overview or summary record of an identified pregnancy and outcome, including the antenatal period, labor, birth and the immediate postnatal period. 
+            
+            During an active pregnancy, this archetype supports the evolution of a persistent pregnancy-related health summary record, with information gradually accumulated or updated, throughout the duration of the pregnancy, labour, birth and the immediate postnatal period. As the data is committed to the persistent health record, the date of the update is also recorded in the 'Last Updated' data Node in Protocol, to ensure that if this pregnancy summary is taken out of context of the health record for other purposes, such as data exchange, the date of the latest update is kept with the clinical data.
+            
+            After birth, this summary record can be used to share essential information with other healthcare providers about the pregnancy, labour, birth and immediate postnatal period. 
+            
+            Each completed pregnancy summary saved to the health record can be re-used to populate the Past Pregnancy History details in subsequent pregnancy records.
+            
+            In situations where completed pregnancy summaries are not available for each previous pregnancy, this archetype can also be used to record a relevant subset of information that can be used to populate the Past Pregnancy History details with new or active pregnancy records.">
+			keywords = <"pregnancy", "fetus", "foetus", "infant", "neonate", "delivery", "conception", "due", "date", "expected", "labor", "labour", "birth", "baby", "babies", "EDD", "EDB">
+			misuse = <"Not to be used to record event-based information during the pregnancy, labor, birth and immediate postnatal period. These will be recorded using OBSERVATION archetypes - for example, the information related to history & examination during antenatal visits or during labour.
+            
+            Not to be used to record summary information about a woman's Obstetric history - use EVALUATION.obstetric_summary.
+            
+            Not to be used to record detailed information about a woman's Menstrual Cycle - use OBSERVATION.menstrual_cycle.
+            
+            Not to be used to record detailed information about infant feeding - a separate archetype will be used.
+            
+            Not to be used to record a general menstrual history summary or diary - separate archetypes will be used.">
+		>
+	>
+	other_contributors = <"Sheryl Alexander, NT Department of Health, Australia", "Rita Apelt, Department of Health,NT, Australia", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Stephen Chu, NEHTA, Australia", "Margaret Cotter, AMSANT, Australia", "Michelle Dowden, Miwatj Health Ngalkanbuy Health, Australia", "Tim Garden, NTG Department of Health, Australia", "Tanya Gardner, CAAC, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Bernadette Lack, Department of Health, Australia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hugh Leslie, Ocean Informatics, Australia", "Chunlan Ma, Ocean Informatics, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Jeremy Oats, NT Health, Australia", "Steven Schatz, Department of Health (Northern Territory), Australia", "Rosalie Schultz, Anyinginyi Health Aboriginal Corporation, Australia", "Gary Sinclair, NT DoH, Australia", "Cherie Whitbread, Royal Darwin Hospital, Australia", "Jo Wright, NT Dept of Health, Australia (Editor)">
+
+definition
+	Assessment[id1] matches {	-- Pregnancy summary
+		data matches {
+			Node[id147] occurrences matches {0..1} matches {	-- Pregnancy label
+				value matches {
+					Text[id180] 
+				}
+			}
+			Node[id159] occurrences matches {0..1} matches {	-- Pregnancy confirmed
+				value matches {
+					Date_time_value[id181] 
+					Uri_ref[id182] 
+					Boolean_value[id183] 
+				}
+			}
+			Node[id84] occurrences matches {0..1} matches {	-- Pregnancy synopsis
+				value matches {
+					Text[id184] 
+				}
+			}
+			Node[id105] occurrences matches {0..1} matches {	-- Assisted reproduction?
+				value matches {
+					Boolean_value[id185] matches {
+						value matches {True}
+					}
+				}
+			}
+			Node[id106] occurrences matches {0..1} matches {	-- Assisted reproduction type
+				value matches {
+					Text[id186] 
+				}
+			}
+			Node[id95] occurrences matches {0..1} matches {	-- Early pregnancy outcome
+				value matches {
+					Text[id187] 
+				}
+			}
+			Node[id160] occurrences matches {0..1} matches {	-- Pregnancy duration
+				value matches {
+					Duration_value[id188] matches {
+						magnitude matches {|PT0S..P52W|}
+					}
+				}
+			}
+			Node[id175] occurrences matches {0..1} matches {	-- Pregnancy end date
+				value matches {
+					Date_time_value[id189] 
+				}
+			}
+			Node[id179] occurrences matches {0..1} matches {	-- Multiple pregnancy?
+				value matches {
+					Coded_text[id190] matches {
+						term matches {
+							Terminology_term[id226] matches {
+								concept matches {[ac1]}		-- Multiple pregnancy? (synthesised)
+							}
+						}
+					}
+					Plain_text[id191] 
+					Boolean_value[id192] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Number of foetuses
+				value matches {
+					Count[id193] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Onset of labour
+				value matches {
+					Coded_text[id194] matches {
+						term matches {
+							Terminology_term[id227] matches {
+								concept matches {[ac2]}		-- Onset of labour (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id97] matches {	-- Induction method
+				value matches {
+					Text[id195] 
+				}
+			}
+			Node[id98] matches {	-- Reason for induction
+				value matches {
+					Text[id196] 
+				}
+			}
+			Node[id23] matches {	-- Augmentation method
+				value matches {
+					Text[id197] 
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Total duration of labor
+				value matches {
+					Duration_value[id198] matches {
+						magnitude matches {|>=PT0S|}
+					}
+				}
+			}
+			Node[id119] occurrences matches {0..1} matches {	-- Perineum
+				value matches {
+					Plain_text[id199] 
+					Coded_text[id200] matches {
+						term matches {
+							Terminology_term[id228] matches {
+								concept matches {[ac3]}		-- Perineum (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id158] occurrences matches {0..1} matches {	-- Episiotomy
+				value matches {
+					Boolean_value[id201] 
+				}
+			}
+			Node[id120] occurrences matches {0..1} matches {	-- Estimated blood loss
+				value matches {
+					Quantity[id202] matches {
+						units matches {
+							Coded_text[id230] matches {
+								term matches {
+									Terminology_term[id229] matches {
+										concept matches {[at183]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id174] occurrences matches {0..1} matches {	-- Place category
+				value matches {
+					Text[id203] 
+				}
+			}
+			Node[id176] occurrences matches {0..1} matches {	-- Place of outcome
+				value matches {
+					Text[id204] 
+				}
+			}
+			use_archetype Node[id173, s2-EHR-Node.address.v1] 
+			use_archetype Node[id162, s2-EHR-Node.exam-placenta.v0] 
+			Node[id66] matches {	-- Maternal complication
+				items matches {
+					Node[id67] matches {	-- Complication
+						value matches {
+							Text[id205] 
+						}
+					}
+					Node[id69] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id206] 
+						}
+					}
+					Node[id68] occurrences matches {0..1} matches {	-- Date/Time of onset
+						value matches {
+							Date_time_value[id207] 
+						}
+					}
+				}
+			}
+			Node[id29] matches {	-- Per infant
+				items matches {
+					Node[id37] occurrences matches {0..1} matches {	-- Label/name
+						value matches {
+							Text[id208] 
+						}
+					}
+					Node[id164] occurrences matches {0..1} matches {	-- Infant outcome
+						value matches {
+							Text[id209] 
+						}
+					}
+					Node[id30] occurrences matches {0..1} matches {	-- Date/time of delivery
+						value matches {
+							Date_time_value[id210] 
+						}
+					}
+					Node[id38] occurrences matches {0..1} matches {	-- Assigned sex
+						value matches {
+							Coded_text[id211] matches {
+								term matches {
+									Terminology_term[id231] matches {
+										concept matches {[ac4]}		-- Assigned sex (synthesised)
+									}
+								}
+							}
+						}
+					}
+					use_archetype Node[id161, s2-EHR-Node.birth_detail.v0] 
+					Node[id46] occurrences matches {0..1} matches {	-- Presenting part
+						value matches {
+							Coded_text[id212] matches {
+								term matches {
+									Terminology_term[id232] matches {
+										concept matches {[ac5]}		-- Presenting part (synthesised)
+									}
+								}
+							}
+							Plain_text[id213] 
+						}
+					}
+					Node[id150] occurrences matches {0..1} matches {	-- Position
+						value matches {
+							Coded_text[id214] matches {
+								term matches {
+									Terminology_term[id233] matches {
+										concept matches {[ac6]}		-- Position (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id39] occurrences matches {0..1} matches {	-- Birthweight
+						value matches {
+							Quantity[id234] matches {	-- Birthweight (g)
+								magnitude matches {|0.0..10000.0|}
+								units matches {
+									Coded_text[id236] matches {
+										term matches {
+											Terminology_term[id235] matches {
+												concept matches {[at184]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+							Quantity[id237] matches {	-- Birthweight (kg)
+								magnitude matches {|0.0..10.0|}
+								units matches {
+									Coded_text[id239] matches {
+										term matches {
+											Terminology_term[id238] matches {
+												concept matches {[at185]}
+											}
+										}
+									}
+								}
+								precision matches {2}
+							}
+						}
+					}
+					Node[id110] occurrences matches {0..1} matches {	-- Feeding
+						value matches {
+							Text[id216] 
+						}
+					}
+					Node[id166] occurrences matches {0..1} matches {	-- Neonatal outcome
+						value matches {
+							Plain_text[id217] 
+							Coded_text[id218] matches {
+								term matches {
+									Terminology_term[id240] matches {
+										concept matches {[ac7]}		-- Neonatal outcome (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id171] occurrences matches {0..1} matches {	-- Neonatal summary
+						value matches {
+							Text[id219] 
+						}
+					}
+					Node[id168] occurrences matches {0..1} matches {	-- Date/time of neonatal death
+						value matches {
+							Date_time_value[id220] 
+						}
+					}
+					Node[id167] occurrences matches {0..1} matches {	-- Age at neonatal death
+						value matches {
+							Duration_value[id221] 
+						}
+					}
+					Node[id62] matches {	-- Newborn complication
+						items matches {
+							Node[id63] matches {	-- Complication
+								value matches {
+									Text[id222] 
+								}
+							}
+							Node[id65] occurrences matches {0..1} matches {	-- Description
+								value matches {
+									Text[id223] 
+								}
+							}
+							Node[id64] occurrences matches {0..1} matches {	-- Date/time of onset
+								value matches {
+									Date_time_value[id224] 
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id83] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id225] 
+				}
+			}
+			allow_archetype Node[id165] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Multiple pregnancy? (synthesised)">
+				description = <"Assertion about whether the pregnancy is cateogrised as 'multiple pregnancy'. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Onset of labour (synthesised)">
+				description = <"Manner in which labour started. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Perineum (synthesised)">
+				description = <"Coded or narrative description about the condition of the perineum after birth, including injuries and repairs. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Assigned sex (synthesised)">
+				description = <"Sex of the infant  by direct observation of external genitalia. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Presenting part (synthesised)">
+				description = <"Presenting part of the infant at delivery. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Position (synthesised)">
+				description = <"Position of the infant at delivery. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Neonatal outcome (synthesised)">
+				description = <"Description of the outcome at the end of the neonatal period per newborn infant. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Induced">
+				description = <"Onset through intervention.">
+			>
+			["at106"] = <
+				text = <"Foot">
+				description = <"A foot was the presenting part.">
+			>
+			["at107"] = <
+				text = <"Arm">
+				description = <"An arm was the presenting part.">
+			>
+			["at112"] = <
+				text = <"No labour">
+				description = <"No onset of labour.">
+			>
+			["at113"] = <
+				text = <"Male">
+				description = <"Baby appears physically male.">
+			>
+			["at114"] = <
+				text = <"Female">
+				description = <"Baby appears physically female.">
+			>
+			["at115"] = <
+				text = <"Indeterminate">
+				description = <"Sex of the baby has not yet been able to be determined from observation of physical characteristics.">
+			>
+			["at133"] = <
+				text = <"Shoulder">
+				description = <"A shoulder was the presenting part.">
+			>
+			["at150"] = <
+				text = <"Left occiput anterior/transverse">
+				description = <"The baby's back was toward the left side of the uterus at onset of labour.">
+			>
+			["at151"] = <
+				text = <"Right occiput anterior/transverse">
+				description = <"The baby's back was toward the right side of the uterus at onset of labour.">
+			>
+			["at152"] = <
+				text = <"Unknown">
+				description = <"It is not known which side the baby's back was positioned by onset of labour.">
+			>
+			["at153"] = <
+				text = <"First degree vaginal tear">
+				description = <"Involve just the skin of the vaginal opening and perineum.">
+			>
+			["at154"] = <
+				text = <"Second degree vaginal tear">
+				description = <"Involve the skin and muscle of the perineum and might extend deep into the vagina.">
+			>
+			["at155"] = <
+				text = <"Third degree vaginal tear">
+				description = <"Tear in the vaginal tissue, perineal skin, and perineal muscles that extends into the anal sphincter.">
+			>
+			["at156"] = <
+				text = <"Fourth degree vaginal tear">
+				description = <"Extend through the anal sphincter and into the mucous membrane that lines the rectum.">
+			>
+			["at168"] = <
+				text = <"Live">
+				description = <"The infant survived the neonatal period.">
+			>
+			["at169"] = <
+				text = <"Deceased">
+				description = <"The infant did not survive the neonatal period.">
+			>
+			["at176"] = <
+				text = <"Intersex">
+				description = <"">
+			>
+			["at177"] = <
+				text = <"Unknown">
+				description = <"">
+			>
+			["at179"] = <
+				text = <"Present">
+				description = <"The pregnancy has more than one foetus.">
+			>
+			["at180"] = <
+				text = <"Absent">
+				description = <"The pregnancy has only one foetus.">
+			>
+			["at181"] = <
+				text = <"Volume">
+				description = <"Volume">
+			>
+			["at182"] = <
+				text = <"Mass">
+				description = <"Mass">
+			>
+			["at183"] = <
+				text = <"ml">
+				description = <"ml unit.">
+			>
+			["at184"] = <
+				text = <"g">
+				description = <"Gram unit.">
+			>
+			["at185"] = <
+				text = <"kg">
+				description = <"Kg unit.">
+			>
+			["at46"] = <
+				text = <"Vertex">
+				description = <"The vertex was the presenting part.">
+			>
+			["at47"] = <
+				text = <"Breech">
+				description = <"The breech was the presenting part.">
+			>
+			["at48"] = <
+				text = <"Face">
+				description = <"The face was the presenting part.">
+			>
+			["at49"] = <
+				text = <"Brow">
+				description = <"The brow was the presenting part.">
+			>
+			["at9"] = <
+				text = <"Spontaneous">
+				description = <"Onset without intervention.">
+			>
+			["id1"] = <
+				text = <"Pregnancy summary">
+				description = <"Overview or summary record of a pregnancy and outcome, including the antenatal period, labour, birth and the immediate postnatal period.">
+			>
+			["id105"] = <
+				text = <"Assisted reproduction?">
+				description = <"Was the pregnancy a result of assisted reproductive technology?">
+			>
+			["id106"] = <
+				text = <"Assisted reproduction type">
+				description = <"Type of assisted reproductive technology used to achieve pregnancy.">
+			>
+			["id110"] = <
+				text = <"Feeding">
+				description = <"Narrative description about feeding of the infant.">
+			>
+			["id119"] = <
+				text = <"Perineum">
+				description = <"Coded or narrative description about the condition of the perineum after birth, including injuries and repairs.">
+			>
+			["id120"] = <
+				text = <"Estimated blood loss">
+				description = <"Estimation of total maternal blood loss during birth and immediately postpartum.">
+			>
+			["id147"] = <
+				text = <"Pregnancy label">
+				description = <"">
+			>
+			["id150"] = <
+				text = <"Position">
+				description = <"Position of the infant at delivery.">
+			>
+			["id158"] = <
+				text = <"Episiotomy">
+				description = <"Was an episiotomy performed?">
+			>
+			["id159"] = <
+				text = <"Pregnancy confirmed">
+				description = <"Confirmation of the pregnancy.">
+			>
+			["id160"] = <
+				text = <"Pregnancy duration">
+				description = <"The gestation when the pregnancy has ended.">
+			>
+			["id161"] = <
+				text = <"Birth detail">
+				description = <"A subset of persistent or summary information about the pregnancy and birth of an infant, selected for utility of use within both the maternal and infant health records.">
+			>
+			["id162"] = <
+				text = <"Additional details">
+				description = <"Structured details about additional information related to the pregnancy summary.">
+			>
+			["id164"] = <
+				text = <"Infant outcome">
+				description = <"Outcome of the pregnancy for the identified infant or foetus.">
+			>
+			["id165"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id166"] = <
+				text = <"Neonatal outcome">
+				description = <"Description of the outcome at the end of the neonatal period per newborn infant.">
+			>
+			["id167"] = <
+				text = <"Age at neonatal death">
+				description = <"The age of the infant if they died during the neonatal  period.">
+			>
+			["id168"] = <
+				text = <"Date/time of neonatal death">
+				description = <"">
+			>
+			["id17"] = <
+				text = <"Total duration of labor">
+				description = <"Total duration of all three stages of labour.">
+			>
+			["id171"] = <
+				text = <"Neonatal summary">
+				description = <"Narrative description about issues, concerns about the infant or events occurring during the neonatal period.">
+			>
+			["id173"] = <
+				text = <"Structured place of outcome">
+				description = <"Structured details about the  location where the pregnancy was delivered or an alternative outcome of the pregnancy was treated or managed.">
+			>
+			["id174"] = <
+				text = <"Place category">
+				description = <"Category of the place where the individual died.">
+			>
+			["id175"] = <
+				text = <"Pregnancy end date">
+				description = <"The date and/or time marking the end of the pregnancy.">
+			>
+			["id176"] = <
+				text = <"Place of outcome">
+				description = <"Simple details about the  location where the pregnancy was delivered or an alternative outcome of the pregnancy was treated or managed.">
+			>
+			["id179"] = <
+				text = <"Multiple pregnancy?">
+				description = <"Assertion about whether the pregnancy is cateogrised as 'multiple pregnancy'.">
+			>
+			["id23"] = <
+				text = <"Augmentation method">
+				description = <"Method of labour augmentation.">
+			>
+			["id234"] = <
+				text = <"Birthweight (g)">
+				description = <"Birthweight (g)">
+			>
+			["id237"] = <
+				text = <"Birthweight (kg)">
+				description = <"Birthweight (kg)">
+			>
+			["id29"] = <
+				text = <"Per infant">
+				description = <"Information about a single foetus or newborn infant.">
+			>
+			["id30"] = <
+				text = <"Date/time of delivery">
+				description = <"Date and time of delivery for the infant.">
+			>
+			["id37"] = <
+				text = <"Label/name">
+				description = <"Identification of the infant.">
+			>
+			["id38"] = <
+				text = <"Assigned sex">
+				description = <"Sex of the infant  by direct observation of external genitalia.">
+			>
+			["id39"] = <
+				text = <"Birthweight">
+				description = <"Weight of the infant at delivery.">
+			>
+			["id46"] = <
+				text = <"Presenting part">
+				description = <"Presenting part of the infant at delivery.">
+			>
+			["id62"] = <
+				text = <"Newborn complication">
+				description = <"Details about any complications affecting the newborn.">
+			>
+			["id63"] = <
+				text = <"Complication">
+				description = <"Identification of the complication after birth.">
+			>
+			["id64"] = <
+				text = <"Date/time of onset">
+				description = <"Date and/or time of onset of the complication.">
+			>
+			["id65"] = <
+				text = <"Description">
+				description = <"Narrative description of complication.">
+			>
+			["id66"] = <
+				text = <"Maternal complication">
+				description = <"Details about pregnancy complications or birth complications affecting the mother.">
+			>
+			["id67"] = <
+				text = <"Complication">
+				description = <"Identification of the complication.">
+			>
+			["id68"] = <
+				text = <"Date/Time of onset">
+				description = <"Date of onset of complication, as assessed by a clinician.">
+			>
+			["id69"] = <
+				text = <"Description">
+				description = <"Narrative description of the maternal complication.">
+			>
+			["id8"] = <
+				text = <"Number of foetuses">
+				description = <"Number of foetuses identified in utero.">
+			>
+			["id83"] = <
+				text = <"Last updated">
+				description = <"The date/time the pregnancy summary was last updated.">
+			>
+			["id84"] = <
+				text = <"Pregnancy synopsis">
+				description = <"Narrative description about the entire pregnancy, labour and delivery, including complications.">
+			>
+			["id9"] = <
+				text = <"Onset of labour">
+				description = <"Manner in which labour started.">
+			>
+			["id95"] = <
+				text = <"Early pregnancy outcome">
+				description = <"Outcome of the pregnancy as a whole.">
+			>
+			["id97"] = <
+				text = <"Induction method">
+				description = <"Method of labour induction.">
+			>
+			["id98"] = <
+				text = <"Reason for induction">
+				description = <"Reason for induction of labour.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at181"] = <http://openehr.org/id/129>
+			["at182"] = <http://openehr.org/id/124>
+		>
+		["ucum"] = <
+			["at183"] = <http://ucum.org/id/ml>
+			["at184"] = <http://ucum.org/id/g>
+			["at185"] = <http://ucum.org/id/kg>
+		>
+		["snomed"] = <
+			["at183"] = <http://snomed.info/id/258773002>
+			["at184"] = <http://snomed.info/id/258682000>
+			["at185"] = <http://snomed.info/id/258683005>
+		>
+		["loinc"] = <
+			["id120"] = <http://loinc.org/59770-8>
+			["id162"] = <http://loinc.org/46696-1>
+			["id179"] = <http://loinc.org/45371-2>
+			["id62"] = <http://loinc.org/32416-0>
+			["id65"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id69"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id83"] = <http://loinc.org/106177-9>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at179", "at180">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at112", "at9", "at10">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at153", "at154", "at155", "at156">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at113", "at114", "at115", "at176", "at177">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at46", "at47", "at48", "at49", "at106", "at107", "at133">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at150", "at151", "at152">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at168", "at169">
+		>
+	>
+

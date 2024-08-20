@@ -1,0 +1,138 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; uid=18f96334-947e-4451-ba42-1d790977f553)
+	s2-EHR-Node.organization.v1.0.2
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health">
+		["organisation"] = <"S2 Health <http://www.S2Health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"$today (date is disabled during testing)">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-04-14">
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-CLUSTER.organisation.v1.0.1">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.organisation.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"graphite_openehr_to_s2_adl">
+		["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record details about an organization as they are known or understood in the course of clinical documentation.">
+			use = <"Use to record details of an organization as they are known or understood in the course of clinical documentation, often ad hoc or when it is not appropriate or possible to use a formal demographic register or index. Examples include:
+            - the copyholder of an advanced care record, using the 'Copyholder' SLOT within the EVALUATION.advance_care_directive archetype; or
+            - the name and contact details of an organization providing home care to an individual.
+            
+            This archetype has been designed to carry details of formally recognised entities, such as a registered business, a hospital and its recognised 'sub-organizations', such as an operationally separate or specialised satellite clinic or home care service. It may also be used to carry contact information about more informal networks or groups, such as a local community support group.
+            
+            This archetype could also be used as a proxy for formal demographic data when reviewing a template with domain experts - for example, an assessment where reviewers would expect to see an organizations' details on an assessment form.">
+			keywords = <"organisation, organization, provider, carer, network, group", ...>
+			misuse = <"Not to be used to represent, replace or maintain an official register or index. Use a formal Health Provider Index for this purpose, or archetypes based on the openEHR Demographic Information Model.
+            
+            Not to be used to represent the location of care and similar data Nodes that should be represented formally in the health record using the Reference Model attributes.">
+		>
+	>
+	other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Yexuan Cheng, 浙江大学, China", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Valborg Ellingsen, Haraldsplass Diakonale sykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Martin Grundberg, Cambio Healthcare Systems, Sweden", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Gunn-Lisbeth Kleiven, Oslo universitetssykehus HF, Norway", "Shinji Kobayashi, National Institute of Public Health, Japan", "Kanika Kuwelker, Helse Vest IKT, Norway", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Sidharth Ramesh, Kasturba Medical College, India", "Erik Skjemstad, Helse Nord RHF, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Erik Sundvall, Karolinska Institutet + Karolinska University Hospital, Region Stockholm + Linköping University, Sweden", "Nyree Taylor, Ocean Health Systems, Australia", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Organization
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Name
+				value matches {
+					Plain_text[id24] 
+				}
+			}
+			Node[id4] matches {	-- Identifier
+				value matches {
+					Rwe_id_ref[id25] 
+				}
+			}
+			Node[id5] matches {	-- Role
+				value matches {
+					Plain_text[id27] 
+				}
+			}
+			use_archetype Node[id6, s2-EHR-Node.address.v1] 
+			use_archetype Node[id23, s2-EHR-Node.electronic_communication.v1] 
+			use_archetype Node[id3, s2-EHR-Node.person.v1] 
+			use_archetype Node[id22, s2-EHR-Node.organization.v1] 
+			allow_archetype Node[id18] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Plain_text[id28] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Organization">
+				description = <"An entity comprising one or more people and having a particular purpose.">
+			>
+			["id18"] = <
+				text = <"Additional details">
+				description = <"Additional details about the organization.">
+			>
+			["id2"] = <
+				text = <"Name">
+				description = <"The unstructured name or label for the organization.">
+			>
+			["id20"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the organization not captured in other fields.">
+			>
+			["id22"] = <
+				text = <"Parent organization">
+				description = <"A larger organization of which this organization is a child or subsidiary.">
+			>
+			["id23"] = <
+				text = <"Electronic communication">
+				description = <"Details about one or more types of electronic communication for the organization.">
+			>
+			["id3"] = <
+				text = <"Contact person">
+				description = <"Details about one or more people within the organization.">
+			>
+			["id4"] = <
+				text = <"Identifier">
+				description = <"Identifier associated with the organization.">
+			>
+			["id5"] = <
+				text = <"Role">
+				description = <"The relationship or role of the organization to the individual or subject of care.">
+			>
+			["id6"] = <
+				text = <"Address">
+				description = <"Details about an address for the organization.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/90055-5>
+			["id2"] = <http://loinc.org/76469-6>
+			["id20"] = <http://loinc.org/48767-8>
+			["id3"] = <http://loinc.org/90057-1>
+			["id4"] = <http://loinc.org/76468-8>
+			["id6"] = <http://loinc.org/90052-2>
+		>
+	>
+

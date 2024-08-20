@@ -1,0 +1,1049 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2d1e6bdd-2f83-4898-b2b8-ab65f76338a1)
+	s2-EHR-Direct_observation.spirometry_result.v2.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR Informatics, UK, <ian.mcnicoll@freshEHR.com>, 2013-03-08">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.spirometry_result.v2.0.0, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.spirometry_result.v2.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the results of a pulmonary function test performed using a spirometer or peak flow meter.">
+			use = <"Use to record the results of a pulmonary function test performed using a spirometer or peak flow meter.
+            
+            This archetype is intended to be used to record the results from:
+            - electronic or mechanical measurement devices. Use the 'Type of measurement' Node in Protocol to record how the result was measured; 
+            - oral, nasal or tracheostomy tests. Use the 'Method' Node in Protocol to record the type of breathing equipment used to perform the test. For example: mouth piece or face mask. Measurements with different 'Method' will have to be recorded using separate instances of the archetype.
+            - inspiratory and expiratory tests. The name of each test will indicate whether the test records an inspiratory or expiratory result. 
+            
+            If the spirometry test is performed in association with the administration of bronchodilators or challenge substances, this can be recorded using the 'Challenge/reversibility' Node. Details of what was administered should be recorded using an instance of the ACTION.medication archetype committed within the same COMPOSITION.
+            
+            If additional information about body temperature, ambient pressure or humidity is required, this can be recorded using additional archetypes. Body temperature can be recorded using an instance of the OBSERVATION.body_temperature archetype committed within the same COMPOSITION. Ambient pressure or humidity can be recorded using the Node.environmental_conditions in the 'Enviromental conditions' slot.
+            
+            The 'Any event' can be cloned and constrained to support the representation of:
+            - Multiple measurements and their average - clone the 'Any event' as many times as needed, plus an additional event set to 'Interval' and selecting the 'Mean' attribute;
+            - Pre- and post bronchial challenge or bronchodilator results - clone the 'Any event' and rename as 'Baseline' and 'Post challenge/bronchodilator', associated with a time offset if required.">
+			keywords = <"respiratory", "pulmonary", "spirometry", "peak flow", "lung", "bronchial", "airway", "pef", "pefr">
+			misuse = <"Not to be used to record the results of other types of lung function tests, for example body plethysmography or lung diffusion tests. Use specific archetypes for these purposes.
+            
+            Not to be used to record details about incentive spirometry. Use specific archetypes for these purposes.
+            
+            Not to be used to record the results of blood gas tests. Use the OBSERVATION.laboratory_test_result for this purpose.
+            
+            Not to be used to record measurements about pulse oximetry. Use the OBSERVATION.pulse_oximetry for this purpose.">
+		>
+	>
+	other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Håvard Andreassen Sæverud, Oslo universitetssykehus, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Hanne Marte Bårholm, Helse Vest IKT, Norway (openEHR Editor)", "Derek Corrigan, Royal College of Surgeons in Ireland, Ireland", "Manuela Domingo, hospital general universitario dr. balmis, Spain", "Ola Drange Røksund, Helse Bergen, Norway", "Kåre Flø, DIPS ASA, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Merete Havn Torland, Helse Vest IKT, Norway", "Sam Heard, Ocean Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Tiago Jacinto, CINTESIS - FMUP, Portugal", "Lars Morgan Karlsen, DIPS ASA, Norway", "Agathe Krekvik Govertsen, Helse Bergen, Norway", "Kanika Kuwelker, Helse Vest IKT, Norway (openEHR Editor)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Valeria Lecca, Sardegna Ricerche, Italia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Anne M Gromsrud, DIPS AS, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Svenne Naumann, Finnmarkssykehuset, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Ana Pereira, CINTESIS, CUF-Porto, Portugal", "Francisco Sanchez Laguna, Ministry of Health, Spain", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Nina Særvold, Helse Bergen, Norway", "Nyree Taylor, Ocean Health Systems, Australia", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Ina Wille, Helse-Vest RHF, Norway">
+
+definition
+	Direct_observation[id1] occurrences matches {0..1} matches {	-- Spirometry result
+		data matches {
+			Node[id53] matches {	-- Volume
+				items matches {
+					Node[id54] occurrences matches {0..1} matches {	-- Result
+						value matches {
+							Measured<Quantity>[id240] matches {
+								value matches {
+									Quantity[id234] matches {	-- Result (L)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id236] matches {
+												term matches {
+													Terminology_term[id235] matches {
+														concept matches {[at209]}
+													}
+												}
+											}
+										}
+										precision matches {3}
+									}
+								}
+							}
+							Measured<Quantity>[id241] matches {
+								value matches {
+									Quantity[id237] matches {	-- Result (mL)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id239] matches {
+												term matches {
+													Terminology_term[id238] matches {
+														concept matches {[at210]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+						}
+					}
+					Node[id55] occurrences matches {0..1} matches {	-- Predicted result
+						value matches {
+							Measured<Quantity>[id248] matches {
+								value matches {
+									Quantity[id242] matches {	-- Predicted result (L)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id244] matches {
+												term matches {
+													Terminology_term[id243] matches {
+														concept matches {[at209]}
+													}
+												}
+											}
+										}
+										precision matches {3}
+									}
+								}
+							}
+							Measured<Quantity>[id249] matches {
+								value matches {
+									Quantity[id245] matches {	-- Predicted result (mL)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id247] matches {
+												term matches {
+													Terminology_term[id246] matches {
+														concept matches {[at210]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+						}
+					}
+					Node[id45] occurrences matches {0..1} matches {	-- Measured/predicted ratio
+						value matches {
+							Measured<Quantity>[id252] matches {
+								value matches {
+									Quantity[id213] matches {
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id251] matches {
+												term matches {
+													Terminology_term[id250] matches {
+														concept matches {[at211]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				name matches {"FVC", "SVC", "FIVC", "IVC", "IC", "FEV0.5", "FEV0.75", "FEV1", "FEV2", "FEV3", "FEV6", "FIV1", "TV", "ERV", "IRV", "MVV"}
+			}
+			Node[id58] matches {	-- Flow rate
+				items matches {
+					Node[id59] occurrences matches {0..1} matches {	-- Result
+						value matches {
+							Measured<Quantity>[id262] matches {
+								value matches {
+									Quantity[id253] matches {	-- Result (L/s)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id255] matches {
+												term matches {
+													Terminology_term[id254] matches {
+														concept matches {[at212]}
+													}
+												}
+											}
+										}
+										precision matches {3}
+									}
+								}
+							}
+							Measured<Quantity>[id263] matches {
+								value matches {
+									Quantity[id256] matches {	-- Result (mL/s)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id258] matches {
+												term matches {
+													Terminology_term[id257] matches {
+														concept matches {[at213]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+							Measured<Quantity>[id264] matches {
+								value matches {
+									Quantity[id259] matches {	-- Result (L/min)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id261] matches {
+												term matches {
+													Terminology_term[id260] matches {
+														concept matches {[at214]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+						}
+					}
+					Node[id9] occurrences matches {0..1} matches {	-- Predicted result
+						value matches {
+							Measured<Quantity>[id274] matches {
+								value matches {
+									Quantity[id265] matches {	-- Predicted result (L/s)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id267] matches {
+												term matches {
+													Terminology_term[id266] matches {
+														concept matches {[at212]}
+													}
+												}
+											}
+										}
+										precision matches {3}
+									}
+								}
+							}
+							Measured<Quantity>[id275] matches {
+								value matches {
+									Quantity[id268] matches {	-- Predicted result (mL/s)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id270] matches {
+												term matches {
+													Terminology_term[id269] matches {
+														concept matches {[at213]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+							Measured<Quantity>[id276] matches {
+								value matches {
+									Quantity[id271] matches {	-- Predicted result (L/min)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id273] matches {
+												term matches {
+													Terminology_term[id272] matches {
+														concept matches {[at214]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+						}
+					}
+					Node[id123] occurrences matches {0..1} matches {	-- Measured/predicted ratio
+						value matches {
+							Measured<Quantity>[id279] matches {
+								value matches {
+									Quantity[id217] matches {
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id278] matches {
+												term matches {
+													Terminology_term[id277] matches {
+														concept matches {[at211]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				name matches {"PEFR", "PIFR", "FEF25-75%", "FEF25-50%", "FIF25-75%", "FIF25-50%", "FEF25%", "FEF50%", "FEF75%", "FIF25%", "FIF50%", "FIF75%"}
+			}
+			Node[id157] matches {	-- Pressure
+				items matches {
+					Node[id166] occurrences matches {0..1} matches {	-- Result
+						value matches {
+							Measured<Quantity>[id286] matches {
+								value matches {
+									Quantity[id280] matches {	-- Result (cm[H2O])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id282] matches {
+												term matches {
+													Terminology_term[id281] matches {
+														concept matches {[at215]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+							Measured<Quantity>[id287] matches {
+								value matches {
+									Quantity[id283] matches {	-- Result (mm[Hg])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id285] matches {
+												term matches {
+													Terminology_term[id284] matches {
+														concept matches {[at216]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+								}
+							}
+						}
+					}
+					Node[id167] occurrences matches {0..1} matches {	-- Predicted result
+						value matches {
+							Measured<Quantity>[id294] matches {
+								value matches {
+									Quantity[id288] matches {	-- Predicted result (cm[H2O])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id290] matches {
+												term matches {
+													Terminology_term[id289] matches {
+														concept matches {[at215]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+							Measured<Quantity>[id295] matches {
+								value matches {
+									Quantity[id291] matches {	-- Predicted result (mm[Hg])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id293] matches {
+												term matches {
+													Terminology_term[id292] matches {
+														concept matches {[at216]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+								}
+							}
+						}
+					}
+					Node[id168] occurrences matches {0..1} matches {	-- Measured/predicted ratio
+						value matches {
+							Measured<Quantity>[id298] matches {
+								value matches {
+									Quantity[id221] matches {
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id297] matches {
+												term matches {
+													Terminology_term[id296] matches {
+														concept matches {[at211]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				name matches {"MEP", "MIP", "SNIP"}
+			}
+			Node[id56] matches {	-- Ratio
+				items matches {
+					Node[id57] occurrences matches {0..1} matches {	-- Result
+						value matches {
+							Measured<Quantity>[id301] matches {
+								value matches {
+									Quantity[id223] matches {
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id300] matches {
+												term matches {
+													Terminology_term[id299] matches {
+														concept matches {[at211]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id19] occurrences matches {0..1} matches {	-- Predicted result
+						value matches {
+							Measured<Quantity>[id304] matches {
+								value matches {
+									Quantity[id224] matches {
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id303] matches {
+												term matches {
+													Terminology_term[id302] matches {
+														concept matches {[at211]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				name matches {"FEV1/FVC ratio", "FEV1/SVC ratio", "FEV1/FEV6 ratio", "FEV1/IVC ratio"}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Forced expiratory time (FET)
+				value matches {
+					Duration_value[id226] matches {
+						magnitude matches {|>=PT0S|}
+					}
+				}
+			}
+			use_archetype Node[id132, s2-EHR-Node.media_file.v1] 
+			Node[id131] occurrences matches {0..1} matches {	-- Clinical interpretation
+				value matches {
+					Text[id227] 
+				}
+			}
+			Node[id102] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id228] 
+				}
+			}
+		}
+		state matches {
+			Node[id116] occurrences matches {0..1} matches {	-- Position
+				value matches {
+					Coded_text[id229] matches {
+						term matches {
+							Terminology_term[id305] matches {
+								concept matches {[ac5]}		-- Position (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id99] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id230] 
+				}
+			}
+			use_archetype Node[id192, s2-EHR-Node.level_of_exertion.v0] occurrences matches {0..1} 
+			use_archetype Node[id210, s2-EHR-Node.environmental_conditions.v0] 
+		}
+		qualifiers matches {
+			Node[id197] occurrences matches {0..1} matches {	-- Type of measurement
+				value matches {
+					Coded_text[id231] matches {
+						term matches {
+							Terminology_term[id306] matches {
+								concept matches {[ac6]}		-- Type of measurement (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id200] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Text[id232] 
+				}
+			}
+			Node[id193] occurrences matches {0..1} matches {	-- Challenge/reversibility
+				value matches {
+					Coded_text[id233] matches {
+						term matches {
+							Terminology_term[id307] matches {
+								concept matches {[ac7]}		-- Challenge/reversibility (synthesised)
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id31, s2-EHR-Node.device.v1] 
+			use_archetype Node[id186, s2-EHR-Node.knowledge_base_reference.v1] 
+			allow_archetype Node[id133] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Volume (synthesised)">
+				description = <"Test result represented as a measured volume or calculated capacity. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Flow rate (synthesised)">
+				description = <"Test result represented as a measured flow rate. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Pressure (synthesised)">
+				description = <"Test result represented as a measured pressure. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Ratio (synthesised)">
+				description = <"A calculated test result expressed as a ratio. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Position (synthesised)">
+				description = <"The body position of the individual at the time of measurement. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Type of measurement (synthesised)">
+				description = <"Type of measurement of spirometry. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Challenge/reversibility (synthesised)">
+				description = <"Statement about whether the spirometry test was performed as a reversibility test or a bronchial challenge test. (synthesised)">
+			>
+			["at116"] = <
+				text = <"Standing">
+				description = <"Standing at the time of measurement.">
+			>
+			["at117"] = <
+				text = <"Sitting">
+				description = <"Sitting (for example on a bed or chair) at the time of measurement.">
+			>
+			["at118"] = <
+				text = <"Reclining">
+				description = <"Reclining at the time of measurement.">
+			>
+			["at119"] = <
+				text = <"Lying">
+				description = <"Lying flat at the time of measurement.">
+			>
+			["at145"] = <
+				text = <"FEV0.5">
+				description = <"Forced expiratory volume at 0.5 seconds (FEV0.5) is the volume of air that has been exhaled during the first half second of forced exhalation, during the performance of FVC.">
+			>
+			["at146"] = <
+				text = <"FEV2">
+				description = <"Forced expiratory volume at 2 seconds (FEV2) is the volume of air that has been exhaled during the first two seconds of forced exhalation, during the performance of FVC.">
+			>
+			["at152"] = <
+				text = <"PEFR">
+				description = <"Peak expiratory flow rate (PEFR) is the peak flow rate during a forced vital capacity (FVC) maneuver. Also known as forced expiratory flow at maximum effort (FEFmax).">
+			>
+			["at170"] = <
+				text = <"MEP">
+				description = <"Maximal expiratory pressure (MEP) is the maximal expiratory pressure during a forced vital capacity (FVC) maneuver.">
+			>
+			["at171"] = <
+				text = <"FIV1">
+				description = <"Forced inspiratory volume at 1 second (FIV1) is the volume of air that has been inhaled during the first second of forced inhalation, during the performance of FIVC.">
+			>
+			["at172"] = <
+				text = <"FIVC">
+				description = <"Forced inspiratory vital capacity (FIVC) is the maximal volume of air that can be forcibly inhaled from a position of full expiration.">
+			>
+			["at174"] = <
+				text = <"IVC">
+				description = <"Inspiratory vital capacity (IVC) is the maximal volume of air that can be slowly inhaled from a position of full expiration. Equal to ERV + TV + IRV.">
+			>
+			["at176"] = <
+				text = <"MVV">
+				description = <"Maximum voluntary ventilation (MVV) is the maximum volume of air the individual can breathe during a period of time specified by an interval event.">
+			>
+			["at177"] = <
+				text = <"FEF25%">
+				description = <"Forced expiratory flow 25 % (FEF25%) is the maximal instantaneous expiratory flow when 25 % of the of the volume of the forced vital capacity (FVC) has been expired. Also known as maximal voluntary flow 75% (MEF75%).">
+			>
+			["at178"] = <
+				text = <"FEF50%">
+				description = <"Forced expiratory flow 50 % (FEF50%) is the maximal instantaneous expiratory flow when 50 % of the of the volume of the forced vital capacity (FVC) has been expired. Also known as maximal voluntary flow 50 % (MEF50%).">
+			>
+			["at179"] = <
+				text = <"FEF75%">
+				description = <"Forced expiratory flow 75 % (FEF75%) is the maximal instantaneous expiratory flow when 75 % of the of the volume of the forced vital capacity (FVC) has been expired. Also known as maximal voluntary flow 25 % (MEF25%).">
+			>
+			["at181"] = <
+				text = <"MIP">
+				description = <"Maximal inspiratory pressure (MIP) is the maximal inspiratory pressure during a forced inspiratory vital capacity (FIVC) maneuver.">
+			>
+			["at182"] = <
+				text = <"SNIP">
+				description = <"Sniff nasal inspiratory pressure (SNIP) is the maximal inspiratory pressure in one occluded nostril during a maximal sniff performed from relaxed end-expiration through the other patent nostril.">
+			>
+			["at186"] = <
+				text = <"FIF25%">
+				description = <"Forced inspiratory flow 25 % (FIF25%) is the maximal instantaneous inspiratory flow when 25 % of the of the volume of the forced inspiratory vital capacity (FIVC) has been inspired. Also known as maximum inspiratory flow 75% (MIF75%).">
+			>
+			["at187"] = <
+				text = <"FIF50%">
+				description = <"Forced inspiratory flow 50 % (FIF50%) is the maximal instantaneous inspiratory flow when 50 % of the of the volume of the forced inspiratory vital capacity (FIVC) has been inspired. Also known as maximum inspiratory flow 50% (MIF50%).">
+			>
+			["at188"] = <
+				text = <"FIF75%">
+				description = <"Forced inspiratory flow 75 % (FIF75%) is the maximal instantaneous inspiratory flow when 75 % of the of the volume of the forced inspiratory vital capacity (FIVC) has been inspired. Also known as maximum inspiratory flow 25% (MIF25%).">
+			>
+			["at189"] = <
+				text = <"FEV1/FEV6 ratio">
+				description = <"The ratio of 'Forced expiratory volume in 1 second (FEV1)' to 'Forced expiratory volume in 6 seconds (FEV6)'.">
+			>
+			["at190"] = <
+				text = <"FEV1/IVC ratio">
+				description = <"The ratio of 'Forced expiratory volume in 1 second (FEV1)' to 'Inspired vital capacity (IVC)'.">
+			>
+			["at193"] = <
+				text = <"None">
+				description = <"The spirometry test was performed neither as a reversibility test nor a bronchial challenge test.">
+			>
+			["at194"] = <
+				text = <"Bronchial challenge test">
+				description = <"The spirometry test was performed as a bronchial challenge test.">
+			>
+			["at195"] = <
+				text = <"Reversibility test">
+				description = <"The spirometry test was performed as a reversibility test.">
+			>
+			["at197"] = <
+				text = <"Mechanical">
+				description = <"Measurement using a purely mechanical device.">
+			>
+			["at198"] = <
+				text = <"Electronic">
+				description = <"Measurement using an electronic device.">
+			>
+			["at205"] = <
+				text = <"PIFR">
+				description = <"Peak inspiratory flow rate (PIFR) is the peak flow rate during a forced inspiratory vital capacity (FIVC) maneuver.">
+			>
+			["at206"] = <
+				text = <"Volume">
+				description = <"Volume">
+			>
+			["at207"] = <
+				text = <"Flow rate, volume">
+				description = <"Flow rate, volume">
+			>
+			["at208"] = <
+				text = <"Pressure">
+				description = <"Pressure">
+			>
+			["at209"] = <
+				text = <"L">
+				description = <"Liter unit.">
+			>
+			["at210"] = <
+				text = <"mL">
+				description = <"mL unit.">
+			>
+			["at211"] = <
+				text = <"%">
+				description = <"Percent">
+			>
+			["at212"] = <
+				text = <"L/s">
+				description = <"L/s unit.">
+			>
+			["at213"] = <
+				text = <"mL/s">
+				description = <"mL/s unit.">
+			>
+			["at214"] = <
+				text = <"L/min">
+				description = <"L/min unit.">
+			>
+			["at215"] = <
+				text = <"cm[H2O]">
+				description = <"cm[H2O] unit.">
+			>
+			["at216"] = <
+				text = <"mm[Hg]">
+				description = <"mmHg unit for blood pressure">
+			>
+			["at64"] = <
+				text = <"SVC">
+				description = <"Slow vital capacity (SVC) is the maximal volume of air that can be slowly exhaled from a position of full inspiration. Also known as Expiratory vital capacity (EVC). Equal to IRV + TV + ERV.">
+			>
+			["at65"] = <
+				text = <"FVC">
+				description = <"Forced vital capacity (FVC) is the maximal volume of air that can be forcibly exhaled from a position of full inspiration.">
+			>
+			["at67"] = <
+				text = <"FEV1">
+				description = <"Forced expiratory volume at 1 second (FEV1) is the volume of air that has been exhaled during the first second of forced exhalation, during the performance of FVC.">
+			>
+			["at68"] = <
+				text = <"FEV3">
+				description = <"Forced expiratory volume at 3 seconds (FEV3) is the volume of air that has been exhaled during the first three seconds of forced exhalation, during the performance of FVC.">
+			>
+			["at69"] = <
+				text = <"FEV6">
+				description = <"Forced expiratory volume at 6 seconds (FEV6) is the volume of air that has been exhaled during the first six seconds of forced exhalation, during the performance of FVC.">
+			>
+			["at70"] = <
+				text = <"FEV0.75">
+				description = <"Forced expiratory volume at 0.75 seconds (FEV0.75) is the volume of air that has been exhaled during the first three quarters of a second of forced exhalation, during the performance of FVC.">
+			>
+			["at72"] = <
+				text = <"FEF25-75%">
+				description = <"Forced expiratory flow 25-75 % (FEF25-75%) is the mean forced expiratory flow of air measured during the expiration of 25-75 % of the volume of the forced vital capacity (FVC).">
+			>
+			["at73"] = <
+				text = <"FEF25-50%">
+				description = <"Forced expiratory flow 25-50 % (FEF25-50%) is the mean forced expiratory flow of air measured during the expiration of 25-50 % of the volume of the forced vital capacity (FVC).">
+			>
+			["at74"] = <
+				text = <"FIF25-75%">
+				description = <"Forced inspiratory flow 25-75 % (FIF25-75%) is the mean forced inspiratory flow of air measured during the inspiration of 25-75 % of the volume of the forced inspiratory vital capacity (FIVC).">
+			>
+			["at75"] = <
+				text = <"FIF25-50%">
+				description = <"Forced inspiratory flow 25-50 % (FIF25-50%) is the mean forced inspiratory flow of air measured during the inspiration of 25-50 % of the volume of the forced inspiratory vital capacity (FIVC).">
+			>
+			["at76"] = <
+				text = <"IC">
+				description = <"Inspiratory capacity (IC) is the maximal volume of air that can be inhaled after exhalation of normal tidal volume. Equal to TV + IRV.">
+			>
+			["at77"] = <
+				text = <"ERV">
+				description = <"Expiratory reserve volume (ERV) is the maximal volume of air that can be forcibly exhaled after exhalation of normal tidal volume.">
+			>
+			["at78"] = <
+				text = <"IRV">
+				description = <"Inspiratory reserve volume (IRV) is the maximal volume of air that can be forcibly inhaled after a inhalation of normal tidal volume.">
+			>
+			["at80"] = <
+				text = <"FEV1/SVC ratio">
+				description = <"The ratio of 'Forced expiratory volume in 1 second (FEV1)' to 'Slow vital capacity (SVC)'.">
+			>
+			["at81"] = <
+				text = <"FEV1/FVC ratio">
+				description = <"The ratio of 'Forced expiratory volume in 1 second (FEV1)' to 'Forced vital capacity (FVC)'. Also known as FEV1%FVC or FEV1%F.">
+			>
+			["at82"] = <
+				text = <"TV">
+				description = <"Tidal volume (TV) is the normal volume of air that can be inhaled or exhaled during one respiratory cycle when no extra effort is applied. Also known as Vᴛ.">
+			>
+			["id1"] = <
+				text = <"Spirometry result">
+				description = <"Pulmonary function test results using a spirometer or peak flow meter.">
+			>
+			["id102"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the test results and intepretation not captured in other fields.">
+			>
+			["id116"] = <
+				text = <"Position">
+				description = <"The body position of the individual at the time of measurement.">
+			>
+			["id123"] = <
+				text = <"Measured/predicted ratio">
+				description = <"The ratio of measured to predicted test results.">
+			>
+			["id131"] = <
+				text = <"Clinical interpretation">
+				description = <"Overall clinical interpretation about all of the measurements and calculated ratios.">
+			>
+			["id132"] = <
+				text = <"Multimedia representation">
+				description = <"Digital representation of the test results.">
+			>
+			["id133"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id14"] = <
+				text = <"Forced expiratory time (FET)">
+				description = <"The time taken to complete a forced expiration.">
+			>
+			["id157"] = <
+				text = <"Pressure">
+				description = <"Test result represented as a measured pressure.">
+			>
+			["id166"] = <
+				text = <"Result">
+				description = <"Measured pressure.">
+			>
+			["id167"] = <
+				text = <"Predicted result">
+				description = <"Predicted pressure.">
+			>
+			["id168"] = <
+				text = <"Measured/predicted ratio">
+				description = <"The ratio of measured to predicted test results.">
+			>
+			["id186"] = <
+				text = <"Predicted results source">
+				description = <"The knowledge base used for the predicted results.">
+			>
+			["id19"] = <
+				text = <"Predicted result">
+				description = <"Predicted ratio.">
+			>
+			["id192"] = <
+				text = <"Level of exertion">
+				description = <"Details about physical activity undertaken at the time of spirometry recording.">
+			>
+			["id193"] = <
+				text = <"Challenge/reversibility">
+				description = <"Statement about whether the spirometry test was performed as a reversibility test or a bronchial challenge test.">
+			>
+			["id197"] = <
+				text = <"Type of measurement">
+				description = <"Type of measurement of spirometry.">
+			>
+			["id200"] = <
+				text = <"Method">
+				description = <"Method used to perform the test.">
+			>
+			["id210"] = <
+				text = <"Environmental conditions">
+				description = <"Details about environmental conditions undertaken at the time of spirometry recording.">
+			>
+			["id234"] = <
+				text = <"Result (L)">
+				description = <"Result (L)">
+			>
+			["id237"] = <
+				text = <"Result (mL)">
+				description = <"Result (mL)">
+			>
+			["id242"] = <
+				text = <"Predicted result (L)">
+				description = <"Predicted result (L)">
+			>
+			["id245"] = <
+				text = <"Predicted result (mL)">
+				description = <"Predicted result (mL)">
+			>
+			["id253"] = <
+				text = <"Result (L/s)">
+				description = <"Result (L/s)">
+			>
+			["id256"] = <
+				text = <"Result (mL/s)">
+				description = <"Result (mL/s)">
+			>
+			["id259"] = <
+				text = <"Result (L/min)">
+				description = <"Result (L/min)">
+			>
+			["id265"] = <
+				text = <"Predicted result (L/s)">
+				description = <"Predicted result (L/s)">
+			>
+			["id268"] = <
+				text = <"Predicted result (mL/s)">
+				description = <"Predicted result (mL/s)">
+			>
+			["id271"] = <
+				text = <"Predicted result (L/min)">
+				description = <"Predicted result (L/min)">
+			>
+			["id280"] = <
+				text = <"Result (cm[H2O])">
+				description = <"Result (cm[H2O])">
+			>
+			["id283"] = <
+				text = <"Result (mm[Hg])">
+				description = <"Result (mm[Hg])">
+			>
+			["id288"] = <
+				text = <"Predicted result (cm[H2O])">
+				description = <"Predicted result (cm[H2O])">
+			>
+			["id291"] = <
+				text = <"Predicted result (mm[Hg])">
+				description = <"Predicted result (mm[Hg])">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval which may be explicitly defined in a template or at run-time.">
+			>
+			["id31"] = <
+				text = <"Device">
+				description = <"Details of the device used to measure spirometry.">
+			>
+			["id45"] = <
+				text = <"Measured/predicted ratio">
+				description = <"The ratio of the measured to predicted test results.">
+			>
+			["id53"] = <
+				text = <"Volume">
+				description = <"Test result represented as a measured volume or calculated capacity.">
+			>
+			["id54"] = <
+				text = <"Result">
+				description = <"Measured volume.">
+			>
+			["id55"] = <
+				text = <"Predicted result">
+				description = <"Predicted volume.">
+			>
+			["id56"] = <
+				text = <"Ratio">
+				description = <"A calculated test result expressed as a ratio.">
+			>
+			["id57"] = <
+				text = <"Result">
+				description = <"Calculated ratio.">
+			>
+			["id58"] = <
+				text = <"Flow rate">
+				description = <"Test result represented as a measured flow rate.">
+			>
+			["id59"] = <
+				text = <"Result">
+				description = <"Measured flow rate.">
+			>
+			["id9"] = <
+				text = <"Predicted result">
+				description = <"Predicted flow rate.">
+			>
+			["id99"] = <
+				text = <"Confounding factors">
+				description = <"Record any issues or factors that may impact on the spirometry test.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at65"] = <http://snomed.info/id/50834005>
+			["at64"] = <http://snomed.info/id/83411002>
+			["at67"] = <http://snomed.info/id/59328004>
+			["at69"] = <http://snomed.info/id/878869001>
+			["at70"] = <http://snomed.info/id/251910007>
+			["at72"] = <http://snomed.info/id/251932003>
+			["at76"] = <http://snomed.info/id/29533001>
+			["at77"] = <http://snomed.info/id/55532004>
+			["at78"] = <http://snomed.info/id/55562005>
+			["at81"] = <http://snomed.info/id/251944000>
+			["at82"] = <http://snomed.info/id/13621006>
+			["at152"] = <http://snomed.info/id/18491006>
+			["at171"] = <http://snomed.info/id/251912004>
+			["at174"] = <http://snomed.info/id/251913009>
+			["at186"] = <http://snomed.info/id/251927004>
+			["at187"] = <http://snomed.info/id/251926008>
+			["at188"] = <http://snomed.info/id/251924006>
+			["at177"] = <http://snomed.info/id/251921003>
+			["at178"] = <http://snomed.info/id/251920002>
+			["at179"] = <http://snomed.info/id/251919008>
+			["at181"] = <http://snomed.info/id/27913002>
+			["at170"] = <http://snomed.info/id/17202005>
+			["at205"] = <http://snomed.info/id/251923000>
+			["at189"] = <http://snomed.info/id/702534005>
+			["at116"] = <http://snomed.info/id/10904000>
+			["at117"] = <http://snomed.info/id/33586001>
+			["at118"] = <http://snomed.info/id/272580008>
+			["at209"] = <http://snomed.info/id/258770004>
+			["at210"] = <http://snomed.info/id/258773002>
+			["at211"] = <http://snomed.info/id/415067009>
+			["at212"] = <http://snomed.info/id/258995007>
+			["at213"] = <http://snomed.info/id/258988003>
+			["at214"] = <http://snomed.info/id/258994006>
+			["at215"] = <http://snomed.info/id/259019009>
+			["at216"] = <http://snomed.info/id/259018001>
+		>
+		["openehr"] = <
+			["at206"] = <http://openehr.org/id/129>
+			["at207"] = <http://openehr.org/id/126>
+			["at208"] = <http://openehr.org/id/125>
+		>
+		["ucum"] = <
+			["at209"] = <http://ucum.org/id/L>
+			["at210"] = <http://ucum.org/id/mL>
+			["at211"] = <http://ucum.org/id/%25>
+			["at212"] = <http://ucum.org/id/L%2Fs>
+			["at213"] = <http://ucum.org/id/mL%2Fs>
+			["at214"] = <http://ucum.org/id/L%2Fmin>
+			["at215"] = <http://ucum.org/id/cm%5BH2O%5D>
+			["at216"] = <http://ucum.org/id/mm%5BHg%5D>
+		>
+		["loinc"] = <
+			["id116"] = <http://loinc.org/8361-8>
+			["id131"] = <http://loinc.org/64110-0>
+			["id31"] = <http://loinc.org/74720-4>
+			["id102"] = <http://loinc.org/106173-8>
+			["id200"] = <http://loinc.org/106191-0>
+			["id99"] = <http://loinc.org/106176-1>
+			["id132"] = <http://loinc.org/104973-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at65", "at64", "at172", "at174", "at76", "at145", "at70", "at67", "at146", "at68", "at69", "at171", "at82", "at77", "at78", "at176">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at152", "at205", "at72", "at73", "at74", "at75", "at177", "at178", "at179", "at186", "at187", "at188">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at170", "at181", "at182">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at81", "at80", "at189", "at190">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at116", "at117", "at118", "at119">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at197", "at198">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at193", "at194", "at195">
+		>
+	>
+

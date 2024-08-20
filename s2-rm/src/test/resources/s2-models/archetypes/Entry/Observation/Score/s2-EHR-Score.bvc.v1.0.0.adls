@@ -1,0 +1,386 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=be2cde8f-2bf8-40ee-a4bd-b5d789f0fdaf)
+    s2-EHR-Score.bvc.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Terje Bektesevic Holmlund, UiT Norges arktiske universitet, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Morten Hørthe, DIPS Norway", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia", "Hallvard Lærum", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Marit Alice Venheim, Helse Vest IKT AS, Norway, 2020-11-13">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.bvc.v1.0.0, copyright  openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.bvc.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the BVC score.">
+            keywords = <"verbal", "physical", "attacking", "violent", "behaviour", "broset">
+            use = <"Use to record the results for each component parameter and their total sum for the BVC score.
+            
+            The BVC is intended for adults.
+            
+            While openEHR archetypes are all freely available under an open license, the specific content of this Brøset Violence Checklist (BVC) archetype is copyright protected. Any use of this archetype within implementations must be in compliance with the terms established by the copyright owners.
+            Copyright statement: © Copyright Linaker & Bush Iversen (1995). Almvik & Woods (2000). All rights reserved, do not use without the written permission of the copyright holders.
+            Copyright information: http://www.riskassessment.no/#apps.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Brøset Violence Checklist (BVC)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Confused
+                value matches {
+                    Coded_ordinal[id176] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id178] matches {
+                                term matches {
+                                    Terminology_term[id177] matches {
+                                        concept matches {[at24]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id179] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id181] matches {
+                                term matches {
+                                    Terminology_term[id180] matches {
+                                        concept matches {[at18]}    -- Present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Irritable
+                value matches {
+                    Coded_ordinal[id182] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id184] matches {
+                                term matches {
+                                    Terminology_term[id183] matches {
+                                        concept matches {[at24]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id185] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id187] matches {
+                                term matches {
+                                    Terminology_term[id186] matches {
+                                        concept matches {[at18]}    -- Present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Boisterous
+                value matches {
+                    Coded_ordinal[id188] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id190] matches {
+                                term matches {
+                                    Terminology_term[id189] matches {
+                                        concept matches {[at24]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id191] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id193] matches {
+                                term matches {
+                                    Terminology_term[id192] matches {
+                                        concept matches {[at18]}    -- Present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Physical threats
+                value matches {
+                    Coded_ordinal[id194] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id196] matches {
+                                term matches {
+                                    Terminology_term[id195] matches {
+                                        concept matches {[at24]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id197] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id199] matches {
+                                term matches {
+                                    Terminology_term[id198] matches {
+                                        concept matches {[at18]}    -- Present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Verbal threats
+                value matches {
+                    Coded_ordinal[id200] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id202] matches {
+                                term matches {
+                                    Terminology_term[id201] matches {
+                                        concept matches {[at24]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id203] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id205] matches {
+                                term matches {
+                                    Terminology_term[id204] matches {
+                                        concept matches {[at18]}    -- Present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Attacking objects
+                value matches {
+                    Coded_ordinal[id206] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id208] matches {
+                                term matches {
+                                    Terminology_term[id207] matches {
+                                        concept matches {[at24]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id209] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id211] matches {
+                                term matches {
+                                    Terminology_term[id210] matches {
+                                        concept matches {[at18]}    -- Present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id171] matches {
+                        magnitude matches {|0..6|}
+                    }
+                }
+            }
+            Node[id31] occurrences matches {0..1} matches {    -- Interpretation
+                value matches {
+                    Coded_text[id172] matches {
+                        term matches {
+                            Terminology_term[id212] matches {
+                                concept matches {[ac1]}    -- Interpretation (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id164] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at31", "at32", "at33">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at24", "at18">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at24", "at18">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at24", "at18">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at24", "at18">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at24", "at18">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at24", "at18">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Interpretation (synthesised)">
+                description = <"Interpretation of the total score. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Confused (synthesised)">
+                description = <"Appears obviously confused and disorientated. May be unaware of time, place or person. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Irritable (synthesised)">
+                description = <"Easily annoyed or angered. Unable to tolerate the presence of others. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Boisterous (synthesised)">
+                description = <"Behaviour is overtly \\\"loud\\\" or noisy. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Physical threats (synthesised)">
+                description = <"Where there is a definite intent to physically threaten another person. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Verbal threats (synthesised)">
+                description = <"A verbal outburst which is more than just a raised voice; and where there is a definite intent to intimidate or threaten another person. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Attacking objects (synthesised)">
+                description = <"An attack directed at an object and not an individual. (synthesised)">
+            >
+            ["at18"] = <
+                text = <"Present">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"Absent">
+                description = <"">
+            >
+            ["at31"] = <
+                text = <"Small risk of violence">
+                description = <"BVC score 0: The risk of violence is small.">
+            >
+            ["at32"] = <
+                text = <"Moderate risk of violence">
+                description = <"BVC score 1-2: The risk of violence is moderate. Preventive measures should be taken.">
+            >
+            ["at33"] = <
+                text = <"High risk of violence">
+                description = <"BVC score 3-6: The risk of violence is very high. Preventive measures should be taken In addition, a plan should be developed to manage the potential violence.">
+            >
+            ["id1"] = <
+                text = <"Brøset Violence Checklist (BVC)">
+                description = <"A checklist which assists in the prediction of imminent violent behaviour.">
+            >
+            ["id10"] = <
+                text = <"Attacking objects">
+                description = <"An attack directed at an object and not an individual.">
+            >
+            ["id114"] = <
+                text = <"Night shift">
+                description = <"Specific point in time event that represents the observations made during a 'Night' shift.">
+            >
+            ["id139"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id164"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id18"] = <
+                text = <"Total score">
+                description = <"The total sum of each component variable for the BCV score.">
+            >
+            ["id3"] = <
+                text = <"Day shift">
+                description = <"Specific point in time event that represents the observations made during a 'Day' shift.">
+            >
+            ["id31"] = <
+                text = <"Interpretation">
+                description = <"Interpretation of the total score.">
+            >
+            ["id5"] = <
+                text = <"Confused">
+                description = <"Appears obviously confused and disorientated. May be unaware of time, place or person.">
+            >
+            ["id6"] = <
+                text = <"Irritable">
+                description = <"Easily annoyed or angered. Unable to tolerate the presence of others.">
+            >
+            ["id7"] = <
+                text = <"Boisterous">
+                description = <"Behaviour is overtly \\\"loud\\\" or noisy.">
+            >
+            ["id8"] = <
+                text = <"Verbal threats">
+                description = <"A verbal outburst which is more than just a raised voice; and where there is a definite intent to intimidate or threaten another person.">
+            >
+            ["id89"] = <
+                text = <"Evening shift">
+                description = <"Specific point in time event that represents the observations made during an 'Evening' shift.">
+            >
+            ["id9"] = <
+                text = <"Physical threats">
+                description = <"Where there is a definite intent to physically threaten another person.">
+            >
+        >
+    >
+    

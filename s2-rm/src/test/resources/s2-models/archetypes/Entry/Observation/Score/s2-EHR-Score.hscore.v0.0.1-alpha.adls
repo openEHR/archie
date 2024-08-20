@@ -1,0 +1,631 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e04420ac-93c7-4376-87f8-ae9c063f35dc)
+    s2-EHR-Score.hscore.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Vebjørn Arntzen, Oslo university hospital, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway", "Marit Alice Venheim, Helse Vest IKT AS, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Liv Laugen, Oslo universitetssykehus, <liv.laugen@ous-hf.no>, 2020-03-30">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.hscore.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.hscore.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record an estimation of an individual's risk of having reactive hemophagocytic syndrome.">
+            keywords = <"HLH", "Hemophagocytic lymphohistiocytosis", "COVID-19", "infection">
+            use = <"Use to record an estimation of an individual's risk of having reactive hemophagocytic syndrome.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- HScore
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Temperature
+                value matches {
+                    Coded_ordinal[id52] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id54] matches {
+                                term matches {
+                                    Terminology_term[id53] matches {
+                                        concept matches {[at5]}    -- <38.4°C
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id55] matches {
+                        magnitude matches {33}
+                        concept matches {
+                            Coded_text[id57] matches {
+                                term matches {
+                                    Terminology_term[id56] matches {
+                                        concept matches {[at6]}    -- 38.4-39.4°C
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id58] matches {
+                        magnitude matches {49}
+                        concept matches {
+                            Coded_text[id60] matches {
+                                term matches {
+                                    Terminology_term[id59] matches {
+                                        concept matches {[at7]}    -- >39.4°C
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Organomegaly
+                value matches {
+                    Coded_ordinal[id61] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id63] matches {
+                                term matches {
+                                    Terminology_term[id62] matches {
+                                        concept matches {[at9]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id64] matches {
+                        magnitude matches {23}
+                        concept matches {
+                            Coded_text[id66] matches {
+                                term matches {
+                                    Terminology_term[id65] matches {
+                                        concept matches {[at10]}    -- Hepatomegaly or splenomegaly
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id67] matches {
+                        magnitude matches {38}
+                        concept matches {
+                            Coded_text[id69] matches {
+                                term matches {
+                                    Terminology_term[id68] matches {
+                                        concept matches {[at11]}    -- Hepatomegaly and splenomegaly
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Number of cytopenias
+                value matches {
+                    Coded_ordinal[id70] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id72] matches {
+                                term matches {
+                                    Terminology_term[id71] matches {
+                                        concept matches {[at13]}    -- One lineage
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id73] matches {
+                        magnitude matches {24}
+                        concept matches {
+                            Coded_text[id75] matches {
+                                term matches {
+                                    Terminology_term[id74] matches {
+                                        concept matches {[at14]}    -- Two lineages
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id76] matches {
+                        magnitude matches {34}
+                        concept matches {
+                            Coded_text[id78] matches {
+                                term matches {
+                                    Terminology_term[id77] matches {
+                                        concept matches {[at15]}    -- Three lineages
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Triglycerides
+                value matches {
+                    Coded_ordinal[id79] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id81] matches {
+                                term matches {
+                                    Terminology_term[id80] matches {
+                                        concept matches {[at24]}    -- <1.5 mmol/L
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id82] matches {
+                        magnitude matches {44}
+                        concept matches {
+                            Coded_text[id84] matches {
+                                term matches {
+                                    Terminology_term[id83] matches {
+                                        concept matches {[at25]}    -- 1.5-4.0 mmol/L
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id85] matches {
+                        magnitude matches {64}
+                        concept matches {
+                            Coded_text[id87] matches {
+                                term matches {
+                                    Terminology_term[id86] matches {
+                                        concept matches {[at26]}    -- >4.0 mmol/L
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Fibrinogen
+                value matches {
+                    Coded_ordinal[id88] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id90] matches {
+                                term matches {
+                                    Terminology_term[id89] matches {
+                                        concept matches {[at27]}    -- >2.5 g/L
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id91] matches {
+                        magnitude matches {30}
+                        concept matches {
+                            Coded_text[id93] matches {
+                                term matches {
+                                    Terminology_term[id92] matches {
+                                        concept matches {[at28]}    -- ≤2.5 g/L
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id19] occurrences matches {0..1} matches {    -- Ferritin
+                value matches {
+                    Coded_ordinal[id94] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id96] matches {
+                                term matches {
+                                    Terminology_term[id95] matches {
+                                        concept matches {[at29]}    -- <2000 ng/ml
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id97] matches {
+                        magnitude matches {35}
+                        concept matches {
+                            Coded_text[id99] matches {
+                                term matches {
+                                    Terminology_term[id98] matches {
+                                        concept matches {[at30]}    -- 2000–6000 ng/ml
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id100] matches {
+                        magnitude matches {50}
+                        concept matches {
+                            Coded_text[id102] matches {
+                                term matches {
+                                    Terminology_term[id101] matches {
+                                        concept matches {[at31]}    -- >6000 ng/ml
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- Aspartate aminotransferase
+                value matches {
+                    Coded_ordinal[id103] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id105] matches {
+                                term matches {
+                                    Terminology_term[id104] matches {
+                                        concept matches {[at32]}    -- <30 U/L
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id106] matches {
+                        magnitude matches {19}
+                        concept matches {
+                            Coded_text[id108] matches {
+                                term matches {
+                                    Terminology_term[id107] matches {
+                                        concept matches {[at33]}    -- ≥30 U/L
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Haemophagocytosis on bone marrow aspirate
+                value matches {
+                    Coded_ordinal[id109] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id111] matches {
+                                term matches {
+                                    Terminology_term[id110] matches {
+                                        concept matches {[at34]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id112] matches {
+                        magnitude matches {35}
+                        concept matches {
+                            Coded_text[id114] matches {
+                                term matches {
+                                    Terminology_term[id113] matches {
+                                        concept matches {[at35]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id22] occurrences matches {0..1} matches {    -- Known immunosuppression
+                value matches {
+                    Coded_ordinal[id115] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id117] matches {
+                                term matches {
+                                    Terminology_term[id116] matches {
+                                        concept matches {[at22]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id118] matches {
+                        magnitude matches {18}
+                        concept matches {
+                            Coded_text[id120] matches {
+                                term matches {
+                                    Terminology_term[id119] matches {
+                                        concept matches {[at23]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id37] occurrences matches {0..1} matches {    -- Total HScore
+                value matches {
+                    Count[id50] matches {
+                        magnitude matches {|0..337|}
+                    }
+                }
+            }
+            Node[id38] occurrences matches {0..1} matches {    -- Probability of HS
+                value matches {
+                    Quantity[id51] matches {
+                        magnitude matches {|0.0..100.0|}
+                        units matches {
+                            Coded_text[id122] matches {
+                                term matches {
+                                    Terminology_term[id121] matches {
+                                        concept matches {[at36]}    -- %
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id40] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["ucum"] = <
+            ["at36"] = <http://ucum.org/id/%25>
+        >
+        ["snomed"] = <
+            ["at36"] = <http://snomed.info/id/415067009>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6", "at7">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at9", "at10", "at11">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at13", "at14", "at15">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at24", "at25", "at26">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at27", "at28">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at29", "at30", "at31">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at32", "at33">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at34", "at35">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at22", "at23">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Temperature (synthesised)">
+                description = <"Range category for the body temperature measurement. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Organomegaly (synthesised)">
+                description = <"Findings of any enlargement of the liver or/and spleen in the individual. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Number of cytopenias (synthesised)">
+                description = <"Number of cytopenias present - in red cells, white cells and/or platelets. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Triglycerides (synthesised)">
+                description = <"The triglycerides category, measured in mmol/L or mg/dL. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Fibrinogen (synthesised)">
+                description = <"The fibrinogen category, measured in g/L or mg/dL. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Ferritin (synthesised)">
+                description = <"The ferritin category, measured in ng/mL or μg/L. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Aspartate aminotransferase (synthesised)">
+                description = <"An individvals serum aspartate aminotransferase level measured in U/L. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Haemophagocytosis on bone marrow aspirate (synthesised)">
+                description = <"Presence of hemophagocytosis features in bone marrow aspirate. (synthesised)">
+            >
+            ["ac9"] = <
+                text = <"Known immunosuppression (synthesised)">
+                description = <"Presence of known underlying immunosuppression. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Hepatomegaly or splenomegaly">
+                description = <"Enlargment of the liver or the spleen.">
+            >
+            ["at11"] = <
+                text = <"Hepatomegaly and splenomegaly">
+                description = <"Enlargement of both the liver and the spleen.">
+            >
+            ["at13"] = <
+                text = <"One lineage">
+                description = <"Cytopenia in only one cell lineage.">
+            >
+            ["at14"] = <
+                text = <"Two lineages">
+                description = <"Cytopenia in two cell lineages.">
+            >
+            ["at15"] = <
+                text = <"Three lineages">
+                description = <"Cytopenia in three cell lineages.">
+            >
+            ["at22"] = <
+                text = <"No">
+                description = <"No known underlying immunosuppression.">
+            >
+            ["at23"] = <
+                text = <"Yes">
+                description = <"Known underlying immunosuppression.">
+            >
+            ["at24"] = <
+                text = <"<1.5 mmol/L">
+                description = <"The Triglyceride level is less than 1.5 mmol/L or 132.7 mg/dL.">
+            >
+            ["at25"] = <
+                text = <"1.5-4.0 mmol/L">
+                description = <"The Triglyceride level is 1.5-4.0 mmol/L or 132.7-354 mg/dL.">
+            >
+            ["at26"] = <
+                text = <">4.0 mmol/L">
+                description = <"The Triglyceride level is greater than 4.0 mmol/L or 354 mg/dL.">
+            >
+            ["at27"] = <
+                text = <">2.5 g/L">
+                description = <"The fibinogen level is greater than 2.5 g/L or 250 mg/dL.">
+            >
+            ["at28"] = <
+                text = <"≤2.5 g/L">
+                description = <"The fibinogen level is less than or equal to 2.5 g/L 250 mg/dL.">
+            >
+            ["at29"] = <
+                text = <"<2000 ng/ml">
+                description = <"The ferritin level is less than 2000 ng/ml or 2000 μg/L.">
+            >
+            ["at30"] = <
+                text = <"2000–6000 ng/ml">
+                description = <"The ferritin level is 2000-6000 ng/ml or 2000-6000 μg/L.">
+            >
+            ["at31"] = <
+                text = <">6000 ng/ml">
+                description = <"The ferritin level is greater than 6000 ng/ml or 6000 μg/L.">
+            >
+            ["at32"] = <
+                text = <"<30 U/L">
+                description = <"The aspartate aminotransferase level is less than 30 U/L.">
+            >
+            ["at33"] = <
+                text = <"≥30 U/L">
+                description = <"The aspartate aminotransferase level is greater than or equal to 30 U/L.">
+            >
+            ["at34"] = <
+                text = <"No">
+                description = <"No hemophagocytosis features are present in bone marrow aspirate.">
+            >
+            ["at35"] = <
+                text = <"Yes">
+                description = <"Hemophagocytosis features are present in bone marrow aspirate.">
+            >
+            ["at36"] = <
+                text = <"%">
+                description = <"Percent">
+            >
+            ["at5"] = <
+                text = <"<38.4°C">
+                description = <"The body temperature of the individual is less than 38.4°C.">
+            >
+            ["at6"] = <
+                text = <"38.4-39.4°C">
+                description = <"The body temperature of the individual is between 38.4 and 39.4°C.">
+            >
+            ["at7"] = <
+                text = <">39.4°C">
+                description = <"The body temperature of the individual is greater than 39.4°C.">
+            >
+            ["at9"] = <
+                text = <"None">
+                description = <"No enlargement of the liver or the spleen.">
+            >
+            ["id1"] = <
+                text = <"HScore">
+                description = <"Estimate an individual's risk of having reactive hemophagocytic syndrome.
+                ">
+            >
+            ["id13"] = <
+                text = <"Number of cytopenias">
+                description = <"Number of cytopenias present - in red cells, white cells and/or platelets.">
+            >
+            ["id17"] = <
+                text = <"Triglycerides">
+                description = <"The triglycerides category, measured in mmol/L or mg/dL.">
+            >
+            ["id18"] = <
+                text = <"Fibrinogen">
+                description = <"The fibrinogen category, measured in g/L or mg/dL.">
+            >
+            ["id19"] = <
+                text = <"Ferritin">
+                description = <"The ferritin category, measured in ng/mL or μg/L.">
+            >
+            ["id20"] = <
+                text = <"Aspartate aminotransferase">
+                description = <"An individvals serum aspartate aminotransferase level measured in U/L.">
+            >
+            ["id21"] = <
+                text = <"Haemophagocytosis on bone marrow aspirate">
+                description = <"Presence of hemophagocytosis features in bone marrow aspirate.">
+            >
+            ["id22"] = <
+                text = <"Known immunosuppression">
+                description = <"Presence of known underlying immunosuppression.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id37"] = <
+                text = <"Total HScore">
+                description = <"The total sum for each component variable for the HScore.">
+            >
+            ["id38"] = <
+                text = <"Probability of HS">
+                description = <"Probability of an individual having reactive hemophagocytic syndrome.">
+            >
+            ["id40"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.
+                ">
+            >
+            ["id5"] = <
+                text = <"Temperature">
+                description = <"Range category for the body temperature measurement.">
+            >
+            ["id9"] = <
+                text = <"Organomegaly">
+                description = <"Findings of any enlargement of the liver or/and spleen in the individual.">
+            >
+        >
+    >
+    

@@ -1,0 +1,404 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=56e7deb1-24c4-4260-96c6-9d1800491749)
+    s2-EHR-Score.modified_aldrete_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-02-19">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.modified_aldrete_score.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.modified_aldrete_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the modified Aldrete score.">
+            keywords = <"Aldrete", "score", "recovery", "anesthesia", "PACU", "post-anesthesia", "care", "unit", "discharge">
+            use = <"Use to record the results for each component parameter and their total sum for the modified Aldrete score.">
+            misuse = <"Not to be used to record the results and score for the original Aldrete score - use OBSERVATION.aldrete_score for this purpose.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Modified Aldrete score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Activity
+                value matches {
+                    Coded_ordinal[id34] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id36] matches {
+                                term matches {
+                                    Terminology_term[id35] matches {
+                                        concept matches {[at5]}    -- Unable to move extremities voluntarily or on command
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id37] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id39] matches {
+                                term matches {
+                                    Terminology_term[id38] matches {
+                                        concept matches {[at6]}    -- Able to move 2 extremities voluntarily or on command
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id40] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id42] matches {
+                                term matches {
+                                    Terminology_term[id41] matches {
+                                        concept matches {[at7]}    -- Able to move 4 extremities voluntarily or on command
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Respiration
+                value matches {
+                    Coded_ordinal[id43] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id45] matches {
+                                term matches {
+                                    Terminology_term[id44] matches {
+                                        concept matches {[at9]}    -- Apnoeic
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id46] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id48] matches {
+                                term matches {
+                                    Terminology_term[id47] matches {
+                                        concept matches {[at10]}    -- Dyspnoea or limited breathing
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id49] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id51] matches {
+                                term matches {
+                                    Terminology_term[id50] matches {
+                                        concept matches {[at11]}    -- Able to breathe deeply and cough freely
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Circulation
+                value matches {
+                    Coded_ordinal[id52] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id54] matches {
+                                term matches {
+                                    Terminology_term[id53] matches {
+                                        concept matches {[at13]}    -- BP ±50% of pre-anaesthetic level
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id55] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id57] matches {
+                                term matches {
+                                    Terminology_term[id56] matches {
+                                        concept matches {[at14]}    -- BP between 20-49% of pre-anaesthetic level
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id58] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id60] matches {
+                                term matches {
+                                    Terminology_term[id59] matches {
+                                        concept matches {[at15]}    -- BP ±20% of pre-anaesthetic level
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Consciousness
+                value matches {
+                    Coded_ordinal[id61] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id63] matches {
+                                term matches {
+                                    Terminology_term[id62] matches {
+                                        concept matches {[at17]}    -- Not responding
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id64] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id66] matches {
+                                term matches {
+                                    Terminology_term[id65] matches {
+                                        concept matches {[at18]}    -- Arousable on calling
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id67] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id69] matches {
+                                term matches {
+                                    Terminology_term[id68] matches {
+                                        concept matches {[at19]}    -- Fully awake
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- O₂ saturation
+                value matches {
+                    Coded_ordinal[id70] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id72] matches {
+                                term matches {
+                                    Terminology_term[id71] matches {
+                                        concept matches {[at21]}    -- SpO₂ <90% despite supplementary O₂
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id73] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id75] matches {
+                                term matches {
+                                    Terminology_term[id74] matches {
+                                        concept matches {[at22]}    -- Needs supplementary O₂ to maintain SpO₂ >90%
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id76] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id78] matches {
+                                term matches {
+                                    Terminology_term[id77] matches {
+                                        concept matches {[at23]}    -- Able to maintain SpO₂ >92% on room air
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id25] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id33] matches {
+                        magnitude matches {|0..10|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id27] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6", "at7">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at9", "at10", "at11">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at13", "at14", "at15">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at17", "at18", "at19">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at21", "at22", "at23">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Activity (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"Respiration (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac3"] = <
+                text = <"Circulation (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac4"] = <
+                text = <"Consciousness (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac5"] = <
+                text = <"O₂ saturation (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at10"] = <
+                text = <"Dyspnoea or limited breathing">
+                description = <"">
+            >
+            ["at11"] = <
+                text = <"Able to breathe deeply and cough freely">
+                description = <"">
+            >
+            ["at13"] = <
+                text = <"BP ±50% of pre-anaesthetic level">
+                description = <"">
+            >
+            ["at14"] = <
+                text = <"BP between 20-49% of pre-anaesthetic level">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"BP ±20% of pre-anaesthetic level">
+                description = <"">
+            >
+            ["at17"] = <
+                text = <"Not responding">
+                description = <"">
+            >
+            ["at18"] = <
+                text = <"Arousable on calling">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"Fully awake">
+                description = <"">
+            >
+            ["at21"] = <
+                text = <"SpO₂ <90% despite supplementary O₂">
+                description = <"">
+            >
+            ["at22"] = <
+                text = <"Needs supplementary O₂ to maintain SpO₂ >90%">
+                description = <"">
+            >
+            ["at23"] = <
+                text = <"Able to maintain SpO₂ >92% on room air">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"Unable to move extremities voluntarily or on command">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Able to move 2 extremities voluntarily or on command">
+                description = <"">
+            >
+            ["at7"] = <
+                text = <"Able to move 4 extremities voluntarily or on command">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"Apnoeic">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Modified Aldrete score">
+                description = <"An assessment score used to evaluate recovery after anaesthesia and patient readiness to be discharged from a post-anaesthesia care unit (PACU).">
+            >
+            ["id13"] = <
+                text = <"Circulation">
+                description = <"">
+            >
+            ["id17"] = <
+                text = <"Consciousness">
+                description = <"">
+            >
+            ["id21"] = <
+                text = <"O₂ saturation">
+                description = <"">
+            >
+            ["id25"] = <
+                text = <"Total score">
+                description = <"The total sum of each component parameter for the modified Aldrete score.">
+            >
+            ["id27"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Activity">
+                description = <"">
+            >
+            ["id9"] = <
+                text = <"Respiration">
+                description = <"">
+            >
+        >
+    >
+    

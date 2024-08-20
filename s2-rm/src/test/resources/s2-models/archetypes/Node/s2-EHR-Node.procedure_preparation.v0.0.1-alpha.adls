@@ -1,0 +1,186 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d82891b5-cc66-45e7-b5b9-9a09252c5e93)
+	s2-EHR-Node.procedure_preparation.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2017-07-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.procedure_preparation.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.procedure_preparation.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the preparation aspects for a procedure.">
+			use = <"Use to record details about the preparation aspects for a procedure.
+            
+            This archetype is designed to be nested within the 'Procedure detail' SLOT within the ACTION or INSTRUCTION.procedure archetype or similar, which will identify the name of the procedure and information that is common to all types of procedures. 
+            
+            Other Node archetypes can be inserted into the SLOTs to extend this generic archetype to catpure further details about the preparative aspects for a specific procedure for example shaving. 
+            
+            Scope: This archetype is specifically designed to be used to capture deails about physiological preparation of the human body in readiness for a procedure.">
+			keywords = <"cleaning", "shaving", "sterilisation", "disinfection">
+			misuse = <"Not to be used to capture psychological or educational information provided to the patient about the procedure - use ACTION.health_education or INSTRUCTION.health_education_request for this purpose. 
+            
+            Not to be used to record details of preoperative medications - use ACTION.medication or INSTRUCTION_medication order for this purpose.">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Procedure preparation
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Preparation type
+				value matches {
+					Coded_text[id17] matches {
+						term matches {
+							Terminology_term[id25] matches {
+								concept matches {[ac1]}		-- Preparation type (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Body site
+				value matches {
+					Text[id18] 
+				}
+			}
+			use_archetype Node[id7, s2-EHR-Node.anatomical_location.v1] 
+			Node[id9] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id19] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Wash solution
+				value matches {
+					Text[id20] 
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Text[id21] 
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Instrument
+				value matches {
+					Text[id22] 
+				}
+			}
+			allow_archetype Node[id14] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Outcome
+				value matches {
+					Text[id23] 
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id24] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Preparation type (synthesised)">
+				description = <"The category or kind of preparation. (synthesised)">
+			>
+			["at2"] = <
+				text = <"Skin">
+				description = <"Body surface layer or area for intended procedure.">
+			>
+			["at3"] = <
+				text = <"Hair">
+				description = <"Bodily filaments found in the surface of the skin or epidermis.">
+			>
+			["at4"] = <
+				text = <"Shaving">
+				description = <"Removing hair from a body site.">
+			>
+			["id1"] = <
+				text = <"Procedure preparation">
+				description = <"Details about a substance or process in the preparatory aspects for a procedure.">
+			>
+			["id10"] = <
+				text = <"Wash solution">
+				description = <"Narrative description of the solution to clean the body site.">
+			>
+			["id11"] = <
+				text = <"Method">
+				description = <"Narrative description of the technique to clean the body site or area.">
+			>
+			["id12"] = <
+				text = <"Instrument">
+				description = <"Narrative description of the tool to clean the body site or area.">
+			>
+			["id14"] = <
+				text = <"Additional details">
+				description = <"*">
+			>
+			["id15"] = <
+				text = <"Outcome">
+				description = <"Narrative description of the outcome of the procedure preparation performed.">
+			>
+			["id16"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the procedure preparation not captured in other fields.">
+			>
+			["id2"] = <
+				text = <"Preparation type">
+				description = <"The category or kind of preparation.">
+			>
+			["id6"] = <
+				text = <"Body site">
+				description = <"Identification of a single physical site either on, or within, the human body.">
+			>
+			["id7"] = <
+				text = <"Structured body site">
+				description = <"Additional detail using a specific region or a point on, or within, the identified body site.">
+			>
+			["id9"] = <
+				text = <"Description">
+				description = <"Narrative description about the prepation aspects of a procedure.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id6"] = <http://loinc.org/39111-0>
+			["id11"] = <http://loinc.org/106191-0>
+			["id16"] = <http://loinc.org/106173-8>
+			["id9"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at2", "at3", "at4">
+		>
+	>
+

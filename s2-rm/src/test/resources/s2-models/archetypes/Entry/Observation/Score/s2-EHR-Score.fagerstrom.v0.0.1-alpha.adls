@@ -1,0 +1,441 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=3fd46c3c-96a6-4c1c-b4a6-adee23e45cc5)
+    s2-EHR-Score.fagerstrom.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2016-06-06">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.fagerstrom.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.fagerstrom.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To assess physical dependence on nicotine.">
+            keywords = <"nicotine", "tobacco", "smoking", "dependence", "fagerstrom">
+            use = <"Use to estimate a individual's level of nicotine dependence once they have been identified as a cigarette smoker.
+            
+            This test may be used by the physician to document indications for prescribing medication for nicotine withdrawal.
+            
+            While openEHR archetypes are all freely available under an open license, the specific content of this Fagerström test for nicotine dependence archetype is copyright protected. Any use of this archetype within implementations must be in compliance with the terms established by the copyright owners:
+            - The Fagerström Tolerance Questionnaire was developed by Karl-Olov Fagerström. This instrument was modified to the Fagerström Test for Nicotine Dependence by Todd Heatherton, et al. in 1991. The FTND is copyrighted by Taylor and Francis Ltd., but may be reproduced without permission, as available from the source reference (Heatherton, et al., 1991).">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Fagerström test for nicotine dependence
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Morning cigarette
+                value matches {
+                    Coded_ordinal[id37] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id39] matches {
+                                term matches {
+                                    Terminology_term[id38] matches {
+                                        concept matches {[at5]}    -- After 60 Minutes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id40] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id42] matches {
+                                term matches {
+                                    Terminology_term[id41] matches {
+                                        concept matches {[at7]}    -- Within 31-60 Minutes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id43] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id45] matches {
+                                term matches {
+                                    Terminology_term[id44] matches {
+                                        concept matches {[at6]}    -- Within 6-30 Minutes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id46] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id48] matches {
+                                term matches {
+                                    Terminology_term[id47] matches {
+                                        concept matches {[at8]}    -- Within 5 Minutes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Difficult to refrain
+                value matches {
+                    Coded_ordinal[id49] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id51] matches {
+                                term matches {
+                                    Terminology_term[id50] matches {
+                                        concept matches {[at10]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id52] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id54] matches {
+                                term matches {
+                                    Terminology_term[id53] matches {
+                                        concept matches {[at11]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Hate to give up
+                value matches {
+                    Coded_ordinal[id55] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id57] matches {
+                                term matches {
+                                    Terminology_term[id56] matches {
+                                        concept matches {[at13]}    -- Any other
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id58] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id60] matches {
+                                term matches {
+                                    Terminology_term[id59] matches {
+                                        concept matches {[at14]}    -- The first in the morning
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- Daily consumption
+                value matches {
+                    Coded_ordinal[id61] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id63] matches {
+                                term matches {
+                                    Terminology_term[id62] matches {
+                                        concept matches {[at16]}    -- 10 or Less
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id64] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id66] matches {
+                                term matches {
+                                    Terminology_term[id65] matches {
+                                        concept matches {[at17]}    -- 11-20
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id67] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id69] matches {
+                                term matches {
+                                    Terminology_term[id68] matches {
+                                        concept matches {[at18]}    -- 21-30
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id70] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id72] matches {
+                                term matches {
+                                    Terminology_term[id71] matches {
+                                        concept matches {[at19]}    -- 31 or more
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Early morning pattern
+                value matches {
+                    Coded_ordinal[id73] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id75] matches {
+                                term matches {
+                                    Terminology_term[id74] matches {
+                                        concept matches {[at21]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id76] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id78] matches {
+                                term matches {
+                                    Terminology_term[id77] matches {
+                                        concept matches {[at22]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id24] occurrences matches {0..1} matches {    -- During illness
+                value matches {
+                    Coded_ordinal[id79] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id81] matches {
+                                term matches {
+                                    Terminology_term[id80] matches {
+                                        concept matches {[at24]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id82] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id84] matches {
+                                term matches {
+                                    Terminology_term[id83] matches {
+                                        concept matches {[at25]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id27] occurrences matches {0..1} matches {    -- Total
+                value matches {
+                    Count[id36] matches {
+                        magnitude matches {|0..10|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id29] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at7", "at6", "at8">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at10", "at11">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at13", "at14">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at16", "at17", "at18", "at19">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at21", "at22">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at24", "at25">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Morning cigarette (synthesised)">
+                description = <"How soon after you wake up do you smoke your first cigarette? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Difficult to refrain (synthesised)">
+                description = <"Do you find it difficult to refrain from smoking in places where it is forbidden (e.g., in church, at the library, in cinema, etc)? (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Hate to give up (synthesised)">
+                description = <"Which cigarette would you hate most to give up? (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Daily consumption (synthesised)">
+                description = <"How many cigarettes per day do you smoke? (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Early morning pattern (synthesised)">
+                description = <"Do you smoke more during the first hours after waking than during the rest of the day? (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"During illness (synthesised)">
+                description = <"Do you smoke even when you are ill enough to be in bed most of the day? (synthesised)">
+            >
+            ["at10"] = <
+                text = <"No">
+                description = <"It is not difficult to refrain from smoking.">
+            >
+            ["at11"] = <
+                text = <"Yes">
+                description = <"It is difficult to refrain from smoking.">
+            >
+            ["at13"] = <
+                text = <"Any other">
+                description = <"Any cigarette other than the first cigarette in the morning would be most difficult to give up.">
+            >
+            ["at14"] = <
+                text = <"The first in the morning">
+                description = <"First cigarette in the morning would be most difficult to give up.">
+            >
+            ["at16"] = <
+                text = <"10 or Less">
+                description = <"Smoking <=10 cigarettes per day.">
+            >
+            ["at17"] = <
+                text = <"11-20">
+                description = <"Smoking 11-20 cigarettes per day.">
+            >
+            ["at18"] = <
+                text = <"21-30">
+                description = <"Smoking 21-30 cigarettes per day.">
+            >
+            ["at19"] = <
+                text = <"31 or more">
+                description = <"Smoking >30 cigarettes per day.">
+            >
+            ["at21"] = <
+                text = <"No">
+                description = <"Not smoking more during the first hours after waking.">
+            >
+            ["at22"] = <
+                text = <"Yes">
+                description = <"Smoke more during the first hours after waking.">
+            >
+            ["at24"] = <
+                text = <"No">
+                description = <"Not smoking if ill enough to be in bed most of the day.">
+            >
+            ["at25"] = <
+                text = <"Yes">
+                description = <"Smoke continues, even if ill enough to be in bed most of the day.">
+            >
+            ["at5"] = <
+                text = <"After 60 Minutes">
+                description = <"First cigarette is smoked more than 60 minutes after waking.">
+            >
+            ["at6"] = <
+                text = <"Within 6-30 Minutes">
+                description = <"First cigarette is smoked between 6 and 30 minutes after waking.">
+            >
+            ["at7"] = <
+                text = <"Within 31-60 Minutes">
+                description = <"First cigarette is smoked between 31 and 60 minutes after waking.">
+            >
+            ["at8"] = <
+                text = <"Within 5 Minutes">
+                description = <"First cigarette is smoked in the first 5 minutes after waking.">
+            >
+            ["id1"] = <
+                text = <"Fagerström test for nicotine dependence">
+                description = <"Standard instrument for assessing physical dependence on nicotine.">
+            >
+            ["id10"] = <
+                text = <"Difficult to refrain">
+                description = <"Do you find it difficult to refrain from smoking in places where it is forbidden (e.g., in church, at the library, in cinema, etc)?">
+            >
+            ["id13"] = <
+                text = <"Hate to give up">
+                description = <"Which cigarette would you hate most to give up?">
+            >
+            ["id16"] = <
+                text = <"Daily consumption">
+                description = <"How many cigarettes per day do you smoke?">
+            >
+            ["id21"] = <
+                text = <"Early morning pattern">
+                description = <"Do you smoke more during the first hours after waking than during the rest of the day?">
+            >
+            ["id24"] = <
+                text = <"During illness">
+                description = <"Do you smoke even when you are ill enough to be in bed most of the day?">
+            >
+            ["id27"] = <
+                text = <"Total">
+                description = <"Aggregate total from all components.">
+            >
+            ["id29"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Morning cigarette">
+                description = <"How soon after you wake up do you smoke your first cigarette?">
+            >
+        >
+    >
+    

@@ -1,0 +1,236 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=238bb18d-95e3-479b-8593-66505f8c76d8)
+	s2-EHR-Assessment.infant_feeding.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2013-03-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.infant_feeding.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.infant_feeding.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a summary of early infant feeding activity, particularly focused on breast and formula feeding.">
+			use = <"Use to record a summary of early infant feeding activity, particularly focused on breast and formula feeding.">
+			keywords = <"breast", "feeding", "infant", "formula", "bottle", "fed", "wean">
+			misuse = <"">
+		>
+	>
+
+definition
+	Assessment[id1] matches {	-- Infant feeding summary
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id23] 
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Overall feeding type
+				value matches {
+					Coded_text[id24] matches {
+						term matches {
+							Terminology_term[id35] matches {
+								concept matches {[ac1]}		-- Overall feeding type (synthesised)
+							}
+						}
+					}
+					Plain_text[id25] 
+				}
+			}
+			Node[id4] matches {	-- Feeding episode
+				items matches {
+					Node[id7] occurrences matches {0..1} matches {	-- Type
+						value matches {
+							Coded_text[id26] matches {
+								term matches {
+									Terminology_term[id36] matches {
+										concept matches {[ac2]}		-- Type (synthesised)
+									}
+								}
+							}
+							Plain_text[id27] 
+						}
+					}
+					Node[id5] occurrences matches {0..1} matches {	-- Age Commenced
+						value matches {
+							Duration_value[id28] matches {
+								magnitude matches {|>=PT0S|}
+							}
+						}
+					}
+					Node[id6] occurrences matches {0..1} matches {	-- Age Ceased
+						value matches {
+							Duration_value[id29] 
+						}
+					}
+					Node[id10] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id30] 
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Total Duration of Breast Feeding
+				value matches {
+					Duration_value[id31] matches {
+						magnitude matches {PYMWD}
+					}
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Age Commenced Solid Foods
+				value matches {
+					Duration_value[id32] matches {
+						magnitude matches {PMWD}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Age Weaned
+				value matches {
+					Duration_value[id33] matches {
+						magnitude matches {PYM}
+					}
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id34] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id21] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Overall feeding type (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac2"] = <
+				text = <"Type (synthesised)">
+				description = <"The predominant type of feeding for a period of time. (synthesised)">
+			>
+			["at11"] = <
+				text = <"Predominantly Breastfed">
+				description = <"Infant was solely breast fed, or the proportion of the volume of milk supplied by breast feeding was significantly greater than the volume from bottled formula.">
+			>
+			["at12"] = <
+				text = <"Predominantly Formula">
+				description = <"Infant was solely fed on bottled formula, or the proportion of the volume of milk supplied by feeding with bottled formula was significantly greater than by breast feeding.">
+			>
+			["at13"] = <
+				text = <"Mixed">
+				description = <"The volume of milk supplied by breast feeding was similar to that supplied as bottled formula.">
+			>
+			["at15"] = <
+				text = <"Predominantly breastfed">
+				description = <"">
+			>
+			["at16"] = <
+				text = <"Predominantly formula fed">
+				description = <"">
+			>
+			["at17"] = <
+				text = <"Mixed breast and formula feeding">
+				description = <"">
+			>
+			["id1"] = <
+				text = <"Infant feeding summary">
+				description = <"Summary of early infant feeding activity, particularly focused on breast and formula feeding.">
+			>
+			["id10"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the feeding activity not captured in other fields.">
+			>
+			["id11"] = <
+				text = <"Age Weaned">
+				description = <"The age of the infant when weaned.">
+			>
+			["id15"] = <
+				text = <"Overall feeding type">
+				description = <"">
+			>
+			["id20"] = <
+				text = <"Comment">
+				description = <"">
+			>
+			["id21"] = <
+				text = <"Extension">
+				description = <"">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"Narrative description about the overall feeding history for the infant.">
+			>
+			["id4"] = <
+				text = <"Feeding episode">
+				description = <"Details about a pattern of feeding.">
+			>
+			["id5"] = <
+				text = <"Age Commenced">
+				description = <"The age of the infant when the selected type of feeding was commenced.">
+			>
+			["id6"] = <
+				text = <"Age Ceased">
+				description = <"The age of the infant when the selected type of feeding was ceased.">
+			>
+			["id7"] = <
+				text = <"Type">
+				description = <"The predominant type of feeding for a period of time.">
+			>
+			["id8"] = <
+				text = <"Total Duration of Breast Feeding">
+				description = <"The total amount of time that the infant was predominantly breastfed.">
+			>
+			["id9"] = <
+				text = <"Age Commenced Solid Foods">
+				description = <"The age of the infant when commenced on solid foods.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/106173-8>
+			["id20"] = <http://loinc.org/106173-8>
+			["id3"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at15", "at16", "at17">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at11", "at12", "at13">
+		>
+	>
+

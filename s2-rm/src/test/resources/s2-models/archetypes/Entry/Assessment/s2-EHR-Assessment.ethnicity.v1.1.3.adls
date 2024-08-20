@@ -1,0 +1,168 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=886d2491-ea7b-4046-9e8f-9e27a5006ac0)
+	s2-EHR-Assessment.ethnicity.v1.1.3
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-01-27">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.ethnicity.v1.1.3, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.ethnicity.v1.1.3 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the affiliation, kinship or connection of an individual with one or more groupings of people, usually self-identified.">
+			use = <"Use to record the affiliation, kinship or connection of an individual with one or more groupings of people, usually self-identified.
+            
+            Ethnicity is a concept that is frequently used inconsistently, such that existing or legacy data may be quite varied in content, including but not limited to:
+            - A long-shared history (written or oral);
+            - A cultural tradition, including family, social and religious customs;
+            - A common geographic origin;
+            - A common language; or
+            - A minority or distinct group within the local community context.
+            
+            In designing this archetype, the structure has deliberately been kept simple, to support any and all requirements for representing ethnicity. As the understanding around ethnicity and appropriate value sets are identified and agreed upon, this archetype may grow to support evolving clarity of requirements. The data Node 'Ethnicity' allows multiple occurrences so that more than one ethnic and cultural identity to be recorded for the individual from a single value set, and also so that more than one representation of 'Ethnicity' can be recorded, for example explicitly recording First People status.
+            
+            The 'Ancestry' data Node has also been included to support health risk assessment related to family history and inherited disease, such as a genetic variations that increase the risk of Crohn's disease in Ashkenazi Jews. 
+            
+            The amount of overlap between 'Ethnicity' and 'Ancestry may vary enormously between individuals, but separating each into distinct data Nodes will allow appropriate usage within the clinical context for decision support and provision of healthcare.
+            
+            This archetype has been designed to be recorded as a single instance within a health record, persisted, updated and revised over time as a new version.
+            
+            Ethnicity is often considered as a component of a demographic record for an individual however it has been represented within this clinical archetype for situations when it needs to be represented in a clinical data collection or is required to support culturally sensitive and appropriate healthcare delivery, for example in First Nations communities.
+            
+            The concept of categorisation by race or skin colour is controversial. In some places, the term 'race' may be considered acceptable and interchangeable with 'ethnicity', yet is illegal in others. Contributing to the confusion, many value sets for ethnicity also contain values that describe physical characteristics such as skin colour or geographical origin. The concept of 'Race' may sometimes be used as a clumsy proxy for identifying risk factors related to social determinants of health (SDOH), however it is strongly recommended that archetypes that represent SDOH concepts be used for more accurate data capture.">
+			keywords = <"ethnicity", "culture", "language", "race", "tribe", "affiliation", "belief", "kinship", "identity", "clan", "group", "nationality", "citizenship", "nation", "political">
+			misuse = <"Not to be used to represent the 'Country of birth' of an individual. Use the 'Country of birth' data Node within the EVALUATION.birth_details archetype for this purpose.
+            
+            Not to be used to record a religious affiliation. Use the Node.religion archetype for this purpose.
+            
+            Not to be used to record self-identified gender. Use the 'Gender identity' data Node within the EVALUATION.gender archetype for this purpose. 
+            
+            Not to be used to record language requirements for translation purposes. Use the Node.language for this purpose.
+            
+            Not to be used to represent or replace formal records of ethnic background or for the purposes of maintaining an official demographic register or index. Use a formal Master Patient Index for this purpose, or archetypes based on the openEHR Demographic Information Model.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Samanta Dallagnese, Prontmed, Brazil", "Stefan Dubois, Dep't of Pathology and Genetics, University Hospitals of Lund and Malmö, Sweden", "Grant Forrest, Lunaria Ltd, United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Akriti Jamwal, DCHIKITSA Pvt Ltd, India", "Kanika Kuwelker, Helse Vest IKT, Norway (openEHR Editor)", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Tomi Laptoš, Marand, Slovenia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Michael Lutz, BITsoft, Germany", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Pencho Tonchev, Medical University- Pleven, Bulgaria", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Michael Zampaglione, Australia">
+
+definition
+	Assessment[id1] matches {	-- Ethnic identity
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id12] 
+				}
+			}
+			Node[id4] matches {	-- Ethnicity
+				value matches {
+					Text[id13] 
+				}
+			}
+			Node[id5] matches {	-- Ancestry
+				value matches {
+					Text[id14] 
+				}
+			}
+			Node[id11] matches {	-- National identity
+				value matches {
+					Text[id15] 
+				}
+			}
+			allow_archetype Node[id10] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id16] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id8] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id17] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Ethnic identity">
+				description = <"Affiliation, kinship or connection with one or more groupings of people, according to common origins or background.">
+			>
+			["id10"] = <
+				text = <"Additional details">
+				description = <"Additional details about the cultural and ethnic identity.">
+			>
+			["id11"] = <
+				text = <"National identity">
+				description = <"Self identification with an ethno-national group.">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"Narrative description about the self-identified affiliations, kinship or connections with one or more groupings of people, by an individual.">
+			>
+			["id4"] = <
+				text = <"Ethnicity">
+				description = <"Name of the ethnic or cultural grouping with whom the individual identifies an affiliation, kinship or connection.">
+			>
+			["id5"] = <
+				text = <"Ancestry">
+				description = <"The hereditary or genetic line origins of the individual.">
+			>
+			["id6"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the identified cultural and ethnic identity, not captured in other fields.">
+			>
+			["id8"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id9"] = <
+				text = <"Last updated">
+				description = <"The date the cultural and ethnic identity details were last updated.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/76362-3>
+			["id4"] = <http://loinc.org/69490-1>
+			["id5"] = <http://loinc.org/42784-9>
+			["id11"] = <http://loinc.org/104890-9>
+			["id3"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id6"] = <http://loinc.org/106173-8>
+			["id9"] = <http://loinc.org/106177-9>
+		>
+	>
+

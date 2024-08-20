@@ -1,0 +1,291 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8879e8e3-3631-4645-80f9-b2e875b08de0)
+	s2-EHR-Score.abc_score_massive_transfusion.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Eneimi Allwell-Brown, Cambio Healthcare Systems, <models@cambiocds.com>, 2017-01-05">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.abc_score_massive_transfusion.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.abc_score_massive_transfusion.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the assessment and total of the Assessment of Blood Consumption (ABC) Score.">
+			use = <"Use to record the assessment and total of the Assessment of Blood Consumption (ABC) Score.">
+			keywords = <"trauma", "transfusion">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+
+definition
+	Score[id1] matches {	-- Assessment of Blood Consumption (ABC) Score
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Penetrating trauma
+				value matches {
+					Coded_ordinal[id27] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id29] matches {
+								term matches {
+									Terminology_term[id28] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id30] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id32] matches {
+								term matches {
+									Terminology_term[id31] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Systolic blood pressure (SBP)
+				value matches {
+					Coded_ordinal[id33] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id35] matches {
+								term matches {
+									Terminology_term[id34] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id36] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id38] matches {
+								term matches {
+									Terminology_term[id37] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Heart rate
+				value matches {
+					Coded_ordinal[id39] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id41] matches {
+								term matches {
+									Terminology_term[id40] matches {
+										concept matches {[at11]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id42] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id44] matches {
+								term matches {
+									Terminology_term[id43] matches {
+										concept matches {[at12]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Focused assessment with sonography for trauma (FAST)
+				value matches {
+					Coded_ordinal[id45] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id47] matches {
+								term matches {
+									Terminology_term[id46] matches {
+										concept matches {[at14]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id48] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id50] matches {
+								term matches {
+									Terminology_term[id49] matches {
+										concept matches {[at15]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Total score
+				value matches {
+					Count[id25] matches {
+						magnitude matches {|0..4|}
+					}
+				}
+			}
+			Node[id18] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id26] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id20] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Penetrating trauma (synthesised)">
+				description = <"Did the patient's trauma involve a penetrating mechanism? (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Systolic blood pressure (SBP) (synthesised)">
+				description = <"What was the systolic blood pressure at initial assessment? (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Heart rate (synthesised)">
+				description = <"What was the heart rate at initial assessment? (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Focused assessment with sonography for trauma (FAST) (synthesised)">
+				description = <"What was the result of a FAST scan? (synthesised)">
+			>
+			["at11"] = <
+				text = <"<120 /min">
+				description = <"Heart rate at initial assessment less than 120 /min.">
+			>
+			["at12"] = <
+				text = <"≥120 /min">
+				description = <"Heart rate at initial assessment greater than or equals 120 /min.">
+			>
+			["at14"] = <
+				text = <"Negative">
+				description = <"Negative FAST scan.">
+			>
+			["at15"] = <
+				text = <"Positive">
+				description = <"Positive FAST scan.">
+			>
+			["at5"] = <
+				text = <"No">
+				description = <"No penetrating injury at assessment.">
+			>
+			["at6"] = <
+				text = <"Yes">
+				description = <"Penetrating injury present at assessment.">
+			>
+			["at8"] = <
+				text = <">90 mmHg">
+				description = <"SBP at initial assssment greater than 90 mmHg.">
+			>
+			["at9"] = <
+				text = <"≤90 mmHg">
+				description = <"SBP at initial assessment less than or equals 90 mmHg.">
+			>
+			["id1"] = <
+				text = <"Assessment of Blood Consumption (ABC) Score">
+				description = <"Tool used as a rapid and initial assessment of the need for massive transfusion in acutely injured patients.">
+			>
+			["id11"] = <
+				text = <"Heart rate">
+				description = <"What was the heart rate at initial assessment?">
+			>
+			["id14"] = <
+				text = <"Focused assessment with sonography for trauma (FAST)">
+				description = <"What was the result of a FAST scan?">
+			>
+			["id17"] = <
+				text = <"Total score">
+				description = <"Sum of the individual scores assigned for each of the contributing variables.">
+			>
+			["id18"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the ABC score, not captured in other fields.">
+			>
+			["id20"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Penetrating trauma">
+				description = <"Did the patient's trauma involve a penetrating mechanism?">
+			>
+			["id8"] = <
+				text = <"Systolic blood pressure (SBP)">
+				description = <"What was the systolic blood pressure at initial assessment?">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id18"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at8", "at9">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at11", "at12">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at14", "at15">
+		>
+	>
+

@@ -1,0 +1,126 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=953fbb72-a618-430a-9fe1-bef859fa58f5)
+    s2-Entity-Persona.individual_provider.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Sebastian Garde, Ocean Informatics, Germany (Editor)", "Omer Hotomaroglu, Turkey (Editor)", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-22">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-ROLE.individual_provider.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-ROLE.individual_provider.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"Representation of an individual healthcare provider demographic data.">
+            keywords = <"demographic service", "individual healthcare provider">
+            use = <"Used in demographic service to collect a individual healthcare provider's data.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Persona[id1] matches {    -- Individual healthcare provider
+        identities matches {
+            use_archetype Party_identity[id2, s2-Entity-Party_identity.person_name.v0] occurrences matches {1}     -- Name
+        }
+        capabilities matches {
+            use_archetype Capability[id3, s2-Entity-Capability.individual_credentials.v0]    -- Capability
+        }
+        contacts matches {
+            Contact[id4] matches {    -- Contact
+                addresses matches {
+                    allow_archetype Address[id31] occurrences matches {1} matches {     -- Address
+                        include
+                            archetype_id/value matches {/s2-Entity-Address\.address([a-zA-Z0-9_]+)*\.v0/}
+                            archetype_id/value matches {/s2-Entity-Address\.electronic_communication[a-zA-Z0-9_-]*\.v0/}
+                    }
+                }
+            }
+        }
+        relationships matches {
+            Party_relationship[id5] matches {    -- Relationship with a third-party payer
+                details matches {
+                    use_archetype Node[id42, s2-Entity-Node.provider_identifier.v0] occurrences matches {1}     -- Identifier
+                }
+            }
+            Party_relationship[id6] matches {    -- Employer/employee relationship
+                details cardinality matches {1..*; unordered} matches {
+                    use_archetype Node[id52, s2-Entity-Node.provider_identifier.v0] occurrences matches {1}     -- Identifier
+                    Node[id53] occurrences matches {0..1} matches {    -- Employment role
+                        value matches {
+                            Text[id54]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Individual healthcare provider">
+                description = <"Data about a person who performs the role of an individual healthcare provider.">
+            >
+            ["id2"] = <
+                text = <"Name">
+                description = <"Individual healthcare provider's name.">
+            >
+            ["id3"] = <
+                text = <"Capability">
+                description = <"Individual healthcare provider's capability.">
+            >
+            ["id31"] = <
+                text = <"Address">
+                description = <"Address where the individual provider can be contacted.">
+            >
+            ["id4"] = <
+                text = <"Contact">
+                description = <"Individual healthcare provider's contact.">
+            >
+            ["id42"] = <
+                text = <"Identifier">
+                description = <"The identifer of the individual healthcare provider at the third-party payer.">
+            >
+            ["id5"] = <
+                text = <"Relationship with a third-party payer">
+                description = <"Relationship between an individual healthcare provider and a third-party payer.">
+            >
+            ["id52"] = <
+                text = <"Identifier">
+                description = <"The identifer of the individual healthcare provider at the healthcare provider organization.">
+            >
+            ["id53"] = <
+                text = <"Employment role">
+                description = <"The role of the individual healthcare provider at the healthcare provider organization.">
+            >
+            ["id6"] = <
+                text = <"Employer/employee relationship">
+                description = <"Employer/employee relationship between an individual healthcare provider and a healthcare provider organization.">
+            >
+        >
+    >
+    

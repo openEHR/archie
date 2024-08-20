@@ -1,0 +1,238 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ac90488e-0df1-4c1a-b1e3-d70b3aed7d8b)
+	s2-EHR-Order.therapeutic_item_order.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Hanne Marte Bårholm, Helse Vest IKT, <hanne.marte.sandal.barholm@helse-vest-ikt.no>, 2023-04-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-INSTRUCTION.therapeutic_item_order.v0.0.1-alpha, copyright 2023 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-INSTRUCTION.therapeutic_item_order.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record an order for a medical device or therapeutic item intended for use by the individual or a carer, excluding medications.">
+			use = <"Use to record an order for a medical device or therapeutic item intended for use by the individual or a carer, excluding medications.
+            
+            The scope of this archetype includes, but is not limited to an order for:
+            - a wheelchair or crutches 
+            - a walking boot to be used for 6 weeks to treat an ankle sprain
+            - hearing aids
+            - non-medicated bandages or dressings
+            - a positive expiratory pressure device for lung physiotherapy
+            - a Frejka pillow or a Pavlik harness for treatment for developmental dysplasia of the hip
+            - an insulin pump
+            
+            This archetype is designed to be used in a number of clinical contexts, including but not limited to:
+            - a record in a clinical consultation (COMPOSITION.encounter); or
+            - a written order by a health professional for a therapeutic item to be dispensed, administered and/or applied.">
+			keywords = <"order", "prescribe", "therapy", "therapeutic", "otc", "therapeutic goods", "pharmaceutical", "product", "treatment", "CPOE", "assistive device">
+			misuse = <"Not to be used to record the activities related to carrying out the order for the therapeutic item, such as details about actual administration or application. Use the appropiate ACTION-archetype for this purpose.
+            
+            Not to be used to record the ordering of blood products, which involves a fundamentally different clinical process and is likely to require different supporting information Use the INSTRUCTION.transfusion for this purpose.
+            
+            Not to be used to record the order for insertion of implants or medical devices such as pacemakers and defibrillators. Use the INSTRUCTION.procedure for this purpose.
+            
+            Not to be used to record an order for a medication, vaccine, or nutritional product for an identified individual. Use the INSTRUCTION.medication_order for this purpose.
+            
+            Not to be used to record an order for a therapeutic activity, such as exercise or daily peak flow measurements - use a specific archetype for this purpose.
+            
+            Not to be used to record an order for a medical device or therapeutic item that would be used as part of a procedure by a health professional - this would most likely be part of supply chain ordering and logistics.">
+		>
+	>
+
+definition
+	Order[id1] matches {	-- Therapeutic item order
+		activities matches {
+			Activity[id2] matches {	-- Order
+				description cardinality matches {1..*; unordered} matches {
+					Node[id71] matches {	-- Therapeutic item
+						value matches {
+							Text[id169] 
+						}
+					}
+					use_archetype Node[id144, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+					Node[id93] occurrences matches {0..1} matches {	-- Body site
+						value matches {
+							Text[id170] 
+						}
+					}
+					allow_archetype Node[id94] occurrences matches {0..1} matches {	-- Structured body site
+						include
+							archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v2/}
+					}
+					Node[id10] occurrences matches {0..1} matches {	-- Directions
+						value matches {
+							Text[id171] 
+						}
+					}
+					Node[id108] matches {	-- Monitoring instruction
+						value matches {
+							Text[id172] 
+						}
+					}
+					Node[id19] matches {	-- Clinical indication
+						value matches {
+							Text[id173] 
+						}
+					}
+					Node[id149] matches {	-- Therapeutic intent
+						value matches {
+							Text[id174] 
+						}
+					}
+					Node[id13] occurrences matches {0..1} matches {	-- Order start date/time
+						value matches {
+							Date_time_value[id175] 
+						}
+					}
+					Node[id14] occurrences matches {0..1} matches {	-- Order stop date/time
+						value matches {
+							Date_time_value[id176] 
+						}
+					}
+					Node[id12] matches {	-- Order start criterion
+						value matches {
+							Text[id177] 
+						}
+					}
+					Node[id17] matches {	-- Order stop criterion
+						value matches {
+							Text[id178] 
+						}
+					}
+					allow_archetype Node[id167] matches {	-- Additional details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					Node[id168] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id179] 
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id5] matches {	-- Order identifier
+				value matches {
+					Text[id180] 
+				}
+			}
+			allow_archetype Node[id9] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Therapeutic item order">
+				description = <"An order for a medical device or therapeutic item intended for use by the individual or a carer, excluding medications.">
+			>
+			["id10"] = <
+				text = <"Directions">
+				description = <"Narrative description about how the ordered item is to be used.">
+			>
+			["id108"] = <
+				text = <"Monitoring instruction">
+				description = <"An additional instruction which gives advice on recommended or required monitoring of the ordered item.">
+			>
+			["id12"] = <
+				text = <"Order start criterion">
+				description = <"A condition which, when met, requires the commencement of administration or use.">
+			>
+			["id13"] = <
+				text = <"Order start date/time">
+				description = <"The date and optional time to commence use of the ordered item.">
+			>
+			["id14"] = <
+				text = <"Order stop date/time">
+				description = <"The date and optional time when it is planned to cease use of the ordered item.">
+			>
+			["id144"] = <
+				text = <"Item details">
+				description = <"Structured details about the therapeutic item including size and model.">
+			>
+			["id149"] = <
+				text = <"Therapeutic intent">
+				description = <"The overall therapeutic intent of the ordered item.">
+			>
+			["id167"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about the ordered item not captured in other fields.">
+			>
+			["id168"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the therapeutic item order not captured in other fields.">
+			>
+			["id17"] = <
+				text = <"Order stop criterion">
+				description = <"A condition which, when met, requires the cessation of use.">
+			>
+			["id19"] = <
+				text = <"Clinical indication">
+				description = <"The clinical reason for use of the ordered item.">
+			>
+			["id2"] = <
+				text = <"Order">
+				description = <"Details of the requested order.">
+			>
+			["id5"] = <
+				text = <"Order identifier">
+				description = <"Unique identifier for the therepautic item order.">
+			>
+			["id71"] = <
+				text = <"Therapeutic item">
+				description = <"Name of the therapeutic item being ordered.">
+			>
+			["id9"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id93"] = <
+				text = <"Body site">
+				description = <"Name of the site where the ordered item is applied.">
+			>
+			["id94"] = <
+				text = <"Structured body site">
+				description = <"Structured description of the site where the ordered item is applied.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id93"] = <http://loinc.org/39111-0>
+			["id13"] = <http://loinc.org/104782-8>
+			["id14"] = <http://loinc.org/104748-9>
+			["id149"] = <http://loinc.org/104803-2>
+			["id168"] = <http://loinc.org/106173-8>
+			["id19"] = <http://loinc.org/104720-8>
+			["id5"] = <http://loinc.org/104756-2>
+		>
+	>
+

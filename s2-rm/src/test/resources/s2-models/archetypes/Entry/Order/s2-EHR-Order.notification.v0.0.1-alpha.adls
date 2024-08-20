@@ -1,0 +1,97 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d23ce735-8d8f-4963-93ab-07c053195303)
+	s2-EHR-Order.notification.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2016-05-04">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-INSTRUCTION.notification.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-INSTRUCTION.notification.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To enable clinical systems to generate a notice or announcement containing non-clinical information, which will be triggered at certain time/s or by occurrence of an event.">
+			use = <"Use to enable clinical systems to generate a notice or announcement containing non-clinical information, which will be triggered at certain time/s or by occurrence of an event.">
+			keywords = <"notice", "announcement">
+			misuse = <"Not to be used to provide clinical safety alerts or warnings. Use other, more specific archetypes for this purpose, such as EVALUATION.adverse_reaction_risk or EVALUATION.contraindication.">
+		>
+	>
+	other_contributors = <"Heath Frankel, Ocean Informatics, Australia", ...>
+
+definition
+	Order[id1] matches {	-- Notification
+		activities matches {
+			Activity[id2] occurrences matches {0..1} matches {	-- Current Activity
+				description matches {
+					Node[id4] occurrences matches {0..1} matches {	-- Topic name
+						value matches {
+							Text[id7] 
+						}
+					}
+					allow_archetype Node[id6] matches {	-- Timing
+						include
+							archetype_id/value matches {/s2-EHR-Node\.timing_repetition(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.daily_timing(-[a-zA-Z0-9_]+)*\.v0/}
+					}
+					Node[id5] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id8] 
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Notification">
+				description = <"Order for generation of a notice or announcement containing non-clinical information, which will be triggered at certain time/s or by occurrence of an event.">
+			>
+			["id2"] = <
+				text = <"Current Activity">
+				description = <"Current Activity">
+			>
+			["id4"] = <
+				text = <"Topic name">
+				description = <"Identification of the topic of the notification, by name.">
+			>
+			["id5"] = <
+				text = <"Description">
+				description = <"Narrative description or note about the notification.">
+			>
+			["id6"] = <
+				text = <"Timing">
+				description = <"Structured details to describe the timing of a single instance of notification or a repetitive pattern of notifications.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+

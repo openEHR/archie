@@ -1,0 +1,50 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Node.lab_analyte_ordinal.v0.0.1
+
+specialize
+	s2-EHR-Node.lab_analyte.v0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"???">
+		>
+	>
+
+definition
+	Node[id1.1] matches {	-- Lab result with coded ordinal value
+		value matches {
+			Coded_ordinal[id0.1] matches {
+				concept matches {
+					Coded_text[id0.9] matches {
+						term matches {
+							Terminology_term[id0.10]	
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Lab result with coded ordinal value">
+				description = <"-">
+			>
+		>
+	>

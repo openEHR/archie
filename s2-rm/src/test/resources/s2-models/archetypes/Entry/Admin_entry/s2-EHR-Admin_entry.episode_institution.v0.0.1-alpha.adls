@@ -1,0 +1,293 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d2f3655a-2e33-4a4a-b776-4a61cc91381a)
+	s2-EHR-Admin_entry.episode_institution.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-03-14">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ADMIN_ENTRY.episode_institution.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-ADMIN_ENTRY.episode_institution.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record administrative details about a period of admitted patient care between a formal or statistical admission and a formal or statistical separation, characterised by only one care type of care from a healthcare institution.">
+			use = <"Use to record administrative details about a period of admitted patient care between a formal or statistical admission and a formal or statistical separation, characterised by only one care type of care from a healthcare institution.">
+			misuse = <"">
+		>
+	>
+
+definition
+	Admin_entry[id1] matches {	-- Episode of care - institution
+		data matches {
+			Node[id15] occurrences matches {0..1} matches {	-- Episode ID
+				value matches {
+					Rwe_id_ref[id29] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Admission date
+				value matches {
+					Date_time_value[id30] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Reason for admission
+				value matches {
+					Text[id31] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Admission category
+				value matches {
+					Text[id32] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Source category
+				value matches {
+					Text[id33] 
+				}
+			}
+			allow_archetype Node[id14] matches {	-- Source
+				include
+					archetype_id/value matches {/s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			use_archetype Node[id28, s2-EHR-Node.person.v1] 
+			Node[id17] occurrences matches {0..1} matches {	-- Medical record number
+				value matches {
+					Rwe_id_ref[id34] 
+					Text[id35] 
+				}
+			}
+			Node[id27] occurrences matches {0..1} matches {	-- Health insurance category
+				value matches {
+					Text[id36] 
+				}
+			}
+			Node[id22] matches {	-- Attending unit
+				value matches {
+					Text[id37] 
+				}
+			}
+			use_archetype Node[id16, s2-EHR-Node.person.v1] 
+			Node[id19] matches {	-- Physical location
+				items matches {
+					Node[id20] occurrences matches {0..1} matches {	-- Location onset
+						value matches {
+							Date_time_value[id38] 
+						}
+					}
+					Node[id26] occurrences matches {0..1} matches {	-- Location category
+						value matches {
+							Text[id39] 
+						}
+					}
+					allow_archetype Node[id18] matches {	-- Location
+						include
+							archetype_id/value matches {/s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.structured_address(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.structured_address(-[a-zA-Z0-9_]+)*\.v1/}
+					}
+					Node[id23] occurrences matches {0..1} matches {	-- Ward
+						value matches {
+							Text[id40] 
+						}
+					}
+					Node[id24] occurrences matches {0..1} matches {	-- Room
+						value matches {
+							Text[id41] 
+						}
+					}
+					Node[id25] occurrences matches {0..1} matches {	-- Bed
+						value matches {
+							Text[id42] 
+						}
+					}
+					Node[id21] occurrences matches {0..1} matches {	-- Location end
+						value matches {
+							Date_time_value[id43] 
+						}
+					}
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Separation date
+				value matches {
+					Date_time_value[id44] 
+				}
+			}
+			Node[id7] matches {	-- Outcome
+				value matches {
+					Text[id45] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Destination category
+				value matches {
+					Text[id46] 
+				}
+			}
+			allow_archetype Node[id13] matches {	-- Destination
+				include
+					archetype_id/value matches {/s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype Node[id12] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id47] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Episode of care - institution">
+				description = <"Administrative details about a period of admitted patient care between a formal or statistical admission and a formal or statistical separation, characterised by only one care type of care from a healthcare institution.">
+			>
+			["id10"] = <
+				text = <"Admission category">
+				description = <"The type of admission.">
+			>
+			["id11"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the episode, not captured in other fields.">
+			>
+			["id12"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about the episode of care within an institution.">
+			>
+			["id13"] = <
+				text = <"Destination">
+				description = <"The organization or address for the individual after the admission.">
+			>
+			["id14"] = <
+				text = <"Source">
+				description = <"The organization or address for the individual prior to the admission.">
+			>
+			["id15"] = <
+				text = <"Episode ID">
+				description = <"An identifier for the episode of care.">
+			>
+			["id16"] = <
+				text = <"Attending clinicians">
+				description = <"Details about the consultant and attending clinicians responsible for care during the episode.">
+			>
+			["id17"] = <
+				text = <"Medical record number">
+				description = <"Identification of the medical record number.">
+			>
+			["id18"] = <
+				text = <"Location">
+				description = <"An organization, physical address or structured address describing where the individual was located during the episode of care.">
+			>
+			["id19"] = <
+				text = <"Physical location">
+				description = <"The physical location of the individual within the institution during the episode of care.">
+			>
+			["id20"] = <
+				text = <"Location onset">
+				description = <"The date the individual was moved to the internal institution location.">
+			>
+			["id21"] = <
+				text = <"Location end">
+				description = <"The date the individual was moved from the internal institution location.">
+			>
+			["id22"] = <
+				text = <"Attending unit">
+				description = <"The clinical service unit assigned for care of the individual.">
+			>
+			["id23"] = <
+				text = <"Ward">
+				description = <"The name of the Ward within the institution where the individual was located.">
+			>
+			["id24"] = <
+				text = <"Room">
+				description = <"The name of the Room within the institution where the individual was located.">
+			>
+			["id25"] = <
+				text = <"Bed">
+				description = <"The name of the Bed within the institution where the individual was located.">
+			>
+			["id26"] = <
+				text = <"Location category">
+				description = <"The type of location.">
+			>
+			["id27"] = <
+				text = <"Health insurance category">
+				description = <"The type of health insurance applicable for the episode.">
+			>
+			["id28"] = <
+				text = <"Referring clinician">
+				description = <"Details about the clinicians responsible for referring the individual from the Source.">
+			>
+			["id3"] = <
+				text = <"Separation date">
+				description = <"The date and/or time of the formal or statistical end of the admission to the institution.">
+			>
+			["id4"] = <
+				text = <"Destination category">
+				description = <"The type of residence where the individual resided after the episode of care.">
+			>
+			["id5"] = <
+				text = <"Admission date">
+				description = <"The date and/or time of the formal or statistical admission to the institution.">
+			>
+			["id7"] = <
+				text = <"Outcome">
+				description = <"Outcome for the individual at the end of the episode of care.">
+			>
+			["id8"] = <
+				text = <"Source category">
+				description = <"The type of residence where the individual resided prior to admission.">
+			>
+			["id9"] = <
+				text = <"Reason for admission">
+				description = <"The reason why the individual was admitted for an episode of care.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/90055-5>
+			["id15"] = <http://loinc.org/56797-4>
+			["id17"] = <http://loinc.org/46106-1>
+			["id19"] = <http://loinc.org/80412-0>
+			["id22"] = <http://loinc.org/52835-6>
+			["id23"] = <http://loinc.org/52835-6>
+			["id24"] = <http://loinc.org/45403-3>
+			["id27"] = <http://loinc.org/76437-3>
+			["id3"] = <http://loinc.org/52525-3>
+			["id5"] = <http://loinc.org/52455-3>
+			["id10"] = <http://loinc.org/104947-7>
+			["id11"] = <http://loinc.org/106173-8>
+			["id20"] = <http://loinc.org/104969-1>
+			["id21"] = <http://loinc.org/104968-3>
+			["id25"] = <http://loinc.org/104048-4>
+			["id26"] = <http://loinc.org/104967-5>
+			["id4"] = <http://loinc.org/104913-9>
+			["id7"] = <http://loinc.org/104898-2>
+			["id8"] = <http://loinc.org/104910-5>
+			["id9"] = <http://loinc.org/104889-1>
+		>
+	>
+

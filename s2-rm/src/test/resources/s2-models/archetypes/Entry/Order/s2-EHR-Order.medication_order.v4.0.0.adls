@@ -1,0 +1,604 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; uid=c153b01d-ef8d-401a-8a64-8bb881493e6a)
+	s2-EHR-Order.medication_order.v4.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-07-26">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health<http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics, <ian@freshehr.com>, 2015-10-21">
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record all aspects of an order of a medication, vaccine, nutritional product or other therapeutic item for an identified individual.">
+			use = <"Use to record all aspects of an order of a medication, vaccine, nutritional product or other therapeutic item for an identified individual.
+            
+            It is intended to be used for any type of medication and related order, whether prescribed by a health professional or available for purchase 'over the counter'. The scope of this medication archetype also includes orders for vaccinations, parenteral fluids or other therapeutic goods, such as bandages, nutritional products or other items that are applied or administered to have a therapeutic effect and which have a common pattern for data recording.
+            
+            This archetype is designed to be used in a number of clinical contexts, including but not limited to:
+            - a record in a clinical consultation (COMPOSITION.encounter);
+            - a written prescription by a physician, dentist, nurse practitioner, or other designated health professional for a medication or nutritional product to be dispensed and administered (within a Composition.prescription);
+            - an item in a current medication list, prescription or drug chart (within Composition.medication_list); and
+            - an item in a summary document such as transfer of care (Composition.transfer_summary) or a referral (Composition.request).
+            
+            In many cases a medication order will be simple – typically for a single medication item with uncomplicated instructions for dispensing and administration. However this archetype is also designed to allow for more complex therapeutic orders. For example:
+            
+            - a reducing dose of prednisolone over a period of weeks;
+            - titration of insulin, with dosing dependent on test results;
+            - multiple medications prescribed simultaneously as part of a single drug regimen, such as a triple therapy for peptic ulcer; and
+            - intravenous administration of medications or nutrition supplements, including parenteral nutrition.
+            
+            The archetype has therefore been designed to allow for a range of complexity, from:
+            - simple narrative instructions for orders like 'furosemide 40mg two tablets in the morning and one at lunch' to ensure compatibility with existing systems; and
+            - the amount of medication is usually represented in terms of a number and corresponding dose unit, however there can alternatively be a narrative statement to ensure compatibility with existing systems and coverage of all clinical scenarios; through to
+            - structured detail for dose, route and timing to represent a fully computable specification.
+            
+            It has also been designed so that a single medication order structure can represent:
+            - complex sequential medication orders using the same preparation strength to be supported within a single order structure; and
+            - multiple medication orders can be chained in circumstances where different medications or preparations need to be given sequentially.
+            
+            This archetype is also suitable for ordering parenteral fluids, in care settings where it is normal practice to make these 'prescribable' items. In other settings a separate 'parenteral fluid order' may be appropriate.
+            
+            SLOTs containing Node archetypes have been used to represent some of the content for three reasons:
+            - To ensure a core archetype that can be used for all the above use cases, yet allow flexibility where it is required, for example the ‘Preparation details’ SLOT where additional structured detail can be added. A candidate archetype has been suggested for Medications. It is possible that other Node archetypes may be required in future for other purposes such as complex parenteral nutrition orders;
+            - to support archetype re-use in situations where the content has been identified as being also used in other clinical contexts, in particular the paired Action.medication archetype for recording actual dispensing, administration etc; and
+            - to remove less commonly used content from the core archetype framework.
+            
+            Multiple orders can be represented as separate activities within this single archetype instance to carry tightly bound orders of different medications, for example, H. pylori therapy when this is not prescribed as a single pack.
+            
+            It should be noted that these uses subsume both the FHIR Medication Order and Medication Statement use cases. i.e this archetype is a match for both FHIR resources, used in the appropriate context.">
+			keywords = <"medication", "order", "prescribe", "therapy", "substance", "drug", "therapeutic", "otc", "therapeutic good", "pharmaceutical", "product", "posology", "treatment", "fluid", "nutrition", "CPOE", "medicine">
+			misuse = <"Not to be used to record the activities related to carrying out the order for medication, vaccine, nutritional product or therapeutic item, such as details about actual administration or dispensing. Use the Action.medication for this purpose.
+            
+            Not to be used to record the ordering of blood products, which involves a fundamentally different clinical process and is likely to require different supporting information Use the Order.transfusion for this purpose.
+            
+            Not to be used to record the order for insertion of implants or medical devices such as pacemakers and defibrillators. Use the Order.procedure for this purpose.">
+		>
+	>
+	other_contributors = <"Morten Aas, Oslo Universitetssykehus, Norway", "Tomas Alme, DIPS, Norway", "Ole Andreas Bjordal, Webmed, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "John Bennett, NEHTA, Australia", "Kristian Berg, Universitetssykehuset Nord Norge, Norway (Nasjonal IKT redaktør)", "SumanBhusan Bhattacharyya, Sudisa Consultancy Services, India", "Sharmila Biswas, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Laila Bruun, Oslo universitetssykehus HF, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Inderjit Daphu, Helse Bergen, Norway", "Gail Easterbrook, Flinders Medical Centre, Australia", "Gunn Elin Blakkisrud, DIPS ASA, Norway", "Stig Erik Hegrestad, Helse Førde, Norway", "David Evans, Queensland Health, Australia", "Samuel Frade, Marand, Portugal", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sarah Gaunt, NEHTA, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Cecilie Graver, Oslo universitetssykehus HF, Norway", "Trina Gregory, cpc, Australia", "Bjørn Grøva, Diretoratet for e-helse, Norway", "Robert Hausam, Hausam Consulting LLC, United States", "Sam Heard, Ocean Informatics, Australia (Editor)", "Kristian Heldal, Telemark Hospital Trust, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Roar Holm, Helse Vest IKT A/S, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Nasjonal IKT HF, Norway", "Mary Kelaher, NEHTA, Australia", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Ole Kristian Losvik, Losol AS, Norway", "Robert L'egan, NEHTA, Australia", "Russell Leftwich, Russell B Leftwich MD, United States", "Fest Legemiddelverket, Statens Legemiddelverk, Norway", "Øygunn Leite Kallevik, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Colin Macfarlane, Elsevier, United Kingdom", "Alan March, Hospital Universitario Austral, Argentina", "Siv Marie Lien, DIPS ASA, Norway", "Susan McIndoe, Royal District Nursing Service, Australia", "David McKillop, NEHTA, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Chris Mitchell, RACGP, Australia", "Lars Morgan Karlsen, DIPS ASA, Norway", "Stewart Morrison, NEHTA, Australia", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Martin Paulson, Sykehuset i Vestfold, Norway", "Chris Pearce, Melbourne East GP Network, Australia", "Kristian Pedersen, Nordlandssykehuset HF, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "Tanja Riise, Nasjonal IKT HF, Norway", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Raymond Simkus, Brookswood Family Practice, Canada", "Iztok Stotl, UKCLJ, Slovenia", "John Taylor, NEHTA, Australia", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstituttet, Norway", "Richard Townley-O'Neill, Australian Digital Health Agency, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ines Vaz, UFN, Portugal", "Nils Widnes, Helse-Bergen, Norway", "Kylie Young, The Royal Australian College of General Practitioners, Australia">
+
+definition
+	Order[id1] matches {	-- Medication order
+		activities matches {
+			Activity[id2] matches {	-- Order
+				description cardinality matches {1..*; unordered} matches {
+					Node[id71] matches {	-- Medication item
+						value matches {
+							Text[id181] 
+						}
+					}
+					use_archetype Node[id144, s2-EHR-Node.medication.v3] occurrences matches {0..1} 
+					Node[id92] matches {	-- Route
+						value matches {
+							Text[id182] 
+						}
+					}
+					Node[id93] occurrences matches {0..1} matches {	-- Body site
+						value matches {
+							Text[id183] 
+						}
+					}
+					allow_archetype Node[id94] occurrences matches {0..1} matches {	-- Structured body site
+						include
+							archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v2/}
+					}
+					Node[id95] matches {	-- Administration method
+						value matches {
+							Text[id184] 
+						}
+					}
+					use_archetype Node[id96, s2-EHR-Node.device.v1] 
+					Node[id10] occurrences matches {0..1} matches {	-- Overall directions description
+						value matches {
+							Text[id185] 
+						}
+					}
+					Node[id48] occurrences matches {0..1} matches {	-- Parsable directions
+						value matches {
+							Parsable[id186] matches {
+								formalism matches {"text/html", "text/plain", "text/xml"}
+							}
+						}
+					}
+					Node[id174] matches {	-- Specific directions description
+						value matches {
+							Text[id187] 
+						}
+					}
+					Node[id175] matches {	-- Dosage justification
+						value matches {
+							Text[id188] 
+						}
+					}
+					use_archetype Node[id178, s2-EHR-Node.therapeutic_direction.v1] 
+					Node[id63] occurrences matches {0..1} matches {	-- Medication safety
+						items matches {
+							Node[id65] occurrences matches {0..1} matches {	-- Exceptional safety override?
+								value matches {
+									Boolean_value[id189] 
+								}
+							}
+							Node[id179] matches {	-- Safety override
+								items matches {
+									Node[id172] occurrences matches {0..1} matches {	-- Overriden safety advice
+										value matches {
+											Text[id190] 
+										}
+									}
+									Node[id163] matches {	-- Override reason
+										value matches {
+											Text[id191] 
+										}
+									}
+								}
+							}
+							Node[id52] matches {	-- Maximum dose
+								items matches {
+									Node[id131] occurrences matches {0..1} matches {	-- Maximum amount
+										value matches {
+											Quantity[id192] 
+										}
+									}
+									Node[id54] occurrences matches {0..1} matches {	-- Allowed period
+										value matches {
+											Duration_value[id193] matches {
+												magnitude matches {|>=PT0S|}
+											}
+										}
+									}
+								}
+							}
+							Node[id151] occurrences matches {0..1} matches {	-- Total daily effective dose
+								items matches {
+									Node[id166] occurrences matches {0..1} matches {	-- Purpose
+										value matches {
+											Text[id194] 
+										}
+									}
+									Node[id152] occurrences matches {0..1} matches {	-- Total daily amount
+										value matches {
+											Quantity[id195] 
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id45] matches {	-- Additional instruction
+						value matches {
+							Text[id196] 
+						}
+					}
+					Node[id106] matches {	-- Patient information
+						value matches {
+							Text[id197] 
+						}
+					}
+					Node[id108] matches {	-- Monitoring instruction
+						value matches {
+							Text[id198] 
+						}
+					}
+					Node[id19] matches {	-- Clinical indication
+						value matches {
+							Text[id199] 
+						}
+					}
+					Node[id149] matches {	-- Therapeutic intent
+						value matches {
+							Text[id200] 
+						}
+					}
+					Node[id180] occurrences matches {0..1} matches {	-- Clinician guidance
+						value matches {
+							Text[id201] 
+						}
+					}
+					Node[id114] occurrences matches {0..1} matches {	-- Order details
+						items matches {
+							Node[id13] occurrences matches {0..1} matches {	-- Order start date/time
+								value matches {
+									Date_time_value[id202] 
+								}
+							}
+							Node[id14] occurrences matches {0..1} matches {	-- Order stop date/time
+								value matches {
+									Date_time_value[id203] 
+								}
+							}
+							Node[id12] matches {	-- Order start criterion
+								value matches {
+									Text[id204] 
+								}
+							}
+							Node[id17] matches {	-- Order stop criterion
+								value matches {
+									Text[id205] 
+								}
+							}
+							Node[id61] occurrences matches {0..1} matches {	-- Administrations completed
+								value matches {
+									Count[id206] matches {
+										magnitude matches {|>=0|}
+									}
+								}
+							}
+							Node[id51] occurrences matches {0..1} matches {	-- Duration of order completed
+								value matches {
+									Duration_value[id207] matches {
+										magnitude matches {|>=PT0S|}
+									}
+								}
+							}
+							use_archetype Node[id113, s2-EHR-Node.medication_order_summary.v0] 
+						}
+					}
+					use_archetype Node[id70, s2-EHR-Node.medication_authorisation.v0] 
+					Node[id130] occurrences matches {0..1} matches {	-- Dispense directions
+						items matches {
+							Node[id107] matches {	-- Dispense instruction
+								value matches {
+									Text[id208] 
+								}
+							}
+							use_archetype Node[id66, s2-EHR-Node.medication_supply_amount.v0] 
+							Node[id133] occurrences matches {0..1} matches {	-- Substitution direction
+								value matches {
+									Coded_text[id209] matches {
+										term matches {
+											Terminology_term[id216] matches {
+												concept matches {[ac1]}		-- Substitution direction (synthesised)
+											}
+										}
+									}
+								}
+							}
+							Node[id155] occurrences matches {0..1} matches {	-- Non-substitution reason
+								value matches {
+									Text[id210] 
+								}
+							}
+							Node[id140] occurrences matches {0..1} matches {	-- Priority
+								value matches {
+									Text[id211] 
+								}
+							}
+							Node[id156] occurrences matches {0..1} matches {	-- Dispensing start date
+								value matches {
+									Date_time_value[id212] 
+								}
+							}
+							Node[id162] occurrences matches {0..1} matches {	-- Dispensing expiry date
+								value matches {
+									Date_time_value[id213] 
+								}
+							}
+							allow_archetype Node[id171] matches {	-- Dispense details
+								include
+									archetype_id/value matches {/.*/}
+							}
+						}
+					}
+					allow_archetype Node[id167] matches {	-- Additional details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					Node[id168] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id214] 
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id5] matches {	-- Order identifier
+				value matches {
+					Rwe_id_ref[id215] 
+				}
+			}
+			allow_archetype Node[id9] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Substitution direction (synthesised)">
+				description = <"Permission for substitution with a bioequivalent item. (synthesised)">
+			>
+			["at168"] = <
+				text = <"Permitted">
+				description = <"Substitution of the medication with a bioequivalent medication is allowed.">
+			>
+			["at169"] = <
+				text = <"Not permitted">
+				description = <"Substitution of the medication with a bioequivalent medication is not allowed.">
+			>
+			["id1"] = <
+				text = <"Medication order">
+				description = <"An order for a medication, vaccine, nutritional product or other therapeutic item for an identified individual.">
+			>
+			["id10"] = <
+				text = <"Overall directions description">
+				description = <"Complete narrative description about how the ordered item is to be used.">
+			>
+			["id106"] = <
+				text = <"Patient information">
+				description = <"An additional instruction directed primarily at the individual/patient or carers.">
+			>
+			["id107"] = <
+				text = <"Dispense instruction">
+				description = <"An additional instruction directed primarily at the person dispensing the ordered item.">
+			>
+			["id108"] = <
+				text = <"Monitoring instruction">
+				description = <"An additional instruction which gives advice on recommended or required monitoring of the ordered item.">
+			>
+			["id113"] = <
+				text = <"Order summary">
+				description = <"Summary information about use of the ordered item, such as current status or key dates, generally used in non-prescription contexts.">
+			>
+			["id114"] = <
+				text = <"Order details">
+				description = <"Details about the whole medication order.">
+			>
+			["id12"] = <
+				text = <"Order start criterion">
+				description = <"A condition which, when met, requires the commencement of administration or use.">
+			>
+			["id13"] = <
+				text = <"Order start date/time">
+				description = <"The date and optional time to commence use of the ordered item.">
+			>
+			["id130"] = <
+				text = <"Dispense directions">
+				description = <"Directions about the dispensing of the ordered item.">
+			>
+			["id131"] = <
+				text = <"Maximum amount">
+				description = <"The maximum, cumulative amount of medication which should be administered within the allowed period.">
+			>
+			["id133"] = <
+				text = <"Substitution direction">
+				description = <"Permission for substitution with a bioequivalent item.">
+			>
+			["id14"] = <
+				text = <"Order stop date/time">
+				description = <"The date and optional time when it is planned to cease use of the ordered item.">
+			>
+			["id140"] = <
+				text = <"Priority">
+				description = <"An indicator of the urgency with which the ordered item should be dispensed.">
+			>
+			["id144"] = <
+				text = <"Medication details">
+				description = <"Structured details about the overall medication including strength, form and constituent substances.">
+			>
+			["id149"] = <
+				text = <"Therapeutic intent">
+				description = <"The overall therapeutic intent of the ordered item.">
+			>
+			["id151"] = <
+				text = <"Total daily effective dose">
+				description = <"Details about the total daily amount of the ordered item expected to be administered.">
+			>
+			["id152"] = <
+				text = <"Total daily amount">
+				description = <"The amount of ordered item which will be taken each day if administered as intended.">
+			>
+			["id155"] = <
+				text = <"Non-substitution reason">
+				description = <"The reason why an ordered item should not be substituted at dispense.">
+			>
+			["id156"] = <
+				text = <"Dispensing start date">
+				description = <"The date from which the ordered item is permitted to be dispensed for the first time.">
+			>
+			["id162"] = <
+				text = <"Dispensing expiry date">
+				description = <"The date after which the ordered item is no longer valid to be legally dispensed.">
+			>
+			["id163"] = <
+				text = <"Override reason">
+				description = <"The reason for a clinical safety or maximum dose override.">
+			>
+			["id166"] = <
+				text = <"Purpose">
+				description = <"Description of the reason for recording a total daily effective dose.">
+			>
+			["id167"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about the ordered item not captured in other fields.">
+			>
+			["id168"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the medication order not captured in other fields.">
+			>
+			["id17"] = <
+				text = <"Order stop criterion">
+				description = <"A condition which, when met, requires the cessation of administration or use.">
+			>
+			["id171"] = <
+				text = <"Dispense details">
+				description = <"Further details related to dispense directions.">
+			>
+			["id172"] = <
+				text = <"Overriden safety advice">
+				description = <"A known or recognised safety issue which applies to this subject and the ordered item, such as an allergy, drug duplication warning or contraindication. This Node is normally only recorded when this safety advice is overridden.">
+			>
+			["id174"] = <
+				text = <"Specific directions description">
+				description = <"A narrative description of a specific part of overall directions.">
+			>
+			["id175"] = <
+				text = <"Dosage justification">
+				description = <"A description of the justification used to calculate a dose amount or administration rate where this is dependent on some other factor.">
+			>
+			["id178"] = <
+				text = <"Structured dose and timing directions">
+				description = <"Details of structured dose and timing directions.">
+			>
+			["id179"] = <
+				text = <"Safety override">
+				description = <"Overriding of a known or recognised safety issue which applies to this subject and the ordered item, such as an allergy, drug duplication warning or contraindication.">
+			>
+			["id180"] = <
+				text = <"Clinician guidance">
+				description = <"Advice to future prescribers/dispensers about the ongoing, long term order.">
+			>
+			["id19"] = <
+				text = <"Clinical indication">
+				description = <"The clinical reason for use of the ordered item.">
+			>
+			["id2"] = <
+				text = <"Order">
+				description = <"Details of the requested order.">
+			>
+			["id45"] = <
+				text = <"Additional instruction">
+				description = <"An additional instruction on how to use or store the ordered item.">
+			>
+			["id48"] = <
+				text = <"Parsable directions">
+				description = <"A parsable, computable text representation of the directions.">
+			>
+			["id5"] = <
+				text = <"Order identifier">
+				description = <"Unique identifier for the medication order.">
+			>
+			["id51"] = <
+				text = <"Duration of order completed">
+				description = <"The time period during which the individual/patient has already been using the ordered item as a part of the intended whole order but prior to the issuance of this order.">
+			>
+			["id52"] = <
+				text = <"Maximum dose">
+				description = <"Details about the maximum, cumulative dose allowed over a defined period for the ordered item.">
+			>
+			["id54"] = <
+				text = <"Allowed period">
+				description = <"The period of time during which the maximum dose is calculated.">
+			>
+			["id61"] = <
+				text = <"Administrations completed">
+				description = <"The number of administrations of the ordered item that have been completed, as part of the intended whole order but prior to the issuance of this order.">
+			>
+			["id63"] = <
+				text = <"Medication safety">
+				description = <"Details about medication safety for the ordered item.">
+			>
+			["id65"] = <
+				text = <"Exceptional safety override?">
+				description = <"Confirmation by the prescriber that the normal dose or other safety limit has been overridden due to exceptional circumstances.">
+			>
+			["id66"] = <
+				text = <"Dispense amount">
+				description = <"Details about the amount of the ordered item to be dispensed.">
+			>
+			["id70"] = <
+				text = <"Authorisation directions">
+				description = <"Details of authorisation of the ordered item, including supporting local self-administration, issue and endorsement policies.">
+			>
+			["id71"] = <
+				text = <"Medication item">
+				description = <"Name of the medication, vaccine or other therapeutic/prescribable item being ordered.">
+			>
+			["id9"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id92"] = <
+				text = <"Route">
+				description = <"The route by which the ordered item is to be administered into the subject's body.">
+			>
+			["id93"] = <
+				text = <"Body site">
+				description = <"Name of the site of administration of the ordered item.">
+			>
+			["id94"] = <
+				text = <"Structured body site">
+				description = <"Structured description of the site of administration of the ordered item.">
+			>
+			["id95"] = <
+				text = <"Administration method">
+				description = <"The technique or device by which the ordered item is to be administered.">
+			>
+			["id96"] = <
+				text = <"Administration device">
+				description = <"Details of the medical device used to assist administration of the ordered item.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id106"] = <http://loinc.org/74772-5>
+			["id13"] = <http://loinc.org/95895-9>
+			["id92"] = <http://loinc.org/71468-3>
+			["id93"] = <http://loinc.org/39111-0>
+			["id71"] = <http://loinc.org/104717-4>
+			["id95"] = <http://loinc.org/104817-2>
+			["id66"] = <http://loinc.org/82767-5>
+			["id5"] = <http://loinc.org/104756-2>
+			["id1"] = <http://loinc.org/57833-6>
+			["id10"] = <http://loinc.org/104818-0>
+			["id107"] = <http://loinc.org/104763-8>
+			["id12"] = <http://loinc.org/104784-4>
+			["id131"] = <http://loinc.org/104822-2>
+			["id133"] = <http://loinc.org/104804-0>
+			["id14"] = <http://loinc.org/104748-9>
+			["id140"] = <http://loinc.org/104808-1>
+			["id144"] = <http://loinc.org/57833-6>
+			["id149"] = <http://loinc.org/104803-2>
+			["id151"] = <http://loinc.org/104775-2>
+			["id152"] = <http://loinc.org/104810-7>
+			["id155"] = <http://loinc.org/104703-4>
+			["id156"] = <http://loinc.org/106197-7>
+			["id162"] = <http://loinc.org/104791-9>
+			["id163"] = <http://loinc.org/104777-8>
+			["id167"] = <http://loinc.org/46696-1>
+			["id168"] = <http://loinc.org/106173-8>
+			["id17"] = <http://loinc.org/104746-3>
+			["id171"] = <http://loinc.org/46696-1>
+			["id172"] = <http://loinc.org/104725-7>
+			["id174"] = <http://loinc.org/104792-7>
+			["id175"] = <http://loinc.org/104809-9>
+			["id178"] = <http://loinc.org/57833-6>
+			["id179"] = <http://loinc.org/104707-5>
+			["id180"] = <http://loinc.org/104736-4>
+			["id19"] = <http://loinc.org/104720-8>
+			["id45"] = <http://loinc.org/104796-8>
+			["id48"] = <http://loinc.org/104818-0>
+			["id51"] = <http://loinc.org/104787-7>
+			["id52"] = <http://loinc.org/104778-6>
+			["id54"] = <http://loinc.org/104790-1>
+			["id65"] = <http://loinc.org/104729-9>
+			["id70"] = <http://loinc.org/71573-0>
+			["id94"] = <http://loinc.org/72369-2>
+			["id96"] = <http://loinc.org/82307-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at168", "at169">
+		>
+	>
+

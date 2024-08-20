@@ -1,0 +1,505 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8f9b4861-171a-482b-ba05-db5f703b82fa)
+	s2-EHR-Action.procedure.v1.4.3
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, Australia, <heather.leslie@oceaninformatics.com>, 2007-03-12">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ACTION.procedure.v1.4.3, copyright 2007 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-ACTION.procedure.v1.4.3 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record information about the activities required to carry out a procedure, including the planning, scheduling, performance, suspension, cancellation, documentation and completion.">
+			use = <"Use to record information about the activities required to carry out a procedure, including the planning, scheduling, performance, suspension, cancellation, documentation and completion. This is done by the recording of data against specific activities, as defined by the 'Pathway' careflow steps in this archetype.
+            
+            The scope of this archetype encompasses activities for a broad range of clinical procedures performed for evaluative, investigative, screening, diagnostic, curative, therapeutic or palliative purposes. Examples range from the relatively simple activities, such as insertion of an intravenous cannula, through to complex surgical operations.
+            
+            Additional structured and detailed information about the procedure can be captured using purpose-specific archetypes inserted into the 'Procedure detail' slot, where required.
+            
+            Timings related to a procedure can be managed in one of two ways:
+            - Using the reference model - the time for performance of any pathway step will use the ACTION time attribute for each step.
+            - Archetyped data Nodes:
+            --- the 'Scheduled date/time' data Node is intended to record the precise time when the procedure is planned. Note: the corresponding ACTION time attribute for the Scheduled pathway step will record the time that the procedure was scheduled into a system, not the intended date/time on which the procedure is intended to be carried out; and
+            --- the 'Final end date/time' is intended to record the precise time when the procedure was ended. It can be used to document the complex procedures with multiple components. Note: the corresponding ACTION time attribute for the 'Procedure performed' will document the time each component performed was commenced. This 'Final end date/time' data Node will record the date/time of the final active component of the procedure. This will enable a full duration of the active procedure to be calculated.
+            
+            Within the context of an Operation Report, this archetype will be used to record only what was done during the procedure. Separate archetypes will be used to record the other required components of the Operation Report, including the taking of tissue specimen samples, use of imaging guidance, operation findings, post-operative instructions and plans for follow up.
+            
+            Within the context of a Problem list or summary, this archetype may be used to represent procedures that have been performed. The EVALUATION.problem_diagnosis will be used to represent the patient's problems and diagnoses.
+            
+            In practice, many procedures (for example, in ambulatory care) will occur once and not be ordered in advance. The details about the procedure will be added against the pathway step, 'Procedure completed'. In some cases a recurring procedure will be ordered, and in this situation data against the 'Procedure performed' step will be recorded on each occasion, leaving the instruction in the active state. When the last occurrence is recorded the 'Procedure completed' action is recorded showing that this order is now in the completed state.
+            
+            In other situations, such as secondary care, there may be a formal order for a procedure using a corresponding INSTRUCTION archetype. This ACTION archetype can then be used to record the workflow of when and how the order has been carried out.
+            
+            Recording information using this ACTION archetype indicates that some sort of activity has actually occurred; this will usually be the procedure itself but may be a failed attempt or another activity such as postponing the procedure. If there is a formal order for the procedure, the state of this order is represented by the Pathway step against which the data is recorded. For example, using this archetype the progressing state of a Gastroscopy order may be recorded through separate entries in the EHR progress notes at each 'Pathway' step:
+            - record the scheduled Start date/time for the gastroscopy (Procedure scheduled); and
+            - record that the gastroscopy procedure has been completed, including information about the procedure details (Procedure completed).
+            
+            Please note that in the openEHR Reference Model there is a 'Time' attribute, which is intended to record the date and time at which each pathway step of the Action was performed. This is the attribute to use to record the start of the procedure (using the 'Procedure performed' pathway step) or the time that the procedure was aborted (using the 'Procedure aborted' pathway step).">
+			keywords = <"procedure", "intervention", "surgical", "medical", "clinical", "therapeutic", "diagnostic", "cure", "treatment", "evaluation", "investigation", "screening", "palliative", "therapy">
+			misuse = <"Not to be used to record details about the anaesthetic - use a separate ACTION archetype for this purpose.
+            
+            Not to be used to record details about imaging investigations - use ACTION.imaging_exam for this purpose.
+            
+            Not to be used to record details about laboratory investigations - use ACTION.laboratory_test for this purpose.
+            
+            Not to be used to record details about education delivered - use ACTION.health_education for this purpose.
+            
+            Not to be used to record details about administrative activities - use specific ADMIN archetypes for this purpose.
+            
+            Not to be used to record details about related activities such as the use of frozen sections taken during an operation, medication administered as part of the procedure or when imaging guidance is used during the procedure - use separate and specific ACTION archetypes within the same template for this purpose .
+            
+            Not to be used to record a whole operation or procedure report - use a template in which this archetype is only one component of the full report.">
+		>
+	>
+	other_contributors = <"Morten Aas, Oslo Universitetssykehus, Norway", "Tomas Alme, DIPS, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Kari Beate Engseth, Finnmarkssykehuset HF + Klinikk Kirkenes, Norway", "Maria Beate Nupen, Oslo Universitetssykehus, Norway", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Fredrik Borchsenius, Oslo universitetssykehus, Norway", "Diego Bosca, VeraTech for Health, Spain", "Rong Chen, Cambio Healthcare Systems, Sweden", "Stephen Chu, NEHTA, Australia (Editor)", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "David Evans, Queensland Health, Australia", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "Jacquie Garton-Smith, Royal Perth Hospital and DoHWA, Australia", "Bente Gjelsvik, Helse Bergen, Norway", "Andrew Goodchild, NEHTA, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Megan Hawkins, Mater Health Services, Australia", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Anca Heyd, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Lars Karlsen, DIPS ASA, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Mary Kelaher, NEHTA, Australia", "Shinji Kobayashi, Kyoto University, Japan", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hugh Leslie, Ocean Informatics, Australia", "Hallvard Lærum, Norwegian Directorate of e-health, Norway", "Mike Martyn, The Hobart Anaesthetic Group, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Bjoern Naess, DIPS ASA, Norway", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Michael Osborne, Mater Health Services, Australia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Chris Pearce, Melbourne East GP Network, Australia", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Peter Scott, Australia", "Elizabeth Stanick, Hobart Anaesthetic Group, Australia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Line Sørensen, Helse Bergen, Norway", "John Taylor, NEHTA, Australia", "Micaela Thierley, Helse Bergen, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Line Thomassen, Helse Bergen, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Richard Townley-O'Neill, NEHTA, Australia", "Ørjan Vermeer, Haukeland Universitetssjukehus, Kvinneklinikken, Norway", "Ivar Yrke, DIPS AS, Norway">
+
+definition
+	Action[id1] matches {	-- Procedure
+		state_transition matches {
+			State_transition[id5] matches {	-- Procedure planned
+				current_state matches {"planned"}
+				careflow_step matches {
+					Terminology_term[id73] matches {
+						concept matches {[at5]}
+					}
+				}
+			}
+			State_transition[id35] matches {	-- X - Procedure planned
+				current_state matches {"initial"}
+				careflow_step matches {
+					Terminology_term[id75] matches {
+						concept matches {[at35]}
+					}
+				}
+			}
+			State_transition[id8] matches {	-- Procedure request sent
+				current_state matches {"planned"}
+				careflow_step matches {
+					Terminology_term[id77] matches {
+						concept matches {[at8]}
+					}
+				}
+			}
+			State_transition[id36] matches {	-- X - Procedure request sent
+				current_state matches {"initial"}
+				careflow_step matches {
+					Terminology_term[id79] matches {
+						concept matches {[at36]}
+					}
+				}
+			}
+			State_transition[id39] matches {	-- Procedure postponed
+				current_state matches {"postponed"}
+				careflow_step matches {
+					Terminology_term[id81] matches {
+						concept matches {[at39]}
+					}
+				}
+			}
+			State_transition[id40] matches {	-- Procedure cancelled
+				current_state matches {"cancelled"}
+				careflow_step matches {
+					Terminology_term[id83] matches {
+						concept matches {[at40]}
+					}
+				}
+			}
+			State_transition[id37] matches {	-- Procedure scheduled
+				current_state matches {"scheduled"}
+				careflow_step matches {
+					Terminology_term[id85] matches {
+						concept matches {[at37]}
+					}
+				}
+			}
+			State_transition[id69] matches {	-- Procedure commenced
+				current_state matches {"active"}
+				careflow_step matches {
+					Terminology_term[id87] matches {
+						concept matches {[at69]}
+					}
+				}
+			}
+			State_transition[id48] matches {	-- Procedure performed
+				current_state matches {"active"}
+				careflow_step matches {
+					Terminology_term[id89] matches {
+						concept matches {[at48]}
+					}
+				}
+			}
+			State_transition[id41] matches {	-- Procedure suspended
+				current_state matches {"suspended"}
+				careflow_step matches {
+					Terminology_term[id91] matches {
+						concept matches {[at41]}
+					}
+				}
+			}
+			State_transition[id42] matches {	-- Procedure aborted
+				current_state matches {"aborted"}
+				careflow_step matches {
+					Terminology_term[id93] matches {
+						concept matches {[at42]}
+					}
+				}
+			}
+			State_transition[id44] matches {	-- Procedure completed
+				current_state matches {"completed"}
+				careflow_step matches {
+					Terminology_term[id95] matches {
+						concept matches {[at44]}
+					}
+				}
+			}
+		}
+		description cardinality matches {1..*; unordered} matches {
+			Node[id3] matches {	-- Procedure name
+				value matches {
+					Text[id96] 
+				}
+			}
+			Node[id50] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id97] 
+				}
+			}
+			Node[id71] matches {	-- Indication
+				value matches {
+					Text[id98] 
+				}
+			}
+			Node[id66] matches {	-- Method
+				value matches {
+					Text[id99] 
+				}
+			}
+			Node[id59] occurrences matches {0..1} matches {	-- Urgency
+				value matches {
+					Text[id100] 
+				}
+			}
+			Node[id64] matches {	-- Body site
+				value matches {
+					Text[id101] 
+				}
+			}
+			allow_archetype Node[id4] matches {	-- Procedure detail
+				include
+					archetype_id/value matches {/s2-EHR-Node\.device(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v2/}
+			}
+			Node[id49] matches {	-- Outcome
+				value matches {
+					Text[id102] 
+				}
+			}
+			Node[id70] matches {	-- Procedural difficulty
+				value matches {
+					Text[id103] 
+				}
+			}
+			Node[id7] matches {	-- Complication
+				value matches {
+					Text[id104] 
+				}
+			}
+			Node[id67] occurrences matches {0..1} matches {	-- Scheduled date/time
+				value matches {
+					Date_time_value[id105] 
+				}
+			}
+			Node[id61] occurrences matches {0..1} matches {	-- Final end date/time
+				value matches {
+					Date_time_value[id106] 
+				}
+			}
+			Node[id62] occurrences matches {0..1} matches {	-- Total duration
+				value matches {
+					Duration_value[id107] matches {
+						magnitude matches {|>=PT0S|}
+					}
+				}
+			}
+			use_archetype Node[id63, s2-EHR-Node.media_file.v1] 
+			Node[id68] occurrences matches {0..1} matches {	-- Procedure type
+				value matches {
+					Text[id108] 
+				}
+			}
+			Node[id15] matches {	-- Reason
+				value matches {
+					Text[id109] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id110] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id55] occurrences matches {0..1} matches {	-- Requestor order identifier
+				value matches {
+					Text[id111] 
+					Rwe_id_ref[id112] 
+				}
+			}
+			allow_archetype Node[id56] occurrences matches {0..1} matches {	-- Requestor
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id57] occurrences matches {0..1} matches {	-- Receiver order identifier
+				value matches {
+					Text[id113] 
+					Rwe_id_ref[id114] 
+				}
+			}
+			allow_archetype Node[id58] matches {	-- Receiver
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype Node[id65] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at35"] = <
+				text = <"X - Procedure planned">
+				description = <"This pathway step has been deprecated as it was incorrectly associated with 'initial' status - use the new 'Procedure planned' (at0004) pathway step  which is correctly associated with 'planned' status.">
+			>
+			["at36"] = <
+				text = <"X - Procedure request sent">
+				description = <"This pathway step has been deprecated as it was incorrectly associated with 'initial' status - use the new 'Procedure request sent' (at0007) pathway step  which is correctly associated with 'planned' status.">
+			>
+			["at37"] = <
+				text = <"Procedure scheduled">
+				description = <"The procedure has been scheduled.">
+			>
+			["at39"] = <
+				text = <"Procedure postponed">
+				description = <"The procedure has been postponed.">
+			>
+			["at40"] = <
+				text = <"Procedure cancelled">
+				description = <"The planned procedure has been cancelled prior to commencement.">
+			>
+			["at41"] = <
+				text = <"Procedure suspended">
+				description = <"The procedure has been suspended.">
+			>
+			["at42"] = <
+				text = <"Procedure aborted">
+				description = <"The procedure has been aborted.">
+			>
+			["at44"] = <
+				text = <"Procedure completed">
+				description = <"The procedure has been performed and all associated clinical activities completed.">
+			>
+			["at48"] = <
+				text = <"Procedure performed">
+				description = <"The procedure, or subprocedure in a multicomponent procedure, has been performed.">
+			>
+			["at5"] = <
+				text = <"Procedure planned">
+				description = <"The procedure to be undertaken is planned.">
+			>
+			["at69"] = <
+				text = <"Procedure commenced">
+				description = <"The procedure, or subprocedure in a multicomponent procedure, has been commenced.">
+			>
+			["at8"] = <
+				text = <"Procedure request sent">
+				description = <"Request for procedure sent.">
+			>
+			["id1"] = <
+				text = <"Procedure">
+				description = <"A clinical activity carried out for screening, investigative, diagnostic, curative, therapeutic, evaluative or palliative purposes.">
+			>
+			["id15"] = <
+				text = <"Reason">
+				description = <"Reason that the activity or care pathway step for the identified procedure was carried out.">
+			>
+			["id3"] = <
+				text = <"Procedure name">
+				description = <"Identification of the procedure by name.">
+			>
+			["id35"] = <
+				text = <"X - Procedure planned">
+				description = <"This pathway step has been deprecated as it was incorrectly associated with 'initial' status - use the new 'Procedure planned' (at0004) pathway step  which is correctly associated with 'planned' status.">
+			>
+			["id36"] = <
+				text = <"X - Procedure request sent">
+				description = <"This pathway step has been deprecated as it was incorrectly associated with 'initial' status - use the new 'Procedure request sent' (at0007) pathway step  which is correctly associated with 'planned' status.">
+			>
+			["id37"] = <
+				text = <"Procedure scheduled">
+				description = <"The procedure has been scheduled.">
+			>
+			["id39"] = <
+				text = <"Procedure postponed">
+				description = <"The procedure has been postponed.">
+			>
+			["id4"] = <
+				text = <"Procedure detail">
+				description = <"Structured information about the procedure.">
+			>
+			["id40"] = <
+				text = <"Procedure cancelled">
+				description = <"The planned procedure has been cancelled prior to commencement.">
+			>
+			["id41"] = <
+				text = <"Procedure suspended">
+				description = <"The procedure has been suspended.">
+			>
+			["id42"] = <
+				text = <"Procedure aborted">
+				description = <"The procedure has been aborted.">
+			>
+			["id44"] = <
+				text = <"Procedure completed">
+				description = <"The procedure has been performed and all associated clinical activities completed.">
+			>
+			["id48"] = <
+				text = <"Procedure performed">
+				description = <"The procedure, or subprocedure in a multicomponent procedure, has been performed.">
+			>
+			["id49"] = <
+				text = <"Outcome">
+				description = <"Outcome of procedure performed.">
+			>
+			["id5"] = <
+				text = <"Procedure planned">
+				description = <"The procedure to be undertaken is planned.">
+			>
+			["id50"] = <
+				text = <"Description">
+				description = <"Narrative description about the procedure, as appropriate for the pathway step.">
+			>
+			["id55"] = <
+				text = <"Requestor order identifier">
+				description = <"The local ID assigned to the order by the healthcare provider or organization requesting the service.">
+			>
+			["id56"] = <
+				text = <"Requestor">
+				description = <"Details about the healthcare provider or organization requesting the service.">
+			>
+			["id57"] = <
+				text = <"Receiver order identifier">
+				description = <"The ID assigned to the order by the healthcare provider or organization receiving the request for service. This is also referred to as Filler Order Identifier.">
+			>
+			["id58"] = <
+				text = <"Receiver">
+				description = <"Details about the healthcare provider or organization receiving the request for service.">
+			>
+			["id59"] = <
+				text = <"Urgency">
+				description = <"Urgency of the procedure.">
+			>
+			["id6"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the activity or care pathway step not captured in other fields.">
+			>
+			["id61"] = <
+				text = <"Final end date/time">
+				description = <"The date and/or time when the entire procedure, or the last component of a multicomponent procedure, was finished.">
+			>
+			["id62"] = <
+				text = <"Total duration">
+				description = <"The total amount of time taken to complete the procedure, which may include time spent during the active phase of the procedure plus time during which the procedure was suspended.">
+			>
+			["id63"] = <
+				text = <"Multimedia">
+				description = <"Mulitimedia representation of a performed procedure.">
+			>
+			["id64"] = <
+				text = <"Body site">
+				description = <"Identification of the body site for the procedure.">
+			>
+			["id65"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id66"] = <
+				text = <"Method">
+				description = <"Identification of specific method or technique for the procedure.">
+			>
+			["id67"] = <
+				text = <"Scheduled date/time">
+				description = <"The date and/or time on which the procedure is intended to be performed.">
+			>
+			["id68"] = <
+				text = <"Procedure type">
+				description = <"The type of procedure.">
+			>
+			["id69"] = <
+				text = <"Procedure commenced">
+				description = <"The procedure, or subprocedure in a multicomponent procedure, has been commenced.">
+			>
+			["id7"] = <
+				text = <"Complication">
+				description = <"Details about any complication arising from the procedure.">
+			>
+			["id70"] = <
+				text = <"Procedural difficulty">
+				description = <"Difficulties or issues encountered during performance of the procedure.">
+			>
+			["id71"] = <
+				text = <"Indication">
+				description = <"The clinical or process-related reason for the procedure.">
+			>
+			["id8"] = <
+				text = <"Procedure request sent">
+				description = <"Request for procedure sent.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/67217-0>
+			["id15"] = <http://loinc.org/67098-4>
+			["id3"] = <http://loinc.org/29300-1>
+			["id59"] = <http://loinc.org/78927-1>
+			["id62"] = <http://loinc.org/89875-9>
+			["id64"] = <http://loinc.org/39111-0>
+			["id68"] = <http://loinc.org/29300-1>
+			["id7"] = <http://loinc.org/19817-6>
+			["id50"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id55"] = <http://loinc.org/106194-4>
+			["id57"] = <http://loinc.org/106183-7>
+			["id6"] = <http://loinc.org/106173-8>
+			["id61"] = <http://loinc.org/104906-3>
+			["id63"] = <http://loinc.org/104973-3>
+			["id66"] = <http://loinc.org/104931-1>
+			["id70"] = <http://loinc.org/104980-8>
+			["id71"] = <http://loinc.org/104907-1>
+		>
+	>
+

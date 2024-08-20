@@ -1,0 +1,92 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=144728b8-7bd5-4815-9fcd-30459521610e)
+    s2-EHR-Direct_observation.affected_body_surface_area-burn.v0.0.1-alpha
+
+specialize
+    s2-EHR-Direct_observation.affected_body_surface_area.v0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Åsa Skagerhult, Region Östergötland, Sweden (openEHR Editor)", "Erik Sundvall, Region Östergötland + Linköping University, Sweden (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-10-06">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.affected_body_surface_area-burn.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.affected_body_surface_area-burn.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details about the estimated proportion of body surface area affected by a burn injury.">
+            keywords = <"TBSA", "BSA", "burn", "surface", "area", "burns", "assessment", "Lund-Browder", "skin", "rule", "nines", "palmar", "method", "TBSA%">
+            use = <"Use to record details about the estimated proportion of body surface area affected by a burn injury, including the total body surface area affected, the body surface area affected per body site and the body surface area affected per severity.
+            
+            This archetype has been designed as a component of a templated full burn assessment which may comprise a range of ENTRY archetypes and nested Nodes, describing the history, physical examination findings, and other measurements.">
+            misuse = <"Not to be used to record the measured or calculated body surface area of an individual - use the OBSERVATION.body_surface_area for this purpose.
+            
+            Not to be used to record the estimated proportion of body surface area affected by other conditions of the skin - use the parent archetype OBSERVATION.affected_body_surface_area for this purpose.">
+        >
+    >
+    
+definition
+    Direct_observation[id1.1] matches {    -- Burn-affected body surface area
+        /data[id5.1]/value matches {
+            Coded_text[id23.1] matches {
+                term matches {
+                    Terminology_term[id0.4] matches {
+                        concept matches {[at0.1]}    -- Burn
+                    }
+                }
+            }
+        }
+        /data matches {
+            after [id21]
+            Node[id0.2] occurrences matches {0..1} matches {    -- Cause of burn
+                value matches {
+                    Text[id0.3]
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at0.1"] = <
+                text = <"Burn">
+                description = <"The condition is a burn.">
+            >
+            ["id0.2"] = <
+                text = <"Cause of burn">
+                description = <"The aetiology of the burn.">
+            >
+            ["id1.1"] = <
+                text = <"Burn-affected body surface area">
+                description = <"Estimation of the proportion of body surface area affected by a burn.">
+            >
+            ["id5.1"] = <
+                text = <"Condition name">
+                description = <"The name of the injury or disease affected the skin.">
+            >
+        >
+    >
+    

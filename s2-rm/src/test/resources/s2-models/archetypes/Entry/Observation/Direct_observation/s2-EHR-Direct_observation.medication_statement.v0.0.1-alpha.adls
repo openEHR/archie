@@ -1,0 +1,318 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4f9d6486-3fd7-45b0-aebe-a75a0f915023)
+	s2-EHR-Direct_observation.medication_statement.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-08-26">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.medication_statement.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.medication_statement.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a snapshot view about the use of a specified medication, including current use, past use or planned use.">
+			use = <"To record a snapshot view about the use of a specified medication, including current use, past use or planned use.
+            
+            This archetype has been designed to align with the FHIR MedicationStatement resource.">
+			misuse = <"Not to be used to record details about a medication order - use INSTRUCTION.medication_order for this purpose.
+            Not to be used to record details about specific medication related activities, such as administration or dispense - use ACTION.medication for this purpose.">
+		>
+	>
+
+definition
+	Direct_observation[id1] matches {	-- Medication statement
+		data matches {
+			Node[id7] occurrences matches {0..1} matches {	-- Medication item name
+				value matches {
+					Text[id36] 
+				}
+			}
+			allow_archetype Node[id8] matches {	-- Preparation details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Status
+				value matches {
+					Coded_text[id37] matches {
+						term matches {
+							Terminology_term[id55] matches {
+								concept matches {[ac1]}		-- Status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Status reason
+				value matches {
+					Text[id38] 
+					Uri_ref[id39] 
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Status start time
+				value matches {
+					Date_time_value[id40] 
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Status duration
+				value matches {
+					Duration_value[id41] 
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Status end time
+				value matches {
+					Date_time_value[id42] 
+				}
+			}
+			Node[id32] occurrences matches {0..1} matches {	-- Therapeutic intent
+				value matches {
+					Text[id43] 
+				}
+			}
+			Node[id33] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id44] 
+				}
+			}
+			Node[id24] occurrences matches {0..1} matches {	-- Clinical indication
+				value matches {
+					Text[id45] 
+				}
+			}
+			Node[id34] occurrences matches {0..2} matches {	-- Dose and timing
+				value matches {
+					Text[id46] 
+				}
+			}
+			allow_archetype Node[id23] matches {	-- Structured dose and timing
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id31] matches {	-- Route
+				value matches {
+					Text[id47] 
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- First prescribed
+				value matches {
+					Date_time_value[id48] 
+				}
+			}
+			Node[id26] occurrences matches {0..1} matches {	-- Last prescribed
+				value matches {
+					Date_time_value[id49] 
+				}
+			}
+			Node[id35] occurrences matches {0..1} matches {	-- Duration of use
+				value matches {
+					Duration_value[id50] 
+				}
+			}
+			Node[id27] occurrences matches {0..1} matches {	-- Last administered
+				value matches {
+					Date_time_value[id51] 
+				}
+			}
+			Node[id28] occurrences matches {0..1} matches {	-- Last reviewed
+				value matches {
+					Date_time_value[id52] 
+				}
+			}
+			Node[id29] occurrences matches {0..1} matches {	-- Discontinued
+				value matches {
+					Date_time_value[id53] 
+				}
+			}
+			Node[id30] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id54] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id6] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Status (synthesised)">
+				description = <"The status of use of the medication. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Scheduled">
+				description = <"The medication is scheduled to be taken at a future date.">
+			>
+			["at11"] = <
+				text = <"Active">
+				description = <"The medication is currently being taken.">
+			>
+			["at12"] = <
+				text = <"Completed">
+				description = <"The medication is no longer being taken.">
+			>
+			["at13"] = <
+				text = <"Postponed">
+				description = <"The medication is planned to be taken but commencement has been temporarily delayed.">
+			>
+			["at14"] = <
+				text = <"Cancelled">
+				description = <"The medication was planned to be taken but cancelled before commencement.">
+			>
+			["at15"] = <
+				text = <"Suspended">
+				description = <"The medication was commenced but use temporarily supended.">
+			>
+			["at16"] = <
+				text = <"Discontinued">
+				description = <"The medication was commenced but use was ceased.">
+			>
+			["at17"] = <
+				text = <"Unknown">
+				description = <"The status of the medication is not known.">
+			>
+			["at9"] = <
+				text = <"Planned">
+				description = <"The medication is intended to be taken at an unspecified time in the future.">
+			>
+			["id1"] = <
+				text = <"Medication statement">
+				description = <"A snapshot view about the use of a specified medication.">
+			>
+			["id19"] = <
+				text = <"Status reason">
+				description = <"Reason for the status.">
+			>
+			["id20"] = <
+				text = <"Status start time">
+				description = <"The valid start date/time for the Status.">
+			>
+			["id21"] = <
+				text = <"Status duration">
+				description = <"The valid duration for the Status.">
+			>
+			["id22"] = <
+				text = <"Status end time">
+				description = <"The valid end date/time for the Status.">
+			>
+			["id23"] = <
+				text = <"Structured dose and timing">
+				description = <"Details of structured dose and timing directions.">
+			>
+			["id24"] = <
+				text = <"Clinical indication">
+				description = <"The clinical reason for use of the medication item.">
+			>
+			["id25"] = <
+				text = <"First prescribed">
+				description = <"The date/time when a prescription for the medication was first issued.">
+			>
+			["id26"] = <
+				text = <"Last prescribed">
+				description = <"The date/time when a prescription for the medication was last issued.">
+			>
+			["id27"] = <
+				text = <"Last administered">
+				description = <"The date/time when the medication was last taken by or administered to the individual.">
+			>
+			["id28"] = <
+				text = <"Last reviewed">
+				description = <"The date/time when usage of the medication was last reviewed by a clinician or phamacist.">
+			>
+			["id29"] = <
+				text = <"Discontinued">
+				description = <"The date/time when use of the medication was ceased.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the medication statement not captured in other fields.">
+			>
+			["id31"] = <
+				text = <"Route">
+				description = <"The route by of administration of the medication into the body.">
+			>
+			["id32"] = <
+				text = <"Therapeutic intent">
+				description = <"">
+			>
+			["id33"] = <
+				text = <"Description">
+				description = <"Narrative description about the use of the identified medication item.">
+			>
+			["id34"] = <
+				text = <"Dose and timing">
+				description = <"Simple, narrative description about the dose and timing of the medication">
+			>
+			["id35"] = <
+				text = <"Duration of use">
+				description = <"The duration of use for a medication that is no longer active.">
+			>
+			["id6"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id7"] = <
+				text = <"Medication item name">
+				description = <"Name of the medication, vaccine or other therapeutic/prescribable item.">
+			>
+			["id8"] = <
+				text = <"Preparation details">
+				description = <"Structured details about the overall preparation including strength, form and constituent substances.">
+			>
+			["id9"] = <
+				text = <"Status">
+				description = <"The status of use of the medication.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/52471-0>
+			["id25"] = <http://loinc.org/71464-2>
+			["id31"] = <http://loinc.org/71468-3>
+			["id35"] = <http://loinc.org/91383-0>
+			["id7"] = <http://loinc.org/74060-5>
+			["id24"] = <http://loinc.org/104720-8>
+			["id30"] = <http://loinc.org/106173-8>
+			["id32"] = <http://loinc.org/104803-2>
+			["id33"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id9"] = <http://loinc.org/106199-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at9", "at10", "at11", "at12", "at13", "at14", "at15", "at16", "at17">
+		>
+	>
+

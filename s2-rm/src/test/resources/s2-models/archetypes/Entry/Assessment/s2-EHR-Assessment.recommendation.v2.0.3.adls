@@ -1,0 +1,112 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e3bd9390-c315-47fd-86f5-f71d3714798a)
+	s2-EHR-Assessment.recommendation.v2.0.3
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2013-02-14">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.recommendation.v2.0.3, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.recommendation.v2.0.3 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a suggestion, advice or proposal for clinical management at a specific time.">
+			use = <"Use to record a suggestion, advice or proposal for clinical management at a specific time.
+            
+            The intended use case is to support a clinician recording a recommendation, or recommendations, at a specific point-in-time. 
+            For example, as a component of the conclusions drawn as part of a clinical consultation.">
+			keywords = <"advice", "proposal", "suggestion">
+			misuse = <"Not to be used to carry structured data Nodes detailing additional instructions, such as timing, frequency, duration or dosage - use appropriate INSTRUCTION archetypes for this purpose.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Bente Gjelsvik, Helse Bergen, Norway", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Hilde Hollås, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, National Institute of Public Health, Japan", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Oslo Universitetssykehus HF, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Tanja Riise, Nasjonal IKT HF, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)">
+
+definition
+	Assessment[id1] matches {	-- Recommendation
+		data matches {
+			Node[id7] occurrences matches {0..1} matches {	-- Topic
+				value matches {
+					Text[id9] 
+				}
+			}
+			Node[id3] occurrences matches {1..*} matches {	-- Recommendation
+				value matches {
+					Text[id10] 
+				}
+			}
+			Node[id4] matches {	-- Rationale
+				value matches {
+					Text[id11] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id8] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id12] 
+				}
+			}
+			allow_archetype Node[id6] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Recommendation">
+				description = <"A suggestion, advice or proposal for clinical management.">
+			>
+			["id3"] = <
+				text = <"Recommendation">
+				description = <"Narrative description of the recommendation.">
+			>
+			["id4"] = <
+				text = <"Rationale">
+				description = <"Justifications for the recommendation.">
+			>
+			["id6"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id7"] = <
+				text = <"Topic">
+				description = <"The topic or subject of the recommendation.">
+			>
+			["id8"] = <
+				text = <"Last updated">
+				description = <"The date this recommendation was last updated.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id8"] = <http://loinc.org/106177-9>
+		>
+	>
+

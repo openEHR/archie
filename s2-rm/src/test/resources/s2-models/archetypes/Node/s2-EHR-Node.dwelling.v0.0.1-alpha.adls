@@ -1,0 +1,521 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ddbc94ca-32c9-44a2-8a6f-77330a48ba68)
+	s2-EHR-Node.dwelling.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2018-05-29">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.dwelling.v0.0.1-alpha, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.dwelling.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record an overview and description about aspects about the dwelling where an individual lives.">
+			use = <"Use to record details about the dwelling where an individual lives, particularly where this may have an impact on their health and safety or delivery of healthcare services.
+            
+            This archetype has been designed to be used to record attributes of an individual's home that might be used to:
+            - contribute to identification of aids/supports that might be useful in the home; 
+            - record modifications or enhancements to support universal access; or
+            - inform investigations about public health outbreaks.
+            
+            This archetype has been designed to be used within the EVALUATION.housing_summary or Node.housing_record archetypes, but may be used within any other appropriate ENTRY or Node archetype. 
+            
+            In additon to the specific examples for each room specific Node, the following examples are universally appliccable: Access; circulation space; trip hazards; floor coverings; windows; lighting; heating; or cooling.
+            
+            If specific measurements or specific details are required, additional archetypes can be nested within the 'Additional details' SLOT.
+            
+            Compliance with Universal design principles should be recorded in a separate archetype, which may be nested within the 'Additional details' SLOT.">
+			keywords = <"stairs", "bedroom", "bathroom", "access", "heating", "cooling">
+			misuse = <"Not to be used to record details about the social circumstances in which the individual lives - use Node.living_arrangement for this purpose.
+            
+            Not to be used to record the physical address where an individual lives - use demographic archetypes for this purpose, or Node.address if the individual's address needs to be recorded within the health record.
+            
+            Not to be used to record information about the dwelling that does not impact on the health or health care needs of an individual. For example, the security access code for a home nurse visit should not be recorded using this archetype.
+            
+            Not to be used to record compliance with Universal design principles.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Marcos Barreto, Universidade Federal da Bahia (UFBA), Brazil", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Ady Angelica Castro Acosta, CIBERES-Hospital 12 de Octubre, Spain", "Evelyn Hovenga, EJSH Consulting, Australia", "Heidi Koikkalainen, United Kingdom (openEHR Editor)", "Ronald Krawec, Alberta Health Services, Canada", "Tomi Laptoš, Marand, Slovenia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Paul Miller, SCIMP NHS Scotland, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Anoop Shah, University College London, United Kingdom", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Vinicius Tohoru Yoshiura, University of Sao Paulo, Brazil">
+
+definition
+	Node[id1] matches {	-- Dwelling
+		items matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Type
+				value matches {
+					Text[id60] 
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Overall description
+				value matches {
+					Text[id61] 
+				}
+			}
+			Node[id55] occurrences matches {0..1} matches {	-- Number of rooms
+				value matches {
+					Count[id62] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			Node[id56] occurrences matches {0..1} matches {	-- Number of people
+				value matches {
+					Count[id63] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Condition
+				value matches {
+					Text[id64] 
+				}
+			}
+			Node[id6] matches {	-- Access/egress
+				value matches {
+					Text[id65] 
+				}
+			}
+			Node[id7] matches {	-- Entrance
+				value matches {
+					Text[id66] 
+				}
+			}
+			Node[id9] matches {	-- Hallway
+				value matches {
+					Text[id67] 
+				}
+			}
+			Node[id42] occurrences matches {0..1} matches {	-- Number of floors
+				value matches {
+					Count[id68] 
+				}
+			}
+			Node[id10] matches {	-- Internal stairs/lifts
+				value matches {
+					Text[id69] 
+				}
+			}
+			Node[id11] matches {	-- Living room
+				value matches {
+					Text[id70] 
+				}
+			}
+			Node[id12] matches {	-- Kitchen
+				value matches {
+					Text[id71] 
+				}
+			}
+			Node[id13] matches {	-- Bedroom
+				value matches {
+					Text[id72] 
+				}
+			}
+			Node[id29] occurrences matches {0..1} matches {	-- Number of bedrooms
+				value matches {
+					Count[id73] 
+				}
+			}
+			Node[id58] matches {	-- Persons per bedroom
+				value matches {
+					Count[id74] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			Node[id14] matches {	-- Toilet accessibility
+				value matches {
+					Text[id75] 
+				}
+			}
+			Node[id27] matches {	-- Toilet type
+				value matches {
+					Text[id76] 
+				}
+			}
+			Node[id36] occurrences matches {0..1} matches {	-- Number of toilets
+				value matches {
+					Count[id77] 
+				}
+			}
+			Node[id15] matches {	-- Bathroom
+				value matches {
+					Text[id78] 
+				}
+			}
+			Node[id30] occurrences matches {0..1} matches {	-- Number of bathrooms
+				value matches {
+					Count[id79] 
+				}
+			}
+			Node[id16] matches {	-- Laundry facilities
+				value matches {
+					Text[id80] 
+				}
+			}
+			Node[id17] matches {	-- Outdoor space
+				value matches {
+					Text[id81] 
+				}
+			}
+			Node[id8] matches {	-- Parking
+				value matches {
+					Text[id82] 
+				}
+			}
+			Node[id38] occurrences matches {0..1} matches {	-- Heating
+				value matches {
+					Text[id83] 
+				}
+			}
+			Node[id47] occurrences matches {0..1} matches {	-- Cooling
+				value matches {
+					Text[id84] 
+				}
+			}
+			Node[id39] matches {	-- Energy supply
+				value matches {
+					Text[id85] 
+				}
+			}
+			Node[id18] matches {	-- Emergency communication access
+				value matches {
+					Text[id86] 
+				}
+			}
+			Node[id41] matches {	-- Connectivity
+				value matches {
+					Text[id87] 
+				}
+			}
+			Node[id19] matches {	-- Fire protection
+				value matches {
+					Text[id88] 
+				}
+			}
+			Node[id40] matches {	-- Security and safety
+				value matches {
+					Text[id89] 
+				}
+			}
+			Node[id21] matches {	-- Doorbell
+				value matches {
+					Text[id90] 
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Mail
+				value matches {
+					Text[id91] 
+				}
+			}
+			Node[id22] matches {	-- Rubbish collection
+				value matches {
+					Text[id92] 
+				}
+			}
+			Node[id35] matches {	-- Sewage disposal
+				value matches {
+					Text[id93] 
+				}
+			}
+			Node[id34] matches {	-- Water source
+				value matches {
+					Text[id94] 
+				}
+			}
+			Node[id24] matches {	-- Water supply
+				value matches {
+					Text[id95] 
+				}
+			}
+			Node[id26] matches {	-- Water storage
+				value matches {
+					Text[id96] 
+				}
+			}
+			Node[id57] occurrences matches {0..1} matches {	-- Ventilation
+				value matches {
+					Text[id97] 
+				}
+			}
+			Node[id59] occurrences matches {0..1} matches {	-- Cleanliness
+				value matches {
+					Text[id98] 
+				}
+			}
+			Node[id49] occurrences matches {0..1} matches {	-- Critical features
+				items matches {
+					Node[id50] occurrences matches {0..1} matches {	-- Feature name
+						value matches {
+							Text[id99] 
+						}
+					}
+					Node[id51] occurrences matches {0..1} matches {	-- Presence
+						value matches {
+							Coded_text[id100] matches {
+								term matches {
+									Terminology_term[id103] matches {
+										concept matches {[ac1]}		-- Presence (synthesised)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id44] matches {	-- Appliance
+				value matches {
+					Text[id101] 
+				}
+			}
+			use_archetype Node[id4, s2-EHR-Node.media_file.v1] 
+			Node[id5] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id102] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Presence (synthesised)">
+				description = <"Presence of any relevant feature. (synthesised)">
+			>
+			["at51"] = <
+				text = <"Present">
+				description = <"">
+			>
+			["at52"] = <
+				text = <"Absent">
+				description = <"">
+			>
+			["at53"] = <
+				text = <"Unknown">
+				description = <"">
+			>
+			["id1"] = <
+				text = <"Dwelling">
+				description = <"An overview about the properties of a single structure, or a discrete space within a structure, and associated spaces in which an individual lives.">
+			>
+			["id10"] = <
+				text = <"Internal stairs/lifts">
+				description = <"Description about internal steps and lifts within the dwelling.">
+			>
+			["id11"] = <
+				text = <"Living room">
+				description = <"Description about a living room within the dwelling.">
+			>
+			["id12"] = <
+				text = <"Kitchen">
+				description = <"Description about a kitchen within the dwelling.">
+			>
+			["id13"] = <
+				text = <"Bedroom">
+				description = <"Description about a bedroom within the dwelling.">
+			>
+			["id14"] = <
+				text = <"Toilet accessibility">
+				description = <"Description about accsessibility to a toilet.">
+			>
+			["id15"] = <
+				text = <"Bathroom">
+				description = <"Description about a bathroom within the dwelling.">
+			>
+			["id16"] = <
+				text = <"Laundry facilities">
+				description = <"Description about a laundry facility within, or associated with, the dwelling.">
+			>
+			["id17"] = <
+				text = <"Outdoor space">
+				description = <"Description about an outdoor space associated with the the dwelling.">
+			>
+			["id18"] = <
+				text = <"Emergency communication access">
+				description = <"Description about the emergency communication access.">
+			>
+			["id19"] = <
+				text = <"Fire protection">
+				description = <"Description about fire protection within the dwelling.">
+			>
+			["id2"] = <
+				text = <"Overall description">
+				description = <"Narrative description about all aspects of the dwelling.">
+			>
+			["id21"] = <
+				text = <"Doorbell">
+				description = <"Description about a doorbell or alert system within the dwelling.">
+			>
+			["id22"] = <
+				text = <"Rubbish collection">
+				description = <"Description about rubbish bins and waste collection at the dwelling.">
+			>
+			["id23"] = <
+				text = <"Mail">
+				description = <"Description about mail delivery and collection at the dwelling.">
+			>
+			["id24"] = <
+				text = <"Water supply">
+				description = <"Description about how water is delivered into the dwelling.">
+			>
+			["id26"] = <
+				text = <"Water storage">
+				description = <"Description about the storage of potable water at the dwelling.">
+			>
+			["id27"] = <
+				text = <"Toilet type">
+				description = <"Description about the type of toilet fixture at the dwelling.">
+			>
+			["id29"] = <
+				text = <"Number of bedrooms">
+				description = <"The number of bedrooms in the dwelling.">
+			>
+			["id3"] = <
+				text = <"Type">
+				description = <"The type of dwelling in which an individual lives.">
+			>
+			["id30"] = <
+				text = <"Number of bathrooms">
+				description = <"The number of bathrooms in the dwelling.">
+			>
+			["id34"] = <
+				text = <"Water source">
+				description = <"Description about the source of water used at the dwelling.">
+			>
+			["id35"] = <
+				text = <"Sewage disposal">
+				description = <"Description about the disposal of sewage from the dwelling.">
+			>
+			["id36"] = <
+				text = <"Number of toilets">
+				description = <"The number of toilet fixtures in the dwelling.">
+			>
+			["id37"] = <
+				text = <"Condition">
+				description = <"Narrative description about the overall condition of the dwelling.">
+			>
+			["id38"] = <
+				text = <"Heating">
+				description = <"Description about how the dwelling is heated.">
+			>
+			["id39"] = <
+				text = <"Energy supply">
+				description = <"Description about sources of power to the dwelling.">
+			>
+			["id4"] = <
+				text = <"Additional details">
+				description = <"Further structured details about the dwelling.">
+			>
+			["id40"] = <
+				text = <"Security and safety">
+				description = <"Description about security and safety measures within the dwelling.">
+			>
+			["id41"] = <
+				text = <"Connectivity">
+				description = <"Description about the internet and other forms of connectivity and communication. For example for home monitoring or other medical devices.">
+			>
+			["id42"] = <
+				text = <"Number of floors">
+				description = <"The number of floors within the dwelling.">
+			>
+			["id44"] = <
+				text = <"Appliance">
+				description = <"Description about an appliance at the dwelling.">
+			>
+			["id47"] = <
+				text = <"Cooling">
+				description = <"Description about how the dwelling is cooled.">
+			>
+			["id49"] = <
+				text = <"Critical features">
+				description = <"Availability of critical appliances or services at the dwelling, which may support use of clinical decision support.">
+			>
+			["id5"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the dwelling, not captured in other fields.">
+			>
+			["id50"] = <
+				text = <"Feature name">
+				description = <"The name of the feature.">
+			>
+			["id51"] = <
+				text = <"Presence">
+				description = <"Presence of any relevant feature.">
+			>
+			["id55"] = <
+				text = <"Number of rooms">
+				description = <"The number of rooms within the dwelling.">
+			>
+			["id56"] = <
+				text = <"Number of people">
+				description = <"The total number of people living in the dwelling.">
+			>
+			["id57"] = <
+				text = <"Ventilation">
+				description = <"Description about the ventilation within the dwelling.">
+			>
+			["id58"] = <
+				text = <"Persons per bedroom">
+				description = <"Number of household members sharing bedroom.">
+			>
+			["id59"] = <
+				text = <"Cleanliness">
+				description = <"Description about the level of cleanliness of the dwelling.">
+			>
+			["id6"] = <
+				text = <"Access/egress">
+				description = <"Description about physical access to, and egress from, the dwellling.">
+			>
+			["id7"] = <
+				text = <"Entrance">
+				description = <"Description about an entrance to the dwelling.">
+			>
+			["id8"] = <
+				text = <"Parking">
+				description = <"Description about vehicle parking at or near the dwelling.">
+			>
+			["id9"] = <
+				text = <"Hallway">
+				description = <"Description about the hallway within the dwelling.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at51"] = <http://snomed.info/id/410515003>
+			["at52"] = <http://snomed.info/id/410516002>
+			["at53"] = <http://snomed.info/id/261665006>
+		>
+		["loinc"] = <
+			["id5"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at51", "at52", "at53">
+		>
+	>
+

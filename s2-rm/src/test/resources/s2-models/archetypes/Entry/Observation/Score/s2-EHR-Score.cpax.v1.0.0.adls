@@ -1,0 +1,1204 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=18e0321d-5ea5-4b24-ac90-40fdf6504284)
+    s2-EHR-Score.cpax.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, varntzen@ous-hf.no", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Silje Ljosland Bakke, Helse Vest IKT AS, <silje.ljosland.bakke@helse-vest-ikt.no>, 2023-04-14">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.cpax.v1.0.0, copyright 2023 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.cpax.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter for the Chelsea Critical Care Physical Assessment Tool (CPAx).">
+            use = <"Use to record the results for each component parameter for the Chelsea Critical Care Physical Assessment Tool (CPAx).">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Chelsea Critical Care Physical Assessment (CPAx) tool
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Respiratory function
+                value matches {
+                    Coded_ordinal[id91] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id93] matches {
+                                term matches {
+                                    Terminology_term[id92] matches {
+                                        concept matches {[at5]}    -- Complete ventilator dependence. Mandatory breaths only. May be fully sedated/ paralysed
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id94] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id96] matches {
+                                term matches {
+                                    Terminology_term[id95] matches {
+                                        concept matches {[at6]}    -- Ventilator dependence. Mandatory breaths with some spontaneous effort
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id97] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id99] matches {
+                                term matches {
+                                    Terminology_term[id98] matches {
+                                        concept matches {[at7]}    -- Spontaneously breathing with continuous invasive or non-invasive ventilatory support
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id100] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id102] matches {
+                                term matches {
+                                    Terminology_term[id101] matches {
+                                        concept matches {[at8]}    -- Spontaneously breathing with intermittent invasive or non-invasive ventilatory supportor continuous high flow oxygen (>15 L)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id103] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id105] matches {
+                                term matches {
+                                    Terminology_term[id104] matches {
+                                        concept matches {[at9]}    -- Receiving standardoxygen therapy (<15L)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id106] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id108] matches {
+                                term matches {
+                                    Terminology_term[id107] matches {
+                                        concept matches {[at10]}    -- Self-ventilating with no oxygen therapy
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Cough
+                value matches {
+                    Coded_ordinal[id109] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id111] matches {
+                                term matches {
+                                    Terminology_term[id110] matches {
+                                        concept matches {[at21]}    -- Absent cough, may be fully sedated or paralysed
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id112] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id114] matches {
+                                term matches {
+                                    Terminology_term[id113] matches {
+                                        concept matches {[at22]}    -- Cough stimulated on deep suctioning only
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id115] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id117] matches {
+                                term matches {
+                                    Terminology_term[id116] matches {
+                                        concept matches {[at23]}    -- Weak ineffective voluntary cough, unable to clear independently (e.g. requires deep suction)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id118] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id120] matches {
+                                term matches {
+                                    Terminology_term[id119] matches {
+                                        concept matches {[at24]}    -- Weak, partially effective voluntary cough, sometimes able to clear secretions (e.g. requires Yankauer suctioning)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id121] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id123] matches {
+                                term matches {
+                                    Terminology_term[id122] matches {
+                                        concept matches {[at25]}    -- Effective cough, clearing secretions with airways clearance techniques
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id124] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id126] matches {
+                                term matches {
+                                    Terminology_term[id125] matches {
+                                        concept matches {[at26]}    -- Consistent effective voluntary cough, clearing secretions independently
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- Moving within the bed (e.g. rolling)
+                value matches {
+                    Coded_ordinal[id127] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id129] matches {
+                                term matches {
+                                    Terminology_term[id128] matches {
+                                        concept matches {[at27]}    -- Unable, maybe fully sedated/ paralysed
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id130] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id132] matches {
+                                term matches {
+                                    Terminology_term[id131] matches {
+                                        concept matches {[at28]}    -- Initiates movement. Requires assistance of two or more people (maximal)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id133] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id135] matches {
+                                term matches {
+                                    Terminology_term[id134] matches {
+                                        concept matches {[at29]}    -- Initiates movement. Requires assistance of at least one person (moderate)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id136] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id138] matches {
+                                term matches {
+                                    Terminology_term[id137] matches {
+                                        concept matches {[at30]}    -- Initiates movement. Requires assistance of one person (minimal)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id139] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id141] matches {
+                                term matches {
+                                    Terminology_term[id140] matches {
+                                        concept matches {[at31]}    -- Independent in ≥3 seconds
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id142] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id144] matches {
+                                term matches {
+                                    Terminology_term[id143] matches {
+                                        concept matches {[at32]}    -- Independent in <3 seconds
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- Supine to sitting on the edge of the bed
+                value matches {
+                    Coded_ordinal[id145] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id147] matches {
+                                term matches {
+                                    Terminology_term[id146] matches {
+                                        concept matches {[at33]}    -- Unable/unstable
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id148] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id150] matches {
+                                term matches {
+                                    Terminology_term[id149] matches {
+                                        concept matches {[at34]}    -- Initiates movement. Requires assistance of two or more people (maximal)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id151] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id153] matches {
+                                term matches {
+                                    Terminology_term[id152] matches {
+                                        concept matches {[at35]}    -- Initiates movement. Requires assistance of at least one person (moderate)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id154] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id156] matches {
+                                term matches {
+                                    Terminology_term[id155] matches {
+                                        concept matches {[at36]}    -- Initiates movement. Requires assistance of one person (minimal)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id157] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id159] matches {
+                                term matches {
+                                    Terminology_term[id158] matches {
+                                        concept matches {[at37]}    -- Independent in ≥3 seconds
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id160] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id162] matches {
+                                term matches {
+                                    Terminology_term[id161] matches {
+                                        concept matches {[at38]}    -- Independent in <3 seconds
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Dynamic sitting (i.e. when sitting on the edge of the bed/unsupported sitting)
+                value matches {
+                    Coded_ordinal[id163] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id165] matches {
+                                term matches {
+                                    Terminology_term[id164] matches {
+                                        concept matches {[at39]}    -- Unable/unstable
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id166] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id168] matches {
+                                term matches {
+                                    Terminology_term[id167] matches {
+                                        concept matches {[at40]}    -- Requires assistance of two or more people (maximal)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id169] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id171] matches {
+                                term matches {
+                                    Terminology_term[id170] matches {
+                                        concept matches {[at41]}    -- Requires assistance of at least one person (moderate)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id172] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id174] matches {
+                                term matches {
+                                    Terminology_term[id173] matches {
+                                        concept matches {[at42]}    -- Requires assistance of one person (minimal)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id175] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id177] matches {
+                                term matches {
+                                    Terminology_term[id176] matches {
+                                        concept matches {[at43]}    -- Independent with some dynamic sitting balance (i.e. able to alter trunk position within base of support)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id178] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id180] matches {
+                                term matches {
+                                    Terminology_term[id179] matches {
+                                        concept matches {[at44]}    -- Independent with full dynamic sitting balance (i.e. able to reach out of base of support)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Standing balance
+                value matches {
+                    Coded_ordinal[id181] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id183] matches {
+                                term matches {
+                                    Terminology_term[id182] matches {
+                                        concept matches {[at45]}    -- Unable/unstable/bedbound
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id184] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id186] matches {
+                                term matches {
+                                    Terminology_term[id185] matches {
+                                        concept matches {[at46]}    -- Tilt table or similar
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id187] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id189] matches {
+                                term matches {
+                                    Terminology_term[id188] matches {
+                                        concept matches {[at47]}    -- Standing hoist or similar
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id190] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id192] matches {
+                                term matches {
+                                    Terminology_term[id191] matches {
+                                        concept matches {[at48]}    -- Dependent on frame, crutches or similar
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id193] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id195] matches {
+                                term matches {
+                                    Terminology_term[id194] matches {
+                                        concept matches {[at49]}    -- Independent without aids
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id196] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id198] matches {
+                                term matches {
+                                    Terminology_term[id197] matches {
+                                        concept matches {[at50]}    -- Independent without aids and full dynamic standing balance (i.e. able to reach out of base of support)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id19] occurrences matches {0..1} matches {    -- Sit to stand (starting position: ≤90º hip flexion)
+                value matches {
+                    Coded_ordinal[id199] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id201] matches {
+                                term matches {
+                                    Terminology_term[id200] matches {
+                                        concept matches {[at51]}    -- Unable/unstable
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id202] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id204] matches {
+                                term matches {
+                                    Terminology_term[id203] matches {
+                                        concept matches {[at52]}    -- Sit to stand with maximal assistance (standing hoist or similar)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id205] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id207] matches {
+                                term matches {
+                                    Terminology_term[id206] matches {
+                                        concept matches {[at53]}    -- Sit to stand with moderate assistance (e.g. one or two people)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id208] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id210] matches {
+                                term matches {
+                                    Terminology_term[id209] matches {
+                                        concept matches {[at54]}    -- Sit to stand with minimal assistance (e.g. one person)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id211] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id213] matches {
+                                term matches {
+                                    Terminology_term[id212] matches {
+                                        concept matches {[at55]}    -- Sit to stand independently pushing through arms of the chair
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id214] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id216] matches {
+                                term matches {
+                                    Terminology_term[id215] matches {
+                                        concept matches {[at56]}    -- Sit to stand independently without upper limb involvement
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- Transferring from bed to chair
+                value matches {
+                    Coded_ordinal[id217] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id219] matches {
+                                term matches {
+                                    Terminology_term[id218] matches {
+                                        concept matches {[at57]}    -- Unable/unstable
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id220] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id222] matches {
+                                term matches {
+                                    Terminology_term[id221] matches {
+                                        concept matches {[at58]}    -- Full hoist
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id223] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id225] matches {
+                                term matches {
+                                    Terminology_term[id224] matches {
+                                        concept matches {[at59]}    -- Standing hoist or similar
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id226] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id228] matches {
+                                term matches {
+                                    Terminology_term[id227] matches {
+                                        concept matches {[at60]}    -- Pivot transfer (no stepping) with mobility aid or physical assistance
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id229] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id231] matches {
+                                term matches {
+                                    Terminology_term[id230] matches {
+                                        concept matches {[at61]}    -- Stand and step transfer with mobility aid or physical assistance
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id232] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id234] matches {
+                                term matches {
+                                    Terminology_term[id233] matches {
+                                        concept matches {[at62]}    -- Independent transfer without equipment
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Stepping
+                value matches {
+                    Coded_ordinal[id235] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id237] matches {
+                                term matches {
+                                    Terminology_term[id236] matches {
+                                        concept matches {[at63]}    -- Unable/unstable
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id238] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id240] matches {
+                                term matches {
+                                    Terminology_term[id239] matches {
+                                        concept matches {[at64]}    -- Using a standing hoist or similar
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id241] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id243] matches {
+                                term matches {
+                                    Terminology_term[id242] matches {
+                                        concept matches {[at65]}    -- Using mobility aids and assistance of at least one person (moderate)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id244] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id246] matches {
+                                term matches {
+                                    Terminology_term[id245] matches {
+                                        concept matches {[at66]}    -- Using mobility aid and assistance of one person (minimal)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id247] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id249] matches {
+                                term matches {
+                                    Terminology_term[id248] matches {
+                                        concept matches {[at67]}    -- Using mobility aid or assistance of one person (minimal)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id250] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id252] matches {
+                                term matches {
+                                    Terminology_term[id251] matches {
+                                        concept matches {[at68]}    -- Independent without aid
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Grip strength (predicted mean for age and gender on the strongest hand)
+                value matches {
+                    Coded_ordinal[id253] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id255] matches {
+                                term matches {
+                                    Terminology_term[id254] matches {
+                                        concept matches {[at69]}    -- Unable to assess
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id256] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id258] matches {
+                                term matches {
+                                    Terminology_term[id257] matches {
+                                        concept matches {[at70]}    -- <20%
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id259] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id261] matches {
+                                term matches {
+                                    Terminology_term[id260] matches {
+                                        concept matches {[at71]}    -- <40%
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id262] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id264] matches {
+                                term matches {
+                                    Terminology_term[id263] matches {
+                                        concept matches {[at72]}    -- <60%
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id265] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id267] matches {
+                                term matches {
+                                    Terminology_term[id266] matches {
+                                        concept matches {[at73]}    -- <80%
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id268] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id270] matches {
+                                term matches {
+                                    Terminology_term[id269] matches {
+                                        concept matches {[at74]}    -- ≥80%
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id77] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id90] matches {
+                        magnitude matches {|0..50|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id79] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6", "at7", "at8", "at9", "at10">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at21", "at22", "at23", "at24", "at25", "at26">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at27", "at28", "at29", "at30", "at31", "at32">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at33", "at34", "at35", "at36", "at37", "at38">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at39", "at40", "at41", "at42", "at43", "at44">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at45", "at46", "at47", "at48", "at49", "at50">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at51", "at52", "at53", "at54", "at55", "at56">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at57", "at58", "at59", "at60", "at61", "at62">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at63", "at64", "at65", "at66", "at67", "at68">
+        >
+        ["ac10"] = <
+            id = <"ac10">
+            members = <"at69", "at70", "at71", "at72", "at73", "at74">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Respiratory function (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac10"] = <
+                text = <"Grip strength (predicted mean for age and gender on the strongest hand) (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"Cough (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac3"] = <
+                text = <"Moving within the bed (e.g. rolling) (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac4"] = <
+                text = <"Supine to sitting on the edge of the bed (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac5"] = <
+                text = <"Dynamic sitting (i.e. when sitting on the edge of the bed/unsupported sitting) (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac6"] = <
+                text = <"Standing balance (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac7"] = <
+                text = <"Sit to stand (starting position: ≤90º hip flexion) (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac8"] = <
+                text = <"Transferring from bed to chair (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac9"] = <
+                text = <"Stepping (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at10"] = <
+                text = <"Self-ventilating with no oxygen therapy">
+                description = <"">
+            >
+            ["at21"] = <
+                text = <"Absent cough, may be fully sedated or paralysed">
+                description = <"">
+            >
+            ["at22"] = <
+                text = <"Cough stimulated on deep suctioning only">
+                description = <"">
+            >
+            ["at23"] = <
+                text = <"Weak ineffective voluntary cough, unable to clear independently (e.g. requires deep suction)">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"Weak, partially effective voluntary cough, sometimes able to clear secretions (e.g. requires Yankauer suctioning)">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"Effective cough, clearing secretions with airways clearance techniques">
+                description = <"">
+            >
+            ["at26"] = <
+                text = <"Consistent effective voluntary cough, clearing secretions independently">
+                description = <"">
+            >
+            ["at27"] = <
+                text = <"Unable, maybe fully sedated/ paralysed">
+                description = <"">
+            >
+            ["at28"] = <
+                text = <"Initiates movement. Requires assistance of two or more people (maximal)">
+                description = <"">
+            >
+            ["at29"] = <
+                text = <"Initiates movement. Requires assistance of at least one person (moderate)">
+                description = <"">
+            >
+            ["at30"] = <
+                text = <"Initiates movement. Requires assistance of one person (minimal)">
+                description = <"">
+            >
+            ["at31"] = <
+                text = <"Independent in ≥3 seconds">
+                description = <"">
+            >
+            ["at32"] = <
+                text = <"Independent in <3 seconds">
+                description = <"">
+            >
+            ["at33"] = <
+                text = <"Unable/unstable">
+                description = <"">
+            >
+            ["at34"] = <
+                text = <"Initiates movement. Requires assistance of two or more people (maximal)">
+                description = <"">
+            >
+            ["at35"] = <
+                text = <"Initiates movement. Requires assistance of at least one person (moderate)">
+                description = <"">
+            >
+            ["at36"] = <
+                text = <"Initiates movement. Requires assistance of one person (minimal)">
+                description = <"">
+            >
+            ["at37"] = <
+                text = <"Independent in ≥3 seconds">
+                description = <"">
+            >
+            ["at38"] = <
+                text = <"Independent in <3 seconds">
+                description = <"">
+            >
+            ["at39"] = <
+                text = <"Unable/unstable">
+                description = <"">
+            >
+            ["at40"] = <
+                text = <"Requires assistance of two or more people (maximal)">
+                description = <"">
+            >
+            ["at41"] = <
+                text = <"Requires assistance of at least one person (moderate)">
+                description = <"">
+            >
+            ["at42"] = <
+                text = <"Requires assistance of one person (minimal)">
+                description = <"">
+            >
+            ["at43"] = <
+                text = <"Independent with some dynamic sitting balance (i.e. able to alter trunk position within base of support)">
+                description = <"">
+            >
+            ["at44"] = <
+                text = <"Independent with full dynamic sitting balance (i.e. able to reach out of base of support)">
+                description = <"">
+            >
+            ["at45"] = <
+                text = <"Unable/unstable/bedbound">
+                description = <"">
+            >
+            ["at46"] = <
+                text = <"Tilt table or similar">
+                description = <"">
+            >
+            ["at47"] = <
+                text = <"Standing hoist or similar">
+                description = <"">
+            >
+            ["at48"] = <
+                text = <"Dependent on frame, crutches or similar">
+                description = <"">
+            >
+            ["at49"] = <
+                text = <"Independent without aids">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"Complete ventilator dependence. Mandatory breaths only. May be fully sedated/ paralysed">
+                description = <"">
+            >
+            ["at50"] = <
+                text = <"Independent without aids and full dynamic standing balance (i.e. able to reach out of base of support)">
+                description = <"">
+            >
+            ["at51"] = <
+                text = <"Unable/unstable">
+                description = <"">
+            >
+            ["at52"] = <
+                text = <"Sit to stand with maximal assistance (standing hoist or similar)">
+                description = <"">
+            >
+            ["at53"] = <
+                text = <"Sit to stand with moderate assistance (e.g. one or two people)">
+                description = <"">
+            >
+            ["at54"] = <
+                text = <"Sit to stand with minimal assistance (e.g. one person)">
+                description = <"">
+            >
+            ["at55"] = <
+                text = <"Sit to stand independently pushing through arms of the chair">
+                description = <"">
+            >
+            ["at56"] = <
+                text = <"Sit to stand independently without upper limb involvement">
+                description = <"">
+            >
+            ["at57"] = <
+                text = <"Unable/unstable">
+                description = <"">
+            >
+            ["at58"] = <
+                text = <"Full hoist">
+                description = <"">
+            >
+            ["at59"] = <
+                text = <"Standing hoist or similar">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Ventilator dependence. Mandatory breaths with some spontaneous effort">
+                description = <"">
+            >
+            ["at60"] = <
+                text = <"Pivot transfer (no stepping) with mobility aid or physical assistance">
+                description = <"">
+            >
+            ["at61"] = <
+                text = <"Stand and step transfer with mobility aid or physical assistance">
+                description = <"">
+            >
+            ["at62"] = <
+                text = <"Independent transfer without equipment">
+                description = <"">
+            >
+            ["at63"] = <
+                text = <"Unable/unstable">
+                description = <"">
+            >
+            ["at64"] = <
+                text = <"Using a standing hoist or similar">
+                description = <"">
+            >
+            ["at65"] = <
+                text = <"Using mobility aids and assistance of at least one person (moderate)">
+                description = <"">
+            >
+            ["at66"] = <
+                text = <"Using mobility aid and assistance of one person (minimal)">
+                description = <"">
+            >
+            ["at67"] = <
+                text = <"Using mobility aid or assistance of one person (minimal)">
+                description = <"">
+            >
+            ["at68"] = <
+                text = <"Independent without aid">
+                description = <"">
+            >
+            ["at69"] = <
+                text = <"Unable to assess">
+                description = <"">
+            >
+            ["at7"] = <
+                text = <"Spontaneously breathing with continuous invasive or non-invasive ventilatory support">
+                description = <"">
+            >
+            ["at70"] = <
+                text = <"<20%">
+                description = <"">
+            >
+            ["at71"] = <
+                text = <"<40%">
+                description = <"">
+            >
+            ["at72"] = <
+                text = <"<60%">
+                description = <"">
+            >
+            ["at73"] = <
+                text = <"<80%">
+                description = <"">
+            >
+            ["at74"] = <
+                text = <"≥80%">
+                description = <"">
+            >
+            ["at8"] = <
+                text = <"Spontaneously breathing with intermittent invasive or non-invasive ventilatory supportor continuous high flow oxygen (>15 L)">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"Receiving standardoxygen therapy (<15L)">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Chelsea Critical Care Physical Assessment (CPAx) tool">
+                description = <"A scoring system to measure physical morbidity in critical care.">
+            >
+            ["id13"] = <
+                text = <"Cough">
+                description = <"">
+            >
+            ["id14"] = <
+                text = <"Grip strength (predicted mean for age and gender on the strongest hand)">
+                description = <"">
+            >
+            ["id15"] = <
+                text = <"Moving within the bed (e.g. rolling)">
+                description = <"">
+            >
+            ["id16"] = <
+                text = <"Supine to sitting on the edge of the bed">
+                description = <"">
+            >
+            ["id17"] = <
+                text = <"Dynamic sitting (i.e. when sitting on the edge of the bed/unsupported sitting)">
+                description = <"">
+            >
+            ["id18"] = <
+                text = <"Standing balance">
+                description = <"">
+            >
+            ["id19"] = <
+                text = <"Sit to stand (starting position: ≤90º hip flexion)">
+                description = <"">
+            >
+            ["id20"] = <
+                text = <"Transferring from bed to chair">
+                description = <"">
+            >
+            ["id21"] = <
+                text = <"Stepping">
+                description = <"">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Respiratory function">
+                description = <"">
+            >
+            ["id77"] = <
+                text = <"Total score">
+                description = <"The total sum of each component variable for the Chelsea Critical Care Physical Tool.">
+            >
+            ["id79"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+        >
+    >
+    

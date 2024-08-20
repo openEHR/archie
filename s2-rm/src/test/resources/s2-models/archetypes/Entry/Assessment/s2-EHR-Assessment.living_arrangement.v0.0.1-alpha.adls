@@ -1,0 +1,165 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4a501082-aee6-48c2-9bd1-81f359037fc1)
+	s2-EHR-Assessment.living_arrangement.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2018-05-29">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.living_arrangement.v0.0.1-alpha, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.living_arrangement.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the circumstances about how an individual lives alone or with others.">
+			use = <"Use to record the circumstances about how an individual lives alone or with others. 
+            
+            This archetype has been designed as one of a family of archetypes that describe the social connectedness of an individual in their home environment.
+            
+            Within this archetype, the intent of the concept of 'household' is to capture information about one or more people who reside together, including sharing meals, economic resources and/or living space. In this context, a single household might comprise varieties of blended families, a student share house, a group home, or a single person living alone. A single dwelling may be considered to contain multiple households if they don't share meals or resources, or have separate living spaces.">
+			keywords = <"alone", "solo", "family", "friends", "others", "household">
+			misuse = <"Not to be used to record overall information about an individual's current and past housing or housing situation. Use EVALUATION.housing_summary for this purpose.
+            
+            Not to be used to record details of the dwelling where the individual resides - use Node.dwelling for this purpose.
+            
+            Not to be used to describe the social connections of the individual, including identification of household members - use EVALUATION.social_network for this purpose.
+            
+            Not to be used to record details of the individual's housing or housing for a specified period of time. Use Node.housing_record for this purpose.">
+		>
+	>
+	other_contributors = <"John Tore Valand, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia">
+
+definition
+	Assessment[id1] matches {	-- Living arrangement
+		data matches {
+			Node[id4] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id15] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Living arrangement
+				value matches {
+					Text[id16] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Household description
+				value matches {
+					Text[id17] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Household type
+				value matches {
+					Text[id18] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Number of household members
+				value matches {
+					Count[id19] 
+				}
+			}
+			use_archetype Node[id14, s2-EHR-Node.person.v1] 
+			allow_archetype Node[id9] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id20] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id13] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id21] 
+				}
+			}
+			allow_archetype Node[id12] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Living arrangement">
+				description = <"The circumstances about an individual living alone or with others.">
+			>
+			["id11"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the living arrangement not captured in other fields.">
+			>
+			["id12"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+			>
+			["id13"] = <
+				text = <"Last updated">
+				description = <"The date this summary was last updated.">
+			>
+			["id14"] = <
+				text = <"Houshold members">
+				description = <"Name of the members of the houshold.">
+			>
+			["id4"] = <
+				text = <"Description">
+				description = <"Narrative description about the living arrangements.">
+			>
+			["id5"] = <
+				text = <"Living arrangement">
+				description = <"Single word or phrase that describes if an individual usually resides alone or with others.">
+			>
+			["id6"] = <
+				text = <"Household type">
+				description = <"Single word or phrase that describes the composition or structure of the household.">
+			>
+			["id7"] = <
+				text = <"Household description">
+				description = <"Narrative description about the individuals who reside together, including sharing meals, economic resources and/or living space.">
+			>
+			["id8"] = <
+				text = <"Number of household members">
+				description = <"The number of individuals who belong to the household.">
+			>
+			["id9"] = <
+				text = <"Additional details">
+				description = <"Further details about the living arrangement.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/57043-2>
+			["id14"] = <http://loinc.org/67746-8>
+			["id5"] = <http://loinc.org/46468-5>
+			["id8"] = <http://loinc.org/86639-2>
+			["id11"] = <http://loinc.org/106173-8>
+			["id13"] = <http://loinc.org/106177-9>
+			["id4"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+

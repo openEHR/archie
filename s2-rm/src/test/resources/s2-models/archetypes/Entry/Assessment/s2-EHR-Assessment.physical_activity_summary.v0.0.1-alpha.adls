@@ -1,0 +1,216 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2095189d-37dd-471d-a125-7d0a2bcd1383)
+	s2-EHR-Assessment.physical_activity_summary.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2017-06-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.physical_activity_summary.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.physical_activity_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a summary of typical physical activity of an individual.">
+			use = <"Use to record a summary of typical, or usual, physical activity of children or adults.
+            
+            Please note: There is some apparent overlap between the 'Physical activity level (PAL) status' data Node in this archetype and the 'Physical activity category' data Node in OBSERVATION.physical_activity archetype - they both use the same value set. Use this archetype when recording the the typical activity as a summative statement, however if the intent is to record the category at a specified point in time or during a specified period of time then use the equivalent data point in the OBSERVATION.physical_activity.">
+			keywords = <"activity", "exercise", "physical", "fitness">
+			misuse = <"Not to be used to record actual physical activity at a specific point in time or during a specified period of time - use OBSERVATION.physical_activity for this purpose.">
+		>
+	>
+	other_contributors = <"Stephen Chu, Australia", "Priscila Maranhão, MEDCIDS-FMUP, Portugal", "Gustavo Bacelar, Virtual Care, Portugal", "Hugh Leslie, Ocean Informatics, Australia">
+
+definition
+	Assessment[id1] matches {	-- Physical activity summary
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Physical activity level (PAL) status
+				value matches {
+					Coded_text[id18] matches {
+						term matches {
+							Terminology_term[id26] matches {
+								concept matches {[ac1]}		-- Physical activity level (PAL) status (synthesised)
+							}
+						}
+					}
+					Plain_text[id19] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id20] 
+				}
+			}
+			Node[id6] matches {	-- Barrier
+				value matches {
+					Text[id21] 
+				}
+			}
+			Node[id7] matches {	-- Enabler
+				value matches {
+					Text[id22] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Typical moderate exercise
+				value matches {
+					Quantity[id23] matches {
+						units matches {
+							Coded_text[id28] matches {
+								term matches {
+									Terminology_term[id27] matches {
+										concept matches {[at15]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Typical vigorous exercise
+				value matches {
+					Quantity[id24] matches {
+						units matches {
+							Coded_text[id30] matches {
+								term matches {
+									Terminology_term[id29] matches {
+										concept matches {[at15]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id17] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id25] 
+				}
+			}
+			allow_archetype Node[id16] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Physical activity level (PAL) status (synthesised)">
+				description = <"The category of the typical, or usual, physical activity level of an individual. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Sedentary">
+				description = <"The individual spends most of their time sitting, for example an office worker getting little or no exercise.">
+			>
+			["at11"] = <
+				text = <"Moderately active">
+				description = <"The individual is moerately active, for example a construction worker or a person running one hour daily.">
+			>
+			["at12"] = <
+				text = <"Vigorously active">
+				description = <"The individual is very active, for example a manual labourer or a person swimming two hours daily.">
+			>
+			["at13"] = <
+				text = <"Extremely active">
+				description = <"The individual is extremely active, for example a competitive cyclist.">
+			>
+			["at14"] = <
+				text = <"Frequency">
+				description = <"Frequency">
+			>
+			["at15"] = <
+				text = <"1/d">
+				description = <"1/d unit.">
+			>
+			["at9"] = <
+				text = <"Extremely inactive">
+				description = <"The individual is extremely inactive, for example a bedridden patient.">
+			>
+			["id1"] = <
+				text = <"Physical activity summary">
+				description = <"A summary of the typical level of physical activity undertaken by the individual.">
+			>
+			["id16"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id17"] = <
+				text = <"Last updated">
+				description = <"The date when the physical activity summary was last updated.">
+			>
+			["id3"] = <
+				text = <"Physical activity level (PAL) status">
+				description = <"The category of the typical, or usual, physical activity level of an individual.">
+			>
+			["id4"] = <
+				text = <"Description">
+				description = <"A narrative description about the individual's typical level of physical activity.">
+			>
+			["id6"] = <
+				text = <"Barrier">
+				description = <"Identified factor that prevents the individual to become more physically active.">
+			>
+			["id7"] = <
+				text = <"Enabler">
+				description = <"Identified factor that may support the individual to become more physically active.">
+			>
+			["id8"] = <
+				text = <"Typical vigorous exercise">
+				description = <"Typical number of minutes of vigorous exercise.">
+			>
+			["id9"] = <
+				text = <"Typical moderate exercise">
+				description = <"Typical number of minutes of moderate exercise.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at14"] = <http://openehr.org/id/382>
+		>
+		["ucum"] = <
+			["at15"] = <http://ucum.org/id/1%2Fd>
+		>
+		["snomed"] = <
+			["at15"] = <http://snomed.info/id/259032004>
+		>
+		["loinc"] = <
+			["id3"] = <http://loinc.org/80493-0>
+			["id8"] = <http://loinc.org/77593-2>
+			["id9"] = <http://loinc.org/77592-4>
+			["id17"] = <http://loinc.org/106177-9>
+			["id4"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at9", "at10", "at11", "at12", "at13">
+		>
+	>
+

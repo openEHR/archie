@@ -1,0 +1,149 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d159f3de-daa6-4dda-a715-7bc311f199a6)
+    s2-EHR-Node.exam_burn.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Silje Ljosland Bakke, Bergen Hospital Trust, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "John Tore Valand, Haukeland Universitetssjukehus, Norway", "Heather Leslie, Ocean Informatics, Australia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2015-06-25">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.exam_burn.v0.0.1-alpha, copyright 2015 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.exam_burn.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"For recording a narrative description and clinical interpretation of the findings observed during the physical examination of an identified burn.">
+            use = <"Use to record a narrative description of the overall findings observed during the physical examination of an identified burn. This initial draft archetype consists only of the core examination pattern data Nodes (as per Node.exam_pattern) and will likely be expanded further over time as specific clinical requirements are identified.
+            
+            This archetype has been specifically designed to be used in the 'Examination findings' SLOT within the Node.exam_skin archetype or the OBSERVATION.exam, but can also be used within any other OBSERVATION or Node archetypes, where clinically appropriate - for example, Node.exam_breast.
+            
+            Use to provide a framework in which Node archetypes can be nested in the 'Examination findings' SLOT to record additional structured physical examination findings. 
+            
+            The Node.exclusion_exam archetype can be nested within the 'Examination not done' SLOT to optionally record explicit details about the examination not being performed.
+            
+            Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data Node.">
+            misuse = <"Not to be used for recording data not related to the physical examination of an identified burn.
+            
+            Not to be used for recording the clinical history - use specific OBSERVATION and Node archetypes. For example OBSERVATION.story and Node.symptom.
+            
+            Not to be used to record stand-alone clinical observations or measurements or test results - use specific OBSERVATION archetypes. For example OBSERVATION.blood_pressure or OBSERVATION.imaging_exam.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Examination of a burn
+        items matches {
+            Node[id3] occurrences matches {0..1} matches {    -- Burn type
+                value matches {
+                    Text[id14]
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Alias
+                value matches {
+                    Text[id15]
+                }
+            }
+            Node[id4] occurrences matches {0..1} matches {    -- Clinical description
+                value matches {
+                    Text[id16]
+                }
+            }
+            Node[id2] occurrences matches {0..1} matches {    -- Body site
+                value matches {
+                    Text[id17]
+                }
+            }
+            allow_archetype Node[id12] matches {     -- Structured body site
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_clock(-[a-zA-Z0-9_]+)*\.v0/}
+            }
+            allow_archetype Node[id5] matches {     -- Examination findings
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.dimensions(-[a-zA-Z0-9_]+)*\.v1/}
+            }
+            use_archetype Node[id6, s2-EHR-Node.media_file.v1]    -- Multimedia representation
+            Node[id7] matches {    -- Clinical interpretation
+                value matches {
+                    Text[id18]
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id19]
+                }
+            }
+            use_archetype Node[id9, s2-EHR-Node.exclusion_exam.v1]    -- Examination not done
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Examination of a burn">
+                description = <"Findings observed during the physical examination of an identified burn.">
+            >
+            ["id12"] = <
+                text = <"Structured body site">
+                description = <"A structured anatomical location of the finding.">
+            >
+            ["id13"] = <
+                text = <"Alias">
+                description = <"Identification, by using a alias name, of the burn to distinguish one burn from similar burns at the same body site.">
+            >
+            ["id2"] = <
+                text = <"Body site">
+                description = <"Identification of the body site under examination.">
+            >
+            ["id3"] = <
+                text = <"Burn type">
+                description = <"Identification of the type of burn found on physical examination.">
+            >
+            ["id4"] = <
+                text = <"Clinical description">
+                description = <"Narrative description of the overall findings observed during the physical examination of the burn.">
+            >
+            ["id5"] = <
+                text = <"Examination findings">
+                description = <"Structured details about the physical examination findings.">
+            >
+            ["id6"] = <
+                text = <"Multimedia representation">
+                description = <"Digital image, video or diagram representing the burn findings.">
+            >
+            ["id7"] = <
+                text = <"Clinical interpretation">
+                description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the physical examination findings.">
+            >
+            ["id8"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the physical examination findings, not captured in other fields.">
+            >
+            ["id9"] = <
+                text = <"Examination not done">
+                description = <"Details to explicitly record that this examination was not performed.">
+            >
+        >
+    >
+    

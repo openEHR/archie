@@ -1,0 +1,1456 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=3d173fd7-35f2-4942-b0df-cf2b158a5901)
+	s2-EHR-Score.caprini_score.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-10-02">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.caprini_score.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.caprini_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record values for individual Caprini score parameters and the total score.">
+			use = <"Use to record values for individual Caprini score parameters and the total score as part of a pre-operative assessment for venous thromboembolism.">
+			keywords = <"VTE", "Venous", "Thromboembolism", "Surgery", "Pre-op", "PE", "DVT", "thrombosis", "embolus", "pulmonary">
+			misuse = <"">
+		>
+	>
+
+definition
+	Score[id1] matches {	-- Caprini score
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Gender
+				value matches {
+					Coded_text[id54] matches {
+						term matches {
+							Terminology_term[id87] matches {
+								concept matches {[ac1]}		-- Gender (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Age
+				value matches {
+					Coded_ordinal[id88] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id90] matches {
+								term matches {
+									Terminology_term[id89] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id91] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id93] matches {
+								term matches {
+									Terminology_term[id92] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id94] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id96] matches {
+								term matches {
+									Terminology_term[id95] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id97] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id99] matches {
+								term matches {
+									Terminology_term[id98] matches {
+										concept matches {[at11]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Planned surgery
+				value matches {
+					Coded_ordinal[id100] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id102] matches {
+								term matches {
+									Terminology_term[id101] matches {
+										concept matches {[at13]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id103] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id105] matches {
+								term matches {
+									Terminology_term[id104] matches {
+										concept matches {[at14]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id106] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id108] matches {
+								term matches {
+									Terminology_term[id107] matches {
+										concept matches {[at15]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Overweight or obese (BMI ≥ 25)
+				value matches {
+					Coded_ordinal[id109] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id111] matches {
+								term matches {
+									Terminology_term[id110] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id112] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id114] matches {
+								term matches {
+									Terminology_term[id113] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Varicose veins
+				value matches {
+					Coded_ordinal[id115] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id117] matches {
+								term matches {
+									Terminology_term[id116] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id118] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id120] matches {
+								term matches {
+									Terminology_term[id119] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Swollen legs
+				value matches {
+					Coded_ordinal[id121] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id123] matches {
+								term matches {
+									Terminology_term[id122] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id124] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id126] matches {
+								term matches {
+									Terminology_term[id125] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Abnormal pulmonary function (COPD)
+				value matches {
+					Coded_ordinal[id127] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id129] matches {
+								term matches {
+									Terminology_term[id128] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id130] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id132] matches {
+								term matches {
+									Terminology_term[id131] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Pregnant or postpartum <1 month
+				value matches {
+					Coded_ordinal[id133] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id135] matches {
+								term matches {
+									Terminology_term[id134] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id136] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id138] matches {
+								term matches {
+									Terminology_term[id137] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id24] occurrences matches {0..1} matches {	-- Current oral contraceptives or hormone replacement
+				value matches {
+					Coded_ordinal[id139] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id141] matches {
+								term matches {
+									Terminology_term[id140] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id142] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id144] matches {
+								term matches {
+									Terminology_term[id143] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Sepsis (<1 month)
+				value matches {
+					Coded_ordinal[id145] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id147] matches {
+								term matches {
+									Terminology_term[id146] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id148] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id150] matches {
+								term matches {
+									Terminology_term[id149] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id26] occurrences matches {0..1} matches {	-- Serious lung disease, including pneumonia (<1 month)
+				value matches {
+					Coded_ordinal[id151] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id153] matches {
+								term matches {
+									Terminology_term[id152] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id154] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id156] matches {
+								term matches {
+									Terminology_term[id155] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id27] occurrences matches {0..1} matches {	-- Congestive heart failure (<1 month)
+				value matches {
+					Coded_ordinal[id157] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id159] matches {
+								term matches {
+									Terminology_term[id158] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id160] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id162] matches {
+								term matches {
+									Terminology_term[id161] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id28] occurrences matches {0..1} matches {	-- Acute myocardial infarction (<1 month)
+				value matches {
+					Coded_ordinal[id163] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id165] matches {
+								term matches {
+									Terminology_term[id164] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id166] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id168] matches {
+								term matches {
+									Terminology_term[id167] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id29] occurrences matches {0..1} matches {	-- History of major surgery (<1 month)
+				value matches {
+					Coded_ordinal[id169] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id171] matches {
+								term matches {
+									Terminology_term[id170] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id172] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id174] matches {
+								term matches {
+									Terminology_term[id173] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id30] occurrences matches {0..1} matches {	-- History of inflammatory bowel disease
+				value matches {
+					Coded_ordinal[id175] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id177] matches {
+								term matches {
+									Terminology_term[id176] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id178] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id180] matches {
+								term matches {
+									Terminology_term[id179] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id31] occurrences matches {0..1} matches {	-- History of unexplained stillborn infant, recurrent spontaneous abortion (≥3 factors present), premature birth with toxaemia or growth restricted infant.
+				value matches {
+					Coded_ordinal[id181] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id183] matches {
+								term matches {
+									Terminology_term[id182] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id184] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id186] matches {
+								term matches {
+									Terminology_term[id185] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id32] occurrences matches {0..1} matches {	-- Bed rest or restricted mobility during past month
+				value matches {
+					Coded_ordinal[id187] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id189] matches {
+								term matches {
+									Terminology_term[id188] matches {
+										concept matches {[at32]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id190] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id192] matches {
+								term matches {
+									Terminology_term[id191] matches {
+										concept matches {[at33]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id193] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id195] matches {
+								term matches {
+									Terminology_term[id194] matches {
+										concept matches {[at34]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id36] occurrences matches {0..1} matches {	-- Malignant tumour (current or past)
+				value matches {
+					Coded_ordinal[id196] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id198] matches {
+								term matches {
+									Terminology_term[id197] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id199] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id201] matches {
+								term matches {
+									Terminology_term[id200] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Current central venous access
+				value matches {
+					Coded_ordinal[id202] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id204] matches {
+								term matches {
+									Terminology_term[id203] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id205] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id207] matches {
+								term matches {
+									Terminology_term[id206] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id38] occurrences matches {0..1} matches {	-- History of VTE
+				value matches {
+					Coded_ordinal[id208] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id210] matches {
+								term matches {
+									Terminology_term[id209] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id211] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id213] matches {
+								term matches {
+									Terminology_term[id212] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id39] occurrences matches {0..1} matches {	-- Family history of VTE
+				value matches {
+					Coded_ordinal[id214] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id216] matches {
+								term matches {
+									Terminology_term[id215] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id217] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id219] matches {
+								term matches {
+									Terminology_term[id218] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id40] occurrences matches {0..1} matches {	-- Factor V Leiden
+				value matches {
+					Coded_ordinal[id220] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id222] matches {
+								term matches {
+									Terminology_term[id221] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id223] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id225] matches {
+								term matches {
+									Terminology_term[id224] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id41] occurrences matches {0..1} matches {	-- Prothrombin 20210A
+				value matches {
+					Coded_ordinal[id226] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id228] matches {
+								term matches {
+									Terminology_term[id227] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id229] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id231] matches {
+								term matches {
+									Terminology_term[id230] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id42] occurrences matches {0..1} matches {	-- Lupus anticoagulant
+				value matches {
+					Coded_ordinal[id232] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id234] matches {
+								term matches {
+									Terminology_term[id233] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id235] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id237] matches {
+								term matches {
+									Terminology_term[id236] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id43] occurrences matches {0..1} matches {	-- Anticardiolipin antibodies
+				value matches {
+					Coded_ordinal[id238] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id240] matches {
+								term matches {
+									Terminology_term[id239] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id241] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id243] matches {
+								term matches {
+									Terminology_term[id242] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id44] occurrences matches {0..1} matches {	-- Elevated serum homocysteine
+				value matches {
+					Coded_ordinal[id244] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id246] matches {
+								term matches {
+									Terminology_term[id245] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id247] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id249] matches {
+								term matches {
+									Terminology_term[id248] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id45] occurrences matches {0..1} matches {	-- Heparin-induced thrombocytopenia
+				value matches {
+					Coded_ordinal[id250] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id252] matches {
+								term matches {
+									Terminology_term[id251] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id253] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id255] matches {
+								term matches {
+									Terminology_term[id254] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id46] occurrences matches {0..1} matches {	-- Other congenital or acquired thrombophilia
+				value matches {
+					Coded_ordinal[id256] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id258] matches {
+								term matches {
+									Terminology_term[id257] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id259] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id261] matches {
+								term matches {
+									Terminology_term[id260] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id47] occurrences matches {0..1} matches {	-- Stroke (<1 month)
+				value matches {
+					Coded_ordinal[id262] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id264] matches {
+								term matches {
+									Terminology_term[id263] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id265] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id267] matches {
+								term matches {
+									Terminology_term[id266] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id48] occurrences matches {0..1} matches {	-- Malignant tumour (current or past)
+				value matches {
+					Coded_ordinal[id268] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id270] matches {
+								term matches {
+									Terminology_term[id269] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id271] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id273] matches {
+								term matches {
+									Terminology_term[id272] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id49] occurrences matches {0..1} matches {	-- Multiple trauma (<1 month)
+				value matches {
+					Coded_ordinal[id274] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id276] matches {
+								term matches {
+									Terminology_term[id275] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id277] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id279] matches {
+								term matches {
+									Terminology_term[id278] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id50] occurrences matches {0..1} matches {	-- Acute spinal cord injury (<1 month)
+				value matches {
+					Coded_ordinal[id280] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id282] matches {
+								term matches {
+									Terminology_term[id281] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id283] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id285] matches {
+								term matches {
+									Terminology_term[id284] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id51] occurrences matches {0..1} matches {	-- Total score
+				value matches {
+					Count[id86] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id53] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Gender (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac10"] = <
+				text = <"Sepsis (<1 month) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac11"] = <
+				text = <"Serious lung disease, including pneumonia (<1 month) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac12"] = <
+				text = <"Congestive heart failure (<1 month) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac13"] = <
+				text = <"Acute myocardial infarction (<1 month) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac14"] = <
+				text = <"History of major surgery (<1 month) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac15"] = <
+				text = <"History of inflammatory bowel disease (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac16"] = <
+				text = <"History of unexplained stillborn infant, recurrent spontaneous abortion (≥3 factors present), premature birth with toxaemia or growth restricted infant. (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac17"] = <
+				text = <"Bed rest or restricted mobility during past month (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac18"] = <
+				text = <"Malignant tumour (current or past) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac19"] = <
+				text = <"Current central venous access (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac2"] = <
+				text = <"Age (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac20"] = <
+				text = <"History of VTE (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac21"] = <
+				text = <"Family history of VTE (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac22"] = <
+				text = <"Factor V Leiden (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac23"] = <
+				text = <"Prothrombin 20210A (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac24"] = <
+				text = <"Lupus anticoagulant (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac25"] = <
+				text = <"Anticardiolipin antibodies (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac26"] = <
+				text = <"Elevated serum homocysteine (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac27"] = <
+				text = <"Heparin-induced thrombocytopenia (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac28"] = <
+				text = <"Other congenital or acquired thrombophilia (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac29"] = <
+				text = <"Stroke (<1 month) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac3"] = <
+				text = <"Planned surgery (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac30"] = <
+				text = <"Malignant tumour (current or past) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac31"] = <
+				text = <"Multiple trauma (<1 month) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac32"] = <
+				text = <"Acute spinal cord injury (<1 month) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac4"] = <
+				text = <"Overweight or obese (BMI ≥ 25) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac5"] = <
+				text = <"Varicose veins (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac6"] = <
+				text = <"Swollen legs (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac7"] = <
+				text = <"Abnormal pulmonary function (COPD) (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac8"] = <
+				text = <"Pregnant or postpartum <1 month (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac9"] = <
+				text = <"Current oral contraceptives or hormone replacement (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["at10"] = <
+				text = <"61-74 years">
+				description = <"">
+			>
+			["at11"] = <
+				text = <"≥75 years">
+				description = <"">
+			>
+			["at13"] = <
+				text = <"Minor (<45 minutes)">
+				description = <"">
+			>
+			["at14"] = <
+				text = <"Major surgery (>45 minutes), laparoscopic surgery (>45 minutes) or arthroscopic surgery">
+				description = <"">
+			>
+			["at15"] = <
+				text = <"Elective hip or knee replacement">
+				description = <"">
+			>
+			["at17"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at18"] = <
+				text = <"Yes">
+				description = <"">
+			>
+			["at32"] = <
+				text = <"None">
+				description = <"">
+			>
+			["at33"] = <
+				text = <"Yes, <3 days">
+				description = <"">
+			>
+			["at34"] = <
+				text = <"Yes, >3 days">
+				description = <"">
+			>
+			["at5"] = <
+				text = <"Female">
+				description = <"">
+			>
+			["at6"] = <
+				text = <"Male">
+				description = <"">
+			>
+			["at8"] = <
+				text = <"≤40 years">
+				description = <"">
+			>
+			["at9"] = <
+				text = <"41-60 years">
+				description = <"">
+			>
+			["id1"] = <
+				text = <"Caprini score">
+				description = <"Assessment tool used to stratify risk for venous thromboembolism (VTE).">
+			>
+			["id13"] = <
+				text = <"Planned surgery">
+				description = <"">
+			>
+			["id17"] = <
+				text = <"Overweight or obese (BMI ≥ 25)">
+				description = <"">
+			>
+			["id20"] = <
+				text = <"Varicose veins">
+				description = <"">
+			>
+			["id21"] = <
+				text = <"Swollen legs">
+				description = <"">
+			>
+			["id22"] = <
+				text = <"Abnormal pulmonary function (COPD)">
+				description = <"">
+			>
+			["id23"] = <
+				text = <"Pregnant or postpartum <1 month">
+				description = <"">
+			>
+			["id24"] = <
+				text = <"Current oral contraceptives or hormone replacement">
+				description = <"">
+			>
+			["id25"] = <
+				text = <"Sepsis (<1 month)">
+				description = <"">
+			>
+			["id26"] = <
+				text = <"Serious lung disease, including pneumonia (<1 month)">
+				description = <"">
+			>
+			["id27"] = <
+				text = <"Congestive heart failure (<1 month)">
+				description = <"">
+			>
+			["id28"] = <
+				text = <"Acute myocardial infarction (<1 month)">
+				description = <"">
+			>
+			["id29"] = <
+				text = <"History of major surgery (<1 month)">
+				description = <"">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"History of inflammatory bowel disease">
+				description = <"">
+			>
+			["id31"] = <
+				text = <"History of unexplained stillborn infant, recurrent spontaneous abortion (≥3 factors present), premature birth with toxaemia or growth restricted infant.">
+				description = <"">
+			>
+			["id32"] = <
+				text = <"Bed rest or restricted mobility during past month">
+				description = <"">
+			>
+			["id36"] = <
+				text = <"Malignant tumour (current or past)">
+				description = <"">
+			>
+			["id37"] = <
+				text = <"Current central venous access">
+				description = <"">
+			>
+			["id38"] = <
+				text = <"History of VTE">
+				description = <"">
+			>
+			["id39"] = <
+				text = <"Family history of VTE">
+				description = <"">
+			>
+			["id40"] = <
+				text = <"Factor V Leiden">
+				description = <"">
+			>
+			["id41"] = <
+				text = <"Prothrombin 20210A">
+				description = <"">
+			>
+			["id42"] = <
+				text = <"Lupus anticoagulant">
+				description = <"">
+			>
+			["id43"] = <
+				text = <"Anticardiolipin antibodies">
+				description = <"">
+			>
+			["id44"] = <
+				text = <"Elevated serum homocysteine">
+				description = <"">
+			>
+			["id45"] = <
+				text = <"Heparin-induced thrombocytopenia">
+				description = <"">
+			>
+			["id46"] = <
+				text = <"Other congenital or acquired thrombophilia">
+				description = <"">
+			>
+			["id47"] = <
+				text = <"Stroke (<1 month)">
+				description = <"">
+			>
+			["id48"] = <
+				text = <"Malignant tumour (current or past)">
+				description = <"">
+			>
+			["id49"] = <
+				text = <"Multiple trauma (<1 month)">
+				description = <"">
+			>
+			["id5"] = <
+				text = <"Gender">
+				description = <"">
+			>
+			["id50"] = <
+				text = <"Acute spinal cord injury (<1 month)">
+				description = <"">
+			>
+			["id51"] = <
+				text = <"Total score">
+				description = <"The total sum of each component parameter for the Caprini score.">
+			>
+			["id53"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id8"] = <
+				text = <"Age">
+				description = <"">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id8"] = <http://loinc.org/46251-5>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at8", "at9", "at10", "at11">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at13", "at14", "at15">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at17", "at18">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at17", "at18">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at17", "at18">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at17", "at18">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at17", "at18">
+		>
+		["ac9"] = <
+			id = <"ac9">
+			members = <"at17", "at18">
+		>
+		["ac10"] = <
+			id = <"ac10">
+			members = <"at17", "at18">
+		>
+		["ac11"] = <
+			id = <"ac11">
+			members = <"at17", "at18">
+		>
+		["ac12"] = <
+			id = <"ac12">
+			members = <"at17", "at18">
+		>
+		["ac13"] = <
+			id = <"ac13">
+			members = <"at17", "at18">
+		>
+		["ac14"] = <
+			id = <"ac14">
+			members = <"at17", "at18">
+		>
+		["ac15"] = <
+			id = <"ac15">
+			members = <"at17", "at18">
+		>
+		["ac16"] = <
+			id = <"ac16">
+			members = <"at17", "at18">
+		>
+		["ac17"] = <
+			id = <"ac17">
+			members = <"at32", "at33", "at34">
+		>
+		["ac18"] = <
+			id = <"ac18">
+			members = <"at17", "at18">
+		>
+		["ac19"] = <
+			id = <"ac19">
+			members = <"at17", "at18">
+		>
+		["ac20"] = <
+			id = <"ac20">
+			members = <"at17", "at18">
+		>
+		["ac21"] = <
+			id = <"ac21">
+			members = <"at17", "at18">
+		>
+		["ac22"] = <
+			id = <"ac22">
+			members = <"at17", "at18">
+		>
+		["ac23"] = <
+			id = <"ac23">
+			members = <"at17", "at18">
+		>
+		["ac24"] = <
+			id = <"ac24">
+			members = <"at17", "at18">
+		>
+		["ac25"] = <
+			id = <"ac25">
+			members = <"at17", "at18">
+		>
+		["ac26"] = <
+			id = <"ac26">
+			members = <"at17", "at18">
+		>
+		["ac27"] = <
+			id = <"ac27">
+			members = <"at17", "at18">
+		>
+		["ac28"] = <
+			id = <"ac28">
+			members = <"at17", "at18">
+		>
+		["ac29"] = <
+			id = <"ac29">
+			members = <"at17", "at18">
+		>
+		["ac30"] = <
+			id = <"ac30">
+			members = <"at17", "at18">
+		>
+		["ac31"] = <
+			id = <"ac31">
+			members = <"at17", "at18">
+		>
+		["ac32"] = <
+			id = <"ac32">
+			members = <"at17", "at18">
+		>
+	>
+

@@ -1,0 +1,306 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=da9a4c92-9141-47b2-8bd7-c07dc29893b8)
+	s2-EHR-Action.imaging_exam.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2006-04-10">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ACTION.imaging_exam.v0.0.1-alpha, copyright 2006 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-ACTION.imaging_exam.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record activity regarding the performance of imaging examinations.">
+			use = <"Use to record activity regarding the performance of imaging examinations.">
+			keywords = <"Radiology", "Ultrasound", "MRI", "CT", "scan", "tomography">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Heather Leslie, Ocean Informatics, Australia", ...>
+
+definition
+	Action[id1] matches {	-- Imaging examination
+		state_transition matches {
+			State_transition[id3] matches {	-- Examination planned
+				current_state matches {"planned"}
+				careflow_step matches {
+					Terminology_term[id25] matches {
+						concept matches {[at3]}
+					}
+				}
+			}
+			State_transition[id4] matches {	-- Examination requested
+				current_state matches {"planned"}
+				careflow_step matches {
+					Terminology_term[id27] matches {
+						concept matches {[at4]}
+					}
+				}
+			}
+			State_transition[id10] matches {	-- Examination postponed
+				current_state matches {"postponed"}
+				careflow_step matches {
+					Terminology_term[id29] matches {
+						concept matches {[at10]}
+					}
+				}
+			}
+			State_transition[id12] matches {	-- Examination cancelled
+				current_state matches {"cancelled"}
+				careflow_step matches {
+					Terminology_term[id31] matches {
+						concept matches {[at12]}
+					}
+				}
+			}
+			State_transition[id5] matches {	-- Appointment scheduled
+				current_state matches {"scheduled"}
+				careflow_step matches {
+					Terminology_term[id33] matches {
+						concept matches {[at5]}
+					}
+				}
+			}
+			State_transition[id6] matches {	-- Appointment rescheduled
+				current_state matches {"scheduled"}
+				careflow_step matches {
+					Terminology_term[id35] matches {
+						concept matches {[at6]}
+					}
+				}
+			}
+			State_transition[id9] matches {	-- Examination performed
+				current_state matches {"active"}
+				careflow_step matches {
+					Terminology_term[id37] matches {
+						concept matches {[at9]}
+					}
+				}
+			}
+			State_transition[id15] matches {	-- Failed attempt
+				current_state matches {"active"}
+				careflow_step matches {
+					Terminology_term[id39] matches {
+						concept matches {[at15]}
+					}
+				}
+			}
+			State_transition[id11] matches {	-- Examination suspended
+				current_state matches {"suspended"}
+				careflow_step matches {
+					Terminology_term[id41] matches {
+						concept matches {[at11]}
+					}
+				}
+			}
+			State_transition[id13] matches {	-- Examination aborted
+				current_state matches {"aborted"}
+				careflow_step matches {
+					Terminology_term[id43] matches {
+						concept matches {[at13]}
+					}
+				}
+			}
+			State_transition[id8] matches {	-- Examination complete
+				current_state matches {"completed"}
+				careflow_step matches {
+					Terminology_term[id45] matches {
+						concept matches {[at8]}
+					}
+				}
+			}
+		}
+		description matches {
+			Node[id18] occurrences matches {0..1} matches {	-- Examination name
+				value matches {
+					Text[id46] 
+				}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id47] 
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Reason
+				value matches {
+					Text[id48] 
+				}
+			}
+			use_archetype Node[id23, s2-EHR-Node.anatomical_location.v1] 
+			allow_archetype Node[id22] matches {	-- Examination detail
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id49] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id17] occurrences matches {0..1} matches {	-- Start date/time
+				value matches {
+					Date_time_value[id50] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at10"] = <
+				text = <"Examination postponed">
+				description = <"The examination has been postponed.">
+			>
+			["at11"] = <
+				text = <"Examination suspended">
+				description = <"The examination has been suspended.">
+			>
+			["at12"] = <
+				text = <"Examination cancelled">
+				description = <"The planned examination has been cancelled prior to commencement.">
+			>
+			["at13"] = <
+				text = <"Examination aborted">
+				description = <"The examination has been aborted.">
+			>
+			["at15"] = <
+				text = <"Failed attempt">
+				description = <"The examation was commenced but not completed successfully.">
+			>
+			["at3"] = <
+				text = <"Examination planned">
+				description = <"Imaging examination is planned.">
+			>
+			["at4"] = <
+				text = <"Examination requested">
+				description = <"Imaging examination has been requested.">
+			>
+			["at5"] = <
+				text = <"Appointment scheduled">
+				description = <"Imaging examination appointment has been made.">
+			>
+			["at6"] = <
+				text = <"Appointment rescheduled">
+				description = <"Appointment for imaging examination has been rescheduled.">
+			>
+			["at8"] = <
+				text = <"Examination complete">
+				description = <"The imaging examination has been performed and all associated activities completed.">
+			>
+			["at9"] = <
+				text = <"Examination performed">
+				description = <"The examation was performed but related activities not completed.">
+			>
+			["id1"] = <
+				text = <"Imaging examination">
+				description = <"Clinical activity about performing an imaging examination.">
+			>
+			["id10"] = <
+				text = <"Examination postponed">
+				description = <"The examination has been postponed.">
+			>
+			["id11"] = <
+				text = <"Examination suspended">
+				description = <"The examination has been suspended.">
+			>
+			["id12"] = <
+				text = <"Examination cancelled">
+				description = <"The planned examination has been cancelled prior to commencement.">
+			>
+			["id13"] = <
+				text = <"Examination aborted">
+				description = <"The examination has been aborted.">
+			>
+			["id15"] = <
+				text = <"Failed attempt">
+				description = <"The examation was commenced but not completed successfully.">
+			>
+			["id17"] = <
+				text = <"Start date/time">
+				description = <"The start date and/or time for the procedure. This will indicate the scheduled date/time when recorded against the 'Appointment scheduled' care pathway step or the actual Start date/time in the 'Examination performed' step.">
+			>
+			["id18"] = <
+				text = <"Examination name">
+				description = <"The name of the examination (to be) performed. Coding of the specific procedure with a terminology is preferred, where possible.">
+			>
+			["id19"] = <
+				text = <"Description">
+				description = <"Narrative description about the activity or care pathway step for the identified examination, for example description about the performance and findings from the the examination, the failed attempt or the cancellation of the examination.">
+			>
+			["id20"] = <
+				text = <"Reason">
+				description = <"Reason that the activity or care pathway step for the identified examination was carried out, for example, the reason for the cancellation or suspension of the examination.">
+			>
+			["id21"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the activity or care pathway step not captured in other fields.">
+			>
+			["id22"] = <
+				text = <"Examination detail">
+				description = <"Structured information about the examination. Use to capture detailed, structured information about method & technique etc.">
+			>
+			["id23"] = <
+				text = <"Anatomical location">
+				description = <"Structured information about the specific anatomical location of the examination.">
+			>
+			["id3"] = <
+				text = <"Examination planned">
+				description = <"Imaging examination is planned.">
+			>
+			["id4"] = <
+				text = <"Examination requested">
+				description = <"Imaging examination has been requested.">
+			>
+			["id5"] = <
+				text = <"Appointment scheduled">
+				description = <"Imaging examination appointment has been made.">
+			>
+			["id6"] = <
+				text = <"Appointment rescheduled">
+				description = <"Appointment for imaging examination has been rescheduled.">
+			>
+			["id8"] = <
+				text = <"Examination complete">
+				description = <"The imaging examination has been performed and all associated activities completed.">
+			>
+			["id9"] = <
+				text = <"Examination performed">
+				description = <"The examation was performed but related activities not completed.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/18748-4>
+			["id17"] = <http://loinc.org/61136-8>
+			["id18"] = <http://loinc.org/104934-5>
+			["id19"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id21"] = <http://loinc.org/106173-8>
+			["id23"] = <http://loinc.org/39111-0>
+		>
+	>
+

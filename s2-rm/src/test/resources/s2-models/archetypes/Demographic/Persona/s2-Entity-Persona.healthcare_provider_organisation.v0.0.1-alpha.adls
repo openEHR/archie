@@ -1,0 +1,93 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=c7be68ba-2f0e-43cc-8f0b-fc9c59b99223)
+    s2-Entity-Persona.healthcare_provider_organisation.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Graphite Health">
+        ["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+        ["email"] = <"models@s2.org">
+        ["date"] = <"$today (date is disabled during testing)">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    custodian_namespace = <"io.graphitehealth">
+    custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
+    copyright = <"Copyright (c) 2023 Graphite Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-22">
+        ["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+        ["openehr"] = <"Converted from openEHR archetype openEHR-DEMOGRAPHIC-ROLE.healthcare_provider_organisation.v0.0.1-alpha">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-ROLE.healthcare_provider_organisation.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"graphite_openehr_to_s2_adl">
+        ["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Representation of an organisations's demographic data in the role of healthcare provider">
+            keywords = <"demographic service", "healthcare provider organisation">
+            use = <"Used in demographic service to collect demographic data about an organisation in the role of a healthcare provider">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Persona[id1] matches {    -- Healthcare Provider Organisation
+        description cardinality matches {1..*; unordered} matches {
+            allow_archetype Node[id11] occurrences matches {1..*} matches {     -- Identifier
+                include
+                    archetype_id/value matches {/s2-Entity-Node\.provider_identifier[a-zA-Z0-9_-]*\.v0/}
+            }
+        }
+        identities matches {
+            allow_archetype Party_identity[id3] occurrences matches {1..*} matches {     -- Provider name
+                include
+                    archetype_id/value matches {/s2-Entity-Party_identity\.organisation_name[a-zA-Z0-9_-]*\.v0/}
+            }
+        }
+        relationships matches {
+            Party_relationship[id4] occurrences matches {1} matches {    -- Third-party payer relationship
+                details cardinality matches {1..*; unordered} matches {
+                    allow_archetype Node[id32] occurrences matches {0..1} matches {     -- identifier used in the relationship
+                        include
+                            archetype_id/value matches {/s2-Entity-Node\.provider_identifier[a-zA-Z0-9_-]*\.v0/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Healthcare Provider Organisation">
+                description = <"Organisation in the role of a healthcare provider">
+            >
+            ["id11"] = <
+                text = <"Identifier">
+                description = <"The identifier used by the organisation in the role of a healthcare provider organisation">
+            >
+            ["id3"] = <
+                text = <"Provider name">
+                description = <"Indicates how the healthcare provider organisation is known by">
+            >
+            ["id32"] = <
+                text = <"identifier used in the relationship">
+                description = <"Identifier used by the healthcare provider in the relationship with the third-party payer">
+            >
+            ["id4"] = <
+                text = <"Third-party payer relationship">
+                description = <"relationship between the healthcare provider organisation and a third-party payer">
+            >
+        >
+    >
+    

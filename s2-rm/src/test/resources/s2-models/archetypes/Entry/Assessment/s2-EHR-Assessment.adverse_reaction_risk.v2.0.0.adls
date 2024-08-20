@@ -1,0 +1,367 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6deaa210-d0ac-4e26-8b82-7b0900146169)
+	s2-EHR-Assessment.adverse_reaction_risk.v2.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2010-11-08">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.adverse_reaction_risk.v2.0.0, copyright 2010 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.adverse_reaction_risk.v2.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the clinical assessment of the propensity for an individual to experience an adverse reaction if exposed, or re-exposed, to a specified substance or class of substances.">
+			use = <"Use to record a clinical assessment of a propensity for an adverse reaction upon future exposure to a specified substance or class of substances including, but not limited to, incipients and excipients in medicinal preparations, biological products, metal salts, and organic chemical compounds. 
+            
+            This archetype is intended to provide a single place within the health record to document the propensity for the full range of reactions, from trivial to life-threatening:
+            - immune-mediated: Types I-IV (including allergic reactions and hypersensitivities); or 
+            - non-immune-mediated: including pseudo-allergic reactions, side effects, intolerances, and drug toxicities.
+            In clinical practice distinguishing between immune-mediated and non-immune-mediated reactions can be difficult. Identification of the type of reaction is not a proxy for seriousness or risk of harm to the patient.
+            
+            Where a propensity is identified, information or evidence about one or more reaction events can be recorded using the Node.adverse_reaction_event archetype in the 'Reaction event summary' SLOT.
+            
+            Identification of the severity of the manifestation of the reaction, recorded in the Node.adverse_reaction_event archetype, can inform the 'Criticality' of the adverse reaction risk. For example, experiencing anaphylaxis on first exposure to a substance would warrant setting a 'Criticality' of 'high', due to the high risk that anaphylaxis is likely to recur on second and subsequent exposures.
+            
+            This archetype has been designed to allow the recording of information about a specific substance (amoxycillin, oysters, or bee sting venom) or, alternatively, a class of substance (e.g. Penicillins). If a class of substance is recorded, identification of the exact substance can be recorded on a per-reaction basis using the Node.adverse_reaction_event archetype.
+            
+            Use to record information about the positive presence of the risk of an adverse reaction:
+            - to support the direct clinical care of an individual; 
+            - as part of a managed adverse reaction or allergy/intolerance list; 
+            - to support the exchange of information about the propensity and events related to adverse reactions; 
+            - to inform adverse reaction reporting; and 
+            - to assist with computerised knowledge-based activities such as clinical decision support and alerts.
+            
+            The risk of an adverse reaction event or manifestation must always propose a causative substance or class of substance. If there is a degree of uncertainty that a specific substance is the cause, the level of uncertainty can be recorded using the ‘Verification status’ data Node. If more than one possible substance may have caused a reaction/manifestation, each substance should be recorded using a separate instance of this adverse reaction risk archetype with the ‘Verification status’ set to an initial state of ‘Unconfirmed’ so that adverse reaction checking can be activated in clinical systems. If the substance is later proven not to be causal then the ‘Verification status’ can be modified to ‘Refuted’ - for example, after allergy testing.">
+			keywords = <"reaction", "allergy", "allergic", "adverse", "event", "effect", "sensitivity", "intolerance", "hypersensitivity", "side effect", "toxicity", "drug", "food", "agent", "substance", "immune", "non-immune", "chemical", "anaphylaxis", "allergen", "medication", "supplement", "medicine", "natural remedies", "immunological", "non-immunological", "risk">
+			misuse = <"Not to be used for recording physiological reactions to physical agents, such as heat, cold, sunlight, vibration, exercise activity, by infectious agents or food contaminants. Use a specific archetype for EVALUATION.problem/diagnosis or Node.symptom/sign for this purpose.
+            
+            Not to be used to record adverse events, including failures of clinical process, interventions or products. For example: abnormal use, incorrect dosage or maladministration of an agent or substance; mislabelling; harm or injury caused by an intervention or procedure; overdose/poisoning etc. Use a specific archetype for the purpose. 
+            
+            Not to be used to record an adverse reaction where the substance is unknown. Use EVALUATION.problem_diagnosis or Node.symptom_sign to record as part of the health record until a possible substance is identified.
+            
+            Not to be used to record reactions to transfusions of blood products. Use a specific archetype for this purpose. 
+            
+            Not to be used for recording 'alerts'. Use EVALUATION.precaution, EVALUATION.contraindication or related archetypes for this purpose.
+            
+            Not to be used for recording failed therapy.
+            
+            Not to be used for the explicit recording of an absence (or negative presence) of a reaction to 'any substances' or to identified substances, for example ‘No known allergies or adverse reactions’ or ‘No known allergies to Penicillin’. Use the EVALUATION.exclusion_global or EVALUATION.exclusion_specific archetypes to express a positive statement of adverse reaction exclusion.
+            
+            Not to be used for the explicit recording that no information was able to be obtained about the adverse reaction status of a patient. Use the EVALUATION.absence archetype to record that a positive statement that information was not able to be obtained, for example, if a non-cooperative patient refuses to answer questions.">
+		>
+	>
+	other_contributors = <"Fatima Almeida, Critical SW, Portugal", "Grethe Almenning, Bergen kommune, Norway", "Magnus Alsaker, Helsedirektoratet, Norway", "Torunn Apelseth, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway", "Bent Asgeir Larsen, Helsedirektoratet, Norway", "Koray Atalag, University of Auckland, New Zealand", "Elaine Ayres, US National Institutes of Health, United States", "Russell B Leftwich MD, United States (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "John Bennett, NEHTA, Australia", "Steve Bentley, Allscripts, United Kingdom", "Sharmila Biswas, Dr Sharmila Biswas GP, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Terje Bless, Helse Nord FIKS, Norway", "Laila Bruun, Oslo universitetssykehus HF, Norway", "Claire Chalopin, ICCAS, University of Leipzig, Germany", "Rong Chen, Cambio Healthcare Systems, Sweden", "Stephen Chu, Queensland Health, Australia", "Matthew Cordell, NEHTA, Australia", "Howard Edidin, Edidin Group, Inc, United States", "Brett Esler, Oridashi, Australia", "David Evans, Queensland Health, Australia", "Jerry Fahrni, Kaweah Delta Health Care District, United States", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Joanne Foster, School of Nursing & Midwifery, QLD University of Technology & Nursing Informatics Australia, Australia", "Sebastian Garde, Ocean Informatics, Germany", "Jacquie Garton-Smith, Royal Perth Hospital and DoHWA, Australia", "Sarah Gaunt, NEHTA, Australia", "Andrew Goodchild, NEHTA, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Trina Gregory, cpc, Australia", "Grahame Grieve, Health Intersections, Australia (Editor)", "Robert Hausam, Hausam Consulting LLC, United States", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Anca Heyd, DIPS ASA, Norway", "Hilde Hollås, Norway", "Roar Holm, Helse Vest IKT A/S, Norway", "Andrew James, University of Toronto, Canada", "Julie James, Blue Wave Informatics LLP, United Kingdom", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Ivor Jones, Queensalnd Helath, Australia", "Lars Jostein Silihagen, Sopra Steria / Sykehuspartner / Sykehuset Innlandet, Norway", "Silje Kaada, Helse-Bergen, Avdeling for immunologi og transfusjonsmedisin, Norway", "Konstantinos Kalliamvakos, Cambio Healthcare Systems, Sweden", "Lars Karlsen, DIPS ASA, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Goran Karlstrom, County Of Värmland, Sweden", "Mary Kelaher, NEHTA, Australia", "Diane Kirkham, NEHTA, Australia", "Shinji Kobayashi, NPO openEHR Japan, Japan", "Robert L'egan, NEHTA, Australia", "Jobst Landgrebe, ii4sm, Switzerland", "Russell Leftwich, Russell B Leftwich MD, United States", "Fest Legemiddelverket, Statens Legemiddelverk, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hugh Leslie, Ocean Informatics, Australia", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Hallvard Lærum, Oslo Universitetssykehus HF, Norway", "Arne Løberg Sæter, DIPS ASA, Norway", "Sarah Mahoney, Australia", "Luis Marco Ruiz, Norwegian Center for Integrated Care and Telemedicine, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Mike Martyn, The Hobart Anaesthetic Group, Australia", "Lloyd McKenzie, Gordon Point Informatics, Canada", "David McKillop, NEHTA, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Jörg Niggemann, Compugroup, Germany", "Bjørn Næss, DIPS ASA, Norway", "Tom Oniki, Intermountain Healthcare, United States", "Chris Pearce, Melbourne East GP Network, Australia", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "General Practice Computing Group, Australia", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Jodie Pycroft, Adelaide Northern Division of General Practice Ltd, Australia", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "Tanja Riise, Nasjonal IKT HF, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Stefan Sauermann, University of Applied Sciences Technikum Wien, Austria", "Thomas Schopf, University Hospital of North-Norway, Norway", "Thilo Schuler, Australia", "Jason Scott, Plymouth Hospitals NHS Trust, United Kingdom", "Peter Scott, Medical Objects, Australia", "Elena Shabanova, UMMSSOft, Russian Federation", "Anoop Shah, University College London, United Kingdom", "Elizabeth Stanick, Hobart Anaesthetic Group, Australia", "Laila Storesund, Haraldsplass diakonale sykehus, Norway", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "Hwei-Yee Tai, Tan Tock Seng Hospital, Singapore", "John Taylor, NEHTA, Australia", "Micaela Thierley, Helse Bergen, Norway", "Gordon Tomes, Australian Institute of Health and Welfare, Australia", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Richard Townley-O'Neill, Australian Digital Health Agency, Australia", "Ines Vaz, UFN, Portugal", "Nils Widnes, Helse-Bergen, Norway", "Andrew Yap, Australia", "Kylie Young, The Royal Australian College of General Practitioners, Australia", "Lin Zhang, Taikang Insurance Group, China">
+
+definition
+	Assessment[id1] matches {	-- Adverse reaction risk
+		data cardinality matches {1..*; unordered} matches {
+			Node[id3] matches {	-- Substance
+				value matches {
+					Text[id135] 
+				}
+			}
+			Node[id131] occurrences matches {0..1} matches {	-- Active/inactive status
+				value matches {
+					Coded_text[id136] matches {
+						term matches {
+							Terminology_term[id159] matches {
+								concept matches {[ac1]}		-- Active/inactive status (synthesised)
+							}
+						}
+					}
+					Plain_text[id137] 
+				}
+			}
+			Node[id64] occurrences matches {0..1} matches {	-- Verification status
+				value matches {
+					Coded_text[id138] matches {
+						term matches {
+							Terminology_term[id160] matches {
+								concept matches {[ac2]}		-- Verification status (synthesised)
+							}
+						}
+					}
+					Plain_text[id139] 
+				}
+			}
+			Node[id102] occurrences matches {0..1} matches {	-- Criticality
+				value matches {
+					Coded_text[id140] matches {
+						term matches {
+							Terminology_term[id161] matches {
+								concept matches {[ac3]}		-- Criticality (synthesised)
+							}
+						}
+					}
+					Plain_text[id141] 
+				}
+			}
+			Node[id121] occurrences matches {0..1} matches {	-- Category
+				value matches {
+					Coded_text[id142] matches {
+						term matches {
+							Terminology_term[id162] matches {
+								concept matches {[ac4]}		-- Category (synthesised)
+							}
+						}
+					}
+					Plain_text[id143] 
+				}
+			}
+			Node[id118] occurrences matches {0..1} matches {	-- Onset of last reaction
+				value matches {
+					Date_time_value[id144] 
+					Duration_value[id145] 
+					Range<Date_time_value>[id146] 
+					Range<Duration_value>[id147] 
+					Text[id148] 
+				}
+			}
+			Node[id134] occurrences matches {0..1} matches {	-- Onset of first reaction
+				value matches {
+					Date_time_value[id149] 
+					Duration_value[id150] 
+					Text[id151] 
+					Range<Date_time_value>[id152] 
+					Range<Duration_value>[id153] 
+				}
+			}
+			Node[id59] occurrences matches {0..1} matches {	-- Reaction mechanism
+				value matches {
+					Coded_text[id154] matches {
+						term matches {
+							Terminology_term[id163] matches {
+								concept matches {[ac5]}		-- Reaction mechanism (synthesised)
+							}
+						}
+					}
+					Plain_text[id155] 
+				}
+			}
+			use_archetype Node[id130, s2-EHR-Node.adverse_reaction_event.v1] 
+			Node[id7] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id156] 
+				}
+			}
+		}
+		qualifiers cardinality matches {1..*; unordered} matches {
+			Node[id63] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id157] 
+				}
+			}
+			Node[id48] matches {	-- Supporting clinical record information
+				value matches {
+					Ehr_uri_ref[id158] 
+				}
+			}
+			allow_archetype Node[id129] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Active/inactive status (synthesised)">
+				description = <"Status about whether the adverse reaction risk statement is active or inactive. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Verification status (synthesised)">
+				description = <"Assertion about the certainty of the propensity, or potential future risk, of the identified 'Substance' to cause a reaction. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Criticality (synthesised)">
+				description = <"An indication of the potential for critical system organ damage or life threatening consequence. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Category (synthesised)">
+				description = <"Category of the identified 'Substance'. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Reaction mechanism (synthesised)">
+				description = <"Identification of the underlying physiological mechanism for the adverse reaction. (synthesised)">
+			>
+			["at102"] = <
+				text = <"Low">
+				description = <"Exposure to substance unlikely to result in critical system organ damage or life threatening consequence. Future exposure to the identified 'Substance' should be considered a relative contra-indication in normal clinical circumstances.">
+			>
+			["at103"] = <
+				text = <"High">
+				description = <"Exposure to substance may result in critical organ system damage or life threatening consequence. Future exposure to the identified 'Substance' should be considered an absolute contra-indication in normal clinical circumstances.">
+			>
+			["at121"] = <
+				text = <"Food">
+				description = <"Any substance consumed to provide nutritional support for the body, such as peanut or egg.">
+			>
+			["at122"] = <
+				text = <"Medication">
+				description = <"Any substance administered to achieve a physiological effect.">
+			>
+			["at123"] = <
+				text = <"Other">
+				description = <"Any other substance encountered including venom, latex and other environmental substances.">
+			>
+			["at124"] = <
+				text = <"Indeterminate">
+				description = <"Unable to assess with information available.">
+			>
+			["at126"] = <
+				text = <"Indeterminate">
+				description = <"The physiological mechanism could not be determined.">
+			>
+			["at131"] = <
+				text = <"Active">
+				description = <"The subject is currently experiencing, or is at risk of, a reaction to the identified substance.">
+			>
+			["at132"] = <
+				text = <"Inactive">
+				description = <"The subject is no longer at risk of a reaction to the identified substance.">
+			>
+			["at59"] = <
+				text = <"Immune mediated">
+				description = <"Immune mediated reaction, including allergic reactions and hypersensitivities.">
+			>
+			["at60"] = <
+				text = <"Non-immune mediated">
+				description = <"A non-immune mediated reaction, which can include pseudo-allergic reactions, side effects, intolerances, drug toxicities (for example, to Gentamicin).">
+			>
+			["at64"] = <
+				text = <"Unconfirmed">
+				description = <"The propensity for a reaction to the identified 'Substance' has not been objectively verified.">
+			>
+			["at65"] = <
+				text = <"Confirmed">
+				description = <"The propensity for a reaction to the identified 'Substance' has been objectively verified. This may include clinical evidence by testing, re-challenge or observation.">
+			>
+			["at66"] = <
+				text = <"Refuted">
+				description = <"A propensity for a reaction to the identified 'Substance' has been disputed or disproven with a sufficient level of clinical certainty to justify invalidating the assertion. This may include clinical evidence by testing, re-challenge or observation.">
+			>
+			["id1"] = <
+				text = <"Adverse reaction risk">
+				description = <"Clinical assessment of the propensity for an individual to experience a harmful or undesirable physiological response if exposed, or re-exposed, to a substance.">
+			>
+			["id102"] = <
+				text = <"Criticality">
+				description = <"An indication of the potential for critical system organ damage or life threatening consequence.">
+			>
+			["id118"] = <
+				text = <"Onset of last reaction">
+				description = <"The date and/or time of the onset of the last known occurrence of a reaction event.">
+			>
+			["id121"] = <
+				text = <"Category">
+				description = <"Category of the identified 'Substance'.">
+			>
+			["id129"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id130"] = <
+				text = <"Reaction event summary">
+				description = <"Summary details about each adverse reaction event linked to exposure to the identified 'Substance'.">
+			>
+			["id131"] = <
+				text = <"Active/inactive status">
+				description = <"Status about whether the adverse reaction risk statement is active or inactive.">
+			>
+			["id134"] = <
+				text = <"Onset of first reaction">
+				description = <"The onset of the first known occurrence of a reaction event.">
+			>
+			["id3"] = <
+				text = <"Substance">
+				description = <"Identification of a substance, or substance class, that is considered to put the individual at risk of an adverse reaction event.">
+			>
+			["id48"] = <
+				text = <"Supporting clinical record information">
+				description = <"Link to further information about the presentation and findings that exist elsewhere in the health record, including allergy test reports.">
+			>
+			["id59"] = <
+				text = <"Reaction mechanism">
+				description = <"Identification of the underlying physiological mechanism for the adverse reaction.">
+			>
+			["id63"] = <
+				text = <"Last updated">
+				description = <"Date when the propensity or the reaction event was updated.">
+			>
+			["id64"] = <
+				text = <"Verification status">
+				description = <"Assertion about the certainty of the propensity, or potential future risk, of the identified 'Substance' to cause a reaction.">
+			>
+			["id7"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the propensity for the adverse reaction, not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id118"] = <http://loinc.org/66947-3>
+			["id3"] = <http://loinc.org/104986-5>
+			["id7"] = <http://loinc.org/106173-8>
+			["id102"] = <http://loinc.org/82606-5>
+			["id63"] = <http://loinc.org/106177-9>
+			["id121"] = <http://loinc.org/104948-5>
+			["id130"] = <http://loinc.org/104949-3>
+			["id134"] = <http://loinc.org/104914-7>
+			["id48"] = <http://loinc.org/104987-3>
+			["id59"] = <http://loinc.org/104924-6>
+			["id64"] = <http://loinc.org/104932-9>
+		>
+		["s2"] = <
+			["ac3"] = <http://s2health.org/id/s2.Criticality>
+			["ac1"] = <http://s2health.org/id/s2.ConditionSeverity>
+			["ac2"] = <http://s2health.org/id/s2.CertaintyOfPresence>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at131", "at132">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at64", "at65", "at66">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at102", "at103", "at124">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at121", "at122", "at123">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at59", "at60", "at126">
+		>
+	>
+

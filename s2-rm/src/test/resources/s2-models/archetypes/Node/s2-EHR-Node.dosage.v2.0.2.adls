@@ -1,0 +1,264 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=884c4ef4-49ed-4bca-8a3b-1aee8f4aaf1d)
+	s2-EHR-Node.dosage.v2.0.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics, <ian@freshehr.com>, 2017-03-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.dosage.v2.0.2, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.dosage.v2.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the combination of a medication amount and the administration timing within a single day, as part of a medication order or medication management or for other appropriate therapeutic/prescribable items.">
+			use = <"Use to record the combination of a medication amount and the administration timing for a single day, as part of a medication order or medication management or for other appropriate therapeutic/prescribable items. 
+            The timing pattern for a single day can be as simple as a single administration time, or multiple administration times with varying levels of complexity.
+            
+            Timing details which are not within a single day, for example, weekly or monthly timings, are carried in the Node 'Timing - non-daily' archetype carried within the Node 'Therapeutic direction' archetype.
+            
+            In the context of a therapeutic INSTRUCTION, this archetype may be inserted into the 'Structured dose and timing directions' SLOT in the 'Therapeutic direction' Node to record the dose and timing details of the pattern of single intended administrations of a therapeutic item. 
+            
+            In the context of an ACTION archetype insert this archetype directly into the 'Amount' SLOT to record the dose and timing of the actual administration of a therapeutic item.
+            
+            Specific administration start/stop times should be specified within a contained Node 'Timing - daily' archetype.">
+			keywords = <"medication", "order", "prescribe", "therapy", "substance", "drug", "therapeutic", "therapeutic good", "pharmaceutical", "product", "posology", "treatment", "fluid", "nutrition", "timing", "administration", "dose">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Tomas Alme, DIPS ASA, Norway", "Paula Anderson, UCLH, United Kingdom", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "John Bennett, NEHTA, Australia", "SBhusan Bhattacharyya, Sudisa Consultancy Services, India", "Sharmila Biswas, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Laila Bruun, Oslo universitetssykehus HF, Norway", "Ruth Caudwell, retired, United Kingdom", "Bjørn Christensen, Helse Bergen HF, Norway", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Robert Eager, Healthways, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "David Evans, Queensland Health, Australia", "Samuel Frade, Marand, Portugal", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sarah Gaunt, NEHTA, Australia", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Trina Gregory, cpc, Australia", "Robert Hausam, Hausam Consulting LLC, United States", "Sam Heard, Ocean Informatics, Australia (Editor)", "Teresa Highway, Alberta Health Services, Canada", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Alfred Honore, Haukeland, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Mary Kelaher, NEHTA, Australia", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Robert L'egan, NEHTA, Australia", "Russell Leftwich, Russell B Leftwich MD, United States", "Heather Leslie, Ocean Health Systems, Australia (openEHR Editor)", "Marit Ludvigsen, St Olavs Hospital, Norway", "Colin Macfarlane, Elsevier, United Kingdom", "Siv Marie Lien, DIPS ASA, Norway", "Olof Mattsson, Region Skane, Sweden", "Susan McIndoe, Royal District Nursing Service, Australia", "David McKillop, NEHTA, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Andrej Orel, Marand d.o.o., Slovenia", "Chris Pearce, Melbourne East GP Network, Australia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Sam Stokes, Citizen Scientist, United States", "Iztok Stotl, UKCLJ, Slovenia", "John Taylor, NEHTA, Australia", "Nyree Taylor, Ocean Informatics, Australia", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Richard Townley-O'Neill, NEHTA, Australia", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ines Vaz, UFN, Portugal", "Soon Ghee Yap, Singapore General Hospital, Singapore", "Kylie Young, The Royal Australian College of General Practitioners, Australia">
+
+definition
+	Node[id1] matches {	-- Dosage
+		items matches {
+			Node[id165] occurrences matches {0..1} matches {	-- Dosage sequence
+				value matches {
+					Count[id180] matches {
+						magnitude matches {|>=1|}
+					}
+				}
+			}
+			Node[id145] occurrences matches {0..1} matches {	-- Dose
+				value matches {
+					Quantity[id181] 
+					Range<Quantity>[id182] 
+				}
+			}
+			Node[id136] occurrences matches {0..1} matches {	-- Dose formula
+				value matches {
+					Text[id183] 
+					Quantity[id184] 
+				}
+			}
+			Node[id179] occurrences matches {0..1} matches {	-- Dose description
+				value matches {
+					Text[id185] 
+				}
+			}
+			use_archetype Node[id38, s2-EHR-Node.timing_daily.v1] 
+			Node[id135] occurrences matches {0..1} matches {	-- Administration rate
+				value matches {
+					Quantity[id195] matches {	-- Administration rate (l/h)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id197] matches {
+								term matches {
+									Terminology_term[id196] matches {
+										concept matches {[at2]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id198] matches {	-- Administration rate (ml/min)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id200] matches {
+								term matches {
+									Terminology_term[id199] matches {
+										concept matches {[at3]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id201] matches {	-- Administration rate (ml/s)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id203] matches {
+								term matches {
+									Terminology_term[id202] matches {
+										concept matches {[at4]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id204] matches {	-- Administration rate (ml/h)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id206] matches {
+								term matches {
+									Terminology_term[id205] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Text[id187] 
+				}
+			}
+			Node[id103] occurrences matches {0..1} matches {	-- Administration duration
+				value matches {
+					Duration_value[id188] matches {
+						magnitude matches {|>=PT0S|}
+					}
+					Range<Duration_value>[id189] matches {
+						lower matches {
+							Duration_value[id190] matches {
+								magnitude matches {|>=PT0S|}
+							}
+						}
+						upper matches {
+							Duration_value[id191] matches {
+								magnitude matches {|>=PT0S|}
+							}
+						}
+					}
+				}
+			}
+			Node[id177] occurrences matches {0..1} matches {	-- Alternate dose
+				value matches {
+					Quantity[id192] 
+					Range<Quantity>[id193] matches {
+						upper matches {
+							Quantity[id194] 
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at1"] = <
+				text = <"Flow rate, volume">
+				description = <"Flow rate, volume">
+			>
+			["at2"] = <
+				text = <"L/h">
+				description = <"L/h unit.">
+			>
+			["at3"] = <
+				text = <"ml/min">
+				description = <"ml/min unit.">
+			>
+			["at4"] = <
+				text = <"ml/s">
+				description = <"ml/s unit.">
+			>
+			["at5"] = <
+				text = <"ml/h">
+				description = <"ml/h unit.">
+			>
+			["id1"] = <
+				text = <"Dosage">
+				description = <"The combination of a medication amount and administration timing for a single day, in the context of a medication order or medication management.">
+			>
+			["id103"] = <
+				text = <"Administration duration">
+				description = <"The period of time over which a single dose of the medication or vaccine should be administered.">
+			>
+			["id135"] = <
+				text = <"Administration rate">
+				description = <"The rate at which the medication, such as an infusion, is to be administered.">
+			>
+			["id136"] = <
+				text = <"Dose formula">
+				description = <"The formula used to calculate the dose amount or administration rate where this is dependent on some other factor, such as body weight or surface area.">
+			>
+			["id145"] = <
+				text = <"Dose">
+				description = <"The amount of medication administered at one time.">
+			>
+			["id165"] = <
+				text = <"Dosage sequence">
+				description = <"The intended position of this dosage within the overall sequence of dosages.">
+			>
+			["id177"] = <
+				text = <"Alternate dose">
+				description = <"An alternate representation of the amount of medication administered at one time.">
+			>
+			["id179"] = <
+				text = <"Dose description">
+				description = <"Text description of the dose.">
+			>
+			["id195"] = <
+				text = <"Administration rate (l/h)">
+				description = <"Administration rate (l/h)">
+			>
+			["id198"] = <
+				text = <"Administration rate (ml/min)">
+				description = <"Administration rate (ml/min)">
+			>
+			["id201"] = <
+				text = <"Administration rate (ml/s)">
+				description = <"Administration rate (ml/s)">
+			>
+			["id204"] = <
+				text = <"Administration rate (ml/h)">
+				description = <"Administration rate (ml/h)">
+			>
+			["id38"] = <
+				text = <"Daily timing">
+				description = <"Structured details about the timing pattern for a single day.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at1"] = <http://openehr.org/id/126>
+		>
+		["ucum"] = <
+			["at2"] = <http://ucum.org/id/l%2Fh>
+			["at3"] = <http://ucum.org/id/ml%2Fmin>
+			["at4"] = <http://ucum.org/id/ml%2Fs>
+			["at5"] = <http://ucum.org/id/ml%2Fh>
+		>
+		["snomed"] = <
+			["at2"] = <http://snomed.info/id/258856007>
+			["at3"] = <http://snomed.info/id/258859000>
+			["at4"] = <http://snomed.info/id/258988003>
+			["at5"] = <http://snomed.info/id/258989006>
+		>
+		["loinc"] = <
+			["id103"] = <http://loinc.org/91383-0>
+			["id135"] = <http://loinc.org/52426-4>
+			["id145"] = <http://loinc.org/30973-2>
+		>
+	>
+

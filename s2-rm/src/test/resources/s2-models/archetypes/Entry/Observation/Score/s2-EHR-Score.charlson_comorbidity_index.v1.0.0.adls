@@ -1,0 +1,1039 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ebb50e26-b6da-4cf8-898b-e6c4daa62a5b)
+	s2-EHR-Score.charlson_comorbidity_index.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Liv Laugen, Oslo universitetssykehus, <liv.laugen@ous-hf.no>">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.charlson_comorbidity_index.v1.0.0, copyright  openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.charlson_comorbidity_index.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the result for each component parameter of the Charlson Comorbidity Index (CCI) and its total sum, and to calculate the 10 year estimated survival.">
+			use = <"To record the result for each component parameter of the Charlson Comorbidity Index (CCI) and its total sum, and to calculate the 10 year estimated survival.
+            
+            This data and value set is from the original Charlson et al study in 1987.
+            In the original paper, 19 'conditions' were represented, including a number that had separate representations of the same condition, but with different severity. In this archetype, these conditions have been grouped together - for example, 'Mild liver disease' and 'Moderate to severe liver disease' are values under the condition 'Liver disease'. As a result, there are only 16 conditions represented in this archetype.">
+			keywords = <"CCI", "comorbidity", "concurrent conditions", "estimated survival", "mortality", "prognosis", "assessment", "risk">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Stein Arne Rimehaug, Sunnaas sykehus, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Hugo Claudio Briceño García, Catsalut, Spain", "Ian Bull, ACT Health, Australia", "Stefan Dubois, Dep't of Pathology and Genetics, University Hospitals of Lund and Malmö, Sweden", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Helse Nord IKT, Norway (openEHR Editor)", "Elin Hallan Naderi, OUS, Norway", "Amanda Herbrand, University Hospital Basel, Switzerland", "Evelyn Hovenga, EJSH Consulting, Australia", "Anjali Kulkarni, Karkinos, India", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Darin Leonhardt, PLRI, Germany", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Michael Lutz, BITsoft, Germany", "Terje Nordberg, Helse Bergen, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Helge Pettersen, Helse Bergen, Norway", "Ragnhild Schultz, OUS, Norway", "Benjamin Senst, Germany", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Olav Thorsen, Stavanger University Hospital, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Henriette Krogh, Helsedirektoratet, Norway", "Hanne Marte Bårholm, Helse Vest IKT, Norway (Nasjonal IKT redaktør)">
+
+definition
+	Score[id1] matches {	-- Charlson Comorbidity Index (CCI)
+		data matches {
+			Node[id62] occurrences matches {0..1} matches {	-- Age group
+				value matches {
+					Coded_ordinal[id96] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id98] matches {
+								term matches {
+									Terminology_term[id97] matches {
+										concept matches {[at62]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id99] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id101] matches {
+								term matches {
+									Terminology_term[id100] matches {
+										concept matches {[at63]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id102] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id104] matches {
+								term matches {
+									Terminology_term[id103] matches {
+										concept matches {[at64]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id105] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id107] matches {
+								term matches {
+									Terminology_term[id106] matches {
+										concept matches {[at65]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id108] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id110] matches {
+								term matches {
+									Terminology_term[id109] matches {
+										concept matches {[at66]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Myocardial infarction
+				value matches {
+					Coded_ordinal[id111] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id113] matches {
+								term matches {
+									Terminology_term[id112] matches {
+										concept matches {[at13]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id114] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id116] matches {
+								term matches {
+									Terminology_term[id115] matches {
+										concept matches {[at14]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Congestive heart failure
+				value matches {
+					Coded_ordinal[id117] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id119] matches {
+								term matches {
+									Terminology_term[id118] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id120] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id122] matches {
+								term matches {
+									Terminology_term[id121] matches {
+										concept matches {[at11]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Peripheral vascular disease
+				value matches {
+					Coded_ordinal[id123] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id125] matches {
+								term matches {
+									Terminology_term[id124] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id126] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id128] matches {
+								term matches {
+									Terminology_term[id127] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Cerebrovascular disease
+				value matches {
+					Coded_ordinal[id129] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id131] matches {
+								term matches {
+									Terminology_term[id130] matches {
+										concept matches {[at16]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id132] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id134] matches {
+								term matches {
+									Terminology_term[id133] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Dementia
+				value matches {
+					Coded_ordinal[id135] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id137] matches {
+								term matches {
+									Terminology_term[id136] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id138] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id140] matches {
+								term matches {
+									Terminology_term[id139] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Chronic pulmonary disease
+				value matches {
+					Coded_ordinal[id141] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id143] matches {
+								term matches {
+									Terminology_term[id142] matches {
+										concept matches {[at22]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id144] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id146] matches {
+								term matches {
+									Terminology_term[id145] matches {
+										concept matches {[at23]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Ulcer disease
+				value matches {
+					Coded_ordinal[id147] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id149] matches {
+								term matches {
+									Terminology_term[id148] matches {
+										concept matches {[at25]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id150] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id152] matches {
+								term matches {
+									Terminology_term[id151] matches {
+										concept matches {[at26]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id28] occurrences matches {0..1} matches {	-- Liver disease
+				value matches {
+					Coded_ordinal[id153] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id155] matches {
+								term matches {
+									Terminology_term[id154] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id156] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id158] matches {
+								term matches {
+									Terminology_term[id157] matches {
+										concept matches {[at29]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id159] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id161] matches {
+								term matches {
+									Terminology_term[id160] matches {
+										concept matches {[at67]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id31] occurrences matches {0..1} matches {	-- Connective tissue disease
+				value matches {
+					Coded_ordinal[id162] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id164] matches {
+								term matches {
+									Terminology_term[id163] matches {
+										concept matches {[at31]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id165] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id167] matches {
+								term matches {
+									Terminology_term[id166] matches {
+										concept matches {[at32]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id34] occurrences matches {0..1} matches {	-- Diabetes mellitus
+				value matches {
+					Coded_ordinal[id168] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id170] matches {
+								term matches {
+									Terminology_term[id169] matches {
+										concept matches {[at34]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id171] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id173] matches {
+								term matches {
+									Terminology_term[id172] matches {
+										concept matches {[at35]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id174] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id176] matches {
+								term matches {
+									Terminology_term[id175] matches {
+										concept matches {[at68]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Hemiplegia
+				value matches {
+					Coded_ordinal[id177] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id179] matches {
+								term matches {
+									Terminology_term[id178] matches {
+										concept matches {[at37]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id180] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id182] matches {
+								term matches {
+									Terminology_term[id181] matches {
+										concept matches {[at38]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id40] occurrences matches {0..1} matches {	-- Moderate or severe renal disease
+				value matches {
+					Coded_ordinal[id183] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id185] matches {
+								term matches {
+									Terminology_term[id184] matches {
+										concept matches {[at40]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id186] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id188] matches {
+								term matches {
+									Terminology_term[id187] matches {
+										concept matches {[at41]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id46] occurrences matches {0..1} matches {	-- Solid tumor
+				value matches {
+					Coded_ordinal[id189] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id191] matches {
+								term matches {
+									Terminology_term[id190] matches {
+										concept matches {[at46]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id192] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id194] matches {
+								term matches {
+									Terminology_term[id193] matches {
+										concept matches {[at48]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id195] matches {
+						magnitude matches {6}
+						concept matches {
+							Coded_text[id197] matches {
+								term matches {
+									Terminology_term[id196] matches {
+										concept matches {[at69]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id48] occurrences matches {0..1} matches {	-- Leukemia
+				value matches {
+					Coded_ordinal[id198] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id200] matches {
+								term matches {
+									Terminology_term[id199] matches {
+										concept matches {[at49]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id201] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id203] matches {
+								term matches {
+									Terminology_term[id202] matches {
+										concept matches {[at51]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id51] occurrences matches {0..1} matches {	-- Lymphoma
+				value matches {
+					Coded_ordinal[id204] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id206] matches {
+								term matches {
+									Terminology_term[id205] matches {
+										concept matches {[at52]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id207] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id209] matches {
+								term matches {
+									Terminology_term[id208] matches {
+										concept matches {[at53]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id61] occurrences matches {0..1} matches {	-- AIDS
+				value matches {
+					Coded_ordinal[id210] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id212] matches {
+								term matches {
+									Terminology_term[id211] matches {
+										concept matches {[at70]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id213] matches {
+						magnitude matches {6}
+						concept matches {
+							Coded_text[id215] matches {
+								term matches {
+									Terminology_term[id214] matches {
+										concept matches {[at71]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id73] occurrences matches {0..1} matches {	-- CCI total score
+				value matches {
+					Count[id93] 
+				}
+			}
+			Node[id74] occurrences matches {0..1} matches {	-- Estimated 10-year survival
+				value matches {
+					Quantity[id94] matches {
+						units matches {
+							Coded_text[id217] matches {
+								term matches {
+									Terminology_term[id216] matches {
+										concept matches {[at73]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id75] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Age group (synthesised)">
+				description = <"The age category of the patient. (synthesised)">
+			>
+			["ac10"] = <
+				text = <"Connective tissue disease (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac11"] = <
+				text = <"Diabetes mellitus (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac12"] = <
+				text = <"Hemiplegia (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac13"] = <
+				text = <"Moderate or severe renal disease (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac14"] = <
+				text = <"Solid tumor (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac15"] = <
+				text = <"Leukemia (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac16"] = <
+				text = <"Lymphoma (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac17"] = <
+				text = <"AIDS (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac2"] = <
+				text = <"Myocardial infarction (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac3"] = <
+				text = <"Congestive heart failure (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac4"] = <
+				text = <"Peripheral vascular disease (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac5"] = <
+				text = <"Cerebrovascular disease (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac6"] = <
+				text = <"Dementia (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac7"] = <
+				text = <"Chronic pulmonary disease (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac8"] = <
+				text = <"Ulcer disease (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["ac9"] = <
+				text = <"Liver disease (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["at10"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at11"] = <
+				text = <"Yes">
+				description = <"Exertional or paroxysmal nocturnal dyspnea and has responded to symptomatically (or on physical examination) to digitalis, diuretics, or afterload reducing agents.">
+			>
+			["at13"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at14"] = <
+				text = <"Yes">
+				description = <"History of definite or probable Myocardial infarction (EKG changes and/or enzyme changes).">
+			>
+			["at16"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at17"] = <
+				text = <"Yes">
+				description = <"History of a cerebrovascular accident (CVA) with minor or no residua and transient ischemic attacks (TIA).">
+			>
+			["at19"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at20"] = <
+				text = <"Yes">
+				description = <"Dementia or chronic cognitive deficit.">
+			>
+			["at22"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at23"] = <
+				text = <"Yes">
+				description = <"Mild or moderat or severe chronic pulmonary disease.">
+			>
+			["at25"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at26"] = <
+				text = <"Yes">
+				description = <"Any history of treatment for ulcer disease or history of ulcer bleeding, or history of gastrointestinal bleeding requiring transfusions from causes other than ulcer disease.">
+			>
+			["at28"] = <
+				text = <"None">
+				description = <"">
+			>
+			["at29"] = <
+				text = <"Mild">
+				description = <"Cirrhosis without portal hypertension or chronic hepatitis.">
+			>
+			["at31"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at32"] = <
+				text = <"Yes">
+				description = <"">
+			>
+			["at34"] = <
+				text = <"None or diet-controlled">
+				description = <"">
+			>
+			["at35"] = <
+				text = <"Uncomplicated">
+				description = <"Diabetes treated with insulin or oral hypoglycemics, but not diet alone.">
+			>
+			["at37"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at38"] = <
+				text = <"Yes">
+				description = <"">
+			>
+			["at40"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at41"] = <
+				text = <"Yes">
+				description = <"Moderate: creatinine >3 mg/dL (0.27 mmol/L). Severe: on dialysis, status post kidney transplant, uremia.">
+			>
+			["at46"] = <
+				text = <"None">
+				description = <"">
+			>
+			["at48"] = <
+				text = <"Localized">
+				description = <"Solid tumor without documented metastases.">
+			>
+			["at49"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at51"] = <
+				text = <"Yes">
+				description = <"">
+			>
+			["at52"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at53"] = <
+				text = <"Yes">
+				description = <"">
+			>
+			["at62"] = <
+				text = <"<50 years">
+				description = <"">
+			>
+			["at63"] = <
+				text = <"50–59 years">
+				description = <"">
+			>
+			["at64"] = <
+				text = <"60-69 years">
+				description = <"">
+			>
+			["at65"] = <
+				text = <"70–79 years">
+				description = <"">
+			>
+			["at66"] = <
+				text = <"≥80 years">
+				description = <"">
+			>
+			["at67"] = <
+				text = <"Moderate to severe">
+				description = <"Moderate: cirrhosis with portal hypertension, but without bleeding. Severe: cirrhosis with portal hypertension and a history of variceal bleeding.">
+			>
+			["at68"] = <
+				text = <"End-organ damage">
+				description = <"Diabetes with end organ damage.">
+			>
+			["at69"] = <
+				text = <"Metastatic">
+				description = <"Metastatic solid tumor.">
+			>
+			["at7"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at70"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at71"] = <
+				text = <"Yes">
+				description = <"Patients with define or probable AIDS, i.e. AIDS related complex.">
+			>
+			["at72"] = <
+				text = <"Qualified real">
+				description = <"Qualified real">
+			>
+			["at73"] = <
+				text = <"%">
+				description = <"Percent">
+			>
+			["at8"] = <
+				text = <"Yes">
+				description = <"Intermittent claudication or past bypass for chronic arterial insufficiency, history of gangrene or acute arterial insufficiency, or untreated thoracic or abdominal aneurysm (≥6 cm).">
+			>
+			["id1"] = <
+				text = <"Charlson Comorbidity Index (CCI)">
+				description = <"An assessment tool used to predict the risk of death from comorbid disease.">
+			>
+			["id10"] = <
+				text = <"Congestive heart failure">
+				description = <"">
+			>
+			["id13"] = <
+				text = <"Myocardial infarction">
+				description = <"">
+			>
+			["id16"] = <
+				text = <"Cerebrovascular disease">
+				description = <"">
+			>
+			["id19"] = <
+				text = <"Dementia">
+				description = <"">
+			>
+			["id22"] = <
+				text = <"Chronic pulmonary disease">
+				description = <"">
+			>
+			["id25"] = <
+				text = <"Ulcer disease">
+				description = <"">
+			>
+			["id28"] = <
+				text = <"Liver disease">
+				description = <"">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id31"] = <
+				text = <"Connective tissue disease">
+				description = <"">
+			>
+			["id34"] = <
+				text = <"Diabetes mellitus">
+				description = <"">
+			>
+			["id37"] = <
+				text = <"Hemiplegia">
+				description = <"">
+			>
+			["id40"] = <
+				text = <"Moderate or severe renal disease">
+				description = <"">
+			>
+			["id46"] = <
+				text = <"Solid tumor">
+				description = <"">
+			>
+			["id48"] = <
+				text = <"Leukemia">
+				description = <"">
+			>
+			["id51"] = <
+				text = <"Lymphoma">
+				description = <"">
+			>
+			["id61"] = <
+				text = <"AIDS">
+				description = <"">
+			>
+			["id62"] = <
+				text = <"Age group">
+				description = <"The age category of the patient.">
+			>
+			["id7"] = <
+				text = <"Peripheral vascular disease">
+				description = <"">
+			>
+			["id73"] = <
+				text = <"CCI total score">
+				description = <"The total sum of each component variable for the Charlson Comorbidity Index.">
+			>
+			["id74"] = <
+				text = <"Estimated 10-year survival">
+				description = <"The predicted 10-year survival rate.">
+			>
+			["id75"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at72"] = <http://openehr.org/id/380>
+		>
+		["ucum"] = <
+			["at73"] = <http://ucum.org/id/%25>
+		>
+		["snomed"] = <
+			["at73"] = <http://snomed.info/id/415067009>
+		>
+		["loinc"] = <
+			["id62"] = <http://loinc.org/46251-5>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at62", "at63", "at64", "at65", "at66">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at13", "at14">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at10", "at11">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at7", "at8">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at16", "at17">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at19", "at20">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at22", "at23">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at25", "at26">
+		>
+		["ac9"] = <
+			id = <"ac9">
+			members = <"at28", "at29", "at67">
+		>
+		["ac10"] = <
+			id = <"ac10">
+			members = <"at31", "at32">
+		>
+		["ac11"] = <
+			id = <"ac11">
+			members = <"at34", "at35", "at68">
+		>
+		["ac12"] = <
+			id = <"ac12">
+			members = <"at37", "at38">
+		>
+		["ac13"] = <
+			id = <"ac13">
+			members = <"at40", "at41">
+		>
+		["ac14"] = <
+			id = <"ac14">
+			members = <"at46", "at48", "at69">
+		>
+		["ac15"] = <
+			id = <"ac15">
+			members = <"at49", "at51">
+		>
+		["ac16"] = <
+			id = <"ac16">
+			members = <"at52", "at53">
+		>
+		["ac17"] = <
+			id = <"ac17">
+			members = <"at70", "at71">
+		>
+	>
+

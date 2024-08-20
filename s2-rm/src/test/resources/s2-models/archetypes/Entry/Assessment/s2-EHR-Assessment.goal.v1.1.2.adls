@@ -1,0 +1,325 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=abaeebd1-53f4-4132-85d1-f4500afa4488)
+	s2-EHR-Assessment.goal.v1.1.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2006-09-02">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.goal.v1.1.2, copyright 2006 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.goal.v1.1.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about a health-related goal and any associated targets and deadlines.">
+			use = <"Use to record a health-related goal, as well as one or more specific, measurable targets that will support assessment of success or allow for recording difficulties in achieving the target.
+            
+            This archetype is intended for use as a component of a care plan, COMPOSITION.care_plan, and will be versioned over time as any changes are made. For example, if a new goal is added to a care plan, or or any other change made, the data will be added/updated and the Care plan saved as a new version. It can be used in any other COMPOSITION or SECTION archetypes, where clinically relevant.">
+			keywords = <"target", "goal", "plan", "outcome">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Nadim Anani, Karolinska Institutet, Sweden", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Bergen Hospital Trust, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Shahla Foozonkhah, Ocean Informatics, Australia", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Lars Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjoern Naess, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Jussara Rotzsch, UNB, Brazil">
+
+definition
+	Assessment[id1] matches {	-- Goal
+		data cardinality matches {1..*; unordered} matches {
+			Node[id3] matches {	-- Goal name
+				value matches {
+					Text[id31] 
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Goal description
+				value matches {
+					Text[id32] 
+				}
+			}
+			Node[id11] matches {	-- Clinical indication
+				value matches {
+					Text[id33] 
+				}
+			}
+			Node[id26] occurrences matches {0..1} matches {	-- Goal start date
+				value matches {
+					Date_time_value[id34] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Goal proposed date
+				value matches {
+					Date_value[id35] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Goal end date
+				value matches {
+					Date_value[id36] 
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Goal outcome
+				value matches {
+					Plain_text[id37] 
+					Coded_text[id38] matches {
+						term matches {
+							Terminology_term[id60] matches {
+								concept matches {[ac1]}		-- Goal outcome (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Goal comment
+				value matches {
+					Text[id39] 
+				}
+			}
+			use_archetype Node[id29, s2-EHR-Node.change.v0] 
+			Node[id6] matches {	-- Target
+				items matches {
+					Node[id12] occurrences matches {0..1} matches {	-- Target name
+						value matches {
+							Text[id40] 
+						}
+					}
+					Node[id8] occurrences matches {0..1} matches {	-- Target
+						value matches {
+							Range<Count>[id41] matches {
+								upper matches {
+									Count[id42] 
+								}
+								lower matches {
+									Count[id43] 
+								}
+							}
+							Range<Quantity>[id44] matches {
+								upper matches {
+									Quantity[id45] 
+								}
+								lower matches {
+									Quantity[id46] 
+								}
+							}
+							Duration_value[id47] 
+							Quantity[id48] 
+							Count[id49] 
+							Ratio[id50] 
+							Text[id51] 
+						}
+					}
+					Node[id25] occurrences matches {0..1} matches {	-- Target description
+						value matches {
+							Text[id52] 
+						}
+					}
+					Node[id7] occurrences matches {0..1} matches {	-- Target path
+						value matches {
+							Uri_ref[id53] 
+						}
+					}
+					Node[id9] occurrences matches {0..1} matches {	-- Target proposed date
+						value matches {
+							Date_value[id54] 
+						}
+					}
+					Node[id10] occurrences matches {0..1} matches {	-- Target end date
+						value matches {
+							Date_value[id55] 
+						}
+					}
+					Node[id19] occurrences matches {0..1} matches {	-- Target outcome
+						value matches {
+							Plain_text[id56] 
+							Coded_text[id57] matches {
+								term matches {
+									Terminology_term[id61] matches {
+										concept matches {[ac2]}		-- Target outcome (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id24] occurrences matches {0..1} matches {	-- Target comment
+						value matches {
+							Text[id58] 
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id30] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id59] 
+				}
+			}
+			allow_archetype Node[id28] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Goal outcome (synthesised)">
+				description = <"Single word, phrase or brief description which represents the outcome actually achieved for the goal. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Target outcome (synthesised)">
+				description = <"Single word, phrase or brief description which represents the outcome actually achieved for the target. (synthesised)">
+			>
+			["at15"] = <
+				text = <"Achieved">
+				description = <"The proposed goal was realised.">
+			>
+			["at16"] = <
+				text = <"Partially achieved">
+				description = <"The proposed goal was partially realised.">
+			>
+			["at17"] = <
+				text = <"Not achieved">
+				description = <"The proposed goal was not realised and abandoned.">
+			>
+			["at19"] = <
+				text = <"Achieved">
+				description = <"The target was realised.">
+			>
+			["at20"] = <
+				text = <"Partially achieved">
+				description = <"The target was partially realised.">
+			>
+			["at21"] = <
+				text = <"Not achieved">
+				description = <"The target was not realised and abandoned.">
+			>
+			["at22"] = <
+				text = <"self">
+				description = <"self">
+			>
+			["id1"] = <
+				text = <"Goal">
+				description = <"A desired health, or well-being, outcome for the subject of care.">
+			>
+			["id10"] = <
+				text = <"Target end date">
+				description = <"The actual date that the target was achieved or abandoned.">
+			>
+			["id11"] = <
+				text = <"Clinical indication">
+				description = <"Name of the problem or diagnosis which is intended to be impacted by achievement of this goal.">
+			>
+			["id12"] = <
+				text = <"Target name">
+				description = <"Identification of the intended target, by name.">
+			>
+			["id13"] = <
+				text = <"Goal description">
+				description = <"A narrative description of the goal, including target/s to be achieved if relevant.">
+			>
+			["id14"] = <
+				text = <"Goal outcome">
+				description = <"Single word, phrase or brief description which represents the outcome actually achieved for the goal.">
+			>
+			["id19"] = <
+				text = <"Target outcome">
+				description = <"Single word, phrase or brief description which represents the outcome actually achieved for the target.">
+			>
+			["id23"] = <
+				text = <"Goal comment">
+				description = <"Additional narrative about the goal not captured in other fields.">
+			>
+			["id24"] = <
+				text = <"Target comment">
+				description = <"Additional narrative about the target not captured in other fields.">
+			>
+			["id25"] = <
+				text = <"Target description">
+				description = <"Narrative description about the intended target.">
+			>
+			["id26"] = <
+				text = <"Goal start date">
+				description = <"The anticipated or proposed date for commencing work towards the goal.">
+			>
+			["id28"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id29"] = <
+				text = <"Readiness for change">
+				description = <"Details about the readiness to change behaviour to achieve the desired goal.">
+			>
+			["id3"] = <
+				text = <"Goal name">
+				description = <"The name of the desired health outcome.">
+			>
+			["id30"] = <
+				text = <"Last updated">
+				description = <"The date on which the goal was last updated.">
+			>
+			["id4"] = <
+				text = <"Goal proposed date">
+				description = <"The desired or proposed date for achieving the goal.">
+			>
+			["id5"] = <
+				text = <"Goal end date">
+				description = <"The actual date that the goal was achieved or abandoned.">
+			>
+			["id6"] = <
+				text = <"Target">
+				description = <"Detail about the intended target.">
+			>
+			["id7"] = <
+				text = <"Target path">
+				description = <"The archetype and path to the node for target data.">
+			>
+			["id8"] = <
+				text = <"Target">
+				description = <"The intended target.">
+			>
+			["id9"] = <
+				text = <"Target proposed date">
+				description = <"The desired or proposed date for achieving the target.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at22"] = <http://openehr.org/id/0>
+		>
+		["loinc"] = <
+			["id11"] = <http://loinc.org/104720-8>
+			["id30"] = <http://loinc.org/106177-9>
+		>
+	>
+	value_sets = <
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at19", "at20", "at21">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at15", "at16", "at17">
+		>
+	>
+

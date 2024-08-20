@@ -1,0 +1,88 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9b0033b7-83d9-4a11-92de-153612e86350)
+    s2-EHR-Node.exclusion_exam.v1.1.1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjoern Arntzen, Oslo university hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, National ICT Norway, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Karlsen, DIPS ASA, Norway", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjoern Naess, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2015-01-14">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.exclusion_exam.v1.1.1, copyright 2015 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.exclusion_exam.v1.1.1 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record that a physical examination or clinical test was not performed.">
+            keywords = <"exclusion", "exam", "examination", "done", "performed">
+            use = <"Use to record that a physical examination or clinical test was not performed, with an optional statement about the reason for the non-performance.
+            
+            This archetype has been designed to be used to allow recording of 'no examination was done' at multiple levels of the examination process. It will never be used as a stand-alone archetype but always inside an examination archetype that provides the context for the examination being performed. For example, insertion of this archetype into the Examination Detail' SLOT within OBSERVATION.exam allows for recording that no physical examination was performed. Similarly, insertion of this archetype into the Details SLOT of any examination-related Node archetype, such as Node.exam_eye_pupil, allows recording that no physical examination was performed only for examination of a specified pupil, perhaps because a facial injury prevented the pupil being visualised.
+            
+            This archetype may also be used within other OBSERVATION, or relevent Node, archetypes to allow recording of the inability to test or measure other clinical findings. For example: OBSERVATION.audiogram or OBSERVATION.cgas.
+            
+            In particular, this archetype has specifically been designed to avoid the need to use flags or terminology to express negation about a record of physical examination or clinical findings within the health record.
+            
+            It is reasonable to assume that if the examination or clinical assessment was partially performed, then only data about the component successfully performed will be recorded.">
+            misuse = <"Not to be used to record the details about clinical findings observed on physical examination or during clinical testing. Use specific archetypes for these purposes.
+            
+            Not to be used to record the exclusion or absence of adverse reactions, family history, medication use, procedures, problems or diagnoses - use EVALUATION.exclusion_global or EVALUATION.exclusion_specific for this purpose.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Exclusion of examination
+        items matches {
+            Node[id2] matches {    -- Examination not done
+                value matches {
+                    Boolean_value[id4] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id3] occurrences matches {0..1} matches {    -- Reason
+                value matches {
+                    Text[id5]
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Exclusion of examination">
+                description = <"Positive statement to record that a physical examination or clinical test was not performed.">
+            >
+            ["id2"] = <
+                text = <"Examination not done">
+                description = <"Statement to explicity record that the examination was not performed.">
+            >
+            ["id3"] = <
+                text = <"Reason">
+                description = <"Reason for the 'not done' statement.">
+            >
+        >
+    >
+    

@@ -1,0 +1,110 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5fc848e0-ba55-40c0-a386-7f0268a31cc5)
+    s2-EHR-Node.myringotomy.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2013-03-21">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.myringotomy.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.myringotomy.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details about the myringotomy performed.">
+            keywords = <"operation", "myringotomy">
+            use = <"Use to record details about the myringotomy performed.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Myringotomy
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Fluid
+                value matches {
+                    Coded_text[id8] matches {
+                        term matches {
+                            Terminology_term[id10] matches {
+                                concept matches {[ac1]}    -- Fluid (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Ventilation Tube Inserted
+                value matches {
+                    Boolean_value[id9] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            use_archetype Node[id7, s2-EHR-Node.device.v1]    -- Ventilation Tube
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at2", "at3", "at4">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Fluid (synthesised)">
+                description = <"Description of the fluid observed in the middle ear. (synthesised)">
+            >
+            ["at2"] = <
+                text = <"None">
+                description = <"No fluid was present.">
+            >
+            ["at3"] = <
+                text = <"Serous">
+                description = <"Serous fluid was present.">
+            >
+            ["at4"] = <
+                text = <"Mucoid">
+                description = <"Pus was present.">
+            >
+            ["id1"] = <
+                text = <"Myringotomy">
+                description = <"Surgical procedure in which an incision is made in the tympanic membrane to relieve pressure and/or drain fluid. This is often accompanied by insertion of a ventilation tube to keep the middle ear aerated and prevent reaccumulation of fluid.">
+            >
+            ["id2"] = <
+                text = <"Fluid">
+                description = <"Description of the fluid observed in the middle ear.">
+            >
+            ["id6"] = <
+                text = <"Ventilation Tube Inserted">
+                description = <"Was a ventilation tube inserted?">
+            >
+            ["id7"] = <
+                text = <"Ventilation Tube">
+                description = <"Details of the ventilation tubes inserted.">
+            >
+        >
+    >
+    

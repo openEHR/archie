@@ -1,0 +1,118 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=378a3d6c-b4c2-479e-8388-273bfdf29e2a)
+	s2-EHR-Direct_observation.age.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2018-07-23">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.age.v0.0.1-alpha, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.age.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the age of an individual at a specific point in time.">
+			use = <"Use to record parameters about the age of an individual at a specific point in time.
+            
+            Use within a template alongside other contextually relevant archetypes. For example: use with OBSERVATION.child_growth to record the adjusted age of an infant as part of monitoring child growth patterns.">
+			misuse = <"">
+		>
+	>
+
+definition
+	Direct_observation[id1] matches {	-- Age
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Chronological age
+				value matches {
+					Duration_value[id11] matches {
+						magnitude matches {|PT0S..P200Y|}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Adjusted age
+				value matches {
+					Duration_value[id12] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Age category
+				value matches {
+					Text[id13] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id14] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id10] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Age">
+				description = <"Details about the age of an individual at a specific point in time.">
+			>
+			["id10"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id3"] = <
+				text = <"Point in time event">
+				description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Chronological age">
+				description = <"Duration of time since birth.">
+			>
+			["id6"] = <
+				text = <"Adjusted age">
+				description = <"Chronological age of an infant, less the number of weeks or months they were born premature.">
+			>
+			["id7"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the age of an individual, not captured in other fields.">
+			>
+			["id8"] = <
+				text = <"Age category">
+				description = <"Duration of time since birth, expressed as a specified age range or grouping.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/30525-0>
+			["id5"] = <http://loinc.org/29553-5>
+			["id8"] = <http://loinc.org/46251-5>
+			["id7"] = <http://loinc.org/106173-8>
+		>
+	>
+

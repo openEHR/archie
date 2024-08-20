@@ -1,0 +1,216 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=23f49473-ba8e-45a6-a15b-f0124548ee25)
+    s2-EHR-Node.exam-lung.v0.0.1-alpha
+
+specialize
+    s2-EHR-Node.exam.v1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom (openEHR Editor)", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Hilde Hollås, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, DIPS ASA, Norway", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Jussara Rotzsch, UNB, Brazil", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia (openEHR Editor)", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2019-07-15">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.exam-lung.v0.0.1-alpha, copyright 2019 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.exam-lung.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record a narrative description and clinical interpretation of the findings observed during the physical examination of a single lung, including identified parts of a lung.">
+            use = <"Use to record a narrative description and clinical interpretation of the findings observed during the physical examination of a single lung, including identified parts of a lung. Use the 'Lung site' data Node to identify a specific area of a lung, for example the right upper lobe or the lingula.
+            
+            This archetype has been specifically designed to be used in the 'Examination detail' SLOT within the OBSERVATION.exam or Node.exam-chest archetypes, but can also be used within other ENTRY or Node archetypes, where clinically appropriate. Record the findings from the other lung in a second instance of this archetype within the same SLOT.
+            
+            Use to provide a framework in which Node archetypes can be nested in the 'Examination findings' SLOT to record additional structured physical examination findings.
+            
+            The Node.exclusion_exam archetype can be nested within the 'Examination not done' SLOT to optionally record explicit details about the examination not being performed.
+            
+            Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data Node.">
+            misuse = <"Not to be used for recording the clinical history - use specific OBSERVATION and Node archetypes. For example OBSERVATION.story and Node.symptom_sign.">
+        >
+    >
+    
+definition
+    Node[id1.1] matches {    -- Examination of a lung
+        /items matches {
+            after [id4]
+            Node[id0.3] occurrences matches {0..1} matches {    -- Percussion note
+                value matches {
+                    Coded_text[id0.12] matches {
+                        term matches {
+                            Terminology_term[id0.15] matches {
+                                concept matches {[ac0.2]}    -- Percussion note (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.7] occurrences matches {0..1} matches {    -- Vocal resonance
+                value matches {
+                    Coded_text[id0.13] matches {
+                        term matches {
+                            Terminology_term[id0.16] matches {
+                                concept matches {[ac0.3]}    -- Vocal resonance (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.11] occurrences matches {0..1} matches {    -- Vocal fremitus
+                value matches {
+                    Coded_text[id0.14] matches {
+                        term matches {
+                            Terminology_term[id0.17] matches {
+                                concept matches {[ac0.4]}    -- Vocal fremitus (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            use_archetype Node[id5, s2-EHR-Node.exam-auscultation-breath_sounds.v0]
+        }
+        /items[id2.1]/value matches {
+            Coded_text[id14] matches {
+                term matches {
+                    Terminology_term[id0.18] matches {
+                        concept matches {[ac0.1]}    -- System or structure examined (synthesised)
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at0.1"] = <http://snomed.info/id/44029006>
+            ["at0.2"] = <http://snomed.info/id/3341006>
+        >
+    >
+    value_sets = <
+        ["ac0.2"] = <
+            id = <"ac0.2">
+            members = <"at0.4", "at0.5", "at0.6">
+        >
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at0.1", "at0.2">
+        >
+        ["ac0.3"] = <
+            id = <"ac0.3">
+            members = <"at0.8", "at0.9", "at0.10">
+        >
+        ["ac0.4"] = <
+            id = <"ac0.4">
+            members = <"at0.12", "at0.13", "at0.14">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac0.1"] = <
+                text = <"System or structure examined (synthesised)">
+                description = <"Identification of the examined body system or anatomical structure. (synthesised)">
+            >
+            ["ac0.2"] = <
+                text = <"Percussion note (synthesised)">
+                description = <"Sound elicited by tapping on the chest wall. (synthesised)">
+            >
+            ["ac0.3"] = <
+                text = <"Vocal resonance (synthesised)">
+                description = <"Vibration intensity heard by a stethoscope on the chest wall with certain spoken words. (synthesised)">
+            >
+            ["ac0.4"] = <
+                text = <"Vocal fremitus (synthesised)">
+                description = <"Vibration intensity felt by the hand on the chest wall from certain spoken words. (synthesised)">
+            >
+            ["at0.1"] = <
+                text = <"Left lung">
+                description = <"The left lung was examined.">
+            >
+            ["at0.10"] = <
+                text = <"Reduced">
+                description = <"Vocal resonance was decreased, compared to normal.">
+            >
+            ["at0.12"] = <
+                text = <"Normal">
+                description = <"Vocal fremitus was normal.">
+            >
+            ["at0.13"] = <
+                text = <"Increased">
+                description = <"Vocal fremitus was increased, compared to normal.">
+            >
+            ["at0.14"] = <
+                text = <"Reduced">
+                description = <"Vocal fremitus was decreased, compared to normal.">
+            >
+            ["at0.2"] = <
+                text = <"Right lung">
+                description = <"The right lung was examined.">
+            >
+            ["at0.4"] = <
+                text = <"Normal">
+                description = <"Percussion note was normal.">
+            >
+            ["at0.5"] = <
+                text = <"Dull">
+                description = <"Percussion note was flat or dulled.">
+            >
+            ["at0.6"] = <
+                text = <"Hyperresonant">
+                description = <"Percussion note was louder and lower pitched than normal.">
+            >
+            ["at0.8"] = <
+                text = <"Normal">
+                description = <"Vocal resonance was normal.">
+            >
+            ["at0.9"] = <
+                text = <"Increased">
+                description = <"Vocal resonance was increased, compared to normal.">
+            >
+            ["id0.11"] = <
+                text = <"Vocal fremitus">
+                description = <"Vibration intensity felt by the hand on the chest wall from certain spoken words.">
+            >
+            ["id0.3"] = <
+                text = <"Percussion note">
+                description = <"Sound elicited by tapping on the chest wall.">
+            >
+            ["id0.7"] = <
+                text = <"Vocal resonance">
+                description = <"Vibration intensity heard by a stethoscope on the chest wall with certain spoken words.">
+            >
+            ["id1.1"] = <
+                text = <"Examination of a lung">
+                description = <"Findings observed during the physical examination of a single lung, including specific parts of a lung.">
+            >
+            ["id2.1"] = <
+                text = <"System or structure examined">
+                description = <"Identification of the examined body system or anatomical structure.">
+            >
+            ["id5.1"] = <
+                text = <"Examination findings">
+                description = <"Structured details about the physical examination findings.">
+            >
+        >
+    >
+    

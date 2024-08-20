@@ -1,0 +1,899 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=73993dec-0374-4c7b-9ef9-9cc7eb1a50d1)
+	s2-EHR-Score.alcohol_audit.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, Australia, <heather.leslie@atomicainformatics.com>, 2013-06-10">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.alcohol_audit.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.alcohol_audit.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To identify individuals with hazardous and harmful patterns of alcohol consumption, indicators of alcohol dependence and some consequences from harmful drinking.">
+			use = <"Use to record the results of the AUDIT screening test (or the AUDIT-C subset) as a means to identify individuals with hazardous and harmful patterns of alcohol consumption, indicators of alcohol dependence and some consequences from harmful drinking. The test can be administered during an oral interview or as a self-reported questionnaire.
+            
+            Each of the questions in the AUDIT test will be recorded as a separate data Node. For pragmatic reasons, in this archetype, each data Node is not labelled as the full question, but as a summary of the question topic. The full question to which each data Node refers is identified in the 'Description' for each data Node. For example: \\\"How often did you have six or more drinks on one occasion in the past year?\\\" is represented as the 'Bingeing' data Node.
+            
+            The AUDIT-C test is a shortened version of the full AUDIT test, using only the first three questions related to consumption.">
+			keywords = <"AUDIT", "AUDIT-C", "alcohol", "binge">
+			misuse = <"Not to be used to record a diary of alcohol consumption - use OBSERVATION.alcohol_use.
+            
+            Not to be used to record an overview of the individual's pattern of alcohol consumption - use the EVALUATION.alcohol_consumption_summary for this purpose.">
+		>
+	>
+
+definition
+	Score[id1] matches {	-- Alcohol Use Disorders Identification Test (AUDIT)
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Frequency of consumption
+				value matches {
+					Coded_ordinal[id51] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id53] matches {
+								term matches {
+									Terminology_term[id52] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id54] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id56] matches {
+								term matches {
+									Terminology_term[id55] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id57] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id59] matches {
+								term matches {
+									Terminology_term[id58] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id60] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id62] matches {
+								term matches {
+									Terminology_term[id61] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id63] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id65] matches {
+								term matches {
+									Terminology_term[id64] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Typical consumption
+				value matches {
+					Coded_ordinal[id66] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id68] matches {
+								term matches {
+									Terminology_term[id67] matches {
+										concept matches {[at11]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id69] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id71] matches {
+								term matches {
+									Terminology_term[id70] matches {
+										concept matches {[at12]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id72] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id74] matches {
+								term matches {
+									Terminology_term[id73] matches {
+										concept matches {[at13]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id75] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id77] matches {
+								term matches {
+									Terminology_term[id76] matches {
+										concept matches {[at14]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id78] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id80] matches {
+								term matches {
+									Terminology_term[id79] matches {
+										concept matches {[at15]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Binge drinking
+				value matches {
+					Coded_ordinal[id81] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id83] matches {
+								term matches {
+									Terminology_term[id82] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id84] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id86] matches {
+								term matches {
+									Terminology_term[id85] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id87] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id89] matches {
+								term matches {
+									Terminology_term[id88] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id90] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id92] matches {
+								term matches {
+									Terminology_term[id91] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id93] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id95] matches {
+								term matches {
+									Terminology_term[id94] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id24] occurrences matches {0..1} matches {	-- Inability to stop
+				value matches {
+					Coded_ordinal[id96] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id98] matches {
+								term matches {
+									Terminology_term[id97] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id99] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id101] matches {
+								term matches {
+									Terminology_term[id100] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id102] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id104] matches {
+								term matches {
+									Terminology_term[id103] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id105] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id107] matches {
+								term matches {
+									Terminology_term[id106] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id108] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id110] matches {
+								term matches {
+									Terminology_term[id109] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Failed expectations
+				value matches {
+					Coded_ordinal[id111] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id113] matches {
+								term matches {
+									Terminology_term[id112] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id114] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id116] matches {
+								term matches {
+									Terminology_term[id115] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id117] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id119] matches {
+								term matches {
+									Terminology_term[id118] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id120] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id122] matches {
+								term matches {
+									Terminology_term[id121] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id123] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id125] matches {
+								term matches {
+									Terminology_term[id124] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id26] occurrences matches {0..1} matches {	-- Morning drinking
+				value matches {
+					Coded_ordinal[id126] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id128] matches {
+								term matches {
+									Terminology_term[id127] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id129] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id131] matches {
+								term matches {
+									Terminology_term[id130] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id132] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id134] matches {
+								term matches {
+									Terminology_term[id133] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id135] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id137] matches {
+								term matches {
+									Terminology_term[id136] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id138] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id140] matches {
+								term matches {
+									Terminology_term[id139] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id27] occurrences matches {0..1} matches {	-- Guilt/remorse
+				value matches {
+					Coded_ordinal[id141] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id143] matches {
+								term matches {
+									Terminology_term[id142] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id144] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id146] matches {
+								term matches {
+									Terminology_term[id145] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id147] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id149] matches {
+								term matches {
+									Terminology_term[id148] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id150] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id152] matches {
+								term matches {
+									Terminology_term[id151] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id153] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id155] matches {
+								term matches {
+									Terminology_term[id154] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id28] occurrences matches {0..1} matches {	-- Loss of memory
+				value matches {
+					Coded_ordinal[id156] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id158] matches {
+								term matches {
+									Terminology_term[id157] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id159] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id161] matches {
+								term matches {
+									Terminology_term[id160] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id162] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id164] matches {
+								term matches {
+									Terminology_term[id163] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id165] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id167] matches {
+								term matches {
+									Terminology_term[id166] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id168] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id170] matches {
+								term matches {
+									Terminology_term[id169] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id29] occurrences matches {0..1} matches {	-- Injuries
+				value matches {
+					Coded_ordinal[id171] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id173] matches {
+								term matches {
+									Terminology_term[id172] matches {
+										concept matches {[at30]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id174] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id176] matches {
+								term matches {
+									Terminology_term[id175] matches {
+										concept matches {[at31]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id177] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id179] matches {
+								term matches {
+									Terminology_term[id178] matches {
+										concept matches {[at32]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id30] occurrences matches {0..1} matches {	-- External concern
+				value matches {
+					Coded_ordinal[id180] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id182] matches {
+								term matches {
+									Terminology_term[id181] matches {
+										concept matches {[at30]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id183] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id185] matches {
+								term matches {
+									Terminology_term[id184] matches {
+										concept matches {[at31]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id186] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id188] matches {
+								term matches {
+									Terminology_term[id187] matches {
+										concept matches {[at32]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- AUDIT total score
+				value matches {
+					Count[id48] matches {
+						magnitude matches {|0..40|}
+					}
+				}
+			}
+			Node[id34] occurrences matches {0..1} matches {	-- AUDIT-C total score
+				value matches {
+					Count[id49] matches {
+						magnitude matches {|0..12|}
+					}
+				}
+			}
+			Node[id35] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id50] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id37] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Frequency of consumption (synthesised)">
+				description = <"How often did you have a drink containing alcohol in the past year? (synthesised)">
+			>
+			["ac10"] = <
+				text = <"External concern (synthesised)">
+				description = <"Has a relative, friend, doctor, or other health care worker been concerned about your drinking or suggested you cut down? (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Typical consumption (synthesised)">
+				description = <"How many drinks did you have on a typical day when you were drinking in the past year? (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Binge drinking (synthesised)">
+				description = <"How often did you have six or more drinks on one occasion in the past year? (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Inability to stop (synthesised)">
+				description = <"How often during the last year have you found that you were not able to stop drinking once you had started? (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Failed expectations (synthesised)">
+				description = <"How often during the last year have you failed to do what was normally expected of you because of drinking? (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Morning drinking (synthesised)">
+				description = <"How often during the last year have you needed a first drink in the morning to get yourself going after a heavy drinking session? (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Guilt/remorse (synthesised)">
+				description = <"How often during the last year have you had a feeling of guilt or remorse after drinking? (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Loss of memory (synthesised)">
+				description = <"How often during the last year have you been unable to remember what happened the night before because of your drinking? (synthesised)">
+			>
+			["ac9"] = <
+				text = <"Injuries (synthesised)">
+				description = <"Have you or someone else been injured because of your drinking? (synthesised)">
+			>
+			["at11"] = <
+				text = <"1 or 2">
+				description = <"One or two drinks of alcohol on a typical day in the past year.">
+			>
+			["at12"] = <
+				text = <"3 or 4">
+				description = <"Three or four drinks of alcohol on a typical day in the past year.">
+			>
+			["at13"] = <
+				text = <"5 or 6">
+				description = <"Five or six drinks of alcohol on a typical day in the past year.">
+			>
+			["at14"] = <
+				text = <"7 to 9">
+				description = <"Seven, eight or nine drinks of alcohol on a typical day in the past year.">
+			>
+			["at15"] = <
+				text = <"10 or More">
+				description = <"Ten or more drinks of alcohol on a typical day in the past year.">
+			>
+			["at17"] = <
+				text = <"Never">
+				description = <"Never, in the past year.">
+			>
+			["at18"] = <
+				text = <"Less than Monthly">
+				description = <"Less than monthly, during the past year.">
+			>
+			["at19"] = <
+				text = <"Monthly">
+				description = <"Monthly, during the past year.">
+			>
+			["at20"] = <
+				text = <"Weekly">
+				description = <"Weekly, during the past year.">
+			>
+			["at21"] = <
+				text = <"Daily or Almost Daily">
+				description = <"Daily, or almost daily, during the past year.">
+			>
+			["at30"] = <
+				text = <"No">
+				description = <"No occurrence.">
+			>
+			["at31"] = <
+				text = <"Yes, but not in the last year.">
+				description = <"Yes, this has occurred, but not in the last year.">
+			>
+			["at32"] = <
+				text = <"Yes, during the last year.">
+				description = <"Yes this has occurred during the last year.">
+			>
+			["at5"] = <
+				text = <"Never">
+				description = <"No drinking of alcohol in the past year.">
+			>
+			["at6"] = <
+				text = <"Monthly or Less">
+				description = <"Drinking alcohol monthly or less frequently during the past year.">
+			>
+			["at7"] = <
+				text = <"2 to 4 Times a Month">
+				description = <"Drinking alcohol two to four times a month during the past year.">
+			>
+			["at8"] = <
+				text = <"2 to 3 Times a Week">
+				description = <"Drinking alcohol two to three times a week during the past year.">
+			>
+			["at9"] = <
+				text = <"4 or More Times a Week">
+				description = <"Drinking alcohol four or more times a week during the past year.">
+			>
+			["id1"] = <
+				text = <"Alcohol Use Disorders Identification Test (AUDIT)">
+				description = <"Ten question screening test to identify harmful alcohol consumption.">
+			>
+			["id11"] = <
+				text = <"Typical consumption">
+				description = <"How many drinks did you have on a typical day when you were drinking in the past year?">
+			>
+			["id17"] = <
+				text = <"Binge drinking">
+				description = <"How often did you have six or more drinks on one occasion in the past year?">
+			>
+			["id23"] = <
+				text = <"AUDIT total score">
+				description = <"Total Score calculated from the 10 AUDIT questions.">
+			>
+			["id24"] = <
+				text = <"Inability to stop">
+				description = <"How often during the last year have you found that you were not able to stop drinking once you had started?">
+			>
+			["id25"] = <
+				text = <"Failed expectations">
+				description = <"How often during the last year have you failed to do what was normally expected of you because of drinking?">
+			>
+			["id26"] = <
+				text = <"Morning drinking">
+				description = <"How often during the last year have you needed a first drink in the morning to get yourself going after a heavy drinking session?">
+			>
+			["id27"] = <
+				text = <"Guilt/remorse">
+				description = <"How often during the last year have you had a feeling of guilt or remorse after drinking?">
+			>
+			["id28"] = <
+				text = <"Loss of memory">
+				description = <"How often during the last year have you been unable to remember what happened the night before because of your drinking?">
+			>
+			["id29"] = <
+				text = <"Injuries">
+				description = <"Have you or someone else been injured because of your drinking?">
+			>
+			["id3"] = <
+				text = <"Any point in time">
+				description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"External concern">
+				description = <"Has a relative, friend, doctor, or other health care worker been concerned about your drinking or suggested you cut down?">
+			>
+			["id34"] = <
+				text = <"AUDIT-C total score">
+				description = <"Total Score calculated from the first 3 questions only.">
+			>
+			["id35"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the screening test, not captured in other fields.">
+			>
+			["id37"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id5"] = <
+				text = <"Frequency of consumption">
+				description = <"How often did you have a drink containing alcohol in the past year?">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id35"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6", "at7", "at8", "at9">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at11", "at12", "at13", "at14", "at15">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at17", "at18", "at19", "at20", "at21">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at17", "at18", "at19", "at20", "at21">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at17", "at18", "at19", "at20", "at21">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at17", "at18", "at19", "at20", "at21">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at17", "at18", "at19", "at20", "at21">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at17", "at18", "at19", "at20", "at21">
+		>
+		["ac9"] = <
+			id = <"ac9">
+			members = <"at30", "at31", "at32">
+		>
+		["ac10"] = <
+			id = <"ac10">
+			members = <"at30", "at31", "at32">
+		>
+	>
+

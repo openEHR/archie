@@ -1,0 +1,729 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=55a24e7f-7b6d-4235-bbc9-a95bf2e228bd)
+    s2-EHR-Score.neurologic_assessment_in_neuro_oncology_scale.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Bjørn Næss, DIPS AS, <bna@dips.no>, 2023-04-21">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.neurologic_assessment_in_neuro_oncology_scale.v0.0.1-alpha, copyright 2023 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.neurologic_assessment_in_neuro_oncology_scale.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the result for each component parameter for the NANO-scale and to calculate the total score.">
+            keywords = <"neurologic function", "NANO", "brain tumor", "assessment", "CNS", "neuro-oncology", "outcome">
+            use = <"Use to record the result for each component parameter for the NANO-scale and to calculate the total score.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Neurologic Assessment in Neuro-Oncology (NANO) scale
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Gait
+                value matches {
+                    Coded_ordinal[id58] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id60] matches {
+                                term matches {
+                                    Terminology_term[id59] matches {
+                                        concept matches {[at5]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id61] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id63] matches {
+                                term matches {
+                                    Terminology_term[id62] matches {
+                                        concept matches {[at6]}    -- Abnormal but walks without assistance
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id64] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id66] matches {
+                                term matches {
+                                    Terminology_term[id65] matches {
+                                        concept matches {[at7]}    -- Abnormal and requires assistance (companion, cane, walker, etc.)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id67] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id69] matches {
+                                term matches {
+                                    Terminology_term[id68] matches {
+                                        concept matches {[at8]}    -- Unable to walk
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Strength
+                value matches {
+                    Coded_ordinal[id70] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id72] matches {
+                                term matches {
+                                    Terminology_term[id71] matches {
+                                        concept matches {[at10]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id73] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id75] matches {
+                                term matches {
+                                    Terminology_term[id74] matches {
+                                        concept matches {[at11]}    -- Movement present but decreased against resistance
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id76] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id78] matches {
+                                term matches {
+                                    Terminology_term[id77] matches {
+                                        concept matches {[at12]}    -- Movement present but none against resistance
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id79] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id81] matches {
+                                term matches {
+                                    Terminology_term[id80] matches {
+                                        concept matches {[at13]}    -- No movement
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- Ataxia(upper extremity)
+                value matches {
+                    Coded_ordinal[id82] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id84] matches {
+                                term matches {
+                                    Terminology_term[id83] matches {
+                                        concept matches {[at15]}    -- Able to finger to nose touch without difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id85] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id87] matches {
+                                term matches {
+                                    Terminology_term[id86] matches {
+                                        concept matches {[at16]}    -- Able to finger to nose touch but difficult
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id88] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id90] matches {
+                                term matches {
+                                    Terminology_term[id89] matches {
+                                        concept matches {[at17]}    -- Unable to finger to nose touch
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id19] occurrences matches {0..1} matches {    -- Sensation
+                value matches {
+                    Coded_ordinal[id91] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id93] matches {
+                                term matches {
+                                    Terminology_term[id92] matches {
+                                        concept matches {[at19]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id94] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id96] matches {
+                                term matches {
+                                    Terminology_term[id95] matches {
+                                        concept matches {[at20]}    -- Decreased but aware of sensory modality
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id97] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id99] matches {
+                                term matches {
+                                    Terminology_term[id98] matches {
+                                        concept matches {[at21]}    -- Unaware of sensory modality
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id23] occurrences matches {0..1} matches {    -- Visual fields
+                value matches {
+                    Coded_ordinal[id100] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id102] matches {
+                                term matches {
+                                    Terminology_term[id101] matches {
+                                        concept matches {[at23]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id103] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id105] matches {
+                                term matches {
+                                    Terminology_term[id104] matches {
+                                        concept matches {[at24]}    -- Inconsistent or equivocal parital hemianopsia (≥ quadrantopsia)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id106] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id108] matches {
+                                term matches {
+                                    Terminology_term[id107] matches {
+                                        concept matches {[at25]}    -- Consistent or equivocal partial hemianopsia (≥ quadrantopsia)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id109] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id111] matches {
+                                term matches {
+                                    Terminology_term[id110] matches {
+                                        concept matches {[at26]}    -- Complete hemianopsia
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id28] occurrences matches {0..1} matches {    -- Facial strength
+                value matches {
+                    Coded_ordinal[id112] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id114] matches {
+                                term matches {
+                                    Terminology_term[id113] matches {
+                                        concept matches {[at28]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id115] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id117] matches {
+                                term matches {
+                                    Terminology_term[id116] matches {
+                                        concept matches {[at29]}    -- Mild/moderate weakness
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id118] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id120] matches {
+                                term matches {
+                                    Terminology_term[id119] matches {
+                                        concept matches {[at30]}    -- Severe facial weakness
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id32] occurrences matches {0..1} matches {    -- Language
+                value matches {
+                    Coded_ordinal[id121] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id123] matches {
+                                term matches {
+                                    Terminology_term[id122] matches {
+                                        concept matches {[at32]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id124] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id126] matches {
+                                term matches {
+                                    Terminology_term[id125] matches {
+                                        concept matches {[at33]}    -- Abnormal but easily conveys meaning to examiner
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id127] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id129] matches {
+                                term matches {
+                                    Terminology_term[id128] matches {
+                                        concept matches {[at34]}    -- Abnormal and difficulty conveying meaning to examiner
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id130] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id132] matches {
+                                term matches {
+                                    Terminology_term[id131] matches {
+                                        concept matches {[at35]}    -- Abnormal. If verbal, unable to delivery meaning to the examiner OR non-verbal (mute/global aphasia)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id37] occurrences matches {0..1} matches {    -- Level of consciousness
+                value matches {
+                    Coded_ordinal[id133] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id135] matches {
+                                term matches {
+                                    Terminology_term[id134] matches {
+                                        concept matches {[at37]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id136] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id138] matches {
+                                term matches {
+                                    Terminology_term[id137] matches {
+                                        concept matches {[at38]}    -- Drowsy (easily arousable)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id139] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id141] matches {
+                                term matches {
+                                    Terminology_term[id140] matches {
+                                        concept matches {[at39]}    -- Somnolent (difficult to arouse)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id142] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id144] matches {
+                                term matches {
+                                    Terminology_term[id143] matches {
+                                        concept matches {[at40]}    -- Unarousable/coma
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id42] occurrences matches {0..1} matches {    -- Behavior
+                value matches {
+                    Coded_ordinal[id145] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id147] matches {
+                                term matches {
+                                    Terminology_term[id146] matches {
+                                        concept matches {[at42]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id148] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id150] matches {
+                                term matches {
+                                    Terminology_term[id149] matches {
+                                        concept matches {[at43]}    -- Mild/moderate alteration
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id151] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id153] matches {
+                                term matches {
+                                    Terminology_term[id152] matches {
+                                        concept matches {[at44]}    -- Severe alteration
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id46] occurrences matches {0..1} matches {    -- Total sum of score
+                value matches {
+                    Count[id56]
+                }
+            }
+        }
+        qualifiers
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6", "at7", "at8">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at10", "at11", "at12", "at13">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at15", "at16", "at17">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at19", "at20", "at21">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at23", "at24", "at25", "at26">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at28", "at29", "at30">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at32", "at33", "at34", "at35">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at37", "at38", "at39", "at40">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at42", "at43", "at44">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Gait (synthesised)">
+                description = <"Walking is ideally assessed by at least 10 steps. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Strength (synthesised)">
+                description = <"Test each limb separately. Recommend assess proximal (above knee or elbow) and distal (below knee or elbow) major muscle groups. Score should reflect worse performing area. Patients with baseline level 3 function in one major muscle group/limb can be scored based on assessment of other major muscle group/limbs. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Ataxia(upper extremity) (synthesised)">
+                description = <"Non-evaluable if strength is compromised. Trunk/lower extermities assessed by gait domain. Particulary important for patients with brainstem and cerebellar tumors. Score based on test respons of at least 3 attempts. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Sensation (synthesised)">
+                description = <"Recommend evaluating major body areas separately (face, limbs, trunk). Score should reflect worse performing area. Sensory modality includes but not limited to light touch, pinprick, temperature and proprioception. Patients with baseline level 2 function in one major body area can be scored based on assessment of other major body areas. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Visual fields (synthesised)">
+                description = <"Patients who require corrective lenses should be evaluated while wearing corrective lenses. Each eye should be evaluated and score should reflect the worst performing eye. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Facial strength (synthesised)">
+                description = <"Particularly important for brainstem tumors. Weakness includes nasolabial fold flattening, asymmetric smile and difficulty elevating eyebrows. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Language (synthesised)">
+                description = <"Asses based on spoken speech. Non-verbal cues or writing should not be included. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Level of consciousness (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac9"] = <
+                text = <"Behavior (synthesised)">
+                description = <"Particulary important for frontal lobe tumors. Alteration includes but is not limited to apathy, disinhibition and confusion. Consider subclinical seizures for significant alteration. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Normal">
+                description = <"">
+            >
+            ["at11"] = <
+                text = <"Movement present but decreased against resistance">
+                description = <"">
+            >
+            ["at12"] = <
+                text = <"Movement present but none against resistance">
+                description = <"">
+            >
+            ["at13"] = <
+                text = <"No movement">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"Able to finger to nose touch without difficulty">
+                description = <"">
+            >
+            ["at16"] = <
+                text = <"Able to finger to nose touch but difficult">
+                description = <"">
+            >
+            ["at17"] = <
+                text = <"Unable to finger to nose touch">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"Normal">
+                description = <"">
+            >
+            ["at20"] = <
+                text = <"Decreased but aware of sensory modality">
+                description = <"">
+            >
+            ["at21"] = <
+                text = <"Unaware of sensory modality">
+                description = <"">
+            >
+            ["at23"] = <
+                text = <"Normal">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"Inconsistent or equivocal parital hemianopsia (≥ quadrantopsia)">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"Consistent or equivocal partial hemianopsia (≥ quadrantopsia)">
+                description = <"">
+            >
+            ["at26"] = <
+                text = <"Complete hemianopsia">
+                description = <"">
+            >
+            ["at28"] = <
+                text = <"Normal">
+                description = <"">
+            >
+            ["at29"] = <
+                text = <"Mild/moderate weakness">
+                description = <"">
+            >
+            ["at30"] = <
+                text = <"Severe facial weakness">
+                description = <"">
+            >
+            ["at32"] = <
+                text = <"Normal">
+                description = <"">
+            >
+            ["at33"] = <
+                text = <"Abnormal but easily conveys meaning to examiner">
+                description = <"Includes word finding difficulty; few paraphasic errors/neologisms/word substitutions;but able to form sentences (full/broken).">
+            >
+            ["at34"] = <
+                text = <"Abnormal and difficulty conveying meaning to examiner">
+                description = <"Includes liability to form sentences (<4 words per phrase/sentence); limited word output; fluent but \\\"empty\\\" speech.">
+            >
+            ["at35"] = <
+                text = <"Abnormal. If verbal, unable to delivery meaning to the examiner OR non-verbal (mute/global aphasia)">
+                description = <"">
+            >
+            ["at37"] = <
+                text = <"Normal">
+                description = <"">
+            >
+            ["at38"] = <
+                text = <"Drowsy (easily arousable)">
+                description = <"">
+            >
+            ["at39"] = <
+                text = <"Somnolent (difficult to arouse)">
+                description = <"">
+            >
+            ["at40"] = <
+                text = <"Unarousable/coma">
+                description = <"">
+            >
+            ["at42"] = <
+                text = <"Normal">
+                description = <"">
+            >
+            ["at43"] = <
+                text = <"Mild/moderate alteration">
+                description = <"">
+            >
+            ["at44"] = <
+                text = <"Severe alteration">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"Normal">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Abnormal but walks without assistance">
+                description = <"">
+            >
+            ["at7"] = <
+                text = <"Abnormal and requires assistance (companion, cane, walker, etc.)">
+                description = <"">
+            >
+            ["at8"] = <
+                text = <"Unable to walk">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Neurologic Assessment in Neuro-Oncology (NANO) scale">
+                description = <"The NANO scale is a tool for assessing neurologic function in patients with brain tumor.">
+            >
+            ["id10"] = <
+                text = <"Strength">
+                description = <"Test each limb separately. Recommend assess proximal (above knee or elbow) and distal (below knee or elbow) major muscle groups. Score should reflect worse performing area. Patients with baseline level 3 function in one major muscle group/limb can be scored based on assessment of other major muscle group/limbs.">
+            >
+            ["id15"] = <
+                text = <"Ataxia(upper extremity)">
+                description = <"Non-evaluable if strength is compromised. Trunk/lower extermities assessed by gait domain. Particulary important for patients with brainstem and cerebellar tumors. Score based on test respons of at least 3 attempts.">
+            >
+            ["id19"] = <
+                text = <"Sensation">
+                description = <"Recommend evaluating major body areas separately (face, limbs, trunk). Score should reflect worse performing area. Sensory modality includes but not limited to light touch, pinprick, temperature and proprioception. Patients with baseline level 2 function in one major body area can be scored based on assessment of other major body areas.">
+            >
+            ["id23"] = <
+                text = <"Visual fields">
+                description = <"Patients who require corrective lenses should be evaluated while wearing corrective lenses. Each eye should be evaluated and score should reflect the worst performing eye.">
+            >
+            ["id28"] = <
+                text = <"Facial strength">
+                description = <"Particularly important for brainstem tumors. Weakness includes nasolabial fold flattening, asymmetric smile and difficulty elevating eyebrows.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id32"] = <
+                text = <"Language">
+                description = <"Asses based on spoken speech. Non-verbal cues or writing should not be included.">
+            >
+            ["id37"] = <
+                text = <"Level of consciousness">
+                description = <"">
+            >
+            ["id42"] = <
+                text = <"Behavior">
+                description = <"Particulary important for frontal lobe tumors. Alteration includes but is not limited to apathy, disinhibition and confusion. Consider subclinical seizures for significant alteration.">
+            >
+            ["id46"] = <
+                text = <"Total sum of score">
+                description = <"">
+            >
+            ["id5"] = <
+                text = <"Gait">
+                description = <"Walking is ideally assessed by at least 10 steps.">
+            >
+        >
+    >
+    

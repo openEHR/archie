@@ -1,0 +1,124 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=cb6da6c6-c903-44b4-82e9-ab09d5af84d9)
+    s2-EHR-Direct_observation.fluid_output-blood.v0.0.1-alpha
+
+specialize
+    s2-EHR-Direct_observation.fluid_output.v1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Tomas Alme, DIPS, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Ingeborg Berge, Direktoratet for e-helse, Norway", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Stephen Chu, NEHTA, Australia", "Stig Erik Hegrestad, Helse Førde, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Christian Ghan, The Chris O'Brien Lifehouse at RPA, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Cecilie Graver, Oslo universitetssykehus HF, Norway", "Sam Heard, Ocean Informatics, Australia (Editor)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Oliver Hosking, Remote Health NT, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Anne Kristin Strand, Sykehuspartner HF, Norway", "Heather Leslie, Atomica Informatics, Australia", "Pedro Leuschner, Centro Hospitalar do Porto, Portugal", "Marit Ludvigsen, St Olavs Hospital, Norway", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Navin Ramachandran, NHS, United Kingdom", "Tanja Riise, Nasjonal IKT HF, Norway", "Fabian Schwarz, NT Health, Australia", "Anoop Shah, University College London, United Kingdom", "Gary Sinclair, NT DoH, Australia", "Iztok Stotl, UKCLJ, Slovenia", "Roy Støle, OUS, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstittutet, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Stian Torleif Varpe, Helse Bergen, Norway", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, Australia, <heather.leslie@atomicainformatics.com>, 2019-11-11">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.fluid_output-blood.v0.0.1-alpha, copyright 2019 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.fluid_output-blood.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details about measured blood loss loss via any mechanism.">
+            keywords = <"fluid", "balance", "output", "drain", "drainage", "bleeding", "exsanguination", "hypovolaemia">
+            use = <"Use to record details about measured fluids lost or excreted via any mechanism.
+            
+            This archetype will be used to record details about:
+            - each single measurement, for example the volume of each bleeding event from a single source; or
+            - the total amount of bleeding over a specified period of time, for example the blood loss over an 8 hour nursing shift.
+            
+            Each fluid measurement should be recorded using a separate instance of this archetype.
+            
+            Each separate source of blood loss may be recorded using a separate instance of this archetype.
+            
+            The details recorded using this blood loss archetype may inform fluid balance calculations.">
+            misuse = <"Not to be used to record fluid input. Use OBSERVATION.fluid_input for this purpose.
+            
+            Not to be used to record fluid balance calculations or to record the calculation of insensible fluid loss. Use OBSERVATION.fluid_balance for this purpose.">
+        >
+    >
+    
+definition
+    Direct_observation[id1.1] matches {    -- Blood loss
+        /data[id37.1]/value matches {
+            Coded_text[id43.1] matches {
+                term matches {
+                    Terminology_term[id0.4] matches {
+                        concept matches {[at0.1]}    -- Blood
+                    }
+                }
+            }
+        }
+        /data matches {
+            after [id33]
+            Node[id0.2] occurrences matches {0..1} matches {    -- Blood clots?
+                value matches {
+                    Coded_text[id0.3] matches {
+                        term matches {
+                            Terminology_term[id0.5] matches {
+                                concept matches {[ac0.1]}    -- Blood clots? (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at0.3", "at0.4">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac0.1"] = <
+                text = <"Blood clots? (synthesised)">
+                description = <"Description the presence or absence of blood clots. (synthesised)">
+            >
+            ["at0.1"] = <
+                text = <"Blood">
+                description = <"Fluid loss from the body as a result of bleeding.">
+            >
+            ["at0.3"] = <
+                text = <"Present">
+                description = <"Blood clots were present.">
+            >
+            ["at0.4"] = <
+                text = <"Absent">
+                description = <"Blood clots were not present.">
+            >
+            ["id0.2"] = <
+                text = <"Blood clots?">
+                description = <"Description the presence or absence of blood clots.">
+            >
+            ["id1.1"] = <
+                text = <"Blood loss">
+                description = <"The measurement of blood loss from the body via any mechanism.">
+            >
+            ["id37.1"] = <
+                text = <"Fluid name">
+                description = <"Identification of the fluid lost or excreted.">
+            >
+        >
+    >
+    

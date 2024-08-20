@@ -1,0 +1,226 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=42630c1d-e821-4b10-a6c7-db069bb9450a)
+    s2-EHR-Score.poem_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Ian McNicoll", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Dmitri Wall, Irish Skin Foundation, <dmitri.wall@gmail.com>, 2015-02-07">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.poem_score.v0.0.1-alpha, copyright 2015 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.poem_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"The Patient-Oriented Eczema Measure (POEM), is a simple measure, developed \\\"for research purposes, and to assist health care professionals such as general practitioners, dermatologists, pediatricians, and specialist nurses caring for patients in routine clinical practice\\\"(1). It is a tool that enables measurement of \\\"atopic eczema severity from the patients’ perspective\\\"(1,2).">
+            keywords = <"Atopic dermatitis", "Eczema", "PROM (patient-reported outcome measure)">
+            use = <"">
+            misuse = <"Should not be utilised in children.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- POEM score
+        data matches {
+            Node[id5] matches {    -- Symptom score
+                items matches {
+                    Node[id14] occurrences matches {0..6} matches {    -- Symptom name
+                        value matches {
+                            Coded_text[id22] matches {
+                                term matches {
+                                    Terminology_term[id25] matches {
+                                        concept matches {[ac1]}    -- Symptom name (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id6] occurrences matches {0..1} matches {    -- Frequency
+                        value matches {
+                            Coded_ordinal[id26] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id28] matches {
+                                        term matches {
+                                            Terminology_term[id27] matches {
+                                                concept matches {[at6]}    -- 0 days
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id29] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id31] matches {
+                                        term matches {
+                                            Terminology_term[id30] matches {
+                                                concept matches {[at7]}    -- 1-2 days
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id32] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id34] matches {
+                                        term matches {
+                                            Terminology_term[id33] matches {
+                                                concept matches {[at8]}    -- 3-4 days
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id35] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id37] matches {
+                                        term matches {
+                                            Terminology_term[id36] matches {
+                                                concept matches {[at9]}    -- 5-6 days
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id38] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id40] matches {
+                                        term matches {
+                                            Terminology_term[id39] matches {
+                                                concept matches {[at10]}    -- Every day
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Total Poem score
+                value matches {
+                    Count[id24] matches {
+                        magnitude matches {|<=28|}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at14", "at15", "at16", "at17", "at18", "at19">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at6", "at7", "at8", "at9", "at10">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Symptom name (synthesised)">
+                description = <"Symptom experienced by the patient in the past week. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Frequency (synthesised)">
+                description = <"Frequency of the symptom. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Every day">
+                description = <"The symptom was experienced every day of the past week.">
+            >
+            ["at14"] = <
+                text = <"Itch">
+                description = <"The patient experienced itch.">
+            >
+            ["at15"] = <
+                text = <"Sleep loss">
+                description = <"The patient experienced sleep loss.">
+            >
+            ["at16"] = <
+                text = <"Weeping">
+                description = <"The patient experienced weeping skin.">
+            >
+            ["at17"] = <
+                text = <"Cracking">
+                description = <"The patient experienced cracking of skin.">
+            >
+            ["at18"] = <
+                text = <"Flaking">
+                description = <"The patient experienced flaking skin.">
+            >
+            ["at19"] = <
+                text = <"Dry or rough skin">
+                description = <"The patient experienced dry or rough skin.">
+            >
+            ["at6"] = <
+                text = <"0 days">
+                description = <"The symptom was not experienced in the past week.">
+            >
+            ["at7"] = <
+                text = <"1-2 days">
+                description = <"The symptom was experienced on 1 or 2 days of the last week.">
+            >
+            ["at8"] = <
+                text = <"3-4 days">
+                description = <"The symptom was experienced on 3 or 4 days of the last week.">
+            >
+            ["at9"] = <
+                text = <"5-6 days">
+                description = <"The symptom was experienced on 5 or 6 days of the last week.">
+            >
+            ["id1"] = <
+                text = <"POEM score">
+                description = <"POEM (Patient-Oriented Eczema Measure).">
+            >
+            ["id14"] = <
+                text = <"Symptom name">
+                description = <"Symptom experienced by the patient in the past week.">
+            >
+            ["id21"] = <
+                text = <"Total Poem score">
+                description = <"The total Poem score.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Any event.">
+            >
+            ["id5"] = <
+                text = <"Symptom score">
+                description = <"The symptom score.">
+            >
+            ["id6"] = <
+                text = <"Frequency">
+                description = <"Frequency of the symptom.">
+            >
+        >
+    >
+    

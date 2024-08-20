@@ -1,0 +1,164 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5ffb6d27-b1c3-42ce-a4d5-4de26d40aa00)
+	s2-EHR-Assessment.infectious_disease_summary.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sistine Barretto-Daniels, Ocean Informatics Pty Ltd, <Sistine.Barretto-Daniels@oceaninformatics.com>, 2012-10-10">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.infectious_disease_summary.v0.0.1-alpha, copyright 2012 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.infectious_disease_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary details about an infectious disease and factors related to assessment of immunity.">
+			use = <"Use to record summary details about an infectious disease and factors related to assessment of immunity.">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+
+definition
+	Assessment[id1] matches {	-- Infectious disease summary
+		data cardinality matches {1..*; unordered} matches {
+			Node[id3] matches {	-- Infectious disease
+				value matches {
+					Text[id53] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Immune status
+				value matches {
+					Text[id54] 
+				}
+			}
+			Node[id43] occurrences matches {0..1} matches {	-- Description of immune status
+				value matches {
+					Text[id55] 
+				}
+			}
+			Node[id48] occurrences matches {0..1} matches {	-- Previous infection?
+				value matches {
+					Coded_text[id56] matches {
+						term matches {
+							Terminology_term[id59] matches {
+								concept matches {[ac1]}		-- Previous infection? (synthesised)
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id47] matches {	-- Evidence
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id57] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id22] occurrences matches {0..1} matches {	-- Last Updated
+				value matches {
+					Date_time_value[id58] 
+				}
+			}
+			allow_archetype Node[id52] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Previous infection? (synthesised)">
+				description = <"Has the subject been exposed through a previous infection to the same infectious disease? (synthesised)">
+			>
+			["at48"] = <
+				text = <"Confirmed">
+				description = <"Previous infection has been confirmed by history or findings.">
+			>
+			["at49"] = <
+				text = <"Suspected">
+				description = <"Previous infection is suspected from history or findings, but has not been confirmed.">
+			>
+			["at50"] = <
+				text = <"No Evidence">
+				description = <"There is no history or findings to suggest that the subject has had a previous infection.">
+			>
+			["id1"] = <
+				text = <"Infectious disease summary">
+				description = <"Summary details about an infectious disease and factors related to assessment of immunity.">
+			>
+			["id15"] = <
+				text = <"Comment">
+				description = <"Narrative information about the infectious disease not captured in other fields.">
+			>
+			["id22"] = <
+				text = <"Last Updated">
+				description = <"The date at which the infectious disease summary was last clinically asserted, affirmed or confirmed.">
+			>
+			["id3"] = <
+				text = <"Infectious disease">
+				description = <"Name of the infectious disease.">
+			>
+			["id4"] = <
+				text = <"Immune status">
+				description = <"Assertion about the immune status of the subject.">
+			>
+			["id43"] = <
+				text = <"Description of immune status">
+				description = <"Narrative description about the assessment of immune status for the  infectious disease.">
+			>
+			["id47"] = <
+				text = <"Evidence">
+				description = <"Details about evidence that supports the assertion of an immune status.">
+			>
+			["id48"] = <
+				text = <"Previous infection?">
+				description = <"Has the subject been exposed through a previous infection to the same infectious disease?">
+			>
+			["id52"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/96381-9>
+			["id15"] = <http://loinc.org/106173-8>
+			["id22"] = <http://loinc.org/106177-9>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at48", "at49", "at50">
+		>
+	>
+

@@ -1,0 +1,339 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=88dfe996-53b9-4257-8eaf-cf0b8ab5fbfc)
+	s2-EHR-Direct_observation.respiration.v2.0.10
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics, United Kingdom, <ian.mcnicoll@freshEHR.com>, 2009-07-17">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.respiration.v2.0.10, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.respiration.v2.0.10 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the characteristics of spontaneous breathing by an individual.">
+			use = <"Use to record the observed and measured characteristics of spontaneous breathing by an individual, including respiratory rate, depth and rhythm.
+            
+            Respirations are commonly recorded as one component of vital signs.">
+			keywords = <"respirations", "breathing", "breath", "resps", "respiration">
+			misuse = <"Not to be used to record the physical examination of the respiratory system - use the physical examination family of archetypes for this purpose, such as Node.exam-chest or Node.exam-lung.
+            
+            Not to be used to record other measurements related to breathing - use specific archetypes for the purpose, for example OBSERVATION.pulse_oximetry. 
+            
+            Not to be used to record functional assessments of breathing - use specific archetypes for the purpose, for example OBSERVATION.pulmonary_function.
+            
+            Not to be used for recording details about individuals who are undergoing assisted ventilation.">
+		>
+	>
+	other_contributors = <"Karin Aarsheim, Helse Førde, Norway", "Morten Aas, Diakonhjemmet Sykehus, Norway", "Tomas Alme, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Fredrik Borchsenius, Oslo universitetssykehus, Norway", "Pål Brekke, OUS Rikshospitalet, Norway", "Marja Buur, Medisch Centrum Alkmaar/ Code24, Netherlands", "Gregory Caulton, PatientOS Inc., United States", "Stephen Chu, NeHTA, Australia", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "Soon Ghee Yap, Singapore Health Services Pte Ltd, Singapore", "Mikkel Gaup Grønmo, Helse-Nord, FSE, Norway (openEHR Editor)", "Atle Hansen, Universitetssykehuset Nord-Norge, Norway", "Anne Harbison, CPCER, Australia", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Omer Hotomaroglu, Turkey", "Sundaresan Jagannathan, Scottish NHS, United Kingdom", "Andrew James, University of Toronto, Canada", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Arne Løberg Sæter, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., UK", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (Editor)", "Jeroen Meintjens, Medisch Centrum Alkmaar, Netherlands", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Thomas Schopf, University Hospital of North-Norway, Norway", "Micaela Thierley, Helse Bergen/Haraldsplass sykehus, Norway", "Nils Thomas Songstad, UNN HF, BUK, Barneavdelingen., Norway", "Kevin Thon, SKDE, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Thomas Wilson, Finnmarkssykehuset HF Klinikk Hammerfest, Norway">
+
+definition
+	Direct_observation[id1] matches {	-- Respiration
+		data matches {
+			Node[id63] occurrences matches {0..1} matches {	-- Presence
+				value matches {
+					Coded_text[id72] matches {
+						term matches {
+							Terminology_term[id81] matches {
+								concept matches {[ac1]}		-- Presence (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Rate
+				value matches {
+					Measured<Quantity>[id82] matches {
+						value matches {
+							Quantity[id73] matches {
+								magnitude matches {|0.0..200.0|}
+								precision matches {0}
+								units matches {
+									Coded_text[id84] matches {
+										term matches {
+											Terminology_term[id83] matches {
+												concept matches {[at73]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Regularity
+				value matches {
+					Coded_text[id74] matches {
+						term matches {
+							Terminology_term[id85] matches {
+								concept matches {[ac2]}		-- Regularity (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Depth
+				value matches {
+					Coded_text[id75] matches {
+						term matches {
+							Terminology_term[id86] matches {
+								concept matches {[ac3]}		-- Depth (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					Text[id76] 
+				}
+			}
+			Node[id10] matches {	-- Clinical interpretation
+				value matches {
+					Text[id77] 
+				}
+			}
+			Node[id71] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id78] 
+				}
+			}
+		}
+		state matches {
+			Node[id66] occurrences matches {0..1} matches {	-- Body position
+				value matches {
+					Coded_text[id79] matches {
+						term matches {
+							Terminology_term[id87] matches {
+								concept matches {[ac4]}		-- Body position (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id57] matches {	-- Confounding factors
+				value matches {
+					Text[id80] 
+				}
+			}
+			use_archetype Node[id56, s2-EHR-Node.inspired_oxygen.v1] occurrences matches {0..1} 
+			use_archetype Node[id38, s2-EHR-Node.level_of_exertion.v0] occurrences matches {0..1} 
+		}
+		qualifiers matches {
+			allow_archetype Node[id59] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Presence (synthesised)">
+				description = <"Observation of spontaneous respiration. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Regularity (synthesised)">
+				description = <"The regularity of spontaneous breathing. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Depth (synthesised)">
+				description = <"The depth of spontaneous breathing. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Body position (synthesised)">
+				description = <"The body position of the individual during the observation. (synthesised)">
+			>
+			["at17"] = <
+				text = <"Normal">
+				description = <"Normal depth of breathing.">
+			>
+			["at18"] = <
+				text = <"Shallow">
+				description = <"Shallow depth of breathing.">
+			>
+			["at19"] = <
+				text = <"Deep">
+				description = <"Deep breathing.">
+			>
+			["at25"] = <
+				text = <"Variable">
+				description = <"Variable depth of breathing.">
+			>
+			["at6"] = <
+				text = <"Regular">
+				description = <"The breathing pattern is regular.">
+			>
+			["at63"] = <
+				text = <"Present">
+				description = <"Respiratory movements are observed.">
+			>
+			["at64"] = <
+				text = <"Not detected">
+				description = <"Respiratory movements are not detected on observation.">
+			>
+			["at66"] = <
+				text = <"Standing/upright">
+				description = <"The individual was standing, walking or running.">
+			>
+			["at67"] = <
+				text = <"Sitting">
+				description = <"The individual was sitting (for example, on a bed or chair).">
+			>
+			["at68"] = <
+				text = <"Reclining">
+				description = <"The individual was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis.">
+			>
+			["at69"] = <
+				text = <"Lying">
+				description = <"The individual was lying on their back.">
+			>
+			["at7"] = <
+				text = <"Irregular">
+				description = <"The breathing pattern is not regular.">
+			>
+			["at71"] = <
+				text = <"Prone">
+				description = <"The individual was lying on their front.">
+			>
+			["at72"] = <
+				text = <"Frequency">
+				description = <"Frequency">
+			>
+			["at73"] = <
+				text = <"/min">
+				description = <"/min unit for heart rate">
+			>
+			["id1"] = <
+				text = <"Respiration">
+				description = <"The characteristics of spontaneous breathing by an individual.">
+			>
+			["id10"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description which represents the clinical meaning and significance of the respiration findings.">
+			>
+			["id17"] = <
+				text = <"Depth">
+				description = <"The depth of spontaneous breathing.">
+			>
+			["id25"] = <
+				text = <"Clinical description">
+				description = <"A narrative description about the spontaneous breathing of the individual.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id38"] = <
+				text = <"Exertion">
+				description = <"Details about physical exertion being undertaken during the examination.">
+			>
+			["id5"] = <
+				text = <"Rate">
+				description = <"The frequency of spontaneous breathing.">
+			>
+			["id56"] = <
+				text = <"Inspired oxygen">
+				description = <"Details of the amount of oxygen being delivered to the individual at the time of observation.">
+			>
+			["id57"] = <
+				text = <"Confounding factors">
+				description = <"Identification of any issues or incidental factors that may impact on interpretation of the observation.">
+			>
+			["id59"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id6"] = <
+				text = <"Regularity">
+				description = <"The regularity of spontaneous breathing.">
+			>
+			["id63"] = <
+				text = <"Presence">
+				description = <"Observation of spontaneous respiration.">
+			>
+			["id66"] = <
+				text = <"Body position">
+				description = <"The body position of the individual during the observation.">
+			>
+			["id71"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the respirations, not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["id5"] = <http://snomed.info/id/271625008>
+			["id6"] = <http://snomed.info/id/278907009>
+			["at6"] = <http://snomed.info/id/276888009>
+			["at7"] = <http://snomed.info/id/248585001>
+			["id17"] = <http://snomed.info/id/271626009>
+			["at17"] = <http://snomed.info/id/301284009>
+			["at18"] = <http://snomed.info/id/386616007>
+			["at19"] = <http://snomed.info/id/289123006>
+			["at25"] = <http://snomed.info/id/248587009>
+			["id25"] = <http://snomed.info/id/703852005>
+			["at66"] = <http://snomed.info/id/10904000>
+			["at67"] = <http://snomed.info/id/33586001>
+			["at68"] = <http://snomed.info/id/272580008>
+			["at69"] = <http://snomed.info/id/40199007>
+			["at71"] = <http://snomed.info/id/1240000>
+			["at73"] = <http://snomed.info/id/258983007>
+		>
+		["openehr"] = <
+			["at72"] = <http://openehr.org/id/382>
+		>
+		["ucum"] = <
+			["at73"] = <http://ucum.org/id/%2Fmin>
+		>
+		["loinc"] = <
+			["id10"] = <http://loinc.org/64110-0>
+			["id5"] = <http://loinc.org/9279-1>
+			["id66"] = <http://loinc.org/8361-8>
+			["id71"] = <http://loinc.org/48767-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at63", "at64">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at6", "at7">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at17", "at18", "at19", "at25">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at66", "at67", "at68", "at69", "at71">
+		>
+	>
+

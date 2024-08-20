@@ -1,0 +1,94 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Composition.problem_list.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Problem list">
+		>
+	>
+
+definition
+	Composition[id1]  matches {
+		code matches {
+			Terminology_term[id10] matches {
+				concept matches {[at1]}
+			}
+		}
+		category matches {
+			Terminology_term[id11] matches {
+				concept matches {[at2]}
+				description matches {"persistent"}
+			}
+		}
+		content matches {
+			Section[id2] matches {	-- Problems
+				items matches {
+					use_archetype Section[id3, s2-EHR-Section.problem_list_headings.v1]
+				}
+			}
+			Section[id4] matches {	-- Additional problem
+				items matches {
+					use_archetype Section[id5, s2-EHR-Section.problem_list_headings.v1]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Master problem List">
+				description = <"-">
+			>
+			["id2"] = <
+				text = <"Principal  problems">
+				description = <"Principal  problems heading">
+			>
+			["id3"] = <
+				text = <"Principal problem">
+				description = <"Major actively managed problem">
+			>
+			["id4"] = <
+				text = <"Additional problems">
+				description = <"Additional problems heading">
+			>
+			["id5"] = <
+				text = <"Additional problem information">
+				description = <"Additional problem information">
+			>
+			["at1"] = <
+				text = <"Problem list - reported">
+				description = <"Is-about code for this Composition: problem list - reported">
+			>
+			["at2"] = <
+				text = <"Persistent Composition category">
+				description = <"Persistent Composition category">
+			>
+		>
+	>
+
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/11450-4>
+			["at1"] = <http://loinc.org/11450-4>
+		>
+		["openehr"] = <
+			["at2"] = <http://openehr.org/id/431>
+		>
+	>
+

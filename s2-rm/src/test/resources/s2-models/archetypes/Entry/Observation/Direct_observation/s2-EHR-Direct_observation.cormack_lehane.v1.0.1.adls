@@ -1,0 +1,124 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0dfd35e7-2a4f-49e5-bc9d-1c9af9a18d0a)
+    s2-EHR-Direct_observation.cormack_lehane.v1.0.1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Karl Trygve Kalleberg, Oslo Universitetssykehus, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjørn Næss, DIPS ASA, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Tanja Riise, Nasjonal IKT HF, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Nils Widnes, Helse-Bergen, Norway", "Thomas Wilson, Finnmarkssykehuset HF Klinikk Hammerfest, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"John Tore Valand, Helse Bergen HF, <john.tore.valand@helse-bergen.no>, 2016-01-06">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.cormack_lehane.v1.0.1, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.cormack_lehane.v1.0.1 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To describe the structures visible during direct laryngoscopy and indirectly to indicate the likely difficulty of laryngeal intubation.">
+            keywords = <"intubation", "laryngoscopy", "grading", "airway", "glottis", "epiglottis", "difficult airway">
+            use = <"Use to describe the structures visible during direct laryngoscopy and indirectly to indicate the likely difficulty of laryngeal intubation.
+            
+            The position of the head and other relevant information will be carried in other relevant ENTRY archetypes.">
+            misuse = <"Not to be used for recording Modified Cormack-Lehane grading (Yentis & Lee, 1998). Use a specific archetype for this purpose.">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Cormack-Lehane classification
+        data cardinality matches {1..*; unordered} matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Grading
+                value matches {
+                    Coded_text[id13] matches {
+                        term matches {
+                            Terminology_term[id15] matches {
+                                concept matches {[ac1]}    -- Grading (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id14]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id12] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at2", "at3", "at4", "at5">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Grading (synthesised)">
+                description = <"A grading of the laryngeal anatomical visibility. (synthesised)">
+            >
+            ["at2"] = <
+                text = <"Grade 1: Full view of the glottis">
+                description = <"Full view of the glottis.">
+            >
+            ["at3"] = <
+                text = <"Grade 2: Partial view of the glottis or arytenoids">
+                description = <"Partial view of the glottis or arytenoids.">
+            >
+            ["at4"] = <
+                text = <"Grade 3: Only epiglottis visible">
+                description = <"Only epiglottis visible.">
+            >
+            ["at5"] = <
+                text = <"Grade 4: Neither glottis nor epiglottis visible">
+                description = <"Neither glottis nor epiglottis visible.">
+            >
+            ["id1"] = <
+                text = <"Cormack-Lehane classification">
+                description = <"The Cormack-Lehane system classifies views obtained by direct laryngoscopy based on the structures seen.">
+            >
+            ["id12"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+            >
+            ["id2"] = <
+                text = <"Grading">
+                description = <"A grading of the laryngeal anatomical visibility.">
+            >
+            ["id7"] = <
+                text = <"Comment">
+                description = <"Narrative comment about the Cormack-Lehane grading.">
+            >
+            ["id9"] = <
+                text = <"Any point in time event">
+                description = <"Unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+        >
+    >
+    

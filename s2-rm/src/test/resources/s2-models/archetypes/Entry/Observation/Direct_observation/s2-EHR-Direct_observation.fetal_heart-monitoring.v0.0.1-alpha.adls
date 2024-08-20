@@ -1,0 +1,373 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=bef4b327-2ecf-4662-969b-471240d8d9ae)
+    s2-EHR-Direct_observation.fetal_heart-monitoring.v0.0.1-alpha
+
+specialize
+    s2-EHR-Direct_observation.fetal_heart.v0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2011-12-20">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.fetal_heart-monitoring.v0.0.1-alpha, copyright 2011 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.fetal_heart-monitoring.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record observations about the fetal heart rate, usually using a cardiotocograph or similar device over a time in late pregnancy or labour, as an assessment about fetal wellbeing in utero.">
+            keywords = <"fetal", "heart", "beat", "rate", "rhythm">
+            use = <"Use to record observations about the fetal heart rate, usually using a cardiotocograph or similar device over a period of time in late pregnancy or labour, as an assessment about fetal wellbeing.
+            
+            Use to capture findings from electronic monitoring, including cardiotocography.
+            
+            Use is restricted to recording details about the heart beat of a fetus.">
+            misuse = <"Not to be used to record simple, intermittent measurements of fetal heart rate - use the parent archetype OBSERVATION.fetal_heart instead.
+            
+            Not to be used for recording the heart rate of infants, children or adults.">
+        >
+    >
+    
+definition
+    Direct_observation[id1.1] matches {    -- Fetal heart monitoring
+        /data matches {
+            after [id6]
+            Node[id0.1] occurrences matches {0..1} matches {    -- Variability
+                value matches {
+                    Range<Quantity>[id0.11] matches {
+                        lower matches {
+                            Measured<Quantity>[id0.22] matches {
+                                value matches {
+                                    Quantity[id0.12] matches {
+                                        magnitude matches {|0.0..<1000.0|}
+                                        precision matches {0}
+                                        units matches {
+                                            Coded_text[id0.25] matches {
+                                                term matches {
+                                                    Terminology_term[id0.24] matches {
+                                                        concept matches {[at0.31]}    -- 1/min
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        upper matches {
+                            Measured<Quantity>[id0.23] matches {
+                                value matches {
+                                    Quantity[id0.13] matches {
+                                        magnitude matches {|0.0..<1000.0|}
+                                        precision matches {0}
+                                        units matches {
+                                            Coded_text[id0.27] matches {
+                                                term matches {
+                                                    Terminology_term[id0.26] matches {
+                                                        concept matches {[at0.31]}    -- 1/min
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.2] occurrences matches {0..1} matches {    -- Variability category
+                value matches {
+                    Coded_text[id0.14] matches {
+                        term matches {
+                            Terminology_term[id0.28] matches {
+                                concept matches {[ac0.1]}    -- Variability category (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.3] occurrences matches {0..1} matches {    -- Variability description
+                value matches {
+                    Text[id0.15]
+                }
+            }
+            Node[id0.4] occurrences matches {0..1} matches {    -- Accelerations
+                value matches {
+                    Coded_text[id0.16] matches {
+                        term matches {
+                            Terminology_term[id0.29] matches {
+                                concept matches {[ac0.2]}    -- Accelerations (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.5] occurrences matches {0..1} matches {    -- Early decelerations
+                value matches {
+                    Coded_text[id0.17] matches {
+                        term matches {
+                            Terminology_term[id0.30] matches {
+                                concept matches {[ac0.3]}    -- Early decelerations (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.6] occurrences matches {0..1} matches {    -- Uncomplicated variable decelerations
+                value matches {
+                    Coded_text[id0.18] matches {
+                        term matches {
+                            Terminology_term[id0.31] matches {
+                                concept matches {[ac0.4]}    -- Uncomplicated variable decelerations (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.7] occurrences matches {0..1} matches {    -- Complicated variable decelerations
+                value matches {
+                    Coded_text[id0.19] matches {
+                        term matches {
+                            Terminology_term[id0.32] matches {
+                                concept matches {[ac0.5]}    -- Complicated variable decelerations (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.8] occurrences matches {0..1} matches {    -- Late decelerations
+                value matches {
+                    Coded_text[id0.20] matches {
+                        term matches {
+                            Terminology_term[id0.33] matches {
+                                concept matches {[ac0.6]}    -- Late decelerations (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            before [id11]
+            Node[id0.9] occurrences matches {0..1} matches {    -- Prolonged decelerations
+                value matches {
+                    Duration_value[id0.21] matches {
+                        magnitude matches {|>=PT0S|}
+                    }
+                }
+            }
+            before [id10]
+            use_archetype Node[id0.10, s2-EHR-Node.media_file.v1]    -- Multimedia representation
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["ucum"] = <
+            ["at0.31"] = <http://ucum.org/id/1%2Fmin>
+        >
+        ["snomed"] = <
+            ["at0.31"] = <http://snomed.info/id/286549009>
+        >
+    >
+    value_sets = <
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at0.11", "at0.12", "at0.13", "at0.14">
+        >
+        ["ac0.2"] = <
+            id = <"ac0.2">
+            members = <"at0.15", "at0.16", "at0.17", "at0.18">
+        >
+        ["ac0.3"] = <
+            id = <"ac0.3">
+            members = <"at0.19", "at0.20", "at0.21">
+        >
+        ["ac0.4"] = <
+            id = <"ac0.4">
+            members = <"at0.22", "at0.23", "at0.24">
+        >
+        ["ac0.5"] = <
+            id = <"ac0.5">
+            members = <"at0.25", "at0.26", "at0.27">
+        >
+        ["ac0.6"] = <
+            id = <"ac0.6">
+            members = <"at0.28", "at0.29", "at0.30">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac0.1"] = <
+                text = <"Variability category (synthesised)">
+                description = <"Variability in the fetal heart rate observed during the monitoring interval. (synthesised)">
+            >
+            ["ac0.2"] = <
+                text = <"Accelerations (synthesised)">
+                description = <"Presence of accelerations observed during the monitoring interval. (synthesised)">
+            >
+            ["ac0.3"] = <
+                text = <"Early decelerations (synthesised)">
+                description = <"Frequency of early accelerations observed during the monitoring interval. (synthesised)">
+            >
+            ["ac0.4"] = <
+                text = <"Uncomplicated variable decelerations (synthesised)">
+                description = <"Frequency of uncomplicated variable decelerations observed during the monitoring interval. (synthesised)">
+            >
+            ["ac0.5"] = <
+                text = <"Complicated variable decelerations (synthesised)">
+                description = <"Frequency of complicated variable decelerations observed during the monitoring interval. (synthesised)">
+            >
+            ["ac0.6"] = <
+                text = <"Late decelerations (synthesised)">
+                description = <"Frequency of late decelerations observed during the monitoring interval. (synthesised)">
+            >
+            ["at0.11"] = <
+                text = <"Absent">
+                description = <"Heart rate variability is undetectable.">
+            >
+            ["at0.12"] = <
+                text = <"Minimal">
+                description = <"Heart rate variability is greater than undetectable, but less than or equal to 5 beats per minute.">
+            >
+            ["at0.13"] = <
+                text = <"Moderate">
+                description = <"Heart rate variability is between 6-25 beats per minute.">
+            >
+            ["at0.14"] = <
+                text = <"Marked">
+                description = <"Heart rate variability is greater than 25 beats per minute.">
+            >
+            ["at0.15"] = <
+                text = <"Absent">
+                description = <"Heart rate accelerations are undetectable.">
+            >
+            ["at0.16"] = <
+                text = <"Spontaneously present">
+                description = <"Heart rate accelerations are present and occurring spontaneously.">
+            >
+            ["at0.17"] = <
+                text = <"Present with fetal scalp stimulation">
+                description = <"Fetal heart accelerations are detected as a result of fetal scalp stimulation.">
+            >
+            ["at0.18"] = <
+                text = <"Absent with fetal scalp stimulation">
+                description = <"Fetal heart rate accelerations are not detected with fetal scalp stimulation.">
+            >
+            ["at0.19"] = <
+                text = <"None">
+                description = <"No decelerations detected.">
+            >
+            ["at0.20"] = <
+                text = <"Occasional">
+                description = <"Occasional decelerations detected but occur in association with less than 50% of uterine contractions.">
+            >
+            ["at0.21"] = <
+                text = <"Repetitive">
+                description = <"Decelerations detected in association with over 50% of uterine contractions.">
+            >
+            ["at0.22"] = <
+                text = <"None">
+                description = <"No decelerations detected.">
+            >
+            ["at0.23"] = <
+                text = <"Occasional">
+                description = <"Occasional decelerations detected but occur in association with less than 50% of uterine contractions.">
+            >
+            ["at0.24"] = <
+                text = <"Repetitive">
+                description = <"Decelerations detected in association with over 50% of uterine contractions.">
+            >
+            ["at0.25"] = <
+                text = <"None">
+                description = <"No decelerations detected.">
+            >
+            ["at0.26"] = <
+                text = <"Occasional">
+                description = <"Occasional decelerations detected but occur in association with less than 50% of uterine contractions.">
+            >
+            ["at0.27"] = <
+                text = <"Repetitive">
+                description = <"Decelerations detected in association with over 50% of uterine contractions.">
+            >
+            ["at0.28"] = <
+                text = <"None">
+                description = <"No decelerations detected.">
+            >
+            ["at0.29"] = <
+                text = <"Occasional">
+                description = <"Occasional decelerations detected but occur in association with less than 50% of uterine contractions.">
+            >
+            ["at0.30"] = <
+                text = <"Repetitive">
+                description = <"Decelerations detected in association with over 50% of uterine contractions.">
+            >
+            ["at0.31"] = <
+                text = <"1/min">
+                description = <"1/min unit.">
+            >
+            ["id0.1"] = <
+                text = <"Variability">
+                description = <"Variability in the fetal heart rate observed during the monitoring interval.">
+            >
+            ["id0.10"] = <
+                text = <"Multimedia representation">
+                description = <"Digital representation of the monitoring findings.">
+            >
+            ["id0.2"] = <
+                text = <"Variability category">
+                description = <"Variability in the fetal heart rate observed during the monitoring interval.">
+            >
+            ["id0.3"] = <
+                text = <"Variability description">
+                description = <"Narrative description of the pattern of variability observed during the monitoring interval.">
+            >
+            ["id0.4"] = <
+                text = <"Accelerations">
+                description = <"Presence of accelerations observed during the monitoring interval.">
+            >
+            ["id0.5"] = <
+                text = <"Early decelerations">
+                description = <"Frequency of early accelerations observed during the monitoring interval.">
+            >
+            ["id0.6"] = <
+                text = <"Uncomplicated variable decelerations">
+                description = <"Frequency of uncomplicated variable decelerations observed during the monitoring interval.">
+            >
+            ["id0.7"] = <
+                text = <"Complicated variable decelerations">
+                description = <"Frequency of complicated variable decelerations observed during the monitoring interval.">
+            >
+            ["id0.8"] = <
+                text = <"Late decelerations">
+                description = <"Frequency of late decelerations observed during the monitoring interval.">
+            >
+            ["id0.9"] = <
+                text = <"Prolonged decelerations">
+                description = <"Duration of a single, prolonged deceleration observed during the monitoring interval.">
+            >
+            ["id1.1"] = <
+                text = <"Fetal heart monitoring">
+                description = <"Observations about the fetal heart rate, usually using a cardiotocograph or similar device over a period of time.">
+            >
+        >
+    >
+    

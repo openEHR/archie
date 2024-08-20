@@ -1,0 +1,163 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=49b904e9-4055-4f6c-8b64-4ce0c5233e12)
+	s2-EHR-Node.medication_authorisation.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, NEHTA, <sam.heard@oceaninformatics.com>, 2010-11-08">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.medication_authorisation.v0.0.1-alpha, copyright 2010 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.medication_authorisation.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details of authorisation of a medication, which may be of the original prescription, or of re-authorisation of a repeat refill.">
+			use = <"Use in the content of a medication order INSTRUCTION to specify the original authorisation, or in the context of a Medication action ACTION to record details of a re-authorisation or authorisation of a re-issue.
+            
+            This archetype covers the common, universal requirements for authorisation of medication but other local archetypes may be required to cover national or regional variants e.g special contractual arrangements or requirements for further attestation by a secondary clinician.">
+			keywords = <"medication", "order", "prescribe", "therapy", "substance", "drug", "therapeutic", "otc", "therapeutic good", "repeat">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Silje Ljosland Bakke, Helse Bergen HF, Norway (Editor)", "John Bennett, NEHTA, Australia", "Sharmila Biswas, Australia", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "David Evans, Queensland Health, Australia", "Sarah Gaunt, NEHTA, Australia", "Trina Gregory, cpc, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Mary Kelaher, NEHTA, Australia", "Robert L'egan, NEHTA, Australia", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Susan McIndoe, Royal District Nursing Service, Australia", "David McKillop, NEHTA, Australia", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Chris Pearce, Melbourne East GP Network, Australia", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "John Taylor, NEHTA, Australia", "Richard Townley-O'Neill, NEHTA, Australia (Editor)", "Kylie Young, The Royal Australian College of General Practitioners, Australia">
+
+definition
+	Node[id1] matches {	-- Medication authorisation
+		items matches {
+			Node[id74] occurrences matches {0..1} matches {	-- Authorisation type
+				value matches {
+					Coded_text[id82] matches {
+						term matches {
+							Terminology_term[id89] matches {
+								concept matches {[ac1]}		-- Authorisation type (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id26] occurrences matches {0..1} matches {	-- Maximum number of refills
+				value matches {
+					Count[id83] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			Node[id79] occurrences matches {0..1} matches {	-- Number of refills issued
+				value matches {
+					Count[id84] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			Node[id80] occurrences matches {0..1} matches {	-- Number of refills remaining
+				value matches {
+					Count[id85] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			Node[id47] occurrences matches {0..1} matches {	-- Minimum interval between refills
+				value matches {
+					Duration_value[id86] 
+				}
+			}
+			Node[id73] occurrences matches {0..1} matches {	-- Authorisation expiry date
+				value matches {
+					Date_time_value[id87] 
+				}
+			}
+			Node[id81] matches {	-- Prescriber endorsement
+				value matches {
+					Text[id88] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Authorisation type (synthesised)">
+				description = <"Whether the medication is only issued once or may re-issued and dispensed 're-filled' after authorisation by the prescriber. (synthesised)">
+			>
+			["at74"] = <
+				text = <"No repeat supply">
+				description = <"Repeat supply has not been authorised.">
+			>
+			["at75"] = <
+				text = <"Repeat prescribing">
+				description = <"Multiple refills of the prescription may be obtained from the prescriber.">
+			>
+			["at76"] = <
+				text = <"Repeat dispensing">
+				description = <"Multiple refills of the prescription may be obtained from the dispenser.">
+			>
+			["id1"] = <
+				text = <"Medication authorisation">
+				description = <"Details of the authorisation of a medicine, vaccine or other therapeutic good.">
+			>
+			["id26"] = <
+				text = <"Maximum number of refills">
+				description = <"The number of times the expressed quantity of medicine, vaccine or other therapeutic good may be refilled or redispensed without a new prescription.">
+			>
+			["id47"] = <
+				text = <"Minimum interval between refills">
+				description = <"The minimum time between repeat supply of the medicine, vaccine or therapeutic good. Note: This is specified by the ordering clinician for a specific reason such as safety or best practice.">
+			>
+			["id73"] = <
+				text = <"Authorisation expiry date">
+				description = <"The repeat supply authorisation has expired after this date.">
+			>
+			["id74"] = <
+				text = <"Authorisation type">
+				description = <"Whether the medication is only issued once or may re-issued and dispensed 're-filled' after authorisation by the prescriber.">
+			>
+			["id79"] = <
+				text = <"Number of refills issued">
+				description = <"The number of refills which have been issued or dispensed for this period of authorisation.">
+			>
+			["id80"] = <
+				text = <"Number of refills remaining">
+				description = <"The number of re-fills or re-issues that remain valid for this authorisation period.">
+			>
+			["id81"] = <
+				text = <"Prescriber endorsement">
+				description = <"An endorsement by the prescriber that the medication may be supplied under a specific contractual arrangement.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/71573-0>
+			["id26"] = <http://loinc.org/82775-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at74", "at75", "at76">
+		>
+	>
+

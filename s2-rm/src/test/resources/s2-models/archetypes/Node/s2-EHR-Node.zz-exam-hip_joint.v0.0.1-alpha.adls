@@ -1,0 +1,53 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0; uid=7bed0e4b-3603-4a0a-8f20-75b80d81be9b)
+	s2-EHR-Node.zz-exam-hip_joint.v0.0.1-alpha
+
+specialize
+	s2-EHR-Node.exam-hip_joint.v0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"???">
+		>
+	>
+
+definition
+	Node[id1.1.1] matches {	-- -
+		/items matches {
+			use_archetype Node[id6, s2-EHR-Node.media_file.v1] 
+			use_archetype Node[id9, s2-EHR-Node.exclusion_exam.v1] 
+			after [id9]
+			Node[id0.3] 
+
+			Node[id4.0.1] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					Coded_text[id16] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1.1"] = <
+				text = <"-">
+				description = <"-">
+			>
+			["id4.0.1"] = <
+				text = <"special clinical interpretation">
+				description = <"-">
+			>
+		>
+	>

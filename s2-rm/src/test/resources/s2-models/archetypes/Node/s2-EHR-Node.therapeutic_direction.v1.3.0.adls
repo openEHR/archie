@@ -1,0 +1,192 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e11288cd-c63c-4d9f-b397-96c0370ea83d)
+	s2-EHR-Node.therapeutic_direction.v1.3.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics, <ian@freshehr.com>, 2017-03-22">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.therapeutic_direction.v1.3.0, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.therapeutic_direction.v1.3.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record structured details of a single therapeutic direction for an ordered therapeutic/prescribable item.
+            
+            Each direction generally applies for a given duration, or fixed number of administrations.">
+			use = <"A direction describes one or more sequential therapeutic administration patterns, coupled with an overall direction duration and details of any repetitive pattern of intended administration outside a single day.
+            
+            For example: '1 tab in the morning, 1 tab at night, for 3 weeks, on Mondays, Wednesdays and Fridays'. This Node allows multiple occurrences to enable representation of a complete set of dosage directions for a single medication order. The Node can be renamed in template or at run-time to represent a specific dosing event such as 'loading dose', 'bolus'.
+            
+            This archetype will generally be used in the context of a parent INSTRUCTION archetype. It has been specifically designed for use within a complex Medication order including IV medication, or for fluid orders in the context of transfusion or dialysis.">
+			keywords = <"medication", "order", "prescribe", "therapy", "substance", "drug", "therapeutic", "otc", "therapeutic good", "pharmaceutical", "product", "posology", "treatment", "transfusion">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "John Bennett, NEHTA, Australia", "SB BHATTACHARYYA, Sudisa Consultancy Services, India", "SBhusan Bhattacharyya, Sudisa Consultancy Services, India", "Sharmila Biswas, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "David Evans, Queensland Health, Australia", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sarah Gaunt, NEHTA, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Trina Gregory, cpc, Australia", "Robert Hausam, Hausam Consulting LLC, United States", "Sam Heard, Ocean Informatics, Australia (Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Mary Kelaher, NEHTA, Australia", "Robert L'egan, NEHTA, Australia", "Russell Leftwich, Russell B Leftwich MD, United States", "Heather Leslie, Ocean Health Systems, Australia (openEHR Editor)", "Colin Macfarlane, Elsevier, United Kingdom", "Susan McIndoe, Royal District Nursing Service, Australia", "David McKillop, NEHTA, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Andrej Orel, Marand d.o.o., Slovenia", "Chris Pearce, Melbourne East GP Network, Australia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "Anoop Shah, University College London, United Kingdom", "Iztok Stotl, UKCLJ, Slovenia", "John Taylor, NEHTA, Australia", "Nyree Taylor, Ocean Informatics, Australia", "Richard Townley-O'Neill, NEHTA, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ines Vaz, UFN, Portugal", "Kylie Young, The Royal Australian College of General Practitioners, Australia">
+
+definition
+	Node[id1] matches {	-- Therapeutic direction
+		items matches {
+			Node[id58] occurrences matches {0..1} matches {	-- Direction sequence
+				value matches {
+					Count[id181] matches {
+						magnitude matches {|>=1|}
+					}
+				}
+			}
+			use_archetype Node[id177, s2-EHR-Node.dosage.v2] 
+			Node[id67] occurrences matches {0..1} matches {	-- Direction duration
+				value matches {
+					Coded_text[id182] matches {
+						term matches {
+							Terminology_term[id194] matches {
+								concept matches {[ac1]}		-- Direction duration (synthesised)
+							}
+						}
+					}
+					Duration_value[id183] matches {
+						magnitude matches {|>=PT0S|}
+					}
+					Plain_text[id184] 
+					Range<Duration_value>[id185] matches {
+						lower matches {
+							Duration_value[id186] matches {
+								magnitude matches {|>=PT0S|}
+							}
+						}
+						upper matches {
+							Duration_value[id187] matches {
+								magnitude matches {|>=PT0S|}
+							}
+						}
+					}
+				}
+			}
+			Node[id173] occurrences matches {0..1} matches {	-- Maximum number of administrations
+				value matches {
+					Count[id188] matches {
+						magnitude matches {|>=1|}
+					}
+				}
+			}
+			Node[id178] occurrences matches {0..1} matches {	-- Review criterion
+				value matches {
+					Quantity[id189] 
+					Count[id190] 
+					Text[id191] 
+				}
+			}
+			Node[id179] occurrences matches {0..1} matches {	-- Order start date/time
+				value matches {
+					Date_time_value[id192] 
+				}
+			}
+			Node[id180] occurrences matches {0..1} matches {	-- Order stop date/time
+				value matches {
+					Date_time_value[id193] 
+				}
+			}
+			use_archetype Node[id91, s2-EHR-Node.timing_nondaily.v1] occurrences matches {0..1} 
+			allow_archetype Node[id157] matches {	-- Additional details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.conditional_medication_rules(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.conditional_medication_rules(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Direction duration (synthesised)">
+				description = <"The length of time for which this direction should be applied. (synthesised)">
+			>
+			["at67"] = <
+				text = <"Indefinite">
+				description = <"The direction should be continued indefinitely.">
+			>
+			["at68"] = <
+				text = <"Indefinite - not to be discontinued">
+				description = <"The direction should be continued indefinitely with a strong recommendation that it never be discontinued.">
+			>
+			["id1"] = <
+				text = <"Therapeutic direction">
+				description = <"Structured details of a single therapeutic direction for an ordered item, such as a medication or blood transfusion order.">
+			>
+			["id157"] = <
+				text = <"Additional details">
+				description = <"Further details about an ordered item direction.">
+			>
+			["id173"] = <
+				text = <"Maximum number of administrations">
+				description = <"The maximum number of administrations to be given for this direction.">
+			>
+			["id177"] = <
+				text = <"Dosage">
+				description = <"The combination of a medication dose and administration timing for a single day.">
+			>
+			["id178"] = <
+				text = <"Review criterion">
+				description = <"After a number of administrations for when a review is required.">
+			>
+			["id179"] = <
+				text = <"Order start date/time">
+				description = <"The date and optional time to commence the administration.">
+			>
+			["id180"] = <
+				text = <"Order stop date/time">
+				description = <"The date and optional time when it is planned to cease the administration.">
+			>
+			["id58"] = <
+				text = <"Direction sequence">
+				description = <"The intended position of this direction within the overall sequence of directions.">
+			>
+			["id67"] = <
+				text = <"Direction duration">
+				description = <"The length of time for which this direction should be applied.">
+			>
+			["id91"] = <
+				text = <"Repetition timing">
+				description = <"Structured details about pattern of repetition for each set of daily directions.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id173"] = <http://loinc.org/104733-1>
+			["id178"] = <http://loinc.org/104749-7>
+			["id179"] = <http://loinc.org/104782-8>
+			["id180"] = <http://loinc.org/104748-9>
+			["id67"] = <http://loinc.org/104793-5>
+			["id91"] = <http://loinc.org/104719-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at67", "at68">
+		>
+	>
+

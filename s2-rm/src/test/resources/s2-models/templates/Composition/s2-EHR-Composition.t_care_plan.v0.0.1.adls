@@ -1,0 +1,38 @@
+template (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Composition.t_care_plan.v0.0.1
+
+specialize
+	s2-EHR-Composition.care_plan.v0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Care plan template">
+		>
+	>
+
+definition
+	Composition[id1.1] 	-- -
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Care Plan template">
+				description = <"-">
+			>
+		>
+	>

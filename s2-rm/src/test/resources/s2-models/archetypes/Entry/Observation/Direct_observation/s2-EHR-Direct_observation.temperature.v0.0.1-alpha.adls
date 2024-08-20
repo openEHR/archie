@@ -1,0 +1,153 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c6bc0f54-6642-45a8-91b5-d2b20e3f9b23)
+    s2-EHR-Direct_observation.temperature.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2008-09-18">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.temperature.v0.0.1-alpha, copyright 2008 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.temperature.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the measured temperature of an identified object.">
+            keywords = <"temperature", ...>
+            use = <"Used for recording the specific temperature of an identified object.">
+            misuse = <"Not to be used to record the body temperature, which is a surrogate for the whole body temperature of the subject - use OBSERVATION.body_temperature for this purpose.">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Temperature
+        data cardinality matches {1..*; unordered} matches {
+            Node[id7] occurrences matches {0..1} matches {    -- Object
+                value matches {
+                    Text[id12]
+                }
+            }
+            Node[id5] matches {    -- Temperature
+                value matches {
+                    Measured<Quantity>[id20] matches {
+                        value matches {
+                            Quantity[id14] matches {    -- Temperature (Cel)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id16] matches {
+                                        term matches {
+                                            Terminology_term[id15] matches {
+                                                concept matches {[at1]}    -- degC
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {1}
+                            }
+                        }
+                    }
+                    Measured<Quantity>[id21] matches {
+                        value matches {
+                            Quantity[id17] matches {    -- Temperature ([degF])
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id19] matches {
+                                        term matches {
+                                            Terminology_term[id18] matches {
+                                                concept matches {[at2]}    -- degF
+                                            }
+                                        }
+                                    }
+                                }
+                                precision matches {1}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            use_archetype Node[id10, s2-EHR-Node.device.v1]    -- Device
+            allow_archetype Node[id11] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["ucum"] = <
+            ["at1"] = <http://ucum.org/id/Cel>
+            ["at2"] = <http://ucum.org/id/%5BdegF%5D>
+        >
+        ["snomed"] = <
+            ["at1"] = <http://snomed.info/id/258710007>
+            ["at2"] = <http://snomed.info/id/258712004>
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["at1"] = <
+                text = <"degC">
+                description = <"Degrees Celsius">
+            >
+            ["at2"] = <
+                text = <"degF">
+                description = <"Degrees Fahrenheit">
+            >
+            ["id1"] = <
+                text = <"Temperature">
+                description = <"A measurement of temperature of a specified object.">
+            >
+            ["id10"] = <
+                text = <"Device">
+                description = <"Details of the device used to measure the temperature.">
+            >
+            ["id11"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id14"] = <
+                text = <"Temperature (Cel)">
+                description = <"Temperature (Cel)">
+            >
+            ["id17"] = <
+                text = <"Temperature ([degF])">
+                description = <"Temperature ([degF])">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Temperature">
+                description = <"The measured temperature of the object.">
+            >
+            ["id7"] = <
+                text = <"Object">
+                description = <"Identify the object for which the temperature is being measured.">
+            >
+        >
+    >
+    

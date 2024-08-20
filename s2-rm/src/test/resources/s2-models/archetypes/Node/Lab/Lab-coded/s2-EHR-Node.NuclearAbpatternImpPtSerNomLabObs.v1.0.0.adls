@@ -1,0 +1,52 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+    s2-EHR-Node.NuclearAbpatternImpPtSerNomLabObs.v1.0.0
+
+specialize
+    s2-EHR-Node.lab_analyte_coded.v0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Joey Coyle <joey.coyle@GraphiteHealth.io>">
+        ["organisation"] = <"S2 Health <http://s2health.org>">
+    >
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Nuclear Ab pattern Ser Imp Pt Nom">
+        >
+    >
+
+definition
+    Node[id1.1.1] matches {    -- Nuclear Ab pattern Ser Imp Pt Nom
+        /value[id0.1]/term[id0.2]/concept matches {[ac0.0.1]}
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1.1"] = <
+                text = <"Nuclear Ab pattern Ser Imp Pt Nom">
+                description = <"-">
+            >
+            ["ac0.0.1"] = <
+                text = <"ANAPattern">
+                description = <"-">
+            >
+        >
+    >
+
+    term_bindings = <
+        ["s2"] = <
+             ["ac0.0.1"] = <http://s2health.org/s2.ANAPattern>
+        >
+        ["loinc"] = <
+            ["id1.1.1"] = <http://loinc.org/14611-8>
+            ["at4"] = <http://loinc.org/14611-8>
+        >
+    >

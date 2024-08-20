@@ -1,0 +1,224 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8935637a-fb8c-4f19-a84c-3abfd3a4a5e7)
+	s2-EHR-Direct_observation.skeletal_age.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Silje Ljosland Bakke, Nasjonal IKT HF, <silje.ljosland.bakke@nasjonalikt.no>, 2017-06-13">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.skeletal_age.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.skeletal_age.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record an estimate of biological age by assessing the degree of maturation of an individual's bones.">
+			use = <"Use to record an estimate of biological age by assessing the degree of maturation of an individual's bones.
+            
+            The skeletal age can be determined by several different methods including but not limited to: Hand-wrist radiograph, Cervical vertebrae radiograph, Frontal sinus radiograph, Midpalatine suture.">
+			keywords = <"bone", "skeleton">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"John Tore Valand, Helse Bergen HF, Norway", "Mikkel Johan Gaup Grønmo, Helse Nord RHF, Norway">
+
+definition
+	Direct_observation[id1] matches {	-- Skeletal age
+		data matches {
+			Node[id6] occurrences matches {0..1} matches {	-- Skeletal age
+				value matches {
+					Duration_value[id31] matches {
+						magnitude matches {|>=PT0S|}
+					}
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id32] 
+				}
+			}
+		}
+		state matches {
+			Node[id29] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id33] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id10] occurrences matches {0..1} matches {	-- Modality
+				value matches {
+					Coded_text[id34] matches {
+						term matches {
+							Terminology_term[id39] matches {
+								concept matches {[ac1]}		-- Modality (synthesised)
+							}
+						}
+					}
+					Plain_text[id35] 
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Assesment method
+				value matches {
+					Text[id36] 
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Body site
+				value matches {
+					Plain_text[id37] 
+					Coded_text[id38] matches {
+						term matches {
+							Terminology_term[id40] matches {
+								concept matches {[ac2]}		-- Body site (synthesised)
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id16, s2-EHR-Node.anatomical_location.v1] 
+			allow_archetype Node[id30] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Modality (synthesised)">
+				description = <"The  modality used to estimate the skeletal age. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Body site (synthesised)">
+				description = <"Simple bodysite where the assessment was performed. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Radiograph">
+				description = <"*">
+			>
+			["at11"] = <
+				text = <"MRI">
+				description = <"*">
+			>
+			["at12"] = <
+				text = <"CT">
+				description = <"*">
+			>
+			["at17"] = <
+				text = <"Hand and wrist">
+				description = <"*">
+			>
+			["at18"] = <
+				text = <"Cervical vertebrae">
+				description = <"*">
+			>
+			["at19"] = <
+				text = <"Frontal sinus">
+				description = <"*">
+			>
+			["at20"] = <
+				text = <"Midpalatal suture">
+				description = <"*">
+			>
+			["at22"] = <
+				text = <"Ultrasound">
+				description = <"*">
+			>
+			["at23"] = <
+				text = <"Teeth">
+				description = <"*">
+			>
+			["at24"] = <
+				text = <"Clavicle">
+				description = <"*">
+			>
+			["at25"] = <
+				text = <"Iliac bone">
+				description = <"*">
+			>
+			["at26"] = <
+				text = <"Femoral head">
+				description = <"*">
+			>
+			["id1"] = <
+				text = <"Skeletal age">
+				description = <"An estimate of biological age by assessing the degree of maturation of an individual's bones.">
+			>
+			["id10"] = <
+				text = <"Modality">
+				description = <"The  modality used to estimate the skeletal age.">
+			>
+			["id15"] = <
+				text = <"Body site">
+				description = <"Simple bodysite where the assessment was performed.">
+			>
+			["id16"] = <
+				text = <"Structured body site">
+				description = <"The structured  bodysite where the assessment where performed.">
+			>
+			["id22"] = <
+				text = <"Assesment method">
+				description = <"The assessment method used to estimate the skeletal age.">
+			>
+			["id29"] = <
+				text = <"Confounding factors">
+				description = <"Narrative descripiton of any issues or factors that may impact on the assessment.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id6"] = <
+				text = <"Skeletal age">
+				description = <"An estimate of biological age by assessing the degree of maturation of an individual's bones.">
+			>
+			["id7"] = <
+				text = <"Comment">
+				description = <"Additional narrative not covered in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id15"] = <http://loinc.org/39111-0>
+			["id29"] = <http://loinc.org/106176-1>
+			["id7"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at10", "at11", "at12", "at22">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at17", "at18", "at19", "at20", "at23", "at24", "at25", "at26">
+		>
+	>
+

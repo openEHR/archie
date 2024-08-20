@@ -1,0 +1,1160 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9603d266-6546-43a1-bfa2-ccde137f94ac)
+    s2-EHR-Score.ymrs.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Dennis Forslund, Cambio Healthcare Systems, <models@cambiocds.com>, 2016-12-14">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.ymrs.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.ymrs.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To assess and record the severity of a manic episode.">
+            keywords = <"YMRS", "Young Mania Rating Scale", "mania", "hypomania", "DSM", "psychiatry">
+            use = <"Use as a tool to assess and record the severity of a manic episode.
+            
+            The questionnaire consists of eleven items which the clinician rates based on the assessment of the patients current condition during the course of the interview. Each contributes points to the total score which ranges from 0-60. 
+            
+            - Elevated mood
+            - Increased motor activity-energy
+            - Sexual interest
+            - Sleep
+            - Irritability
+            - Speech (rate and amount)
+            - Language-thought disorder
+            - Content
+            - Disruptive-aggressive behaviour
+            - Appearance
+            - Insight
+            
+            Score interpretation:
+            14-19 points indicate hypomania
+            20-30 points indicate moderate mania
+            >30 points indicate severe mania.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Young Mania Rating Scale (YMRS)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Elevated mood
+                value matches {
+                    Coded_ordinal[id86] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id88] matches {
+                                term matches {
+                                    Terminology_term[id87] matches {
+                                        concept matches {[at16]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id89] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id91] matches {
+                                term matches {
+                                    Terminology_term[id90] matches {
+                                        concept matches {[at17]}    -- Mildly or possibly increased on questioning
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id92] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id94] matches {
+                                term matches {
+                                    Terminology_term[id93] matches {
+                                        concept matches {[at18]}    -- Definite subjective elevation; optimistic, self-confident; cheerful; appropriate to content
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id95] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id97] matches {
+                                term matches {
+                                    Terminology_term[id96] matches {
+                                        concept matches {[at19]}    -- Elevated, inappropriate to content; humorous
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id98] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id100] matches {
+                                term matches {
+                                    Terminology_term[id99] matches {
+                                        concept matches {[at20]}    -- Euphoric; inappropriate laughter; singing
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Increased motor activity-energy
+                value matches {
+                    Coded_ordinal[id101] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id103] matches {
+                                term matches {
+                                    Terminology_term[id102] matches {
+                                        concept matches {[at21]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id104] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id106] matches {
+                                term matches {
+                                    Terminology_term[id105] matches {
+                                        concept matches {[at22]}    -- Subjectively increased
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id107] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id109] matches {
+                                term matches {
+                                    Terminology_term[id108] matches {
+                                        concept matches {[at23]}    -- Animated; gestures increased
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id110] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id112] matches {
+                                term matches {
+                                    Terminology_term[id111] matches {
+                                        concept matches {[at24]}    -- Excessive energy; hyperactive at times; restless (can be calmed)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id113] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id115] matches {
+                                term matches {
+                                    Terminology_term[id114] matches {
+                                        concept matches {[at25]}    -- Motor excitement; continuous hyperactivity (cannot be calmed)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Sexual interest
+                value matches {
+                    Coded_ordinal[id116] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id118] matches {
+                                term matches {
+                                    Terminology_term[id117] matches {
+                                        concept matches {[at26]}    -- Normal; not increased
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id119] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id121] matches {
+                                term matches {
+                                    Terminology_term[id120] matches {
+                                        concept matches {[at27]}    -- Mildly or possibly increased
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id122] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id124] matches {
+                                term matches {
+                                    Terminology_term[id123] matches {
+                                        concept matches {[at28]}    -- Definite subjective increase on questioning
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id125] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id127] matches {
+                                term matches {
+                                    Terminology_term[id126] matches {
+                                        concept matches {[at29]}    -- Spontaneous sexual content; elaborates on sexual matters; hypersexual by self-report
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id128] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id130] matches {
+                                term matches {
+                                    Terminology_term[id129] matches {
+                                        concept matches {[at30]}    -- Overt sexual acts (toward patients, staff or interviewer)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Sleep
+                value matches {
+                    Coded_ordinal[id131] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id133] matches {
+                                term matches {
+                                    Terminology_term[id132] matches {
+                                        concept matches {[at31]}    -- Reports no decrease in sleep
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id134] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id136] matches {
+                                term matches {
+                                    Terminology_term[id135] matches {
+                                        concept matches {[at32]}    -- Sleeping less than normal amount by up to one hour
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id137] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id139] matches {
+                                term matches {
+                                    Terminology_term[id138] matches {
+                                        concept matches {[at33]}    -- Sleeping less than normal by more than one hour
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id140] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id142] matches {
+                                term matches {
+                                    Terminology_term[id141] matches {
+                                        concept matches {[at34]}    -- Reports decreased need for sleep
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id143] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id145] matches {
+                                term matches {
+                                    Terminology_term[id144] matches {
+                                        concept matches {[at35]}    -- Denies need for sleep
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Irritability
+                value matches {
+                    Coded_ordinal[id146] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id148] matches {
+                                term matches {
+                                    Terminology_term[id147] matches {
+                                        concept matches {[at36]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id149] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id151] matches {
+                                term matches {
+                                    Terminology_term[id150] matches {
+                                        concept matches {[at37]}    -- Subjectively increased
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id152] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id154] matches {
+                                term matches {
+                                    Terminology_term[id153] matches {
+                                        concept matches {[at38]}    -- Irritable at times during interview; recent episodes of anges or annoyance on ward
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id155] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id157] matches {
+                                term matches {
+                                    Terminology_term[id156] matches {
+                                        concept matches {[at39]}    -- Frequently irritable during interview; short, curt throughout
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id158] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id160] matches {
+                                term matches {
+                                    Terminology_term[id159] matches {
+                                        concept matches {[at40]}    -- Hostile, unco-operative; interview impossible
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Speech (rate and amount)
+                value matches {
+                    Coded_ordinal[id161] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id163] matches {
+                                term matches {
+                                    Terminology_term[id162] matches {
+                                        concept matches {[at41]}    -- No increase
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id164] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id166] matches {
+                                term matches {
+                                    Terminology_term[id165] matches {
+                                        concept matches {[at42]}    -- Feels talkative
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id167] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id169] matches {
+                                term matches {
+                                    Terminology_term[id168] matches {
+                                        concept matches {[at43]}    -- Increased rate or amount at times, verbose at times
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id170] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id172] matches {
+                                term matches {
+                                    Terminology_term[id171] matches {
+                                        concept matches {[at44]}    -- Push; consistently increased rate and amount; difficult to interrupt
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id173] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id175] matches {
+                                term matches {
+                                    Terminology_term[id174] matches {
+                                        concept matches {[at45]}    -- Pressured; uninterruptible, continuous speech
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Language - thought disorder
+                value matches {
+                    Coded_ordinal[id176] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id178] matches {
+                                term matches {
+                                    Terminology_term[id177] matches {
+                                        concept matches {[at46]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id179] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id181] matches {
+                                term matches {
+                                    Terminology_term[id180] matches {
+                                        concept matches {[at47]}    -- Circumstantial; mild distractibility; quick thoughts
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id182] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id184] matches {
+                                term matches {
+                                    Terminology_term[id183] matches {
+                                        concept matches {[at48]}    -- Distractible; loses goal of thought; changes topics frequently; racing thoughts
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id185] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id187] matches {
+                                term matches {
+                                    Terminology_term[id186] matches {
+                                        concept matches {[at49]}    -- Flight of ideas; tangentiality; difficult to follow; rhyming, echolalia
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id188] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id190] matches {
+                                term matches {
+                                    Terminology_term[id189] matches {
+                                        concept matches {[at50]}    -- Incoherent; communication impossible
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- Content
+                value matches {
+                    Coded_ordinal[id191] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id193] matches {
+                                term matches {
+                                    Terminology_term[id192] matches {
+                                        concept matches {[at51]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id194] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id196] matches {
+                                term matches {
+                                    Terminology_term[id195] matches {
+                                        concept matches {[at52]}    -- Questionable plans, new interests
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id197] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id199] matches {
+                                term matches {
+                                    Terminology_term[id198] matches {
+                                        concept matches {[at53]}    -- Special project(s); hyperreligous
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id200] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id202] matches {
+                                term matches {
+                                    Terminology_term[id201] matches {
+                                        concept matches {[at54]}    -- Grandiose or paranoid ideas; ideas of reference
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id203] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id205] matches {
+                                term matches {
+                                    Terminology_term[id204] matches {
+                                        concept matches {[at55]}    -- Delusions; hallucinations
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Disruptive-aggressive behaviour
+                value matches {
+                    Coded_ordinal[id206] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id208] matches {
+                                term matches {
+                                    Terminology_term[id207] matches {
+                                        concept matches {[at56]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id209] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id211] matches {
+                                term matches {
+                                    Terminology_term[id210] matches {
+                                        concept matches {[at57]}    -- Sarcastic; loud at times, guarded
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id212] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id214] matches {
+                                term matches {
+                                    Terminology_term[id213] matches {
+                                        concept matches {[at58]}    -- Demanding; threats on ward
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id215] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id217] matches {
+                                term matches {
+                                    Terminology_term[id216] matches {
+                                        concept matches {[at59]}    -- Threatens interviewer; shouting; interview difficult
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id218] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id220] matches {
+                                term matches {
+                                    Terminology_term[id219] matches {
+                                        concept matches {[at60]}    -- Assaultive; destructive; interview impossible
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Appearance
+                value matches {
+                    Coded_ordinal[id221] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id223] matches {
+                                term matches {
+                                    Terminology_term[id222] matches {
+                                        concept matches {[at61]}    -- Appropriate dress and grooming
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id224] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id226] matches {
+                                term matches {
+                                    Terminology_term[id225] matches {
+                                        concept matches {[at62]}    -- Minimally unkempt
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id227] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id229] matches {
+                                term matches {
+                                    Terminology_term[id228] matches {
+                                        concept matches {[at63]}    -- Poorly groomed; moderately dishevelled; overdressed
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id230] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id232] matches {
+                                term matches {
+                                    Terminology_term[id231] matches {
+                                        concept matches {[at64]}    -- Dishevelled; partly clothed; garish make-up
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id233] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id235] matches {
+                                term matches {
+                                    Terminology_term[id234] matches {
+                                        concept matches {[at65]}    -- Completely unkempt; decorated; bizarre garb
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- Insight
+                value matches {
+                    Coded_ordinal[id236] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id238] matches {
+                                term matches {
+                                    Terminology_term[id237] matches {
+                                        concept matches {[at66]}    -- Present; admits illness; agrees with need for treatment
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id239] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id241] matches {
+                                term matches {
+                                    Terminology_term[id240] matches {
+                                        concept matches {[at67]}    -- Possibly ill
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id242] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id244] matches {
+                                term matches {
+                                    Terminology_term[id243] matches {
+                                        concept matches {[at68]}    -- Admits behaviour change, but denies illness
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id245] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id247] matches {
+                                term matches {
+                                    Terminology_term[id246] matches {
+                                        concept matches {[at69]}    -- Admits possible change in behaviour, but denies illness
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id248] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id250] matches {
+                                term matches {
+                                    Terminology_term[id249] matches {
+                                        concept matches {[at70]}    -- Denies any behaviour change
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id85] matches {
+                        magnitude matches {|0..60|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id73] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at16", "at17", "at18", "at19", "at20">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at21", "at22", "at23", "at24", "at25">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at26", "at27", "at28", "at29", "at30">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at31", "at32", "at33", "at34", "at35">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at36", "at37", "at38", "at39", "at40">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at41", "at42", "at43", "at44", "at45">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at46", "at47", "at48", "at49", "at50">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at51", "at52", "at53", "at54", "at55">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at56", "at57", "at58", "at59", "at60">
+        >
+        ["ac10"] = <
+            id = <"ac10">
+            members = <"at61", "at62", "at63", "at64", "at65">
+        >
+        ["ac11"] = <
+            id = <"ac11">
+            members = <"at66", "at67", "at68", "at69", "at70">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Elevated mood (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac10"] = <
+                text = <"Appearance (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac11"] = <
+                text = <"Insight (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Increased motor activity-energy (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Sexual interest (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Sleep (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Irritability (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Speech (rate and amount) (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Language - thought disorder (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Content (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9"] = <
+                text = <"Disruptive-aggressive behaviour (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at16"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Mildly or possibly increased on questioning">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Definite subjective elevation; optimistic, self-confident; cheerful; appropriate to content">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Elevated, inappropriate to content; humorous">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"Euphoric; inappropriate laughter; singing">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at22"] = <
+                text = <"Subjectively increased">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Animated; gestures increased">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"Excessive energy; hyperactive at times; restless (can be calmed)">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Motor excitement; continuous hyperactivity (cannot be calmed)">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"Normal; not increased">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Mildly or possibly increased">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Definite subjective increase on questioning">
+                description = <"*">
+            >
+            ["at29"] = <
+                text = <"Spontaneous sexual content; elaborates on sexual matters; hypersexual by self-report">
+                description = <"*">
+            >
+            ["at30"] = <
+                text = <"Overt sexual acts (toward patients, staff or interviewer)">
+                description = <"*">
+            >
+            ["at31"] = <
+                text = <"Reports no decrease in sleep">
+                description = <"*">
+            >
+            ["at32"] = <
+                text = <"Sleeping less than normal amount by up to one hour">
+                description = <"*">
+            >
+            ["at33"] = <
+                text = <"Sleeping less than normal by more than one hour">
+                description = <"*">
+            >
+            ["at34"] = <
+                text = <"Reports decreased need for sleep">
+                description = <"*">
+            >
+            ["at35"] = <
+                text = <"Denies need for sleep">
+                description = <"*">
+            >
+            ["at36"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at37"] = <
+                text = <"Subjectively increased">
+                description = <"*">
+            >
+            ["at38"] = <
+                text = <"Irritable at times during interview; recent episodes of anges or annoyance on ward">
+                description = <"*">
+            >
+            ["at39"] = <
+                text = <"Frequently irritable during interview; short, curt throughout">
+                description = <"*">
+            >
+            ["at40"] = <
+                text = <"Hostile, unco-operative; interview impossible">
+                description = <"*">
+            >
+            ["at41"] = <
+                text = <"No increase">
+                description = <"*">
+            >
+            ["at42"] = <
+                text = <"Feels talkative">
+                description = <"*">
+            >
+            ["at43"] = <
+                text = <"Increased rate or amount at times, verbose at times">
+                description = <"*">
+            >
+            ["at44"] = <
+                text = <"Push; consistently increased rate and amount; difficult to interrupt">
+                description = <"*">
+            >
+            ["at45"] = <
+                text = <"Pressured; uninterruptible, continuous speech">
+                description = <"*">
+            >
+            ["at46"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at47"] = <
+                text = <"Circumstantial; mild distractibility; quick thoughts">
+                description = <"*">
+            >
+            ["at48"] = <
+                text = <"Distractible; loses goal of thought; changes topics frequently; racing thoughts">
+                description = <"*">
+            >
+            ["at49"] = <
+                text = <"Flight of ideas; tangentiality; difficult to follow; rhyming, echolalia">
+                description = <"*">
+            >
+            ["at50"] = <
+                text = <"Incoherent; communication impossible">
+                description = <"*">
+            >
+            ["at51"] = <
+                text = <"Normal">
+                description = <"*">
+            >
+            ["at52"] = <
+                text = <"Questionable plans, new interests">
+                description = <"*">
+            >
+            ["at53"] = <
+                text = <"Special project(s); hyperreligous">
+                description = <"*">
+            >
+            ["at54"] = <
+                text = <"Grandiose or paranoid ideas; ideas of reference">
+                description = <"*">
+            >
+            ["at55"] = <
+                text = <"Delusions; hallucinations">
+                description = <"*">
+            >
+            ["at56"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at57"] = <
+                text = <"Sarcastic; loud at times, guarded">
+                description = <"*">
+            >
+            ["at58"] = <
+                text = <"Demanding; threats on ward">
+                description = <"*">
+            >
+            ["at59"] = <
+                text = <"Threatens interviewer; shouting; interview difficult">
+                description = <"*">
+            >
+            ["at60"] = <
+                text = <"Assaultive; destructive; interview impossible">
+                description = <"*">
+            >
+            ["at61"] = <
+                text = <"Appropriate dress and grooming">
+                description = <"*">
+            >
+            ["at62"] = <
+                text = <"Minimally unkempt">
+                description = <"*">
+            >
+            ["at63"] = <
+                text = <"Poorly groomed; moderately dishevelled; overdressed">
+                description = <"*">
+            >
+            ["at64"] = <
+                text = <"Dishevelled; partly clothed; garish make-up">
+                description = <"*">
+            >
+            ["at65"] = <
+                text = <"Completely unkempt; decorated; bizarre garb">
+                description = <"*">
+            >
+            ["at66"] = <
+                text = <"Present; admits illness; agrees with need for treatment">
+                description = <"*">
+            >
+            ["at67"] = <
+                text = <"Possibly ill">
+                description = <"*">
+            >
+            ["at68"] = <
+                text = <"Admits behaviour change, but denies illness">
+                description = <"*">
+            >
+            ["at69"] = <
+                text = <"Admits possible change in behaviour, but denies illness">
+                description = <"*">
+            >
+            ["at70"] = <
+                text = <"Denies any behaviour change">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Young Mania Rating Scale (YMRS)">
+                description = <"Clinical interview scale to assess the severity of manic episodes.">
+            >
+            ["id10"] = <
+                text = <"Speech (rate and amount)">
+                description = <"*">
+            >
+            ["id11"] = <
+                text = <"Language - thought disorder">
+                description = <"*">
+            >
+            ["id12"] = <
+                text = <"Content">
+                description = <"*">
+            >
+            ["id13"] = <
+                text = <"Disruptive-aggressive behaviour">
+                description = <"*">
+            >
+            ["id14"] = <
+                text = <"Appearance">
+                description = <"*">
+            >
+            ["id15"] = <
+                text = <"Insight">
+                description = <"*">
+            >
+            ["id16"] = <
+                text = <"Total score">
+                description = <"The sum of each ordinal scores recorded for each of the eleven component responses.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Elevated mood">
+                description = <"*">
+            >
+            ["id6"] = <
+                text = <"Increased motor activity-energy">
+                description = <"*">
+            >
+            ["id7"] = <
+                text = <"Sexual interest">
+                description = <"*">
+            >
+            ["id73"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id8"] = <
+                text = <"Sleep">
+                description = <"*">
+            >
+            ["id9"] = <
+                text = <"Irritability">
+                description = <"*">
+            >
+        >
+    >
+    

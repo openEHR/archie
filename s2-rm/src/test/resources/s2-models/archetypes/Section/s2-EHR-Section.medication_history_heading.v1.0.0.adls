@@ -1,0 +1,54 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Section.medication_history_heading.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"???">
+		>
+	>
+
+definition
+	Section[id1] matches {	-- -
+		items matches {
+			use_archetype  Order[id2, s2-EHR-Order.medication_order.v3]
+			Section[id3] occurrences matches {1} matches {	-- Action history
+				items matches {
+					use_archetype Action[id4, s2-EHR-Action.medication.v1]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Medication history">
+				description = <"History of one medication">
+			>
+			["id2"] = <
+				text = <"Medication order">
+				description = <"The original medication order, if present">
+			>
+			["id3"] = <
+				text = <"Action history">
+				description = <"History of Actions performed to date for this order">
+			>
+			["id4"] = <
+				text = <"Specific action">
+				description = <"-">
+			>
+		>
+	>

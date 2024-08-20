@@ -1,0 +1,296 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=952ca36e-5036-48fb-a2d0-cfa0c912ee10)
+	s2-EHR-Assessment.medication_summary.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2015-12-08">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.medication_summary.v1.0.1, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.medication_summary.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary or persistent information about the use of a single medication or group or class of medications, especially where the pattern of use or cumulative dosage needs to be monitored.">
+			use = <"Use to record summary information about the use of a single medication or group or class of medications, especially where the pattern of use or cumulative dosage needs to be monitored.
+             
+            This archetype has been designed to represent an overview of the use of medication only in specific situations where it adds value to the health record, such as where the cumulative dose of the medication has significant toxic effects or long term use has adverse health impacts. A single instance of the archetype will be used to capture one or more episodes of use, so that a pattern of use can be identified and/or a cumulative dose can be calculated.
+             
+            Examples of use include:
+            - monitoring of the cumulative dose of doxorubicin or methotrexate taken over a lifetime.
+            - monitoring the duration of high dose bisphosphanates.
+            - monitoring the use of an experimental medication in a trial.
+             
+            Use a new instance of this archetype to record details about each medication or group or class of medications.
+             
+            Triggers for closing one episode and commencing a new one will largely reflect local data collection preferences and clinical priorities, including if the individual:
+            - stops using the medication for a significant period of time (which will likely be locally defined).
+            - significantly changes their amount or pattern of use.
+            - changes in the route by which the medication was administered.">
+			keywords = <"drug", "lifelong", "medication", "self-medicate", "medicine", "history", "lifetime", "cumulative", "dose", "use", "administration", "consumption">
+			misuse = <"Not to be used to represent a 'Medication list' - use COMPOSITION.medication_list for this purpose. In addition, not to be used to represent a medication within a 'Medication list' - use either an INSTRUCTION.medication_order or ACTION.medication for this purpose.
+            
+            Not to be used for recording an order for a medication to be administered or consumed - use INSTRUCTION.medication_order for this purpose.
+            
+            Not to be used for documenting the actual administration or consumption of a medication - use ACTION.medication for this purpose.
+            
+            Not to be used for recording the status of use or screening question/answer pairs regarding the medication - use OBSERVATION.medication_screening for this purpose.
+            
+            Not to be used to record an observation about the use of a medication - use OBSERVATION.medication_statement for this purpose.">
+		>
+	>
+	other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Ulrich Andersen, Denmark", "Ole Andreas Bjordal, Webmed, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Terje Bektesevic Holmlund, UiT Norges arktiske universitet, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Colin Brown, NHS Scotland SCIMP, United Kingdom", "Laila Bruun, Oslo universitetssykehus HF, Norway", "Greg Burch, Tiny Medical Apps, United Kingdom", "Fatemeh Chalabianloo, Helse Bergen, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "James Goddard, NHS Wales Informatics Service, United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anca Heyd, DIPS ASA, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Tomi Laptoš, Marand, Slovenia", "Liv Laugen, Oslo universitetssykehus, Norway (Nasjonal IKT redaktør)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Pramil Liyanage, Ministry of Health, Sri Lanka", "Colin Macfarlane, Elsevier, United Kingdom", "James McClay, University of Nebraska Medical Center, United States", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Svenne Naumann, Finnmarkssykehuset, Norway", "Bjørn Næss, DIPS ASA, Norway", "Ana Pereira, CINTESIS, CUF-Porto, Portugal", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Anders Thurin, VGR, Sweden", "Pencho Tonchev, Medical University- Pleven, Bulgaria", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway", "Thomas Wilson, Finnmarkssykehuset HF Klinikk Hammerfest, Norway", "Michael Zampaglione, Australia">
+
+definition
+	Assessment[id1] matches {	-- Medication summary
+		data matches {
+			Node[id3] matches {	-- Medication name
+				value matches {
+					Text[id34] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					Text[id35] 
+				}
+			}
+			Node[id29] matches {	-- Clinical indication
+				value matches {
+					Text[id36] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Onset of use
+				value matches {
+					Date_time_value[id37] 
+				}
+			}
+			Node[id9] matches {	-- Episode
+				items matches {
+					Node[id12] occurrences matches {0..1} matches {	-- Episode onset
+						value matches {
+							Date_time_value[id38] 
+						}
+					}
+					Node[id19] matches {	-- Episode indication
+						value matches {
+							Text[id39] 
+						}
+					}
+					Node[id21] matches {	-- Therapeutic intent
+						value matches {
+							Text[id40] 
+						}
+					}
+					Node[id15] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id41] 
+						}
+					}
+					Node[id17] occurrences matches {0..1} matches {	-- Episode amount
+						value matches {
+							Quantity[id42] 
+							Text[id43] 
+						}
+					}
+					allow_archetype Node[id30] matches {	-- Additional details
+						include
+							archetype_id/value matches {/s2-EHR-Node\.dosage(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.dosage(-[a-zA-Z0-9_]+)*\.v2|s2-EHR-Node\.medication(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.medication(-[a-zA-Z0-9_]+)*\.v2|s2-EHR-Node\.therapeutic_direction\.v1/}
+					}
+					Node[id13] occurrences matches {0..1} matches {	-- Episode cessation
+						value matches {
+							Date_time_value[id44] 
+						}
+					}
+					Node[id32] occurrences matches {0..1} matches {	-- Episode duration
+						value matches {
+							Duration_value[id45] matches {
+								magnitude matches {|>=PT0S|}
+							}
+						}
+					}
+					Node[id14] matches {	-- Episode reason for cessation
+						value matches {
+							Text[id46] 
+						}
+					}
+					Node[id33] occurrences matches {0..1} matches {	-- Route
+						value matches {
+							Text[id47] 
+						}
+					}
+					Node[id23] occurrences matches {0..1} matches {	-- Therapeutic response
+						value matches {
+							Text[id48] 
+						}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Cumulative dose
+				value matches {
+					Quantity[id49] 
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Cessation of use
+				value matches {
+					Date_time_value[id50] 
+				}
+			}
+			Node[id31] occurrences matches {0..1} matches {	-- Reason for cessation
+				value matches {
+					Text[id51] 
+				}
+			}
+			Node[id28] occurrences matches {0..1} matches {	-- Cumulative duration
+				value matches {
+					Duration_value[id52] matches {
+						magnitude matches {|>=PT0S|}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id7] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id53] 
+				}
+			}
+			allow_archetype Node[id20] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Medication summary">
+				description = <"Summary or persistent information about the use of a single medication or group of medications, especially where the pattern of use or cumulative dosage needs to be monitored.">
+			>
+			["id10"] = <
+				text = <"Onset of use">
+				description = <"The date when the medication was first administered.">
+			>
+			["id11"] = <
+				text = <"Cessation of use">
+				description = <"The date when the medication was last administered.">
+			>
+			["id12"] = <
+				text = <"Episode onset">
+				description = <"The date of the first administration of the medication for this episode.">
+			>
+			["id13"] = <
+				text = <"Episode cessation">
+				description = <"The date of the last administration of the medication for this episode.">
+			>
+			["id14"] = <
+				text = <"Episode reason for cessation">
+				description = <"The reason why use of the medication was stopped.">
+			>
+			["id15"] = <
+				text = <"Description">
+				description = <"Narrative description about the use of the medication during this episode.">
+			>
+			["id16"] = <
+				text = <"Cumulative dose">
+				description = <"Total amount of the medication used over the lifetime of the individual.">
+			>
+			["id17"] = <
+				text = <"Episode amount">
+				description = <"Cumulative dose of the medication used in this episode.">
+			>
+			["id19"] = <
+				text = <"Episode indication">
+				description = <"The clinical indication for the use of the medication during this episode, particularly if this is more specific or differs from the 'Clinical indication', or there is no clinical indication that applies for all episodes.">
+			>
+			["id20"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id21"] = <
+				text = <"Therapeutic intent">
+				description = <"The therapeutic intent for use of the medication during this episode.">
+			>
+			["id23"] = <
+				text = <"Therapeutic response">
+				description = <"The observed response to the treatment with this medication during this episode.">
+			>
+			["id28"] = <
+				text = <"Cumulative duration">
+				description = <"The sum of the duration of all episodes.">
+			>
+			["id29"] = <
+				text = <"Clinical indication">
+				description = <"The overall clinical indication for the use of the medication.">
+			>
+			["id3"] = <
+				text = <"Medication name">
+				description = <"Name of medication or group of medications.">
+			>
+			["id30"] = <
+				text = <"Additional details">
+				description = <"Additional details about medication use during this episode.">
+			>
+			["id31"] = <
+				text = <"Reason for cessation">
+				description = <"The reason why all use of the medication was stopped.">
+			>
+			["id32"] = <
+				text = <"Episode duration">
+				description = <"The duration of the use of the medication in this episode.">
+			>
+			["id33"] = <
+				text = <"Route">
+				description = <"The route by which the ordered item was, administed during this episode.">
+			>
+			["id7"] = <
+				text = <"Last updated">
+				description = <"The date this medication summary was last updated.">
+			>
+			["id8"] = <
+				text = <"Clinical description">
+				description = <"Narrative description about the overall use of the medication.">
+			>
+			["id9"] = <
+				text = <"Episode">
+				description = <"Details about use of the medication during a specified period of time.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/91381-4>
+			["id11"] = <http://loinc.org/91382-2>
+			["id28"] = <http://loinc.org/91383-0>
+			["id3"] = <http://loinc.org/74060-5>
+			["id33"] = <http://loinc.org/71468-3>
+			["id8"] = <http://loinc.org/61133-5>
+			["id15"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id21"] = <http://loinc.org/104803-2>
+			["id29"] = <http://loinc.org/104720-8>
+			["id7"] = <http://loinc.org/106177-9>
+		>
+	>
+

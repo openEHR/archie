@@ -1,0 +1,338 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=08be3eb9-85e7-44f4-b39e-4c4be722211d)
+	s2-EHR-Direct_observation.body_segment_area.v1.0.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, Australia, <heather.leslie@atomicainformatics.com>, 2019-03-07">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.body_segment_area.v1.0.2, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.body_segment_area.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the calculation of the cross-sectional area of an identified part of the body, usually identified in relation to points of surface anatomy.">
+			use = <"Use to record the calculation of the cross-sectional area of an identified part of the body, usually identified in relation to points of surcace anatomy, including an indication of the relative location of the measurement point, if required. For example: to record the estimation of a mid upper arm area at the mid point between the acromion process of the scapula and the olecranon process of the ulna.
+            
+            The body segment area may be recorded and tracked over time, for example to provide insight into the shape and proportions of an individual's body for purposes of clinical, anthropometric or ergonomic assessment.
+            
+            Common parameters that are measured as circumferences have been added to the DV_CODED_TEXT data type in the 'Body segment name' data Node. As further parameters are identified, these can be added to this list over time.">
+			keywords = <"anthropometry", "measurement", "area">
+			misuse = <"Not to be used to record a body surface area measurement - use the OBSERVATION.body_surface_area for this purpose.
+            
+            Not to be used to record common body segment measurements that have been modelled as separate archetypes, including, but not limited to:
+            - for Head circumference - use OBSERVATION.head_circumference;
+            - for Hip circumference - use OBSERVATION.hip_circumference;
+            - for Waist circumference - use OBSERVATION.waist_circumference; and
+            - for Chest circumference - use OBSERVATION.chest_circumference.
+            
+            Not to be used to record the length, height or width measured between two identified points on the body - use OBSERVATION.body_segment_length for this purpose.
+            
+            Not to be used to record the circumference of a body segment - use OBSERVATION.body_segment_circumference for this purpose.
+            
+            Not to be used to record the area of an internal body organ or a lesion.">
+		>
+	>
+	other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Randi Brendberg, Helse Nord RHF, Norway", "Angela Crovetti, CDC/NIOSH, United States", "Arild Faxvaag, NTNU, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Nasjonal IKT HF, Norway", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse Nord, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Heidi Koikkalainen, United Kingdom (openEHR Editor)", "Tomi Laptoš, Marand, Slovenia", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Anne M Gromsrud, DIPS AS, Norway", "Priscila Maranhão, MEDCIDS-FMUP, Portugal", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Johannes Michael Strehle, Helse-Nord, Norway", "Svenne Naumann, Finnmarkssykehuset, Norway", "Bjørn Næss, DIPS ASA, Norway", "Jayashree Panickar, Karolinska Institute, Sweden", "Line Silsand, univertsity hospital of northern norway, Norway", "Trine Strand, Oslo Universitetssykehus (OUS), Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Micaela Thierley, Helse Bergen, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Body segment area
+		data cardinality matches {2..*; unordered} matches {
+			Node[id5] matches {	-- Body segment name
+				value matches {
+					Plain_text[id33] 
+					Coded_text[id34] matches {
+						term matches {
+							Terminology_term[id43] matches {
+								concept matches {[at17]}
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Laterality
+				value matches {
+					Coded_text[id35] matches {
+						term matches {
+							Terminology_term[id44] matches {
+								concept matches {[ac1]}		-- Laterality (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id9] matches {	-- Area
+				value matches {
+					Measured<Quantity>[id54] matches {
+						value matches {
+							Quantity[id45] matches {	-- Area (mm2)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id47] matches {
+										term matches {
+											Terminology_term[id46] matches {
+												concept matches {[at41]}
+											}
+										}
+									}
+								}
+								precision matches {2}
+							}
+						}
+					}
+					Measured<Quantity>[id55] matches {
+						value matches {
+							Quantity[id48] matches {	-- Area (cm2)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id50] matches {
+										term matches {
+											Terminology_term[id49] matches {
+												concept matches {[at42]}
+											}
+										}
+									}
+								}
+								precision matches {2}
+							}
+						}
+					}
+					Measured<Quantity>[id56] matches {
+						value matches {
+							Quantity[id51] matches {	-- Area ([sin_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id53] matches {
+										term matches {
+											Terminology_term[id52] matches {
+												concept matches {[at43]}
+											}
+										}
+									}
+								}
+								precision matches {2}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id37] 
+				}
+			}
+		}
+		state matches {
+			Node[id12] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id38] 
+				}
+			}
+			Node[id32] occurrences matches {0..1} matches {	-- Body position
+				value matches {
+					Coded_text[id39] matches {
+						term matches {
+							Terminology_term[id57] matches {
+								concept matches {[ac2]}		-- Body position (synthesised)
+							}
+						}
+					}
+					Plain_text[id40] 
+				}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id16, s2-EHR-Node.device.v1] 
+			Node[id28] occurrences matches {0..1} matches {	-- Measurement method
+				value matches {
+					Text[id41] 
+				}
+			}
+			Node[id30] occurrences matches {0..1} matches {	-- Measurement origin/endpoint
+				value matches {
+					Text[id42] 
+				}
+			}
+			allow_archetype Node[id31] matches {	-- Structured origin/endpoint
+				include
+					archetype_id/value matches {/s2-EHR-Node\.anatomical_location\.v1|s2-EHR-Node\.anatomical_location_relative\.v1/}
+			}
+			allow_archetype Node[id17] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Laterality (synthesised)">
+				description = <"Side of the segment measured. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Body position (synthesised)">
+				description = <"The position of the individual at the time of measurement. (synthesised)">
+			>
+			["at17"] = <
+				text = <"Upper arm muscle area">
+				description = <"Calculation of the area of the upper arm, usually derived from the measurement of the upper arm circumference.">
+			>
+			["at36"] = <
+				text = <"Standing">
+				description = <"Standing at the time of measurement.">
+			>
+			["at37"] = <
+				text = <"Sitting">
+				description = <"Sitting (for example on bed or chair) at the time of measurement.">
+			>
+			["at39"] = <
+				text = <"Lying">
+				description = <"Lying flat at the time of measurement.">
+			>
+			["at40"] = <
+				text = <"Area">
+				description = <"Area">
+			>
+			["at41"] = <
+				text = <"mm2">
+				description = <"mm2 unit.">
+			>
+			["at42"] = <
+				text = <"cm2">
+				description = <"cm2 unit.">
+			>
+			["at43"] = <
+				text = <"[sin_i]">
+				description = <"[sin_i] unit.">
+			>
+			["at6"] = <
+				text = <"Left">
+				description = <"Left side of the body.">
+			>
+			["at7"] = <
+				text = <"Right">
+				description = <"Right side of the body.">
+			>
+			["id1"] = <
+				text = <"Body segment area">
+				description = <"Calculation of the cross-sectional area of an identified part of the body, usually identified in relation to points of surface anatomy.">
+			>
+			["id10"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the calculation of the area of the body segment, not captured in other fields.">
+			>
+			["id12"] = <
+				text = <"Confounding factors">
+				description = <"Record any issues or factors that may impact on the measurement of the body segment.">
+			>
+			["id16"] = <
+				text = <"Measuring device">
+				description = <"Details of the device used for measuring the body part.">
+			>
+			["id17"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id28"] = <
+				text = <"Measurement method">
+				description = <"Narrative description of the method used for measurement.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Measurement origin/endpoint">
+				description = <"Identification of a simple body site for the location of the origin/end point of the circumference measurement.">
+			>
+			["id31"] = <
+				text = <"Structured origin/endpoint">
+				description = <"A structured anatomical location for the start/end point of the circumference measurement including relative location, if required.">
+			>
+			["id32"] = <
+				text = <"Body position">
+				description = <"The position of the individual at the time of measurement.">
+			>
+			["id45"] = <
+				text = <"Area (mm2)">
+				description = <"Area (mm2)">
+			>
+			["id48"] = <
+				text = <"Area (cm2)">
+				description = <"Area (cm2)">
+			>
+			["id5"] = <
+				text = <"Body segment name">
+				description = <"Name of the measured body segment.">
+			>
+			["id51"] = <
+				text = <"Area ([sin_i])">
+				description = <"Area ([sin_i])">
+			>
+			["id6"] = <
+				text = <"Laterality">
+				description = <"Side of the segment measured.">
+			>
+			["id9"] = <
+				text = <"Area">
+				description = <"Calculated area of the identified body segment.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at40"] = <http://openehr.org/id/335>
+		>
+		["ucum"] = <
+			["at41"] = <http://ucum.org/id/mm2>
+			["at42"] = <http://ucum.org/id/cm2>
+			["at43"] = <http://ucum.org/id/%5Bsin_i%5D>
+		>
+		["snomed"] = <
+			["at41"] = <http://snomed.info/id/277472009>
+			["at42"] = <http://snomed.info/id/259022006>
+			["at43"] = <http://snomed.info/id/282383003>
+		>
+		["loinc"] = <
+			["id16"] = <http://loinc.org/74720-4>
+			["id32"] = <http://loinc.org/8361-8>
+			["id6"] = <http://loinc.org/20228-3>
+			["id10"] = <http://loinc.org/106173-8>
+			["id12"] = <http://loinc.org/106176-1>
+			["id28"] = <http://loinc.org/106191-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at6", "at7">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at36", "at37", "at39">
+		>
+	>
+

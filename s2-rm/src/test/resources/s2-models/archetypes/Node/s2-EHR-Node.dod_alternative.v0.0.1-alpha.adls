@@ -1,0 +1,100 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7d52ddc7-4ea1-49c9-acbf-f16ae19b8f6c)
+	s2-EHR-Node.dod_alternative.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-04-12">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.dod_alternative.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.dod_alternative.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about a single possible date/time of death.">
+			use = <"To record details about a single possible date of death, including the rationale and source of information.
+            
+            This archetype has been designed to capture information about a possible date of death, where the individual may have more than one recorded within the health system.">
+			keywords = <"time of death", "death">
+			misuse = <"">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Date of death alternative
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Possible date/time of death
+				value matches {
+					Date_time_value[id6] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Source
+				value matches {
+					Text[id7] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Certainty
+				value matches {
+					Text[id8] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id9] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Date of death alternative">
+				description = <"Date/time of death details.">
+			>
+			["id2"] = <
+				text = <"Possible date/time of death">
+				description = <"Proposed alternative date of death.">
+			>
+			["id3"] = <
+				text = <"Source">
+				description = <"Source of information about the possible date/time of death.">
+			>
+			["id4"] = <
+				text = <"Comment">
+				description = <"Additional information about the possible date/time of death, not captured in other data Nodes.">
+			>
+			["id5"] = <
+				text = <"Certainty">
+				description = <"Degree of certainty of timing.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/106173-8>
+		>
+	>
+

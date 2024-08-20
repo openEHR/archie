@@ -1,0 +1,1026 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c7454277-b06e-4ad4-b004-78655d8e7876)
+    s2-EHR-Direct_observation.body_composition.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Ricardo Correia", "Pedro Marques", "Duarte Ferreira", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Priscila Maranhão e Gustavo Bacelar, MEDCIDS-FMUP/ VIRTUAL CARE, <priscilamaranhao@gmail.com; gbacelar@gmail.com>, 2016-11-25">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.body_composition.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.body_composition.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the measurement of the amounts and percentages of fat, bone, water and muscle in the body of an individual.">
+            keywords = <"Body fat", "Muscle mass", "Fat free mass", "Adiposity", "Body fat percentage", "body fat %">
+            use = <"Use to record the measurement of the amounts and percentages of fat, bone, water and muscle in the body of an individual, either directly or through calculation from measurements of skin folds or similar.">
+            misuse = <"Not to be used to record the total body weight of an individual. Use the OBSERVATION.body_weight archetype for this purpose.
+            
+            Not to be used for recording the actual measurement of skin folds or other measurements that may be used to calculate body composition. Use other relevant OBSERVATION archetypes for these purposes.">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Body composition
+        data matches {
+            Node[id121] occurrences matches {0..1} matches {    -- Basic model
+                items matches {
+                    Node[id6] matches {    -- Fat mass
+                        value matches {
+                            Measured<Quantity>[id201] matches {
+                                value matches {
+                                    Quantity[id165] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id203] matches {
+                                                term matches {
+                                                    Terminology_term[id202] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id125] occurrences matches {0..1} matches {    -- Fat percentage
+                        value matches {
+                            Measured<Quantity>[id206] matches {
+                                value matches {
+                                    Quantity[id166] matches {
+                                        magnitude matches {|0.0..100.0|}
+                                        units matches {
+                                            Coded_text[id205] matches {
+                                                term matches {
+                                                    Terminology_term[id204] matches {
+                                                        concept matches {[at50]}    -- %
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id9] occurrences matches {0..1} matches {    -- Fat free mass
+                        value matches {
+                            Measured<Quantity>[id207] matches {
+                                value matches {
+                                    Quantity[id167] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id209] matches {
+                                                term matches {
+                                                    Terminology_term[id208] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id61] occurrences matches {0..1} matches {    -- Atomic level
+                items matches {
+                    Node[id99] occurrences matches {0..1} matches {    -- Chemical Nodes
+                        value matches {
+                            Measured<Quantity>[id210] matches {
+                                value matches {
+                                    Quantity[id168] matches {
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id212] matches {
+                                                term matches {
+                                                    Terminology_term[id211] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id101] occurrences matches {0..1} matches {    -- Hydrogen
+                        value matches {
+                            Measured<Quantity>[id213] matches {
+                                value matches {
+                                    Quantity[id169] matches {
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id215] matches {
+                                                term matches {
+                                                    Terminology_term[id214] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id98] occurrences matches {0..1} matches {    -- Carbon
+                        value matches {
+                            Measured<Quantity>[id216] matches {
+                                value matches {
+                                    Quantity[id170] matches {
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id218] matches {
+                                                term matches {
+                                                    Terminology_term[id217] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id97] occurrences matches {0..1} matches {    -- Oxygen
+                        value matches {
+                            Measured<Quantity>[id219] matches {
+                                value matches {
+                                    Quantity[id171] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id221] matches {
+                                                term matches {
+                                                    Terminology_term[id220] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id65] occurrences matches {0..1} matches {    -- Molecular level
+                items matches {
+                    Node[id105] occurrences matches {0..1} matches {    -- Minerals
+                        value matches {
+                            Measured<Quantity>[id222] matches {
+                                value matches {
+                                    Quantity[id172] matches {
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id224] matches {
+                                                term matches {
+                                                    Terminology_term[id223] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id104] occurrences matches {0..1} matches {    -- Protein
+                        value matches {
+                            Measured<Quantity>[id225] matches {
+                                value matches {
+                                    Quantity[id173] matches {
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id227] matches {
+                                                term matches {
+                                                    Terminology_term[id226] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id103] occurrences matches {0..1} matches {    -- Fat
+                        value matches {
+                            Measured<Quantity>[id228] matches {
+                                value matches {
+                                    Quantity[id174] matches {
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id230] matches {
+                                                term matches {
+                                                    Terminology_term[id229] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id102] occurrences matches {0..1} matches {    -- Water
+                        value matches {
+                            Measured<Quantity>[id231] matches {
+                                value matches {
+                                    Quantity[id175] matches {
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id233] matches {
+                                                term matches {
+                                                    Terminology_term[id232] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id66] occurrences matches {0..1} matches {    -- Cellular level
+                items matches {
+                    Node[id108] occurrences matches {0..1} matches {    -- Extracellular solids
+                        value matches {
+                            Measured<Quantity>[id234] matches {
+                                value matches {
+                                    Quantity[id176] matches {
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id236] matches {
+                                                term matches {
+                                                    Terminology_term[id235] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id107] occurrences matches {0..1} matches {    -- Extracellular fluids
+                        value matches {
+                            Measured<Quantity>[id237] matches {
+                                value matches {
+                                    Quantity[id177] matches {
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id239] matches {
+                                                term matches {
+                                                    Terminology_term[id238] matches {
+                                                        concept matches {[at51]}    -- l
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id106] occurrences matches {0..1} matches {    -- Cell mass
+                        value matches {
+                            Measured<Quantity>[id240] matches {
+                                value matches {
+                                    Quantity[id178] matches {
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id242] matches {
+                                                term matches {
+                                                    Terminology_term[id241] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id69] occurrences matches {0..1} matches {    -- Tissue-system level
+                items matches {
+                    Node[id113] occurrences matches {0..1} matches {    -- Other tissues
+                        value matches {
+                            Measured<Quantity>[id243] matches {
+                                value matches {
+                                    Quantity[id179] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id245] matches {
+                                                term matches {
+                                                    Terminology_term[id244] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id112] occurrences matches {0..1} matches {    -- Visceral organs
+                        value matches {
+                            Measured<Quantity>[id246] matches {
+                                value matches {
+                                    Quantity[id180] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id248] matches {
+                                                term matches {
+                                                    Terminology_term[id247] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id111] occurrences matches {0..1} matches {    -- Bone
+                        value matches {
+                            Measured<Quantity>[id249] matches {
+                                value matches {
+                                    Quantity[id181] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id251] matches {
+                                                term matches {
+                                                    Terminology_term[id250] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id110] occurrences matches {0..1} matches {    -- Skeletal muscle
+                        value matches {
+                            Measured<Quantity>[id252] matches {
+                                value matches {
+                                    Quantity[id182] matches {
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id254] matches {
+                                                term matches {
+                                                    Terminology_term[id253] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id145] occurrences matches {0..1} matches {    -- Total adipose tissue
+                        value matches {
+                            Measured<Quantity>[id255] matches {
+                                value matches {
+                                    Quantity[id183] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id257] matches {
+                                                term matches {
+                                                    Terminology_term[id256] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id140] occurrences matches {0..1} matches {    -- Adipose Tissue
+                        items matches {
+                            Node[id146] occurrences matches {0..1} matches {    -- Visceral adipose tissue mass
+                                value matches {
+                                    Measured<Quantity>[id258] matches {
+                                        value matches {
+                                            Quantity[id184] matches {
+                                                magnitude matches {|>=0.0|}
+                                                precision matches {1}
+                                                units matches {
+                                                    Coded_text[id260] matches {
+                                                        term matches {
+                                                            Terminology_term[id259] matches {
+                                                                concept matches {[at49]}    -- kg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id161] occurrences matches {0..1} matches {    -- Visceral adipose tissue area
+                                value matches {
+                                    Measured<Quantity>[id261] matches {
+                                        value matches {
+                                            Quantity[id185] matches {
+                                                magnitude matches {|>=0.0|}
+                                                precision matches {1}
+                                                units matches {
+                                                    Coded_text[id263] matches {
+                                                        term matches {
+                                                            Terminology_term[id262] matches {
+                                                                concept matches {[at52]}    -- cm2
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id162] occurrences matches {0..1} matches {    -- Visceral adipose tissue volume
+                                value matches {
+                                    Measured<Quantity>[id264] matches {
+                                        value matches {
+                                            Quantity[id186] matches {
+                                                magnitude matches {|>=0.0|}
+                                                precision matches {1}
+                                                units matches {
+                                                    Coded_text[id266] matches {
+                                                        term matches {
+                                                            Terminology_term[id265] matches {
+                                                                concept matches {[at53]}    -- cm3
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id164] occurrences matches {0..1} matches {    -- Subcutaneous adipose tissue volume
+                                value matches {
+                                    Measured<Quantity>[id267] matches {
+                                        value matches {
+                                            Quantity[id187] matches {
+                                                magnitude matches {|>=0.0|}
+                                                precision matches {1}
+                                                units matches {
+                                                    Coded_text[id269] matches {
+                                                        term matches {
+                                                            Terminology_term[id268] matches {
+                                                                concept matches {[at53]}    -- cm3
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id142] occurrences matches {0..1} matches {    -- Subcutaneous adipose tissue mass
+                                value matches {
+                                    Measured<Quantity>[id270] matches {
+                                        value matches {
+                                            Quantity[id188] matches {
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id272] matches {
+                                                        term matches {
+                                                            Terminology_term[id271] matches {
+                                                                concept matches {[at49]}    -- kg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id163] occurrences matches {0..1} matches {    -- Subcutaneous adipose tissue area
+                                value matches {
+                                    Measured<Quantity>[id273] matches {
+                                        value matches {
+                                            Quantity[id189] matches {
+                                                magnitude matches {|>=0.0|}
+                                                precision matches {1}
+                                                units matches {
+                                                    Coded_text[id275] matches {
+                                                        term matches {
+                                                            Terminology_term[id274] matches {
+                                                                concept matches {[at52]}    -- cm2
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id147] occurrences matches {0..1} matches {    -- Interstitial adipose tissue area
+                                value matches {
+                                    Measured<Quantity>[id276] matches {
+                                        value matches {
+                                            Quantity[id190] matches {
+                                                magnitude matches {|>=0.0|}
+                                                precision matches {1}
+                                                units matches {
+                                                    Coded_text[id278] matches {
+                                                        term matches {
+                                                            Terminology_term[id277] matches {
+                                                                concept matches {[at52]}    -- cm2
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id70] occurrences matches {0..1} matches {    -- Whole body
+                items matches {
+                    Node[id119] occurrences matches {0..1} matches {    -- Lower limbs
+                        value matches {
+                            Measured<Quantity>[id279] matches {
+                                value matches {
+                                    Quantity[id191] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id281] matches {
+                                                term matches {
+                                                    Terminology_term[id280] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id120] occurrences matches {0..1} matches {    -- Upper limbs
+                        value matches {
+                            Measured<Quantity>[id282] matches {
+                                value matches {
+                                    Quantity[id192] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id284] matches {
+                                                term matches {
+                                                    Terminology_term[id283] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id117] occurrences matches {0..1} matches {    -- Trunk
+                        value matches {
+                            Measured<Quantity>[id285] matches {
+                                value matches {
+                                    Quantity[id193] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id287] matches {
+                                                term matches {
+                                                    Terminology_term[id286] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id115] occurrences matches {0..1} matches {    -- Neck
+                        value matches {
+                            Measured<Quantity>[id288] matches {
+                                value matches {
+                                    Quantity[id194] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id290] matches {
+                                                term matches {
+                                                    Terminology_term[id289] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id114] occurrences matches {0..1} matches {    -- Head
+                        value matches {
+                            Measured<Quantity>[id291] matches {
+                                value matches {
+                                    Quantity[id195] matches {
+                                        magnitude matches {|>=0.0|}
+                                        precision matches {1}
+                                        units matches {
+                                            Coded_text[id293] matches {
+                                                term matches {
+                                                    Terminology_term[id292] matches {
+                                                        concept matches {[at49]}    -- kg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        state matches {
+            Node[id37] occurrences matches {0..1} matches {    -- State of dress
+                value matches {
+                    Coded_text[id196] matches {
+                        term matches {
+                            Terminology_term[id294] matches {
+                                concept matches {[ac1]}    -- State of dress (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id43] occurrences matches {0..1} matches {    -- Confounding factors
+                value matches {
+                    Text[id197]
+                }
+            }
+            allow_archetype Node[id143] matches {     -- Menstrual cycle
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.last_normal_menstrual_period(-[a-zA-Z0-9_]+)*\.v1/}
+            }
+        }
+        qualifiers matches {
+            Node[id13] occurrences matches {0..1} matches {    -- Method
+                value matches {
+                    Text[id198]
+                }
+            }
+            use_archetype Node[id19, s2-EHR-Node.device.v1]    -- Device
+            Node[id23] occurrences matches {0..1} matches {    -- Fat percentage formula
+                value matches {
+                    Text[id199]
+                }
+            }
+            Node[id151] occurrences matches {0..1} matches {    -- Location of measurement
+                value matches {
+                    Text[id200]
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at46"] = <http://openehr.org/id/124>
+            ["at47"] = <http://openehr.org/id/129>
+            ["at48"] = <http://openehr.org/id/335>
+        >
+        ["ucum"] = <
+            ["at49"] = <http://ucum.org/id/kg>
+            ["at50"] = <http://ucum.org/id/%25>
+            ["at51"] = <http://ucum.org/id/l>
+            ["at52"] = <http://ucum.org/id/cm2>
+            ["at53"] = <http://ucum.org/id/cm3>
+        >
+        ["snomed"] = <
+            ["at49"] = <http://snomed.info/id/258683005>
+            ["at50"] = <http://snomed.info/id/415067009>
+            ["at51"] = <http://snomed.info/id/258770004>
+            ["at52"] = <http://snomed.info/id/259022006>
+            ["at53"] = <http://snomed.info/id/258773002>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at43", "at44", "at45">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"State of dress (synthesised)">
+                description = <"Description of the state of dress of the individual at the time of measurement. (synthesised)">
+            >
+            ["at43"] = <
+                text = <"Lighty clothed/underwear">
+                description = <"Clothing which will not add to weight significantly.">
+            >
+            ["at44"] = <
+                text = <"Naked">
+                description = <"Without any clothes.">
+            >
+            ["at45"] = <
+                text = <"Nappy/diaper">
+                description = <"Wearing only a nappy.">
+            >
+            ["at46"] = <
+                text = <"Mass">
+                description = <"Mass">
+            >
+            ["at47"] = <
+                text = <"Volume">
+                description = <"Volume">
+            >
+            ["at48"] = <
+                text = <"Area">
+                description = <"Area">
+            >
+            ["at49"] = <
+                text = <"kg">
+                description = <"Kg unit.">
+            >
+            ["at50"] = <
+                text = <"%">
+                description = <"Percent">
+            >
+            ["at51"] = <
+                text = <"l">
+                description = <"Liter unit.">
+            >
+            ["at52"] = <
+                text = <"cm2">
+                description = <"cm2 unit.">
+            >
+            ["at53"] = <
+                text = <"cm3">
+                description = <"cm3 unit.">
+            >
+            ["id1"] = <
+                text = <"Body composition">
+                description = <"Measurement of the amounts and percentages of fat, bone, water and muscle in the body of an individual.">
+            >
+            ["id101"] = <
+                text = <"Hydrogen">
+                description = <"Assessment of chemical Node hydrogen.">
+            >
+            ["id102"] = <
+                text = <"Water">
+                description = <"Assessment of body water.">
+            >
+            ["id103"] = <
+                text = <"Fat">
+                description = <"Assessment of body fat.">
+            >
+            ["id104"] = <
+                text = <"Protein">
+                description = <"Assessment of body protein.">
+            >
+            ["id105"] = <
+                text = <"Minerals">
+                description = <"Assessment of body minerals.">
+            >
+            ["id106"] = <
+                text = <"Cell mass">
+                description = <"Measurement of cellular mass.">
+            >
+            ["id107"] = <
+                text = <"Extracellular fluids">
+                description = <"Measurement of extracellular fluids.">
+            >
+            ["id108"] = <
+                text = <"Extracellular solids">
+                description = <"Measurement of extracellular solids.">
+            >
+            ["id110"] = <
+                text = <"Skeletal muscle">
+                description = <"Measurement of skeletal muscle.">
+            >
+            ["id111"] = <
+                text = <"Bone">
+                description = <"Measurement of body bone.">
+            >
+            ["id112"] = <
+                text = <"Visceral organs">
+                description = <"Measurement of visceral organs.">
+            >
+            ["id113"] = <
+                text = <"Other tissues">
+                description = <"Measurement of other body tissues.">
+            >
+            ["id114"] = <
+                text = <"Head">
+                description = <"Measurement of head.">
+            >
+            ["id115"] = <
+                text = <"Neck">
+                description = <"Measurement of neck.">
+            >
+            ["id117"] = <
+                text = <"Trunk">
+                description = <"Measurement of trunk.">
+            >
+            ["id119"] = <
+                text = <"Lower limbs">
+                description = <"Measurement of lower limbs.">
+            >
+            ["id120"] = <
+                text = <"Upper limbs">
+                description = <"Measurement of upper limbs.">
+            >
+            ["id121"] = <
+                text = <"Basic model">
+                description = <"Two compartment model with partitions into fat mass (FM) and fat-free mass (FFM).">
+            >
+            ["id125"] = <
+                text = <"Fat percentage">
+                description = <"Body fat measurement in percentage.">
+            >
+            ["id13"] = <
+                text = <"Method">
+                description = <"The methods used to measure body composition.">
+            >
+            ["id140"] = <
+                text = <"Adipose Tissue">
+                description = <"Adipose tissue is defined as sum of adipose tissue, usually excluding bone marrow and adipose tissue
+                 in the head, hands, and feet.">
+            >
+            ["id142"] = <
+                text = <"Subcutaneous adipose tissue mass">
+                description = <"Measurement of subcutaneous adipose tissue (SAT) mass.">
+            >
+            ["id143"] = <
+                text = <"Menstrual cycle">
+                description = <"Details of women's menstrual cycle.">
+            >
+            ["id145"] = <
+                text = <"Total adipose tissue">
+                description = <"Measurement of adipose tissue (TAT).">
+            >
+            ["id146"] = <
+                text = <"Visceral adipose tissue mass">
+                description = <"Measurement of visceral adipose tissue (VAT) mass.">
+            >
+            ["id147"] = <
+                text = <"Interstitial adipose tissue area">
+                description = <"Measurement of Intersticial adipose tissue (IAT).">
+            >
+            ["id151"] = <
+                text = <"Location of measurement">
+                description = <"Body site where the measurement was performed.">
+            >
+            ["id161"] = <
+                text = <"Visceral adipose tissue area">
+                description = <"Measurement of visceral adipose tissue (VAT) area.">
+            >
+            ["id162"] = <
+                text = <"Visceral adipose tissue volume">
+                description = <"Measurement of visceral adipose tissue (VAT) volume.">
+            >
+            ["id163"] = <
+                text = <"Subcutaneous adipose tissue area">
+                description = <"Measurement of subcutaneous adipose tissue (SAT) area.">
+            >
+            ["id164"] = <
+                text = <"Subcutaneous adipose tissue volume">
+                description = <"Measurement of subcutaneous adipose tissue (SAT) volume.">
+            >
+            ["id19"] = <
+                text = <"Device">
+                description = <"Details about devices used to measurement of body composition.">
+            >
+            ["id23"] = <
+                text = <"Fat percentage formula">
+                description = <"Formula used to calculate the fat percentage by skinfold thickness.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id37"] = <
+                text = <"State of dress">
+                description = <"Description of the state of dress of the individual at the time of measurement.">
+            >
+            ["id43"] = <
+                text = <"Confounding factors">
+                description = <"Other incidental factors that may impact on the body composition measurement.">
+            >
+            ["id6"] = <
+                text = <"Fat mass">
+                description = <"Body fat measurement in mass.">
+            >
+            ["id61"] = <
+                text = <"Atomic level">
+                description = <"Measurement of four compartments model of body composition.">
+            >
+            ["id65"] = <
+                text = <"Molecular level">
+                description = <"Measurement of four compartments  model of body composition, eg: Minerals, protein, fat and water.">
+            >
+            ["id66"] = <
+                text = <"Cellular level">
+                description = <"Measurement of three compartments model of body composition. eg: fat mass, lean body mass and bone.">
+            >
+            ["id69"] = <
+                text = <"Tissue-system level">
+                description = <"Measurement of five compartments  model of body composition, eg: other tissue, visceral organs, bone, skeletel muscle and adipose tissue.">
+            >
+            ["id70"] = <
+                text = <"Whole body">
+                description = <"Measurement of five compartments  model of body composition, eg: lower limbs, upper limbs, trunk, neck and head.">
+            >
+            ["id9"] = <
+                text = <"Fat free mass">
+                description = <"Measurement of fat free mass (FFM) which corresponds to protein, water and  minerals.">
+            >
+            ["id97"] = <
+                text = <"Oxygen">
+                description = <"Assessment of chemical Node oxygen.">
+            >
+            ["id98"] = <
+                text = <"Carbon">
+                description = <"Assessment of chemical Node carbon.">
+            >
+            ["id99"] = <
+                text = <"Chemical Nodes">
+                description = <"Assessment of chemical Nodes eg: N, Ca, P, S, Na, K, Cl ; H, C and O.">
+            >
+        >
+    >
+    

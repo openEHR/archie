@@ -1,0 +1,215 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7af18287-05dd-4e50-b5de-35bd75bd5203)
+	s2-EHR-Node.laboratory_test_analyte.v1.1.6
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics, UK, <ian@freshehr.com>, 2015-07-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.laboratory_test_analyte.v1.1.6, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.laboratory_test_analyte.v1.1.6 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a single value laboratory analyte result, commonly found in clinical pathology testing such as medical biochemistry, haematology, immunology and transfusion medicine.">
+			use = <"Use to record a single value laboratory analyte result, commonly found in clinical pathology testing such as medical biochemistry, haematology, immunology and transfusion medicine. They may also be found in anatomical pathology reports as 'ancillary tests'.
+            
+            One or more instances of this archetype may be nested within the 'Test result' SLOT in the OBSERVATION.laboratory_test_result. 
+            
+            In some circumstances this archetype may be carried within a Node.laboratory_test_panel archetype, together with other analytes which are normally tested and/or reported as part of a battery, panel or profile. 
+            
+            This archetype may be used within the setting of more complex laboratory/pathology reporting such as anatomical pathology reports where quantitative results such as cytometric flow studies are often reported alongside conventional macroscopic and microscopic reporting.">
+			keywords = <"laboratory", "pathology", "analyte", "constituent", "result">
+			misuse = <"Not to be used to record anatomical pathology macroscopic/microscopic findings, other than for additional testing such as cytometric flow studies.
+            
+            Not to be used to record results for microbiological culture findings.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Fatemeh Chalabianloo, Helse Bergen, Norway", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Nasjonal IKT, Norway", "Silje Kaada, Helse-Bergen, Avdeling for immunologi og transfusjonsmedisin, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ole Martin Sand, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Paul Miller, SCIMP NHS Scotland, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Wouter Zanen, Eurotranplant, Netherlands", "Lin Zhang, Taikang Insurance Group, China">
+
+definition
+	Node[id1] matches {	-- Laboratory analyte result
+		items matches {
+			Node[id28] occurrences matches {0..1} matches {	-- Analyte result sequence
+				value matches {
+					Count[id30] 
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Analyte name
+				value matches {
+					Text[id31] 
+				}
+			}
+			Node[id2] 	-- Analyte result
+			allow_archetype Node[id15] matches {	-- Analyte result detail
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Reference range guidance
+				value matches {
+					Text[id32] 
+				}
+			}
+			Node[id29] occurrences matches {0..1} 	-- Test method
+			Node[id26] occurrences matches {0..1} matches {	-- Validation time
+				value matches {
+					Date_time_value[id33] 
+				}
+			}
+			Node[id6] matches {	-- Result status
+				value matches {
+					Coded_text[id34] matches {
+						term matches {
+							Terminology_term[id40] matches {
+								concept matches {[ac1]}		-- Result status (synthesised)
+							}
+						}
+					}
+					Plain_text[id35] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Result status time
+				value matches {
+					Date_time_value[id36] 
+				}
+			}
+			Node[id27] occurrences matches {0..1} matches {	-- Specimen
+				value matches {
+					Rwe_id_ref[id37] 
+					Uri_ref[id38] 
+				}
+			}
+			Node[id4] matches {	-- Comment
+				value matches {
+					Text[id39] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Result status (synthesised)">
+				description = <"The status of the analyte result value. (synthesised)">
+			>
+			["at15"] = <
+				text = <"Registered">
+				description = <"The existence of the test is registered in the Laboratory Information System, but there is nothing yet available.">
+			>
+			["at16"] = <
+				text = <"Partial">
+				description = <"This is a partial (e.g. initial, interim or preliminary) Test Result: data in the Test Result may be incomplete or unverified.">
+			>
+			["at17"] = <
+				text = <"Preliminary">
+				description = <"Verified early results are available, but not all results are final. This is a sub-category of 'Partial'.">
+			>
+			["at18"] = <
+				text = <"Final">
+				description = <"The Test result is complete and verified by an authorised person.">
+			>
+			["at19"] = <
+				text = <"Corrected">
+				description = <"The result has been modified subsequent to being Final, and is complete and verified by an authorised person. This is a sub-category of 'Amended'.">
+			>
+			["at20"] = <
+				text = <"Amended">
+				description = <"The result has been modified subsequent to being Final, and is complete and verified by an authorised person, and result data has been changed.">
+			>
+			["at21"] = <
+				text = <"Appended">
+				description = <"Subsequent to being final, the report has been modified by adding new content. The existing content is unchanged. This is a sub-category of 'Amended'.">
+			>
+			["at22"] = <
+				text = <"Entered in error">
+				description = <"The Test Result has been withdrawn following previous Final release.">
+			>
+			["at23"] = <
+				text = <"Cancelled">
+				description = <"The result is unavailable because the test was not started or not completed (also sometimes called 'aborted').">
+			>
+			["id1"] = <
+				text = <"Laboratory analyte result">
+				description = <"The result of a laboratory test for a single analyte value.">
+			>
+			["id15"] = <
+				text = <"Analyte result detail">
+				description = <"Further detail regarding an individual result.">
+			>
+			["id2"] = <
+				text = <"Analyte result">
+				description = <"The value of the analyte result.">
+			>
+			["id25"] = <
+				text = <"Analyte name">
+				description = <"The name of the analyte result.">
+			>
+			["id26"] = <
+				text = <"Validation time">
+				description = <"The date and time that the analyte result was validated in the laboratory by a healthcare practitioner.">
+			>
+			["id27"] = <
+				text = <"Specimen">
+				description = <"Identification of the specimen used for the analyte result.">
+			>
+			["id28"] = <
+				text = <"Analyte result sequence">
+				description = <"The intended position of this analyte result within the overall sequence of analyte results.">
+			>
+			["id29"] = <
+				text = <"Test method">
+				description = <"Description about the method used to perform the test on this analyte only.">
+			>
+			["id4"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the analyte result, not captured in other fields.">
+			>
+			["id5"] = <
+				text = <"Reference range guidance">
+				description = <"Additional advice on the applicability of the reference range to this result or may carry text or coded textual guidance as to whether the result is within the normal range.">
+			>
+			["id6"] = <
+				text = <"Result status">
+				description = <"The status of the analyte result value.">
+			>
+			["id7"] = <
+				text = <"Result status time">
+				description = <"The date and time that the analyte result was issued for the recorded ‘Result status’.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at15", "at16", "at17", "at18", "at20", "at19", "at21", "at23", "at22">
+		>
+	>
+

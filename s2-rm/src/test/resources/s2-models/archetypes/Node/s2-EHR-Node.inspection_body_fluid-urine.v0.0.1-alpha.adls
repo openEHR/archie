@@ -1,0 +1,202 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4ace410b-b772-41ec-b919-97af42313707)
+	s2-EHR-Node.inspection_body_fluid-urine.v0.0.1-alpha
+
+specialize
+	s2-EHR-Node.inspection_body_fluid.v0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2015-06-25">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.inspection_body_fluid-urine.v0.0.1-alpha, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.inspection_body_fluid-urine.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the findings observed during the macroscopic inspection (including odour) of urine.">
+			use = <"Use to record a narrative description, structured details and clinical interpretation about findings observed during the inspection (including odour) of urine.
+            
+            This archetype has been specifically designed to be used as the framework for recording details about examination of urine, with the context of the anatomical site or source of the urine will be carried in the archetypes in which it is nested, including but not limited to:
+            - in the 'Examination findings' SLOT within many of the Node.exam family of archetypes and related inspection archetypes;
+            - in the 'Physical properties' SLOT within the Node.specimen archetype;
+            - in the 'Additional details' SLOT within the OBSERVATION.urinalysis, the OBSERVATION.fluid_output archetypes; and
+            - within other OBSERVATION or Node archetypes, where clinically appropriate.
+            
+            The Node.exclusion_exam archetype can be nested within the 'Examination not done' SLOT to optionally record explicit details about the examination not being performed.
+            
+            While this archetype will most likely be used in the context of a living subject, it is also appropriate to use in recording autopsy findings.
+            
+            Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical description' data Node.">
+			keywords = <"urine", ...>
+			misuse = <"Not to be used to record the inspection of body fluids other than urine - use the parent Node.inspection_body_fluid or other appropriate specialisations for this purpose.
+            
+            Not to be used to record the inspection of blood or blood clots, but only to record the presence of blood or blood clots within urine.
+            
+            Not to be used for recording measurements of urine output - use OBSERVATION archetypes for this purpose. For example: OBSERVATION.fluid_output.
+            
+            Not to be used to record details about a non-physiological fluid.
+            
+            Not to be used for recording the clinical history - use specific OBSERVATION and Node archetypes. For example: OBSERVATION.story and Node.symptom_sign.
+            
+            Not to be used to record the results of a urinalysis test - use OBSERVATION.urinalysis for this purpose.">
+		>
+	>
+	other_contributors = <"Morten Aas, Oslo Universitetssykehus, Norway", "Kerstin Adolfsson, Sweden", "Stine Nyheim Andreassen, DIPS ASA, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "Kristian Berg, Universitetssykehuset Nord Norge, Norway", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Kate Bryan, Stalis Ltd, United Kingdom", "David Burns, East Kent Hospitals University Foundation NHS Trust, United Kingdom", "B Christensen, HUS, Norway", "Peter Coates, NHS England, United Kingdom", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Karlsen, DIPS ASA, Norway", "Dave Kilroy, Application Insight Ltd, United Kingdom", "Shinji Kobayashi, Kyoto University, Japan", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Siv Marie Lien, DIPS ASA, Norway", "Kelvin Lok, Stalis Ltd, United Kingdom", "Ole Kristian Losvik, Losol AS, Norway", "Mark McEvoy, SITS International, Sweden", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Colin Newell, OpusVL, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Rob Organ, Yeovil District Hospital NHS Foundation Trust, United Kingdom", "Petra Palm, Region Östergötland, Sweden", "Mike Pargeter, Across Health Ltd, United Kingdom", "Martin Paulson, Sykehuset i Vestfold, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "John Pyle, self, United Kingdom", "Navin Ramachandran, NHS, United Kingdom", "Cecilia Revelj, Landstinget i Kalmar län, Sweden", "Ingela Sammeli, Landstinget i Värmland, Sweden", "Elin Tell, Region Ostergotland, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Lina Öfverström, Region Östergötland, Sweden">
+
+definition
+	Node[id1.1] matches {	-- Inspection of urine
+		/items matches {
+			Node[id4.1] 	-- Description
+			before [id23]
+			Node[id0.11] occurrences matches {0..1} matches {	-- Clarity
+				value matches {
+					Coded_text[id0.12] matches {
+						term matches {
+							Terminology_term[id0.13] matches {
+								concept matches {[ac0.2]}		-- Clarity (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id22.1] 	-- Blood clots
+		}
+		/items[id19.1]/value matches {
+			Coded_text[id26.1] matches {
+				term matches {
+					Terminology_term[id0.14] matches {
+						concept matches {[ac0.1]}		-- Colour (synthesised)
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac0.1"] = <
+				text = <"Colour (synthesised)">
+				description = <"The colour of the body fluid. (synthesised)">
+			>
+			["ac0.2"] = <
+				text = <"Clarity (synthesised)">
+				description = <"The amount of transparency of the urine. (synthesised)">
+			>
+			["at0.1"] = <
+				text = <"Transparent/colourless">
+				description = <"*">
+			>
+			["at0.10"] = <
+				text = <"Black">
+				description = <"*">
+			>
+			["at0.12"] = <
+				text = <"Clear">
+				description = <"*">
+			>
+			["at0.13"] = <
+				text = <"Hazy">
+				description = <"*">
+			>
+			["at0.14"] = <
+				text = <"Cloudy">
+				description = <"*">
+			>
+			["at0.15"] = <
+				text = <"Turbid">
+				description = <"*">
+			>
+			["at0.2"] = <
+				text = <"Pale straw">
+				description = <"*">
+			>
+			["at0.3"] = <
+				text = <"Transparent yellow">
+				description = <"*">
+			>
+			["at0.4"] = <
+				text = <"Darke yellow">
+				description = <"*">
+			>
+			["at0.5"] = <
+				text = <"Amber/honey">
+				description = <"*">
+			>
+			["at0.6"] = <
+				text = <"Brown">
+				description = <"*">
+			>
+			["at0.7"] = <
+				text = <"Orange">
+				description = <"*">
+			>
+			["at0.8"] = <
+				text = <"Pink/red">
+				description = <"*">
+			>
+			["at0.9"] = <
+				text = <"Blue/green">
+				description = <"*">
+			>
+			["id0.11"] = <
+				text = <"Clarity">
+				description = <"The amount of transparency of the urine.">
+			>
+			["id1.1"] = <
+				text = <"Inspection of urine">
+				description = <"Findings observed during the macroscopic inspection of urine.">
+			>
+			["id19.1"] = <
+				text = <"Colour">
+				description = <"The colour of the body fluid.">
+			>
+			["id22.1"] = <
+				text = <"Blood clots">
+				description = <"Blood clots are observed within or associated with the body fluid.">
+			>
+			["id4.1"] = <
+				text = <"Description">
+				description = <"Narrative description about the fluid.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4.1"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id0.11"] = <http://loinc.org/32167-9>
+		>
+	>
+	value_sets = <
+		["ac0.2"] = <
+			id = <"ac0.2">
+			members = <"at0.12", "at0.13", "at0.14", "at0.15">
+		>
+		["ac0.1"] = <
+			id = <"ac0.1">
+			members = <"at0.1", "at0.2", "at0.3", "at0.4", "at0.5", "at0.6", "at0.7", "at0.8", "at0.9", "at0.10">
+		>
+	>
+

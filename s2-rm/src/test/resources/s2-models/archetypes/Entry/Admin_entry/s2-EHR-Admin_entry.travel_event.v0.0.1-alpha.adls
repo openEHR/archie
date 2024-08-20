@@ -1,0 +1,219 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d9fb68b8-19e6-4117-b95a-99a4399c58b2)
+	s2-EHR-Admin_entry.travel_event.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-03-12">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ADMIN_ENTRY.travel_event.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-ADMIN_ENTRY.travel_event.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about a specific trip or travel event, especially for the purposes of public health management.">
+			use = <"Use to record details about a specific trip or travel event.
+            
+            If recording a travel history for an infectious disease contact, the 'subject of care' in the reference model should be recorded as the contact, not the individual who is the subject of care in the health record or assessment.">
+			misuse = <"Not to be used as a detailed contact tracing record, which may require much more detail.">
+		>
+	>
+	other_contributors = <"Silje Ljosland Bakke, Helse Vest, Norway", ...>
+
+definition
+	Admin_entry[id1] matches {	-- Travel event
+		data matches {
+			Node[id33] occurrences matches {0..1} matches {	-- Origin
+				value matches {
+					Text[id34] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Date of departure
+				value matches {
+					Date_time_value[id35] 
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id36] 
+				}
+			}
+			Node[id11] matches {	-- Specific destination
+				items matches {
+					Node[id12] occurrences matches {0..1} matches {	-- Country
+						value matches {
+							Text[id37] 
+						}
+					}
+					Node[id13] occurrences matches {0..1} matches {	-- State/region
+						value matches {
+							Text[id38] 
+						}
+					}
+					Node[id14] occurrences matches {0..1} matches {	-- City
+						value matches {
+							Text[id39] 
+						}
+					}
+					Node[id15] occurrences matches {0..1} matches {	-- Date of arrival
+						value matches {
+							Date_time_value[id40] 
+						}
+					}
+					Node[id17] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id41] 
+						}
+					}
+					Node[id32] matches {	-- Specific place or person
+						value matches {
+							Text[id42] 
+						}
+					}
+					allow_archetype Node[id25] matches {	-- Additional destination details
+						include
+							archetype_id/value matches {/s2-EHR-Node\.address(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.person(-[a-zA-Z0-9_]+)*\.v1/}
+					}
+					Node[id16] occurrences matches {0..1} matches {	-- Date of departure
+						value matches {
+							Date_time_value[id43] 
+						}
+					}
+					Node[id18] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id44] 
+						}
+					}
+				}
+			}
+			allow_archetype Node[id26] matches {	-- Additional trip details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id19] matches {	-- Return transport
+				value matches {
+					Text[id45] 
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Date of return
+				value matches {
+					Date_time_value[id46] 
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id47] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Travel event">
+				description = <"Details about a specific trip or travel event.">
+			>
+			["id10"] = <
+				text = <"Date of departure">
+				description = <"The date when the individual departed their location of origin.">
+			>
+			["id11"] = <
+				text = <"Specific destination">
+				description = <"Details about a single location visited during travel - in country or abroad.">
+			>
+			["id12"] = <
+				text = <"Country">
+				description = <"The country visited.">
+			>
+			["id13"] = <
+				text = <"State/region">
+				description = <"The region visited.">
+			>
+			["id14"] = <
+				text = <"City">
+				description = <"The city visited.">
+			>
+			["id15"] = <
+				text = <"Date of arrival">
+				description = <"Date of arrival to the identified destination.">
+			>
+			["id16"] = <
+				text = <"Date of departure">
+				description = <"Date of exit from the identified destination.">
+			>
+			["id17"] = <
+				text = <"Description">
+				description = <"Narrative description about the visit to the location.">
+			>
+			["id18"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the stay at the identified location, not captured in other fields.">
+			>
+			["id19"] = <
+				text = <"Return transport">
+				description = <"Details about how the individual returned to their home base.">
+			>
+			["id20"] = <
+				text = <"Date of return">
+				description = <"The date when the individual returned back to their location of origin.">
+			>
+			["id21"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the whole trip, not captured in other fields.">
+			>
+			["id23"] = <
+				text = <"Description">
+				description = <"Narrative description about the whole trip, especially about potential exposure to health risks.">
+			>
+			["id25"] = <
+				text = <"Additional destination details">
+				description = <"Additional structured details about the travel to, from and at the destination.">
+			>
+			["id26"] = <
+				text = <"Additional trip details">
+				description = <"Additional structured details about the whole trip.">
+			>
+			["id32"] = <
+				text = <"Specific place or person">
+				description = <"The name of a specific place, person or group of people that was visited.">
+			>
+			["id33"] = <
+				text = <"Origin">
+				description = <"The name of the country, or the region of a country, that the individual regards as 'home' for the purpose of this episode of travel.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id12"] = <http://loinc.org/65649-6>
+			["id14"] = <http://loinc.org/68997-6>
+			["id17"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id18"] = <http://loinc.org/106173-8>
+			["id21"] = <http://loinc.org/106173-8>
+			["id23"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+

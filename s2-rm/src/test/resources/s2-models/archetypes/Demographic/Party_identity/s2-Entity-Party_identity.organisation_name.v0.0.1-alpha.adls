@@ -1,0 +1,118 @@
+archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=1fa0438c-489e-4343-8200-61b54fb4168c)
+    s2-Entity-Party_identity.organisation_name.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Graphite Health">
+        ["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+        ["email"] = <"models@s2.org">
+        ["date"] = <"$today (date is disabled during testing)">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Sebastian Garde, Ocean Informatics, Germany (Editor)", "Omer Hotomaroglu, Turkey (Editor)", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    custodian_namespace = <"io.graphitehealth">
+    custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
+    copyright = <"Copyright (c) 2023 Graphite Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-22">
+        ["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+        ["openehr"] = <"Converted from openEHR archetype openEHR-DEMOGRAPHIC-PARTY_IDENTITY.organisation_name.v0.0.1-alpha">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-PARTY_IDENTITY.organisation_name.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"graphite_openehr_to_s2_adl">
+        ["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Representation of an organisation name.">
+            keywords = <"demographic service", "organisation name">
+            use = <"Used in demographic services to represent an organisation name.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Party_identity[id1] matches {    -- Organisation name
+        name matches {"Organisational unit/section/division name", "Service location name", "Business name", "Locally used name", "Abbreviated name", "Enterprise name", "Other", "Unknown"}
+        description matches {
+            Node[id11] occurrences matches {1} matches {    -- Name
+                value matches {
+                    Text[id15]
+                }
+            }
+            Node[id12] occurrences matches {1} matches {    -- Identifier
+                value matches {
+                    Text[id16]
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at21", "at22", "at23", "at24", "at25", "at26", "at27", "at28">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Organisation name (synthesised)">
+                description = <"An organisation name. (synthesised)">
+            >
+            ["at21"] = <
+                text = <"Organisational unit/section/division name">
+                description = <"Used where a business unit, section, or division within an organisation mat have its own separate identity.">
+            >
+            ["at22"] = <
+                text = <"Service location name">
+                description = <"Used where the service location name is an important part of the organisation name and is used for identification purposes, e.g. Mobile immunization Unit at Bankstown.">
+            >
+            ["at23"] = <
+                text = <"Business name">
+                description = <"Business name used only for trading purposes.">
+            >
+            ["at24"] = <
+                text = <"Locally used name">
+                description = <"Used for local names, e.g. where a medical practice is known by a name that is different from the company registration name or business name.">
+            >
+            ["at25"] = <
+                text = <"Abbreviated name">
+                description = <"A short name or an abbreviated name by which the organisation is known, e.g., HIC.">
+            >
+            ["at26"] = <
+                text = <"Enterprise name">
+                description = <"Generally the complete organisation name should be used to avoid any ambiguity in identification. This should usually be the same as the company registration name.">
+            >
+            ["at27"] = <
+                text = <"Other">
+                description = <"Used when the organisation name does not fit into any one of the categories listed above.">
+            >
+            ["at28"] = <
+                text = <"Unknown">
+                description = <"Used when the organisation name type is unknown.">
+            >
+            ["id1"] = <
+                text = <"Organisation name">
+                description = <"An organisation name.">
+            >
+            ["id11"] = <
+                text = <"Name">
+                description = <"The name by which an organisation is known or called.">
+            >
+            ["id12"] = <
+                text = <"Identifier">
+                description = <"The unique identifier of this name for this organisation.">
+            >
+        >
+    >
+    

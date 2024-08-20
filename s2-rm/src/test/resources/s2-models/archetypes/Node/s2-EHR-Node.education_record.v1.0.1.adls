@@ -1,0 +1,153 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e2c39d3e-6554-404e-b3b6-267bde887339)
+	s2-EHR-Node.education_record.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"John Tore Valand, Helse Bergen, <john.tore.valand@helse-bergen.no>, 2019-03-26">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.education_record.v1.0.1, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.education_record.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about a single period of formal education or training undertaken by an individual, which will contribute to an overview of their educational background.">
+			use = <"Use to record details about a single period of formal education or training undertaken by an individual, which will contribute to an overview of their educational background.
+            
+            An individual may undertake multiple training courses simultaniously, or overlapping. Each education or training should be recorded in a separate instance of this archetype. Multiple instances of this archetype captured over time will build a cumulative history of past and present education and training.
+            
+            Current education or training may be implied from a 'Date commenced' but no 'Milestone achieved'.
+            
+            This archetype has been specifically designed to be used in the 'Education record' SLOT within the EVALUATION.education_summary archetype, but can also be used within any other ENTRY or Node archetypes, where clinically appropriate.">
+			keywords = <"university", "school", "certificate", "apprenticeship", "diploma", "degree", "course", "study", "training">
+			misuse = <"Not to be used for detailed descriptions of health risks or exposure to hazardous substances during the education or training. Use the archetypes EVALUATION.health_risk or EVALUATION.exposure for this purpose.
+            
+            Not to be used to record information about the education or training of an individual at a specific point in time (for example, on June 16, 2014) or during a relative interval of time (for example 'in the past 30 days'. Use an appropriate OBSERVATION archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Amund Aakerholt, Helse Stavanger, KORFOR, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Linda Bokn, Helse Fonna, Norway", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Ronald Krawec, Alberta Health Services, Canada", "Anita Lagos, Haraldsplass Diakonale Sykehus, Norway", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Erhard Lohse, Fjell kommune, Norway", "Paul Miller, SCIMP NHS Scotland, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Jayashree Panickar, Karolinska Institute, Sweden", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Tesfay Teame, Folkehelseinstituttet, Norway", "Micaela Thierley, Helse Bergen/Haraldsplass sykehus, Norway", "Susanne Trønnes, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Education record
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Educational institution
+				value matches {
+					Text[id12] 
+				}
+			}
+			allow_archetype Node[id3] matches {	-- Organization details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Milestone
+				value matches {
+					Text[id13] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Field of study
+				value matches {
+					Text[id14] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id15] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Date started
+				value matches {
+					Date_value[id16] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Date ended
+				value matches {
+					Date_value[id17] 
+				}
+			}
+			allow_archetype Node[id10] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id18] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Education record">
+				description = <"Record of a period of education or training undertaken by an individual.">
+			>
+			["id10"] = <
+				text = <"Additional details">
+				description = <"Further details about the education record.">
+			>
+			["id11"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the education record not captured in other fields.">
+			>
+			["id2"] = <
+				text = <"Educational institution">
+				description = <"Name of the facility, institution or school where the education or training took place.">
+			>
+			["id3"] = <
+				text = <"Organization details">
+				description = <"Structured details about the facility, institution or school.">
+			>
+			["id4"] = <
+				text = <"Milestone">
+				description = <"Name of the education milestone or academic qualification achieved.">
+			>
+			["id5"] = <
+				text = <"Field of study">
+				description = <"The field of study covered by the education or training.">
+			>
+			["id6"] = <
+				text = <"Date started">
+				description = <"The date when the individual commenced the education or training.">
+			>
+			["id7"] = <
+				text = <"Date ended">
+				description = <"The date when the milestone was achieved or the individual ceased the education or training.">
+			>
+			["id9"] = <
+				text = <"Description">
+				description = <"Narrative description about the education or training undertaken by the individual.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/11379-5>
+			["id6"] = <http://loinc.org/106197-7>
+			["id11"] = <http://loinc.org/106173-8>
+			["id9"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+

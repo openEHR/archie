@@ -1,0 +1,284 @@
+template (adl_version=2.1.0; rm_release=0.7.0)
+	s2-EHR-Order.t_simple_medication_order.v1.0.0
+
+specialize
+	s2-EHR-Order.medication_order.v4
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"???">
+		>
+	>
+
+definition
+	Order[id1.1] matches {	-- Basic medication order
+		name matches {"{{medication_name}}"}
+		/activities[id2]/description matches {
+			Node[id71] matches {
+				name matches {"Medication name"}
+				value matches {
+					Coded_text[id181.1] matches {
+						term matches {
+							Terminology_term[id0.1] matches {
+								concept matches {[ac0.1]}		-- Medication name
+							}
+						}
+					}
+				}
+			}
+			Node[id92] matches {
+				value matches {
+					Coded_text[id182.1] matches {
+						term matches {
+							Terminology_term[id0.2] matches {
+								concept matches {[ac0.2]}		-- Medication route
+							}
+						}
+					}
+				}
+			}
+			Node[id93] matches {
+				value matches {
+					Coded_text[id183.1] matches {
+						term matches {
+							Terminology_term[id0.3] matches {
+								concept matches {[ac0.3]}		-- Medication admin site
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id94] occurrences matches {0} 
+			Node[id95] matches {
+				value matches {
+					Coded_text[id184.1] matches {
+						term matches {
+							Terminology_term[id0.4] matches {
+								concept matches {[ac0.4]}		-- Medication admin method
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id96, s2-EHR-Node.device.v1] occurrences matches {0} 
+			use_archetype Node[id144, s2-EHR-Node.t_medication-1.v1] 
+			Node[id48] occurrences matches {0} 
+			Node[id174] occurrences matches {0} 
+			Node[id175] occurrences matches {0} 
+			use_archetype Node[id178, s2-EHR-Node.therapeutic_direction.v1] occurrences matches {0} 
+			Node[id63] occurrences matches {0} 
+			Node[id45] occurrences matches {0} 
+			Node[id108] occurrences matches {0} 
+			Node[id10] occurrences matches {0} 
+			Node[id19] occurrences matches {0} 
+			Node[id149] occurrences matches {0} 
+			Node[id180] occurrences matches {0} 
+			Node[id114] occurrences matches {0..1} matches {
+				items matches {
+					Node[id14] occurrences matches {0} 
+					Node[id12] occurrences matches {0} 
+					Node[id17] occurrences matches {0} 
+					Node[id61] occurrences matches {0} 
+					Node[id51] occurrences matches {0} 
+					use_archetype Node[id113, s2-EHR-Node.medication_order_summary.v0] occurrences matches {0} 
+				}
+			}
+			Node[id130] occurrences matches {0..1} matches {
+				items matches {
+					Node[id107] occurrences matches {0} 
+					use_archetype Node[id66, s2-EHR-Node.t_medication_supply_amount-1.v1] 
+					Node[id133] occurrences matches {0} 
+					Node[id155] occurrences matches {0} 
+					Node[id140] occurrences matches {0} 
+					Node[id156] occurrences matches {0} 
+					Node[id162] occurrences matches {0} 
+					allow_archetype Node[id171] occurrences matches {0} 
+				}
+			}
+			use_archetype Node[id70, s2-EHR-Node.t_medication_auth-1.v1] 
+			allow_archetype Node[id167] occurrences matches {0} 
+		}
+		/qualifiers matches {
+			allow_archetype Node[id9] occurrences matches {0} 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Basic medication order">
+				description = <"Basic medication order">
+			>
+			["ac0.1"] = <
+				text = <"Medication name">
+				description = <"Medication name">
+			>
+			["ac0.2"] = <
+				text = <"Medication route">
+				description = <"Medication route">
+			>
+			["ac0.3"] = <
+				text = <"Medication admin site">
+				description = <"Medication admin site">
+			>
+			["ac0.4"] = <
+				text = <"Medication admin method">
+				description = <"Medication admin method">
+			>
+		>
+	>
+	term_bindings = <
+		["s2"] = <
+			["ac0.1"] = <http://s2health.org/id/s2.RxNormActive>
+			["ac0.2"] = <http://s2health.org/id/s2.MedicationAdministrationRoute>
+			["ac0.3"] = <http://s2health.org/id/s2.MedicationAdministrationSite>
+			["ac0.4"] = <http://s2health.org/id/s2.MedicationAdministrationMethod>
+		>
+		["rxnorm"] = <
+			["ac0.1"] = <http://www.nlm.nih.gov/research/umls/rxnorm>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Node.t_medication_auth-1.v1.0.0
+
+specialize
+	s2-EHR-Node.medication_authorisation.v0
+
+
+definition
+	Node[id1.1] matches {	-- Basic medication authorisation
+		/items matches {
+			Node[id74] occurrences matches {0} 
+			Node[id79] occurrences matches {0} 
+			Node[id80] occurrences matches {0} 
+			Node[id47] occurrences matches {0} 
+			Node[id73] occurrences matches {0} 
+			Node[id81] occurrences matches {0} 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Basic medication authorisation">
+				description = <"Basic medication authorisation">
+			>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Node.t_medication-1.v1.0.0
+
+specialize
+	s2-EHR-Node.medication.v3
+
+
+definition
+	Node[id1.1] matches {	-- Medication
+		/items matches {
+			Node[id133] matches {
+				value matches {
+					Coded_text[id159.1] matches {
+						term matches {
+							Terminology_term[id0.1] matches {
+								concept matches {[ac0.1]}		-- Medication name
+							}
+						}
+					}
+				}
+			}
+			Node[id72] matches {
+				value matches {
+					Coded_text[id160.1] matches {
+						term matches {
+							Terminology_term[id0.2] matches {
+								concept matches {[ac0.2]}		-- Medication form
+							}
+						}
+					}
+				}
+			}
+			Node[id143] occurrences matches {0} 
+			Node[id152] occurrences matches {0} 
+			Node[id151] occurrences matches {0} 
+			Node[id4] occurrences matches {0} 
+			use_archetype Node[id139, s2-EHR-Node.medication.v3] occurrences matches {0} 
+			Node[id140] occurrences matches {0} 
+			Node[id149] occurrences matches {0} 
+			Node[id128] occurrences matches {0} 
+			Node[id134] occurrences matches {0} 
+			allow_archetype Node[id142] occurrences matches {0} 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Medication">
+				description = <"Simple medication description">
+			>
+			["ac0.1"] = <
+				text = <"Medication name">
+				description = <"Medication name">
+			>
+			["ac0.2"] = <
+				text = <"Medication form">
+				description = <"Medication form">
+			>
+		>
+	>
+	term_bindings = <
+		["s2"] = <
+			["ac0.1"] = <http://s2health.org/id/s2.RxNormActive>
+			["ac0.2"] = <http://s2health.org/id/s2.DoseForm>
+		>
+	>
+
+-------------------------------------------------------------
+template_overlay
+	s2-EHR-Node.t_medication_supply_amount-1.v1.0.0
+
+specialize
+	s2-EHR-Node.medication_supply_amount.v0
+
+
+definition
+	Node[id1.1] matches {	-- Medication supply amount
+		/items matches {
+			Node[id162] occurrences matches {0} 
+			Node[id148] occurrences matches {0} 
+			Node[id159] occurrences matches {0} 
+			Node[id160] occurrences matches {0} 
+			Node[id161] occurrences matches {0} 
+			Node[id143] occurrences matches {0} 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Medication supply amount">
+				description = <"Medication supply amount">
+			>
+		>
+	>
+

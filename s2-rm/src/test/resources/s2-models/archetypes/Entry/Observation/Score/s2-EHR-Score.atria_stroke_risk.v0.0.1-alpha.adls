@@ -1,0 +1,549 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9f18ba91-5772-41a2-ab6c-6d09cff488f6)
+    s2-EHR-Score.atria_stroke_risk.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Eneimi Allwell-Brown, Cambio Healthcare Systems, <models@cambiocds.com>, 2016-11-30">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.atria_stroke_risk.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.atria_stroke_risk.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the ATRIA stroke risk score.">
+            keywords = <"atrial fibrillation", "stroke risk", "thromboembolism risk">
+            use = <"Use to record the results for each component parameter and their total sum for the ATRIA stroke risk score.">
+            misuse = <"Do not use if the patient does not have atrial fibrillation.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- ATRIA stroke risk score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- History of stroke
+                value matches {
+                    Coded_ordinal[id46] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id48] matches {
+                                term matches {
+                                    Terminology_term[id47] matches {
+                                        concept matches {[at32]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id49] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id51] matches {
+                                term matches {
+                                    Terminology_term[id50] matches {
+                                        concept matches {[at33]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Age
+                value matches {
+                    Coded_ordinal[id52] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id54] matches {
+                                term matches {
+                                    Terminology_term[id53] matches {
+                                        concept matches {[at13]}    -- Age <65 years with no history of stroke.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id55] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id57] matches {
+                                term matches {
+                                    Terminology_term[id56] matches {
+                                        concept matches {[at14]}    -- Age 65-74 years with no history of stroke.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id58] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id60] matches {
+                                term matches {
+                                    Terminology_term[id59] matches {
+                                        concept matches {[at15]}    -- Age 75-84 years with no history of stroke.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id61] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id63] matches {
+                                term matches {
+                                    Terminology_term[id62] matches {
+                                        concept matches {[at16]}    -- Age ≥85 years with no history of stroke.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id64] matches {
+                        magnitude matches {7}
+                        concept matches {
+                            Coded_text[id66] matches {
+                                term matches {
+                                    Terminology_term[id65] matches {
+                                        concept matches {[at17]}    -- Age 65-84 years with a history of stroke.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id67] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id69] matches {
+                                term matches {
+                                    Terminology_term[id68] matches {
+                                        concept matches {[at18]}    -- Age <65 years with a history of stroke.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id70] matches {
+                        magnitude matches {9}
+                        concept matches {
+                            Coded_text[id72] matches {
+                                term matches {
+                                    Terminology_term[id71] matches {
+                                        concept matches {[at19]}    -- Age ≥85 years with a history of stroke.
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Sex
+                value matches {
+                    Coded_ordinal[id73] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id75] matches {
+                                term matches {
+                                    Terminology_term[id74] matches {
+                                        concept matches {[at20]}    -- Male
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id76] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id78] matches {
+                                term matches {
+                                    Terminology_term[id77] matches {
+                                        concept matches {[at21]}    -- Female
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- History of diabetes mellitus
+                value matches {
+                    Coded_ordinal[id79] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id81] matches {
+                                term matches {
+                                    Terminology_term[id80] matches {
+                                        concept matches {[at30]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id82] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id84] matches {
+                                term matches {
+                                    Terminology_term[id83] matches {
+                                        concept matches {[at31]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- History of congestive heart failure
+                value matches {
+                    Coded_ordinal[id85] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id87] matches {
+                                term matches {
+                                    Terminology_term[id86] matches {
+                                        concept matches {[at28]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id88] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id90] matches {
+                                term matches {
+                                    Terminology_term[id89] matches {
+                                        concept matches {[at29]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- History of hypertension
+                value matches {
+                    Coded_ordinal[id91] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id93] matches {
+                                term matches {
+                                    Terminology_term[id92] matches {
+                                        concept matches {[at26]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id94] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id96] matches {
+                                term matches {
+                                    Terminology_term[id95] matches {
+                                        concept matches {[at27]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Proteinuria
+                value matches {
+                    Coded_ordinal[id97] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id99] matches {
+                                term matches {
+                                    Terminology_term[id98] matches {
+                                        concept matches {[at24]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id100] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id102] matches {
+                                term matches {
+                                    Terminology_term[id101] matches {
+                                        concept matches {[at25]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- eGFR
+                value matches {
+                    Coded_ordinal[id103] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id105] matches {
+                                term matches {
+                                    Terminology_term[id104] matches {
+                                        concept matches {[at22]}    -- eGFR ≥45
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id106] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id108] matches {
+                                term matches {
+                                    Terminology_term[id107] matches {
+                                        concept matches {[at23]}    -- eGFR <45
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id45] matches {
+                        magnitude matches {|0..15|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id36] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at32", "at33">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at13", "at14", "at15", "at16", "at17", "at18", "at19">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at20", "at21">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at30", "at31">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at28", "at29">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at26", "at27">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at24", "at25">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at22", "at23">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"History of stroke (synthesised)">
+                description = <"Does the individual have a history of cerebrovascular accident/stroke? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Age (synthesised)">
+                description = <"What is the age and has the individual ever had a prior stroke? (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Sex (synthesised)">
+                description = <"Is the individual male or female? (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"History of diabetes mellitus (synthesised)">
+                description = <"Does the individual have a history of diabetes mellitus? (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"History of congestive heart failure (synthesised)">
+                description = <"Does the individual have a history of congestive heart failure? (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"History of hypertension (synthesised)">
+                description = <"Does the individual have a history of hypertension? (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Proteinuria (synthesised)">
+                description = <"Does the individual have proteinuria? (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"eGFR (synthesised)">
+                description = <"The estimated glomerular filtration rate (based on MDRD equation) or presence of end-stage renal disease (ESRD). (synthesised)">
+            >
+            ["at13"] = <
+                text = <"Age <65 years with no history of stroke.">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Age 65-74 years with no history of stroke.">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Age 75-84 years with no history of stroke.">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"Age ≥85 years with no history of stroke.">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Age 65-84 years with a history of stroke.">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Age <65 years with a history of stroke.">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Age ≥85 years with a history of stroke.">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"Male">
+                description = <"Individual is male.">
+            >
+            ["at21"] = <
+                text = <"Female">
+                description = <"Individual is female.">
+            >
+            ["at22"] = <
+                text = <"eGFR ≥45">
+                description = <"Estimated GFR equal or greater than 45 ml/min/1.73m2">
+            >
+            ["at23"] = <
+                text = <"eGFR <45">
+                description = <"Estimated GFR less than 45 ml/min/1.73m2 or presence of end-stage renal disease (ESRD)">
+            >
+            ["at24"] = <
+                text = <"No">
+                description = <"Proteinuria absent.">
+            >
+            ["at25"] = <
+                text = <"Yes">
+                description = <"Proteinuria present.">
+            >
+            ["at26"] = <
+                text = <"No">
+                description = <"No history of hypertension.">
+            >
+            ["at27"] = <
+                text = <"Yes">
+                description = <"Positive history of hypertension.">
+            >
+            ["at28"] = <
+                text = <"No">
+                description = <"No history of congestive heart failure.">
+            >
+            ["at29"] = <
+                text = <"Yes">
+                description = <"Positive history of congestive heart failure.">
+            >
+            ["at30"] = <
+                text = <"No">
+                description = <"No history of diabetes mellitus.">
+            >
+            ["at31"] = <
+                text = <"Yes">
+                description = <"Positive history of diabetes mellitus.">
+            >
+            ["at32"] = <
+                text = <"No">
+                description = <"No history of stroke.">
+            >
+            ["at33"] = <
+                text = <"Yes">
+                description = <"Has a history of stroke.">
+            >
+            ["id1"] = <
+                text = <"ATRIA stroke risk score">
+                description = <"An assessment tool used to determine the risk of stroke in patients with atrial fibrillation.">
+            >
+            ["id10"] = <
+                text = <"History of hypertension">
+                description = <"Does the individual have a history of hypertension?">
+            >
+            ["id11"] = <
+                text = <"Proteinuria">
+                description = <"Does the individual have proteinuria?">
+            >
+            ["id12"] = <
+                text = <"eGFR">
+                description = <"The estimated glomerular filtration rate (based on MDRD equation) or presence of end-stage renal disease (ESRD).">
+            >
+            ["id13"] = <
+                text = <"Total score">
+                description = <"Sum of points assigned for each of the component parameters.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"*">
+            >
+            ["id36"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id5"] = <
+                text = <"History of stroke">
+                description = <"Does the individual have a history of cerebrovascular accident/stroke?">
+            >
+            ["id6"] = <
+                text = <"Age">
+                description = <"What is the age and has the individual ever had a prior stroke?">
+            >
+            ["id7"] = <
+                text = <"Sex">
+                description = <"Is the individual male or female?">
+            >
+            ["id8"] = <
+                text = <"History of diabetes mellitus">
+                description = <"Does the individual have a history of diabetes mellitus?">
+            >
+            ["id9"] = <
+                text = <"History of congestive heart failure">
+                description = <"Does the individual have a history of congestive heart failure?">
+            >
+        >
+    >
+    

@@ -1,0 +1,882 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=bf63d99c-882a-439f-ba3a-8cd3058750f7)
+	s2-EHR-Score.ipss.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Navin Ramachandran, UCLH, <navinramachandran@nhs.net>, 2015-05-31">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.ipss.v1.0.1, copyright 2015 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.ipss.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the results for each component parameter and their total sum for the IPSS.">
+			use = <"Use to record the results for each component parameter and their total sum for the IPSS.">
+			keywords = <"I-PSS", "IPSS", "prostate", "BPH">
+			misuse = <"Do not use to record prostate-related symptoms - use the Node.symptom_sign for this purpose.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Navin Ramachandran, NHS, United Kingdom", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Score[id1] matches {	-- International prostate symptom score (IPSS)
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Incomplete emptying
+				value matches {
+					Coded_ordinal[id44] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id46] matches {
+								term matches {
+									Terminology_term[id45] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id47] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id49] matches {
+								term matches {
+									Terminology_term[id48] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id50] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id52] matches {
+								term matches {
+									Terminology_term[id51] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id53] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id55] matches {
+								term matches {
+									Terminology_term[id54] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id56] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id58] matches {
+								term matches {
+									Terminology_term[id57] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id59] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id61] matches {
+								term matches {
+									Terminology_term[id60] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Frequency
+				value matches {
+					Coded_ordinal[id62] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id64] matches {
+								term matches {
+									Terminology_term[id63] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id65] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id67] matches {
+								term matches {
+									Terminology_term[id66] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id68] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id70] matches {
+								term matches {
+									Terminology_term[id69] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id71] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id73] matches {
+								term matches {
+									Terminology_term[id72] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id74] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id76] matches {
+								term matches {
+									Terminology_term[id75] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id77] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id79] matches {
+								term matches {
+									Terminology_term[id78] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Intermittency
+				value matches {
+					Coded_ordinal[id80] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id82] matches {
+								term matches {
+									Terminology_term[id81] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id83] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id85] matches {
+								term matches {
+									Terminology_term[id84] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id86] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id88] matches {
+								term matches {
+									Terminology_term[id87] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id89] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id91] matches {
+								term matches {
+									Terminology_term[id90] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id92] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id94] matches {
+								term matches {
+									Terminology_term[id93] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id95] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id97] matches {
+								term matches {
+									Terminology_term[id96] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Urgency
+				value matches {
+					Coded_ordinal[id98] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id100] matches {
+								term matches {
+									Terminology_term[id99] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id101] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id103] matches {
+								term matches {
+									Terminology_term[id102] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id104] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id106] matches {
+								term matches {
+									Terminology_term[id105] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id107] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id109] matches {
+								term matches {
+									Terminology_term[id108] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id110] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id112] matches {
+								term matches {
+									Terminology_term[id111] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id113] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id115] matches {
+								term matches {
+									Terminology_term[id114] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Weak Stream
+				value matches {
+					Coded_ordinal[id116] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id118] matches {
+								term matches {
+									Terminology_term[id117] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id119] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id121] matches {
+								term matches {
+									Terminology_term[id120] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id122] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id124] matches {
+								term matches {
+									Terminology_term[id123] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id125] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id127] matches {
+								term matches {
+									Terminology_term[id126] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id128] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id130] matches {
+								term matches {
+									Terminology_term[id129] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id131] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id133] matches {
+								term matches {
+									Terminology_term[id132] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Straining
+				value matches {
+					Coded_ordinal[id134] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id136] matches {
+								term matches {
+									Terminology_term[id135] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id137] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id139] matches {
+								term matches {
+									Terminology_term[id138] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id140] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id142] matches {
+								term matches {
+									Terminology_term[id141] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id143] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id145] matches {
+								term matches {
+									Terminology_term[id144] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id146] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id148] matches {
+								term matches {
+									Terminology_term[id147] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id149] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id151] matches {
+								term matches {
+									Terminology_term[id150] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Nocturia
+				value matches {
+					Coded_ordinal[id152] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id154] matches {
+								term matches {
+									Terminology_term[id153] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id155] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id157] matches {
+								term matches {
+									Terminology_term[id156] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id158] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id160] matches {
+								term matches {
+									Terminology_term[id159] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id161] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id163] matches {
+								term matches {
+									Terminology_term[id162] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id164] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id166] matches {
+								term matches {
+									Terminology_term[id165] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id167] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id169] matches {
+								term matches {
+									Terminology_term[id168] matches {
+										concept matches {[at22]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id24] occurrences matches {0..1} matches {	-- Total score (S)
+				value matches {
+					Count[id42] matches {
+						magnitude matches {|0..35|}
+					}
+				}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Quality of life
+				value matches {
+					Coded_ordinal[id170] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id172] matches {
+								term matches {
+									Terminology_term[id171] matches {
+										concept matches {[at25]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id173] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id175] matches {
+								term matches {
+									Terminology_term[id174] matches {
+										concept matches {[at26]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id176] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id178] matches {
+								term matches {
+									Terminology_term[id177] matches {
+										concept matches {[at27]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id179] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id181] matches {
+								term matches {
+									Terminology_term[id180] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id182] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id184] matches {
+								term matches {
+									Terminology_term[id183] matches {
+										concept matches {[at29]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id185] matches {
+						magnitude matches {5}
+						concept matches {
+							Coded_text[id187] matches {
+								term matches {
+									Terminology_term[id186] matches {
+										concept matches {[at30]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id188] matches {
+						magnitude matches {6}
+						concept matches {
+							Coded_text[id190] matches {
+								term matches {
+									Terminology_term[id189] matches {
+										concept matches {[at31]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id34] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Incomplete emptying (synthesised)">
+				description = <"Over the past month how often have you had the sensation of not emptying your bladder completely after urinating? (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Frequency (synthesised)">
+				description = <"Over the past month, how often have you had to urinate again less than two hours after you finished urinating? (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Intermittency (synthesised)">
+				description = <"Over the past month, how often have you found you stopped and started again several times when you urinated? (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Urgency (synthesised)">
+				description = <"Over the past month, how often have you found it difficult to postpone urination? (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Weak Stream (synthesised)">
+				description = <"Over the last month, how often have you had a weak urinary stream? (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Straining (synthesised)">
+				description = <"Over the past month, how often have you had to push or strain to begin urination? (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Nocturia (synthesised)">
+				description = <"Over the past month how many times did you most typically get up each night to urinate, from the time you went to bed until the time you got up in the morning? (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Quality of life (synthesised)">
+				description = <"If you were to spend the rest of your life with your urinary condition just the way it is now, how would you feel about that? (synthesised)">
+			>
+			["at10"] = <
+				text = <"Almost always">
+				description = <"">
+			>
+			["at17"] = <
+				text = <"None">
+				description = <"">
+			>
+			["at18"] = <
+				text = <"1 time">
+				description = <"">
+			>
+			["at19"] = <
+				text = <"2 times">
+				description = <"">
+			>
+			["at20"] = <
+				text = <"3 times">
+				description = <"">
+			>
+			["at21"] = <
+				text = <"4 times">
+				description = <"">
+			>
+			["at22"] = <
+				text = <"5 or more">
+				description = <"">
+			>
+			["at25"] = <
+				text = <"Delighted">
+				description = <"">
+			>
+			["at26"] = <
+				text = <"Pleased">
+				description = <"">
+			>
+			["at27"] = <
+				text = <"Mostly satisfied">
+				description = <"">
+			>
+			["at28"] = <
+				text = <"Equally satisfied/dissatisfied">
+				description = <"">
+			>
+			["at29"] = <
+				text = <"Mostly dissatisfied">
+				description = <"">
+			>
+			["at30"] = <
+				text = <"Unhappy">
+				description = <"">
+			>
+			["at31"] = <
+				text = <"Terrible">
+				description = <"">
+			>
+			["at5"] = <
+				text = <"Not at all">
+				description = <"">
+			>
+			["at6"] = <
+				text = <"Less than 1 time in 5">
+				description = <"">
+			>
+			["at7"] = <
+				text = <"Less than half the time">
+				description = <"">
+			>
+			["at8"] = <
+				text = <"About half the time">
+				description = <"">
+			>
+			["at9"] = <
+				text = <"More than half the time">
+				description = <"">
+			>
+			["id1"] = <
+				text = <"International prostate symptom score (IPSS)">
+				description = <"An assessment score used to screen for, diagnose, and track symptoms of benign prostatic hyperplasia (BPH).">
+			>
+			["id12"] = <
+				text = <"Frequency">
+				description = <"Over the past month, how often have you had to urinate again less than two hours after you finished urinating?">
+			>
+			["id13"] = <
+				text = <"Intermittency">
+				description = <"Over the past month, how often have you found you stopped and started again several times when you urinated?">
+			>
+			["id14"] = <
+				text = <"Urgency">
+				description = <"Over the past month, how often have you found it difficult to postpone urination?">
+			>
+			["id15"] = <
+				text = <"Weak Stream">
+				description = <"Over the last month, how often have you had a weak urinary stream?">
+			>
+			["id16"] = <
+				text = <"Straining">
+				description = <"Over the past month, how often have you had to push or strain to begin urination?">
+			>
+			["id17"] = <
+				text = <"Nocturia">
+				description = <"Over the past month how many times did you most typically get up each night to urinate, from the time you went to bed until the time you got up in the morning?">
+			>
+			["id24"] = <
+				text = <"Total score (S)">
+				description = <"The total sum of each component parameter for the IPSS.">
+			>
+			["id25"] = <
+				text = <"Quality of life">
+				description = <"If you were to spend the rest of your life with your urinary condition just the way it is now, how would you feel about that?">
+			>
+			["id3"] = <
+				text = <"Any point in time event">
+				description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+			>
+			["id34"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id5"] = <
+				text = <"Incomplete emptying">
+				description = <"Over the past month how often have you had the sensation of not emptying your bladder completely after urinating?">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/80976-4>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at5", "at6", "at7", "at8", "at9", "at10">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at5", "at6", "at7", "at8", "at9", "at10">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at5", "at6", "at7", "at8", "at9", "at10">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at5", "at6", "at7", "at8", "at9", "at10">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at5", "at6", "at7", "at8", "at9", "at10">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at5", "at6", "at7", "at8", "at9", "at10">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at17", "at18", "at19", "at20", "at21", "at22">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at25", "at26", "at27", "at28", "at29", "at30", "at31">
+		>
+	>
+

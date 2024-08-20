@@ -1,0 +1,214 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1bed1da4-6912-49d1-8538-82a23c38a310)
+	s2-EHR-Node.birth_detail.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-04-08">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.birth_detail.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.birth_detail.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a subset of persistent or summary information about the pregnancy and birth of an infant, that may be used within both the mother's and infant's health record.">
+			use = <"Use to record a subset of persistent or summary information about the pregnancy and birth of an infant, usually recorded as part of a maternal health record or birth report, but also able to be shared and reused to provide context about the pregnancy and birth within the newborn's health record.
+            
+            This archetype has been designed to be nested:
+            - in the 'Birth detail' SLOT within the EVALUATION.pregnancy_summary archetype, to capture details about an infant born to the mother; and
+            - in the 'Birth detail' SLOT within the EVALUATION.birth_summary archetype, to capture or reuse details about the birth of the individual.">
+			keywords = <"birth", "pregnancy", "infant", "newborn">
+			misuse = <"">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Birth detail
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id21] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Birth order
+				value matches {
+					Count[id22] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Gestation
+				value matches {
+					Duration_value[id23] matches {
+						magnitude matches {|PT0S..P52W|}
+					}
+				}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Gestational age
+				value matches {
+					Duration_value[id24] matches {
+						magnitude matches {|PT0S..P52W|}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Method of delivery
+				value matches {
+					Coded_text[id25] matches {
+						term matches {
+							Terminology_term[id29] matches {
+								concept matches {[ac1]}		-- Method of delivery (synthesised)
+							}
+						}
+					}
+					Plain_text[id26] 
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Delivery timing
+				value matches {
+					Coded_text[id27] matches {
+						term matches {
+							Terminology_term[id30] matches {
+								concept matches {[ac2]}		-- Delivery timing (synthesised)
+							}
+						}
+					}
+					Plain_text[id28] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Method of delivery (synthesised)">
+				description = <"Method by which the newborn was delivered. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Delivery timing (synthesised)">
+				description = <"The level of urgency identified at or around the time of delivery. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Vacuum extraction with rotation">
+				description = <"Vaginal delivery assisted by the use of vacuum extraction.">
+			>
+			["at11"] = <
+				text = <"Lift-out forceps">
+				description = <"Vaginal delivery assisted by the use of lift-out forceps.">
+			>
+			["at12"] = <
+				text = <"Low forceps">
+				description = <"Vaginal delivery assisted by the use of low forceps.">
+			>
+			["at13"] = <
+				text = <"High forceps">
+				description = <"Vaginal delivery assisted by the use of high forceps.">
+			>
+			["at14"] = <
+				text = <"High forceps with rotation">
+				description = <"Vaginal delivery assisted by the use of high forceps with rotation.">
+			>
+			["at15"] = <
+				text = <"Caesarean - lower uterine segment">
+				description = <"Surgical delivery by a transverse approach in the lower uterine segment (LUSCS).">
+			>
+			["at16"] = <
+				text = <"Caesarean - upper uterine segment">
+				description = <"Surgical delivery by an approach in the upper uterine segment.">
+			>
+			["at20"] = <
+				text = <"Routine/Elective">
+				description = <"The delivery, induction or Caesarean Section did not require any unexpected or urgent intervention.">
+			>
+			["at21"] = <
+				text = <"Urgent">
+				description = <"Recognition of an increasing risk situation required the delivery to be expedited.">
+			>
+			["at22"] = <
+				text = <"Emergency">
+				description = <"Recognition of a high risk situation required the delivery to be expedited as an emergency.">
+			>
+			["at6"] = <
+				text = <"Unassisted">
+				description = <"Normal, non-instrumental vaginal delivery.">
+			>
+			["at7"] = <
+				text = <"Assisted breech delivery">
+				description = <"Vaginal delivery assisted by maneuvers in the delivery of the remainder of the body, arms, and head.">
+			>
+			["at8"] = <
+				text = <"Total breech extraction">
+				description = <"Vaginal delivery, by which the fetal feet are grasped, and the entire fetus is extracted.">
+			>
+			["at9"] = <
+				text = <"Vacuum extraction">
+				description = <"Vaginal delivery assisted by the use of vacuum extraction.">
+			>
+			["id1"] = <
+				text = <"Birth detail">
+				description = <"A subset of persistent or summary information about the pregnancy and birth of an infant, selected for utility of use within both the maternal and infant health records.">
+			>
+			["id19"] = <
+				text = <"Gestational age">
+				description = <"The estimated gestational maturity of the newborn at, or very near, birth.">
+			>
+			["id2"] = <
+				text = <"Description">
+				description = <"Narrative description of the newborn, including observed congenital abnormalities.">
+			>
+			["id20"] = <
+				text = <"Delivery timing">
+				description = <"The level of urgency identified at or around the time of delivery.">
+			>
+			["id4"] = <
+				text = <"Birth order">
+				description = <"The sequential order of the birth of the infant within a multiple birth pregnancy.">
+			>
+			["id5"] = <
+				text = <"Gestation">
+				description = <"The length of the pregnancy at the time of delivery of the infant.">
+			>
+			["id6"] = <
+				text = <"Method of delivery">
+				description = <"Method by which the newborn was delivered.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id19"] = <http://loinc.org/18185-9>
+			["id4"] = <http://loinc.org/73771-8>
+			["id2"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at6", "at7", "at8", "at9", "at10", "at11", "at12", "at13", "at14", "at15", "at16">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at20", "at21", "at22">
+		>
+	>
+

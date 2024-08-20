@@ -1,0 +1,1081 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=aa0a7498-bf94-4f5b-a2f6-d69faaee7603)
+	s2-EHR-Direct_observation.tympanogram_hf.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Kerrie Lee, <kerrie.lee2@bigpond.com>, 2013-02-01">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.tympanogram_hf.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.tympanogram_hf.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record measurements based on a multi-frequency (or sweep frequency) probe tone, or a probe tone higher than 226Hz, of the admittance or impedance of the middle ear system as a function of the pressure in the external ear canal pressure.
+            
+            To infer middle ear function from objective measurements based on a high frequency probe tone, taken at the tympanic membrane of the mobility of the tympanic membrane, in reponse to varying air pressure in the ear canal.
+            
+            To infer middle ear function from objective measurements based on a multi-frequency probe tone, taken at the tympanic membrane of the mobility of the tympanic membrane, in reponse to a specified air pressure in the ear canal.">
+			use = <"Use to record measurements taken during tympanometry with a high frequency probe tone (probetone higher than 226 Hz) or a multi-frequency probe tone.
+            
+            Use to record outcome of tympanometry screening based on a high frequency probe tone (probe tone higher than 226 Hz) or a multi-frequency probe tone.
+            
+            Use to record the interpretation all tympanogram measurements taken with a high frequency probe tone (probetone higher than 226 Hz) or a multi-frequency probe tone, to infer middle ear function for each ear, plus an overall interpretation (or tympanometric diagnosis). 
+            
+            All of the data Nodes are recorded using a single method or protocol. If, during the test, any of the protocol parameters need to be modified, then the subsequent part of the test will need to be recorded within a separate instance of the test data, using the updated protocol parameters.
+            
+            High frequency tympanometry is the test of choice in newborn to the age of two months. Both 226hz and high frequency tympanometry can be used together to test infants from from two to six months.">
+			keywords = <"tympanogram", "tympanometry", "tympanometer", "admittance", "pressure", "compliance", "immittance", "static", "high", "frequency">
+			misuse = <"Not to be used to record other hearing tests. Use other archetypes as appropriate, for example OBSERVATION.audiogram_result.
+            
+            Not to be used to record 226Hz tympanometry. Use the OBSERVATION.tympanogram_226Hz archetype instead.">
+		>
+	>
+	other_contributors = <"Stephen Chu, NEHTA, Australia", "Harvey Coates, UWA, Australia", "Kathy Currie, Northern Territory Health, Australia", "Kerrie Lee, Ngaanyatjarra Health Service, Australia (Editor)", "Heather Leslie, Atomica Informatics, Australia (Editor)", "Ian McNicoll, freshEHR Informatics, United Kingdom">
+
+definition
+	Direct_observation[id1] matches {	-- Tympanogram test result - high frequency
+		data matches {
+			Node[id13] occurrences matches {0..2} matches {	-- Result details
+				items matches {
+					Node[id10] matches {	-- Test ear
+						value matches {
+							Coded_text[id88] matches {
+								term matches {
+									Terminology_term[id120] matches {
+										concept matches {[ac1]}		-- Test ear (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id28] occurrences matches {0..1} matches {	-- Measurement details
+						items cardinality matches {2..*; unordered} matches {
+							Node[id14] occurrences matches {0..1} matches {	-- Peak pressure
+								value matches {
+									Measured<Quantity>[id127] matches {
+										value matches {
+											Quantity[id121] matches {	-- Peak pressure (daPa)
+												magnitude matches {|-600.0..200.0|}
+												units matches {
+													Coded_text[id123] matches {
+														term matches {
+															Terminology_term[id122] matches {
+																concept matches {[at91]}
+															}
+														}
+													}
+												}
+												precision matches {0}
+											}
+										}
+									}
+									Measured<Quantity>[id128] matches {
+										value matches {
+											Quantity[id124] matches {	-- Peak pressure (mm[H2O])
+												magnitude matches {|>=0.0|}
+												units matches {
+													Coded_text[id126] matches {
+														term matches {
+															Terminology_term[id125] matches {
+																concept matches {[at92]}
+															}
+														}
+													}
+												}
+												precision matches {|>=0|}
+											}
+										}
+									}
+								}
+							}
+							Node[id15] occurrences matches {0..1} matches {	-- Y peak
+								value matches {
+									Measured<Quantity>[id129] matches {
+										value matches {
+											Quantity[id90] matches {
+												magnitude matches {|0.0..5.0|}
+												precision matches {1}
+												units matches {
+													Coded_text[id131] matches {
+														term matches {
+															Terminology_term[id130] matches {
+																concept matches {[at93]}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Node[id75] occurrences matches {0..1} matches {	-- Y+200
+								value matches {
+									Measured<Quantity>[id132] matches {
+										value matches {
+											Quantity[id91] matches {
+												units matches {
+													Coded_text[id134] matches {
+														term matches {
+															Terminology_term[id133] matches {
+																concept matches {[at93]}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Node[id87] occurrences matches {0..1} matches {	-- Y-400
+								value matches {
+									Measured<Quantity>[id135] matches {
+										value matches {
+											Quantity[id92] matches {
+												units matches {
+													Coded_text[id137] matches {
+														term matches {
+															Terminology_term[id136] matches {
+																concept matches {[at93]}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Node[id19] occurrences matches {0..1} matches {	-- Ear canal volume
+								value matches {
+									Measured<Quantity>[id144] matches {
+										value matches {
+											Quantity[id138] matches {	-- Ear canal volume (cc3)
+												magnitude matches {|0.0..5.0|}
+												units matches {
+													Coded_text[id140] matches {
+														term matches {
+															Terminology_term[id139] matches {
+																concept matches {[at94]}
+															}
+														}
+													}
+												}
+												precision matches {1}
+											}
+										}
+									}
+									Measured<Quantity>[id145] matches {
+										value matches {
+											Quantity[id141] matches {	-- Ear canal volume (ml)
+												magnitude matches {|0.0..5.0|}
+												units matches {
+													Coded_text[id143] matches {
+														term matches {
+															Terminology_term[id142] matches {
+																concept matches {[at95]}
+															}
+														}
+													}
+												}
+												precision matches {1}
+											}
+										}
+									}
+								}
+							}
+							Node[id76] occurrences matches {0..1} matches {	-- Ear baseline value
+								value matches {
+									Measured<Quantity>[id146] matches {
+										value matches {
+											Quantity[id94] matches {
+												units matches {
+													Coded_text[id148] matches {
+														term matches {
+															Terminology_term[id147] matches {
+																concept matches {[at95]}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Node[id77] occurrences matches {0..1} matches {	-- Resonant frequency
+								value matches {
+									Measured<Quantity>[id155] matches {
+										value matches {
+											Quantity[id149] matches {	-- Resonant frequency (Hz)
+												magnitude matches {|200.0..2000.0|}
+												units matches {
+													Coded_text[id151] matches {
+														term matches {
+															Terminology_term[id150] matches {
+																concept matches {[at96]}
+															}
+														}
+													}
+												}
+												precision matches {0}
+											}
+										}
+									}
+									Measured<Quantity>[id156] matches {
+										value matches {
+											Quantity[id152] matches {	-- Resonant frequency (kHz)
+												magnitude matches {|0.2..2.0|}
+												units matches {
+													Coded_text[id154] matches {
+														term matches {
+															Terminology_term[id153] matches {
+																concept matches {[at97]}
+															}
+														}
+													}
+												}
+												precision matches {1}
+											}
+										}
+									}
+								}
+							}
+							Node[id78] occurrences matches {0..1} matches {	-- F45 degree
+								value matches {
+									Measured<Quantity>[id157] matches {
+										value matches {
+											Quantity[id96] matches {
+												units matches {
+													Coded_text[id159] matches {
+														term matches {
+															Terminology_term[id158] matches {
+																concept matches {[at96]}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Node[id30] occurrences matches {0..1} matches {	-- Tympanometric width
+								value matches {
+									Measured<Quantity>[id160] matches {
+										value matches {
+											Quantity[id97] matches {
+												magnitude matches {|0.0..400.0|}
+												precision matches {0}
+												units matches {
+													Coded_text[id162] matches {
+														term matches {
+															Terminology_term[id161] matches {
+																concept matches {[at91]}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Node[id31] occurrences matches {0..1} matches {	-- Tympanometric gradient
+								value matches {
+									Measured<Quantity>[id163] matches {
+										value matches {
+											Quantity[id98] matches {
+												units matches {
+													Coded_text[id165] matches {
+														term matches {
+															Terminology_term[id164] matches {
+																concept matches {[at93]}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+									Ratio[id99] matches {
+										numerator matches {|0.0..1.0|}
+										type matches {2}
+									}
+								}
+							}
+						}
+					}
+					Node[id32] occurrences matches {0..1} matches {	-- No test result
+						value matches {
+							Boolean_value[id100] matches {
+								value matches {True}
+							}
+						}
+					}
+					Node[id33] matches {	-- Reason for no test result
+						value matches {
+							Text[id101] 
+						}
+					}
+					Node[id5] occurrences matches {0..1} matches {	-- Tympanogram type
+						value matches {
+							Coded_text[id102] matches {
+								term matches {
+									Terminology_term[id166] matches {
+										concept matches {[ac2]}		-- Tympanogram type (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id67] occurrences matches {0..1} matches {	-- Vanhuyse classification type
+						value matches {
+							Coded_text[id103] matches {
+								term matches {
+									Terminology_term[id167] matches {
+										concept matches {[ac3]}		-- Vanhuyse classification type (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id34] occurrences matches {0..1} matches {	-- Clinical interpretation
+						value matches {
+							Text[id104] 
+						}
+					}
+				}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Overall interpretation
+				value matches {
+					Text[id105] 
+				}
+			}
+			Node[id21] matches {	-- Test result image
+				value matches {
+					Multimedia[id106] matches {
+						media_type matches {[ac4]}		-- Test result image (synthesised)
+					}
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id107] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id83] occurrences matches {0..1} matches {	-- Sweep pressure
+				items matches {
+					Node[id81] occurrences matches {0..1} matches {	-- Probe tone frequency
+						value matches {
+							Measured<Quantity>[id174] matches {
+								value matches {
+									Quantity[id168] matches {	-- Probe tone frequency (Hz)
+										magnitude matches {|226.0..2000.0|}
+										units matches {
+											Coded_text[id170] matches {
+												term matches {
+													Terminology_term[id169] matches {
+														concept matches {[at96]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+								}
+							}
+							Measured<Quantity>[id175] matches {
+								value matches {
+									Quantity[id171] matches {	-- Probe tone frequency (kHz)
+										magnitude matches {|0.226..2.0|}
+										units matches {
+											Coded_text[id173] matches {
+												term matches {
+													Terminology_term[id172] matches {
+														concept matches {[at97]}
+													}
+												}
+											}
+										}
+										precision matches {3}
+									}
+								}
+							}
+						}
+					}
+					Node[id47] occurrences matches {0..1} matches {	-- Rate of pressure change
+						value matches {
+							Measured<Quantity>[id176] matches {
+								value matches {
+									Quantity[id112] matches {
+										units matches {
+											Coded_text[id178] matches {
+												term matches {
+													Terminology_term[id177] matches {
+														concept matches {[at98]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id52] occurrences matches {0..1} matches {	-- Start pressure
+						value matches {
+							Measured<Quantity>[id179] matches {
+								value matches {
+									Quantity[id113] matches {
+										magnitude matches {|-600.0..400.0|}
+										precision matches {0}
+										units matches {
+											Coded_text[id181] matches {
+												term matches {
+													Terminology_term[id180] matches {
+														concept matches {[at91]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id53] occurrences matches {0..1} matches {	-- Stop pressure
+						value matches {
+							Measured<Quantity>[id182] matches {
+								value matches {
+									Quantity[id114] matches {
+										magnitude matches {|-600.0..400.0|}
+										precision matches {0}
+										units matches {
+											Coded_text[id184] matches {
+												term matches {
+													Terminology_term[id183] matches {
+														concept matches {[at91]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id51] occurrences matches {0..1} matches {	-- Multi-frequency
+				items matches {
+					Node[id82] occurrences matches {0..1} matches {	-- Pressure
+						value matches {
+							Measured<Quantity>[id191] matches {
+								value matches {
+									Quantity[id185] matches {	-- Pressure (daPa)
+										magnitude matches {|-600.0..400.0|}
+										units matches {
+											Coded_text[id187] matches {
+												term matches {
+													Terminology_term[id186] matches {
+														concept matches {[at91]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+								}
+							}
+							Measured<Quantity>[id192] matches {
+								value matches {
+									Quantity[id188] matches {	-- Pressure (mm[H2O])
+										magnitude matches {|-600.0..400.0|}
+										units matches {
+											Coded_text[id190] matches {
+												term matches {
+													Terminology_term[id189] matches {
+														concept matches {[at92]}
+													}
+												}
+											}
+										}
+										precision matches {|>=0|}
+									}
+								}
+							}
+						}
+					}
+					Node[id86] occurrences matches {0..1} matches {	-- Rate of frequency change
+						value matches {
+							Measured<Quantity>[id193] matches {
+								value matches {
+									Quantity[id116] matches {
+										units matches {
+											Coded_text[id195] matches {
+												term matches {
+													Terminology_term[id194] matches {
+														concept matches {[at99]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id84] occurrences matches {0..1} matches {	-- Start frequency
+						value matches {
+							Measured<Quantity>[id202] matches {
+								value matches {
+									Quantity[id196] matches {	-- Start frequency (Hz)
+										magnitude matches {|200.0..2000.0|}
+										units matches {
+											Coded_text[id198] matches {
+												term matches {
+													Terminology_term[id197] matches {
+														concept matches {[at96]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+								}
+							}
+							Measured<Quantity>[id203] matches {
+								value matches {
+									Quantity[id199] matches {	-- Start frequency (kHz)
+										magnitude matches {|0.2..2.0|}
+										units matches {
+											Coded_text[id201] matches {
+												term matches {
+													Terminology_term[id200] matches {
+														concept matches {[at97]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+						}
+					}
+					Node[id85] occurrences matches {0..1} matches {	-- Stop frequency
+						value matches {
+							Measured<Quantity>[id210] matches {
+								value matches {
+									Quantity[id204] matches {	-- Stop frequency (Hz)
+										magnitude matches {|200.0..2000.0|}
+										units matches {
+											Coded_text[id206] matches {
+												term matches {
+													Terminology_term[id205] matches {
+														concept matches {[at96]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+								}
+							}
+							Measured<Quantity>[id211] matches {
+								value matches {
+									Quantity[id207] matches {	-- Stop frequency (kHz)
+										magnitude matches {|0.2..2.0|}
+										units matches {
+											Coded_text[id209] matches {
+												term matches {
+													Terminology_term[id208] matches {
+														concept matches {[at97]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id54, s2-EHR-Node.device.v1] 
+			Node[id55] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id119] 
+				}
+			}
+		}
+		data_series matches {
+			Point_event[id38] occurrences matches {0..1} matches {	-- Baseline
+				items matches {
+					use_node Node[id13] /data[id13]	-- /data[Result details]
+					use_node Node[id37] /data[id37]	-- /data[Overall interpretation]
+					use_node Node[id21] /data[id21]	-- /data[Test result image]
+					use_node Node[id22] /data[id22]	-- /data[Comment]
+				}
+			}
+			Point_event[id39] occurrences matches {0..1} matches {	-- Post-Valsalva
+				items matches {
+					use_node Node[id13] /data[id13]	-- /data[Result details]
+					use_node Node[id37] /data[id37]	-- /data[Overall interpretation]
+					use_node Node[id21] /data[id21]	-- /data[Test result image]
+					use_node Node[id22] /data[id22]	-- /data[Comment]
+				}
+			}
+			Point_event[id40] occurrences matches {0..1} matches {	-- Post-Toynbee
+				items matches {
+					use_node Node[id13] /data[id13]	-- /data[Result details]
+					use_node Node[id37] /data[id37]	-- /data[Overall interpretation]
+					use_node Node[id21] /data[id21]	-- /data[Test result image]
+					use_node Node[id22] /data[id22]	-- /data[Comment]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Test ear (synthesised)">
+				description = <"Identification of the ear being tested. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Tympanogram type (synthesised)">
+				description = <"Classification of the the shape of the tympanogram curve. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Vanhuyse classification type (synthesised)">
+				description = <"Classification of tympanogram type based on Vanhuyse classification system. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Test result image (synthesised)">
+				description = <"Digital representation of the entire result. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Left ear">
+				description = <"The probe was in the left ear.">
+			>
+			["at11"] = <
+				text = <"Right ear">
+				description = <"The probe was in the right ear.">
+			>
+			["at35"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to classify the type of tympanogram.">
+			>
+			["at5"] = <
+				text = <"Type 1">
+				description = <"Curve with a single peak and TPP around 0 daPa.">
+			>
+			["at57"] = <
+				text = <"Type 3">
+				description = <"Curve with a single peak and TPP <-150 daPa.">
+			>
+			["at6"] = <
+				text = <"Type 2">
+				description = <"Flat sloping curve  with no distinct peak, Ypeak < 0.2 mmho and/or TW >= 200 daPa.">
+			>
+			["at67"] = <
+				text = <"1B1G">
+				description = <"The pattern of results showing 1 susceptance (B) peak and 1 conductance (G) peak.">
+			>
+			["at68"] = <
+				text = <"3B1G">
+				description = <"The pattern of results showing 3 susceptance peaks and 1 conductance peak.">
+			>
+			["at7"] = <
+				text = <"Type 4">
+				description = <"Double-peaked curve with TPP around 0 daPa.">
+			>
+			["at70"] = <
+				text = <"Type 4u">
+				description = <"Double-peaked curve with TPP <-150 daPa.">
+			>
+			["at78"] = <
+				text = <"3B3G">
+				description = <"The pattern of results showing 3 susceptance (B) peaks and 3 conductance (G) peaks.">
+			>
+			["at79"] = <
+				text = <"5B3G">
+				description = <"The pattern of results showing 5 susceptance (B) peaks and 3 conductance (G) peaks.">
+			>
+			["at80"] = <
+				text = <"Pressure">
+				description = <"Pressure">
+			>
+			["at81"] = <
+				text = <"Electrical conductance">
+				description = <"Electrical conductance">
+			>
+			["at82"] = <
+				text = <"Volume">
+				description = <"Volume">
+			>
+			["at83"] = <
+				text = <"Frequency">
+				description = <"Frequency">
+			>
+			["at84"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at85"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at86"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at87"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at88"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at89"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at90"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at91"] = <
+				text = <"daPa">
+				description = <"daPa unit.">
+			>
+			["at92"] = <
+				text = <"mm[H2O]">
+				description = <"mm[H2O] unit.">
+			>
+			["at93"] = <
+				text = <"mmho">
+				description = <"mmho unit.">
+			>
+			["at94"] = <
+				text = <"cc3">
+				description = <"cc3 unit.">
+			>
+			["at95"] = <
+				text = <"ml">
+				description = <"ml unit.">
+			>
+			["at96"] = <
+				text = <"Hz">
+				description = <"Hz unit.">
+			>
+			["at97"] = <
+				text = <"kHz">
+				description = <"kHz unit.">
+			>
+			["at98"] = <
+				text = <"daPa/s">
+				description = <"daPa/s unit.">
+			>
+			["at99"] = <
+				text = <"Hz/s">
+				description = <"Hz/s unit.">
+			>
+			["id1"] = <
+				text = <"Tympanogram test result - high frequency">
+				description = <"Record of measurements of movement at the tympanic membrane in response to a multifrequency probe tone, or a probe tone higher than 226Hz, and changes in air pressure in the ear canal, and their clinical interpretation as an indication of middle ear function.">
+			>
+			["id10"] = <
+				text = <"Test ear">
+				description = <"Identification of the ear being tested.">
+			>
+			["id121"] = <
+				text = <"Peak pressure (daPa)">
+				description = <"Peak pressure (daPa)">
+			>
+			["id124"] = <
+				text = <"Peak pressure (mm[H2O])">
+				description = <"Peak pressure (mm[H2O])">
+			>
+			["id13"] = <
+				text = <"Result details">
+				description = <"The tympanogram test result details, recorded per ear.">
+			>
+			["id138"] = <
+				text = <"Ear canal volume (cc3)">
+				description = <"Ear canal volume (cc3)">
+			>
+			["id14"] = <
+				text = <"Peak pressure">
+				description = <"Peak pressure (also called tympanometric peak pressure or middle ear pressure or MEP) is the ear canal pressure at which the peak(s) of the tympanogram occurs.">
+			>
+			["id141"] = <
+				text = <"Ear canal volume (ml)">
+				description = <"Ear canal volume (ml)">
+			>
+			["id149"] = <
+				text = <"Resonant frequency (Hz)">
+				description = <"Resonant frequency (Hz)">
+			>
+			["id15"] = <
+				text = <"Y peak">
+				description = <"Peak compensated static admittance.">
+			>
+			["id152"] = <
+				text = <"Resonant frequency (kHz)">
+				description = <"Resonant frequency (kHz)">
+			>
+			["id168"] = <
+				text = <"Probe tone frequency (Hz)">
+				description = <"Probe tone frequency (Hz)">
+			>
+			["id171"] = <
+				text = <"Probe tone frequency (kHz)">
+				description = <"Probe tone frequency (kHz)">
+			>
+			["id185"] = <
+				text = <"Pressure (daPa)">
+				description = <"Pressure (daPa)">
+			>
+			["id188"] = <
+				text = <"Pressure (mm[H2O])">
+				description = <"Pressure (mm[H2O])">
+			>
+			["id19"] = <
+				text = <"Ear canal volume">
+				description = <"An estimate of the volume of air between the probe tip and the tympanic membrane if the tympanic membrane is intact, or the volume of the ear canal and the middle ear space if the tympanic membrane is perforated. (Fowler & Shanks, 2002, p. 180).">
+			>
+			["id196"] = <
+				text = <"Start frequency (Hz)">
+				description = <"Start frequency (Hz)">
+			>
+			["id199"] = <
+				text = <"Start frequency (kHz)">
+				description = <"Start frequency (kHz)">
+			>
+			["id204"] = <
+				text = <"Stop frequency (Hz)">
+				description = <"Stop frequency (Hz)">
+			>
+			["id207"] = <
+				text = <"Stop frequency (kHz)">
+				description = <"Stop frequency (kHz)">
+			>
+			["id21"] = <
+				text = <"Test result image">
+				description = <"Digital representation of the entire result.">
+			>
+			["id22"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the test results and intepretation not captured in other fields.">
+			>
+			["id28"] = <
+				text = <"Measurement details">
+				description = <"Measurements derived from the tympanomgram.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Tympanometric width">
+				description = <"The pressure interval corresponding to a 50% reduction in the peak static admittance.">
+			>
+			["id31"] = <
+				text = <"Tympanometric gradient">
+				description = <"The steepness of the slope of the tympanogram near the peak.">
+			>
+			["id32"] = <
+				text = <"No test result">
+				description = <"No test result is available for the test ear.">
+			>
+			["id33"] = <
+				text = <"Reason for no test result">
+				description = <"Reason why no result is available for the test ear.">
+			>
+			["id34"] = <
+				text = <"Clinical interpretation">
+				description = <"Clinical interpretation of all measurements for the test ear.">
+			>
+			["id37"] = <
+				text = <"Overall interpretation">
+				description = <"Overall clinical interpretation of the measurements and related findings using an tympanometer.">
+			>
+			["id38"] = <
+				text = <"Baseline">
+				description = <"Measurement collection recorded as the basis for comparison with following measurement collections that may included other variables of time or patient state.">
+			>
+			["id39"] = <
+				text = <"Post-Valsalva">
+				description = <"Measurements are recorded after the patient has performed a valsalva manoeuvre.">
+			>
+			["id40"] = <
+				text = <"Post-Toynbee">
+				description = <"Measurements are recorded after the patient has performed a toynbee manoeuvre.">
+			>
+			["id47"] = <
+				text = <"Rate of pressure change">
+				description = <"The rate of change of pressure used in tympanometry.">
+			>
+			["id5"] = <
+				text = <"Tympanogram type">
+				description = <"Classification of the the shape of the tympanogram curve.">
+			>
+			["id51"] = <
+				text = <"Multi-frequency">
+				description = <"Parameters used for multi-frequency tympanometry.">
+			>
+			["id52"] = <
+				text = <"Start pressure">
+				description = <"The pressure value at which the pressure sweep for tympanometry begins.">
+			>
+			["id53"] = <
+				text = <"Stop pressure">
+				description = <"The pressure value at which the pressure sweep for tympanometry ends. It is a negative pressure if the direction of pressure change is descending and a positive pressure if the direction of pressure change is ascending.">
+			>
+			["id54"] = <
+				text = <"Tympanometer">
+				description = <"Details of tympanometer used to conduct the test.">
+			>
+			["id55"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the protocol for the tympanogram not captured in other fields.">
+			>
+			["id67"] = <
+				text = <"Vanhuyse classification type">
+				description = <"Classification of tympanogram type based on Vanhuyse classification system.">
+			>
+			["id75"] = <
+				text = <"Y+200">
+				description = <"Admittance at +200 daPa.">
+			>
+			["id76"] = <
+				text = <"Ear baseline value">
+				description = <"Derived ear canal volume.">
+			>
+			["id77"] = <
+				text = <"Resonant frequency">
+				description = <"Frequency at which the total susceptance is zero.">
+			>
+			["id78"] = <
+				text = <"F45 degree">
+				description = <"The frequency corresponding to a 45° phase angle.">
+			>
+			["id81"] = <
+				text = <"Probe tone frequency">
+				description = <"The frequency of the probe tone played into the ear canal for tympanometry measurement.">
+			>
+			["id82"] = <
+				text = <"Pressure">
+				description = <"The fixed pressure in the ear canal.">
+			>
+			["id83"] = <
+				text = <"Sweep pressure">
+				description = <"Parameters used for Sweep Pressure high frequency probe tone tympanometry.">
+			>
+			["id84"] = <
+				text = <"Start frequency">
+				description = <"The frequncy value at which the frequency sweep for tympanometry begins.">
+			>
+			["id85"] = <
+				text = <"Stop frequency">
+				description = <"The frequncy value at which the frequency sweep for tympanometry ends.">
+			>
+			["id86"] = <
+				text = <"Rate of frequency change">
+				description = <"The rate of change of the probe tone frequency used in tympanometry.">
+			>
+			["id87"] = <
+				text = <"Y-400">
+				description = <"Admittance at -400 daPa.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at80"] = <http://openehr.org/id/125>
+			["at81"] = <http://openehr.org/id/502>
+			["at82"] = <http://openehr.org/id/129>
+			["at83"] = <http://openehr.org/id/382>
+			["at84"] = <http://openehr.org/id/708>
+			["at85"] = <http://openehr.org/id/754>
+			["at86"] = <http://openehr.org/id/425>
+			["at87"] = <http://openehr.org/id/426>
+			["at88"] = <http://openehr.org/id/427>
+			["at89"] = <http://openehr.org/id/428>
+			["at90"] = <http://openehr.org/id/429>
+		>
+		["ucum"] = <
+			["at91"] = <http://ucum.org/id/daPa>
+			["at92"] = <http://ucum.org/id/mm%5BH2O%5D>
+			["at93"] = <http://ucum.org/id/mmho>
+			["at94"] = <http://ucum.org/id/cc3>
+			["at95"] = <http://ucum.org/id/ml>
+			["at96"] = <http://ucum.org/id/Hz>
+			["at97"] = <http://ucum.org/id/kHz>
+			["at98"] = <http://ucum.org/id/daPa%2Fs>
+			["at99"] = <http://ucum.org/id/Hz%2Fs>
+		>
+		["snomed"] = <
+			["at92"] = <http://snomed.info/id/259020003>
+			["at94"] = <http://snomed.info/id/258773002>
+			["at95"] = <http://snomed.info/id/258773002>
+			["at96"] = <http://snomed.info/id/259025008>
+			["at97"] = <http://snomed.info/id/229769005>
+		>
+		["loinc"] = <
+			["id34"] = <http://loinc.org/64110-0>
+			["id54"] = <http://loinc.org/74720-4>
+			["id22"] = <http://loinc.org/106173-8>
+			["id55"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at10", "at11">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at5", "at6", "at57", "at7", "at70", "at35">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at67", "at68", "at78", "at79", "at35">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at86", "at87", "at88", "at89", "at90">
+		>
+	>
+

@@ -1,0 +1,73 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Composition.allergies_intolerances_list.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Allergies and intolerances list">
+		>
+	>
+	resource_package_uri = <>
+
+definition
+	Composition[id1] matches {	-- Allergies and intolerances list
+		code matches {
+			Terminology_term[id900] matches {
+				concept matches {[at1]}
+			}
+		}
+		category matches {
+			Terminology_term[id11] matches {
+				concept matches {[at2]}
+				description matches {"persistent"}
+			}
+		}
+		content matches {
+			use_archetype Assessment[id2, s2-EHR-Assessment.adverse_reaction_risk.v2] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Allergies and intolerances list">
+				description = <"Patient allergies and intolerances list">
+			>
+			["id2"] = <
+				text = <"Substance">
+				description = <"Substance allergy or intolerance">
+			>
+			["at1"] = <
+				text = <"Allergies and intolerances list">
+				description = <"Is-about code for this Composition - allergies and intolerances list">
+			>
+			["at2"] = <
+				text = <"Persistent Composition category">
+				description = <"Persistent Composition category">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/00e163a0-a31e-ef11-886b-6045bdc71c8b>
+			["at1"] = <http://loinc.org/00e163a0-a31e-ef11-886b-6045bdc71c8b>
+		>
+		["openehr"] = <
+			["at2"] = <http://openehr.org/id/431>
+		>
+	>
+

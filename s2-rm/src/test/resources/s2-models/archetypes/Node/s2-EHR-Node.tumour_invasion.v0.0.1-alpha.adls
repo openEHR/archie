@@ -1,0 +1,182 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d98a219d-9c26-4d11-9eec-c1032bf0beb4)
+	s2-EHR-Node.tumour_invasion.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, Scotland, <ian.mcnicoll@oceaninformatics.com>, 27/07/2009">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.tumour_invasion.v0.0.1-alpha, copyright 27/0 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.tumour_invasion.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record detailed findings about invasion of local tissue by tumour as part of microscopic histopathological examination of tissue. ">
+			use = <"To record detailed findings about invasion of local tissue by tumour as part of microscopic examination of tissue. 
+            Use as a component archetype in the context of a suite of archetypes that make up a histopathology report ie OBSERVATION.lab_test.histopathology.">
+			keywords = <"histopathology", "histology", "pathology", "lab", "cancer", "tumour", "malignancy">
+			misuse = <"Not designed to be used within any other archetype other than OBSERVATION.lab_test.histopathology.">
+		>
+	>
+	other_contributors = <"Sam Heard, Ocean Informatics, Australia (openEHR Editor)", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "David Rowed, VAMC Clinic, Australia (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Tumour - direct invasion
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Tissue name
+				value matches {
+					Text[id14] 
+				}
+			}
+			allow_archetype Node[id3] occurrences matches {0..1} matches {	-- Location  
+				include
+					archetype_id/value matches {/s2-EHR-Node\.anatomical_location-precise\.v1/}
+				exclude
+					archetype_id/value matches {/.*/}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Direct invasion
+				value matches {
+					Coded_text[id15] matches {
+						term matches {
+							Terminology_term[id19] matches {
+								concept matches {[ac1]}		-- Direct invasion (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Nature of involvement
+				value matches {
+					Coded_text[id16] matches {
+						term matches {
+							Terminology_term[id20] matches {
+								concept matches {[ac2]}		-- Nature of involvement (synthesised)
+							}
+						}
+					}
+					Plain_text[id17] 
+				}
+			}
+			use_archetype Node[id12, s2-EHR-Node.tumour_resection_margins.v0] occurrences matches {0..1} 
+			Node[id13] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id18] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Direct invasion (synthesised)">
+				description = <"Finding of direct invasion by tumour of local tissue. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Nature of involvement (synthesised)">
+				description = <"The nature of involvement of tumour in local tissue. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Indeterminate">
+				description = <"The nature of direct invasion by tumour has not been determined">
+			>
+			["at13"] = <
+				text = <"Present - focal">
+				description = <"There is evidence of focal direct invasion of the tissue by tumour">
+			>
+			["at14"] = <
+				text = <"Present - diffuse/extensive">
+				description = <"There is evidence of diffuse or extensive direct invasion of the tissue by tumour">
+			>
+			["at15"] = <
+				text = <"Suspicious">
+				description = <"There is suspicion of direct invasion of the tissue by tumour">
+			>
+			["at4"] = <
+				text = <"Present">
+				description = <"There is evidence of local invasion by tumour">
+			>
+			["at5"] = <
+				text = <"Absent">
+				description = <"There is no evidence of local invasion by tumour">
+			>
+			["at6"] = <
+				text = <"Indeterminate">
+				description = <"Evidence of local invasion by tumour has not been determined">
+			>
+			["at8"] = <
+				text = <"Focal">
+				description = <"Focal direct invasion of the tissue by tumour.">
+			>
+			["at9"] = <
+				text = <"Extensive">
+				description = <"Extensive direct invasion of the tissue by tumour.">
+			>
+			["id1"] = <
+				text = <"Tumour - direct invasion">
+				description = <"To records details of the direct invasion of local tissues or structures by tumour.">
+			>
+			["id12"] = <
+				text = <"Resection margin  ">
+				description = <"Details of the local tissue surgical resection margin.">
+			>
+			["id13"] = <
+				text = <"Description">
+				description = <"A text description of direct tumour invasion of local tissue.">
+			>
+			["id2"] = <
+				text = <"Tissue name">
+				description = <"The name of the local tissue or structure being examined for evidence of local invasion by tumour.">
+			>
+			["id3"] = <
+				text = <"Location  ">
+				description = <"The location of the tissue being examined for evidence of direct invasion by tumour.">
+			>
+			["id4"] = <
+				text = <"Direct invasion">
+				description = <"Finding of direct invasion by tumour of local tissue.">
+			>
+			["id8"] = <
+				text = <"Nature of involvement">
+				description = <"The nature of involvement of tumour in local tissue.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id13"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at4", "at13", "at14", "at15", "at5", "at6">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at8", "at9", "at10">
+		>
+	>
+

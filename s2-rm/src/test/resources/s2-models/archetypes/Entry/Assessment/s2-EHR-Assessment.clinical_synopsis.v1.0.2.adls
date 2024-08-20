@@ -1,0 +1,80 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=574e6f35-0d5a-4f90-aa77-32c2ffc7c4a7)
+    s2-EHR-Assessment.clinical_synopsis.v1.0.2
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Maria Beate Nupen, Oslo Universitetssykehus, Norway", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Marco Borges, P2D, Brazil", "Rong Chen, Cambio Healthcare Systems, Sweden", "Bjørn Christensen, Helse Bergen HF, Norway", "Stephen Chu, Queensland Health, Australia", "Tamsin Cockayne, Australia", "Paul Donaldson, Nursing Informatics Australia, Australia", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Bente Gjelsvik, Helse Bergen, Norway", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Eugene Igras, IRIS Systems, Inc., Canada", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Hanne Joensen, Helse Bergen HUS, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Robert Legan, NEHTA, Australia", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Arne Løberg Sæter, DIPS ASA, Norway", "Rohan Martin, Ambulance Victoria, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Jeroen Meintjens, Medisch Centrum Alkmaar, Netherlands", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Bjørn Næss, DIPS ASA, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Tanja Riise, Nasjonal IKT HF, Norway", "Arturo Romero, SESCAM, Spain", "Thomas Schopf, University Hospital of North-Norway, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sam Heard, Ocean Informatics, Australia, <sam.heard@oceaninformatics.com>, 2007-01-09">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.2, copyright 2007 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To manually synthesise and record a narrative summary about a patient, from the perspective of a healthcare provider.">
+            keywords = <"summary", "conclusion", "outline", "precis", "abstract", "assessment", "synopsis", "epicrisis", "comment", "note">
+            use = <"Use to record a narrative, summary view of the patient's health.  This unstructured summary may include identified health issues; health care provided; associated interpretation; patient understanding; and enable communication about some of the softer, more subjective aspects of the patient’s experience and journey. Most commonly this summary is likely to be related to a specific health event such as a specific consultation or hospital admission, but may also be used to summarise the patient's health experience over varying time periods. 
+            In practice, Clinical Synopsis is a meta observation that will complement the existing structured clinical record, allowing for expression of subtle, subjective or interpretive information about the patient that might not otherwise be obvious through structured data alone, providing balance and context to the EHR record.  
+            For example, a Clinical Synopsis can communicate a succinct summary of the patient's hospital admission as one component of a comprehensive and structured Discharge Summary document.">
+            misuse = <"Not to be used to record specific and structured health information. For example, detailed information about Problems, Diagnoses, and Test Results should be recorded using the specific relevant archetypes EVALUATION.problem, EVALUATION.problem-diagnosis, and laboratory or radiology results in OBSERVATIONs. The Clinical Synopsis may convey some critical and selected numerical results from these structured details when judged important for completeness of the Synopsis but is NOT the primary recording site for them.
+            The term “Clinical Synopsis” can sometimes refer to complex and comprehensive documents, such as a Discharge Summary or a Report. In openEHR these documents should be represented as aggregations of constrained archetypes, that is, a Discharge Summary template or a Report template, comprising a number of separate archetypes, of which this Clinical Synopsis archetype may be one.">
+        >
+    >
+    
+definition
+    Assessment[id1] matches {    -- Clinical synopsis
+        data cardinality matches {1..*; unordered} matches {
+            Node[id3] matches {    -- Synopsis
+                value matches {
+                    Text[id6]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id5] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Clinical synopsis">
+                description = <"Narrative summary or overview about a patient, specifically from the perspective of a healthcare provider, and with or without associated interpretations.">
+            >
+            ["id3"] = <
+                text = <"Synopsis">
+                description = <"The summary, assessment, conclusions or evaluation of the clinical findings.">
+            >
+            ["id5"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+        >
+    >
+    

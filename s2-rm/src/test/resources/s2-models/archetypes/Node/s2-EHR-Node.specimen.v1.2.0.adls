@@ -1,0 +1,431 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; uid=a53c9403-5bb9-4eab-9f37-dc030c0c011a)
+	s2-EHR-Node.specimen.v1.2.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+		["email"] = <"thomas.beale@graphitehealth.io">
+		["date"] = <"2024-08-02">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, freshEHR Clinical Informatics, <ian.mcnicoll@oceaninformatics.com>, 2009-01-27">
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-CLUSTER.specimen.v1.1.2">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.specimen.v1.1.2 from <https://ckm.openehr.org>">
+		["tool"] = <"graphite_openehr_to_s2_adl">
+		["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record details about a physical sample collected from, or related to, an individual for the purpose of investigation, examination or analysis.">
+			use = <"Use to record details about a physical sample collected from, or related to, an individual for the purpose of investigation, examination or analysis.
+            
+            This archetype has been specifically designed to be used in the following use cases:
+            - within INSTRUCTION.service_request or another laboratory-related INSTRUCTION archetype to describe a specimen that is to be collected, or to describe a specimen that accompanies a laboratory service request; 
+            - within a laboratory-related ACTION archetype to describe specimen collection or a specimen that has been collected; or
+            - within OBSERVATION.laboratory_test_result or other laboratory reporting OBSERVATION archetypes to describe the specimen being reported.
+            In addition this archetype can also be nested within other ENTRY or Node archetypes, where clinically appropriate.
+            
+            The level of detail in this archetype is likely to exceed that currently collected in most laboratories. It has deliberately been designed to cater for a simple, single specimen collection; simultaneous collection of multiple specimens with a single request; and complex situations where it is required to record minute detail about the preparation and subdivision of a single specimen.
+            
+            The exact semantics of several Nodes of this archetype may change based on the context provided by the parent archetype in which it is nested. For example, the 'Collection method' Node in the context of an INSTRUCTION archetype is the requested collection method, while the same Node in the context of an ACTION archetype in the 'completed' state is the actual collection method.
+            
+            Other complementary archetypes will carry the detail about 'Specimen container', 'Specimen preparation', and 'Specimen transport'.
+            
+            This archetype has been designed to be used with the Specimen container archetype in two main ways: 
+            - 'Specimen container' nested within 'Specimen' (for example when a venous blood specimen is divided between two vials, or a whole large intestine is divided into three buckets); or
+            - 'Specimen' nested within 'Specimen container' (for example when a bucket of formalin contains a section of large intestine and a rectum, or a jar contains five individually marked moles).
+            
+            Please note: The term 'collection' used in this archetype always refers to the activity of obtaining a specimen from an individual. It is not intended to represent the transport of the specimen from the individual to the testing laboratory.">
+			keywords = <"specimen", "laboratory", "sample", "collection", "sampling", "biopsy", "tissue", "cytology", "microbiology", "pathology", "histopathology", "histology", "lab", "fluid", "smear", "blood", "exudate", "serum", "plasma", "urine", "saliva", "secretion", "synovial", "lymph", "feces", "faeces", "fæces", "ascites", "expectorate", "swab", "breast milk", "pus", "drain fluid", "bone marrow", "culture", "scraping", "aspirate", "phlebotomy", "test", "cerebrospinal fluid", "pleural fluid", "resection", "excision">
+			misuse = <"Not intended to be used for recording information about specimens that are not related to a specific individual. For example routine water samples from a waterworks, or spot samples from food production facilities.">
+		>
+	>
+	other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Greg Burch, Tiny Medical Apps, United Kingdom", "Ady Angelica Castro Acosta, CIBERES-Hospital 12 de Octubre, Spain", "Stefan Dubois, Dep't of Pathology and Genetics, University Hospitals of Lund and Malmö, Sweden", "Peter Fedorcsak, Oslo universitetssykehus, Norway", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Francesca Frexia, CRS4 - Center for advanced studies, research and development in Sardinia, Italy", "Heather Grain, Llewelyn Grain Informatics, Australia", "Åshild Halvorsen, Helse Nord RHF, Norway", "Sam Heard, Ocean Informatics, Australia", "Anca Heyd, DIPS AS, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Morten Hørthe, DIPS AS, Norway", "Lars Ivar Mehlum, Nasjonal IKT HF, Norway", "Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Lars Morgan Karlsen, DIPS ASA, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Ronald Krawec, Alberta Health Services, Canada", "Runar Kristiansen, DIPS AS, Norway", "Tomi Laptoš, Marand, Slovenia", "Siri Laronningen, Kreftregisteret, Norway", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Sabine Leh, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Jens Lien, Bouvet Norge AS, Norway", "Neranga Liyanaarachchige, Division of Global HIV and TB, CDC, United States", "Anne M Gromsrud, DIPS AS, Norway", "Gunn Marit Barstad, Stavanger Universitetssykehus HF, Norway", "Ole Martin Ryeng Sand, DIPS AS, Norway", "Ole Martin Sand, DIPS ASA, Norway", "Shane McKee, Belfast Health & Social Care Trust, United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "John Meredith, NHS Wales Informatics Service, United Kingdom", "Pourya Nasimi, Iran Ministry of Health and Medical Education, IT Department, National EHR R&D group, Iran", "Arunakiry Natarajan, medondo, Germany", "Gunnar Nordin, Equalis AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Jayashree Panickar, Karolinska Institute, Sweden", "Ana Pereira, CINTESIS, CUF-Porto, Portugal", "Nils Petter Tveranger, Helse Vest IKT, Norway", "Niklas Reimer, University Hospital Schleswig-Holstein, Germany", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Ingrid Skard, Edproof, Norway", "Lídia Sousa, CINTESIS; Faculty of Medicine of Oporto University, Portugal", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "German Review Summary, HiGHmed Germany, Germany", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Health Systems, Australia", "Micaela Thierley, Helse Bergen/Haraldsplass sykehus, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ørjan Vermeer, Haukeland Universitetssjukehus, Kvinneklinikken, Norway", "Marianne Wilhelmsen, HDS, Norway", "Lin Zhang, Taikang Insurance Group, China", "Enagnon ZOUNCTHEME, Aix Marseille Univerity, Benin">
+
+definition
+	Node[id1] matches {	-- Specimen
+		items matches {
+			Node[id30] occurrences matches {0..1} matches {	-- Specimen type
+				value matches {
+					Coded_text[id202] matches {
+						term matches {
+							Terminology_term[id203] matches {
+								concept matches {[ac3]}
+							}
+						}
+					}
+				}
+			}
+			Node[id99] occurrences matches {0..1} matches {	-- Specimen label
+				value matches {
+					Plain_text[id103] 
+				}
+			}
+			Node[id98] occurrences matches {0..1} matches {	-- Specimen description
+				value matches {
+					Plain_text[id104] 
+				}
+			}
+			Node[id100] occurrences matches {0..1} matches {	-- Number of fragments
+				value matches {
+					Count[id105] 
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Laboratory specimen identifier
+				value matches {
+					Rwe_id_ref[id106] 
+				}
+			}
+			Node[id89] matches {	-- External identifier
+				value matches {
+					Rwe_id_ref[id108] 
+				}
+			}
+			Node[id35] occurrences matches {0..1} matches {	-- Date/time received
+				value matches {
+					Date_time_value[id110] 
+				}
+			}
+			Node[id9] matches {	-- Sampling context
+				value matches {
+					Text[id111] 
+				}
+			}
+			allow_archetype Node[id28] matches {	-- Physical properties
+				include
+					archetype_id/value matches {/s2-EHR-Node\.specimen_measurements(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.inspection_body_fluid(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Collection method
+				value matches {
+					Coded_text[id112] 
+				}
+			}
+			Node[id80] occurrences matches {0..1} matches {	-- Collection description
+				value matches {
+					Plain_text[id113] 
+				}
+			}
+			Node[id88] occurrences matches {0..1} matches {	-- Source site
+				value matches {
+					Coded_text[id114] 
+				}
+			}
+			allow_archetype Node[id14] matches {	-- Structured source site
+				include
+					archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v2/}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Collection date/time
+				value matches {
+					Date_time_value[id115] 
+					Range<Date_time_value>[id116] 
+				}
+			}
+			Node[id6] matches {	-- Hazard warning
+				value matches {
+					Plain_text[id117] 
+				}
+			}
+			Node[id68] occurrences matches {0..1} matches {	-- Collection setting
+				value matches {
+					Coded_text[id118] 
+				}
+			}
+			Node[id71] occurrences matches {0..1} matches {	-- Specimen collector identifier
+				value matches {
+					Rwe_id_ref[id119] 
+				}
+			}
+			allow_archetype Node[id72] matches {	-- Specimen collector details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.person(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			Node[id81] occurrences matches {0..1} matches {	-- Number of containers
+				value matches {
+					Count[id121] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			use_archetype Node[id86, s2-EHR-Node.specimen_container.v1] 
+			allow_archetype Node[id69] matches {	-- Processing details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.specimen_preparation(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.specimen_preparation(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+			allow_archetype Node[id101] matches {	-- Storage details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.biobank_storage(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.biobank_storage(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			use_archetype Node[id94, s2-EHR-Node.specimen_transport.v1] 
+			use_archetype Node[id97, s2-EHR-Node.media_file.v1] 
+			Node[id4] matches {	-- Parent specimen identifier
+				value matches {
+					Rwe_id_ref[id122] 
+				}
+			}
+			Node[id43] matches {	-- Specimen quality issue
+				value matches {
+					Coded_text[id124] matches {
+						term matches {
+							Terminology_term[id129] matches {
+								concept matches {[ac1]}		-- Specimen quality issue (synthesised)
+							}
+						}
+					}
+					Plain_text[id125] 
+				}
+			}
+			Node[id42] occurrences matches {0..1} matches {	-- Adequacy for testing
+				value matches {
+					Coded_text[id126] matches {
+						term matches {
+							Terminology_term[id130] matches {
+								concept matches {[ac2]}		-- Adequacy for testing (synthesised)
+							}
+						}
+					}
+					Plain_text[id127] 
+				}
+			}
+			Node[id46] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id128] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Specimen quality issue (synthesised)">
+				description = <"A specific quality issue with a specimen. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Adequacy for testing (synthesised)">
+				description = <"Information about whether the specimen was adequate for testing. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Specimen type">
+				description = <"Type of specimen">
+			>
+			["at52"] = <
+				text = <"Haemolysed">
+				description = <"The specimen was haemolysed.">
+			>
+			["at53"] = <
+				text = <"Lipaemic">
+				description = <"The specimen was lipaemic.">
+			>
+			["at54"] = <
+				text = <"Incorrect additive">
+				description = <"An incorrect additive such as a transport medium or preservative was added to the specimen.">
+			>
+			["at55"] = <
+				text = <"Insufficient amount">
+				description = <"The available amount of specimen was insufficient to undertake the examination.">
+			>
+			["at62"] = <
+				text = <"Satisfactory">
+				description = <"The specimen is of sufficient quality to allow reporting.">
+			>
+			["at63"] = <
+				text = <"Unsatisfactory - analysed">
+				description = <"The specimen is unsatisfactory but has been analysed.">
+			>
+			["at64"] = <
+				text = <"Unsatisfactory - not analysed">
+				description = <"The specimen is unsatisfactory and has not been analysed.">
+			>
+			["at89"] = <
+				text = <"Icteric">
+				description = <"The specimen was icteric.">
+			>
+			["at90"] = <
+				text = <"Handling error">
+				description = <"An error arose when handling the specimen. For example: Incorrect storage, broken container.">
+			>
+			["at91"] = <
+				text = <"Age">
+				description = <"The specimen was too old to analyse or to analyse accurately.">
+			>
+			["at92"] = <
+				text = <"Technical failure">
+				description = <"The specimen could not be analysed for technical reasons.">
+			>
+			["at94"] = <
+				text = <"Clotted">
+				description = <"The specimen was clotted.">
+			>
+			["at95"] = <
+				text = <"Incorrectly labelled">
+				description = <"The specimen was labelled incorrectly.">
+			>
+			["id1"] = <
+				text = <"Specimen">
+				description = <"A physical sample collected from, or related to, an individual for the purpose of investigation, examination or analysis.">
+			>
+			["id100"] = <
+				text = <"Number of fragments">
+				description = <"The number of tissue fragments comprising the specimen.">
+			>
+			["id101"] = <
+				text = <"Storage details">
+				description = <"Structured details about the storage of the specimen.">
+			>
+			["id14"] = <
+				text = <"Structured source site">
+				description = <"A structured description of the area of the body from where the specimen is collected.">
+			>
+			["id16"] = <
+				text = <"Collection date/time">
+				description = <"The date and time that collection has been ordered to take place or has taken place.">
+			>
+			["id2"] = <
+				text = <"Laboratory specimen identifier">
+				description = <"A unique identifier of the specimen, normally assigned by the laboratory.">
+			>
+			["id28"] = <
+				text = <"Physical properties">
+				description = <"Physical dimensions, mass or non-measurable properties of the specimen.">
+			>
+			["id30"] = <
+				text = <"Specimen type">
+				description = <"The type of specimen.">
+			>
+			["id35"] = <
+				text = <"Date/time received">
+				description = <"The date and time that the sample was received at the laboratory.">
+			>
+			["id4"] = <
+				text = <"Parent specimen identifier">
+				description = <"Unique identifier of the parent specimen, where the specimen is split into sub-samples.">
+			>
+			["id42"] = <
+				text = <"Adequacy for testing">
+				description = <"Information about whether the specimen was adequate for testing.">
+			>
+			["id43"] = <
+				text = <"Specimen quality issue">
+				description = <"A specific quality issue with a specimen.">
+			>
+			["id46"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the specimen not captured in other fields.">
+			>
+			["id6"] = <
+				text = <"Hazard warning">
+				description = <"Identified health risk or biohazard to the collector or laboratory staff due to exposure to, or contact with, the specimen.">
+			>
+			["id68"] = <
+				text = <"Collection setting">
+				description = <"Identification of the physical setting in which the specimen is collected.">
+			>
+			["id69"] = <
+				text = <"Processing details">
+				description = <"Structured details about preparation or processing of the specimen.">
+			>
+			["id71"] = <
+				text = <"Specimen collector identifier">
+				description = <"Identifier of the person or organization responsible for collecting the specimen.">
+			>
+			["id72"] = <
+				text = <"Specimen collector details">
+				description = <"The person or organization responsible for collecting the specimen.">
+			>
+			["id8"] = <
+				text = <"Collection method">
+				description = <"The method of collection used.">
+			>
+			["id80"] = <
+				text = <"Collection description">
+				description = <"Narrative description about the collection of the specimen.">
+			>
+			["id81"] = <
+				text = <"Number of containers">
+				description = <"The total number of physical units holding this specimen.">
+			>
+			["id84"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about the specimen.">
+			>
+			["id86"] = <
+				text = <"Container details">
+				description = <"Details about containers used.">
+			>
+			["id88"] = <
+				text = <"Source site">
+				description = <"Identification of the body site or other location from where the specimen is collected.">
+			>
+			["id89"] = <
+				text = <"External identifier">
+				description = <"A unique identifier of the specimen, assigned by a party external to the laboratory.">
+			>
+			["id9"] = <
+				text = <"Sampling context">
+				description = <"The context in which the specimen is collected.">
+			>
+			["id94"] = <
+				text = <"Transport details">
+				description = <"Structured details about transport of the specimen.">
+			>
+			["id97"] = <
+				text = <"Digital representation">
+				description = <"Structured details about a digital representation of the specimen.">
+			>
+			["id98"] = <
+				text = <"Specimen description">
+				description = <"Narrative description about the specimen being examined.">
+			>
+			["id99"] = <
+				text = <"Specimen label">
+				description = <"A name or label describing the specimen.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id16"] = <http://loinc.org/68963-8>
+			["id30"] = <http://loinc.org/66746-9>
+			["id35"] = <http://loinc.org/63572-2>
+			["id68"] = <http://loinc.org/90041-5>
+			["id71"] = <http://loinc.org/71749-6>
+			["id8"] = <http://loinc.org/33724-6>
+			["id88"] = <http://loinc.org/31208-2>
+			["id4"] = <http://loinc.org/89873-4>
+			["id43"] = <http://loinc.org/93047-9>
+			["id81"] = <http://loinc.org/42185-9>
+			["id2"] = <http://loinc.org/106159-7>
+			["id46"] = <http://loinc.org/106173-8>
+			["id89"] = <http://loinc.org/106182-9>
+		>
+		["s2"] = <
+			["ac3"] = <http://s2health.org/id/s2.LabTestSpecimenType>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at52", "at53", "at89", "at94", "at54", "at55", "at90", "at95", "at91", "at92">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at62", "at63", "at64">
+		>
+	>
+

@@ -1,0 +1,673 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d4bdaba7-cb6f-4087-9bdf-6db028e3b311)
+    s2-EHR-Score.sofa_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"no.nasjonalikt">
+    other_contributors = <"Morten Aas, Oslo Universitetssykehus, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Sarah Ballout, MHH-Hannover, Germany", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Siv Fauchald, DIPS ASA, Norway", "Mikkel Gaup Grønmo, Helse-Nord, FSE, Norway (openEHR Editor)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS AS, Norway", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Marit Ludvigsen, St Olavs Hospital, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Stian Torleif Varpe, Helse Bergen, Norway", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Marianne Warholm, Helse Vest IKT, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Siv Fauchald, DIPS AS, <sfa@dips.no>, 2017-03-07">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.sofa_score.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.sofa_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the SOFA score.">
+            keywords = <"sepsis", "organ failure", "organ dysfunction", "septic shock", "infection">
+            use = <"Use to record the results for each component parameter and their total sum for the SOFA score.
+            
+            SOFA score is usually used in intensive care units and in acute settings, but can be used in all patients where organ dysfunction is suspected or identified, for example in sepsis patients.
+            
+            SOFA score is used in adults over the age of 16.">
+            misuse = <"Not to be used to record actual measurements for each component. Use specific OBSERVATION archetypes for this purpose:
+            - OBSERVATION.pf_ratio;
+            - OBSERVATION.blood_pressure;
+            - OBSERVATION.glasgow_coma_scale; and
+            - OBSERVATION.laboratory_test.
+            
+            Not to be used to record SOFA score in children younger than 16 years of age.
+            
+            Not to be used to record qSOFA (quick SOFA). Use the archetype OBSERVATION.qsofa_score for this purpose.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- SOFA score
+        data cardinality matches {1..*; unordered} matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Respiration
+                value matches {
+                    Coded_ordinal[id53] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id55] matches {
+                                term matches {
+                                    Terminology_term[id54] matches {
+                                        concept matches {[at5]}    -- PaO₂/FiO₂ ≥ 400 mmHg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id56] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id58] matches {
+                                term matches {
+                                    Terminology_term[id57] matches {
+                                        concept matches {[at6]}    -- PaO₂/FiO₂ 300-399 mmHg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id59] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id61] matches {
+                                term matches {
+                                    Terminology_term[id60] matches {
+                                        concept matches {[at7]}    -- PaO₂/FiO₂ < 300 mmHg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id62] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id64] matches {
+                                term matches {
+                                    Terminology_term[id63] matches {
+                                        concept matches {[at8]}    -- Mechanically ventilated and PaO₂/FiO₂ 100-199 mmHg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id65] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id67] matches {
+                                term matches {
+                                    Terminology_term[id66] matches {
+                                        concept matches {[at9]}    -- Mechanically ventilated and PaO₂/FiO₂ < 100 mmHg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Cardiovascular system
+                value matches {
+                    Coded_ordinal[id68] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id70] matches {
+                                term matches {
+                                    Terminology_term[id69] matches {
+                                        concept matches {[at11]}    -- MAP ≥ 70 mmHg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id71] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id73] matches {
+                                term matches {
+                                    Terminology_term[id72] matches {
+                                        concept matches {[at12]}    -- MAP < 70 mmHg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id74] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id76] matches {
+                                term matches {
+                                    Terminology_term[id75] matches {
+                                        concept matches {[at13]}    -- DA ≤ 5; Dobutamine
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id77] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id79] matches {
+                                term matches {
+                                    Terminology_term[id78] matches {
+                                        concept matches {[at14]}    -- DA > 5; NA/A ≤ 0.1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id80] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id82] matches {
+                                term matches {
+                                    Terminology_term[id81] matches {
+                                        concept matches {[at15]}    -- NA/A > 0.1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Central nervous system
+                value matches {
+                    Coded_ordinal[id83] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id85] matches {
+                                term matches {
+                                    Terminology_term[id84] matches {
+                                        concept matches {[at17]}    -- GCS 15
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id86] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id88] matches {
+                                term matches {
+                                    Terminology_term[id87] matches {
+                                        concept matches {[at18]}    -- GCS 13 - 14
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id89] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id91] matches {
+                                term matches {
+                                    Terminology_term[id90] matches {
+                                        concept matches {[at19]}    -- GCS 10 - 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id92] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id94] matches {
+                                term matches {
+                                    Terminology_term[id93] matches {
+                                        concept matches {[at20]}    -- GCS 6 - 9
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id95] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id97] matches {
+                                term matches {
+                                    Terminology_term[id96] matches {
+                                        concept matches {[at21]}    -- GCS < 6
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id23] occurrences matches {0..1} matches {    -- Renal function
+                value matches {
+                    Coded_ordinal[id98] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id100] matches {
+                                term matches {
+                                    Terminology_term[id99] matches {
+                                        concept matches {[at23]}    -- Creatinine < 1.2 mg/dL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id101] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id103] matches {
+                                term matches {
+                                    Terminology_term[id102] matches {
+                                        concept matches {[at24]}    -- Creatinine 1.2-1.9 mg/dL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id104] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id106] matches {
+                                term matches {
+                                    Terminology_term[id105] matches {
+                                        concept matches {[at25]}    -- Creatinine 2.0-3.4 mg/dL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id107] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id109] matches {
+                                term matches {
+                                    Terminology_term[id108] matches {
+                                        concept matches {[at26]}    -- Creatinine 3.5-4.9 mg/dL or UOP < 500 mL/24h
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id110] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id112] matches {
+                                term matches {
+                                    Terminology_term[id111] matches {
+                                        concept matches {[at27]}    -- Creatinine ≥ 5.0 mg/dL or UOP < 200 mL/24h
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Liver function
+                value matches {
+                    Coded_ordinal[id113] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id115] matches {
+                                term matches {
+                                    Terminology_term[id114] matches {
+                                        concept matches {[at29]}    -- Bilirubin < 1.2 mg/dL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id116] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id118] matches {
+                                term matches {
+                                    Terminology_term[id117] matches {
+                                        concept matches {[at30]}    -- Bilirubin 1.2-1.9 mg/dL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id119] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id121] matches {
+                                term matches {
+                                    Terminology_term[id120] matches {
+                                        concept matches {[at31]}    -- Bilirubin 2.0-5.9 mg/dL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id122] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id124] matches {
+                                term matches {
+                                    Terminology_term[id123] matches {
+                                        concept matches {[at32]}    -- Bilirubin 6.0-11.9 mg/dL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id125] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id127] matches {
+                                term matches {
+                                    Terminology_term[id126] matches {
+                                        concept matches {[at33]}    -- Bilirubin ≥ 12.0 mg/dL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id35] occurrences matches {0..1} matches {    -- Blood clotting
+                value matches {
+                    Coded_ordinal[id128] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id130] matches {
+                                term matches {
+                                    Terminology_term[id129] matches {
+                                        concept matches {[at35]}    -- Platelets ≥ 150 (x10³/µL)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id131] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id133] matches {
+                                term matches {
+                                    Terminology_term[id132] matches {
+                                        concept matches {[at36]}    -- Platelets < 150 (x10³/µL)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id134] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id136] matches {
+                                term matches {
+                                    Terminology_term[id135] matches {
+                                        concept matches {[at37]}    -- Platelets < 100 (x10³/µL)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id137] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id139] matches {
+                                term matches {
+                                    Terminology_term[id138] matches {
+                                        concept matches {[at38]}    -- Platelets < 50 (x10³/µL)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id140] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id142] matches {
+                                term matches {
+                                    Terminology_term[id141] matches {
+                                        concept matches {[at39]}    -- Platelets < 20 (x10³/µL)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id42] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id52] matches {
+                        magnitude matches {|0..24|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id45] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6", "at7", "at8", "at9">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at11", "at12", "at13", "at14", "at15">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at17", "at18", "at19", "at20", "at21">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at23", "at24", "at25", "at26", "at27">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at29", "at30", "at31", "at32", "at33">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at35", "at36", "at37", "at38", "at39">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Respiration (synthesised)">
+                description = <"The ratio between the partial pressure of oxygen (PaO₂) and the fraction of inspired oxygen (FiO₂) is an indicator for a possible dysfunction of the respiratory system. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Cardiovascular system (synthesised)">
+                description = <"The mean arterial pressure (MAP), or the need for vasopressors (VP), (dopamine (DA), adrenaline (A), noradrenaline (NA) or dobutamine) are indicators for a possible dysfunction of the cardiovascular system. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Central nervous system (synthesised)">
+                description = <"The Glasgow Coma Scale (GCS) is an indicator for a possible dysfunction of the central nervous system. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Renal function (synthesised)">
+                description = <"Creatinine concentration and 24 h urine output (UOP) are indicators for a possible dysfunction of the central nervous system. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Liver function (synthesised)">
+                description = <"Bilirubin concentration is an indicator for a possible dysfunction of the central nervous system. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Blood clotting (synthesised)">
+                description = <"Platelets concentration is an indicator for a possible dysfunction of the blood clotting system. (synthesised)">
+            >
+            ["at11"] = <
+                text = <"MAP ≥ 70 mmHg">
+                description = <"The mean arterial pressure (MAP) is greater than or equal to 70 mmHg.">
+            >
+            ["at12"] = <
+                text = <"MAP < 70 mmHg">
+                description = <"The mean arterial pressure (MAP) is less than 70 mmHg.">
+            >
+            ["at13"] = <
+                text = <"DA ≤ 5; Dobutamine">
+                description = <"The dopamine (DA) dosage is less than 5 µg/kg/minute, or any dosage of dobutamine.">
+            >
+            ["at14"] = <
+                text = <"DA > 5; NA/A ≤ 0.1">
+                description = <"The dosage of dopamine (DA) is greater than 5 µg/kg/minute, or the dosage of noradrenaline (NA) is less than or equal to 0.1 µg/kg/minute, or the dosage of adrenaline (A) is less than or equal to 0.1 µg/kg/minutt.">
+            >
+            ["at15"] = <
+                text = <"NA/A > 0.1">
+                description = <"The dosage of noradrenaline (N) or adrenaline (A) is greater than 0.1 µg/kg/minute.">
+            >
+            ["at17"] = <
+                text = <"GCS 15">
+                description = <"Glasgow Coma Scale is 15.">
+            >
+            ["at18"] = <
+                text = <"GCS 13 - 14">
+                description = <"Glasgow Coma Scale is 13 or 14.">
+            >
+            ["at19"] = <
+                text = <"GCS 10 - 12">
+                description = <"Glasgow Coma Scale is 10, 11 or 12.">
+            >
+            ["at20"] = <
+                text = <"GCS 6 - 9">
+                description = <"Glasgow Coma Scale is 6, 7, 8 or 9.">
+            >
+            ["at21"] = <
+                text = <"GCS < 6">
+                description = <"Glasgow Coma Scale is less than 6.">
+            >
+            ["at23"] = <
+                text = <"Creatinine < 1.2 mg/dL">
+                description = <"The creatinine concentration is less than 1.2 mg/dL. Equivalent to creatinine < 110 µmol/L.">
+            >
+            ["at24"] = <
+                text = <"Creatinine 1.2-1.9 mg/dL">
+                description = <"The creatinine concentration is between 1.2 and 1.9 mg/dL. Equivalent to creatinine 110 - 170 µmol/L.">
+            >
+            ["at25"] = <
+                text = <"Creatinine 2.0-3.4 mg/dL">
+                description = <"The creatinine concentration is between 2.0 and 3.4 mg/dL. Equivalent to creatinine 171 - 299 µmol/L.">
+            >
+            ["at26"] = <
+                text = <"Creatinine 3.5-4.9 mg/dL or UOP < 500 mL/24h">
+                description = <"The creatinine concentration is between 3.5 and 4.9 mg/dL, or the urine output is between 500 and 200 mL/24h. Equivalent to creatinine 300 - 440 µmol/L or UOP < 500 mL/24h.">
+            >
+            ["at27"] = <
+                text = <"Creatinine ≥ 5.0 mg/dL or UOP < 200 mL/24h">
+                description = <"The creatinine concentration is greater than or equal to 5.0 mg/dL, or the urine output is less than 200 mL/24h. Equivalent to creatinine > 440 µmol/L or UOP < 200 mL/24h.">
+            >
+            ["at29"] = <
+                text = <"Bilirubin < 1.2 mg/dL">
+                description = <"The bilirubin concentration is less than 1.2 mg/dL. Equivalent to bilirubin < 20 µmol/L.">
+            >
+            ["at30"] = <
+                text = <"Bilirubin 1.2-1.9 mg/dL">
+                description = <"The bilirubin concentration is between 1.2 and 1.9 mg/dL. Equivalent to bilirubin 20-32 µmol/L.">
+            >
+            ["at31"] = <
+                text = <"Bilirubin 2.0-5.9 mg/dL">
+                description = <"The bilirubin concentration is between 2.0 and 5.9 mg/dL. Equivalent to bilirubin 33-101 µmol/L.">
+            >
+            ["at32"] = <
+                text = <"Bilirubin 6.0-11.9 mg/dL">
+                description = <"The bilirubin concentration is between 6.0 and 11.9 mg/dL. Equivalent to bilirubin 102-204 µmol/L.">
+            >
+            ["at33"] = <
+                text = <"Bilirubin ≥ 12.0 mg/dL">
+                description = <"The bilirubin concentration is greater than or equal to 12.0 mg/dL. Equivalent to bilirubin > 204 µmol/L.">
+            >
+            ["at35"] = <
+                text = <"Platelets ≥ 150 (x10³/µL)">
+                description = <"The platelet concentration is greater than or equal to 150,000 /µL.">
+            >
+            ["at36"] = <
+                text = <"Platelets < 150 (x10³/µL)">
+                description = <"The platelet concentration is between 150,000 and 100,000 /µL.">
+            >
+            ["at37"] = <
+                text = <"Platelets < 100 (x10³/µL)">
+                description = <"The platelet concentration is between 100,000 and 50,000 /µL.">
+            >
+            ["at38"] = <
+                text = <"Platelets < 50 (x10³/µL)">
+                description = <"The platelet concentration is between 50,000 and 20,000 /µL.">
+            >
+            ["at39"] = <
+                text = <"Platelets < 20 (x10³/µL)">
+                description = <"The platelet concentration is less than 20,000 /µL.">
+            >
+            ["at5"] = <
+                text = <"PaO₂/FiO₂ ≥ 400 mmHg">
+                description = <"The partial pressure of oxygen in arterial or capillary blood measured in mmHg, divided by the fraction of inspired oxygen is greater than or equal to 400 mmHg. Equivalent to PaO₂/FiO₂ ≥ 53.3 kPa.">
+            >
+            ["at6"] = <
+                text = <"PaO₂/FiO₂ 300-399 mmHg">
+                description = <"The partial pressure of oxygen in arterial or capillary blood measured in mmHg, divided by the fraction of inspired oxygen is between 300 and 399 mmHg. Equivalent to PaO₂/FiO₂ 40.0 - 53.2 kPa.">
+            >
+            ["at7"] = <
+                text = <"PaO₂/FiO₂ < 300 mmHg">
+                description = <"The partial pressure of oxygen in arterial or capillary blood measured in mmHg, divided by the fraction of inspired oxygen is lower than 300 mmHg. Equivalent to PaO₂/FiO₂ 40 kPa.">
+            >
+            ["at8"] = <
+                text = <"Mechanically ventilated and PaO₂/FiO₂ 100-199 mmHg">
+                description = <"On mechanical ventilation, the partial pressure of oxygen in arterial or capillary blood measured in mmHg, divided by the fraction of inspired oxygen is between 100 and 199 mmHg. Equivalent to PaO₂/FiO₂ 13.3 - 26.5 kPa.">
+            >
+            ["at9"] = <
+                text = <"Mechanically ventilated and PaO₂/FiO₂ < 100 mmHg">
+                description = <"On mechanical ventilation, the partial pressure of oxygen in arterial or capillary blood measured in mmHg, divided by the fraction of inspired oxygen is less than 100 mmHg. Equivalent to PaO₂/FiO₂ < 13.3 kPa.">
+            >
+            ["id1"] = <
+                text = <"SOFA score">
+                description = <"A scoring system to grade and follow the development of organ dysfunction in six vital organ systems. Previously known as \\\"Sepsis related Organ Failure Assessment\\\".">
+            >
+            ["id11"] = <
+                text = <"Cardiovascular system">
+                description = <"The mean arterial pressure (MAP), or the need for vasopressors (VP), (dopamine (DA), adrenaline (A), noradrenaline (NA) or dobutamine) are indicators for a possible dysfunction of the cardiovascular system.">
+            >
+            ["id17"] = <
+                text = <"Central nervous system">
+                description = <"The Glasgow Coma Scale (GCS) is an indicator for a possible dysfunction of the central nervous system.">
+            >
+            ["id23"] = <
+                text = <"Renal function">
+                description = <"Creatinine concentration and 24 h urine output (UOP) are indicators for a possible dysfunction of the central nervous system.">
+            >
+            ["id29"] = <
+                text = <"Liver function">
+                description = <"Bilirubin concentration is an indicator for a possible dysfunction of the central nervous system.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id35"] = <
+                text = <"Blood clotting">
+                description = <"Platelets concentration is an indicator for a possible dysfunction of the blood clotting system.">
+            >
+            ["id42"] = <
+                text = <"Total score">
+                description = <"The total sum of each component parameter for the SOFA score.">
+            >
+            ["id45"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id5"] = <
+                text = <"Respiration">
+                description = <"The ratio between the partial pressure of oxygen (PaO₂) and the fraction of inspired oxygen (FiO₂) is an indicator for a possible dysfunction of the respiratory system.">
+            >
+        >
+    >
+    

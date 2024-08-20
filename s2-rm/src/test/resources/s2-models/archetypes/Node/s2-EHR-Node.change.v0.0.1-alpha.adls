@@ -1,0 +1,179 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ec017d8d-35a5-47ef-b6a8-ccb7673a8b33)
+	s2-EHR-Node.change.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2008-01-01">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.change.v0.0.1-alpha, copyright 2008 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.change.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about readiness for change of a behaviour.">
+			use = <"">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Shahla Foozonkhah, Ocean Informatics, Australia", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (Editor)">
+
+definition
+	Node[id1] matches {	-- Readiness for change
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Readiness to change
+				value matches {
+					Coded_text[id13] matches {
+						term matches {
+							Terminology_term[id22] matches {
+								concept matches {[ac1]}		-- Readiness to change (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Reasons
+				value matches {
+					Text[id14] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Triggers
+				value matches {
+					Text[id15] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Positive aspects of current behaviour
+				value matches {
+					Text[id16] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Negative aspects of current behaviour
+				value matches {
+					Text[id17] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Positive aspects of change
+				value matches {
+					Text[id18] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Negative aspects of change
+				value matches {
+					Text[id19] 
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Barriers to change
+				value matches {
+					Text[id20] 
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id21] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Readiness to change (synthesised)">
+				description = <"Record current status for behaviour change. (synthesised)">
+			>
+			["at12"] = <
+				text = <"Not ready (Precontemplation)">
+				description = <"Individual is not seriously considering changing in the next 6 months.">
+			>
+			["at13"] = <
+				text = <"Unsure (Contemplation)">
+				description = <"Individual is seriously considering changing in the next 6 months.">
+			>
+			["at14"] = <
+				text = <"Ready (Preparation)">
+				description = <"Individual is planning to change in the next 30 days.">
+			>
+			["at15"] = <
+				text = <"Action">
+				description = <"Individual who is implementing change; includes those who have implemented change within the last 6 months.">
+			>
+			["at16"] = <
+				text = <"Maintenance">
+				description = <"Individual who has implemented change over 6 months ago.">
+			>
+			["id1"] = <
+				text = <"Readiness for change">
+				description = <"Record details about readiness to change current status.">
+			>
+			["id10"] = <
+				text = <"Negative aspects of change">
+				description = <"Narrative description about negative aspects of any change to the current behaviour that have been identified by the individual.">
+			>
+			["id11"] = <
+				text = <"Barriers to change">
+				description = <"Identify barriers which prevent the individual from changing behaviour.">
+			>
+			["id12"] = <
+				text = <"Comment">
+				description = <"Comment about individual's willingness to change behaviour.">
+			>
+			["id2"] = <
+				text = <"Readiness to change">
+				description = <"Record current status for behaviour change.">
+			>
+			["id3"] = <
+				text = <"Reasons">
+				description = <"Narrative descriptions about the individual's reasons for the current behaviour.">
+			>
+			["id4"] = <
+				text = <"Triggers">
+				description = <"Identify triggers for the behaviour.">
+			>
+			["id6"] = <
+				text = <"Positive aspects of current behaviour">
+				description = <"Narrative description about positive aspects of the current behaviour that have been identified by the individual.">
+			>
+			["id7"] = <
+				text = <"Negative aspects of current behaviour">
+				description = <"Narrative description about negative aspects of the current behaviour that have been identified by the individual.">
+			>
+			["id9"] = <
+				text = <"Positive aspects of change">
+				description = <"Narrative description about positive aspects of any change to the current behaviour that have been identified by the individual.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id12"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at12", "at13", "at14", "at15", "at16">
+		>
+	>
+

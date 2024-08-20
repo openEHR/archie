@@ -1,0 +1,650 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e1946e37-4da3-4c0f-a9fe-0ab15da17082)
+	s2-EHR-Assessment.art_cycle_summary.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Peter Fedorcsak, University of Oslo, <peterfe@uio.no>, 2022-01-11">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.art_cycle_summary.v1.0.0, copyright 2022 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.art_cycle_summary.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary or persistent information about a single cycle of assisted reproduction treatment.">
+			use = <"Use to record summary or persistent information about a single cycle of assisted reproduction treatment.
+            
+            The start of a treatment cycle is triggered by the initiation of ovulation stimulation or monitoring. 
+            
+            The end of a treatment cycle is triggered by identifying a 'Cycle outcome':
+            - the cancellation of treatment for any reason; 
+            - embryo transfer;
+            - the recognition that no embryo is suitable for transfer;
+            - embryo freezing; or
+            - successful harvesting of oocytes that are frozen or donated.">
+			keywords = <"ART", "IVF", "ICSI", "reproduction", "in vitro", "fertilisation", "insemination", "infertility", "reproductive">
+			misuse = <"Not to be used to record details about a pregnancy conceived by assisted reproduction treatment beyond a week eight ultrasound scan.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Christine Mikalsen, Regional forvaltning EPJ, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway">
+
+definition
+	Assessment[id1] matches {	-- Assisted reproduction treatment cycle summary
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Cycle sequence
+				value matches {
+					Count[id76] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Cycle identifier
+				value matches {
+					Rwe_id_ref[id77] 
+					Text[id78] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Start date
+				value matches {
+					Date_time_value[id79] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id80] 
+				}
+			}
+			Node[id7] matches {	-- Intent
+				value matches {
+					Text[id81] 
+				}
+			}
+			Node[id13] matches {	-- Activities
+				value matches {
+					Coded_text[id82] matches {
+						term matches {
+							Terminology_term[id111] matches {
+								concept matches {[ac1]}		-- Activities (synthesised)
+							}
+						}
+					}
+					Plain_text[id83] 
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Donation received
+				value matches {
+					Coded_text[id84] matches {
+						term matches {
+							Terminology_term[id112] matches {
+								concept matches {[ac2]}		-- Donation received (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id27] occurrences matches {0..1} matches {	-- Hormone protocol
+				value matches {
+					Coded_text[id85] matches {
+						term matches {
+							Terminology_term[id113] matches {
+								concept matches {[ac3]}		-- Hormone protocol (synthesised)
+							}
+						}
+					}
+					Plain_text[id86] 
+				}
+			}
+			Node[id73] occurrences matches {0..1} matches {	-- Cumulative gonadotropin dose
+				value matches {
+					Quantity[id114] matches {	-- Cumulative gonadotropin dose ([iU])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id116] matches {
+								term matches {
+									Terminology_term[id115] matches {
+										concept matches {[at65]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id117] matches {	-- Cumulative gonadotropin dose (ug)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id119] matches {
+								term matches {
+									Terminology_term[id118] matches {
+										concept matches {[at66]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id74] occurrences matches {0..1} matches {	-- Duration of gonadotropin administration
+				value matches {
+					Duration_value[id88] matches {
+						magnitude matches {|>=PT0S|}
+					}
+				}
+			}
+			Node[id43] occurrences matches {0..1} matches {	-- Number of oocytes collected
+				value matches {
+					Count[id89] 
+				}
+			}
+			Node[id44] occurrences matches {0..1} matches {	-- Number of mature (M2) oocytes collected
+				value matches {
+					Count[id90] 
+				}
+			}
+			Node[id45] occurrences matches {0..1} matches {	-- Number of oocytes attempted fertilized
+				value matches {
+					Count[id91] 
+				}
+			}
+			Node[id72] occurrences matches {0..1} matches {	-- Number of 2PN zygotes
+				value matches {
+					Count[id92] 
+				}
+			}
+			Node[id46] occurrences matches {0..1} matches {	-- Number of embryos transferred
+				value matches {
+					Count[id93] 
+				}
+			}
+			Node[id47] occurrences matches {0..1} matches {	-- Transferred embryo quality
+				value matches {
+					Text[id94] 
+				}
+			}
+			Node[id48] occurrences matches {0..1} matches {	-- Number of embryos frozen
+				value matches {
+					Count[id95] 
+				}
+			}
+			Node[id49] occurrences matches {0..1} matches {	-- Number of oocytes frozen
+				value matches {
+					Count[id96] 
+				}
+			}
+			Node[id50] occurrences matches {0..1} matches {	-- Number of embryos thawed
+				value matches {
+					Count[id97] 
+				}
+			}
+			Node[id51] occurrences matches {0..1} matches {	-- Number of embryos surviving thaw
+				value matches {
+					Count[id98] 
+				}
+			}
+			Node[id52] occurrences matches {0..1} matches {	-- Number of embryos biopsied
+				value matches {
+					Count[id99] 
+				}
+			}
+			Node[id53] occurrences matches {0..1} matches {	-- Number of embryos surviving biopsy
+				value matches {
+					Count[id100] 
+				}
+			}
+			Node[id35] matches {	-- Cycle outcome
+				value matches {
+					Coded_text[id101] matches {
+						term matches {
+							Terminology_term[id120] matches {
+								concept matches {[ac4]}		-- Cycle outcome (synthesised)
+							}
+						}
+					}
+					Plain_text[id102] 
+				}
+			}
+			Node[id55] occurrences matches {0..1} matches {	-- Pregnancy test outcome
+				value matches {
+					Coded_text[id103] matches {
+						term matches {
+							Terminology_term[id121] matches {
+								concept matches {[ac5]}		-- Pregnancy test outcome (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id54] occurrences matches {0..1} matches {	-- Number of viable fetuses
+				value matches {
+					Count[id104] 
+				}
+			}
+			Node[id58] matches {	-- Complications
+				items matches {
+					Node[id59] matches {	-- Condition
+						value matches {
+							Coded_text[id105] matches {
+								term matches {
+									Terminology_term[id122] matches {
+										concept matches {[ac6]}		-- Condition (synthesised)
+									}
+								}
+							}
+							Plain_text[id106] 
+						}
+					}
+					Node[id66] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id107] 
+						}
+					}
+					Node[id67] occurrences matches {0..1} matches {	-- Date of onset
+						value matches {
+							Date_time_value[id108] 
+						}
+					}
+				}
+			}
+			allow_archetype Node[id75] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id68] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id109] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id70] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id110] 
+				}
+			}
+			allow_archetype Node[id71] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Activities (synthesised)">
+				description = <"Activity or treatment caried out during the treatment cycle. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Donation received (synthesised)">
+				description = <"Cell or tissue type donated to the individual as part of the treatment cycle. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Hormone protocol (synthesised)">
+				description = <"Identification of the hormone protocol used during the treatment cycle. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Cycle outcome (synthesised)">
+				description = <"Identification of the outcome of the treatment cycle. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Pregnancy test outcome (synthesised)">
+				description = <"Outcome of pregnancy test with human chorionic gonadotropin (hCG). (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Condition (synthesised)">
+				description = <"Name of the condition identified as a complication of treatment. (synthesised)">
+			>
+			["at13"] = <
+				text = <"Intrauterine insemination">
+				description = <"">
+			>
+			["at14"] = <
+				text = <"Conventional in vitro insemination">
+				description = <"">
+			>
+			["at15"] = <
+				text = <"Intracytoplasmatic sperm injection (ICSI)">
+				description = <"">
+			>
+			["at16"] = <
+				text = <"Frozen-thawed embryo transfer">
+				description = <"">
+			>
+			["at17"] = <
+				text = <"Surgical sperm collection">
+				description = <"">
+			>
+			["at18"] = <
+				text = <"Pre-implantation genetic testing">
+				description = <"">
+			>
+			["at19"] = <
+				text = <"Oocyte aspiration">
+				description = <"">
+			>
+			["at20"] = <
+				text = <"Embryo transfer">
+				description = <"">
+			>
+			["at22"] = <
+				text = <"None">
+				description = <"">
+			>
+			["at23"] = <
+				text = <"Sperm">
+				description = <"Donated sperm were used as part of the treatment cycle.">
+			>
+			["at24"] = <
+				text = <"Oocyte donation">
+				description = <"Donated oocyte/s were used as part of the treatment cycle.">
+			>
+			["at25"] = <
+				text = <"Embryo donation">
+				description = <"Donated embryo/s were used as part of the treatment cycle.">
+			>
+			["at27"] = <
+				text = <"Natural cycle">
+				description = <"">
+			>
+			["at28"] = <
+				text = <"Modified natural cycle">
+				description = <"">
+			>
+			["at29"] = <
+				text = <"Hormone replacement cycle">
+				description = <"">
+			>
+			["at30"] = <
+				text = <"Mild stimulation">
+				description = <"">
+			>
+			["at31"] = <
+				text = <"Long-term GnRH agonist, conventional simulation">
+				description = <"">
+			>
+			["at32"] = <
+				text = <"Flare-up GnRH agonist, conventional stimulation">
+				description = <"">
+			>
+			["at33"] = <
+				text = <"GnRH antagonist, conventional stimulation">
+				description = <"">
+			>
+			["at35"] = <
+				text = <"Embryo transfer completed">
+				description = <"">
+			>
+			["at36"] = <
+				text = <"Cycle cancelled before oocyte aspiration">
+				description = <"">
+			>
+			["at37"] = <
+				text = <"Cycle cancelled after oocyte aspiration">
+				description = <"">
+			>
+			["at38"] = <
+				text = <"All embryos frozen">
+				description = <"">
+			>
+			["at39"] = <
+				text = <"All oocytes frozen">
+				description = <"">
+			>
+			["at40"] = <
+				text = <"Oocytes donated">
+				description = <"">
+			>
+			["at41"] = <
+				text = <"No embryo is suitable for transfer">
+				description = <"">
+			>
+			["at55"] = <
+				text = <"Positive">
+				description = <"The end of cycle hCG test result was positive.">
+			>
+			["at56"] = <
+				text = <"Negative">
+				description = <"The end of cycle hCG test result was negative.">
+			>
+			["at59"] = <
+				text = <"Mild ovarian hyperstimulation syndrome">
+				description = <"">
+			>
+			["at60"] = <
+				text = <"Moderate ovarian hyperstimulation syndrome">
+				description = <"">
+			>
+			["at61"] = <
+				text = <"Severe ovarian hyperstimulation syndrome">
+				description = <"">
+			>
+			["at62"] = <
+				text = <"Infection">
+				description = <"">
+			>
+			["at63"] = <
+				text = <"Bleeding">
+				description = <"">
+			>
+			["at64"] = <
+				text = <"Thrombosis">
+				description = <"">
+			>
+			["at65"] = <
+				text = <"[iU]">
+				description = <"[iU] unit.">
+			>
+			["at66"] = <
+				text = <"ug">
+				description = <"ug unit.">
+			>
+			["id1"] = <
+				text = <"Assisted reproduction treatment cycle summary">
+				description = <"Summary or persistent information about a single cycle of assisted reproduction treatment.">
+			>
+			["id114"] = <
+				text = <"Cumulative gonadotropin dose ([iU])">
+				description = <"Cumulative gonadotropin dose ([iU])">
+			>
+			["id117"] = <
+				text = <"Cumulative gonadotropin dose (ug)">
+				description = <"Cumulative gonadotropin dose (ug)">
+			>
+			["id13"] = <
+				text = <"Activities">
+				description = <"Activity or treatment caried out during the treatment cycle.">
+			>
+			["id22"] = <
+				text = <"Donation received">
+				description = <"Cell or tissue type donated to the individual as part of the treatment cycle.">
+			>
+			["id27"] = <
+				text = <"Hormone protocol">
+				description = <"Identification of the hormone protocol used during the treatment cycle.">
+			>
+			["id3"] = <
+				text = <"Cycle sequence">
+				description = <"The cycle number within a sequence of cycles.">
+			>
+			["id35"] = <
+				text = <"Cycle outcome">
+				description = <"Identification of the outcome of the treatment cycle.">
+			>
+			["id4"] = <
+				text = <"Cycle identifier">
+				description = <"Identifier of the treatment cycle within the treating organization.">
+			>
+			["id43"] = <
+				text = <"Number of oocytes collected">
+				description = <"">
+			>
+			["id44"] = <
+				text = <"Number of mature (M2) oocytes collected">
+				description = <"Number of collected oocytes in metaphase 2 of the meiotic cell division.">
+			>
+			["id45"] = <
+				text = <"Number of oocytes attempted fertilized">
+				description = <"Number of oocytes subjected to conventional in vitro fertilisation (IVF) or to intracytoplasmatic sperm injection (ICSI).">
+			>
+			["id46"] = <
+				text = <"Number of embryos transferred">
+				description = <"Number of embryo transferred.">
+			>
+			["id47"] = <
+				text = <"Transferred embryo quality">
+				description = <"Narrative description about the quality of the embryos transferred.">
+			>
+			["id48"] = <
+				text = <"Number of embryos frozen">
+				description = <"Number of cryopreserved embryos.">
+			>
+			["id49"] = <
+				text = <"Number of oocytes frozen">
+				description = <"Number of cryopreserved oocytes.">
+			>
+			["id5"] = <
+				text = <"Start date">
+				description = <"The date of commencement for the treatment cycle.">
+			>
+			["id50"] = <
+				text = <"Number of embryos thawed">
+				description = <"Number of embryos thawed.">
+			>
+			["id51"] = <
+				text = <"Number of embryos surviving thaw">
+				description = <"Number of embryos surviving thaw.">
+			>
+			["id52"] = <
+				text = <"Number of embryos biopsied">
+				description = <"Number of embryos biopsied for preimplantation genetic test.">
+			>
+			["id53"] = <
+				text = <"Number of embryos surviving biopsy">
+				description = <"Number of embryos surviving biopsy for preimplantation genetic test.">
+			>
+			["id54"] = <
+				text = <"Number of viable fetuses">
+				description = <"The number of fetuses with cardiac activity on the eight week ultrasound.">
+			>
+			["id55"] = <
+				text = <"Pregnancy test outcome">
+				description = <"Outcome of pregnancy test with human chorionic gonadotropin (hCG).">
+			>
+			["id58"] = <
+				text = <"Complications">
+				description = <"Details about one or more complications due to treatment or activities during the assisted reproduction treatment cycle.">
+			>
+			["id59"] = <
+				text = <"Condition">
+				description = <"Name of the condition identified as a complication of treatment.">
+			>
+			["id6"] = <
+				text = <"Description">
+				description = <"Narrative description about the treatment cycle.">
+			>
+			["id66"] = <
+				text = <"Description">
+				description = <"Narrative description about the complication.">
+			>
+			["id67"] = <
+				text = <"Date of onset">
+				description = <"Date of onset of the complication.">
+			>
+			["id68"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the treatment cycle, not captured in other fields.">
+			>
+			["id7"] = <
+				text = <"Intent">
+				description = <"The intended purpose at the onset of the treatment cycle.">
+			>
+			["id70"] = <
+				text = <"Last updated">
+				description = <"The date this treatment cycle summary was last updated.">
+			>
+			["id71"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id72"] = <
+				text = <"Number of 2PN zygotes">
+				description = <"Number of zygotes with two visible pronuclei.">
+			>
+			["id73"] = <
+				text = <"Cumulative gonadotropin dose">
+				description = <"Total gonadotropin dose administered for ovarian stimulation during the treatment cycle.">
+			>
+			["id74"] = <
+				text = <"Duration of gonadotropin administration">
+				description = <"Number of days for gonadotropin administration during ovarian stimulation.">
+			>
+			["id75"] = <
+				text = <"Additional details">
+				description = <"Additional details about the assisted reproduction treatment.">
+			>
+		>
+	>
+	term_bindings = <
+		["ucum"] = <
+			["at65"] = <http://ucum.org/id/%5BiU%5D>
+			["at66"] = <http://ucum.org/id/ug>
+		>
+		["snomed"] = <
+			["at65"] = <http://snomed.info/id/258997004>
+			["at66"] = <http://snomed.info/id/258685003>
+		>
+		["loinc"] = <
+			["id5"] = <http://loinc.org/106197-7>
+			["id58"] = <http://loinc.org/19817-6>
+			["id59"] = <http://loinc.org/75323-6>
+			["id6"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id66"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id68"] = <http://loinc.org/106173-8>
+			["id70"] = <http://loinc.org/106177-9>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at13", "at14", "at15", "at19", "at17", "at18", "at20", "at16">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at22", "at23", "at24", "at25">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at27", "at28", "at29", "at30", "at31", "at32", "at33">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at35", "at36", "at37", "at38", "at39", "at40", "at41">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at55", "at56">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at59", "at60", "at61", "at62", "at63", "at64">
+		>
+	>
+

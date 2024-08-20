@@ -1,0 +1,137 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4dd870c3-ca72-41c2-9e3e-e3c9826bd386)
+	s2-EHR-Node.knowledge_base_reference.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Cecilia Mascia, CRS4, Italy, <cecilia.mascia@crs4.it>, 2019-03-19">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.knowledge_base_reference.v1.0.1, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.knowledge_base_reference.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a reference to a knowledge base, and/or to items contained within the knowledge base, in relation to specific health record information which uses that knowledge base.">
+			use = <"Use to record a reference to a knowledge base, and/or to items contained within the knowledge base, in relation to specific health record information which uses that knowledge base.
+            
+            This archetype is intended to be nested within other ENTRY or Node archetypes, as clinically appropriate. For example, it may be used within the Node.genomic_variant_result archetype in one of three places - to record details about the 'Bioinformatics analysis workflow'; 'Predicted impact analysis'; and 'Population allele frequency'.">
+			keywords = <"pipeline", "database", "analysis tool", "software", "knowledgebase", "library">
+			misuse = <"Not to be used to replicate actual information contained within a knowledge base.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Francesca Frexia, CRS4 - Center for advanced studies, research and development in Sardinia, Italy", "Gideon Giacomelli, Charité Berlin, Germany", "Heather Grain, Llewelyn Grain Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Florian Kaercher, Charité Berlin, Germany", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Cecilia Mascia, CRS4, Italy (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Andrej Orel, Marand d.o.o., Slovenia", "Simon Schumacher, HiGHmed, Germany", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Nyree Taylor, Ocean Informatics, Australia", "Aurelie Tomczak, Uniklinikum Heidelberg, Germany (openEHR Editor)", "Paolo Uva, CRS4, Italy", "Gianluigi Zanetti, CRS4, Italy">
+
+definition
+	Node[id1] matches {	-- Knowledge base reference
+		items matches {
+			Node[id2] matches {	-- Knowledge base name
+				value matches {
+					Text[id10] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Knowledge base version
+				value matches {
+					Text[id11] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Knowledge base URI
+				value matches {
+					Uri_ref[id12] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Item name
+				value matches {
+					Text[id13] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Item version
+				value matches {
+					Text[id14] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Item publication
+				value matches {
+					Date_time_value[id15] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Item URI
+				value matches {
+					Uri_ref[id16] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id17] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Knowledge base reference">
+				description = <"A citation of a digital resource used as an source of authoritative or expert information, and/or to items contained within the resource.">
+			>
+			["id2"] = <
+				text = <"Knowledge base name">
+				description = <"The name of the knowledge base.">
+			>
+			["id3"] = <
+				text = <"Item version">
+				description = <"The version of the referenced item within the knowledge base.">
+			>
+			["id4"] = <
+				text = <"Item URI">
+				description = <"The hyperlink to the referenced item within the knowledge base.">
+			>
+			["id5"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the knowledge base, not captured in other fields.">
+			>
+			["id6"] = <
+				text = <"Item name">
+				description = <"The name of the referenced item within the knowledge base.">
+			>
+			["id7"] = <
+				text = <"Knowledge base version">
+				description = <"The version of the referenced knowledge base.">
+			>
+			["id8"] = <
+				text = <"Item publication">
+				description = <"Date and/or time when the item within the database was published.">
+			>
+			["id9"] = <
+				text = <"Knowledge base URI">
+				description = <"The hyperlink to the referenced knowledge base.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/106173-8>
+		>
+	>
+

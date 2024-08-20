@@ -1,0 +1,220 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d0e36987-9c1a-4f27-86bd-4f6220d05691)
+	s2-EHR-Direct_observation.faecal_output.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2018-10-09">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.faecal_output.v0.0.1-alpha, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.faecal_output.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about faecal output.">
+			use = <"Use to record details about faecal output.
+            
+            This archetype can be used to record details about:
+            - each single bowel motion, including episodes of diarrhoea; or
+            - the total faecal output over a specified period of time, for example the amount of diarrhoea as art of a fluid balance chart over an 8 hour nursing shift.
+            
+            Each measurement should be recorded using a separate instance of this archetype.
+            
+            If an individual has diarrhoea, a fluid balance chart may require inclusion of this archetype alongside multiple instances of OBSERVATION.fluid_output and OBSERVATION.fluid_input archetype to capture all of the various inputs and outputs, plus a single instance of the OBSERVATION.fluid_balance to record the overall fluid status.">
+			keywords = <"fluid", "balance", "output", "urine", "vomit", "drain", "drainage", "aspirate", "exudate", "loss">
+			misuse = <"Not to be used to record fluid input. Use OBSERVATION.fluid_input for this purpose.
+            
+            Not to be used to record fluid output, other than diarrhoea. Use OBSERVATION.fluid_output for this purpose.
+            
+            Not to be used to record fluid balance calculations or to record the calculation of insensible fluid loss. Use OBSERVATION.fluid_balance for this purpose.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Faecal output
+		data cardinality matches {1..*; unordered} matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Amount
+				value matches {
+					Measured<Quantity>[id25] matches {
+						value matches {
+							Quantity[id19] matches {	-- Amount (ml)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id21] matches {
+										term matches {
+											Terminology_term[id20] matches {
+												concept matches {[at13]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+						}
+					}
+					Measured<Quantity>[id26] matches {
+						value matches {
+							Quantity[id22] matches {	-- Amount (g)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id24] matches {
+										term matches {
+											Terminology_term[id23] matches {
+												concept matches {[at14]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id6, s2-EHR-Node.exam_faeces.v0] 
+			Node[id7] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id17] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id10] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id18] matches {
+						term matches {
+							Terminology_term[id27] matches {
+								concept matches {[ac1]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id13, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			use_archetype Node[id14, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			allow_archetype Node[id15] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Method (synthesised)">
+				description = <"The approach used to quantify the amount of faeces. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Estimated">
+				description = <"The faecal ourput has been estimated.">
+			>
+			["at11"] = <
+				text = <"Measured">
+				description = <"The faecal output has been directly measured.">
+			>
+			["at12"] = <
+				text = <"Volume">
+				description = <"Volume">
+			>
+			["at13"] = <
+				text = <"ml">
+				description = <"ml unit.">
+			>
+			["at14"] = <
+				text = <"g">
+				description = <"Gram unit.">
+			>
+			["id1"] = <
+				text = <"Faecal output">
+				description = <"The measurement of faeces excreted from the body.">
+			>
+			["id10"] = <
+				text = <"Method">
+				description = <"The approach used to quantify the amount of faeces.">
+			>
+			["id13"] = <
+				text = <"Output device">
+				description = <"Details of the device that was used to collect the faeces.">
+			>
+			["id14"] = <
+				text = <"Measurement device">
+				description = <"Details of the device used to measure the faecal output.">
+			>
+			["id15"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id19"] = <
+				text = <"Amount (ml)">
+				description = <"Amount (ml)">
+			>
+			["id22"] = <
+				text = <"Amount (g)">
+				description = <"Amount (g)">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Amount">
+				description = <"The amount of faeces excreted.">
+			>
+			["id6"] = <
+				text = <"Faecal details">
+				description = <"Additional details about the faeces, including macroscopic appearance or other tests not currently captured in the structured data.">
+			>
+			["id7"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the faecal output not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at12"] = <http://openehr.org/id/129>
+		>
+		["ucum"] = <
+			["at13"] = <http://ucum.org/id/ml>
+			["at14"] = <http://ucum.org/id/g>
+		>
+		["snomed"] = <
+			["at13"] = <http://snomed.info/id/258773002>
+			["at14"] = <http://snomed.info/id/258682000>
+		>
+		["loinc"] = <
+			["id10"] = <http://loinc.org/106191-0>
+			["id7"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at10", "at11">
+		>
+	>
+

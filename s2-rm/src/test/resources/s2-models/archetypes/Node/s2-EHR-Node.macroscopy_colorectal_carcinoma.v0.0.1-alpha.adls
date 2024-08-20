@@ -1,0 +1,341 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7b1ea250-9274-41d0-b391-01360f910f0b)
+    s2-EHR-Node.macroscopy_colorectal_carcinoma.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Koray Atalag, University of Auckland, New Zealand", "Matt Cordell, NEHTA, Australia", "Heather Leslie,Ocean Informatics,Australia", "David McKillop, NEHTA, Australia", "Cathy Richardson, NEHTA, Australia", "David Rowed, Ocean Informatics, Australia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, UK, <ian.mcnicoll@oceaninformatics.com>, 17/06/2009">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.macroscopy_colorectal_carcinoma.v0.0.1-alpha, copyright 17/0 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.macroscopy_colorectal_carcinoma.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record detailed findings about colorectal cancer found on macroscopic histopathological examination.">
+            keywords = <"histopathology", "cancer", "laboratory", "lab", "malignancy", "pathology", "colonic", "rectal", "anal", "GI", "gastrointestinal", "bowel">
+            use = <"To record detailed findings about macroscopic examination of tissue related to colo-rectal cancer.
+            Use as a component archetype in the context of a suite of archetypes that make up a histopathology report ie OBSERVATION.lab_test.histopathology and Node.microscopy_colorectal_carcinoma.">
+            misuse = <"Not designed to be used within any other archetype other than OBSERVATION.lab_test.histopathology.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Macroscopic findings - Colorectal cancer
+        items matches {
+            use_archetype Node[id348, s2-EHR-Node.physical_properties.v0] occurrences matches {0..1}     -- Tumour dimensions
+            Node[id331] occurrences matches {0..1} matches {    -- Maximum extramuscular extension
+                value matches {
+                    Quantity[id356] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id367] matches {
+                                term matches {
+                                    Terminology_term[id366] matches {
+                                        concept matches {[at354]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id332] occurrences matches {0..1} matches {    -- Distance of tumour to nearest cut-end
+                value matches {
+                    Quantity[id357] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id369] matches {
+                                term matches {
+                                    Terminology_term[id368] matches {
+                                        concept matches {[at354]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id333] occurrences matches {0..1} matches {    -- Distance of tumour to circumferential margin
+                value matches {
+                    Quantity[id358] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id371] matches {
+                                term matches {
+                                    Terminology_term[id370] matches {
+                                        concept matches {[at354]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id354] occurrences matches {0..1} matches {    -- Distance of tumour from dentate line
+                value matches {
+                    Quantity[id359] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id373] matches {
+                                term matches {
+                                    Terminology_term[id372] matches {
+                                        concept matches {[at354]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id334] occurrences matches {0..1} matches {    -- Anastomotic doughnuts submitted
+                value matches {
+                    Boolean_value[id360] matches {
+                        value matches {True, False}
+                    }
+                }
+            }
+            Node[id350] occurrences matches {0..1} matches {    -- Tumour perforation
+                items matches {
+                    Node[id335] occurrences matches {0..1} matches {    -- Tumour perforation
+                        value matches {
+                            Coded_text[id361] matches {
+                                term matches {
+                                    Terminology_term[id374] matches {
+                                        concept matches {[ac1]}    -- Tumour perforation (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id351] occurrences matches {0..1} matches {    -- Perforation location
+                        value matches {
+                            Coded_text[id362] matches {
+                                term matches {
+                                    Terminology_term[id375] matches {
+                                        concept matches {[ac2]}    -- Perforation location (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id355] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id363]
+                        }
+                    }
+                }
+            }
+            Node[id336] occurrences matches {0..1} matches {    -- For rectal tumours
+                items matches {
+                    Node[id337] occurrences matches {0..1} matches {    -- Relationship to anterior peritoneal reflection
+                        value matches {
+                            Coded_text[id364] matches {
+                                term matches {
+                                    Terminology_term[id376] matches {
+                                        concept matches {[ac3]}    -- Relationship to anterior peritoneal reflection (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id338] occurrences matches {0..1} matches {    -- Intactness of the mesorectum
+                        value matches {
+                            Coded_text[id365] matches {
+                                term matches {
+                                    Terminology_term[id377] matches {
+                                        concept matches {[ac4]}    -- Intactness of the mesorectum (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at353"] = <http://openehr.org/id/122>
+        >
+        ["ucum"] = <
+            ["at354"] = <http://ucum.org/id/mm>
+        >
+        ["snomed"] = <
+            ["at354"] = <http://snomed.info/id/258673006>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at344", "at345", "at346">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at351", "at352">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at341", "at342", "at343">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at338", "at339", "at340", "at348">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Tumour perforation (synthesised)">
+                description = <"Finding of tumour perforation. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Perforation location (synthesised)">
+                description = <"The location of a perforation, if present. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Relationship to anterior peritoneal reflection (synthesised)">
+                description = <"The relationship of rectal tumour to the anterior peritoneal reflection. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Intactness of the mesorectum (synthesised)">
+                description = <"An assessment of the intactness of the mesorectum. (synthesised)">
+            >
+            ["at338"] = <
+                text = <"Incomplete">
+                description = <"The mesorectum is incompletely intact.">
+            >
+            ["at339"] = <
+                text = <"Nearly complete">
+                description = <"The mesorectum is nearly completely intact.">
+            >
+            ["at340"] = <
+                text = <"Complete">
+                description = <"The mesorectum is completely intact.">
+            >
+            ["at341"] = <
+                text = <"Entirely above">
+                description = <"The tumour is entirely above the level of the peritoneal reflection anteriorly.">
+            >
+            ["at342"] = <
+                text = <"Astride">
+                description = <"The tumour is astride (or at)  the level of the peritoneal reflection anteriorly.">
+            >
+            ["at343"] = <
+                text = <"Entirely below">
+                description = <"The tumour is entirely below the level of the peritoneal reflection anteriorly.">
+            >
+            ["at344"] = <
+                text = <"Present">
+                description = <"Tumour perforation is present.">
+            >
+            ["at345"] = <
+                text = <"Absent">
+                description = <"Tumour perforation is absent.">
+            >
+            ["at346"] = <
+                text = <"Indeterminate">
+                description = <"Presence of tumour perforation has not been determined.">
+            >
+            ["at348"] = <
+                text = <"Indeterminate">
+                description = <"Intactness of the mesorectum has not been determined.">
+            >
+            ["at351"] = <
+                text = <"Serosal">
+                description = <"The perforation is serosal.">
+            >
+            ["at352"] = <
+                text = <"Retro/infra peritoneal">
+                description = <"The perforation is retro/infra peritoneal.">
+            >
+            ["at353"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["at354"] = <
+                text = <"mm">
+                description = <"mm unit.">
+            >
+            ["id1"] = <
+                text = <"Macroscopic findings - Colorectal cancer">
+                description = <"Macroscopic anatomical pathology findings related to colorectal cancer.">
+            >
+            ["id331"] = <
+                text = <"Maximum extramuscular extension">
+                description = <"The maximum extramuscular extension of the tumour.">
+            >
+            ["id332"] = <
+                text = <"Distance of tumour to nearest cut-end">
+                description = <"The distance of the tumour to the nearest cut-end (i.e. proximal or distal margin). It is the measurement from the nearest cut end of the specimen and not the non-peritonealised (i.e. circumferential or radial) margin.">
+            >
+            ["id333"] = <
+                text = <"Distance of tumour to circumferential margin">
+                description = <"The distance of the tumour to the circumferential or radial margin. It is the measurement to the non-peritonealised margin and not to the nearest cut-end (i.e. proximal,distal).">
+            >
+            ["id334"] = <
+                text = <"Anastomotic doughnuts submitted">
+                description = <"Have anastomotic doughnuts been submitted for analysis?">
+            >
+            ["id335"] = <
+                text = <"Tumour perforation">
+                description = <"Finding of tumour perforation.">
+            >
+            ["id336"] = <
+                text = <"For rectal tumours">
+                description = <"Findings related solely to rectal tumours.">
+            >
+            ["id337"] = <
+                text = <"Relationship to anterior peritoneal reflection">
+                description = <"The relationship of rectal tumour to the anterior peritoneal reflection.">
+            >
+            ["id338"] = <
+                text = <"Intactness of the mesorectum">
+                description = <"An assessment of the intactness of the mesorectum.">
+            >
+            ["id348"] = <
+                text = <"Tumour dimensions">
+                description = <"Details of maximum dimensions of the tumour.">
+            >
+            ["id350"] = <
+                text = <"Tumour perforation">
+                description = <"Findings related to tumour perforation.">
+            >
+            ["id351"] = <
+                text = <"Perforation location">
+                description = <"The location of a perforation, if present.">
+            >
+            ["id354"] = <
+                text = <"Distance of tumour from dentate line">
+                description = <"For abdominoperineal resection specimens, distance of tumour from the dentate line.">
+            >
+            ["id355"] = <
+                text = <"Comment">
+                description = <"Furrher text comment on the perforation.">
+            >
+        >
+    >
+    

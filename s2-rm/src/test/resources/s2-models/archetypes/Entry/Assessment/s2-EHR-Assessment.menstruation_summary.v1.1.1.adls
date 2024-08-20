@@ -1,0 +1,314 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=76c10403-4454-4662-8996-3875f9916566)
+	s2-EHR-Assessment.menstruation_summary.v1.1.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, Australia, <heather.leslie@atomicainformatics.com>, 2011-03-09">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.menstruation_summary.v1.1.1, copyright 2011 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.menstruation_summary.v1.1.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary or persistent information about an individual's menstruation history events or patterns of menstruation over time.">
+			use = <"Use to record summary or persistent information about an individual's menstruation history events or patterns of menstruation over time.
+            
+            Multiple instances of the 'Per episode' Node will allow aggregation of an evolving history of both past and present episodes, or patterns, of menstruation.
+            
+            The 'Last updated' data Node will record the last time that the Menstruation summary as a whole, including each episode, was updated.
+            
+            Use to incorporate the narrative descriptions of Menstruation or menstrual history within existing or legacy clinical systems into an archetyped format, using the 'Overall description' data Node.">
+			keywords = <"menstruation", "menarche", "menopause", "menopausal", "perimenopausal", "postmenopausal">
+			misuse = <"Not to be used to record information about a specific menstrual cycle. Use OBSERVATION.menstruation for this purpose.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Malin Berg, DIPS ASA, Norway", "SB BHATTACHARYYA, Sudisa Consultancy Services, India", "Anita Bjørnnes, Helse Bergen, Norway", "Randi Brendberg, Helse Nord RHF, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "anne clarke, HSE, Ireland", "Peter Fedorcsak, Oslo universitetssykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Sam Heard, Ocean Informatics, Australia", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Anca Heyd, DIPS ASA, Norway", "Hilde Hollås, Norway", "Roar Holm, Helse Vest IKT A/S, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Pétur Júlíusson, Barneklinikken, HUS og K2, UIB, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Liv Laugen, ​Oslo University Hospital, Norway, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Bjorn Naess, DIPS", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Danielle Santos Alves, Federal University of Pernambuco, Brazil", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Iztok Stotl, UKCLJ, Slovenia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Eli Taranger Ljønes, Bodø kommune, Norway", "Nyree Taylor, Ocean Informatics, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Assessment[id1] matches {	-- Menstruation summary
+		data matches {
+			Node[id26] occurrences matches {0..1} matches {	-- Overall description
+				value matches {
+					Text[id27] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Menstrual status
+				value matches {
+					Coded_text[id28] matches {
+						term matches {
+							Terminology_term[id49] matches {
+								concept matches {[ac1]}		-- Menstrual status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id3] occurrences matches {0..2} matches {	-- Menarche
+				value matches {
+					Duration_value[id29] matches {
+						magnitude matches {|>=PT0S|}
+					}
+					Date_value[id30] 
+				}
+			}
+			Node[id11] matches {	-- Per episode
+				items matches {
+					Node[id12] occurrences matches {0..1} matches {	-- Episode label
+						value matches {
+							Text[id31] 
+						}
+					}
+					Node[id13] occurrences matches {0..1} matches {	-- Episode start date
+						value matches {
+							Date_time_value[id32] 
+						}
+					}
+					Node[id14] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id33] 
+						}
+					}
+					Node[id15] occurrences matches {0..1} matches {	-- Typical pattern
+						value matches {
+							Coded_text[id34] matches {
+								term matches {
+									Terminology_term[id50] matches {
+										concept matches {[ac2]}		-- Typical pattern (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id18] occurrences matches {0..1} matches {	-- Typical cycle length
+						value matches {
+							Duration_value[id35] matches {
+								magnitude matches {|P1D..P999D|}
+							}
+							Range<Duration_value>[id36] matches {
+								lower matches {
+									Duration_value[id37] matches {
+										magnitude matches {|P1D..P999D|}
+									}
+								}
+								upper matches {
+									Duration_value[id38] matches {
+										magnitude matches {|P1D..P999D|}
+									}
+								}
+							}
+						}
+					}
+					Node[id19] occurrences matches {0..1} matches {	-- Typical menses duration
+						value matches {
+							Duration_value[id39] matches {
+								magnitude matches {|P1D..P999D|}
+							}
+							Range<Duration_value>[id40] matches {
+								lower matches {
+									Duration_value[id41] matches {
+										magnitude matches {|P1D..P999D|}
+									}
+								}
+								upper matches {
+									Duration_value[id42] matches {
+										magnitude matches {|P1D..P999D|}
+									}
+								}
+							}
+						}
+					}
+					allow_archetype Node[id21] matches {	-- Additional details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					Node[id22] occurrences matches {0..1} matches {	-- Episode end date
+						value matches {
+							Date_time_value[id43] 
+						}
+					}
+					Node[id23] occurrences matches {0..1} matches {	-- Episode comment
+						value matches {
+							Text[id44] 
+						}
+					}
+				}
+			}
+			Node[id5] occurrences matches {0..2} matches {	-- Menopause
+				value matches {
+					Duration_value[id45] matches {
+						magnitude matches {|>=PT0S|}
+					}
+					Date_value[id46] 
+				}
+			}
+			Node[id24] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id47] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id10] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id25] occurrences matches {0..1} matches {	-- Date last updated
+				value matches {
+					Date_time_value[id48] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Menstrual status (synthesised)">
+				description = <"Statement about the current menstrual activity. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Typical pattern (synthesised)">
+				description = <"The usual predictability of menstruation during this episode. (synthesised)">
+			>
+			["at15"] = <
+				text = <"Regular">
+				description = <"The start of menses is roughly predictable from month to month.">
+			>
+			["at16"] = <
+				text = <"Irregular">
+				description = <"The start of menses is not predictable month to month.">
+			>
+			["at26"] = <
+				text = <"Premenarchal">
+				description = <"Before the first onset of menstruation.">
+			>
+			["at5"] = <
+				text = <"Premenopausal">
+				description = <"After menarche, preceding menopause and without symptoms related to the hormonal changes preceding menopause.">
+			>
+			["at6"] = <
+				text = <"Perimenopausal">
+				description = <"Preceding menopause with symptoms related to the hormonal changes leading up to menopause.">
+			>
+			["at7"] = <
+				text = <"Postmenopausal">
+				description = <"After menopause.">
+			>
+			["id1"] = <
+				text = <"Menstruation summary">
+				description = <"Summary or persistent information about an individual's menstruation history.">
+			>
+			["id10"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id11"] = <
+				text = <"Per episode">
+				description = <"Details about a typical pattern of menstruation during a specified interval of time.">
+			>
+			["id12"] = <
+				text = <"Episode label">
+				description = <"A name or label associated with this episode of menstruation.">
+			>
+			["id13"] = <
+				text = <"Episode start date">
+				description = <"Date when this episode commenced.">
+			>
+			["id14"] = <
+				text = <"Description">
+				description = <"Narrative description about this episode.">
+			>
+			["id15"] = <
+				text = <"Typical pattern">
+				description = <"The usual predictability of menstruation during this episode.">
+			>
+			["id18"] = <
+				text = <"Typical cycle length">
+				description = <"The usual length of cycle during this episode.">
+			>
+			["id19"] = <
+				text = <"Typical menses duration">
+				description = <"The usual duration of menses during this episode.">
+			>
+			["id21"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about this episode of menstruation.">
+			>
+			["id22"] = <
+				text = <"Episode end date">
+				description = <"Date when this episode ceased.">
+			>
+			["id23"] = <
+				text = <"Episode comment">
+				description = <"Additional narrative about this episode of menstruation not captured in other fields.">
+			>
+			["id24"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the overall patterns and episodes of menstruation not captured in other fields.">
+			>
+			["id25"] = <
+				text = <"Date last updated">
+				description = <"Date when the Menstruation summary, including episodes, was updated.">
+			>
+			["id26"] = <
+				text = <"Overall description">
+				description = <"Narrative description about the overall pattern of menstruation.">
+			>
+			["id3"] = <
+				text = <"Menarche">
+				description = <"Onset of first menstrual cycle.">
+			>
+			["id4"] = <
+				text = <"Menstrual status">
+				description = <"Statement about the current menstrual activity.">
+			>
+			["id5"] = <
+				text = <"Menopause">
+				description = <"Cessation of all menstrual cycles.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/3146-8>
+			["id14"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id23"] = <http://loinc.org/106173-8>
+			["id24"] = <http://loinc.org/106173-8>
+			["id25"] = <http://loinc.org/106177-9>
+			["id26"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at26", "at5", "at6", "at7">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at15", "at16">
+		>
+	>
+

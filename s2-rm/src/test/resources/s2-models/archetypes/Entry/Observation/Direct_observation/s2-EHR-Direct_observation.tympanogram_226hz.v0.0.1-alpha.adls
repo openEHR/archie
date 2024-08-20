@@ -1,0 +1,989 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=eef57255-77a1-4e2e-b76d-368fc26a9e5d)
+	s2-EHR-Direct_observation.tympanogram_226hz.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Kerrie Lee, <kerrie.lee2@bigpond.com>, 2012-11-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.tympanogram_226hz.v0.0.1-alpha, copyright 2012 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.tympanogram_226hz.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record measurements based on a 226 Hz probe tone, of the admittance or impedance of the middle ear system as a function of changing the external ear canal pressure.
+            
+            To infer middle ear function from objective measurements based on a fixed 226Hz probe tone, taken at the tympanic membrane of the mobility of the tympanic membrane, in reponse to varying air pressure in the ear canal.">
+			use = <"Use to record measurements taken during tympanometry with a 226 Hz probe tone.
+            
+            Use to record outcome of tympanometry screening based on 226 Hz probe tone tympanometry.
+            
+            Use to record the interpretation all tympanogram measurements taken with a 226 Hz probe tone, to infer middle ear function for each ear, plus an overall interpretation (or tympanometric diagnosis). 
+            
+            All of the data Nodes are recorded using a single method or protocol. If, during the test, any of the protocol parameters need to be modified, then the subsequent part of the test will need to be recorded within a separate instance of the test data, using the updated protocol parameters.
+            
+            Each 'Pressure vs Compliance Measurement' pair will comprise one pressure measurment with one corresponding compliance measurement. Compliance measurement has been represented in the archetype twice, each with different units. Compliance measurements will only be recorded in data using the unit that is recorded by the tympanometer in use - either volume units OR conductance units, but not both.
+            
+            Similarly, Static Compliance has been represented in the archetype twice, each with different units. Static Compliance measurements will only be recorded in data using the unit that is recorded by the tympanometer in use - either volume units OR conductance units, but not both.
+            
+            If the tympanogram subtypes are to be used in an implementation, these should be substituted for the global Type B category in the 'Tympanogram Type' data Node. Both 'Type B' and 'Type B - low/high compliance' should not be used in the same implementation. 'Type B - low complicance' is equivalent to the unqualified 'Type B' in the 'Tympanogram Type' data Node. 
+            
+            Similarly, if Type C subtypes describing the Tympanogram curve are to be used in an implementation, these should be substituted for the global Type C category in the 'Tympanogram Type' data Node. Both Type C and Types C1-3 should not be used in the same implementation.">
+			keywords = <"tympanogram", "tympanometry", "tympanometer", "admittance", "pressure", "compliance", "immittance", "static">
+			misuse = <"Not to be used to record other hearing tests. Use other archetypes as appropriate, for example OBSERVATION.audiogram.
+            
+            Not to be used to record high frequency tympanometry. Use the OBSERVATION.tympanogram_hf archetype instead.
+            
+            Not to be used to record multifrequency tympanometry. Use the OBSERVATION.tympanogram_hf archetype instead.">
+		>
+	>
+	other_contributors = <"Amarjit Anand, NT Department of Health/NT Hearing, Australia", "Judith Boswell, Adelaide Hearing Consultants, Australia", "Stephen Chu, NEHTA, Australia", "Kimberley Crebbin, NT Hearing Services, Australia", "Kathy Currie, Northern Territory Health, Australia", "Jade Frederiksen, Hearing Health Program, DoH, Australia", "Sam Harkus, Australian Hearing, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Oliver Hosking, Remote Health NT, Australia", "Anthony Leech, Hearing Health, Australia", "Kerrie Lee, Ngaanyatjarra Health Service, Australia", "Heather Leslie, Atomica Informatics, Australia (Editor)", "Rebecca Matthews, NT Hearing Services - NTG, Australia", "Ian McNicoll, Ocean Informatics UK, United Kingdom", "Mark Ramjan, NT Department of Health, Australia", "Kelly Simmons, Department of Health, Australia", "Prasha Sooful, Royal Darwin Hospital, Australia">
+
+definition
+	Direct_observation[id1] matches {	-- Tympanogram test result - 226Hz
+		data matches {
+			Node[id13] occurrences matches {0..2} matches {	-- Result details
+				items matches {
+					Node[id10] matches {	-- Test ear
+						value matches {
+							Coded_text[id76] matches {
+								term matches {
+									Terminology_term[id106] matches {
+										concept matches {[ac1]}		-- Test ear (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id28] occurrences matches {0..1} matches {	-- Measurement details
+						items cardinality matches {2..*; unordered} matches {
+							Node[id29] matches {	-- Pressure vs compliance measurement
+								items matches {
+									Node[id56] matches {	-- Pressure
+										value matches {
+											Measured<Quantity>[id113] matches {
+												value matches {
+													Quantity[id107] matches {	-- Pressure (daPa)
+														magnitude matches {|-600.0..200.0|}
+														units matches {
+															Coded_text[id109] matches {
+																term matches {
+																	Terminology_term[id108] matches {
+																		concept matches {[at83]}
+																	}
+																}
+															}
+														}
+														precision matches {0}
+													}
+												}
+											}
+											Measured<Quantity>[id114] matches {
+												value matches {
+													Quantity[id110] matches {	-- Pressure (mm[h2O])
+														magnitude matches {|>=0.0|}
+														units matches {
+															Coded_text[id112] matches {
+																term matches {
+																	Terminology_term[id111] matches {
+																		concept matches {[at84]}
+																	}
+																}
+															}
+														}
+														precision matches {|>=0|}
+													}
+												}
+											}
+										}
+									}
+									Node[id70] occurrences matches {0..1} matches {	-- Compliance (volume)
+										value matches {
+											Measured<Quantity>[id121] matches {
+												value matches {
+													Quantity[id115] matches {	-- Compliance (volume) (ml)
+														magnitude matches {|0.0..5.0|}
+														units matches {
+															Coded_text[id117] matches {
+																term matches {
+																	Terminology_term[id116] matches {
+																		concept matches {[at85]}
+																	}
+																}
+															}
+														}
+														precision matches {2}
+													}
+												}
+											}
+											Measured<Quantity>[id122] matches {
+												value matches {
+													Quantity[id118] matches {	-- Compliance (volume) (cc3)
+														magnitude matches {|0.0..5.0|}
+														units matches {
+															Coded_text[id120] matches {
+																term matches {
+																	Terminology_term[id119] matches {
+																		concept matches {[at86]}
+																	}
+																}
+															}
+														}
+														precision matches {2}
+													}
+												}
+											}
+										}
+									}
+									Node[id57] occurrences matches {0..1} matches {	-- Compliance (conductance)
+										value matches {
+											Measured<Quantity>[id123] matches {
+												value matches {
+													Quantity[id79] matches {
+														magnitude matches {|0.0..5.0|}
+														precision matches {2}
+														units matches {
+															Coded_text[id125] matches {
+																term matches {
+																	Terminology_term[id124] matches {
+																		concept matches {[at87]}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Node[id14] occurrences matches {0..1} matches {	-- Peak pressure
+								value matches {
+									Measured<Quantity>[id132] matches {
+										value matches {
+											Quantity[id126] matches {	-- Peak pressure (daPa)
+												magnitude matches {|-400.0..200.0|}
+												units matches {
+													Coded_text[id128] matches {
+														term matches {
+															Terminology_term[id127] matches {
+																concept matches {[at83]}
+															}
+														}
+													}
+												}
+												precision matches {0}
+											}
+										}
+									}
+									Measured<Quantity>[id133] matches {
+										value matches {
+											Quantity[id129] matches {	-- Peak pressure (mm[h2O])
+												magnitude matches {|>=0.0|}
+												units matches {
+													Coded_text[id131] matches {
+														term matches {
+															Terminology_term[id130] matches {
+																concept matches {[at84]}
+															}
+														}
+													}
+												}
+												precision matches {|>=0|}
+											}
+										}
+									}
+								}
+							}
+							Node[id75] occurrences matches {0..1} matches {	-- Static compliance (volume)
+								value matches {
+									Measured<Quantity>[id140] matches {
+										value matches {
+											Quantity[id134] matches {	-- Static compliance (volume) (ml)
+												magnitude matches {|0.0..5.0|}
+												units matches {
+													Coded_text[id136] matches {
+														term matches {
+															Terminology_term[id135] matches {
+																concept matches {[at85]}
+															}
+														}
+													}
+												}
+												precision matches {2}
+											}
+										}
+									}
+									Measured<Quantity>[id141] matches {
+										value matches {
+											Quantity[id137] matches {	-- Static compliance (volume) (cc3)
+												magnitude matches {|0.0..5.0|}
+												units matches {
+													Coded_text[id139] matches {
+														term matches {
+															Terminology_term[id138] matches {
+																concept matches {[at86]}
+															}
+														}
+													}
+												}
+												precision matches {2}
+											}
+										}
+									}
+								}
+							}
+							Node[id15] occurrences matches {0..1} matches {	-- Static compliance (conductance)
+								value matches {
+									Measured<Quantity>[id142] matches {
+										value matches {
+											Quantity[id82] matches {
+												magnitude matches {|0.0..5.0|}
+												precision matches {2}
+												units matches {
+													Coded_text[id144] matches {
+														term matches {
+															Terminology_term[id143] matches {
+																concept matches {[at87]}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Node[id19] occurrences matches {0..1} matches {	-- Ear canal volume
+								value matches {
+									Measured<Quantity>[id151] matches {
+										value matches {
+											Quantity[id145] matches {	-- Ear canal volume (cc3)
+												magnitude matches {|0.0..5.0|}
+												units matches {
+													Coded_text[id147] matches {
+														term matches {
+															Terminology_term[id146] matches {
+																concept matches {[at86]}
+															}
+														}
+													}
+												}
+												precision matches {2}
+											}
+										}
+									}
+									Measured<Quantity>[id152] matches {
+										value matches {
+											Quantity[id148] matches {	-- Ear canal volume (ml)
+												magnitude matches {|0.0..5.0|}
+												units matches {
+													Coded_text[id150] matches {
+														term matches {
+															Terminology_term[id149] matches {
+																concept matches {[at85]}
+															}
+														}
+													}
+												}
+												precision matches {2}
+											}
+										}
+									}
+								}
+							}
+							Node[id30] occurrences matches {0..1} matches {	-- Tympanometric width
+								value matches {
+									Measured<Quantity>[id153] matches {
+										value matches {
+											Quantity[id84] matches {
+												magnitude matches {|0.0..400.0|}
+												precision matches {0}
+												units matches {
+													Coded_text[id155] matches {
+														term matches {
+															Terminology_term[id154] matches {
+																concept matches {[at83]}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Node[id31] occurrences matches {0..1} matches {	-- Tympanometric gradient
+								value matches {
+									Measured<Quantity>[id156] matches {
+										value matches {
+											Quantity[id85] matches {
+												units matches {
+													Coded_text[id158] matches {
+														term matches {
+															Terminology_term[id157] matches {
+																concept matches {[at87]}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+									Ratio[id86] matches {
+										numerator matches {|0.0..1.0|}
+										type matches {2}
+									}
+								}
+							}
+						}
+					}
+					Node[id32] occurrences matches {0..1} matches {	-- No test result
+						value matches {
+							Boolean_value[id87] matches {
+								value matches {True}
+							}
+						}
+					}
+					Node[id33] occurrences matches {0..1} matches {	-- Reason for no test result
+						value matches {
+							Text[id88] 
+						}
+					}
+					Node[id5] occurrences matches {0..1} matches {	-- Tympanogram type
+						value matches {
+							Coded_text[id89] matches {
+								term matches {
+									Terminology_term[id159] matches {
+										concept matches {[ac2]}		-- Tympanogram type (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id72] occurrences matches {0..1} matches {	-- Tympanogram type B subtype
+						value matches {
+							Coded_text[id90] matches {
+								term matches {
+									Terminology_term[id160] matches {
+										concept matches {[ac3]}		-- Tympanogram type B subtype (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id59] occurrences matches {0..1} matches {	-- Tympanogram type C subtype
+						value matches {
+							Coded_text[id91] matches {
+								term matches {
+									Terminology_term[id161] matches {
+										concept matches {[ac4]}		-- Tympanogram type C subtype (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id34] occurrences matches {0..1} matches {	-- Clinical interpretation
+						value matches {
+							Text[id92] 
+						}
+					}
+				}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Overall interpretation
+				value matches {
+					Text[id93] 
+				}
+			}
+			Node[id21] matches {	-- Test result image
+				value matches {
+					Multimedia[id94] matches {
+						media_type matches {[ac5]}		-- Test result image (synthesised)
+					}
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id95] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id44] occurrences matches {0..1} matches {	-- Direction of pressure change
+				value matches {
+					Coded_text[id99] matches {
+						term matches {
+							Terminology_term[id162] matches {
+								concept matches {[ac6]}		-- Direction of pressure change (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id47] occurrences matches {0..1} matches {	-- Rate of pressure change
+				value matches {
+					Measured<Quantity>[id163] matches {
+						value matches {
+							Quantity[id100] matches {
+								units matches {
+									Coded_text[id165] matches {
+										term matches {
+											Terminology_term[id164] matches {
+												concept matches {[at88]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id48] occurrences matches {0..1} matches {	-- Admittance measurement
+				value matches {
+					Coded_text[id101] matches {
+						term matches {
+							Terminology_term[id166] matches {
+								concept matches {[ac7]}		-- Admittance measurement (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id51] occurrences matches {0..1} matches {	-- Pressure range
+				items matches {
+					Node[id52] occurrences matches {0..1} matches {	-- Start pressure
+						value matches {
+							Measured<Quantity>[id167] matches {
+								value matches {
+									Quantity[id102] matches {
+										units matches {
+											Coded_text[id169] matches {
+												term matches {
+													Terminology_term[id168] matches {
+														concept matches {[at83]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id53] occurrences matches {0..1} matches {	-- Stop pressure
+						value matches {
+							Measured<Quantity>[id170] matches {
+								value matches {
+									Quantity[id103] matches {
+										units matches {
+											Coded_text[id172] matches {
+												term matches {
+													Terminology_term[id171] matches {
+														concept matches {[at83]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id54, s2-EHR-Node.device.v1] 
+			Node[id42] matches {	-- Pre-test calibration cavity size
+				value matches {
+					Measured<Quantity>[id173] matches {
+						value matches {
+							Quantity[id104] matches {
+								magnitude matches {|0.5..5.0|}
+								precision matches {2}
+								units matches {
+									Coded_text[id175] matches {
+										term matches {
+											Terminology_term[id174] matches {
+												concept matches {[at86]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id55] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id105] 
+				}
+			}
+		}
+		data_series matches {
+			Point_event[id38] occurrences matches {0..1} matches {	-- Baseline
+				items matches {
+					use_node Node[id13] /data[id13]	-- /data[Result details]
+					use_node Node[id37] /data[id37]	-- /data[Overall interpretation]
+					use_node Node[id21] /data[id21]	-- /data[Test result image]
+					use_node Node[id22] /data[id22]	-- /data[Comment]
+				}
+			}
+			Point_event[id39] occurrences matches {0..1} matches {	-- Post-Valsalva
+				items matches {
+					use_node Node[id13] /data[id13]	-- /data[Result details]
+					use_node Node[id37] /data[id37]	-- /data[Overall interpretation]
+					use_node Node[id21] /data[id21]	-- /data[Test result image]
+					use_node Node[id22] /data[id22]	-- /data[Comment]
+				}
+			}
+			Point_event[id40] occurrences matches {0..1} matches {	-- Post-Toynbee
+				items matches {
+					use_node Node[id13] /data[id13]	-- /data[Result details]
+					use_node Node[id37] /data[id37]	-- /data[Overall interpretation]
+					use_node Node[id21] /data[id21]	-- /data[Test result image]
+					use_node Node[id22] /data[id22]	-- /data[Comment]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Test ear (synthesised)">
+				description = <"Identification of the ear being tested. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Tympanogram type (synthesised)">
+				description = <"Description of the the shape of the tympanogram curve, based on the Jerger categories. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Tympanogram type B subtype (synthesised)">
+				description = <"Subclassification of the tympanograms with a flat curve. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Tympanogram type C subtype (synthesised)">
+				description = <"Subclassification of the tympanograms with negative peak pressure. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Test result image (synthesised)">
+				description = <"Digital representation of the entire result. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Direction of pressure change (synthesised)">
+				description = <"The dirction of change of pressure administered via the ear canal. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Admittance measurement (synthesised)">
+				description = <"Method of acoustic admittance measurement used in the test. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Left ear">
+				description = <"The probe tone was presented to the left ear.">
+			>
+			["at11"] = <
+				text = <"Right ear">
+				description = <"The probe tone was presented to the right ear.">
+			>
+			["at34"] = <
+				text = <"Type Ad">
+				description = <"A Type A curve but with increased static compliance.">
+			>
+			["at35"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to determine the type of tympanogram Type.">
+			>
+			["at44"] = <
+				text = <"Descending">
+				description = <"The pressure changes from positive to negative.">
+			>
+			["at45"] = <
+				text = <"Ascending">
+				description = <"The pressure changes from negative to positive.">
+			>
+			["at48"] = <
+				text = <"Peak compensated static">
+				description = <"The peak pressure value of the tympanogram used to compensate for ear canal volume in measurement of static acoustic admittance.">
+			>
+			["at49"] = <
+				text = <"Ambient compensated static">
+				description = <"Admittance was measured using the Ambient compensated static acoustic admittance.">
+			>
+			["at5"] = <
+				text = <"Type A">
+				description = <"Curve with a distinctive sharp peak, around atmospheric pressure; normal static compliance; normal ear canal volume.">
+			>
+			["at57"] = <
+				text = <"Type B with high ECV">
+				description = <"Rounded curve with measurable peak pressure; reduced static compliance; ear canal volume above the normal range.">
+			>
+			["at59"] = <
+				text = <"Type C1">
+				description = <"A slight negative peak pressure, for example in range -100 to -199 daPa.">
+			>
+			["at6"] = <
+				text = <"Type B">
+				description = <"Flat or rounded curve with no measurable peak pressure, reduced static compliance; ear canal volume within normal range.">
+			>
+			["at60"] = <
+				text = <"Type C2">
+				description = <"A significant negative peak pressure, for example -200 daPa or greater.">
+			>
+			["at61"] = <
+				text = <"Type C3">
+				description = <"A negative peak pressure and low-normal static compliance.">
+			>
+			["at7"] = <
+				text = <"Type C">
+				description = <"Curve similar to Type A , but with the sharp peak at a negative pressure.">
+			>
+			["at70"] = <
+				text = <"Type D">
+				description = <"A curve with a double peak; normal or reduced static compliance; normal ear canal volume.">
+			>
+			["at72"] = <
+				text = <"Type B - high volume">
+				description = <"Rounded curve with no measurable peak pressure; static compliance on lower limits of normal range; ear canal volume within normal range.">
+			>
+			["at73"] = <
+				text = <"Type B - low volume">
+				description = <"Rounded curve with no measurable peak pressure, reduced static compliance; ear canal volume within normal range. Equivalent to the unqualified Type B classification.">
+			>
+			["at74"] = <
+				text = <"Pressure">
+				description = <"Pressure">
+			>
+			["at75"] = <
+				text = <"Volume">
+				description = <"Volume">
+			>
+			["at76"] = <
+				text = <"Electrical conductance">
+				description = <"Electrical conductance">
+			>
+			["at77"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at78"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at79"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at8"] = <
+				text = <"Type As">
+				description = <"A Type A curve but with reduced static compliance.">
+			>
+			["at80"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at81"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at82"] = <
+				text = <"(added by post-parse processor)">
+				description = <"(added by post-parse processor)">
+			>
+			["at83"] = <
+				text = <"daPa">
+				description = <"daPa unit.">
+			>
+			["at84"] = <
+				text = <"mm[H2O]">
+				description = <"mm[H2O] unit.">
+			>
+			["at85"] = <
+				text = <"ml">
+				description = <"ml unit.">
+			>
+			["at86"] = <
+				text = <"cc3">
+				description = <"cc3 unit.">
+			>
+			["at87"] = <
+				text = <"mmho">
+				description = <"mmho unit.">
+			>
+			["at88"] = <
+				text = <"daPa/s">
+				description = <"daPa/s unit.">
+			>
+			["id1"] = <
+				text = <"Tympanogram test result - 226Hz">
+				description = <"Record of measurements of movement at the tympanic membrane in response to a 226Hz probe tone and changes in air pressure in the ear canal, and their clinical interpretation as an indication of middle ear function.">
+			>
+			["id10"] = <
+				text = <"Test ear">
+				description = <"Identification of the ear being tested.">
+			>
+			["id107"] = <
+				text = <"Pressure (daPa)">
+				description = <"Pressure (daPa)">
+			>
+			["id110"] = <
+				text = <"Pressure (mm[h2O])">
+				description = <"Pressure (mm[h2O])">
+			>
+			["id115"] = <
+				text = <"Compliance (volume) (ml)">
+				description = <"Compliance (volume) (ml)">
+			>
+			["id118"] = <
+				text = <"Compliance (volume) (cc3)">
+				description = <"Compliance (volume) (cc3)">
+			>
+			["id126"] = <
+				text = <"Peak pressure (daPa)">
+				description = <"Peak pressure (daPa)">
+			>
+			["id129"] = <
+				text = <"Peak pressure (mm[h2O])">
+				description = <"Peak pressure (mm[h2O])">
+			>
+			["id13"] = <
+				text = <"Result details">
+				description = <"The tympanogram test result measurements and interpretations, recorded per ear.">
+			>
+			["id134"] = <
+				text = <"Static compliance (volume) (ml)">
+				description = <"Static compliance (volume) (ml)">
+			>
+			["id137"] = <
+				text = <"Static compliance (volume) (cc3)">
+				description = <"Static compliance (volume) (cc3)">
+			>
+			["id14"] = <
+				text = <"Peak pressure">
+				description = <"Peak pressure (also called tympanometric peak pressure or middle ear pressure or MEP) is the ear canal pressure at which the peak of the tympanogram occurs.">
+			>
+			["id145"] = <
+				text = <"Ear canal volume (cc3)">
+				description = <"Ear canal volume (cc3)">
+			>
+			["id148"] = <
+				text = <"Ear canal volume (ml)">
+				description = <"Ear canal volume (ml)">
+			>
+			["id15"] = <
+				text = <"Static compliance (conductance)">
+				description = <"Static compliance (SC) is the greatest amount of acoustic energy absorbed by the middle ear system (the vertical peak of the tympanogram curve).">
+			>
+			["id19"] = <
+				text = <"Ear canal volume">
+				description = <"An estimate of the volume of air between the probe tip and the tympanic membrane if the tympanic membrane is intact, or the volume of the ear canal and the middle ear space if the tympanic membrane is perforated. (Fowler & Shanks, 2002, p. 180).">
+			>
+			["id21"] = <
+				text = <"Test result image">
+				description = <"Digital representation of the entire result.">
+			>
+			["id22"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the test results and intepretation not captured in other fields.">
+			>
+			["id28"] = <
+				text = <"Measurement details">
+				description = <"Measurements of the tympanogram to infer middle ear function.">
+			>
+			["id29"] = <
+				text = <"Pressure vs compliance measurement">
+				description = <"The Pressure/Compliance measurement pair, captured from a tympanometer and used to define a continuous tympanogram curve.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Tympanometric width">
+				description = <"The pressure interval corresponding to a 50% reduction in the peak static admittance.">
+			>
+			["id31"] = <
+				text = <"Tympanometric gradient">
+				description = <"The steepness of the slope of the tympanogram near the peak.">
+			>
+			["id32"] = <
+				text = <"No test result">
+				description = <"No test result is available for the test ear.">
+			>
+			["id33"] = <
+				text = <"Reason for no test result">
+				description = <"Reason why no result is available for the test ear.">
+			>
+			["id34"] = <
+				text = <"Clinical interpretation">
+				description = <"Clinical interpretation of all measurements for the test ear.">
+			>
+			["id37"] = <
+				text = <"Overall interpretation">
+				description = <"Overall clinical interpretation of the measurements and related findings using an tympanometer.">
+			>
+			["id38"] = <
+				text = <"Baseline">
+				description = <"Measurement collection recorded as the basis for comparison with following measurement collections that may include other variables of time or patient state.">
+			>
+			["id39"] = <
+				text = <"Post-Valsalva">
+				description = <"Measurements are recorded after the patient has performed a valsalva manoeuvre.">
+			>
+			["id40"] = <
+				text = <"Post-Toynbee">
+				description = <"Measurements are recorded after the patient has performed a toynbee manoeuvre.">
+			>
+			["id42"] = <
+				text = <"Pre-test calibration cavity size">
+				description = <"A cavity with a known volume used to check the calibration of the tympanometer.">
+			>
+			["id44"] = <
+				text = <"Direction of pressure change">
+				description = <"The dirction of change of pressure administered via the ear canal.">
+			>
+			["id47"] = <
+				text = <"Rate of pressure change">
+				description = <"The rate of change of pressure used in tympanometry.">
+			>
+			["id48"] = <
+				text = <"Admittance measurement">
+				description = <"Method of acoustic admittance measurement used in the test.">
+			>
+			["id5"] = <
+				text = <"Tympanogram type">
+				description = <"Description of the the shape of the tympanogram curve, based on the Jerger categories.">
+			>
+			["id51"] = <
+				text = <"Pressure range">
+				description = <"The range of air pressure used to determine the tympanogram.">
+			>
+			["id52"] = <
+				text = <"Start pressure">
+				description = <"The pressure value in daPa at which the pressure sweep for tympanometry begins. It is a positive pressure if the direction of pressure change is descending and a negative pressure if the direction of pressure change is ascending.">
+			>
+			["id53"] = <
+				text = <"Stop pressure">
+				description = <"The pressure value in daPa at which the pressure sweep for tympanometry ends. It is a negative pressure if the direction of pressure change is descending and a positive pressure if the direction of pressure change is ascending.">
+			>
+			["id54"] = <
+				text = <"Tympanometer">
+				description = <"Details of tympanometer used to conduct the test.">
+			>
+			["id55"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the protocol for the tympanogram not captured in other fields.">
+			>
+			["id56"] = <
+				text = <"Pressure">
+				description = <"The pressure measured in the ear canal.">
+			>
+			["id57"] = <
+				text = <"Compliance (conductance)">
+				description = <"The amount of acoustic energy absorbed by the middle ear system at a specified pressure, measured in mmHo.">
+			>
+			["id59"] = <
+				text = <"Tympanogram type C subtype">
+				description = <"Subclassification of the tympanograms with negative peak pressure.">
+			>
+			["id70"] = <
+				text = <"Compliance (volume)">
+				description = <"The amount of acoustic energy absorbed by the middle ear system at a specified pressure, measured in cc3 or ml.">
+			>
+			["id72"] = <
+				text = <"Tympanogram type B subtype">
+				description = <"Subclassification of the tympanograms with a flat curve.">
+			>
+			["id75"] = <
+				text = <"Static compliance (volume)">
+				description = <"Static compliance (SC) is the greatest amount of acoustic energy absorbed by the middle ear system (the vertical peak of the tympanogram curve).">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at74"] = <http://openehr.org/id/125>
+			["at75"] = <http://openehr.org/id/129>
+			["at76"] = <http://openehr.org/id/502>
+			["at77"] = <http://openehr.org/id/708>
+			["at78"] = <http://openehr.org/id/425>
+			["at79"] = <http://openehr.org/id/426>
+			["at80"] = <http://openehr.org/id/427>
+			["at81"] = <http://openehr.org/id/428>
+			["at82"] = <http://openehr.org/id/429>
+		>
+		["ucum"] = <
+			["at83"] = <http://ucum.org/id/daPa>
+			["at84"] = <http://ucum.org/id/mm%5Bh2O%5D>
+			["at85"] = <http://ucum.org/id/ml>
+			["at86"] = <http://ucum.org/id/cc3>
+			["at87"] = <http://ucum.org/id/mmho>
+			["at88"] = <http://ucum.org/id/daPa%2Fs>
+		>
+		["snomed"] = <
+			["at84"] = <http://snomed.info/id/259020003>
+			["at85"] = <http://snomed.info/id/258773002>
+			["at86"] = <http://snomed.info/id/258773002>
+		>
+		["loinc"] = <
+			["id34"] = <http://loinc.org/64110-0>
+			["id37"] = <http://loinc.org/64110-0>
+			["id54"] = <http://loinc.org/74720-4>
+			["id22"] = <http://loinc.org/106173-8>
+			["id55"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at5", "at6", "at57", "at7", "at70", "at8", "at34", "at35">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at10", "at11">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at72", "at73">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at59", "at60", "at61">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at78", "at79", "at80", "at81", "at82">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at44", "at45">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at48", "at49">
+		>
+	>
+

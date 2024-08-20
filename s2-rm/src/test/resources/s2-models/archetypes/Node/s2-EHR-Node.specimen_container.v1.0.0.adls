@@ -1,0 +1,162 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f819271d-8e7d-4c19-be94-efe283097986)
+	s2-EHR-Node.specimen_container.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, <ian.mcnicoll@oceaninformatics.com>, 2009-06-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.specimen_container.v1.0.0, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.specimen_container.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details of a container used to hold, transport and/or archive a specimen for laboratory examination.">
+			use = <"Use to record details of a container used to hold transport and/or archive a specimen for laboratory examination.
+            
+            This archetype has been designed to be used within OBSERVATION.laboratory test_result, Node.specimen, Node.biobank_storage, Node.biospecimen_summary and other clinically appropriate archetypes. Commonly the Node.specimen and the Node.specimen_container will be used as a pair, with order of nesting varying as appropriate for the use case.
+            For example: 
+            -	The ‘Specimen container’ can be nested within 'Specimen'; for example, when a venous blood specimen is divided between two vials, or a whole large intestine is divided into three buckets. 
+            -	The 'Specimen' can be nested within 'Specimen container'; for example, when a bucket of formalin contains a section of large intestine and a rectum, or a jar contains five individually marked moles.">
+			keywords = <"specimen", "lab", "laboratory", "pathology", "transport medium", "swab", "vial", "vacuum tube", "slide", "additive", "sample">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Michael Anywar, Universitätsklinikum SH, Germany", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag University of Auckland, New Zealand", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Paulo Bandiera-Paiva, Federal University of Sao Paulo, Brazil", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Peter Fedorcsak, Oslo University Hospital", "Heather Grain, Llewelyn Grain Informatics, Australia", "Martin Grundberg, Cambio Healthcare Systems, Sweden", "Evelyn Hovenga, EJSH Consulting, Australia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Pramil Liyanage, Ministry of Health, Sri Lanka", "Manisha Mantri, C-DAC, India", "Cecilia Mascia, CRS4, Italy", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Masafumi Okada, University of Tokyo, Japan", "Vanessa Pereira, Luxembourg Institute of Health & Better, Portugal", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Anders Thurin, VGR, Sweden", "Pencho Tonchev, Medical University- Pleven, Bulgaria", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Wouter Zanen, Eurotranplant, Netherlands", "Lin Zhang, Taikang Insurance Group, ChinaMichael Anywar, Universitätsklinikum SH, Germany", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (openEHR Editor)", "Koray Atalag University of Auckland, New Zealand", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (Nasjonal IKT redaktør)", "Paulo Bandiera-Paiva, Federal University of Sao Paulo, Brazil", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Johan Bjerner, Fürst, Norway", "Peter Fedorcsak, Oslo University Hospital", "Heather Grain, Llewelyn Grain Informatics, Australia", "Martin Grundberg, Cambio Healthcare Systems, Sweden", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Liv Laugen, Oslo universitetssykehus, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Pramil Liyanage, Ministry of Health, Sri Lanka", "Manisha Mantri, C-DAC, India", "Cecilia Mascia, CRS4, Italy", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Masafumi Okada, University of Tokyo, Japan", "Vanessa Pereira, Luxembourg Institute of Health & Better, Portugal", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Ole Martin Sand, DIPS ASA, Norway", "Frode Stenvik, Helse Sør-Øst, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Anders Thurin, VGR, Sweden", "Pencho Tonchev, Medical University- Pleven, Bulgaria", "John Tore Valand, Haukeland Universitetssjukehus, Norway (openEHR Editor)", "Wouter Zanen, Eurotranplant, Netherlands", "Lin Zhang, Taikang Insurance Group, China">
+
+definition
+	Node[id1] matches {	-- Specimen container
+		items matches {
+			Node[id6] occurrences matches {0..1} matches {	-- Container type
+				value matches {
+					Text[id40] 
+				}
+			}
+			Node[id4] matches {	-- Container ID
+				value matches {
+					Rwe_id_ref[id41] 
+					Text[id42] 
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id43] 
+				}
+			}
+			Node[id38] matches {	-- Components
+				value matches {
+					Text[id44] 
+				}
+			}
+			Node[id27] matches {	-- Additive/s
+				value matches {
+					Text[id45] 
+				}
+			}
+			Node[id36] occurrences matches {0..1} matches {	-- Capacity
+				value matches {
+					Text[id46] 
+					Quantity[id47] 
+				}
+			}
+			Node[id39] occurrences matches {0..1} matches {	-- Minimum volum
+				value matches {
+					Text[id48] 
+					Quantity[id49] 
+				}
+			}
+			allow_archetype Node[id29] matches {	-- Additional details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.biobank_storage(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.specimen_transport\.v0|s2-EHR-Node\.specimen_transport\.v1|s2-EHR-Node\.biobank_storage\.v0/}
+			}
+			allow_archetype Node[id30] matches {	-- Contents
+				include
+					archetype_id/value matches {/s2-EHR-Node\.specimen(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.specimen_container(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.specimen_container\.v1/}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id50] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Specimen container">
+				description = <"Details of a container used to hold, transport and/or archive a specimen for laboratory examination.">
+			>
+			["id14"] = <
+				text = <"Description">
+				description = <"Narrative description about the container.">
+			>
+			["id27"] = <
+				text = <"Additive/s">
+				description = <"Introduced substance to preserve, maintain or enhance the specimen.">
+			>
+			["id29"] = <
+				text = <"Additional details">
+				description = <"Additional structured details related to the specimen container.">
+			>
+			["id30"] = <
+				text = <"Contents">
+				description = <"The contents of this container.">
+			>
+			["id36"] = <
+				text = <"Capacity">
+				description = <"The capacity of the container.">
+			>
+			["id37"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the transportation process not captured in other fields.">
+			>
+			["id38"] = <
+				text = <"Components">
+				description = <"Description about the physical components of the container.">
+			>
+			["id39"] = <
+				text = <"Minimum volum">
+				description = <"The minimum volume to be conditioned in the container.">
+			>
+			["id4"] = <
+				text = <"Container ID">
+				description = <"The unique identifier given to the container.">
+			>
+			["id6"] = <
+				text = <"Container type">
+				description = <"The type of container associated with the specimen.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/74384-9>
+			["id6"] = <http://loinc.org/74384-9>
+			["id14"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id37"] = <http://loinc.org/106173-8>
+		>
+	>
+

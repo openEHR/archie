@@ -1,0 +1,912 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d499172d-3f24-4717-93f5-4aecee2aed7f)
+	s2-EHR-Assessment.alcohol_consumption_summary.v1.0.6
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2009-06-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.alcohol_consumption_summary.v1.0.6, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.alcohol_consumption_summary.v1.0.6 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary information about the individual's typical pattern of alcohol consumption.">
+			use = <"Use to record summary information about the individual's typical pattern of alcohol consumption.
+            
+            This archetype is to be used to record information about both current and previous alcohol consumption.
+            
+            The specific scope of this archetype is about documentation about all types of alcohol consumed or ingested by an individual, because of the associated health risks.
+            
+            The history of waxing and waning of consumption for each type of alcohol over time can be captured using the repeatable 'Per episode' Node. 
+            
+            Triggers for closing one episode and commencing a new one will largely reflect local data collection preferences, including if the individual: 
+            - quits for a significant period of time (which will likely be locally defined); or
+            - significantly changes the amount or the pattern of alcohol consumption.
+            
+            The 'Per type' Node of data Nodes allows for recording of specific details about each type of alcohol consumed, and can be repeated for every type alcoholic beverage consumed in the actual episode.  The Node 'Type' identifies the type of alcohol, either as a free text or coded text with a defined valueset.
+            
+            In many situations the individual will only consume one type of alcohol, such as beer. If other types of alcohol are consumed, the details will be recorded in another instance of the 'Per type' Node.
+            
+            Use to incorporate the narrative descriptions of alcohol consumption within existing or legacy clinical systems into an archetyped format, using the 'Overall description' data Node.">
+			keywords = <"drinking", "drunk", "dipsomania", "alcoholic", "alcoholism">
+			misuse = <"Not to be used to record event-or period-based information about alcohol drinking, such as actual daily drinking/binging or the average drinking over a specified period of time - use the OBSERVATION.alcohol_intake archetype.
+            
+            Not to be used to record an assessment about alcohol dependence. Use specific archetypes for this purpose - for example OBSERVATION.audit.
+            
+            Not to be used to record administration of alcohol by other routes, such as inhalation.">
+		>
+	>
+	other_contributors = <"Amund Aakerholt, Helse Stavanger, KORFOR, Norway", "Morten Aas, Oslo Universitetssykehus, Norway", "Tomas Alme, DIPS ASA, Norway", "Ole Andreas Bjordal, Webmed, Norway", "Rita Apelt, Department of Health,NT, Australia", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Gustavo Bacelar-Silva, Healthcare Designs, Brazil (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Kristian Berg, Universitetssykehuset Nord Norge, Norway", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Fredrik Borchsenius, Oslo universitetssykehus, Norway", "Chris Bullen, University of Auckland, New Zealand", "Fatemeh Chalabianloo, Helse Bergen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Stephen Chu, NEHTA, Australia", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Are Edvardsen, SKDE, Norway", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Liv Grøtvedt, Folkehelseinstituttet, Norway", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Jørn Henrik Vold, Helse Bergen, Avdeling for rusmedisin, Norway", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Stelios Joseph Karras, Ergobyte, Greece", "Adriana Kitajima, CORE Consulting, Brazil", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Ole Kristian Losvik, Losol AS, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Camilla Lund, Institute for Cancer Genetics and Informatics, Norway", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Arne Løberg Sæter, DIPS ASA, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Paul Miller, SCIMP NHS Scotland, United Kingdom", "Bjørn Næss, DIPS ASA, Norway", "Jeremy Oats, NT Health, Australia", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Tanja Riise, Nasjonal IKT HF, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Rosalie Schultz, Anyinginyi Health Aboriginal Corporation, Australia", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Raymond Simkus, Brookswood Family Practice, Canada", "Lisbeth Sommervoll, Akershus Universitetssykehus, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ping-Cheng Wei, New Zealand">
+
+definition
+	Assessment[id1] matches {	-- Alcohol consumption summary
+		data matches {
+			Node[id90] occurrences matches {0..1} matches {	-- Overall status
+				value matches {
+					Coded_text[id116] matches {
+						term matches {
+							Terminology_term[id154] matches {
+								concept matches {[ac1]}		-- Overall status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id44] occurrences matches {0..1} matches {	-- Overall description
+				value matches {
+					Text[id117] 
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Regular consumption commenced
+				value matches {
+					Date_value[id118] 
+				}
+			}
+			Node[id81] occurrences matches {0..1} matches {	-- Daily consumption commenced
+				value matches {
+					Date_value[id119] 
+				}
+			}
+			Node[id115] occurrences matches {0..1} matches {	-- Date first intoxicated
+				value matches {
+					Date_time_value[id120] 
+				}
+			}
+			Node[id65] matches {	-- Per episode
+				items matches {
+					Node[id53] occurrences matches {0..1} matches {	-- Status
+						value matches {
+							Coded_text[id121] matches {
+								term matches {
+									Terminology_term[id155] matches {
+										concept matches {[ac2]}		-- Status (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id113] occurrences matches {0..1} matches {	-- Episode description
+						value matches {
+							Text[id122] 
+						}
+					}
+					Node[id82] occurrences matches {0..1} matches {	-- Episode label
+						value matches {
+							Count[id123] matches {
+								magnitude matches {|>=1|}
+							}
+							Text[id124] 
+						}
+					}
+					Node[id14] occurrences matches {0..1} matches {	-- Episode start date
+						value matches {
+							Date_value[id125] 
+						}
+					}
+					Node[id83] occurrences matches {0..1} matches {	-- Episode end date
+						value matches {
+							Date_value[id126] 
+						}
+					}
+					Node[id31] occurrences matches {0..1} matches {	-- Pattern
+						value matches {
+							Coded_text[id127] matches {
+								term matches {
+									Terminology_term[id156] matches {
+										concept matches {[ac3]}		-- Pattern (synthesised)
+									}
+								}
+							}
+							Plain_text[id128] 
+						}
+					}
+					Node[id98] occurrences matches {0..1} matches {	-- Binge drinking frequency
+						value matches {
+							Quantity[id157] matches {	-- Binge drinking frequency (1/wk)
+								magnitude matches {|0.0..7.0|}
+								units matches {
+									Coded_text[id159] matches {
+										term matches {
+											Terminology_term[id158] matches {
+												concept matches {[at124]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+							Quantity[id160] matches {	-- Binge drinking frequency (1/mo)
+								magnitude matches {|0.0..31.0|}
+								units matches {
+									Coded_text[id162] matches {
+										term matches {
+											Terminology_term[id161] matches {
+												concept matches {[at125]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+							Quantity[id163] matches {	-- Binge drinking frequency (1/a)
+								magnitude matches {|0.0..365.0|}
+								units matches {
+									Coded_text[id165] matches {
+										term matches {
+											Terminology_term[id164] matches {
+												concept matches {[at126]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+							Range<Quantity>[id130] matches {
+								lower matches {
+									Quantity[id166] matches {	-- n/a (1/wk)
+										magnitude matches {|0.0..7.0|}
+										units matches {
+											Coded_text[id168] matches {
+												term matches {
+													Terminology_term[id167] matches {
+														concept matches {[at124]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+									Quantity[id169] matches {	-- n/a (1/mo)
+										magnitude matches {|0.0..31.0|}
+										units matches {
+											Coded_text[id171] matches {
+												term matches {
+													Terminology_term[id170] matches {
+														concept matches {[at125]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+									Quantity[id172] matches {	-- n/a (1/a)
+										magnitude matches {|0.0..365.0|}
+										units matches {
+											Coded_text[id174] matches {
+												term matches {
+													Terminology_term[id173] matches {
+														concept matches {[at126]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+								}
+								upper matches {
+									Quantity[id175] matches {	-- n/a (1/wk)
+										magnitude matches {|0.0..7.0|}
+										units matches {
+											Coded_text[id177] matches {
+												term matches {
+													Terminology_term[id176] matches {
+														concept matches {[at124]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+									Quantity[id178] matches {	-- n/a (1/mo)
+										magnitude matches {|0.0..31.0|}
+										units matches {
+											Coded_text[id180] matches {
+												term matches {
+													Terminology_term[id179] matches {
+														concept matches {[at125]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+									Quantity[id181] matches {	-- n/a (1/a)
+										magnitude matches {|0.0..365.0|}
+										units matches {
+											Coded_text[id183] matches {
+												term matches {
+													Terminology_term[id182] matches {
+														concept matches {[at126]}
+													}
+												}
+											}
+										}
+										precision matches {0}
+									}
+								}
+							}
+						}
+					}
+					Node[id114] occurrences matches {0..1} matches {	-- Binge drinking description
+						value matches {
+							Text[id133] 
+						}
+					}
+					Node[id111] occurrences matches {0..1} matches {	-- Alcohol free days
+						value matches {
+							Quantity[id184] matches {	-- Alcohol free days (1/wk)
+								magnitude matches {|0.0..<7.0|}
+								units matches {
+									Coded_text[id186] matches {
+										term matches {
+											Terminology_term[id185] matches {
+												concept matches {[at124]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+							Quantity[id187] matches {	-- Alcohol free days (1/mo)
+								magnitude matches {|0.0..<31.0|}
+								units matches {
+									Coded_text[id189] matches {
+										term matches {
+											Terminology_term[id188] matches {
+												concept matches {[at125]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+						}
+					}
+					Node[id24] occurrences matches {0..1} matches {	-- Typical consumption (alcohol units)
+						value matches {
+							Quantity[id190] matches {	-- Typical consumption (alcohol units) (1/d)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id192] matches {
+										term matches {
+											Terminology_term[id191] matches {
+												concept matches {[at127]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+							Quantity[id193] matches {	-- Typical consumption (alcohol units) (1/wk)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id195] matches {
+										term matches {
+											Terminology_term[id194] matches {
+												concept matches {[at124]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+							Quantity[id196] matches {	-- Typical consumption (alcohol units) (1/mo)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id198] matches {
+										term matches {
+											Terminology_term[id197] matches {
+												concept matches {[at125]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+					Node[id30] matches {	-- Per type
+						items matches {
+							Node[id109] matches {	-- Type
+								value matches {
+									Plain_text[id137] 
+									Coded_text[id138] matches {
+										term matches {
+											Terminology_term[id199] matches {
+												concept matches {[ac4]}		-- Type (synthesised)
+											}
+										}
+									}
+								}
+							}
+							Node[id54] occurrences matches {0..1} matches {	-- Description
+								value matches {
+									Text[id139] 
+								}
+							}
+							Node[id112] occurrences matches {0..1} matches {	-- Typical consumption (alcohol units)
+								value matches {
+									Quantity[id200] matches {	-- Typical consumption (alcohol units) (1/d)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id202] matches {
+												term matches {
+													Terminology_term[id201] matches {
+														concept matches {[at127]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+									Quantity[id203] matches {	-- Typical consumption (alcohol units) (1/wk)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id205] matches {
+												term matches {
+													Terminology_term[id204] matches {
+														concept matches {[at124]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+									Quantity[id206] matches {	-- Typical consumption (alcohol units) (1/mo)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id208] matches {
+												term matches {
+													Terminology_term[id207] matches {
+														concept matches {[at125]}
+													}
+												}
+											}
+										}
+										precision matches {1}
+									}
+								}
+							}
+							allow_archetype Node[id78] matches {	-- Type details
+								include
+									archetype_id/value matches {/.*/}
+							}
+							Node[id70] occurrences matches {0..1} matches {	-- Comment
+								value matches {
+									Text[id141] 
+								}
+							}
+						}
+					}
+					Node[id26] occurrences matches {0..1} matches {	-- Number of quit attempts
+						value matches {
+							Count[id142] matches {
+								magnitude matches {|>=0|}
+							}
+						}
+					}
+					Node[id15] occurrences matches {0..1} matches {	-- Quit date
+						value matches {
+							Date_value[id143] 
+						}
+					}
+					use_archetype Node[id27, s2-EHR-Node.cessation_attempts.v0] 
+					Node[id88] occurrences matches {0..1} matches {	-- Episode comment
+						value matches {
+							Text[id144] 
+						}
+					}
+				}
+			}
+			allow_archetype Node[id87] matches {	-- Overall details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Overall quit date
+				value matches {
+					Date_value[id145] 
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Overall comment
+				value matches {
+					Text[id146] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id74] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id72] matches {	-- Quit date definition
+				value matches {
+					Text[id147] 
+				}
+			}
+			Node[id86] occurrences matches {0..1} matches {	-- Quit attempt definition
+				value matches {
+					Text[id148] 
+				}
+			}
+			Node[id76] matches {	-- Current drinker definition
+				value matches {
+					Text[id149] 
+				}
+			}
+			Node[id77] matches {	-- Former drinker definition
+				value matches {
+					Text[id150] 
+				}
+			}
+			Node[id80] matches {	-- Lifetime non-drinker definition
+				value matches {
+					Text[id151] 
+				}
+			}
+			Node[id105] occurrences matches {0..1} matches {	-- Alcohol unit definition (mass)
+				value matches {
+					Quantity[id209] matches {	-- Alcohol unit definition (mass) (g)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id211] matches {
+								term matches {
+									Terminology_term[id210] matches {
+										concept matches {[at128]}
+									}
+								}
+							}
+						}
+						precision matches {0}
+					}
+					Quantity[id212] matches {	-- Alcohol unit definition (mass) ([oz_av])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id214] matches {
+								term matches {
+									Terminology_term[id213] matches {
+										concept matches {[at129]}
+									}
+								}
+							}
+						}
+						precision matches {1}
+					}
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id153] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Overall status (synthesised)">
+				description = <"Statement about current consumption for all types of alcohol. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Status (synthesised)">
+				description = <"Statement about current alcohol drinking behaviour. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Pattern (synthesised)">
+				description = <"The typical pattern of consumption of alcohol. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Type (synthesised)">
+				description = <"The name of the specific type or grouping of alcohol. (synthesised)">
+			>
+			["at115"] = <
+				text = <"Beer">
+				description = <"Fermented beverage made from grain mash.">
+			>
+			["at116"] = <
+				text = <"Wine">
+				description = <"Fermented beverage made from grapes and sometimes other fruits.">
+			>
+			["at117"] = <
+				text = <"Cider">
+				description = <"Fermented beverage made from any fruit juice.">
+			>
+			["at118"] = <
+				text = <"Mead">
+				description = <"Fermented beverage made from honey, sometimes with various fruits spices, grains or hops.">
+			>
+			["at119"] = <
+				text = <"Pulque">
+				description = <"Fermented beverage made from 'honey water\\\" of cacti.">
+			>
+			["at120"] = <
+				text = <"Spirits">
+				description = <"Fermented beverage made by a distillation process. Usually has an alcohol content >20%. Includes liquers, cocktails and rectified spirits.">
+			>
+			["at121"] = <
+				text = <"Fortified wine">
+				description = <"Wine with added spirits.">
+			>
+			["at122"] = <
+				text = <"Frequency">
+				description = <"Frequency">
+			>
+			["at123"] = <
+				text = <"Mass">
+				description = <"Mass">
+			>
+			["at124"] = <
+				text = <"1/wk">
+				description = <"1/wk unit.">
+			>
+			["at125"] = <
+				text = <"1/mo">
+				description = <"1/mo unit.">
+			>
+			["at126"] = <
+				text = <"1/a">
+				description = <"1/a unit.">
+			>
+			["at127"] = <
+				text = <"1/d">
+				description = <"1/d unit.">
+			>
+			["at128"] = <
+				text = <"g">
+				description = <"Gram unit.">
+			>
+			["at129"] = <
+				text = <"[oz_av]">
+				description = <"[oz_av] unit.">
+			>
+			["at3"] = <
+				text = <"Current drinker">
+				description = <"Individual is a current consumer of alcohol.">
+			>
+			["at5"] = <
+				text = <"Former drinker">
+				description = <"Individual has previously consumed alcohol but is not a current drinker.">
+			>
+			["at6"] = <
+				text = <"Lifetime non-drinker">
+				description = <"Individual has never consumed alcohol.">
+			>
+			["at61"] = <
+				text = <"Current drinker">
+				description = <"Individual consumed alcohol during this period.">
+			>
+			["at83"] = <
+				text = <"Daily">
+				description = <"Consuming alcoholic beverage at least once every day.">
+			>
+			["at84"] = <
+				text = <"Non-daily">
+				description = <"Not consuming alcoholic beverage every day.">
+			>
+			["at91"] = <
+				text = <"Non-drinker">
+				description = <"Individual has not consumed alcohol during this episode.">
+			>
+			["id1"] = <
+				text = <"Alcohol consumption summary">
+				description = <"Summary or persistent information about the typical alcohol consumption of an individual.">
+			>
+			["id105"] = <
+				text = <"Alcohol unit definition (mass)">
+				description = <"Mass of alcohol defining a standard drink or alcohol unit as used in the 'Typical drinking (alcohol units)' Node in this archetype.">
+			>
+			["id109"] = <
+				text = <"Type">
+				description = <"The name of the specific type or grouping of alcohol.">
+			>
+			["id111"] = <
+				text = <"Alcohol free days">
+				description = <"The number of days where no alcohol was consumed in the specified period.">
+			>
+			["id112"] = <
+				text = <"Typical consumption (alcohol units)">
+				description = <"Estimate of number of standard drinks of the specified type of alcohol consumed in the specified period.">
+			>
+			["id113"] = <
+				text = <"Episode description">
+				description = <"Narrative summary about the individual's overall pattern of alcohol consumption during the specified episode.">
+			>
+			["id114"] = <
+				text = <"Binge drinking description">
+				description = <"Narrative description about the individual's typical pattern of binge drinking.">
+			>
+			["id115"] = <
+				text = <"Date first intoxicated">
+				description = <"The date or partial date when the individual became intoxicated for the first time.">
+			>
+			["id14"] = <
+				text = <"Episode start date">
+				description = <"Date when this episode commenced.">
+			>
+			["id15"] = <
+				text = <"Quit date">
+				description = <"Date when the individual last consumed an alcohol.">
+			>
+			["id157"] = <
+				text = <"Binge drinking frequency (1/wk)">
+				description = <"Binge drinking frequency (1/wk)">
+			>
+			["id16"] = <
+				text = <"Regular consumption commenced">
+				description = <"The date or partial date when the individual first started frequent or regular, but usually non-daily, consumption of alcohol.">
+			>
+			["id160"] = <
+				text = <"Binge drinking frequency (1/mo)">
+				description = <"Binge drinking frequency (1/mo)">
+			>
+			["id163"] = <
+				text = <"Binge drinking frequency (1/a)">
+				description = <"Binge drinking frequency (1/a)">
+			>
+			["id166"] = <
+				text = <"n/a (1/wk)">
+				description = <"n/a (1/wk)">
+			>
+			["id169"] = <
+				text = <"n/a (1/mo)">
+				description = <"n/a (1/mo)">
+			>
+			["id17"] = <
+				text = <"Overall quit date">
+				description = <"The date when the individual last ceased consuming alcohol of any type.">
+			>
+			["id172"] = <
+				text = <"n/a (1/a)">
+				description = <"n/a (1/a)">
+			>
+			["id175"] = <
+				text = <"n/a (1/wk)">
+				description = <"n/a (1/wk)">
+			>
+			["id178"] = <
+				text = <"n/a (1/mo)">
+				description = <"n/a (1/mo)">
+			>
+			["id181"] = <
+				text = <"n/a (1/a)">
+				description = <"n/a (1/a)">
+			>
+			["id184"] = <
+				text = <"Alcohol free days (1/wk)">
+				description = <"Alcohol free days (1/wk)">
+			>
+			["id187"] = <
+				text = <"Alcohol free days (1/mo)">
+				description = <"Alcohol free days (1/mo)">
+			>
+			["id190"] = <
+				text = <"Typical consumption (alcohol units) (1/d)">
+				description = <"Typical consumption (alcohol units) (1/d)">
+			>
+			["id193"] = <
+				text = <"Typical consumption (alcohol units) (1/wk)">
+				description = <"Typical consumption (alcohol units) (1/wk)">
+			>
+			["id196"] = <
+				text = <"Typical consumption (alcohol units) (1/mo)">
+				description = <"Typical consumption (alcohol units) (1/mo)">
+			>
+			["id20"] = <
+				text = <"Overall comment">
+				description = <"Additional narrative about all alcohol consumption that has not been captured in other fields.">
+			>
+			["id200"] = <
+				text = <"Typical consumption (alcohol units) (1/d)">
+				description = <"Typical consumption (alcohol units) (1/d)">
+			>
+			["id203"] = <
+				text = <"Typical consumption (alcohol units) (1/wk)">
+				description = <"Typical consumption (alcohol units) (1/wk)">
+			>
+			["id206"] = <
+				text = <"Typical consumption (alcohol units) (1/mo)">
+				description = <"Typical consumption (alcohol units) (1/mo)">
+			>
+			["id209"] = <
+				text = <"Alcohol unit definition (mass) (g)">
+				description = <"Alcohol unit definition (mass) (g)">
+			>
+			["id212"] = <
+				text = <"Alcohol unit definition (mass) ([oz_av])">
+				description = <"Alcohol unit definition (mass) ([oz_av])">
+			>
+			["id23"] = <
+				text = <"Last updated">
+				description = <"The date this alcohol consumption summary was last updated.">
+			>
+			["id24"] = <
+				text = <"Typical consumption (alcohol units)">
+				description = <"Estimate of number of alcohol units consumed in the specified time period.">
+			>
+			["id26"] = <
+				text = <"Number of quit attempts">
+				description = <"Total number of times the individual has attempted to stop consuming alcohol within this episode.">
+			>
+			["id27"] = <
+				text = <"Episode details">
+				description = <"Additional structured details about the specified episode of alcohol consumption.">
+			>
+			["id30"] = <
+				text = <"Per type">
+				description = <"Details about consumption of a specified type of alcohol.">
+			>
+			["id31"] = <
+				text = <"Pattern">
+				description = <"The typical pattern of consumption of alcohol.">
+			>
+			["id44"] = <
+				text = <"Overall description">
+				description = <"Narrative summary about the individual's overall alcohol consumption pattern and history.">
+			>
+			["id53"] = <
+				text = <"Status">
+				description = <"Statement about current alcohol drinking behaviour.">
+			>
+			["id54"] = <
+				text = <"Description">
+				description = <"Narrative summary about alcohol consumption for the specified type of alcohol.">
+			>
+			["id65"] = <
+				text = <"Per episode">
+				description = <"Details about a discrete period of time with a consistent pattern of typical consumption.">
+			>
+			["id70"] = <
+				text = <"Comment">
+				description = <"Additional narrative about consumption of the specified type of alcohol, not captured in other fields.">
+			>
+			["id72"] = <
+				text = <"Quit date definition">
+				description = <"The applied definition for the 'Quit date' data Nodes used in this archetype.">
+			>
+			["id74"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id76"] = <
+				text = <"Current drinker definition">
+				description = <"The applied definition for the 'Current drinker' value in each of the 'Status' data Nodes used in this archetype.">
+			>
+			["id77"] = <
+				text = <"Former drinker definition">
+				description = <"The applied definition for the 'Former drinker' value in each of the 'Status' data Nodes used in this archetype.">
+			>
+			["id78"] = <
+				text = <"Type details">
+				description = <"Additional structured details about the consumption of the specified alcohol.">
+			>
+			["id80"] = <
+				text = <"Lifetime non-drinker definition">
+				description = <"The applied definition for the 'Lifetime non-drinker' value in each of the 'Status' data Nodes used in this archetype.">
+			>
+			["id81"] = <
+				text = <"Daily consumption commenced">
+				description = <"The date or partial date when the individual first started consuming alcohol on a daily basis.">
+			>
+			["id82"] = <
+				text = <"Episode label">
+				description = <"Identification of an episode of alcohol consumption - either as a number in a sequence and/or a named event.">
+			>
+			["id83"] = <
+				text = <"Episode end date">
+				description = <"Date when this episode ceased.">
+			>
+			["id86"] = <
+				text = <"Quit attempt definition">
+				description = <"The applied definition for a Quit attempt used to determine value for the 'Number of quit attempts' data Node used in this archetype.">
+			>
+			["id87"] = <
+				text = <"Overall details">
+				description = <"Additional structured details about the overall alcohol consumption.">
+			>
+			["id88"] = <
+				text = <"Episode comment">
+				description = <"Additional narrative about alcohol consumption during the specified episode, not captured in other fields.">
+			>
+			["id90"] = <
+				text = <"Overall status">
+				description = <"Statement about current consumption for all types of alcohol.">
+			>
+			["id98"] = <
+				text = <"Binge drinking frequency">
+				description = <"The individual's typical frequency of heavy drinking over a short period of time with the intent of becoming intoxicated.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at122"] = <http://openehr.org/id/382>
+			["at123"] = <http://openehr.org/id/124>
+		>
+		["ucum"] = <
+			["at124"] = <http://ucum.org/id/1%2Fwk>
+			["at125"] = <http://ucum.org/id/1%2Fmo>
+			["at126"] = <http://ucum.org/id/1%2Fa>
+			["at127"] = <http://ucum.org/id/1%2Fd>
+			["at128"] = <http://ucum.org/id/g>
+			["at129"] = <http://ucum.org/id/%5Boz_av%5D>
+		>
+		["snomed"] = <
+			["at124"] = <http://snomed.info/id/259038000>
+			["at125"] = <http://snomed.info/id/259036001>
+			["at126"] = <http://snomed.info/id/259039008>
+			["at127"] = <http://snomed.info/id/259032004>
+			["at128"] = <http://snomed.info/id/258682000>
+			["at129"] = <http://snomed.info/id/258692008>
+		>
+		["loinc"] = <
+			["id20"] = <http://loinc.org/106173-8>
+			["id23"] = <http://loinc.org/106177-9>
+			["id44"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id53"] = <http://loinc.org/106199-3>
+			["id54"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id70"] = <http://loinc.org/106173-8>
+			["id88"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at115", "at116", "at117", "at118", "at119", "at120", "at121">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at3", "at5", "at6">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at61", "at91">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at83", "at84">
+		>
+	>
+

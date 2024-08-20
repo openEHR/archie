@@ -1,0 +1,85 @@
+template (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Composition.t_lab_report-cholesterol.v1.0.0
+
+specialize
+	s2-EHR-Composition.t_lab_report-generic.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2024 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Cholesterol lab report">
+		>
+	>
+
+definition
+	Composition[id1.1.1] matches {	-- CBC lab result report
+		/content[id0.1.1]/data matches {
+			use_archetype Node[id0.90.1, s2-EHR-Node.CholesterolInHDLMCncPtSerPlasQnLabObs.v1]  
+			use_archetype Node[id0.90.2, s2-EHR-Node.CholesterolInLDLMCncPtSerPlasQnLabObs.v1]
+			use_archetype Node[id0.90.3, s2-EHR-Node.TriglycerideMCncPtSerPlasQnLabObs.v1] 
+			use_archetype Node[id0.90.4, s2-EHR-Node.CholesterolinVLDLMCncPtSerPlasQnLabObs.v1] 
+			use_archetype Node[id0.90.5, s2-EHR-Node.CholesterolMCncPtSerPlasQnLabObs.v1] 
+			use_archetype Node[id0.90.6, s2-EHR-Node.CholesterolInLDLCholesterolInHDLMRtoPtSerPlasQnLabObs.v1] 
+			use_archetype Node[id0.90.7, s2-EHR-Node.CholesteroltotalCholesterolinHDLMRtoPtSerPlasQnLabObs.v1] 
+			use_archetype Node[id0.90, s2-EHR-Node.lab_analyte.v0] occurrences matches {0} 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1.1"] = <
+				text = <"Cholesterol lab report">
+				description = <"-">
+			>
+			["id0.1.1"] = <
+				text = <"Cholesterol lab panel">
+				description = <"-">
+			>
+			["id0.90.1"] = <
+				text = <"HDL">
+				description = <"-">
+			>
+			["id0.90.2"] = <
+				text = <"LDL">
+				description = <"-">
+			>
+			["id0.90.3"] = <
+				text = <"Triglycerides">
+				description = <"-">
+			>
+			["id0.90.4"] = <
+				text = <"VLDL">
+				description = <"-">
+			>
+			["id0.90.5"] = <
+				text = <"Total cholesterol">
+				description = <"-">
+			>
+			["id0.90.6"] = <
+				text = <"LDL to HDL ratio">
+				description = <"-">
+			>
+			["id0.90.7"] = <
+				text = <"Total cholesterol to HDL ratio">
+				description = <"-">
+			>
+		>
+	>
+
+	term_bindings = <
+		["loinc"] = <
+			["id0.1.1"] = <http://loinc.org/100898-6>
+		>
+	>

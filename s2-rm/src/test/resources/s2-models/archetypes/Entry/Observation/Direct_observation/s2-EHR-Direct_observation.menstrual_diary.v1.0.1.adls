@@ -1,0 +1,251 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a41ae9d9-e815-40d7-86d7-80bcf7bba324)
+    s2-EHR-Direct_observation.menstrual_diary.v1.0.1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Sigrid Daae Mæland, Helse Vest IKT, Norway", "Peter Fedorcsak, Oslo universitetssykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Anna Moore, University of Cambridge, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Marit Alice Venheim, Helse Vest IKT AS, <marit.alice.venheim@helse-vest-ikt-no>, 2021-08-03">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.menstrual_diary.v1.0.1, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.menstrual_diary.v1.0.1 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details about menstrual bleeding and associated symptoms within a specified day.">
+            keywords = <"menstruation", "menses", "cycle", "menstrual", "dysmenorrhoea", "pain", "bloating">
+            use = <"Use to record details about menstrual bleeding and associated symptoms within a specified day. For example in a period tracker or diary.">
+            misuse = <"Not to be used to record the Last menstrual period (LNMP) use the EVALUATION.last_menstrual_period archetype for this purpose.
+            
+            Not to be used to record overall information about menses or related symptoms in a cycle, use the OBSERVATION.menstruation archetype for this purpose. 
+            
+            Not to be used to record details about menarche or menopause, use the EVALUATION.menstruation_summary archetype for this purpose.
+            
+            Not to be used to record information about an individual's menstruation history events or patterns of menstruation over time, use the EVALUATION.menstruation_summary archetype for this purpose.">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Menstrual diary
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Flow
+                value matches {
+                    Coded_text[id23] matches {
+                        term matches {
+                            Terminology_term[id32] matches {
+                                concept matches {[ac1]}    -- Flow (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id24]
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Volume
+                value matches {
+                    Measured<Quantity>[id33] matches {
+                        value matches {
+                            Quantity[id25] matches {
+                                units matches {
+                                    Coded_text[id35] matches {
+                                        term matches {
+                                            Terminology_term[id34] matches {
+                                                concept matches {[at24]}    -- ml
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- Blood clots
+                value matches {
+                    Coded_text[id26] matches {
+                        term matches {
+                            Terminology_term[id36] matches {
+                                concept matches {[ac2]}    -- Blood clots (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Color
+                value matches {
+                    Text[id27]
+                }
+            }
+            Node[id19] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id28]
+                }
+            }
+            use_archetype Node[id21, s2-EHR-Node.symptom_sign.v2]    -- Additional details
+            Node[id22] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id29]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id14] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+        data_series matches {
+            Interval_event[id13] matches {    -- Per day
+                items matches {
+                    use_node Node[id5] /data[id5]    -- Flow
+                    use_node Node[id11] /data[id11]    -- Volume
+                    use_node Node[id15] /data[id15]    -- Blood clots
+                    use_node Node[id18] /data[id18]    -- Color
+                    use_node Node[id19] /data[id19]    -- Description
+                    use_node Node[id21] /data[id21]    -- Additional details
+                    use_node Node[id22] /data[id22]    -- Comment
+                }
+                width matches {PT24H}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at23"] = <http://openehr.org/id/129>
+        >
+        ["ucum"] = <
+            ["at24"] = <http://ucum.org/id/ml>
+        >
+        ["snomed"] = <
+            ["at24"] = <http://snomed.info/id/258773002>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6", "at7", "at8", "at9", "at22">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at15", "at16">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Flow (synthesised)">
+                description = <"Semi-quantitative estimation of menstrual flow per day. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Blood clots (synthesised)">
+                description = <"Presence of blood clots. (synthesised)">
+            >
+            ["at15"] = <
+                text = <"Present">
+                description = <"Blood clots occurred during the menstrual flow.">
+            >
+            ["at16"] = <
+                text = <"Absent">
+                description = <"Blood clots did not occur during the menstrual flow.">
+            >
+            ["at22"] = <
+                text = <"No bleeding">
+                description = <"No menstrual bleeding.">
+            >
+            ["at23"] = <
+                text = <"Volume">
+                description = <"Volume">
+            >
+            ["at24"] = <
+                text = <"ml">
+                description = <"ml unit.">
+            >
+            ["at5"] = <
+                text = <"Flooding">
+                description = <"For example a presence of heavy menstrual flow that exceeded capacity of menstrual products to absorb the flow.">
+            >
+            ["at6"] = <
+                text = <"Heavy flow">
+                description = <"For example needing to change a high-absorbency tampon or pad every one to four hours.">
+            >
+            ["at7"] = <
+                text = <"Medium flow">
+                description = <"For example needing to change a regular-absorbency tampon or pad every three to four hours.">
+            >
+            ["at8"] = <
+                text = <"Light flow">
+                description = <"For example needing to change a low- or regular-absorbency tampon or pad one to three times per day.">
+            >
+            ["at9"] = <
+                text = <"Spotting">
+                description = <"For example a drop or two of blood, not even requiring menstrual products.">
+            >
+            ["id1"] = <
+                text = <"Menstrual diary">
+                description = <"Details about menstrual bleeding and associated symptoms within a specified day.">
+            >
+            ["id11"] = <
+                text = <"Volume">
+                description = <"Estimated volume of menstrual blood loss in any 24hr time period.">
+            >
+            ["id13"] = <
+                text = <"Per day">
+                description = <"To record a spesific single day in a cycle.">
+            >
+            ["id14"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id15"] = <
+                text = <"Blood clots">
+                description = <"Presence of blood clots.">
+            >
+            ["id18"] = <
+                text = <"Color">
+                description = <"Color of blood.">
+            >
+            ["id19"] = <
+                text = <"Description">
+                description = <"Narrative description of the menstrual cycle on the day in question. For example day 2.">
+            >
+            ["id21"] = <
+                text = <"Additional details">
+                description = <"Additional details about the specific day of the menstrual cycle.">
+            >
+            ["id22"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the specific day of the menstrual cycle, not captured in other fields.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Flow">
+                description = <"Semi-quantitative estimation of menstrual flow per day.">
+            >
+        >
+    >
+    

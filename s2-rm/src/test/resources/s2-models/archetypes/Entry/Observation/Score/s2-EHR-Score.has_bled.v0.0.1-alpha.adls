@@ -1,0 +1,453 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d73167fa-56d3-471d-a15c-0f7711022af2)
+    s2-EHR-Score.has_bled.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Syeeda S Farruque", "Heather Leslie, Atomica Informatics, Australia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, <models@cambiocds.com>, 2014-05-16">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.has_bled.v0.0.1-alpha, copyright 2014 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.has_bled.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the HAS-BLED bleeding risk score.">
+            keywords = <"HAS-BLED", "stroke", "atrial fibrillation", "anticoagulants", "hemorrhage", "bleeding">
+            use = <"Use to record the results for each component parameter and their total sum for the HAS-BLED bleeding risk score.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- HAS-BLED score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Hypertension
+                value matches {
+                    Coded_ordinal[id30] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id33] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Abnormal renal function
+                value matches {
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Abnormal liver function
+                value matches {
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id45] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Stroke
+                value matches {
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Bleeding history or predisposition
+                value matches {
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id57] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id59] matches {
+                                term matches {
+                                    Terminology_term[id58] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Labile INR
+                value matches {
+                    Coded_ordinal[id60] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id62] matches {
+                                term matches {
+                                    Terminology_term[id61] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id63] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id65] matches {
+                                term matches {
+                                    Terminology_term[id64] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Elderly
+                value matches {
+                    Coded_ordinal[id66] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id68] matches {
+                                term matches {
+                                    Terminology_term[id67] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id69] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id71] matches {
+                                term matches {
+                                    Terminology_term[id70] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- Drugs concomitantly
+                value matches {
+                    Coded_ordinal[id72] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id74] matches {
+                                term matches {
+                                    Terminology_term[id73] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id75] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id77] matches {
+                                term matches {
+                                    Terminology_term[id76] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Alcohol concomitantly
+                value matches {
+                    Coded_ordinal[id78] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id80] matches {
+                                term matches {
+                                    Terminology_term[id79] matches {
+                                        concept matches {[at14]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id81] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id83] matches {
+                                term matches {
+                                    Terminology_term[id82] matches {
+                                        concept matches {[at15]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id29] matches {
+                        magnitude matches {|0..9|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id19] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at14", "at15">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at14", "at15">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at14", "at15">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at14", "at15">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at14", "at15">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at14", "at15">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at14", "at15">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at14", "at15">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at14", "at15">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Hypertension (synthesised)">
+                description = <"The systolic blood pressure is >160 mmHg. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Abnormal renal function (synthesised)">
+                description = <"The presence of chronic dialysis or renal transplantation or serum creatinine ≥200µmol/L. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Abnormal liver function (synthesised)">
+                description = <"Chronic hepatic disease (eg. cirrhosis) or biochemical evidence of significant hepatic derangement (eg. bilirubin >2x upper limit of normal, in association with AST/ALT/ALP >3x upper limit normal, etc). (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Stroke (synthesised)">
+                description = <"A previous history of stroke, particularly lacunar. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Bleeding history or predisposition (synthesised)">
+                description = <"A previous bleeding history and/or predisposition to bleeding . (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Labile INR (synthesised)">
+                description = <"Unstable/high INRs or poor time in therapeutic range. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Elderly (synthesised)">
+                description = <"Age >65 yrs. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Drugs concomitantly (synthesised)">
+                description = <"The concomitant use of drugs, such as antiplatelet agents, non-steroidal anti-inflammatory drugs, etc. (synthesised)">
+            >
+            ["ac9"] = <
+                text = <"Alcohol concomitantly (synthesised)">
+                description = <"Alcohol consumption ≥ 8 units per week. (synthesised)">
+            >
+            ["at14"] = <
+                text = <"No">
+                description = <"The risk factor is not present.">
+            >
+            ["at15"] = <
+                text = <"Yes">
+                description = <"The risk factor is present.">
+            >
+            ["id1"] = <
+                text = <"HAS-BLED score">
+                description = <"A risk assessment score to assess the bleeding risk in individuals with atrial fibrillation.">
+            >
+            ["id10"] = <
+                text = <"Labile INR">
+                description = <"Unstable/high INRs or poor time in therapeutic range.">
+            >
+            ["id11"] = <
+                text = <"Elderly">
+                description = <"Age >65 yrs.">
+            >
+            ["id12"] = <
+                text = <"Drugs concomitantly">
+                description = <"The concomitant use of drugs, such as antiplatelet agents, non-steroidal anti-inflammatory drugs, etc.">
+            >
+            ["id13"] = <
+                text = <"Alcohol concomitantly">
+                description = <"Alcohol consumption ≥ 8 units per week.">
+            >
+            ["id14"] = <
+                text = <"Total score">
+                description = <"Sum of points assigned for each of the component parameters.">
+            >
+            ["id19"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any point in time event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Hypertension">
+                description = <"The systolic blood pressure is >160 mmHg.">
+            >
+            ["id6"] = <
+                text = <"Abnormal renal function">
+                description = <"The presence of chronic dialysis or renal transplantation or serum creatinine ≥200µmol/L.">
+            >
+            ["id7"] = <
+                text = <"Abnormal liver function">
+                description = <"Chronic hepatic disease (eg. cirrhosis) or biochemical evidence of significant hepatic derangement (eg. bilirubin >2x upper limit of normal, in association with AST/ALT/ALP >3x upper limit normal, etc).">
+            >
+            ["id8"] = <
+                text = <"Stroke">
+                description = <"A previous history of stroke, particularly lacunar.">
+            >
+            ["id9"] = <
+                text = <"Bleeding history or predisposition">
+                description = <"A previous bleeding history and/or predisposition to bleeding .">
+            >
+        >
+    >
+    

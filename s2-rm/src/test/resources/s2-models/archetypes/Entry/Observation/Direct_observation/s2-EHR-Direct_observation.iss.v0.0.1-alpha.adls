@@ -1,0 +1,174 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=de482689-c769-47a9-9dbf-417bed6c929a)
+    s2-EHR-Direct_observation.iss.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Maryam Razavi, Cambio CDS, <maryam.razavi@cambio.se>, 2020-12-22">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.iss.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.iss.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and the resulting ISS stage.">
+            keywords = <"albumin", "multiple", "myeloma", "staging", "system">
+            use = <"Use to record the results for each component parameter and the resulting ISS stage.">
+            misuse = <"Not to be used to record the results for the Revised Multiple Myeloma International Staging System (R-ISS) - use the specialisation of this archetype for this purpose.">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- International Staging System for Multiple Myeloma (ISS)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Serum β2 microglobulin
+                value matches {
+                    Coded_text[id18] matches {
+                        term matches {
+                            Terminology_term[id21] matches {
+                                concept matches {[ac1]}    -- Serum β2 microglobulin (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Serum albumin
+                value matches {
+                    Coded_text[id19] matches {
+                        term matches {
+                            Terminology_term[id22] matches {
+                                concept matches {[ac2]}    -- Serum albumin (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- ISS stage
+                value matches {
+                    Coded_text[id20] matches {
+                        term matches {
+                            Terminology_term[id23] matches {
+                                concept matches {[ac3]}    -- ISS stage (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id17] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6", "at7">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at9", "at10">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at12", "at13", "at14">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Serum β2 microglobulin (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"Serum albumin (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac3"] = <
+                text = <"ISS stage (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at10"] = <
+                text = <"≥3.5 g/dL">
+                description = <"">
+            >
+            ["at12"] = <
+                text = <"ISS I">
+                description = <"Serum β2-microglobulin <3.5 mg/L and serum albumin ≥3.5 g/dL.">
+            >
+            ["at13"] = <
+                text = <"ISS II">
+                description = <"Not stage I or III.">
+            >
+            ["at14"] = <
+                text = <"ISS III">
+                description = <"Serum β2-microglobulin ≥5.5 mg/L.">
+            >
+            ["at5"] = <
+                text = <"<3.5 mg/L">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"3.5-5.4 mg/L">
+                description = <"">
+            >
+            ["at7"] = <
+                text = <">5.4 mg/L">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"<3.5 g/dL">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"International Staging System for Multiple Myeloma (ISS)">
+                description = <"A staging system for classifying and stratifying patients with multiple myeloma.">
+            >
+            ["id12"] = <
+                text = <"ISS stage">
+                description = <"">
+            >
+            ["id17"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Serum β2 microglobulin">
+                description = <"">
+            >
+            ["id9"] = <
+                text = <"Serum albumin">
+                description = <"">
+            >
+        >
+    >
+    

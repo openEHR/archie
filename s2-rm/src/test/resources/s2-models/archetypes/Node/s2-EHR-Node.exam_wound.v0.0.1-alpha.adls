@@ -1,0 +1,2012 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0d607372-fab7-4f9a-b5e8-78611d88ab96)
+	s2-EHR-Node.exam_wound.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2019-03-18">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.exam_wound.v0.0.1-alpha, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.exam_wound.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"For recording a narrative description and clinical interpretation of the findings observed during the physical examination of a wound.">
+			use = <"Use to record a narrative description and clinical interpretation of the findings observed during the physical examination of a wound.
+            
+            This archetype has been specifically designed to be used in the 'Examination detail' SLOT within the OBSERVATION.exam or ACTION.procedure archetype, but can also be used within other ENTRY or Node archetypes, where clinically appropriate.
+            
+            Use to provide a framework in which Node archetypes can be nested in the 'Examination findings' SLOT to record additional structured physical examination findings.
+            
+            The Node.exclusion_exam archetype can be nested within the 'Examination not done' SLOT to optionally record explicit details about the examination not being performed.
+            
+            Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data Node.">
+			misuse = <"Not to be used to record stand-alone clinical measurements or test results - use specific OBSERVATION archetypes. For example OBSERVATION.head_circumference or OBSERVATION.glasgow_coma_scale.
+            
+            Not to be used for recording the clinical history - use specific OBSERVATION and Node archetypes. For example OBSERVATION.story and Node.symptom_sign.">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Examination of a wound
+		items matches {
+			Node[id17] occurrences matches {0..1} matches {	-- Wound label
+				value matches {
+					Text[id233] 
+				}
+			}
+			Node[id67] occurrences matches {0..1} matches {	-- Type
+				value matches {
+					Plain_text[id234] 
+					Coded_text[id235] matches {
+						term matches {
+							Terminology_term[id292] matches {
+								concept matches {[ac1]}		-- Type (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- System or structure examined
+				value matches {
+					Text[id236] 
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Body site
+				value matches {
+					Text[id237] 
+				}
+			}
+			allow_archetype Node[id12] matches {	-- Structured body site
+				include
+					archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v2/}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					Text[id238] 
+				}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Length
+				value matches {
+					Quantity[id293] matches {	-- Length (cm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id295] matches {
+								term matches {
+									Terminology_term[id294] matches {
+										concept matches {[at236]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id296] matches {	-- Length ([in_i])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id298] matches {
+								term matches {
+									Terminology_term[id297] matches {
+										concept matches {[at237]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id299] matches {	-- Length (mm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id301] matches {
+								term matches {
+									Terminology_term[id300] matches {
+										concept matches {[at238]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id38] occurrences matches {0..1} matches {	-- Width
+				value matches {
+					Quantity[id302] matches {	-- Width (cm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id304] matches {
+								term matches {
+									Terminology_term[id303] matches {
+										concept matches {[at236]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id305] matches {	-- Width (mm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id307] matches {
+								term matches {
+									Terminology_term[id306] matches {
+										concept matches {[at238]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id308] matches {	-- Width ([in_i])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id310] matches {
+								term matches {
+									Terminology_term[id309] matches {
+										concept matches {[at237]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id39] occurrences matches {0..1} matches {	-- Depth
+				value matches {
+					Quantity[id311] matches {	-- Depth (cm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id313] matches {
+								term matches {
+									Terminology_term[id312] matches {
+										concept matches {[at236]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id314] matches {	-- Depth (mm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id316] matches {
+								term matches {
+									Terminology_term[id315] matches {
+										concept matches {[at238]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id317] matches {	-- Depth ([in_i])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id319] matches {
+								term matches {
+									Terminology_term[id318] matches {
+										concept matches {[at237]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id115] occurrences matches {0..1} matches {	-- Depth category
+				value matches {
+					Coded_text[id242] matches {
+						term matches {
+							Terminology_term[id320] matches {
+								concept matches {[ac2]}		-- Depth category (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id40] occurrences matches {0..1} matches {	-- Area
+				value matches {
+					Quantity[id321] matches {	-- Area (cm2)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id323] matches {
+								term matches {
+									Terminology_term[id322] matches {
+										concept matches {[at239]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id324] matches {	-- Area (mm2)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id326] matches {
+								term matches {
+									Terminology_term[id325] matches {
+										concept matches {[at240]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id327] matches {	-- Area ([sin_i])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id329] matches {
+								term matches {
+									Terminology_term[id328] matches {
+										concept matches {[at241]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id102] occurrences matches {0..1} matches {	-- Volume
+				value matches {
+					Quantity[id330] matches {	-- Volume (mm3)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id332] matches {
+								term matches {
+									Terminology_term[id331] matches {
+										concept matches {[at242]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id333] matches {	-- Volume (cm3)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id335] matches {
+								term matches {
+									Terminology_term[id334] matches {
+										concept matches {[at243]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id336] matches {	-- Volume ([cin_i])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id338] matches {
+								term matches {
+									Terminology_term[id337] matches {
+										concept matches {[at244]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id87] occurrences matches {0..1} matches {	-- Shape
+				value matches {
+					Coded_text[id245] matches {
+						term matches {
+							Terminology_term[id339] matches {
+								concept matches {[ac3]}		-- Shape (synthesised)
+							}
+						}
+					}
+					Plain_text[id246] 
+				}
+			}
+			Node[id49] occurrences matches {0..1} matches {	-- Edge description
+				value matches {
+					Text[id247] 
+				}
+			}
+			Node[id50] occurrences matches {0..1} matches {	-- Edge color
+				value matches {
+					Coded_text[id248] matches {
+						term matches {
+							Terminology_term[id340] matches {
+								concept matches {[ac4]}		-- Edge color (synthesised)
+							}
+						}
+					}
+					Plain_text[id249] 
+				}
+			}
+			Node[id106] occurrences matches {0..1} matches {	-- Edge appearance
+				value matches {
+					Coded_text[id250] 
+				}
+			}
+			Node[id103] occurrences matches {0..1} matches {	-- Edge outline
+				value matches {
+					Coded_text[id251] matches {
+						term matches {
+							Terminology_term[id341] matches {
+								concept matches {[ac5]}		-- Edge outline (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id110] occurrences matches {0..1} matches {	-- Edge type
+				value matches {
+					Coded_text[id252] matches {
+						term matches {
+							Terminology_term[id342] matches {
+								concept matches {[ac6]}		-- Edge type (synthesised)
+							}
+						}
+					}
+					Plain_text[id253] 
+				}
+			}
+			Node[id107] occurrences matches {0..1} matches {	-- Edge attachment
+				value matches {
+					Coded_text[id254] matches {
+						term matches {
+							Terminology_term[id343] matches {
+								concept matches {[ac7]}		-- Edge attachment (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id58] matches {	-- Periwound description
+				value matches {
+					Text[id255] 
+				}
+			}
+			Node[id151] matches {	-- Periwound appearance
+				items matches {
+					Node[id128] matches {	-- Skin type
+						value matches {
+							Coded_text[id256] matches {
+								term matches {
+									Terminology_term[id344] matches {
+										concept matches {[ac8]}		-- Skin type (synthesised)
+									}
+								}
+							}
+							Plain_text[id257] 
+						}
+					}
+					Node[id152] occurrences matches {0..1} matches {	-- Presence
+						value matches {
+							Coded_text[id258] matches {
+								term matches {
+									Terminology_term[id345] matches {
+										concept matches {[ac9]}		-- Presence (synthesised)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id155] occurrences matches {0..1} matches {	-- Periwound tenderness
+				value matches {
+					Coded_text[id259] matches {
+						term matches {
+							Terminology_term[id346] matches {
+								concept matches {[ac10]}		-- Periwound tenderness (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id156] occurrences matches {0..1} matches {	-- Periwound temperature
+				value matches {
+					Coded_text[id260] matches {
+						term matches {
+							Terminology_term[id347] matches {
+								concept matches {[ac11]}		-- Periwound temperature (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id61] matches {	-- Association
+				items cardinality matches {2..*; unordered} matches {
+					Node[id62] matches {	-- Factor
+						value matches {
+							Text[id261] 
+						}
+					}
+					Node[id63] matches {	-- Present or absent?
+						value matches {
+							Coded_text[id262] matches {
+								term matches {
+									Terminology_term[id348] matches {
+										concept matches {[ac12]}		-- Present or absent? (synthesised)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id55] matches {	-- Wound bed colour
+				items matches {
+					Node[id56] matches {	-- Colour
+						value matches {
+							Coded_text[id263] matches {
+								term matches {
+									Terminology_term[id349] matches {
+										concept matches {[ac13]}		-- Colour (synthesised)
+									}
+								}
+							}
+							Plain_text[id264] 
+						}
+					}
+					Node[id57] occurrences matches {0..1} matches {	-- Proportion
+						value matches {
+							Quantity[id265] matches {
+								magnitude matches {|0.0..100.0|}
+								units matches {
+									Coded_text[id351] matches {
+										term matches {
+											Terminology_term[id350] matches {
+												concept matches {[at245]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+						}
+					}
+				}
+			}
+			Node[id52] matches {	-- Wound bed tissue
+				items matches {
+					Node[id53] matches {	-- Tissue type
+						value matches {
+							Plain_text[id266] 
+							Coded_text[id267] matches {
+								term matches {
+									Terminology_term[id352] matches {
+										concept matches {[ac14]}		-- Tissue type (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id54] occurrences matches {0..1} matches {	-- Proportion
+						value matches {
+							Quantity[id268] matches {
+								magnitude matches {|0.0..100.0|}
+								units matches {
+									Coded_text[id354] matches {
+										term matches {
+											Terminology_term[id353] matches {
+												concept matches {[at245]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+						}
+					}
+				}
+			}
+			Node[id15] matches {	-- Internal object or structure
+				items matches {
+					Node[id16] occurrences matches {1..*} matches {	-- Object/structure
+						value matches {
+							Plain_text[id269] 
+							Coded_text[id270] matches {
+								term matches {
+									Terminology_term[id355] matches {
+										concept matches {[ac15]}		-- Object/structure (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id21] occurrences matches {0..1} matches {	-- Present or absent?
+						value matches {
+							Coded_text[id271] matches {
+								term matches {
+									Terminology_term[id356] matches {
+										concept matches {[ac16]}		-- Present or absent? (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id25] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id272] 
+						}
+					}
+					Node[id26] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id273] 
+						}
+					}
+				}
+			}
+			Node[id18] occurrences matches {0..1} matches {	-- Tunnelling present?
+				value matches {
+					Coded_text[id274] matches {
+						term matches {
+							Terminology_term[id357] matches {
+								concept matches {[ac17]}		-- Tunnelling present? (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id46] matches {	-- Tunnelling details
+				items matches {
+					Node[id47] occurrences matches {0..1} matches {	-- Tunnel length
+						value matches {
+							Quantity[id358] matches {	-- Tunnel length (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id360] matches {
+										term matches {
+											Terminology_term[id359] matches {
+												concept matches {[at236]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id361] matches {	-- Tunnel length (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id363] matches {
+										term matches {
+											Terminology_term[id362] matches {
+												concept matches {[at238]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id364] matches {	-- Tunnel length ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id366] matches {
+										term matches {
+											Terminology_term[id365] matches {
+												concept matches {[at237]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id48] matches {	-- Direction of tunnel
+						value matches {
+							Plain_text[id276] 
+							Coded_text[id277] matches {
+								term matches {
+									Terminology_term[id367] matches {
+										concept matches {[ac18]}		-- Direction of tunnel (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id59] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id278] 
+						}
+					}
+				}
+			}
+			Node[id14] matches {	-- Undermining present?
+				value matches {
+					Coded_text[id279] matches {
+						term matches {
+							Terminology_term[id368] matches {
+								concept matches {[ac19]}		-- Undermining present? (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id60] occurrences matches {0..1} matches {	-- Undermining description
+				value matches {
+					Text[id280] 
+				}
+			}
+			Node[id42] matches {	-- Undermining details
+				items matches {
+					Node[id43] matches {	-- Amount of undermining
+						value matches {
+							Quantity[id369] matches {	-- Amount of undermining (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id371] matches {
+										term matches {
+											Terminology_term[id370] matches {
+												concept matches {[at236]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id372] matches {	-- Amount of undermining (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id374] matches {
+										term matches {
+											Terminology_term[id373] matches {
+												concept matches {[at238]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id375] matches {	-- Amount of undermining ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id377] matches {
+										term matches {
+											Terminology_term[id376] matches {
+												concept matches {[at237]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id45] occurrences matches {0..1} matches {	-- Direction of undermining
+						value matches {
+							Text[id282] 
+						}
+					}
+				}
+			}
+			Node[id33] occurrences matches {0..1} matches {	-- Exudate present?
+				value matches {
+					Coded_text[id283] matches {
+						term matches {
+							Terminology_term[id378] matches {
+								concept matches {[ac20]}		-- Exudate present? (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id206] occurrences matches {0..1} matches {	-- Exudate amount
+				value matches {
+					Coded_text[id284] matches {
+						term matches {
+							Terminology_term[id379] matches {
+								concept matches {[ac21]}		-- Exudate amount (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id211] occurrences matches {0..1} matches {	-- Exudate colour
+				value matches {
+					Coded_text[id285] matches {
+						term matches {
+							Terminology_term[id380] matches {
+								concept matches {[ac22]}		-- Exudate colour (synthesised)
+							}
+						}
+					}
+					Plain_text[id286] 
+				}
+			}
+			Node[id225] occurrences matches {0..1} matches {	-- Exudate type
+				value matches {
+					Coded_text[id287] matches {
+						term matches {
+							Terminology_term[id381] matches {
+								concept matches {[ac23]}		-- Exudate type (synthesised)
+							}
+						}
+					}
+					Plain_text[id288] 
+				}
+			}
+			Node[id232] occurrences matches {0..1} matches {	-- Odour
+				value matches {
+					Coded_text[id289] matches {
+						term matches {
+							Terminology_term[id382] matches {
+								concept matches {[ac24]}		-- Odour (synthesised)
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id5] matches {	-- Additional findings
+				include
+					archetype_id/value matches {/.*/}
+			}
+			use_archetype Node[id6, s2-EHR-Node.media_file.v1] 
+			Node[id7] matches {	-- Clinical interpretation
+				value matches {
+					Text[id290] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id291] 
+				}
+			}
+			use_archetype Node[id9, s2-EHR-Node.exclusion_exam.v1] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Type (synthesised)">
+				description = <"The type of wound examined. (synthesised)">
+			>
+			["ac10"] = <
+				text = <"Periwound tenderness (synthesised)">
+				description = <"The presence of tenderness in and around the wound. (synthesised)">
+			>
+			["ac11"] = <
+				text = <"Periwound temperature (synthesised)">
+				description = <"The relative temperature of the skin surrounding the wound. (synthesised)">
+			>
+			["ac12"] = <
+				text = <"Present or absent? (synthesised)">
+				description = <"Is the identified factor present? (synthesised)">
+			>
+			["ac13"] = <
+				text = <"Colour (synthesised)">
+				description = <"Description of the colour of the wound base. (synthesised)">
+			>
+			["ac14"] = <
+				text = <"Tissue type (synthesised)">
+				description = <"Description of the tissue in the wound base. (synthesised)">
+			>
+			["ac15"] = <
+				text = <"Object/structure (synthesised)">
+				description = <"Idnetification of an exposed body structure, device, and/or foreign body visible by the naked eye within the wound. (synthesised)">
+			>
+			["ac16"] = <
+				text = <"Present or absent? (synthesised)">
+				description = <"Is the object/structure present? (synthesised)">
+			>
+			["ac17"] = <
+				text = <"Tunnelling present? (synthesised)">
+				description = <"Is tunnelling present in the wound? (synthesised)">
+			>
+			["ac18"] = <
+				text = <"Direction of tunnel (synthesised)">
+				description = <"Direction of the tunnel radiating outward from the centre of the wound, as described by a clock-face. (synthesised)">
+			>
+			["ac19"] = <
+				text = <"Undermining present? (synthesised)">
+				description = <"Is undermining present in the wound? (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Depth category (synthesised)">
+				description = <"Description of the depth of the wound. (synthesised)">
+			>
+			["ac20"] = <
+				text = <"Exudate present? (synthesised)">
+				description = <"Is an exudate present in the wound? (synthesised)">
+			>
+			["ac21"] = <
+				text = <"Exudate amount (synthesised)">
+				description = <"The amount of exudate observed. (synthesised)">
+			>
+			["ac22"] = <
+				text = <"Exudate colour (synthesised)">
+				description = <"The colour of the exudate. (synthesised)">
+			>
+			["ac23"] = <
+				text = <"Exudate type (synthesised)">
+				description = <"The category of exudate. (synthesised)">
+			>
+			["ac24"] = <
+				text = <"Odour (synthesised)">
+				description = <"Description of the odour of the wound. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Shape (synthesised)">
+				description = <"The shape of the wound. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Edge color (synthesised)">
+				description = <"The colour of the wound edge. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Edge outline (synthesised)">
+				description = <"Description of the outline of the wound. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Edge type (synthesised)">
+				description = <"The type of wound edge. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Edge attachment (synthesised)">
+				description = <"The attachment of the edge to the wound base. (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Skin type (synthesised)">
+				description = <"Type of skin surrounding the wound. (synthesised)">
+			>
+			["ac9"] = <
+				text = <"Presence (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["at100"] = <
+				text = <"Wedge-shaped">
+				description = <"">
+			>
+			["at103"] = <
+				text = <"Well-defined">
+				description = <"Distinct wound outline.">
+			>
+			["at104"] = <
+				text = <"Poorly-defined">
+				description = <"Indistinct or diffuse wound outline.">
+			>
+			["at107"] = <
+				text = <"Attached">
+				description = <"The edge appears flush with the wound base or has a sloping edge.">
+			>
+			["at108"] = <
+				text = <"Not attached">
+				description = <"The edge has sides or walls present; floor or base of wound is deeper than edge.">
+			>
+			["at110"] = <
+				text = <"Scabbed">
+				description = <"">
+			>
+			["at111"] = <
+				text = <"Rolled">
+				description = <"Soft to firm and flexible to touch.">
+			>
+			["at112"] = <
+				text = <"Hyperkeratotic">
+				description = <"Callous-like tissue formation around wound & at edges.">
+			>
+			["at113"] = <
+				text = <"Fibrotic">
+				description = <"Scarred, hard, rigid to touch.">
+			>
+			["at115"] = <
+				text = <"Tissues damaged but no break in skin surface">
+				description = <"">
+			>
+			["at116"] = <
+				text = <"Superficial, abrasion, blister or shallow crater">
+				description = <"Even with, &/or elevated above skin surface (e.g.,hyperplasia).">
+			>
+			["at117"] = <
+				text = <"Deep crater with or without undermining of adjacent tissue">
+				description = <"">
+			>
+			["at118"] = <
+				text = <"Visualization of tissue layers not possible due to necrosis">
+				description = <"">
+			>
+			["at119"] = <
+				text = <"Supporting structures include tendon, joint capsule">
+				description = <"">
+			>
+			["at120"] = <
+				text = <"Red/Healthy">
+				description = <"">
+			>
+			["at121"] = <
+				text = <"Red/Hyperemic">
+				description = <"">
+			>
+			["at122"] = <
+				text = <"Pink/Pale">
+				description = <"">
+			>
+			["at123"] = <
+				text = <"Yellow">
+				description = <"">
+			>
+			["at124"] = <
+				text = <"Black">
+				description = <"">
+			>
+			["at125"] = <
+				text = <"Brown">
+				description = <"">
+			>
+			["at126"] = <
+				text = <"Gray">
+				description = <"">
+			>
+			["at128"] = <
+				text = <"Boggy">
+				description = <"">
+			>
+			["at129"] = <
+				text = <"Blanched">
+				description = <"">
+			>
+			["at130"] = <
+				text = <"Blistered">
+				description = <"">
+			>
+			["at131"] = <
+				text = <"Calloused">
+				description = <"">
+			>
+			["at132"] = <
+				text = <"Dry">
+				description = <"">
+			>
+			["at133"] = <
+				text = <"Ecchymotic">
+				description = <"">
+			>
+			["at134"] = <
+				text = <"Edematous">
+				description = <"">
+			>
+			["at135"] = <
+				text = <"Erythematous">
+				description = <"">
+			>
+			["at136"] = <
+				text = <"Excoriated">
+				description = <"">
+			>
+			["at137"] = <
+				text = <"Fluctuant">
+				description = <"">
+			>
+			["at138"] = <
+				text = <"Friable">
+				description = <"">
+			>
+			["at139"] = <
+				text = <"Hemorrhagic">
+				description = <"">
+			>
+			["at140"] = <
+				text = <"Indurated">
+				description = <"">
+			>
+			["at141"] = <
+				text = <"Lacerated">
+				description = <"">
+			>
+			["at142"] = <
+				text = <"Macerated">
+				description = <"">
+			>
+			["at143"] = <
+				text = <"Moist">
+				description = <"">
+			>
+			["at144"] = <
+				text = <"Purpuric">
+				description = <"">
+			>
+			["at145"] = <
+				text = <"Rash">
+				description = <"">
+			>
+			["at146"] = <
+				text = <"Rupture">
+				description = <"">
+			>
+			["at147"] = <
+				text = <"Scarred">
+				description = <"">
+			>
+			["at148"] = <
+				text = <"Swollen (inflammed)">
+				description = <"">
+			>
+			["at149"] = <
+				text = <"Healthy and intact">
+				description = <"">
+			>
+			["at152"] = <
+				text = <"Present">
+				description = <"">
+			>
+			["at153"] = <
+				text = <"Absent">
+				description = <"">
+			>
+			["at156"] = <
+				text = <"Normal skin temperature">
+				description = <"">
+			>
+			["at157"] = <
+				text = <"Raised skin temperature">
+				description = <"">
+			>
+			["at171"] = <
+				text = <"White/gray non-viable tissue">
+				description = <"May appear prior to wound opening; skin surface is white or grey.">
+			>
+			["at172"] = <
+				text = <"Non-adherent, yellow slough">
+				description = <"Thin, mucinous substance; scattered throughout wound bed; easily separated from wound tissue.">
+			>
+			["at173"] = <
+				text = <"Loosely adherent, yellow slough">
+				description = <"Thick, stringy, clumps of debris; attached to wound tissue.">
+			>
+			["at174"] = <
+				text = <"Adherent, soft, black eschar">
+				description = <"Soggy tissue; strongly attached to tissue in centre or base of wound.">
+			>
+			["at175"] = <
+				text = <"Firmly adherent, hard/black eschar">
+				description = <"Firm, crusty tissue; strongly attached to wound base and edges (like a hard scab).">
+			>
+			["at176"] = <
+				text = <"Non-blanchable erythema">
+				description = <"">
+			>
+			["at177"] = <
+				text = <"Epithelialization">
+				description = <"">
+			>
+			["at178"] = <
+				text = <"Fibrinous tissue">
+				description = <"">
+			>
+			["at179"] = <
+				text = <"Granulation tissue">
+				description = <"">
+			>
+			["at180"] = <
+				text = <"Bone">
+				description = <"">
+			>
+			["at181"] = <
+				text = <"Blood vessel">
+				description = <"">
+			>
+			["at182"] = <
+				text = <"Cartilage">
+				description = <"">
+			>
+			["at183"] = <
+				text = <"Fascia">
+				description = <"">
+			>
+			["at184"] = <
+				text = <"Joint capsule">
+				description = <"">
+			>
+			["at185"] = <
+				text = <"Mesh">
+				description = <"">
+			>
+			["at186"] = <
+				text = <"Muscle">
+				description = <"">
+			>
+			["at187"] = <
+				text = <"Musculoskeletal implant">
+				description = <"">
+			>
+			["at188"] = <
+				text = <"Pin">
+				description = <"">
+			>
+			["at189"] = <
+				text = <"Prosthesis">
+				description = <"">
+			>
+			["at190"] = <
+				text = <"Subcutaneous tissue">
+				description = <"">
+			>
+			["at191"] = <
+				text = <"Tendon">
+				description = <"">
+			>
+			["at192"] = <
+				text = <"Foreign body">
+				description = <"">
+			>
+			["at193"] = <
+				text = <"One o'clock">
+				description = <"The tunnel is located at the one o'clock position relative to the identified reference point.">
+			>
+			["at194"] = <
+				text = <"Two o'clock">
+				description = <"The tunnel is located at the two o'clock position relative to the identified reference point.">
+			>
+			["at195"] = <
+				text = <"Three o'clock">
+				description = <"The tunnel is located at the three o'clock position relative to the identified reference point.">
+			>
+			["at196"] = <
+				text = <"Four o'clock">
+				description = <"The tunnel is located at the four o'clock position relative to the identified reference point.">
+			>
+			["at197"] = <
+				text = <"Five o'clock">
+				description = <"The tunnel is located at the five o'clock position relative to the identified reference point.">
+			>
+			["at198"] = <
+				text = <"Six o'clock">
+				description = <"The tunnel is located at the six o'clock position relative to the identified reference point.">
+			>
+			["at199"] = <
+				text = <"Seven o'clock">
+				description = <"The tunnel is located at the seven o'clock position relative to the identified reference point.">
+			>
+			["at200"] = <
+				text = <"Eight o'clock">
+				description = <"The tunnel is located at the eight o'clock position relative to the identified reference point.">
+			>
+			["at201"] = <
+				text = <"Nine o'clock">
+				description = <"The tunnel is located at the nine o'clock position relative to the identified reference point.">
+			>
+			["at202"] = <
+				text = <"Ten o'clock">
+				description = <"The tunnel is located at the ten o'clock position relative to the identified reference point.">
+			>
+			["at203"] = <
+				text = <"Eleven o'clock">
+				description = <"The tunnel is located at the eleven o'clock position relative to the identified reference point.">
+			>
+			["at204"] = <
+				text = <"Twelve o'clock">
+				description = <"The tunnel is located at the twelve o'clock position relative to the identified reference point.">
+			>
+			["at206"] = <
+				text = <"Scant">
+				description = <"">
+			>
+			["at207"] = <
+				text = <"Moderate">
+				description = <"">
+			>
+			["at208"] = <
+				text = <"Large">
+				description = <"">
+			>
+			["at21"] = <
+				text = <"Present">
+				description = <"The identified object or structure is observed in the wound.">
+			>
+			["at211"] = <
+				text = <"Blue">
+				description = <"">
+			>
+			["at212"] = <
+				text = <"Green">
+				description = <"">
+			>
+			["at213"] = <
+				text = <"Orange">
+				description = <"">
+			>
+			["at214"] = <
+				text = <"Pink">
+				description = <"">
+			>
+			["at215"] = <
+				text = <"Red">
+				description = <"">
+			>
+			["at216"] = <
+				text = <"White">
+				description = <"">
+			>
+			["at217"] = <
+				text = <"Yellow">
+				description = <"">
+			>
+			["at218"] = <
+				text = <"Brown">
+				description = <"">
+			>
+			["at219"] = <
+				text = <"Clay">
+				description = <"">
+			>
+			["at22"] = <
+				text = <"Absent">
+				description = <"The identified object or structure is not observed in the wound.">
+			>
+			["at220"] = <
+				text = <"Maroon">
+				description = <"">
+			>
+			["at221"] = <
+				text = <"Violet">
+				description = <"">
+			>
+			["at222"] = <
+				text = <"Tan">
+				description = <"">
+			>
+			["at223"] = <
+				text = <"Colorless">
+				description = <"">
+			>
+			["at225"] = <
+				text = <"Sanguinous">
+				description = <"">
+			>
+			["at226"] = <
+				text = <"Serosanguinous">
+				description = <"">
+			>
+			["at227"] = <
+				text = <"Serous">
+				description = <"">
+			>
+			["at228"] = <
+				text = <"Purulent">
+				description = <"">
+			>
+			["at229"] = <
+				text = <"Seropurulent">
+				description = <"">
+			>
+			["at23"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to tell if the  identified object or structure is present or absent in the wound.">
+			>
+			["at230"] = <
+				text = <"Viscous">
+				description = <"">
+			>
+			["at232"] = <
+				text = <"None, undetectable">
+				description = <"">
+			>
+			["at233"] = <
+				text = <"Offensive">
+				description = <"">
+			>
+			["at234"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at235"] = <
+				text = <"Area">
+				description = <"Area">
+			>
+			["at236"] = <
+				text = <"cm">
+				description = <"Centimetres length unit">
+			>
+			["at237"] = <
+				text = <"in_i">
+				description = <"Inches length unit">
+			>
+			["at238"] = <
+				text = <"mm">
+				description = <"mm unit.">
+			>
+			["at239"] = <
+				text = <"cm2">
+				description = <"cm2 unit.">
+			>
+			["at240"] = <
+				text = <"mm2">
+				description = <"mm2 unit.">
+			>
+			["at241"] = <
+				text = <"[sin_i]">
+				description = <"[sin_i] unit.">
+			>
+			["at242"] = <
+				text = <"mm3">
+				description = <"mm3 unit.">
+			>
+			["at243"] = <
+				text = <"cm3">
+				description = <"cm3 unit.">
+			>
+			["at244"] = <
+				text = <"[cin_i]">
+				description = <"[cin_i] unit.">
+			>
+			["at245"] = <
+				text = <"%">
+				description = <"Percent">
+			>
+			["at26"] = <
+				text = <"Present">
+				description = <"Undermining is observed in the wound.">
+			>
+			["at27"] = <
+				text = <"Absent">
+				description = <"Undermining is not observed in the wound.">
+			>
+			["at28"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to tell if undermining is present or absent.">
+			>
+			["at29"] = <
+				text = <"Present">
+				description = <"Tunnelling is observed in the wound.">
+			>
+			["at30"] = <
+				text = <"Absent">
+				description = <"Tunnelling is not observed in the wound.">
+			>
+			["at31"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to tell if a tunnel is present or absent.">
+			>
+			["at33"] = <
+				text = <"Present">
+				description = <"An exudate is observed in the wound.">
+			>
+			["at34"] = <
+				text = <"Absent">
+				description = <"An exudate is not observed in the wound.">
+			>
+			["at35"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to tell if an exudate is present or absent.">
+			>
+			["at63"] = <
+				text = <"Present">
+				description = <"The identified factor is observed.">
+			>
+			["at64"] = <
+				text = <"Absent">
+				description = <"The identified factor is not observed.">
+			>
+			["at65"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to tell if the identified factor is present or absent.">
+			>
+			["at67"] = <
+				text = <"Abrasion">
+				description = <"">
+			>
+			["at68"] = <
+				text = <"Avulsion">
+				description = <"">
+			>
+			["at69"] = <
+				text = <"Bite">
+				description = <"">
+			>
+			["at70"] = <
+				text = <"Blister">
+				description = <"">
+			>
+			["at71"] = <
+				text = <"Burn">
+				description = <"">
+			>
+			["at72"] = <
+				text = <"Gunshot wound">
+				description = <"">
+			>
+			["at73"] = <
+				text = <"Contusion">
+				description = <"">
+			>
+			["at74"] = <
+				text = <"Crush injury">
+				description = <"">
+			>
+			["at75"] = <
+				text = <"Erythema">
+				description = <"">
+			>
+			["at76"] = <
+				text = <"Fissure">
+				description = <"">
+			>
+			["at77"] = <
+				text = <"Laceration">
+				description = <"">
+			>
+			["at78"] = <
+				text = <"Maceration">
+				description = <"">
+			>
+			["at79"] = <
+				text = <"Pressure ulcer">
+				description = <"">
+			>
+			["at80"] = <
+				text = <"Ulcer">
+				description = <"">
+			>
+			["at81"] = <
+				text = <"Puncture">
+				description = <"">
+			>
+			["at82"] = <
+				text = <"Rash">
+				description = <"">
+			>
+			["at83"] = <
+				text = <"Graft">
+				description = <"">
+			>
+			["at84"] = <
+				text = <"Surgical incision">
+				description = <"">
+			>
+			["at85"] = <
+				text = <"Trauma">
+				description = <"">
+			>
+			["at87"] = <
+				text = <"Round">
+				description = <"">
+			>
+			["at88"] = <
+				text = <"Ovoid">
+				description = <"">
+			>
+			["at89"] = <
+				text = <"Square">
+				description = <"">
+			>
+			["at90"] = <
+				text = <"Rectangular">
+				description = <"">
+			>
+			["at91"] = <
+				text = <"Quadrangular">
+				description = <"A four sided shape.">
+			>
+			["at92"] = <
+				text = <"Club-shaped">
+				description = <"">
+			>
+			["at93"] = <
+				text = <"Dumbbell-shaped">
+				description = <"">
+			>
+			["at94"] = <
+				text = <"Funnel-shaped">
+				description = <"">
+			>
+			["at95"] = <
+				text = <"Horseshoe-shaped">
+				description = <"">
+			>
+			["at96"] = <
+				text = <"J-shaped">
+				description = <"">
+			>
+			["at97"] = <
+				text = <"Pear-shaped">
+				description = <"">
+			>
+			["at98"] = <
+				text = <"Saddle-shaped">
+				description = <"">
+			>
+			["at99"] = <
+				text = <"V-shaped">
+				description = <"">
+			>
+			["id1"] = <
+				text = <"Examination of a wound">
+				description = <"Findings observed during the physical examination of a wound.">
+			>
+			["id102"] = <
+				text = <"Volume">
+				description = <"The volume of the wound.">
+			>
+			["id103"] = <
+				text = <"Edge outline">
+				description = <"Description of the outline of the wound.">
+			>
+			["id106"] = <
+				text = <"Edge appearance">
+				description = <"The appearance of the edge of the wound.">
+			>
+			["id107"] = <
+				text = <"Edge attachment">
+				description = <"The attachment of the edge to the wound base.">
+			>
+			["id110"] = <
+				text = <"Edge type">
+				description = <"The type of wound edge.">
+			>
+			["id115"] = <
+				text = <"Depth category">
+				description = <"Description of the depth of the wound.">
+			>
+			["id12"] = <
+				text = <"Structured body site">
+				description = <"A structured description of the area of the body under examination.">
+			>
+			["id128"] = <
+				text = <"Skin type">
+				description = <"Type of skin surrounding the wound.">
+			>
+			["id13"] = <
+				text = <"Body site">
+				description = <"Identification of the area of the body under examination.">
+			>
+			["id14"] = <
+				text = <"Undermining present?">
+				description = <"Is undermining present in the wound?">
+			>
+			["id15"] = <
+				text = <"Internal object or structure">
+				description = <"Details about the observation of any exposed body structures, devices, and/or foreign bodies visible by the naked eye in a wound.">
+			>
+			["id151"] = <
+				text = <"Periwound appearance">
+				description = <"Appearance of the skin around the edge of the wound.">
+			>
+			["id152"] = <
+				text = <"Presence">
+				description = <"">
+			>
+			["id155"] = <
+				text = <"Periwound tenderness">
+				description = <"The presence of tenderness in and around the wound.">
+			>
+			["id156"] = <
+				text = <"Periwound temperature">
+				description = <"The relative temperature of the skin surrounding the wound.">
+			>
+			["id16"] = <
+				text = <"Object/structure">
+				description = <"Idnetification of an exposed body structure, device, and/or foreign body visible by the naked eye within the wound.">
+			>
+			["id17"] = <
+				text = <"Wound label">
+				description = <"A name or alias for a single wound, so that it can be distinguished from other wounds.">
+			>
+			["id18"] = <
+				text = <"Tunnelling present?">
+				description = <"Is tunnelling present in the wound?">
+			>
+			["id2"] = <
+				text = <"System or structure examined">
+				description = <"Identification of the examined body system or anatomical structure.">
+			>
+			["id206"] = <
+				text = <"Exudate amount">
+				description = <"The amount of exudate observed.">
+			>
+			["id21"] = <
+				text = <"Present or absent?">
+				description = <"Is the object/structure present?">
+			>
+			["id211"] = <
+				text = <"Exudate colour">
+				description = <"The colour of the exudate.">
+			>
+			["id225"] = <
+				text = <"Exudate type">
+				description = <"The category of exudate.">
+			>
+			["id232"] = <
+				text = <"Odour">
+				description = <"Description of the odour of the wound.">
+			>
+			["id25"] = <
+				text = <"Description">
+				description = <"Narrative description about the associated factor.">
+			>
+			["id26"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the associated factor, not captured in other fields.">
+			>
+			["id293"] = <
+				text = <"Length (cm)">
+				description = <"Length (cm)">
+			>
+			["id296"] = <
+				text = <"Length ([in_i])">
+				description = <"Length ([in_i])">
+			>
+			["id299"] = <
+				text = <"Length (mm)">
+				description = <"Length (mm)">
+			>
+			["id302"] = <
+				text = <"Width (cm)">
+				description = <"Width (cm)">
+			>
+			["id305"] = <
+				text = <"Width (mm)">
+				description = <"Width (mm)">
+			>
+			["id308"] = <
+				text = <"Width ([in_i])">
+				description = <"Width ([in_i])">
+			>
+			["id311"] = <
+				text = <"Depth (cm)">
+				description = <"Depth (cm)">
+			>
+			["id314"] = <
+				text = <"Depth (mm)">
+				description = <"Depth (mm)">
+			>
+			["id317"] = <
+				text = <"Depth ([in_i])">
+				description = <"Depth ([in_i])">
+			>
+			["id321"] = <
+				text = <"Area (cm2)">
+				description = <"Area (cm2)">
+			>
+			["id324"] = <
+				text = <"Area (mm2)">
+				description = <"Area (mm2)">
+			>
+			["id327"] = <
+				text = <"Area ([sin_i])">
+				description = <"Area ([sin_i])">
+			>
+			["id33"] = <
+				text = <"Exudate present?">
+				description = <"Is an exudate present in the wound?">
+			>
+			["id330"] = <
+				text = <"Volume (mm3)">
+				description = <"Volume (mm3)">
+			>
+			["id333"] = <
+				text = <"Volume (cm3)">
+				description = <"Volume (cm3)">
+			>
+			["id336"] = <
+				text = <"Volume ([cin_i])">
+				description = <"Volume ([cin_i])">
+			>
+			["id358"] = <
+				text = <"Tunnel length (cm)">
+				description = <"Tunnel length (cm)">
+			>
+			["id361"] = <
+				text = <"Tunnel length (mm)">
+				description = <"Tunnel length (mm)">
+			>
+			["id364"] = <
+				text = <"Tunnel length ([in_i])">
+				description = <"Tunnel length ([in_i])">
+			>
+			["id369"] = <
+				text = <"Amount of undermining (cm)">
+				description = <"Amount of undermining (cm)">
+			>
+			["id37"] = <
+				text = <"Length">
+				description = <"The length of the wound, in the longest dimension.">
+			>
+			["id372"] = <
+				text = <"Amount of undermining (mm)">
+				description = <"Amount of undermining (mm)">
+			>
+			["id375"] = <
+				text = <"Amount of undermining ([in_i])">
+				description = <"Amount of undermining ([in_i])">
+			>
+			["id38"] = <
+				text = <"Width">
+				description = <"The width of the wound, perpendicular to longest dimension.">
+			>
+			["id39"] = <
+				text = <"Depth">
+				description = <"The depth of the wound.">
+			>
+			["id4"] = <
+				text = <"Clinical description">
+				description = <"Narrative description of the overall findings observed during the examination of a wound.">
+			>
+			["id40"] = <
+				text = <"Area">
+				description = <"The area of the wound.">
+			>
+			["id42"] = <
+				text = <"Undermining details">
+				description = <"Details about undermining of the wound.">
+			>
+			["id43"] = <
+				text = <"Amount of undermining">
+				description = <"Amount of tissue destruction that extends under the intact wound edge.">
+			>
+			["id45"] = <
+				text = <"Direction of undermining">
+				description = <"Direction of the undermining outward from the centre of the wound, as described by a clock-face.">
+			>
+			["id46"] = <
+				text = <"Tunnelling details">
+				description = <"Details about tunnelling into other tissues.">
+			>
+			["id47"] = <
+				text = <"Tunnel length">
+				description = <"Length of an identified tunnel radiating out from the centre of the wound.">
+			>
+			["id48"] = <
+				text = <"Direction of tunnel">
+				description = <"Direction of the tunnel radiating outward from the centre of the wound, as described by a clock-face.">
+			>
+			["id49"] = <
+				text = <"Edge description">
+				description = <"Narrative description about the edge of the wound.">
+			>
+			["id5"] = <
+				text = <"Additional findings">
+				description = <"Structured details about the wound not captured in the other fields.">
+			>
+			["id50"] = <
+				text = <"Edge color">
+				description = <"The colour of the wound edge.">
+			>
+			["id52"] = <
+				text = <"Wound bed tissue">
+				description = <"Details about the appearance of the base of the wound.">
+			>
+			["id53"] = <
+				text = <"Tissue type">
+				description = <"Description of the tissue in the wound base.">
+			>
+			["id54"] = <
+				text = <"Proportion">
+				description = <"The proportion of the wound that has the identified appearance.">
+			>
+			["id55"] = <
+				text = <"Wound bed colour">
+				description = <"Details about the colour of the base of the wound.">
+			>
+			["id56"] = <
+				text = <"Colour">
+				description = <"Description of the colour of the wound base.">
+			>
+			["id57"] = <
+				text = <"Proportion">
+				description = <"The proportion of the wound that is the identified colour.">
+			>
+			["id58"] = <
+				text = <"Periwound description">
+				description = <"Description of the skin surrounding the wound.">
+			>
+			["id59"] = <
+				text = <"Description">
+				description = <"Narrative description of a tunnel.">
+			>
+			["id6"] = <
+				text = <"Multimedia representation">
+				description = <"Digital image, video or diagram representing the wound findings.">
+			>
+			["id60"] = <
+				text = <"Undermining description">
+				description = <"Narrative description about undermining of the whole wound.">
+			>
+			["id61"] = <
+				text = <"Association">
+				description = <"Details about factors that may be associated with the wound.">
+			>
+			["id62"] = <
+				text = <"Factor">
+				description = <"Associated factor that may causing or influencing the healing of the wound.">
+			>
+			["id63"] = <
+				text = <"Present or absent?">
+				description = <"Is the identified factor present?">
+			>
+			["id67"] = <
+				text = <"Type">
+				description = <"The type of wound examined.">
+			>
+			["id7"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the wound findings.">
+			>
+			["id8"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the wound findings, not captured in other fields.">
+			>
+			["id87"] = <
+				text = <"Shape">
+				description = <"The shape of the wound.">
+			>
+			["id9"] = <
+				text = <"Examination not done">
+				description = <"Details to explicitly record that this examination was not performed.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/39135-9>
+			["id14"] = <http://loinc.org/72295-9>
+			["id16"] = <http://loinc.org/89250-5>
+			["id18"] = <http://loinc.org/72298-3>
+			["id33"] = <http://loinc.org/89259-6>
+			["id37"] = <http://loinc.org/39126-8>
+			["id38"] = <http://loinc.org/39125-0>
+			["id39"] = <http://loinc.org/39127-6>
+			["id40"] = <http://loinc.org/89260-4>
+			["id43"] = <http://loinc.org/72293-4>
+			["id45"] = <http://loinc.org/72294-2>
+			["id47"] = <http://loinc.org/72296-7>
+			["id48"] = <http://loinc.org/72297-5>
+			["id49"] = <http://loinc.org/72304-9>
+			["id50"] = <http://loinc.org/39133-4>
+			["id53"] = <http://loinc.org/72371-8>
+			["id54"] = <http://loinc.org/72370-0>
+			["id56"] = <http://loinc.org/39132-6>
+			["id57"] = <http://loinc.org/89255-4>
+			["id58"] = <http://loinc.org/72301-5>
+			["at67"] = <http://loinc.org/LA7410-9>
+			["at68"] = <http://loinc.org/LA18220-6>
+			["at69"] = <http://loinc.org/LA19023-3>
+			["at70"] = <http://loinc.org/LA19024-1>
+			["id102"] = <http://loinc.org/94083-3>
+			["id13"] = <http://loinc.org/39111-0>
+			["id17"] = <http://loinc.org/81666-0>
+			["id206"] = <http://loinc.org/39116-9>
+			["id211"] = <http://loinc.org/72289-2>
+			["id4"] = <http://loinc.org/61133-5>
+			["id42"] = <http://loinc.org/89258-8>
+			["id46"] = <http://loinc.org/89257-0>
+			["id55"] = <http://loinc.org/39132-6>
+			["id59"] = <http://loinc.org/72298-3>
+			["id60"] = <http://loinc.org/72295-9>
+			["id67"] = <http://loinc.org/72300-7>
+			["id7"] = <http://loinc.org/64110-0>
+			["id87"] = <http://loinc.org/94086-6>
+			["id25"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id26"] = <http://loinc.org/106173-8>
+			["id8"] = <http://loinc.org/106173-8>
+			["id6"] = <http://loinc.org/104973-3>
+		>
+		["openehr"] = <
+			["at234"] = <http://openehr.org/id/122>
+			["at235"] = <http://openehr.org/id/335>
+		>
+		["ucum"] = <
+			["at236"] = <http://ucum.org/id/cm>
+			["at237"] = <http://ucum.org/id/%5Bin_i%5D>
+			["at238"] = <http://ucum.org/id/mm>
+			["at239"] = <http://ucum.org/id/cm2>
+			["at240"] = <http://ucum.org/id/mm2>
+			["at241"] = <http://ucum.org/id/%5Bsin_i%5D>
+			["at242"] = <http://ucum.org/id/mm3>
+			["at243"] = <http://ucum.org/id/cm3>
+			["at244"] = <http://ucum.org/id/%5Bcin_i%5D>
+			["at245"] = <http://ucum.org/id/%25>
+		>
+		["snomed"] = <
+			["at236"] = <http://snomed.info/id/258672001>
+			["at237"] = <http://snomed.info/id/258677007>
+			["at238"] = <http://snomed.info/id/258673006>
+			["at239"] = <http://snomed.info/id/259022006>
+			["at240"] = <http://snomed.info/id/277472009>
+			["at241"] = <http://snomed.info/id/282383003>
+			["at242"] = <http://snomed.info/id/258774008>
+			["at243"] = <http://snomed.info/id/258773002>
+			["at244"] = <http://snomed.info/id/282122002>
+			["at245"] = <http://snomed.info/id/415067009>
+		>
+	>
+	value_sets = <
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at115", "at116", "at117", "at118", "at119">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at128", "at129", "at130", "at131", "at132", "at133", "at134", "at135", "at136", "at137", "at138", "at139", "at140", "at141", "at142", "at143", "at144", "at145", "at146", "at147", "at148", "at149">
+		>
+		["ac9"] = <
+			id = <"ac9">
+			members = <"at152", "at153">
+		>
+		["ac11"] = <
+			id = <"ac11">
+			members = <"at156", "at157">
+		>
+		["ac17"] = <
+			id = <"ac17">
+			members = <"at29", "at30", "at31">
+		>
+		["ac19"] = <
+			id = <"ac19">
+			members = <"at26", "at27", "at28">
+		>
+		["ac23"] = <
+			id = <"ac23">
+			members = <"at225", "at226", "at227", "at228", "at229", "at230">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at67", "at68", "at69", "at70", "at71", "at72", "at73", "at74", "at75", "at76", "at77", "at78", "at79", "at80", "at81", "at82", "at83", "at84", "at85">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at87", "at88", "at89", "at90", "at91", "at92", "at93", "at94", "at95", "at96", "at97", "at98", "at99", "at100">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at120", "at121", "at122", "at123", "at124", "at125", "at126">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at103", "at104">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at110", "at111", "at112", "at113">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at107", "at108">
+		>
+		["ac10"] = <
+			id = <"ac10">
+			members = <"at152", "at153">
+		>
+		["ac12"] = <
+			id = <"ac12">
+			members = <"at63", "at64", "at65">
+		>
+		["ac13"] = <
+			id = <"ac13">
+			members = <"at120", "at121", "at122", "at123", "at124", "at125", "at126">
+		>
+		["ac14"] = <
+			id = <"ac14">
+			members = <"at171", "at172", "at173", "at174", "at175", "at176", "at177", "at178", "at179">
+		>
+		["ac15"] = <
+			id = <"ac15">
+			members = <"at180", "at181", "at182", "at183", "at184", "at185", "at186", "at187", "at188", "at189", "at190", "at191", "at192">
+		>
+		["ac16"] = <
+			id = <"ac16">
+			members = <"at21", "at22", "at23">
+		>
+		["ac18"] = <
+			id = <"ac18">
+			members = <"at193", "at194", "at195", "at196", "at197", "at198", "at199", "at200", "at201", "at202", "at203", "at204">
+		>
+		["ac20"] = <
+			id = <"ac20">
+			members = <"at33", "at34", "at35">
+		>
+		["ac21"] = <
+			id = <"ac21">
+			members = <"at206", "at207", "at208">
+		>
+		["ac22"] = <
+			id = <"ac22">
+			members = <"at211", "at212", "at213", "at214", "at215", "at216", "at217", "at218", "at219", "at220", "at221", "at222", "at223">
+		>
+		["ac24"] = <
+			id = <"ac24">
+			members = <"at232", "at233">
+		>
+	>
+

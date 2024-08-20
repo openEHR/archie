@@ -1,0 +1,1579 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=17922a11-ddc0-42a1-8ed5-f48eb3e77d74)
+    s2-EHR-Score.pasi_score.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Hanne Marte Bårholm, Helse Vest IKT, Norway (openEHR Editor)", "Knut Christian Lundekvam, Helse Bergen, hudavdelingen, Norway", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Kanika Kuwelker, Helse Vest IKT, Norway (openEHR Editor)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Silje M Solberg, Helse Bergen, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Jayashree Panickar, Karolinska Institute, Sweden", "Terje Sagmyr, Helse Vest IKT, Norway (openEHR Editor)", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Silje Ljosland Bakke, Helse Bergen HF, Norway, <silje.ljosland.bakke@helse-bergen.no>, 2014-02-18">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.pasi_score.v1.0.0, copyright 2014 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.pasi_score.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the result for each component parameter and the total score for the Psoriasis Area Severity Index (PASI).">
+            keywords = <"skin", ...>
+            use = <"Use to record the result for each component parameter and the total score for the Psoriasis Area Severity Index (PASI).">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Psoriasis Area Severity Index (PASI)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Head region (h)
+                items matches {
+                    Node[id6] occurrences matches {0..1} matches {    -- Erythema (E)
+                        value matches {
+                            Coded_ordinal[id64] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id66] matches {
+                                        term matches {
+                                            Terminology_term[id65] matches {
+                                                concept matches {[at6]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id67] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id69] matches {
+                                        term matches {
+                                            Terminology_term[id68] matches {
+                                                concept matches {[at7]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id70] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id72] matches {
+                                        term matches {
+                                            Terminology_term[id71] matches {
+                                                concept matches {[at8]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id73] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id75] matches {
+                                        term matches {
+                                            Terminology_term[id74] matches {
+                                                concept matches {[at9]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id76] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id78] matches {
+                                        term matches {
+                                            Terminology_term[id77] matches {
+                                                concept matches {[at10]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id12] occurrences matches {0..1} matches {    -- Infiltration (I)
+                        value matches {
+                            Coded_ordinal[id79] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id81] matches {
+                                        term matches {
+                                            Terminology_term[id80] matches {
+                                                concept matches {[at12]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id82] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id84] matches {
+                                        term matches {
+                                            Terminology_term[id83] matches {
+                                                concept matches {[at13]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id85] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id87] matches {
+                                        term matches {
+                                            Terminology_term[id86] matches {
+                                                concept matches {[at14]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id88] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id90] matches {
+                                        term matches {
+                                            Terminology_term[id89] matches {
+                                                concept matches {[at15]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id91] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id93] matches {
+                                        term matches {
+                                            Terminology_term[id92] matches {
+                                                concept matches {[at16]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id18] occurrences matches {0..1} matches {    -- Desquamation (D)
+                        value matches {
+                            Coded_ordinal[id94] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id96] matches {
+                                        term matches {
+                                            Terminology_term[id95] matches {
+                                                concept matches {[at18]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id97] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id99] matches {
+                                        term matches {
+                                            Terminology_term[id98] matches {
+                                                concept matches {[at19]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id100] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id102] matches {
+                                        term matches {
+                                            Terminology_term[id101] matches {
+                                                concept matches {[at20]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id103] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id105] matches {
+                                        term matches {
+                                            Terminology_term[id104] matches {
+                                                concept matches {[at21]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id106] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id108] matches {
+                                        term matches {
+                                            Terminology_term[id107] matches {
+                                                concept matches {[at22]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id24] occurrences matches {0..1} matches {    -- Body surface area involvement (A)
+                        value matches {
+                            Coded_ordinal[id109] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id111] matches {
+                                        term matches {
+                                            Terminology_term[id110] matches {
+                                                concept matches {[at24]}    -- No involvement
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id112] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id114] matches {
+                                        term matches {
+                                            Terminology_term[id113] matches {
+                                                concept matches {[at25]}    -- <10%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id115] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id117] matches {
+                                        term matches {
+                                            Terminology_term[id116] matches {
+                                                concept matches {[at26]}    -- 10%-29%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id118] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id120] matches {
+                                        term matches {
+                                            Terminology_term[id119] matches {
+                                                concept matches {[at27]}    -- 30%-49%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id121] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id123] matches {
+                                        term matches {
+                                            Terminology_term[id122] matches {
+                                                concept matches {[at28]}    -- 50%-69%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id124] matches {
+                                magnitude matches {5}
+                                concept matches {
+                                    Coded_text[id126] matches {
+                                        term matches {
+                                            Terminology_term[id125] matches {
+                                                concept matches {[at29]}    -- 70%-89%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id127] matches {
+                                magnitude matches {6}
+                                concept matches {
+                                    Coded_text[id129] matches {
+                                        term matches {
+                                            Terminology_term[id128] matches {
+                                                concept matches {[at30]}    -- 90%-100%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id39] occurrences matches {0..1} matches {    -- Score head region
+                        value matches {
+                            Quantity[id47] matches {
+                                magnitude matches {|>=0.0|}
+                                precision matches {1}
+                                units matches {
+                                    Coded_text[id131] matches {
+                                        term matches {
+                                            Terminology_term[id130] matches {
+                                                concept matches {[at32]}    -- 1
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id33] occurrences matches {0..1} matches {    -- Trunk region (t)
+                items matches {
+                    Node[id6] occurrences matches {0..1} matches {    -- Erythema (E)
+                        value matches {
+                            Coded_ordinal[id132] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id134] matches {
+                                        term matches {
+                                            Terminology_term[id133] matches {
+                                                concept matches {[at6]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id135] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id137] matches {
+                                        term matches {
+                                            Terminology_term[id136] matches {
+                                                concept matches {[at7]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id138] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id140] matches {
+                                        term matches {
+                                            Terminology_term[id139] matches {
+                                                concept matches {[at8]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id141] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id143] matches {
+                                        term matches {
+                                            Terminology_term[id142] matches {
+                                                concept matches {[at9]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id144] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id146] matches {
+                                        term matches {
+                                            Terminology_term[id145] matches {
+                                                concept matches {[at10]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id12] occurrences matches {0..1} matches {    -- Infiltration (I)
+                        value matches {
+                            Coded_ordinal[id147] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id149] matches {
+                                        term matches {
+                                            Terminology_term[id148] matches {
+                                                concept matches {[at12]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id150] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id152] matches {
+                                        term matches {
+                                            Terminology_term[id151] matches {
+                                                concept matches {[at13]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id153] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id155] matches {
+                                        term matches {
+                                            Terminology_term[id154] matches {
+                                                concept matches {[at14]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id156] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id158] matches {
+                                        term matches {
+                                            Terminology_term[id157] matches {
+                                                concept matches {[at15]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id159] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id161] matches {
+                                        term matches {
+                                            Terminology_term[id160] matches {
+                                                concept matches {[at16]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id18] occurrences matches {0..1} matches {    -- Desquamation (D)
+                        value matches {
+                            Coded_ordinal[id162] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id164] matches {
+                                        term matches {
+                                            Terminology_term[id163] matches {
+                                                concept matches {[at18]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id165] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id167] matches {
+                                        term matches {
+                                            Terminology_term[id166] matches {
+                                                concept matches {[at19]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id168] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id170] matches {
+                                        term matches {
+                                            Terminology_term[id169] matches {
+                                                concept matches {[at20]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id171] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id173] matches {
+                                        term matches {
+                                            Terminology_term[id172] matches {
+                                                concept matches {[at21]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id174] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id176] matches {
+                                        term matches {
+                                            Terminology_term[id175] matches {
+                                                concept matches {[at22]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id24] occurrences matches {0..1} matches {    -- Body surface area involvement (A)
+                        value matches {
+                            Coded_ordinal[id177] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id179] matches {
+                                        term matches {
+                                            Terminology_term[id178] matches {
+                                                concept matches {[at24]}    -- No involvement
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id180] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id182] matches {
+                                        term matches {
+                                            Terminology_term[id181] matches {
+                                                concept matches {[at25]}    -- <10%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id183] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id185] matches {
+                                        term matches {
+                                            Terminology_term[id184] matches {
+                                                concept matches {[at26]}    -- 10%-29%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id186] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id188] matches {
+                                        term matches {
+                                            Terminology_term[id187] matches {
+                                                concept matches {[at27]}    -- 30%-49%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id189] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id191] matches {
+                                        term matches {
+                                            Terminology_term[id190] matches {
+                                                concept matches {[at28]}    -- 50%-69%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id192] matches {
+                                magnitude matches {5}
+                                concept matches {
+                                    Coded_text[id194] matches {
+                                        term matches {
+                                            Terminology_term[id193] matches {
+                                                concept matches {[at29]}    -- 70%-89%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id195] matches {
+                                magnitude matches {6}
+                                concept matches {
+                                    Coded_text[id197] matches {
+                                        term matches {
+                                            Terminology_term[id196] matches {
+                                                concept matches {[at30]}    -- 90%-100%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id40] occurrences matches {0..1} matches {    -- Score trunk region
+                        value matches {
+                            Quantity[id52] matches {
+                                magnitude matches {|>=0.0|}
+                                precision matches {1}
+                                units matches {
+                                    Coded_text[id199] matches {
+                                        term matches {
+                                            Terminology_term[id198] matches {
+                                                concept matches {[at32]}    -- 1
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id34] occurrences matches {0..1} matches {    -- Upper extremities region (u)
+                items matches {
+                    Node[id6] occurrences matches {0..1} matches {    -- Erythema (E)
+                        value matches {
+                            Coded_ordinal[id200] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id202] matches {
+                                        term matches {
+                                            Terminology_term[id201] matches {
+                                                concept matches {[at6]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id203] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id205] matches {
+                                        term matches {
+                                            Terminology_term[id204] matches {
+                                                concept matches {[at7]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id206] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id208] matches {
+                                        term matches {
+                                            Terminology_term[id207] matches {
+                                                concept matches {[at8]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id209] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id211] matches {
+                                        term matches {
+                                            Terminology_term[id210] matches {
+                                                concept matches {[at9]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id212] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id214] matches {
+                                        term matches {
+                                            Terminology_term[id213] matches {
+                                                concept matches {[at10]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id12] occurrences matches {0..1} matches {    -- Infiltration (I)
+                        value matches {
+                            Coded_ordinal[id215] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id217] matches {
+                                        term matches {
+                                            Terminology_term[id216] matches {
+                                                concept matches {[at12]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id218] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id220] matches {
+                                        term matches {
+                                            Terminology_term[id219] matches {
+                                                concept matches {[at13]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id221] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id223] matches {
+                                        term matches {
+                                            Terminology_term[id222] matches {
+                                                concept matches {[at14]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id224] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id226] matches {
+                                        term matches {
+                                            Terminology_term[id225] matches {
+                                                concept matches {[at15]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id227] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id229] matches {
+                                        term matches {
+                                            Terminology_term[id228] matches {
+                                                concept matches {[at16]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id18] occurrences matches {0..1} matches {    -- Desquamation (D)
+                        value matches {
+                            Coded_ordinal[id230] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id232] matches {
+                                        term matches {
+                                            Terminology_term[id231] matches {
+                                                concept matches {[at18]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id233] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id235] matches {
+                                        term matches {
+                                            Terminology_term[id234] matches {
+                                                concept matches {[at19]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id236] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id238] matches {
+                                        term matches {
+                                            Terminology_term[id237] matches {
+                                                concept matches {[at20]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id239] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id241] matches {
+                                        term matches {
+                                            Terminology_term[id240] matches {
+                                                concept matches {[at21]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id242] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id244] matches {
+                                        term matches {
+                                            Terminology_term[id243] matches {
+                                                concept matches {[at22]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id24] occurrences matches {0..1} matches {    -- Body surface area involvement (A)
+                        value matches {
+                            Coded_ordinal[id245] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id247] matches {
+                                        term matches {
+                                            Terminology_term[id246] matches {
+                                                concept matches {[at24]}    -- No involvement
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id248] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id250] matches {
+                                        term matches {
+                                            Terminology_term[id249] matches {
+                                                concept matches {[at25]}    -- <10%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id251] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id253] matches {
+                                        term matches {
+                                            Terminology_term[id252] matches {
+                                                concept matches {[at26]}    -- 10%-29%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id254] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id256] matches {
+                                        term matches {
+                                            Terminology_term[id255] matches {
+                                                concept matches {[at27]}    -- 30%-49%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id257] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id259] matches {
+                                        term matches {
+                                            Terminology_term[id258] matches {
+                                                concept matches {[at28]}    -- 50%-69%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id260] matches {
+                                magnitude matches {5}
+                                concept matches {
+                                    Coded_text[id262] matches {
+                                        term matches {
+                                            Terminology_term[id261] matches {
+                                                concept matches {[at29]}    -- 70%-89%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id263] matches {
+                                magnitude matches {6}
+                                concept matches {
+                                    Coded_text[id265] matches {
+                                        term matches {
+                                            Terminology_term[id264] matches {
+                                                concept matches {[at30]}    -- 90%-100%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id41] occurrences matches {0..1} matches {    -- Score upper extremities region
+                        value matches {
+                            Quantity[id57] matches {
+                                magnitude matches {|>=0.0|}
+                                precision matches {1}
+                                units matches {
+                                    Coded_text[id267] matches {
+                                        term matches {
+                                            Terminology_term[id266] matches {
+                                                concept matches {[at32]}    -- 1
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id35] occurrences matches {0..1} matches {    -- Lower extremities region (l)
+                items matches {
+                    Node[id6] occurrences matches {0..1} matches {    -- Erythema (E)
+                        value matches {
+                            Coded_ordinal[id268] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id270] matches {
+                                        term matches {
+                                            Terminology_term[id269] matches {
+                                                concept matches {[at6]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id271] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id273] matches {
+                                        term matches {
+                                            Terminology_term[id272] matches {
+                                                concept matches {[at7]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id274] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id276] matches {
+                                        term matches {
+                                            Terminology_term[id275] matches {
+                                                concept matches {[at8]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id277] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id279] matches {
+                                        term matches {
+                                            Terminology_term[id278] matches {
+                                                concept matches {[at9]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id280] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id282] matches {
+                                        term matches {
+                                            Terminology_term[id281] matches {
+                                                concept matches {[at10]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id12] occurrences matches {0..1} matches {    -- Infiltration (I)
+                        value matches {
+                            Coded_ordinal[id283] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id285] matches {
+                                        term matches {
+                                            Terminology_term[id284] matches {
+                                                concept matches {[at12]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id286] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id288] matches {
+                                        term matches {
+                                            Terminology_term[id287] matches {
+                                                concept matches {[at13]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id289] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id291] matches {
+                                        term matches {
+                                            Terminology_term[id290] matches {
+                                                concept matches {[at14]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id292] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id294] matches {
+                                        term matches {
+                                            Terminology_term[id293] matches {
+                                                concept matches {[at15]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id295] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id297] matches {
+                                        term matches {
+                                            Terminology_term[id296] matches {
+                                                concept matches {[at16]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id18] occurrences matches {0..1} matches {    -- Desquamation (D)
+                        value matches {
+                            Coded_ordinal[id298] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id300] matches {
+                                        term matches {
+                                            Terminology_term[id299] matches {
+                                                concept matches {[at18]}    -- None
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id301] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id303] matches {
+                                        term matches {
+                                            Terminology_term[id302] matches {
+                                                concept matches {[at19]}    -- Mild
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id304] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id306] matches {
+                                        term matches {
+                                            Terminology_term[id305] matches {
+                                                concept matches {[at20]}    -- Moderate
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id307] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id309] matches {
+                                        term matches {
+                                            Terminology_term[id308] matches {
+                                                concept matches {[at21]}    -- Severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id310] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id312] matches {
+                                        term matches {
+                                            Terminology_term[id311] matches {
+                                                concept matches {[at22]}    -- Very severe
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id24] occurrences matches {0..1} matches {    -- Body surface area involvement (A)
+                        value matches {
+                            Coded_ordinal[id313] matches {
+                                magnitude matches {0}
+                                concept matches {
+                                    Coded_text[id315] matches {
+                                        term matches {
+                                            Terminology_term[id314] matches {
+                                                concept matches {[at24]}    -- No involvement
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id316] matches {
+                                magnitude matches {1}
+                                concept matches {
+                                    Coded_text[id318] matches {
+                                        term matches {
+                                            Terminology_term[id317] matches {
+                                                concept matches {[at25]}    -- <10%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id319] matches {
+                                magnitude matches {2}
+                                concept matches {
+                                    Coded_text[id321] matches {
+                                        term matches {
+                                            Terminology_term[id320] matches {
+                                                concept matches {[at26]}    -- 10%-29%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id322] matches {
+                                magnitude matches {3}
+                                concept matches {
+                                    Coded_text[id324] matches {
+                                        term matches {
+                                            Terminology_term[id323] matches {
+                                                concept matches {[at27]}    -- 30%-49%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id325] matches {
+                                magnitude matches {4}
+                                concept matches {
+                                    Coded_text[id327] matches {
+                                        term matches {
+                                            Terminology_term[id326] matches {
+                                                concept matches {[at28]}    -- 50%-69%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id328] matches {
+                                magnitude matches {5}
+                                concept matches {
+                                    Coded_text[id330] matches {
+                                        term matches {
+                                            Terminology_term[id329] matches {
+                                                concept matches {[at29]}    -- 70%-89%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Coded_ordinal[id331] matches {
+                                magnitude matches {6}
+                                concept matches {
+                                    Coded_text[id333] matches {
+                                        term matches {
+                                            Terminology_term[id332] matches {
+                                                concept matches {[at30]}    -- 90%-100%
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id42] occurrences matches {0..1} matches {    -- Score lower extremities region
+                        value matches {
+                            Quantity[id62] matches {
+                                magnitude matches {|>=0.0|}
+                                precision matches {1}
+                                units matches {
+                                    Coded_text[id335] matches {
+                                        term matches {
+                                            Terminology_term[id334] matches {
+                                                concept matches {[at32]}    -- 1
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id36] occurrences matches {0..1} matches {    -- Total PASI-score
+                value matches {
+                    Quantity[id63] matches {
+                        magnitude matches {|>=0.0|}
+                        precision matches {1}
+                        units matches {
+                            Coded_text[id337] matches {
+                                term matches {
+                                    Terminology_term[id336] matches {
+                                        concept matches {[at32]}    -- 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id38] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at31"] = <http://openehr.org/id/380>
+        >
+        ["ucum"] = <
+            ["at32"] = <http://ucum.org/id/1>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at6", "at7", "at8", "at9", "at10">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at12", "at13", "at14", "at15", "at16">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at18", "at19", "at20", "at21", "at22">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at24", "at25", "at26", "at27", "at28", "at29", "at30">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at6", "at7", "at8", "at9", "at10">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at12", "at13", "at14", "at15", "at16">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at18", "at19", "at20", "at21", "at22">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at24", "at25", "at26", "at27", "at28", "at29", "at30">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at6", "at7", "at8", "at9", "at10">
+        >
+        ["ac10"] = <
+            id = <"ac10">
+            members = <"at12", "at13", "at14", "at15", "at16">
+        >
+        ["ac11"] = <
+            id = <"ac11">
+            members = <"at18", "at19", "at20", "at21", "at22">
+        >
+        ["ac12"] = <
+            id = <"ac12">
+            members = <"at24", "at25", "at26", "at27", "at28", "at29", "at30">
+        >
+        ["ac13"] = <
+            id = <"ac13">
+            members = <"at6", "at7", "at8", "at9", "at10">
+        >
+        ["ac14"] = <
+            id = <"ac14">
+            members = <"at12", "at13", "at14", "at15", "at16">
+        >
+        ["ac15"] = <
+            id = <"ac15">
+            members = <"at18", "at19", "at20", "at21", "at22">
+        >
+        ["ac16"] = <
+            id = <"ac16">
+            members = <"at24", "at25", "at26", "at27", "at28", "at29", "at30">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Erythema (E) (synthesised)">
+                description = <"Assessment of the redness/erythema of the psoriatic plaques. (synthesised)">
+            >
+            ["ac10"] = <
+                text = <"Infiltration (I) (synthesised)">
+                description = <"Assessment of thickening of the psoriatic plaques. (synthesised)">
+            >
+            ["ac11"] = <
+                text = <"Desquamation (D) (synthesised)">
+                description = <"Assessment of scaling of the psoriatic plaques. (synthesised)">
+            >
+            ["ac12"] = <
+                text = <"Body surface area involvement (A) (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac13"] = <
+                text = <"Erythema (E) (synthesised)">
+                description = <"Assessment of the redness/erythema of the psoriatic plaques. (synthesised)">
+            >
+            ["ac14"] = <
+                text = <"Infiltration (I) (synthesised)">
+                description = <"Assessment of thickening of the psoriatic plaques. (synthesised)">
+            >
+            ["ac15"] = <
+                text = <"Desquamation (D) (synthesised)">
+                description = <"Assessment of scaling of the psoriatic plaques. (synthesised)">
+            >
+            ["ac16"] = <
+                text = <"Body surface area involvement (A) (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"Infiltration (I) (synthesised)">
+                description = <"Assessment of thickening of the psoriatic plaques. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Desquamation (D) (synthesised)">
+                description = <"Assessment of scaling of the psoriatic plaques. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Body surface area involvement (A) (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac5"] = <
+                text = <"Erythema (E) (synthesised)">
+                description = <"Assessment of the redness/erythema of the psoriatic plaques. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Infiltration (I) (synthesised)">
+                description = <"Assessment of thickening of the psoriatic plaques. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Desquamation (D) (synthesised)">
+                description = <"Assessment of scaling of the psoriatic plaques. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Body surface area involvement (A) (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac9"] = <
+                text = <"Erythema (E) (synthesised)">
+                description = <"Assessment of the redness/erythema of the psoriatic plaques. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Very severe">
+                description = <"">
+            >
+            ["at12"] = <
+                text = <"None">
+                description = <"">
+            >
+            ["at13"] = <
+                text = <"Mild">
+                description = <"">
+            >
+            ["at14"] = <
+                text = <"Moderate">
+                description = <"">
+            >
+            ["at15"] = <
+                text = <"Severe">
+                description = <"">
+            >
+            ["at16"] = <
+                text = <"Very severe">
+                description = <"">
+            >
+            ["at18"] = <
+                text = <"None">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"Mild">
+                description = <"">
+            >
+            ["at20"] = <
+                text = <"Moderate">
+                description = <"">
+            >
+            ["at21"] = <
+                text = <"Severe">
+                description = <"">
+            >
+            ["at22"] = <
+                text = <"Very severe">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"No involvement">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"<10%">
+                description = <"">
+            >
+            ["at26"] = <
+                text = <"10%-29%">
+                description = <"">
+            >
+            ["at27"] = <
+                text = <"30%-49%">
+                description = <"">
+            >
+            ["at28"] = <
+                text = <"50%-69%">
+                description = <"">
+            >
+            ["at29"] = <
+                text = <"70%-89%">
+                description = <"">
+            >
+            ["at30"] = <
+                text = <"90%-100%">
+                description = <"">
+            >
+            ["at31"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["at32"] = <
+                text = <"1">
+                description = <"1 unit.">
+            >
+            ["at6"] = <
+                text = <"None">
+                description = <"">
+            >
+            ["at7"] = <
+                text = <"Mild">
+                description = <"">
+            >
+            ["at8"] = <
+                text = <"Moderate">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"Severe">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Psoriasis Area Severity Index (PASI)">
+                description = <"A quantitative rating scale for measuring the severity of psoriatic lesions based on area coverage and plaque appearance.">
+            >
+            ["id12"] = <
+                text = <"Infiltration (I)">
+                description = <"Assessment of thickening of the psoriatic plaques.">
+            >
+            ["id18"] = <
+                text = <"Desquamation (D)">
+                description = <"Assessment of scaling of the psoriatic plaques.">
+            >
+            ["id24"] = <
+                text = <"Body surface area involvement (A)">
+                description = <"">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id33"] = <
+                text = <"Trunk region (t)">
+                description = <"">
+            >
+            ["id34"] = <
+                text = <"Upper extremities region (u)">
+                description = <"">
+            >
+            ["id35"] = <
+                text = <"Lower extremities region (l)">
+                description = <"">
+            >
+            ["id36"] = <
+                text = <"Total PASI-score">
+                description = <"The total PASI score.">
+            >
+            ["id38"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id39"] = <
+                text = <"Score head region">
+                description = <"The total score for the head region.">
+            >
+            ["id40"] = <
+                text = <"Score trunk region">
+                description = <"The total score for the trunk region.">
+            >
+            ["id41"] = <
+                text = <"Score upper extremities region">
+                description = <"The total score for the upper extremities region.">
+            >
+            ["id42"] = <
+                text = <"Score lower extremities region">
+                description = <"The total score for the lower extremities region.">
+            >
+            ["id5"] = <
+                text = <"Head region (h)">
+                description = <"">
+            >
+            ["id6"] = <
+                text = <"Erythema (E)">
+                description = <"Assessment of the redness/erythema of the psoriatic plaques.">
+            >
+        >
+    >
+    

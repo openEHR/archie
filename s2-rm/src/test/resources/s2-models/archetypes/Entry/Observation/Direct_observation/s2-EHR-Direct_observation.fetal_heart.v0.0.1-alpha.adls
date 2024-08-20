@@ -1,0 +1,276 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1a6c39d5-86f0-43f4-8a8b-b3d7da2f0509)
+	s2-EHR-Direct_observation.fetal_heart.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2011-12-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.fetal_heart.v0.0.1-alpha, copyright 2011 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.fetal_heart.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the fetal heart rate via intermittent observations.">
+			use = <"Use to record the intermittent observations of the heart rate and heart beat characteristics of a fetus during pregnancy.
+            
+            Only to be used where the subject of care is the fetus.">
+			keywords = <"fetal", "heart", "beat", "rate", "rhythm">
+			misuse = <"Not to be used to record more the complex details required for intervals of electronic fetal heart monitoring - use the specialisation OBSERVATION.fetal_heart-monitoring instead.
+            
+            Not to be used for recording the heart rate of infants, children or adults.">
+		>
+	>
+
+definition
+	Direct_observation[id1] matches {	-- Fetal heart rate
+		subject matches {
+			Party_related[id25] matches {
+				relationship matches {
+					Terminology_term[id26] matches {
+						concept matches {[at28]}
+					}
+				}
+			}
+		}
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Presence
+				value matches {
+					Coded_text[id27] matches {
+						term matches {
+							Terminology_term[id34] matches {
+								concept matches {[ac1]}		-- Presence (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Rate
+				value matches {
+					Measured<Quantity>[id35] matches {
+						value matches {
+							Quantity[id28] matches {
+								magnitude matches {|0.0..<1000.0|}
+								precision matches {0}
+								units matches {
+									Coded_text[id37] matches {
+										term matches {
+											Terminology_term[id36] matches {
+												concept matches {[at29]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id11] matches {	-- Clinical interpretation
+				value matches {
+					Text[id29] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id30] 
+				}
+			}
+		}
+		state matches {
+			Node[id13] occurrences matches {0..1} matches {	-- Position of mother
+				value matches {
+					Coded_text[id31] matches {
+						term matches {
+							Terminology_term[id38] matches {
+								concept matches {[ac2]}		-- Position of mother (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id32] 
+				}
+			}
+			Node[id24] occurrences matches {0..1} matches {	-- In labour
+				value matches {
+					Coded_text[id33] matches {
+						term matches {
+							Terminology_term[id39] matches {
+								concept matches {[ac3]}		-- In labour (synthesised)
+							}
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id21, s2-EHR-Node.device.v1] 
+			allow_archetype Node[id22] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Presence (synthesised)">
+				description = <"The fetal heart beat is detected. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Position of mother (synthesised)">
+				description = <"The position of the mother when the fetal heart rate was measured. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"In labour (synthesised)">
+				description = <"Is the mother in active labor during the observation? (synthesised)">
+			>
+			["at13"] = <
+				text = <"Standing">
+				description = <"Mother standing at the time of fetal heart rate measurement.">
+			>
+			["at14"] = <
+				text = <"Sitting">
+				description = <"Mother sitting at the time of fetail heart rate measurement.">
+			>
+			["at15"] = <
+				text = <"Reclining">
+				description = <"Mother reclining at the time of fetal heart rate measurement.">
+			>
+			["at16"] = <
+				text = <"Lying">
+				description = <"Lying flat at the time of fetal heart rate measurement.">
+			>
+			["at17"] = <
+				text = <"Lying with tilt to left">
+				description = <"Mother lying flat with some lateral tilt towards the left.">
+			>
+			["at24"] = <
+				text = <"In labour">
+				description = <"The mother is in labour as the observation is made.">
+			>
+			["at25"] = <
+				text = <"Not in labour">
+				description = <"The mother is not in labour as the observation is made.">
+			>
+			["at26"] = <
+				text = <"Present">
+				description = <"The fetal heart beat is detected.">
+			>
+			["at27"] = <
+				text = <"Absent">
+				description = <"The fetal heart beat is not detected.">
+			>
+			["at28"] = <
+				text = <"foetus">
+				description = <"foetus">
+			>
+			["at29"] = <
+				text = <"1/min">
+				description = <"1/min unit.">
+			>
+			["id1"] = <
+				text = <"Fetal heart rate">
+				description = <"Observations about the fetal heart rate.">
+			>
+			["id10"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the fetal heart rate, not captured in other fields.">
+			>
+			["id11"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the fetal heart rate.">
+			>
+			["id13"] = <
+				text = <"Position of mother">
+				description = <"The position of the mother when the fetal heart rate was measured.">
+			>
+			["id21"] = <
+				text = <"Device">
+				description = <"Details about the device used to detect the fetal heart rate.">
+			>
+			["id22"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id23"] = <
+				text = <"Confounding factors">
+				description = <"Description of incidental factors, not recorded elsewhere, that may be influencing the fetal heart rate measurement.">
+			>
+			["id24"] = <
+				text = <"In labour">
+				description = <"Is the mother in active labor during the observation?">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Presence">
+				description = <"The fetal heart beat is detected.">
+			>
+			["id6"] = <
+				text = <"Rate">
+				description = <"The observed fetal heart rate.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at28"] = <http://openehr.org/id/3>
+		>
+		["ucum"] = <
+			["at29"] = <http://ucum.org/id/1%2Fmin>
+		>
+		["snomed"] = <
+			["at29"] = <http://snomed.info/id/286549009>
+		>
+		["loinc"] = <
+			["id1"] = <http://loinc.org/55283-6>
+			["id11"] = <http://loinc.org/64110-0>
+			["id21"] = <http://loinc.org/74720-4>
+			["id10"] = <http://loinc.org/106173-8>
+			["id23"] = <http://loinc.org/106176-1>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at26", "at27">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at13", "at14", "at15", "at16", "at17">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at24", "at25">
+		>
+	>
+

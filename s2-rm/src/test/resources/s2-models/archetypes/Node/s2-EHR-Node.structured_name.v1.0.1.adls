@@ -1,0 +1,122 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e9731d65-5925-4c1a-8655-3c1c893d3dd8)
+	s2-EHR-Node.structured_name.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-04-14">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.structured_name.v1.0.1, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.structured_name.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the structured name of an individual as they are known or understood in the course of clinical documentation.">
+			use = <"Use to record details about the structured name of an individual as they are known or understood in the course of clinical documentation, often ad hoc or when it is not appropriate or possible to use a formal demographic register or index.
+            
+            In most simple clinical recording use cases, the unstructured 'Name' Node within the Node.person archetype will be sufficient to record the name of an individual as part of a health record. However, in circumstances where a structured name is necessary or desirable for clinical recording purposes, nest this archetype within the 'Structured name' SLOT in Node.person archetype.
+            
+            Each data Node can be entered as a string of free text - for example, 'Prof Dr', 'Sonja Jane', 'Smith-Brown', 'MP'. Alternatively, as each data Node is repeatable within a template:
+            - 'Title' could be cloned to 'Title 1' for the value 'Prof' and 'Title 2' for the value 'Dr'; and
+            -  'Given name' could be cloned and renamed to 'First name' for the value 'Sonja' and 'Middle name' for the value 'Jane'.
+            
+            While this archetype has been aligned with ISO 22220, preferred name, name usage, valid dates and the repeating Name component/Order grouping has intentionally not been replicated due to the reduced scope of this archetype.
+            
+            It is anticipated that in most use cases for which this archetype has been designed, complex family names will simply be recorded as a string. However, it is possible to record them with more granularity and within this structured name pattern using guidance and examples from ISO 22220:2007 (Annex F), including:
+            - Family name first, given name/s last;
+            - Family names with prefixes eg El Haddad or van der Heyden; and
+            - Names containing both father's and mother's family names.">
+			keywords = <"person", "individual", "name">
+			misuse = <"Not to be used if an unstructured text string representing the individual's name is adequate for the purpose. Use the 'Name' data Node within the Node.person for this purpose.
+            
+            Not to be used for complex name representation or management, such as preferred names, name usage or valid dates of usage. Use a formal Master Patient Index or Health Provider Index for this purpose, or archetypes based on the openEHR Demographic Information Model.
+            
+            Not to be used to represent or replace formal identification management or for the purposes of maintaining an official demographic register or index. Use a formal Master Patient Index or Health Provider Index for this purpose, or archetypes based on the openEHR Demographic Information Model.
+            
+            Not to be used to represent the subject of care, participants or author of the record and similar data Nodes that should be represented formally in the health record using the Reference Model attributes.">
+		>
+	>
+	other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Terje Bless, Helse Nord FRESK, Norway", "Yexuan Cheng, 浙江大学, China", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Ludvig Eek Hofmann, Cambio Healthcare Systems AB, Sweden", "Alexander Eikrem-Lüthi, Lovisenberg Diakonale Sykehus, Norway", "Valborg Ellingsen, Haraldsplass Diakonale sykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Rebecka Hansson, Cambio Healthcare Systems AB, Sweden", "Roar Holm, Helse Vest IKT A/S, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Gunn-Lisbeth Kleiven, Oslo universitetssykehus HF, Norway", "Shinji Kobayashi, National Institute of Public Health, Japan", "Kanika Kuwelker, Helse Vest IKT, Norway", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Erik Skjemstad, Helse Nord RHF, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Nyree Taylor, Ocean Health Systems, Australia", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Structured name of a person
+		items matches {
+			Node[id2] matches {	-- Title
+				value matches {
+					Text[id8] 
+				}
+			}
+			Node[id3] matches {	-- Given name
+				value matches {
+					Text[id9] 
+				}
+			}
+			Node[id6] matches {	-- Family name
+				value matches {
+					Text[id10] 
+				}
+			}
+			Node[id7] matches {	-- Suffix
+				value matches {
+					Text[id11] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Structured name of a person">
+				description = <"Discrete components of an individual's name.">
+			>
+			["id2"] = <
+				text = <"Title">
+				description = <"One or more honorific form(s) of address commencing a name.">
+			>
+			["id3"] = <
+				text = <"Given name">
+				description = <"One or more unique name(s) used to identify an individual within a family group.">
+			>
+			["id6"] = <
+				text = <"Family name">
+				description = <"One or more name(s) that an individual has in common with a family group.">
+			>
+			["id7"] = <
+				text = <"Suffix">
+				description = <"One or more term(s) placed after all other name components, usually to differentiate an individual from a family member with identical Given and Family name components.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/97845-2>
+			["id2"] = <http://loinc.org/97849-4>
+			["id3"] = <http://loinc.org/97848-6>
+			["id6"] = <http://loinc.org/97847-8>
+			["id7"] = <http://loinc.org/97850-2>
+		>
+	>
+

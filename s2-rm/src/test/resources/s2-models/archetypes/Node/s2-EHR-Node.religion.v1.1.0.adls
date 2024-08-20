@@ -1,0 +1,103 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2e9e6ce2-6978-4dc3-b086-a7ca6f4489ae)
+	s2-EHR-Node.religion.v1.1.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"John Tore Valand, Helse Bergen, Norway, <john.tore.valand@helse-bergen.no>, 2016-11-17">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.religion.v1.1.0, copyright 2016 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.religion.v1.1.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the identification of the individual's religious or non-religious beliefs and/or practices which may be used for purposes related to provision of healthcare or other services.">
+			use = <"Use to record the identification of the individual's religious or non-religious beliefs and/or practices and a general description about the impact of the individual's identified religious affiliation on the delivery of health services.
+            
+            If this archetype is being used within a health record context where a demographic server is deployed, then the relevant demographic data may be used to populate the data Nodes in this archetype.
+            
+            This archetype has been designed to be used within the EVALUATION.social_summary or other archetypes where clinically relevant.
+            
+            If the religion of someone other than the subject of care, such as their parents, needs to be recorded, restrict the \\\"Subject\\\" reference model Node to specify the role.">
+			keywords = <"religion", "spiritual", "belief", "religious", "atheism", "agnosticism", "attitude", "sacred", "profane", "secular", "atheist", "agnostic", "faith", "creed", "practice">
+			misuse = <"Not to be used to record the specific preferences for care that may be related to a religious affiliation, especially those that might drive decision support. For example, record a dietary preference within archetypes recording diet requirements or a treatment preference within archetypes recording patient preferences.">
+		>
+	>
+	other_contributors = <"Morten Aas, Diakonhjemmet Sykehus, Norway", "Tomas Alme, DIPS ASA, Norway", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Ivar Berge, Oslo Universitetssykehus, Norway", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "Mate Bestek, 3fs, Slovenia", "Anita Bjørnnes, Helse Bergen, Norway", "Bjørn Christensen, Helse Bergen HF, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Stig Erik Hegrestad, Helse Førde, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sebastian Garde, Ocean Informatics, Germany", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Daniel Habashi, PasientSky AS, Norway", "Anca Heyd, DIPS ASA, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Liv Ingrid Svela, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Gunn-Lisbeth Kleiven, Oslo universitetssykehus HF, Norway", "Heidi Koikkalainen, United Kingdom (openEHR Editor)", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Tanja Riise, Nasjonal IKT HF, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstituttet, Norway", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Religious affiliation
+		items matches {
+			Node[id2] matches {	-- Religious affiliation
+				value matches {
+					Text[id6] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Impact on care
+				value matches {
+					Text[id7] 
+				}
+			}
+			use_archetype Node[id5, s2-EHR-Node.organization.v1] 
+			Node[id3] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id8] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Religious affiliation">
+				description = <"Identification of the individual's religious or non-religious beliefs and/or practices by which people order the conduct of their lives both practically and in a moral sense.">
+			>
+			["id2"] = <
+				text = <"Religious affiliation">
+				description = <"Name of the belief and/or practice to which the individual is affiliated.">
+			>
+			["id3"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the religious affiliation not captured in other fields.">
+			>
+			["id4"] = <
+				text = <"Impact on care">
+				description = <"Narrative description about how care needs to be modified to support the individual's religious practice.">
+			>
+			["id5"] = <
+				text = <"Details">
+				description = <"Additional details about the individual's religious affiliation.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/81364-2>
+			["id2"] = <http://loinc.org/81364-2>
+			["id3"] = <http://loinc.org/106173-8>
+		>
+	>
+

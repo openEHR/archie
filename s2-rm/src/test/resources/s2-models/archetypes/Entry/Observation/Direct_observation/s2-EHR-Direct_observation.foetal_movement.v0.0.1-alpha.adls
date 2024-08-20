@@ -1,0 +1,183 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=44190464-b8f7-45c0-8997-c1db1f582b48)
+    s2-EHR-Direct_observation.foetal_movement.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Sheryl Alexander, NT Department of Health, Australia", "Rita Apelt, Department of Health,NT, Australia", "Stephen Chu, NEHTA, Australia", "Margaret Cotter, AMSANT, Australia", "Michelle Dowden, Miwatj Health Ngalkanbuy Health, Australia", "Tim Garden, NTG Department of Health, Australia", "Tanya Gardner, CAAC, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Bernadette Lack, Department of Health, Australia", "Heather Leslie, Ocean Informatics, Australia (Editor)", "Chunlan Ma, Ocean Informatics, Australia", "Ian McNicoll, Ocean Informatics UK, United Kingdom", "Jeremy Oats, NT Health, Australia", "Steven Schatz, Department of Health (Northern Territory), Australia", "Rosalie Schultz, Central Australia Remote Health, Australia", "Cherie Whitbread, Royal Darwin Hospital, Australia", "Jo Wright, NT Dept of Health, Australia (Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2007-03-04">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.foetal_movement.v0.0.1-alpha, copyright 2007 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.foetal_movement.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the presence and pattern of any and all spontaneous foetal movements in utero, as perceived by the mother.">
+            keywords = <"fetal", "kicks", "movements", "flutters", "hits", "baby", "foetus">
+            use = <"Use to record evidence of foetal activity as an indirect indicator of foetal well-being.
+            
+            Use to record the presence of foetal movements and pattern as part of routine antenatal visits from second trimester of pregnancy onwards.
+            
+            Use to record details of the number of foetal movements felt over a specified time interval, and represented in a 'Kick Chart', most often in the third trimester.">
+            misuse = <"Not to be used to record the response of a foetus to deliberate stimulation eg vibroacoustic stimulation.
+            
+            Not to be used to represent formal foetal heart rate monitoring eg using cardiotocographs.">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Foetal movement
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Presence
+                value matches {
+                    Coded_text[id30] matches {
+                        term matches {
+                            Terminology_term[id37] matches {
+                                concept matches {[ac1]}    -- Presence (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- Pattern
+                value matches {
+                    Coded_text[id31] matches {
+                        term matches {
+                            Terminology_term[id38] matches {
+                                concept matches {[ac2]}    -- Pattern (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Movements
+                value matches {
+                    Count[id32] matches {
+                        magnitude matches {|>=0|}
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Time since last movement
+                value matches {
+                    Duration_value[id33] matches {
+                        magnitude matches {|>=PT0S|}
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id34]
+                }
+            }
+        }
+        data_series matches {
+            Interval_event[id28] occurrences matches {0..1} matches {    -- Period of observation
+                sample_function matches {"total"}
+                items matches {
+                    use_node Node[id5] /data[id5]    -- Presence
+                    use_node Node[id20] /data[id20]    -- Pattern
+                    use_node Node[id7] /data[id7]    -- Movements
+                    use_node Node[id26] /data[id26]    -- Time since last movement
+                    use_node Node[id29] /data[id29]    -- Description
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at7", "at11">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at21", "at22", "at24">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Presence (synthesised)">
+                description = <"Presence of spontaneous foetal movements. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Pattern (synthesised)">
+                description = <"Pattern of spontaneous foetal movements. (synthesised)">
+            >
+            ["at11"] = <
+                text = <"Absent">
+                description = <"Spontaneous foetal movements have not been perceived by the mother.">
+            >
+            ["at21"] = <
+                text = <"Increased">
+                description = <"Spontaneous foetal movements are increased or stronger compared to normal.">
+            >
+            ["at22"] = <
+                text = <"Normal">
+                description = <"The foetus is moving and kicking normally.">
+            >
+            ["at24"] = <
+                text = <"Reduced">
+                description = <"Spontaneous foetal movements are reduced or weaker compared to normal.">
+            >
+            ["at7"] = <
+                text = <"Present">
+                description = <"Spontaneous foetal movements have been perceived by the mother.">
+            >
+            ["id1"] = <
+                text = <"Foetal movement">
+                description = <"Spontaneous movements of the foetus in utero, as perceived by the mother. Movements include kicks, jabs, rolls, twists, and turns.">
+            >
+            ["id20"] = <
+                text = <"Pattern">
+                description = <"Pattern of spontaneous foetal movements.">
+            >
+            ["id26"] = <
+                text = <"Time since last movement">
+                description = <"Length of time since last spontaneous foetal movement was noticed by mother.">
+            >
+            ["id28"] = <
+                text = <"Period of observation">
+                description = <"Period of time during which the number of spontaneous foetal movements) are counted or observed.">
+            >
+            ["id29"] = <
+                text = <"Description">
+                description = <"Narrative description of the foetal movements as noted by the mother.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Presence">
+                description = <"Presence of spontaneous foetal movements.">
+            >
+            ["id7"] = <
+                text = <"Movements">
+                description = <"Number of spontaneous foetal movements counted during the period of observation.">
+            >
+        >
+    >
+    

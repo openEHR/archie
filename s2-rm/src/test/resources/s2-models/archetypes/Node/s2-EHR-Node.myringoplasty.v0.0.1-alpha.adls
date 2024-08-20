@@ -1,0 +1,191 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=78bedd12-22ff-48df-945b-17625599fa92)
+    s2-EHR-Node.myringoplasty.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2013-03-21">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.myringoplasty.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.myringoplasty.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record details about the myringplasty performed.">
+            keywords = <"myringoplasty", "procedure", "operation">
+            use = <"Use to record details about the myringplasty performed.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Myringoplasty Procedure
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Revision?
+                value matches {
+                    Boolean_value[id14] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id3] occurrences matches {0..1} matches {    -- Approach
+                value matches {
+                    Coded_text[id15] matches {
+                        term matches {
+                            Terminology_term[id18] matches {
+                                concept matches {[ac1]}    -- Approach (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Graft Material
+                value matches {
+                    Coded_text[id16] matches {
+                        term matches {
+                            Terminology_term[id19] matches {
+                                concept matches {[ac2]}    -- Graft Material (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Technique
+                value matches {
+                    Coded_text[id17] matches {
+                        term matches {
+                            Terminology_term[id20] matches {
+                                concept matches {[ac3]}    -- Technique (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at3", "at4", "at5">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at7", "at8", "at9", "at10", "at11">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at13", "at14", "at15", "at16", "at17">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Approach (synthesised)">
+                description = <"The operative approach to the tympanic membrane. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Graft Material (synthesised)">
+                description = <"Material used to repair the perforation. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Technique (synthesised)">
+                description = <"The technique used to perform the repair of the perforation. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Fat">
+                description = <"Fat tissue was used.">
+            >
+            ["at11"] = <
+                text = <"Other">
+                description = <"Other tissue was used.">
+            >
+            ["at13"] = <
+                text = <"Underlay">
+                description = <"An underlay technique was used.">
+            >
+            ["at14"] = <
+                text = <"Inlay">
+                description = <"An inlay technique was used.">
+            >
+            ["at15"] = <
+                text = <"Onlay">
+                description = <"An onlay technique was used.">
+            >
+            ["at16"] = <
+                text = <"Butterfly">
+                description = <"A butterfly technique was used.">
+            >
+            ["at17"] = <
+                text = <"Patch">
+                description = <"A patch technique was used.">
+            >
+            ["at3"] = <
+                text = <"Transcanal">
+                description = <"Approach through the ear canal, without incision.">
+            >
+            ["at4"] = <
+                text = <"Endaural">
+                description = <"Approach through the ear canal.">
+            >
+            ["at5"] = <
+                text = <"Postaural">
+                description = <"Approach via an incision behind the ear.">
+            >
+            ["at7"] = <
+                text = <"Temporal Fascia">
+                description = <"Fascial tissue covering the temporalis muscle was used.">
+            >
+            ["at8"] = <
+                text = <"Cartilage">
+                description = <"Cartilage was used.">
+            >
+            ["at9"] = <
+                text = <"Cartilage/Perichondrium">
+                description = <"Cartilage and perichondrial tissue was used.">
+            >
+            ["id1"] = <
+                text = <"Myringoplasty Procedure">
+                description = <"Surgical procedure in which a performation of the pars tensa of the tympanic membrane is closed.">
+            >
+            ["id13"] = <
+                text = <"Technique">
+                description = <"The technique used to perform the repair of the perforation.">
+            >
+            ["id2"] = <
+                text = <"Revision?">
+                description = <"Is this operation a revision of a previous myringoplasty?">
+            >
+            ["id3"] = <
+                text = <"Approach">
+                description = <"The operative approach to the tympanic membrane.">
+            >
+            ["id7"] = <
+                text = <"Graft Material">
+                description = <"Material used to repair the perforation.">
+            >
+        >
+    >
+    

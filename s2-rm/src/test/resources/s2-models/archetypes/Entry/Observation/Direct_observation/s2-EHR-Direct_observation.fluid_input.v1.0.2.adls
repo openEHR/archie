@@ -1,0 +1,274 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=cdc49150-e379-477e-b935-dfcba1e4279c)
+	s2-EHR-Direct_observation.fluid_input.v1.0.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, United Kingdom, <ian.mcnicoll@oceaninformatics.com>, 2009-11-11">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.fluid_input.v1.0.2, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.fluid_input.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details of measured fluid input, often used as part of fluid balance calculation.">
+			use = <"Use to record details about fluids ingested and/or administered. 
+            
+            This archetype is intended to be used to mirror current clinical practice with fluid input recorded in orders and in fluid balance charts. In a clinical system business rules can support automation of orders involving fluid input using this archetype to prevent the need for clinicians to duplicate data entry. This archetype will also be the basis for all monitored fluid intake, including ordered fluids and ad hoc consumption.
+            
+            This archetype will used to record details about:
+            - each single fluid ingested or administered, for example each individual cup of tea or glass of water; or 
+            - the total fluid input of a fluid over a specified period of time, for example the total amount of 0.9% NaCl administered over an 8 hour nursing shift.
+            
+            Each fluid measurement should be recorded using a separate instance of this archetype.
+            
+            The details recorded using this fluid input archetype may inform fluid balance calculations.
+            
+            A fluid balance chart will typically require a combination of multiple instances of this archetype and multiple instances of OBSERVATION.fluid_output archetype to capture all of the various inputs and outputs, plus a single instance of the OBSERVATION.fluid_balance to record the overall fluid status.">
+			keywords = <"fluid", "input", "balance", "drinking", "intake", "parenteral", "eating">
+			misuse = <"Not to be used to record fluid output. Use OBSERVATION.fluid_output for this purpose.
+            
+            Not to be used to order fluid administration - use INSTRUCTION.medication or an INSTRUCTION specific for fluid intake.
+            
+            Not to be used to order changes in fluid input, such as fluid restriction. Use an appropriate INSTRUCTION archetype for this purpose.
+            
+            Not to be used to record fluid balance calculations. Use OBSERVATION.fluid_balance for this purpose.">
+		>
+	>
+	other_contributors = <"Tomas Alme, DIPS, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Ingeborg Berge, Direktoratet for e-helse, Norway", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Stig Erik Hegrestad, Helse Førde, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Cecilie Graver, Oslo universitetssykehus HF, Norway", "Sam Heard, Ocean Informatics, Australia", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Anne Kristin Strand, Sykehuspartner HF, Norway", "Heather Leslie, Ocean Health Systems, Australia", "Pedro Leuschner, Centro Hospitalar do Porto, Portugal", "Marit Ludvigsen, St Olavs Hospital, Norway", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Navin Ramachandran, NHS, United Kingdom", "Tanja Riise, Nasjonal IKT HF, Norway", "Anoop Shah, University College London, United Kingdom", "Iztok Stotl, UKCLJ, Slovenia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "Stian Torleif Varpe, Helse Bergen, Norway", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Fluid input
+		data cardinality matches {1..*; unordered} matches {
+			Node[id37] occurrences matches {0..1} matches {	-- Fluid name
+				value matches {
+					Text[id42] 
+				}
+			}
+			Node[id35] occurrences matches {0..1} matches {	-- Route
+				value matches {
+					Text[id43] 
+				}
+			}
+			Node[id36] occurrences matches {0..1} matches {	-- Volume
+				value matches {
+					Measured<Quantity>[id56] matches {
+						value matches {
+							Quantity[id47] matches {	-- Volume (ml)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id49] matches {
+										term matches {
+											Terminology_term[id48] matches {
+												concept matches {[at21]}
+											}
+										}
+									}
+								}
+								precision matches {|>=0|}
+							}
+						}
+					}
+					Measured<Quantity>[id57] matches {
+						value matches {
+							Quantity[id50] matches {	-- Volume (l)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id52] matches {
+										term matches {
+											Terminology_term[id51] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+								precision matches {3}
+							}
+						}
+					}
+					Measured<Quantity>[id58] matches {
+						value matches {
+							Quantity[id53] matches {	-- Volume ([foz_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id55] matches {
+										term matches {
+											Terminology_term[id54] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+								precision matches {|>=0|}
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id40] matches {	-- Fluid details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id33] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id45] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id32] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id46] matches {
+						term matches {
+							Terminology_term[id59] matches {
+								concept matches {[ac1]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id34, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			use_archetype Node[id29, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			allow_archetype Node[id41] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Method (synthesised)">
+				description = <"The approach used to quantify the volume of fluid. (synthesised)">
+			>
+			["at18"] = <
+				text = <"Estimated">
+				description = <"The fluid volume has been estimated.">
+			>
+			["at19"] = <
+				text = <"Measured">
+				description = <"The fluid volume has been directly measured.">
+			>
+			["at20"] = <
+				text = <"Volume">
+				description = <"Volume">
+			>
+			["at21"] = <
+				text = <"ml">
+				description = <"ml unit.">
+			>
+			["at22"] = <
+				text = <"l">
+				description = <"Liter unit.">
+			>
+			["at23"] = <
+				text = <"[foz_us]">
+				description = <"[foz_us] unit.">
+			>
+			["id1"] = <
+				text = <"Fluid input">
+				description = <"The amount of fluid ingested or administered to the individual.">
+			>
+			["id29"] = <
+				text = <"Measurement device">
+				description = <"The device used to measure the volume of fluid.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id32"] = <
+				text = <"Method">
+				description = <"The approach used to quantify the volume of fluid.">
+			>
+			["id33"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the fluid input not captured in other fields.">
+			>
+			["id34"] = <
+				text = <"Input device">
+				description = <"The device used to administer or deliver the fluid.">
+			>
+			["id35"] = <
+				text = <"Route">
+				description = <"The delivery route of the fluid.">
+			>
+			["id36"] = <
+				text = <"Volume">
+				description = <"The volume of fluid ingested or administered.">
+			>
+			["id37"] = <
+				text = <"Fluid name">
+				description = <"Identification of the fluid ingested or administered.">
+			>
+			["id40"] = <
+				text = <"Fluid details">
+				description = <"Additonal details about the fluid.">
+			>
+			["id41"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id47"] = <
+				text = <"Volume (ml)">
+				description = <"Volume (ml)">
+			>
+			["id50"] = <
+				text = <"Volume (l)">
+				description = <"Volume (l)">
+			>
+			["id53"] = <
+				text = <"Volume ([foz_us])">
+				description = <"Volume ([foz_us])">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at20"] = <http://openehr.org/id/129>
+		>
+		["ucum"] = <
+			["at21"] = <http://ucum.org/id/ml>
+			["at22"] = <http://ucum.org/id/l>
+			["at23"] = <http://ucum.org/id/%5Bfoz_us%5D>
+		>
+		["snomed"] = <
+			["at21"] = <http://snomed.info/id/258773002>
+			["at22"] = <http://snomed.info/id/258770004>
+			["at23"] = <http://snomed.info/id/282118007>
+		>
+		["loinc"] = <
+			["id32"] = <http://loinc.org/106191-0>
+			["id33"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at18", "at19">
+		>
+	>
+

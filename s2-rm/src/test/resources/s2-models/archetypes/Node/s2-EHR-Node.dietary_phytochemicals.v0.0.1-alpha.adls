@@ -1,0 +1,2672 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a2ce7b56-ebfb-4f17-b853-45007bf9fde6)
+    s2-EHR-Node.dietary_phytochemicals.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Ricardo Cruz-Correia, MEDCIDS-FMUP; Portugal", "Pedro Marques, MEDCIDS-FMUP; Portugal", "Duarte Ferreira, MEDCIDS-FMUP; Portugal">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Priscila Maranhão; Gustavo Bacelar, MEDCIDS-FMUP, <priscilamaranhao@gmail.com; gbacelar@gmail.com>, 2017-03-06">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.dietary_phytochemicals.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.dietary_phytochemicals.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"Assessment of dietary phytochemicals. 
+            ">
+            keywords = <"Bioactive nutrient", "bioactive compounds", "phenolics", "Flavonoids">
+            use = <"To be used to quantify phytochemicals intake in the diet.
+            
+            To be used in children and adults.
+            
+            Can be used to phytochemicals intake by supplements.">
+            misuse = <"Not to be used to quantify other supplements. ">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Dietary phytochemicals
+        items matches {
+            Node[id6] occurrences matches {0..1} matches {    -- Total phytochemicals
+                value matches {
+                    Quantity[id156] matches {    -- Total phytochemicals (mg)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id158] matches {
+                                term matches {
+                                    Terminology_term[id157] matches {
+                                        concept matches {[at2]}    -- mg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Quantity[id159] matches {    -- Total phytochemicals (ug)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id161] matches {
+                                term matches {
+                                    Terminology_term[id160] matches {
+                                        concept matches {[at3]}    -- ug
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id4] occurrences matches {0..1} matches {    -- Carotenoids
+                items matches {
+                    Node[id49] occurrences matches {0..1} matches {    -- Total carotenoids
+                        value matches {
+                            Quantity[id162] matches {    -- Total carotenoids (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id164] matches {
+                                        term matches {
+                                            Terminology_term[id163] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id165] matches {    -- Total carotenoids (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id167] matches {
+                                        term matches {
+                                            Terminology_term[id166] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id13] occurrences matches {0..1} matches {    -- Lycopene
+                        value matches {
+                            Quantity[id168] matches {    -- Lycopene (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id170] matches {
+                                        term matches {
+                                            Terminology_term[id169] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id171] matches {    -- Lycopene (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id173] matches {
+                                        term matches {
+                                            Terminology_term[id172] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id12] occurrences matches {0..1} matches {    -- Astaxanthin
+                        value matches {
+                            Quantity[id174] matches {    -- Astaxanthin (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id176] matches {
+                                        term matches {
+                                            Terminology_term[id175] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id177] matches {    -- Astaxanthin (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id179] matches {
+                                        term matches {
+                                            Terminology_term[id178] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id11] occurrences matches {0..1} matches {    -- Zeaxanthin
+                        value matches {
+                            Quantity[id180] matches {    -- Zeaxanthin (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id182] matches {
+                                        term matches {
+                                            Terminology_term[id181] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id183] matches {    -- Zeaxanthin (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id185] matches {
+                                        term matches {
+                                            Terminology_term[id184] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id10] occurrences matches {0..1} matches {    -- Lutein
+                        value matches {
+                            Quantity[id186] matches {    -- Lutein (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id188] matches {
+                                        term matches {
+                                            Terminology_term[id187] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id189] matches {    -- Lutein (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id191] matches {
+                                        term matches {
+                                            Terminology_term[id190] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id9] occurrences matches {0..1} matches {    -- Β-cryptoxanthin
+                        value matches {
+                            Quantity[id192] matches {    -- Β-cryptoxanthin (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id194] matches {
+                                        term matches {
+                                            Terminology_term[id193] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id195] matches {    -- Β-cryptoxanthin (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id197] matches {
+                                        term matches {
+                                            Terminology_term[id196] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id8] occurrences matches {0..1} matches {    -- β-carotene
+                        value matches {
+                            Quantity[id198] matches {    -- β-carotene (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id200] matches {
+                                        term matches {
+                                            Terminology_term[id199] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id201] matches {    -- β-carotene (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id203] matches {
+                                        term matches {
+                                            Terminology_term[id202] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id7] occurrences matches {0..1} matches {    -- α-carotene
+                        value matches {
+                            Quantity[id204] matches {    -- α-carotene (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id206] matches {
+                                        term matches {
+                                            Terminology_term[id205] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id207] matches {    -- α-carotene (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id209] matches {
+                                        term matches {
+                                            Terminology_term[id208] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id5] occurrences matches {0..1} matches {    -- Total carotenoids
+                        value matches {
+                            Quantity[id210] matches {    -- Total carotenoids (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id212] matches {
+                                        term matches {
+                                            Terminology_term[id211] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id213] matches {    -- Total carotenoids (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id215] matches {
+                                        term matches {
+                                            Terminology_term[id214] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- Phenolics
+                items matches {
+                    Node[id50] occurrences matches {0..1} matches {    -- Total phenolics
+                        value matches {
+                            Quantity[id216] matches {    -- Total phenolics (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id218] matches {
+                                        term matches {
+                                            Terminology_term[id217] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id219] matches {    -- Total phenolics (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id221] matches {
+                                        term matches {
+                                            Terminology_term[id220] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id29] occurrences matches {0..1} matches {    -- Coumarins
+                        value matches {
+                            Quantity[id222] matches {    -- Coumarins (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id224] matches {
+                                        term matches {
+                                            Terminology_term[id223] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id225] matches {    -- Coumarins (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id227] matches {
+                                        term matches {
+                                            Terminology_term[id226] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id28] occurrences matches {0..1} matches {    -- Stibenes
+                        value matches {
+                            Quantity[id228] matches {    -- Stibenes (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id230] matches {
+                                        term matches {
+                                            Terminology_term[id229] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id231] matches {    -- Stibenes (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id233] matches {
+                                        term matches {
+                                            Terminology_term[id232] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id30] occurrences matches {0..1} matches {    -- Tannins
+                        value matches {
+                            Quantity[id234] matches {    -- Tannins (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id236] matches {
+                                        term matches {
+                                            Terminology_term[id235] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id237] matches {    -- Tannins (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id239] matches {
+                                        term matches {
+                                            Terminology_term[id238] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id37] occurrences matches {0..1} matches {    -- Flavonoids
+                        items matches {
+                            Node[id51] occurrences matches {0..1} matches {    -- Total flavonoids
+                                value matches {
+                                    Quantity[id240] matches {    -- Total flavonoids (mg)
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id242] matches {
+                                                term matches {
+                                                    Terminology_term[id241] matches {
+                                                        concept matches {[at2]}    -- mg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Quantity[id243] matches {    -- Total flavonoids (ug)
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id245] matches {
+                                                term matches {
+                                                    Terminology_term[id244] matches {
+                                                        concept matches {[at3]}    -- ug
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id67] occurrences matches {0..1} matches {    -- Anthocyanidins
+                                items matches {
+                                    Node[id93] occurrences matches {0..1} matches {    -- Total anthocyanidins
+                                        value matches {
+                                            Quantity[id246] matches {    -- Total anthocyanidins (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id248] matches {
+                                                        term matches {
+                                                            Terminology_term[id247] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id249] matches {    -- Total anthocyanidins (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id251] matches {
+                                                        term matches {
+                                                            Terminology_term[id250] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id72] occurrences matches {0..1} matches {    -- Malvidin
+                                        value matches {
+                                            Quantity[id252] matches {    -- Malvidin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id254] matches {
+                                                        term matches {
+                                                            Terminology_term[id253] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id255] matches {    -- Malvidin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id257] matches {
+                                                        term matches {
+                                                            Terminology_term[id256] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id71] occurrences matches {0..1} matches {    -- Peonidin
+                                        value matches {
+                                            Quantity[id258] matches {    -- Peonidin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id260] matches {
+                                                        term matches {
+                                                            Terminology_term[id259] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id261] matches {    -- Peonidin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id263] matches {
+                                                        term matches {
+                                                            Terminology_term[id262] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id70] occurrences matches {0..1} matches {    -- Delphinidin
+                                        value matches {
+                                            Quantity[id264] matches {    -- Delphinidin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id266] matches {
+                                                        term matches {
+                                                            Terminology_term[id265] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id267] matches {    -- Delphinidin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id269] matches {
+                                                        term matches {
+                                                            Terminology_term[id268] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id69] occurrences matches {0..1} matches {    -- Pelargonidin
+                                        value matches {
+                                            Quantity[id270] matches {    -- Pelargonidin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id272] matches {
+                                                        term matches {
+                                                            Terminology_term[id271] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id273] matches {    -- Pelargonidin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id275] matches {
+                                                        term matches {
+                                                            Terminology_term[id274] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id68] occurrences matches {0..1} matches {    -- Cyanidin
+                                        value matches {
+                                            Quantity[id276] matches {    -- Cyanidin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id278] matches {
+                                                        term matches {
+                                                            Terminology_term[id277] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id279] matches {    -- Cyanidin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id281] matches {
+                                                        term matches {
+                                                            Terminology_term[id280] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id63] occurrences matches {0..1} matches {    -- Flavanones
+                                items matches {
+                                    Node[id88] occurrences matches {0..1} matches {    -- Total flavanones
+                                        value matches {
+                                            Quantity[id282] matches {    -- Total flavanones (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id284] matches {
+                                                        term matches {
+                                                            Terminology_term[id283] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id285] matches {    -- Total flavanones (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id287] matches {
+                                                        term matches {
+                                                            Terminology_term[id286] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id66] occurrences matches {0..1} matches {    -- Naringenin
+                                        value matches {
+                                            Quantity[id288] matches {    -- Naringenin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id290] matches {
+                                                        term matches {
+                                                            Terminology_term[id289] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id291] matches {    -- Naringenin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id293] matches {
+                                                        term matches {
+                                                            Terminology_term[id292] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id65] occurrences matches {0..1} matches {    -- Hesperitin
+                                        value matches {
+                                            Quantity[id294] matches {    -- Hesperitin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id296] matches {
+                                                        term matches {
+                                                            Terminology_term[id295] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id297] matches {    -- Hesperitin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id299] matches {
+                                                        term matches {
+                                                            Terminology_term[id298] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id64] occurrences matches {0..1} matches {    -- Friodictyol
+                                        value matches {
+                                            Quantity[id300] matches {    -- Friodictyol (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id302] matches {
+                                                        term matches {
+                                                            Terminology_term[id301] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id303] matches {    -- Friodictyol (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id305] matches {
+                                                        term matches {
+                                                            Terminology_term[id304] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id55] occurrences matches {0..1} matches {    -- Flavanols (Catechins)
+                                items matches {
+                                    Node[id89] occurrences matches {0..1} matches {    -- Total flavanols (catechins)
+                                        value matches {
+                                            Quantity[id306] matches {    -- Total flavanols (catechins) (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id308] matches {
+                                                        term matches {
+                                                            Terminology_term[id307] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id309] matches {    -- Total flavanols (catechins) (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id311] matches {
+                                                        term matches {
+                                                            Terminology_term[id310] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id61] occurrences matches {0..1} matches {    -- Epigallocatechin gallate
+                                        value matches {
+                                            Quantity[id312] matches {    -- Epigallocatechin gallate (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id314] matches {
+                                                        term matches {
+                                                            Terminology_term[id313] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id315] matches {    -- Epigallocatechin gallate (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id317] matches {
+                                                        term matches {
+                                                            Terminology_term[id316] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id59] occurrences matches {0..1} matches {    -- Epicatechin gallate
+                                        value matches {
+                                            Quantity[id318] matches {    -- Epicatechin gallate (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id320] matches {
+                                                        term matches {
+                                                            Terminology_term[id319] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id321] matches {    -- Epicatechin gallate (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id323] matches {
+                                                        term matches {
+                                                            Terminology_term[id322] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id58] occurrences matches {0..1} matches {    -- Epigallocatechin
+                                        value matches {
+                                            Quantity[id324] matches {    -- Epigallocatechin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id326] matches {
+                                                        term matches {
+                                                            Terminology_term[id325] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id327] matches {    -- Epigallocatechin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id329] matches {
+                                                        term matches {
+                                                            Terminology_term[id328] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id57] occurrences matches {0..1} matches {    -- Epicatechin
+                                        value matches {
+                                            Quantity[id330] matches {    -- Epicatechin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id332] matches {
+                                                        term matches {
+                                                            Terminology_term[id331] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id333] matches {    -- Epicatechin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id335] matches {
+                                                        term matches {
+                                                            Terminology_term[id334] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id56] occurrences matches {0..1} matches {    -- Catechin
+                                        value matches {
+                                            Quantity[id336] matches {    -- Catechin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id338] matches {
+                                                        term matches {
+                                                            Terminology_term[id337] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id339] matches {    -- Catechin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id341] matches {
+                                                        term matches {
+                                                            Terminology_term[id340] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id44] occurrences matches {0..1} matches {    -- Flavones
+                                items matches {
+                                    Node[id52] occurrences matches {0..1} matches {    -- Total flavones
+                                        value matches {
+                                            Quantity[id342] matches {    -- Total flavones (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id344] matches {
+                                                        term matches {
+                                                            Terminology_term[id343] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id345] matches {    -- Total flavones (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id347] matches {
+                                                        term matches {
+                                                            Terminology_term[id346] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id48] occurrences matches {0..1} matches {    -- Chrysin
+                                        value matches {
+                                            Quantity[id348] matches {    -- Chrysin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id350] matches {
+                                                        term matches {
+                                                            Terminology_term[id349] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id351] matches {    -- Chrysin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id353] matches {
+                                                        term matches {
+                                                            Terminology_term[id352] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id47] occurrences matches {0..1} matches {    -- Apigenin
+                                        value matches {
+                                            Quantity[id354] matches {    -- Apigenin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id356] matches {
+                                                        term matches {
+                                                            Terminology_term[id355] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id357] matches {    -- Apigenin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id359] matches {
+                                                        term matches {
+                                                            Terminology_term[id358] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id46] occurrences matches {0..1} matches {    -- Luteolin
+                                        value matches {
+                                            Quantity[id360] matches {    -- Luteolin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id362] matches {
+                                                        term matches {
+                                                            Terminology_term[id361] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id363] matches {    -- Luteolin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id365] matches {
+                                                        term matches {
+                                                            Terminology_term[id364] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id39] occurrences matches {0..1} matches {    -- Flavonols
+                                items matches {
+                                    Node[id53] occurrences matches {0..1} matches {    -- Total flavonols
+                                        value matches {
+                                            Quantity[id366] matches {    -- Total flavonols (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id368] matches {
+                                                        term matches {
+                                                            Terminology_term[id367] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id369] matches {    -- Total flavonols (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id371] matches {
+                                                        term matches {
+                                                            Terminology_term[id370] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id43] occurrences matches {0..1} matches {    -- Galagin
+                                        value matches {
+                                            Quantity[id372] matches {    -- Galagin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id374] matches {
+                                                        term matches {
+                                                            Terminology_term[id373] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id375] matches {    -- Galagin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id377] matches {
+                                                        term matches {
+                                                            Terminology_term[id376] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id42] occurrences matches {0..1} matches {    -- Myricetin
+                                        value matches {
+                                            Quantity[id378] matches {    -- Myricetin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id380] matches {
+                                                        term matches {
+                                                            Terminology_term[id379] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id381] matches {    -- Myricetin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id383] matches {
+                                                        term matches {
+                                                            Terminology_term[id382] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id41] occurrences matches {0..1} matches {    -- Kaempferol
+                                        value matches {
+                                            Quantity[id384] matches {    -- Kaempferol (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id386] matches {
+                                                        term matches {
+                                                            Terminology_term[id385] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id387] matches {    -- Kaempferol (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id389] matches {
+                                                        term matches {
+                                                            Terminology_term[id388] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id40] occurrences matches {0..1} matches {    -- Quercetin
+                                        value matches {
+                                            Quantity[id390] matches {    -- Quercetin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id392] matches {
+                                                        term matches {
+                                                            Terminology_term[id391] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id393] matches {    -- Quercetin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id395] matches {
+                                                        term matches {
+                                                            Terminology_term[id394] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id73] occurrences matches {0..1} matches {    -- Isoflavonoids
+                                items matches {
+                                    Node[id90] occurrences matches {0..1} matches {    -- Total isoflavonoids
+                                        value matches {
+                                            Quantity[id396] matches {    -- Total isoflavonoids (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id398] matches {
+                                                        term matches {
+                                                            Terminology_term[id397] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id399] matches {    -- Total isoflavonoids (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id401] matches {
+                                                        term matches {
+                                                            Terminology_term[id400] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id77] occurrences matches {0..1} matches {    -- Formononetin
+                                        value matches {
+                                            Quantity[id402] matches {    -- Formononetin (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id404] matches {
+                                                        term matches {
+                                                            Terminology_term[id403] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id405] matches {    -- Formononetin (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id407] matches {
+                                                        term matches {
+                                                            Terminology_term[id406] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id76] occurrences matches {0..1} matches {    -- Glycitein
+                                        value matches {
+                                            Quantity[id408] matches {    -- Glycitein (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id410] matches {
+                                                        term matches {
+                                                            Terminology_term[id409] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id411] matches {    -- Glycitein (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id413] matches {
+                                                        term matches {
+                                                            Terminology_term[id412] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id75] occurrences matches {0..1} matches {    -- Daidzein
+                                        value matches {
+                                            Quantity[id414] matches {    -- Daidzein (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id416] matches {
+                                                        term matches {
+                                                            Terminology_term[id415] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id417] matches {    -- Daidzein (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id419] matches {
+                                                        term matches {
+                                                            Terminology_term[id418] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id74] occurrences matches {0..1} matches {    -- Genistein
+                                        value matches {
+                                            Quantity[id420] matches {    -- Genistein (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id422] matches {
+                                                        term matches {
+                                                            Terminology_term[id421] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id423] matches {    -- Genistein (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id425] matches {
+                                                        term matches {
+                                                            Terminology_term[id424] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id16] occurrences matches {0..1} matches {    -- Phenolics acids
+                        items matches {
+                            Node[id54] occurrences matches {0..1} matches {    -- Total phenolics acids
+                                value matches {
+                                    Quantity[id426] matches {    -- Total phenolics acids (mg)
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id428] matches {
+                                                term matches {
+                                                    Terminology_term[id427] matches {
+                                                        concept matches {[at2]}    -- mg
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Quantity[id429] matches {    -- Total phenolics acids (ug)
+                                        magnitude matches {|>=0.0|}
+                                        units matches {
+                                            Coded_text[id431] matches {
+                                                term matches {
+                                                    Terminology_term[id430] matches {
+                                                        concept matches {[at3]}    -- ug
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id18] occurrences matches {0..1} matches {    -- Hydroxycinnamic acids
+                                items matches {
+                                    Node[id78] occurrences matches {0..1} matches {    -- Total Hydroxynnamic acids
+                                        value matches {
+                                            Quantity[id432] matches {    -- Total Hydroxynnamic acids (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id434] matches {
+                                                        term matches {
+                                                            Terminology_term[id433] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id435] matches {    -- Total Hydroxynnamic acids (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id437] matches {
+                                                        term matches {
+                                                            Terminology_term[id436] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id92] occurrences matches {0..1} matches {    -- Caffeic
+                                        value matches {
+                                            Quantity[id438] matches {    -- Caffeic (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id440] matches {
+                                                        term matches {
+                                                            Terminology_term[id439] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id441] matches {    -- Caffeic (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id443] matches {
+                                                        term matches {
+                                                            Terminology_term[id442] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id91] occurrences matches {0..1} matches {    -- Ferulic
+                                        value matches {
+                                            Quantity[id444] matches {    -- Ferulic (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id446] matches {
+                                                        term matches {
+                                                            Terminology_term[id445] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id447] matches {    -- Ferulic (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id449] matches {
+                                                        term matches {
+                                                            Terminology_term[id448] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id32] occurrences matches {0..1} matches {    -- p-Coumaric
+                                        value matches {
+                                            Quantity[id450] matches {    -- p-Coumaric (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id452] matches {
+                                                        term matches {
+                                                            Terminology_term[id451] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id453] matches {    -- p-Coumaric (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id455] matches {
+                                                        term matches {
+                                                            Terminology_term[id454] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id22] occurrences matches {0..1} matches {    -- Sinapic
+                                        value matches {
+                                            Quantity[id456] matches {    -- Sinapic (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id458] matches {
+                                                        term matches {
+                                                            Terminology_term[id457] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id459] matches {    -- Sinapic (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id461] matches {
+                                                        term matches {
+                                                            Terminology_term[id460] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Node[id17] occurrences matches {0..1} matches {    -- Hydroxybenzoic acids
+                                items matches {
+                                    Node[id79] occurrences matches {0..1} matches {    -- Total hydroxybenzoic acids
+                                        value matches {
+                                            Quantity[id462] matches {    -- Total hydroxybenzoic acids (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id464] matches {
+                                                        term matches {
+                                                            Terminology_term[id463] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id465] matches {    -- Total hydroxybenzoic acids (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id467] matches {
+                                                        term matches {
+                                                            Terminology_term[id466] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id26] occurrences matches {0..1} matches {    -- Syringic
+                                        value matches {
+                                            Quantity[id468] matches {    -- Syringic (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id470] matches {
+                                                        term matches {
+                                                            Terminology_term[id469] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id471] matches {    -- Syringic (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id473] matches {
+                                                        term matches {
+                                                            Terminology_term[id472] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id25] occurrences matches {0..1} matches {    -- Vannilic
+                                        value matches {
+                                            Quantity[id474] matches {    -- Vannilic (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id476] matches {
+                                                        term matches {
+                                                            Terminology_term[id475] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id477] matches {    -- Vannilic (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id479] matches {
+                                                        term matches {
+                                                            Terminology_term[id478] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id24] occurrences matches {0..1} matches {    -- Protocatechuie
+                                        value matches {
+                                            Quantity[id480] matches {    -- Protocatechuie (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id482] matches {
+                                                        term matches {
+                                                            Terminology_term[id481] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id483] matches {    -- Protocatechuie (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id485] matches {
+                                                        term matches {
+                                                            Terminology_term[id484] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Node[id23] occurrences matches {0..1} matches {    -- Gallic
+                                        value matches {
+                                            Quantity[id486] matches {    -- Gallic (mg)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id488] matches {
+                                                        term matches {
+                                                            Terminology_term[id487] matches {
+                                                                concept matches {[at2]}    -- mg
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Quantity[id489] matches {    -- Gallic (ug)
+                                                magnitude matches {|>=0.0|}
+                                                units matches {
+                                                    Coded_text[id491] matches {
+                                                        term matches {
+                                                            Terminology_term[id490] matches {
+                                                                concept matches {[at3]}    -- ug
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id83] occurrences matches {0..1} matches {    -- Organosulfur compounds
+                items matches {
+                    Node[id84] occurrences matches {0..1} matches {    -- Total organosulfur compounds
+                        value matches {
+                            Quantity[id492] matches {    -- Total organosulfur compounds (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id494] matches {
+                                        term matches {
+                                            Terminology_term[id493] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id495] matches {    -- Total organosulfur compounds (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id497] matches {
+                                        term matches {
+                                            Terminology_term[id496] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id87] occurrences matches {0..1} matches {    -- Allylic sulfur
+                        value matches {
+                            Quantity[id498] matches {    -- Allylic sulfur (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id500] matches {
+                                        term matches {
+                                            Terminology_term[id499] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id501] matches {    -- Allylic sulfur (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id503] matches {
+                                        term matches {
+                                            Terminology_term[id502] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id86] occurrences matches {0..1} matches {    -- Indoles
+                        value matches {
+                            Quantity[id504] matches {    -- Indoles (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id506] matches {
+                                        term matches {
+                                            Terminology_term[id505] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id507] matches {    -- Indoles (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id509] matches {
+                                        term matches {
+                                            Terminology_term[id508] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id85] occurrences matches {0..1} matches {    -- Isothiocyanates
+                        value matches {
+                            Quantity[id510] matches {    -- Isothiocyanates (mg)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id512] matches {
+                                        term matches {
+                                            Terminology_term[id511] matches {
+                                                concept matches {[at2]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Quantity[id513] matches {    -- Isothiocyanates (ug)
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id515] matches {
+                                        term matches {
+                                            Terminology_term[id514] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id82] occurrences matches {0..1} matches {    -- Nitrogen-containing compounds
+                value matches {
+                    Quantity[id516] matches {    -- Nitrogen-containing compounds (mg)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id518] matches {
+                                term matches {
+                                    Terminology_term[id517] matches {
+                                        concept matches {[at2]}    -- mg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Quantity[id519] matches {    -- Nitrogen-containing compounds (ug)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id521] matches {
+                                term matches {
+                                    Terminology_term[id520] matches {
+                                        concept matches {[at3]}    -- ug
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id81] occurrences matches {0..1} matches {    -- Alkaloids
+                value matches {
+                    Quantity[id522] matches {    -- Alkaloids (ug)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id524] matches {
+                                term matches {
+                                    Terminology_term[id523] matches {
+                                        concept matches {[at3]}    -- ug
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Quantity[id525] matches {    -- Alkaloids (mg)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id527] matches {
+                                term matches {
+                                    Terminology_term[id526] matches {
+                                        concept matches {[at2]}    -- mg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at1"] = <http://openehr.org/id/124>
+        >
+        ["ucum"] = <
+            ["at2"] = <http://ucum.org/id/mg>
+            ["at3"] = <http://ucum.org/id/ug>
+        >
+        ["snomed"] = <
+            ["at2"] = <http://snomed.info/id/258684004>
+            ["at3"] = <http://snomed.info/id/258685003>
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["at1"] = <
+                text = <"Mass">
+                description = <"Mass">
+            >
+            ["at2"] = <
+                text = <"mg">
+                description = <"mg unit.">
+            >
+            ["at3"] = <
+                text = <"ug">
+                description = <"ug unit.">
+            >
+            ["id1"] = <
+                text = <"Dietary phytochemicals">
+                description = <"To quantify phytochemicals in the diet.">
+            >
+            ["id10"] = <
+                text = <"Lutein">
+                description = <"The quantity of a specific carotenoids.">
+            >
+            ["id11"] = <
+                text = <"Zeaxanthin">
+                description = <"The quantity of a specific carotenoids.">
+            >
+            ["id12"] = <
+                text = <"Astaxanthin">
+                description = <"The quantity of a specific carotenoids.">
+            >
+            ["id13"] = <
+                text = <"Lycopene">
+                description = <"The quantity of a specific carotenoids.">
+            >
+            ["id15"] = <
+                text = <"Phenolics">
+                description = <"The quantity of phenolic compounds.">
+            >
+            ["id156"] = <
+                text = <"Total phytochemicals (mg)">
+                description = <"Total phytochemicals (mg)">
+            >
+            ["id159"] = <
+                text = <"Total phytochemicals (ug)">
+                description = <"Total phytochemicals (ug)">
+            >
+            ["id16"] = <
+                text = <"Phenolics acids">
+                description = <"The quantity of phenolics acids.">
+            >
+            ["id162"] = <
+                text = <"Total carotenoids (mg)">
+                description = <"Total carotenoids (mg)">
+            >
+            ["id165"] = <
+                text = <"Total carotenoids (ug)">
+                description = <"Total carotenoids (ug)">
+            >
+            ["id168"] = <
+                text = <"Lycopene (mg)">
+                description = <"Lycopene (mg)">
+            >
+            ["id17"] = <
+                text = <"Hydroxybenzoic acids">
+                description = <"*">
+            >
+            ["id171"] = <
+                text = <"Lycopene (ug)">
+                description = <"Lycopene (ug)">
+            >
+            ["id174"] = <
+                text = <"Astaxanthin (mg)">
+                description = <"Astaxanthin (mg)">
+            >
+            ["id177"] = <
+                text = <"Astaxanthin (ug)">
+                description = <"Astaxanthin (ug)">
+            >
+            ["id18"] = <
+                text = <"Hydroxycinnamic acids">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id180"] = <
+                text = <"Zeaxanthin (mg)">
+                description = <"Zeaxanthin (mg)">
+            >
+            ["id183"] = <
+                text = <"Zeaxanthin (ug)">
+                description = <"Zeaxanthin (ug)">
+            >
+            ["id186"] = <
+                text = <"Lutein (mg)">
+                description = <"Lutein (mg)">
+            >
+            ["id189"] = <
+                text = <"Lutein (ug)">
+                description = <"Lutein (ug)">
+            >
+            ["id192"] = <
+                text = <"Β-cryptoxanthin (mg)">
+                description = <"Β-cryptoxanthin (mg)">
+            >
+            ["id195"] = <
+                text = <"Β-cryptoxanthin (ug)">
+                description = <"Β-cryptoxanthin (ug)">
+            >
+            ["id198"] = <
+                text = <"β-carotene (mg)">
+                description = <"β-carotene (mg)">
+            >
+            ["id201"] = <
+                text = <"β-carotene (ug)">
+                description = <"β-carotene (ug)">
+            >
+            ["id204"] = <
+                text = <"α-carotene (mg)">
+                description = <"α-carotene (mg)">
+            >
+            ["id207"] = <
+                text = <"α-carotene (ug)">
+                description = <"α-carotene (ug)">
+            >
+            ["id210"] = <
+                text = <"Total carotenoids (mg)">
+                description = <"Total carotenoids (mg)">
+            >
+            ["id213"] = <
+                text = <"Total carotenoids (ug)">
+                description = <"Total carotenoids (ug)">
+            >
+            ["id216"] = <
+                text = <"Total phenolics (mg)">
+                description = <"Total phenolics (mg)">
+            >
+            ["id219"] = <
+                text = <"Total phenolics (ug)">
+                description = <"Total phenolics (ug)">
+            >
+            ["id22"] = <
+                text = <"Sinapic">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id222"] = <
+                text = <"Coumarins (mg)">
+                description = <"Coumarins (mg)">
+            >
+            ["id225"] = <
+                text = <"Coumarins (ug)">
+                description = <"Coumarins (ug)">
+            >
+            ["id228"] = <
+                text = <"Stibenes (mg)">
+                description = <"Stibenes (mg)">
+            >
+            ["id23"] = <
+                text = <"Gallic">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id231"] = <
+                text = <"Stibenes (ug)">
+                description = <"Stibenes (ug)">
+            >
+            ["id234"] = <
+                text = <"Tannins (mg)">
+                description = <"Tannins (mg)">
+            >
+            ["id237"] = <
+                text = <"Tannins (ug)">
+                description = <"Tannins (ug)">
+            >
+            ["id24"] = <
+                text = <"Protocatechuie">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id240"] = <
+                text = <"Total flavonoids (mg)">
+                description = <"Total flavonoids (mg)">
+            >
+            ["id243"] = <
+                text = <"Total flavonoids (ug)">
+                description = <"Total flavonoids (ug)">
+            >
+            ["id246"] = <
+                text = <"Total anthocyanidins (mg)">
+                description = <"Total anthocyanidins (mg)">
+            >
+            ["id249"] = <
+                text = <"Total anthocyanidins (ug)">
+                description = <"Total anthocyanidins (ug)">
+            >
+            ["id25"] = <
+                text = <"Vannilic">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id252"] = <
+                text = <"Malvidin (mg)">
+                description = <"Malvidin (mg)">
+            >
+            ["id255"] = <
+                text = <"Malvidin (ug)">
+                description = <"Malvidin (ug)">
+            >
+            ["id258"] = <
+                text = <"Peonidin (mg)">
+                description = <"Peonidin (mg)">
+            >
+            ["id26"] = <
+                text = <"Syringic">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id261"] = <
+                text = <"Peonidin (ug)">
+                description = <"Peonidin (ug)">
+            >
+            ["id264"] = <
+                text = <"Delphinidin (mg)">
+                description = <"Delphinidin (mg)">
+            >
+            ["id267"] = <
+                text = <"Delphinidin (ug)">
+                description = <"Delphinidin (ug)">
+            >
+            ["id270"] = <
+                text = <"Pelargonidin (mg)">
+                description = <"Pelargonidin (mg)">
+            >
+            ["id273"] = <
+                text = <"Pelargonidin (ug)">
+                description = <"Pelargonidin (ug)">
+            >
+            ["id276"] = <
+                text = <"Cyanidin (mg)">
+                description = <"Cyanidin (mg)">
+            >
+            ["id279"] = <
+                text = <"Cyanidin (ug)">
+                description = <"Cyanidin (ug)">
+            >
+            ["id28"] = <
+                text = <"Stibenes">
+                description = <"The quantity of stilbenes.">
+            >
+            ["id282"] = <
+                text = <"Total flavanones (mg)">
+                description = <"Total flavanones (mg)">
+            >
+            ["id285"] = <
+                text = <"Total flavanones (ug)">
+                description = <"Total flavanones (ug)">
+            >
+            ["id288"] = <
+                text = <"Naringenin (mg)">
+                description = <"Naringenin (mg)">
+            >
+            ["id29"] = <
+                text = <"Coumarins">
+                description = <"The quantity of Coumarins.">
+            >
+            ["id291"] = <
+                text = <"Naringenin (ug)">
+                description = <"Naringenin (ug)">
+            >
+            ["id294"] = <
+                text = <"Hesperitin (mg)">
+                description = <"Hesperitin (mg)">
+            >
+            ["id297"] = <
+                text = <"Hesperitin (ug)">
+                description = <"Hesperitin (ug)">
+            >
+            ["id30"] = <
+                text = <"Tannins">
+                description = <"The quantity of Tannins.">
+            >
+            ["id300"] = <
+                text = <"Friodictyol (mg)">
+                description = <"Friodictyol (mg)">
+            >
+            ["id303"] = <
+                text = <"Friodictyol (ug)">
+                description = <"Friodictyol (ug)">
+            >
+            ["id306"] = <
+                text = <"Total flavanols (catechins) (mg)">
+                description = <"Total flavanols (catechins) (mg)">
+            >
+            ["id309"] = <
+                text = <"Total flavanols (catechins) (ug)">
+                description = <"Total flavanols (catechins) (ug)">
+            >
+            ["id312"] = <
+                text = <"Epigallocatechin gallate (mg)">
+                description = <"Epigallocatechin gallate (mg)">
+            >
+            ["id315"] = <
+                text = <"Epigallocatechin gallate (ug)">
+                description = <"Epigallocatechin gallate (ug)">
+            >
+            ["id318"] = <
+                text = <"Epicatechin gallate (mg)">
+                description = <"Epicatechin gallate (mg)">
+            >
+            ["id32"] = <
+                text = <"p-Coumaric">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id321"] = <
+                text = <"Epicatechin gallate (ug)">
+                description = <"Epicatechin gallate (ug)">
+            >
+            ["id324"] = <
+                text = <"Epigallocatechin (mg)">
+                description = <"Epigallocatechin (mg)">
+            >
+            ["id327"] = <
+                text = <"Epigallocatechin (ug)">
+                description = <"Epigallocatechin (ug)">
+            >
+            ["id330"] = <
+                text = <"Epicatechin (mg)">
+                description = <"Epicatechin (mg)">
+            >
+            ["id333"] = <
+                text = <"Epicatechin (ug)">
+                description = <"Epicatechin (ug)">
+            >
+            ["id336"] = <
+                text = <"Catechin (mg)">
+                description = <"Catechin (mg)">
+            >
+            ["id339"] = <
+                text = <"Catechin (ug)">
+                description = <"Catechin (ug)">
+            >
+            ["id342"] = <
+                text = <"Total flavones (mg)">
+                description = <"Total flavones (mg)">
+            >
+            ["id345"] = <
+                text = <"Total flavones (ug)">
+                description = <"Total flavones (ug)">
+            >
+            ["id348"] = <
+                text = <"Chrysin (mg)">
+                description = <"Chrysin (mg)">
+            >
+            ["id351"] = <
+                text = <"Chrysin (ug)">
+                description = <"Chrysin (ug)">
+            >
+            ["id354"] = <
+                text = <"Apigenin (mg)">
+                description = <"Apigenin (mg)">
+            >
+            ["id357"] = <
+                text = <"Apigenin (ug)">
+                description = <"Apigenin (ug)">
+            >
+            ["id360"] = <
+                text = <"Luteolin (mg)">
+                description = <"Luteolin (mg)">
+            >
+            ["id363"] = <
+                text = <"Luteolin (ug)">
+                description = <"Luteolin (ug)">
+            >
+            ["id366"] = <
+                text = <"Total flavonols (mg)">
+                description = <"Total flavonols (mg)">
+            >
+            ["id369"] = <
+                text = <"Total flavonols (ug)">
+                description = <"Total flavonols (ug)">
+            >
+            ["id37"] = <
+                text = <"Flavonoids">
+                description = <"The quantity of flavonoids.">
+            >
+            ["id372"] = <
+                text = <"Galagin (mg)">
+                description = <"Galagin (mg)">
+            >
+            ["id375"] = <
+                text = <"Galagin (ug)">
+                description = <"Galagin (ug)">
+            >
+            ["id378"] = <
+                text = <"Myricetin (mg)">
+                description = <"Myricetin (mg)">
+            >
+            ["id381"] = <
+                text = <"Myricetin (ug)">
+                description = <"Myricetin (ug)">
+            >
+            ["id384"] = <
+                text = <"Kaempferol (mg)">
+                description = <"Kaempferol (mg)">
+            >
+            ["id387"] = <
+                text = <"Kaempferol (ug)">
+                description = <"Kaempferol (ug)">
+            >
+            ["id39"] = <
+                text = <"Flavonols">
+                description = <"**(pt)">
+            >
+            ["id390"] = <
+                text = <"Quercetin (mg)">
+                description = <"Quercetin (mg)">
+            >
+            ["id393"] = <
+                text = <"Quercetin (ug)">
+                description = <"Quercetin (ug)">
+            >
+            ["id396"] = <
+                text = <"Total isoflavonoids (mg)">
+                description = <"Total isoflavonoids (mg)">
+            >
+            ["id399"] = <
+                text = <"Total isoflavonoids (ug)">
+                description = <"Total isoflavonoids (ug)">
+            >
+            ["id4"] = <
+                text = <"Carotenoids">
+                description = <"The quantity of carotenoids.">
+            >
+            ["id40"] = <
+                text = <"Quercetin">
+                description = <"The quantity of flavonols.">
+            >
+            ["id402"] = <
+                text = <"Formononetin (mg)">
+                description = <"Formononetin (mg)">
+            >
+            ["id405"] = <
+                text = <"Formononetin (ug)">
+                description = <"Formononetin (ug)">
+            >
+            ["id408"] = <
+                text = <"Glycitein (mg)">
+                description = <"Glycitein (mg)">
+            >
+            ["id41"] = <
+                text = <"Kaempferol">
+                description = <"The quantity of flavonols.">
+            >
+            ["id411"] = <
+                text = <"Glycitein (ug)">
+                description = <"Glycitein (ug)">
+            >
+            ["id414"] = <
+                text = <"Daidzein (mg)">
+                description = <"Daidzein (mg)">
+            >
+            ["id417"] = <
+                text = <"Daidzein (ug)">
+                description = <"Daidzein (ug)">
+            >
+            ["id42"] = <
+                text = <"Myricetin">
+                description = <"The quantity of flavonols.">
+            >
+            ["id420"] = <
+                text = <"Genistein (mg)">
+                description = <"Genistein (mg)">
+            >
+            ["id423"] = <
+                text = <"Genistein (ug)">
+                description = <"Genistein (ug)">
+            >
+            ["id426"] = <
+                text = <"Total phenolics acids (mg)">
+                description = <"Total phenolics acids (mg)">
+            >
+            ["id429"] = <
+                text = <"Total phenolics acids (ug)">
+                description = <"Total phenolics acids (ug)">
+            >
+            ["id43"] = <
+                text = <"Galagin">
+                description = <"The quantity of flavonols.">
+            >
+            ["id432"] = <
+                text = <"Total Hydroxynnamic acids (mg)">
+                description = <"Total Hydroxynnamic acids (mg)">
+            >
+            ["id435"] = <
+                text = <"Total Hydroxynnamic acids (ug)">
+                description = <"Total Hydroxynnamic acids (ug)">
+            >
+            ["id438"] = <
+                text = <"Caffeic (mg)">
+                description = <"Caffeic (mg)">
+            >
+            ["id44"] = <
+                text = <"Flavones">
+                description = <"The quantity of flavones.">
+            >
+            ["id441"] = <
+                text = <"Caffeic (ug)">
+                description = <"Caffeic (ug)">
+            >
+            ["id444"] = <
+                text = <"Ferulic (mg)">
+                description = <"Ferulic (mg)">
+            >
+            ["id447"] = <
+                text = <"Ferulic (ug)">
+                description = <"Ferulic (ug)">
+            >
+            ["id450"] = <
+                text = <"p-Coumaric (mg)">
+                description = <"p-Coumaric (mg)">
+            >
+            ["id453"] = <
+                text = <"p-Coumaric (ug)">
+                description = <"p-Coumaric (ug)">
+            >
+            ["id456"] = <
+                text = <"Sinapic (mg)">
+                description = <"Sinapic (mg)">
+            >
+            ["id459"] = <
+                text = <"Sinapic (ug)">
+                description = <"Sinapic (ug)">
+            >
+            ["id46"] = <
+                text = <"Luteolin">
+                description = <"The quantity of flavones.">
+            >
+            ["id462"] = <
+                text = <"Total hydroxybenzoic acids (mg)">
+                description = <"Total hydroxybenzoic acids (mg)">
+            >
+            ["id465"] = <
+                text = <"Total hydroxybenzoic acids (ug)">
+                description = <"Total hydroxybenzoic acids (ug)">
+            >
+            ["id468"] = <
+                text = <"Syringic (mg)">
+                description = <"Syringic (mg)">
+            >
+            ["id47"] = <
+                text = <"Apigenin">
+                description = <"The quantity of flavones.">
+            >
+            ["id471"] = <
+                text = <"Syringic (ug)">
+                description = <"Syringic (ug)">
+            >
+            ["id474"] = <
+                text = <"Vannilic (mg)">
+                description = <"Vannilic (mg)">
+            >
+            ["id477"] = <
+                text = <"Vannilic (ug)">
+                description = <"Vannilic (ug)">
+            >
+            ["id48"] = <
+                text = <"Chrysin">
+                description = <"The quantity of flavones.">
+            >
+            ["id480"] = <
+                text = <"Protocatechuie (mg)">
+                description = <"Protocatechuie (mg)">
+            >
+            ["id483"] = <
+                text = <"Protocatechuie (ug)">
+                description = <"Protocatechuie (ug)">
+            >
+            ["id486"] = <
+                text = <"Gallic (mg)">
+                description = <"Gallic (mg)">
+            >
+            ["id489"] = <
+                text = <"Gallic (ug)">
+                description = <"Gallic (ug)">
+            >
+            ["id49"] = <
+                text = <"Total carotenoids">
+                description = <"The quantity of carotenoids phenolics acids.">
+            >
+            ["id492"] = <
+                text = <"Total organosulfur compounds (mg)">
+                description = <"Total organosulfur compounds (mg)">
+            >
+            ["id495"] = <
+                text = <"Total organosulfur compounds (ug)">
+                description = <"Total organosulfur compounds (ug)">
+            >
+            ["id498"] = <
+                text = <"Allylic sulfur (mg)">
+                description = <"Allylic sulfur (mg)">
+            >
+            ["id5"] = <
+                text = <"Total carotenoids">
+                description = <"The quantity of a specific carotenoids.">
+            >
+            ["id50"] = <
+                text = <"Total phenolics">
+                description = <"The quantity of phenolic compounds.">
+            >
+            ["id501"] = <
+                text = <"Allylic sulfur (ug)">
+                description = <"Allylic sulfur (ug)">
+            >
+            ["id504"] = <
+                text = <"Indoles (mg)">
+                description = <"Indoles (mg)">
+            >
+            ["id507"] = <
+                text = <"Indoles (ug)">
+                description = <"Indoles (ug)">
+            >
+            ["id51"] = <
+                text = <"Total flavonoids">
+                description = <"The quantity of flavonoids.">
+            >
+            ["id510"] = <
+                text = <"Isothiocyanates (mg)">
+                description = <"Isothiocyanates (mg)">
+            >
+            ["id513"] = <
+                text = <"Isothiocyanates (ug)">
+                description = <"Isothiocyanates (ug)">
+            >
+            ["id516"] = <
+                text = <"Nitrogen-containing compounds (mg)">
+                description = <"Nitrogen-containing compounds (mg)">
+            >
+            ["id519"] = <
+                text = <"Nitrogen-containing compounds (ug)">
+                description = <"Nitrogen-containing compounds (ug)">
+            >
+            ["id52"] = <
+                text = <"Total flavones">
+                description = <"The quantity of flavones.">
+            >
+            ["id522"] = <
+                text = <"Alkaloids (ug)">
+                description = <"Alkaloids (ug)">
+            >
+            ["id525"] = <
+                text = <"Alkaloids (mg)">
+                description = <"Alkaloids (mg)">
+            >
+            ["id53"] = <
+                text = <"Total flavonols">
+                description = <"The quantity of flavonols.">
+            >
+            ["id54"] = <
+                text = <"Total phenolics acids">
+                description = <"The quantity of phenolics acids.">
+            >
+            ["id55"] = <
+                text = <"Flavanols (Catechins)">
+                description = <"*">
+            >
+            ["id56"] = <
+                text = <"Catechin">
+                description = <"The quantity of flavanols.">
+            >
+            ["id57"] = <
+                text = <"Epicatechin">
+                description = <"The quantity of flavanols.">
+            >
+            ["id58"] = <
+                text = <"Epigallocatechin">
+                description = <"The quantity of flavanols.">
+            >
+            ["id59"] = <
+                text = <"Epicatechin gallate">
+                description = <"The quantity of flavanols.">
+            >
+            ["id6"] = <
+                text = <"Total phytochemicals">
+                description = <"The quantity of a specific organosulfur compounds.">
+            >
+            ["id61"] = <
+                text = <"Epigallocatechin gallate">
+                description = <"The quantity of flavanols.">
+            >
+            ["id63"] = <
+                text = <"Flavanones">
+                description = <"The quantity of flavanones.">
+            >
+            ["id64"] = <
+                text = <"Friodictyol">
+                description = <"The quantity of flavanones.">
+            >
+            ["id65"] = <
+                text = <"Hesperitin">
+                description = <"The quantity of flavanones.">
+            >
+            ["id66"] = <
+                text = <"Naringenin">
+                description = <"The quantity of flavanones.">
+            >
+            ["id67"] = <
+                text = <"Anthocyanidins">
+                description = <"The quantity of anthrocyanidins.">
+            >
+            ["id68"] = <
+                text = <"Cyanidin">
+                description = <"The quantity of anthocyanidins.">
+            >
+            ["id69"] = <
+                text = <"Pelargonidin">
+                description = <"The quantity of anthocyanidins.">
+            >
+            ["id7"] = <
+                text = <"α-carotene">
+                description = <"The quantity of a specific carotenoids.">
+            >
+            ["id70"] = <
+                text = <"Delphinidin">
+                description = <"The quantity of anthocyanidins.">
+            >
+            ["id71"] = <
+                text = <"Peonidin">
+                description = <"The quantity of anthocyanidins.">
+            >
+            ["id72"] = <
+                text = <"Malvidin">
+                description = <"The quantity of anthocyanidins.">
+            >
+            ["id73"] = <
+                text = <"Isoflavonoids">
+                description = <"*The quantity of isoflavonoids.">
+            >
+            ["id74"] = <
+                text = <"Genistein">
+                description = <"The quantity of isoflavonoids.">
+            >
+            ["id75"] = <
+                text = <"Daidzein">
+                description = <"The quantity of isoflavonoids.">
+            >
+            ["id76"] = <
+                text = <"Glycitein">
+                description = <"The quantity of isoflavonoids.">
+            >
+            ["id77"] = <
+                text = <"Formononetin">
+                description = <"The quantity of isoflavonoids.">
+            >
+            ["id78"] = <
+                text = <"Total Hydroxynnamic acids">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id79"] = <
+                text = <"Total hydroxybenzoic acids">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id8"] = <
+                text = <"β-carotene">
+                description = <"The quantity of a specific carotenoids.">
+            >
+            ["id81"] = <
+                text = <"Alkaloids">
+                description = <"The quantity of alkaloids.">
+            >
+            ["id82"] = <
+                text = <"Nitrogen-containing compounds">
+                description = <"The quantity of nitrogen-containing componds.">
+            >
+            ["id83"] = <
+                text = <"Organosulfur compounds">
+                description = <"The quantity of organosulfur compounds.">
+            >
+            ["id84"] = <
+                text = <"Total organosulfur compounds">
+                description = <"The quantity of a specific organosulfur compounds.">
+            >
+            ["id85"] = <
+                text = <"Isothiocyanates">
+                description = <"The quantity of a specific organosulfur compounds.">
+            >
+            ["id86"] = <
+                text = <"Indoles">
+                description = <"The quantity of a specific organosulfur compounds.">
+            >
+            ["id87"] = <
+                text = <"Allylic sulfur">
+                description = <"The quantity of a specific organosulfur compounds.">
+            >
+            ["id88"] = <
+                text = <"Total flavanones">
+                description = <"The quantity of flavanones.">
+            >
+            ["id89"] = <
+                text = <"Total flavanols (catechins)">
+                description = <"The quantity of flavanols.">
+            >
+            ["id9"] = <
+                text = <"Β-cryptoxanthin">
+                description = <"The quantity of a specific carotenoids.">
+            >
+            ["id90"] = <
+                text = <"Total isoflavonoids">
+                description = <"The quantity of isoflavonoids.">
+            >
+            ["id91"] = <
+                text = <"Ferulic">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id92"] = <
+                text = <"Caffeic">
+                description = <"The quantity of a specific phenolics acids.">
+            >
+            ["id93"] = <
+                text = <"Total anthocyanidins">
+                description = <"*">
+            >
+        >
+    >
+    

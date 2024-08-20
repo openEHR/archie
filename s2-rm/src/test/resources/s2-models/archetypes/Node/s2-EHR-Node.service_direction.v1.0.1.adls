@@ -1,0 +1,188 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f766fe93-ede4-41d0-84e1-4af3ca708ae2)
+	s2-EHR-Node.service_direction.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2017-03-22">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.service_direction.v1.0.1, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.service_direction.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record structured details of a complex direction for an ordered or requested service.">
+			use = <"Use to record structured details of a single, complex direction for an ordered or requested service. 
+            
+            This archetype has been designed to be nested within the 'Complex timing' SLOT in the INSTRUCTION.service_request archetype, but may be used within other clinically relevant archetypes, as required. Multiple instances of this archetype may be required to represent a complex order for services, especially ones with changing frequency or patterns of delivery over time.
+            
+            Each service direction provides detailed guidance about one or more sequential activities, each comprising an amount and an intradaily timing, together with an overall direction duration and details of any repetitive pattern outside a single day. Each activity pair allows for a complex intradaily pattern to be described, such as 2 hours of nursing assistance in the morning and one hour in the evening.
+            
+            Each service direction may apply for a fixed duration of time, or fixed number of services, which is specified using the 'Total amount' data Node.
+            
+            The total amount for the entire service request, is recorded in the INSTRUCTION.service_request.
+            
+            For example: 
+            - 'Home nursing assistance for 2 hours in the morning and 1 hour in the evening for a period of 6 weeks, followed by 1 hour in the morning only for a further 6 weeks';
+            - 'Dialysis blood test package to be carried out: The second Wednesday of the month in January, March, May, July, September and November';
+            - 'INR daily for one week, weekly for one month, monthly for six months'; or
+            - 'Vital signs observations every hour for four hours, then every two hours for 12 hours'.
+            
+            The Node can be renamed in template or at run-time to represent a specific service direction such as 'First four hours after surgery'.">
+			keywords = <"request", "service", "procedure", "examination", "treatment", "timing">
+			misuse = <"Not to be used to record information about any request or order where a dosage is required, for example medication or transfusion orders. Use the Node.therapeutic_direction for these purposes.">
+		>
+	>
+	other_contributors = <"Øyvind Aardal, Helse Vest, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Koray Atalag, University of Auckland, New Zealand", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "John Bennett, NEHTA, Australia", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Sharmila Biswas, Australia", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "David Evans, Queensland Health, Australia", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sarah Gaunt, NEHTA, Australia", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Trina Gregory, cpc, Australia", "Robert Hausam, Hausam Consulting LLC, United States", "Sam Heard, Ocean Informatics, Australia (Editor)", "Anca Heyd, DIPS ASA, Norway", "Roar Holm, Helse Vest IKT A/S, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Nasjonal IKT HF, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Mary Kelaher, NEHTA, Australia", "Robert L'egan, NEHTA, Australia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Russell Leftwich, Russell B Leftwich MD, United States", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Colin Macfarlane, Elsevier, United Kingdom", "Marlene Mann, BN, MCE, CPHIMS-CA, Prosci Certified, Foundation Knowledge Provincial CMIO, Alberta Health Services, Canada", "Susan McIndoe, Royal District Nursing Service, Australia", "David McKillop, NEHTA, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Andrej Orel, Marand d.o.o., Slovenia", "Chris Pearce, Melbourne East GP Network, Australia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "Ed Schwab,RD, CPHIMS-CA, Foundational Knowledge - Provincial CMIO, Alberta Health Services, Canada", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Katrina Simpson-Pineda, RN, BN, Clinical Knowledge Topics - Provincial CMIO, Alberta Health Services, Canada", "Iztok Stotl, UKCLJ, Slovenia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "John Taylor, NEHTA, Australia", "Nyree Taylor, Ocean Informatics, Australia", "Richard Townley-O'Neill, NEHTA, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ines Vaz, UFN, Portugal", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Kylie Young, The Royal Australian College of General Practitioners, Australia">
+
+definition
+	Node[id1] matches {	-- Service direction
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Direction sequence
+				value matches {
+					Count[id14] matches {
+						magnitude matches {|>=1|}
+					}
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Direction description
+				value matches {
+					Text[id15] 
+				}
+			}
+			Node[id4] matches {	-- Activity
+				items matches {
+					Node[id5] occurrences matches {0..1} matches {	-- Activity sequence
+						value matches {
+							Count[id16] matches {
+								magnitude matches {|>=1|}
+							}
+						}
+					}
+					Node[id6] occurrences matches {0..1} matches {	-- Amount
+						value matches {
+							Count[id17] matches {
+								magnitude matches {|>=1|}
+							}
+							Duration_value[id18] matches {
+								magnitude matches {|>=PT1S|}
+							}
+						}
+					}
+					use_archetype Node[id7, s2-EHR-Node.timing_daily.v1] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Direction duration
+				value matches {
+					Coded_text[id19] matches {
+						term matches {
+							Terminology_term[id24] matches {
+								concept matches {[at8]}
+							}
+						}
+					}
+					Duration_value[id20] matches {
+						magnitude matches {|>=PT1S|}
+					}
+					Plain_text[id21] 
+				}
+			}
+			use_archetype Node[id11, s2-EHR-Node.timing_nondaily.v1] 
+			Node[id12] occurrences matches {0..1} matches {	-- Total amount
+				value matches {
+					Count[id22] matches {
+						magnitude matches {|>=1|}
+					}
+					Duration_value[id23] matches {
+						magnitude matches {|>=PT1S|}
+					}
+				}
+			}
+			allow_archetype Node[id13] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at8"] = <
+				text = <"Indefinite">
+				description = <"The direction should be continued indefinitely.">
+			>
+			["id1"] = <
+				text = <"Service direction">
+				description = <"Structured details of a complex direction for an ordered or requested service.">
+			>
+			["id11"] = <
+				text = <"Repetition timing">
+				description = <"Structured details about pattern of repetition for each set of intraday activities.">
+			>
+			["id12"] = <
+				text = <"Total amount">
+				description = <"The total number of services or hours available for all activities in this direction.">
+			>
+			["id13"] = <
+				text = <"Additional details">
+				description = <"Further details about an ordered item direction.">
+			>
+			["id2"] = <
+				text = <"Direction sequence">
+				description = <"The intended position of this direction within the overall sequence of directions.">
+			>
+			["id3"] = <
+				text = <"Direction description">
+				description = <"Narrative description about the whole direction.">
+			>
+			["id4"] = <
+				text = <"Activity">
+				description = <"A grouping of an amount and timing for a part of a service direction.">
+			>
+			["id5"] = <
+				text = <"Activity sequence">
+				description = <"The intended sequential position of this activity within all activities for the service direction.">
+			>
+			["id6"] = <
+				text = <"Amount">
+				description = <"The amount of service requested as part of a specified activity.">
+			>
+			["id7"] = <
+				text = <"Intraday timing">
+				description = <"Structured details about the timing of the service within a single day.">
+			>
+			["id8"] = <
+				text = <"Direction duration">
+				description = <"The length of time for which this direction should be applied.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/73786-6>
+			["id11"] = <http://loinc.org/104719-0>
+		>
+	>
+

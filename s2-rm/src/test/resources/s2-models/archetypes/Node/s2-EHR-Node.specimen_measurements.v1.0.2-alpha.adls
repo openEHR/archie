@@ -1,0 +1,1926 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=500c224e-ad38-4cef-a1cc-e9e73720dc1a)
+	s2-EHR-Node.specimen_measurements.v1.0.2-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2018-09-14">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.specimen_measurements.v1.0.2-alpha, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.specimen_measurements.v1.0.2-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the measurements that represent the physical dimensions of a specimen.">
+			use = <"Use to record the measurements that represent the physical dimensions of a specimen.
+            
+            This Node can be nested in the 'Physical properties' slot of the archetype Node.specimen.
+            For example:
+            - an 8.0 x 10.2 x 6.5 mm tumour specimen from the intestine;
+            - a skin biopsy 4 mm diameter and 4 mm thick;
+            - 7 ml of blood in a vacuum tube.
+            
+            The size of a specimen may be recorded in two or more linear measurements (dimensions), e.g., length, width and depth (height). If it is not possible to determine the orientation of the specimen, each dimension can be recorded by repeating the 'Length' or 'Diameter' data Node.">
+			keywords = <"specimen", "laboratory", "sample", "pathology", "size", "volume", "area", "weight", "dimension", "length", "width", "diameter", "mass", "thickness">
+			misuse = <"Not to be used to record measurements for body segments. Use the body segment family of archetypes for this purpose.
+            
+            Not to be used to record measurements in physical examinations. Use measurement-related data Nodes within the Node.exam family of archetypes for this purpose. For example: the measured size of a pupil in Node.exam-pupil and length and width of a perforation in Node.exam-tympanic_membrane.
+            
+            Not to be used to record measurements in imaging examinations. Use measurement-related data Nodes within the context of Node archetypes for each modality- and/or organ-specific imaging finding.">
+		>
+	>
+	other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Andreas Abildgaard, OUS, Norway", "Erling Are Hole, Helse Bergen, Norway", "Stein Arne Rimehaug, Sunnaas sykehus, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Paulo Bandiera-Paiva, Federal University of Sao Paulo, Brazil", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "Terje Bektesevic Holmlund, UiT Norges arktiske universitet, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Stefan Dubois, Dep't of Pathology and Genetics, University Hospitals of Lund and Malmö, Sweden", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Gunn Elin Blakkisrud, DIPS ASA, Norway", "Peter Fedorcsak, Oslo universitetssykehus, Norway", "Kåre Flø, DIPS ASA, Norway", "Rosane Gotardo, Systema Ltda., Brazil", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Johan Gustav Bellika, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Sanjeev Hiremath, IDEAMED International, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Sabine Leh, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia, (openEHR Editor)", "Jens Lien, Bouvet Norge AS, Norway", "Pramil Liyanage, Ministry of Health, Sri Lanka", "Anne M Gromsrud, DIPS AS, Norway", "Manisha Mantri, C-DAC, India", "Luis Marco Ruiz, NST, Spain", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Svenne Naumann, Finnmarkssykehuset, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Jayashree Panickar, Karolinska Institute, Sweden", "FREDERICO RIBEIRO, Hospital das Clínicas da UFPE, Brazil", "Terje Sagmyr, DIPS AS, Norway", "Saeed Samie, Pars Hospital, Iran", "Erik Skjemstad, Helse Nord RHF, Norway", "Alan Smith, OXLEAS NHS Mental Health Foundation Trust, United Kingdom", "Andre Smitt-Ingebretsen, Sørlandet sykehus HF, Norway", "Frode Stenvik, Helse Sør-Øst, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Erik Sundvall, Karolinska Institutet + Karolinska University Hospital, Region Stockholm + Linköping University, Sweden", "Nyree Taylor, Ocean Health Systems, Australia", "Tesfay Teame, Bærum kommune, Norway", "Marianne Thorbjørnsen, Oslo Universitetssykehus, Norway", "Anders Thurin, VGR, Sweden", "Pencho Tonchev, Medical University- Pleven, Bulgaria", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Wouter Zanen, Eurotranplant, Netherlands", "Lin Zhang, Taikang Insurance Group, China">
+
+definition
+	Node[id1] matches {	-- Specimen measurements
+		items matches {
+			Node[id47] occurrences matches {0..1} matches {	-- Volume
+				value matches {
+					Quantity[id74] matches {	-- Volume (uL)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id76] matches {
+								term matches {
+									Terminology_term[id75] matches {
+										concept matches {[at58]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id77] matches {	-- Volume (ml)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id79] matches {
+								term matches {
+									Terminology_term[id78] matches {
+										concept matches {[at59]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id80] matches {	-- Volume (cl)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id82] matches {
+								term matches {
+									Terminology_term[id81] matches {
+										concept matches {[at60]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id83] matches {	-- Volume (dL)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id85] matches {
+								term matches {
+									Terminology_term[id84] matches {
+										concept matches {[at61]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id86] matches {	-- Volume (L)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id88] matches {
+								term matches {
+									Terminology_term[id87] matches {
+										concept matches {[at62]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id89] matches {	-- Volume (um3)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id91] matches {
+								term matches {
+									Terminology_term[id90] matches {
+										concept matches {[at63]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id92] matches {	-- Volume (mm3)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id94] matches {
+								term matches {
+									Terminology_term[id93] matches {
+										concept matches {[at64]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id95] matches {	-- Volume (cm3)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id97] matches {
+								term matches {
+									Terminology_term[id96] matches {
+										concept matches {[at65]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id98] matches {	-- Volume (dm3)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id100] matches {
+								term matches {
+									Terminology_term[id99] matches {
+										concept matches {[at66]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id101] matches {	-- Volume ([foz_us])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id103] matches {
+								term matches {
+									Terminology_term[id102] matches {
+										concept matches {[at67]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id104] matches {	-- Volume ([gal_us])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id106] matches {
+								term matches {
+									Terminology_term[id105] matches {
+										concept matches {[at68]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id107] matches {	-- Volume ([pt_us])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id109] matches {
+								term matches {
+									Terminology_term[id108] matches {
+										concept matches {[at69]}
+									}
+								}
+							}
+						}
+					}
+					Range<Quantity>[id58] matches {
+						lower matches {
+							Quantity[id110] matches {	-- n/a (uL)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id112] matches {
+										term matches {
+											Terminology_term[id111] matches {
+												concept matches {[at58]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id113] matches {	-- n/a (ml)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id115] matches {
+										term matches {
+											Terminology_term[id114] matches {
+												concept matches {[at59]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id116] matches {	-- n/a (cl)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id118] matches {
+										term matches {
+											Terminology_term[id117] matches {
+												concept matches {[at60]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id119] matches {	-- n/a (dL)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id121] matches {
+										term matches {
+											Terminology_term[id120] matches {
+												concept matches {[at61]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id122] matches {	-- n/a (L)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id124] matches {
+										term matches {
+											Terminology_term[id123] matches {
+												concept matches {[at62]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id125] matches {	-- n/a (um3)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id127] matches {
+										term matches {
+											Terminology_term[id126] matches {
+												concept matches {[at63]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id128] matches {	-- n/a (mm3)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id130] matches {
+										term matches {
+											Terminology_term[id129] matches {
+												concept matches {[at64]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id131] matches {	-- n/a (cm3)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id133] matches {
+										term matches {
+											Terminology_term[id132] matches {
+												concept matches {[at65]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id134] matches {	-- n/a (dm3)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id136] matches {
+										term matches {
+											Terminology_term[id135] matches {
+												concept matches {[at66]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id137] matches {	-- n/a ([foz_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id139] matches {
+										term matches {
+											Terminology_term[id138] matches {
+												concept matches {[at67]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id140] matches {	-- n/a ([gal_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id142] matches {
+										term matches {
+											Terminology_term[id141] matches {
+												concept matches {[at68]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id143] matches {	-- n/a ([pt_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id145] matches {
+										term matches {
+											Terminology_term[id144] matches {
+												concept matches {[at69]}
+											}
+										}
+									}
+								}
+							}
+						}
+						upper matches {
+							Quantity[id146] matches {	-- n/a (uL)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id148] matches {
+										term matches {
+											Terminology_term[id147] matches {
+												concept matches {[at58]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id149] matches {	-- n/a (ml)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id151] matches {
+										term matches {
+											Terminology_term[id150] matches {
+												concept matches {[at59]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id152] matches {	-- n/a (cl)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id154] matches {
+										term matches {
+											Terminology_term[id153] matches {
+												concept matches {[at60]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id155] matches {	-- n/a (dL)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id157] matches {
+										term matches {
+											Terminology_term[id156] matches {
+												concept matches {[at61]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id158] matches {	-- n/a (L)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id160] matches {
+										term matches {
+											Terminology_term[id159] matches {
+												concept matches {[at62]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id161] matches {	-- n/a (um3)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id163] matches {
+										term matches {
+											Terminology_term[id162] matches {
+												concept matches {[at63]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id164] matches {	-- n/a (mm3)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id166] matches {
+										term matches {
+											Terminology_term[id165] matches {
+												concept matches {[at64]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id167] matches {	-- n/a (cm3)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id169] matches {
+										term matches {
+											Terminology_term[id168] matches {
+												concept matches {[at65]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id170] matches {	-- n/a (dm3)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id172] matches {
+										term matches {
+											Terminology_term[id171] matches {
+												concept matches {[at66]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id173] matches {	-- n/a ([foz_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id175] matches {
+										term matches {
+											Terminology_term[id174] matches {
+												concept matches {[at67]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id176] matches {	-- n/a ([gal_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id178] matches {
+										term matches {
+											Terminology_term[id177] matches {
+												concept matches {[at68]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id179] matches {	-- n/a ([pt_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id181] matches {
+										term matches {
+											Terminology_term[id180] matches {
+												concept matches {[at69]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id43] matches {	-- Dimension
+				value matches {
+					Quantity[id182] matches {	-- Dimension (nm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id184] matches {
+								term matches {
+									Terminology_term[id183] matches {
+										concept matches {[at70]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id185] matches {	-- Dimension (um)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id187] matches {
+								term matches {
+									Terminology_term[id186] matches {
+										concept matches {[at71]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id188] matches {	-- Dimension (mm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id190] matches {
+								term matches {
+									Terminology_term[id189] matches {
+										concept matches {[at72]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id191] matches {	-- Dimension (cm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id193] matches {
+								term matches {
+									Terminology_term[id192] matches {
+										concept matches {[at73]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id194] matches {	-- Dimension (m)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id196] matches {
+								term matches {
+									Terminology_term[id195] matches {
+										concept matches {[at74]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id197] matches {	-- Dimension ([in_i])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id199] matches {
+								term matches {
+									Terminology_term[id198] matches {
+										concept matches {[at75]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id200] matches {	-- Dimension ([ft_i])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id202] matches {
+								term matches {
+									Terminology_term[id201] matches {
+										concept matches {[at76]}
+									}
+								}
+							}
+						}
+					}
+					Range<Quantity>[id62] matches {
+						lower matches {
+							Quantity[id203] matches {	-- n/a (nm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id205] matches {
+										term matches {
+											Terminology_term[id204] matches {
+												concept matches {[at70]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id206] matches {	-- n/a (um)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id208] matches {
+										term matches {
+											Terminology_term[id207] matches {
+												concept matches {[at71]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id209] matches {	-- n/a (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id211] matches {
+										term matches {
+											Terminology_term[id210] matches {
+												concept matches {[at72]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id212] matches {	-- n/a (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id214] matches {
+										term matches {
+											Terminology_term[id213] matches {
+												concept matches {[at73]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id215] matches {	-- n/a (m)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id217] matches {
+										term matches {
+											Terminology_term[id216] matches {
+												concept matches {[at74]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id218] matches {	-- n/a ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id220] matches {
+										term matches {
+											Terminology_term[id219] matches {
+												concept matches {[at75]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id221] matches {	-- n/a ([ft_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id223] matches {
+										term matches {
+											Terminology_term[id222] matches {
+												concept matches {[at76]}
+											}
+										}
+									}
+								}
+							}
+						}
+						upper matches {
+							Quantity[id224] matches {	-- n/a (nm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id226] matches {
+										term matches {
+											Terminology_term[id225] matches {
+												concept matches {[at70]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id227] matches {	-- n/a (um)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id229] matches {
+										term matches {
+											Terminology_term[id228] matches {
+												concept matches {[at71]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id230] matches {	-- n/a (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id232] matches {
+										term matches {
+											Terminology_term[id231] matches {
+												concept matches {[at72]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id233] matches {	-- n/a (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id235] matches {
+										term matches {
+											Terminology_term[id234] matches {
+												concept matches {[at73]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id236] matches {	-- n/a (m)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id238] matches {
+										term matches {
+											Terminology_term[id237] matches {
+												concept matches {[at74]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id239] matches {	-- n/a ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id241] matches {
+										term matches {
+											Terminology_term[id240] matches {
+												concept matches {[at75]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id242] matches {	-- n/a ([ft_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id244] matches {
+										term matches {
+											Terminology_term[id243] matches {
+												concept matches {[at76]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				name matches {"Length", "Width", "Height", "Depth", "Diameter"}
+			}
+			Node[id56] matches {	-- Perimeter
+				value matches {
+					Quantity[id245] matches {	-- Perimeter (nm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id247] matches {
+								term matches {
+									Terminology_term[id246] matches {
+										concept matches {[at70]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id248] matches {	-- Perimeter (um)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id250] matches {
+								term matches {
+									Terminology_term[id249] matches {
+										concept matches {[at71]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id251] matches {	-- Perimeter (mm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id253] matches {
+								term matches {
+									Terminology_term[id252] matches {
+										concept matches {[at72]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id254] matches {	-- Perimeter (cm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id256] matches {
+								term matches {
+									Terminology_term[id255] matches {
+										concept matches {[at73]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id257] matches {	-- Perimeter (m)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id259] matches {
+								term matches {
+									Terminology_term[id258] matches {
+										concept matches {[at74]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id260] matches {	-- Perimeter ([in_i])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id262] matches {
+								term matches {
+									Terminology_term[id261] matches {
+										concept matches {[at75]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id263] matches {	-- Perimeter ([ft_i])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id265] matches {
+								term matches {
+									Terminology_term[id264] matches {
+										concept matches {[at76]}
+									}
+								}
+							}
+						}
+					}
+					Range<Quantity>[id67] matches {
+						lower matches {
+							Quantity[id266] matches {	-- n/a (nm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id268] matches {
+										term matches {
+											Terminology_term[id267] matches {
+												concept matches {[at70]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id269] matches {	-- n/a (um)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id271] matches {
+										term matches {
+											Terminology_term[id270] matches {
+												concept matches {[at71]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id272] matches {	-- n/a (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id274] matches {
+										term matches {
+											Terminology_term[id273] matches {
+												concept matches {[at72]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id275] matches {	-- n/a (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id277] matches {
+										term matches {
+											Terminology_term[id276] matches {
+												concept matches {[at73]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id278] matches {	-- n/a (m)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id280] matches {
+										term matches {
+											Terminology_term[id279] matches {
+												concept matches {[at74]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id281] matches {	-- n/a ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id283] matches {
+										term matches {
+											Terminology_term[id282] matches {
+												concept matches {[at75]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id284] matches {	-- n/a ([ft_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id286] matches {
+										term matches {
+											Terminology_term[id285] matches {
+												concept matches {[at76]}
+											}
+										}
+									}
+								}
+							}
+						}
+						upper matches {
+							Quantity[id287] matches {	-- n/a (nm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id289] matches {
+										term matches {
+											Terminology_term[id288] matches {
+												concept matches {[at70]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id290] matches {	-- n/a (um)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id292] matches {
+										term matches {
+											Terminology_term[id291] matches {
+												concept matches {[at71]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id293] matches {	-- n/a (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id295] matches {
+										term matches {
+											Terminology_term[id294] matches {
+												concept matches {[at72]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id296] matches {	-- n/a (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id298] matches {
+										term matches {
+											Terminology_term[id297] matches {
+												concept matches {[at73]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id299] matches {	-- n/a (m)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id301] matches {
+										term matches {
+											Terminology_term[id300] matches {
+												concept matches {[at74]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id302] matches {	-- n/a ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id304] matches {
+										term matches {
+											Terminology_term[id303] matches {
+												concept matches {[at75]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id305] matches {	-- n/a ([ft_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id307] matches {
+										term matches {
+											Terminology_term[id306] matches {
+												concept matches {[at76]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id21] occurrences matches {0..1} matches {	-- Weight
+				value matches {
+					Quantity[id308] matches {	-- Weight (ng)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id310] matches {
+								term matches {
+									Terminology_term[id309] matches {
+										concept matches {[at77]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id311] matches {	-- Weight (ug)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id313] matches {
+								term matches {
+									Terminology_term[id312] matches {
+										concept matches {[at78]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id314] matches {	-- Weight (mg)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id316] matches {
+								term matches {
+									Terminology_term[id315] matches {
+										concept matches {[at79]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id317] matches {	-- Weight (g)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id319] matches {
+								term matches {
+									Terminology_term[id318] matches {
+										concept matches {[at80]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id320] matches {	-- Weight (kg)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id322] matches {
+								term matches {
+									Terminology_term[id321] matches {
+										concept matches {[at81]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id323] matches {	-- Weight ([oz_av])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id325] matches {
+								term matches {
+									Terminology_term[id324] matches {
+										concept matches {[at82]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id326] matches {	-- Weight ([lb_av])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id328] matches {
+								term matches {
+									Terminology_term[id327] matches {
+										concept matches {[at83]}
+									}
+								}
+							}
+						}
+					}
+					Range<Quantity>[id71] matches {
+						lower matches {
+							Quantity[id329] matches {	-- n/a (ng)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id331] matches {
+										term matches {
+											Terminology_term[id330] matches {
+												concept matches {[at77]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id332] matches {	-- n/a (ug)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id334] matches {
+										term matches {
+											Terminology_term[id333] matches {
+												concept matches {[at78]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id335] matches {	-- n/a (mg)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id337] matches {
+										term matches {
+											Terminology_term[id336] matches {
+												concept matches {[at79]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id338] matches {	-- n/a (g)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id340] matches {
+										term matches {
+											Terminology_term[id339] matches {
+												concept matches {[at80]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id341] matches {	-- n/a (kg)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id343] matches {
+										term matches {
+											Terminology_term[id342] matches {
+												concept matches {[at81]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id344] matches {	-- n/a ([oz_av])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id346] matches {
+										term matches {
+											Terminology_term[id345] matches {
+												concept matches {[at82]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id347] matches {	-- n/a ([lb_av])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id349] matches {
+										term matches {
+											Terminology_term[id348] matches {
+												concept matches {[at83]}
+											}
+										}
+									}
+								}
+							}
+						}
+						upper matches {
+							Quantity[id350] matches {	-- n/a (ng)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id352] matches {
+										term matches {
+											Terminology_term[id351] matches {
+												concept matches {[at77]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id353] matches {	-- n/a (ug)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id355] matches {
+										term matches {
+											Terminology_term[id354] matches {
+												concept matches {[at78]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id356] matches {	-- n/a (mg)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id358] matches {
+										term matches {
+											Terminology_term[id357] matches {
+												concept matches {[at79]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id359] matches {	-- n/a (g)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id361] matches {
+										term matches {
+											Terminology_term[id360] matches {
+												concept matches {[at80]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id362] matches {	-- n/a (kg)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id364] matches {
+										term matches {
+											Terminology_term[id363] matches {
+												concept matches {[at81]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id365] matches {	-- n/a ([oz_av])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id367] matches {
+										term matches {
+											Terminology_term[id366] matches {
+												concept matches {[at82]}
+											}
+										}
+									}
+								}
+							}
+							Quantity[id368] matches {	-- n/a ([lb_av])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id370] matches {
+										term matches {
+											Terminology_term[id369] matches {
+												concept matches {[at83]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Dimension (synthesised)">
+				description = <"A measured dimension of the specimen. (synthesised)">
+			>
+			["at49"] = <
+				text = <"Length">
+				description = <"The measured length of the longest aspect of a specimen (e.g., longest edge of a rectangular specimen) or the measured length of a specimen along its longitudinal axis (e.g., 2cm of bowel, measured along the axis of the bowel, and even if the measured length is shorter than the diameter of the bowel itself).">
+			>
+			["at50"] = <
+				text = <"Width">
+				description = <"The measured length of widest aspect of a specimen, usually perpendicular to the length or the measured length of the second side of two sides.">
+			>
+			["at52"] = <
+				text = <"Diameter">
+				description = <"The measured length of the specimen from edge to edge, usually of an approximately round or oval specimen, passing through its centre.">
+			>
+			["at53"] = <
+				text = <"Depth">
+				description = <"The measured length of the third aspect of a specimen, usually perpendicular to the length and width or measurement of the vertical aspect of a specimen from the surface to the base. Also known as thickness.">
+			>
+			["at54"] = <
+				text = <"Height">
+				description = <"The measured length of the vertical aspect of a specimen, from the base to the top.">
+			>
+			["at55"] = <
+				text = <"Volume">
+				description = <"Volume">
+			>
+			["at56"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at57"] = <
+				text = <"Mass">
+				description = <"Mass">
+			>
+			["at58"] = <
+				text = <"uL">
+				description = <"uL unit.">
+			>
+			["at59"] = <
+				text = <"ml">
+				description = <"ml unit.">
+			>
+			["at60"] = <
+				text = <"cl">
+				description = <"cl unit.">
+			>
+			["at61"] = <
+				text = <"dL">
+				description = <"dL unit.">
+			>
+			["at62"] = <
+				text = <"L">
+				description = <"Liter unit.">
+			>
+			["at63"] = <
+				text = <"um3">
+				description = <"um3 unit.">
+			>
+			["at64"] = <
+				text = <"mm3">
+				description = <"mm3 unit.">
+			>
+			["at65"] = <
+				text = <"cm3">
+				description = <"cm3 unit.">
+			>
+			["at66"] = <
+				text = <"dm3">
+				description = <"dm3 unit.">
+			>
+			["at67"] = <
+				text = <"[foz_us]">
+				description = <"[foz_us] unit.">
+			>
+			["at68"] = <
+				text = <"[gal_us]">
+				description = <"[gal_us] unit.">
+			>
+			["at69"] = <
+				text = <"[pt_us]">
+				description = <"[pt_us] unit.">
+			>
+			["at70"] = <
+				text = <"nm">
+				description = <"nm unit.">
+			>
+			["at71"] = <
+				text = <"um">
+				description = <"um unit.">
+			>
+			["at72"] = <
+				text = <"mm">
+				description = <"mm unit.">
+			>
+			["at73"] = <
+				text = <"cm">
+				description = <"Centimetres length unit">
+			>
+			["at74"] = <
+				text = <"m">
+				description = <"meter unit.">
+			>
+			["at75"] = <
+				text = <"in_i">
+				description = <"Inches length unit">
+			>
+			["at76"] = <
+				text = <"[ft_i]">
+				description = <"[ft_i] unit.">
+			>
+			["at77"] = <
+				text = <"ng">
+				description = <"ng unit.">
+			>
+			["at78"] = <
+				text = <"ug">
+				description = <"ug unit.">
+			>
+			["at79"] = <
+				text = <"mg">
+				description = <"mg unit.">
+			>
+			["at80"] = <
+				text = <"g">
+				description = <"Gram unit.">
+			>
+			["at81"] = <
+				text = <"kg">
+				description = <"Kg unit.">
+			>
+			["at82"] = <
+				text = <"[oz_av]">
+				description = <"[oz_av] unit.">
+			>
+			["at83"] = <
+				text = <"[lb_av]">
+				description = <"Pounds unit">
+			>
+			["id1"] = <
+				text = <"Specimen measurements">
+				description = <"The measurements of a specimen.">
+			>
+			["id101"] = <
+				text = <"Volume ([foz_us])">
+				description = <"Volume ([foz_us])">
+			>
+			["id104"] = <
+				text = <"Volume ([gal_us])">
+				description = <"Volume ([gal_us])">
+			>
+			["id107"] = <
+				text = <"Volume ([pt_us])">
+				description = <"Volume ([pt_us])">
+			>
+			["id110"] = <
+				text = <"n/a (uL)">
+				description = <"n/a (uL)">
+			>
+			["id113"] = <
+				text = <"n/a (ml)">
+				description = <"n/a (ml)">
+			>
+			["id116"] = <
+				text = <"n/a (cl)">
+				description = <"n/a (cl)">
+			>
+			["id119"] = <
+				text = <"n/a (dL)">
+				description = <"n/a (dL)">
+			>
+			["id122"] = <
+				text = <"n/a (L)">
+				description = <"n/a (L)">
+			>
+			["id125"] = <
+				text = <"n/a (um3)">
+				description = <"n/a (um3)">
+			>
+			["id128"] = <
+				text = <"n/a (mm3)">
+				description = <"n/a (mm3)">
+			>
+			["id131"] = <
+				text = <"n/a (cm3)">
+				description = <"n/a (cm3)">
+			>
+			["id134"] = <
+				text = <"n/a (dm3)">
+				description = <"n/a (dm3)">
+			>
+			["id137"] = <
+				text = <"n/a ([foz_us])">
+				description = <"n/a ([foz_us])">
+			>
+			["id140"] = <
+				text = <"n/a ([gal_us])">
+				description = <"n/a ([gal_us])">
+			>
+			["id143"] = <
+				text = <"n/a ([pt_us])">
+				description = <"n/a ([pt_us])">
+			>
+			["id146"] = <
+				text = <"n/a (uL)">
+				description = <"n/a (uL)">
+			>
+			["id149"] = <
+				text = <"n/a (ml)">
+				description = <"n/a (ml)">
+			>
+			["id152"] = <
+				text = <"n/a (cl)">
+				description = <"n/a (cl)">
+			>
+			["id155"] = <
+				text = <"n/a (dL)">
+				description = <"n/a (dL)">
+			>
+			["id158"] = <
+				text = <"n/a (L)">
+				description = <"n/a (L)">
+			>
+			["id161"] = <
+				text = <"n/a (um3)">
+				description = <"n/a (um3)">
+			>
+			["id164"] = <
+				text = <"n/a (mm3)">
+				description = <"n/a (mm3)">
+			>
+			["id167"] = <
+				text = <"n/a (cm3)">
+				description = <"n/a (cm3)">
+			>
+			["id170"] = <
+				text = <"n/a (dm3)">
+				description = <"n/a (dm3)">
+			>
+			["id173"] = <
+				text = <"n/a ([foz_us])">
+				description = <"n/a ([foz_us])">
+			>
+			["id176"] = <
+				text = <"n/a ([gal_us])">
+				description = <"n/a ([gal_us])">
+			>
+			["id179"] = <
+				text = <"n/a ([pt_us])">
+				description = <"n/a ([pt_us])">
+			>
+			["id182"] = <
+				text = <"Dimension (nm)">
+				description = <"Dimension (nm)">
+			>
+			["id185"] = <
+				text = <"Dimension (um)">
+				description = <"Dimension (um)">
+			>
+			["id188"] = <
+				text = <"Dimension (mm)">
+				description = <"Dimension (mm)">
+			>
+			["id191"] = <
+				text = <"Dimension (cm)">
+				description = <"Dimension (cm)">
+			>
+			["id194"] = <
+				text = <"Dimension (m)">
+				description = <"Dimension (m)">
+			>
+			["id197"] = <
+				text = <"Dimension ([in_i])">
+				description = <"Dimension ([in_i])">
+			>
+			["id200"] = <
+				text = <"Dimension ([ft_i])">
+				description = <"Dimension ([ft_i])">
+			>
+			["id203"] = <
+				text = <"n/a (nm)">
+				description = <"n/a (nm)">
+			>
+			["id206"] = <
+				text = <"n/a (um)">
+				description = <"n/a (um)">
+			>
+			["id209"] = <
+				text = <"n/a (mm)">
+				description = <"n/a (mm)">
+			>
+			["id21"] = <
+				text = <"Weight">
+				description = <"The measured value of the mass of the specimen.">
+			>
+			["id212"] = <
+				text = <"n/a (cm)">
+				description = <"n/a (cm)">
+			>
+			["id215"] = <
+				text = <"n/a (m)">
+				description = <"n/a (m)">
+			>
+			["id218"] = <
+				text = <"n/a ([in_i])">
+				description = <"n/a ([in_i])">
+			>
+			["id221"] = <
+				text = <"n/a ([ft_i])">
+				description = <"n/a ([ft_i])">
+			>
+			["id224"] = <
+				text = <"n/a (nm)">
+				description = <"n/a (nm)">
+			>
+			["id227"] = <
+				text = <"n/a (um)">
+				description = <"n/a (um)">
+			>
+			["id230"] = <
+				text = <"n/a (mm)">
+				description = <"n/a (mm)">
+			>
+			["id233"] = <
+				text = <"n/a (cm)">
+				description = <"n/a (cm)">
+			>
+			["id236"] = <
+				text = <"n/a (m)">
+				description = <"n/a (m)">
+			>
+			["id239"] = <
+				text = <"n/a ([in_i])">
+				description = <"n/a ([in_i])">
+			>
+			["id242"] = <
+				text = <"n/a ([ft_i])">
+				description = <"n/a ([ft_i])">
+			>
+			["id245"] = <
+				text = <"Perimeter (nm)">
+				description = <"Perimeter (nm)">
+			>
+			["id248"] = <
+				text = <"Perimeter (um)">
+				description = <"Perimeter (um)">
+			>
+			["id251"] = <
+				text = <"Perimeter (mm)">
+				description = <"Perimeter (mm)">
+			>
+			["id254"] = <
+				text = <"Perimeter (cm)">
+				description = <"Perimeter (cm)">
+			>
+			["id257"] = <
+				text = <"Perimeter (m)">
+				description = <"Perimeter (m)">
+			>
+			["id260"] = <
+				text = <"Perimeter ([in_i])">
+				description = <"Perimeter ([in_i])">
+			>
+			["id263"] = <
+				text = <"Perimeter ([ft_i])">
+				description = <"Perimeter ([ft_i])">
+			>
+			["id266"] = <
+				text = <"n/a (nm)">
+				description = <"n/a (nm)">
+			>
+			["id269"] = <
+				text = <"n/a (um)">
+				description = <"n/a (um)">
+			>
+			["id272"] = <
+				text = <"n/a (mm)">
+				description = <"n/a (mm)">
+			>
+			["id275"] = <
+				text = <"n/a (cm)">
+				description = <"n/a (cm)">
+			>
+			["id278"] = <
+				text = <"n/a (m)">
+				description = <"n/a (m)">
+			>
+			["id281"] = <
+				text = <"n/a ([in_i])">
+				description = <"n/a ([in_i])">
+			>
+			["id284"] = <
+				text = <"n/a ([ft_i])">
+				description = <"n/a ([ft_i])">
+			>
+			["id287"] = <
+				text = <"n/a (nm)">
+				description = <"n/a (nm)">
+			>
+			["id290"] = <
+				text = <"n/a (um)">
+				description = <"n/a (um)">
+			>
+			["id293"] = <
+				text = <"n/a (mm)">
+				description = <"n/a (mm)">
+			>
+			["id296"] = <
+				text = <"n/a (cm)">
+				description = <"n/a (cm)">
+			>
+			["id299"] = <
+				text = <"n/a (m)">
+				description = <"n/a (m)">
+			>
+			["id302"] = <
+				text = <"n/a ([in_i])">
+				description = <"n/a ([in_i])">
+			>
+			["id305"] = <
+				text = <"n/a ([ft_i])">
+				description = <"n/a ([ft_i])">
+			>
+			["id308"] = <
+				text = <"Weight (ng)">
+				description = <"Weight (ng)">
+			>
+			["id311"] = <
+				text = <"Weight (ug)">
+				description = <"Weight (ug)">
+			>
+			["id314"] = <
+				text = <"Weight (mg)">
+				description = <"Weight (mg)">
+			>
+			["id317"] = <
+				text = <"Weight (g)">
+				description = <"Weight (g)">
+			>
+			["id320"] = <
+				text = <"Weight (kg)">
+				description = <"Weight (kg)">
+			>
+			["id323"] = <
+				text = <"Weight ([oz_av])">
+				description = <"Weight ([oz_av])">
+			>
+			["id326"] = <
+				text = <"Weight ([lb_av])">
+				description = <"Weight ([lb_av])">
+			>
+			["id329"] = <
+				text = <"n/a (ng)">
+				description = <"n/a (ng)">
+			>
+			["id332"] = <
+				text = <"n/a (ug)">
+				description = <"n/a (ug)">
+			>
+			["id335"] = <
+				text = <"n/a (mg)">
+				description = <"n/a (mg)">
+			>
+			["id338"] = <
+				text = <"n/a (g)">
+				description = <"n/a (g)">
+			>
+			["id341"] = <
+				text = <"n/a (kg)">
+				description = <"n/a (kg)">
+			>
+			["id344"] = <
+				text = <"n/a ([oz_av])">
+				description = <"n/a ([oz_av])">
+			>
+			["id347"] = <
+				text = <"n/a ([lb_av])">
+				description = <"n/a ([lb_av])">
+			>
+			["id350"] = <
+				text = <"n/a (ng)">
+				description = <"n/a (ng)">
+			>
+			["id353"] = <
+				text = <"n/a (ug)">
+				description = <"n/a (ug)">
+			>
+			["id356"] = <
+				text = <"n/a (mg)">
+				description = <"n/a (mg)">
+			>
+			["id359"] = <
+				text = <"n/a (g)">
+				description = <"n/a (g)">
+			>
+			["id362"] = <
+				text = <"n/a (kg)">
+				description = <"n/a (kg)">
+			>
+			["id365"] = <
+				text = <"n/a ([oz_av])">
+				description = <"n/a ([oz_av])">
+			>
+			["id368"] = <
+				text = <"n/a ([lb_av])">
+				description = <"n/a ([lb_av])">
+			>
+			["id43"] = <
+				text = <"Dimension">
+				description = <"A measured dimension of the specimen.">
+			>
+			["id47"] = <
+				text = <"Volume">
+				description = <"The measured or calculated space enclosed by a boundary (liquid) or occupied by an object (solid tissue).">
+			>
+			["id56"] = <
+				text = <"Perimeter">
+				description = <"The measured length of the circumference of a round or elliptical specimen or the total length of all external surfaces of a square, rectangular or irregularly shaped specimen.">
+			>
+			["id74"] = <
+				text = <"Volume (uL)">
+				description = <"Volume (uL)">
+			>
+			["id77"] = <
+				text = <"Volume (ml)">
+				description = <"Volume (ml)">
+			>
+			["id80"] = <
+				text = <"Volume (cl)">
+				description = <"Volume (cl)">
+			>
+			["id83"] = <
+				text = <"Volume (dL)">
+				description = <"Volume (dL)">
+			>
+			["id86"] = <
+				text = <"Volume (L)">
+				description = <"Volume (L)">
+			>
+			["id89"] = <
+				text = <"Volume (um3)">
+				description = <"Volume (um3)">
+			>
+			["id92"] = <
+				text = <"Volume (mm3)">
+				description = <"Volume (mm3)">
+			>
+			["id95"] = <
+				text = <"Volume (cm3)">
+				description = <"Volume (cm3)">
+			>
+			["id98"] = <
+				text = <"Volume (dm3)">
+				description = <"Volume (dm3)">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["id21"] = <http://snomed.info/id/371506001>
+			["id47"] = <http://snomed.info/id/404230009>
+			["at58"] = <http://snomed.info/id/258774008>
+			["at59"] = <http://snomed.info/id/258773002>
+			["at60"] = <http://snomed.info/id/258772007>
+			["at61"] = <http://snomed.info/id/258771000>
+			["at62"] = <http://snomed.info/id/258770004>
+			["at64"] = <http://snomed.info/id/258774008>
+			["at65"] = <http://snomed.info/id/258773002>
+			["at66"] = <http://snomed.info/id/258770004>
+			["at67"] = <http://snomed.info/id/282118007>
+			["at68"] = <http://snomed.info/id/282120005>
+			["at69"] = <http://snomed.info/id/282119004>
+			["at70"] = <http://snomed.info/id/258675004>
+			["at71"] = <http://snomed.info/id/258674000>
+			["at72"] = <http://snomed.info/id/258673006>
+			["at73"] = <http://snomed.info/id/258672001>
+			["at74"] = <http://snomed.info/id/258669008>
+			["at75"] = <http://snomed.info/id/258677007>
+			["at76"] = <http://snomed.info/id/259051005>
+			["at77"] = <http://snomed.info/id/258686002>
+			["at78"] = <http://snomed.info/id/258685003>
+			["at79"] = <http://snomed.info/id/258684004>
+			["at80"] = <http://snomed.info/id/258682000>
+			["at81"] = <http://snomed.info/id/258683005>
+			["at82"] = <http://snomed.info/id/258692008>
+			["at83"] = <http://snomed.info/id/258693003>
+		>
+		["openehr"] = <
+			["at55"] = <http://openehr.org/id/129>
+			["at56"] = <http://openehr.org/id/122>
+			["at57"] = <http://openehr.org/id/124>
+		>
+		["ucum"] = <
+			["at58"] = <http://ucum.org/id/uL>
+			["at59"] = <http://ucum.org/id/ml>
+			["at60"] = <http://ucum.org/id/cl>
+			["at61"] = <http://ucum.org/id/dL>
+			["at62"] = <http://ucum.org/id/L>
+			["at63"] = <http://ucum.org/id/um3>
+			["at64"] = <http://ucum.org/id/mm3>
+			["at65"] = <http://ucum.org/id/cm3>
+			["at66"] = <http://ucum.org/id/dm3>
+			["at67"] = <http://ucum.org/id/%5Bfoz_us%5D>
+			["at68"] = <http://ucum.org/id/%5Bgal_us%5D>
+			["at69"] = <http://ucum.org/id/%5Bpt_us%5D>
+			["at70"] = <http://ucum.org/id/nm>
+			["at71"] = <http://ucum.org/id/um>
+			["at72"] = <http://ucum.org/id/mm>
+			["at73"] = <http://ucum.org/id/cm>
+			["at74"] = <http://ucum.org/id/m>
+			["at75"] = <http://ucum.org/id/%5Bin_i%5D>
+			["at76"] = <http://ucum.org/id/%5Bft_i%5D>
+			["at77"] = <http://ucum.org/id/ng>
+			["at78"] = <http://ucum.org/id/ug>
+			["at79"] = <http://ucum.org/id/mg>
+			["at80"] = <http://ucum.org/id/g>
+			["at81"] = <http://ucum.org/id/kg>
+			["at82"] = <http://ucum.org/id/%5Boz_av%5D>
+			["at83"] = <http://ucum.org/id/%5Blb_av%5D>
+		>
+		["loinc"] = <
+			["id43"] = <http://loinc.org/84894-5>
+			["id21"] = <http://loinc.org/3154-2>
+			["id47"] = <http://loinc.org/3169-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at49", "at50", "at54", "at53", "at52">
+		>
+	>
+

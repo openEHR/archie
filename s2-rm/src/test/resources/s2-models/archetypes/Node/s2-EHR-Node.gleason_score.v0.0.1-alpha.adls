@@ -1,0 +1,465 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=70a663fa-efe8-4871-b34a-4022a46371e0)
+    s2-EHR-Node.gleason_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"David Rowed, Ocean Informatics, Australia", "Heather Leslie, Ocean Informatics, Australia", "Matt Cordell, NEHTA, Australia", "David McKillop, NEHTA, Australia", "Cathy Richardson, NEHTA, Australia", "Koray Atalag, University of Auckland, New Zealand", "David Ellis, RCPA, Australia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics UK, <ian@freshehr.com>, 2016-05-31">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.gleason_score.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.gleason_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record findings related to the Gleason Score (ISUP2005 version) - a prostate cancer grading score ratified by the International Society of Urological Pathologists (ISUP).">
+            keywords = <"histopathology", "cancer", "laboratory", "prostate", "histology", "malignancy", "lab", "pathology", "Gleason", "score", "grade", "grading">
+            use = <"Use to record findings related to the Gleason Score (ISUP2005 version) - a prostate cancer grading score ratified by the International Society of Urological Pathologists (ISUP).
+            
+            Use as a component archetype in the context of a suite of archetypes that make up a histopathology report ie OBSERVATION.laboratory_test.histopathology.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Gleason Score
+        items matches {
+            Node[id167] occurrences matches {0..1} matches {    -- Primary Gleason grade
+                value matches {
+                    Coded_ordinal[id272] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id274] matches {
+                                term matches {
+                                    Terminology_term[id273] matches {
+                                        concept matches {[at250]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id275] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id277] matches {
+                                term matches {
+                                    Terminology_term[id276] matches {
+                                        concept matches {[at251]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id278] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id280] matches {
+                                term matches {
+                                    Terminology_term[id279] matches {
+                                        concept matches {[at252]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id281] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id283] matches {
+                                term matches {
+                                    Terminology_term[id282] matches {
+                                        concept matches {[at253]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id284] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id286] matches {
+                                term matches {
+                                    Terminology_term[id285] matches {
+                                        concept matches {[at254]}    -- Grade 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id183] occurrences matches {0..1} matches {    -- Secondary Gleason grade
+                value matches {
+                    Coded_ordinal[id287] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id289] matches {
+                                term matches {
+                                    Terminology_term[id288] matches {
+                                        concept matches {[at255]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id290] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id292] matches {
+                                term matches {
+                                    Terminology_term[id291] matches {
+                                        concept matches {[at256]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id293] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id295] matches {
+                                term matches {
+                                    Terminology_term[id294] matches {
+                                        concept matches {[at257]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id296] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id298] matches {
+                                term matches {
+                                    Terminology_term[id297] matches {
+                                        concept matches {[at258]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id299] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id301] matches {
+                                term matches {
+                                    Terminology_term[id300] matches {
+                                        concept matches {[at259]}    -- Grade 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id184] occurrences matches {0..1} matches {    -- Tertiary Gleason grade
+                value matches {
+                    Coded_ordinal[id302] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id304] matches {
+                                term matches {
+                                    Terminology_term[id303] matches {
+                                        concept matches {[at260]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id305] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id307] matches {
+                                term matches {
+                                    Terminology_term[id306] matches {
+                                        concept matches {[at261]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id308] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id310] matches {
+                                term matches {
+                                    Terminology_term[id309] matches {
+                                        concept matches {[at262]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id311] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id313] matches {
+                                term matches {
+                                    Terminology_term[id312] matches {
+                                        concept matches {[at263]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id314] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id316] matches {
+                                term matches {
+                                    Terminology_term[id315] matches {
+                                        concept matches {[at264]}    -- Grade 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id198] occurrences matches {0..1} matches {    -- Total Gleason score
+                value matches {
+                    Count[id270] matches {
+                        magnitude matches {|2..10|}
+                    }
+                }
+            }
+            Node[id266] occurrences matches {0..1} matches {    -- Gleason Grade Group
+                value matches {
+                    Coded_ordinal[id317] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id319] matches {
+                                term matches {
+                                    Terminology_term[id318] matches {
+                                        concept matches {[at266]}    -- Grade Group 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id320] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id322] matches {
+                                term matches {
+                                    Terminology_term[id321] matches {
+                                        concept matches {[at267]}    -- Grade Group 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id323] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id325] matches {
+                                term matches {
+                                    Terminology_term[id324] matches {
+                                        concept matches {[at268]}    -- Grade Group 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id326] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id328] matches {
+                                term matches {
+                                    Terminology_term[id327] matches {
+                                        concept matches {[at269]}    -- Grade Group 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id329] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id331] matches {
+                                term matches {
+                                    Terminology_term[id330] matches {
+                                        concept matches {[at270]}    -- Grade Group 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["id167"] = <http://snomed.info/id/384994009>
+            ["id183"] = <http://snomed.info/id/384995005>
+            ["id184"] = <http://snomed.info/id/385002007>
+            ["id198"] = <http://snomed.info/id/372278000>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at250", "at251", "at252", "at253", "at254">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at255", "at256", "at257", "at258", "at259">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at260", "at261", "at262", "at263", "at264">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at266", "at267", "at268", "at269", "at270">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Primary Gleason grade (synthesised)">
+                description = <"The primary Gleason grade. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Secondary Gleason grade (synthesised)">
+                description = <"The secondary Gleason grade. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Tertiary Gleason grade (synthesised)">
+                description = <"The tertiary Gleason grade. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Gleason Grade Group (synthesised)">
+                description = <"The Gleason Grade Group. (synthesised)">
+            >
+            ["at250"] = <
+                text = <"Grade 1">
+                description = <"The cancerous prostate closely resembles normal prostate tissue. The glands are small, well-formed, and closely packed.">
+            >
+            ["at251"] = <
+                text = <"Grade 2">
+                description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
+            >
+            ["at252"] = <
+                text = <"Grade 3">
+                description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
+            >
+            ["at253"] = <
+                text = <"Grade 4">
+                description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
+            >
+            ["at254"] = <
+                text = <"Grade 5">
+                description = <"The tissue does not have recognizable glands. There are often just sheets of cells throughout the surrounding tissue.">
+            >
+            ["at255"] = <
+                text = <"Grade 1">
+                description = <"The cancerous prostate closely resembles normal prostate tissue. The glands are small, well-formed, and closely packed.">
+            >
+            ["at256"] = <
+                text = <"Grade 2">
+                description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
+            >
+            ["at257"] = <
+                text = <"Grade 3">
+                description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
+            >
+            ["at258"] = <
+                text = <"Grade 4">
+                description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
+            >
+            ["at259"] = <
+                text = <"Grade 5">
+                description = <"The tissue does not have recognizable glands. There are often just sheets of cells throughout the surrounding tissue.">
+            >
+            ["at260"] = <
+                text = <"Grade 1">
+                description = <"The cancerous prostate closely resembles normal prostate tissue. The glands are small, well-formed, and closely packed.">
+            >
+            ["at261"] = <
+                text = <"Grade 2">
+                description = <"The tissue still has well-formed glands, but they are larger and have more tissue between them.">
+            >
+            ["at262"] = <
+                text = <"Grade 3">
+                description = <"The tissue still has recognizable glands, but the cells are darker. At high magnification, some of these cells have left the glands and are beginning to invade the surrounding tissue.">
+            >
+            ["at263"] = <
+                text = <"Grade 4">
+                description = <"The tissue has few recognizable glands. Many cells are invading the surrounding tissue.">
+            >
+            ["at264"] = <
+                text = <"Grade 5">
+                description = <"The tissue does not have recognizable glands. There are often just sheets of cells throughout the surrounding tissue.">
+            >
+            ["at266"] = <
+                text = <"Grade Group 1">
+                description = <"Gleason score less than or equal to 6.">
+            >
+            ["at267"] = <
+                text = <"Grade Group 2">
+                description = <"Gleason score 7 (Primary grade 3 + Secondary grade 4).">
+            >
+            ["at268"] = <
+                text = <"Grade Group 3">
+                description = <"Gleason score 7 (Primary grade 4 + Secondary grade 3).">
+            >
+            ["at269"] = <
+                text = <"Grade Group 4">
+                description = <"Gleason score 8.">
+            >
+            ["at270"] = <
+                text = <"Grade Group 5">
+                description = <"Gleason score 9-10.">
+            >
+            ["id1"] = <
+                text = <"Gleason Score">
+                description = <"Gleason Score (ISUP2005 version) - a prostate cancer grading score ratified by the International Society of Urological Pathologists (ISUP), including Gleason Grade Groups.">
+            >
+            ["id167"] = <
+                text = <"Primary Gleason grade">
+                description = <"The primary Gleason grade.">
+            >
+            ["id183"] = <
+                text = <"Secondary Gleason grade">
+                description = <"The secondary Gleason grade.">
+            >
+            ["id184"] = <
+                text = <"Tertiary Gleason grade">
+                description = <"The tertiary Gleason grade.">
+            >
+            ["id198"] = <
+                text = <"Total Gleason score">
+                description = <"The sum of the primary and secondary Gleason grades.">
+            >
+            ["id266"] = <
+                text = <"Gleason Grade Group">
+                description = <"The Gleason Grade Group.">
+            >
+        >
+    >
+    

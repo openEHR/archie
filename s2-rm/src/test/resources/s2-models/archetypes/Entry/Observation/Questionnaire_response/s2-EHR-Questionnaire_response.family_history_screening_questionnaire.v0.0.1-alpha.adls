@@ -1,0 +1,229 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b0f0bb93-1cb3-491f-9690-d2e562335cf2)
+	s2-EHR-Questionnaire_response.family_history_screening_questionnaire.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Marit Alice Venheim, Helse Vest IKT AS, <marit.alice.venheim@helse-vest-ikt-no>, 2020-08-20">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.family_history_screening_questionnaire.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.family_history_screening_questionnaire.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the responses to a screening questionnaire for health-related problems found in family members.">
+			use = <"Use to record the responses to a screening questionnaire for health-related problems found in family members.
+            
+            Common use cases include, but are not limited to:
+            - Systematic questioning in any consultation; or
+            - Specific questioning related to chronic disease management or preventive health.
+            
+            In order to record the response at a specific point in time or within an interval of time, use the EVENT RM attribute.
+            
+            This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening process identifies a positive family problem and it is intended that the details are to be recorded and persisted as part of an ongoing health record, any further specific details about the family problem should be recorded using the EVALUATION.family_history archetype.">
+			keywords = <"family", "history", "health", "condition", "problem", "diagnosis", "family history", "relative">
+			misuse = <"Not to be used to record details about a specific health-related problem. Use EVALUATION.problem_diagnosis for this purpose.">
+		>
+	>
+
+definition
+	Questionnaire_response[id1] matches {	-- Family history screening questionnaire
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Screening purpose
+				value matches {
+					Text[id39] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Any presence?
+				value matches {
+					Coded_text[id40] matches {
+						term matches {
+							Terminology_term[id48] matches {
+								concept matches {[ac1]}		-- Any presence? (synthesised)
+							}
+						}
+					}
+					Plain_text[id41] 
+				}
+			}
+			Node[id10] matches {	-- Specific family health problem
+				items matches {
+					Node[id36] matches {	-- Problem/diagnosis name
+						value matches {
+							Text[id42] 
+						}
+					}
+					Node[id11] occurrences matches {0..1} matches {	-- Present?
+						value matches {
+							Coded_text[id43] matches {
+								term matches {
+									Terminology_term[id49] matches {
+										concept matches {[ac2]}		-- Present? (synthesised)
+									}
+								}
+							}
+							Plain_text[id44] 
+						}
+					}
+					Node[id19] matches {	-- Relationship
+						value matches {
+							Text[id45] 
+						}
+					}
+					Node[id38] occurrences matches {0..1} matches {	-- Age at diagnosis
+						value matches {
+							Duration_value[id46] 
+						}
+					}
+					allow_archetype Node[id37] matches {	-- Screening details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					Node[id29] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id47] 
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id30] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Any presence? (synthesised)">
+				description = <"Presence of any relevant problems in the family. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Present? (synthesised)">
+				description = <"Presence of any relevant specific problem. (synthesised)">
+			>
+			["at11"] = <
+				text = <"Yes">
+				description = <"The specific problem is present.">
+			>
+			["at12"] = <
+				text = <"No">
+				description = <"The specific problem is absent.">
+			>
+			["at13"] = <
+				text = <"Unknown">
+				description = <"It is not known whether any problems are present or absent.">
+			>
+			["at6"] = <
+				text = <"Yes">
+				description = <"Problems are present.">
+			>
+			["at7"] = <
+				text = <"No">
+				description = <"Problems are not present.">
+			>
+			["at8"] = <
+				text = <"Unknown">
+				description = <"It is not known whether any problems are present or absent.">
+			>
+			["id1"] = <
+				text = <"Family history screening questionnaire">
+				description = <"An individual- or self-reported questionnaire screening for significant health-related problems found in family members.">
+			>
+			["id10"] = <
+				text = <"Specific family health problem">
+				description = <"Screening details about a specified health problem.">
+			>
+			["id11"] = <
+				text = <"Present?">
+				description = <"Presence of any relevant specific problem.">
+			>
+			["id19"] = <
+				text = <"Relationship">
+				description = <"The relationship of the family member to the individual.
+                ">
+			>
+			["id29"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the specified problem or family member, not captured in other fields.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id36"] = <
+				text = <"Problem/diagnosis name">
+				description = <"Identification of the significant problem or diagnosis in the identified family member.">
+			>
+			["id37"] = <
+				text = <"Screening details">
+				description = <"Additional details or questions  about the specific problem or family member.">
+			>
+			["id38"] = <
+				text = <"Age at diagnosis">
+				description = <"Age of the family member at diagnosis.">
+			>
+			["id5"] = <
+				text = <"Screening purpose">
+				description = <"The reason for overall screening.">
+			>
+			["id6"] = <
+				text = <"Any presence?">
+				description = <"Presence of any relevant problems in the family.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at6"] = <http://snomed.info/id/373066001>
+			["at7"] = <http://snomed.info/id/373067005>
+			["at8"] = <http://snomed.info/id/261665006>
+			["at11"] = <http://snomed.info/id/373066001>
+			["at12"] = <http://snomed.info/id/373067005>
+			["at13"] = <http://snomed.info/id/261665006>
+		>
+		["loinc"] = <
+			["id38"] = <http://loinc.org/63932-8>
+			["id29"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at6", "at7", "at8">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at11", "at12", "at13">
+		>
+	>
+

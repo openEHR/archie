@@ -1,0 +1,145 @@
+template (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Composition.t_lab_report-urinalysis.v1.0.0
+
+specialize
+	s2-EHR-Composition.t_lab_report-generic.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2024 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Urinalysis result report">
+		>
+	>
+
+definition
+	Composition[id1.1.1] matches {	-- Urinalysis lab result report
+		/content[id0.1.1]/data matches {
+			use_archetype Node[id0.90.1, s2-EHR-Node.ColorTypePtUrineNomLabObs.v1] 
+			use_archetype Node[id0.90.2, s2-EHR-Node.OdorTypePtUrineNomLabObs.v1] 
+			use_archetype Node[id0.90.3, s2-EHR-Node.ClarityTypePtUrineNomLabObs.v1] 
+			use_archetype Node[id0.90.4, s2-EHR-Node.GlucoseMCncPtUrineQnLabObs.v1] 
+			use_archetype Node[id0.90.5, s2-EHR-Node.GlucosePrThrPtUrineOrdLabObs.v1] 
+			use_archetype Node[id0.90.6, s2-EHR-Node.BilirubinMCncPtUrineQnLabObs.v1]
+			use_archetype Node[id0.90.7, s2-EHR-Node.BilirubinPrThrPtUrineOrdLabObs.v1] 
+			use_archetype Node[id0.90.8, s2-EHR-Node.KetonesMCncPtUrineQnLabObs.v1] 
+			use_archetype Node[id0.90.9, s2-EHR-Node.KetonesPrThrPtUrineOrdLabObs.v1]
+			use_archetype Node[id0.90.10, s2-EHR-Node.SpecificgravityRdenPtUrineQnLabObs.v1] 
+			use_archetype Node[id0.90.11, s2-EHR-Node.PHLsCncPtUrineQnLabObs.v1] 
+			use_archetype Node[id0.90.12, s2-EHR-Node.ProteinMCncPtUrineQnLabObs.v1] 
+			use_archetype Node[id0.90.13, s2-EHR-Node.ProteinPrThrPtUrineOrdLabObs.v1] 
+			use_archetype Node[id0.90.14, s2-EHR-Node.UrobilinogenMCncPtUrineQnLabObs.v1] 
+			use_archetype Node[id0.90.15, s2-EHR-Node.NitritePrThrPtUrineOrdLabObs.v1] 
+			use_archetype Node[id0.90.16, s2-EHR-Node.HemoglobinPrThrPtUrineOrdLabObs.v1] 
+			use_archetype Node[id0.90.17, s2-EHR-Node.LeukocyteesterasePrThrPtUrineOrdLabObs.v1] 
+			use_archetype Node[id0.90.18, s2-EHR-Node.ReducingsubstancesPrThrPtUrineOrdLabObs.v1] 
+			use_archetype Node[id0.90.19, s2-EHR-Node.BilirubinPrThrPtUrineOrdLabObs.v1] 
+			use_archetype Node[id0.90, s2-EHR-Node.lab_analyte.v0] occurrences matches {0} 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1.1"] = <
+				text = <"Urinalysis lab report">
+				description = <"-">
+			>
+			["id0.1.1"] = <
+				text = <"Urinalysis lab panel">
+				description = <"-">
+			>
+			["id0.90.1"] = <
+				text = <"Color of Urine">
+				description = <"-">
+			>
+			["id0.90.2"] = <
+				text = <"Odor of Urine">
+				description = <"-">
+			>
+			["id0.90.3"] = <
+				text = <"Clarity of Urine">
+				description = <"-">
+			>
+			["id0.90.4"] = <
+				text = <"Glucose [Mass/volume] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.5"] = <
+				text = <"Glucose [Presence] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.6"] = <
+				text = <"Bilirubin.total [Mass/volume] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.7"] = <
+				text = <"Bilirubin.total [Presence] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.8"] = <
+				text = <"Ketones [Mass/volume] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.9"] = <
+				text = <"Ketones [Presence] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.10"] = <
+				text = <"Specific gravity of Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.11"] = <
+				text = <"pH of Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.12"] = <
+				text = <"Protein [Mass/volume] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.13"] = <
+				text = <"Protein [Presence] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.14"] = <
+				text = <"Urobilinogen [Mass/volume] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.15"] = <
+				text = <"Nitrite [Presence] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.16"] = <
+				text = <"Hemoglobin [Presence] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.17"] = <
+				text = <"Leukocyte esterase [Presence] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.18"] = <
+				text = <"Reducing substances [Presence] in Urine by Test strip">
+				description = <"-">
+			>
+			["id0.90.19"] = <
+				text = <"Bilirubin [Presence] in Urine by Confirmatory method">
+				description = <"-">
+			>
+		>
+	>
+
+	term_bindings = <
+		["loinc"] = <
+			["id0.1.1"] = <http://loinc.org/24357-6>
+		>
+	>

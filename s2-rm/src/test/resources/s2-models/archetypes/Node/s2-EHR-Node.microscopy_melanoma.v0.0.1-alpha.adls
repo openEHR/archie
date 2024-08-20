@@ -1,0 +1,729 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=37cd4a36-f779-482a-9451-569cfafc8797)
+    s2-EHR-Node.microscopy_melanoma.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Koray Atalag, University of Auckland, New Zealand", "Matt Cordell, NEHTA, Australia", "David Ellis, RCPA, Australia", "Heather Leslie, Ocean Informatics, Australia", "David McKillop, NEHTA, Australia", "Cathy Richardson, NEHTA, Australia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, UK, <ian.mcnicoll@oceaninformatics.com>, 17/05/2009">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.microscopy_melanoma.v0.0.1-alpha, copyright 17/0 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.microscopy_melanoma.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record detailed findings about melanoma of skin found on microscopic examination.">
+            keywords = <"melanoma", "lab", "malignancy", "skin", "dermatology", "histology", "histopathology", "pathology", "cancer", "dermatopathology", "laboratory">
+            use = <"To record detailed findings about microscopic examination of tissue. 
+            Use as a component archetype in the context of a suite of archetypes that make up a histopathology report ie OBSERVATION.lab_test.histopathology.">
+            misuse = <"Not designed to be used within any other archetype other than OBSERVATION.lab_test.histopathology.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Microscopic findings - Melanoma of skin
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Depth of invasion
+                items matches {
+                    Node[id3] occurrences matches {0..1} matches {    -- Breslow thickness
+                        value matches {
+                            Quantity[id129] matches {
+                                magnitude matches {|>=0.0|}
+                                precision matches {1}
+                                units matches {
+                                    Coded_text[id152] matches {
+                                        term matches {
+                                            Terminology_term[id151] matches {
+                                                concept matches {[at130]}    -- mm
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id4] occurrences matches {0..1} matches {    -- Comment on invasion measurement
+                        value matches {
+                            Text[id130]
+                        }
+                    }
+                }
+            }
+            use_archetype Node[id68, s2-EHR-Node.tumour_resection_margins.v0]    -- Surgical margins 
+            Node[id8] occurrences matches {0..1} matches {    -- Clark Level
+                value matches {
+                    Coded_text[id131] matches {
+                        term matches {
+                            Terminology_term[id153] matches {
+                                concept matches {[ac1]}    -- Clark Level (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Mitotic rate per mm2
+                value matches {
+                    Count[id132] matches {
+                        magnitude matches {|>=0|}
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Ulceration
+                items matches {
+                    Node[id23] occurrences matches {0..1} matches {    -- Ulceration
+                        value matches {
+                            Coded_text[id133] matches {
+                                term matches {
+                                    Terminology_term[id154] matches {
+                                        concept matches {[ac2]}    -- Ulceration (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id24] occurrences matches {0..1} matches {    -- Extent of ulceration
+                        value matches {
+                            Quantity[id134] matches {
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id156] matches {
+                                        term matches {
+                                            Terminology_term[id155] matches {
+                                                concept matches {[at130]}    -- mm
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            use_archetype Node[id126, s2-EHR-Node.tumour_invasion.v0] occurrences matches {0..1}     -- Lymphovascular invasion
+            Node[id27] occurrences matches {0..1} matches {    -- Microsatellites
+                items matches {
+                    Node[id28] occurrences matches {0..1} matches {    -- Microsatellites
+                        value matches {
+                            Coded_text[id135] matches {
+                                term matches {
+                                    Terminology_term[id157] matches {
+                                        concept matches {[ac3]}    -- Microsatellites (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id29] occurrences matches {0..1} matches {    -- In-transit microsatellites
+                        value matches {
+                            Coded_text[id136] matches {
+                                term matches {
+                                    Terminology_term[id158] matches {
+                                        concept matches {[ac4]}    -- In-transit microsatellites (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id48] occurrences matches {0..1} matches {    -- Tumour infiltrating lymphocytes
+                items matches {
+                    Node[id33] occurrences matches {0..1} matches {    -- Distribution
+                        value matches {
+                            Coded_text[id137] matches {
+                                term matches {
+                                    Terminology_term[id159] matches {
+                                        concept matches {[ac5]}    -- Distribution (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id84] occurrences matches {0..1} matches {    -- Density
+                        value matches {
+                            Coded_text[id138] matches {
+                                term matches {
+                                    Terminology_term[id160] matches {
+                                        concept matches {[ac6]}    -- Density (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id35] occurrences matches {0..1} matches {    -- Regression
+                items matches {
+                    Node[id52] occurrences matches {0..1} matches {    -- Intermediate/late regression
+                        value matches {
+                            Coded_text[id139] matches {
+                                term matches {
+                                    Terminology_term[id161] matches {
+                                        concept matches {[ac7]}    -- Intermediate/late regression (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    use_archetype Node[id113, s2-EHR-Node.physical_properties.v0] occurrences matches {0..1}     -- Extent of regression
+                    Node[id114] occurrences matches {0..1} matches {    -- Marginal clearance of regression
+                        value matches {
+                            Quantity[id140] matches {
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id163] matches {
+                                        term matches {
+                                            Terminology_term[id162] matches {
+                                                concept matches {[at130]}    -- mm
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id38] occurrences matches {0..1} matches {    -- Desmoplasia
+                items matches {
+                    Node[id39] occurrences matches {0..1} matches {    -- Desmoplasia
+                        value matches {
+                            Coded_text[id141] matches {
+                                term matches {
+                                    Terminology_term[id164] matches {
+                                        concept matches {[ac8]}    -- Desmoplasia (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id40] occurrences matches {0..1} matches {    -- Extent of desmoplasia
+                        value matches {
+                            Quantity[id142] matches {
+                                magnitude matches {|0.0..100.0|}
+                                units matches {
+                                    Coded_text[id166] matches {
+                                        term matches {
+                                            Terminology_term[id165] matches {
+                                                concept matches {[at131]}    -- %
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id101] occurrences matches {0..1} matches {    -- Solar elastosis
+                items matches {
+                    Node[id102] occurrences matches {0..1} matches {    -- Solar elastosis
+                        value matches {
+                            Coded_text[id143] matches {
+                                term matches {
+                                    Terminology_term[id167] matches {
+                                        concept matches {[ac9]}    -- Solar elastosis (synthesised)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id106] occurrences matches {0..1} matches {    -- Severity of solar elastosis
+                        value matches {
+                            Text[id144]
+                        }
+                    }
+                }
+            }
+            Node[id107] occurrences matches {0..1} matches {    -- Predominant cell type(s)
+                items matches {
+                    Node[id108] occurrences matches {0..1} matches {    -- Predominant cell type
+                        value matches {
+                            Coded_text[id145] matches {
+                                term matches {
+                                    Terminology_term[id168] matches {
+                                        concept matches {[ac10]}    -- Predominant cell type (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id146]
+                        }
+                    }
+                }
+            }
+            use_archetype Node[id128, s2-EHR-Node.tumour_invasion.v0]    -- Neurotropism
+            Node[id93] occurrences matches {0..1} matches {    -- Associated benign melanocytic lesion(s)
+                items matches {
+                    Node[id45] matches {    -- Associated benign melanocytic lesion
+                        value matches {
+                            Text[id147]
+                        }
+                    }
+                }
+            }
+            Node[id92] occurrences matches {0..1} matches {    -- Growth pattern/phase
+                items matches {
+                    Node[id46] occurrences matches {0..1} matches {    -- Intraepidermal growth pattern
+                        value matches {
+                            Coded_text[id148] matches {
+                                term matches {
+                                    Terminology_term[id169] matches {
+                                        concept matches {[ac11]}    -- Intraepidermal growth pattern (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id149]
+                        }
+                    }
+                    Node[id91] occurrences matches {0..1} matches {    -- Growth phase
+                        value matches {
+                            Text[id150]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at129"] = <http://openehr.org/id/122>
+        >
+        ["ucum"] = <
+            ["at130"] = <http://ucum.org/id/mm>
+            ["at131"] = <http://ucum.org/id/%25>
+        >
+        ["snomed"] = <
+            ["at130"] = <http://snomed.info/id/258673006>
+            ["at131"] = <http://snomed.info/id/415067009>
+        >
+    >
+    value_sets = <
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at84", "at85", "at86">
+        >
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at8", "at9", "at10", "at11", "at12">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at72", "at73", "at74">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at78", "at79", "at80">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at94", "at95", "at96">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at49", "at50", "at81", "at82", "at128">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at15", "at52", "at53", "at111", "at118">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at119", "at120", "at121">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at102", "at103", "at104">
+        >
+        ["ac10"] = <
+            id = <"ac10">
+            members = <"at108", "at109", "at110">
+        >
+        ["ac11"] = <
+            id = <"ac11">
+            members = <"at114", "at115", "at116", "at117">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Clark Level (synthesised)">
+                description = <"Grading of invasion of the melanoma. (synthesised)">
+            >
+            ["ac10"] = <
+                text = <"Predominant cell type (synthesised)">
+                description = <"Finding of a single predominant tumour cell type. (synthesised)">
+            >
+            ["ac11"] = <
+                text = <"Intraepidermal growth pattern (synthesised)">
+                description = <"Description of the melanoma growth pattern. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Ulceration (synthesised)">
+                description = <"Finding of tumour-associated ulceration. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Microsatellites (synthesised)">
+                description = <"Finding of microsatellites. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"In-transit microsatellites (synthesised)">
+                description = <"Finding of in-transit microsatellites. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Distribution (synthesised)">
+                description = <"Distribution pattern of tumour infiltrating lymphocytes. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Density (synthesised)">
+                description = <"Density of tumour infiltrating lymphocytes. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Intermediate/late regression (synthesised)">
+                description = <"Finding of tumour regression. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Desmoplasia (synthesised)">
+                description = <"Finding of desmoplasia. (synthesised)">
+            >
+            ["ac9"] = <
+                text = <"Solar elastosis (synthesised)">
+                description = <"Finding of solar elastosis. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Level III">
+                description = <"Melanoma cells fill and expand the papillary dermis with extension of tumour to the papillary-reticular dermal interface.">
+            >
+            ["at102"] = <
+                text = <"Present">
+                description = <"Solar elastosis is present.">
+            >
+            ["at103"] = <
+                text = <"Absent">
+                description = <"Solar elastosis is absent.">
+            >
+            ["at104"] = <
+                text = <"Indeterminate">
+                description = <"Presence of solar elastosis has not been determined.">
+            >
+            ["at108"] = <
+                text = <"Spindle cells">
+                description = <"Spindle cells represent a predominant cell type.">
+            >
+            ["at109"] = <
+                text = <"Epithelioid cells">
+                description = <"Epithelioid cells represent a predominant cell type.">
+            >
+            ["at11"] = <
+                text = <"Level IV">
+                description = <"Melanoma cells infiltrate into the reticular dermis.">
+            >
+            ["at110"] = <
+                text = <"Indeterminate">
+                description = <"A predominant type of cell has not been determined.">
+            >
+            ["at111"] = <
+                text = <"Present (percentage not determined)">
+                description = <"Tumour regression is present. Extent, as a percentage, has not been determined.">
+            >
+            ["at114"] = <
+                text = <"Pagetoid">
+                description = <"Pagetoid intraepidermal growth pattern.">
+            >
+            ["at115"] = <
+                text = <"Lentiginous">
+                description = <"Lentiginous intraepidermal growth pattern.">
+            >
+            ["at116"] = <
+                text = <"Mixed">
+                description = <"Mixed intraepidermal growth pattern.">
+            >
+            ["at117"] = <
+                text = <"Indeterminate">
+                description = <"The growth pattern has not been determined.">
+            >
+            ["at118"] = <
+                text = <"Indeterminate">
+                description = <"Presence of tumour regression has not been determined.">
+            >
+            ["at119"] = <
+                text = <"Present">
+                description = <"Desmoplasia is present.">
+            >
+            ["at12"] = <
+                text = <"Level V">
+                description = <"Melanoma cells infiltrate into the subcutaneous fat.">
+            >
+            ["at120"] = <
+                text = <"Absent">
+                description = <"Desmoplasia is absent.">
+            >
+            ["at121"] = <
+                text = <"Indeterminate">
+                description = <"Presence of desmoplasia has not been determined.">
+            >
+            ["at128"] = <
+                text = <"Present">
+                description = <"Tumour infiltrating lymphocytes are present.">
+            >
+            ["at129"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["at130"] = <
+                text = <"mm">
+                description = <"mm unit.">
+            >
+            ["at131"] = <
+                text = <"%">
+                description = <"Percent">
+            >
+            ["at15"] = <
+                text = <"Absent">
+                description = <"Tumour regression is absent.">
+            >
+            ["at49"] = <
+                text = <"Present - Brisk / Diffuse">
+                description = <"Tumour infilitrating lyphocytes are present, with infiltration of the entire base of the tumour, or of diffuse permeation of the invasive melanoma.">
+            >
+            ["at50"] = <
+                text = <"Present - Nonbrisk /  Focal">
+                description = <"There are focal areas of tumour infiltrating lymphocytes.">
+            >
+            ["at52"] = <
+                text = <"Present involving less than 75%">
+                description = <"Tumour regression is present, involving less than 75% of the tumour.">
+            >
+            ["at53"] = <
+                text = <"Present involving 75% or more">
+                description = <"Tumour regression is present, involving 75% or more of the tumour.">
+            >
+            ["at72"] = <
+                text = <"Present">
+                description = <"Tumour-associated ulceration is present.">
+            >
+            ["at73"] = <
+                text = <"Absent">
+                description = <"Tumour associated ulceration is absent.">
+            >
+            ["at74"] = <
+                text = <"Indeterminate">
+                description = <"Presence of tumour-associated ulceration has not been determined.">
+            >
+            ["at78"] = <
+                text = <"Present">
+                description = <"Microsatellites are present.">
+            >
+            ["at79"] = <
+                text = <"Absent">
+                description = <"Microsatellites are present.">
+            >
+            ["at8"] = <
+                text = <"Level I">
+                description = <"Melanoma cells are confined to the epidermis (melanoma in situ).">
+            >
+            ["at80"] = <
+                text = <"Indeterminate">
+                description = <"Presence of microsatellites has not been determined.">
+            >
+            ["at81"] = <
+                text = <"Absent">
+                description = <"Tumour infiltrating lymphocytes are absent.">
+            >
+            ["at82"] = <
+                text = <"Indeterminate">
+                description = <"Presence of tumour infiltrating lymphocytes has not been determined.">
+            >
+            ["at84"] = <
+                text = <"Sparse">
+                description = <"Sparse infiltration by lymphocytes.">
+            >
+            ["at85"] = <
+                text = <"Dense">
+                description = <"Dense infiltration by lymphocytes.">
+            >
+            ["at86"] = <
+                text = <"Indeterminate">
+                description = <"The density of tumour infiltration has not been determined.">
+            >
+            ["at9"] = <
+                text = <"Level II">
+                description = <"Melanoma cells invade into but do not fill or expand the papillary (superficial) dermis.">
+            >
+            ["at94"] = <
+                text = <"Present">
+                description = <"In-transit microsatellites are present.">
+            >
+            ["at95"] = <
+                text = <"Absent">
+                description = <"In-transit microsatellites are absent.">
+            >
+            ["at96"] = <
+                text = <"Indeterminate">
+                description = <"Findings of in-transit microsatellites has not been determined.">
+            >
+            ["id1"] = <
+                text = <"Microscopic findings - Melanoma of skin">
+                description = <"Microscopic anatomic pathology findings related to melanoma of skin.">
+            >
+            ["id101"] = <
+                text = <"Solar elastosis">
+                description = <"Findings related to solar elastosis.">
+            >
+            ["id102"] = <
+                text = <"Solar elastosis">
+                description = <"Finding of solar elastosis.">
+            >
+            ["id106"] = <
+                text = <"Severity of solar elastosis">
+                description = <"Severity of solar elastosis.">
+            >
+            ["id107"] = <
+                text = <"Predominant cell type(s)">
+                description = <"Findings of predominant cell types.">
+            >
+            ["id108"] = <
+                text = <"Predominant cell type">
+                description = <"Finding of a single predominant tumour cell type.">
+            >
+            ["id113"] = <
+                text = <"Extent of regression">
+                description = <"Details of extent of regression.">
+            >
+            ["id114"] = <
+                text = <"Marginal clearance of regression">
+                description = <"Maximum distance of regression from the surgical margin.">
+            >
+            ["id126"] = <
+                text = <"Lymphovascular invasion">
+                description = <"Details of lymphovascular invasion.">
+            >
+            ["id128"] = <
+                text = <"Neurotropism">
+                description = <"Details of neurotropism or perineural invasion.">
+            >
+            ["id14"] = <
+                text = <"Mitotic rate per mm2">
+                description = <"Mitotic rate is a measure of the proliferation status of a cell population, expressed as the number of mitoses per square millimetre.">
+            >
+            ["id2"] = <
+                text = <"Depth of invasion">
+                description = <"Depth of tumour invasion. Commonly expressed as the Breslow thickness.">
+            >
+            ["id21"] = <
+                text = <"Ulceration">
+                description = <"Findings related to tumour-associated ulceration.">
+            >
+            ["id23"] = <
+                text = <"Ulceration">
+                description = <"Finding of tumour-associated ulceration.">
+            >
+            ["id24"] = <
+                text = <"Extent of ulceration">
+                description = <"Maximum diameter of tumour-ulceration visible.">
+            >
+            ["id27"] = <
+                text = <"Microsatellites">
+                description = <"Findings related to microsatellites.">
+            >
+            ["id28"] = <
+                text = <"Microsatellites">
+                description = <"Finding of microsatellites.">
+            >
+            ["id29"] = <
+                text = <"In-transit microsatellites">
+                description = <"Finding of in-transit microsatellites.">
+            >
+            ["id3"] = <
+                text = <"Breslow thickness">
+                description = <"Depth of tumour invasion. Measured to the nearest 0.1mm.">
+            >
+            ["id33"] = <
+                text = <"Distribution">
+                description = <"Distribution pattern of tumour infiltrating lymphocytes.">
+            >
+            ["id35"] = <
+                text = <"Regression">
+                description = <"Findings related to melanoma regression.">
+            >
+            ["id38"] = <
+                text = <"Desmoplasia">
+                description = <"Findings related to desmoplasia.">
+            >
+            ["id39"] = <
+                text = <"Desmoplasia">
+                description = <"Finding of desmoplasia.">
+            >
+            ["id4"] = <
+                text = <"Comment on invasion measurement">
+                description = <"Comment on invasion measurement issues or difficulties.">
+            >
+            ["id40"] = <
+                text = <"Extent of desmoplasia">
+                description = <"Extent of desmoplasia, expressed as a percentage of invasive component.">
+            >
+            ["id45"] = <
+                text = <"Associated benign melanocytic lesion">
+                description = <"Finding of an associated benign melanocytic lesion.">
+            >
+            ["id46"] = <
+                text = <"Intraepidermal growth pattern">
+                description = <"Description of the melanoma growth pattern.">
+            >
+            ["id48"] = <
+                text = <"Tumour infiltrating lymphocytes">
+                description = <"Findings related to tumour infiltrating lymphocytes.">
+            >
+            ["id52"] = <
+                text = <"Intermediate/late regression">
+                description = <"Finding of tumour regression.">
+            >
+            ["id68"] = <
+                text = <"Surgical margins ">
+                description = <"Details of in-situ tumour at the peripheral surgical margins.">
+            >
+            ["id8"] = <
+                text = <"Clark Level">
+                description = <"Grading of invasion of the melanoma.">
+            >
+            ["id84"] = <
+                text = <"Density">
+                description = <"Density of tumour infiltrating lymphocytes.">
+            >
+            ["id91"] = <
+                text = <"Growth phase">
+                description = <"Description of the melanoma growth phase.">
+            >
+            ["id92"] = <
+                text = <"Growth pattern/phase">
+                description = <"Findings related to growth pattern and growth phase.">
+            >
+            ["id93"] = <
+                text = <"Associated benign melanocytic lesion(s)">
+                description = <"Findings of any associated benign melanocytic lesions.">
+            >
+        >
+    >
+    

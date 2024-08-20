@@ -1,0 +1,185 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=65c20b9e-9951-40a7-a4e0-5d17a7ce9c92)
+	s2-EHR-Assessment.breast_feeding_summary.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-07-22">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.breast_feeding_summary.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.breast_feeding_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary information about the breastfeeding experience of an individual.">
+			use = <"Use to record summary information about the breastfeeding experience of an individual.">
+			keywords = <"breast", ...>
+			misuse = <"Not to be used to record details about the feeding of an infant. Use EVALUATION.infant_feeding_summary for an overview of infant feeding and OBSERVATION.infant_feeding to record a feeding diary.">
+		>
+	>
+
+definition
+	Assessment[id1] matches {	-- Breast feeding summary
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Status
+				value matches {
+					Coded_text[id17] matches {
+						term matches {
+							Terminology_term[id25] matches {
+								concept matches {[ac1]}		-- Status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id18] 
+				}
+			}
+			Node[id8] matches {	-- Per episode
+				items matches {
+					Node[id9] occurrences matches {0..1} matches {	-- Episode label
+						value matches {
+							Text[id19] 
+						}
+					}
+					Node[id10] occurrences matches {0..1} matches {	-- Episode description
+						value matches {
+							Text[id20] 
+						}
+					}
+					Node[id11] occurrences matches {0..1} matches {	-- Start date
+						value matches {
+							Date_value[id21] 
+						}
+					}
+					Node[id12] occurrences matches {0..1} matches {	-- Stop date
+						value matches {
+							Date_value[id22] 
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id23] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id15] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id24] 
+				}
+			}
+			allow_archetype Node[id16] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Status (synthesised)">
+				description = <"(empty string found in original archetype)">
+			>
+			["at3"] = <
+				text = <"Currently breastfeeding">
+				description = <"The individual is currently breastfeeding.">
+			>
+			["at4"] = <
+				text = <"Previous breastfeeding">
+				description = <"The individual has breastfed in the past.">
+			>
+			["at5"] = <
+				text = <"Never breastfed">
+				description = <"The individual has never breastfed.">
+			>
+			["id1"] = <
+				text = <"Breast feeding summary">
+				description = <"Summary or persistent information about the all breastfeeding experience of an individual.">
+			>
+			["id10"] = <
+				text = <"Episode description">
+				description = <"Narrative description about breastfeeding during the identified episode.">
+			>
+			["id11"] = <
+				text = <"Start date">
+				description = <"The date when the episode of breastfeeding commenced.">
+			>
+			["id12"] = <
+				text = <"Stop date">
+				description = <"The date when the episode of breastfeeding ceased.">
+			>
+			["id13"] = <
+				text = <"Comment">
+				description = <"Additional narrative about all breastfeeding not captured in other fields.">
+			>
+			["id15"] = <
+				text = <"Last updated">
+				description = <"The date when the breast feeding summary was last updated.">
+			>
+			["id16"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id3"] = <
+				text = <"Status">
+				description = <"">
+			>
+			["id7"] = <
+				text = <"Description">
+				description = <"Narrative description about the overall breastfeeding history for an individual.">
+			>
+			["id8"] = <
+				text = <"Per episode">
+				description = <"Detail about a discrete episode of breastfeeding activity.">
+			>
+			["id9"] = <
+				text = <"Episode label">
+				description = <"Identification of an episode of breastfeeding - either as a number in a sequence and/or a named event.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id11"] = <http://loinc.org/106197-7>
+			["id10"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id13"] = <http://loinc.org/106173-8>
+			["id15"] = <http://loinc.org/106177-9>
+			["id3"] = <http://loinc.org/106199-3>
+			["id7"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at3", "at4", "at5">
+		>
+	>
+

@@ -1,0 +1,145 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c2557385-a775-4ea3-ac0c-e7b28c0a3221)
+	s2-EHR-Node.health_event.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2007-12-17">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.health_event.v0.0.1-alpha, copyright 2007 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.health_event.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about a health related event.">
+			use = <"">
+			misuse = <"">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Health event
+		items matches {
+			Node[id2] matches {	-- Event name
+				value matches {
+					Text[id12] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id13] 
+				}
+			}
+			allow_archetype Node[id4] matches {	-- Preceding symptoms and events
+				include
+					archetype_id/value matches {/s2-EHR-Node\.health_event(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.symptom_sign(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype Node[id5] matches {	-- Associated symptoms and events
+				include
+					archetype_id/value matches {/s2-EHR-Node\.symptom_sign(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.health_event(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Time elapsed
+				value matches {
+					Duration_value[id14] 
+				}
+			}
+			use_archetype Node[id7, s2-EHR-Node.person.v1] 
+			Node[id8] occurrences matches {0..1} matches {	-- Circumstances
+				value matches {
+					Text[id15] 
+				}
+			}
+			Node[id9] matches {	-- Contributing factor
+				value matches {
+					Text[id16] 
+				}
+			}
+			allow_archetype Node[id10] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id17] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Health event">
+				description = <"Details about a specific health-related event.">
+			>
+			["id10"] = <
+				text = <"Additional details">
+				description = <"Structured details about specific aspects of the event.">
+			>
+			["id11"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the health event, not captured in other fields.">
+			>
+			["id2"] = <
+				text = <"Event name">
+				description = <"Identification of the event that occurred.">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"A narrative description of the event.">
+			>
+			["id4"] = <
+				text = <"Preceding symptoms and events">
+				description = <"Symptoms and events which preceded the index event.">
+			>
+			["id5"] = <
+				text = <"Associated symptoms and events">
+				description = <"Symptoms and events which occurred at the time of the index event.">
+			>
+			["id6"] = <
+				text = <"Time elapsed">
+				description = <"The time between the event and the time of clinical assessment.">
+			>
+			["id7"] = <
+				text = <"Witness">
+				description = <"Identification of an individual who witnessed the event.">
+			>
+			["id8"] = <
+				text = <"Circumstances">
+				description = <"Narrative description the context and circumstances surrounding the event.">
+			>
+			["id9"] = <
+				text = <"Contributing factor">
+				description = <"Identification of factors contributing to the occurrence of the event.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id11"] = <http://loinc.org/106173-8>
+			["id3"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+

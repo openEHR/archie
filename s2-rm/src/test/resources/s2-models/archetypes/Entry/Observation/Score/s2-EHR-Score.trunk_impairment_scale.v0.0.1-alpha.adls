@@ -1,0 +1,929 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=74091ef7-429d-45c8-a5af-5676d25e4ec1)
+    s2-EHR-Score.trunk_impairment_scale.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Gustaf Hultgren, Cambio CDS, <gustaf.hultgren@cambio.se>, 2021-02-17">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.trunk_impairment_scale.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.trunk_impairment_scale.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results for each component parameter and their total sum for the TIS scale.">
+            keywords = <"TIS", "trunk", "impairment", "scale", "stroke", "parkinson's", "disease">
+            use = <"To record the results for each component parameter and their total sum for the TIS scale.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Trunk Impairment Scale (TIS)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Maintains starting position
+                value matches {
+                    Coded_ordinal[id76] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id78] matches {
+                                term matches {
+                                    Terminology_term[id77] matches {
+                                        concept matches {[at5]}    -- No
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id79] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id81] matches {
+                                term matches {
+                                    Terminology_term[id80] matches {
+                                        concept matches {[at6]}    -- Yes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Therapist crosses unaffected leg
+                value matches {
+                    Coded_ordinal[id82] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id84] matches {
+                                term matches {
+                                    Terminology_term[id83] matches {
+                                        concept matches {[at8]}    -- Falls or can’t maintain sitting position for 10 seconds without arm support
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id85] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id87] matches {
+                                term matches {
+                                    Terminology_term[id86] matches {
+                                        concept matches {[at9]}    -- Maintains sitting position for 10 seconds
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Patient crosses unaffected leg
+                value matches {
+                    Coded_ordinal[id88] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id90] matches {
+                                term matches {
+                                    Terminology_term[id89] matches {
+                                        concept matches {[at11]}    -- Falls
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id91] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id93] matches {
+                                term matches {
+                                    Terminology_term[id92] matches {
+                                        concept matches {[at12]}    -- Cannot cross legs without arm support
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id94] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id96] matches {
+                                term matches {
+                                    Terminology_term[id95] matches {
+                                        concept matches {[at13]}    -- Crosses legs but displaces trunk >10 cm backwards or assists crossing with hand
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id97] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id99] matches {
+                                term matches {
+                                    Terminology_term[id98] matches {
+                                        concept matches {[at14]}    -- Crosses legs without displacement or assistance
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- Static balance score
+                value matches {
+                    Count[id58] matches {
+                        magnitude matches {|0..7|}
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Shortens hemiplegic side
+                value matches {
+                    Coded_ordinal[id100] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id102] matches {
+                                term matches {
+                                    Terminology_term[id101] matches {
+                                        concept matches {[at17]}    -- Falls, needs support from upper extremity, or elbow does not touch the bed or table
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id103] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id105] matches {
+                                term matches {
+                                    Terminology_term[id104] matches {
+                                        concept matches {[at18]}    -- Moves actively without help, elbow touches bed or table
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- Shortens hemiplegic side - repetition 1
+                value matches {
+                    Coded_ordinal[id106] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id108] matches {
+                                term matches {
+                                    Terminology_term[id107] matches {
+                                        concept matches {[at20]}    -- No (or opposite) shortening/lengthening
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id109] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id111] matches {
+                                term matches {
+                                    Terminology_term[id110] matches {
+                                        concept matches {[at21]}    -- Appropriate shortening/lengthening
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id23] occurrences matches {0..1} matches {    -- Shortens hemiplegic side - repetition 2
+                value matches {
+                    Coded_ordinal[id112] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id114] matches {
+                                term matches {
+                                    Terminology_term[id113] matches {
+                                        concept matches {[at23]}    -- Compensation (with upper extremity, hips, knees, or feet)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id115] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id117] matches {
+                                term matches {
+                                    Terminology_term[id116] matches {
+                                        concept matches {[at24]}    -- Moves without compensation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Shortens unaffected side
+                value matches {
+                    Coded_ordinal[id118] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id120] matches {
+                                term matches {
+                                    Terminology_term[id119] matches {
+                                        concept matches {[at17]}    -- Falls, needs support from upper extremity, or elbow does not touch the bed or table
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id121] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id123] matches {
+                                term matches {
+                                    Terminology_term[id122] matches {
+                                        concept matches {[at18]}    -- Moves actively without help, elbow touches bed or table
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id27] occurrences matches {0..1} matches {    -- Shorten unaffected side - repetition 1
+                value matches {
+                    Coded_ordinal[id124] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id126] matches {
+                                term matches {
+                                    Terminology_term[id125] matches {
+                                        concept matches {[at20]}    -- No (or opposite) shortening/lengthening
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id127] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id129] matches {
+                                term matches {
+                                    Terminology_term[id128] matches {
+                                        concept matches {[at21]}    -- Appropriate shortening/lengthening
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id28] occurrences matches {0..1} matches {    -- Shorten unaffected side - repetition 2
+                value matches {
+                    Coded_ordinal[id130] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id132] matches {
+                                term matches {
+                                    Terminology_term[id131] matches {
+                                        concept matches {[at23]}    -- Compensation (with upper extremity, hips, knees, or feet)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id133] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id135] matches {
+                                term matches {
+                                    Terminology_term[id134] matches {
+                                        concept matches {[at24]}    -- Moves without compensation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Lifts pelvis hemiplegic side
+                value matches {
+                    Coded_ordinal[id136] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id138] matches {
+                                term matches {
+                                    Terminology_term[id137] matches {
+                                        concept matches {[at20]}    -- No (or opposite) shortening/lengthening
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id139] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id141] matches {
+                                term matches {
+                                    Terminology_term[id140] matches {
+                                        concept matches {[at21]}    -- Appropriate shortening/lengthening
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id30] occurrences matches {0..1} matches {    -- Lifts pelvis hemiplegic side - repetition 1
+                value matches {
+                    Coded_ordinal[id142] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id144] matches {
+                                term matches {
+                                    Terminology_term[id143] matches {
+                                        concept matches {[at30]}    -- Compensation (with upper extremity or foot)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id145] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id147] matches {
+                                term matches {
+                                    Terminology_term[id146] matches {
+                                        concept matches {[at31]}    -- Moves without compensation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id33] occurrences matches {0..1} matches {    -- Lifts pelvis unaffected side
+                value matches {
+                    Coded_ordinal[id148] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id150] matches {
+                                term matches {
+                                    Terminology_term[id149] matches {
+                                        concept matches {[at20]}    -- No (or opposite) shortening/lengthening
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id151] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id153] matches {
+                                term matches {
+                                    Terminology_term[id152] matches {
+                                        concept matches {[at21]}    -- Appropriate shortening/lengthening
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id34] occurrences matches {0..1} matches {    -- Lifts pelvis unaffected side - repetition 1
+                value matches {
+                    Coded_ordinal[id154] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id156] matches {
+                                term matches {
+                                    Terminology_term[id155] matches {
+                                        concept matches {[at30]}    -- Compensation (with upper extremity or foot)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id157] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id159] matches {
+                                term matches {
+                                    Terminology_term[id158] matches {
+                                        concept matches {[at31]}    -- Moves without compensation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id35] occurrences matches {0..1} matches {    -- Dynamic Balance score
+                value matches {
+                    Count[id69] matches {
+                        magnitude matches {|0..10|}
+                    }
+                }
+            }
+            Node[id36] occurrences matches {0..1} matches {    -- Rotates upper trunk
+                value matches {
+                    Coded_ordinal[id160] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id162] matches {
+                                term matches {
+                                    Terminology_term[id161] matches {
+                                        concept matches {[at36]}    -- Hemiplegic side not moved 3x
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id163] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id165] matches {
+                                term matches {
+                                    Terminology_term[id164] matches {
+                                        concept matches {[at37]}    -- Assymetrical rotation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id166] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id168] matches {
+                                term matches {
+                                    Terminology_term[id167] matches {
+                                        concept matches {[at38]}    -- Symmetrical rotation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id40] occurrences matches {0..1} matches {    -- Rotates upper trunk - repetition 1
+                value matches {
+                    Coded_ordinal[id169] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id171] matches {
+                                term matches {
+                                    Terminology_term[id170] matches {
+                                        concept matches {[at40]}    -- Assymetrical rotation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id172] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id174] matches {
+                                term matches {
+                                    Terminology_term[id173] matches {
+                                        concept matches {[at41]}    -- Symmetrical rotation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id43] occurrences matches {0..1} matches {    -- Rotates lower trunk
+                value matches {
+                    Coded_ordinal[id175] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id177] matches {
+                                term matches {
+                                    Terminology_term[id176] matches {
+                                        concept matches {[at36]}    -- Hemiplegic side not moved 3x
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id178] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id180] matches {
+                                term matches {
+                                    Terminology_term[id179] matches {
+                                        concept matches {[at37]}    -- Assymetrical rotation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id181] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id183] matches {
+                                term matches {
+                                    Terminology_term[id182] matches {
+                                        concept matches {[at38]}    -- Symmetrical rotation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id50] occurrences matches {0..1} matches {    -- Rotates lower trunk - repetition 1
+                value matches {
+                    Coded_ordinal[id184] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id186] matches {
+                                term matches {
+                                    Terminology_term[id185] matches {
+                                        concept matches {[at40]}    -- Assymetrical rotation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id187] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id189] matches {
+                                term matches {
+                                    Terminology_term[id188] matches {
+                                        concept matches {[at41]}    -- Symmetrical rotation
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id44] occurrences matches {0..1} matches {    -- Coordination score
+                value matches {
+                    Count[id74] matches {
+                        magnitude matches {|0..6|}
+                    }
+                }
+            }
+            Node[id45] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id75] matches {
+                        magnitude matches {|0..23|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id54] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at8", "at9">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at11", "at12", "at13", "at14">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at17", "at18">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at20", "at21">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at23", "at24">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at17", "at18">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at20", "at21">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at23", "at24">
+        >
+        ["ac10"] = <
+            id = <"ac10">
+            members = <"at20", "at21">
+        >
+        ["ac11"] = <
+            id = <"ac11">
+            members = <"at30", "at31">
+        >
+        ["ac12"] = <
+            id = <"ac12">
+            members = <"at20", "at21">
+        >
+        ["ac13"] = <
+            id = <"ac13">
+            members = <"at30", "at31">
+        >
+        ["ac14"] = <
+            id = <"ac14">
+            members = <"at36", "at37", "at38">
+        >
+        ["ac15"] = <
+            id = <"ac15">
+            members = <"at40", "at41">
+        >
+        ["ac16"] = <
+            id = <"ac16">
+            members = <"at36", "at37", "at38">
+        >
+        ["ac17"] = <
+            id = <"ac17">
+            members = <"at40", "at41">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Maintains starting position (synthesised)">
+                description = <"Patient maintains starting position without support for 10 seconds. (synthesised)">
+            >
+            ["ac10"] = <
+                text = <"Lifts pelvis hemiplegic side (synthesised)">
+                description = <"Lifts pelvis from bed or table at hemiplegic side (shortens hemiplegic side and lengthens unaffected side) and returns to starting position. (synthesised)">
+            >
+            ["ac11"] = <
+                text = <"Lifts pelvis hemiplegic side - repetition 1 (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac12"] = <
+                text = <"Lifts pelvis unaffected side (synthesised)">
+                description = <"Lifts pelvis from bed or table at unaffected side (shortens unaffected side and lengthens hemiplegic side) and returns to starting position. (synthesised)">
+            >
+            ["ac13"] = <
+                text = <"Lifts pelvis unaffected side - repetition 1 (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac14"] = <
+                text = <"Rotates upper trunk (synthesised)">
+                description = <"Rotates upper trunk 6x (each shoulder moved forward 3x), hemiplegic side must move first, head fixated in starting position. (synthesised)">
+            >
+            ["ac15"] = <
+                text = <"Rotates upper trunk - repetition 1 (synthesised)">
+                description = <"Repeats upper trunk rotations within 6 seconds. (synthesised)">
+            >
+            ["ac16"] = <
+                text = <"Rotates lower trunk (synthesised)">
+                description = <"Rotate lower trunk 6x (each knee moved forward 3x), hemiplegic side must move first, upper trunk fixated in starting position. (synthesised)">
+            >
+            ["ac17"] = <
+                text = <"Rotates lower trunk - repetition 1 (synthesised)">
+                description = <"Repeats lower trunk rotation within 6 seconds. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Therapist crosses unaffected leg (synthesised)">
+                description = <"Therapist crosses unaffected leg over hemiplegic leg. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Patient crosses unaffected leg (synthesised)">
+                description = <"Patient crosses unaffected leg over hemiplegic leg. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Shortens hemiplegic side (synthesised)">
+                description = <"Patient touches the bed or table with hemiplegic elbow (shortens hemiplegic side and lengthens unaffected side) and returns to starting position. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Shortens hemiplegic side - repetition 1 (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac6"] = <
+                text = <"Shortens hemiplegic side - repetition 2 (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac7"] = <
+                text = <"Shortens unaffected side (synthesised)">
+                description = <"Patient touches the bed or table with unaffected elbow (shortens unaffected side and lengthens hemiplegic side) and returns to starting position. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"Shorten unaffected side - repetition 1 (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac9"] = <
+                text = <"Shorten unaffected side - repetition 2 (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["at11"] = <
+                text = <"Falls">
+                description = <"">
+            >
+            ["at12"] = <
+                text = <"Cannot cross legs without arm support">
+                description = <"">
+            >
+            ["at13"] = <
+                text = <"Crosses legs but displaces trunk >10 cm backwards or assists crossing with hand">
+                description = <"">
+            >
+            ["at14"] = <
+                text = <"Crosses legs without displacement or assistance">
+                description = <"">
+            >
+            ["at17"] = <
+                text = <"Falls, needs support from upper extremity, or elbow does not touch the bed or table">
+                description = <"">
+            >
+            ["at18"] = <
+                text = <"Moves actively without help, elbow touches bed or table">
+                description = <"">
+            >
+            ["at20"] = <
+                text = <"No (or opposite) shortening/lengthening">
+                description = <"">
+            >
+            ["at21"] = <
+                text = <"Appropriate shortening/lengthening">
+                description = <"">
+            >
+            ["at23"] = <
+                text = <"Compensation (with upper extremity, hips, knees, or feet)">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"Moves without compensation">
+                description = <"">
+            >
+            ["at30"] = <
+                text = <"Compensation (with upper extremity or foot)">
+                description = <"">
+            >
+            ["at31"] = <
+                text = <"Moves without compensation">
+                description = <"">
+            >
+            ["at36"] = <
+                text = <"Hemiplegic side not moved 3x">
+                description = <"">
+            >
+            ["at37"] = <
+                text = <"Assymetrical rotation">
+                description = <"">
+            >
+            ["at38"] = <
+                text = <"Symmetrical rotation">
+                description = <"">
+            >
+            ["at40"] = <
+                text = <"Assymetrical rotation">
+                description = <"">
+            >
+            ["at41"] = <
+                text = <"Symmetrical rotation">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at8"] = <
+                text = <"Falls or can’t maintain sitting position for 10 seconds without arm support">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"Maintains sitting position for 10 seconds">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Trunk Impairment Scale (TIS)">
+                description = <"An assessment score to evaluate trunk mobility and stability in patients with neurological deficits.">
+            >
+            ["id11"] = <
+                text = <"Patient crosses unaffected leg">
+                description = <"Patient crosses unaffected leg over hemiplegic leg.">
+            >
+            ["id16"] = <
+                text = <"Static balance score">
+                description = <"The sum of the three parameters for the Static balance score component.">
+            >
+            ["id17"] = <
+                text = <"Shortens hemiplegic side">
+                description = <"Patient touches the bed or table with hemiplegic elbow (shortens hemiplegic side and lengthens unaffected side) and returns to starting position.">
+            >
+            ["id20"] = <
+                text = <"Shortens hemiplegic side - repetition 1">
+                description = <"">
+            >
+            ["id23"] = <
+                text = <"Shortens hemiplegic side - repetition 2">
+                description = <"">
+            >
+            ["id26"] = <
+                text = <"Shortens unaffected side">
+                description = <"Patient touches the bed or table with unaffected elbow (shortens unaffected side and lengthens hemiplegic side) and returns to starting position.">
+            >
+            ["id27"] = <
+                text = <"Shorten unaffected side - repetition 1">
+                description = <"">
+            >
+            ["id28"] = <
+                text = <"Shorten unaffected side - repetition 2">
+                description = <"">
+            >
+            ["id29"] = <
+                text = <"Lifts pelvis hemiplegic side">
+                description = <"Lifts pelvis from bed or table at hemiplegic side (shortens hemiplegic side and lengthens unaffected side) and returns to starting position.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id30"] = <
+                text = <"Lifts pelvis hemiplegic side - repetition 1">
+                description = <"">
+            >
+            ["id33"] = <
+                text = <"Lifts pelvis unaffected side">
+                description = <"Lifts pelvis from bed or table at unaffected side (shortens unaffected side and lengthens hemiplegic side) and returns to starting position.">
+            >
+            ["id34"] = <
+                text = <"Lifts pelvis unaffected side - repetition 1">
+                description = <"">
+            >
+            ["id35"] = <
+                text = <"Dynamic Balance score">
+                description = <"The sum of the ten parameters for the Dynamic balance score component.">
+            >
+            ["id36"] = <
+                text = <"Rotates upper trunk">
+                description = <"Rotates upper trunk 6x (each shoulder moved forward 3x), hemiplegic side must move first, head fixated in starting position.">
+            >
+            ["id40"] = <
+                text = <"Rotates upper trunk - repetition 1">
+                description = <"Repeats upper trunk rotations within 6 seconds.">
+            >
+            ["id43"] = <
+                text = <"Rotates lower trunk">
+                description = <"Rotate lower trunk 6x (each knee moved forward 3x), hemiplegic side must move first, upper trunk fixated in starting position.">
+            >
+            ["id44"] = <
+                text = <"Coordination score">
+                description = <"The sum of the four parameters for the Coordination score component.">
+            >
+            ["id45"] = <
+                text = <"Total score">
+                description = <"The total sum of the Static balance, Dynamic balance, and Coordination scores.">
+            >
+            ["id5"] = <
+                text = <"Maintains starting position">
+                description = <"Patient maintains starting position without support for 10 seconds.">
+            >
+            ["id50"] = <
+                text = <"Rotates lower trunk - repetition 1">
+                description = <"Repeats lower trunk rotation within 6 seconds.">
+            >
+            ["id54"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id8"] = <
+                text = <"Therapist crosses unaffected leg">
+                description = <"Therapist crosses unaffected leg over hemiplegic leg.">
+            >
+        >
+    >
+    

@@ -1,0 +1,563 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=899fdb6c-3f20-4266-a96d-000f06f00d05)
+	s2-EHR-Direct_observation.embryo_assessment.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-10-28">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.embryo_assessment.v1.0.0, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.embryo_assessment.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the assessment of morphology and development of a single oocyte or embryo.">
+			use = <"Use to record details about assessment of morphology and development of a single oocyte, zygote, cleavage-stage embryo or blastocyst, usually as part of assisted reproduction treatment.
+            
+            This OBSERVATION archetype also supports recording morphokinetic data and timed annotations obtained during time-lapse microscopy of embryo development.">
+			keywords = <"in vitro", "fertilization", "IVF", "reproductive medicine", "zygote", "fertilised", "fertilized", "oocyte", "egg", "fertilisation", "embryo", "reproduction", "ART", "blastocyst", "morphology", "time-lapse">
+			misuse = <"Not to be used for recording details of procedures involving oocytes and embryos, like insemination, microinjection or biopsy - use specific ACTION archetype for this purpose.
+            
+            Not to be used for recording non-morphological assessment of single oocyte or embryo, like genetic or metabolic tests - use relevant OBSERVATION archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Gunn Elin Blakkisrud, DIPS ASA, Norway", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Rosane Gotardo, Systema Ltda., Brazil", "Heather Grain, Llewelyn Grain Informatics, Australia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Manisha Mantri, C-DAC, India", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway", "Julius Hreinsson, Laboratory Director at Reproductive Medicine, Sahlgrenska University Hospital, Sweden">
+
+definition
+	Direct_observation[id1] matches {	-- Oocyte and embryo assessment
+		data matches {
+			Node[id11] occurrences matches {0..1} matches {	-- Label
+				value matches {
+					Text[id69] 
+				}
+			}
+			Node[id12] matches {	-- ID
+				value matches {
+					Rwe_id_ref[id70] 
+					Text[id71] 
+				}
+			}
+			Node[id35] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id72] 
+				}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Developmental stage
+				value matches {
+					Coded_text[id73] matches {
+						term matches {
+							Terminology_term[id95] matches {
+								concept matches {[ac1]}		-- Developmental stage (synthesised)
+							}
+						}
+					}
+					Plain_text[id74] 
+				}
+			}
+			Node[id45] occurrences matches {0..1} matches {	-- Developmental event
+				value matches {
+					Plain_text[id75] 
+					Coded_text[id76] matches {
+						term matches {
+							Terminology_term[id96] matches {
+								concept matches {[ac2]}		-- Developmental event (synthesised)
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id14] matches {	-- Morphological findings
+				include
+					archetype_id/value matches {/s2-EHR-Node\.exam_embryo\.v1|s2-EHR-Node\.exam_blastocyst\.v1|s2-EHR-Node\.exam_oocyte\.v1|s2-EHR-Node\.exam_zygote\.v1/}
+			}
+			use_archetype Node[id23, s2-EHR-Node.media_file.v1] 
+			Node[id24] occurrences matches {0..1} matches {	-- Time post-insemination
+				value matches {
+					Duration_value[id77] 
+				}
+			}
+			Node[id25] matches {	-- Interpretation
+				value matches {
+					Text[id78] 
+				}
+			}
+			Node[id36] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id79] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id68] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			use_archetype Node[id6, s2-EHR-Node.device.v1] 
+			Node[id7] occurrences matches {0..1} matches {	-- Culture dish ID
+				value matches {
+					Rwe_id_ref[id92] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id93] matches {
+						term matches {
+							Terminology_term[id97] matches {
+								concept matches {[ac3]}		-- Method (synthesised)
+							}
+						}
+					}
+					Plain_text[id94] 
+				}
+			}
+		}
+		data_series matches {
+			Point_event[id67] occurrences matches {0..1} matches {	-- Oocyte collection assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id28] occurrences matches {0..1} matches {	-- Fertilisation assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id29] occurrences matches {0..1} matches {	-- Syngamy assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id30] occurrences matches {0..1} matches {	-- Early cleavage assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id31] occurrences matches {0..1} matches {	-- Day-2 embryo assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id32] occurrences matches {0..1} matches {	-- Day-3 embryo assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id33] occurrences matches {0..1} matches {	-- Day-4 embryo assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id34] occurrences matches {0..1} matches {	-- Day-5 embryo assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id66] occurrences matches {0..1} matches {	-- Day-6 embryo assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id63] occurrences matches {0..1} matches {	-- Freezing assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id64] occurrences matches {0..1} matches {	-- Thawing assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+			Point_event[id65] occurrences matches {0..1} matches {	-- Embryo transfer assessment
+				items matches {
+					use_node Node[id11] /data[id11]	-- /data[Label]
+					use_node Node[id12] /data[id12]	-- /data[ID]
+					use_node Node[id35] /data[id35]	-- /data[Description]
+					use_node Node[id37] /data[id37]	-- /data[Developmental stage]
+					use_node Node[id45] /data[id45]	-- /data[Developmental event]
+					use_node Node[id14] /data[id14]	-- /data[Morphological findings]
+					use_node Node[id23] /data[id23]	-- /data[Image representation]
+					use_node Node[id24] /data[id24]	-- /data[Time post-insemination]
+					use_node Node[id25] /data[id25]	-- /data[Interpretation]
+					use_node Node[id36] /data[id36]	-- /data[Comment]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Developmental stage (synthesised)">
+				description = <"Developmental stage of the oocyte or embryo. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Developmental event (synthesised)">
+				description = <"Recording of a developmental event observed during time-lapse microscopy. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Method (synthesised)">
+				description = <"Method for assessment of morphology and development of the oocyte or embryo. (synthesised)">
+			>
+			["at37"] = <
+				text = <"Pronuclear stage">
+				description = <"Pronuclear zygote stage.">
+			>
+			["at38"] = <
+				text = <"2-cell stage">
+				description = <"2-cell stage.">
+			>
+			["at39"] = <
+				text = <"4-cell stage">
+				description = <"4-cell stage.">
+			>
+			["at40"] = <
+				text = <"8-cell stage">
+				description = <"8-cell stage.">
+			>
+			["at41"] = <
+				text = <"Morula">
+				description = <"Morula stage.">
+			>
+			["at42"] = <
+				text = <"Blastocyst">
+				description = <"Blastocyst stage.">
+			>
+			["at43"] = <
+				text = <"Oocyte">
+				description = <"Oocyte stage.">
+			>
+			["at45"] = <
+				text = <"tPB2 extrusion">
+				description = <"The second polar body is completely detached from the oolemma.">
+			>
+			["at46"] = <
+				text = <"tPNa">
+				description = <"Appearance of individual pronuclei.">
+			>
+			["at47"] = <
+				text = <"tPNf">
+				description = <"Fading of pronuclei.">
+			>
+			["at48"] = <
+				text = <"t2">
+				description = <"The embryo reaches 2 blastomeres.">
+			>
+			["at49"] = <
+				text = <"t3">
+				description = <"The embryo reaches 3 blastomeres.">
+			>
+			["at50"] = <
+				text = <"t4">
+				description = <"The embryo reaches 4 blastomeres.">
+			>
+			["at51"] = <
+				text = <"t5">
+				description = <"The embryo reaches 5 blastomeres.">
+			>
+			["at52"] = <
+				text = <"t6">
+				description = <"The embryo reaches 6 blastomeres.">
+			>
+			["at53"] = <
+				text = <"t7">
+				description = <"The embryo reaches 7 blastomeres.">
+			>
+			["at54"] = <
+				text = <"t8">
+				description = <"The embryo reaches 8 blastomeres.">
+			>
+			["at55"] = <
+				text = <"tSC">
+				description = <"Evidence of compaction.">
+			>
+			["at56"] = <
+				text = <"tM">
+				description = <"Completion of compaction process.">
+			>
+			["at57"] = <
+				text = <"tSB">
+				description = <"Initiation of blastulation.">
+			>
+			["at58"] = <
+				text = <"tB">
+				description = <"Full blastocyst.">
+			>
+			["at59"] = <
+				text = <"tE">
+				description = <"Initiation of expansion.">
+			>
+			["at60"] = <
+				text = <"tHN">
+				description = <"Herniation.">
+			>
+			["at61"] = <
+				text = <"tHB">
+				description = <"Fully hatched blastocyst.">
+			>
+			["at8"] = <
+				text = <"Manual">
+				description = <"Morphology and development were assessed by manual microscopy.">
+			>
+			["at9"] = <
+				text = <"Time-lapse">
+				description = <"Morphology and development were assessed by automated device.">
+			>
+			["id1"] = <
+				text = <"Oocyte and embryo assessment">
+				description = <"Assessment of morphological features and development of a single oocyte or embryo.">
+			>
+			["id11"] = <
+				text = <"Label">
+				description = <"Label or name identifying an oocyte or embryo.">
+			>
+			["id12"] = <
+				text = <"ID">
+				description = <"The unique identifier for the oocyte or embryo.">
+			>
+			["id14"] = <
+				text = <"Morphological findings">
+				description = <"Structured morphological findings appropriate for the developmental stage of the oocyte or embryo.">
+			>
+			["id23"] = <
+				text = <"Image representation">
+				description = <"Digital image, video or diagram representing morphology and development of the oocyte or embryo.">
+			>
+			["id24"] = <
+				text = <"Time post-insemination">
+				description = <"The duration since insemination.">
+			>
+			["id25"] = <
+				text = <"Interpretation">
+				description = <"Clinical interpretation of the morphological and developmental assessment of the oocyte or embryo.">
+			>
+			["id28"] = <
+				text = <"Fertilisation assessment">
+				description = <"Observation of the inseminated oocyte to assess fertilization.">
+			>
+			["id29"] = <
+				text = <"Syngamy assessment">
+				description = <"Observation of the inseminated oocyte to assess syngamy.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Early cleavage assessment">
+				description = <"Observation of the embryo to assess early first cell cleavage.">
+			>
+			["id31"] = <
+				text = <"Day-2 embryo assessment">
+				description = <"Embryo observation on Day 2 post insemination.">
+			>
+			["id32"] = <
+				text = <"Day-3 embryo assessment">
+				description = <"Embryo observation on Day 3 post insemination.">
+			>
+			["id33"] = <
+				text = <"Day-4 embryo assessment">
+				description = <"Embryo observation on Day 4 post insemination.">
+			>
+			["id34"] = <
+				text = <"Day-5 embryo assessment">
+				description = <"Embryo observation on Day 5 post insemination.">
+			>
+			["id35"] = <
+				text = <"Description">
+				description = <"General description of the oocyte or embryo.">
+			>
+			["id36"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the oocyte or embryo assessment, not captured in other fields.">
+			>
+			["id37"] = <
+				text = <"Developmental stage">
+				description = <"Developmental stage of the oocyte or embryo.">
+			>
+			["id45"] = <
+				text = <"Developmental event">
+				description = <"Recording of a developmental event observed during time-lapse microscopy.">
+			>
+			["id6"] = <
+				text = <"Device">
+				description = <"Details of the device used to assess morphology and development of the oocyte or embryo.">
+			>
+			["id63"] = <
+				text = <"Freezing assessment">
+				description = <"Oocyte or embryo observation at cryopreservation.">
+			>
+			["id64"] = <
+				text = <"Thawing assessment">
+				description = <"Oocyte or embryo observation at thawing.">
+			>
+			["id65"] = <
+				text = <"Embryo transfer assessment">
+				description = <"Embryo observation at embryo transfer.">
+			>
+			["id66"] = <
+				text = <"Day-6 embryo assessment">
+				description = <"Embryo observation on Day 6 post insemination.">
+			>
+			["id67"] = <
+				text = <"Oocyte collection assessment">
+				description = <"Observation of the oocyte at oocyte collection.">
+			>
+			["id68"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id7"] = <
+				text = <"Culture dish ID">
+				description = <"The unique identifier for the culture dish containing the oocyte or embryo.">
+			>
+			["id8"] = <
+				text = <"Method">
+				description = <"Method for assessment of morphology and development of the oocyte or embryo.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id25"] = <http://loinc.org/64110-0>
+			["id6"] = <http://loinc.org/74720-4>
+			["id35"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id36"] = <http://loinc.org/106173-8>
+			["id8"] = <http://loinc.org/106191-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at43", "at37", "at38", "at39", "at40", "at41", "at42">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at45", "at46", "at47", "at48", "at49", "at50", "at51", "at52", "at53", "at54", "at55", "at56", "at57", "at58", "at59", "at60", "at61">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at8", "at9">
+		>
+	>
+

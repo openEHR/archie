@@ -1,0 +1,121 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2fa0eb6a-6450-4f9b-9c2e-1a246b226966)
+	s2-EHR-Node.physiological_monitoring.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2017-07-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.physiological_monitoring.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.physiological_monitoring.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details of the monitoring applied in the provision of healthcare.">
+			use = <"Use to record details of monitoring applied during the provision of healthcare. 
+            
+            This archetype is intended for use as a component of an INSTRUCTION or ACTION, for example procedure archetype.">
+			keywords = <"telemetry", "facial nerve", "electrocardiography", "haemodynamic", "intercranial pressure", "electroencephalography">
+			misuse = <"Do not use to record the results of the monitoring, use OBSERVATION.monitoring for this purpose.">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Physiological monitoring
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Monitoring type
+				value matches {
+					Text[id9] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Body site
+				value matches {
+					Text[id10] 
+				}
+			}
+			use_archetype Node[id4, s2-EHR-Node.anatomical_location.v1] 
+			allow_archetype Node[id5] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype Node[id6] matches {	-- Medical device
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id11] 
+				}
+			}
+			allow_archetype Node[id8] matches {	-- Monitoring not done
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Physiological monitoring">
+				description = <"Details of the monitoring applied in the provision of healthcare.">
+			>
+			["id2"] = <
+				text = <"Monitoring type">
+				description = <"Narrative description of the category or kind of monitoring.">
+			>
+			["id3"] = <
+				text = <"Body site">
+				description = <"Identification of a single physical site either on, or within the human body.">
+			>
+			["id4"] = <
+				text = <"Structured body site">
+				description = <"Additional detail using specific region or a point on , or within the identified body site.">
+			>
+			["id5"] = <
+				text = <"Additional details">
+				description = <"Structured additional information about the monitoring.">
+			>
+			["id6"] = <
+				text = <"Medical device">
+				description = <"To record the details of a medical device to capture physiological monitoring.">
+			>
+			["id7"] = <
+				text = <"Comment">
+				description = <"Additional narrative about physiological monitoring not captured in other fields.">
+			>
+			["id8"] = <
+				text = <"Monitoring not done">
+				description = <"Details to record that the physiological monitoring was not performed.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id3"] = <http://loinc.org/39111-0>
+			["id7"] = <http://loinc.org/106173-8>
+		>
+	>
+

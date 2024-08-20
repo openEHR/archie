@@ -1,0 +1,860 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6a945c42-b1bd-4eeb-ba24-0abb96e9b248)
+	s2-EHR-Score.grace_admission.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Syeeda Farruque, Cambio Healthcare Systems, <models@cambiocds.com>, 2017-02-18">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.grace_admission.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.grace_admission.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the results for each component parameter, the total sum and grade for the GRACE score recorded at presentation or on admission.">
+			use = <"Use to record the results for each component parameter, the total sum and grade for the GRACE score recorded at presentation or on admission.">
+			keywords = <"GRACE", "ACS", "Risk", "score", "STEMI", "NSTEMI", "ACS", "Acute Coronary Syndrome", "cardiology">
+			misuse = <"Not to be used to record details about the followup GRACE score recorded at discharge - use the OBSERVATION.grace_discharge for this purpose.
+            
+            Not to be used to record details about the GRACE 2.0 score.">
+		>
+	>
+	other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+
+definition
+	Score[id1] matches {	-- GRACE score (admission)
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Age
+				value matches {
+					Coded_ordinal[id66] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id68] matches {
+								term matches {
+									Terminology_term[id67] matches {
+										concept matches {[at14]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id69] matches {
+						magnitude matches {8}
+						concept matches {
+							Coded_text[id71] matches {
+								term matches {
+									Terminology_term[id70] matches {
+										concept matches {[at15]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id72] matches {
+						magnitude matches {25}
+						concept matches {
+							Coded_text[id74] matches {
+								term matches {
+									Terminology_term[id73] matches {
+										concept matches {[at16]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id75] matches {
+						magnitude matches {41}
+						concept matches {
+							Coded_text[id77] matches {
+								term matches {
+									Terminology_term[id76] matches {
+										concept matches {[at17]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id78] matches {
+						magnitude matches {58}
+						concept matches {
+							Coded_text[id80] matches {
+								term matches {
+									Terminology_term[id79] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id81] matches {
+						magnitude matches {75}
+						concept matches {
+							Coded_text[id83] matches {
+								term matches {
+									Terminology_term[id82] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id84] matches {
+						magnitude matches {91}
+						concept matches {
+							Coded_text[id86] matches {
+								term matches {
+									Terminology_term[id85] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id87] matches {
+						magnitude matches {100}
+						concept matches {
+							Coded_text[id89] matches {
+								term matches {
+									Terminology_term[id88] matches {
+										concept matches {[at21]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Heart rate
+				value matches {
+					Coded_ordinal[id90] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id92] matches {
+								term matches {
+									Terminology_term[id91] matches {
+										concept matches {[at22]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id93] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id95] matches {
+								term matches {
+									Terminology_term[id94] matches {
+										concept matches {[at23]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id96] matches {
+						magnitude matches {9}
+						concept matches {
+							Coded_text[id98] matches {
+								term matches {
+									Terminology_term[id97] matches {
+										concept matches {[at24]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id99] matches {
+						magnitude matches {15}
+						concept matches {
+							Coded_text[id101] matches {
+								term matches {
+									Terminology_term[id100] matches {
+										concept matches {[at25]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id102] matches {
+						magnitude matches {24}
+						concept matches {
+							Coded_text[id104] matches {
+								term matches {
+									Terminology_term[id103] matches {
+										concept matches {[at26]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id105] matches {
+						magnitude matches {38}
+						concept matches {
+							Coded_text[id107] matches {
+								term matches {
+									Terminology_term[id106] matches {
+										concept matches {[at27]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id108] matches {
+						magnitude matches {46}
+						concept matches {
+							Coded_text[id110] matches {
+								term matches {
+									Terminology_term[id109] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Systolic blood pressure
+				value matches {
+					Coded_ordinal[id111] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id113] matches {
+								term matches {
+									Terminology_term[id112] matches {
+										concept matches {[at29]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id114] matches {
+						magnitude matches {10}
+						concept matches {
+							Coded_text[id116] matches {
+								term matches {
+									Terminology_term[id115] matches {
+										concept matches {[at30]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id117] matches {
+						magnitude matches {24}
+						concept matches {
+							Coded_text[id119] matches {
+								term matches {
+									Terminology_term[id118] matches {
+										concept matches {[at31]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id120] matches {
+						magnitude matches {34}
+						concept matches {
+							Coded_text[id122] matches {
+								term matches {
+									Terminology_term[id121] matches {
+										concept matches {[at32]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id123] matches {
+						magnitude matches {43}
+						concept matches {
+							Coded_text[id125] matches {
+								term matches {
+									Terminology_term[id124] matches {
+										concept matches {[at33]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id126] matches {
+						magnitude matches {53}
+						concept matches {
+							Coded_text[id128] matches {
+								term matches {
+									Terminology_term[id127] matches {
+										concept matches {[at34]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id129] matches {
+						magnitude matches {58}
+						concept matches {
+							Coded_text[id131] matches {
+								term matches {
+									Terminology_term[id130] matches {
+										concept matches {[at35]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Creatinine level
+				value matches {
+					Coded_ordinal[id132] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id134] matches {
+								term matches {
+									Terminology_term[id133] matches {
+										concept matches {[at36]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id135] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id137] matches {
+								term matches {
+									Terminology_term[id136] matches {
+										concept matches {[at37]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id138] matches {
+						magnitude matches {4}
+						concept matches {
+							Coded_text[id140] matches {
+								term matches {
+									Terminology_term[id139] matches {
+										concept matches {[at38]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id141] matches {
+						magnitude matches {7}
+						concept matches {
+							Coded_text[id143] matches {
+								term matches {
+									Terminology_term[id142] matches {
+										concept matches {[at39]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id144] matches {
+						magnitude matches {10}
+						concept matches {
+							Coded_text[id146] matches {
+								term matches {
+									Terminology_term[id145] matches {
+										concept matches {[at40]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id147] matches {
+						magnitude matches {13}
+						concept matches {
+							Coded_text[id149] matches {
+								term matches {
+									Terminology_term[id148] matches {
+										concept matches {[at41]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id150] matches {
+						magnitude matches {21}
+						concept matches {
+							Coded_text[id152] matches {
+								term matches {
+									Terminology_term[id151] matches {
+										concept matches {[at42]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id153] matches {
+						magnitude matches {28}
+						concept matches {
+							Coded_text[id155] matches {
+								term matches {
+									Terminology_term[id154] matches {
+										concept matches {[at43]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Cardiac arrest at admission
+				value matches {
+					Coded_ordinal[id156] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id158] matches {
+								term matches {
+									Terminology_term[id157] matches {
+										concept matches {[at44]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id159] matches {
+						magnitude matches {39}
+						concept matches {
+							Coded_text[id161] matches {
+								term matches {
+									Terminology_term[id160] matches {
+										concept matches {[at45]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- ST segment deviation on ECG
+				value matches {
+					Coded_ordinal[id162] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id164] matches {
+								term matches {
+									Terminology_term[id163] matches {
+										concept matches {[at46]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id165] matches {
+						magnitude matches {28}
+						concept matches {
+							Coded_text[id167] matches {
+								term matches {
+									Terminology_term[id166] matches {
+										concept matches {[at47]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Elevated/abnormal cardiac enzymes
+				value matches {
+					Coded_ordinal[id168] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id170] matches {
+								term matches {
+									Terminology_term[id169] matches {
+										concept matches {[at48]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id171] matches {
+						magnitude matches {14}
+						concept matches {
+							Coded_text[id173] matches {
+								term matches {
+									Terminology_term[id172] matches {
+										concept matches {[at49]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Killip class
+				value matches {
+					Coded_ordinal[id174] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id176] matches {
+								term matches {
+									Terminology_term[id175] matches {
+										concept matches {[at50]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id177] matches {
+						magnitude matches {20}
+						concept matches {
+							Coded_text[id179] matches {
+								term matches {
+									Terminology_term[id178] matches {
+										concept matches {[at51]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id180] matches {
+						magnitude matches {39}
+						concept matches {
+							Coded_text[id182] matches {
+								term matches {
+									Terminology_term[id181] matches {
+										concept matches {[at52]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id183] matches {
+						magnitude matches {59}
+						concept matches {
+							Coded_text[id185] matches {
+								term matches {
+									Terminology_term[id184] matches {
+										concept matches {[at53]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Total score
+				value matches {
+					Count[id65] matches {
+						magnitude matches {|0..372|}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id56] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Age (synthesised)">
+				description = <"Age at admission. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Heart rate (synthesised)">
+				description = <"Category of heart rate on admission. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Systolic blood pressure (synthesised)">
+				description = <"Category of systolic blood pressure on admission. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Creatinine level (synthesised)">
+				description = <"Category of creatinine measurement on admission. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Cardiac arrest at admission (synthesised)">
+				description = <"Resuscitated after cardiac arrest at admission. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"ST segment deviation on ECG (synthesised)">
+				description = <"ST segment deviation on admission. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Elevated/abnormal cardiac enzymes (synthesised)">
+				description = <"Cardiac enzymes out of normal range on admission. (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Killip class (synthesised)">
+				description = <"Killip Classification at admission. (synthesised)">
+			>
+			["at14"] = <
+				text = <"≤ 30 years">
+				description = <"Patient is aged ≤ 30 years.">
+			>
+			["at15"] = <
+				text = <"30-39 years">
+				description = <"Patient is aged 30-39 years.">
+			>
+			["at16"] = <
+				text = <"40-49 years">
+				description = <"Patient is aged 40-49 years.">
+			>
+			["at17"] = <
+				text = <"50-59 years">
+				description = <"Patient is aged 50-59 years.">
+			>
+			["at18"] = <
+				text = <"60-69 years">
+				description = <"Patient is aged 60-69 years.">
+			>
+			["at19"] = <
+				text = <"70-79 years">
+				description = <"Patient is aged 70-79 years.">
+			>
+			["at20"] = <
+				text = <"80-89 years">
+				description = <"Patient is aged 80-89 years.">
+			>
+			["at21"] = <
+				text = <"≥ 90 years">
+				description = <"Patient is aged ≥ 90 years.">
+			>
+			["at22"] = <
+				text = <"≤ 50 bpm">
+				description = <"Less than 50 beats per minute.">
+			>
+			["at23"] = <
+				text = <"50-69 bpm">
+				description = <"Between 50 and 69 beats per minute.">
+			>
+			["at24"] = <
+				text = <"70-89 bpm">
+				description = <"Between 70 and 89 beats per minute.">
+			>
+			["at25"] = <
+				text = <"90-109 bpm">
+				description = <"Between 90 and 109 beats per minute.">
+			>
+			["at26"] = <
+				text = <"110-149 bpm">
+				description = <"Between 110 and 149 beats per minute.">
+			>
+			["at27"] = <
+				text = <"150-199 bpm">
+				description = <"Between 150 and 199 beats per minute.">
+			>
+			["at28"] = <
+				text = <"≥ 200 bpm">
+				description = <"Greater than 200 beats per minute.">
+			>
+			["at29"] = <
+				text = <"≥ 200 mmHg">
+				description = <"Greater than 200 mmHg.">
+			>
+			["at30"] = <
+				text = <"160-199 mmHg">
+				description = <"Between 160 and 199 mmHg.">
+			>
+			["at31"] = <
+				text = <"140-159 mmHg">
+				description = <"Between 140 and 159 mmHg.">
+			>
+			["at32"] = <
+				text = <"120-139 mmHg">
+				description = <"Between 120 and 139 mmHg.">
+			>
+			["at33"] = <
+				text = <"100-119 mmHg">
+				description = <"Between 100 and 119 mmHg.">
+			>
+			["at34"] = <
+				text = <"80-99 mmHg">
+				description = <"Between 80 and 99 mmHg.">
+			>
+			["at35"] = <
+				text = <"≤ 80 mmHg">
+				description = <"Less than 80 mmHg.">
+			>
+			["at36"] = <
+				text = <"NA">
+				description = <"Not available.">
+			>
+			["at37"] = <
+				text = <"0-0.39 mg/dL">
+				description = <"Between 0 and 0.39 mg/dL.">
+			>
+			["at38"] = <
+				text = <"0.4-0.79 mg/dL">
+				description = <"Between 0.4 and 0.79 mg/dL.">
+			>
+			["at39"] = <
+				text = <"0.8-1.19 mg/dL">
+				description = <"Between 0.8 and 1.19 mg/dL.">
+			>
+			["at40"] = <
+				text = <"1.20-1.59 mg/dL">
+				description = <"Between 1.20 and 1.59 mg/dL.">
+			>
+			["at41"] = <
+				text = <"1.60-1.99 mg/dL">
+				description = <"Between 1.60 and 1.99 mg/dL.">
+			>
+			["at42"] = <
+				text = <"2.00-3.99 mg/dL">
+				description = <"Between 2.00 and 3.99 mg/dL.">
+			>
+			["at43"] = <
+				text = <"> 4.0 mg/dL">
+				description = <"Greater than 4.0 mg/dL.">
+			>
+			["at44"] = <
+				text = <"No">
+				description = <"No cardiac arrest on admission.">
+			>
+			["at45"] = <
+				text = <"Yes">
+				description = <"Cardiac arrest on admission.">
+			>
+			["at46"] = <
+				text = <"No">
+				description = <"No ST segment deviation observed on ECG.">
+			>
+			["at47"] = <
+				text = <"Yes">
+				description = <"ST segment deviation observed on ECG.">
+			>
+			["at48"] = <
+				text = <"No">
+				description = <"Cardiac enzymes in normal range.">
+			>
+			["at49"] = <
+				text = <"Yes">
+				description = <"Cardiac enzymes not in normal range.">
+			>
+			["at50"] = <
+				text = <"Class 1">
+				description = <"No clinical signs of heart failure.">
+			>
+			["at51"] = <
+				text = <"Class 2">
+				description = <"Rales or crackles in the lungs, an S3, and elevated jugular venous pressure.">
+			>
+			["at52"] = <
+				text = <"Class 3">
+				description = <"Acute pulmonary oedema.">
+			>
+			["at53"] = <
+				text = <"Class 4">
+				description = <"Cardiogenic shock or hypotension (measured as systolic blood pressure lower than 90 mmHg), and evidence of peripheral vasoconstriction (oliguria, cyanosis or sweating).">
+			>
+			["id1"] = <
+				text = <"GRACE score (admission)">
+				description = <"The original 8 variable version of an assessment tool used to risk stratify patients diagnosed with Acute Coronary Syndrome - specifically to estimate their risk of death in-hospital and up to 6 months after the ACS event.">
+			>
+			["id10"] = <
+				text = <"ST segment deviation on ECG">
+				description = <"ST segment deviation on admission.">
+			>
+			["id11"] = <
+				text = <"Elevated/abnormal cardiac enzymes">
+				description = <"Cardiac enzymes out of normal range on admission.">
+			>
+			["id12"] = <
+				text = <"Killip class">
+				description = <"Killip Classification at admission.">
+			>
+			["id13"] = <
+				text = <"Total score">
+				description = <"Sum of points assigned for each of the component parameters.">
+			>
+			["id3"] = <
+				text = <"Any point in time event">
+				description = <"Default, unspecified point in time event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Age">
+				description = <"Age at admission.">
+			>
+			["id56"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models/formalisms.">
+			>
+			["id6"] = <
+				text = <"Heart rate">
+				description = <"Category of heart rate on admission.">
+			>
+			["id7"] = <
+				text = <"Systolic blood pressure">
+				description = <"Category of systolic blood pressure on admission.">
+			>
+			["id8"] = <
+				text = <"Creatinine level">
+				description = <"Category of creatinine measurement on admission.">
+			>
+			["id9"] = <
+				text = <"Cardiac arrest at admission">
+				description = <"Resuscitated after cardiac arrest at admission.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/46251-5>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at14", "at15", "at16", "at17", "at18", "at19", "at20", "at21">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at22", "at23", "at24", "at25", "at26", "at27", "at28">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at29", "at30", "at31", "at32", "at33", "at34", "at35">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at36", "at37", "at38", "at39", "at40", "at41", "at42", "at43">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at44", "at45">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at46", "at47">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at48", "at49">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at50", "at51", "at52", "at53">
+		>
+	>
+

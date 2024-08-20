@@ -1,0 +1,1584 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=81cd51e4-83e2-403e-970d-48d9949589e0)
+    s2-EHR-Score.epic_cp.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord RHF, <mikkel.johan.gaup.gronmo@helse-nord.no>, 2022-02-08">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.epic_cp.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.epic_cp.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record urinary, bowel, sexual and vitality/hormonal health.
+            EPIC-CP is an assessment tool constructed to record urinary incontinence, urinary irritation, bowel, sexual and hormonal health related quality of life domains.">
+            keywords = <"prostate cancer", "quality of life">
+            use = <"Use to record an individuals subjective urinary, bowel, sexual and vitality/hormonal health in the last four weeks within a prostate cancer context.
+            Questions are filled/answered by the individual.
+            Symptom scores are then calculated from 5 different domains with up to 60 point total score. 0 points would represent the least negative impact on an individuals experienced quality of life, while 60 would represent the most negative impact on an individuals experienced quality of life.
+            
+            The 5 symptom scores are Urinary incontincence symptom score, Urinary irritation/obstruction symptom score, Bowel symptom score, Sexual symptom score, and Vitality/hormonal symptom score, which are then all added to represent an Overall Prostate Cancer QOL Score.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- EPIC CP
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- 1 Urinary function
+                value matches {
+                    Coded_text[id106] matches {
+                        term matches {
+                            Terminology_term[id128] matches {
+                                concept matches {[ac1]}    -- 1 Urinary function (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- 2 Urinary control
+                value matches {
+                    Coded_ordinal[id129] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id131] matches {
+                                term matches {
+                                    Terminology_term[id130] matches {
+                                        concept matches {[at31]}    -- Total control
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id132] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id134] matches {
+                                term matches {
+                                    Terminology_term[id133] matches {
+                                        concept matches {[at32]}    -- Occasional dribbling
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id135] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id137] matches {
+                                term matches {
+                                    Terminology_term[id136] matches {
+                                        concept matches {[at33]}    -- Frequent dribbling
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id138] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id140] matches {
+                                term matches {
+                                    Terminology_term[id139] matches {
+                                        concept matches {[at34]}    -- No urinary control
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- 3 Pads or adult diapers
+                value matches {
+                    Coded_ordinal[id141] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id143] matches {
+                                term matches {
+                                    Terminology_term[id142] matches {
+                                        concept matches {[at35]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id144] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id146] matches {
+                                term matches {
+                                    Terminology_term[id145] matches {
+                                        concept matches {[at36]}    -- One pad per day
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id147] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id149] matches {
+                                term matches {
+                                    Terminology_term[id148] matches {
+                                        concept matches {[at37]}    -- Two pads per day
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id150] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id152] matches {
+                                term matches {
+                                    Terminology_term[id151] matches {
+                                        concept matches {[at38]}    -- Three or more pads per day
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- 4 Urinary dripping or leakage
+                value matches {
+                    Coded_ordinal[id153] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id155] matches {
+                                term matches {
+                                    Terminology_term[id154] matches {
+                                        concept matches {[at39]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id156] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id158] matches {
+                                term matches {
+                                    Terminology_term[id157] matches {
+                                        concept matches {[at40]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id159] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id161] matches {
+                                term matches {
+                                    Terminology_term[id160] matches {
+                                        concept matches {[at41]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id162] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id164] matches {
+                                term matches {
+                                    Terminology_term[id163] matches {
+                                        concept matches {[at42]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id165] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id167] matches {
+                                term matches {
+                                    Terminology_term[id166] matches {
+                                        concept matches {[at43]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Urinary Incontinence Symptom Score
+                value matches {
+                    Count[id110] matches {
+                        magnitude matches {|0..12|}
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- 5a Pain or burning with urination
+                value matches {
+                    Coded_ordinal[id168] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id170] matches {
+                                term matches {
+                                    Terminology_term[id169] matches {
+                                        concept matches {[at44]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id171] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id173] matches {
+                                term matches {
+                                    Terminology_term[id172] matches {
+                                        concept matches {[at45]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id174] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id176] matches {
+                                term matches {
+                                    Terminology_term[id175] matches {
+                                        concept matches {[at46]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id177] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id179] matches {
+                                term matches {
+                                    Terminology_term[id178] matches {
+                                        concept matches {[at47]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id180] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id182] matches {
+                                term matches {
+                                    Terminology_term[id181] matches {
+                                        concept matches {[at48]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- 5b Weak urine stream/incomplete bladder emptying
+                value matches {
+                    Coded_ordinal[id183] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id185] matches {
+                                term matches {
+                                    Terminology_term[id184] matches {
+                                        concept matches {[at49]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id186] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id188] matches {
+                                term matches {
+                                    Terminology_term[id187] matches {
+                                        concept matches {[at50]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id189] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id191] matches {
+                                term matches {
+                                    Terminology_term[id190] matches {
+                                        concept matches {[at51]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id192] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id194] matches {
+                                term matches {
+                                    Terminology_term[id193] matches {
+                                        concept matches {[at52]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id195] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id197] matches {
+                                term matches {
+                                    Terminology_term[id196] matches {
+                                        concept matches {[at53]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- 5c Need to urinate frequently
+                value matches {
+                    Coded_ordinal[id198] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id200] matches {
+                                term matches {
+                                    Terminology_term[id199] matches {
+                                        concept matches {[at54]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id201] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id203] matches {
+                                term matches {
+                                    Terminology_term[id202] matches {
+                                        concept matches {[at55]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id204] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id206] matches {
+                                term matches {
+                                    Terminology_term[id205] matches {
+                                        concept matches {[at56]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id207] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id209] matches {
+                                term matches {
+                                    Terminology_term[id208] matches {
+                                        concept matches {[at57]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id210] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id212] matches {
+                                term matches {
+                                    Terminology_term[id211] matches {
+                                        concept matches {[at58]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Urinary Irritation/Obstruction Symptom Score
+                value matches {
+                    Count[id114] matches {
+                        magnitude matches {|0..12|}
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- 6a Rectal pain or urgency of bowel movements
+                value matches {
+                    Coded_ordinal[id213] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id215] matches {
+                                term matches {
+                                    Terminology_term[id214] matches {
+                                        concept matches {[at59]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id216] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id218] matches {
+                                term matches {
+                                    Terminology_term[id217] matches {
+                                        concept matches {[at60]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id219] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id221] matches {
+                                term matches {
+                                    Terminology_term[id220] matches {
+                                        concept matches {[at61]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id222] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id224] matches {
+                                term matches {
+                                    Terminology_term[id223] matches {
+                                        concept matches {[at62]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id225] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id227] matches {
+                                term matches {
+                                    Terminology_term[id226] matches {
+                                        concept matches {[at63]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- 6b Increased frequency of your bowel movements
+                value matches {
+                    Coded_ordinal[id228] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id230] matches {
+                                term matches {
+                                    Terminology_term[id229] matches {
+                                        concept matches {[at64]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id231] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id233] matches {
+                                term matches {
+                                    Terminology_term[id232] matches {
+                                        concept matches {[at65]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id234] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id236] matches {
+                                term matches {
+                                    Terminology_term[id235] matches {
+                                        concept matches {[at66]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id237] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id239] matches {
+                                term matches {
+                                    Terminology_term[id238] matches {
+                                        concept matches {[at67]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id240] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id242] matches {
+                                term matches {
+                                    Terminology_term[id241] matches {
+                                        concept matches {[at68]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id16] occurrences matches {0..1} matches {    -- 6c Overall problems with your bowel habits
+                value matches {
+                    Coded_ordinal[id243] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id245] matches {
+                                term matches {
+                                    Terminology_term[id244] matches {
+                                        concept matches {[at69]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id246] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id248] matches {
+                                term matches {
+                                    Terminology_term[id247] matches {
+                                        concept matches {[at70]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id249] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id251] matches {
+                                term matches {
+                                    Terminology_term[id250] matches {
+                                        concept matches {[at71]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id252] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id254] matches {
+                                term matches {
+                                    Terminology_term[id253] matches {
+                                        concept matches {[at72]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id255] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id257] matches {
+                                term matches {
+                                    Terminology_term[id256] matches {
+                                        concept matches {[at73]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Bowel Symptom Score
+                value matches {
+                    Count[id118] matches {
+                        magnitude matches {|0..12|}
+                    }
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- 7 Orgasm (Climax)
+                value matches {
+                    Coded_ordinal[id258] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id260] matches {
+                                term matches {
+                                    Terminology_term[id259] matches {
+                                        concept matches {[at74]}    -- Very good
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id261] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id263] matches {
+                                term matches {
+                                    Terminology_term[id262] matches {
+                                        concept matches {[at75]}    -- Good
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id264] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id266] matches {
+                                term matches {
+                                    Terminology_term[id265] matches {
+                                        concept matches {[at76]}    -- Fair
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id267] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id269] matches {
+                                term matches {
+                                    Terminology_term[id268] matches {
+                                        concept matches {[at77]}    -- Poor
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id270] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id272] matches {
+                                term matches {
+                                    Terminology_term[id271] matches {
+                                        concept matches {[at78]}    -- Very poor to none
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id19] occurrences matches {0..1} matches {    -- 8 Erection quality
+                value matches {
+                    Coded_ordinal[id273] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id275] matches {
+                                term matches {
+                                    Terminology_term[id274] matches {
+                                        concept matches {[at79]}    -- Firm enough for intercourse
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id276] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id278] matches {
+                                term matches {
+                                    Terminology_term[id277] matches {
+                                        concept matches {[at80]}    -- Firm enough for masturbation and foreplay only
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id279] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id281] matches {
+                                term matches {
+                                    Terminology_term[id280] matches {
+                                        concept matches {[at81]}    -- Not firm enough for any sexual activity
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id282] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id284] matches {
+                                term matches {
+                                    Terminology_term[id283] matches {
+                                        concept matches {[at82]}    -- None at all
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- 9 Sexual function
+                value matches {
+                    Coded_ordinal[id285] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id287] matches {
+                                term matches {
+                                    Terminology_term[id286] matches {
+                                        concept matches {[at83]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id288] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id290] matches {
+                                term matches {
+                                    Terminology_term[id289] matches {
+                                        concept matches {[at84]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id291] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id293] matches {
+                                term matches {
+                                    Terminology_term[id292] matches {
+                                        concept matches {[at85]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id294] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id296] matches {
+                                term matches {
+                                    Terminology_term[id295] matches {
+                                        concept matches {[at86]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id297] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id299] matches {
+                                term matches {
+                                    Terminology_term[id298] matches {
+                                        concept matches {[at87]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Sexual Symptom Score
+                value matches {
+                    Count[id122] matches {
+                        magnitude matches {|0..12|}
+                    }
+                }
+            }
+            Node[id22] occurrences matches {0..1} matches {    -- 10a Hot flashes or breast tenderness/enlargement
+                value matches {
+                    Coded_ordinal[id300] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id302] matches {
+                                term matches {
+                                    Terminology_term[id301] matches {
+                                        concept matches {[at88]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id303] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id305] matches {
+                                term matches {
+                                    Terminology_term[id304] matches {
+                                        concept matches {[at89]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id306] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id308] matches {
+                                term matches {
+                                    Terminology_term[id307] matches {
+                                        concept matches {[at90]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id309] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id311] matches {
+                                term matches {
+                                    Terminology_term[id310] matches {
+                                        concept matches {[at91]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id312] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id314] matches {
+                                term matches {
+                                    Terminology_term[id313] matches {
+                                        concept matches {[at92]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id23] occurrences matches {0..1} matches {    -- 10b Feeling depressed
+                value matches {
+                    Coded_ordinal[id315] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id317] matches {
+                                term matches {
+                                    Terminology_term[id316] matches {
+                                        concept matches {[at93]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id318] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id320] matches {
+                                term matches {
+                                    Terminology_term[id319] matches {
+                                        concept matches {[at94]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id321] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id323] matches {
+                                term matches {
+                                    Terminology_term[id322] matches {
+                                        concept matches {[at95]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id324] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id326] matches {
+                                term matches {
+                                    Terminology_term[id325] matches {
+                                        concept matches {[at96]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id327] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id329] matches {
+                                term matches {
+                                    Terminology_term[id328] matches {
+                                        concept matches {[at97]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id24] occurrences matches {0..1} matches {    -- 10c Lack of energy
+                value matches {
+                    Coded_ordinal[id330] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id332] matches {
+                                term matches {
+                                    Terminology_term[id331] matches {
+                                        concept matches {[at98]}    -- No problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id333] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id335] matches {
+                                term matches {
+                                    Terminology_term[id334] matches {
+                                        concept matches {[at99]}    -- Very small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id336] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id338] matches {
+                                term matches {
+                                    Terminology_term[id337] matches {
+                                        concept matches {[at100]}    -- Small problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id339] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id341] matches {
+                                term matches {
+                                    Terminology_term[id340] matches {
+                                        concept matches {[at101]}    -- Moderate problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id342] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id344] matches {
+                                term matches {
+                                    Terminology_term[id343] matches {
+                                        concept matches {[at102]}    -- Big problem
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id25] occurrences matches {0..1} matches {    -- Vitality/Hormonal Symptom Score
+                value matches {
+                    Count[id126] matches {
+                        magnitude matches {|0..12|}
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- Overall Prostate Cancer QOL Score
+                value matches {
+                    Count[id127] matches {
+                        magnitude matches {|0..60|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id105] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at26", "at27", "at28", "at29", "at30">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at31", "at32", "at33", "at34">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at35", "at36", "at37", "at38">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at39", "at40", "at41", "at42", "at43">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at44", "at45", "at46", "at47", "at48">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at49", "at50", "at51", "at52", "at53">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at54", "at55", "at56", "at57", "at58">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at59", "at60", "at61", "at62", "at63">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at64", "at65", "at66", "at67", "at68">
+        >
+        ["ac10"] = <
+            id = <"ac10">
+            members = <"at69", "at70", "at71", "at72", "at73">
+        >
+        ["ac11"] = <
+            id = <"ac11">
+            members = <"at74", "at75", "at76", "at77", "at78">
+        >
+        ["ac12"] = <
+            id = <"ac12">
+            members = <"at79", "at80", "at81", "at82">
+        >
+        ["ac13"] = <
+            id = <"ac13">
+            members = <"at83", "at84", "at85", "at86", "at87">
+        >
+        ["ac14"] = <
+            id = <"ac14">
+            members = <"at88", "at89", "at90", "at91", "at92">
+        >
+        ["ac15"] = <
+            id = <"ac15">
+            members = <"at93", "at94", "at95", "at96", "at97">
+        >
+        ["ac16"] = <
+            id = <"ac16">
+            members = <"at98", "at99", "at100", "at101", "at102">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"1 Urinary function (synthesised)">
+                description = <"Overall, how much of a problem has your urinary function been for you? (synthesised)">
+            >
+            ["ac10"] = <
+                text = <"6c Overall problems with your bowel habits (synthesised)">
+                description = <"How big a problem, if any, has the following been for you? (synthesised)">
+            >
+            ["ac11"] = <
+                text = <"7 Orgasm (Climax) (synthesised)">
+                description = <"How would you rate your ability to reach orgasm (climax)? (synthesised)">
+            >
+            ["ac12"] = <
+                text = <"8 Erection quality (synthesised)">
+                description = <"How would you describe the usual quality of your erections? (synthesised)">
+            >
+            ["ac13"] = <
+                text = <"9 Sexual function (synthesised)">
+                description = <"Overall, how much of a problem has your sexual function or lack of sexual function been for you? (synthesised)">
+            >
+            ["ac14"] = <
+                text = <"10a Hot flashes or breast tenderness/enlargement (synthesised)">
+                description = <"How big a problem, if any, has the following been for you? (synthesised)">
+            >
+            ["ac15"] = <
+                text = <"10b Feeling depressed (synthesised)">
+                description = <"How big a problem, if any, has the following been for you? (synthesised)">
+            >
+            ["ac16"] = <
+                text = <"10c Lack of energy (synthesised)">
+                description = <"How big a problem, if any, has the following been for you? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"2 Urinary control (synthesised)">
+                description = <"Which of the following best describes your urinary control? (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"3 Pads or adult diapers (synthesised)">
+                description = <"How many pads or adult diapers per day have you been using for urinary leakage? (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"4 Urinary dripping or leakage (synthesised)">
+                description = <"How big a problem, if any, has urinary dripping or leakage been for you? (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"5a Pain or burning with urination (synthesised)">
+                description = <"How big a problem, if any, has the following been for you? (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"5b Weak urine stream/incomplete bladder emptying (synthesised)">
+                description = <"How big a problem, if any, has the following been for you? (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"5c Need to urinate frequently (synthesised)">
+                description = <"How big a problem, if any, has the following been for you? (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"6a Rectal pain or urgency of bowel movements (synthesised)">
+                description = <"How big a problem, if any, has the following been for you? (synthesised)">
+            >
+            ["ac9"] = <
+                text = <"6b Increased frequency of your bowel movements (synthesised)">
+                description = <"How big a problem, if any, has the following been for you? (synthesised)">
+            >
+            ["at100"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at101"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at102"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at26"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at27"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at28"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at29"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at30"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at31"] = <
+                text = <"Total control">
+                description = <"">
+            >
+            ["at32"] = <
+                text = <"Occasional dribbling">
+                description = <"">
+            >
+            ["at33"] = <
+                text = <"Frequent dribbling">
+                description = <"">
+            >
+            ["at34"] = <
+                text = <"No urinary control">
+                description = <"">
+            >
+            ["at35"] = <
+                text = <"None">
+                description = <"">
+            >
+            ["at36"] = <
+                text = <"One pad per day">
+                description = <"">
+            >
+            ["at37"] = <
+                text = <"Two pads per day">
+                description = <"">
+            >
+            ["at38"] = <
+                text = <"Three or more pads per day">
+                description = <"">
+            >
+            ["at39"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at40"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at41"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at42"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at43"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at44"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at45"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at46"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at47"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at48"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at49"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at50"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at51"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at52"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at53"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at54"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at55"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at56"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at57"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at58"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at59"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at60"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at61"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at62"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at63"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at64"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at65"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at66"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at67"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at68"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at69"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at70"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at71"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at72"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at73"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at74"] = <
+                text = <"Very good">
+                description = <"">
+            >
+            ["at75"] = <
+                text = <"Good">
+                description = <"">
+            >
+            ["at76"] = <
+                text = <"Fair">
+                description = <"">
+            >
+            ["at77"] = <
+                text = <"Poor">
+                description = <"">
+            >
+            ["at78"] = <
+                text = <"Very poor to none">
+                description = <"">
+            >
+            ["at79"] = <
+                text = <"Firm enough for intercourse">
+                description = <"">
+            >
+            ["at80"] = <
+                text = <"Firm enough for masturbation and foreplay only">
+                description = <"">
+            >
+            ["at81"] = <
+                text = <"Not firm enough for any sexual activity">
+                description = <"">
+            >
+            ["at82"] = <
+                text = <"None at all">
+                description = <"">
+            >
+            ["at83"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at84"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at85"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at86"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at87"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at88"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at89"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at90"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at91"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at92"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at93"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at94"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["at95"] = <
+                text = <"Small problem">
+                description = <"">
+            >
+            ["at96"] = <
+                text = <"Moderate problem">
+                description = <"">
+            >
+            ["at97"] = <
+                text = <"Big problem">
+                description = <"">
+            >
+            ["at98"] = <
+                text = <"No problem">
+                description = <"">
+            >
+            ["at99"] = <
+                text = <"Very small problem">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"EPIC CP">
+                description = <"EPIC CP is short for Expanded Prostate Cancer Index Composite for Clinical Practice, and is a clinical tool to measure urinary, bowel, sexual and vitality/hormonal health with an overall prostate cancer quality of life score.">
+            >
+            ["id10"] = <
+                text = <"5a Pain or burning with urination">
+                description = <"How big a problem, if any, has the following been for you?">
+            >
+            ["id105"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+            >
+            ["id11"] = <
+                text = <"5b Weak urine stream/incomplete bladder emptying">
+                description = <"How big a problem, if any, has the following been for you?">
+            >
+            ["id12"] = <
+                text = <"5c Need to urinate frequently">
+                description = <"How big a problem, if any, has the following been for you?">
+            >
+            ["id13"] = <
+                text = <"Urinary Irritation/Obstruction Symptom Score">
+                description = <"ADD the answers from questions 5a‐5c to calculate the
+                Urinary Irritation/Obstruction Symptom Score (out of 12).">
+            >
+            ["id14"] = <
+                text = <"6a Rectal pain or urgency of bowel movements">
+                description = <"How big a problem, if any, has the following been for you?">
+            >
+            ["id15"] = <
+                text = <"6b Increased frequency of your bowel movements">
+                description = <"How big a problem, if any, has the following been for you?">
+            >
+            ["id16"] = <
+                text = <"6c Overall problems with your bowel habits">
+                description = <"How big a problem, if any, has the following been for you?">
+            >
+            ["id17"] = <
+                text = <"Bowel Symptom Score">
+                description = <"ADD the answers from questions 6a‐6c
+                to calculate the Bowel Symptom Score (out of 12).">
+            >
+            ["id18"] = <
+                text = <"7 Orgasm (Climax)">
+                description = <"How would you rate your ability to reach orgasm (climax)?">
+            >
+            ["id19"] = <
+                text = <"8 Erection quality">
+                description = <"How would you describe the usual quality of your erections?">
+            >
+            ["id20"] = <
+                text = <"9 Sexual function">
+                description = <"Overall, how much of a problem has your sexual function or lack of sexual function been for you?">
+            >
+            ["id21"] = <
+                text = <"Sexual Symptom Score">
+                description = <"ADD the answers from questions 7‐9 to
+                calculate the Sexual Symptom Score (out of 12).">
+            >
+            ["id22"] = <
+                text = <"10a Hot flashes or breast tenderness/enlargement">
+                description = <"How big a problem, if any, has the following been for you?">
+            >
+            ["id23"] = <
+                text = <"10b Feeling depressed">
+                description = <"How big a problem, if any, has the following been for you?">
+            >
+            ["id24"] = <
+                text = <"10c Lack of energy">
+                description = <"How big a problem, if any, has the following been for you?">
+            >
+            ["id25"] = <
+                text = <"Vitality/Hormonal Symptom Score">
+                description = <"ADD the answers from questions 10a‐10c to calculate
+                the Vitality/Hormonal Symptom Score (out of 12).">
+            >
+            ["id26"] = <
+                text = <"Overall Prostate Cancer QOL Score">
+                description = <"Add the five domain summary scores to calculate the Overall Prostate Cancer QOL Score (out of 60).">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"1 Urinary function">
+                description = <"Overall, how much of a problem has your urinary function been for you?">
+            >
+            ["id6"] = <
+                text = <"2 Urinary control">
+                description = <"Which of the following best describes your urinary control?">
+            >
+            ["id7"] = <
+                text = <"3 Pads or adult diapers">
+                description = <"How many pads or adult diapers per day have you been using for urinary leakage?">
+            >
+            ["id8"] = <
+                text = <"4 Urinary dripping or leakage">
+                description = <"How big a problem, if any, has urinary dripping or leakage been for you?">
+            >
+            ["id9"] = <
+                text = <"Urinary Incontinence Symptom Score">
+                description = <"ADD the answers from questions 2‐4 to calculate
+                the Urinary Incontinence Symptom Score (out of 12).">
+            >
+        >
+    >
+    

@@ -1,0 +1,163 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; uid=3f7fbe34-4e64-4c02-8d1a-402f7b0f57ce)
+	s2-EHR-Node.person.v1.0.3
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health">
+		["organisation"] = <"S2 Health <http://www.S2Health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-07-26">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2023 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-04-14">
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-CLUSTER.person.v1.0.2">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.person.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"graphite_openehr_to_s2_adl">
+		["date"] = <"$nowIso8601 (Iso8601 date and time is disabled during testing)">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record details about a person as they are known or understood in the course of clinical documentation.">
+			use = <"Use to record details of a person as they are known or understood in the course of clinical documentation, often ad hoc or when it is not appropriate or possible to use a formal demographic register or index. Examples include:
+            - the copyholder of an advanced care record, using the 'Copyholder' SLOT within the EVALUATION.advance_care_directive archetype;
+            - the role and contact details of a named contact person within an organization, using the 'Contact person' SLOT within the Node.organization archetype;
+            - details about a relative in a family history record, using the 'Family member details' SLOT within the openEHR-EHR-EVALUATION.family_history archetype; 
+            - the name of the person who collected a laboratory specimen from a patient, using the 'Specimen collector details' within the Node.specimen archetype; or
+            - a witness to a fall or accident, using the 'Witness' SLOT within the Node.health_event archetype.
+            
+            In most simple clinical recording use cases, the unstructured 'Name' Node within the Node.person archetype will be sufficient to record the name of a person as part of a health record. However, in circumstances where a structured name is necessary or desirable for clinical recording purposes, nest this archetype within the 'Structured name' SLOT in Node.person archetype. If the Node.structured_name archetype is nested within the 'Structured name' SLOT, any or all of the data Nodes can be combined together as a text string and represented in the 'Name' Node, as long as they are consistent.
+            
+            This archetype could also be used as a proxy for formal demographic data when reviewing a template with domain experts - for example, an assessment where reviewers would expect to see a person's details at the top of the assessment form.">
+			keywords = <"provider, carer, staff, healthcare professional, relative, next-of-kin, practitioner, witness, friend, neighbour, child, family, sibling, parent, individual", ...>
+			misuse = <"Not to be used to represent or replace formal identification management or for the purposes of maintaining an official demographic register or index. Use a formal Master Patient Index or Health Provider Index for this purpose, or archetypes based on the openEHR Demographic Information Model.
+            
+            Not to be used to represent the subject of care, participants or author of the record and similar data Nodes that should be represented formally in the health record using the Reference Model attributes.
+            
+            Not to be used to record the date of birth of an individual - use the 'Date of birth' data Node within the Assessment.birth_summary for this purpose
+            
+            Not to be used to record biometric detail or biomarkers about an individual - use a specific ENTRY archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Keisha Barwise, MOHW/IDB HSSP Project, Jamaica", "itai Basel, Private, Israel", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Yexuan Cheng, 浙江大学, China", "Candice de Lisser, Ministry of Health and Wellness, Jamaica", "Ludvig Eek Hofmann, Cambio Healthcare Systems AB, Sweden", "Valborg Ellingsen, Haraldsplass Diakonale sykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Martin Grundberg, Cambio Healthcare Systems, Sweden", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (openEHR Editor)", "Rebecka Hansson, Cambio Healthcare Systems AB, Sweden", "Anca Heyd, DIPS ASA, Norway", "Roar Holm, Helse Vest IKT A/S, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Gunn-Lisbeth Kleiven, Oslo universitetssykehus HF, Norway", "Kanika Kuwelker, Helse Vest IKT, Norway", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Erik Skjemstad, Helse Nord RHF, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Nyree Taylor, Ocean Health Systems, Australia", "Tesfay Teame, Bærum kommune, Norway", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Person
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Name
+				value matches {
+					Plain_text[id13] 
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Label
+				value matches {
+					Plain_text[id14] 
+				}
+			}
+			use_archetype Node[id3, s2-EHR-Node.structured_name.v1] 
+			Node[id4] matches {	-- Identifier
+				value matches {
+					Rwe_id_ref[id15] 
+				}
+			}
+			Node[id5] matches {	-- Role
+				value matches {
+					Plain_text[id17] 
+				}
+			}
+			use_archetype Node[id6, s2-EHR-Node.address.v1] 
+			use_archetype Node[id7, s2-EHR-Node.electronic_communication.v1] 
+			use_archetype Node[id8, s2-EHR-Node.organization.v1] 
+			allow_archetype Node[id9] 	-- Additional details
+			use_archetype Node[id10, s2-EHR-Node.media_file.v1] 
+			Node[id11] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id18] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Person">
+				description = <"An individual human being.">
+			>
+			["id10"] = <
+				text = <"Photo">
+				description = <"Photograph of the individual.">
+			>
+			["id11"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the individual not captured in other fields.">
+			>
+			["id12"] = <
+				text = <"Label">
+				description = <"A label for the individual.">
+			>
+			["id2"] = <
+				text = <"Name">
+				description = <"The unstructured name for the individual.">
+			>
+			["id3"] = <
+				text = <"Structured name">
+				description = <"Alternative representation of an individual's complete name by separation into discrete, structured components.">
+			>
+			["id4"] = <
+				text = <"Identifier">
+				description = <"Identifier associated with the individual.">
+			>
+			["id5"] = <
+				text = <"Role">
+				description = <"The relationship or role of the individual to the subject of the health record.">
+			>
+			["id6"] = <
+				text = <"Address">
+				description = <"Details about an address for the individual.">
+			>
+			["id7"] = <
+				text = <"Electronic communication">
+				description = <"Details about one or more types of electronic communication for the individual.">
+			>
+			["id8"] = <
+				text = <"Organization">
+				description = <"Details about the organizational context for the individual.">
+			>
+			["id9"] = <
+				text = <"Additional details">
+				description = <"Additional details about the individual.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/72170-4>
+			["id11"] = <http://loinc.org/48767-8>
+			["id12"] = <http://loinc.org/56798-2>
+			["id3"] = <http://loinc.org/97845-2>
+			["id4"] = <http://loinc.org/76435-7>
+			["id6"] = <http://loinc.org/99953-2>
+			["id1"] = <http://loinc.org/104976-6>
+			["id2"] = <http://loinc.org/106188-6>
+			["id5"] = <http://loinc.org/104900-6>
+			["id7"] = <http://loinc.org/104902-2>
+			["id8"] = <http://loinc.org/90055-5>
+			["id9"] = <http://loinc.org/46696-1>
+		>
+	>
+

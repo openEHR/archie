@@ -1,0 +1,256 @@
+
+archetype (adl_version=2.1.0; rm_release=0.8.0; uid=375f1a29-3f45-42cd-880a-2b14a82fe62d)
+	s2-EHR-Direct_observation.height.v2.1.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Graphite Health">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2006-03-09">
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-OBSERVATION.height.v2.0.8">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the length of the body from crown of head to sole of foot of an individual - either measured or approximated, and either in a standing or recumbent position.">
+			use = <"To be used for recording the measured height or body length of an individual at any point in time.  A statement identifying the physical incompleteness of the body can be recorded in the 'Confounding factors' protocol Node, if required.  This is the usual archetype to be used for a typical measurement of height or body length, independent of the clinical setting.
+            
+            Can also be used for recording an approximation of height or body length measurement in a clinical scenario where it is not possible to measure an accurate height or length - for example, measuring an uncooperative child.  This is not modelled explicitly in the archetype as the openEHR Reference model allows approximations  for any Quantity data type by setting the attribute Magnitude_status to the value '~'.  At implementation, for example, an application user interface could allow clinicians to select an appropriately labelled check box adjacent to the Height data field to indicate that the recorded height is an approximation, rather than actual.
+            
+            In general, length measurements are recommended for children under 2 years of age and individuals who cannot stand; height measurements for all others.
+            
+            When recording the first length of an infant shortly after birth, \\\"birth length\\\", use the event \\\"Birth\\\".
+            
+            Use to record growth or loss of height.  This can currently be modelled by constraining the 'any event' to an interval event within a template, with the associated mathematical function of increase or decrease, as appropriate.">
+			keywords = <"shrinkage", "increase", "decrease", "height loss", "height", "length", "growth">
+			misuse = <"Not to be used to record an adjusted height, a calculation of the full height of a person who for example are missing parts or all of the lower limbs, or has contractures. A calculated body weight may be based on measurements of other body parts and an algorithm. Use specific archetypes for this purpose.
+            
+            Not to be used to record growth velocity.
+            
+            Not to be used to record the length of an object or specific body part.">
+		>
+	>
+	other_contributors = <"Karin Aarsheim, Helse Førde, Norway", "Grethe Almenning, Bergen kommune, Norway", "Tomas Alme, DIPS ASA, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Marja Buur, Medisch Centrum Alkmaar, Netherlands", "Rong Chen, Cambio Healthcare Systems, Sweden", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Hans Demski, Helmholtz Zentrum München, Germany", "Paul Donaldson, Nursing Informatics Australia, Australia", "Torsten Eken, Oslo universitetssykehus HF, Ullevål, Norway", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Soon Ghee Yap, Singapore Health Services Pte Ltd, Singapore", "Anneke Goossen, Results 4 Care, Netherlands", "Gyri Gradek, Senter for medisinsk genetikk og molekylærmedisin, Haukeland Universitetssykehus, Norway", "Heather Grain, Llewelyn Informatics, Australia", "Anne Harbison, Australia", "Knut Harboe, Stavanger Universitetssjukehus, Norway", "Sam Heard, Ocean Informatics, Australia", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Omer Hotomaroglu, Turkey", "Jan Inge Sørheim, Helse Bergen, Haukeland uniersitetssjukehus, Norway", "Lars Ivar Mehlum, Nasjonal IKT HF, Norway", "Sundaresan Jagannathan, Scottish NHS, United Kingdom", "Andrew James, University of Toronto, Canada", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Pétur Júlíusson, Barneklinikken, HUS og K2, UIB, Norway", "Sabine Leh, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Camilla Lund, Institute for Cancer Genetics and Informatics, Norway", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Arne Løberg Sæter, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Jeroen Meintjen, Medisch Centrum Alkmaar, Netherlands", "Bjørn Næss, DIPS ASA, Norway", "Tilde Ostborg, SUS, Norway", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Thomas Schopf, University Hospital of North-Norway, Norway", "Thilo Schuler, Germany", "Kari Sygnestveit, Helse Bergen, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "Micaela Thierley, Helse Bergen/Haraldsplass sykehus, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Karl Trygve Kalleberg, Oslo Universitetssykehus, Norway">
+
+definition
+	Direct_observation[id1] matches {	-- Height/Length
+		data cardinality matches {1..*; unordered} matches {
+			Node[id5] matches {	-- Height/Length
+				value matches {
+					Measured<Quantity>[id36] matches {
+						value matches {
+							Quantity[id30] matches {	-- Height/Length (cm)
+								magnitude matches {|0.0..1000.0|}
+								units matches {
+									Coded_text[id32] matches {
+										term matches {
+											Terminology_term[id31] matches {
+												concept matches {[at22]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id37] matches {
+						value matches {
+							Quantity[id33] matches {	-- Height/Length ([in_i])
+								magnitude matches {|0.0..250.0|}
+								units matches {
+									Coded_text[id35] matches {
+										term matches {
+											Terminology_term[id34] matches {
+												concept matches {[at23]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id25] 
+				}
+			}
+		}
+		state matches {
+			Node[id15] occurrences matches {0..1} matches {	-- Position
+				value matches {
+					Coded_text[id26] matches {
+						term matches {
+							Terminology_term[id38] matches {
+								concept matches {[ac1; at16]}		-- Position (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id27] 
+				}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id12, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			Node[id40] occurrences matches {0..1} matches {
+				value matches {
+					Coded_text[id46] matches {
+						term matches {
+							Terminology_term[id48] matches {
+								concept matches {[ac2]}		
+							}
+						}
+					}
+				}
+			}
+		}
+		data_series matches {
+			Point_event[id22] occurrences matches {0..1} matches {	-- Birth
+				items matches {
+					use_node Node[id5] /data[id5]	-- /data[Height/Length]
+					use_node Node[id19] /data[id19]	-- /data[Comment]
+				}
+			}
+		}
+		state_series matches {
+			Point_event[id22] occurrences matches {0..1} matches {	-- Birth
+				items matches {
+					use_node Node[id15] /state[id15]	-- /state[Position]
+					use_node Node[id20] /state[id20]	-- /state[Confounding factors]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Position (synthesised)">
+				description = <"Position of individual when measured. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Height determination method">
+				description = <"Height determination method">
+			>
+			["at16"] = <
+				text = <"Standing">
+				description = <"Height is measured standing on both feet with weight distributed evenly, heels together and both buttocks and heels in contact with a vertical back board.">
+			>
+			["at20"] = <
+				text = <"Lying">
+				description = <"Length is measured in a fully extended, recumbent position with the pelvis flat, legs extended and feet flexed.">
+			>
+			["at21"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at22"] = <
+				text = <"cm">
+				description = <"Centimetres length unit">
+			>
+			["at23"] = <
+				text = <"in_i">
+				description = <"Inches length unit">
+			>
+			["id1"] = <
+				text = <"Height/Length">
+				description = <"Height, or body length, is measured from crown of head to sole of foot.">
+			>
+			["id12"] = <
+				text = <"Device">
+				description = <"Description of the device used to measure height or body length.">
+			>
+			["id15"] = <
+				text = <"Position">
+				description = <"Position of individual when measured.">
+			>
+			["id19"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the measurement, not captured in other fields.">
+			>
+			["id20"] = <
+				text = <"Confounding factors">
+				description = <"Narrative description of any issues or factors that may impact on the measurement.">
+			>
+			["id22"] = <
+				text = <"Birth">
+				description = <"Usually the first length measurement, recorded soon after birth. This event will only be used once per health record.">
+			>
+			["id23"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Height/Length (cm)">
+				description = <"Height/Length (cm)">
+			>
+			["id33"] = <
+				text = <"Height/Length ([in_i])">
+				description = <"Height/Length ([in_i])">
+			>
+			["id40"] = <
+				text = <"Method">
+				description = <"Method for determining height">
+			>
+			["id5"] = <
+				text = <"Height/Length">
+				description = <"The length of the body from crown of head to sole of foot.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/8302-2>
+			["id1"] = <http://loinc.org/8302-2>
+			["id12"] = <http://loinc.org/74720-4>
+			["id15"] = <http://loinc.org/8361-8>
+			["id19"] = <http://loinc.org/106173-8>
+			["id20"] = <http://loinc.org/106176-1>
+		>
+		["openehr"] = <
+			["at21"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at22"] = <http://ucum.org/id/cm>
+			["at23"] = <http://ucum.org/id/%5Bin_i%5D>
+		>
+		["snomed"] = <
+			["at22"] = <http://snomed.info/id/258672001>
+			["at23"] = <http://snomed.info/id/258677007>
+		>
+		["s2"] = <
+			["ac1"] = <http://s2health.org/id/s2.BodyPosition>
+			["ac2"] = <http://s2health.org/id/s2.HeightLengthMeasMethod>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at16", "at20">
+		>
+	>
+

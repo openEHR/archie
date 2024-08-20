@@ -1,0 +1,282 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8ec192a8-dc62-4133-a476-8c13fdc6d0c1)
+    s2-EHR-Node.exam_zygote.v1.0.1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Rosane Gotardo, Systema Ltda., Brazil", "Heather Grain, Llewelyn Grain Informatics, Australia", "Gareth Greggains, Oslo University Hospital", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Manisha Mantri, C-DAC, India", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Trine Skuland, Oslo University Hospital", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Julius Hreinsson, Laboratory Director at Reproductive Medicine, Sahlgrenska University Hospital, Sweden">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Peter Fedorcsak, Oslo University Hospital, <peter.fedorcsak@medisin.uio.no>, 2021-10-26">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.exam_zygote.v1.0.1, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.exam_zygote.v1.0.1 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record structured observations of the human zygote.">
+            keywords = <"in vitro", "fertilization", "IVF", "reproductive medicine", "zygote", "fertilised", "fertilized", "oocyte", "egg", "fertilisation", "embryo", "reproduction", "ART", "blastocyst">
+            use = <"Use to record morphological observations appropriate for the zygote stage, normally as part of assisted reproduction treatment. 
+            
+            This archetype has been specifically designed to be used in the 'Observations detail' SLOT within the 'OBSERVATION.embryo_assessment' or 'ACTION.procedure' archetype, but can also be used within other ENTRY or Node archetypes, where clinically appropriate.">
+            misuse = <"Not to be used for recording observations on oocytes, cleavage stage embryos and blastocysts - use specific Node archetypes for this purpose.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Examination of a zygote
+        items matches {
+            Node[id6] occurrences matches {0..1} matches {    -- Number of pronuclei
+                value matches {
+                    Count[id36]
+                }
+            }
+            Node[id2] occurrences matches {0..1} matches {    -- Pronuclear symmetry
+                value matches {
+                    Plain_text[id37]
+                    Coded_text[id38] matches {
+                        term matches {
+                            Terminology_term[id50] matches {
+                                concept matches {[ac1]}    -- Pronuclear symmetry (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id3] occurrences matches {0..1} matches {    -- Pronuclear morphology
+                value matches {
+                    Plain_text[id39]
+                    Coded_text[id40] matches {
+                        term matches {
+                            Terminology_term[id51] matches {
+                                concept matches {[ac2]}    -- Pronuclear morphology (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id35] occurrences matches {0..1} matches {    -- Number of polar bodies
+                value matches {
+                    Count[id41]
+                }
+            }
+            Node[id4] occurrences matches {0..1} matches {    -- Polar body morphology
+                value matches {
+                    Plain_text[id42]
+                    Coded_text[id43] matches {
+                        term matches {
+                            Terminology_term[id52] matches {
+                                concept matches {[ac3]}    -- Polar body morphology (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Cytoplasmic morphology
+                value matches {
+                    Plain_text[id44]
+                    Coded_text[id45] matches {
+                        term matches {
+                            Terminology_term[id53] matches {
+                                concept matches {[ac4]}    -- Cytoplasmic morphology (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- Nucleolar precursor bodies
+                value matches {
+                    Coded_text[id46] matches {
+                        term matches {
+                            Terminology_term[id54] matches {
+                                concept matches {[ac5]}    -- Nucleolar precursor bodies (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id47]
+                }
+            }
+            Node[id29] matches {    -- Other morphological features
+                value matches {
+                    Text[id48]
+                }
+            }
+            Node[id33] occurrences matches {0..1} matches {    -- Morphology grade
+                value matches {
+                    Text[id49]
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at11", "at12">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at14", "at15", "at16">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at17", "at18", "at30", "at31">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at24", "at25", "at26", "at27">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at20", "at21", "at23">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Pronuclear symmetry (synthesised)">
+                description = <"Size symmetry of pronuclei in a zygote. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Pronuclear morphology (synthesised)">
+                description = <"Morphology of pronuclei in a zygote. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Polar body morphology (synthesised)">
+                description = <"Morphology of polar bodies in a zygote. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Cytoplasmic morphology (synthesised)">
+                description = <"Morphology of the cytoplasm in a zygote. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Nucleolar precursor bodies (synthesised)">
+                description = <"Distribution of nuclear precursor bodies in a zygote. (synthesised)">
+            >
+            ["at11"] = <
+                text = <"Symmetrical">
+                description = <"Evenly sized pronuclei.">
+            >
+            ["at12"] = <
+                text = <"Non-symmetrical">
+                description = <"Difference between pronuclear size.">
+            >
+            ["at14"] = <
+                text = <"Centrally juxtaposed">
+                description = <"Centrally located, juxtaposed pronuclei.">
+            >
+            ["at15"] = <
+                text = <"Separated">
+                description = <"Separated pronuclei.">
+            >
+            ["at16"] = <
+                text = <"Peripherally positioned">
+                description = <"Peripherally located pronuclei.">
+            >
+            ["at17"] = <
+                text = <"Normal">
+                description = <"Juxtaposed polar bodies.">
+            >
+            ["at18"] = <
+                text = <"Separated">
+                description = <"Large angle between polar bodies.">
+            >
+            ["at20"] = <
+                text = <"Normal">
+                description = <"Several nuclear precursor bodies.">
+            >
+            ["at21"] = <
+                text = <"Absent">
+                description = <"Absent nuclear precursor body.">
+            >
+            ["at23"] = <
+                text = <"Bull's eye">
+                description = <"Pronuclei with 1 nuclear precursor body.">
+            >
+            ["at24"] = <
+                text = <"Homogeneous">
+                description = <"Homogeneous cytoplasm.">
+            >
+            ["at25"] = <
+                text = <"Granular">
+                description = <"Granular cytoplasm.">
+            >
+            ["at26"] = <
+                text = <"Vacuolated">
+                description = <"Vacuolated cytoplasm, including small and large vacuoles.">
+            >
+            ["at27"] = <
+                text = <"Dysmorphic">
+                description = <"Dysmorphic cytoplasm, including Nodeed organelles.">
+            >
+            ["at30"] = <
+                text = <"Fragmented">
+                description = <"Fragmented polar bodies.">
+            >
+            ["at31"] = <
+                text = <"Degenerated">
+                description = <"Degenerated or atretic polar bodies.">
+            >
+            ["id1"] = <
+                text = <"Examination of a zygote">
+                description = <"Morphological findings obtained by microscopy of the human zygote.">
+            >
+            ["id2"] = <
+                text = <"Pronuclear symmetry">
+                description = <"Size symmetry of pronuclei in a zygote.">
+            >
+            ["id20"] = <
+                text = <"Nucleolar precursor bodies">
+                description = <"Distribution of nuclear precursor bodies in a zygote.">
+            >
+            ["id29"] = <
+                text = <"Other morphological features">
+                description = <"Additional morphological features not captured by specific parameters.">
+            >
+            ["id3"] = <
+                text = <"Pronuclear morphology">
+                description = <"Morphology of pronuclei in a zygote.">
+            >
+            ["id33"] = <
+                text = <"Morphology grade">
+                description = <"Overall grading or score based on recorded morphological features the zygote.">
+            >
+            ["id35"] = <
+                text = <"Number of polar bodies">
+                description = <"Number of visible polar bodies in a zygote.">
+            >
+            ["id4"] = <
+                text = <"Polar body morphology">
+                description = <"Morphology of polar bodies in a zygote.">
+            >
+            ["id5"] = <
+                text = <"Cytoplasmic morphology">
+                description = <"Morphology of the cytoplasm in a zygote.">
+            >
+            ["id6"] = <
+                text = <"Number of pronuclei">
+                description = <"Number of visible pronuclei in a zygote.">
+            >
+        >
+    >
+    

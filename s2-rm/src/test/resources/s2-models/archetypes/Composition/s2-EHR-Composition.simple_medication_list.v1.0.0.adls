@@ -1,0 +1,76 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+	s2-EHR-Composition.simple_medication_list.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	custodian_namespace = <"io.graphitehealth">
+	custodian_organisation = <"Graphite Health <http://graphitehealth.io>">
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use">
+		["snomedct"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Simple medication list consisting of current medication orders">
+		>
+	>
+
+definition
+	Composition[id1] matches {
+		code matches {
+			Terminology_term[id10] matches {
+				concept matches {[at1]}
+			}
+		}
+		category matches {
+			Terminology_term[id11] matches {
+				concept matches {[at2]}
+				description matches {"persistent"}
+			}
+		}
+		content matches {
+			use_archetype Order[id2, s2-EHR-Order.medication_order.v4]
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Simple medication List">
+				description = <"-">
+			>
+			["id2"] = <
+				text = <"Medication order">
+				description = <"Medication order">
+			>
+			["at1"] = <
+				text = <"Simple medication list">
+				description = <"Is-about code for this Composition: simple medication list">
+			>
+			["at2"] = <
+				text = <"Persistent Composition category">
+				description = <"Persistent Composition category">
+			>
+		>
+	>
+
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/104207-6>
+			["at1"] = <http://loinc.org/104207-6>
+		>
+		["openehr"] = <
+			["at2"] = <http://openehr.org/id/431>
+		>
+	>

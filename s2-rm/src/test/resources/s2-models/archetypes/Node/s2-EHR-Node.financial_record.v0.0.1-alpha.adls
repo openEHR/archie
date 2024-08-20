@@ -1,0 +1,128 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=cac8a2a0-2d15-4b53-bc09-4149a0a0e06d)
+	s2-EHR-Node.financial_record.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-11-11">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.financial_record.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.financial_record.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the financial situation of an individual during a specified period of time.">
+			use = <"Use to record details about the financial situation of an individual during a specified period of time.
+            
+            An individual may require more than one active financial record at a time, recorded in a separate instance of this archetype.
+            
+            Multiple instances of this archetype captured over time will result in the aggregation of a history of past and present financial situations.
+            
+            An active, or current financial situation may be implied from a 'Date commenced' but no 'Date ceased'. 
+            
+            If the financial situation changes significantly, then this should be recorded in a new instance of this archetype.
+            
+            This archetype has been specifically designed to be used in the 'Financial record' SLOT within the EVALUATION.financial_summary archetype, but can also be used within any other ENTRY or Node archetypes, where clinically appropriate.
+            
+            These data Nodes are not intended to form a true and complete financial record, but have been designed only to support clinical and social care purposes.">
+			keywords = <"income", "expenses", "debt">
+			misuse = <"">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Financial record
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Name/label
+				value matches {
+					Text[id8] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Date commenced
+				value matches {
+					Date_time_value[id9] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id10] 
+				}
+			}
+			allow_archetype Node[id5] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Date ceased
+				value matches {
+					Date_time_value[id11] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id12] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Financial record">
+				description = <"Details about the financial situation of an individual during a specified period of time.">
+			>
+			["id2"] = <
+				text = <"Name/label">
+				description = <"A name or label associated with this financial record to allow it to be distinguished from other financial records.">
+			>
+			["id3"] = <
+				text = <"Date commenced">
+				description = <"The date when this financial period or record commenced.">
+			>
+			["id4"] = <
+				text = <"Description">
+				description = <"Narrative description about the financial situation or context.">
+			>
+			["id5"] = <
+				text = <"Additional details">
+				description = <"Further details about the financial record.">
+			>
+			["id6"] = <
+				text = <"Date ceased">
+				description = <"The date when this financial period or record ceased.">
+			>
+			["id7"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the financial record not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id7"] = <http://loinc.org/106173-8>
+		>
+	>
+

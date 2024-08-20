@@ -1,0 +1,388 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=805286ee-48c5-4b58-bb3f-f3232a1c01dc)
+    s2-EHR-Direct_observation.gpaq.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2019-11-21">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.gpaq.v0.0.1-alpha, copyright 2019 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.gpaq.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the responses to the WHO Global Physical Activity Questionnaire.">
+            use = <"Use to record the responses to the WHO Global Physical Activity Questionnaire.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Global Physical Activity Questionnaire (GPAQ)
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- 1. Work - Vigorous activity?
+                value matches {
+                    Coded_text[id32] matches {
+                        term matches {
+                            Terminology_term[id48] matches {
+                                concept matches {[ac1]}    -- 1. Work - Vigorous activity? (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- 2. Work - Vigorous activity/week
+                value matches {
+                    Measured<Quantity>[id49] matches {
+                        value matches {
+                            Quantity[id33] matches {
+                                magnitude matches {|0.0..7.0|}
+                                precision matches {0}
+                                units matches {
+                                    Coded_text[id51] matches {
+                                        term matches {
+                                            Terminology_term[id50] matches {
+                                                concept matches {[at33]}    -- 1/wk
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- 3. Work - Vigorous activity/day
+                value matches {
+                    Duration_value[id34] matches {
+                        magnitude matches {|PT0S..PT24H|}
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- 4.  Work - Moderate activity?
+                value matches {
+                    Coded_text[id35] matches {
+                        term matches {
+                            Terminology_term[id52] matches {
+                                concept matches {[ac2]}    -- 4.  Work - Moderate activity? (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- 5. Work - Moderate activity/week
+                value matches {
+                    Measured<Quantity>[id53] matches {
+                        value matches {
+                            Quantity[id36] matches {
+                                magnitude matches {|0.0..7.0|}
+                                precision matches {0}
+                                units matches {
+                                    Coded_text[id55] matches {
+                                        term matches {
+                                            Terminology_term[id54] matches {
+                                                concept matches {[at33]}    -- 1/wk
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- 6. Work - Moderate activity/day
+                value matches {
+                    Duration_value[id37] matches {
+                        magnitude matches {|PT0S..PT24H|}
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..2} matches {    -- 7. Travel activity?
+                value matches {
+                    Coded_text[id38] matches {
+                        term matches {
+                            Terminology_term[id56] matches {
+                                concept matches {[ac3]}    -- 7. Travel activity? (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- 8. Travel/week
+                value matches {
+                    Measured<Quantity>[id57] matches {
+                        value matches {
+                            Quantity[id39] matches {
+                                magnitude matches {|0.0..7.0|}
+                                precision matches {0}
+                                units matches {
+                                    Coded_text[id59] matches {
+                                        term matches {
+                                            Terminology_term[id58] matches {
+                                                concept matches {[at33]}    -- 1/wk
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id24] occurrences matches {0..1} matches {    -- 9. Travel/day
+                value matches {
+                    Duration_value[id40] matches {
+                        magnitude matches {|PT0S..PT24H|}
+                    }
+                }
+            }
+            Node[id25] occurrences matches {0..1} matches {    -- 10. Leisure - Vigorous activity?
+                value matches {
+                    Coded_text[id41] matches {
+                        term matches {
+                            Terminology_term[id60] matches {
+                                concept matches {[ac4]}    -- 10. Leisure - Vigorous activity? (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id26] occurrences matches {0..1} matches {    -- 11. Leisure - Vigorous activity/week
+                value matches {
+                    Measured<Quantity>[id61] matches {
+                        value matches {
+                            Quantity[id42] matches {
+                                magnitude matches {|0.0..7.0|}
+                                precision matches {0}
+                                units matches {
+                                    Coded_text[id63] matches {
+                                        term matches {
+                                            Terminology_term[id62] matches {
+                                                concept matches {[at33]}    -- 1/wk
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id27] occurrences matches {0..1} matches {    -- 12. Leisure - Vigorous activity/day
+                value matches {
+                    Duration_value[id43] matches {
+                        magnitude matches {|PT0S..PT24H|}
+                    }
+                }
+            }
+            Node[id28] occurrences matches {0..1} matches {    -- 13. Leisure - Moderate activity?
+                value matches {
+                    Coded_text[id44] matches {
+                        term matches {
+                            Terminology_term[id64] matches {
+                                concept matches {[ac5]}    -- 13. Leisure - Moderate activity? (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- 14. Leisure - Moderate activity/week
+                value matches {
+                    Measured<Quantity>[id65] matches {
+                        value matches {
+                            Quantity[id45] matches {
+                                magnitude matches {|0.0..7.0|}
+                                precision matches {0}
+                                units matches {
+                                    Coded_text[id67] matches {
+                                        term matches {
+                                            Terminology_term[id66] matches {
+                                                concept matches {[at33]}    -- 1/wk
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id30] occurrences matches {0..1} matches {    -- 15. Leisure - Moderate activity/day
+                value matches {
+                    Duration_value[id46] matches {
+                        magnitude matches {|PT0S..PT24H|}
+                    }
+                }
+            }
+            Node[id31] occurrences matches {0..1} matches {    -- 16. Sedentary/day
+                value matches {
+                    Duration_value[id47] matches {
+                        magnitude matches {|PT0S..PT24H|}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["ucum"] = <
+            ["at33"] = <http://ucum.org/id/1%2Fwk>
+        >
+        ["snomed"] = <
+            ["at33"] = <http://snomed.info/id/259038000>
+        >
+    >
+    value_sets = <
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at31", "at32">
+        >
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at31", "at32">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at31", "at32">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at31", "at32">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at31", "at32">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"1. Work - Vigorous activity? (synthesised)">
+                description = <"Does your work involve vigorous-intensity activity that causes large increases in breathing or heart rate for at least 10 minutes continuously? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"4.  Work - Moderate activity? (synthesised)">
+                description = <"Does your work involve moderate-intensity activity that causes small increases in breathing or heart rate for at least 10 minutes continuously? (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"7. Travel activity? (synthesised)">
+                description = <"Do you walk or use a bicycle for at least 10 minutes continuously to get to and from places? (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"10. Leisure - Vigorous activity? (synthesised)">
+                description = <"Do you do any vigorous-intensity sports, fitness or recreational activities that cause large increases in breathing or heart rate for at least 10 minutes continuously? (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"13. Leisure - Moderate activity? (synthesised)">
+                description = <"Do you do any moderate-intensity sports, fitness or recreational activities that causes a small increase in breathing or heart rate for at least 10 minutes continuously? (synthesised)">
+            >
+            ["at31"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at32"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at33"] = <
+                text = <"1/wk">
+                description = <"1/wk unit.">
+            >
+            ["id1"] = <
+                text = <"Global Physical Activity Questionnaire (GPAQ)">
+                description = <"WHO surveillance tool to assess levels of physical activity.">
+            >
+            ["id10"] = <
+                text = <"6. Work - Moderate activity/day">
+                description = <"How much time do you spend doing moderate-intensity activities at work on a typical day?">
+            >
+            ["id11"] = <
+                text = <"7. Travel activity?">
+                description = <"Do you walk or use a bicycle for at least 10 minutes continuously to get to and from places?">
+            >
+            ["id12"] = <
+                text = <"8. Travel/week">
+                description = <"In a typical week, on how many days do you walk or bicycle for at least 10 minutes continuously to get to and from places?">
+            >
+            ["id24"] = <
+                text = <"9. Travel/day">
+                description = <"How much time do you spend walking or bicycling for travel on a typical day?">
+            >
+            ["id25"] = <
+                text = <"10. Leisure - Vigorous activity?">
+                description = <"Do you do any vigorous-intensity sports, fitness or recreational activities that cause large increases in breathing or heart rate for at least 10 minutes continuously?">
+            >
+            ["id26"] = <
+                text = <"11. Leisure - Vigorous activity/week">
+                description = <"In a typical week, on how many days do you do vigorous-intensity sports, fitness or recreational activities?">
+            >
+            ["id27"] = <
+                text = <"12. Leisure - Vigorous activity/day">
+                description = <"How much time do you spend doing vigorous-intensity sports, fitness or recreational activities on a typical day?">
+            >
+            ["id28"] = <
+                text = <"13. Leisure - Moderate activity?">
+                description = <"Do you do any moderate-intensity sports, fitness or recreational activities that causes a small increase in breathing or heart rate for at least 10 minutes continuously?">
+            >
+            ["id29"] = <
+                text = <"14. Leisure - Moderate activity/week">
+                description = <"In a typical week, on how many days do you do moderate-intensity sports, fitness or recreational activities?">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id30"] = <
+                text = <"15. Leisure - Moderate activity/day">
+                description = <"How much time do you spend doing moderate-intensity sports, fitness or recreational activities on a typical day?">
+            >
+            ["id31"] = <
+                text = <"16. Sedentary/day">
+                description = <"How much time do you usually spend sitting or reclining on a typical day?">
+            >
+            ["id5"] = <
+                text = <"1. Work - Vigorous activity?">
+                description = <"Does your work involve vigorous-intensity activity that causes large increases in breathing or heart rate for at least 10 minutes continuously?">
+            >
+            ["id6"] = <
+                text = <"2. Work - Vigorous activity/week">
+                description = <"In a typical week, on how many days do you do vigorous-intensity activities as part of your work?">
+            >
+            ["id7"] = <
+                text = <"3. Work - Vigorous activity/day">
+                description = <"How much time do you spend doing vigorous-intensity activities at work on a typical day?">
+            >
+            ["id8"] = <
+                text = <"4.  Work - Moderate activity?">
+                description = <"Does your work involve moderate-intensity activity that causes small increases in breathing or heart rate for at least 10 minutes continuously?">
+            >
+            ["id9"] = <
+                text = <"5. Work - Moderate activity/week">
+                description = <"In a typical week, on how many days do you do moderate-intensity activities as part of your work?">
+            >
+        >
+    >
+    

@@ -1,0 +1,355 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7f34f7b1-11cb-4368-8985-c2bbde965cad)
+    s2-EHR-Score.abcd2_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Dennis Forslund, Cambio Healthcare Systems, <models@cambiocds.com>, 2016-11-30">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.abcd2_score.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.abcd2_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the results of the ABCD2 assessment tool.">
+            keywords = <"ABCD", "ABCD2", "Stroke", "TIA">
+            use = <"Use to record the results of the ABCD2 assessment tool.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- ABCD2 score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Age ≥ 60 years
+                value matches {
+                    Coded_ordinal[id32] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id34] matches {
+                                term matches {
+                                    Terminology_term[id33] matches {
+                                        concept matches {[at10]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id35] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id37] matches {
+                                term matches {
+                                    Terminology_term[id36] matches {
+                                        concept matches {[at11]}    -- Present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Blood pressure elevation
+                value matches {
+                    Coded_ordinal[id38] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id40] matches {
+                                term matches {
+                                    Terminology_term[id39] matches {
+                                        concept matches {[at12]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id41] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id43] matches {
+                                term matches {
+                                    Terminology_term[id42] matches {
+                                        concept matches {[at13]}    -- Present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Clinical features
+                value matches {
+                    Coded_ordinal[id44] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id46] matches {
+                                term matches {
+                                    Terminology_term[id45] matches {
+                                        concept matches {[at14]}    -- Other symptoms
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id47] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id49] matches {
+                                term matches {
+                                    Terminology_term[id48] matches {
+                                        concept matches {[at15]}    -- Speech disturbance without focal weakness
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id50] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id52] matches {
+                                term matches {
+                                    Terminology_term[id51] matches {
+                                        concept matches {[at16]}    -- Unilateral weakness
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Diabetes history
+                value matches {
+                    Coded_ordinal[id53] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id55] matches {
+                                term matches {
+                                    Terminology_term[id54] matches {
+                                        concept matches {[at17]}    -- Absent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id56] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id58] matches {
+                                term matches {
+                                    Terminology_term[id57] matches {
+                                        concept matches {[at18]}    -- Present
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Symptom duration
+                value matches {
+                    Coded_ordinal[id59] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id61] matches {
+                                term matches {
+                                    Terminology_term[id60] matches {
+                                        concept matches {[at19]}    -- <10 minutes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id62] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id64] matches {
+                                term matches {
+                                    Terminology_term[id63] matches {
+                                        concept matches {[at20]}    -- 10-59 minutes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id65] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id67] matches {
+                                term matches {
+                                    Terminology_term[id66] matches {
+                                        concept matches {[at21]}    -- ≥60 minutes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id23] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id31]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id25] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at10", "at11">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at12", "at13">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at14", "at15", "at16">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at17", "at18">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at19", "at20", "at21">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Age ≥ 60 years (synthesised)">
+                description = <"Is the person 60 years or older? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Blood pressure elevation (synthesised)">
+                description = <"Was the initial systolic pressure >140 mmHg and/or diastolic pressure ≥ 90 mmHg? (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Clinical features (synthesised)">
+                description = <"What are the clinical features of the TIA? (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Diabetes history (synthesised)">
+                description = <"Does the patient have a history of  diabetes mellitus? (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Symptom duration (synthesised)">
+                description = <"What is the duration of symptoms? (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at11"] = <
+                text = <"Present">
+                description = <"*">
+            >
+            ["at12"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Present">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Other symptoms">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Speech disturbance without focal weakness">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"Unilateral weakness">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Present">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"<10 minutes">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"10-59 minutes">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"≥60 minutes">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"ABCD2 score">
+                description = <"Tool to assess the risk of subsequent stroke in an individual presenting with a transient ischaemic attack (TIA).">
+            >
+            ["id10"] = <
+                text = <"Symptom duration">
+                description = <"What is the duration of symptoms?">
+            >
+            ["id23"] = <
+                text = <"Total score">
+                description = <"Sum of the individual scores assigned for each of the contributing variables.">
+            >
+            ["id25"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Age ≥ 60 years">
+                description = <"Is the person 60 years or older?">
+            >
+            ["id6"] = <
+                text = <"Blood pressure elevation">
+                description = <"Was the initial systolic pressure >140 mmHg and/or diastolic pressure ≥ 90 mmHg?">
+            >
+            ["id8"] = <
+                text = <"Clinical features">
+                description = <"What are the clinical features of the TIA?">
+            >
+            ["id9"] = <
+                text = <"Diabetes history">
+                description = <"Does the patient have a history of  diabetes mellitus?">
+            >
+        >
+    >
+    

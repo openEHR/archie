@@ -1,0 +1,101 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=38fd63e5-f83d-4fbe-ba86-27983dfa4287)
+	s2-Entity-Node.registration_other_data.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-22">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.registration_other_data.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.registration_other_data.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Representation of additional data about a provider registration">
+			use = <"Used in demographic services to collect additional data about a healthcare provider registration">
+			keywords = <"demographic service", "provider registration details">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Other provider registration data
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- State
+				value matches {
+					Coded_text[id4] matches {
+						term matches {
+							Terminology_term[id6] matches {
+								concept matches {[ac2]}		-- State codes
+							}
+						}
+					}
+				}
+			}
+			Node[id3] occurrences matches {1} matches {	-- Country
+				value matches {
+					Coded_text[id5] matches {
+						term matches {
+							Terminology_term[id7] matches {
+								concept matches {[ac3]}		-- Country codes
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac2"] = <
+				text = <"State codes">
+				description = <"valid codes for state/territory/province">
+			>
+			["ac3"] = <
+				text = <"Country codes">
+				description = <"valid codes for countries">
+			>
+			["id1"] = <
+				text = <"Other provider registration data">
+				description = <"Other provider registration data">
+			>
+			["id2"] = <
+				text = <"State">
+				description = <"The State of location of the registering body">
+			>
+			["id3"] = <
+				text = <"Country">
+				description = <"The international code for the country within which the professional was registered">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id3"] = <http://loinc.org/65649-6>
+		>
+	>
+

@@ -1,0 +1,152 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2a013bb4-3645-4d99-a31c-0c60f9a58631)
+	s2-EHR-Assessment.maternal_mortality_classification.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-06-27">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.maternal_mortality_classification.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.maternal_mortality_classification.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the final death-related classification at the conclusion of a maternal mortality case investigation.">
+			use = <"Use to record the final death-related classification at the conclusion of a maternal mortality case investigation.">
+			misuse = <"">
+		>
+	>
+
+definition
+	Assessment[id1] matches {	-- Maternal mortality classification
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Cause classification
+				value matches {
+					Coded_text[id14] matches {
+						term matches {
+							Terminology_term[id17] matches {
+								concept matches {[ac1]}		-- Cause classification (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Timing classification
+				value matches {
+					Coded_text[id15] matches {
+						term matches {
+							Terminology_term[id18] matches {
+								concept matches {[ac2]}		-- Timing classification (synthesised)
+							}
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id12] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id16] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Cause classification (synthesised)">
+				description = <"Determination of the role of antenatal, labour and postnatal factors in causing death. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Timing classification (synthesised)">
+				description = <"Determination of the timing of the maternal death in relation to the pregnancy and postnatal period. (synthesised)">
+			>
+			["at3"] = <
+				text = <"Direct">
+				description = <"Death of a pregnant woman resulting from obstetric complications of pregnancy or its management.">
+			>
+			["at4"] = <
+				text = <"Indirect">
+				description = <"Death of a pregnant woman resulting from diseases or conditions that were not due to a direct obstetric cause, but were aggravated by the physiologic effects of pregnancy.">
+			>
+			["at5"] = <
+				text = <"Coincidental">
+				description = <"Death of a pregnant woman considered to be causally unrelated to pregnancy.">
+			>
+			["at6"] = <
+				text = <"Indeterminate">
+				description = <"Not able to determine a classification for the death of the pregnant woman.">
+			>
+			["at8"] = <
+				text = <"Maternal death">
+				description = <"Death of a woman from direct or indirect causes, during pregnancy, childbirth or within 42 days of the end of the pregnancy, irrespective of the duration and site of the pregnancy.">
+			>
+			["at9"] = <
+				text = <"Late maternal death">
+				description = <"Death of a woman from direct or indirect causes, more than 42 days but less than one year after the end of a pregnancy.">
+			>
+			["id1"] = <
+				text = <"Maternal mortality classification">
+				description = <"Death classification at the conclusion of a maternal mortality case investigation.">
+			>
+			["id12"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id13"] = <
+				text = <"Last updated">
+				description = <"The date when this maternal mortality classification was last updated.">
+			>
+			["id3"] = <
+				text = <"Cause classification">
+				description = <"Determination of the role of antenatal, labour and postnatal factors in causing death.">
+			>
+			["id8"] = <
+				text = <"Timing classification">
+				description = <"Determination of the timing of the maternal death in relation to the pregnancy and postnatal period.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id13"] = <http://loinc.org/106177-9>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at3", "at4", "at5", "at6">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at8", "at9">
+		>
+	>
+

@@ -1,0 +1,299 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9d8484e9-73c1-4d66-9f9c-038af3082328)
+    s2-EHR-Node.imaging_exam-anomaly.v0.0.1-alpha
+
+specialize
+    s2-EHR-Node.imaging_exam.v1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Andreas Abildgaard, OUS, Norway", "Marit Alice Venheim, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Jesper Blomquist, Haraldsplass Diakonale Sykehus, Norway", "Randi Brendberg, Helse Nord RHF, Norway", "Gunn Elin Blakkisrud, DIPS ASA, Norway", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Kåre Flø, DIPS ASA, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Johan Gustav Bellika, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hanne Marte Bårholm, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Arunakiry Natarajan, medondo, Germany", "Svenne Naumann, Finnmarkssykehuset, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Andre Smitt-Ingebretsen, Sørlandet sykehus HF, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-11-24">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-anomaly.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-anomaly.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the findings on radiological examination of a single anomaly within an identified body structure or region.">
+            keywords = <"lesion", "mass", "tumour", "tumor", "nodule", "cyst", "calculus", "thrombosus", "abnormality">
+            use = <"Use to record the findings on radiological examination of a single anomaly within an identified body structure or region.
+            
+            If more than one anomaly has been identified within the context of the same body structure or region, use a separate instance of this archetype to describe each anomaly.
+            
+            The intended scope for this archetype is to eventually record all detailed findings on radiological examination of a anomaly using any modality. It is anticipated that further data Nodes may be added as requirements are identified and confirmed. Use cases include, but are not limited to:
+            - a large, mixed solid/cystic anomaly containing teeth and hair, identified within the ovary - for example, a dermoid cyst;
+            - a solid mass identified within the right upper lobe of the lung - for example, a past infection scar or a tumour;
+            - a calcified anomaly identified within the left kidney - for example, a kidney calculus; or 
+            - a soft tissue mass identified within the heart - for example, a thrombosis.
+            
+            This archetype is designed to be nested within the 'Additional details' SLOT in any of the Node.imaging_exam family of archetypes which will provide the context for the anomaly, but can also be used within other ENTRY or Node archetypes, where clinically appropriate. If this archetype needs to be extended with further levels of structured findings, additional instances of the Node.imaging_exam or its specialisations can be nested in the 'Additional details' SLOT.">
+            misuse = <"Not to be used to record findings that are reasonably anticipated for a specified body structure or region. Use specialised archetypes from the Node.imaging_exam family or the generic Node.imaging_exam archetype for this purpose.
+            
+            Not to be used to record details related to the overall findings, context or technical details related to a complete imaging examination test result. Use the OBERSERVATION.imaging_exam_result for this purpose. For example, comments on the study quality, differential diagnoses, and overall impression.">
+        >
+    >
+    
+definition
+    Node[id1.1] matches {    -- Imaging examination of an anomaly
+        /items matches {
+            after [id8]
+            Node[id0.2] occurrences matches {0..1} matches {    -- Label
+                value matches {
+                    Text[id0.32]
+                }
+            }
+            Node[id0.3] occurrences matches {0..1} matches {    -- Type
+                value matches {
+                    Text[id0.33]
+                }
+            }
+            Node[id0.4] matches {    -- Dimension
+                value matches {
+                    Quantity[id0.44] matches {    -- Dimension (mm)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.46] matches {
+                                term matches {
+                                    Terminology_term[id0.45] matches {
+                                        concept matches {[at0.32]}    -- mm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Quantity[id0.47] matches {    -- Dimension (cm)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id0.49] matches {
+                                term matches {
+                                    Terminology_term[id0.48] matches {
+                                        concept matches {[at0.33]}    -- cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                name matches {"Length", "Width", "Height", "Depth", "Diameter"}
+            }
+            Node[id0.9] occurrences matches {0..1} matches {    -- Shape
+                value matches {
+                    Text[id0.36]
+                }
+            }
+            Node[id0.10] occurrences matches {0..1} matches {    -- Texture
+                value matches {
+                    Text[id0.37]
+                }
+            }
+            Node[id0.15] occurrences matches {0..1} matches {    -- Margin
+                value matches {
+                    Text[id0.38]
+                }
+            }
+            Node[id0.16] occurrences matches {0..1} matches {    -- Calcification
+                value matches {
+                    Coded_text[id0.39] matches {
+                        term matches {
+                            Terminology_term[id0.50] matches {
+                                concept matches {[ac0.2]}    -- Calcification (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.31] occurrences matches {0..1} matches {    -- Calcification description
+                value matches {
+                    Text[id0.40]
+                }
+            }
+            Node[id0.19] occurrences matches {0..1} matches {    -- Effect
+                value matches {
+                    Text[id0.41]
+                }
+            }
+            Node[id0.20] occurrences matches {0..1} matches {    -- Vascularisation
+                value matches {
+                    Text[id0.42]
+                }
+            }
+            Node[id0.25] occurrences matches {0..1} matches {    -- Vascularisation description
+                value matches {
+                    Text[id0.43]
+                }
+            }
+        }
+        /items[id2.1]/value matches {
+            Coded_text[id9.1] matches {
+                term matches {
+                    Terminology_term[id0.51] matches {
+                        concept matches {[at0.1]}    -- Anomaly
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at0.31"] = <http://openehr.org/id/122>
+        >
+        ["ucum"] = <
+            ["at0.32"] = <http://ucum.org/id/mm>
+            ["at0.33"] = <http://ucum.org/id/cm>
+        >
+        ["snomed"] = <
+            ["at0.32"] = <http://snomed.info/id/258673006>
+            ["at0.33"] = <http://snomed.info/id/258672001>
+        >
+    >
+    value_sets = <
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at0.26", "at0.27", "at0.28", "at0.29", "at0.30">
+        >
+        ["ac0.2"] = <
+            id = <"ac0.2">
+            members = <"at0.17", "at0.18">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac0.1"] = <
+                text = <"Dimension (synthesised)">
+                description = <"A measured dimension of the anomaly. (synthesised)">
+            >
+            ["ac0.2"] = <
+                text = <"Calcification (synthesised)">
+                description = <"Presence of calcification in the anomaly. (synthesised)">
+            >
+            ["at0.1"] = <
+                text = <"Anomaly">
+                description = <"">
+            >
+            ["at0.17"] = <
+                text = <"Present">
+                description = <"Calcification is observed.">
+            >
+            ["at0.18"] = <
+                text = <"Absent">
+                description = <"Calcification is not observed.">
+            >
+            ["at0.26"] = <
+                text = <"Length">
+                description = <"The measured length of the longest edge or aspect of the anomaly.">
+            >
+            ["at0.27"] = <
+                text = <"Width">
+                description = <"The measured length of widest aspect of the anomaly, usually perpendicular to the length or the measured length of the second side of two sides.">
+            >
+            ["at0.28"] = <
+                text = <"Height">
+                description = <"The measured length of the vertical aspect of the anomaly, from the base to the top.">
+            >
+            ["at0.29"] = <
+                text = <"Depth">
+                description = <"The measured length of the third aspect of the anomaly, usually perpendicular to the length and width or measurement of the vertical aspect of the anomaly from the surface to the base. May also known as thickness.">
+            >
+            ["at0.30"] = <
+                text = <"Diameter">
+                description = <"The measured length of the anomaly from edge to edge, usually of an approximately round or oval anomaly, passing through its centre.">
+            >
+            ["at0.31"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["at0.32"] = <
+                text = <"mm">
+                description = <"mm unit.">
+            >
+            ["at0.33"] = <
+                text = <"cm">
+                description = <"Centimetres length unit">
+            >
+            ["id0.10"] = <
+                text = <"Texture">
+                description = <"The texture or consistency of the anomaly.">
+            >
+            ["id0.15"] = <
+                text = <"Margin">
+                description = <"The border or outline of the anomaly.">
+            >
+            ["id0.16"] = <
+                text = <"Calcification">
+                description = <"Presence of calcification in the anomaly.">
+            >
+            ["id0.19"] = <
+                text = <"Effect">
+                description = <"Narrative description about the effect of the anomaly on surrounding structures.">
+            >
+            ["id0.2"] = <
+                text = <"Label">
+                description = <"A label for the anomaly.">
+            >
+            ["id0.20"] = <
+                text = <"Vascularisation">
+                description = <"Assessment of the blood flow to the anomaly.">
+            >
+            ["id0.25"] = <
+                text = <"Vascularisation description">
+                description = <"Narrative description about the blood flow to the anomaly.">
+            >
+            ["id0.3"] = <
+                text = <"Type">
+                description = <"The type of anomaly.">
+            >
+            ["id0.31"] = <
+                text = <"Calcification description">
+                description = <"Description about the pattern of calcification observed.">
+            >
+            ["id0.4"] = <
+                text = <"Dimension">
+                description = <"A measured dimension of the anomaly.">
+            >
+            ["id0.44"] = <
+                text = <"Dimension (mm)">
+                description = <"Dimension (mm)">
+            >
+            ["id0.47"] = <
+                text = <"Dimension (cm)">
+                description = <"Dimension (cm)">
+            >
+            ["id0.9"] = <
+                text = <"Shape">
+                description = <"The contour or silhouette of the anomaly.">
+            >
+            ["id1.1"] = <
+                text = <"Imaging examination of an anomaly">
+                description = <"A finding on radiological examination that deviates from what is standard, normal or expected within an identified body structure or region.">
+            >
+            ["id2.1"] = <
+                text = <"Body structure">
+                description = <"Identification of the body structure or region examined.">
+            >
+        >
+    >
+    

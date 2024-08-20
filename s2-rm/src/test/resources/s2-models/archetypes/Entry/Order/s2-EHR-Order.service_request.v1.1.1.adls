@@ -1,0 +1,351 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d05183dd-b657-4d24-b969-5cfae4ba424a)
+    s2-EHR-Order.service_request.v1.1.1
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Fatima Almeida, Critical SW, Portugal", "Tomas Alme, DIPS ASA, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Anita Bjørnnes, Helse Bergen, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Knut Harboe, Stavanger Universitetssjukehus, Norway", "Sam Heard, Ocean Informatics, Australia", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Anca Heyd, DIPS ASA, Norway", "Hilde Hollås, DIPS AS, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Rose Mari Eikås, Helse Bergen, Norway", "Ole Martin Sand, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Pablo Pazos, CaboLabs.com Health Informatics, Uruguay", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Richard Townley-O'Neill, Australian Digital Health Agency, Australia", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Dr Ian McNicoll, Ocean Informatics, United Kingdom, <ian.mcnicoll@oceaninformatics.com>, 2009-12-08">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-INSTRUCTION.service_request.v1.1.1, copyright 2009 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-INSTRUCTION.service_request.v1.1.1 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"Generic request framework for a health-related service or activity to be delivered by a clinician, organization or agency.">
+            keywords = <"request", "order", "service", "provide", "referral">
+            use = <"Use to record a request for a health-related service or activity to be delivered by a clinician, organization or agency.
+            
+            This archetype has been designed as a framework that can be used as the basis for:
+            - a request from one clinician, organization or agency to another clinician, organization or agency for a health-related service. For example: a referral to a specialist clinician for treatment or a second clinical opinion; transfer of care to an emergency department; four hourly vital signs monitoring; and provision of home services from a municipal council; or
+            - a request for a follow up service to be scheduled for the same clinician, organization or agency. For example: a review appointment in outpatients in 6 weeks. 
+            
+            Clinical use cases:
+            - consider a clinician ordering a follow-up appointment in 6 weeks. 'Follow-up appointment' will be the 'Service name'. If they enter '6 weeks' as the proposed timing for the appointment in the User Interface, the clinical system will record the date six weeks from today in the 'Service due' data Node.
+            - consider a clinician ordering Diabetes Education as the 'Service name'. The values for 'Reason for request' may be 'New diagnosis' and 'Prevention of ketoacidosis'. The 'Clinical indication' will be 'Diabetes Type 1', which may be linked to the Problem Diagnosis and/or Laboratory test results. If a 4 week course is required, with sessions organised at weekly intervals on 4 separate occasions, then the complex timing requires use of the Node.service_direction and associated Node.timing_nondaily archetype.
+            - consider a clinician ordering a recurring blood test, such as an INR. The complex timing for this requires use of the Node.service_direction and associated Node.timing_nondaily archetype to define each timing in a sequence of tests, such as 'daily for one week, weekly for 4 weeks, monthly for 6 months'.
+            
+            The default assumption for this archetype is that it's a request for a single service. If a series of services are required, use the Node.service_direction archetype within the 'Complex timing' SLOT.
+            
+            In many situations it will be possible to record the steps that occur as part of this request being carried out using the corresponding generic ACTION.service. However, there will be many occasions where the required ACTION archetype will be very specific for purpose, as the data requirements for recording provision of many health-related services will need quite unique data Nodes, recording patterns or pathway steps. For example: ACTION.screening or ACTION.health_education.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Order[id1] matches {    -- Service request
+        activities matches {
+            Activity[id2] occurrences matches {1..*} matches {    -- Current Activity
+                description cardinality matches {1..*; unordered} matches {
+                    Node[id122] matches {    -- Service name
+                        value matches {
+                            Text[id155]
+                        }
+                    }
+                    Node[id149] occurrences matches {0..1} matches {    -- Service type
+                        value matches {
+                            Text[id156]
+                        }
+                    }
+                    Node[id136] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            Text[id157]
+                        }
+                    }
+                    Node[id154] matches {    -- Order detail
+                        value matches {
+                            Text[id158]
+                        }
+                    }
+                    Node[id63] matches {    -- Reason for request
+                        value matches {
+                            Text[id159]
+                        }
+                    }
+                    Node[id65] occurrences matches {0..1} matches {    -- Reason description
+                        value matches {
+                            Text[id160]
+                        }
+                    }
+                    Node[id153] matches {    -- Clinical indication
+                        value matches {
+                            Text[id161]
+                        }
+                    }
+                    Node[id66] matches {    -- Intent
+                        value matches {
+                            Text[id162]
+                        }
+                    }
+                    Node[id69] occurrences matches {0..1} matches {    -- Urgency
+                        value matches {
+                            Coded_text[id163] matches {
+                                term matches {
+                                    Terminology_term[id181] matches {
+                                        concept matches {[ac1]}    -- Urgency (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id164]
+                        }
+                    }
+                    Node[id41] occurrences matches {0..1} matches {    -- Service due
+                        value matches {
+                            Date_time_value[id165]
+                            Range<Date_time_value>[id166] matches {
+                                upper matches {
+                                    Date_time_value[id167]
+                                }
+                                lower matches {
+                                    Date_time_value[id168]
+                                }
+                            }
+                            Text[id169]
+                        }
+                    }
+                    use_archetype Node[id152, s2-EHR-Node.service_direction.v1]    -- Complex timing
+                    Node[id146] occurrences matches {0..1} matches {    -- Service period start
+                        value matches {
+                            Date_time_value[id170]
+                        }
+                    }
+                    Node[id145] occurrences matches {0..1} matches {    -- Service period expiry
+                        value matches {
+                            Date_time_value[id171]
+                        }
+                    }
+                    Node[id148] occurrences matches {0..1} matches {    -- Indefinite?
+                        value matches {
+                            Boolean_value[id172] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                    allow_archetype Node[id133] matches {     -- Specific details
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    use_archetype Node[id150, s2-EHR-Node.media_file.v1]    -- Supporting information
+                    Node[id77] occurrences matches {0..1} matches {    -- Supplementary information
+                        value matches {
+                            Boolean_value[id173] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                    Node[id79] occurrences matches {0..1} matches {    -- Information description
+                        value matches {
+                            Text[id174]
+                        }
+                    }
+                    allow_archetype Node[id117] matches {     -- Patient requirements
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    Node[id151] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id175]
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers cardinality matches {1..*; unordered} matches {
+            Node[id11] occurrences matches {0..1} matches {    -- Requester order identifier
+                value matches {
+                    Text[id176]
+                    Rwe_id_ref[id177]
+                }
+            }
+            allow_archetype Node[id142] occurrences matches {0..1} matches {     -- Requester
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- Receiver order identifier
+                value matches {
+                    Text[id178]
+                    Rwe_id_ref[id179]
+                }
+            }
+            allow_archetype Node[id143] occurrences matches {0..1} matches {     -- Receiver
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            Node[id128] occurrences matches {0..1} matches {    -- Request status
+                value matches {
+                    Text[id180]
+                }
+            }
+            use_archetype Node[id129, s2-EHR-Node.distribution.v0]    -- Distribution list
+            allow_archetype Node[id113] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at136", "at137", "at138">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Urgency (synthesised)">
+                description = <"Urgency of the request for service. (synthesised)">
+            >
+            ["at136"] = <
+                text = <"Emergency">
+                description = <"The request requires immediate attention.">
+            >
+            ["at137"] = <
+                text = <"Urgent">
+                description = <"The request requires prioritised attention.">
+            >
+            ["at138"] = <
+                text = <"Routine">
+                description = <"The request does not require prioritised scheduling.">
+            >
+            ["id1"] = <
+                text = <"Service request">
+                description = <"Request for a health-related service or activity to be delivered by a clinician, organization or agency.">
+            >
+            ["id11"] = <
+                text = <"Requester order identifier">
+                description = <"The local identifier assigned by the requesting clinical system.">
+            >
+            ["id113"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id117"] = <
+                text = <"Patient requirements">
+                description = <"Language, transport or other personal requirements to support the patient's attendance or participation in provision of the service.">
+            >
+            ["id12"] = <
+                text = <"Receiver order identifier">
+                description = <"The local identifier assigned to the request by the clinician or organization receiving the request for service.">
+            >
+            ["id122"] = <
+                text = <"Service name">
+                description = <"The name of the single service or activity requested.">
+            >
+            ["id128"] = <
+                text = <"Request status">
+                description = <"The status of the request for service as indicated by the requester.">
+            >
+            ["id129"] = <
+                text = <"Distribution list">
+                description = <"Details of additional clinicians, organizations or agencies who require copies of any communication.">
+            >
+            ["id133"] = <
+                text = <"Specific details">
+                description = <"Additional detail about the service requested.">
+            >
+            ["id136"] = <
+                text = <"Description">
+                description = <"Narrative description about the service requested.">
+            >
+            ["id142"] = <
+                text = <"Requester">
+                description = <"Details about the clinician or organization requesting the service.">
+            >
+            ["id143"] = <
+                text = <"Receiver">
+                description = <"Details about the clinician or organization receiving the request for service.">
+            >
+            ["id145"] = <
+                text = <"Service period expiry">
+                description = <"The date/time that marks the conclusion of the clinically valid period of time for delivery of this service.">
+            >
+            ["id146"] = <
+                text = <"Service period start">
+                description = <"The date/time that marks the beginning of the valid period of time for delivery of this service.">
+            >
+            ["id148"] = <
+                text = <"Indefinite?">
+                description = <"The valid period for this request is open ended and has no date of expiry.">
+            >
+            ["id149"] = <
+                text = <"Service type">
+                description = <"Category of service requested.">
+            >
+            ["id150"] = <
+                text = <"Supporting information">
+                description = <"Digital document, image, video or diagram supplied as additional information to support or inform the request.">
+            >
+            ["id151"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the service request not captured in other fields.">
+            >
+            ["id152"] = <
+                text = <"Complex timing">
+                description = <"Details about a complex service request requiring a sequence of timings.">
+            >
+            ["id153"] = <
+                text = <"Clinical indication">
+                description = <"The clinical reason for the ordered service.">
+            >
+            ["id154"] = <
+                text = <"Order detail">
+                description = <"Additional details and instructions about how the services are to be delivered.">
+            >
+            ["id2"] = <
+                text = <"Current Activity">
+                description = <"Current Activity.">
+            >
+            ["id41"] = <
+                text = <"Service due">
+                description = <"The date/time, or acceptable interval of date/time, for provision of the service.">
+            >
+            ["id63"] = <
+                text = <"Reason for request">
+                description = <"A short phrase describing the reason for the request.">
+            >
+            ["id65"] = <
+                text = <"Reason description">
+                description = <"Narrative description about the reason for request.">
+            >
+            ["id66"] = <
+                text = <"Intent">
+                description = <"Description of the intent for the request.">
+            >
+            ["id69"] = <
+                text = <"Urgency">
+                description = <"Urgency of the request for service.">
+            >
+            ["id77"] = <
+                text = <"Supplementary information">
+                description = <"Supplementary information will be following request.">
+            >
+            ["id79"] = <
+                text = <"Information description">
+                description = <"Description of the supplementary information.">
+            >
+        >
+    >
+    

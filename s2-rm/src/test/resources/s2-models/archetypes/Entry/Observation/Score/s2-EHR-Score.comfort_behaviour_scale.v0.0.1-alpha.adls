@@ -1,0 +1,752 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0ec3d57a-e367-47fd-835c-48e7d4add9e1)
+    s2-EHR-Score.comfort_behaviour_scale.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Alan D. March, Hospital Universitario Austral, Pilar, Buenos Aires, Argentina, <alandmarch@gmail.com>, 2016-08-31">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.comfort_behaviour_scale.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.comfort_behaviour_scale.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"The Comfort Behavioural scale is a modification of the original Comfort scale (1992), used for pain assesment in children in ICU and, complementarily, for sedation assessment in nonsurgical pediatric ICU patients.">
+            keywords = <"Comfort Behavioural scale", "Comfort B scale", "pain", "sedation", "scale", "pediatric">
+            use = <"Used for pain and/or sedation assessment in pediatric ICU patients.">
+            misuse = <"Not to be used for pain and/or sedation assessment in adult populations.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Comfort behaviour scale
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Alertness
+                value matches {
+                    Coded_ordinal[id56] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id58] matches {
+                                term matches {
+                                    Terminology_term[id57] matches {
+                                        concept matches {[at5]}    -- Deeply asleep
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id59] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id61] matches {
+                                term matches {
+                                    Terminology_term[id60] matches {
+                                        concept matches {[at6]}    -- Lightly asleep
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id62] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id64] matches {
+                                term matches {
+                                    Terminology_term[id63] matches {
+                                        concept matches {[at7]}    -- Drowsy
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id65] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id67] matches {
+                                term matches {
+                                    Terminology_term[id66] matches {
+                                        concept matches {[at8]}    -- Awake and alert
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id68] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id70] matches {
+                                term matches {
+                                    Terminology_term[id69] matches {
+                                        concept matches {[at9]}    -- Awake and hyper-alert
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Calmness/Agitation
+                value matches {
+                    Coded_ordinal[id71] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id73] matches {
+                                term matches {
+                                    Terminology_term[id72] matches {
+                                        concept matches {[at11]}    -- Calm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id74] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id76] matches {
+                                term matches {
+                                    Terminology_term[id75] matches {
+                                        concept matches {[at12]}    -- Slightly anxious
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id77] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id79] matches {
+                                term matches {
+                                    Terminology_term[id78] matches {
+                                        concept matches {[at13]}    -- Anxious
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id80] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id82] matches {
+                                term matches {
+                                    Terminology_term[id81] matches {
+                                        concept matches {[at14]}    -- Very anxious
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id83] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id85] matches {
+                                term matches {
+                                    Terminology_term[id84] matches {
+                                        concept matches {[at15]}    -- Panicky
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id17] occurrences matches {0..1} matches {    -- Respiratory response
+                value matches {
+                    Coded_ordinal[id86] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id88] matches {
+                                term matches {
+                                    Terminology_term[id87] matches {
+                                        concept matches {[at17]}    -- No spontaneous respiration
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id89] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id91] matches {
+                                term matches {
+                                    Terminology_term[id90] matches {
+                                        concept matches {[at18]}    -- Spontaneous and ventilator respiration
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id92] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id94] matches {
+                                term matches {
+                                    Terminology_term[id93] matches {
+                                        concept matches {[at19]}    -- Restlessness or resistance to ventilator
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id95] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id97] matches {
+                                term matches {
+                                    Terminology_term[id96] matches {
+                                        concept matches {[at20]}    -- Actively breathes against ventilator or coughs regularly
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id98] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id100] matches {
+                                term matches {
+                                    Terminology_term[id99] matches {
+                                        concept matches {[at21]}    -- Fights ventilator
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id23] occurrences matches {0..1} matches {    -- Crying
+                value matches {
+                    Coded_ordinal[id101] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id103] matches {
+                                term matches {
+                                    Terminology_term[id102] matches {
+                                        concept matches {[at23]}    -- Quiet breathing, no crying sounds
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id104] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id106] matches {
+                                term matches {
+                                    Terminology_term[id105] matches {
+                                        concept matches {[at24]}    -- Occasional sobbing or moaning
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id107] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id109] matches {
+                                term matches {
+                                    Terminology_term[id108] matches {
+                                        concept matches {[at25]}    -- Whining (monotonous sound)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id110] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id112] matches {
+                                term matches {
+                                    Terminology_term[id111] matches {
+                                        concept matches {[at26]}    -- Crying
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id113] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id115] matches {
+                                term matches {
+                                    Terminology_term[id114] matches {
+                                        concept matches {[at27]}    -- Screaming or shrieking
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Physical movement
+                value matches {
+                    Coded_ordinal[id116] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id118] matches {
+                                term matches {
+                                    Terminology_term[id117] matches {
+                                        concept matches {[at29]}    -- No movement
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id119] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id121] matches {
+                                term matches {
+                                    Terminology_term[id120] matches {
+                                        concept matches {[at30]}    -- Occasional slight movements
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id122] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id124] matches {
+                                term matches {
+                                    Terminology_term[id123] matches {
+                                        concept matches {[at31]}    -- Frequen slight movements
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id125] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id127] matches {
+                                term matches {
+                                    Terminology_term[id126] matches {
+                                        concept matches {[at32]}    -- Vigorous movements limited to extremities
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id128] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id130] matches {
+                                term matches {
+                                    Terminology_term[id129] matches {
+                                        concept matches {[at33]}    -- Vigorous movements including torso and head
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id35] occurrences matches {0..1} matches {    -- Muscle tone
+                value matches {
+                    Coded_ordinal[id131] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id133] matches {
+                                term matches {
+                                    Terminology_term[id132] matches {
+                                        concept matches {[at35]}    -- Muscles totally relaxed; no muscle tone
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id134] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id136] matches {
+                                term matches {
+                                    Terminology_term[id135] matches {
+                                        concept matches {[at36]}    -- Reduced muscle tone
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id137] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id139] matches {
+                                term matches {
+                                    Terminology_term[id138] matches {
+                                        concept matches {[at37]}    -- Normal muscle tone
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id140] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id142] matches {
+                                term matches {
+                                    Terminology_term[id141] matches {
+                                        concept matches {[at38]}    -- Increased muscle tone and flexion of fingers and toes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id143] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id145] matches {
+                                term matches {
+                                    Terminology_term[id144] matches {
+                                        concept matches {[at39]}    -- Extreme muscle rigidity and flexion of fingers and toes
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id41] occurrences matches {0..1} matches {    -- Facial tension
+                value matches {
+                    Coded_ordinal[id146] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id148] matches {
+                                term matches {
+                                    Terminology_term[id147] matches {
+                                        concept matches {[at41]}    -- Facial muscles totally relaxed
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id149] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id151] matches {
+                                term matches {
+                                    Terminology_term[id150] matches {
+                                        concept matches {[at42]}    -- Normal facial tone
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id152] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id154] matches {
+                                term matches {
+                                    Terminology_term[id153] matches {
+                                        concept matches {[at43]}    -- Tension evident in some facial muscles (not sustained)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id155] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id157] matches {
+                                term matches {
+                                    Terminology_term[id156] matches {
+                                        concept matches {[at44]}    -- Tension evident throughout facial muscles (sustained)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id158] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id160] matches {
+                                term matches {
+                                    Terminology_term[id159] matches {
+                                        concept matches {[at45]}    -- Facial muscles contorted and grimacing
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id47] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Count[id55] matches {
+                        magnitude matches {|6..30|}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6", "at7", "at8", "at9">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at11", "at12", "at13", "at14", "at15">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at17", "at18", "at19", "at20", "at21">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at23", "at24", "at25", "at26", "at27">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at29", "at30", "at31", "at32", "at33">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at35", "at36", "at37", "at38", "at39">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at41", "at42", "at43", "at44", "at45">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Alertness (synthesised)">
+                description = <"Degree of alertness. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Calmness/Agitation (synthesised)">
+                description = <"Degree of calmness or agitation. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Respiratory response (synthesised)">
+                description = <"Degree of respiratory response. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Crying (synthesised)">
+                description = <"Whether the patient is crying. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Physical movement (synthesised)">
+                description = <"Degree of physical movement. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Muscle tone (synthesised)">
+                description = <"Degree of muscle tone. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Facial tension (synthesised)">
+                description = <"Degree of facial tension. (synthesised)">
+            >
+            ["at11"] = <
+                text = <"Calm">
+                description = <"Child appears serene and tranquil.">
+            >
+            ["at12"] = <
+                text = <"Slightly anxious">
+                description = <"Child shows slight anxiety.">
+            >
+            ["at13"] = <
+                text = <"Anxious">
+                description = <"Child appears agitated but remains in control.">
+            >
+            ["at14"] = <
+                text = <"Very anxious">
+                description = <"Child appears very agitated, just able to control.">
+            >
+            ["at15"] = <
+                text = <"Panicky">
+                description = <"Severe distress with loss of control">
+            >
+            ["at17"] = <
+                text = <"No spontaneous respiration">
+                description = <"No spontaneous respiration.">
+            >
+            ["at18"] = <
+                text = <"Spontaneous and ventilator respiration">
+                description = <"Both spontaneous and ventilator respiration.">
+            >
+            ["at19"] = <
+                text = <"Restlessness or resistance to ventilator">
+                description = <"Either restlessness or resistance to ventilator.">
+            >
+            ["at20"] = <
+                text = <"Actively breathes against ventilator or coughs regularly">
+                description = <"Either actively breathes against ventilator or coughs regularly.">
+            >
+            ["at21"] = <
+                text = <"Fights ventilator">
+                description = <"Fights ventilator.">
+            >
+            ["at23"] = <
+                text = <"Quiet breathing, no crying sounds">
+                description = <"Quiet breathing, with no crying sounds.">
+            >
+            ["at24"] = <
+                text = <"Occasional sobbing or moaning">
+                description = <"Occasional sobbing or moaning.">
+            >
+            ["at25"] = <
+                text = <"Whining (monotonous sound)">
+                description = <"Whining (as monotonous sound).">
+            >
+            ["at26"] = <
+                text = <"Crying
+                ">
+                description = <"Actively crying
+                .">
+            >
+            ["at27"] = <
+                text = <"Screaming or shrieking">
+                description = <"Screaming and/or shrieking.">
+            >
+            ["at29"] = <
+                text = <"No movement">
+                description = <"No movements.">
+            >
+            ["at30"] = <
+                text = <"Occasional slight movements">
+                description = <"Occasional, (three or fewer) slight movements.">
+            >
+            ["at31"] = <
+                text = <"Frequen slight movements">
+                description = <"Frequent, (more than three) slight movements.">
+            >
+            ["at32"] = <
+                text = <"Vigorous movements limited to extremities">
+                description = <"Vigorous movements limited to extremities.">
+            >
+            ["at33"] = <
+                text = <"Vigorous movements including torso and head">
+                description = <"Vigorous movements including torso and head.">
+            >
+            ["at35"] = <
+                text = <"Muscles totally relaxed; no muscle tone">
+                description = <"Muscles totally relaxed or no muscle tone.">
+            >
+            ["at36"] = <
+                text = <"Reduced muscle tone">
+                description = <"Reduced muscle tone; less resistance than normal">
+            >
+            ["at37"] = <
+                text = <"Normal muscle tone">
+                description = <"Normal muscle tone.">
+            >
+            ["at38"] = <
+                text = <"Increased muscle tone and flexion of fingers and toes">
+                description = <"Increased muscle tone and flexion of fingers and toes.">
+            >
+            ["at39"] = <
+                text = <"Extreme muscle rigidity and flexion of fingers and toes">
+                description = <"Extreme muscle rigidity and flexion of fingers and toes.">
+            >
+            ["at41"] = <
+                text = <"Facial muscles totally relaxed
+                ">
+                description = <"Facial muscles are totally relaxed.
+                ">
+            >
+            ["at42"] = <
+                text = <"Normal facial tone">
+                description = <"Normal facial tone.">
+            >
+            ["at43"] = <
+                text = <"Tension evident in some facial muscles (not sustained)">
+                description = <"Tension evident in some facial muscles (not sustained).">
+            >
+            ["at44"] = <
+                text = <"Tension evident throughout facial muscles (sustained)">
+                description = <"Tension evident throughout facial muscles (sustained).">
+            >
+            ["at45"] = <
+                text = <"Facial muscles contorted and grimacing">
+                description = <"Facial muscles contorted and there is grimacing.">
+            >
+            ["at5"] = <
+                text = <"Deeply asleep">
+                description = <"Eyes closed, no response to changes in the environment.">
+            >
+            ["at6"] = <
+                text = <"Lightly asleep">
+                description = <"Eyes mostly closed, occasional responses.">
+            >
+            ["at7"] = <
+                text = <"Drowsy">
+                description = <"Child closes his/her eyes frequently, less responsive to the environment.">
+            >
+            ["at8"] = <
+                text = <"Awake and alert">
+                description = <"Child responsive to the environment.">
+            >
+            ["at9"] = <
+                text = <"Awake and hyper-alert">
+                description = <"Exaggerated responses to environmental stimuli.">
+            >
+            ["id1"] = <
+                text = <"Comfort behaviour scale">
+                description = <"A numerical scale for pain and/or sedation assessment in pediatric ICU patients.">
+            >
+            ["id11"] = <
+                text = <"Calmness/Agitation">
+                description = <"Degree of calmness or agitation.">
+            >
+            ["id17"] = <
+                text = <"Respiratory response">
+                description = <"Degree of respiratory response.">
+            >
+            ["id23"] = <
+                text = <"Crying">
+                description = <"Whether the patient is crying.">
+            >
+            ["id29"] = <
+                text = <"Physical movement">
+                description = <"Degree of physical movement.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"*">
+            >
+            ["id35"] = <
+                text = <"Muscle tone">
+                description = <"Degree of muscle tone.">
+            >
+            ["id41"] = <
+                text = <"Facial tension">
+                description = <"Degree of facial tension.">
+            >
+            ["id47"] = <
+                text = <"Total score">
+                description = <"Total score">
+            >
+            ["id5"] = <
+                text = <"Alertness">
+                description = <"Degree of alertness.">
+            >
+        >
+    >
+    

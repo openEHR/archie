@@ -1,0 +1,553 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=663a7560-32cf-4ab1-ab42-2cbf6a655d8f)
+	s2-EHR-Node.problem_qualifier.v2.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Dr Ian McNicoll, freshEHR Clinical Informatics, United Kingdom, <ian@freshehr.com>, 2013-05-29">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.problem_qualifier.v2.0.0, copyright 2013 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.problem_qualifier.v2.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a clinical context-specific or time-specific qualifier for a specified problem or diagnosis.">
+			use = <"Use to record a relevant context-specific or time-specific qualifier that provides additional detail which is relevant at the time of recording or within the clinical context where a problem or diagnosis is recorded. The qualifier may not be appropriate at another time or in another clinical context. 
+            
+            This archetype is designed to be included in Status SLOT in the EVALUATION.problem_diagnosis archetype. The intent is for the EVALUATION.problem_diagnosis archetype to hold all of the information that applies in all contexts, in contrast to this archetype describing only information that depends on the context of use.
+            
+            IMPORTANT NOTES FOR IMPLEMENTATION: 
+            - It is not intended or implied that any or all of these qualifiers should be used within the same context or period of time. In contrast to the usual design of archetypes, this archetype has been deliberately designed to collect a number of common qualifiers into one place in an effort to attempt some simple standardisation within a very messy area of clinical practice. It is acknowledged that the data Nodes contained in this archetype embrace many different, and sometimes even competing, concepts. This has been done mainly to prevent the need for multiple qualifier archetypes, each containing only one or two data Nodes. 
+            - Some of these data Nodes are potentially directly conflicting if used simultaneously within the same context, for example it would not make sense to have an 'inactive' problem together with an Episode that is 'ongoing'. As such, these status qualifiers should be used with extreme care as they are variably applied in practice and interoperability cannot be assured unless usage guidelines are clearly defined within the clinical community in which the 'Problem/Diagnosis' and 'Problem/Diagnosis qualifier' archetype pair may be shared. 
+            
+            Full DRG coding will require the DRG-related data Nodes from this archetype in combination with data Nodes from other archetypes.">
+			keywords = <"problem", "active", "inactive", "status", "episode", "diagnosis">
+			misuse = <"Not to be used to represent a differential diagnosis - use the archetype EVALUATION.differential_diagnosis for this purpose.
+            
+            Not to be used to represent diagnostic certainty - use the 'Diagnostic certainty' data Node within the EVALUATION.problem_diagnosis archetype.">
+		>
+	>
+	other_contributors = <"Nadim Anani, Karolinska Institutet, Sweden", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Malin Berg, DIPS ASA, Norway", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Alexander Davey, HSC NI, United Kingdom", "Aitor Eguzkitza, UPNA (Public University of Navarre) - CHN (Complejo Hospitalario de Navarra), Spain", "Arild Faxvaag, NTNU, Norway", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Bente Gjelsvik, Helse Bergen, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Anca Heyd, DIPS ASA, Norway", "Hilde Hollås, DIPS AS, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hugh Leslie, Ocean Informatics, Australia", "Hallvard Lærum, Norwegian Directorate of e-health, Norway", "Chunlan Ma, Ocean Informatics, Australia", "Luis Marco Ruiz, NST, Spain", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Thomas Schopf, University Hospital of North-Norway, Norway", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Richard Townley-O'Neill, Australian Digital Health Agency, Australia", "Jon Tysdahl, Furst medlab AS, Norway", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Node[id1] matches {	-- Problem/Diagnosis qualifier
+		items matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Diagnostic status
+				value matches {
+					Coded_text[id112] matches {
+						term matches {
+							Terminology_term[id136] matches {
+								concept matches {[ac1]}		-- Diagnostic status (synthesised)
+							}
+						}
+					}
+					Plain_text[id113] 
+				}
+			}
+			Node[id61] occurrences matches {0..1} matches {	-- Current/Past?
+				value matches {
+					Coded_text[id114] matches {
+						term matches {
+							Terminology_term[id137] matches {
+								concept matches {[ac2]}		-- Current/Past? (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Active/Inactive?
+				value matches {
+					Coded_text[id115] matches {
+						term matches {
+							Terminology_term[id138] matches {
+								concept matches {[ac3]}		-- Active/Inactive? (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id99] occurrences matches {0..1} matches {	-- Level of control
+				value matches {
+					Coded_text[id116] matches {
+						term matches {
+							Terminology_term[id139] matches {
+								concept matches {[ac4]}		-- Level of control (synthesised)
+							}
+						}
+					}
+					Plain_text[id117] 
+				}
+			}
+			Node[id103] occurrences matches {0..1} matches {	-- Progression
+				value matches {
+					Coded_text[id118] matches {
+						term matches {
+							Terminology_term[id140] matches {
+								concept matches {[ac5]}		-- Progression (synthesised)
+							}
+						}
+					}
+					Plain_text[id119] 
+				}
+			}
+			Node[id84] occurrences matches {0..1} matches {	-- Resolution phase
+				value matches {
+					Coded_text[id120] matches {
+						term matches {
+							Terminology_term[id141] matches {
+								concept matches {[ac6]}		-- Resolution phase (synthesised)
+							}
+						}
+					}
+					Plain_text[id121] 
+				}
+			}
+			Node[id90] occurrences matches {0..1} matches {	-- Remission status
+				value matches {
+					Coded_text[id122] matches {
+						term matches {
+							Terminology_term[id142] matches {
+								concept matches {[ac7]}		-- Remission status (synthesised)
+							}
+						}
+					}
+					Plain_text[id123] 
+				}
+			}
+			Node[id2] occurrences matches {0..1} matches {	-- Episodicity
+				value matches {
+					Coded_text[id124] matches {
+						term matches {
+							Terminology_term[id143] matches {
+								concept matches {[ac8]}		-- Episodicity (synthesised)
+							}
+						}
+					}
+					Plain_text[id125] 
+				}
+			}
+			Node[id108] matches {	-- Reason for an ongoing episode
+				value matches {
+					Text[id126] 
+				}
+			}
+			Node[id72] occurrences matches {0..1} matches {	-- Occurrence
+				value matches {
+					Coded_text[id127] matches {
+						term matches {
+							Terminology_term[id144] matches {
+								concept matches {[ac9]}		-- Occurrence (synthesised)
+							}
+						}
+					}
+					Plain_text[id128] 
+				}
+			}
+			Node[id78] occurrences matches {0..1} matches {	-- Course label
+				value matches {
+					Plain_text[id129] 
+					Coded_text[id130] matches {
+						term matches {
+							Terminology_term[id145] matches {
+								concept matches {[ac10]}		-- Course label (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id64] matches {	-- Diagnostic category
+				value matches {
+					Coded_text[id131] matches {
+						term matches {
+							Terminology_term[id146] matches {
+								concept matches {[ac11]}		-- Diagnostic category (synthesised)
+							}
+						}
+					}
+					Plain_text[id132] 
+				}
+			}
+			Node[id74] occurrences matches {0..1} matches {	-- Admission diagnosis?
+				value matches {
+					Boolean_value[id133] matches {
+						value matches {True}
+					}
+					Coded_text[id134] matches {
+						term matches {
+							Terminology_term[id147] matches {
+								concept matches {[ac12]}		-- Admission diagnosis? (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id111] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id135] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Diagnostic status (synthesised)">
+				description = <"Stage or phase of diagnostic process. (synthesised)">
+			>
+			["ac10"] = <
+				text = <"Course label (synthesised)">
+				description = <"Category reflecting the speed of onset and/or duration and persistence of the problem or diagnosis. (synthesised)">
+			>
+			["ac11"] = <
+				text = <"Diagnostic category (synthesised)">
+				description = <"Category of the problem or diagnosis within a specified episode of care and/or local care context. (synthesised)">
+			>
+			["ac12"] = <
+				text = <"Admission diagnosis? (synthesised)">
+				description = <"Was the problem or diagnosis present at admission? (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Current/Past? (synthesised)">
+				description = <"Category that supports division of problems and diagnoses into Current or Past problem lists. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Active/Inactive? (synthesised)">
+				description = <"Category that supports division of problems and diagnoses into Active or Inactive problem lists. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Level of control (synthesised)">
+				description = <"Category of the level of control of the problem or diagnosis by the current management. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Progression (synthesised)">
+				description = <"Category of the progression through the course of a chronic problem or diagnosis. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Resolution phase (synthesised)">
+				description = <"Phase of healing for an acute problem or diagnosis. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Remission status (synthesised)">
+				description = <"Status of the remission of an incurable diagnosis. (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Episodicity (synthesised)">
+				description = <"Category of this episode for the identified problem/diagnosis. (synthesised)">
+			>
+			["ac9"] = <
+				text = <"Occurrence (synthesised)">
+				description = <"Category of the occurrence for this problem or diagnosis. (synthesised)">
+			>
+			["at100"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to determine if the problem or diagnosis is controlled by current management.">
+			>
+			["at101"] = <
+				text = <"Not controlled">
+				description = <"The problem or diagnosis is not controlled by current management.">
+			>
+			["at103"] = <
+				text = <"Improving">
+				description = <"The problem or diagnosis is improving.">
+			>
+			["at104"] = <
+				text = <"Stable">
+				description = <"The problem or diagnosis is unchanged.">
+			>
+			["at105"] = <
+				text = <"Worsening">
+				description = <"The problem or diagnosis is worsening.">
+			>
+			["at106"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to determine the progression of the problem or diagnosis.">
+			>
+			["at108"] = <
+				text = <"Yes">
+				description = <"">
+			>
+			["at109"] = <
+				text = <"No">
+				description = <"">
+			>
+			["at16"] = <
+				text = <"Preliminary">
+				description = <"The initial diagnosis made, usually associated with a low level of clinical certainty. It may change as test results or advice become available.">
+			>
+			["at17"] = <
+				text = <"Working">
+				description = <"Interim diagnosis, based on a reasonable amount of clinical certainty but pending further test results or clinical advice. It may still change as test results or advice become available.">
+			>
+			["at18"] = <
+				text = <"Established">
+				description = <"Final substantiated diagnosis, based on a high level of clinical certainty, which may include clinical evidence from test results. It is not expected to change.">
+			>
+			["at26"] = <
+				text = <"Active">
+				description = <"The problem or diagnosis is currently active and clinically relevant.">
+			>
+			["at27"] = <
+				text = <"Inactive">
+				description = <"The problem or diagnosis is not completely resolved but is inactive or felt less relevant to the current clinical context.">
+			>
+			["at34"] = <
+				text = <"New">
+				description = <"A new occurrence of either a new or existing problem or diagnosis. A flag for 'First occurrence' can be recorded separately to distinguish the first from other occurrences.">
+			>
+			["at35"] = <
+				text = <"Ongoing">
+				description = <"The issue, problem or diagnosis continues, without new, acute episodes occurring.">
+			>
+			["at61"] = <
+				text = <"Past">
+				description = <"An issue which ocurred in the past.">
+			>
+			["at62"] = <
+				text = <"Current">
+				description = <"An issue occuring at present.">
+			>
+			["at64"] = <
+				text = <"Principal diagnosis">
+				description = <"The diagnosis determined to be the primary reason for an episode of admitted patient care, an episode of residential care or an attendance at the health care establishment.">
+			>
+			["at66"] = <
+				text = <"Secondary diagnosis">
+				description = <"A problem or diagnosis that occurs at the same time as the primary problem or diagnosis. May also be known as a comorbid condition.">
+			>
+			["at70"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to determine if this occurrence of the problem or diagnosis is new or ongoing.">
+			>
+			["at76"] = <
+				text = <"Complication">
+				description = <"An unfavorable evolution of a problem or diagnosis.">
+			>
+			["at79"] = <
+				text = <"Chronic">
+				description = <"A problem or diagnosis with persistent or long-lasting effects, or that evolves over time.">
+			>
+			["at81"] = <
+				text = <"Acute">
+				description = <"A problem or diagnosis with a rapid onset, a short course, or both.">
+			>
+			["at84"] = <
+				text = <"Resolved">
+				description = <"Problem or diagnosis has completed the normal phases of restoration or healing and can be considered resolved.">
+			>
+			["at85"] = <
+				text = <"Resolving">
+				description = <"Problem or diagnosis is progressing satisfactorily through the normal stages of restoration or healing towards resolution.">
+			>
+			["at86"] = <
+				text = <"Not resolving">
+				description = <"Problem or diagnosis is not progressing satisfactorily through the normal stages of restoration or healing towards resolution.">
+			>
+			["at87"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to determine the resolution or healing status of the problem or diagnosis.">
+			>
+			["at88"] = <
+				text = <"Refuted">
+				description = <"The previously recorded diagnosis has been clinically reassessed or disproved with a high level of clinical certainty. This status is used to correct an error in the health record.">
+			>
+			["at90"] = <
+				text = <"In remission">
+				description = <"No ongoing signs or symptoms of the disease have been identified.">
+			>
+			["at92"] = <
+				text = <"Not in remission">
+				description = <"No diminution of the signs or symptoms of the disease have been identified.">
+			>
+			["at93"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to determine if there have been diminution of the signs or symptoms of the disease have been identified.">
+			>
+			["at94"] = <
+				text = <"Acute-on-chronic">
+				description = <"A problem or diagnosis with an acute exacerbation of a chronic condition.">
+			>
+			["at95"] = <
+				text = <"First occurrence">
+				description = <"This is the first ever occurrence of this problem or diagnosis.">
+			>
+			["at96"] = <
+				text = <"Recurrence">
+				description = <"New occurrence of the same problem or diagnosis after a previous episode was resolved.">
+			>
+			["at97"] = <
+				text = <"Relapsed">
+				description = <"Problem or diagnosis has deteriorated after a period of temporary improvement.">
+			>
+			["at99"] = <
+				text = <"Controlled">
+				description = <"The problem or diagnosis is controlled by current management.">
+			>
+			["id1"] = <
+				text = <"Problem/Diagnosis qualifier">
+				description = <"Contextual or temporal qualifier for a specified problem or diagnosis.">
+			>
+			["id103"] = <
+				text = <"Progression">
+				description = <"Category of the progression through the course of a chronic problem or diagnosis.">
+			>
+			["id108"] = <
+				text = <"Reason for an ongoing episode">
+				description = <"Reason for a problem or diagnosis not resolving as expected.">
+			>
+			["id111"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the Problem/Diagnosis qualifier values, not captured in other fields.">
+			>
+			["id2"] = <
+				text = <"Episodicity">
+				description = <"Category of this episode for the identified problem/diagnosis.">
+			>
+			["id4"] = <
+				text = <"Active/Inactive?">
+				description = <"Category that supports division of problems and diagnoses into Active or Inactive problem lists.">
+			>
+			["id5"] = <
+				text = <"Diagnostic status">
+				description = <"Stage or phase of diagnostic process.">
+			>
+			["id61"] = <
+				text = <"Current/Past?">
+				description = <"Category that supports division of problems and diagnoses into Current or Past problem lists.">
+			>
+			["id64"] = <
+				text = <"Diagnostic category">
+				description = <"Category of the problem or diagnosis within a specified episode of care and/or local care context.">
+			>
+			["id72"] = <
+				text = <"Occurrence">
+				description = <"Category of the occurrence for this problem or diagnosis.">
+			>
+			["id74"] = <
+				text = <"Admission diagnosis?">
+				description = <"Was the problem or diagnosis present at admission?">
+			>
+			["id78"] = <
+				text = <"Course label">
+				description = <"Category reflecting the speed of onset and/or duration and persistence of the problem or diagnosis.">
+			>
+			["id84"] = <
+				text = <"Resolution phase">
+				description = <"Phase of healing for an acute problem or diagnosis.">
+			>
+			["id90"] = <
+				text = <"Remission status">
+				description = <"Status of the remission of an incurable diagnosis.">
+			>
+			["id99"] = <
+				text = <"Level of control">
+				description = <"Category of the level of control of the problem or diagnosis by the current management.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["id2"] = <http://snomed.info/id/288526004>
+			["id5"] = <http://snomed.info/id/106229004>
+			["at16"] = <http://snomed.info/id/148006>
+			["at17"] = <http://snomed.info/id/5558000>
+			["id61"] = <http://snomed.info/id/410511007>
+			["at61"] = <http://snomed.info/id/410513005>
+			["at62"] = <http://snomed.info/id/15240007>
+			["id78"] = <http://snomed.info/id/288524001>
+			["at18"] = <http://snomed.info/id/14657009>
+			["at64"] = <http://snomed.info/id/8319008>
+			["at66"] = <http://snomed.info/id/85097005>
+		>
+		["loinc"] = <
+			["id74"] = <http://loinc.org/78026-2>
+			["id4"] = <http://loinc.org/99493-9>
+			["id5"] = <http://loinc.org/33999-4>
+			["id78"] = <http://loinc.org/66020-9>
+			["id108"] = <http://loinc.org/104921-2>
+			["id111"] = <http://loinc.org/106173-8>
+			["id2"] = <http://loinc.org/104925-3>
+			["id61"] = <http://loinc.org/104918-8>
+			["id64"] = <http://loinc.org/104963-4>
+			["id72"] = <http://loinc.org/104887-5>
+			["id84"] = <http://loinc.org/104896-6>
+			["id90"] = <http://loinc.org/104886-7>
+			["id99"] = <http://loinc.org/104904-8>
+		>
+		["s2"] = <
+			["ac3"] = <http://s2health.org/id/s2.ConditionActiveStatus>
+		>
+	>
+	value_sets = <
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at90", "at92", "at93">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at16", "at17", "at18", "at88">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at62", "at61">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at26", "at27">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at99", "at100", "at101">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at103", "at104", "at105", "at106">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at86", "at85", "at84", "at87", "at97">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at34", "at35", "at70">
+		>
+		["ac9"] = <
+			id = <"ac9">
+			members = <"at95", "at96">
+		>
+		["ac10"] = <
+			id = <"ac10">
+			members = <"at81", "at94", "at79">
+		>
+		["ac11"] = <
+			id = <"ac11">
+			members = <"at64", "at66", "at76">
+		>
+		["ac12"] = <
+			id = <"ac12">
+			members = <"at108", "at109">
+		>
+	>
+

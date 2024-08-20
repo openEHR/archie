@@ -1,0 +1,107 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=47eda091-7102-46bd-b1fe-ba3eb42142c0)
+	s2-EHR-Node.country_visited.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Trainee modeller, openEHR clinical modelling training, 2019-08-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.country_visited.v0.0.1-alpha, copyright  openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.country_visited.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+		>
+	>
+
+definition
+	Node[id1] matches {	-- Country visited
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Country name
+				value matches {
+					Text[id7] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Province/State
+				value matches {
+					Text[id8] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Date of Entry
+				value matches {
+					Date_value[id9] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Date of Exit
+				value matches {
+					Date_value[id10] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id11] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Country visited">
+				description = <"Details about a single country visited by the individual.">
+			>
+			["id2"] = <
+				text = <"Country name">
+				description = <"Name of the country visited.">
+			>
+			["id3"] = <
+				text = <"Province/State">
+				description = <"Name of the province, region or state visited.">
+			>
+			["id4"] = <
+				text = <"Date of Entry">
+				description = <"The date when the individual entered the country visited.">
+			>
+			["id5"] = <
+				text = <"Description">
+				description = <"Narrative description about the visit.">
+			>
+			["id6"] = <
+				text = <"Date of Exit">
+				description = <"The date when the individual entered the country visited.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id4"] = <http://loinc.org/50786-3>
+			["id5"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+

@@ -1,0 +1,243 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8714c774-48e0-44e6-a54e-2552e10c4b7d)
+	s2-EHR-Score.abc_stroke_risk_score.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Eneimi Allwell-Brown, Cambio Healthcare Systems, <models@cambiocds.com>, 2016-11-13">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.abc_stroke_risk_score.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.abc_stroke_risk_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the component values and the total of the ABC-stroke risk score, plus the predicted risk values based on the total score.">
+			use = <"Use to record the component values and the total of the ABC-stroke risk score, plus the predicted risk values based on the total score.">
+			keywords = <"atrial fibrillation", "stroke risk", "systemic embolism risk">
+			misuse = <"Not to be used to record the actual values of each component. Use separate archetypes for this purpose: OBSERVATION.age, OBSERVATION.laboratory_test_result and EVALUATION.problem_diagnosis for this purpose.">
+		>
+	>
+	other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+
+definition
+	Score[id1] matches {	-- ABC-stroke risk score
+		data matches {
+			Node[id6] occurrences matches {0..1} matches {	-- Prior stroke or transient ischaemic attack
+				value matches {
+					Quantity[id18] matches {
+						units matches {
+							Coded_text[id27] matches {
+								term matches {
+									Terminology_term[id26] matches {
+										concept matches {[at2]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Age
+				value matches {
+					Quantity[id19] matches {
+						units matches {
+							Coded_text[id29] matches {
+								term matches {
+									Terminology_term[id28] matches {
+										concept matches {[at2]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- cTnT-hs
+				value matches {
+					Quantity[id20] matches {
+						units matches {
+							Coded_text[id31] matches {
+								term matches {
+									Terminology_term[id30] matches {
+										concept matches {[at2]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- NT-proBNP
+				value matches {
+					Quantity[id21] matches {
+						units matches {
+							Coded_text[id33] matches {
+								term matches {
+									Terminology_term[id32] matches {
+										concept matches {[at2]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Total score
+				value matches {
+					Quantity[id22] matches {
+						units matches {
+							Coded_text[id35] matches {
+								term matches {
+									Terminology_term[id34] matches {
+										concept matches {[at3]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- 1-year risk
+				value matches {
+					Quantity[id23] matches {
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id37] matches {
+								term matches {
+									Terminology_term[id36] matches {
+										concept matches {[at3]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- 3-year risk
+				value matches {
+					Quantity[id24] matches {
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id39] matches {
+								term matches {
+									Terminology_term[id38] matches {
+										concept matches {[at3]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id25] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id15] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at1"] = <
+				text = <"Qualified real">
+				description = <"Qualified real">
+			>
+			["at2"] = <
+				text = <"1">
+				description = <"1 unit.">
+			>
+			["at3"] = <
+				text = <"%">
+				description = <"Percent">
+			>
+			["id1"] = <
+				text = <"ABC-stroke risk score">
+				description = <"Biomarker-based risk assessment tool for predicting stroke in individuals with atrial fibrillation.">
+			>
+			["id10"] = <
+				text = <"Total score">
+				description = <"Sum of the points assigned for each of the contributing variables.">
+			>
+			["id13"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the score, not captured in other fields.">
+			>
+			["id15"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id16"] = <
+				text = <"1-year risk">
+				description = <"Predicted risk of developing a stroke or systemic embolism within 1 year based on ABC-stroke score.">
+			>
+			["id17"] = <
+				text = <"3-year risk">
+				description = <"Predicted risk of developing a stroke or systemic embolism within 3 years based on ABC-stroke score.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id6"] = <
+				text = <"Prior stroke or transient ischaemic attack">
+				description = <"Points assigned based on the presence or absence of a prior history of stroke or TIA in an individual.">
+			>
+			["id7"] = <
+				text = <"Age">
+				description = <"Points assigned based on an individual's age.">
+			>
+			["id8"] = <
+				text = <"cTnT-hs">
+				description = <"Points assigned based on an individual's plasma concentration of cardiac troponin-T high-sensitivity (or cardiac troponin-I high sensitivity).">
+			>
+			["id9"] = <
+				text = <"NT-proBNP">
+				description = <"Points assigned based on an individual's plasma concentration of N-terminal fragment B-type natriuretic peptide.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at1"] = <http://openehr.org/id/380>
+		>
+		["ucum"] = <
+			["at2"] = <http://ucum.org/id/1>
+			["at3"] = <http://ucum.org/id/%25>
+		>
+		["snomed"] = <
+			["at3"] = <http://snomed.info/id/415067009>
+		>
+		["loinc"] = <
+			["id13"] = <http://loinc.org/106173-8>
+		>
+	>
+

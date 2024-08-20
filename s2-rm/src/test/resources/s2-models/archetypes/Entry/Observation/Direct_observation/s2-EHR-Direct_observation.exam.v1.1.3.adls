@@ -1,0 +1,150 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ece2e3fe-4726-4882-9eb4-8ba6c07671e0)
+	s2-EHR-Direct_observation.exam.v1.1.3
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"no.nasjonalikt">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Ocean Informatics, <heather.leslie@oceaninformatics.com>, 2007-11-10">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.exam.v1.1.3, copyright 2007 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.exam.v1.1.3 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"For recording details about findings on physical examination of the subject of care.">
+			use = <"Use to record details about findings on physical examination of the subject of care. This may include a narrative description of the findings, a framework in which to nest detailed Node examination archetypes, and a clinical interpretation of the findings.
+            
+            Examples of detailed Node examination archetypes include those that describe inspection, palpation, auscultation, percussion and movement of body systems or anatomical structures, such as Node.exam_pupils.
+            
+            Narrative descriptions of clinical findings from existing clinical systems may be captured using the 'Description' data Node.
+            
+            Clinicians may sometimes want to record a summative phrase such as 'chronic otitis media' as an Interpretation of the physical examination. In the context of the physical examination archetype this should only be understood as 'physical signs are consistent with chronic otitis media'. While the summative phrase may appear to represent a diagnosis, safe and consistent querying requires a diagnosis to be recorded using the EVALUATION.problem_diagnosis archetype, even if the phrases are identical.">
+			keywords = <"examination", "physical", "exam", "findings", "clinical">
+			misuse = <"Not to be used for recording history-taking observations - use specific OBSERVATION and Node archetypes. For example OBSERVATION.story and Node.symptom.
+            
+            Not to be used to record stand-alone clinical observations - use specific OBSERVATION archetypes. For example OBSERVATION.blood_pressure, OBSERVATION.body_weight, or OBSERVATION.height.">
+		>
+	>
+	other_contributors = <"Sheryl Alexander, NT Department of Health, Australia", "Tomas Alme, DIPS, Norway", "Nadim Anani, Karolinska Institutet, Sweden", "Rita Apelt, Department of Health,NT, Australia", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Margaret Campbell, Queensland Health, Australia", "Rong Chen, Cambio Healthcare Systems, Sweden", "B Christensen, HUS, Norway", "Stephen Chu, Queensland Health, Australia", "Margaret Cotter, AMSANT, Australia", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Michelle Dowden, Miwatj Health Ngalkanbuy Health, Australia", "Samo Drnovsek, Marand ltd, Slovenia", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom (openEHR Editor)", "Tim Garden, NTG Department of Health, Australia", "Tanya Gardner, CAAC, Australia", "Sam Heard, Ocean Informatics, Australia (Editor)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Anca Heyd, DIPS ASA, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Russell Leftwich, Russell B Leftwich MD, United States", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Oslo Universitetssykehus HF, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Bjørn Næss, DIPS ASA, Norway", "Jeremy Oats, NT Health, Australia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Steven Schatz, Department of Health (Northern Territory), Australia", "Anoop Shah, University College London, United Kingdom", "Line Sæle, Nasjonal IKT, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Cherie Whitbread, Royal Darwin Hospital, Australia", "Jo Wright, NT Dept of Health, Australia (Editor)", "Lin Zhang, BIPH, China">
+
+definition
+	Direct_observation[id1] matches {	-- Physical examination findings
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id15] 
+				}
+			}
+			allow_archetype Node[id6] matches {	-- Examination detail
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id7] matches {	-- Interpretation
+				value matches {
+					Text[id16] 
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id17] 
+				}
+			}
+		}
+		state matches {
+			Node[id9] matches {	-- Confounding factors
+				value matches {
+					Text[id18] 
+				}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Position
+				value matches {
+					Text[id19] 
+				}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id11, s2-EHR-Node.device.v1] 
+			allow_archetype Node[id13] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Physical examination findings">
+				description = <"Findings observed during the physical examination of a subject of care.">
+			>
+			["id11"] = <
+				text = <"Device Details">
+				description = <"Details about any device used during the physical examination.">
+			>
+			["id12"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the overall physical examination findings not captured in other fields.">
+			>
+			["id13"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id14"] = <
+				text = <"Position">
+				description = <"The body position of the subject during the examination.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Description">
+				description = <"Narrative description of the overall findings observed during a physical examination of a patient.">
+			>
+			["id6"] = <
+				text = <"Examination detail">
+				description = <"Structured details of the physical examination.">
+			>
+			["id7"] = <
+				text = <"Interpretation">
+				description = <"Single word, phrase or brief description which represents the clinical meaning and significance of the physical examination findings.">
+			>
+			["id9"] = <
+				text = <"Confounding factors">
+				description = <"Description of any incidental factors that may have contributed to the physical examination findings.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id11"] = <http://loinc.org/74720-4>
+			["id14"] = <http://loinc.org/8361-8>
+			["id7"] = <http://loinc.org/64110-0>
+			["id12"] = <http://loinc.org/106173-8>
+			["id5"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id9"] = <http://loinc.org/106176-1>
+		>
+	>
+

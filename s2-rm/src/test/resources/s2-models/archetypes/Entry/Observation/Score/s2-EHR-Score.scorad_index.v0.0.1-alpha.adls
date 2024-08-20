@@ -1,0 +1,687 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0203b64c-75a9-4f00-92cf-0dd62f731e0f)
+    s2-EHR-Score.scorad_index.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics,UK, <ian@freshehr.org>, 2015-02-09">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.scorad_index.v0.0.1-alpha, copyright 2015 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.scorad_index.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record an estimate of severity of atopic dermatitis.">
+            use = <"">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- SCORAD index
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Affected area total (A)
+                value matches {
+                    Quantity[id48] matches {
+                        magnitude matches {|0.0..100.0|}
+                        units matches {
+                            Coded_text[id63] matches {
+                                term matches {
+                                    Terminology_term[id62] matches {
+                                        concept matches {[at44]}    -- %
+                                    }
+                                }
+                            }
+                        }
+                        precision matches {0}
+                    }
+                }
+            }
+            Node[id6] matches {    -- Intensity - erythema
+                value matches {
+                    Coded_ordinal[id64] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id66] matches {
+                                term matches {
+                                    Terminology_term[id65] matches {
+                                        concept matches {[at6]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id67] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id69] matches {
+                                term matches {
+                                    Terminology_term[id68] matches {
+                                        concept matches {[at7]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id70] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id72] matches {
+                                term matches {
+                                    Terminology_term[id71] matches {
+                                        concept matches {[at8]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id73] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id75] matches {
+                                term matches {
+                                    Terminology_term[id74] matches {
+                                        concept matches {[at9]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] matches {    -- Intensity - oedema/papulation
+                value matches {
+                    Coded_ordinal[id76] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id78] matches {
+                                term matches {
+                                    Terminology_term[id77] matches {
+                                        concept matches {[at11]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id79] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id81] matches {
+                                term matches {
+                                    Terminology_term[id80] matches {
+                                        concept matches {[at12]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id82] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id84] matches {
+                                term matches {
+                                    Terminology_term[id83] matches {
+                                        concept matches {[at13]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id85] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id87] matches {
+                                term matches {
+                                    Terminology_term[id86] matches {
+                                        concept matches {[at14]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id16] matches {    -- Intensity - lichenification
+                value matches {
+                    Coded_ordinal[id88] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id90] matches {
+                                term matches {
+                                    Terminology_term[id89] matches {
+                                        concept matches {[at16]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id91] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id93] matches {
+                                term matches {
+                                    Terminology_term[id92] matches {
+                                        concept matches {[at17]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id94] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id96] matches {
+                                term matches {
+                                    Terminology_term[id95] matches {
+                                        concept matches {[at18]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id97] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id99] matches {
+                                term matches {
+                                    Terminology_term[id98] matches {
+                                        concept matches {[at19]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] matches {    -- Intensity - excoriation
+                value matches {
+                    Coded_ordinal[id100] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id102] matches {
+                                term matches {
+                                    Terminology_term[id101] matches {
+                                        concept matches {[at21]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id103] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id105] matches {
+                                term matches {
+                                    Terminology_term[id104] matches {
+                                        concept matches {[at22]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id106] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id108] matches {
+                                term matches {
+                                    Terminology_term[id107] matches {
+                                        concept matches {[at23]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id109] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id111] matches {
+                                term matches {
+                                    Terminology_term[id110] matches {
+                                        concept matches {[at24]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id26] matches {    -- Intensity - oozing/crusts
+                value matches {
+                    Coded_ordinal[id112] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id114] matches {
+                                term matches {
+                                    Terminology_term[id113] matches {
+                                        concept matches {[at26]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id115] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id117] matches {
+                                term matches {
+                                    Terminology_term[id116] matches {
+                                        concept matches {[at27]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id118] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id120] matches {
+                                term matches {
+                                    Terminology_term[id119] matches {
+                                        concept matches {[at28]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id121] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id123] matches {
+                                term matches {
+                                    Terminology_term[id122] matches {
+                                        concept matches {[at29]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id31] matches {    -- Intensity - dryness
+                value matches {
+                    Coded_ordinal[id124] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id126] matches {
+                                term matches {
+                                    Terminology_term[id125] matches {
+                                        concept matches {[at31]}    -- None
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id127] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id129] matches {
+                                term matches {
+                                    Terminology_term[id128] matches {
+                                        concept matches {[at32]}    -- Mild
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id130] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id132] matches {
+                                term matches {
+                                    Terminology_term[id131] matches {
+                                        concept matches {[at33]}    -- Moderate
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id133] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id135] matches {
+                                term matches {
+                                    Terminology_term[id134] matches {
+                                        concept matches {[at34]}    -- Severe
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id36] occurrences matches {0..1} matches {    -- Intensity total (B)
+                value matches {
+                    Count[id55] matches {
+                        magnitude matches {|0..18|}
+                    }
+                }
+            }
+            Node[id37] occurrences matches {0..1} matches {    -- Subjective - daily pruritis
+                value matches {
+                    Count[id56] matches {
+                        magnitude matches {|0..10|}
+                    }
+                }
+            }
+            Node[id38] occurrences matches {0..1} matches {    -- Subjective - sleeplessness
+                value matches {
+                    Count[id57] matches {
+                        magnitude matches {|0..10|}
+                    }
+                }
+            }
+            Node[id39] occurrences matches {0..1} matches {    -- Subjective total (C)
+                value matches {
+                    Count[id58] matches {
+                        magnitude matches {|0..20|}
+                    }
+                }
+            }
+            Node[id40] occurrences matches {0..1} matches {    -- SCORAD index
+                value matches {
+                    Count[id59] matches {
+                        magnitude matches {|0..103|}
+                    }
+                }
+            }
+            Node[id41] occurrences matches {0..1} matches {    -- Total intensity grade
+                value matches {
+                    Coded_text[id60] matches {
+                        term matches {
+                            Terminology_term[id136] matches {
+                                concept matches {[ac1]}    -- Total intensity grade (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id45] occurrences matches {0..1} matches {    -- Objective SCORAD index
+                value matches {
+                    Count[id61] matches {
+                        magnitude matches {|0..83|}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id47] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["ucum"] = <
+            ["at44"] = <http://ucum.org/id/%25>
+        >
+        ["snomed"] = <
+            ["at44"] = <http://snomed.info/id/415067009>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at41", "at42", "at43">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at6", "at7", "at8", "at9">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at11", "at12", "at13", "at14">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at16", "at17", "at18", "at19">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at21", "at22", "at23", "at24">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at26", "at27", "at28", "at29">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at31", "at32", "at33", "at34">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Total intensity grade (synthesised)">
+                description = <"The total score expressed as a set of grades. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Intensity - erythema (synthesised)">
+                description = <"The level of intensity of a erythema or redness. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Intensity - oedema/papulation (synthesised)">
+                description = <"The level of intensity of a oedema or papulation. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Intensity - lichenification (synthesised)">
+                description = <"The level of intensity of a lichenification or thickening of the skin. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"Intensity - excoriation (synthesised)">
+                description = <"The level of intensity of a excoriation or scratching. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"Intensity - oozing/crusts (synthesised)">
+                description = <"The level of intensity of a oozing or crusting. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"Intensity - dryness (synthesised)">
+                description = <"The level of intensity of dryness of unaffected skin. (synthesised)">
+            >
+            ["at11"] = <
+                text = <"None">
+                description = <"Oedema or papulation is absent.">
+            >
+            ["at12"] = <
+                text = <"Mild">
+                description = <"Oedema or papulation is mild.">
+            >
+            ["at13"] = <
+                text = <"Moderate">
+                description = <"Oedema or papulation is moderate.">
+            >
+            ["at14"] = <
+                text = <"Severe">
+                description = <"Oedema or papulation is severe.">
+            >
+            ["at16"] = <
+                text = <"None">
+                description = <"Lichenification is absent.">
+            >
+            ["at17"] = <
+                text = <"Mild">
+                description = <"Lichenification is mild.">
+            >
+            ["at18"] = <
+                text = <"Moderate">
+                description = <"Lichenification is moderate.">
+            >
+            ["at19"] = <
+                text = <"Severe">
+                description = <"Lichenification is severe.">
+            >
+            ["at21"] = <
+                text = <"None">
+                description = <"Excoriation is absent.">
+            >
+            ["at22"] = <
+                text = <"Mild">
+                description = <"Excoriation is mild.">
+            >
+            ["at23"] = <
+                text = <"Moderate">
+                description = <"Excoriation is moderate.">
+            >
+            ["at24"] = <
+                text = <"Severe">
+                description = <"Excoriation is severe.">
+            >
+            ["at26"] = <
+                text = <"None">
+                description = <"Oozing or crusting is absent.">
+            >
+            ["at27"] = <
+                text = <"Mild">
+                description = <"Oozing or crusting is mild.">
+            >
+            ["at28"] = <
+                text = <"Moderate">
+                description = <"Oozing or crusting is moderate.">
+            >
+            ["at29"] = <
+                text = <"Severe">
+                description = <"Oozing or crusting is severe.">
+            >
+            ["at31"] = <
+                text = <"None">
+                description = <"Dryness is absent.">
+            >
+            ["at32"] = <
+                text = <"Mild">
+                description = <"Dryness is mild.">
+            >
+            ["at33"] = <
+                text = <"Moderate">
+                description = <"Dryness is moderate.">
+            >
+            ["at34"] = <
+                text = <"Severe">
+                description = <"Dryness is severe.">
+            >
+            ["at41"] = <
+                text = <"Mild">
+                description = <"The overall score is less than 25.">
+            >
+            ["at42"] = <
+                text = <"Moderate">
+                description = <"The score is between 25 and 50.">
+            >
+            ["at43"] = <
+                text = <"Severe">
+                description = <"The toal score is over 50.">
+            >
+            ["at44"] = <
+                text = <"%">
+                description = <"Percent">
+            >
+            ["at6"] = <
+                text = <"None">
+                description = <"Erythema is absent.">
+            >
+            ["at7"] = <
+                text = <"Mild">
+                description = <"Erythema is mild.">
+            >
+            ["at8"] = <
+                text = <"Moderate">
+                description = <"Erythema is moderate.">
+            >
+            ["at9"] = <
+                text = <"Severe">
+                description = <"Erythema is severe.">
+            >
+            ["id1"] = <
+                text = <"SCORAD index">
+                description = <"Clinical assessment tool used to assess the extent and severity of eczema (SCORing Atopic Dermatitis).">
+            >
+            ["id11"] = <
+                text = <"Intensity - oedema/papulation">
+                description = <"The level of intensity of a oedema or papulation.">
+            >
+            ["id16"] = <
+                text = <"Intensity - lichenification">
+                description = <"The level of intensity of a lichenification or thickening of the skin.">
+            >
+            ["id21"] = <
+                text = <"Intensity - excoriation">
+                description = <"The level of intensity of a excoriation or scratching.">
+            >
+            ["id26"] = <
+                text = <"Intensity - oozing/crusts">
+                description = <"The level of intensity of a oozing or crusting.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id31"] = <
+                text = <"Intensity - dryness">
+                description = <"The level of intensity of dryness of unaffected skin.">
+            >
+            ["id36"] = <
+                text = <"Intensity total (B)">
+                description = <"The total score for the 6 intensity-related values.">
+            >
+            ["id37"] = <
+                text = <"Subjective - daily pruritis">
+                description = <"Subjective assessment of the amount of itchiness experienced.">
+            >
+            ["id38"] = <
+                text = <"Subjective - sleeplessness">
+                description = <"Subjective assessment of the amount of sleeplessness experienced.">
+            >
+            ["id39"] = <
+                text = <"Subjective total (C)">
+                description = <"Total of the subjective scores.">
+            >
+            ["id40"] = <
+                text = <"SCORAD index">
+                description = <"The calculated index score.">
+            >
+            ["id41"] = <
+                text = <"Total intensity grade">
+                description = <"The total score expressed as a set of grades.">
+            >
+            ["id45"] = <
+                text = <"Objective SCORAD index">
+                description = <"The calculated index score based on the affected area total and intensity only.">
+            >
+            ["id47"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id5"] = <
+                text = <"Affected area total (A)">
+                description = <"The estimated total of affected area on the body.">
+            >
+            ["id6"] = <
+                text = <"Intensity - erythema">
+                description = <"The level of intensity of a erythema or redness.">
+            >
+        >
+    >
+    

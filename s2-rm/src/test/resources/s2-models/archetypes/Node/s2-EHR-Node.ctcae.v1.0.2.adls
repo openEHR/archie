@@ -1,0 +1,210 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=34f28290-268f-412e-9e76-1a5cf86db626)
+    s2-EHR-Node.ctcae.v1.0.2
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Aleocidio Balzanelo, UHG Brasil, Brazil", "Ivar Berge, Oslo Universitetssykehus, Norway", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Adam Bouras, CDC/OGHA, United States", "Randi Brendberg, Helse Nord RHF, Norway", "Laila Bruun, Oslo universitetssykehus HF, Norway", "Ian Bull, ACT Health, Australia", "giovanni delussu, crs4, Italy", "Rosane Gotardo, Systema Ltda., Brazil", "Elin Hallan Naderi, OUS, Norway", "Amanda Herbrand, University Hospital Basel, Switzerland", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Shinji Kobayashi, NPO openEHR Japan, Japan (openEHR Editor)", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Tomi Laptoš, Marand, Slovenia", "Liv Laugen, Oslo universitetssykehus, Norway (Nasjonal IKT redaktør)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Nina Louise Jebsen, Haukeland Universitetssykehus, Norway", "Hanne Marte Bårholm, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Cecilie Moe, Oslo Universitessykehus, Norway", "Bjoern Naess, DIPS ASA, Norway", "Arunakiry Natarajan, medondo, Germany", "Terje Nordberg, Helse Bergen, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Helge Pettersen, Helse Bergen, Norway", "Ragnhild Schultz, OUS, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Erik Sundvall, Sweden", "Venkatesh Thoppae, Dedalus, United Kingdom", "Anders Thurin, VGR, Sweden", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Ina Wille, Helse-Vest RHF, Norway", "Neill Yeoman, The Christie NHS Foundation Trust, United Kingdom">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-01-11">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.ctcae.v1.0.2, copyright 2021 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.ctcae.v1.0.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To provide a framework for recording a CTCAE classification.">
+            keywords = <"ctcae", "sign", "symptom", "disease", "adverse", "event">
+            use = <"Use to provide a framework for recording a CTCAE classification, using terms from appropriate MedDRA terminology hierarchies.
+            
+            This archetype is intended to be nested in the 'Specific details' SLOT within either the EVALUATION.problem_diagnosis or Node.symptom_sign archetypes, or other clinically relevant archetypes.">
+            misuse = <"Not to be used for recording details about adverse events outside of the CTCAE classification.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Common Terminology Criteria for Adverse Events (CTCAE)
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Category
+                value matches {
+                    Text[id22]
+                }
+            }
+            Node[id3] matches {    -- Term
+                value matches {
+                    Text[id23]
+                }
+            }
+            Node[id4] matches {    -- Grade category
+                value matches {
+                    Coded_ordinal[id27] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id29] matches {
+                                term matches {
+                                    Terminology_term[id28] matches {
+                                        concept matches {[at21]}    -- Grade 0
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id30] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at15]}    -- Grade 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id33] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at16]}    -- Grade 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at17]}    -- Grade 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at18]}    -- Grade 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at19]}    -- Grade 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Grade description
+                value matches {
+                    Text[id25]
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- CTCAE version
+                value matches {
+                    Text[id26]
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at21", "at15", "at16", "at17", "at18", "at19">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Grade category (synthesised)">
+                description = <"The category representing the severity of the adverse event. (synthesised)">
+            >
+            ["at15"] = <
+                text = <"Grade 1">
+                description = <"Mild; OR asymptomatic or mild symptoms; OR clinical or diagnostic observations only; OR intervention not indicated.">
+            >
+            ["at16"] = <
+                text = <"Grade 2">
+                description = <"Moderate; OR minimal, local or non-invasive intervention indicated; OR limiting age-appropriate instrumental ADL.">
+            >
+            ["at17"] = <
+                text = <"Grade 3">
+                description = <"Severe or medically significant but not immediately life-threatening; OR hospitalization or prolongation of hospitalization indicated OR disabling; limiting self-care ADL.">
+            >
+            ["at18"] = <
+                text = <"Grade 4">
+                description = <"Life-threatening consequences OR urgent intervention indicated.">
+            >
+            ["at19"] = <
+                text = <"Grade 5">
+                description = <"Death related to AE.">
+            >
+            ["at21"] = <
+                text = <"Grade 0">
+                description = <"Absence of an adverse event or within normal limits; found only in CTC versions 1 and 2.">
+            >
+            ["id1"] = <
+                text = <"Common Terminology Criteria for Adverse Events (CTCAE)">
+                description = <"A framework for recording the CTCAE classification for an unfavourable and unintended sign, symptom or disease.">
+            >
+            ["id10"] = <
+                text = <"CTCAE version">
+                description = <"The version of the CTCAE terminology used.">
+            >
+            ["id2"] = <
+                text = <"Category">
+                description = <"The MedDRA System Organ Class (SOC) category corresponding to the CTCAE 'Term' (LLT).">
+            >
+            ["id21"] = <
+                text = <"Grade description">
+                description = <"The term or phrase representing the severity of the adverse event.">
+            >
+            ["id3"] = <
+                text = <"Term">
+                description = <"The name of the sign, symptom or disease observed, recorded as a MedDRA Lowest Level Term (LLT).">
+            >
+            ["id4"] = <
+                text = <"Grade category">
+                description = <"The category representing the severity of the adverse event.">
+            >
+        >
+    >
+    

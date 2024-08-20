@@ -1,0 +1,65 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0)
+    s2-EHR-Node.Alpha1globulinMCncPtSerPlasQnLabObs.v1.0.0
+
+specialize
+    s2-EHR-Node.lab_analyte_quantitative.v0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    lifecycle_state = <"unmanaged">
+    original_author = <
+        ["name"] = <"Joey Coyle <joey.coyle@GraphiteHealth.io>">
+        ["organisation"] = <"S2 Health <http://s2health.org>">
+    >
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Alpha 1 globulin [Mass/volume] in Serum or Plasma">
+        >
+    >
+
+definition
+    Node[id1.1.1] matches {  -- Alpha 1 globulin [Mass/volume] in Serum or Plasma
+        /value[id0.1]/value matches {
+            Quantity[id0.2] matches {
+                magnitude matches {|0.0..<10000.0|}
+                units matches {
+                    Coded_text[id0.0.1] matches {
+                        term matches {
+                            Terminology_term[id0.0.2] matches {
+                                concept matches {[at0.0.1]}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1.1"] = <
+                text = <"Alpha 1 globulin [Mass/volume] in Serum or Plasma">
+                description = <"-">
+            >
+            ["at0.0.1"] = <
+                text = <"g/dL">
+                description = <"-">
+            >
+        >
+    >
+
+    term_bindings = <
+        ["loinc"] = <
+            ["id1.1.1"] = <http://loinc.org/104786-9>
+            ["at4"] = <http://loinc.org/104786-9>
+        >
+        ["snomed"] = <
+            ["at0.0.1"] = <http://snomed.info/id/258795003>
+        >
+    >

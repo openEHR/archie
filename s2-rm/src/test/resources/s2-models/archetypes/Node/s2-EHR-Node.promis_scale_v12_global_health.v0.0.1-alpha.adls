@@ -1,0 +1,260 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=dc46d385-296a-488a-ba56-718553964a47)
+    s2-EHR-Node.promis_scale_v12_global_health.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Silje Ljosland Bakke, Helse Vest IKT AS, <silje.ljosland.bakke@helse-vest-ikt.no>, 2020-06-04">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.promis_scale_v12_global_health.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.promis_scale_v12_global_health.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record PROMIS scale v1.2 for global health.">
+            use = <"Use to record PROMIS scale v1.2 for global health.
+            
+            This archetype has been designed to be used within the OBSERVATION.promis archetype, and along with other PROMIS bank archetypes constrained to represent a specific PROMIS profile such as PROMIS-29.
+            
+            The archetype is incomplete at initial modelling, and should be grown as additional items from the relevant item bank are required.
+            
+            While openEHR archetypes are all freely available under an open license, the specific content of this archetype is copyright protected. Any use of this archetype within implementations must be in compliance with the terms established by the copyright owners.
+            
+            Copyright statement: PROMIS tests, test protocols, test items, norms, norms tables, scoring programs, scoring keys (including scoring algorithms, scale definitions, scale membership, and scoring directions), score reports, software, and other PROMIS-related materials are ©2006-2017 PROMIS Health Organization or other individuals/entities that have contributed information and materials, and are being used with the permission of the copyright holders.
+            
+            Terms and conditions for use: https://www.healthmeasures.net/images/PROMIS/Terms_of_Use_HM_approved_1-12-17_-_Updated_Copyright_Notices.pdf">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- PROMIS Scale v1.2 - Global Health
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- In the past 7 days: How would you rate your pain on average?
+                value matches {
+                    Coded_ordinal[id4] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id6] matches {
+                                term matches {
+                                    Terminology_term[id5] matches {
+                                        concept matches {[at10]}    -- No pain
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id7] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id9] matches {
+                                term matches {
+                                    Terminology_term[id8] matches {
+                                        concept matches {[at16]}    -- -
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id10] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id12] matches {
+                                term matches {
+                                    Terminology_term[id11] matches {
+                                        concept matches {[at17]}    -- -
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id13] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id15] matches {
+                                term matches {
+                                    Terminology_term[id14] matches {
+                                        concept matches {[at18]}    -- -
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id16] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id18] matches {
+                                term matches {
+                                    Terminology_term[id17] matches {
+                                        concept matches {[at19]}    -- -
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id19] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id21] matches {
+                                term matches {
+                                    Terminology_term[id20] matches {
+                                        concept matches {[at20]}    -- -
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id22] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id24] matches {
+                                term matches {
+                                    Terminology_term[id23] matches {
+                                        concept matches {[at21]}    -- -
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id25] matches {
+                        magnitude matches {7}
+                        concept matches {
+                            Coded_text[id27] matches {
+                                term matches {
+                                    Terminology_term[id26] matches {
+                                        concept matches {[at22]}    -- -
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id28] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id30] matches {
+                                term matches {
+                                    Terminology_term[id29] matches {
+                                        concept matches {[at23]}    -- -
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id31] matches {
+                        magnitude matches {9}
+                        concept matches {
+                            Coded_text[id33] matches {
+                                term matches {
+                                    Terminology_term[id32] matches {
+                                        concept matches {[at24]}    -- -
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id34] matches {
+                        magnitude matches {10}
+                        concept matches {
+                            Coded_text[id36] matches {
+                                term matches {
+                                    Terminology_term[id35] matches {
+                                        concept matches {[at25]}    -- Worst pain imaginable
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at10", "at16", "at17", "at18", "at19", "at20", "at21", "at22", "at23", "at24", "at25">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"In the past 7 days: How would you rate your pain on average? (synthesised)">
+                description = <"How would you rate your pain on average? (synthesised)">
+            >
+            ["at10"] = <
+                text = <"No pain">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"-">
+                description = <"">
+            >
+            ["at17"] = <
+                text = <"-">
+                description = <"">
+            >
+            ["at18"] = <
+                text = <"-">
+                description = <"">
+            >
+            ["at19"] = <
+                text = <"-">
+                description = <"">
+            >
+            ["at20"] = <
+                text = <"-">
+                description = <"">
+            >
+            ["at21"] = <
+                text = <"-">
+                description = <"">
+            >
+            ["at22"] = <
+                text = <"-">
+                description = <"">
+            >
+            ["at23"] = <
+                text = <"-">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"-">
+                description = <"">
+            >
+            ["at25"] = <
+                text = <"Worst pain imaginable">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"PROMIS Scale v1.2 - Global Health">
+                description = <"The PROMIS scale v1.2 for global health.">
+            >
+            ["id2"] = <
+                text = <"In the past 7 days: How would you rate your pain on average?">
+                description = <"How would you rate your pain on average?">
+            >
+        >
+    >
+    

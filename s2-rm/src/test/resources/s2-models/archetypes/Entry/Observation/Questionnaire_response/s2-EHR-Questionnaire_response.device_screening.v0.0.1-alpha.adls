@@ -1,0 +1,208 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=edff6384-cd27-45af-a593-ef410751741b)
+	s2-EHR-Questionnaire_response.device_screening.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Silje Ljosland Bakke, Helse Vest IKT AS, <silje.ljosland.bakke@helse-vest-ikt.no>, 2021-11-15">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.device_screening.v0.0.1-alpha, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.device_screening.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the responses to a screening questionnaire for medical devices.">
+			use = <"Use to record the responses to a screening questionnaire for medical devices.
+            
+            Common use cases include, but are not limited to:
+            - Checklist questions about whether the individual uses any devices or aids
+            - Questionnaires about the usage of specific devices or aids
+            
+            In order to record the response at a specific point in time or within an interval of time, use the EVENT RM attribute.
+            
+            This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data. If the screening process identifies the usage of a specific device and it is intended that the details are to be recorded and persisted as part of an ongoing health record, any further specific details about the device should be recorded using the EVALUATION.device_summary archetype.">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, UK", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)">
+
+definition
+	Questionnaire_response[id1] matches {	-- Medical device screening questionnaire
+		data matches {
+			Node[id35] occurrences matches {0..1} matches {	-- Screening purpose
+				value matches {
+					Text[id41] 
+				}
+			}
+			Node[id29] occurrences matches {0..1} matches {	-- Any presence?
+				value matches {
+					Coded_text[id42] matches {
+						term matches {
+							Terminology_term[id48] matches {
+								concept matches {[ac1]}		-- Any presence? (synthesised)
+							}
+						}
+					}
+					Plain_text[id43] 
+				}
+			}
+			Node[id23] matches {	-- Specific device
+				items matches {
+					Node[id5] matches {	-- Device name
+						value matches {
+							Text[id44] 
+						}
+					}
+					Node[id6] occurrences matches {0..1} matches {	-- Presence?
+						value matches {
+							Coded_text[id45] matches {
+								term matches {
+									Terminology_term[id49] matches {
+										concept matches {[ac2]}		-- Presence? (synthesised)
+									}
+								}
+							}
+							Plain_text[id46] 
+						}
+					}
+					use_archetype Node[id40, s2-EHR-Node.device.v1] 
+					Node[id26] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id47] 
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id22] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Any presence? (synthesised)">
+				description = <"Presence or usage of any relevant devices. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Presence? (synthesised)">
+				description = <"Presence or usage of the device. (synthesised)">
+			>
+			["at23"] = <
+				text = <"Yes">
+				description = <"The specific device is present or being used.">
+			>
+			["at24"] = <
+				text = <"No">
+				description = <"The specific device is not present or being used.">
+			>
+			["at27"] = <
+				text = <"Unknown">
+				description = <"It is not known whether the device is present or absent.">
+			>
+			["at31"] = <
+				text = <"Yes">
+				description = <"Conditions are present.">
+			>
+			["at32"] = <
+				text = <"No">
+				description = <"Conditions are not present.">
+			>
+			["at33"] = <
+				text = <"Unknown">
+				description = <"It is not known whether any conditions are present or absent.">
+			>
+			["id1"] = <
+				text = <"Medical device screening questionnaire">
+				description = <"An individual- or self-reported questionnaire screening for usage of medical devices, including aids and equipment.">
+			>
+			["id22"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id23"] = <
+				text = <"Specific device">
+				description = <"Screening details about a specified condition or grouping of conditions.">
+			>
+			["id26"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the specified device, not captured in other fields.">
+			>
+			["id29"] = <
+				text = <"Any presence?">
+				description = <"Presence or usage of any relevant devices.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id35"] = <
+				text = <"Screening purpose">
+				description = <"The reason for overall screening.">
+			>
+			["id40"] = <
+				text = <"Screening details">
+				description = <"Additional details or questions about the specific device.">
+			>
+			["id5"] = <
+				text = <"Device name">
+				description = <"Name of the device or device type being screened.">
+			>
+			["id6"] = <
+				text = <"Presence?">
+				description = <"Presence or usage of the device.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at23"] = <http://snomed.info/id/373066001>
+			["at24"] = <http://snomed.info/id/373067005>
+			["at31"] = <http://snomed.info/id/373066001>
+			["at32"] = <http://snomed.info/id/373067005>
+			["at27"] = <http://snomed.info/id/261665006>
+			["at33"] = <http://snomed.info/id/261665006>
+		>
+		["loinc"] = <
+			["id23"] = <http://loinc.org/74720-4>
+			["id5"] = <http://loinc.org/74720-4>
+			["id26"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at31", "at32", "at33">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at23", "at24", "at27">
+		>
+	>
+

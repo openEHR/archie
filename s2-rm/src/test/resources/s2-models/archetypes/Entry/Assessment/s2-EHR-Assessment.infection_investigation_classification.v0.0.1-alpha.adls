@@ -1,0 +1,297 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=24eec881-6ca7-48af-bd42-b6bb7d61a6c1)
+	s2-EHR-Assessment.infection_investigation_classification.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-06-25">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.infection_investigation_classification.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.infection_investigation_classification.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the disease classification for an identified infectious disease as part of a disease surveillance investigation.">
+			use = <"Use to record the disease for an identified infectious disease as part of a disease surveillance investigation, most commonly the final determination at the completion of a case investigation but may also record initial classification as a suspected infection.
+            
+            Use a separate instance of this archetype to record the conclusion for each suspected 'Index disease'. For example in a fever & rash investigation, considering Measles and Rubella as the potential causes, use one instance of this archetype to record the conclusion, rationale, evidence etc related to Measles, and another to carry the information related to Rubella.">
+			misuse = <"">
+		>
+	>
+
+definition
+	Assessment[id1] matches {	-- Infectious disease investigation classification
+		data matches {
+			Node[id8] matches {	-- Index disease
+				value matches {
+					Text[id54] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Classification
+				value matches {
+					Coded_text[id55] matches {
+						term matches {
+							Terminology_term[id69] matches {
+								concept matches {[ac1]}		-- Classification (synthesised)
+							}
+						}
+					}
+					Plain_text[id56] 
+				}
+				name matches {"Initial classification", "Final classification"}
+			}
+			Node[id9] matches {	-- Reason category
+				value matches {
+					Coded_text[id58] matches {
+						term matches {
+							Terminology_term[id70] matches {
+								concept matches {[ac3]}		-- Reason category (synthesised)
+							}
+						}
+					}
+					Plain_text[id59] 
+				}
+			}
+			Node[id10] matches {	-- Reason description
+				value matches {
+					Text[id60] 
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Source category
+				value matches {
+					Plain_text[id61] 
+					Coded_text[id62] matches {
+						term matches {
+							Terminology_term[id71] matches {
+								concept matches {[ac4]}		-- Source category (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Source description
+				value matches {
+					Text[id63] 
+				}
+			}
+			Node[id22] matches {	-- Source country
+				value matches {
+					Text[id64] 
+				}
+			}
+			Node[id52] occurrences matches {0..1} matches {	-- Endemic source category
+				value matches {
+					Text[id65] 
+				}
+			}
+			Node[id53] occurrences matches {0..1} matches {	-- Endemic source description
+				value matches {
+					Text[id66] 
+				}
+			}
+			allow_archetype Node[id17] matches {	-- Additional details
+				include
+					archetype_id/value matches {/s2-EHR-Node\.drug_resistance_profile(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.clinical_evidence\.v1/}
+			}
+			Node[id18] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id67] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id15] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id68] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Classification (synthesised)">
+				description = <"Classification of the likelihood of the index infectious disease as cause of illness. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Classification (synthesised)">
+				description = <"Classification of the likelihood of the index infectious disease as cause of illness. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Reason category (synthesised)">
+				description = <"The broad category of the reason for the classification. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Source category (synthesised)">
+				description = <"The category for the source of a confirmed case. (synthesised)">
+			>
+			["at24"] = <
+				text = <"Initial classification">
+				description = <"The initial classification before an investigation has commenced.">
+			>
+			["at25"] = <
+				text = <"Final classification">
+				description = <"The final classification after an investigation has been completed.">
+			>
+			["at3"] = <
+				text = <"Probable">
+				description = <"A case is 'Probable' when common, relevant symptoms and/or signs are exhibited and there is an epidemiological link. This classification is only ever temporary, until reclassification with 'Confirmed', 'Excluded/Discarded' or 'Inconclusive' after investigation.">
+			>
+			["at35"] = <
+				text = <"Suspected">
+				description = <"A case may be 'Suspected' when common, relevant symptoms and/or signs are exhibited. This classification is only ever temporary, until reclassification with 'Confirmed', 'Discarded' or 'Inconclusive' after investigation..">
+			>
+			["at4"] = <
+				text = <"Confirmed">
+				description = <"A case is 'Confirmed' when laboratory testing confirms the evidence of the disease and may fulfill clinical criteria.">
+			>
+			["at43"] = <
+				text = <"Laboratory confirmed case">
+				description = <"A case that meets one or more laboratory criteria.">
+			>
+			["at44"] = <
+				text = <"Clinically confirmed case">
+				description = <"A suspected case without adequate laboratory investigation.">
+			>
+			["at45"] = <
+				text = <"Imported case">
+				description = <"Exposure occurred outside of the country.">
+			>
+			["at46"] = <
+				text = <"Import-related case">
+				description = <"Exposure occurred locally but directly associated to an imported case.">
+			>
+			["at47"] = <
+				text = <"Endemic case">
+				description = <"Exposure occurred locally as part of a chain of endemic transmission.">
+			>
+			["at48"] = <
+				text = <"Vaccine-associated case">
+				description = <"Exposure occurred as an adverse event following exposure to a vaccine.">
+			>
+			["at49"] = <
+				text = <"Congenital case">
+				description = <"Exposure occurred during pregnancy.">
+			>
+			["at5"] = <
+				text = <"Excluded">
+				description = <"A case is 'Excluded' or 'Discarded' after exclusion by adequate investigation or negative laboratory test results.">
+			>
+			["at50"] = <
+				text = <"Unknown case">
+				description = <"Exposure source has not been identified.">
+			>
+			["at6"] = <
+				text = <"Inconclusive">
+				description = <"A case is 'Inconclusive' when it is not possible to determine if the index disease is the cause of the infection.">
+			>
+			["id1"] = <
+				text = <"Infectious disease investigation classification">
+				description = <"Classification for an identified infectious disease as part of a disease surveillance investigation.">
+			>
+			["id10"] = <
+				text = <"Reason description">
+				description = <"Narrative description about the reason for the classification.">
+			>
+			["id12"] = <
+				text = <"Source category">
+				description = <"The category for the source of a confirmed case.">
+			>
+			["id15"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id16"] = <
+				text = <"Last updated">
+				description = <"The date when this infectious disease investigation classification was last updated.">
+			>
+			["id17"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about the classification.">
+			>
+			["id18"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the classification, not captured in other fields.">
+			>
+			["id22"] = <
+				text = <"Source country">
+				description = <"Country identified as the (likely or probable) source of an imported or import-related case.">
+			>
+			["id3"] = <
+				text = <"Classification">
+				description = <"Classification of the likelihood of the index infectious disease as cause of illness.">
+			>
+			["id37"] = <
+				text = <"Source description">
+				description = <"Narrative description about the source of infection.">
+			>
+			["id52"] = <
+				text = <"Endemic source category">
+				description = <"The category for the source of an endemic case.">
+			>
+			["id53"] = <
+				text = <"Endemic source description">
+				description = <"Narrative description about the source of an endemic case.">
+			>
+			["id8"] = <
+				text = <"Index disease">
+				description = <"The name of the infectious disease under investigation.">
+			>
+			["id9"] = <
+				text = <"Reason category">
+				description = <"The broad category of the reason for the classification.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id16"] = <http://loinc.org/106177-9>
+			["id18"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at35", "at3", "at4", "at5", "at6">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at24", "at25">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at43", "at44">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at45", "at46", "at47", "at48", "at49", "at50">
+		>
+	>
+

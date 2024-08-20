@@ -1,0 +1,396 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fef3b912-563e-45ed-93cb-d5fe650426c0)
+    s2-EHR-Node.promis_bank_v20_physical_function.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Silje Ljosland Bakke, Helse Vest IKT AS, <silje.ljosland.bakke@helse-vest-ikt.no>, 2020-06-04">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.promis_bank_v20_physical_function.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.promis_bank_v20_physical_function.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record PROMIS bank v2.0 items about physical function.">
+            use = <"Use to record PROMIS bank v2.0 items about physical function.
+            
+            This archetype has been designed to be used within the OBSERVATION.promis archetype, and along with other PROMIS bank archetypes constrained to represent a specific PROMIS profile such as PROMIS-29.
+            
+            The archetype is incomplete at initial modelling, and should be grown as additional items from the relevant item bank are required.
+            
+            While openEHR archetypes are all freely available under an open license, the specific content of this archetype is copyright protected. Any use of this archetype within implementations must be in compliance with the terms established by the copyright owners.
+            
+            Copyright statement: PROMIS tests, test protocols, test items, norms, norms tables, scoring programs, scoring keys (including scoring algorithms, scale definitions, scale membership, and scoring directions), score reports, software, and other PROMIS-related materials are ©2006-2017 PROMIS Health Organization or other individuals/entities that have contributed information and materials, and are being used with the permission of the copyright holders.
+            
+            Terms and conditions for use: https://www.healthmeasures.net/images/PROMIS/Terms_of_Use_HM_approved_1-12-17_-_Updated_Copyright_Notices.pdf">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- PROMIS Item Bank v2.0 - Physical Function
+        items matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Are you able to do chores such as vacuuming or yard work?
+                value matches {
+                    Coded_ordinal[id15] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id17] matches {
+                                term matches {
+                                    Terminology_term[id16] matches {
+                                        concept matches {[at2]}    -- Without any difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id18] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id20] matches {
+                                term matches {
+                                    Terminology_term[id19] matches {
+                                        concept matches {[at3]}    -- With a little difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id21] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id23] matches {
+                                term matches {
+                                    Terminology_term[id22] matches {
+                                        concept matches {[at4]}    -- With some difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id24] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id26] matches {
+                                term matches {
+                                    Terminology_term[id25] matches {
+                                        concept matches {[at5]}    -- With much difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id27] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id29] matches {
+                                term matches {
+                                    Terminology_term[id28] matches {
+                                        concept matches {[at6]}    -- Unable to do
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Are you able to go up and down stairs at a normal pace?
+                value matches {
+                    Coded_ordinal[id30] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at2]}    -- Without any difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id33] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at3]}    -- With a little difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at4]}    -- With some difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at5]}    -- With much difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id42] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id44] matches {
+                                term matches {
+                                    Terminology_term[id43] matches {
+                                        concept matches {[at6]}    -- Unable to do
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Are you able to go for a walk of at least 15 minutes?
+                value matches {
+                    Coded_ordinal[id45] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at2]}    -- Without any difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id48] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id50] matches {
+                                term matches {
+                                    Terminology_term[id49] matches {
+                                        concept matches {[at3]}    -- With a little difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id51] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at4]}    -- With some difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id54] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id56] matches {
+                                term matches {
+                                    Terminology_term[id55] matches {
+                                        concept matches {[at5]}    -- With much difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id57] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id59] matches {
+                                term matches {
+                                    Terminology_term[id58] matches {
+                                        concept matches {[at6]}    -- Unable to do
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Are you able to run errands and shop?
+                value matches {
+                    Coded_ordinal[id60] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id62] matches {
+                                term matches {
+                                    Terminology_term[id61] matches {
+                                        concept matches {[at2]}    -- Without any difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id63] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id65] matches {
+                                term matches {
+                                    Terminology_term[id64] matches {
+                                        concept matches {[at3]}    -- With a little difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id66] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id68] matches {
+                                term matches {
+                                    Terminology_term[id67] matches {
+                                        concept matches {[at4]}    -- With some difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id69] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id71] matches {
+                                term matches {
+                                    Terminology_term[id70] matches {
+                                        concept matches {[at5]}    -- With much difficulty
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id72] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id74] matches {
+                                term matches {
+                                    Terminology_term[id73] matches {
+                                        concept matches {[at6]}    -- Unable to do
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at2", "at3", "at4", "at5", "at6">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at2", "at3", "at4", "at5", "at6">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at2", "at3", "at4", "at5", "at6">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at2", "at3", "at4", "at5", "at6">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Are you able to do chores such as vacuuming or yard work? (synthesised)">
+                description = <"Are you able to do chores such as
+                vacuuming or yard work? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Are you able to go up and down stairs at a normal pace? (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Are you able to go for a walk of at least 15 minutes? (synthesised)">
+                description = <"Are you able to go for a walk of at least
+                15 minutes? (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"Are you able to run errands and shop? (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["at2"] = <
+                text = <"Without any difficulty">
+                description = <"">
+            >
+            ["at3"] = <
+                text = <"With a little difficulty">
+                description = <"">
+            >
+            ["at4"] = <
+                text = <"With some difficulty">
+                description = <"">
+            >
+            ["at5"] = <
+                text = <"With much difficulty">
+                description = <"">
+            >
+            ["at6"] = <
+                text = <"Unable to do">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"PROMIS Item Bank v2.0 - Physical Function">
+                description = <"The PROMIS item bank v2.0 for physical function.">
+            >
+            ["id10"] = <
+                text = <"Are you able to run errands and shop?">
+                description = <"*">
+            >
+            ["id2"] = <
+                text = <"Are you able to do chores such as vacuuming or yard work?">
+                description = <"Are you able to do chores such as
+                vacuuming or yard work?">
+            >
+            ["id8"] = <
+                text = <"Are you able to go up and down stairs at a normal pace?">
+                description = <"*">
+            >
+            ["id9"] = <
+                text = <"Are you able to go for a walk of at least 15 minutes?">
+                description = <"Are you able to go for a walk of at least
+                15 minutes?">
+            >
+        >
+    >
+    

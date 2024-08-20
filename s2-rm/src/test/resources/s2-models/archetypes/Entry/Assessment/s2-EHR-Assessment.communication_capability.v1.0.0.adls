@@ -1,0 +1,178 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c4894869-4c60-4fe1-97af-70e4d82c64b6)
+	s2-EHR-Assessment.communication_capability.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"no.nasjonalikt">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, Australia, <heather.leslie@atomicainformatics.com>, 2018-03-26">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.communication_capability.v1.0.0, copyright 2018 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.communication_capability.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the practical ability of an individual to communicate, including impairments and need for communication aids.">
+			use = <"Use to record details about the practical ability of an individual to communicate, including impairments and need for communication aids.
+            
+            This archetype is intended to capture how an individual communicates with others and how healthcare providers can best communicate with an individual.">
+			keywords = <"language", "interpreter", "translation", "translater", "translator">
+			misuse = <"Not to be used to record details about a language - use Node.language for this purpose.
+            
+            Not to be used to record details about a request for interpreter services - use Node.Interpreter_requirements with a suitable INSTRUCTION archetype, for example INSTRUCTION.service_request.
+            
+            Not to be used to record details about an interpretation that was performed - use the proposed ACTION.interpretation.">
+		>
+	>
+	other_contributors = <"Paula Anderson, UCLH, United Kingdom", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Heidi Aursand, Oslo universitetssykehus, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Birgitte Bjerkely, Senter for sjeldne diagnoser, OUS, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Valborg Ellingsen, Haraldsplass Diakonale sykehus, Norway", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Jessica Hansen, Universitetet i Oslo, Norway", "Liv Ingrid Svela, Helse Bergen HF, Norway", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Siren Kraakenes, Helse Vest IKT, Norway", "Panita Laksuktom, Haukeland universitetssjukehus, Norway", "Øygunn Leite Kallevik, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rose Mari Eikås, Helse Bergen, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Jagan Mohan, Mahatma Gandhi Medical College and Research Institute, India", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anine Ramberg, DIPS ASA, Norway", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Laila Storesund, Haraldsplass diakonale sykehus, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Susanne Trønnes, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Assessment[id1] matches {	-- Communication capability
+		data matches {
+			Node[id3] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id24] 
+				}
+			}
+			Node[id16] matches {	-- Per language
+				name matches {"Preferred language", "Alternative language"}
+				items matches {
+					use_archetype Node[id4, s2-EHR-Node.language.v1] 
+					allow_archetype Node[id19] matches {	-- Capability details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					Node[id22] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id26] 
+						}
+					}
+				}
+			}
+			Node[id23] matches {	-- Communication aid
+				value matches {
+					Text[id27] 
+				}
+			}
+			allow_archetype Node[id6] occurrences matches {0..1} matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Overall comment
+				value matches {
+					Text[id28] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id13] occurrences matches {0..1} matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id14] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id29] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Per language (synthesised)">
+				description = <"Details about the capabilities of an individual for a specific language. (synthesised)">
+			>
+			["at19"] = <
+				text = <"Preferred language">
+				description = <"Preferred language and/or method of communication for an individual.">
+			>
+			["at20"] = <
+				text = <"Alternative language">
+				description = <"Other language, and/or method of communication that could be used for an individual.">
+			>
+			["id1"] = <
+				text = <"Communication capability">
+				description = <"The ability of an individual to communicate.">
+			>
+			["id10"] = <
+				text = <"Overall comment">
+				description = <"Additional overall narrative about the communication capability of an individual not captured in other fields.">
+			>
+			["id13"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id14"] = <
+				text = <"Last updated">
+				description = <"Date when the Communication capability was last updated.">
+			>
+			["id16"] = <
+				text = <"Per language">
+				description = <"Details about the capabilities of an individual for a specific language.">
+			>
+			["id19"] = <
+				text = <"Capability details">
+				description = <"Additional structured details about the communication capability for the specific language.">
+			>
+			["id22"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the specific language capability not captured in other fields.">
+			>
+			["id23"] = <
+				text = <"Communication aid">
+				description = <"Identification of an aid to assist communication.">
+			>
+			["id3"] = <
+				text = <"Description">
+				description = <"Narrative description about the overall capability of an individual to communicate, including impairments and need for communication aids.">
+			>
+			["id4"] = <
+				text = <"Language">
+				description = <"Language and method of communication for an individual.">
+			>
+			["id6"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about the individual's overall communication capability.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/106173-8>
+			["id1"] = <http://loinc.org/104956-8>
+			["id14"] = <http://loinc.org/106177-9>
+			["id16"] = <http://loinc.org/104957-6>
+			["id22"] = <http://loinc.org/106173-8>
+			["id23"] = <http://loinc.org/104891-7>
+			["id3"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at19", "at20">
+		>
+	>
+

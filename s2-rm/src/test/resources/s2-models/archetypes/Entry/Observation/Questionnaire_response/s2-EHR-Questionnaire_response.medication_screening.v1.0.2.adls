@@ -1,0 +1,265 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1083a16c-577d-43d3-9007-698262abd2a5)
+    s2-EHR-Questionnaire_response.medication_screening.v1.0.2
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Randi Brendberg, Helse Nord RHF, Norway", "Yexuan Cheng, 浙江大学, China", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Alexander Eikrem-Lüthi, Lovisenberg Diakonale Sykehus, Norway", "Kåre Flø, DIPS ASA, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Anca Heyd, DIPS ASA, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway", "Øygunn Leite Kallevik, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Andre Smitt-Ingebretsen, Sørlandet sykehus HF, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Ina Wille, Helse-Vest RHF, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Silje Ljosland Bakke, Nasjonal IKT HF, <silje.ljosland.bakke@nasjonalikt.no>, 2018-11-07">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.medication_screening.v1.0.2, copyright 2018 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.medication_screening.v1.0.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To create a framework for recording answers to pre-defined screening questions about the use of any specified medication or grouping of medications.">
+            keywords = <"medication", "screening", "questionnaire", "drug", "treatment">
+            use = <"Use to create a framework for recording answers to pre-defined screening questions about the use of any specified medication or grouping (including classes) of medications.
+            
+            Examples of medications, groupings and classes of medications are 'alendronic acid', 'anti osteoporosis medications' and 'bisphosphonates', respectively.
+            
+            Common use cases include, but are not limited to:
+            - Systematic questioning in any consultation related to patterns of medication usage, for example:
+            --- Do you use paracetamol? Yes, No, Unknown.
+            --- Have you been using any anticoagulants the last four weeks? Yes, No, Unknown.
+            
+            The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data Node would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the DV_TEXT or the DV_BOOLEAN datatypes choice to match each specific use case.
+            
+            The EVENT structure from the reference model can be used to specify whether the questions relate to point in time or over a period of time. Use a separate instance of this archetype to distinguish between a questionnaire recording information about a medication that has been used at any time in the past and information about a medication used within a specified time interval - for example the difference between \\\"Do you use paracetamol?\\\" compared to \\\"Have you been using any anticoagulants during the last four weeks?\\\".
+            
+            The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' Node in the Reference Model.
+            
+            This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening questionnaire identifies the presence of a medication it is recommended that clinical system record and persist the specific details about the medication using a relevant medication archetype, for example the OBSERVATION.medication_statement to record a detailed snapshot view about the actual use of a single specified medication.">
+            misuse = <"Not to be used for recording an order for a medication to be administered or consumed - use INSTRUCTION.medication_order for this purpose.
+            
+            Not to be used for recording the administration, dispensing or consumption of a medication - use ACTION.medication for this purpose.
+            
+            Not to be used for recording a summary of use of a medication over the lifetime of the individual - use EVALUATION.medication_summary for this purpose.
+            
+            Not to be used to record a detailed snapshot view about the actual use of a single specified medication, outside of a screening context. - use OBSERVATION.medication_statement for this purpose.
+            
+            Not to be used to record details about the positive absence of a specific medication or grouping of medication, outside of a screening context. Use EVALUATION.exclusion_specific for this purpose.
+            
+            Not to be used to to create a framework for recording answers to pre-defined screening questions about adverse reactions, use an appropriate archetype for this purpose.
+            
+            Not to be used to record details about a simple selection list where a question may be recorded as either \\\"present\\\" or \\\"indeterminate\\\". Use OBSERVATION.selection_list for this purpose.">
+        >
+    >
+    
+definition
+    Questionnaire_response[id1] matches {    -- Medication screening questionnaire
+        data matches {
+            Node[id41] occurrences matches {0..1} matches {    -- Screening purpose
+                value matches {
+                    Text[id45]
+                }
+            }
+            Node[id28] matches {    -- Any medications used?
+                value matches {
+                    Coded_text[id46] matches {
+                        term matches {
+                            Terminology_term[id62] matches {
+                                concept matches {[ac1]}    -- Any medications used? (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id47]
+                    Boolean_value[id48]
+                }
+            }
+            Node[id44] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id49]
+                }
+            }
+            Node[id27] matches {    -- Specific medication
+                items matches {
+                    Node[id22] matches {    -- Medication name
+                        value matches {
+                            Text[id50]
+                        }
+                    }
+                    Node[id25] occurrences matches {0..1} matches {    -- Used
+                        value matches {
+                            Coded_text[id51] matches {
+                                term matches {
+                                    Terminology_term[id63] matches {
+                                        concept matches {[ac2]}    -- Used (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id52]
+                            Boolean_value[id53]
+                        }
+                    }
+                    Node[id4] occurrences matches {0..1} matches {    -- Latest dose
+                        value matches {
+                            Date_time_value[id54]
+                            Text[id55]
+                        }
+                    }
+                    Node[id3] matches {    -- Timing
+                        value matches {
+                            Duration_value[id56]
+                            Range<Duration_value>[id57]
+                            Text[id58]
+                            Date_time_value[id59]
+                            Range<Date_time_value>[id60]
+                        }
+                    }
+                    use_archetype Node[id42, s2-EHR-Node.dosage.v2]    -- Additional details
+                    Node[id26] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id61]
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id43] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id20] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at30"] = <http://snomed.info/id/261665006>
+            ["at28"] = <http://snomed.info/id/373066001>
+            ["at29"] = <http://snomed.info/id/373067005>
+            ["at36"] = <http://snomed.info/id/373066001>
+            ["at37"] = <http://snomed.info/id/373067005>
+            ["at39"] = <http://snomed.info/id/261665006>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at28", "at29", "at30">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at36", "at37", "at39">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Any medications used? (synthesised)">
+                description = <"Is there a history of use of any medication related to the screening purpose? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Used (synthesised)">
+                description = <"Is there a history of use of a specific medication or group of medications? (synthesised)">
+            >
+            ["at28"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at29"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at30"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at36"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at37"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at39"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Medication screening questionnaire">
+                description = <"Series of questions and associated answers used to screen for the use of medications.">
+            >
+            ["id20"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id22"] = <
+                text = <"Medication name">
+                description = <"Name of medication or grouping of medication.">
+            >
+            ["id24"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id25"] = <
+                text = <"Used">
+                description = <"Is there a history of use of a specific medication or group of medications?">
+            >
+            ["id26"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the specific medication question, not captured in other fields.">
+            >
+            ["id27"] = <
+                text = <"Specific medication">
+                description = <"Details about a specified medication or grouping of medications relevant for the screening purpose.">
+            >
+            ["id28"] = <
+                text = <"Any medications used?">
+                description = <"Is there a history of use of any medication related to the screening purpose?">
+            >
+            ["id3"] = <
+                text = <"Timing">
+                description = <"Indication of timing related to the use of the medication or grouping of medications.">
+            >
+            ["id4"] = <
+                text = <"Latest dose">
+                description = <"The date and/or time of administation of the most recent dose of the medication or group of medications.">
+            >
+            ["id41"] = <
+                text = <"Screening purpose">
+                description = <"The context or reason for screening.">
+            >
+            ["id42"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about the specific medication or grouping of medications.">
+            >
+            ["id43"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about the screening for medications.">
+            >
+            ["id44"] = <
+                text = <"Description">
+                description = <"Narrative description about the history of use of any medication relevant for the screening purpose.">
+            >
+        >
+    >
+    

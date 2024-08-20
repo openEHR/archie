@@ -1,0 +1,601 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5caa3056-b1e0-474b-837a-f2e48867cf0c)
+	s2-EHR-Imaging.imaging_exam_result.v1.1.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2011-02-07">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.imaging_exam_result.v1.1.1, copyright 2011 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.imaging_exam_result.v1.1.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the findings on imaging examination of a specified body structure or region and their interpretation, using radiological techniques.">
+			use = <"Use to record the findings on imaging examination of a specified body structure or region and their interpretation, using radiological techniques.
+            
+            This archetype has been designed to focus on the reporting of findings and interpretation associated with a single imaging examination (equivalent to a single DICOM study). References to DICOM-related attributes are included but the focus is on the representation of a clinical report from an imaging examination and not on representing DICOM-related attributes that might be expected within a radiology information system. Specific details about the DICOM series can be recorded using the Node.imaging_series nested within the 'Series details' SLOT.
+            
+            Detailed findings observed during an imaging examination and targeting a specified structure or region can be recorded by nesting the Node.imaging_exam and/or its family of specialised archetypes within the 'Structured imaging findings' SLOT in this archetype. It is intended that over time the specific detail in each specialisation will grow to include findings using all imaging modalities.
+            
+            If an imaging examination is carried out as part of a more complex activity, such as a surgical operation carried out under imaging guidance, the imaging findings should be recorded using this archetype. 
+            Structured details about the surgical procedure and medications or contrast administered should be recorded using the ACTION.procedure and/or ACTION.medication archetypes, respectively. In this situation, it is recommended that all related archetypes should be reported within the same template.
+            
+            This result will normally be reported back to the requesting clinician as one component within the context of an overall COMPOSITION-based report.">
+			keywords = <"image", "radiology", "modality", "xray", "CT", "ultrasound", "MRI", "diagnostic", "scan", "x-ray", "imaging", "biomagnetic", "densitometry", "tomography", "radiography", "magnetic", "resonance", "mammography", "nuclear", "medicine", "positron", "PET", "angiography", "fluoroscopy">
+			misuse = <"Not to be used to record findings on physical examination. Use the Node.exam and/or its family of specialised archetypes for this purpose.
+            
+            Not to be used to replicate the functionality or specifications of a radiology information or source system.
+            
+            Not to be used to record structured details about any procedure undertaken. Use the specific procedure-related archetypes, such as ACTION.procedure archetype for this purpose.
+            
+            Not to be used to record structured details about medications administered during the imaging test. Use specific medication-related archetypes, such as the ACTION.medication archetype for this purpose.
+            
+            Not to be used to record photographs or videos  within the health record. Use the Node.media_file archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Andreas Abildgaard, OUS, Norway", "Marit Alice Venheim, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Sharmila Biswas, Australia", "Randi Brendberg, Helse Nord RHF, Norway", "Eric Browne", "David Cartwright, Queensland Health, Australia", "Stephen Chu, NEHTA, Australia (Editor)", "Matthew Cordell, NEHTA, Australia", "Andre de Wolf, NeHTA, Australia", "Gunn Elin Blakkisrud, DIPS ASA, Norway", "David Evans, Queensland Health, Australia", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Kåre Flø, DIPS ASA, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Jacquie Garton-Smith, Royal Perth Hospital and DoHWA, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Grahame Grieve, Health Intersections Pty Ltd, Australia (Editor)", "Roar Holm, Helse Vest IKT A/S, Norway", "Kija Indrearne, Helse Bergen, Norway", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway (Nasjonal IKT redaktør)", "Aud Jorunn Mjelstad, Helse Bergen, Norway", "Mary Kelaher, NEHTA, Australia", "Diane Kirkham, NEHTA, Australia", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway (Nasjonal IKT redaktør)", "Robert L'egan, NEHTA, Australia", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Luis Marco Ruiz, NST, Spain", "Mike Martyn, The Hobart Anaesthetic Group, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Arunakiry Natarajan, medondo, Germany", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Michael Osborne, Mater Health Services, Australia", "Ning Pan, NEHTA, Australia", "Chris Pearce, Melbourne East GP Network, Australia", "Jodie Pycroft, Adelaide Northern Division of General Practice Ltd, Australia", "Cathy Richardson, NEHTA, Australia", "Stephen Royce, NEHTA, Australia", "Eleanor Royle, NEHTA, Australia", "Don Stewart, NEHTA, Australia", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Michael Thompson, Queensland Health, Australia", "Olav Thorsen, Stavanger University Hospital, Norway", "Gordon Tomes, Australian Institute of Health and Welfare, Australia", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Richard Townley-O'Neill, NEHTA, Australia">
+
+definition
+	Imaging[id1] matches {	-- Imaging examination result
+		data cardinality matches {1..*; unordered} matches {
+			Node[id5] matches {	-- Study name
+				value matches {
+					Text[id110] 
+				}
+			}
+			Node[id92] matches {	-- Modality
+				value matches {
+					Text[id111] 
+				}
+			}
+			Node[id56] occurrences matches {0..1} matches {	-- Target body site
+				value matches {
+					Text[id112] 
+				}
+			}
+			use_archetype Node[id7, s2-EHR-Node.anatomical_location.v1] 
+			Node[id71] occurrences matches {0..1} matches {	-- Study date
+				value matches {
+					Date_time_value[id113] 
+				}
+			}
+			Node[id73] matches {	-- Overall result status
+				value matches {
+					Coded_text[id114] matches {
+						term matches {
+							Terminology_term[id155] matches {
+								concept matches {[ac1]}		-- Overall result status (synthesised)
+							}
+						}
+					}
+					Plain_text[id115] 
+				}
+			}
+			Node[id72] occurrences matches {0..1} matches {	-- Status timestamp
+				value matches {
+					Date_time_value[id116] 
+				}
+			}
+			Node[id62] occurrences matches {0..1} matches {	-- Clinical indication
+				value matches {
+					Text[id117] 
+				}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Clinical summary
+				value matches {
+					Text[id118] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Imaging findings
+				value matches {
+					Text[id119] 
+				}
+			}
+			use_archetype Node[id45, s2-EHR-Node.imaging_exam.v1] 
+			Node[id57] occurrences matches {0..1} matches {	-- Comparison findings
+				value matches {
+					Text[id120] 
+				}
+			}
+			Node[id64] occurrences matches {0..1} matches {	-- Imaging quality
+				value matches {
+					Text[id121] 
+				}
+			}
+			Node[id58] occurrences matches {0..1} matches {	-- Imaging quality description
+				value matches {
+					Text[id122] 
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Overall impression
+				value matches {
+					Text[id123] 
+				}
+			}
+			Node[id59] matches {	-- Imaging differential diagnosis
+				value matches {
+					Text[id124] 
+				}
+			}
+			Node[id21] matches {	-- Imaging diagnosis
+				value matches {
+					Text[id125] 
+				}
+			}
+			Node[id60] matches {	-- Recommendation
+				value matches {
+					Text[id126] 
+				}
+			}
+			use_archetype Node[id46, s2-EHR-Node.media_file.v1] 
+			Node[id24] matches {	-- Comment
+				value matches {
+					Text[id127] 
+				}
+			}
+		}
+		state matches {
+			Node[id49] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id128] 
+				}
+			}
+			Node[id109] occurrences matches {0..1} matches {	-- Position
+				value matches {
+					Text[id129] 
+				}
+			}
+			use_archetype Node[id108, s2-EHR-Node.device.v1] 
+		}
+		qualifiers matches {
+			Node[id93] occurrences matches {0..1} matches {	-- Study instance identifier
+				value matches {
+					Rwe_id_ref[id130] 
+					Text[id131] 
+				}
+			}
+			Node[id106] occurrences matches {0..1} matches {	-- Study description
+				value matches {
+					Text[id132] 
+				}
+			}
+			Node[id105] occurrences matches {0..1} matches {	-- Report identifier
+				value matches {
+					Rwe_id_ref[id133] 
+					Text[id134] 
+				}
+			}
+			Node[id100] occurrences matches {0..1} matches {	-- Study status
+				value matches {
+					Coded_text[id135] matches {
+						term matches {
+							Terminology_term[id156] matches {
+								concept matches {[ac2]}		-- Study status (synthesised)
+							}
+						}
+					}
+					Plain_text[id136] 
+				}
+			}
+			Node[id99] occurrences matches {0..1} matches {	-- Study end point
+				value matches {
+					Text[id137] 
+					Uri_ref[id138] 
+				}
+			}
+			Node[id107] matches {	-- Image details
+				value matches {
+					Uri_ref[id139] 
+				}
+			}
+			use_archetype Node[id27, s2-EHR-Node.organization.v1] 
+			Node[id88] matches {	-- Technique
+				value matches {
+					Text[id140] 
+				}
+			}
+			Node[id50] occurrences matches {0..1} matches {	-- Technique summary
+				value matches {
+					Text[id141] 
+				}
+			}
+			Node[id89] matches {	-- Procedure
+				value matches {
+					Text[id142] 
+				}
+			}
+			Node[id63] occurrences matches {0..1} matches {	-- Procedure summary
+				value matches {
+					Text[id143] 
+				}
+			}
+			allow_archetype Node[id42] matches {	-- Structured technique/procedure
+				include
+					archetype_id/value matches {/.*/}
+			}
+			use_archetype Node[id66, s2-EHR-Node.imaging_series.v0] 
+			use_archetype Node[id70, s2-EHR-Node.device.v1] 
+			Node[id94] matches {	-- Comparison study details
+				items matches {
+					Node[id95] occurrences matches {0..1} matches {	-- Study name
+						value matches {
+							Text[id144] 
+						}
+					}
+					Node[id96] occurrences matches {0..1} matches {	-- Study identifier
+						value matches {
+							Rwe_id_ref[id145] 
+							Text[id146] 
+						}
+					}
+					Node[id97] occurrences matches {0..1} matches {	-- Study date
+						value matches {
+							Date_time_value[id147] 
+						}
+					}
+					Node[id98] matches {	-- Study end point
+						value matches {
+							Text[id148] 
+							Uri_ref[id149] 
+						}
+					}
+					use_archetype Node[id68, s2-EHR-Node.imaging_series.v0] 
+				}
+			}
+			Node[id28] matches {	-- Examination request details
+				items matches {
+					Node[id32] occurrences matches {0..1} matches {	-- Receiver order identifier
+						value matches {
+							Rwe_id_ref[id150] 
+							Coded_text[id151] 
+						}
+					}
+					Node[id29] occurrences matches {0..1} matches {	-- Requester order identifier
+						value matches {
+							Rwe_id_ref[id152] 
+							Text[id153] 
+						}
+					}
+					Node[id30] matches {	-- Examination requested name
+						value matches {
+							Text[id154] 
+						}
+					}
+					allow_archetype Node[id31] matches {	-- Requester
+						include
+							archetype_id/value matches {/s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.person(-[a-zA-Z0-9_]+)*\.v1/}
+					}
+				}
+			}
+			allow_archetype Node[id84] occurrences matches {0..1} matches {	-- Distribution list
+				include
+					archetype_id/value matches {/s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.person(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype Node[id47] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Overall result status (synthesised)">
+				description = <"The status of the imaging examination result as a whole. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Study status (synthesised)">
+				description = <"The current state of the imaging study. (synthesised)">
+			>
+			["at100"] = <
+				text = <"Registered">
+				description = <"The existence of the imaging study is registered, but there is nothing yet available.">
+			>
+			["at101"] = <
+				text = <"Available">
+				description = <"At least one instance has been associated with this imaging study.">
+			>
+			["at102"] = <
+				text = <"Cancelled">
+				description = <"The imaging study is unavailable because the study was not started or not completed.">
+			>
+			["at103"] = <
+				text = <"Unknown">
+				description = <"The status is not known by the radiology source system.">
+			>
+			["at73"] = <
+				text = <"Registered">
+				description = <"The existence of the study is registered, but no result is yet available.">
+			>
+			["at74"] = <
+				text = <"Partial">
+				description = <"This is a partial (e.g. initial, interim or preliminary) result but data may be incomplete or unverified.">
+			>
+			["at75"] = <
+				text = <"Preliminary">
+				description = <"Verified early results are available, but not all results are final. This is a sub-category of 'Partial'.">
+			>
+			["at76"] = <
+				text = <"Final">
+				description = <"The result is complete and verified by an authorised person.">
+			>
+			["at77"] = <
+				text = <"Amended">
+				description = <"Subsequent to being final, the result has been modified.">
+			>
+			["at78"] = <
+				text = <"Corrected">
+				description = <"Subsequent to being final, the result has been modified to correct an error. This is a sub-category of 'Amended'.">
+			>
+			["at79"] = <
+				text = <"Appended">
+				description = <"Subsequent to being final, the result has been modified by adding new content. The existing content is unchanged. This is a sub-category of 'Amended'.">
+			>
+			["at80"] = <
+				text = <"Cancelled">
+				description = <"The result is unavailable because the test was not started or not completed (also sometimes called 'aborted').">
+			>
+			["at90"] = <
+				text = <"Unknown">
+				description = <"The status of the result is not known.">
+			>
+			["id1"] = <
+				text = <"Imaging examination result">
+				description = <"The result of an imaging examination performed on an individual, using radiological techniques.">
+			>
+			["id100"] = <
+				text = <"Study status">
+				description = <"The current state of the imaging study.">
+			>
+			["id105"] = <
+				text = <"Report identifier">
+				description = <"Unique identifier for the imaging report assigned by the radiology service.">
+			>
+			["id106"] = <
+				text = <"Study description">
+				description = <"Radiology service-generated description or classification of the study.">
+			>
+			["id107"] = <
+				text = <"Image details">
+				description = <"Link to full details of any imaging carried out during the study.">
+			>
+			["id108"] = <
+				text = <"Stabilising appliance">
+				description = <"Identification of a stabilising appliance in use.">
+			>
+			["id109"] = <
+				text = <"Position">
+				description = <"Position of the individual during the imaging examination.">
+			>
+			["id15"] = <
+				text = <"Clinical summary">
+				description = <"Narrative description of relevant clinical history that provides context for the examination and interpretation of results.">
+			>
+			["id21"] = <
+				text = <"Imaging diagnosis">
+				description = <"Single word, phrase or brief description representing the likely condition or diagnosis.">
+			>
+			["id22"] = <
+				text = <"Overall impression">
+				description = <"Narrative concise, clinically relevant interpretation of all imaging findings, and include a comparison with previous studies where appropriate.">
+			>
+			["id24"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the examination not captured in other fields.">
+			>
+			["id27"] = <
+				text = <"Imaging service">
+				description = <"Details about the service, organization or individual carrying out the imaging examination.">
+			>
+			["id28"] = <
+				text = <"Examination request details">
+				description = <"Details about a single imaging examination requested.">
+			>
+			["id29"] = <
+				text = <"Requester order identifier">
+				description = <"Unique identifier for the imaging examination order assigned by the requester.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Examination requested name">
+				description = <"Identification of imaging examination requested.">
+			>
+			["id31"] = <
+				text = <"Requester">
+				description = <"Details about the clinician and/or organization requesting the imaging examination.">
+			>
+			["id32"] = <
+				text = <"Receiver order identifier">
+				description = <"Unique identifier for the imaging examination order assigned by the radiology service.">
+			>
+			["id42"] = <
+				text = <"Structured technique/procedure">
+				description = <"Additional structured details of technical and clinical aspects of capturing the image/s.">
+			>
+			["id45"] = <
+				text = <"Structured imaging findings">
+				description = <"Structured details about the imaging examination findings targeting a specific structure or region.">
+			>
+			["id46"] = <
+				text = <"Report representation">
+				description = <"Digital representation of the examination result.">
+			>
+			["id47"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id49"] = <
+				text = <"Confounding factors">
+				description = <"Narrative description of factors, not recorded elsewhere, that may influence the examination findings and/or result.">
+			>
+			["id5"] = <
+				text = <"Study name">
+				description = <"The name of the imaging examination performed.">
+			>
+			["id50"] = <
+				text = <"Technique summary">
+				description = <"Narrative description about the radiological procedure used to capture the study.">
+			>
+			["id56"] = <
+				text = <"Target body site">
+				description = <"Description of the simple body site or region targetted for imaging.">
+			>
+			["id57"] = <
+				text = <"Comparison findings">
+				description = <"Narrative description about the comparison of this examination with previous similar studies.">
+			>
+			["id58"] = <
+				text = <"Imaging quality description">
+				description = <"Narrative description about the quality of the examination.">
+			>
+			["id59"] = <
+				text = <"Imaging differential diagnosis">
+				description = <"Single word, phrase or brief description representing a possible condition or diagnosis.">
+			>
+			["id60"] = <
+				text = <"Recommendation">
+				description = <"Suggestion for further imaging, investigations and/or referral, and associated rationale.">
+			>
+			["id62"] = <
+				text = <"Clinical indication">
+				description = <"Narrative description about the reason the examination was originally requested.">
+			>
+			["id63"] = <
+				text = <"Procedure summary">
+				description = <"Narrative description about the clinical procedure or other clinical considerations used to capture the study.">
+			>
+			["id64"] = <
+				text = <"Imaging quality">
+				description = <"Assessment about the quality of the examination.">
+			>
+			["id66"] = <
+				text = <"Series details">
+				description = <"Details about a series included in this report.">
+			>
+			["id68"] = <
+				text = <"Comparison series details">
+				description = <"Details about an imaging series being compared to the reported study.">
+			>
+			["id7"] = <
+				text = <"Structured target body site">
+				description = <"Structured detail about the body site or region targetted for imaging.">
+			>
+			["id70"] = <
+				text = <"Device">
+				description = <"Details about imaging device/s used to capture the study.">
+			>
+			["id71"] = <
+				text = <"Study date">
+				description = <"Date/time when the imaging started.">
+			>
+			["id72"] = <
+				text = <"Status timestamp">
+				description = <"The date and/or time that ‘Overall result status’ was assigned.">
+			>
+			["id73"] = <
+				text = <"Overall result status">
+				description = <"The status of the imaging examination result as a whole.">
+			>
+			["id84"] = <
+				text = <"Distribution list">
+				description = <"Details of additional clinicians or organizations who require a copy of the examination result.">
+			>
+			["id88"] = <
+				text = <"Technique">
+				description = <"Name of the radiological procedure used to capture the study.">
+			>
+			["id89"] = <
+				text = <"Procedure">
+				description = <"Identification of the clinical procedure or management used to capture the study.">
+			>
+			["id9"] = <
+				text = <"Imaging findings">
+				description = <"Narrative description or overview of all clinical findings.">
+			>
+			["id92"] = <
+				text = <"Modality">
+				description = <"The type of imaging device, process or method that originally acquired or produced the data used to create the images in the study.">
+			>
+			["id93"] = <
+				text = <"Study instance identifier">
+				description = <"Unique identifier for the imaging study assigned by the imaging device.">
+			>
+			["id94"] = <
+				text = <"Comparison study details">
+				description = <"Details about images from a prior study used for comparison to the reported study.">
+			>
+			["id95"] = <
+				text = <"Study name">
+				description = <"The name of the comparison imaging examination performed.">
+			>
+			["id96"] = <
+				text = <"Study identifier">
+				description = <"Unique identifier for the comparison imaging study.">
+			>
+			["id97"] = <
+				text = <"Study date">
+				description = <"Date and time the comparison examination started.">
+			>
+			["id98"] = <
+				text = <"Study end point">
+				description = <"Digital location of the comparison imaging content and metadata.">
+			>
+			["id99"] = <
+				text = <"Study end point">
+				description = <"Digital location of the imaging content and metadata.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id105"] = <http://loinc.org/90084-5>
+			["id109"] = <http://loinc.org/8361-8>
+			["id21"] = <http://loinc.org/29548-5>
+			["id56"] = <http://loinc.org/39111-0>
+			["id59"] = <http://loinc.org/92238-5>
+			["id70"] = <http://loinc.org/74720-4>
+			["id89"] = <http://loinc.org/67217-0>
+			["id24"] = <http://loinc.org/106173-8>
+			["id49"] = <http://loinc.org/106176-1>
+			["id62"] = <http://loinc.org/104720-8>
+			["id1"] = <http://loinc.org/104922-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at73", "at74", "at75", "at76", "at77", "at78", "at79", "at80", "at90">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at100", "at101", "at102", "at103">
+		>
+	>
+

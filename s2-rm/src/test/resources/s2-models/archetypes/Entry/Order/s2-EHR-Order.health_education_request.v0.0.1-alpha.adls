@@ -1,0 +1,122 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8ed5c1ac-a4ef-41b3-8e31-fbdce1efed24)
+    s2-EHR-Order.health_education_request.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2013-02-25">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-INSTRUCTION.health_education_request.v0.0.1-alpha, copyright 2013 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-INSTRUCTION.health_education_request.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record an order for communication to improve health literacy and life skills.">
+            keywords = <"education", "information">
+            use = <"Use to record an order for communication to improve health literacy and life skills.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Order[id1] matches {    -- Health education request
+        activities matches {
+            Activity[id2] occurrences matches {0..1} matches {    -- Current Activity
+                description cardinality matches {1..*; unordered} matches {
+                    Node[id4] matches {    -- Topic
+                        value matches {
+                            Text[id11]
+                        }
+                    }
+                    Node[id5] matches {    -- Details
+                        value matches {
+                            Text[id12]
+                        }
+                    }
+                    Node[id6] occurrences matches {0..1} matches {    -- Number of sessions
+                        value matches {
+                            Count[id13] matches {
+                                magnitude matches {|>=1|}
+                            }
+                        }
+                    }
+                    Node[id7] occurrences matches {0..1} matches {    -- Reason
+                        value matches {
+                            Text[id14]
+                        }
+                    }
+                    Node[id8] occurrences matches {0..1} matches {    -- Proposed outcome
+                        value matches {
+                            Text[id15]
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id10] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Health education request">
+                description = <"Communication to improve health literacy and life skills.">
+            >
+            ["id10"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id2"] = <
+                text = <"Current Activity">
+                description = <"Current Activity.">
+            >
+            ["id4"] = <
+                text = <"Topic">
+                description = <"The headline topic of the education.">
+            >
+            ["id5"] = <
+                text = <"Details">
+                description = <"Narrative description about the proposed education.">
+            >
+            ["id6"] = <
+                text = <"Number of sessions">
+                description = <"The number of educational sessions to be undertaken.">
+            >
+            ["id7"] = <
+                text = <"Reason">
+                description = <"The reason for undertaking this education process.">
+            >
+            ["id8"] = <
+                text = <"Proposed outcome">
+                description = <"Narrative description about the goals or proposed outcome of the education.">
+            >
+        >
+    >
+    

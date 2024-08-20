@@ -1,0 +1,451 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f99c5c06-0dd4-4376-b706-c6b63bbc7352)
+	s2-EHR-Assessment.contraceptive_summary.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2009-06-21">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.contraceptive_summary.v1.0.0, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.contraceptive_summary.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the current status and episodic details about specific types of contraception used by an individual.">
+			use = <"Use to record the current status and episodic details about specific types of contraception used by an individual.
+            
+            This archetype is to be used to record information about both current and previous use of contraception.
+            
+            The specific scope of this archetype is on overall documentation about the use of all types of contraception, including episodes where more than one type of contraception may have been used simultaneously.
+            
+            The 'Per type' Node of data Nodes allows for recording of specific details and episodes about each type of contraception used and can be repeated only once per type. 
+            
+            In many situations the individual will use only one type of contraception at a time. However, if other types of contraception are used at the same time, the details will be recorded in another instance of the 'Per type' Node.
+            
+            For each type of contraception the history of use over time can be captured using the repeatable 'Per episode' Node. This Node of data Nodes allows for a very detailed pattern of contraception use to be recorded, if necessary.
+            
+            Use to incorporate the narrative descriptions of contraceptive history within existing or legacy clinical systems into an archetyped format, using the 'Overall description' data Node.">
+			keywords = <"contraceptive", "hormone", "contraception", "control", "family planning", "birth control measures">
+			misuse = <"Not to be used to record detailed information about the medication prescription. Links from this archetype to the relevant INSTRUCTION.medication_order or ACTION.medication should be used to record the detail.
+            
+            Not to be used to record detailed information about the procedures performed, such as an IUD insertion or a vasectomy. Links from this archetype to the relevant ACTION.procedure should be used to record the detail.">
+		>
+	>
+	other_contributors = <"Miguel Aguiar Netto, INLAGS, Brazil", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Terje Bektesevic Holmlund, UiT Norges arktiske universitet, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Peter Fedorcsak, Oslo universitetssykehus, Norway", "Mikkel Gaup Grønmo, Helse-Nord, FSE, Norway (openEHR Editor)", "James Goddard, NHS Wales Informatics Service, United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anne Grimstvedt Kvalvik, Haraldsplass Diakonale sykehus, Norway", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, Oslo universitetssykehus, Norway (Nasjonal IKT redaktør)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Johannes Michael Strehle, Helse-Nord, Norway", "Svenne Naumann, Finnmarkssykehuset, Norway", "Bjørn Næss, DIPS ASA, Norway", "sam philip, NHS Grampian, United Kingdom", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Danielle Santos Alves, Federal University of Pernambuco, Brazil", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+
+definition
+	Assessment[id1] matches {	-- Contraceptive use summary
+		data matches {
+			Node[id90] occurrences matches {0..1} matches {	-- Overall status
+				value matches {
+					Coded_text[id170] matches {
+						term matches {
+							Terminology_term[id191] matches {
+								concept matches {[ac1]}		-- Overall status (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id44] occurrences matches {0..1} matches {	-- Overall description
+				value matches {
+					Text[id171] 
+				}
+			}
+			Node[id30] matches {	-- Per type
+				items matches {
+					Node[id152] occurrences matches {0..1} matches {	-- Type
+						value matches {
+							Plain_text[id172] 
+							Coded_text[id173] matches {
+								term matches {
+									Terminology_term[id192] matches {
+										concept matches {[ac2]}		-- Type (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id145] occurrences matches {0..1} matches {	-- Status
+						value matches {
+							Coded_text[id174] matches {
+								term matches {
+									Terminology_term[id193] matches {
+										concept matches {[ac3]}		-- Status (synthesised)
+									}
+								}
+							}
+						}
+					}
+					Node[id54] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id175] 
+						}
+					}
+					Node[id149] occurrences matches {0..1} matches {	-- Start date
+						value matches {
+							Date_time_value[id176] 
+						}
+					}
+					Node[id65] matches {	-- Per episode
+						items matches {
+							Node[id82] occurrences matches {0..1} matches {	-- Episode label
+								value matches {
+									Count[id177] matches {
+										magnitude matches {|>=1|}
+									}
+									Text[id178] 
+								}
+							}
+							Node[id24] occurrences matches {0..1} matches {	-- Specific name
+								value matches {
+									Text[id179] 
+								}
+							}
+							Node[id31] occurrences matches {0..1} matches {	-- Description
+								value matches {
+									Text[id180] 
+								}
+							}
+							Node[id169] occurrences matches {0..1} matches {	-- Clinical indication
+								value matches {
+									Text[id181] 
+								}
+							}
+							Node[id26] occurrences matches {0..1} matches {	-- Goal
+								value matches {
+									Text[id182] 
+								}
+							}
+							Node[id14] occurrences matches {0..1} matches {	-- Episode start date
+								value matches {
+									Date_value[id183] 
+								}
+							}
+							Node[id83] occurrences matches {0..1} matches {	-- Episode end date
+								value matches {
+									Date_value[id184] 
+								}
+							}
+							Node[id75] occurrences matches {0..1} matches {	-- Reason for cessation
+								value matches {
+									Text[id185] 
+								}
+							}
+							allow_archetype Node[id27] matches {	-- Episode details
+								include
+									archetype_id/value matches {/.*/}
+							}
+							Node[id88] occurrences matches {0..1} matches {	-- Episode comment
+								value matches {
+									Text[id186] 
+								}
+							}
+						}
+					}
+					Node[id150] occurrences matches {0..1} matches {	-- End date
+						value matches {
+							Date_time_value[id187] 
+						}
+					}
+					allow_archetype Node[id78] matches {	-- Type details
+						include
+							archetype_id/value matches {/.*/}
+					}
+					Node[id70] occurrences matches {0..1} matches {	-- Comment
+						value matches {
+							Text[id188] 
+						}
+					}
+				}
+			}
+			allow_archetype Node[id151] matches {	-- Overall details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Overall comment
+				value matches {
+					Text[id189] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id74] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id190] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Overall status (synthesised)">
+				description = <"Statement about regular use of any type of contraception. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Type (synthesised)">
+				description = <"The type of contraception used by the individual. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Status (synthesised)">
+				description = <"Statement about current use of the specified type of contraception. (synthesised)">
+			>
+			["at145"] = <
+				text = <"Current user">
+				description = <"Individual is a current user of the specified type of contraception.">
+			>
+			["at146"] = <
+				text = <"Not current user">
+				description = <"Individual has previously used the specified type of contraception but is not a current user.">
+			>
+			["at147"] = <
+				text = <"Never used">
+				description = <"Individual has never used the specified type of contraception.">
+			>
+			["at152"] = <
+				text = <"Male condom">
+				description = <"A barrier covering the penis to physically block ejaculated sperm from entering the vagina.">
+			>
+			["at153"] = <
+				text = <"Female condom">
+				description = <"A barrier worn inside the vagina to physically block ejaculated sperm from entering the cervix.">
+			>
+			["at154"] = <
+				text = <"Diaphragm">
+				description = <"A shallow, dome shaped barrier placed in the vagina to cover the cervix.">
+			>
+			["at155"] = <
+				text = <"Combination pill">
+				description = <"A combination oral contraceptive pill containing both an oestrogen and progestin.">
+			>
+			["at156"] = <
+				text = <"Combination skin patch">
+				description = <"A combination skin patch containing both an oestrogen and progestin.">
+			>
+			["at157"] = <
+				text = <"Progestogen-only pill">
+				description = <"Progestogen-only form of oral hormonal contraception.">
+			>
+			["at158"] = <
+				text = <"Depot progestogen injection">
+				description = <"Progestogen-only injectable of hormonal contraception.">
+			>
+			["at159"] = <
+				text = <"Hormone implant">
+				description = <"Hormonal contraception inserted under the skin.">
+			>
+			["at160"] = <
+				text = <"Vaginal ring">
+				description = <"Hormone impregnated ring inserted into the vagina.">
+			>
+			["at161"] = <
+				text = <"Female sterilisation">
+				description = <"Procedure intended to permanently prevent pregnancy, usually by tubal ligitation.">
+			>
+			["at162"] = <
+				text = <"Male sterilisation">
+				description = <"Procedure intended to permanently prevent pregnancy, usually by vasectomy.">
+			>
+			["at163"] = <
+				text = <"IUD without hormone">
+				description = <"Device inserted into the uterus to prevent implantation.">
+			>
+			["at164"] = <
+				text = <"Withdrawal">
+				description = <"Withdrawing the penis from the vagina and away from a woman's external genitals before ejaculation.">
+			>
+			["at165"] = <
+				text = <"Fertility awareness method">
+				description = <"Cyclical use of abstinence or barrier methods during likely fertile periods.">
+			>
+			["at166"] = <
+				text = <"Abstinence">
+				description = <"Avoidance of vaginal intercourse or intimate activities which may result in pregnancy.">
+			>
+			["at167"] = <
+				text = <"Vaginal douching">
+				description = <"Intravaginal cleansing with a liquid solution.">
+			>
+			["at169"] = <
+				text = <"IUD with hormone">
+				description = <"Device inserted into the uterus to prevent implantation.">
+			>
+			["at3"] = <
+				text = <"Current user">
+				description = <"Individual currently uses contraception.">
+			>
+			["at5"] = <
+				text = <"Not current user">
+				description = <"Individual has previously used contraception but is not a current user.">
+			>
+			["at6"] = <
+				text = <"Never used">
+				description = <"Individual has never used any type of contraception.">
+			>
+			["id1"] = <
+				text = <"Contraceptive use summary">
+				description = <"Summary and persistent information about the use of methods to prevent pregnancy.">
+			>
+			["id14"] = <
+				text = <"Episode start date">
+				description = <"Date when this episode commenced.">
+			>
+			["id145"] = <
+				text = <"Status">
+				description = <"Statement about current use of the specified type of contraception.">
+			>
+			["id149"] = <
+				text = <"Start date">
+				description = <"Date when the individual first used the specified type of contraception.">
+			>
+			["id150"] = <
+				text = <"End date">
+				description = <"Date when the individual last used the specified type of contraception.">
+			>
+			["id151"] = <
+				text = <"Overall details">
+				description = <"Additional structured details about the overall use of contraception.">
+			>
+			["id152"] = <
+				text = <"Type">
+				description = <"The type of contraception used by the individual.">
+			>
+			["id169"] = <
+				text = <"Clinical indication">
+				description = <"Clinical reason for using the specified type of contraception during this episode.">
+			>
+			["id20"] = <
+				text = <"Overall comment">
+				description = <"Additional narrative about the use of contraception that has not been captured in other fields.">
+			>
+			["id23"] = <
+				text = <"Last updated">
+				description = <"The date this contraceptive use summary was last updated.">
+			>
+			["id24"] = <
+				text = <"Specific name">
+				description = <"Identification of the specific contraception used in this episode, by name.">
+			>
+			["id26"] = <
+				text = <"Goal">
+				description = <"Intended outcome as a result of use of the specified contraception.">
+			>
+			["id27"] = <
+				text = <"Episode details">
+				description = <"Additional structured details about the specified episode of contraception use.">
+			>
+			["id30"] = <
+				text = <"Per type">
+				description = <"Details about use of a specified type of contraception.">
+			>
+			["id31"] = <
+				text = <"Description">
+				description = <"Narrative description about the overall use of contraception during this episode.">
+			>
+			["id44"] = <
+				text = <"Overall description">
+				description = <"Narrative summary about the individual's overall use of contraception.">
+			>
+			["id54"] = <
+				text = <"Description">
+				description = <"Narrative summary about the use of the specified type of contraception.">
+			>
+			["id65"] = <
+				text = <"Per episode">
+				description = <"Details about contraceptive use during an identified period of time.">
+			>
+			["id70"] = <
+				text = <"Comment">
+				description = <"Additional narrative about use of the specified type of contraception, not captured in other fields.">
+			>
+			["id74"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id75"] = <
+				text = <"Reason for cessation">
+				description = <"Narrative description for the reason for stopping use of the specified type of contraception during this episode.">
+			>
+			["id78"] = <
+				text = <"Type details">
+				description = <"Additional structured details about the specified type of contraception used.">
+			>
+			["id82"] = <
+				text = <"Episode label">
+				description = <"Identification of an episode of contraception use - either as a number in a sequence and/or a named event.">
+			>
+			["id83"] = <
+				text = <"Episode end date">
+				description = <"Date when this episode ceased.">
+			>
+			["id88"] = <
+				text = <"Episode comment">
+				description = <"Additional narrative about the use of the specified contraception during the specified episode, not captured in other fields.">
+			>
+			["id90"] = <
+				text = <"Overall status">
+				description = <"Statement about regular use of any type of contraception.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id14"] = <http://loinc.org/106197-7>
+			["id149"] = <http://loinc.org/106197-7>
+			["id145"] = <http://loinc.org/106199-3>
+			["id150"] = <http://loinc.org/106180-3>
+			["id169"] = <http://loinc.org/104720-8>
+			["id20"] = <http://loinc.org/106173-8>
+			["id23"] = <http://loinc.org/106177-9>
+			["id31"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id44"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id54"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id70"] = <http://loinc.org/106173-8>
+			["id83"] = <http://loinc.org/106180-3>
+			["id88"] = <http://loinc.org/106173-8>
+			["id90"] = <http://loinc.org/106199-3>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at3", "at5", "at6">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at155", "at157", "at156", "at158", "at159", "at160", "at169", "at163", "at161", "at162", "at154", "at167", "at153", "at152", "at164", "at165", "at166">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at145", "at146", "at147">
+		>
+	>
+

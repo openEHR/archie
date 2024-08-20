@@ -1,0 +1,437 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5024d3a8-6a76-43e5-aa2d-cf832366fc15)
+    s2-EHR-Action.informed_consent.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 09-10-2012">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-ACTION.informed_consent.v0.0.1-alpha, copyright 09-1 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-ACTION.informed_consent.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the status of a request for, or record of, informed consent prior to performing a procedure, clinical trial or healthcare-related activity.">
+            keywords = <"consent", "informed", "caveat">
+            use = <"Use to record the status of an order to obtain informed consent, including what is planned, scheduled, requested, provided, or withdrawn.
+            
+            This archetype has been designed to be a framework that will be adequate for requesting and recording a simple consent, but allow for additional details to be optionally added within the 'Details' SLOT to meet the specific requirements of a more complex clinical scenario.  For example, additional consent details can be included using the Node.consent_details archetype. Other archetypes can be developed and optionally included in the same SLOT for the purpose of recording specific details about the procedure, trial or activity. 
+            
+            The status of the informed consent is reflected by the pathway steps - requested, refused, provided, withdrawn etc.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Action[id1] matches {    -- Informed consent
+        state_transition matches {
+            State_transition[id14] matches {    -- Planned
+                current_state matches {"planned"}
+                careflow_step matches {
+                    Terminology_term[id41] matches {
+                        concept matches {[at14]}    -- Planned
+                    }
+                }
+            }
+            State_transition[id20] matches {    -- Postponed
+                current_state matches {"postponed"}
+                careflow_step matches {
+                    Terminology_term[id43] matches {
+                        concept matches {[at20]}    -- Postponed
+                    }
+                }
+            }
+            State_transition[id19] matches {    -- Cancelled
+                current_state matches {"cancelled"}
+                careflow_step matches {
+                    Terminology_term[id45] matches {
+                        concept matches {[at19]}    -- Cancelled
+                    }
+                }
+            }
+            State_transition[id28] matches {    -- Appointment scheduled
+                current_state matches {"scheduled"}
+                careflow_step matches {
+                    Terminology_term[id47] matches {
+                        concept matches {[at28]}    -- Appointment scheduled
+                    }
+                }
+            }
+            State_transition[id15] matches {    -- Informed consent requested
+                current_state matches {"active", "planned"}
+                careflow_step matches {
+                    Terminology_term[id49] matches {
+                        concept matches {[at15]}    -- Informed consent requested
+                    }
+                }
+            }
+            State_transition[id16] matches {    -- Informed consent provided
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id51] matches {
+                        concept matches {[at16]}    -- Informed consent provided
+                    }
+                }
+            }
+            State_transition[id22] matches {    -- Informed consent not obtained
+                current_state matches {"active"}
+                careflow_step matches {
+                    Terminology_term[id53] matches {
+                        concept matches {[at22]}    -- Informed consent not obtained
+                    }
+                }
+            }
+            State_transition[id17] matches {    -- Informed consent refused
+                current_state matches {"aborted"}
+                careflow_step matches {
+                    Terminology_term[id55] matches {
+                        concept matches {[at17]}    -- Informed consent refused
+                    }
+                }
+            }
+            State_transition[id18] matches {    -- Informed consent withdrawn
+                current_state matches {"aborted"}
+                careflow_step matches {
+                    Terminology_term[id57] matches {
+                        concept matches {[at18]}    -- Informed consent withdrawn
+                    }
+                }
+            }
+            State_transition[id23] matches {    -- Completed
+                current_state matches {"completed"}
+                careflow_step matches {
+                    Terminology_term[id59] matches {
+                        concept matches {[at23]}    -- Completed
+                    }
+                }
+            }
+        }
+        description cardinality matches {1..*; unordered} matches {
+            Node[id3] occurrences matches {1..*} matches {    -- Procedure/Trial/Activity
+                value matches {
+                    Text[id60]
+                }
+            }
+            Node[id31] occurrences matches {0..1} matches {    -- Procedure/Trial/Activity description
+                value matches {
+                    Text[id61]
+                }
+            }
+            Node[id32] occurrences matches {0..1} matches {    -- Intent
+                value matches {
+                    Text[id62]
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- Consent description
+                value matches {
+                    Text[id63]
+                }
+            }
+            allow_archetype Node[id4] matches {     -- Details
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.consent_details(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.procedure_details(-[a-zA-Z0-9_]+)*\.v1/}
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Form of consent
+                value matches {
+                    Coded_text[id64] matches {
+                        term matches {
+                            Terminology_term[id75] matches {
+                                concept matches {[ac2]}    -- Form of consent (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Reason
+                value matches {
+                    Text[id65]
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Start date
+                value matches {
+                    Date_time_value[id66]
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- End date
+                value matches {
+                    Date_time_value[id67]
+                }
+            }
+            Node[id11] matches {    -- Caveat
+                value matches {
+                    Text[id68]
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Evidence link
+                value matches {
+                    Uri_ref[id69]
+                }
+            }
+            Node[id37] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id70]
+                }
+            }
+            use_archetype Node[id38, s2-EHR-Node.media_file.v1]    -- Evidence details
+        }
+        qualifiers matches {
+            Node[id26] occurrences matches {0..1} matches {    -- Consent document used
+                value matches {
+                    Text[id71]
+                }
+            }
+            Node[id27] occurrences matches {0..1} matches {    -- Review date
+                value matches {
+                    Date_time_value[id72]
+                }
+            }
+            allow_archetype Node[id29] matches {     -- Consent requester
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            allow_archetype Node[id30] matches {     -- Consent provider
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            Node[id34] matches {    -- Patient information
+                items matches {
+                    Node[id33] occurrences matches {0..1} matches {    -- Name
+                        value matches {
+                            Text[id73]
+                        }
+                    }
+                    Node[id36] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            Text[id74]
+                        }
+                    }
+                    allow_archetype Node[id39] matches {     -- Multimedia representation
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at5", "at6">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac2"] = <
+                text = <"Form of consent (synthesised)">
+                description = <"Form of the consent sought or provided. (synthesised)">
+            >
+            ["at14"] = <
+                text = <"Planned">
+                description = <"Need for informed consent is identified.">
+            >
+            ["at15"] = <
+                text = <"Informed consent requested">
+                description = <"Informed consent has been requested from the patient or patient's agent, but no response has been received.">
+            >
+            ["at16"] = <
+                text = <"Informed consent provided">
+                description = <"Informed consent has been provided by the patient or patient's agent.">
+            >
+            ["at17"] = <
+                text = <"Informed consent refused">
+                description = <"In response to a request for informed consent, it has been refused by patient or patient's agent.">
+            >
+            ["at18"] = <
+                text = <"Informed consent withdrawn">
+                description = <"Following initial provision of informed consent, it has been withrawn by the patient or patient's agent.">
+            >
+            ["at19"] = <
+                text = <"Cancelled">
+                description = <"Intent to request informed consent has been cancelled, prior to requesting consent from patient or patient's agent..">
+            >
+            ["at20"] = <
+                text = <"Postponed">
+                description = <"Intent to request informed consent has been postponed.">
+            >
+            ["at22"] = <
+                text = <"Informed consent not obtained">
+                description = <"Informed consent was not obtainable from either the patient or patient's advocate.">
+            >
+            ["at23"] = <
+                text = <"Completed">
+                description = <"Informed consent has been provided by the patient or patient's agent and the activity is now complete.">
+            >
+            ["at28"] = <
+                text = <"Appointment scheduled">
+                description = <"An appointment has been scheduled to request consent.">
+            >
+            ["at36"] = <
+                text = <"active">
+                description = <"active">
+            >
+            ["at37"] = <
+                text = <"planned">
+                description = <"planned">
+            >
+            ["at5"] = <
+                text = <"Written">
+                description = <"Format of the consent is written.">
+            >
+            ["at6"] = <
+                text = <"Verbal">
+                description = <"Format of the consent is verbal.">
+            >
+            ["id1"] = <
+                text = <"Informed consent">
+                description = <"Record of status and details of informed consent from an individual (or the individual's agent/proxy) for a proposed procedure, trial or other healthcare-related activity (including treatments and investigations), based upon a clear appreciation and understanding of the facts, implications, and possible future consequences by the consenting party.">
+            >
+            ["id10"] = <
+                text = <"End date">
+                description = <"Date, and optional time, when validity of the informed consent ceased.">
+            >
+            ["id11"] = <
+                text = <"Caveat">
+                description = <"Details of any qualifications or exemptions to the informed consent.">
+            >
+            ["id12"] = <
+                text = <"Consent description">
+                description = <"Narrative description of the informed consent required or recorded prior to performing the proposed procedure, clinical trial or healthcare-related activity.">
+            >
+            ["id13"] = <
+                text = <"Evidence link">
+                description = <"Link to evidence of consent.">
+            >
+            ["id14"] = <
+                text = <"Planned">
+                description = <"Need for informed consent is identified.">
+            >
+            ["id15"] = <
+                text = <"Informed consent requested">
+                description = <"Informed consent has been requested from the patient or patient's agent, but no response has been received.">
+            >
+            ["id16"] = <
+                text = <"Informed consent provided">
+                description = <"Informed consent has been provided by the patient or patient's agent.">
+            >
+            ["id17"] = <
+                text = <"Informed consent refused">
+                description = <"In response to a request for informed consent, it has been refused by patient or patient's agent.">
+            >
+            ["id18"] = <
+                text = <"Informed consent withdrawn">
+                description = <"Following initial provision of informed consent, it has been withrawn by the patient or patient's agent.">
+            >
+            ["id19"] = <
+                text = <"Cancelled">
+                description = <"Intent to request informed consent has been cancelled, prior to requesting consent from patient or patient's agent..">
+            >
+            ["id20"] = <
+                text = <"Postponed">
+                description = <"Intent to request informed consent has been postponed.">
+            >
+            ["id22"] = <
+                text = <"Informed consent not obtained">
+                description = <"Informed consent was not obtainable from either the patient or patient's advocate.">
+            >
+            ["id23"] = <
+                text = <"Completed">
+                description = <"Informed consent has been provided by the patient or patient's agent and the activity is now complete.">
+            >
+            ["id26"] = <
+                text = <"Consent document used">
+                description = <"Identification of the form or document used to obtain consent.">
+            >
+            ["id27"] = <
+                text = <"Review date">
+                description = <"Date when consent status is due for review.">
+            >
+            ["id28"] = <
+                text = <"Appointment scheduled">
+                description = <"An appointment has been scheduled to request consent.">
+            >
+            ["id29"] = <
+                text = <"Consent requester">
+                description = <"Details about the healthcare provider who is requesting or recording the consent.">
+            >
+            ["id3"] = <
+                text = <"Procedure/Trial/Activity">
+                description = <"Identification of the procedure, clinical trial or healthcare-related activity (including correct side/correct site, where appropriate) against which the consent status and details are recorded.">
+            >
+            ["id30"] = <
+                text = <"Consent provider">
+                description = <"Details about the subject (or subject's agent) who is being requested for, or providing, the consent for the procedure, clinical trial or healthcare-related activity.">
+            >
+            ["id31"] = <
+                text = <"Procedure/Trial/Activity description">
+                description = <"Narrative description of the procedure, clinical trial or healthcare-related activity.">
+            >
+            ["id32"] = <
+                text = <"Intent">
+                description = <"Description of the intent of the procedure, clinical trial or healthcare-related activity.">
+            >
+            ["id33"] = <
+                text = <"Name">
+                description = <"Identification of the information made available.">
+            >
+            ["id34"] = <
+                text = <"Patient information">
+                description = <"Details about Patient Information made available to the subject or subject's agent.">
+            >
+            ["id36"] = <
+                text = <"Description">
+                description = <"Narrative description of the patient information made available.">
+            >
+            ["id37"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the informed consent activity, not captured in other fields.">
+            >
+            ["id38"] = <
+                text = <"Evidence details">
+                description = <"Digital representation of the evidence of consent.">
+            >
+            ["id39"] = <
+                text = <"Multimedia representation">
+                description = <"Digital representation of the evidence of consent.">
+            >
+            ["id4"] = <
+                text = <"Details">
+                description = <"Additional structured details about the procedure/trial/activity itself or additional structured consent details.">
+            >
+            ["id5"] = <
+                text = <"Form of consent">
+                description = <"Form of the consent sought or provided.">
+            >
+            ["id8"] = <
+                text = <"Reason">
+                description = <"Reason that the care pathway step for the identified procedure, clinical trial or healthcare-related activity was carried out.">
+            >
+            ["id9"] = <
+                text = <"Start date">
+                description = <"Date, and optional time, when validity of the informed consent becomes active.">
+            >
+        >
+    >
+    

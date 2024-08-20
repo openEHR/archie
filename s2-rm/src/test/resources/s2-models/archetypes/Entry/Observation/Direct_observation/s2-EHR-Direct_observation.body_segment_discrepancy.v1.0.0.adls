@@ -1,0 +1,348 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=93f6f756-6a27-45d6-b51c-8235bba275cc)
+	s2-EHR-Direct_observation.body_segment_discrepancy.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"John Tore Valand, Helse Vest IKT AS, <John.tore.valand@helse-vest-ikt.no>, 2021-12-13">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.body_segment_discrepancy.v1.0.0, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.body_segment_discrepancy.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the difference in length or circumference between paired body segments.">
+			use = <"Use to record the difference in length or circumference between paired body segments. Body segment length is a measurement of the distance between two points of surface anatomy, and body segment circumference is the measurement of the distance around an identified part of the body.
+            
+            The design intent of this archetype is to use a common recording pattern to capture length discrepancies between paired body segments, identified by the 
+            'Paired body segment name' data Node.
+            
+            The discrepancy may be recorded and tracked over time, for example tracking the disrepancy as a child grows, 
+            or used to provide insight into the shape and proportions of an individual's body for purposes of clinical, 
+            anthropometric or ergonomic assessment. 
+            
+            Common parameters that are measured between two identified points have been added to the DV_CODED_TEXT data 
+            type in the 'Body segment name' data Node. As further parameters are identified, these can be added to the list within the 'Body segment name' Node.
+            
+            The Nodes 'Measurement method', 'Measurement origin', 'Structured origin', 'Measurement endpoint' and 
+            'Structured endpoint' is redundant if already recorded in the OBSERVATION.body_segment_length when recording 
+            the actual length of the body segments.">
+			keywords = <"anthropometry", "measurement", "length", "height", "width", "assymetry", "circumference">
+			misuse = <"Not to be used to record the length of a body segment - use OBSERVATION.body_segment_length for this purpose.">
+		>
+	>
+	other_contributors = <"Marit Alice Venheim, Helse Vest IKT, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Randi Brendberg, Helse Nord RHF, Norway", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Thomas Natvik, Helse Bergen, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Bjørn Næss, DIPS ASA, Norway", "Jayashree Panickar, Karolinska Institute, Sweden", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Body segment discrepancy
+		data cardinality matches {2..*; unordered} matches {
+			Node[id5] matches {	-- Body segment measurement
+				value matches {
+					Plain_text[id48] 
+					Coded_text[id49] matches {
+						term matches {
+							Terminology_term[id57] matches {
+								concept matches {[ac1]}		-- Body segment measurement (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id9] matches {	-- Discrepancy
+				value matches {
+					Measured<Quantity>[id67] matches {
+						value matches {
+							Quantity[id58] matches {	-- Discrepancy (cm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id60] matches {
+										term matches {
+											Terminology_term[id59] matches {
+												concept matches {[at60]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+					Measured<Quantity>[id68] matches {
+						value matches {
+							Quantity[id61] matches {	-- Discrepancy ([in_i])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id63] matches {
+										term matches {
+											Terminology_term[id62] matches {
+												concept matches {[at61]}
+											}
+										}
+									}
+								}
+								precision matches {1}
+							}
+						}
+					}
+					Measured<Quantity>[id69] matches {
+						value matches {
+							Quantity[id64] matches {	-- Discrepancy (mm)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id66] matches {
+										term matches {
+											Terminology_term[id65] matches {
+												concept matches {[at62]}
+											}
+										}
+									}
+								}
+								precision matches {0}
+							}
+						}
+					}
+				}
+			}
+			Node[id47] occurrences matches {0..1} matches {	-- Longest side
+				value matches {
+					Coded_text[id51] matches {
+						term matches {
+							Terminology_term[id70] matches {
+								concept matches {[ac2]}		-- Longest side (synthesised)
+							}
+						}
+					}
+					Plain_text[id52] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id53] 
+				}
+			}
+		}
+		qualifiers matches {
+			use_archetype Node[id16, s2-EHR-Node.device.v1] 
+			Node[id28] occurrences matches {0..1} matches {	-- Measurement method
+				value matches {
+					Text[id54] 
+				}
+			}
+			Node[id30] occurrences matches {0..1} matches {	-- Measurement origin
+				value matches {
+					Text[id55] 
+				}
+			}
+			allow_archetype Node[id31] matches {	-- Structured origin
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id34] occurrences matches {0..1} matches {	-- Measurement endpoint
+				value matches {
+					Text[id56] 
+				}
+			}
+			allow_archetype Node[id36] matches {	-- Structured endpoint
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype Node[id17] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Body segment measurement (synthesised)">
+				description = <"Name of the body segment measurement, which is used to calculate the discrepancy. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Longest side (synthesised)">
+				description = <"The laterality of the longest paired segment. (synthesised)">
+			>
+			["at47"] = <
+				text = <"Left">
+				description = <"">
+			>
+			["at48"] = <
+				text = <"Right">
+				description = <"">
+			>
+			["at49"] = <
+				text = <"Upper arm length">
+				description = <"">
+			>
+			["at50"] = <
+				text = <"Leg length">
+				description = <"">
+			>
+			["at51"] = <
+				text = <"Upper leg length">
+				description = <"">
+			>
+			["at52"] = <
+				text = <"Foot length">
+				description = <"">
+			>
+			["at53"] = <
+				text = <"Knee height">
+				description = <"">
+			>
+			["at54"] = <
+				text = <"Forearm length">
+				description = <"">
+			>
+			["at55"] = <
+				text = <"Lower leg length">
+				description = <"">
+			>
+			["at56"] = <
+				text = <"Shoulder height">
+				description = <"">
+			>
+			["at57"] = <
+				text = <"Sitting shoulder height">
+				description = <"">
+			>
+			["at58"] = <
+				text = <"Calf circumference">
+				description = <"">
+			>
+			["at59"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at60"] = <
+				text = <"cm">
+				description = <"Centimetres length unit">
+			>
+			["at61"] = <
+				text = <"in_i">
+				description = <"Inches length unit">
+			>
+			["at62"] = <
+				text = <"mm">
+				description = <"mm unit.">
+			>
+			["id1"] = <
+				text = <"Body segment discrepancy">
+				description = <"The difference in length or circumference between paired body segments.">
+			>
+			["id10"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the discrepancy, not captured in other fields.">
+			>
+			["id16"] = <
+				text = <"Measuring device">
+				description = <"Details of the device used for measuring the body segment.">
+			>
+			["id17"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id28"] = <
+				text = <"Measurement method">
+				description = <"Narrative description of the method used for measurement.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id30"] = <
+				text = <"Measurement origin">
+				description = <"Identification of a simple body site for the location of the starting point of the measurement.">
+			>
+			["id31"] = <
+				text = <"Structured origin">
+				description = <"A structured anatomical location for the starting point of the measurement.">
+			>
+			["id34"] = <
+				text = <"Measurement endpoint">
+				description = <"Identification of a simple body site for the location of the ending point of the measurement.">
+			>
+			["id36"] = <
+				text = <"Structured endpoint">
+				description = <"A structured anatomical location for the endpoint of the measurement.">
+			>
+			["id47"] = <
+				text = <"Longest side">
+				description = <"The laterality of the longest paired segment.">
+			>
+			["id5"] = <
+				text = <"Body segment measurement">
+				description = <"Name of the body segment measurement, which is used to calculate the discrepancy.">
+			>
+			["id58"] = <
+				text = <"Discrepancy (cm)">
+				description = <"Discrepancy (cm)">
+			>
+			["id61"] = <
+				text = <"Discrepancy ([in_i])">
+				description = <"Discrepancy ([in_i])">
+			>
+			["id64"] = <
+				text = <"Discrepancy (mm)">
+				description = <"Discrepancy (mm)">
+			>
+			["id9"] = <
+				text = <"Discrepancy">
+				description = <"Measured or calculated discrepancy between paired body segments.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at59"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at60"] = <http://ucum.org/id/cm>
+			["at61"] = <http://ucum.org/id/%5Bin_i%5D>
+			["at62"] = <http://ucum.org/id/mm>
+		>
+		["snomed"] = <
+			["at60"] = <http://snomed.info/id/258672001>
+			["at61"] = <http://snomed.info/id/258677007>
+			["at62"] = <http://snomed.info/id/258673006>
+		>
+		["loinc"] = <
+			["id16"] = <http://loinc.org/74720-4>
+			["id10"] = <http://loinc.org/106173-8>
+			["id28"] = <http://loinc.org/106191-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at49", "at50", "at51", "at52", "at53", "at54", "at55", "at56", "at57", "at58">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at47", "at48">
+		>
+	>
+

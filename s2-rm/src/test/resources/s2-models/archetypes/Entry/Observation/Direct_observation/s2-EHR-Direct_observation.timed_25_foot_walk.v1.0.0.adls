@@ -1,0 +1,221 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=409c5b75-e3e8-461f-8417-28f9bb048d94)
+    s2-EHR-Direct_observation.timed_25_foot_walk.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+    translations = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            author = <
+                ["name"] = <"Michael Braun">
+                ["organisation"] = <"University Medical Center Freiburg, Germany">
+                ["email"] = <"braun@imbi.uni-freiburg.de">
+            >
+        >
+    >
+    
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    other_contributors = <"Athanasios Anastasiou, UoP, United Kingdom", "Sebastian Bischoff, gfnmediber, Germany", "Martin Boeker, University Medical Center Freiburg, Germany", "Michael Braun, University Medical Center Freiburg, Germany (Editor)", "Sebastian Garde, Ocean Informatics, Germany", "Eugene Igras, IRIS Systems, Inc., Canada", "Heather Leslie, Ocean Informatics, Australia", "Sebastian Mansow-Model, gfnmediber GmbH, Germany", "Catalina Martínez-Costa, Medical University of Graz, Austria", "Ian McNicoll, Ocean Informatics, United Kingdom (Editor)", "Alexander U. Brandt, gfnmediber GmbH, Germany">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Michael Braun, University Medical Center Freiburg, Germany, <braun@imbi.uni-freiburg.de>, 2012-06-25">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.timed_25_foot_walk.v1.0.0, copyright 2012 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.timed_25_foot_walk.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the measurements recorded during a Timed 25-Foot Walk test, normally as part of the Multiple Sclerosis Functional Composite (MSFC) suite of tests.">
+            keywords = <"Timed 25-Foot Walk", "T25-FW", "T25FW", "TW", "Multiple Sclerosis Functional Composite", "MSFC">
+            use = <"Use to record the measurements recorded during a Timed 25-Foot Walk test. This test is commonly carried out as one component of the Multiple Sclerosis Functional Composite (MSFC) assessment, but may be performed independently. The patient is directed to one end of a clearly marked 25-foot (7,62 m) course. Then he is instructed to walk this course as quickly as possible, but safely. The task is immediately administered again by having the patient walk back the same distance. Assistive devices (in general, customary walking devices) may be used when doing this task. Use the MSFC Manual for detailed administration instructions. The test should only be administred by a suitably trained person.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- Timed 25-Foot Walk
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Zeit
+                value matches {
+                    Duration_value[id22] matches {
+                        magnitude matches {|PT0S..PT180S|}
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Test nicht beendet?
+                value matches {
+                    Boolean_value[id23] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id7] matches {    -- Gründe für Nichtbeenden
+                value matches {
+                    Text[id24]
+                }
+            }
+        }
+        state matches {
+            Node[id11] matches {    -- Begleitumstände
+                value matches {
+                    Text[id25]
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id13] matches {    -- Unilaterale Gehhilfe
+                value matches {
+                    Coded_text[id28] matches {
+                        term matches {
+                            Terminology_term[id34] matches {
+                                concept matches {[ac1]}    -- Unilaterale Gehhilfe (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id29]
+                }
+            }
+            Node[id21] matches {    -- Bilaterale Gehhilfen
+                value matches {
+                    Coded_text[id30] matches {
+                        term matches {
+                            Terminology_term[id35] matches {
+                                concept matches {[ac2]}    -- Bilaterale Gehhilfen (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id31]
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Mehr als zwei Anläufe?
+                value matches {
+                    Boolean_value[id32] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            Node[id19] matches {    -- Gründe für mehr als zwei Anläufe
+                value matches {
+                    Text[id33]
+                }
+            }
+        }
+        data_series matches {
+            Point_event[id8] occurrences matches {0..1} matches {    -- Test 2
+                items matches {
+                    use_node Node[id5] /data[id5]    -- Zeit
+                    use_node Node[id6] /data[id6]    -- Test nicht beendet?
+                    use_node Node[id7] /data[id7]    -- Gründe für Nichtbeenden
+                }
+            }
+        }
+        state_series matches {
+            Point_event[id8] occurrences matches {0..1} matches {    -- Test 2
+                items matches {
+                    use_node Node[id11] /state[id11]    -- Begleitumstände
+                }
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at13", "at14", "at15", "at16">
+        >
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at13", "at14", "at15">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Unilateral Assistive Device (synthesised)">
+                description = <"Record which unilateral assistive devices were used. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Bilateral Assistive Device (synthesised)">
+                description = <"Record which bilateral assistive devices were used. (synthesised)">
+            >
+            ["at13"] = <
+                text = <"Ankle-foot orthosis">
+                description = <"Ankle-Foot Orthosis (AFO).">
+            >
+            ["at14"] = <
+                text = <"Cane">
+                description = <"Walking stick or cane.">
+            >
+            ["at15"] = <
+                text = <"Crutch">
+                description = <"Underarm crutch.">
+            >
+            ["at16"] = <
+                text = <"Walker/rollator">
+                description = <"Walker or rollator device.">
+            >
+            ["id1"] = <
+                text = <"Timed 25-Foot Walk">
+                description = <"The Timed 25-Foot Walk is a quantitative test of lower extremity mobility and motor function. It is the first component of the Multiple Sclerosis Functional Composite (MSFC), a series of three tests to document the course of Multiple Sclerosis.">
+            >
+            ["id11"] = <
+                text = <"Confounding Factors">
+                description = <"Record any circumstances that you believe may have affected the patient's performance.">
+            >
+            ["id13"] = <
+                text = <"Unilateral Assistive Device">
+                description = <"Record which unilateral assistive devices were used.">
+            >
+            ["id18"] = <
+                text = <"More Than Two Attempts?">
+                description = <"Were there more than two attempts to get two successful trials?">
+            >
+            ["id19"] = <
+                text = <"Reasons For More Than Two Attempts">
+                description = <"Reasons for more than two attempts to get two successful trials.">
+            >
+            ["id21"] = <
+                text = <"Bilateral Assistive Device">
+                description = <"Record which bilateral assistive devices were used.">
+            >
+            ["id3"] = <
+                text = <"Trial 1">
+                description = <"First of two trials of the Timed 25-Foot Walk.">
+            >
+            ["id5"] = <
+                text = <"Time">
+                description = <"Time required to successfully complete the 25-foot walking distance.">
+            >
+            ["id6"] = <
+                text = <"Trial Not Completed?">
+                description = <"Could the distance not be completed or was the trial terminated prematurely?">
+            >
+            ["id7"] = <
+                text = <"Reasons For Non-completion">
+                description = <"Record the reasons, if the distance could not be completed or the test was terminated prematurely.">
+            >
+            ["id8"] = <
+                text = <"Trial 2">
+                description = <"Second of two trials of the Timed 25-Foot Walk.">
+            >
+        >
+    >
+    

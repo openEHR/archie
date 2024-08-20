@@ -1,0 +1,292 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=59b18612-72e7-4d0c-9274-400220fdf255)
+	s2-EHR-Assessment.obstetric_summary.v1.0.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2011-02-24">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.obstetric_summary.v1.0.1, copyright 2011 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.obstetric_summary.v1.0.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record summary or persistent information about the numbers of key obstetric events that may impact risk assessment or decision support.">
+			use = <"Use to record summary or persistent information about the numbers of key obstetric events that may impact risk assessment or decision support.
+            
+            Data recorded using this archetype is intended to be revised and updated after each pregnancy, either manually by a clinician or automatically calculated within a clinical system. It is anticipated that this archetype represents only one component of an obstetric history. A complete obstetric history should be represented using multiple archetypes within a template.
+            
+            In order to record a TPAL overview, Term Births (T), Preterm Births (P) and Abortions (A) can be recorded using this archetype. Living Children (L) can be recorded using the EVALUATION.social_network archetype, so that it can be used more broadly. Some variants may also use Gravidity (G) and the number of Multiple Births (M). 
+            
+            In many jurisdictions, the definition of some of these data Nodes may vary. For this reason, definitions may be included in the Protocol to ensure clarity of intent especially if the data is being exchanged between jurisdictions.">
+			keywords = <"obstetric", "pregnancy", "parity", "para", "gravidity", "gravida", "termination", "miscarriage", "abortions", "birth", "stillbirth", "caesarean", "cesarean", "ectopic", "tubal", "TPAL", "GTPAL">
+			misuse = <"Not for recording summary information about a single pregnancy. Use specific archetypes for this purpose.
+            
+            Not to be used to record details about procedures performed during a pregnancy, for example terminations or deliveries. Use the ACTION.procedure archetype for this purpose.
+            
+            Not to be used to record the details about findings in each antenatal visits or during labour. Detailed data should be recorded using appropriate archetypes for this purpose such as OBSERVATION.story together with Node.symptom_sign; OBSERVATION.blood pressure; OBSERVATION.urinalysis; or EVALUATION.problem_diagnosis.">
+		>
+	>
+	other_contributors = <"Sheryl Alexander, NT Department of Health, Australia", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Margaret Cotter, AMSANT, Australia", "Michelle Dowden, Miwatj Health Ngalkanbuy Health, Australia", "Peter Fedorcsak, Oslo universitetssykehus, Norway", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Tim Garden, NTG Department of Health, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Kristin Grødem, Helse Vest IKT, Norway", "Mikkel Gaup Grønmo, Helse-Nord, FSE, Norway (openEHR Editor)", "Sam Heard, Ocean Informatics, Australia (Editor)", "Anne Hedvig Mellbye Pfeffer, OUS, Norway", "Anca Heyd, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Michelle Kealy, Australia", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Bernadette Lack, Deptartment of Health, NT, Australia", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Anne M Gromsrud, DIPS AS, Norway", "Priscila Maranhão, MEDCIDS-FMUP, Portugal", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Paul Miller, SCIMP NHS Scotland, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Svenne Naumann, Finnmarkssykehuset, Norway", "Rogerio Neri, Soft & Solutions, Brazil", "Jeremy Oats, NT Health, Australia", "Andrej Orel, Marand d.o.o., Slovenia", "Jayashree Panickar, Karolinska Institute, Sweden", "Danielle Santos Alves, Federal University of Pernambuco, Brazil", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Gary Sinclair, NT DoH, Australia", "trine stavseth, Oslo universitetsykehus, Norway", "Tove Stenquist, Helseforetak, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Chen Sun, Haukeland universitetssykehus, Norway", "June Susanne Berge, DIPS AS, Norway", "Nyree Taylor, Ocean Informatics, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Ørjan Vermeer, Haukeland Universitetssjukehus, Kvinneklinikken, Norway", "Cherie Whitbread, Royal Darwin Hospital, Australia", "Jo Wright, NT Dept of Health, Australia", "Krister Åkesson, Region Örebro län, Sweden">
+
+definition
+	Assessment[id1] matches {	-- Obstetric summary
+		data matches {
+			Node[id26] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id30] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Gravidity
+				value matches {
+					Count[id31] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Parity
+				value matches {
+					Count[id32] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Term births
+				value matches {
+					Count[id33] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Preterm births
+				value matches {
+					Count[id34] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id18] occurrences matches {0..1} matches {	-- Abortions
+				value matches {
+					Count[id35] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Miscarriages
+				value matches {
+					Count[id36] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Terminations
+				value matches {
+					Count[id37] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Ectopic pregnancies
+				value matches {
+					Count[id38] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Live births
+				value matches {
+					Count[id39] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id19] occurrences matches {0..1} matches {	-- Multiple births
+				value matches {
+					Count[id40] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Stillbirths
+				value matches {
+					Count[id41] matches {
+						magnitude matches {|0..<100|}
+					}
+				}
+			}
+			Node[id29] occurrences matches {0..1} matches {	-- Neonatal deaths
+				value matches {
+					Count[id42] 
+				}
+			}
+			Node[id28] occurrences matches {0..1} matches {	-- Caesarean sections
+				value matches {
+					Count[id43] 
+				}
+			}
+			Node[id27] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id44] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id10] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id45] 
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Definition of viability
+				value matches {
+					Duration_value[id46] matches {
+						magnitude matches {PW}
+					}
+					Quantity[id47] matches {
+						units matches {
+							Coded_text[id49] matches {
+								term matches {
+									Terminology_term[id48] matches {
+										concept matches {[at2]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id25] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at1"] = <
+				text = <"Mass">
+				description = <"Mass">
+			>
+			["at2"] = <
+				text = <"g">
+				description = <"Gram unit.">
+			>
+			["id1"] = <
+				text = <"Obstetric summary">
+				description = <"Summary or persistent information about the numbers of key obstetric events.">
+			>
+			["id10"] = <
+				text = <"Last updated">
+				description = <"The date this summary was last updated.">
+			>
+			["id12"] = <
+				text = <"Ectopic pregnancies">
+				description = <"Number of ectopic pregnancies.">
+			>
+			["id13"] = <
+				text = <"Stillbirths">
+				description = <"Number of stillbirths.">
+			>
+			["id16"] = <
+				text = <"Term births">
+				description = <"Number of births at or after term.">
+			>
+			["id17"] = <
+				text = <"Preterm births">
+				description = <"Number of births before term.">
+			>
+			["id18"] = <
+				text = <"Abortions">
+				description = <"Number of pregnancies that do not reach viability from all causes, including spontaneous miscarriages, induced terminations and ectopic pregnancies.">
+			>
+			["id19"] = <
+				text = <"Multiple births">
+				description = <"Number of birth events in which more than one fetus has been born.">
+			>
+			["id22"] = <
+				text = <"Definition of viability">
+				description = <"The number of weeks of gestation that differentiates between a miscarriage and a viable birth, that is used in the data collection.">
+			>
+			["id25"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id26"] = <
+				text = <"Description">
+				description = <"Narrative description about the overall obstetric history.">
+			>
+			["id27"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the obstetric summary, not captured in other fields.">
+			>
+			["id28"] = <
+				text = <"Caesarean sections">
+				description = <"Number of caesarean sections.">
+			>
+			["id29"] = <
+				text = <"Neonatal deaths">
+				description = <"The number of neonatal deaths.">
+			>
+			["id3"] = <
+				text = <"Gravidity">
+				description = <"Number of times a woman has been pregnant, current and past, regardless of the pregnancy outcome.">
+			>
+			["id4"] = <
+				text = <"Parity">
+				description = <"Number of times a woman has given birth to a viable baby, regardless of the pregnancy outcome.">
+			>
+			["id5"] = <
+				text = <"Miscarriages">
+				description = <"Number of times a woman has had a miscarriage.">
+			>
+			["id6"] = <
+				text = <"Terminations">
+				description = <"Number of times a woman has had an induced pregnancy termination, regardless of gestation.">
+			>
+			["id7"] = <
+				text = <"Live births">
+				description = <"Number of infants born alive.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at1"] = <http://openehr.org/id/124>
+		>
+		["ucum"] = <
+			["at2"] = <http://ucum.org/id/g>
+		>
+		["snomed"] = <
+			["at2"] = <http://snomed.info/id/258682000>
+		>
+		["loinc"] = <
+			["id18"] = <http://loinc.org/11612-9>
+			["id4"] = <http://loinc.org/11977-6>
+			["id10"] = <http://loinc.org/106177-9>
+			["id26"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id27"] = <http://loinc.org/106173-8>
+		>
+	>
+

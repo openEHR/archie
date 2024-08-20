@@ -1,0 +1,350 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d1e45c44-259c-4086-8a86-6af3fd9e5bf1)
+    s2-EHR-Node.dietary_nutrients.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Ricardo Correia", "Duarte Ferreira", "Heather Leslie, Ocean Health Systems, Australia (openEHR Editor)", "Pedro Marques">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Priscila Maranhão; Gustavo Bacelar, MEDCIDS-FMUP; VIRTUAL CARE, <priscilamaranhao@gmail.com; gbacelar@gmail.com>, 2016-12-14">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.dietary_nutrients.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.dietary_nutrients.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record information about the nutrients consumed by an individual for nourishment.">
+            keywords = <"nutrients", "diet">
+            use = <"Use to record information about the nutrients consumed by an individual for nourishment.
+            
+            This archetype has been designed to capture measurements about the consumption of the common groupings of nutrients. Add Node.macronutrients and Node.micronutrients into the 'Details' SLOT in a template in order to record consumption measurements for specific nutrients.">
+            misuse = <"No to be used to record measurements of vitamins and minerals in blood analyses - use the OBSERVATION.laboratory_test for this purpose.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Dietary nutrients
+        items matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Total energy
+                value matches {
+                    Quantity[id26] matches {    -- Total energy (kcal)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id28] matches {
+                                term matches {
+                                    Terminology_term[id27] matches {
+                                        concept matches {[at3]}    -- kcal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Quantity[id29] matches {    -- Total energy (J)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id31] matches {
+                                term matches {
+                                    Terminology_term[id30] matches {
+                                        concept matches {[at4]}    -- J
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Total fat
+                value matches {
+                    Quantity[id17] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id33] matches {
+                                term matches {
+                                    Terminology_term[id32] matches {
+                                        concept matches {[at5]}    -- g
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id7] occurrences matches {0..1} matches {    -- Total saturated fatty acids
+                value matches {
+                    Quantity[id18] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at5]}    -- g
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id8] occurrences matches {0..1} matches {    -- Total monousaturated fatty acids
+                value matches {
+                    Quantity[id19] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id37] matches {
+                                term matches {
+                                    Terminology_term[id36] matches {
+                                        concept matches {[at5]}    -- g
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id9] occurrences matches {0..1} matches {    -- Total polyunsaturated fatty acids
+                value matches {
+                    Quantity[id20] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id39] matches {
+                                term matches {
+                                    Terminology_term[id38] matches {
+                                        concept matches {[at6]}    -- mg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id10] occurrences matches {0..1} matches {    -- Total cholesterol
+                value matches {
+                    Quantity[id40] matches {    -- Total cholesterol (mg)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id42] matches {
+                                term matches {
+                                    Terminology_term[id41] matches {
+                                        concept matches {[at6]}    -- mg
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Quantity[id43] matches {    -- Total cholesterol (g)
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id45] matches {
+                                term matches {
+                                    Terminology_term[id44] matches {
+                                        concept matches {[at5]}    -- g
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id11] occurrences matches {0..1} matches {    -- Total carbohydrate
+                value matches {
+                    Quantity[id22] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id47] matches {
+                                term matches {
+                                    Terminology_term[id46] matches {
+                                        concept matches {[at5]}    -- g
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id12] occurrences matches {0..1} matches {    -- Total sugars
+                value matches {
+                    Quantity[id23] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id49] matches {
+                                term matches {
+                                    Terminology_term[id48] matches {
+                                        concept matches {[at5]}    -- g
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id13] occurrences matches {0..1} matches {    -- Total fiber
+                value matches {
+                    Quantity[id24] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id51] matches {
+                                term matches {
+                                    Terminology_term[id50] matches {
+                                        concept matches {[at5]}    -- g
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id14] occurrences matches {0..1} matches {    -- Total proteins
+                value matches {
+                    Quantity[id25] matches {
+                        magnitude matches {|>=0.0|}
+                        units matches {
+                            Coded_text[id53] matches {
+                                term matches {
+                                    Terminology_term[id52] matches {
+                                        concept matches {[at5]}    -- g
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id15] matches {     -- Details
+                include
+                    archetype_id/value matches {/s2-EHR-Node\.micronutrients(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.macronutrients(-[a-zA-Z0-9_]+)*\.v0/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at1"] = <http://openehr.org/id/121>
+            ["at2"] = <http://openehr.org/id/124>
+        >
+        ["ucum"] = <
+            ["at3"] = <http://ucum.org/id/kcal>
+            ["at4"] = <http://ucum.org/id/J>
+            ["at5"] = <http://ucum.org/id/g>
+            ["at6"] = <http://ucum.org/id/mg>
+        >
+        ["snomed"] = <
+            ["at3"] = <http://snomed.info/id/258791007>
+            ["at4"] = <http://snomed.info/id/258786006>
+            ["at5"] = <http://snomed.info/id/258682000>
+            ["at6"] = <http://snomed.info/id/258684004>
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["at1"] = <
+                text = <"Energy">
+                description = <"Energy">
+            >
+            ["at2"] = <
+                text = <"Mass">
+                description = <"Mass">
+            >
+            ["at3"] = <
+                text = <"kcal">
+                description = <"kcal unit.">
+            >
+            ["at4"] = <
+                text = <"J">
+                description = <"J unit.">
+            >
+            ["at5"] = <
+                text = <"g">
+                description = <"Gram unit.">
+            >
+            ["at6"] = <
+                text = <"mg">
+                description = <"mg unit.">
+            >
+            ["id1"] = <
+                text = <"Dietary nutrients">
+                description = <"Nutrients consumed by an individual for nourishment.">
+            >
+            ["id10"] = <
+                text = <"Total cholesterol">
+                description = <"Measurement of dietary cholesterol.">
+            >
+            ["id11"] = <
+                text = <"Total carbohydrate">
+                description = <"Assessment of carbohydrate.">
+            >
+            ["id12"] = <
+                text = <"Total sugars">
+                description = <"Measurement of dietary sugars.">
+            >
+            ["id13"] = <
+                text = <"Total fiber">
+                description = <"Assessment of dietary fiber, which is the portion of food which is derived from cellular walls of plants which is digested very poorly by human beings.">
+            >
+            ["id14"] = <
+                text = <"Total proteins">
+                description = <"Assessment of protein.">
+            >
+            ["id15"] = <
+                text = <"Details">
+                description = <"Additional details about macro-and micronutrients.">
+            >
+            ["id26"] = <
+                text = <"Total energy (kcal)">
+                description = <"Total energy (kcal)">
+            >
+            ["id29"] = <
+                text = <"Total energy (J)">
+                description = <"Total energy (J)">
+            >
+            ["id40"] = <
+                text = <"Total cholesterol (mg)">
+                description = <"Total cholesterol (mg)">
+            >
+            ["id43"] = <
+                text = <"Total cholesterol (g)">
+                description = <"Total cholesterol (g)">
+            >
+            ["id5"] = <
+                text = <"Total energy">
+                description = <"Measurement of energy intake. It is the amount of food  intake (sum of macronutrients) by the individual.">
+            >
+            ["id6"] = <
+                text = <"Total fat">
+                description = <"Measurement of dietary lipids.">
+            >
+            ["id7"] = <
+                text = <"Total saturated fatty acids">
+                description = <"Assessment of dietary saturated fat acids.">
+            >
+            ["id8"] = <
+                text = <"Total monousaturated fatty acids">
+                description = <"Assessment of dietary monounsaturated fatty acids (n-9).">
+            >
+            ["id9"] = <
+                text = <"Total polyunsaturated fatty acids">
+                description = <"Assessment of polyunsaturated acids  of an individual.">
+            >
+        >
+    >
+    

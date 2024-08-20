@@ -1,0 +1,149 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=272fc007-eb1d-4b34-8fa2-45e2d7431f9b)
+    s2-EHR-Score.harris_hip_score.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Ian McNicoll, freshEHR Clinical Informatics,UK, <ian@freshehr.com>, 2014-12-04">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.harris_hip_score.v0.0.1-alpha, copyright 2014 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.harris_hip_score.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the result of a Harris hip score assessment.">
+            keywords = <"hip", "joint">
+            use = <"">
+            misuse = <"Should not be used without permission of Journal of Bone & Joint Surgery.">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- Harris hip score
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- Harris hip score result
+                value matches {
+                    Quantity[id13] matches {
+                        magnitude matches {|0.0..100.0|}
+                        precision matches {2}
+                        units matches {
+                            Coded_text[id16] matches {
+                                term matches {
+                                    Terminology_term[id15] matches {
+                                        concept matches {[at11]}    -- 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id6] occurrences matches {0..1} matches {    -- Grading
+                value matches {
+                    Coded_text[id14] matches {
+                        term matches {
+                            Terminology_term[id17] matches {
+                                concept matches {[ac1]}    -- Grading (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id12] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at10"] = <http://openehr.org/id/380>
+        >
+        ["ucum"] = <
+            ["at11"] = <http://ucum.org/id/1>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at6", "at7", "at8", "at9">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Grading (synthesised)">
+                description = <"Grading derived from Harris hip score. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["at11"] = <
+                text = <"1">
+                description = <"1 unit.">
+            >
+            ["at6"] = <
+                text = <"Poor">
+                description = <"Less than 70.">
+            >
+            ["at7"] = <
+                text = <"Fair">
+                description = <"70 to 79.">
+            >
+            ["at8"] = <
+                text = <"Good">
+                description = <"80 to 89.">
+            >
+            ["at9"] = <
+                text = <"Excellent">
+                description = <"90 to 100.">
+            >
+            ["id1"] = <
+                text = <"Harris hip score">
+                description = <"The Harris hip score.">
+            >
+            ["id12"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id5"] = <
+                text = <"Harris hip score result">
+                description = <"The result of the Harris hip score.">
+            >
+            ["id6"] = <
+                text = <"Grading">
+                description = <"Grading derived from Harris hip score.">
+            >
+        >
+    >
+    

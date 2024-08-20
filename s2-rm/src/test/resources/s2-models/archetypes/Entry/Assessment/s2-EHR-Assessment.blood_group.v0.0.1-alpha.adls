@@ -1,0 +1,150 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1f547792-00bb-4e0a-9919-9a7073b6f5d4)
+    s2-EHR-Assessment.blood_group.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-06-27">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.blood_group.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.blood_group.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the blood group and rhesus status of an individual.">
+            keywords = <"blood", "grouping", "rhesus">
+            use = <"Use to record the blood group and rhesus status of an individual.
+            
+            As the blood group and rhesus status of an individual is usually stable over the life of an individual, this archetype has been modelled as an EVALUATION.">
+            misuse = <"Not to be used to record the result of blood group and antigen test results which may need to be performed at various times over an individual's life - for example, to confirm their blood group and antigen status prior to transfusion, organ transplantation, in pregnancy and investigating certain neonatal conditions. Use the Node.laboratory_test_analyte nested within the OBSERVATION.laboratory_test_result archetype to record the result of each individual test.">
+        >
+    >
+    
+definition
+    Assessment[id1] matches {    -- Blood group
+        data matches {
+            Node[id4] occurrences matches {0..1} matches {    -- ABO blood group
+                value matches {
+                    Coded_text[id8] matches {
+                        term matches {
+                            Terminology_term[id11] matches {
+                                concept matches {[ac1]}    -- ABO blood group (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id5] occurrences matches {0..1} matches {    -- Rh(D) antigen status
+                value matches {
+                    Coded_text[id9] matches {
+                        term matches {
+                            Terminology_term[id12] matches {
+                                concept matches {[ac2]}    -- Rh(D) antigen status (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            Node[id6] occurrences matches {0..1} matches {    -- Last updated
+                value matches {
+                    Date_time_value[id10]
+                }
+            }
+            allow_archetype Node[id7] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at7", "at8", "at9", "at10">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at11", "at12">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"ABO blood group (synthesised)">
+                description = <"(empty string found in original archetype)">
+            >
+            ["ac2"] = <
+                text = <"Rh(D) antigen status (synthesised)">
+                description = <"The presence or absence the Rh(D) antigen. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"AB">
+                description = <"">
+            >
+            ["at11"] = <
+                text = <"Positive">
+                description = <"Rh(D) antigen is detected.">
+            >
+            ["at12"] = <
+                text = <"Negative">
+                description = <"Rh(D) antigen is not detected.">
+            >
+            ["at7"] = <
+                text = <"O">
+                description = <"">
+            >
+            ["at8"] = <
+                text = <"A">
+                description = <"">
+            >
+            ["at9"] = <
+                text = <"B">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Blood group">
+                description = <"Identification of the persistent blood group and rhesus status of an individual.">
+            >
+            ["id4"] = <
+                text = <"ABO blood group">
+                description = <"">
+            >
+            ["id5"] = <
+                text = <"Rh(D) antigen status">
+                description = <"The presence or absence the Rh(D) antigen.">
+            >
+            ["id6"] = <
+                text = <"Last updated">
+                description = <"">
+            >
+            ["id7"] = <
+                text = <"Extension">
+                description = <"">
+            >
+        >
+    >
+    

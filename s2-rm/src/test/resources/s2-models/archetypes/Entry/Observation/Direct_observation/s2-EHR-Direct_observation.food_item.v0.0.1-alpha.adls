@@ -1,0 +1,1044 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0b86ef6d-9f8b-4470-a2c3-9e55f15ee550)
+	s2-EHR-Direct_observation.food_item.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Silje Ljosland Bakke, Heather Leslie, Nasjonal IKT, Norway; Ocean Health Systems, Australia, <silje.ljosland.bakke@nasjonalikt.no, heather.leslie@oceanhealthsystems.com>, 2017-06-29">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.food_item.v0.0.1-alpha, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.food_item.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record information about a single food item consumed by an individual.">
+			use = <"Use to record information about a single food item consumed by an individual.
+            
+            Multiple instances of this archetype could be used to record each food consumed by an individual within a specified timeframe as part of a food diary.
+            
+            This archetype may be extended using specific Node archetypes that represent further detail about the food item, such as Node.macronutrient or Node.micronutrient and other related archetypes.">
+			keywords = <"nutrition", "diet", "diary">
+			misuse = <"Not to be used to record planned consumption of a food item.">
+		>
+	>
+
+definition
+	Direct_observation[id1] matches {	-- Food item
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Food item name
+				value matches {
+					Text[id26] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Amount
+				items matches {
+					Node[id7] occurrences matches {0..1} matches {	-- Mass
+						value matches {
+							Measured<Quantity>[id52] matches {
+								value matches {
+									Quantity[id40] matches {	-- Mass (g)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id42] matches {
+												term matches {
+													Terminology_term[id41] matches {
+														concept matches {[at25]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id53] matches {
+								value matches {
+									Quantity[id43] matches {	-- Mass (kg)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id45] matches {
+												term matches {
+													Terminology_term[id44] matches {
+														concept matches {[at26]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id54] matches {
+								value matches {
+									Quantity[id46] matches {	-- Mass ([oz_av])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id48] matches {
+												term matches {
+													Terminology_term[id47] matches {
+														concept matches {[at27]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id55] matches {
+								value matches {
+									Quantity[id49] matches {	-- Mass ([lb_av])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id51] matches {
+												term matches {
+													Terminology_term[id50] matches {
+														concept matches {[at28]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id8] occurrences matches {0..1} matches {	-- Volume
+						value matches {
+							Measured<Quantity>[id92] matches {
+								value matches {
+									Quantity[id56] matches {	-- Volume (ml)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id58] matches {
+												term matches {
+													Terminology_term[id57] matches {
+														concept matches {[at29]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id93] matches {
+								value matches {
+									Quantity[id59] matches {	-- Volume (cl)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id61] matches {
+												term matches {
+													Terminology_term[id60] matches {
+														concept matches {[at30]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id94] matches {
+								value matches {
+									Quantity[id62] matches {	-- Volume (dl)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id64] matches {
+												term matches {
+													Terminology_term[id63] matches {
+														concept matches {[at31]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id95] matches {
+								value matches {
+									Quantity[id65] matches {	-- Volume (l)
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id67] matches {
+												term matches {
+													Terminology_term[id66] matches {
+														concept matches {[at32]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id96] matches {
+								value matches {
+									Quantity[id68] matches {	-- Volume ([foz_us])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id70] matches {
+												term matches {
+													Terminology_term[id69] matches {
+														concept matches {[at33]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id97] matches {
+								value matches {
+									Quantity[id71] matches {	-- Volume ([pt_us])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id73] matches {
+												term matches {
+													Terminology_term[id72] matches {
+														concept matches {[at34]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id98] matches {
+								value matches {
+									Quantity[id74] matches {	-- Volume ([tsp_m])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id76] matches {
+												term matches {
+													Terminology_term[id75] matches {
+														concept matches {[at35]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id99] matches {
+								value matches {
+									Quantity[id77] matches {	-- Volume ([tsp_us])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id79] matches {
+												term matches {
+													Terminology_term[id78] matches {
+														concept matches {[at36]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id100] matches {
+								value matches {
+									Quantity[id80] matches {	-- Volume ([tbs_m])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id82] matches {
+												term matches {
+													Terminology_term[id81] matches {
+														concept matches {[at37]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id101] matches {
+								value matches {
+									Quantity[id83] matches {	-- Volume ([tbs_us])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id85] matches {
+												term matches {
+													Terminology_term[id84] matches {
+														concept matches {[at38]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id102] matches {
+								value matches {
+									Quantity[id86] matches {	-- Volume ([cup_m])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id88] matches {
+												term matches {
+													Terminology_term[id87] matches {
+														concept matches {[at39]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Measured<Quantity>[id103] matches {
+								value matches {
+									Quantity[id89] matches {	-- Volume ([cup_us])
+										magnitude matches {|>=0.0|}
+										units matches {
+											Coded_text[id91] matches {
+												term matches {
+													Terminology_term[id90] matches {
+														concept matches {[at40]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Node[id9] occurrences matches {0..1} matches {	-- Serving
+						value matches {
+							Measured<Quantity>[id104] matches {
+								value matches {
+									Quantity[id29] matches {
+										magnitude matches {|>=0.0|}
+										precision matches {1}
+										units matches {
+											Coded_text[id106] matches {
+												term matches {
+													Terminology_term[id105] matches {
+														concept matches {[at41]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Glycaemic load
+				value matches {
+					Count[id30] matches {
+						magnitude matches {|>=0|}
+					}
+				}
+			}
+			allow_archetype Node[id11] matches {	-- Nutrients
+				include
+					archetype_id/value matches {/s2-EHR-Node\.macronutrients(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.micronutrients(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id31] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id14] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id15] occurrences matches {0..1} matches {	-- Serving size (mass)
+				value matches {
+					Measured<Quantity>[id119] matches {
+						value matches {
+							Quantity[id107] matches {	-- Serving size (mass) (g)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id109] matches {
+										term matches {
+											Terminology_term[id108] matches {
+												concept matches {[at25]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id120] matches {
+						value matches {
+							Quantity[id110] matches {	-- Serving size (mass) (kg)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id112] matches {
+										term matches {
+											Terminology_term[id111] matches {
+												concept matches {[at26]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id121] matches {
+						value matches {
+							Quantity[id113] matches {	-- Serving size (mass) ([oz_av])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id115] matches {
+										term matches {
+											Terminology_term[id114] matches {
+												concept matches {[at27]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id122] matches {
+						value matches {
+							Quantity[id116] matches {	-- Serving size (mass) ([lb_av])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id118] matches {
+										term matches {
+											Terminology_term[id117] matches {
+												concept matches {[at28]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Serving size (volume)
+				value matches {
+					Measured<Quantity>[id159] matches {
+						value matches {
+							Quantity[id123] matches {	-- Serving size (volume) (ml)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id125] matches {
+										term matches {
+											Terminology_term[id124] matches {
+												concept matches {[at29]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id160] matches {
+						value matches {
+							Quantity[id126] matches {	-- Serving size (volume) (cl)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id128] matches {
+										term matches {
+											Terminology_term[id127] matches {
+												concept matches {[at30]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id161] matches {
+						value matches {
+							Quantity[id129] matches {	-- Serving size (volume) (dl)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id131] matches {
+										term matches {
+											Terminology_term[id130] matches {
+												concept matches {[at31]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id162] matches {
+						value matches {
+							Quantity[id132] matches {	-- Serving size (volume) (l)
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id134] matches {
+										term matches {
+											Terminology_term[id133] matches {
+												concept matches {[at32]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id163] matches {
+						value matches {
+							Quantity[id135] matches {	-- Serving size (volume) ([foz_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id137] matches {
+										term matches {
+											Terminology_term[id136] matches {
+												concept matches {[at33]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id164] matches {
+						value matches {
+							Quantity[id138] matches {	-- Serving size (volume) ([pt_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id140] matches {
+										term matches {
+											Terminology_term[id139] matches {
+												concept matches {[at34]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id165] matches {
+						value matches {
+							Quantity[id141] matches {	-- Serving size (volume) ([tsp_m])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id143] matches {
+										term matches {
+											Terminology_term[id142] matches {
+												concept matches {[at35]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id166] matches {
+						value matches {
+							Quantity[id144] matches {	-- Serving size (volume) ([tsp_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id146] matches {
+										term matches {
+											Terminology_term[id145] matches {
+												concept matches {[at36]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id167] matches {
+						value matches {
+							Quantity[id147] matches {	-- Serving size (volume) ([tbs_m])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id149] matches {
+										term matches {
+											Terminology_term[id148] matches {
+												concept matches {[at37]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id168] matches {
+						value matches {
+							Quantity[id150] matches {	-- Serving size (volume) ([tbs_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id152] matches {
+										term matches {
+											Terminology_term[id151] matches {
+												concept matches {[at38]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id169] matches {
+						value matches {
+							Quantity[id153] matches {	-- Serving size (volume) ([cup_m])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id155] matches {
+										term matches {
+											Terminology_term[id154] matches {
+												concept matches {[at39]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id170] matches {
+						value matches {
+							Quantity[id156] matches {	-- Serving size (volume) ([cup_us])
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id158] matches {
+										term matches {
+											Terminology_term[id157] matches {
+												concept matches {[at40]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id38] matches {
+						term matches {
+							Terminology_term[id171] matches {
+								concept matches {[ac1]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id23] occurrences matches {0..1} matches {	-- Accuracy
+				value matches {
+					Coded_text[id39] matches {
+						term matches {
+							Terminology_term[id172] matches {
+								concept matches {[ac2]}		-- Accuracy (synthesised)
+							}
+						}
+					}
+				}
+			}
+			allow_archetype Node[id18] matches {	-- Device
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+		data_series matches {
+			Interval_event[id24] matches {	-- One day
+				width matches {PT24H}
+				items matches {
+					use_node Node[id5] /data[id5]	-- /data[Food item name]
+					use_node Node[id6] /data[id6]	-- /data[Amount]
+					use_node Node[id10] /data[id10]	-- /data[Glycaemic load]
+					use_node Node[id11] /data[id11]	-- /data[Nutrients]
+					use_node Node[id12] /data[id12]	-- /data[Comment]
+				}
+			}
+			Interval_event[id25] matches {	-- One week
+				width matches {P1W}
+				items matches {
+					use_node Node[id5] /data[id5]	-- /data[Food item name]
+					use_node Node[id6] /data[id6]	-- /data[Amount]
+					use_node Node[id10] /data[id10]	-- /data[Glycaemic load]
+					use_node Node[id11] /data[id11]	-- /data[Nutrients]
+					use_node Node[id12] /data[id12]	-- /data[Comment]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Method (synthesised)">
+				description = <"The method used to measure the amount of food. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Accuracy (synthesised)">
+				description = <"The qualitative precision of the amount of the food item. (synthesised)">
+			>
+			["at18"] = <
+				text = <"Estimated">
+				description = <"An approximation of the amount of the food item.">
+			>
+			["at19"] = <
+				text = <"Measured">
+				description = <"Actual measurement of the amount of the food item.">
+			>
+			["at20"] = <
+				text = <"Memory">
+				description = <"The amount of food was recorded from memory.">
+			>
+			["at21"] = <
+				text = <"Observation">
+				description = <"The amount of food was recorded at the time of consumption.">
+			>
+			["at22"] = <
+				text = <"Mass">
+				description = <"Mass">
+			>
+			["at23"] = <
+				text = <"Volume">
+				description = <"Volume">
+			>
+			["at24"] = <
+				text = <"Qualified real">
+				description = <"Qualified real">
+			>
+			["at25"] = <
+				text = <"g">
+				description = <"Gram unit.">
+			>
+			["at26"] = <
+				text = <"kg">
+				description = <"Kg unit.">
+			>
+			["at27"] = <
+				text = <"[oz_av]">
+				description = <"[oz_av] unit.">
+			>
+			["at28"] = <
+				text = <"[lb_av]">
+				description = <"Pounds unit">
+			>
+			["at29"] = <
+				text = <"ml">
+				description = <"ml unit.">
+			>
+			["at30"] = <
+				text = <"cl">
+				description = <"cl unit.">
+			>
+			["at31"] = <
+				text = <"dL">
+				description = <"dL unit.">
+			>
+			["at32"] = <
+				text = <"l">
+				description = <"Liter unit.">
+			>
+			["at33"] = <
+				text = <"[foz_us]">
+				description = <"[foz_us] unit.">
+			>
+			["at34"] = <
+				text = <"[pt_us]">
+				description = <"[pt_us] unit.">
+			>
+			["at35"] = <
+				text = <"[tsp_m]">
+				description = <"[tsp_m] unit.">
+			>
+			["at36"] = <
+				text = <"[tsp_us]">
+				description = <"[tsp_us] unit.">
+			>
+			["at37"] = <
+				text = <"[tbs_m]">
+				description = <"[tbs_m] unit.">
+			>
+			["at38"] = <
+				text = <"[tbs_us]">
+				description = <"[tbs_us] unit.">
+			>
+			["at39"] = <
+				text = <"[cup_m]">
+				description = <"[cup_m] unit.">
+			>
+			["at40"] = <
+				text = <"[cup_us]">
+				description = <"[cup_us] unit.">
+			>
+			["at41"] = <
+				text = <"1">
+				description = <"1 unit.">
+			>
+			["id1"] = <
+				text = <"Food item">
+				description = <"Information about a single food item consumed by an individual.">
+			>
+			["id10"] = <
+				text = <"Glycaemic load">
+				description = <"A number that estimates how much the food will raise an individual's blood glucose level after eating it.">
+			>
+			["id107"] = <
+				text = <"Serving size (mass) (g)">
+				description = <"Serving size (mass) (g)">
+			>
+			["id11"] = <
+				text = <"Nutrients">
+				description = <"Details about the component nutrients for this food.">
+			>
+			["id110"] = <
+				text = <"Serving size (mass) (kg)">
+				description = <"Serving size (mass) (kg)">
+			>
+			["id113"] = <
+				text = <"Serving size (mass) ([oz_av])">
+				description = <"Serving size (mass) ([oz_av])">
+			>
+			["id116"] = <
+				text = <"Serving size (mass) ([lb_av])">
+				description = <"Serving size (mass) ([lb_av])">
+			>
+			["id12"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the food item not captured in other fields.">
+			>
+			["id123"] = <
+				text = <"Serving size (volume) (ml)">
+				description = <"Serving size (volume) (ml)">
+			>
+			["id126"] = <
+				text = <"Serving size (volume) (cl)">
+				description = <"Serving size (volume) (cl)">
+			>
+			["id129"] = <
+				text = <"Serving size (volume) (dl)">
+				description = <"Serving size (volume) (dl)">
+			>
+			["id132"] = <
+				text = <"Serving size (volume) (l)">
+				description = <"Serving size (volume) (l)">
+			>
+			["id135"] = <
+				text = <"Serving size (volume) ([foz_us])">
+				description = <"Serving size (volume) ([foz_us])">
+			>
+			["id138"] = <
+				text = <"Serving size (volume) ([pt_us])">
+				description = <"Serving size (volume) ([pt_us])">
+			>
+			["id14"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id141"] = <
+				text = <"Serving size (volume) ([tsp_m])">
+				description = <"Serving size (volume) ([tsp_m])">
+			>
+			["id144"] = <
+				text = <"Serving size (volume) ([tsp_us])">
+				description = <"Serving size (volume) ([tsp_us])">
+			>
+			["id147"] = <
+				text = <"Serving size (volume) ([tbs_m])">
+				description = <"Serving size (volume) ([tbs_m])">
+			>
+			["id15"] = <
+				text = <"Serving size (mass)">
+				description = <"Definition of the size of a single serving of the food item, by mass.">
+			>
+			["id150"] = <
+				text = <"Serving size (volume) ([tbs_us])">
+				description = <"Serving size (volume) ([tbs_us])">
+			>
+			["id153"] = <
+				text = <"Serving size (volume) ([cup_m])">
+				description = <"Serving size (volume) ([cup_m])">
+			>
+			["id156"] = <
+				text = <"Serving size (volume) ([cup_us])">
+				description = <"Serving size (volume) ([cup_us])">
+			>
+			["id16"] = <
+				text = <"Serving size (volume)">
+				description = <"Definition of the size of a single serving of the food item, by volume.">
+			>
+			["id17"] = <
+				text = <"Method">
+				description = <"The method used to measure the amount of food.">
+			>
+			["id18"] = <
+				text = <"Device">
+				description = <"Details about the device used to measure or record the amount of the food item.">
+			>
+			["id23"] = <
+				text = <"Accuracy">
+				description = <"The qualitative precision of the amount of the food item.">
+			>
+			["id24"] = <
+				text = <"One day">
+				description = <"One day interval event, which may be further defined in a template or at run-time, for example: specifically named as 'Friday' or 'Saturday'.">
+			>
+			["id25"] = <
+				text = <"One week">
+				description = <"One week interval event, which may be further defined in a template or at run-time, for example: specifically named as 'Last week'.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id40"] = <
+				text = <"Mass (g)">
+				description = <"Mass (g)">
+			>
+			["id43"] = <
+				text = <"Mass (kg)">
+				description = <"Mass (kg)">
+			>
+			["id46"] = <
+				text = <"Mass ([oz_av])">
+				description = <"Mass ([oz_av])">
+			>
+			["id49"] = <
+				text = <"Mass ([lb_av])">
+				description = <"Mass ([lb_av])">
+			>
+			["id5"] = <
+				text = <"Food item name">
+				description = <"The name of the item of food being recorded.">
+			>
+			["id56"] = <
+				text = <"Volume (ml)">
+				description = <"Volume (ml)">
+			>
+			["id59"] = <
+				text = <"Volume (cl)">
+				description = <"Volume (cl)">
+			>
+			["id6"] = <
+				text = <"Amount">
+				description = <"The amount of food consumed.">
+			>
+			["id62"] = <
+				text = <"Volume (dl)">
+				description = <"Volume (dl)">
+			>
+			["id65"] = <
+				text = <"Volume (l)">
+				description = <"Volume (l)">
+			>
+			["id68"] = <
+				text = <"Volume ([foz_us])">
+				description = <"Volume ([foz_us])">
+			>
+			["id7"] = <
+				text = <"Mass">
+				description = <"The mass of food consumed.">
+			>
+			["id71"] = <
+				text = <"Volume ([pt_us])">
+				description = <"Volume ([pt_us])">
+			>
+			["id74"] = <
+				text = <"Volume ([tsp_m])">
+				description = <"Volume ([tsp_m])">
+			>
+			["id77"] = <
+				text = <"Volume ([tsp_us])">
+				description = <"Volume ([tsp_us])">
+			>
+			["id8"] = <
+				text = <"Volume">
+				description = <"The volume of food consumed.">
+			>
+			["id80"] = <
+				text = <"Volume ([tbs_m])">
+				description = <"Volume ([tbs_m])">
+			>
+			["id83"] = <
+				text = <"Volume ([tbs_us])">
+				description = <"Volume ([tbs_us])">
+			>
+			["id86"] = <
+				text = <"Volume ([cup_m])">
+				description = <"Volume ([cup_m])">
+			>
+			["id89"] = <
+				text = <"Volume ([cup_us])">
+				description = <"Volume ([cup_us])">
+			>
+			["id9"] = <
+				text = <"Serving">
+				description = <"The number of servings of food consumed.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at22"] = <http://openehr.org/id/124>
+			["at23"] = <http://openehr.org/id/129>
+			["at24"] = <http://openehr.org/id/380>
+		>
+		["ucum"] = <
+			["at25"] = <http://ucum.org/id/g>
+			["at26"] = <http://ucum.org/id/kg>
+			["at27"] = <http://ucum.org/id/%5Boz_av%5D>
+			["at28"] = <http://ucum.org/id/%5Blb_av%5D>
+			["at29"] = <http://ucum.org/id/ml>
+			["at30"] = <http://ucum.org/id/cl>
+			["at31"] = <http://ucum.org/id/dl>
+			["at32"] = <http://ucum.org/id/l>
+			["at33"] = <http://ucum.org/id/%5Bfoz_us%5D>
+			["at34"] = <http://ucum.org/id/%5Bpt_us%5D>
+			["at35"] = <http://ucum.org/id/%5Btsp_m%5D>
+			["at36"] = <http://ucum.org/id/%5Btsp_us%5D>
+			["at37"] = <http://ucum.org/id/%5Btbs_m%5D>
+			["at38"] = <http://ucum.org/id/%5Btbs_us%5D>
+			["at39"] = <http://ucum.org/id/%5Bcup_m%5D>
+			["at40"] = <http://ucum.org/id/%5Bcup_us%5D>
+			["at41"] = <http://ucum.org/id/1>
+		>
+		["snomed"] = <
+			["at25"] = <http://snomed.info/id/258682000>
+			["at26"] = <http://snomed.info/id/258683005>
+			["at27"] = <http://snomed.info/id/258692008>
+			["at28"] = <http://snomed.info/id/258693003>
+			["at29"] = <http://snomed.info/id/258773002>
+			["at30"] = <http://snomed.info/id/258772007>
+			["at31"] = <http://snomed.info/id/258771000>
+			["at32"] = <http://snomed.info/id/258770004>
+			["at33"] = <http://snomed.info/id/282118007>
+			["at34"] = <http://snomed.info/id/282119004>
+			["at36"] = <http://snomed.info/id/415703001>
+			["at38"] = <http://snomed.info/id/415702006>
+			["at40"] = <http://snomed.info/id/732991008>
+		>
+		["loinc"] = <
+			["id12"] = <http://loinc.org/106173-8>
+			["id17"] = <http://loinc.org/106191-0>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at20", "at21">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at18", "at19">
+		>
+	>
+

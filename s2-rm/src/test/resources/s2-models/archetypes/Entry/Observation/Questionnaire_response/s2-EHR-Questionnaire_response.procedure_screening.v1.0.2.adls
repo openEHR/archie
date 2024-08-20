@@ -1,0 +1,246 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=bc24b3d6-ccb7-4fb0-bb61-cfc1774b9b57)
+    s2-EHR-Questionnaire_response.procedure_screening.v1.0.2
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Astrid Askeland, Dips AS, Norway", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Yexuan Cheng, 浙江大学, China", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Alexander Eikrem-Lüthi, Lovisenberg Diakonale Sykehus, Norway", "Kåre Flø, DIPS ASA, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Anca Heyd, DIPS ASA, Norway", "Joost Holslag, Nedap, Netherlands", "Evelyn Hovenga, EJSH Consulting, Australia", "Mikkel Johan Gaup Grønmo, Regional forvaltning EPJ, Helse Nord, Norway", "Gunnar Jårvik, Helse Vest IKT AS, Norway", "Anjali Kulkarni, Karkinos, India", "Kanika Kuwelker, Helse Vest IKT, Norway", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway", "Øygunn Leite Kallevik, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Per Meinich, Helse Sør-Øst RHF, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Erik Skjemstad, Helse Nord RHF, Norway", "Andre Smitt-Ingebretsen, Sørlandet sykehus HF, Norway", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Martijn van Eenennaam, Nedap Healthcare, Netherlands", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Ina Wille, Helse-Vest RHF, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-03-13">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.procedure_screening.v1.0.2, copyright 2020 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.procedure_screening.v1.0.2 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To create a framework for recording answers to pre-defined screening questions about clinical management related to surgical/operative procedures that have been carried out in the past.">
+            keywords = <"Procedure", "surgery", "operation", "assessment", "investigation", "questionnaire", "screening">
+            use = <"Use to create a framework for recording answers to pre-defined screening questions about clinical management related to surgical/operative procedures that have been carried out in the past.
+            
+            Common use cases include, but are not limited to:
+            - Specific questioning about previous procedures before admission to a hospital.
+            - Systematic questioning in any consultation, for example:
+            --- Have you ever had an appendectomy? Yes, No, Unknown.
+            --- Have you had a hip or knee replacement in the past twelve months? Yes, No, Unknown.
+            
+            The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data Node would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the DV_TEXT or the DV_BOOLEAN datatypes choice to match each specific use case.
+            
+            The EVENT structure from the reference model can be used to specify whether the questions relate to point in time or over a period of time. Use a separate instance of this archetype to distinguish between a questionnaire recording information about a procedure that has been performed at any time in the past and information about a procedure performed within a specified time interval - for example the difference between \\\"Have you ever had any hip or knee surgery?\\\" compared to \\\"Have you had any hip or knee surgery in the last 12 months?
+            
+            The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' Node in the Reference Model.
+            
+            This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening process identifies a completed procedure, it is recommended that clinical system record and persist the specific details about the procedure (such as the duration of the procedure) using the ACTION.procedure archetype.">
+            misuse = <"Not to be used to record details about the presence or absence of a procedure, outside of a screening context. Use ACTION.procedure or EVALUATION.exclusion_specific for these purposes.
+            
+            Not to be used to record non-surgical or non-invasive clinical management. Use OBSERVATION.management_screening for this purposes.
+            
+            Not to be used to record details about a simple selection list where a question may be recorded as either \\\"present\\\" or \\\"indeterminate\\\". Use OBSERVATION.selection_list for this purpose.">
+        >
+    >
+    
+definition
+    Questionnaire_response[id1] matches {    -- Procedure screening questionnaire
+        data matches {
+            Node[id35] occurrences matches {0..1} matches {    -- Screening purpose
+                value matches {
+                    Text[id43]
+                }
+            }
+            Node[id29] matches {    -- Any previous procedures?
+                value matches {
+                    Coded_text[id44] matches {
+                        term matches {
+                            Terminology_term[id58] matches {
+                                concept matches {[ac1]}    -- Any previous procedures? (synthesised)
+                            }
+                        }
+                    }
+                    Plain_text[id45]
+                    Boolean_value[id46]
+                }
+            }
+            Node[id42] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id47]
+                }
+            }
+            Node[id23] matches {    -- Specific procedure
+                items matches {
+                    Node[id5] matches {    -- Procedure name
+                        value matches {
+                            Text[id48]
+                        }
+                    }
+                    Node[id6] occurrences matches {0..1} matches {    -- Past procedure?
+                        value matches {
+                            Coded_text[id49] matches {
+                                term matches {
+                                    Terminology_term[id59] matches {
+                                        concept matches {[ac2]}    -- Past procedure? (synthesised)
+                                    }
+                                }
+                            }
+                            Plain_text[id50]
+                            Boolean_value[id51]
+                        }
+                    }
+                    Node[id38] matches {    -- Timing
+                        value matches {
+                            Date_time_value[id52]
+                            Text[id53]
+                            Duration_value[id54]
+                            Range<Duration_value>[id55]
+                            Range<Date_time_value>[id56]
+                        }
+                    }
+                    use_archetype Node[id37, s2-EHR-Node.organization.v1]    -- Additional details
+                    Node[id26] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Text[id57]
+                        }
+                    }
+                }
+            }
+            allow_archetype Node[id41] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id22] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["at23"] = <http://snomed.info/id/373066001>
+            ["at24"] = <http://snomed.info/id/373067005>
+            ["at31"] = <http://snomed.info/id/373066001>
+            ["at32"] = <http://snomed.info/id/373067005>
+            ["at38"] = <http://snomed.info/id/261665006>
+            ["at39"] = <http://snomed.info/id/261665006>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at31", "at32", "at38">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at23", "at24", "at39">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Any previous procedures? (synthesised)">
+                description = <"Is there a history of any past procedures relevant for the screening purpose? (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"Past procedure? (synthesised)">
+                description = <"Is there a history of the identified procedure? (synthesised)">
+            >
+            ["at23"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at24"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at31"] = <
+                text = <"Yes">
+                description = <"">
+            >
+            ["at32"] = <
+                text = <"No">
+                description = <"">
+            >
+            ["at38"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["at39"] = <
+                text = <"Unknown">
+                description = <"">
+            >
+            ["id1"] = <
+                text = <"Procedure screening questionnaire">
+                description = <"Series of questions and associated answers used to screen for procedures that has been carried out in the past.">
+            >
+            ["id22"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id23"] = <
+                text = <"Specific procedure">
+                description = <"Details about a specific procedure or grouping of procedures relevant for the screening purpose.">
+            >
+            ["id26"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the specific procedure question, not captured in other fields.">
+            >
+            ["id29"] = <
+                text = <"Any previous procedures?">
+                description = <"Is there a history of any past procedures relevant for the screening purpose?">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id35"] = <
+                text = <"Screening purpose">
+                description = <"The context or reason for screening.">
+            >
+            ["id37"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about the specific procedure.">
+            >
+            ["id38"] = <
+                text = <"Timing">
+                description = <"Timing of the procedure.">
+            >
+            ["id41"] = <
+                text = <"Additional details">
+                description = <"Structured details or questions about screening for procedures.">
+            >
+            ["id42"] = <
+                text = <"Description">
+                description = <"Narrative description about the history of any past procedures relevant for the screening purpose.">
+            >
+            ["id5"] = <
+                text = <"Procedure name">
+                description = <"Name of a procedure or grouping of procedures.">
+            >
+            ["id6"] = <
+                text = <"Past procedure?">
+                description = <"Is there a history of the identified procedure?">
+            >
+        >
+    >
+    

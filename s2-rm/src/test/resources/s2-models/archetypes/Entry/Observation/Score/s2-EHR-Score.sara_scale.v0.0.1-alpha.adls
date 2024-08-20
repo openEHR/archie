@@ -1,0 +1,1495 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f15a210b-16bf-4f36-a57c-2bbb987379ad)
+    s2-EHR-Score.sara_scale.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Hildegard Franke, freshEHR Clinical Informatics Ltd. UK", "Diego Martinez, Universidade de Santiago de Compostela (USC  www.usc.es)", "Rocio Martinez, Universidade de Santiago de Compostela (USC  www.usc.es)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Susi Sobrido, Universidade de Santiago de Compostela (USC  www.usc.es)", "Maria Taboada, Universidade de Santiago de Compostela (USC  www.usc.es)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Haitham Maarouf, Universidade de Santiago de Compostela (USC  www.usc.es), <h_maarouf@hotmail.com>, 2016-05-12">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.sara_scale.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.sara_scale.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"SARA is a clinical scale that is based on a semiquantitative assessment of cerebellar ataxia on an impairment level. SARA has 8 items that are related to gait, stance, sitting, speech, finger-chase test, nose-finger test, fast alternating movements and heel-shin test. Although the cerebellum is directly involved in the coordination of eye movements, oculomotor functions are not considered, as the validation trials indicated that they are determined by other factors than appendicular and midline ataxia. SARA underwent a rigorous validation procedure involving three large multi-center trials in SCA and non-SCA ataxia patients, as well as controls.">
+            keywords = <"SARA", "ataxia", "assessment", "scale">
+            use = <"Assessment of cerebellar ataxia on an impairment level for patients with Ataxia.
+            Depending on the disease stage, its administration takes 5–40 min (mean 14.2 min) and does not require special
+            training or technical equipment (Schmitz-H€ubsch et al. 2006). The eight measuring items were selected from a
+            standard neurological examination for their specificity for ataxia and their qualities of standardizing testing and rating procedures. A maximum score of 40 reflects most severe ataxia. The items are the following: gait (score 0 to 8), stance (score 0 to 6), sitting (score 0 to 4), speech disturbance (score 0 to 6), finger chase (score 0 to 4), nose-finger test (score 0 to 4), fast alternating hand movements (score 0 to 4), and heelshin slide (score 0 to 4). Testing of limb function is rated independently for both sides. The arithmetic mean of both sides is considered for sum scores.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Score[id1] matches {    -- SARA ataxia scale
+        data matches {
+            Node[id5] occurrences matches {0..1} matches {    -- 1. Gait
+                value matches {
+                    Coded_ordinal[id120] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id122] matches {
+                                term matches {
+                                    Terminology_term[id121] matches {
+                                        concept matches {[at5]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id123] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id125] matches {
+                                term matches {
+                                    Terminology_term[id124] matches {
+                                        concept matches {[at6]}    -- Slight difficulties
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id126] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id128] matches {
+                                term matches {
+                                    Terminology_term[id127] matches {
+                                        concept matches {[at7]}    -- Clearly abnormal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id129] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id131] matches {
+                                term matches {
+                                    Terminology_term[id130] matches {
+                                        concept matches {[at8]}    -- Considerable staggering
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id132] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id134] matches {
+                                term matches {
+                                    Terminology_term[id133] matches {
+                                        concept matches {[at9]}    -- Marked staggering
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id135] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id137] matches {
+                                term matches {
+                                    Terminology_term[id136] matches {
+                                        concept matches {[at10]}    -- Severe staggering
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id138] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id140] matches {
+                                term matches {
+                                    Terminology_term[id139] matches {
+                                        concept matches {[at11]}    -- Walking more than 10m with strong support
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id141] matches {
+                        magnitude matches {7}
+                        concept matches {
+                            Coded_text[id143] matches {
+                                term matches {
+                                    Terminology_term[id142] matches {
+                                        concept matches {[at12]}    -- Walking less than 10m with strong support
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id144] matches {
+                        magnitude matches {8}
+                        concept matches {
+                            Coded_text[id146] matches {
+                                term matches {
+                                    Terminology_term[id145] matches {
+                                        concept matches {[at13]}    -- Unable to walk
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id15] occurrences matches {0..1} matches {    -- 2. Stance
+                value matches {
+                    Coded_ordinal[id147] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id149] matches {
+                                term matches {
+                                    Terminology_term[id148] matches {
+                                        concept matches {[at15]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id150] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id152] matches {
+                                term matches {
+                                    Terminology_term[id151] matches {
+                                        concept matches {[at16]}    -- Feet together without sway
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id153] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id155] matches {
+                                term matches {
+                                    Terminology_term[id154] matches {
+                                        concept matches {[at17]}    -- Feet together for more than 10 seconds
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id156] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id158] matches {
+                                term matches {
+                                    Terminology_term[id157] matches {
+                                        concept matches {[at18]}    -- Natural position more than 10 seconds without support
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id159] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id161] matches {
+                                term matches {
+                                    Terminology_term[id160] matches {
+                                        concept matches {[at19]}    -- Natural position more than 10 seconds with intermittent support
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id162] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id164] matches {
+                                term matches {
+                                    Terminology_term[id163] matches {
+                                        concept matches {[at20]}    -- Natural position more than 10 seconds with constant support
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id165] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id167] matches {
+                                term matches {
+                                    Terminology_term[id166] matches {
+                                        concept matches {[at21]}    -- Unable to stand more than 10 seconds
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id23] occurrences matches {0..1} matches {    -- 3. Sitting
+                value matches {
+                    Coded_ordinal[id168] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id170] matches {
+                                term matches {
+                                    Terminology_term[id169] matches {
+                                        concept matches {[at23]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id171] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id173] matches {
+                                term matches {
+                                    Terminology_term[id172] matches {
+                                        concept matches {[at24]}    -- Slight difficulties
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id174] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id176] matches {
+                                term matches {
+                                    Terminology_term[id175] matches {
+                                        concept matches {[at25]}    -- Constant sway
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id177] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id179] matches {
+                                term matches {
+                                    Terminology_term[id178] matches {
+                                        concept matches {[at26]}    -- Sit more than 10 seconds with intermittent support
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id180] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id182] matches {
+                                term matches {
+                                    Terminology_term[id181] matches {
+                                        concept matches {[at27]}    -- Unable to sit more than 10 seconds
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- 4. Speech disturbance
+                value matches {
+                    Coded_ordinal[id183] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id185] matches {
+                                term matches {
+                                    Terminology_term[id184] matches {
+                                        concept matches {[at29]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id186] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id188] matches {
+                                term matches {
+                                    Terminology_term[id187] matches {
+                                        concept matches {[at30]}    -- Suggestion of speech disturbance
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id189] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id191] matches {
+                                term matches {
+                                    Terminology_term[id190] matches {
+                                        concept matches {[at31]}    -- Impaired speech, but easy to understand
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id192] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id194] matches {
+                                term matches {
+                                    Terminology_term[id193] matches {
+                                        concept matches {[at32]}    -- Occasional words difficult to understand
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id195] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id197] matches {
+                                term matches {
+                                    Terminology_term[id196] matches {
+                                        concept matches {[at33]}    -- Many words difficult to understand
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id198] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id200] matches {
+                                term matches {
+                                    Terminology_term[id199] matches {
+                                        concept matches {[at34]}    -- Only single words understandable
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id201] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id203] matches {
+                                term matches {
+                                    Terminology_term[id202] matches {
+                                        concept matches {[at35]}    -- Speech unintelligible / anarthria
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id37] occurrences matches {0..1} matches {    -- 5L. Finger chase left
+                value matches {
+                    Coded_ordinal[id204] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id206] matches {
+                                term matches {
+                                    Terminology_term[id205] matches {
+                                        concept matches {[at37]}    -- No dysmetria
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id207] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id209] matches {
+                                term matches {
+                                    Terminology_term[id208] matches {
+                                        concept matches {[at38]}    -- Dysmetria, under/overshooting target <5cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id210] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id212] matches {
+                                term matches {
+                                    Terminology_term[id211] matches {
+                                        concept matches {[at39]}    -- Dysmetria, under/overshooting target <15cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id213] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id215] matches {
+                                term matches {
+                                    Terminology_term[id214] matches {
+                                        concept matches {[at40]}    -- Dysmetria, under/overshooting target >15cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id216] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id218] matches {
+                                term matches {
+                                    Terminology_term[id217] matches {
+                                        concept matches {[at41]}    -- Unable to perform 5 pointing movements
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id48] occurrences matches {0..1} matches {    -- 5R. Finger chase right
+                value matches {
+                    Coded_ordinal[id219] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id221] matches {
+                                term matches {
+                                    Terminology_term[id220] matches {
+                                        concept matches {[at48]}    -- No dysmetria
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id222] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id224] matches {
+                                term matches {
+                                    Terminology_term[id223] matches {
+                                        concept matches {[at49]}    -- Dysmetria, under/overshooting target <5cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id225] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id227] matches {
+                                term matches {
+                                    Terminology_term[id226] matches {
+                                        concept matches {[at50]}    -- Dysmetria, under/overshooting target <15cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id228] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id230] matches {
+                                term matches {
+                                    Terminology_term[id229] matches {
+                                        concept matches {[at51]}    -- Dysmetria, under/overshooting target >15cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id231] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id233] matches {
+                                term matches {
+                                    Terminology_term[id232] matches {
+                                        concept matches {[at52]}    -- Unable to perform 5 pointing movements
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id55] occurrences matches {0..1} matches {    -- 5. Finger chase mean score
+                value matches {
+                    Quantity[id108] matches {
+                        magnitude matches {|0.0..4.0|}
+                        precision matches {1}
+                        units matches {
+                            Coded_text[id235] matches {
+                                term matches {
+                                    Terminology_term[id234] matches {
+                                        concept matches {[at96]}    -- 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id56] occurrences matches {0..1} matches {    -- 6L. Nose-finger test left
+                value matches {
+                    Coded_ordinal[id236] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id238] matches {
+                                term matches {
+                                    Terminology_term[id237] matches {
+                                        concept matches {[at56]}    -- No tremor
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id239] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id241] matches {
+                                term matches {
+                                    Terminology_term[id240] matches {
+                                        concept matches {[at57]}    -- Tremor less than 2cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id242] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id244] matches {
+                                term matches {
+                                    Terminology_term[id243] matches {
+                                        concept matches {[at58]}    -- Tremor less than 5cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id245] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id247] matches {
+                                term matches {
+                                    Terminology_term[id246] matches {
+                                        concept matches {[at59]}    -- Tremor more than 5cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id248] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id250] matches {
+                                term matches {
+                                    Terminology_term[id249] matches {
+                                        concept matches {[at60]}    -- Unable to perform 5 pointing movements
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id63] occurrences matches {0..1} matches {    -- 6R. Nose-finger test right
+                value matches {
+                    Coded_ordinal[id251] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id253] matches {
+                                term matches {
+                                    Terminology_term[id252] matches {
+                                        concept matches {[at63]}    -- No tremor
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id254] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id256] matches {
+                                term matches {
+                                    Terminology_term[id255] matches {
+                                        concept matches {[at64]}    -- Tremor less than 2cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id257] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id259] matches {
+                                term matches {
+                                    Terminology_term[id258] matches {
+                                        concept matches {[at65]}    -- Tremor less than 5cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id260] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id262] matches {
+                                term matches {
+                                    Terminology_term[id261] matches {
+                                        concept matches {[at66]}    -- Tremor more than 5cm
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id263] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id265] matches {
+                                term matches {
+                                    Terminology_term[id264] matches {
+                                        concept matches {[at67]}    -- Unable to perform 5 pointing movements
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id70] occurrences matches {0..1} matches {    -- 6. Nose-finger test mean score
+                value matches {
+                    Quantity[id111] matches {
+                        magnitude matches {|0.0..4.0|}
+                        precision matches {1}
+                        units matches {
+                            Coded_text[id267] matches {
+                                term matches {
+                                    Terminology_term[id266] matches {
+                                        concept matches {[at96]}    -- 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id71] occurrences matches {0..1} matches {    -- 7L. Fast alternating hand movements left
+                value matches {
+                    Coded_ordinal[id268] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id270] matches {
+                                term matches {
+                                    Terminology_term[id269] matches {
+                                        concept matches {[at71]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id271] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id273] matches {
+                                term matches {
+                                    Terminology_term[id272] matches {
+                                        concept matches {[at72]}    -- Slightly irregular
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id274] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id276] matches {
+                                term matches {
+                                    Terminology_term[id275] matches {
+                                        concept matches {[at73]}    -- Clearly irregular
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id277] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id279] matches {
+                                term matches {
+                                    Terminology_term[id278] matches {
+                                        concept matches {[at74]}    -- Very irregular
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id280] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id282] matches {
+                                term matches {
+                                    Terminology_term[id281] matches {
+                                        concept matches {[at75]}    -- Unable to complete
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id77] occurrences matches {0..1} matches {    -- 7R. Fast alternating hand movements right
+                value matches {
+                    Coded_ordinal[id283] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id285] matches {
+                                term matches {
+                                    Terminology_term[id284] matches {
+                                        concept matches {[at77]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id286] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id288] matches {
+                                term matches {
+                                    Terminology_term[id287] matches {
+                                        concept matches {[at78]}    -- Slightly irregular
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id289] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id291] matches {
+                                term matches {
+                                    Terminology_term[id290] matches {
+                                        concept matches {[at79]}    -- Clearly irregular
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id292] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id294] matches {
+                                term matches {
+                                    Terminology_term[id293] matches {
+                                        concept matches {[at80]}    -- Very irregular
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id295] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id297] matches {
+                                term matches {
+                                    Terminology_term[id296] matches {
+                                        concept matches {[at81]}    -- Unable to complete
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id83] occurrences matches {0..1} matches {    -- 7. Fast alternating hand movements mean score
+                value matches {
+                    Quantity[id114] matches {
+                        magnitude matches {|0.0..4.0|}
+                        precision matches {1}
+                        units matches {
+                            Coded_text[id299] matches {
+                                term matches {
+                                    Terminology_term[id298] matches {
+                                        concept matches {[at96]}    -- 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id84] occurrences matches {0..1} matches {    -- 8L. Heel-shin slide left
+                value matches {
+                    Coded_ordinal[id300] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id302] matches {
+                                term matches {
+                                    Terminology_term[id301] matches {
+                                        concept matches {[at84]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id303] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id305] matches {
+                                term matches {
+                                    Terminology_term[id304] matches {
+                                        concept matches {[at85]}    -- Slightly abnormal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id306] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id308] matches {
+                                term matches {
+                                    Terminology_term[id307] matches {
+                                        concept matches {[at86]}    -- Clearly abnormal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id309] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id311] matches {
+                                term matches {
+                                    Terminology_term[id310] matches {
+                                        concept matches {[at87]}    -- Severely abnormal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id312] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id314] matches {
+                                term matches {
+                                    Terminology_term[id313] matches {
+                                        concept matches {[at88]}    -- Unable to perform task
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id90] occurrences matches {0..1} matches {    -- 8R. Heel-shin slide right
+                value matches {
+                    Coded_ordinal[id315] matches {
+                        magnitude matches {0}
+                        concept matches {
+                            Coded_text[id317] matches {
+                                term matches {
+                                    Terminology_term[id316] matches {
+                                        concept matches {[at90]}    -- Normal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id318] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id320] matches {
+                                term matches {
+                                    Terminology_term[id319] matches {
+                                        concept matches {[at91]}    -- Slightly abnormal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id321] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id323] matches {
+                                term matches {
+                                    Terminology_term[id322] matches {
+                                        concept matches {[at92]}    -- Clearly abnormal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id324] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id326] matches {
+                                term matches {
+                                    Terminology_term[id325] matches {
+                                        concept matches {[at93]}    -- Severely abnormal
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id327] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id329] matches {
+                                term matches {
+                                    Terminology_term[id328] matches {
+                                        concept matches {[at94]}    -- Unable to perform task
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id96] occurrences matches {0..1} matches {    -- 8. Heel-shin slide mean score
+                value matches {
+                    Quantity[id117] matches {
+                        magnitude matches {|0.0..4.0|}
+                        precision matches {1}
+                        units matches {
+                            Coded_text[id331] matches {
+                                term matches {
+                                    Terminology_term[id330] matches {
+                                        concept matches {[at96]}    -- 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id97] occurrences matches {0..1} matches {    -- Total score
+                value matches {
+                    Quantity[id118] matches {
+                        magnitude matches {|0.0..40.0|}
+                        precision matches {1}
+                        units matches {
+                            Coded_text[id333] matches {
+                                term matches {
+                                    Terminology_term[id332] matches {
+                                        concept matches {[at96]}    -- 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        state matches {
+            Node[id101] matches {    -- Confounding factors
+                value matches {
+                    Text[id119]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id99] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at95"] = <http://openehr.org/id/380>
+        >
+        ["ucum"] = <
+            ["at96"] = <http://ucum.org/id/1>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at5", "at6", "at7", "at8", "at9", "at10", "at11", "at12", "at13">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at15", "at16", "at17", "at18", "at19", "at20", "at21">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at23", "at24", "at25", "at26", "at27">
+        >
+        ["ac4"] = <
+            id = <"ac4">
+            members = <"at29", "at30", "at31", "at32", "at33", "at34", "at35">
+        >
+        ["ac5"] = <
+            id = <"ac5">
+            members = <"at37", "at38", "at39", "at40", "at41">
+        >
+        ["ac6"] = <
+            id = <"ac6">
+            members = <"at48", "at49", "at50", "at51", "at52">
+        >
+        ["ac7"] = <
+            id = <"ac7">
+            members = <"at56", "at57", "at58", "at59", "at60">
+        >
+        ["ac8"] = <
+            id = <"ac8">
+            members = <"at63", "at64", "at65", "at66", "at67">
+        >
+        ["ac9"] = <
+            id = <"ac9">
+            members = <"at71", "at72", "at73", "at74", "at75">
+        >
+        ["ac10"] = <
+            id = <"ac10">
+            members = <"at77", "at78", "at79", "at80", "at81">
+        >
+        ["ac11"] = <
+            id = <"ac11">
+            members = <"at84", "at85", "at86", "at87", "at88">
+        >
+        ["ac12"] = <
+            id = <"ac12">
+            members = <"at90", "at91", "at92", "at93", "at94">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"1. Gait (synthesised)">
+                description = <"Assessment of gait. (synthesised)">
+            >
+            ["ac10"] = <
+                text = <"7R. Fast alternating hand movements right (synthesised)">
+                description = <"Assessment of ability to perform fast alternating left hand movements. (synthesised)">
+            >
+            ["ac11"] = <
+                text = <"8L. Heel-shin slide left (synthesised)">
+                description = <"Assessment of ability to perform heel-shin slide with the left leg. (synthesised)">
+            >
+            ["ac12"] = <
+                text = <"8R. Heel-shin slide right (synthesised)">
+                description = <"Assessment of ability to perform heel-shin slide with the right leg. (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"2. Stance (synthesised)">
+                description = <"Assessment of stance. (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"3. Sitting (synthesised)">
+                description = <"Assessment of sitting. (synthesised)">
+            >
+            ["ac4"] = <
+                text = <"4. Speech disturbance (synthesised)">
+                description = <"Assessment of speech. (synthesised)">
+            >
+            ["ac5"] = <
+                text = <"5L. Finger chase left (synthesised)">
+                description = <"Assessment of ability to follow movements with left index finger. (synthesised)">
+            >
+            ["ac6"] = <
+                text = <"5R. Finger chase right (synthesised)">
+                description = <"Assessment of ability to follow movements with right index finger. (synthesised)">
+            >
+            ["ac7"] = <
+                text = <"6L. Nose-finger test left (synthesised)">
+                description = <"Assessment of ability to point with left index finger from proband's nose to examiner's finger. (synthesised)">
+            >
+            ["ac8"] = <
+                text = <"6R. Nose-finger test right (synthesised)">
+                description = <"Assessment of ability to point with right index finger from proband's nose to examiner's finger. (synthesised)">
+            >
+            ["ac9"] = <
+                text = <"7L. Fast alternating hand movements left (synthesised)">
+                description = <"Assessment of ability to perform fast alternating left hand movements. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Severe staggering">
+                description = <"Severe staggering, permanent support of one stick or light support by one arm required.">
+            >
+            ["at11"] = <
+                text = <"Walking more than 10m with strong support">
+                description = <"Walking more than 10m with strong support only (two special sticks or stroller or accompanying person).">
+            >
+            ["at12"] = <
+                text = <"Walking less than 10m with strong support">
+                description = <"Walking less than 10m with strong support only (two special sticks or stroller or accompanying person).">
+            >
+            ["at13"] = <
+                text = <"Unable to walk">
+                description = <"Unable to walk, even supported.">
+            >
+            ["at15"] = <
+                text = <"Normal">
+                description = <"Normal, able to stand in tandem for more than 10 seconds.">
+            >
+            ["at16"] = <
+                text = <"Feet together without sway">
+                description = <"Able to stand with feet together without sway, but
+                not in tandem for > 10s.">
+            >
+            ["at17"] = <
+                text = <"Feet together for more than 10 seconds">
+                description = <"Able to stand with feet together for more than 10 seconds, but only 
+                with sway.">
+            >
+            ["at18"] = <
+                text = <"Natural position more than 10 seconds without support">
+                description = <"Able to stand for more than 10 seconds without support in natural
+                 position, but not with feet together.">
+            >
+            ["at19"] = <
+                text = <"Natural position more than 10 seconds with intermittent support">
+                description = <"Able to stand for more than 10 seconds in natural position only with
+                 intermittent support.">
+            >
+            ["at20"] = <
+                text = <"Natural position more than 10 seconds with constant support">
+                description = <"Able to stand more than 10 seconds in natural position only with 
+                constant support of one arm.">
+            >
+            ["at21"] = <
+                text = <"Unable to stand more than 10 seconds">
+                description = <"Unable to stand for more than 10 seconds even with constant support
+                of one arm.">
+            >
+            ["at23"] = <
+                text = <"Normal">
+                description = <"Normal, no difficulty sitting more than 10 seconds.">
+            >
+            ["at24"] = <
+                text = <"Slight difficulties">
+                description = <"Slight difficulties, intermittent sway.">
+            >
+            ["at25"] = <
+                text = <"Constant sway">
+                description = <"Constant sway, but able to sit more than 10 seconds without support.">
+            >
+            ["at26"] = <
+                text = <"Sit more than 10 seconds with intermittent support">
+                description = <"Able to sit for more than 10 seconds only with intermittent support.">
+            >
+            ["at27"] = <
+                text = <"Unable to sit more than 10 seconds">
+                description = <"Unable to sit for more than 10 seconds without continuous support.">
+            >
+            ["at29"] = <
+                text = <"Normal">
+                description = <"Assessment indicates that speech is normal.">
+            >
+            ["at30"] = <
+                text = <"Suggestion of speech disturbance">
+                description = <"Assessment indicates that there may be a speech disturbance.">
+            >
+            ["at31"] = <
+                text = <"Impaired speech, but easy to understand">
+                description = <"Assessment indicates that speech is impaired, but easy to understand.">
+            >
+            ["at32"] = <
+                text = <"Occasional words difficult to understand">
+                description = <"Assessment indicates that occasional words are difficult to understand.">
+            >
+            ["at33"] = <
+                text = <"Many words difficult to understand">
+                description = <"Assessment indicates that many words are difficult to understand.">
+            >
+            ["at34"] = <
+                text = <"Only single words understandable">
+                description = <"Assessment indicates that only single words are understandable.">
+            >
+            ["at35"] = <
+                text = <"Speech unintelligible / anarthria">
+                description = <"Assessment indicates that speech is unintelligible or the proband suffers from anarthria.">
+            >
+            ["at37"] = <
+                text = <"No dysmetria">
+                description = <"Finger chase assessment indicates that no dysmetria is present.">
+            >
+            ["at38"] = <
+                text = <"Dysmetria, under/overshooting target <5cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by <5cm is present.">
+            >
+            ["at39"] = <
+                text = <"Dysmetria, under/overshooting target <15cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by <15cm is present.">
+            >
+            ["at40"] = <
+                text = <"Dysmetria, under/overshooting target >15cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by >15cm is present.">
+            >
+            ["at41"] = <
+                text = <"Unable to perform 5 pointing movements">
+                description = <"Finger chase assessment indicates that proband is unable to perform 5 pointing movements.">
+            >
+            ["at48"] = <
+                text = <"No dysmetria">
+                description = <"Finger chase assessment indicates that no dysmetria is present.">
+            >
+            ["at49"] = <
+                text = <"Dysmetria, under/overshooting target <5cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by <5cm is present.">
+            >
+            ["at5"] = <
+                text = <"Normal">
+                description = <"No difficulties in walking, turning and walking tandem (up to one misstep allowed).">
+            >
+            ["at50"] = <
+                text = <"Dysmetria, under/overshooting target <15cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by <15cm is present.">
+            >
+            ["at51"] = <
+                text = <"Dysmetria, under/overshooting target >15cm">
+                description = <"Finger chase assessment indicates that dysmetria with under/overshooting target by >15cm is present.">
+            >
+            ["at52"] = <
+                text = <"Unable to perform 5 pointing movements">
+                description = <"Finger chase assessment indicates that proband is unable to perform 5 pointing movements.">
+            >
+            ["at56"] = <
+                text = <"No tremor">
+                description = <"Nose-finger test indicates that no tremor is present.">
+            >
+            ["at57"] = <
+                text = <"Tremor less than 2cm">
+                description = <"Nose-finger test indicates tremor with an amplitude less than 2 cm.">
+            >
+            ["at58"] = <
+                text = <"Tremor less than 5cm">
+                description = <"Nose-finger test indicates tremor with an amplitude less than 5 cm.">
+            >
+            ["at59"] = <
+                text = <"Tremor more than 5cm">
+                description = <"Nose-finger test indicates tremor with an amplitude more than 5 cm.">
+            >
+            ["at6"] = <
+                text = <"Slight difficulties">
+                description = <"Slight difficulties which are only visible when walking 10 consecutive steps in tandem.">
+            >
+            ["at60"] = <
+                text = <"Unable to perform 5 pointing movements">
+                description = <"Nose-finger test indicates that proband is unable to perform 5 pointing movements.">
+            >
+            ["at63"] = <
+                text = <"No tremor">
+                description = <"Nose-finger test indicates that no tremor is present.">
+            >
+            ["at64"] = <
+                text = <"Tremor less than 2cm">
+                description = <"Nose-finger test indicates tremor with an amplitude less than 2 cm.">
+            >
+            ["at65"] = <
+                text = <"Tremor less than 5cm">
+                description = <"Nose-finger test indicates tremor with an amplitude less than 5 cm.">
+            >
+            ["at66"] = <
+                text = <"Tremor more than 5cm">
+                description = <"Nose-finger test indicates tremor with an amplitude more than 5 cm.">
+            >
+            ["at67"] = <
+                text = <"Unable to perform 5 pointing movements">
+                description = <"Nose-finger test indicates that proband is unable to perform 5 pointing movements.">
+            >
+            ["at7"] = <
+                text = <"Clearly abnormal">
+                description = <"Clearly abnormal, tandem walking more than 10 steps not possible.">
+            >
+            ["at71"] = <
+                text = <"Normal">
+                description = <"Fast alternating hand movement assessment indicates a normal performance with no irregularities, and the patient is able to perform in less than 10 seconds.">
+            >
+            ["at72"] = <
+                text = <"Slightly irregular">
+                description = <"Fast alternating hand movement assessment indicates slight irregularities, and the patient is able to perform in less than 10 seconds.">
+            >
+            ["at73"] = <
+                text = <"Clearly irregular">
+                description = <"Fast alternating hand movement assessment indicates a clear irregularity, and single movements are difficult to distinguish or relevant interruptions are observed, but the patient is able to perform in less than 10 seconds.">
+            >
+            ["at74"] = <
+                text = <"Very irregular">
+                description = <"Fast alternating hand movement assessment indicates a definite irregularity, and single movements are difficult to distinguish or relevant interruptions are observed, and the patient is only able to perform in more than 10 seconds.">
+            >
+            ["at75"] = <
+                text = <"Unable to complete">
+                description = <"Fast alternating hand movement assessment indicates that the patient is unable to complete 10 cycles of fast alternating hand movements.">
+            >
+            ["at77"] = <
+                text = <"Normal">
+                description = <"Fast alternating hand movement assessment indicates a normal performance with no irregularities, and the patient is able to perform in less than 10 seconds.">
+            >
+            ["at78"] = <
+                text = <"Slightly irregular">
+                description = <"Fast alternating hand movement assessment indicates slight irregularities, and the patient is able to perform in less than 10 seconds.">
+            >
+            ["at79"] = <
+                text = <"Clearly irregular">
+                description = <"Fast alternating hand movement assessment indicates a clear irregularity, and single movements are difficult to distinguish or relevant interruptions are observed, but the patient is able to perform in less than 10 seconds.">
+            >
+            ["at8"] = <
+                text = <"Considerable staggering">
+                description = <"Considerable staggering, difficulties in half-turn, but without support.">
+            >
+            ["at80"] = <
+                text = <"Very irregular">
+                description = <"Fast alternating hand movement assessment indicates a definite irregularity, and single movements are difficult to distinguish or relevant interruptions are observed, and the patient is only able to perform in more than 10 seconds.">
+            >
+            ["at81"] = <
+                text = <"Unable to complete">
+                description = <"Fast alternating hand movement assessment indicates that the patient is unable to complete 10 cycles of fast alternating hand movements.">
+            >
+            ["at84"] = <
+                text = <"Normal">
+                description = <"Heel-shin slide assessment indicates normal performance.">
+            >
+            ["at85"] = <
+                text = <"Slightly abnormal">
+                description = <"Heel-shin slide assessment indicates slightly abnormal performance, but contact to shin is maintained.">
+            >
+            ["at86"] = <
+                text = <"Clearly abnormal">
+                description = <"Heel-shin slide assessment indicates clearly abnormal performance with the patient going off shin up to 3 times in 3 cycles.">
+            >
+            ["at87"] = <
+                text = <"Severely abnormal">
+                description = <"Heel-shin slide assessment indicates severely abnormal performance, with the patient going off shin 4 or more times during 3 cycles.">
+            >
+            ["at88"] = <
+                text = <"Unable to perform task">
+                description = <"Heel-shin slide assessment indicates that the patient is unable to perform the task.">
+            >
+            ["at9"] = <
+                text = <"Marked staggering">
+                description = <"Marked staggering, intermittent support of wall required.">
+            >
+            ["at90"] = <
+                text = <"Normal">
+                description = <"Heel-shin slide assessment indicates normal performance.">
+            >
+            ["at91"] = <
+                text = <"Slightly abnormal">
+                description = <"Heel-shin slide assessment indicates slightly abnormal performance, but contact to shin is maintained.">
+            >
+            ["at92"] = <
+                text = <"Clearly abnormal">
+                description = <"Heel-shin slide assessment indicates clearly abnormal performance with the patient going off shin up to 3 times in 3 cycles.">
+            >
+            ["at93"] = <
+                text = <"Severely abnormal">
+                description = <"Heel-shin slide assessment indicates severely abnormal performance, with the patient going off shin 4 or more times during 3 cycles.">
+            >
+            ["at94"] = <
+                text = <"Unable to perform task">
+                description = <"Heel-shin slide assessment indicates that the patient is unable to perform the task.">
+            >
+            ["at95"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["at96"] = <
+                text = <"1">
+                description = <"1 unit.">
+            >
+            ["id1"] = <
+                text = <"SARA ataxia scale">
+                description = <"Scale for the assessment and rating of ataxia.">
+            >
+            ["id101"] = <
+                text = <"Confounding factors">
+                description = <"Record any issues or factors that may impact on the use of the scale and the overall score.">
+            >
+            ["id15"] = <
+                text = <"2. Stance">
+                description = <"Assessment of stance.">
+            >
+            ["id23"] = <
+                text = <"3. Sitting">
+                description = <"Assessment of sitting.">
+            >
+            ["id29"] = <
+                text = <"4. Speech disturbance">
+                description = <"Assessment of speech.">
+            >
+            ["id3"] = <
+                text = <"Point in time">
+                description = <"A specific date and/or time which may be explicitly defined in a template or at run-time.">
+            >
+            ["id37"] = <
+                text = <"5L. Finger chase left">
+                description = <"Assessment of ability to follow movements with left index finger.">
+            >
+            ["id48"] = <
+                text = <"5R. Finger chase right">
+                description = <"Assessment of ability to follow movements with right index finger.">
+            >
+            ["id5"] = <
+                text = <"1. Gait">
+                description = <"Assessment of gait.">
+            >
+            ["id55"] = <
+                text = <"5. Finger chase mean score">
+                description = <"Mean score for both sides of finger chase assessment.">
+            >
+            ["id56"] = <
+                text = <"6L. Nose-finger test left">
+                description = <"Assessment of ability to point with left index finger from proband's nose to examiner's finger.">
+            >
+            ["id63"] = <
+                text = <"6R. Nose-finger test right">
+                description = <"Assessment of ability to point with right index finger from proband's nose to examiner's finger.">
+            >
+            ["id70"] = <
+                text = <"6. Nose-finger test mean score">
+                description = <"Mean score for both sides of nose-finger test.">
+            >
+            ["id71"] = <
+                text = <"7L. Fast alternating hand movements left">
+                description = <"Assessment of ability to perform fast alternating left hand movements.">
+            >
+            ["id77"] = <
+                text = <"7R. Fast alternating hand movements right">
+                description = <"Assessment of ability to perform fast alternating left hand movements.">
+            >
+            ["id83"] = <
+                text = <"7. Fast alternating hand movements mean score">
+                description = <"Mean score for both sides of the fast alternating hand movements test.">
+            >
+            ["id84"] = <
+                text = <"8L. Heel-shin slide left">
+                description = <"Assessment of ability to perform heel-shin slide with the left leg.">
+            >
+            ["id90"] = <
+                text = <"8R. Heel-shin slide right">
+                description = <"Assessment of ability to perform heel-shin slide with the right leg.">
+            >
+            ["id96"] = <
+                text = <"8. Heel-shin slide mean score">
+                description = <"Mean score for heel-shin slide assessment on both sides.">
+            >
+            ["id97"] = <
+                text = <"Total score">
+                description = <"Total score obtained from the sum of the individual scores for 1. to 4. and the sum of the mean scores for 5. to 8.">
+            >
+            ["id99"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+            >
+        >
+    >
+    

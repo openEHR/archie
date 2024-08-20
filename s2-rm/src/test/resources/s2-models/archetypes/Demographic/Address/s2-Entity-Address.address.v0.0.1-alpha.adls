@@ -1,0 +1,347 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ddb0999d-5e28-4c95-92f1-f6116d568bbc)
+	s2-Entity-Address.address.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-22">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-ADDRESS.address.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-ADDRESS.address.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Representation of data about a personal/organizational address, based on ISO 22220 standard. This address represents a geographic location which can be used in several ways: residential address, postal address, etc.">
+			use = <"Used to communicate with, identify service provision requirements and trends, and to provide direct services.">
+			keywords = <"demographic service", "address", "geographic location", "residential address">
+			misuse = <"This archetype can not used for email address, IP address, computer address, telephone, fax and pager. For these items use the electronic_communication archetype.">
+		>
+	>
+	other_contributors = <"Rong Chen, Cambio Healthcare Systems, Sweden", "Ricardo Correia, CINTESIS/FMUP, Portugal", "Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Heath Frankel, Ocean Informatics, Australia", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Grahame Grieve, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+
+definition
+	Address[id1] matches {	-- Address
+		name matches {"Business", "Mailing or postal", "Temporary accomodation", "Residential", "No fixed address", "Unknown/not stated/inadequately described"}
+		description matches {
+			Node[id3] matches {	-- Address lines
+				items matches {
+					Node[id22] occurrences matches {0..1} matches {	-- Building/complex sub-unit type—abbreviation
+						value matches {
+							Plain_text[id35] 
+							Coded_text[id36] matches {
+								term matches {
+									Terminology_term[id58] matches {
+										concept matches {[ac1]}		-- Building type codes
+									}
+								}
+							}
+						}
+					}
+					Node[id23] occurrences matches {0..1} matches {	-- Building/complex sub-unit number
+						value matches {
+							Text[id37] 
+						}
+					}
+					Node[id24] occurrences matches {0..1} matches {	-- Address site name
+						value matches {
+							Text[id38] 
+						}
+					}
+					Node[id25] occurrences matches {0..1} matches {	-- Floor/level number
+						value matches {
+							Text[id39] 
+						}
+					}
+					Node[id26] occurrences matches {0..1} matches {	-- Floor/level type
+						value matches {
+							Text[id40] 
+						}
+					}
+					Node[id27] occurrences matches {0..1} matches {	-- Lot number
+						value matches {
+							Text[id41] 
+						}
+					}
+					Node[id28] occurrences matches {0..1} matches {	-- Street type code
+						value matches {
+							Plain_text[id42] 
+							Coded_text[id43] matches {
+								term matches {
+									Terminology_term[id59] matches {
+										concept matches {[ac2]}		-- Street type codes
+									}
+								}
+							}
+						}
+					}
+					Node[id29] occurrences matches {0..1} matches {	-- Street name
+						value matches {
+							Text[id44] 
+						}
+					}
+					Node[id30] occurrences matches {0..1} matches {	-- Street number
+						value matches {
+							Text[id45] 
+						}
+					}
+					Node[id31] occurrences matches {0..1} matches {	-- Street suffix code
+						value matches {
+							Plain_text[id46] 
+							Coded_text[id47] matches {
+								term matches {
+									Terminology_term[id60] matches {
+										concept matches {[ac3]}		-- Street suffix codes
+									}
+								}
+							}
+						}
+					}
+					Node[id32] occurrences matches {0..1} matches {	-- Address line visualization
+						value matches {
+							Text[id48] 
+						}
+					}
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- District
+				value matches {
+					Text[id49] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Census area
+				value matches {
+					Text[id50] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Delivery point identifier
+				value matches {
+					Text[id51] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Postal code (ZIP code)
+				value matches {
+					Text[id52] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Suburb/town/locality
+				value matches {
+					Text[id53] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- State/territory/province identifier
+				value matches {
+					Coded_text[id54] matches {
+						term matches {
+							Terminology_term[id61] matches {
+								concept matches {[ac4]}		-- State codes
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Country identifier
+				value matches {
+					Coded_text[id55] matches {
+						term matches {
+							Terminology_term[id62] matches {
+								concept matches {[ac5]}		-- Country codes
+							}
+						}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Address type start date accuracy indicator
+				value matches {
+					Text[id56] matches {
+						text matches {"{/[AEU][AEU][AEU]/}"}
+					}
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Address type end date accuracy indicator
+				value matches {
+					Text[id57] matches {
+						text matches {"{/[AEU][AEU][AEU]/}"}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Building type codes">
+				description = <"Valid codes for types of buildings.">
+			>
+			["ac2"] = <
+				text = <"Street type codes">
+				description = <"Valid codes for street types.">
+			>
+			["ac3"] = <
+				text = <"Street suffix codes">
+				description = <"Valid codes for street suffixes.">
+			>
+			["ac4"] = <
+				text = <"State codes">
+				description = <"valid codes for state/territory/province.">
+			>
+			["ac5"] = <
+				text = <"Country codes">
+				description = <"valid codes for countries.">
+			>
+			["ac6"] = <
+				text = <"Address (synthesised)">
+				description = <"Address based on ISO22220 standard. (synthesised)">
+			>
+			["at461"] = <
+				text = <"Business">
+				description = <"Used to indicate an address that is the physical location of a business or office at which an entity can be contacted.">
+			>
+			["at462"] = <
+				text = <"Mailing or postal">
+				description = <"Used to indicate an address that is only for correspondence and/or billing purposes.">
+			>
+			["at463"] = <
+				text = <"Temporary accomodation">
+				description = <"Temporary accomodation address (such as for a person who usually resides overseas or where the provider of the address is in temporary accomodation due to renovation or treatment).">
+			>
+			["at464"] = <
+				text = <"Residential">
+				description = <"Used to indicate where a person is living. Note that this code is not valid for organizations.">
+			>
+			["at465"] = <
+				text = <"No fixed address">
+				description = <"Used where a person has no fixed address.">
+			>
+			["at466"] = <
+				text = <"Unknown/not stated/inadequately described">
+				description = <"Unknown/not stated/inadequately described may also be used where the person has no fixed address or does not wish to have their residential or correspondence address recorded.">
+			>
+			["id1"] = <
+				text = <"Address">
+				description = <"Address based on ISO22220 standard.">
+			>
+			["id10"] = <
+				text = <"Country identifier">
+				description = <"A code representing the country component of an address.">
+			>
+			["id11"] = <
+				text = <"Address type start date accuracy indicator">
+				description = <"An indication of the accuracy of the address type start date at the component level for the date. It is expressed by means of a sequence of three characters with possible values A (accurate), E (estimated) or U (unknown) each. The characters represent the accuracy for the year, month and day respectively. This Node was introduced in order to be compatible with ISO 22220, but openEHR reference model represents date accuracy in a different way (see the data types specification).">
+			>
+			["id12"] = <
+				text = <"Address type end date accuracy indicator">
+				description = <"An indication of the accuracy of the address type end date at the component level for the date. It is expressed by means of a sequence of three characters with possible values A (accurate), E (estimated) or U (unknown) each. The characters represent the accuracy for the year, month and day respectively. This Node was introduced in order to be compatible with ISO 22220, but openEHR reference model represents date accuracy in a different way (see the data types specification).">
+			>
+			["id22"] = <
+				text = <"Building/complex sub-unit type—abbreviation">
+				description = <"The specification of the type of a separately identifiable portion within a building/complex, marina etc. to clearly distinguish it from another.">
+			>
+			["id23"] = <
+				text = <"Building/complex sub-unit number">
+				description = <"The specification of the number of identifier of a building/complex, marina etc. to clearly distinguish it from another.">
+			>
+			["id24"] = <
+				text = <"Address site name">
+				description = <"The full name used to identify the physical building or property as part of its location.">
+			>
+			["id25"] = <
+				text = <"Floor/level number">
+				description = <"Descriptor used to identify the floor or level of a multi-storey building/complex.">
+			>
+			["id26"] = <
+				text = <"Floor/level type">
+				description = <"Descriptor used to classify the type of floor or level of a multi-storey building/complex.">
+			>
+			["id27"] = <
+				text = <"Lot number">
+				description = <"Section, allotment number.">
+			>
+			["id28"] = <
+				text = <"Street type code">
+				description = <"A code that identifies the type of public thoroughfare.">
+			>
+			["id29"] = <
+				text = <"Street name">
+				description = <"The name that identifies a public thoroughfare and differentiates it from others in the same suburb/town/locality.">
+			>
+			["id3"] = <
+				text = <"Address lines">
+				description = <"A composite of one or more standard address components that describe a low level of geographical/physical description of a location that, used in conjunction with the other high-level address components i.e. ‘suburb / town / locality name’, ‘postal code’, ‘state / territory / province’, and ‘country’, forms a complete geographical/physical address.">
+			>
+			["id30"] = <
+				text = <"Street number">
+				description = <"The numeric or string reference number of a house or property that is unique within a street name, suburb.">
+			>
+			["id31"] = <
+				text = <"Street suffix code">
+				description = <"Term used to qualify the street name suitable for directional references.">
+			>
+			["id32"] = <
+				text = <"Address line visualization">
+				description = <"How the address line is presented to the user.">
+			>
+			["id4"] = <
+				text = <"District">
+				description = <"District.">
+			>
+			["id5"] = <
+				text = <"Census area">
+				description = <"Area defined by the Brazilian Geographic and Statistics Bureau according to the spacial distribution of the population.">
+			>
+			["id6"] = <
+				text = <"Delivery point identifier">
+				description = <"A unique number assigned to a postal address as designated by the postal service.">
+			>
+			["id7"] = <
+				text = <"Postal code (ZIP code)">
+				description = <"The code for a postal delivery area, aligned with locality, suburb or place for the address, as defined by the postal service.">
+			>
+			["id8"] = <
+				text = <"Suburb/town/locality">
+				description = <"The full name of the general locality containing the specific address.">
+			>
+			["id9"] = <
+				text = <"State/territory/province identifier">
+				description = <"An identifier of the province, state or territory containing the address.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/99953-2>
+			["id10"] = <http://loinc.org/99955-7>
+			["id7"] = <http://loinc.org/99951-6>
+			["id9"] = <http://loinc.org/99950-8>
+			["id3"] = <http://loinc.org/106181-1>
+		>
+	>
+	value_sets = <
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at461", "at462", "at463", "at464", "at465", "at466">
+		>
+	>
+

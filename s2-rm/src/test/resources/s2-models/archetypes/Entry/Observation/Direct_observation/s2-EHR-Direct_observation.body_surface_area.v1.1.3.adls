@@ -1,0 +1,241 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a1f99e29-8ef8-46d2-910d-6e5b5fdfcf20)
+	s2-EHR-Direct_observation.body_surface_area.v1.1.3
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Cailin Lowry, The Chris O'Brien Lifehouse at RPA, <cailin.lowry@lifehouserpa.org.au>, 2012-12-07">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.body_surface_area.v1.1.3, copyright 2012 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.body_surface_area.v1.1.3 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the measured or calculated surface area of a human body.">
+			use = <"Use to record the measured or calculated surface area of a human body. 
+            
+            BSA can be used to support clinical decision-making, including but not limited to:
+            - determine the dosage of chemotherapy and other drugs with a narrow therapeutic index; 
+            - calculation of the cardiac index; and
+            - calculation of intravenous fluid requirements.">
+			keywords = <"body", "surface", "area", "BSA", "surface area">
+			misuse = <"Not to be used to record the percentage of body surface area involvement in burns or other skin damage etc. This information should be carried in separate specific archetypes related to burns assessment.
+            
+            Not to be used to record the adjusted Body surface area eg a calculation of the BSA of a person with limb amputation, based on other body part measurements and an algorithm - use OBSERVATION.body_surface_area-adjusted.">
+		>
+	>
+	other_contributors = <"Tomas Alme, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Heidi Aursand, Oslo universitetssykehus, Norway", "Gustavo Bacelar-Silva, Healthcare Designs, Brazil (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Malin Berg, DIPS ASA, Norway", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Laila Bruun, Oslo universitetssykehus HF, Norway", "Margaret Campbell, Queensland Health, Australia", "Rong Chen, Cambio Healthcare Systems, Sweden", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "Christian Ghan, Lifehouse, Australia", "Heather Grain, Llewelyn Grain Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Hilde Hollås, DIPS AS, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Karlsen, DIPS ASA, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Thomas Kilvær, Universitetssykehuset Nord Norge, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Harmony Kosola, Alberta Health Services, Canada", "Liv Laugen, Oslo universitetssykehus, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Siv Marie Lien, DIPS ASA, Norway", "Ole Martin Sand, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Lars Ivar Mehlum, Nasjonal IKT HF, Norway", "Bjoern Naess, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Elisabeth Sagafos, Sykehuset Telemark HF, Norway", "Gro-Hilde Severinsen, Norwegian center for ehealthresearch, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Trine Strand, Oslo Universitetssykehus (OUS), Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Micaela Thierley, Helse Bergen/Haraldsplass sykehus, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Richard Townley-O'Neill, Australian Digital Health Agency, Australia", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "Dennis Valk, Code24 BV, Netherlands">
+
+definition
+	Direct_observation[id1] matches {	-- Body surface area
+		data cardinality matches {1..*; unordered} matches {
+			Node[id5] matches {	-- Body Surface Area
+				value matches {
+					Measured<Quantity>[id29] matches {
+						value matches {
+							Quantity[id23] matches {
+								magnitude matches {|>=0.0|}
+								precision matches {2}
+								units matches {
+									Coded_text[id31] matches {
+										term matches {
+											Terminology_term[id30] matches {
+												concept matches {[at20]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id20] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id24] 
+				}
+			}
+		}
+		state matches {
+			Node[id22] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id25] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id10] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id26] matches {
+						term matches {
+							Terminology_term[id32] matches {
+								concept matches {[ac1]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Formula
+				value matches {
+					Coded_text[id27] matches {
+						term matches {
+							Terminology_term[id33] matches {
+								concept matches {[ac2]}		-- Formula (synthesised)
+							}
+						}
+					}
+					Plain_text[id28] 
+				}
+			}
+			use_archetype Node[id9, s2-EHR-Node.device.v1] 
+			allow_archetype Node[id8] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Method (synthesised)">
+				description = <"The method by which the body surface area was entered into the clinical system. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Formula (synthesised)">
+				description = <"Formula used to calculate the BSA. (synthesised)">
+			>
+			["at10"] = <
+				text = <"System entry">
+				description = <"The Area was entered automatically by the clinical system and without manual intervention of the clinician.">
+			>
+			["at11"] = <
+				text = <"Manual entry">
+				description = <"The Area was entered manually by the clinician.">
+			>
+			["at12"] = <
+				text = <"Dubois and Dubois">
+				description = <"The Dubois and Dubois formula was used to calculate the body surface area.">
+			>
+			["at13"] = <
+				text = <"Mosteller">
+				description = <"The Mosteller formula was used to calculate the body surface area.">
+			>
+			["at14"] = <
+				text = <"Haycock">
+				description = <"The Haycock formula was used to calculate the body surface area.">
+			>
+			["at15"] = <
+				text = <"Gehan and George">
+				description = <"The Gehan and George formula was used to calculate the body surface area.">
+			>
+			["at16"] = <
+				text = <"Boyd">
+				description = <"The Boyd formula was used to calculate the body surface area.">
+			>
+			["at17"] = <
+				text = <"Fujimoto">
+				description = <"The Fujimoto formula was used to calculate the body surface area.">
+			>
+			["at18"] = <
+				text = <"Takihara">
+				description = <"The Takihara formula was used to calculate the body surface area.">
+			>
+			["at19"] = <
+				text = <"Area">
+				description = <"Area">
+			>
+			["at20"] = <
+				text = <"m2">
+				description = <"m2 unit.">
+			>
+			["id1"] = <
+				text = <"Body surface area">
+				description = <"The measured or calculated surface area of a human body.">
+			>
+			["id10"] = <
+				text = <"Method">
+				description = <"The method by which the body surface area was entered into the clinical system.">
+			>
+			["id20"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the measurement, not captured in other fields.">
+			>
+			["id22"] = <
+				text = <"Confounding factors">
+				description = <"Record of any issues or factors that may impact on the measurement or calculation of body surface area.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Body Surface Area">
+				description = <"The measured or calculated surface area of a human body.">
+			>
+			["id7"] = <
+				text = <"Formula">
+				description = <"Formula used to calculate the BSA.">
+			>
+			["id8"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id9"] = <
+				text = <"Device">
+				description = <"The device used to measure or estimate the body surface area.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at19"] = <http://openehr.org/id/335>
+		>
+		["ucum"] = <
+			["at20"] = <http://ucum.org/id/m2>
+		>
+		["snomed"] = <
+			["at20"] = <http://snomed.info/id/278077005>
+		>
+		["loinc"] = <
+			["id1"] = <http://loinc.org/8277-6>
+			["id5"] = <http://loinc.org/8277-6>
+			["id9"] = <http://loinc.org/74720-4>
+			["id10"] = <http://loinc.org/106191-0>
+			["id20"] = <http://loinc.org/106173-8>
+			["id22"] = <http://loinc.org/106176-1>
+		>
+	>
+	value_sets = <
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at12", "at13", "at14", "at15", "at16", "at17", "at18">
+		>
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at10", "at11">
+		>
+	>
+

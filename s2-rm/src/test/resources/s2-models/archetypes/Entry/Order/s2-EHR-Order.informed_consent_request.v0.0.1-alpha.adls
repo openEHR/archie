@@ -1,0 +1,204 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1b10fbd2-32d3-4a27-8c8b-cba8ffb496e5)
+	s2-EHR-Order.informed_consent_request.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2012-10-09">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-INSTRUCTION.informed_consent_request.v0.0.1-alpha, copyright 2012 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-INSTRUCTION.informed_consent_request.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a formal request or instruction to gain and record informed consent from a subject (or the subject's agent) for a proposed procedure, trial or other healthcare-related activity.">
+			use = <"Use to record a formal request or instruction to gain and record informed consent from a subject (or the subject's agent) for a proposed procedure, trial or other healthcare-related activity. This may need to be recorded as a formal instruction when part of a care plan or ahead of time when there is a distributed care team preparing a patient for a procedure, trial or activity to be performed in a different physical environment.
+            
+            This archetype has been designed to be a framework that will be adequate for ordering or requesting a simple informed consent, but allow for additional details to be optionally added within the 'Details' SLOT to meet the specific requirements of a more complex clinical scenario.  For example, additional consent details can be included using the Node.consent_details archetype. Other archetypes can be developed and optionally included in the same SLOT for the purpose of including specific details about the procedure, trial or activity.">
+			keywords = <"consent", "informed", "trial", "procedure", "operation">
+			misuse = <"">
+		>
+	>
+
+definition
+	Order[id1] matches {	-- Informed consent request
+		activities matches {
+			Activity[id3] occurrences matches {0..1} matches {	-- Current Activity
+				description matches {
+					Node[id5] occurrences matches {0..1} matches {	-- Proposed procedure/trial/activity
+						value matches {
+							Text[id26] 
+						}
+					}
+					Node[id17] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id27] 
+						}
+					}
+					Node[id18] occurrences matches {0..1} matches {	-- Intent
+						value matches {
+							Text[id28] 
+						}
+					}
+					Node[id6] occurrences matches {0..1} matches {	-- Consent description
+						value matches {
+							Text[id29] 
+						}
+					}
+					allow_archetype Node[id9] matches {	-- Details
+						include
+							archetype_id/value matches {/s2-EHR-Node\.consent_details(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.procedure_details(-[a-zA-Z0-9_]+)*\.v1/}
+					}
+					Node[id10] occurrences matches {0..1} matches {	-- Start date
+						value matches {
+							Date_time_value[id30] 
+						}
+					}
+					Node[id16] occurrences matches {0..1} matches {	-- Date consent required
+						value matches {
+							Date_time_value[id31] 
+						}
+					}
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id19] occurrences matches {0..1} matches {	-- Proposed consent document
+				value matches {
+					Text[id32] 
+				}
+			}
+			allow_archetype Node[id14] matches {	-- Responsible provider
+				include
+					archetype_id/value matches {/s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v0|s2-EHR-Node\.individual_professional(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype Node[id15] matches {	-- Proposed requester
+				include
+					archetype_id/value matches {/s2-EHR-Node\.individual_personal(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.individual_professional(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v0/}
+			}
+			Node[id20] matches {	-- Patient information
+				items matches {
+					Node[id21] occurrences matches {0..1} matches {	-- Name
+						value matches {
+							Text[id33] 
+						}
+					}
+					Node[id22] occurrences matches {0..1} matches {	-- Description
+						value matches {
+							Text[id34] 
+						}
+					}
+					use_archetype Node[id24, s2-EHR-Node.media_file.v1] 
+				}
+			}
+			allow_archetype Node[id25] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Informed consent request">
+				description = <"Request or instruction to gain and record informed consent from a subject (or the subject's agent) for a proposed procedure, trial or other healthcare-related activity (including treatments and investigations), based upon a clear appreciation and understanding of the facts, implications, and possible future consequences by the subject (or the subject's agent).">
+			>
+			["id10"] = <
+				text = <"Start date">
+				description = <"Proposed start date, and optional time, for the proposed index procedure, clinical trial or healthcare-related activity.">
+			>
+			["id14"] = <
+				text = <"Responsible provider">
+				description = <"Healthcare provider who has oversight and responsibility for the procedure, clinical trial or healthcare-related activity.">
+			>
+			["id15"] = <
+				text = <"Proposed requester">
+				description = <"Healthcare provider who is proposed to request consent from the subject.">
+			>
+			["id16"] = <
+				text = <"Date consent required">
+				description = <"Date, and optional time,  by which the consent is required.">
+			>
+			["id17"] = <
+				text = <"Description">
+				description = <"Narrative description of the proposed procedure, clinical trial or healthcare-related activity.">
+			>
+			["id18"] = <
+				text = <"Intent">
+				description = <"Description of the intent of the proposed procedure, clinical trial or healthcare-related activity.">
+			>
+			["id19"] = <
+				text = <"Proposed consent document">
+				description = <"Identification of the consent form or document proposed for use.">
+			>
+			["id20"] = <
+				text = <"Patient information">
+				description = <"Details about Patient Information proposed to be made available to the subject or subject's agent.">
+			>
+			["id21"] = <
+				text = <"Name">
+				description = <"Identification of the information to be made available.">
+			>
+			["id22"] = <
+				text = <"Description">
+				description = <"Narrative description of the patient information to be made available.">
+			>
+			["id24"] = <
+				text = <"Multimedia representation">
+				description = <"Digital representation of the Patient Information to be made available.">
+			>
+			["id25"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id3"] = <
+				text = <"Current Activity">
+				description = <"Current Activity.">
+			>
+			["id5"] = <
+				text = <"Proposed procedure/trial/activity">
+				description = <"Identification of the index proposed procedure/trial/activity (including correct side/correct site, where appropriate).">
+			>
+			["id6"] = <
+				text = <"Consent description">
+				description = <"Narrative description of the informed consent required before performing the proposed procedure, clinical trial or healthcare-related activity.">
+			>
+			["id9"] = <
+				text = <"Details">
+				description = <"Detailed information on the proposed procedure, clinical trial or healthcare-related activity, or indiviual component activities of the  index procedure/trial/activity.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id10"] = <http://loinc.org/106197-7>
+			["id5"] = <http://loinc.org/73786-6>
+			["id17"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id22"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id24"] = <http://loinc.org/104973-3>
+		>
+	>
+

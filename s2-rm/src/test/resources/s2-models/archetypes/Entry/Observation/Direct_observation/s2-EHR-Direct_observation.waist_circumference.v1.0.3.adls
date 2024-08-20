@@ -1,0 +1,193 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c9588ad0-dee2-4785-813c-1aa5e9fd462f)
+	s2-EHR-Direct_observation.waist_circumference.v1.0.3
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"no.nasjonalikt">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Silje Ljosland Bakke, Nasjonal IKT, Norway, <silje.ljosland.bakke@nasjonalikt.no>, 2017-05-11">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.waist_circumference.v1.0.3, copyright 2017 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.waist_circumference.v1.0.3 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the measurement of the circumference of the waist.">
+			use = <"Use to record the measurement of the circumference of the waist. 
+            
+            There is no clear agreement on exactly where the waist circumference should be measured. In cases where this is important to the interpretation of the results, this should be documented in the 'Method' Node.
+            
+            Use to record change from repeated measurements. This can currently be modeled by constraining the 'any event' to an interval in a template with an associated mathematical function, as appropriate.
+            
+            This archetype can also be used for recording an approximation of the waist circumference measurement in a clinical scenario where it is not possible to measure an accurate waist circumference - for example, measuring an uncooperative child. This is not modelled explicitly in the archetype as the openEHR Reference model allows the attribute of Approximation for any Quantity data type. At implementation, for example, an application user interface could allow clinicians to select an appropriately labelled check box adjacent to the 'Waist circumference' data field to indicate that the recorded waist circumference is an approximation, rather than actual.">
+			keywords = <"anthropometry", "measurement", "estimation", "circumference", "waist", "girth", "abdominal">
+			misuse = <"Not to be used to record the speed of which the waist circumference is growing or decreasing. Use a growth velocity archetype for this purpose.
+            
+            Not to be used to record the circumference of another body part. Use OBSERVATION.body_segment in these circumstances except where more specific archetypes exist such as OBSERVATION.hip_circumference.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Malin Berg, DIPS ASA, Norway", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Hilde Hollås, DIPS ASA, Norway", "Roar Holm, Helse Vest IKT A/S, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Pétur Júlíusson, Barneklinikken, HUS og K2, UIB, Norway", "Adriana Kitajima, CORE Consulting, Brazil", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Heather Leslie, Ocean Health Systems, Australia", "Inge Lindseth, Balderklinikken, Norway", "Priscila Maranhão, MEDCIDS-FMUP, Portugal", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Lars Morgan Karlsen, DIPS ASA, Norway", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Anoop Shah, University College London, United Kingdom", "Raymond Simkus, Brookswood Family Practice, Canada", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Stian Torleif Varpe, Helse Bergen, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)">
+
+definition
+	Direct_observation[id1] matches {	-- Waist circumference
+		data cardinality matches {1..*; unordered} matches {
+			Node[id5] matches {	-- Waist circumference
+				value matches {
+					Measured<Quantity>[id25] matches {
+						value matches {
+							Quantity[id19] matches {	-- Waist circumference (cm)
+								magnitude matches {|0.0..500.0|}
+								units matches {
+									Coded_text[id21] matches {
+										term matches {
+											Terminology_term[id20] matches {
+												concept matches {[at2]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Measured<Quantity>[id26] matches {
+						value matches {
+							Quantity[id22] matches {	-- Waist circumference ([in_i])
+								magnitude matches {|0.0..<400.0|}
+								units matches {
+									Coded_text[id24] matches {
+										term matches {
+											Terminology_term[id23] matches {
+												concept matches {[at3]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id16] 
+				}
+			}
+		}
+		state matches {
+			Node[id10] matches {	-- Confounding factors
+				value matches {
+					Text[id17] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id14] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Text[id18] 
+				}
+			}
+			use_archetype Node[id7, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			allow_archetype Node[id13] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at1"] = <
+				text = <"Length">
+				description = <"Length">
+			>
+			["at2"] = <
+				text = <"cm">
+				description = <"Centimetres length unit">
+			>
+			["at3"] = <
+				text = <"in_i">
+				description = <"Inches length unit">
+			>
+			["id1"] = <
+				text = <"Waist circumference">
+				description = <"The measurement of the distance around the waist.">
+			>
+			["id10"] = <
+				text = <"Confounding factors">
+				description = <"Narrative description of any issues or factors that may impact on the measurement.">
+			>
+			["id11"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id13"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id14"] = <
+				text = <"Method">
+				description = <"The method how the waist circumference was measured.">
+			>
+			["id19"] = <
+				text = <"Waist circumference (cm)">
+				description = <"Waist circumference (cm)">
+			>
+			["id22"] = <
+				text = <"Waist circumference ([in_i])">
+				description = <"Waist circumference ([in_i])">
+			>
+			["id5"] = <
+				text = <"Waist circumference">
+				description = <"The measurement of the circumference of the waist.">
+			>
+			["id7"] = <
+				text = <"Device">
+				description = <"Details about the device used for the measurement.">
+			>
+			["id8"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the measurement of waist circumference not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at1"] = <http://openehr.org/id/122>
+		>
+		["ucum"] = <
+			["at2"] = <http://ucum.org/id/cm>
+			["at3"] = <http://ucum.org/id/%5Bin_i%5D>
+		>
+		["snomed"] = <
+			["at2"] = <http://snomed.info/id/258672001>
+			["at3"] = <http://snomed.info/id/258677007>
+		>
+		["loinc"] = <
+			["id7"] = <http://loinc.org/74720-4>
+			["id10"] = <http://loinc.org/106176-1>
+			["id14"] = <http://loinc.org/106191-0>
+			["id8"] = <http://loinc.org/106173-8>
+		>
+	>
+

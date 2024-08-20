@@ -1,0 +1,269 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=24953cd4-4c93-4d18-80fd-f37773354654)
+    s2-EHR-Direct_observation.intermacs_profile.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Samuel Frade, BinaryScope Solutions, Portugal", "Heather Leslie, Atomica Informatics, Australia">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Vanessa Pereira, Marand d.o.o., <vanessa.pereira@marand.si>, 2018-11-02">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.intermacs_profile.v0.0.1-alpha, copyright 2018 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.intermacs_profile.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the INTERMACS profile of a patient at the time of implant of a mechanical support.">
+            keywords = <"INTERMACS", "heart failure", "profiles">
+            use = <"Use to record the INTERMACS profile of a patient at the time of implant of a mechanical support.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- INTERMACS profile
+        data cardinality matches {1..*; unordered} matches {
+            Node[id7] matches {    -- Profile
+                value matches {
+                    Coded_ordinal[id29] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id31] matches {
+                                term matches {
+                                    Terminology_term[id30] matches {
+                                        concept matches {[at7]}    -- Critical cardiogenic shock
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id32] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id34] matches {
+                                term matches {
+                                    Terminology_term[id33] matches {
+                                        concept matches {[at8]}    -- Progressive decline on inotropic support
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id35] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id37] matches {
+                                term matches {
+                                    Terminology_term[id36] matches {
+                                        concept matches {[at9]}    -- Stable but inotrope dependent
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id38] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id40] matches {
+                                term matches {
+                                    Terminology_term[id39] matches {
+                                        concept matches {[at10]}    -- Resting symptoms
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id41] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id43] matches {
+                                term matches {
+                                    Terminology_term[id42] matches {
+                                        concept matches {[at11]}    -- Exertion intolerant
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id44] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id46] matches {
+                                term matches {
+                                    Terminology_term[id45] matches {
+                                        concept matches {[at12]}    -- Exertion limited
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id47] matches {
+                        magnitude matches {7}
+                        concept matches {
+                            Coded_text[id49] matches {
+                                term matches {
+                                    Terminology_term[id48] matches {
+                                        concept matches {[at13]}    -- Advanced NYHA Class III symptoms
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- 'TCS' modifier
+                value matches {
+                    Coded_text[id26] matches {
+                        term matches {
+                            Terminology_term[id50] matches {
+                                concept matches {[ac1]}    -- 'TCS' modifier (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id20] occurrences matches {0..1} matches {    -- 'A' modifier
+                value matches {
+                    Coded_text[id27] matches {
+                        term matches {
+                            Terminology_term[id51] matches {
+                                concept matches {[ac2]}    -- 'A' modifier (synthesised)
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id24] occurrences matches {0..1} matches {    -- 'FF' modifier
+                value matches {
+                    Text[id28]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id19] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+        }
+    }
+
+terminology
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at21", "at22">
+        >
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at21", "at22">
+        >
+        ["ac3"] = <
+            id = <"ac3">
+            members = <"at7", "at8", "at9", "at10", "at11", "at12", "at13">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"'TCS' modifier (synthesised)">
+                description = <"Modifier indicating the use of temporary circulatory support (TCS). (synthesised)">
+            >
+            ["ac2"] = <
+                text = <"'A' modifier (synthesised)">
+                description = <"Modifier indicating the occurrence of frequent arrhythmias (A). (synthesised)">
+            >
+            ["ac3"] = <
+                text = <"Profile (synthesised)">
+                description = <"Categorisation of the level of limitation at the time of implant. (synthesised)">
+            >
+            ["at10"] = <
+                text = <"Resting symptoms">
+                description = <"Patient can be stabilized close to normal volume status but experiences daily symptoms of congestion at rest or during ADL. Doses of diuretics generally fluctuate at very high levels. More intensive management and surveillance strategies should be considered, which may in some cases reveal poor compliance that would compromise outcomes with any therapy. Some patients may shuttle between 4 and 5.">
+            >
+            ["at11"] = <
+                text = <"Exertion intolerant">
+                description = <"Comfortable at rest and with ADL but unable to engage in any other activity, living predominantly within the house. Patients are comfortable at rest without congestive symptoms, but may have underlying refractory elevated volume status, often with renal dysfunction. If underlying nutritional status and organ function are marginal, patient may be more at risk than INTERMACS 4, and require definitive intervention.">
+            >
+            ["at12"] = <
+                text = <"Exertion limited">
+                description = <"Patient without evidence of fluid overload is comfortable at rest, and with activities of daily living and minor activities outside the home but fatigues after the first few minutes of any meaningful activity. Attribution to cardiac limitation requires careful measurement of peak oxygen consumption, in some cases with hemodynamic monitoring to confirm severity of cardiac impairment. “Walking wounded\\\".">
+            >
+            ["at13"] = <
+                text = <"Advanced NYHA Class III symptoms">
+                description = <"A placeholder for more precise specification in future, this level includes patients who are without current or recent episodes of unstable fluid balance, living comfortably with meaningful activity limited to mild physical exertion.">
+            >
+            ["at21"] = <
+                text = <"Present">
+                description = <"The qualifier is present.">
+            >
+            ["at22"] = <
+                text = <"Absent">
+                description = <"The qualifier is absent.">
+            >
+            ["at7"] = <
+                text = <"Critical cardiogenic shock">
+                description = <"Patients with life-threatening hypotension despite rapidly escalating inotropic support, critical organ hypoperfusion, often confirmed by worsening acidosis and/or lactate levels. “Crash and burn\\\".">
+            >
+            ["at8"] = <
+                text = <"Progressive decline on inotropic support">
+                description = <"Patient with declining function despite intravenous inotropic support, may be manifest by worsening renal function, nutritional depletion, inability to restore volume balance “Sliding on inotropes.” Also describes declining status in patients unable to tolerate inotropic therapy.">
+            >
+            ["at9"] = <
+                text = <"Stable but inotrope dependent">
+                description = <"Patient with stable blood pressure, organ function, nutrition, and symptoms on continuous intravenous inotropic support (or a temporary circulatory support device or both), but demonstrating repeated failure to wean from support due to recurrent symptomatic hypotension or renal dysfunction “Dependent stability\\\".">
+            >
+            ["id1"] = <
+                text = <"INTERMACS profile">
+                description = <"Categorisation of the severity and level of limitation of advanced heart failure on at patient at the time of implant of a mechanical support, as defined by the Interagency Registry for Mechanically Assisted Circulatory Support (INTERMACS) data registry.">
+            >
+            ["id19"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+            >
+            ["id2"] = <
+                text = <"History">
+                description = <"History.">
+            >
+            ["id20"] = <
+                text = <"'A' modifier">
+                description = <"Modifier indicating the occurrence of frequent arrhythmias (A).">
+            >
+            ["id21"] = <
+                text = <"'TCS' modifier">
+                description = <"Modifier indicating the use of temporary circulatory support (TCS).">
+            >
+            ["id24"] = <
+                text = <"'FF' modifier">
+                description = <"Modifier indicating the need for frequent rehospitalisation (FF).">
+            >
+            ["id3"] = <
+                text = <"Any Event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id7"] = <
+                text = <"Profile">
+                description = <"Categorisation of the level of limitation at the time of implant.">
+            >
+        >
+    >
+    

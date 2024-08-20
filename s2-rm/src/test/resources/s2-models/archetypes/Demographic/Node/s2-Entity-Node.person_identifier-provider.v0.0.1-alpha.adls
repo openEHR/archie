@@ -1,0 +1,135 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=09b53b01-7aee-4799-95f5-465ae196f945)
+    s2-Entity-Node.person_identifier-provider.v0.0.1-alpha
+
+specialize
+    s2-Entity-Node.person_identifier.v0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)", "Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias, Universidade do Estado do Rio de Janeiro - UERJ, <sergio@lampada.uerj.br>, 2009-05-22">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.person_identifier-provider.v0.0.1-alpha, copyright 2009 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-DEMOGRAPHIC-CLUSTER.person_identifier-provider.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"Representation of data about a healthcare provider (individual/organization) identifier.">
+            keywords = <"demographic service", "healthcare provider identifier">
+            use = <"Used in demographic services to register data about a healthcare provider (individual/organization) identifier.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Node[id1.1] matches {    -- Healthcare provider identifier
+        /items matches {
+            after [id7]
+            Node[id0.2] occurrences matches {1..*} matches {    -- Identifier Usage
+                value matches {
+                    Plain_text[id0.35]
+                    Coded_text[id0.36] matches {
+                        term matches {
+                            Terminology_term[id0.42] matches {
+                                concept matches {[ac1.1]}    -- Identifier usage code
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id0.3] matches {    -- Duplicate resolution
+                items cardinality matches {3..*; unordered} matches {
+                    Node[id0.30] occurrences matches {0..1} matches {    -- Not a duplicate of
+                        value matches {
+                            Text[id0.37]
+                        }
+                    }
+                    Node[id0.31] occurrences matches {0..1} matches {    -- Duplicate of
+                        value matches {
+                            Text[id0.38]
+                        }
+                    }
+                    Node[id0.32] occurrences matches {1..*} matches {    -- Confirmed by organization
+                        value matches {
+                            Text[id0.39]
+                        }
+                    }
+                    Node[id0.33] occurrences matches {1..*} matches {    -- Date confirmed
+                        value matches {
+                            Date_value[id0.40]
+                        }
+                    }
+                    Node[id0.34] occurrences matches {1..*} matches {    -- Retired identifider
+                        value matches {
+                            Text[id0.41]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac1.1"] = <
+                text = <"Identifier usage code">
+                description = <"Valid codes for usage of identifiers.">
+            >
+            ["id0.2"] = <
+                text = <"Identifier Usage">
+                description = <"The purpose or intended use of this unique identifier.">
+            >
+            ["id0.3"] = <
+                text = <"Duplicate resolution">
+                description = <"This group of data allow users to identify where they have determined that two identifiers which appears to be duplicates are not duplicated, or to indicate that where they are discovered to be duplicates -  which number is retired and no longer used, and which is retained.">
+            >
+            ["id0.30"] = <
+                text = <"Not a duplicate of">
+                description = <"The identifier entered into this field is not a duplicate entry of this identifier.">
+            >
+            ["id0.31"] = <
+                text = <"Duplicate of">
+                description = <"The identifier entered into this field is a duplicate entry of this identifier.">
+            >
+            ["id0.32"] = <
+                text = <"Confirmed by organization">
+                description = <"The organization that has confirmed the duplicate or not duplicate status of this identifier.">
+            >
+            ["id0.33"] = <
+                text = <"Date confirmed">
+                description = <"The date upon which this identifier was determined as a duplicate or not a duplicate.">
+            >
+            ["id0.34"] = <
+                text = <"Retired identifider">
+                description = <"For a duplicate identifier set this field indicates if this number is the one retired (nor for further use) or not.">
+            >
+            ["id1.1"] = <
+                text = <"Healthcare provider identifier">
+                description = <"Healthcare provider identifier.">
+            >
+        >
+    >
+    

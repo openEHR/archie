@@ -1,0 +1,85 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1c13dcbe-0c64-4a91-9c17-520dca18046e)
+	s2-EHR-Section.immunisation_list.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2019-02-11">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-SECTION.immunisation_list.v0.0.1-alpha, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-SECTION.immunisation_list.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To provide a framework and design guidance for consistent modelling of content within a template for a Vaccination list.">
+			use = <"Use as a framework and suggested design guidance for consistent modelling of content within a template for a Vaccination list.
+            
+            This archetype is intended to be used within the COMPOSITION.vaccination_list or as one component of other COMPOSITION archetypes. For example: complex documents, such as a referral.
+            
+            This list can be comprised of three types of statements, each represented by specific archetypes:
+            - statements about the positive presence of vaccinations administered are recorded using the ACTION.medication OR
+            - statements about the positive exclusion of vaccinations administered can be recorded using the specific EVALUATION.exclusion-global; OR
+            - statements about no information being available - neither a positive presence of an administered vaccination nor a positive exclusion - can be recorded using the EVALUATION.absence archetype.">
+			keywords = <"immunisation", "vaccination", "exclusion", "absence", "list">
+			misuse = <"Not to be used to record the actual administration of a vaccination. Use ACTION.medication for this purpose.">
+		>
+	>
+
+definition
+	Section[id1] matches {	-- Vaccination list
+		items matches {
+			use_archetype Entry[id2, s2-EHR-Action.medication.v1] 
+			use_archetype Assessment[id3, s2-EHR-Assessment.exclusion_global.v1] 
+			use_archetype Assessment[id4, s2-EHR-Assessment.absence.v2] 
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Vaccination list">
+				description = <"Framework for consistent modelling of content within a template for an Vaccination List.">
+			>
+			["id2"] = <
+				text = <"Vaccinations administered">
+				description = <"Positive statements about vaccinations that have been administered.">
+			>
+			["id3"] = <
+				text = <"Exclusion statement">
+				description = <"A positive statement about the exclusion of vaccinations administered.">
+			>
+			["id4"] = <
+				text = <"Absence statement">
+				description = <"A positive statement that no information is available about vaccinations administered.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/41291-6>
+			["id2"] = <http://loinc.org/30956-7>
+		>
+	>
+

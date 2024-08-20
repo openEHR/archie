@@ -1,0 +1,40 @@
+template (adl_version=2.0.6; rm_release=0.8.0)
+	s2-EHR-Composition.t_problem_list.v1.0.0
+
+specialize
+	s2-EHR-Composition.problem_list.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale <thomas.beale@GraphiteHealth.io>">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+	>
+	copyright = <"Copyright (c) 2023 Graphite Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"Problem list template">
+		>
+	>
+
+definition
+	Composition[id1.1]
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"Problem list template">
+				description = <"-">
+			>
+			["id2.1"] = <
+				text = <"Problem List headings">
+				description = <"-">
+			>
+		>
+	>

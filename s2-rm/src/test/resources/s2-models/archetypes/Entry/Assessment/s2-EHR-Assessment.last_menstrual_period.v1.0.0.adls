@@ -1,0 +1,127 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=151acaee-8bcf-4205-a9f8-6b4ecaf062b5)
+	s2-EHR-Assessment.last_menstrual_period.v1.0.0
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Marit Alice Venheim, Helse Vest IKT AS, <marit.alice.venheim@helse-vest-ikt-no>, 2021-08-03">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.last_menstrual_period.v1.0.0, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.last_menstrual_period.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the details about the first day of the most recent menstrual cycle for the individual.">
+			use = <"Use to record the details about the first day of the most recent menstrual cycle for the individual. 
+            
+            Use the data Node 'Certainty' to record the level of certainty the date was correct. The assumption when recording the onset of the last menstrual cycle is that the menstruation was 'normal'.">
+			keywords = <"menstruation", "menses", "LNMP", "LMP", "LNP", "DLMP">
+			misuse = <"Not to be used to record information about menses or related symptoms, use the OBSERVATION.menstruation archetype for this purpose. 
+            
+            Not to be used to record information about a specific day in a menstrual cycle, use the OBSERVATION.menstrual_diary archetype for this purpose.
+            
+            Not to be used to record information about an individual's menstruation history events or patterns of menstruation over time, use the EVALUATION.menstruation_summary archetype for this purpose.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Peter Fedorcsak, Oslo universitetssykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Anna Moore, University of Cambridge, United Kingdom", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Nyree Taylor, Ocean Health Systems, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "zhiping zhang, genecast, China">
+
+definition
+	Assessment[id1] matches {	-- Last menstrual period
+		data matches {
+			Node[id3] matches {	-- Date of onset (LMP)
+				value matches {
+					Date_value[id11] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Certainty
+				value matches {
+					Plain_text[id12] 
+					Coded_text[id13] 
+				}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id14] 
+				}
+			}
+			Node[id9] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id15] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id7] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id16] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Last menstrual period">
+				description = <"Identification of the first day of the most recent menstrual cycle for the individual.">
+			>
+			["id10"] = <
+				text = <"Certainty">
+				description = <"The level of certainty the date was accurate.">
+			>
+			["id3"] = <
+				text = <"Date of onset (LMP)">
+				description = <"Date of onset of menstrual bleeding.">
+			>
+			["id5"] = <
+				text = <"Last updated">
+				description = <"Date when the Last menstrual period was updated.">
+			>
+			["id7"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id8"] = <
+				text = <"Description">
+				description = <"Narrative description about the last menstrual period.">
+			>
+			["id9"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the last menstrual period, not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id5"] = <http://loinc.org/106177-9>
+			["id8"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id9"] = <http://loinc.org/106173-8>
+		>
+	>
+

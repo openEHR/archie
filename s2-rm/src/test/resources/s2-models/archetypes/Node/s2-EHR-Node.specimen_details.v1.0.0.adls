@@ -1,0 +1,96 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; uid=cae4e124-6834-4417-b245-d17a34f5e9b7)
+	s2-EHR-Node.specimen_details.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Thomas Beale">
+		["organisation"] = <"Graphite Health <http://www.GraphiteHealth.io>">
+		["email"] = <"thomas.beale@graphitehealth.io">
+		["date"] = <"2024-08-02">
+	>
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["loinc"] = <"This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 IHTSDO <ihtsdo.org>">
+		["openehr"] = <"Converted from openEHR archetype openEHR-EHR-CLUSTER.specimen.v1.1.2">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record details about a physical sample collected from, or related to, an individual for the purpose of investigation, examination or analysis.">
+			use = <"Use to record details about a physical sample collected from, or related to, an individual for the purpose of investigation, examination or analysis.">
+			keywords = <"specimen", "laboratory", "sample", "collection", "sampling", "biopsy", "tissue", "cytology", "microbiology", "pathology", "histopathology", "histology", "lab", "fluid", "smear", "blood", "exudate", "serum", "plasma", "urine", "saliva", "secretion", "synovial", "lymph", "feces", "faeces", "fæces", "ascites", "expectorate", "swab", "breast milk", "pus", "drain fluid", "bone marrow", "culture", "scraping", "aspirate", "phlebotomy", "test", "cerebrospinal fluid", "pleural fluid", "resection", "excision">
+			misuse = <"Not intended to be used for recording information about specimens that are not related to a specific individual. For example routine water samples from a waterworks, or spot samples from food production facilities.">
+		>
+	>
+	other_contributors = <"Stan Huff, MD (Graphite Health)", "Joey Coyle, MD (Graphite Health)", "Nathan Davis (Graphite Health)">
+
+definition
+	Node[id1] matches {	-- Specimen
+		items matches {
+			Node[id30] occurrences matches {0..1} matches {	-- Specimen type
+				value matches {
+					Coded_text[id202] matches {
+						term matches {
+							Terminology_term[id203] matches {
+								concept matches {[ac3]}
+							}
+						}
+					}
+				}
+			}
+			Node[id9] matches {	-- Sampling context
+				value matches {
+					Text[id111] 
+				}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Collection date/time
+				value matches {
+					Date_time_value[id115] 
+					Range<Date_time_value>[id116] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Specimen">
+				description = <"A physical sample collected from, or related to, an individual for the purpose of investigation, examination or analysis.">
+			>
+			["id16"] = <
+				text = <"Collection date/time">
+				description = <"The date and time that collection has been ordered to take place or has taken place.">
+			>
+			["id30"] = <
+				text = <"Specimen type">
+				description = <"The type of specimen.">
+			>
+			["id9"] = <
+				text = <"Sampling context">
+				description = <"The context in which the specimen is collected.">
+			>
+			["ac3"] = <
+				text = <"Specimen type">
+				description = <"Type of specimen">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id16"] = <http://loinc.org/68963-8>
+			["id30"] = <http://loinc.org/66746-9>
+		>
+		["s2"] = <
+			["ac3"] = <http://s2health.org/id/s2.LabTestSpecimenType>
+		>
+	>

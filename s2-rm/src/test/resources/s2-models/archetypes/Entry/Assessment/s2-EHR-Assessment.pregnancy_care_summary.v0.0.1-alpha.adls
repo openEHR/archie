@@ -1,0 +1,721 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=51a2f4d9-addd-4a6d-96d2-3a34bbec187c)
+    s2-EHR-Assessment.pregnancy_care_summary.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2022-06-13">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.pregnancy_care_summary.v0.0.1-alpha, copyright 2022 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.pregnancy_care_summary.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record summary details about the antenatal care received during a single pregnancy.">
+            use = <"Use to record summary details about the antenatal care received during a single pregnancy, usually as part of an assessment about quality of care or as part of a maternal mortality review.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Assessment[id1] matches {    -- Pregnancy care summary
+        data matches {
+            Node[id3] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    Text[id96]
+                }
+            }
+            Node[id77] occurrences matches {0..1} matches {    -- No antenatal care
+                value matches {
+                    Boolean_value[id97]
+                }
+            }
+            Node[id4] occurrences matches {0..1} matches {    -- First antenatal visit
+                value matches {
+                    Date_time_value[id98]
+                }
+            }
+            Node[id5] matches {    -- Routine antenatal care summary
+                items matches {
+                    Node[id6] occurrences matches {0..1} matches {    -- Type of care
+                        value matches {
+                            Text[id99]
+                        }
+                    }
+                    Node[id7] occurrences matches {0..1} matches {    -- Provider name
+                        value matches {
+                            Text[id100]
+                        }
+                    }
+                    allow_archetype Node[id8] matches {     -- Provider details
+                        include
+                            archetype_id/value matches {/s2-EHR-Node\.person(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1/}
+                    }
+                    Node[id9] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            Text[id101]
+                        }
+                    }
+                    Node[id10] occurrences matches {0..1} matches {    -- Date of first visit
+                        value matches {
+                            Date_time_value[id102]
+                        }
+                    }
+                    Node[id11] occurrences matches {0..1} matches {    -- Gestation at first visit
+                        value matches {
+                            Duration_value[id103] matches {
+                                magnitude matches {|PT0S..P50W|}
+                            }
+                        }
+                    }
+                    Node[id12] occurrences matches {0..1} matches {    -- Date of last visit
+                        value matches {
+                            Date_time_value[id104]
+                        }
+                    }
+                    Node[id13] occurrences matches {0..1} matches {    -- Gestation at last visit
+                        value matches {
+                            Duration_value[id105] matches {
+                                magnitude matches {|PT0S..P50W|}
+                            }
+                        }
+                    }
+                    Node[id14] occurrences matches {0..1} matches {    -- Number of visits
+                        value matches {
+                            Count[id106]
+                        }
+                    }
+                    Node[id15] matches {    -- Conditions managed
+                        value matches {
+                            Text[id107]
+                        }
+                    }
+                    Node[id16] occurrences matches {0..1} matches {    -- Treatment summary
+                        value matches {
+                            Text[id108]
+                        }
+                    }
+                    allow_archetype Node[id17] matches {     -- Additional details
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    Node[id57] occurrences matches {0..1} matches {    -- Scheduled follow up
+                        value matches {
+                            Date_time_value[id109]
+                        }
+                    }
+                    Node[id64] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Date_time_value[id110]
+                        }
+                    }
+                }
+            }
+            Node[id81] occurrences matches {0..1} matches {    -- Specialist antenatal care summary
+                items matches {
+                    Node[id82] occurrences matches {0..1} matches {    -- Type of care
+                        value matches {
+                            Text[id111]
+                        }
+                    }
+                    Node[id83] occurrences matches {0..1} matches {    -- Provider name
+                        value matches {
+                            Text[id112]
+                        }
+                    }
+                    allow_archetype Node[id84] matches {     -- Provider details
+                        include
+                            archetype_id/value matches {/s2-EHR-Node\.person(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.organization(-[a-zA-Z0-9_]+)*\.v1/}
+                    }
+                    Node[id85] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            Text[id113]
+                        }
+                    }
+                    Node[id86] occurrences matches {0..1} matches {    -- Date of first visit
+                        value matches {
+                            Date_time_value[id114]
+                        }
+                    }
+                    Node[id87] occurrences matches {0..1} matches {    -- Gestation at first visit
+                        value matches {
+                            Duration_value[id115] matches {
+                                magnitude matches {|PT0S..P50W|}
+                            }
+                        }
+                    }
+                    Node[id88] occurrences matches {0..1} matches {    -- Date of last visit
+                        value matches {
+                            Date_time_value[id116]
+                        }
+                    }
+                    Node[id89] occurrences matches {0..1} matches {    -- Gestation at last visit
+                        value matches {
+                            Duration_value[id117] matches {
+                                magnitude matches {|PT0S..P50W|}
+                            }
+                        }
+                    }
+                    Node[id90] occurrences matches {0..1} matches {    -- Number of visits
+                        value matches {
+                            Count[id118]
+                        }
+                    }
+                    Node[id91] matches {    -- Conditions managed
+                        value matches {
+                            Text[id119]
+                        }
+                    }
+                    Node[id92] occurrences matches {0..1} matches {    -- Treatment summary
+                        value matches {
+                            Text[id120]
+                        }
+                    }
+                    allow_archetype Node[id93] matches {     -- Additional details
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    Node[id94] occurrences matches {0..1} matches {    -- Scheduled follow up
+                        value matches {
+                            Date_time_value[id121]
+                        }
+                    }
+                    Node[id95] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Date_time_value[id122]
+                        }
+                    }
+                }
+            }
+            Node[id18] occurrences matches {0..1} matches {    -- Total number of antenatal visits
+                value matches {
+                    Count[id123]
+                }
+            }
+            Node[id19] matches {    -- Antenatal admission
+                items matches {
+                    Node[id20] occurrences matches {0..1} matches {    -- Gestation at admission
+                        value matches {
+                            Duration_value[id124] matches {
+                                magnitude matches {|PT0S..P50W|}
+                            }
+                        }
+                    }
+                    Node[id21] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            Text[id125]
+                        }
+                    }
+                    allow_archetype Node[id22] matches {     -- Inpatient admission details
+                        include
+                            archetype_id/value matches {/s2-EHR-Node\.inpatient_episode_details(-[a-zA-Z0-9_]+)*\.v0/}
+                    }
+                    Node[id23] matches {    -- Conditions managed
+                        value matches {
+                            Text[id126]
+                        }
+                    }
+                    Node[id25] occurrences matches {0..1} matches {    -- Treatment summary
+                        value matches {
+                            Text[id127]
+                        }
+                    }
+                    allow_archetype Node[id27] occurrences matches {0..1} matches {     -- Additional details
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    Node[id28] occurrences matches {0..1} matches {    -- Gestation at discharge
+                        value matches {
+                            Duration_value[id128] matches {
+                                magnitude matches {|PT0S..P50W|}
+                            }
+                        }
+                    }
+                    Node[id24] occurrences matches {0..1} matches {    -- Scheduled follow up
+                        value matches {
+                            Date_time_value[id129]
+                        }
+                    }
+                    Node[id31] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Date_time_value[id130]
+                        }
+                    }
+                }
+            }
+            Node[id29] occurrences matches {0..1} matches {    -- Total number of antenatal admissions
+                value matches {
+                    Count[id131]
+                }
+            }
+            Node[id30] occurrences matches {0..1} matches {    -- Date of last antenatal visit
+                value matches {
+                    Date_time_value[id132]
+                }
+            }
+            Node[id59] occurrences matches {0..1} matches {    -- Delivery admission
+                items matches {
+                    Node[id34] occurrences matches {0..1} matches {    -- Gestation at admission
+                        value matches {
+                            Duration_value[id133] matches {
+                                magnitude matches {|>=PT0S|}
+                            }
+                        }
+                    }
+                    Node[id32] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            Date_time_value[id134]
+                        }
+                    }
+                    allow_archetype Node[id60] matches {     -- Inpatient admission details
+                        include
+                            archetype_id/value matches {/s2-EHR-Node\.inpatient_episode_details(-[a-zA-Z0-9_]+)*\.v0/}
+                    }
+                    Node[id33] occurrences matches {0..1} matches {    -- Scheduled follow up
+                        value matches {
+                            Date_time_value[id135]
+                        }
+                    }
+                    Node[id61] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Date_time_value[id136]
+                        }
+                    }
+                }
+            }
+            Node[id35] matches {    -- Postnatal visit
+                items matches {
+                    Node[id36] occurrences matches {0..1} matches {    -- Type of visit
+                        value matches {
+                            Text[id137]
+                        }
+                    }
+                    Node[id58] occurrences matches {0..1} matches {    -- Date of visit
+                        value matches {
+                            Date_time_value[id138]
+                        }
+                    }
+                    Node[id37] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            Text[id139]
+                        }
+                    }
+                    Node[id38] occurrences matches {0..1} matches {    -- Assessment
+                        value matches {
+                            Text[id140]
+                        }
+                    }
+                    Node[id39] occurrences matches {0..1} matches {    -- Conditions managed
+                        value matches {
+                            Text[id141]
+                        }
+                    }
+                    allow_archetype Node[id40] occurrences matches {0..1} matches {     -- Additional details
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    Node[id41] occurrences matches {0..1} matches {    -- Scheduled follow up
+                        value matches {
+                            Date_time_value[id142]
+                        }
+                    }
+                    Node[id62] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Date_time_value[id143]
+                        }
+                    }
+                }
+            }
+            Node[id42] occurrences matches {0..1} matches {    -- Total number of postnatal visits
+                value matches {
+                    Count[id144]
+                }
+            }
+            Node[id43] matches {    -- Postnatal admission
+                items matches {
+                    Node[id44] occurrences matches {0..1} matches {    -- Description
+                        value matches {
+                            Text[id145]
+                        }
+                    }
+                    allow_archetype Node[id45] occurrences matches {0..1} matches {     -- Inpatient admission details
+                        include
+                            archetype_id/value matches {/s2-EHR-Node\.inpatient_episode_details(-[a-zA-Z0-9_]+)*\.v0/}
+                    }
+                    Node[id46] matches {    -- Conditions managed
+                        value matches {
+                            Text[id146]
+                        }
+                    }
+                    Node[id47] occurrences matches {0..1} matches {    -- Treatment summary
+                        value matches {
+                            Text[id147]
+                        }
+                    }
+                    allow_archetype Node[id48] occurrences matches {0..1} matches {     -- Additional details
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    Node[id49] occurrences matches {0..1} matches {    -- Scheduled follow up
+                        value matches {
+                            Date_time_value[id148]
+                        }
+                    }
+                    Node[id63] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            Date_time_value[id149]
+                        }
+                    }
+                }
+            }
+            Node[id50] occurrences matches {0..1} matches {    -- Total number of postnatal admissions
+                value matches {
+                    Count[id150]
+                }
+            }
+            Node[id51] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    Text[id151]
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id53] matches {     -- Extension
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            Node[id54] occurrences matches {0..1} matches {    -- Last updated
+                value matches {
+                    Date_time_value[id152]
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Pregnancy care summary">
+                description = <"Summary details about the antenatal care received during a single pregnancy.">
+            >
+            ["id10"] = <
+                text = <"Date of first visit">
+                description = <"">
+            >
+            ["id11"] = <
+                text = <"Gestation at first visit">
+                description = <"">
+            >
+            ["id12"] = <
+                text = <"Date of last visit">
+                description = <"">
+            >
+            ["id13"] = <
+                text = <"Gestation at last visit">
+                description = <"">
+            >
+            ["id14"] = <
+                text = <"Number of visits">
+                description = <"The number of visits to the identified clinic.">
+            >
+            ["id15"] = <
+                text = <"Conditions managed">
+                description = <"Significant issues, problems or diagnoses managed by the specified type of care.">
+            >
+            ["id16"] = <
+                text = <"Treatment summary">
+                description = <"">
+            >
+            ["id17"] = <
+                text = <"Additional details">
+                description = <"">
+            >
+            ["id18"] = <
+                text = <"Total number of antenatal visits">
+                description = <"Total number of antenatal clinic visits of all types and locations.">
+            >
+            ["id19"] = <
+                text = <"Antenatal admission">
+                description = <"">
+            >
+            ["id20"] = <
+                text = <"Gestation at admission">
+                description = <"">
+            >
+            ["id21"] = <
+                text = <"Description">
+                description = <"">
+            >
+            ["id22"] = <
+                text = <"Inpatient admission details">
+                description = <"">
+            >
+            ["id23"] = <
+                text = <"Conditions managed">
+                description = <"Significant issues, problems or diagnoses managed by the specified type of care.">
+            >
+            ["id24"] = <
+                text = <"Scheduled follow up">
+                description = <"The scheduled date for antenatal admission followup.">
+            >
+            ["id25"] = <
+                text = <"Treatment summary">
+                description = <"">
+            >
+            ["id27"] = <
+                text = <"Additional details">
+                description = <"">
+            >
+            ["id28"] = <
+                text = <"Gestation at discharge">
+                description = <"">
+            >
+            ["id29"] = <
+                text = <"Total number of antenatal admissions">
+                description = <"Total number of antenatal hospital admissions.">
+            >
+            ["id3"] = <
+                text = <"Description">
+                description = <"Narrative description about the care received during a single pregnancy and the related postnatal period.">
+            >
+            ["id30"] = <
+                text = <"Date of last antenatal visit">
+                description = <"The date of the last antenatal visit of any type or location, prior to delivery.">
+            >
+            ["id31"] = <
+                text = <"Comment">
+                description = <"">
+            >
+            ["id32"] = <
+                text = <"Description">
+                description = <"">
+            >
+            ["id33"] = <
+                text = <"Scheduled follow up">
+                description = <"The scheduled date for routine postnatal followup.">
+            >
+            ["id34"] = <
+                text = <"Gestation at admission">
+                description = <"">
+            >
+            ["id35"] = <
+                text = <"Postnatal visit">
+                description = <"">
+            >
+            ["id36"] = <
+                text = <"Type of visit">
+                description = <"Type of health professional or clinic providing community or outpatient postnatal care.">
+            >
+            ["id37"] = <
+                text = <"Description">
+                description = <"">
+            >
+            ["id38"] = <
+                text = <"Assessment">
+                description = <"">
+            >
+            ["id39"] = <
+                text = <"Conditions managed">
+                description = <"Significant issues, problems or diagnoses managed by the specified type of care.">
+            >
+            ["id4"] = <
+                text = <"First antenatal visit">
+                description = <"The date of the first antenatal visit.">
+            >
+            ["id40"] = <
+                text = <"Additional details">
+                description = <"">
+            >
+            ["id41"] = <
+                text = <"Scheduled follow up">
+                description = <"The scheduled date for postnatal care followup.">
+            >
+            ["id42"] = <
+                text = <"Total number of postnatal visits">
+                description = <"">
+            >
+            ["id43"] = <
+                text = <"Postnatal admission">
+                description = <"">
+            >
+            ["id44"] = <
+                text = <"Description">
+                description = <"">
+            >
+            ["id45"] = <
+                text = <"Inpatient admission details">
+                description = <"">
+            >
+            ["id46"] = <
+                text = <"Conditions managed">
+                description = <"Significant issues, problems or diagnoses managed by the specified type of care.">
+            >
+            ["id47"] = <
+                text = <"Treatment summary">
+                description = <"">
+            >
+            ["id48"] = <
+                text = <"Additional details">
+                description = <"">
+            >
+            ["id49"] = <
+                text = <"Scheduled follow up">
+                description = <"The scheduled date for postnatal admission followup.">
+            >
+            ["id5"] = <
+                text = <"Routine antenatal care summary">
+                description = <"">
+            >
+            ["id50"] = <
+                text = <"Total number of postnatal admissions">
+                description = <"">
+            >
+            ["id51"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the care received during a single pregnancy and the related postnatal period, not captured in other data fields.">
+            >
+            ["id53"] = <
+                text = <"Extension">
+                description = <"">
+            >
+            ["id54"] = <
+                text = <"Last updated">
+                description = <"The date when this care summary was last updated.">
+            >
+            ["id57"] = <
+                text = <"Scheduled follow up">
+                description = <"The scheduled date for antenatal admission followup.">
+            >
+            ["id58"] = <
+                text = <"Date of visit">
+                description = <"">
+            >
+            ["id59"] = <
+                text = <"Delivery admission">
+                description = <"">
+            >
+            ["id6"] = <
+                text = <"Type of care">
+                description = <"Type of health professional or clinic providing community or outpatient antenatal care.">
+            >
+            ["id60"] = <
+                text = <"Inpatient admission details">
+                description = <"">
+            >
+            ["id61"] = <
+                text = <"Comment">
+                description = <"">
+            >
+            ["id62"] = <
+                text = <"Comment">
+                description = <"">
+            >
+            ["id63"] = <
+                text = <"Comment">
+                description = <"">
+            >
+            ["id64"] = <
+                text = <"Comment">
+                description = <"">
+            >
+            ["id7"] = <
+                text = <"Provider name">
+                description = <"">
+            >
+            ["id77"] = <
+                text = <"No antenatal care">
+                description = <"">
+            >
+            ["id8"] = <
+                text = <"Provider details">
+                description = <"">
+            >
+            ["id81"] = <
+                text = <"Specialist antenatal care summary">
+                description = <"">
+            >
+            ["id82"] = <
+                text = <"Type of care">
+                description = <"Type of health professional or clinic providing community or outpatient antenatal care.">
+            >
+            ["id83"] = <
+                text = <"Provider name">
+                description = <"">
+            >
+            ["id84"] = <
+                text = <"Provider details">
+                description = <"">
+            >
+            ["id85"] = <
+                text = <"Description">
+                description = <"">
+            >
+            ["id86"] = <
+                text = <"Date of first visit">
+                description = <"">
+            >
+            ["id87"] = <
+                text = <"Gestation at first visit">
+                description = <"">
+            >
+            ["id88"] = <
+                text = <"Date of last visit">
+                description = <"">
+            >
+            ["id89"] = <
+                text = <"Gestation at last visit">
+                description = <"">
+            >
+            ["id9"] = <
+                text = <"Description">
+                description = <"">
+            >
+            ["id90"] = <
+                text = <"Number of visits">
+                description = <"The number of visits to the identified clinic.">
+            >
+            ["id91"] = <
+                text = <"Conditions managed">
+                description = <"Significant issues, problems or diagnoses managed by the specified type of care.">
+            >
+            ["id92"] = <
+                text = <"Treatment summary">
+                description = <"">
+            >
+            ["id93"] = <
+                text = <"Additional details">
+                description = <"">
+            >
+            ["id94"] = <
+                text = <"Scheduled follow up">
+                description = <"The scheduled date for antenatal admission followup.">
+            >
+            ["id95"] = <
+                text = <"Comment">
+                description = <"">
+            >
+        >
+    >
+    

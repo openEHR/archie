@@ -1,0 +1,181 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=318b0d6c-1b45-4740-8ba8-dcd85176eeaa)
+	s2-EHR-Direct_observation.adl.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2020-10-26">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.adl.v0.0.1-alpha, copyright 2020 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.adl.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about an individual's ability to perform an identified activity of daily living.">
+			use = <"Use to record details about an individual's ability to perform an identified activity of daily living.
+            
+            Record one instance of the archetype for each identified activity.">
+			misuse = <"Not to be used to record the results of formal instruments, scores or scales, assessing capability for activities of daily living, such as the Barthel Index - use specific archetypes for each score or scale, such as OBSERVATION.modified_barthel_index.">
+		>
+	>
+
+definition
+	Direct_observation[id1] matches {	-- ADL assessment
+		data matches {
+			Node[id5] occurrences matches {0..1} matches {	-- Activity name
+				value matches {
+					Text[id19] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					Text[id20] 
+				}
+			}
+			Node[id7] occurrences matches {0..1} matches {	-- Capability
+				value matches {
+					Coded_text[id21] matches {
+						term matches {
+							Terminology_term[id26] matches {
+								concept matches {[ac1]}		-- Capability (synthesised)
+							}
+						}
+					}
+					Plain_text[id22] 
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Support description
+				value matches {
+					Text[id23] 
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Equipment description
+				value matches {
+					Text[id24] 
+				}
+			}
+			allow_archetype Node[id14] matches {	-- Equipment
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype Node[id15] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id16] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id25] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id18] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Capability (synthesised)">
+				description = <"Category of the ability for the individual to perform the identified activity. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Dependent">
+				description = <"The individual is not able to perform the activity by themselves.">
+			>
+			["at7"] = <
+				text = <"Independent">
+				description = <"The individual is able to perform the activity independently.">
+			>
+			["at8"] = <
+				text = <"Independent with equipment">
+				description = <"The individual is able to perform the activity with the assistance of equipment or aids.">
+			>
+			["at9"] = <
+				text = <"Requires assistance">
+				description = <"The individual requires active support to perform the activity.">
+			>
+			["id1"] = <
+				text = <"ADL assessment">
+				description = <"Details about an individual's ability to perform an identified activity of daily living.">
+			>
+			["id12"] = <
+				text = <"Support description">
+				description = <"Description about the support required to carry out the activity.">
+			>
+			["id13"] = <
+				text = <"Equipment description">
+				description = <"Description about the equipment or aide required to carry out the activity.">
+			>
+			["id14"] = <
+				text = <"Equipment">
+				description = <"Structured details about the equipment required.">
+			>
+			["id15"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about the ability to perform the activity.">
+			>
+			["id16"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the individual's ability to perform the activity not captured in other fields.">
+			>
+			["id18"] = <
+				text = <"Extension">
+				description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Activity name">
+				description = <"The name of the activity of daily living.">
+			>
+			["id6"] = <
+				text = <"Clinical description">
+				description = <"Narrative description about the individual's ability to perform the activity.">
+			>
+			["id7"] = <
+				text = <"Capability">
+				description = <"Category of the ability for the individual to perform the identified activity.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id6"] = <http://loinc.org/61133-5>
+			["id16"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at7", "at8", "at9", "at10">
+		>
+	>
+

@@ -1,0 +1,803 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=702de5db-ba46-463f-9a3d-b689aeb8de60)
+    s2-EHR-Node.micronutrients.v0.0.1-alpha
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Ricardo Correia", "Pedro Marques", "Duarte Ferreira", "Heather Leslie, Atomica Informatics, Australia", "Silje Ljosland Bakke, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Priscila Maranhão; Gustavo Bacelar, MEDCIDS-FMUP; VIRTUAL CARE, <priscilamaranhao@gmail.com; gbacelar@gmail.com>, 2016-12-14">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.micronutrients.v0.0.1-alpha, copyright 2016 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.micronutrients.v0.0.1-alpha from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the nutrients that are required in trace amounts.">
+            keywords = <"nutrients", "diet", "vitamins", "minerals">
+            use = <"Use to record the nutrients that are required in trace amounts.
+            
+            This archetype has been designed to be used within the 'Details' SLOT in the OBSERVATION.dietary_nutrients archetype.">
+            misuse = <"No to be used to record measurements of vitamins and minerals in blood analyses - use the OBSERVATION.laboratory_test for this purpose.
+            
+            Not to be used to record the the ordering or administration of dietary supplements - use Medication-related archetypes for this purpose.">
+        >
+    >
+    
+definition
+    Node[id1] matches {    -- Micronutrients
+        items cardinality matches {2..*; unordered} matches {
+            Node[id77] occurrences matches {0..1} matches {    -- Vitamins
+                items matches {
+                    Node[id80] occurrences matches {0..1} matches {    -- Vitamin A
+                        value matches {
+                            Quantity[id115] matches {
+                                units matches {
+                                    Coded_text[id151] matches {
+                                        term matches {
+                                            Terminology_term[id150] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id81] occurrences matches {0..1} matches {    -- Vitamin B6
+                        value matches {
+                            Quantity[id116] matches {
+                                units matches {
+                                    Coded_text[id153] matches {
+                                        term matches {
+                                            Terminology_term[id152] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id82] occurrences matches {0..1} matches {    -- Vitamin B12
+                        value matches {
+                            Quantity[id117] matches {
+                                units matches {
+                                    Coded_text[id155] matches {
+                                        term matches {
+                                            Terminology_term[id154] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id83] occurrences matches {0..1} matches {    -- Biotin
+                        value matches {
+                            Quantity[id118] matches {
+                                units matches {
+                                    Coded_text[id157] matches {
+                                        term matches {
+                                            Terminology_term[id156] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id84] occurrences matches {0..1} matches {    -- Vitamin C
+                        value matches {
+                            Quantity[id119] matches {
+                                units matches {
+                                    Coded_text[id159] matches {
+                                        term matches {
+                                            Terminology_term[id158] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id85] occurrences matches {0..1} matches {    -- Carotenoids
+                        value matches {
+                            Quantity[id120] matches {
+                                units matches {
+                                    Coded_text[id161] matches {
+                                        term matches {
+                                            Terminology_term[id160] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id86] occurrences matches {0..1} matches {    -- Choline
+                        value matches {
+                            Quantity[id121] matches {
+                                units matches {
+                                    Coded_text[id163] matches {
+                                        term matches {
+                                            Terminology_term[id162] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id87] occurrences matches {0..1} matches {    -- Vitamin D
+                        value matches {
+                            Quantity[id122] matches {
+                                magnitude matches {|>=0.0|}
+                                units matches {
+                                    Coded_text[id165] matches {
+                                        term matches {
+                                            Terminology_term[id164] matches {
+                                                concept matches {[at5]}    -- [iU]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id88] occurrences matches {0..1} matches {    -- Vitamin E
+                        value matches {
+                            Quantity[id123] matches {
+                                units matches {
+                                    Coded_text[id167] matches {
+                                        term matches {
+                                            Terminology_term[id166] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id89] occurrences matches {0..1} matches {    -- Folate
+                        value matches {
+                            Quantity[id124] matches {
+                                units matches {
+                                    Coded_text[id169] matches {
+                                        term matches {
+                                            Terminology_term[id168] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id90] occurrences matches {0..1} matches {    -- Vitamin K
+                        value matches {
+                            Quantity[id125] matches {
+                                units matches {
+                                    Coded_text[id171] matches {
+                                        term matches {
+                                            Terminology_term[id170] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id91] occurrences matches {0..1} matches {    -- Niacin
+                        value matches {
+                            Quantity[id126] matches {
+                                units matches {
+                                    Coded_text[id173] matches {
+                                        term matches {
+                                            Terminology_term[id172] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id92] occurrences matches {0..1} matches {    -- Pantothenic acid
+                        value matches {
+                            Quantity[id127] matches {
+                                units matches {
+                                    Coded_text[id175] matches {
+                                        term matches {
+                                            Terminology_term[id174] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id93] occurrences matches {0..1} matches {    -- Riboflavin
+                        value matches {
+                            Quantity[id128] matches {
+                                units matches {
+                                    Coded_text[id177] matches {
+                                        term matches {
+                                            Terminology_term[id176] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id94] occurrences matches {0..1} matches {    -- Thiamin
+                        value matches {
+                            Quantity[id129] matches {
+                                units matches {
+                                    Coded_text[id179] matches {
+                                        term matches {
+                                            Terminology_term[id178] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id78] occurrences matches {0..1} matches {    -- Minerals
+                items matches {
+                    Node[id110] occurrences matches {0..1} matches {    -- Arsenic
+                        value matches {
+                            Quantity[id130] matches {
+                                units matches {
+                                    Coded_text[id181] matches {
+                                        term matches {
+                                            Terminology_term[id180] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id111] occurrences matches {0..1} matches {    -- Boron
+                        value matches {
+                            Quantity[id131] matches {
+                                units matches {
+                                    Coded_text[id183] matches {
+                                        term matches {
+                                            Terminology_term[id182] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id95] occurrences matches {0..1} matches {    -- Calcium
+                        value matches {
+                            Quantity[id132] matches {
+                                units matches {
+                                    Coded_text[id185] matches {
+                                        term matches {
+                                            Terminology_term[id184] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id108] occurrences matches {0..1} matches {    -- Chloride
+                        value matches {
+                            Quantity[id133] matches {
+                                units matches {
+                                    Coded_text[id187] matches {
+                                        term matches {
+                                            Terminology_term[id186] matches {
+                                                concept matches {[at6]}    -- g
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id96] occurrences matches {0..1} matches {    -- Chromium
+                        value matches {
+                            Quantity[id134] matches {
+                                units matches {
+                                    Coded_text[id189] matches {
+                                        term matches {
+                                            Terminology_term[id188] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id97] occurrences matches {0..1} matches {    -- Copper
+                        value matches {
+                            Quantity[id135] matches {
+                                units matches {
+                                    Coded_text[id191] matches {
+                                        term matches {
+                                            Terminology_term[id190] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id98] occurrences matches {0..1} matches {    -- Fluoride
+                        value matches {
+                            Quantity[id136] matches {
+                                units matches {
+                                    Coded_text[id193] matches {
+                                        term matches {
+                                            Terminology_term[id192] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id99] occurrences matches {0..1} matches {    -- Iodine
+                        value matches {
+                            Quantity[id137] matches {
+                                units matches {
+                                    Coded_text[id195] matches {
+                                        term matches {
+                                            Terminology_term[id194] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id100] occurrences matches {0..1} matches {    -- Iron
+                        value matches {
+                            Quantity[id138] matches {
+                                units matches {
+                                    Coded_text[id197] matches {
+                                        term matches {
+                                            Terminology_term[id196] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id101] occurrences matches {0..1} matches {    -- Magnesium
+                        value matches {
+                            Quantity[id139] matches {
+                                units matches {
+                                    Coded_text[id199] matches {
+                                        term matches {
+                                            Terminology_term[id198] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id102] occurrences matches {0..1} matches {    -- Manganese
+                        value matches {
+                            Quantity[id140] matches {
+                                units matches {
+                                    Coded_text[id201] matches {
+                                        term matches {
+                                            Terminology_term[id200] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id103] occurrences matches {0..1} matches {    -- Molybdenum
+                        value matches {
+                            Quantity[id141] matches {
+                                units matches {
+                                    Coded_text[id203] matches {
+                                        term matches {
+                                            Terminology_term[id202] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id112] occurrences matches {0..1} matches {    -- Nickel
+                        value matches {
+                            Quantity[id142] matches {
+                                units matches {
+                                    Coded_text[id205] matches {
+                                        term matches {
+                                            Terminology_term[id204] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id104] occurrences matches {0..1} matches {    -- Phosphorus
+                        value matches {
+                            Quantity[id143] matches {
+                                units matches {
+                                    Coded_text[id207] matches {
+                                        term matches {
+                                            Terminology_term[id206] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id105] occurrences matches {0..1} matches {    -- Potassium
+                        value matches {
+                            Quantity[id144] matches {
+                                units matches {
+                                    Coded_text[id209] matches {
+                                        term matches {
+                                            Terminology_term[id208] matches {
+                                                concept matches {[at6]}    -- g
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id106] occurrences matches {0..1} matches {    -- Selenium
+                        value matches {
+                            Quantity[id145] matches {
+                                units matches {
+                                    Coded_text[id211] matches {
+                                        term matches {
+                                            Terminology_term[id210] matches {
+                                                concept matches {[at3]}    -- ug
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id113] occurrences matches {0..1} matches {    -- Silicon
+                        value matches {
+                            Quantity[id146] matches {
+                                units matches {
+                                    Coded_text[id213] matches {
+                                        term matches {
+                                            Terminology_term[id212] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id107] occurrences matches {0..1} matches {    -- Sodium
+                        value matches {
+                            Quantity[id147] matches {
+                                units matches {
+                                    Coded_text[id215] matches {
+                                        term matches {
+                                            Terminology_term[id214] matches {
+                                                concept matches {[at6]}    -- g
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id114] occurrences matches {0..1} matches {    -- Vanadium
+                        value matches {
+                            Quantity[id148] matches {
+                                units matches {
+                                    Coded_text[id217] matches {
+                                        term matches {
+                                            Terminology_term[id216] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Node[id109] occurrences matches {0..1} matches {    -- Zinc
+                        value matches {
+                            Quantity[id149] matches {
+                                units matches {
+                                    Coded_text[id219] matches {
+                                        term matches {
+                                            Terminology_term[id218] matches {
+                                                concept matches {[at4]}    -- mg
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["openehr"] = <
+            ["at1"] = <http://openehr.org/id/124>
+            ["at2"] = <http://openehr.org/id/385>
+        >
+        ["ucum"] = <
+            ["at3"] = <http://ucum.org/id/ug>
+            ["at4"] = <http://ucum.org/id/mg>
+            ["at5"] = <http://ucum.org/id/%5BiU%5D>
+            ["at6"] = <http://ucum.org/id/g>
+        >
+        ["snomed"] = <
+            ["at3"] = <http://snomed.info/id/258685003>
+            ["at4"] = <http://snomed.info/id/258684004>
+            ["at5"] = <http://snomed.info/id/258997004>
+            ["at6"] = <http://snomed.info/id/258682000>
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["at1"] = <
+                text = <"Mass">
+                description = <"Mass">
+            >
+            ["at2"] = <
+                text = <"Mass (IU)">
+                description = <"Mass (IU)">
+            >
+            ["at3"] = <
+                text = <"ug">
+                description = <"ug unit.">
+            >
+            ["at4"] = <
+                text = <"mg">
+                description = <"mg unit.">
+            >
+            ["at5"] = <
+                text = <"[iU]">
+                description = <"[iU] unit.">
+            >
+            ["at6"] = <
+                text = <"g">
+                description = <"Gram unit.">
+            >
+            ["id1"] = <
+                text = <"Micronutrients">
+                description = <"The nutrients that are required in trace amounts for the normal growth and development of living organisms.">
+            >
+            ["id100"] = <
+                text = <"Iron">
+                description = <"Assessment of iron which is a critical component of several proteins, including enzymes, cytochromes, myoglobin, and hemoglobin, the latter of which transports oxygen throughout the body.">
+            >
+            ["id101"] = <
+                text = <"Magnesium">
+                description = <"Assessment of magnesium which is involved in more than 300 enzymatic processes in the
+                body, as well as in bone health and in the maintenance of intracellular
+                levels of potassium and calcium.">
+            >
+            ["id102"] = <
+                text = <"Manganese">
+                description = <"Assessment of manganese which is involved in the formation of bone and in specific reactions related to amino acid, cholesterol, and carbohydrate metabolism.">
+            >
+            ["id103"] = <
+                text = <"Molybdenum">
+                description = <"Assessment of molybdenum which presents functions as a cofactor for several enzymes, including
+                sulfite oxidase, xanthine oxidase, and aldehyde oxidase.">
+            >
+            ["id104"] = <
+                text = <"Phosphorus">
+                description = <"Assessment of phosphorus is found in nature (e.g., foods, water, and living
+                tissues) primarily as phosphate (PO4).">
+            >
+            ["id105"] = <
+                text = <"Potassium">
+                description = <"Assessment of the potassium which is the main intracellular cation in the body and is
+                required for normal cellular function.">
+            >
+            ["id106"] = <
+                text = <"Selenium">
+                description = <"Assessment of selenium, which is an antioxidant nutrient involved in the defense against oxidative stress.">
+            >
+            ["id107"] = <
+                text = <"Sodium">
+                description = <"Assessment of sodium  which is necessary to maintain extracellular fluid volume
+                and plasma osmolality.">
+            >
+            ["id108"] = <
+                text = <"Chloride">
+                description = <"Assessment of chloride which is necessary to maintain extracellular fluid volume
+                and plasma osmolality.">
+            >
+            ["id109"] = <
+                text = <"Zinc">
+                description = <"Assessment of zinc which is crucial for growth and development. It facilitates several enzymatic processes related to the metabolism of protein, carbohydrates, and fats.">
+            >
+            ["id110"] = <
+                text = <"Arsenic">
+                description = <"Assessment of arsenic, that play a beneficial role in some physiological processes of certain animal species.">
+            >
+            ["id111"] = <
+                text = <"Boron">
+                description = <"Assessment of the  boron which play a beneficial role in some physiological processes of certain
+                animal species.">
+            >
+            ["id112"] = <
+                text = <"Nickel">
+                description = <"Assessment of the nickel that play a beneficial role in some physiological processes of certain
+                animal species.">
+            >
+            ["id113"] = <
+                text = <"Silicon">
+                description = <"Assessment of the silicon, which play a beneficial role in some physiological processes of certain.animal species.">
+            >
+            ["id114"] = <
+                text = <"Vanadium">
+                description = <"Assessment of the 
+                vanadium that play a beneficial role in some physiological processes of certain.
+                animal species.">
+            >
+            ["id77"] = <
+                text = <"Vitamins">
+                description = <"Assessment of vitamins of an individual.">
+            >
+            ["id78"] = <
+                text = <"Minerals">
+                description = <"Assessment of minerals of an individual.">
+            >
+            ["id80"] = <
+                text = <"Vitamin A">
+                description = <"Assessment of vitamin A.">
+            >
+            ["id81"] = <
+                text = <"Vitamin B6">
+                description = <"Assessment of vitamin B6 (pyridoxine and related compounds).">
+            >
+            ["id82"] = <
+                text = <"Vitamin B12">
+                description = <"Assessment of v itamin B12 (cobalamin).">
+            >
+            ["id83"] = <
+                text = <"Biotin">
+                description = <"Assessment of biotin.">
+            >
+            ["id84"] = <
+                text = <"Vitamin C">
+                description = <"Assessment of vitamin C (ascorbic acid).">
+            >
+            ["id85"] = <
+                text = <"Carotenoids">
+                description = <"Assessment of carotenoids.">
+            >
+            ["id86"] = <
+                text = <"Choline">
+                description = <"Assessment of choline.">
+            >
+            ["id87"] = <
+                text = <"Vitamin D">
+                description = <"Assessment of vitamina D.">
+            >
+            ["id88"] = <
+                text = <"Vitamin E">
+                description = <"Assessment of Vitamin E which is a fat-soluble nutrient that functions as a chain-breaking
+                antioxidant in the body by preventing the spread of free-radical reactions.">
+            >
+            ["id89"] = <
+                text = <"Folate">
+                description = <"Assessment of Folate which is a B vitamin that functions as a coenzyme in the metabolism of
+                nucleic and amino acids.">
+            >
+            ["id90"] = <
+                text = <"Vitamin K">
+                description = <"Assessment of vitamin K which presents functions such as a coenzyme for biological reactions involved in
+                blood coagulation and bone metabolism.">
+            >
+            ["id91"] = <
+                text = <"Niacin">
+                description = <"Assessment of niacin  which is involved in many biological
+                reactions, including intracellular respiration and fatty acid synthesis.">
+            >
+            ["id92"] = <
+                text = <"Pantothenic acid">
+                description = <"Assessment of pantothenic acid functions which is a component of coenzyme A (CoA), which is involved in fatty acid metabolism.">
+            >
+            ["id93"] = <
+                text = <"Riboflavin">
+                description = <"Assessment of riboflavin (vitamin B2)  which presents functions as a coenzyme for numerous oxidation–reduction reactions in several metabolic pathways and in energy production.">
+            >
+            ["id94"] = <
+                text = <"Thiamin">
+                description = <"Assessment of thiamin, which is also known as vitamin B1 and aneurin, functions as a coenzyme in the metabolism of carbohydrates and branched-chain amino acids.">
+            >
+            ["id95"] = <
+                text = <"Calcium">
+                description = <"Assessment of calcium  which plays a key role in bone health. In fact, more than 99 percent of total body calcium is found in the bones and teeth. Calcium is also involved in vascular, neuromuscular, and glandular functions in the body.">
+            >
+            ["id96"] = <
+                text = <"Chromium">
+                description = <"Assessment of chromium which  presents potentiates the action of insulin and may improve glucose
+                tolerance.">
+            >
+            ["id97"] = <
+                text = <"Copper">
+                description = <"Assessement of copper functions  as a component of several metalloenzymes, which act
+                as oxidases in the reduction of molecular oxygen.">
+            >
+            ["id98"] = <
+                text = <"Fluoride">
+                description = <"Assessment of fluoride, which  is vital for the health of teeth and bones. About 99 percent of body fluoride is found in calcified tissues, where it protects against dental caries and can stimulate new bone formation.">
+            >
+            ["id99"] = <
+                text = <"Iodine">
+                description = <"Assessment of Iodine which is an essential component of thyroid hormones that are involved in the regulation of various enzymes and metabolic processes.">
+            >
+        >
+    >
+    

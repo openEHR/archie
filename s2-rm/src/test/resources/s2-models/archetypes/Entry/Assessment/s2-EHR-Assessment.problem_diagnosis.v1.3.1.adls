@@ -1,0 +1,320 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c29758c9-970e-4661-a297-097d62d0bf55)
+	s2-EHR-Assessment.problem_diagnosis.v1.3.1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2006-04-23">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-EVALUATION.problem_diagnosis.v1.3.1, copyright 2006 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-EVALUATION.problem_diagnosis.v1.3.1 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"For recording details about a single, identified health problem or diagnosis. 
+            
+            The intended scope of a health problem is deliberately kept loose in the context of clinical documentation, so as to capture any real or perceived concerns that may adversely affect an individual's wellbeing to any degree. A health problem may be identified by the individual, a carer or a healthcare professional. However, a diagnosis is additionally defined based on objective clinical criteria, and usually determined only by a healthcare professional.">
+			use = <"Use for recording details about a single, identified health problem or diagnosis. 
+            
+            Clear definitions that enable differentiation between a 'problem' and a 'diagnosis' are almost impossible in practice - we cannot reliably tell when a problem should be regarded as a diagnosis. When diagnostic or classification criteria are successfully met, then we can confidently call the condition a formal diagnosis, but prior to these conditions being met and while there is supportive evidence available, it can also be valid to use the term 'diagnosis'. The amount of supportive evidence required for the label of diagnosis is not easy to define and in reality probably varies from condition to condition. Many standards committees have grappled with this definitional conundrum for years without clear resolution.
+            
+            For the purposes of clinical documentation with this archetype, problem and diagnosis are regarded as a continuum, with increasing levels of detail and supportive evidence usually providing weight towards the label of 'diagnosis'. In this archetype it is not neccessary to classify the condition as a 'problem' or 'diagnosis'. The data requirements to support documentation of either are identical, with additional data structure required to support inclusion of the evidence if and when it becomes available. Examples of problems include: the individual's expressed desire to lose weight, but without a formal diagnosis of Obesity; or a relationship problem with a family member. Examples of formal diagnoses would include a cancer that is supported by historical information, examination findings, histopathological findings, radiological findings and meets all requirements for known diagnostic criteria. In practice, most problems or diagnoses do not sit at either end of the problem-diagnosis spectrum, but somewhere in between.
+            
+            This archetype can be used within many contexts. For example, recording a problem or a clinical diagnosis during a clinical consultation; populating a persistent Problem List; or to provide a summary statement within a Discharge Summary document.
+            
+            In practice, clinicians use many context-specific qualifiers such as past/present, primary/secondary, active/inactive, admission/discharge etc. The contexts can be location-, specialisation-, episode- or workflow-specific, and these can cause confusion or even potential safety issues if perpetuated in Problem Lists or shared in documents that are outside of the original context. These qualifiers can be archetyped separately and included in the ‘Status’ slot, because their use varies in different settings. It is expected that these will be used mostly within the appropriate context and not shared out of that context without clear understanding of potential consequences. For example, a primary diagnosis to one clinician may be a secondary one to another specialist; an active problem can become inactive (or vice versa) and this can impact the safe use of clinical decision support. In general these qualifiers should be applied locally within the context of the clinical system, and in practice these statuses should be manually curated by clinicians to ensure that lists of Current/Past, Active/Inactive or Primary/Secondary Problems are clinically accurate. 
+            
+            This archetype will be used as a component within the Problem Oriented Medical Record as described by Larry Weed. Additional archetypes, representing clinical concepts such as condition as an overarching organiser for diagnoses etc, will need to be developed to support this approach.
+            
+            In some situations, it may be assumed that identification of a diagnosis fits only within the expertise of physicians, but this is not the intent for this archetype. Diagnoses can be recorded using this archetype by any healthcare professional.">
+			keywords = <"issue", "condition", "problem", "diagnosis", "concern", "injury", "clinical impression">
+			misuse = <"Not to be used to record symptoms as described by the individual - use the Node.symptom archetype, usually within the OBSERVATION.story archetype.
+            
+            Not to be used to record examination findings - use the family of examination-related Node archetypes, usually nested within the OBSERVATION.exam archetype.
+            
+            Not to be used to record laboratory test results or related diagnoses, for example pathological diagnoses - use an appropriate archetype from the laboratory family of OBSERVATION archetypes.
+            
+            Not to be used to record imaging examination results or imaging diagnoses - use an appropriate archetype from the imaging family of OBSERVATION archetypes.
+            
+            Not to be used to record 'Differential Diagnoses' - use the EVALUATION.differential_diagnosis archetype.
+            
+            Not to be used to record 'Reason for Encounter' or 'Presenting Complaint' - use the EVALUATION.reason_for_encounter archetype.
+            
+            Not to be used to record procedures - use the ACTION.procedure archetype.
+            
+            Not to be used to record details about pregnancy - use the EVALUATION.pregnancy_bf_status and EVALUATION.pregnancy and related archetypes.
+            
+            Not to be used to record statements about health risk or potential problems - use the EVALUATION.health_risk archetype.
+            
+            Not to be used to record statements about adverse reactions, allergies or intolerances - use the EVALUATION.adverse_reaction archetype.
+            
+            Not to be used for the explicit recording of an absence (or negative presence) of a problem or diagnosis, for example ‘No known problem or diagnoses’ or ‘No known diabetes’. Use the EVALUATION.exclusion-problem_diagnosis archetype to express a positive statement about exclusion of a problem or diagnosis.">
+		>
+	>
+	other_contributors = <"Grethe Almenning, Bergen kommune, Norway", "Tomas Alme, DIPS, Norway", "Nadim Anani, Karolinska Institutet, Sweden", "Erling Are Hole, Helse Bergen, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "John Bennett, NEHTA, Australia", "Steve Bentley, Allscripts, United Kingdom", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Terje Bless, Helse Nord FIKS, Norway", "Fredrik Borchsenius, Oslo universitetssykehus, Norway", "Ian Bull, ACT Health, Australia", "Sergio Carmona, Chile", "Rong Chen, Cambio Healthcare Systems, Sweden", "Stephen Chu, Queensland Health, Australia", "Ed Conley, Cardiff University, United Kingdom", "Matthew Cordell, NEHTA, Australia", "Inderjit Daphu, Helse Bergen, Norway", "Paul Donaldson, Nursing Informatics Australia, Australia", "Gail Easterbrook, Flinders Medical Centre, Australia", "Aitor Eguzkitza, UPNA (Public University of Navarre) - CHN (Complejo Hospitalario de Navarra), Spain", "Tone Engen, Norway", "David Evans, Queensland Health, Australia", "Arild Faxvaag, NTNU, Norway", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Peter Garcia-Webb, Australia", "Sebastian Garde, Ocean Informatics, Germany", "Bente Gjelsvik, Helse Bergen, Norway", "Andrew Goodchild, NEHTA, Australia", "Anneke Goossen, Results 4 Care, Netherlands", "Gyri Gradek, Senter for medisinsk genetikk og molekylærmedisin, Haukeland Universitetssykehus, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Trina Gregory, cpc, Australia", "Bjørn Grøva, Diretoratet for e-helse, Norway", "Dag Hanoa, Oslo universitetssykehus, Norway", "Knut Harboe, Stavanger Universitetssjukehus, Norway", "Sam Heard, Ocean Informatics, Australia", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Kristian Heldal, Telemark Hospital Trust, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Anca Heyd, DIPS ASA, Norway", "Hilde Hollås, DIPS AS, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Eugene Igras, IRIS Systems, Inc., Canada", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Aud Jorunn Mjelstad, Helse Bergen, Norway", "Gunnar Jårvik, Nasjonal IKT HF, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Mary Kelaher, NEHTA, Australia", "Eizen Kimura, Ehime Univ., Japan", "Shinji Kobayashi, Kyoto University, Japan", "Robert L'egan, NEHTA, Australia", "Sabine Leh, Haukeland University Hospital, Department of Pathology, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hugh Leslie, Ocean Informatics, Australia (Editor)", "Hallvard Lærum, Norwegian Directorate of e-health, Norway", "Luis Marco Ruiz, NST, Spain", "Siv Marie Lien, DIPS ASA, Norway", "Rohan Martin, Ambulance Victoria, Australia", "David McKillop, NEHTA, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Chris Mitchell, RACGP, Australia", "Stewart Morrison, NEHTA, Australia", "Jörg Niggemann, compugroup, Germany", "Bjørn Næss, DIPS ASA, Norway", "Mona Oppedal, Helse Bergen, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Chris Pearce, Melbourne East GP Network, Australia", "Camilla Preeston, Royal Australian College of General Practitioners, Australia", "Margaret Prichard, NEHTA, Australia", "Jodie Pycroft, Adelaide Northern Division of General Practice Ltd, Australia", "Cathy Richardson, NEHTA, Australia", "Robyn Richards, NEHTA - Clinical Terminology, Australia", "Jussara Rotzsch, Hospital Alemão Oswaldo Cruz, Brazil", "Thomas Schopf, University Hospital of North-Norway, Norway", "Thilo Schuler, Australia", "Anoop Shah, University College London, United Kingdom", "Arild Stangeland, Helse Bergen, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "Line Sørensen, Helse Bergen, Norway", "Gordon Tomes, Australian Institute of Health and Welfare, Australia", "Richard Townley-O'Neill, NEHTA, Australia", "Donna Truran, ACCTI-UoW, Australia", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Kylie Young, The Royal Australian College of General Practitioners, Australia">
+
+definition
+	Assessment[id1] matches {	-- Problem/Diagnosis
+		data cardinality matches {1..*; unordered} matches {
+			Node[id3] matches {	-- Problem/Diagnosis name
+				value matches {
+					Text[id81] 
+				}
+			}
+			Node[id80] occurrences matches {0..1} matches {	-- Variant
+				value matches {
+					Text[id82] 
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					Text[id83] 
+				}
+			}
+			Node[id13] matches {	-- Body site
+				value matches {
+					Text[id84] 
+				}
+			}
+			allow_archetype Node[id40] matches {	-- Structured body site
+				include
+					archetype_id/value matches {/s2-EHR-Node\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1|s2-EHR-Node\.anatomical_location_circle\.v1|s2-EHR-Node\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v2/}
+			}
+			Node[id79] matches {	-- Cause
+				value matches {
+					Text[id85] 
+				}
+			}
+			Node[id78] occurrences matches {0..1} matches {	-- Date/time of onset
+				value matches {
+					Date_time_value[id86] 
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Date/time clinically recognised
+				value matches {
+					Date_time_value[id87] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Severity
+				value matches {
+					Coded_text[id88] matches {
+						term matches {
+							Terminology_term[id96] matches {
+								concept matches {[ac1]}		-- Severity (synthesised)
+							}
+						}
+					}
+					Plain_text[id89] 
+				}
+			}
+			allow_archetype Node[id44] matches {	-- Specific details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id73] occurrences matches {0..1} matches {	-- Course description
+				value matches {
+					Text[id90] 
+				}
+			}
+			Node[id31] occurrences matches {0..1} matches {	-- Date/time of resolution
+				value matches {
+					Date_time_value[id91] 
+				}
+			}
+			use_archetype Node[id47, s2-EHR-Node.problem_qualifier.v2] 
+			Node[id74] occurrences matches {0..1} matches {	-- Diagnostic certainty
+				value matches {
+					Coded_text[id92] matches {
+						term matches {
+							Terminology_term[id97] matches {
+								concept matches {[ac2]}		-- Diagnostic certainty (synthesised)
+							}
+						}
+					}
+					Plain_text[id93] 
+				}
+			}
+			Node[id70] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id94] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id71] occurrences matches {0..1} matches {	-- Last updated
+				value matches {
+					Date_time_value[id95] 
+				}
+			}
+			allow_archetype Node[id72] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Severity (synthesised)">
+				description = <"An assessment of the overall severity of the problem or diagnosis. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Diagnostic certainty (synthesised)">
+				description = <"The level of confidence in the identification of the diagnosis. (synthesised)">
+			>
+			["at47"] = <
+				text = <"Mild">
+				description = <"The problem or diagnosis does not interfere with normal activity or may cause damage to health if left untreated.">
+			>
+			["at48"] = <
+				text = <"Moderate">
+				description = <"The problem or diagnosis causes interference with normal activity or will damage health if left untreated.">
+			>
+			["at49"] = <
+				text = <"Severe">
+				description = <"The problem or diagnosis prevents normal activity or will seriously damage health if left untreated.">
+			>
+			["at74"] = <
+				text = <"Suspected">
+				description = <"The diagnosis has been identified with a low level of certainty.">
+			>
+			["at75"] = <
+				text = <"Probable">
+				description = <"The diagnosis has been identified with a high level of certainty.">
+			>
+			["at76"] = <
+				text = <"Confirmed">
+				description = <"The diagnosis has been confirmed against recognised criteria.">
+			>
+			["id1"] = <
+				text = <"Problem/Diagnosis">
+				description = <"Details about a single identified health condition, injury, disability or any other issue which impacts on the physical, mental and/or social well-being of an individual.">
+			>
+			["id10"] = <
+				text = <"Clinical description">
+				description = <"Narrative description about the problem or diagnosis.">
+			>
+			["id13"] = <
+				text = <"Body site">
+				description = <"Identification of a simple body site for the location of the problem or diagnosis.">
+			>
+			["id3"] = <
+				text = <"Problem/Diagnosis name">
+				description = <"Identification of the problem or diagnosis, by name.">
+			>
+			["id31"] = <
+				text = <"Date/time of resolution">
+				description = <"Estimated or actual date/time of resolution or remission for this problem or diagnosis, as determined by a healthcare professional.">
+			>
+			["id4"] = <
+				text = <"Date/time clinically recognised">
+				description = <"Estimated or actual date/time the diagnosis or problem was recognised by a healthcare professional.">
+			>
+			["id40"] = <
+				text = <"Structured body site">
+				description = <"A structured anatomical location for the problem or diagnosis.">
+			>
+			["id44"] = <
+				text = <"Specific details">
+				description = <"Details that are additionally required to record as unique attributes of this problem or diagnosis.">
+			>
+			["id47"] = <
+				text = <"Status">
+				description = <"Structured details for location-, domain-, episode- or workflow-specific aspects of the diagnostic process.">
+			>
+			["id6"] = <
+				text = <"Severity">
+				description = <"An assessment of the overall severity of the problem or diagnosis.">
+			>
+			["id70"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the problem or diagnosis not captured in other fields.">
+			>
+			["id71"] = <
+				text = <"Last updated">
+				description = <"The date this problem or diagnosis was last updated.">
+			>
+			["id72"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id73"] = <
+				text = <"Course description">
+				description = <"Narrative description about the course of the problem or diagnosis since onset.">
+			>
+			["id74"] = <
+				text = <"Diagnostic certainty">
+				description = <"The level of confidence in the identification of the diagnosis.">
+			>
+			["id78"] = <
+				text = <"Date/time of onset">
+				description = <"Estimated or actual date/time that signs or symptoms of the problem/diagnosis were first observed.">
+			>
+			["id79"] = <
+				text = <"Cause">
+				description = <"A cause, set of causes, or manner of causation of the problem or diagnosis.">
+			>
+			["id80"] = <
+				text = <"Variant">
+				description = <"Specific variant or subtype of the Diagnosis, if relevant.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id1"] = <http://loinc.org/75326-9>
+			["id10"] = <http://loinc.org/61133-5>
+			["id13"] = <http://loinc.org/39111-0>
+			["id3"] = <http://loinc.org/29548-5>
+			["id47"] = <http://loinc.org/99493-9>
+			["id6"] = <http://loinc.org/99499-6>
+			["id73"] = <http://loinc.org/89261-2>
+			["id78"] = <http://loinc.org/76425-8>
+			["id79"] = <http://loinc.org/99496-2>
+			["id74"] = <http://loinc.org/100303-7>
+			["id4"] = <http://loinc.org/63931-0>
+			["id31"] = <http://loinc.org/104919-6>
+			["id70"] = <http://loinc.org/106173-8>
+			["id71"] = <http://loinc.org/106177-9>
+			["id40"] = <http://loinc.org/72369-2>
+			["id44"] = <http://loinc.org/46696-1>
+		>
+		["s2"] = <
+			["ac1"] = <http://s2health.org/id/s2.ConditionSeverity>
+			["ac2"] = <http://s2health.org/id/s2.CertaintyOfPresence>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at47", "at48", "at49">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at74", "at75", "at76">
+		>
+	>
+

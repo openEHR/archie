@@ -1,0 +1,208 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=148ede57-ed54-438d-b780-7602a873b5e5)
+    s2-EHR-Direct_observation.asa_status.v1.0.0
+
+language
+    original_language = <[iso_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"S2 Health - Knowledge Engineering">
+        ["organisation"] = <"S2 Health <http://www.s2health.org>">
+        ["email"] = <"models@s2health.org">
+        ["date"] = <"2024-08-09">
+    >
+    original_namespace = <"org.openehr">
+    other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "paul cooper, NHS Orkney, United Kingdom", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Torsten Eken, Oslo universitetssykehus HF, Ullevål, Norway", "Grant Forrest, Lunaria Ltd, United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Martin Grundberg, Cambio Healthcare Systems, Sweden", "Kristian Heldal, Telemark Hospital Trust, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Terje Meling, Stavanger University Hospital, Norway", "Mette Monsen, Helse Bergen HF, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden (openEHR Editor)", "Bjørn Næss, DIPS ASA, Norway", "Åsa Skagerhult, Region Östergötland, Sweden (openEHR Translation Editor)", "Niclas Skyttberg, Karolinska Institutet, Sweden", "Erik Sundvall, Karolinska University Hospital, Region Stockholm + Linköping University, Sweden", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Ørjan Vermeer, Haukeland Universitetssjukehus, Kvinneklinikken, Norway", "Nils Widnes, Helse-Bergen, Norway">
+    custodian_namespace = <"org.s2health">
+    custodian_organisation = <"S2 Health <http://s2health.org>">
+    copyright = <"Copyright (c) 2024 S2 Health">
+    licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+    lifecycle_state = <"unmanaged">
+    ip_acknowledgements = <
+        ["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2010-06-25">
+        ["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.asa_status.v1.0.0, copyright 2010 openEHR International <http://www.openEHR.org>">
+        ["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+        ["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+        ["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+    >
+    conversion_details = <
+        ["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.asa_status.v1.0.0 from <https://ckm.openehr.org>">
+        ["tool"] = <"s2 convert openehr">
+        ["date"] = <"2024-08-09">
+    >
+    details = <
+        ["en"] = <
+            language = <[iso_639-1::en]>
+            purpose = <"To record the classification system adopted by the American Society of Anesthesiologists (ASA) as part of a pre-surgical risk assessment.">
+            keywords = <"ASA", "pre-operative", "surgery", "anaesthesiology", "anesthesia", "anaesthesia", "anesthesiology">
+            use = <"To record the classification system adopted by the American Society of Anesthesiologists (ASA) as part of a pre-surgical risk assessment.
+            
+            The ASA (2020) reference defines each classification and provides some adult, paediatric and obstetric examples to guide clinicians to assign a physical status classification level. However, because these examples are numerous and can further be refined or described at the institution level, specific examples are not included in this archetype.">
+            misuse = <"">
+        >
+    >
+    
+definition
+    Direct_observation[id1] matches {    -- ASA physical status classification system
+        data cardinality matches {1..*; unordered} matches {
+            Node[id2] occurrences matches {0..1} matches {    -- Classification
+                value matches {
+                    Coded_ordinal[id24] matches {
+                        magnitude matches {1}
+                        concept matches {
+                            Coded_text[id26] matches {
+                                term matches {
+                                    Terminology_term[id25] matches {
+                                        concept matches {[at3]}    -- ASA 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id27] matches {
+                        magnitude matches {2}
+                        concept matches {
+                            Coded_text[id29] matches {
+                                term matches {
+                                    Terminology_term[id28] matches {
+                                        concept matches {[at4]}    -- ASA 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id30] matches {
+                        magnitude matches {3}
+                        concept matches {
+                            Coded_text[id32] matches {
+                                term matches {
+                                    Terminology_term[id31] matches {
+                                        concept matches {[at5]}    -- ASA 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id33] matches {
+                        magnitude matches {4}
+                        concept matches {
+                            Coded_text[id35] matches {
+                                term matches {
+                                    Terminology_term[id34] matches {
+                                        concept matches {[at6]}    -- ASA 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id36] matches {
+                        magnitude matches {5}
+                        concept matches {
+                            Coded_text[id38] matches {
+                                term matches {
+                                    Terminology_term[id37] matches {
+                                        concept matches {[at7]}    -- ASA 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Coded_ordinal[id39] matches {
+                        magnitude matches {6}
+                        concept matches {
+                            Coded_text[id41] matches {
+                                term matches {
+                                    Terminology_term[id40] matches {
+                                        concept matches {[at8]}    -- ASA 6
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Node[id21] occurrences matches {0..1} matches {    -- Emergency (E)
+                value matches {
+                    Boolean_value[id23] matches {
+                        value matches {True}
+                    }
+                }
+            }
+        }
+        qualifiers matches {
+            allow_archetype Node[id20]
+        }
+    }
+
+terminology
+    term_bindings = <
+        ["snomed"] = <
+            ["id1"] = <http://snomed.info/id/273270000>
+            ["id2"] = <http://snomed.info/id/302132005>
+            ["at3"] = <http://snomed.info/id/413495001>
+            ["at4"] = <http://snomed.info/id/413496000>
+            ["at5"] = <http://snomed.info/id/413497009>
+            ["at6"] = <http://snomed.info/id/413498004>
+            ["at7"] = <http://snomed.info/id/413499007>
+            ["at8"] = <http://snomed.info/id/413500003>
+        >
+    >
+    value_sets = <
+        ["ac1"] = <
+            id = <"ac1">
+            members = <"at3", "at4", "at5", "at6", "at7", "at8">
+        >
+    >
+    term_definitions = <
+        ["en"] = <
+            ["ac1"] = <
+                text = <"Classification (synthesised)">
+                description = <"Assessed classification of a patient. (synthesised)">
+            >
+            ["at3"] = <
+                text = <"ASA 1">
+                description = <"A normal healthy patient.">
+            >
+            ["at4"] = <
+                text = <"ASA 2">
+                description = <"A patient with mild systemic disease.">
+            >
+            ["at5"] = <
+                text = <"ASA 3">
+                description = <"A patient with severe systemic disease.">
+            >
+            ["at6"] = <
+                text = <"ASA 4">
+                description = <"A patient with severe systemic disease that is a constant threat to life.">
+            >
+            ["at7"] = <
+                text = <"ASA 5">
+                description = <"A moribund patient who is not expected to survive without the operation.">
+            >
+            ["at8"] = <
+                text = <"ASA 6">
+                description = <"A declared brain-dead patient whose organs are being removed for donor purposes.">
+            >
+            ["id1"] = <
+                text = <"ASA physical status classification system">
+                description = <"Classification system adopted by the American Society of Anesthesiologists (ASA) as part of a pre-surgical risk assessment.">
+            >
+            ["id17"] = <
+                text = <"Any point in time event">
+                description = <"Unspecified point in time event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id2"] = <
+                text = <"Classification">
+                description = <"Assessed classification of a patient.">
+            >
+            ["id20"] = <
+                text = <"Extension">
+                description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+            >
+            ["id21"] = <
+                text = <"Emergency (E)">
+                description = <"Record as True if the surgery was carried out in an emergency situation.">
+            >
+        >
+    >
+    

@@ -1,0 +1,746 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=bb9d076f-f55b-429d-bf07-364e9ea9573b)
+	s2-EHR-Score.modified_barthel_index.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2006-03-22">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.modified_barthel_index.v0.0.1-alpha, copyright 2006 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.modified_barthel_index.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a functional assessment for activities of daily living using the modified version of the Barthel index.">
+			use = <"Use to record a functional assessment for activities of daily living using the modified version of the Barthel index.">
+			keywords = <"score", "index", "activities", "daily living", "dependency">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Grethe Almenning, Bergen kommune, Norway", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Sabine Leh, Helse-Bergen, Norway", "Hallvard Lærum, Oslo Universitetssykehus HF, Norway", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Bjørn Næss, DIPS ASA, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Micaela Thierley, Helse Bergen, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Editor)">
+
+definition
+	Score[id1] matches {	-- Modified Barthel index
+		data matches {
+			Node[id9] occurrences matches {0..1} matches {	-- Bowels
+				value matches {
+					Coded_ordinal[id64] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id66] matches {
+								term matches {
+									Terminology_term[id65] matches {
+										concept matches {[at37]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id67] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id69] matches {
+								term matches {
+									Terminology_term[id68] matches {
+										concept matches {[at44]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id70] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id72] matches {
+								term matches {
+									Terminology_term[id71] matches {
+										concept matches {[at38]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Bladder
+				value matches {
+					Coded_ordinal[id73] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id75] matches {
+								term matches {
+									Terminology_term[id74] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id76] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id78] matches {
+								term matches {
+									Terminology_term[id77] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id79] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id81] matches {
+								term matches {
+									Terminology_term[id80] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id35] occurrences matches {0..1} matches {	-- Grooming
+				value matches {
+					Coded_ordinal[id82] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id84] matches {
+								term matches {
+									Terminology_term[id83] matches {
+										concept matches {[at35]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id85] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id87] matches {
+								term matches {
+									Terminology_term[id86] matches {
+										concept matches {[at36]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id31] occurrences matches {0..1} matches {	-- Toilet use
+				value matches {
+					Coded_ordinal[id88] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id90] matches {
+								term matches {
+									Terminology_term[id89] matches {
+										concept matches {[at31]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id91] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id93] matches {
+								term matches {
+									Terminology_term[id92] matches {
+										concept matches {[at32]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id94] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id96] matches {
+								term matches {
+									Terminology_term[id95] matches {
+										concept matches {[at33]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id27] occurrences matches {0..1} matches {	-- Feeding
+				value matches {
+					Coded_ordinal[id97] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id99] matches {
+								term matches {
+									Terminology_term[id98] matches {
+										concept matches {[at27]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id100] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id102] matches {
+								term matches {
+									Terminology_term[id101] matches {
+										concept matches {[at28]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id103] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id105] matches {
+								term matches {
+									Terminology_term[id104] matches {
+										concept matches {[at29]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id22] occurrences matches {0..1} matches {	-- Transfer
+				value matches {
+					Coded_ordinal[id106] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id108] matches {
+								term matches {
+									Terminology_term[id107] matches {
+										concept matches {[at22]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id109] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id111] matches {
+								term matches {
+									Terminology_term[id110] matches {
+										concept matches {[at23]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id112] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id114] matches {
+								term matches {
+									Terminology_term[id113] matches {
+										concept matches {[at24]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id115] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id117] matches {
+								term matches {
+									Terminology_term[id116] matches {
+										concept matches {[at25]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id18] occurrences matches {0..1} matches {	-- Mobility
+				value matches {
+					Coded_ordinal[id118] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id120] matches {
+								term matches {
+									Terminology_term[id119] matches {
+										concept matches {[at18]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id121] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id123] matches {
+								term matches {
+									Terminology_term[id122] matches {
+										concept matches {[at19]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id124] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id126] matches {
+								term matches {
+									Terminology_term[id125] matches {
+										concept matches {[at20]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id127] matches {
+						magnitude matches {3}
+						concept matches {
+							Coded_text[id129] matches {
+								term matches {
+									Terminology_term[id128] matches {
+										concept matches {[at39]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id13] occurrences matches {0..1} matches {	-- Dressing
+				value matches {
+					Coded_ordinal[id130] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id132] matches {
+								term matches {
+									Terminology_term[id131] matches {
+										concept matches {[at13]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id133] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id135] matches {
+								term matches {
+									Terminology_term[id134] matches {
+										concept matches {[at14]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id136] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id138] matches {
+								term matches {
+									Terminology_term[id137] matches {
+										concept matches {[at11]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id41] occurrences matches {0..1} matches {	-- Stairs
+				value matches {
+					Coded_ordinal[id139] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id141] matches {
+								term matches {
+									Terminology_term[id140] matches {
+										concept matches {[at41]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id142] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id144] matches {
+								term matches {
+									Terminology_term[id143] matches {
+										concept matches {[at42]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id145] matches {
+						magnitude matches {2}
+						concept matches {
+							Coded_text[id147] matches {
+								term matches {
+									Terminology_term[id146] matches {
+										concept matches {[at43]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id10] occurrences matches {0..1} matches {	-- Bathing
+				value matches {
+					Coded_ordinal[id148] matches {
+						magnitude matches {0}
+						concept matches {
+							Coded_text[id150] matches {
+								term matches {
+									Terminology_term[id149] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+					Coded_ordinal[id151] matches {
+						magnitude matches {1}
+						concept matches {
+							Coded_text[id153] matches {
+								term matches {
+									Terminology_term[id152] matches {
+										concept matches {[at11]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id17] occurrences matches {0..1} matches {	-- Total score
+				value matches {
+					Count[id61] matches {
+						magnitude matches {|0..20|}
+					}
+				}
+			}
+			Node[id48] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id62] 
+				}
+			}
+		}
+		state matches {
+			Node[id50] occurrences matches {0..1} matches {	-- Confounding factors
+				value matches {
+					Text[id63] 
+				}
+			}
+		}
+		qualifiers matches {
+			allow_archetype Node[id47] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Bowels (synthesised)">
+				description = <"Over the previous week, occasional accident is once per week. (synthesised)">
+			>
+			["ac10"] = <
+				text = <"Bathing (synthesised)">
+				description = <"Independent = without supervision or help when getting in and out of the bath and when washing. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Bladder (synthesised)">
+				description = <"Assessment of urinary control over the previous week, occasional accident <= 1 time per week. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Grooming (synthesised)">
+				description = <"Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Toilet use (synthesised)">
+				description = <"Ability to use toilet over the previous 48 hours. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Feeding (synthesised)">
+				description = <"Ability to eat food. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Transfer (synthesised)">
+				description = <"Transfer from bed to chair and back. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Mobility (synthesised)">
+				description = <"Ability to get about the house or institution. (synthesised)">
+			>
+			["ac8"] = <
+				text = <"Dressing (synthesised)">
+				description = <"Ability to choose clothes, put them on and fasten them. (synthesised)">
+			>
+			["ac9"] = <
+				text = <"Stairs (synthesised)">
+				description = <"Ability to negotiate stairs. (synthesised)">
+			>
+			["at10"] = <
+				text = <"Dependent">
+				description = <"Needs assistance with baths or showers.">
+			>
+			["at11"] = <
+				text = <"Independent">
+				description = <"No help required when getting in and out of the bath or when washing.">
+			>
+			["at13"] = <
+				text = <"Dependent">
+				description = <"Requires assistance choosing and putting on clothes.">
+			>
+			["at14"] = <
+				text = <"Needs help but can do about half unaided">
+				description = <"Needs help only with buttons, zippers but can put on clothes unaided.">
+			>
+			["at18"] = <
+				text = <"Immobile">
+				description = <"Person can get less than 50 metres in wheelchair.">
+			>
+			["at19"] = <
+				text = <"Wheel chair independent">
+				description = <"Wheelchair independent (including corners).">
+			>
+			["at20"] = <
+				text = <"Walks with help">
+				description = <"Person walks with assistance of one person, with physical or verbal assistance.">
+			>
+			["at22"] = <
+				text = <"Unable, no sitting balance">
+				description = <"No sitting balance, a lifting device is used.">
+			>
+			["at23"] = <
+				text = <"Major help, can sit">
+				description = <"A strong trained person or 2 people required, patient can sit straight.">
+			>
+			["at24"] = <
+				text = <"Minor help">
+				description = <"A person is required for supervision or some help.">
+			>
+			["at25"] = <
+				text = <"Independent">
+				description = <"Person can move from bed to chair independently.">
+			>
+			["at27"] = <
+				text = <"Unable to eat unassisted">
+				description = <"Requires manual feeding.">
+			>
+			["at28"] = <
+				text = <"Needs help">
+				description = <"Requires help cutting, spreading butter or requires modified diet - able to eat alone.">
+			>
+			["at29"] = <
+				text = <"Independent">
+				description = <"Able to eat alone.">
+			>
+			["at31"] = <
+				text = <"Dependent">
+				description = <"Person is completely dependent of others to use the toilet.">
+			>
+			["at32"] = <
+				text = <"Needs some help but can do some tasks alone">
+				description = <"Person is self-supporting in some toileting tasks.">
+			>
+			["at33"] = <
+				text = <"Independent (on & off, dressing, wiping)">
+				description = <"Person is fully self-supporting in all toileting tasks.">
+			>
+			["at35"] = <
+				text = <"Needs help">
+				description = <"Needs help with personal care.">
+			>
+			["at36"] = <
+				text = <"Independent">
+				description = <"Able to brush teeth, hair, wash face, shave.">
+			>
+			["at37"] = <
+				text = <"Incontinent (or requires enemas)">
+				description = <"Incontinent of faeces or requires enemas.">
+			>
+			["at38"] = <
+				text = <"Continent">
+				description = <"Continent of faeces.">
+			>
+			["at39"] = <
+				text = <"Independent">
+				description = <"Person can use any aid (not wheelchair) around the house or ward.">
+			>
+			["at41"] = <
+				text = <"Unable">
+				description = <"Unable to use stairs.">
+			>
+			["at42"] = <
+				text = <"Needs help">
+				description = <"Verbal, physical or other assistance.">
+			>
+			["at43"] = <
+				text = <"Independent">
+				description = <"Can carry aid alone if required.">
+			>
+			["at44"] = <
+				text = <"Occasional accident">
+				description = <"Less than or equal to once per week.">
+			>
+			["at5"] = <
+				text = <"Incontinent (or unable to manage catheter)">
+				description = <"Incontinent of urine or catheterised.">
+			>
+			["at6"] = <
+				text = <"Occasional accident">
+				description = <"Less than or equal to once per week.">
+			>
+			["at7"] = <
+				text = <"Continent (manages catheter alone)">
+				description = <"Continent includes self management of catheter.">
+			>
+			["id1"] = <
+				text = <"Modified Barthel index">
+				description = <"Modification of the Barthel index, used as a functional assessment for activities of daily living (ADL).">
+			>
+			["id10"] = <
+				text = <"Bathing">
+				description = <"Independent = without supervision or help when getting in and out of the bath and when washing.">
+			>
+			["id13"] = <
+				text = <"Dressing">
+				description = <"Ability to choose clothes, put them on and fasten them.">
+			>
+			["id17"] = <
+				text = <"Total score">
+				description = <"Sum of the individual scores assigned for each of the contributing variables.">
+			>
+			["id18"] = <
+				text = <"Mobility">
+				description = <"Ability to get about the house or institution.">
+			>
+			["id22"] = <
+				text = <"Transfer">
+				description = <"Transfer from bed to chair and back.">
+			>
+			["id27"] = <
+				text = <"Feeding">
+				description = <"Ability to eat food.">
+			>
+			["id31"] = <
+				text = <"Toilet use">
+				description = <"Ability to use toilet over the previous 48 hours.">
+			>
+			["id35"] = <
+				text = <"Grooming">
+				description = <"Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing.">
+			>
+			["id4"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id41"] = <
+				text = <"Stairs">
+				description = <"Ability to negotiate stairs.">
+			>
+			["id47"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id48"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the modified Barthel index, not captured in other fields.">
+			>
+			["id5"] = <
+				text = <"Bladder">
+				description = <"Assessment of urinary control over the previous week, occasional accident <= 1 time per week.">
+			>
+			["id50"] = <
+				text = <"Confounding factors">
+				description = <"Narrative descripiton of any issues or factors that may impact on the scoring.">
+			>
+			["id9"] = <
+				text = <"Bowels">
+				description = <"Over the previous week, occasional accident is once per week.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id48"] = <http://loinc.org/106173-8>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at37", "at44", "at38">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at5", "at6", "at7">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at35", "at36">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at31", "at32", "at33">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at27", "at28", "at29">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at22", "at23", "at24", "at25">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at18", "at19", "at20", "at39">
+		>
+		["ac8"] = <
+			id = <"ac8">
+			members = <"at13", "at14", "at11">
+		>
+		["ac9"] = <
+			id = <"ac9">
+			members = <"at41", "at42", "at43">
+		>
+		["ac10"] = <
+			id = <"ac10">
+			members = <"at10", "at11">
+		>
+	>
+

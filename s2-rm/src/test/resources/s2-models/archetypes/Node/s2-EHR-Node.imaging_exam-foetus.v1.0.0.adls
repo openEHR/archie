@@ -1,0 +1,260 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=cd7d013d-2d8c-4ec7-a3e3-1565e115e6d4)
+	s2-EHR-Node.imaging_exam-foetus.v1.0.0
+
+specialize
+	s2-EHR-Node.imaging_exam.v1
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2021-11-24">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-foetus.v1.0.0, copyright 2021 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.imaging_exam-foetus.v1.0.0 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the findings on radiological examination of a single foetus or embryo, and their interpretation.">
+			use = <"Use to record the findings on radiological examination of a single foetus or embryo, and their interpretation.
+            
+            Use a separate instance of this archetype for each foetus or embryo.
+            
+            The intended scope for this Node.imaging_exam archetype is to eventually record all detailed findings on radiological examination of the foetus or embryo using any modality. It is anticipated that further data Nodes may be added as requirements are identified and confirmed. 
+            
+            This archetype is designed to be nested within the 'Additional details' SLOT in the Node.imaging_exam-uterine_body, the 'Structured imaging findings' SLOT in the OBSERVATION.imaging_exam_result or within other relevant Node.imaging_exam archetypes, but can also be used within other ENTRY or Node archetypes, where clinically appropriate. If this archetype needs to be extended with further levels of structured findings, additional instances of the Node.imaging_exam or its specialisations can be nested in the 'Additional details' SLOT.">
+			keywords = <"embryo", "foetus", "imaging", "diagnostic", "radiology", "image", "ultrasound", "fetus">
+			misuse = <"Not to be used to record imaging examination findings for any body structure or region other than a single foetus or embryo. Use other archetypes from the Node.imaging_exam family for this purpose.
+            
+            Not to be used to record the estimated gestational age of the foetus. Use OBSERVATION.gestation for this purpose.
+            
+            Not to be used to record details related to the overall findings, context or technical details related to a complete imaging examination test result. Use the OBERSERVATION.imaging_exam_result for this purpose. For example, comments on the study quality, differential diagnoses, and overall impression.">
+		>
+	>
+	other_contributors = <"Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India", "Peter Fedorcsak, University of Oslo, Norway (openEHR Editor)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Evelyn Hovenga, EJSH Consulting, Australia", "Anjali Kulkarni, Karkinos, India", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Norwegian Public Hospitals, Norway", "Jeremy Tong, NHS, United Kingdom">
+
+definition
+	Node[id1.1] matches {	-- Imaging examination of a foetus
+		/items matches {
+			after [id8]
+			Node[id0.7] occurrences matches {0..1} matches {	-- Label
+				value matches {
+					Text[id0.17] 
+				}
+			}
+			Node[id0.8] occurrences matches {0..1} matches {	-- Cardiac activity
+				value matches {
+					Coded_text[id0.18] matches {
+						term matches {
+							Terminology_term[id0.22] matches {
+								concept matches {[ac0.2]}		-- Cardiac activity (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id0.12] occurrences matches {0..1} matches {	-- Heart rate
+				value matches {
+					Quantity[id0.19] matches {
+						magnitude matches {|>=0.0|}
+						precision matches {0}
+						units matches {
+							Coded_text[id0.24] matches {
+								term matches {
+									Terminology_term[id0.23] matches {
+										concept matches {[at0.14]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id0.15] occurrences matches {0..1} matches {	-- Estimated weight
+				value matches {
+					Quantity[id0.25] matches {	-- Estimated weight (g)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id0.27] matches {
+								term matches {
+									Terminology_term[id0.26] matches {
+										concept matches {[at0.15]}
+									}
+								}
+							}
+						}
+						precision matches {|>=0|}
+					}
+					Quantity[id0.28] matches {	-- Estimated weight (kg)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id0.30] matches {
+								term matches {
+									Terminology_term[id0.29] matches {
+										concept matches {[at0.16]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+				}
+			}
+			Node[id0.16] occurrences matches {0..1} matches {	-- Estimated weight rationale
+				value matches {
+					Text[id0.21] 
+				}
+			}
+		}
+		/items[id2.1]/value matches {
+			Coded_text[id9.1] matches {
+				term matches {
+					Terminology_term[id0.31] matches {
+						concept matches {[ac0.1]}		-- Body structure (synthesised)
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac0.1"] = <
+				text = <"Body structure (synthesised)">
+				description = <"Identification of the body structure or region examined. (synthesised)">
+			>
+			["ac0.2"] = <
+				text = <"Cardiac activity (synthesised)">
+				description = <"Presence of cardiac activity. (synthesised)">
+			>
+			["at0.1"] = <
+				text = <"Foetus">
+				description = <"">
+			>
+			["at0.10"] = <
+				text = <"Absent">
+				description = <"No cardiac activity is observed.">
+			>
+			["at0.11"] = <
+				text = <"Indeterminate">
+				description = <"It is not possible to determine if cardiac activity is present or absent.">
+			>
+			["at0.12"] = <
+				text = <"Frequency">
+				description = <"Frequency">
+			>
+			["at0.13"] = <
+				text = <"Mass">
+				description = <"Mass">
+			>
+			["at0.14"] = <
+				text = <"/min">
+				description = <"/min unit for heart rate">
+			>
+			["at0.15"] = <
+				text = <"g">
+				description = <"Gram unit.">
+			>
+			["at0.16"] = <
+				text = <"kg">
+				description = <"Kg unit.">
+			>
+			["at0.2"] = <
+				text = <"Embryo">
+				description = <"">
+			>
+			["at0.9"] = <
+				text = <"Presence">
+				description = <"Cardiac activity is observed.">
+			>
+			["id0.12"] = <
+				text = <"Heart rate">
+				description = <"The observed heart rate for the foetus.">
+			>
+			["id0.15"] = <
+				text = <"Estimated weight">
+				description = <"Estimated fetal weight using imaging techniques.">
+			>
+			["id0.16"] = <
+				text = <"Estimated weight rationale">
+				description = <"Description about the evidence on which the estimation of weigth was made.">
+			>
+			["id0.25"] = <
+				text = <"Estimated weight (g)">
+				description = <"Estimated weight (g)">
+			>
+			["id0.28"] = <
+				text = <"Estimated weight (kg)">
+				description = <"Estimated weight (kg)">
+			>
+			["id0.7"] = <
+				text = <"Label">
+				description = <"A label for the embryo or foetus.">
+			>
+			["id0.8"] = <
+				text = <"Cardiac activity">
+				description = <"Presence of cardiac activity.">
+			>
+			["id1.1"] = <
+				text = <"Imaging examination of a foetus">
+				description = <"Findings on radiological examination of a single foetus or embryo in utero.">
+			>
+			["id2.1"] = <
+				text = <"Body structure">
+				description = <"Identification of the body structure or region examined.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["at0.1"] = <http://snomed.info/id/83418008>
+			["at0.2"] = <http://snomed.info/id/57991002>
+			["at0.14"] = <http://snomed.info/id/258983007>
+			["at0.15"] = <http://snomed.info/id/258682000>
+			["at0.16"] = <http://snomed.info/id/258683005>
+		>
+		["openehr"] = <
+			["at0.12"] = <http://openehr.org/id/382>
+			["at0.13"] = <http://openehr.org/id/124>
+		>
+		["ucum"] = <
+			["at0.14"] = <http://ucum.org/id/%2Fmin>
+			["at0.15"] = <http://ucum.org/id/g>
+			["at0.16"] = <http://ucum.org/id/kg>
+		>
+		["loinc"] = <
+			["id0.12"] = <http://loinc.org/8867-4>
+		>
+	>
+	value_sets = <
+		["ac0.1"] = <
+			id = <"ac0.1">
+			members = <"at0.1", "at0.2">
+		>
+		["ac0.2"] = <
+			id = <"ac0.2">
+			members = <"at0.9", "at0.10", "at0.11">
+		>
+	>
+

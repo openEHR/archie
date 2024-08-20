@@ -1,0 +1,492 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d6576634-2a75-4b02-8d79-395ca964ba6c)
+	s2-EHR-Direct_observation.pulse.v2.0.4
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Sam Heard, Ocean Informatics, <sam.heard@oceaninformatics.com>, 2006-03-26">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.pulse.v2.0.4, copyright 2006 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.pulse.v2.0.4 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record details about the rate and associated attributes for a pulse or heart beat.">
+			use = <"Use to record the presence or absence of a pulse or heart beat.
+            
+            In practice, the terms 'heart rate' and 'pulse rate' are often used interchangeably, although they may be measured at different body sites. This archetype is intended to be used for either term and the measurement site Node is used to differentiate them.
+            
+            Use to record the measurement of the pulse rate, or heart rate, observations about the associated pattern and character, and clinical interpretation of the findings.
+            
+            Measurements such as the maximum pulse or heart rate over an interval of time can be recorded using 'Maximum' event. Others point-in-time or interval events may be specified within a template or at run-time.
+            
+            In development of this archetype, there has been some tension around representation of the regularity of the pulse or heart beat. This archetype represents the relevant data points separately: firstly establishing 'Regular' vs 'Irregular' and then, if 'Irregular', further options of 'Regularly irregular' and 'Irregularly irregular'. In practice, clinical systems could offer users a combination of the values from the 'Regularity' and 'Irregular type' - for example, 'Regular', 'Regularly irregular' and 'Irregularly irregular' drawn from these two data Nodes. Data could be recorded against both data Nodes with the assumption that if one of the irregular types are selected, then the 'Irregular' value in the 'Regularity' data Node is also automatically selected.
+            
+            In certain situations it is important to be very specific so that a rate observed at a peripheral body site, such as the radial artery, can be differentiated from the rate of the heart. To record a pulse deficit, record the measurements of the mechanical heart rate and a peripheral pulse rate in two instances of this archetype - the difference between these measurments is the pulse deficit. The actual pulse deficit will be recorded in a separate OBSERVATION archetype.">
+			keywords = <"rate", "rhythm", "beat", "pulse", "heart", "vital", "sign">
+			misuse = <"Not to be used to record the R-R rate in the context of an Electrocardiograph report - use the OBSERVATION.ecg archetype for this purpose.
+            
+            Not to be used to record other details of the full cardiovascular examination or assessment. Other specific Node archetypes will be used to record characteristics such as apex beat, murmurs and bruits, or auscultatory findings.
+            
+            In particular, this archetype is not intended to record the assessment of peripheral vascular disease, which requires documentation of the presence and strength of each peripheral pulse. A specific Node archetype will be used to record the general findings on examination of peripheral pulses. 
+            
+            Not to be used to record fetal heart rate - use the OBSERVATION.fetal_heart archetype for this purpose.
+            
+            Not to be used to record the pulse deficit - use a specific OBSERVATION archetype for this purpose.
+            
+            Concepts such as Target Heart Rate should be recorded in separate EVALUATION archetypes related to goals and exercise assessment.">
+		>
+	>
+	other_contributors = <"Morten Aas, Diakonhjemmet Sykehus, Norway", "Tomas Alme, Norway", "Magnus Alvestad, Helse Bergen HF, Norway", "Nadim Anani, Karolinska Institutet, Sweden", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Koray Atalag, University of Auckland, New Zealand", "Gustavo Bacelar-Silva, Healthcare Designs, Brazil (openEHR Editor)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Diego Bosca, IBIME group, Spain", "Pål Brekke, OUS Rikshospitalet, Norway", "Einar Bugge, UNN HF, Fag- og forskningssenteret, Norway", "Rong Chen, Cambio Healthcare Systems, Sweden", "Stephen Chu, Queensland Health, Australia", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Angela de Zwart, Orion Health, New Zealand", "Graham Denyer, Australian Antarctic Division, Australia", "Paul Donaldson, Nursing Informatics Australia, Australia", "Shahla Foozonkhah, Ocean Informatics, Australia", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "John George, HSCIC, United Kingdom", "Soon Ghee Yap, Singapore General Hospital, Singapore", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Bjørn Grøva, Diretoratet for e-helse, Norway", "Atle Hansen, Universitetssykehuset Nord-Norge, Norway", "Sam Heard, Ocean Informatics, Australia", "Kristian Heldal, Telemark Hospital Trust, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Erling Are Hole, Helse Bergen, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Eugene Igras, IRIS Systems, Inc., Canada", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Karlsen, DIPS ASA, Norway", "Athanasios Kleontas, Ergobyte Informatics, Greece", "Shinji Kobayashi, Kyoto University, Japan", "Robert Legan, NEHTA, Australia", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Rohan Martin, Ambulance Victoria, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Lars Ivar Mehlum, Nasjonal IKT HF, Norway", "Jeroen Meintjens, Medisch Centrum Alkmaar, Netherlands", "Monica Merchat, Hospital Cardiac Electrophysiology, MS Health Informatics Student, former ICU nurse, former Anesthesia Technician, United States", "Bjoern Naess, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Arturo Romero, SESCAM, Spain", "Jussara Rotzsch, UNB, Brazil", "Thomas Schopf, University Hospital of North-Norway, Norway", "Nils Thomas Songstad, UNN HF, BUK, Barneavdelingen., Norway", "Thor-Einar Stemland, Helse Bergen, FOU Seksjon for e-helse, Norway", "Arne Løberg Sæter, DIPS ASA, Norway", "Jan Inge Sørheim, Helse Bergen, Haukeland uniersitetssjukehus, Norway", "Micaela Thierley, Helse Bergen/Haraldsplass sykehus, Norway", "Kevin Thon, SKDE, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)">
+
+definition
+	Direct_observation[id1] matches {	-- Pulse/Heart beat
+		data matches {
+			Node[id1006] occurrences matches {0..1} matches {	-- Presence
+				value matches {
+					Coded_text[id1061] matches {
+						term matches {
+							Terminology_term[id1078] matches {
+								concept matches {[ac1]}		-- Presence (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Rate
+				value matches {
+					Measured<Quantity>[id1079] matches {
+						value matches {
+							Quantity[id1062] matches {
+								magnitude matches {|0.0..<1000.0|}
+								precision matches {0}
+								units matches {
+									Coded_text[id1081] matches {
+										term matches {
+											Terminology_term[id1080] matches {
+												concept matches {[at1061]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Regularity
+				value matches {
+					Coded_text[id1063] matches {
+						term matches {
+							Terminology_term[id1082] matches {
+								concept matches {[ac2]}		-- Regularity (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id1056] occurrences matches {0..1} matches {	-- Irregular type
+				value matches {
+					Coded_text[id1064] matches {
+						term matches {
+							Terminology_term[id1083] matches {
+								concept matches {[ac3]}		-- Irregular type (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id1031] matches {	-- Character
+				value matches {
+					Text[id1065] 
+				}
+			}
+			Node[id1023] occurrences matches {0..1} matches {	-- Clinical description
+				value matches {
+					Text[id1066] 
+				}
+			}
+			Node[id1024] matches {	-- Clinical interpretation
+				name matches {"Clinical interpretation", "Rhythm"}
+				value matches {
+					Text[id1068] 
+				}
+			}
+			Node[id1060] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id1069] 
+				}
+			}
+		}
+		state matches {
+			Node[id14] occurrences matches {0..1} matches {	-- Position
+				value matches {
+					Coded_text[id1070] matches {
+						term matches {
+							Terminology_term[id1084] matches {
+								concept matches {[ac5]}		-- Position (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id1019] matches {	-- Confounding factors
+				value matches {
+					Text[id1071] 
+				}
+			}
+			use_archetype Node[id1018, s2-EHR-Node.level_of_exertion.v0] 
+		}
+		qualifiers matches {
+			Node[id1020] occurrences matches {0..1} matches {	-- Method
+				value matches {
+					Coded_text[id1075] matches {
+						term matches {
+							Terminology_term[id1085] matches {
+								concept matches {[ac6]}		-- Method (synthesised)
+							}
+						}
+					}
+				}
+			}
+			Node[id1038] occurrences matches {0..1} matches {	-- Body site
+				value matches {
+					Coded_text[id1076] matches {
+						term matches {
+							Terminology_term[id1086] matches {
+								concept matches {[ac7]}		-- Body site (synthesised)
+							}
+						}
+					}
+					Plain_text[id1077] 
+				}
+			}
+			use_archetype Node[id1014, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			allow_archetype Node[id1057] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+		data_series matches {
+			Interval_event[id1037] occurrences matches {0..1} matches {	-- Maximum
+				sample_function matches {"maximum"}
+				items matches {
+					use_node Node[id1006] /data[id1006]	-- /data[Presence]
+					use_node Node[id5] /data[id5]	-- /data[Rate]
+					use_node Node[id6] /data[id6]	-- /data[Regularity]
+					use_node Node[id1056] /data[id1056]	-- /data[Irregular type]
+					use_node Node[id1031] /data[id1031]	-- /data[Character]
+					use_node Node[id1023] /data[id1023]	-- /data[Clinical description]
+					use_node Node[id1024] /data[id1024]	-- /data[Clinical interpretation]
+					use_node Node[id1060] /data[id1060]	-- /data[Comment]
+				}
+			}
+		}
+		state_series matches {
+			Interval_event[id1037] occurrences matches {0..1} matches {	-- Maximum
+				sample_function matches {"maximum"}
+				items matches {
+					use_node Node[id14] /state[id14]	-- /state[Position]
+					use_node Node[id1019] /state[id1019]	-- /state[Confounding factors]
+					use_node Node[id1018] /state[id1018]	-- /state[Exertion]
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Presence (synthesised)">
+				description = <"Presence of a pulse or heart beat. (synthesised)">
+			>
+			["ac2"] = <
+				text = <"Regularity (synthesised)">
+				description = <"Regularity of the pulse or heart beat. (synthesised)">
+			>
+			["ac3"] = <
+				text = <"Irregular type (synthesised)">
+				description = <"More specific pattern of an irregular pulse or heart beat. (synthesised)">
+			>
+			["ac4"] = <
+				text = <"Clinical interpretation (synthesised)">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the pulse or heart beat findings, including the rhythm. (synthesised)">
+			>
+			["ac5"] = <
+				text = <"Position (synthesised)">
+				description = <"The body position of the subject during the observation. (synthesised)">
+			>
+			["ac6"] = <
+				text = <"Method (synthesised)">
+				description = <"Method used to observe the pulse or heart beat. (synthesised)">
+			>
+			["ac7"] = <
+				text = <"Body site (synthesised)">
+				description = <"Body site where the pulse or heart beat were observed. (synthesised)">
+			>
+			["at1000"] = <
+				text = <"Lying">
+				description = <"The subject was lying flat.">
+			>
+			["at1001"] = <
+				text = <"Sitting">
+				description = <"The subject was sitting (for example on bed or chair).">
+			>
+			["at1002"] = <
+				text = <"Reclining">
+				description = <"The subject was reclining at an approximate angle of 45 degrees, with the legs elevated to the level of the pelvis.">
+			>
+			["at1003"] = <
+				text = <"Standing/upright">
+				description = <"The subject was standing, walking or running.">
+			>
+			["at1024"] = <
+				text = <"Present">
+				description = <"A pulse or heart beat can be detected.">
+			>
+			["at1025"] = <
+				text = <"Not detected">
+				description = <"A pulse or heart beat cannot be detected.">
+			>
+			["at1028"] = <
+				text = <"Irregular">
+				description = <"The pattern is irregular.">
+			>
+			["at1032"] = <
+				text = <"Palpation">
+				description = <"The findings are observed by physical touch of the observer on the subject.">
+			>
+			["at1033"] = <
+				text = <"Auscultation">
+				description = <"The findings are observed with the assistance of a device, such as a stethoscope.">
+			>
+			["at1034"] = <
+				text = <"Automatic, non-invasive">
+				description = <"The findings are observed non-invasively using a device such as a pulse oximeter or a stethoscope.">
+			>
+			["at1038"] = <
+				text = <"Radial Artery - Left">
+				description = <"The left radial artery.">
+			>
+			["at1039"] = <
+				text = <"Radial Artery - Right">
+				description = <"The right radial artery.">
+			>
+			["at1040"] = <
+				text = <"Heart">
+				description = <"The region of the heart.">
+			>
+			["at1041"] = <
+				text = <"Carotid Artery - Left">
+				description = <"The left carotid artery.">
+			>
+			["at1042"] = <
+				text = <"Carotid Artery - Right">
+				description = <"The right carotid artery.">
+			>
+			["at1043"] = <
+				text = <"Femoral Artery - Left">
+				description = <"The left femoral artery.">
+			>
+			["at1044"] = <
+				text = <"Femoral Artery - Right">
+				description = <"The right femoral artery.">
+			>
+			["at1047"] = <
+				text = <"Finger">
+				description = <"An unspecified finger.">
+			>
+			["at1048"] = <
+				text = <"Brachial artery - Left">
+				description = <"The left brachial artery.">
+			>
+			["at1049"] = <
+				text = <"Brachial artery - Right">
+				description = <"The right brachial artery.">
+			>
+			["at1050"] = <
+				text = <"Automatic, invasive">
+				description = <"The findings are observed invasively using a device such as an arterial catheter.">
+			>
+			["at1051"] = <
+				text = <"Ear lobe">
+				description = <"The lobe of an unspecified ear.">
+			>
+			["at1054"] = <
+				text = <"Toe">
+				description = <"An unspecified toe.">
+			>
+			["at1057"] = <
+				text = <"Clinical interpretation">
+				description = <"Generic label to allow for any or all statements about the pulse or heart beat.">
+			>
+			["at1058"] = <
+				text = <"Rhythm">
+				description = <"Specific conclusion about the rhythm of the pulse or heartbeat, drawn from a combination of the heart rate, pattern and other characteristics observed on examination.">
+			>
+			["at1059"] = <
+				text = <"Frequency">
+				description = <"Frequency">
+			>
+			["at1061"] = <
+				text = <"/min">
+				description = <"/min unit for heart rate">
+			>
+			["at6"] = <
+				text = <"Regular">
+				description = <"The pattern is regular.">
+			>
+			["at7"] = <
+				text = <"Regularly Irregular">
+				description = <"The pattern is irregular in a regular pattern,. For example, a dropped beat once every 'n' beats.">
+			>
+			["at8"] = <
+				text = <"Irregularly Irregular">
+				description = <"The pattern is irregular in a chaotic and unpredictable manner. For example, atrial fibrillation.">
+			>
+			["id1"] = <
+				text = <"Pulse/Heart beat">
+				description = <"The rate and associated attributes for a pulse or heart beat.">
+			>
+			["id1006"] = <
+				text = <"Presence">
+				description = <"Presence of a pulse or heart beat.">
+			>
+			["id1014"] = <
+				text = <"Device">
+				description = <"Details about the device used to measure the pulse rate or heart rate.">
+			>
+			["id1018"] = <
+				text = <"Exertion">
+				description = <"Details about physical exertion being undertaken during the examination.">
+			>
+			["id1019"] = <
+				text = <"Confounding factors">
+				description = <"Narrative description about any incidental factors that may affect interpretation of the physical findings.">
+			>
+			["id1020"] = <
+				text = <"Method">
+				description = <"Method used to observe the pulse or heart beat.">
+			>
+			["id1023"] = <
+				text = <"Clinical description">
+				description = <"Narrative description about the pulse or heart beat.">
+			>
+			["id1024"] = <
+				text = <"Clinical interpretation">
+				description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the pulse or heart beat findings, including the rhythm.">
+			>
+			["id1031"] = <
+				text = <"Character">
+				description = <"Description of the character of the pulse or heart beat.">
+			>
+			["id1037"] = <
+				text = <"Maximum">
+				description = <"Maximum pulse rate or heart rate observed during a period of exertion.">
+			>
+			["id1038"] = <
+				text = <"Body site">
+				description = <"Body site where the pulse or heart beat were observed.">
+			>
+			["id1056"] = <
+				text = <"Irregular type">
+				description = <"More specific pattern of an irregular pulse or heart beat.">
+			>
+			["id1057"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+			>
+			["id1060"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the pulse or heart beat findings not captured in other fields.">
+			>
+			["id14"] = <
+				text = <"Position">
+				description = <"The body position of the subject during the observation.">
+			>
+			["id4"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id5"] = <
+				text = <"Rate">
+				description = <"The rate of the pulse or heart beat, measured in beats per minute.">
+			>
+			["id6"] = <
+				text = <"Regularity">
+				description = <"Regularity of the pulse or heart beat.">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at1059"] = <http://openehr.org/id/382>
+		>
+		["ucum"] = <
+			["at1061"] = <http://ucum.org/id/%2Fmin>
+		>
+		["snomed"] = <
+			["at1061"] = <http://snomed.info/id/258983007>
+		>
+		["loinc"] = <
+			["id1020"] = <http://loinc.org/8886-4>
+			["id1024"] = <http://loinc.org/64110-0>
+			["id1038"] = <http://loinc.org/39111-0>
+			["id1060"] = <http://loinc.org/48767-8>
+			["id14"] = <http://loinc.org/8361-8>
+			["id5"] = <http://loinc.org/8867-4>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at1024", "at1025">
+		>
+		["ac2"] = <
+			id = <"ac2">
+			members = <"at6", "at1028">
+		>
+		["ac3"] = <
+			id = <"ac3">
+			members = <"at7", "at8">
+		>
+		["ac4"] = <
+			id = <"ac4">
+			members = <"at1057", "at1058">
+		>
+		["ac5"] = <
+			id = <"ac5">
+			members = <"at1003", "at1001", "at1002", "at1000">
+		>
+		["ac6"] = <
+			id = <"ac6">
+			members = <"at1032", "at1033", "at1034", "at1050">
+		>
+		["ac7"] = <
+			id = <"ac7">
+			members = <"at1038", "at1039", "at1040", "at1041", "at1042", "at1043", "at1044", "at1049", "at1048", "at1047", "at1054", "at1051">
+		>
+	>
+
