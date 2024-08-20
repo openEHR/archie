@@ -24,7 +24,7 @@ public class ArchetypeRepositoryBuilder {
     private static final Logger logger = LoggerFactory.getLogger(ArchetypeRepositoryBuilder.class);
 
     public static FullArchetypeRepository parseRepository(Class<?> caller, String root) {
-        parseRepository(caller, root, defaultFilter);
+        return parseRepository(caller, root, defaultFilter);
     }
     public static FullArchetypeRepository parseRepository(Class<?> caller, String root, String filter) {
         InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
