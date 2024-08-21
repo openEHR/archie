@@ -1,6 +1,7 @@
 package org.s2.rm.base.change_control;
 
-import com.nedap.archie.base.RMObject;
+import org.s2.util.enumerations.EnumerationVarString;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Audit_change_type", propOrder = {"value"})
-public class AuditChangeType extends RMObject {
+public class AuditChangeType extends EnumerationVarString {
   /**
   * Enumeration value.
   */

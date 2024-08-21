@@ -1,6 +1,7 @@
 package org.s2.rm.base.model_support.definitions;
 
-import com.nedap.archie.base.RMObject;
+import org.s2.util.enumerations.EnumerationVarString;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Version_status", propOrder = {"value"})
-public class VersionStatus extends RMObject {
+public class VersionStatus extends EnumerationVarString {
   /**
   * Enumeration value.
   */

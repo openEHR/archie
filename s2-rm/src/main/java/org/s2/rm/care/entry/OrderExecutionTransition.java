@@ -1,6 +1,7 @@
 package org.s2.rm.care.entry;
 
-import com.nedap.archie.base.RMObject;
+import org.s2.util.enumerations.EnumerationVarString;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Order_execution_transition", propOrder = {"value"})
-public class OrderExecutionTransition extends RMObject {
+public class OrderExecutionTransition extends EnumerationVarString {
   /**
   * Enumeration value.
   */
