@@ -1,5 +1,6 @@
 package org.s2.rm.base.resource;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -19,7 +20,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
   "otherDetails",
   "otherContributors"
 })
-public class TranslationDetails {
+public class TranslationDetails extends RMObject {
   /**
   * BMM name: language | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
@@ -28,7 +29,7 @@ public class TranslationDetails {
   private TerminologyCode language;
 
   /**
-  * BMM name: author | BMM type: Hash<{@literal String,String}>
+  * BMM name: author | BMM type: {@code Hash<String,String>}
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "author")
@@ -49,14 +50,14 @@ public class TranslationDetails {
   private @Nullable String versionLastTranslated;
 
   /**
-  * BMM name: other_details | BMM type: Hash<{@literal String,String}>
+  * BMM name: other_details | BMM type: {@code Hash<String,String>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_details")
   private @Nullable Map<String, String> otherDetails;
 
   /**
-  * BMM name: other_contributors | BMM type: List<{@literal String}>
+  * BMM name: other_contributors | BMM type: {@code List<String>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_contributors")

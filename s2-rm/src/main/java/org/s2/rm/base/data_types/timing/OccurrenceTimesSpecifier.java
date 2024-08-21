@@ -1,5 +1,6 @@
 package org.s2.rm.base.data_types.timing;
 
+import com.nedap.archie.base.RMObject;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -12,7 +13,7 @@ import javax.xml.bind.annotation.*;
   "eventCount",
   "eventCountUpper"
 })
-public abstract class OccurrenceTimesSpecifier {
+public abstract class OccurrenceTimesSpecifier extends RMObject {
   /**
   * BMM name: event_count | BMM type: Integer
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1

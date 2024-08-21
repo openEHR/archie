@@ -1,5 +1,6 @@
 package org.s2.rm.care.ehr;
 
+import com.nedap.archie.base.RMObject;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -9,7 +10,7 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Access_control_settings")
-public abstract class AccessControlSettings {
+public abstract class AccessControlSettings extends RMObject {
   public AccessControlSettings() {}
 
 

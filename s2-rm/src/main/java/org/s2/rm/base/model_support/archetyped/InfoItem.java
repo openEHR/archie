@@ -33,7 +33,7 @@ public abstract class InfoItem extends Locatable {
   private @Nullable TerminologyTerm originalCode;
 
   /**
-  * BMM name: links | BMM type: List<{@literal Link}>
+  * BMM name: links | BMM type: {@code List<Link>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "links")

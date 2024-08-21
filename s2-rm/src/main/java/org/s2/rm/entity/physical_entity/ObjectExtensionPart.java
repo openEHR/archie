@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "Object_extension_part")
 public abstract class ObjectExtensionPart extends MaterialEntity {
   /**
-  * BMM name: parts | BMM type: List<{@literal Object_extension_part}>
+  * BMM name: parts | BMM type: {@code List<Object_extension_part>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   // This property is in at least one descendant where it probably has a different type.

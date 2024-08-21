@@ -1,5 +1,6 @@
 package org.s2.rm.base.model_support.identification;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -14,7 +15,7 @@ import javax.xml.bind.annotation.*;
   "namespace",
   "type"
 })
-public class ObjectRef {
+public class ObjectRef extends RMObject {
   /**
   * BMM name: id | BMM type: Object_id
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

@@ -1,5 +1,6 @@
 package org.s2.rm.base.foundation_types.interval;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -7,7 +8,7 @@ import javax.xml.bind.annotation.*;
 /**
 * Type defining an interval of any ordered type.
 * BMM name: Interval
-* BMM generic parameters: Interval<{@literal T Comparable}>
+* BMM generic parameters: {@code Interval<T Comparable>}
 * isAbstract: false | isPrimitiveType: true | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
@@ -20,7 +21,7 @@ import javax.xml.bind.annotation.*;
   "lowerIncluded",
   "upperIncluded"
 })
-public class Interval<T extends Comparable> {
+public class Interval<T extends Comparable> extends RMObject {
   /**
   * BMM name: lower | BMM type: T
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1

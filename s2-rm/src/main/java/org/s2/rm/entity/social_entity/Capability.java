@@ -4,7 +4,8 @@ import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
-import org.s2.rm.base.foundation_types.time.Date;
+import org.s2.rm.base.foundation_types.time.RmDate;
+import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
@@ -23,18 +24,18 @@ import org.s2.rm.base.patterns.data_structures.Node;
 })
 public class Capability extends Locatable {
   /**
-  * BMM name: credentials | BMM type: List<{@literal Node}>
+  * BMM name: credentials | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "credentials")
   private @Nullable List<Node> credentials;
 
   /**
-  * BMM name: time_validity | BMM type: Interval<{@literal Date}>
+  * BMM name: time_validity | BMM type: {@code Interval<Date>}
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "time_validity")
-  private @Nullable Interval<Date> timeValidity;
+  private @Nullable Interval<RmDate> timeValidity;
 
 
   // Properties added from the extended class: Locatable
@@ -81,11 +82,11 @@ public class Capability extends Locatable {
     this.credentials = credentials;
   }
 
-  public @Nullable Interval<Date> getTimeValidity() {
+  public @Nullable Interval<RmDate> getTimeValidity() {
     return timeValidity;
   }
 
-  public void setTimeValidity(@Nullable Interval<Date> timeValidity) {
+  public void setTimeValidity(@Nullable Interval<RmDate> timeValidity) {
     this.timeValidity = timeValidity;
   }
 

@@ -1,5 +1,6 @@
 package org.s2.rm.base.model_support.identification;
 
+import com.nedap.archie.base.RMObject;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -11,7 +12,7 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "Object_id", propOrder = {
   "value"
 })
-public abstract class ObjectId {
+public abstract class ObjectId extends RMObject {
   /**
   * BMM name: value | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

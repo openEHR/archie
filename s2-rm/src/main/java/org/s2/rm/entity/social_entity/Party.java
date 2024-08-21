@@ -26,21 +26,21 @@ public abstract class Party extends SocialEntity {
   private @Nullable String legalStatus;
 
   /**
-  * BMM name: identities | BMM type: List<{@literal Party_identity}>
+  * BMM name: identities | BMM type: {@code List<Party_identity>}
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "identities")
   private List<PartyIdentity> identities;
 
   /**
-  * BMM name: contacts | BMM type: Set<{@literal Contact}>
+  * BMM name: contacts | BMM type: {@code Set<Contact>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "contacts")
   private @Nullable Set<Contact> contacts;
 
   /**
-  * BMM name: accountability_types | BMM type: List<{@literal Accountability}>
+  * BMM name: accountability_types | BMM type: {@code List<Accountability>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "accountability_types")

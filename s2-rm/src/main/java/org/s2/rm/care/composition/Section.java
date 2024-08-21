@@ -20,7 +20,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
 })
 public class Section extends ContentItem {
   /**
-  * BMM name: items | BMM type: List<{@literal Content_item}>
+  * BMM name: items | BMM type: {@code List<Content_item>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "items")

@@ -8,8 +8,8 @@ import org.s2.rm.base.model_support.identification.ObjectVersionId;
 
 /**
 * BMM name: Original_version
-* BMM generic parameters: Original_version<{@literal T Any}>
-* BMM ancestors: Version<{@literal T}>
+* BMM generic parameters: {@code Original_version<T Any>}
+* BMM ancestors: {@code Version<T>}
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
@@ -38,14 +38,14 @@ public class OriginalVersion<T> extends Version<T> {
   private @Nullable ObjectVersionId precedingVersionUid;
 
   /**
-  * BMM name: other_input_version_uids | BMM type: List<{@literal Object_version_id}>
+  * BMM name: other_input_version_uids | BMM type: {@code List<Object_version_id>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 0..1
   */
   @XmlElement(name = "other_input_version_uids")
   private @Nullable List<ObjectVersionId> otherInputVersionUids;
 
   /**
-  * BMM name: attestations | BMM type: List<{@literal Attestation}>
+  * BMM name: attestations | BMM type: {@code List<Attestation>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "attestations")

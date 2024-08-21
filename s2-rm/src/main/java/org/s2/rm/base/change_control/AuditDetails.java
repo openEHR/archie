@@ -1,12 +1,11 @@
 package org.s2.rm.base.change_control;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.patterns.participation.PartyProxy;
 
 /**
@@ -35,7 +34,7 @@ public class AuditDetails extends RMObject {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time_committed")
-  private DateTime timeCommitted;
+  private RmDateTime timeCommitted;
 
   /**
   * BMM name: change_type | BMM type: Audit_change_type
@@ -60,7 +59,7 @@ public class AuditDetails extends RMObject {
 
   public AuditDetails() {}
 
-  public AuditDetails(String systemId, DateTime timeCommitted, AuditChangeType changeType, PartyProxy committer) {
+  public AuditDetails(String systemId, RmDateTime timeCommitted, AuditChangeType changeType, PartyProxy committer) {
     this.systemId = systemId;
     this.timeCommitted = timeCommitted;
     this.changeType = changeType;
@@ -92,11 +91,11 @@ public class AuditDetails extends RMObject {
     this.systemId = systemId;
   }
 
-  public DateTime getTimeCommitted() {
+  public RmDateTime getTimeCommitted() {
     return timeCommitted;
   }
 
-  public void setTimeCommitted(DateTime timeCommitted) {
+  public void setTimeCommitted(RmDateTime timeCommitted) {
     this.timeCommitted = timeCommitted;
   }
 

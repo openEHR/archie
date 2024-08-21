@@ -34,7 +34,7 @@ public class DayHourSpecifier extends OccurrenceTimesSpecifier {
   private int dayPeriod;
 
   /**
-  * BMM name: times_of_day | BMM type: List<{@literal Hour_specifier}>
+  * BMM name: times_of_day | BMM type: {@code List<Hour_specifier>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "times_of_day")

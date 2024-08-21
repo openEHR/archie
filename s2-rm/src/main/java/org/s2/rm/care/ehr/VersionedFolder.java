@@ -3,13 +3,13 @@ package org.s2.rm.care.ehr;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.change_control.VersionedObject;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;
 
 /**
 * BMM name: Versioned_folder
-* BMM ancestors: Versioned_object<{@literal Folder}>
+* BMM ancestors: {@code Versioned_object<Folder>}
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
@@ -18,7 +18,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
 public class VersionedFolder<T extends Folder> extends VersionedObject<Folder> {
   public VersionedFolder() {}
 
-  public VersionedFolder(Uuid uid, ObjectRef ownerId, DateTime timeCreated) {
+  public VersionedFolder(Uuid uid, ObjectRef ownerId, RmDateTime timeCreated) {
     super(uid, ownerId, timeCreated);
   }
 

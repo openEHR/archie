@@ -4,7 +4,7 @@ import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.DataValue;
-import org.s2.rm.base.foundation_types.time.Duration;
+import org.s2.rm.base.foundation_types.time.RmDuration;
 
 /**
 * BMM name: Timing
@@ -21,7 +21,7 @@ import org.s2.rm.base.foundation_types.time.Duration;
 })
 public class Timing extends DataValue {
   /**
-  * BMM name: history | BMM type: List<{@literal Occurrence}>
+  * BMM name: history | BMM type: {@code List<Occurrence>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "history")
@@ -39,14 +39,14 @@ public class Timing extends DataValue {
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "event_duration")
-  private @Nullable Duration eventDuration;
+  private @Nullable RmDuration eventDuration;
 
   /**
   * BMM name: event_duration_upper | BMM type: Duration
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "event_duration_upper")
-  private @Nullable Duration eventDurationUpper;
+  private @Nullable RmDuration eventDurationUpper;
 
   public Timing() {}
 
@@ -85,19 +85,19 @@ public class Timing extends DataValue {
     this.pattern = pattern;
   }
 
-  public @Nullable Duration getEventDuration() {
+  public @Nullable RmDuration getEventDuration() {
     return eventDuration;
   }
 
-  public void setEventDuration(@Nullable Duration eventDuration) {
+  public void setEventDuration(@Nullable RmDuration eventDuration) {
     this.eventDuration = eventDuration;
   }
 
-  public @Nullable Duration getEventDurationUpper() {
+  public @Nullable RmDuration getEventDurationUpper() {
     return eventDurationUpper;
   }
 
-  public void setEventDurationUpper(@Nullable Duration eventDurationUpper) {
+  public void setEventDurationUpper(@Nullable RmDuration eventDurationUpper) {
     this.eventDurationUpper = eventDurationUpper;
   }
 

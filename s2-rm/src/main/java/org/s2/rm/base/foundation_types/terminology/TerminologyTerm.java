@@ -1,7 +1,6 @@
 package org.s2.rm.base.foundation_types.terminology;
 
 import com.nedap.archie.base.RMObject;
-
 import java.util.*;
 import javax.xml.bind.annotation.*;
 

@@ -1,16 +1,15 @@
 package org.s2.rm.base.data_types.quantity;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.data_types.text.Text;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 
 /**
 * BMM name: Reference_range
-* BMM generic parameters: Reference_range<{@literal V Measurable}>
+* BMM generic parameters: {@code Reference_range<V Measurable>}
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
@@ -30,7 +29,7 @@ public class ReferenceRange<V extends Measurable> extends RMObject {
   private TerminologyTerm type;
 
   /**
-  * BMM name: range | BMM type: Range<{@literal V}>
+  * BMM name: range | BMM type: {@code Range<V>}
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "range")

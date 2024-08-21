@@ -3,8 +3,9 @@ package org.s2.rm.base.patterns.data_structures;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.DateTime;
-import org.s2.rm.base.foundation_types.time.Duration;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.foundation_types.time.RmDuration;
+import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.definitions.SampleFunctionKind;
 import org.s2.rm.base.model_support.identification.Uuid;
 
@@ -27,7 +28,7 @@ public class IntervalEvent extends Event {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "width")
-  private Duration width;
+  private RmDuration width;
 
   /**
   * BMM name: sample_count | BMM type: Integer
@@ -55,7 +56,7 @@ public class IntervalEvent extends Event {
 
   public IntervalEvent() {}
 
-  public IntervalEvent(Duration width, DateTime time, String archetypeNodeId, String name) {
+  public IntervalEvent(RmDuration width, RmDateTime time, String archetypeNodeId, String name) {
     super(time, archetypeNodeId, name);
     this.width = width;
   }
@@ -82,11 +83,11 @@ public class IntervalEvent extends Event {
     return Objects.hash(super.hashCode(), uid, width, sampleCount, sampleFunction);
   }
 
-  public Duration getWidth() {
+  public RmDuration getWidth() {
     return width;
   }
 
-  public void setWidth(Duration width) {
+  public void setWidth(RmDuration width) {
     this.width = width;
   }
 

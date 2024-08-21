@@ -2,7 +2,7 @@ package org.s2.rm.base.data_types.quantity;
 
 import java.util.*;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.Date;
+import org.s2.rm.base.foundation_types.time.RmDate;
 
 /**
 * BMM name: Date_value
@@ -20,11 +20,11 @@ public class DateValue extends TemporalValue {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "magnitude")
-  private Date magnitude;
+  private RmDate magnitude;
 
   public DateValue() {}
 
-  public DateValue(Date magnitude) {
+  public DateValue(RmDate magnitude) {
     this.magnitude = magnitude;
   }
 
@@ -42,11 +42,11 @@ public class DateValue extends TemporalValue {
     return Objects.hash(super.hashCode(), magnitude);
   }
 
-  public Date getMagnitude() {
+  public RmDate getMagnitude() {
     return magnitude;
   }
 
-  public void setMagnitude(Date magnitude) {
+  public void setMagnitude(RmDate magnitude) {
     this.magnitude = magnitude;
   }
 

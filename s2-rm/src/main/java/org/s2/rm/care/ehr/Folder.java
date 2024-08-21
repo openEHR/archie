@@ -24,21 +24,21 @@ import org.s2.rm.base.patterns.data_structures.Node;
 })
 public class Folder extends Locatable {
   /**
-  * BMM name: folders | BMM type: List<{@literal Folder}>
+  * BMM name: folders | BMM type: {@code List<Folder>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "folders")
   private @Nullable List<Folder> folders;
 
   /**
-  * BMM name: items | BMM type: List<{@literal Object_ref}>
+  * BMM name: items | BMM type: {@code List<Object_ref>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "items")
   private @Nullable List<ObjectRef> items;
 
   /**
-  * BMM name: details | BMM type: List<{@literal Node}>
+  * BMM name: details | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "details")

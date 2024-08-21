@@ -1,5 +1,6 @@
 package org.s2.rm.care.entry;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -17,7 +18,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
   "fillerId",
   "details"
 })
-public class OrderTracking {
+public class OrderTracking extends RMObject {
   /**
   * BMM name: order_id | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
@@ -40,7 +41,7 @@ public class OrderTracking {
   private @Nullable String fillerId;
 
   /**
-  * BMM name: details | BMM type: List<{@literal Node}>
+  * BMM name: details | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "details")

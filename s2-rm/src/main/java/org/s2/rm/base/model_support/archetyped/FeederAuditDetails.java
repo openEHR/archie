@@ -1,11 +1,10 @@
 package org.s2.rm.base.model_support.archetyped;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.patterns.participation.PartyIdentified;
 import org.s2.rm.base.patterns.participation.PartyProxy;
 
@@ -58,7 +57,7 @@ public class FeederAuditDetails extends RMObject {
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "time")
-  private @Nullable DateTime time;
+  private @Nullable RmDateTime time;
 
   /**
   * BMM name: version_id | BMM type: String
@@ -68,7 +67,7 @@ public class FeederAuditDetails extends RMObject {
   private @Nullable String versionId;
 
   /**
-  * BMM name: other_details | BMM type: Hash<{@literal String,String}>
+  * BMM name: other_details | BMM type: {@code Hash<String,String>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_details")
@@ -131,11 +130,11 @@ public class FeederAuditDetails extends RMObject {
     this.subject = subject;
   }
 
-  public @Nullable DateTime getTime() {
+  public @Nullable RmDateTime getTime() {
     return time;
   }
 
-  public void setTime(@Nullable DateTime time) {
+  public void setTime(@Nullable RmDateTime time) {
     this.time = time;
   }
 

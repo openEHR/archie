@@ -46,7 +46,7 @@ public class StateTransition extends Locatable {
   private @Nullable TerminologyTerm careflowStep;
 
   /**
-  * BMM name: reason | BMM type: List<{@literal Text}>
+  * BMM name: reason | BMM type: {@code List<Text>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "reason")

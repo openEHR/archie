@@ -21,7 +21,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 })
 public class PartyIdentity extends Locatable {
   /**
-  * BMM name: description | BMM type: List<{@literal Node}>
+  * BMM name: description | BMM type: {@code List<Node>}
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "description")

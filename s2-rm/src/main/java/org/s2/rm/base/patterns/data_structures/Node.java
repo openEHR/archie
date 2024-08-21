@@ -57,7 +57,7 @@ public class Node extends InfoItem {
   private @Nullable Text nullReason;
 
   /**
-  * BMM name: items | BMM type: List<{@literal Node}>
+  * BMM name: items | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "items")

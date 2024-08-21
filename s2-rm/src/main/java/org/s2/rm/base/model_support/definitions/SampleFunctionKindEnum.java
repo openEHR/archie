@@ -7,18 +7,11 @@ import org.s2.util.enumerations.*;
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
-public final class SampleFunctionKindEnum extends EnumerationType<String> {
+public class SampleFunctionKindEnum extends EnumerationString {
   static String[] _itemNames = {"actual", "minimum", "maximum", "mean", "mode", "median", "increase", "decrease", "change", "total"};
   static String[] _itemValues = {};
 
   public SampleFunctionKindEnum() {
     super(_itemNames, _itemValues);
-  }
-
-  private static SampleFunctionKindEnum INSTANCE;
-  public static SampleFunctionKindEnum getInstance() {
-      if (INSTANCE == null)
-        INSTANCE = new SampleFunctionKindEnum();
-      return INSTANCE;
   }
 }

@@ -30,7 +30,7 @@ public class Multimedia extends Encapsulated {
   private @Nullable String alternateText;
 
   /**
-  * BMM name: data | BMM type: Array<{@literal Byte}>
+  * BMM name: data | BMM type: {@code Array<Byte>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "data")

@@ -7,7 +7,7 @@ import org.s2.rm.base.data_types.DataValue;
 
 /**
 * BMM name: Range
-* BMM generic parameters: Range<{@literal V Ordered_datum}>
+* BMM generic parameters: {@code Range<V Ordered_datum>}
 * BMM ancestors: Data_value
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0

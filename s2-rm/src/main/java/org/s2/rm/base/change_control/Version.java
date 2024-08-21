@@ -1,14 +1,13 @@
 package org.s2.rm.base.change_control;
 
+import com.nedap.archie.base.RMObject;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 
 /**
 * BMM name: Version
-* BMM generic parameters: Version<{@literal T Any}>
+* BMM generic parameters: {@code Version<T Any>}
 * isAbstract: true | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */

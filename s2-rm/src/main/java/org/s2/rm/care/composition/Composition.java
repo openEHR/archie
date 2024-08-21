@@ -74,7 +74,7 @@ public class Composition extends InfoItem {
   private @Nullable EventContext context;
 
   /**
-  * BMM name: content | BMM type: List<{@literal Content_item}>
+  * BMM name: content | BMM type: {@code List<Content_item>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "content")

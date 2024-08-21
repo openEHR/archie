@@ -18,7 +18,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 })
 public abstract class Entity extends Locatable {
   /**
-  * BMM name: description | BMM type: List<{@literal Node}>
+  * BMM name: description | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "description")

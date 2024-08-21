@@ -1,9 +1,8 @@
 package org.s2.rm.base.patterns.participation;
 
+import com.nedap.archie.base.RMObject;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 
 /**

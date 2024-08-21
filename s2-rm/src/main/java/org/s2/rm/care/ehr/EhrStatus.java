@@ -46,7 +46,7 @@ public class EhrStatus extends Locatable {
   private boolean isModifiable;
 
   /**
-  * BMM name: other_details | BMM type: List<{@literal Node}>
+  * BMM name: other_details | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_details")

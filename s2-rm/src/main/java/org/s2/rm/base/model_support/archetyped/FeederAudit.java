@@ -1,10 +1,9 @@
 package org.s2.rm.base.model_support.archetyped;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.data_types.RweIdRef;
 import org.s2.rm.base.data_types.encapsulated.Encapsulated;
 
@@ -23,14 +22,14 @@ import org.s2.rm.base.data_types.encapsulated.Encapsulated;
 })
 public class FeederAudit extends RMObject {
   /**
-  * BMM name: originating_system_item_ids | BMM type: List<{@literal Rwe_id_ref}>
+  * BMM name: originating_system_item_ids | BMM type: {@code List<Rwe_id_ref>}
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "originating_system_item_ids")
   private @Nullable List<RweIdRef> originatingSystemItemIds;
 
   /**
-  * BMM name: feeder_system_item_ids | BMM type: List<{@literal Rwe_id_ref}>
+  * BMM name: feeder_system_item_ids | BMM type: {@code List<Rwe_id_ref>}
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "feeder_system_item_ids")

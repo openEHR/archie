@@ -1,7 +1,6 @@
 package org.s2.rm.base.data_types;
 
 import com.nedap.archie.base.RMObject;
-
 import javax.xml.bind.annotation.*;
 
 /**

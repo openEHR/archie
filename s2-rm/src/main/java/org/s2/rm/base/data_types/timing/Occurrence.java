@@ -1,11 +1,10 @@
 package org.s2.rm.base.data_types.timing;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
-import org.s2.rm.base.foundation_types.time.Date;
+import org.s2.rm.base.foundation_types.time.RmDate;
 
 /**
 * BMM name: Occurrence
@@ -23,10 +22,10 @@ public class Occurrence extends RMObject {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "date")
-  private Date date;
+  private RmDate date;
 
   /**
-  * BMM name: times_of_day | BMM type: List<{@literal Hour_specifier}>
+  * BMM name: times_of_day | BMM type: {@code List<Hour_specifier>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "times_of_day")
@@ -34,7 +33,7 @@ public class Occurrence extends RMObject {
 
   public Occurrence() {}
 
-  public Occurrence(Date date) {
+  public Occurrence(RmDate date) {
     this.date = date;
   }
 
@@ -54,11 +53,11 @@ public class Occurrence extends RMObject {
     return result;
   }
 
-  public Date getDate() {
+  public RmDate getDate() {
     return date;
   }
 
-  public void setDate(Date date) {
+  public void setDate(RmDate date) {
     this.date = date;
   }
 

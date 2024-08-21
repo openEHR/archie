@@ -1,5 +1,6 @@
 package org.s2.rm.base.resource;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -20,7 +21,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
   "originalResourceUri",
   "otherDetails"
 })
-public class ResourceDescriptionItem {
+public class ResourceDescriptionItem extends RMObject {
   /**
   * BMM name: language | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
@@ -36,7 +37,7 @@ public class ResourceDescriptionItem {
   private String purpose;
 
   /**
-  * BMM name: keywords | BMM type: List<{@literal String}>
+  * BMM name: keywords | BMM type: {@code List<String>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "keywords")
@@ -57,14 +58,14 @@ public class ResourceDescriptionItem {
   private @Nullable String misuse;
 
   /**
-  * BMM name: original_resource_uri | BMM type: List<{@literal Hash<{@literal String,String}>}>
+  * BMM name: original_resource_uri | BMM type: {@code List<Hash<String,String>>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "original_resource_uri")
   private @Nullable List<Map<String, String>> originalResourceUri;
 
   /**
-  * BMM name: other_details | BMM type: Hash<{@literal String,String}>
+  * BMM name: other_details | BMM type: {@code Hash<String,String>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_details")

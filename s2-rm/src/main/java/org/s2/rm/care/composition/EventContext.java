@@ -4,7 +4,8 @@ import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
@@ -41,17 +42,17 @@ public class EventContext extends Locatable {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "start_time")
-  private DateTime startTime;
+  private RmDateTime startTime;
 
   /**
   * BMM name: end_time | BMM type: Date_time
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "end_time")
-  private @Nullable DateTime endTime;
+  private @Nullable RmDateTime endTime;
 
   /**
-  * BMM name: participations | BMM type: List<{@literal Participation}>
+  * BMM name: participations | BMM type: {@code List<Participation>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "participations")
@@ -73,7 +74,7 @@ public class EventContext extends Locatable {
   private @Nullable TerminologyTerm setting;
 
   /**
-  * BMM name: other_context | BMM type: List<{@literal Node}>
+  * BMM name: other_context | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_context")
@@ -91,7 +92,7 @@ public class EventContext extends Locatable {
 
   public EventContext() {}
 
-  public EventContext(DateTime startTime, String archetypeNodeId, String name) {
+  public EventContext(RmDateTime startTime, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.startTime = startTime;
   }
@@ -131,19 +132,19 @@ public class EventContext extends Locatable {
     this.healthCareFacility = healthCareFacility;
   }
 
-  public DateTime getStartTime() {
+  public RmDateTime getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(DateTime startTime) {
+  public void setStartTime(RmDateTime startTime) {
     this.startTime = startTime;
   }
 
-  public @Nullable DateTime getEndTime() {
+  public @Nullable RmDateTime getEndTime() {
     return endTime;
   }
 
-  public void setEndTime(@Nullable DateTime endTime) {
+  public void setEndTime(@Nullable RmDateTime endTime) {
     this.endTime = endTime;
   }
 

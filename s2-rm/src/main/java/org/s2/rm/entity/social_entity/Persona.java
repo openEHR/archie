@@ -4,9 +4,11 @@ import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
-import org.s2.rm.base.foundation_types.time.Date;
+import org.s2.rm.base.foundation_types.time.RmDate;
+import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;
+import org.s2.rm.base.patterns.data_structures.Node;
 
 /**
 * BMM name: Persona
@@ -30,14 +32,14 @@ public class Persona extends Party {
   private ObjectRef performer;
 
   /**
-  * BMM name: time_validity | BMM type: Interval<{@literal Date}>
+  * BMM name: time_validity | BMM type: {@code Interval<Date>}
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "time_validity")
-  private @Nullable Interval<Date> timeValidity;
+  private @Nullable Interval<RmDate> timeValidity;
 
   /**
-  * BMM name: capabilities | BMM type: List<{@literal Capability}>
+  * BMM name: capabilities | BMM type: {@code List<Capability>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "capabilities")
@@ -95,11 +97,11 @@ public class Persona extends Party {
     this.performer = performer;
   }
 
-  public @Nullable Interval<Date> getTimeValidity() {
+  public @Nullable Interval<RmDate> getTimeValidity() {
     return timeValidity;
   }
 
-  public void setTimeValidity(@Nullable Interval<Date> timeValidity) {
+  public void setTimeValidity(@Nullable Interval<RmDate> timeValidity) {
     this.timeValidity = timeValidity;
   }
 

@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.data_types.text.Text;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.participation.Participation;
 import org.s2.rm.base.patterns.participation.PartyProxy;
@@ -42,7 +42,7 @@ public abstract class Entry extends ContentItem {
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time")
-  private DateTime time;
+  private RmDateTime time;
 
   /**
   * BMM name: language | BMM type: Terminology_code
@@ -67,14 +67,14 @@ public abstract class Entry extends ContentItem {
   private @Nullable Participation reporter;
 
   /**
-  * BMM name: authorization_actions | BMM type: List<{@literal Participation}>
+  * BMM name: authorization_actions | BMM type: {@code List<Participation>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "authorization_actions")
   private @Nullable List<Participation> authorizationActions;
 
   /**
-  * BMM name: other_participations | BMM type: List<{@literal Participation}>
+  * BMM name: other_participations | BMM type: {@code List<Participation>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_participations")
@@ -96,7 +96,7 @@ public abstract class Entry extends ContentItem {
 
   public Entry() {}
 
-  public Entry(Uuid uid, DateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
+  public Entry(Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.uid = uid;
     this.time = time;
@@ -112,11 +112,11 @@ public abstract class Entry extends ContentItem {
     this.uid = uid;
   }
 
-  public DateTime getTime() {
+  public RmDateTime getTime() {
     return time;
   }
 
-  public void setTime(DateTime time) {
+  public void setTime(RmDateTime time) {
     this.time = time;
   }
 

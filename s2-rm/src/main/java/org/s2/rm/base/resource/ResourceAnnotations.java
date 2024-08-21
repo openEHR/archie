@@ -1,5 +1,6 @@
 package org.s2.rm.base.resource;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -12,9 +13,9 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "Resource_annotations", propOrder = {
   "documentation"
 })
-public class ResourceAnnotations {
+public class ResourceAnnotations extends RMObject {
   /**
-  * BMM name: documentation | BMM type: Hash<{@literal String,Hash<{@literal String,Hash<{@literal String,String}>}>}>
+  * BMM name: documentation | BMM type: {@code Hash<String,Hash<String,Hash<String,String>>>}
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "documentation")

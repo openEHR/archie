@@ -23,7 +23,7 @@ public class Substance extends IndependentObject {
   // Properties added from the extended class: ObjectExtensionPart
 
   /**
-  * BMM name: parts | BMM type: List<{@literal Object_extension_part}>
+  * BMM name: parts | BMM type: {@code List<Object_extension_part>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "parts")

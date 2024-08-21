@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.primitive_types.Uri;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
 import org.s2.rm.base.patterns.participation.PartyProxy;
@@ -24,14 +24,14 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 })
 public abstract class CareEntry extends Entry {
   /**
-  * BMM name: qualifiers | BMM type: List<{@literal Node}>
+  * BMM name: qualifiers | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "qualifiers")
   private @Nullable List<Node> qualifiers;
 
   /**
-  * BMM name: guideline_ids | BMM type: List<{@literal Uri}>
+  * BMM name: guideline_ids | BMM type: {@code List<Uri>}
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "guideline_ids")
@@ -39,7 +39,7 @@ public abstract class CareEntry extends Entry {
 
   public CareEntry() {}
 
-  public CareEntry(Uuid uid, DateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
+  public CareEntry(Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(uid, time, language, subject, archetypeNodeId, name);
   }
 

@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.interval.Interval;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.foundation_types.time.Date;
+import org.s2.rm.base.foundation_types.time.RmDate;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.patterns.data_structures.Node;
@@ -47,18 +47,18 @@ public abstract class EntityRelationship extends Locatable {
   private ObjectRef target;
 
   /**
-  * BMM name: description | BMM type: List<{@literal Node}>
+  * BMM name: description | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "description")
   private @Nullable List<Node> description;
 
   /**
-  * BMM name: time_validity | BMM type: Interval<{@literal Date}>
+  * BMM name: time_validity | BMM type: {@code Interval<Date>}
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "time_validity")
-  private @Nullable Interval<Date> timeValidity;
+  private @Nullable Interval<RmDate> timeValidity;
 
   public EntityRelationship() {}
 
@@ -101,11 +101,11 @@ public abstract class EntityRelationship extends Locatable {
     this.description = description;
   }
 
-  public @Nullable Interval<Date> getTimeValidity() {
+  public @Nullable Interval<RmDate> getTimeValidity() {
     return timeValidity;
   }
 
-  public void setTimeValidity(@Nullable Interval<Date> timeValidity) {
+  public void setTimeValidity(@Nullable Interval<RmDate> timeValidity) {
     this.timeValidity = timeValidity;
   }
 

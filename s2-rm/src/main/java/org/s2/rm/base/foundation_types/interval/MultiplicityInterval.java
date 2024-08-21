@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.*;
 
 /**
 * BMM name: Multiplicity_interval
-* BMM ancestors: Interval<{@literal Integer}>
+* BMM ancestors: {@code Interval<Integer>}
 * isAbstract: false | isPrimitiveType: true | isOverride: false
 * BMM schema: S2RM 0.8.0
 */

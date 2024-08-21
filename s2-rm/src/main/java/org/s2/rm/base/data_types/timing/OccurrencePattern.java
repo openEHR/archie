@@ -1,12 +1,11 @@
 package org.s2.rm.base.data_types.timing;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.interval.Interval;
-import org.s2.rm.base.foundation_types.time.Date;
+import org.s2.rm.base.foundation_types.time.RmDate;
 
 /**
 * BMM name: Occurrence_pattern
@@ -21,7 +20,7 @@ import org.s2.rm.base.foundation_types.time.Date;
 })
 public class OccurrencePattern extends RMObject {
   /**
-  * BMM name: occurrence_times | BMM type: List<{@literal Occurrence_times_specifier}>
+  * BMM name: occurrence_times | BMM type: {@code List<Occurrence_times_specifier>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "occurrence_times")
@@ -35,15 +34,15 @@ public class OccurrencePattern extends RMObject {
   private int totalEventCount;
 
   /**
-  * BMM name: bounding_period | BMM type: Interval<{@literal Date}>
+  * BMM name: bounding_period | BMM type: {@code Interval<Date>}
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "bounding_period")
-  private Interval<Date> boundingPeriod;
+  private Interval<RmDate> boundingPeriod;
 
   public OccurrencePattern() {}
 
-  public OccurrencePattern(Interval<Date> boundingPeriod) {
+  public OccurrencePattern(Interval<RmDate> boundingPeriod) {
     this.boundingPeriod = boundingPeriod;
   }
 
@@ -80,11 +79,11 @@ public class OccurrencePattern extends RMObject {
     this.totalEventCount = totalEventCount;
   }
 
-  public Interval<Date> getBoundingPeriod() {
+  public Interval<RmDate> getBoundingPeriod() {
     return boundingPeriod;
   }
 
-  public void setBoundingPeriod(Interval<Date> boundingPeriod) {
+  public void setBoundingPeriod(Interval<RmDate> boundingPeriod) {
     this.boundingPeriod = boundingPeriod;
   }
 

@@ -1,5 +1,6 @@
 package org.s2.rm.base.foundation_types.terminology;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -17,7 +18,7 @@ import org.s2.rm.base.foundation_types.primitive_types.Uri;
   "codeString",
   "uri"
 })
-public class TerminologyCode {
+public class TerminologyCode extends RMObject {
   /**
   * BMM name: terminology_id | BMM type: String
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1

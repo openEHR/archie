@@ -25,7 +25,7 @@ public class PartyIdentified extends PartyProxy {
   private @Nullable String name;
 
   /**
-  * BMM name: identifiers | BMM type: List<{@literal Rwe_id_ref}>
+  * BMM name: identifiers | BMM type: {@code List<Rwe_id_ref>}
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "identifiers")

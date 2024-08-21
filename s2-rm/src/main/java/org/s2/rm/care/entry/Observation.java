@@ -4,9 +4,12 @@ import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.model_support.archetyped.FeederAudit;
+import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
+import org.s2.rm.base.patterns.participation.Participation;
 import org.s2.rm.base.patterns.participation.PartyProxy;
 
 /**
@@ -23,14 +26,14 @@ import org.s2.rm.base.patterns.participation.PartyProxy;
 })
 public class Observation extends CareActEntry {
   /**
-  * BMM name: data | BMM type: List<{@literal Node}>
+  * BMM name: data | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "data")
   private @Nullable List<Node> data;
 
   /**
-  * BMM name: state | BMM type: List<{@literal Node}>
+  * BMM name: state | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "state")
@@ -38,7 +41,7 @@ public class Observation extends CareActEntry {
 
   public Observation() {}
 
-  public Observation(Uuid uid, DateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
+  public Observation(Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(uid, time, language, subject, archetypeNodeId, name);
   }
 

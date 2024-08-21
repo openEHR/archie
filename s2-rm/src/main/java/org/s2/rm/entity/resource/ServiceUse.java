@@ -3,8 +3,10 @@ package org.s2.rm.entity.resource;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.model_support.archetyped.FeederAudit;
 import org.s2.rm.base.model_support.identification.Uuid;
+import org.s2.rm.base.patterns.data_structures.Node;
 
 /**
 * BMM name: Service_use
@@ -29,7 +31,7 @@ public class ServiceUse extends ResourceUse {
 
   public ServiceUse() {}
 
-  public ServiceUse(DateTime startTime, String archetypeNodeId, String name) {
+  public ServiceUse(RmDateTime startTime, String archetypeNodeId, String name) {
     super(startTime, archetypeNodeId, name);
   }
 

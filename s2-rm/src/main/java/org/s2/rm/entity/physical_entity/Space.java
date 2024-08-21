@@ -20,7 +20,7 @@ import org.s2.rm.base.patterns.data_structures.Node;
 })
 public class Space extends ObjectExtensionPart {
   /**
-  * BMM name: parts | BMM type: List<{@literal Space}>
+  * BMM name: parts | BMM type: {@code List<Space>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "parts")

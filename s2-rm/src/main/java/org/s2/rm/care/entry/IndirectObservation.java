@@ -3,8 +3,12 @@ package org.s2.rm.care.entry;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.model_support.archetyped.FeederAudit;
+import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
+import org.s2.rm.base.patterns.data_structures.Node;
+import org.s2.rm.base.patterns.participation.Participation;
 import org.s2.rm.base.patterns.participation.PartyProxy;
 
 /**
@@ -23,11 +27,11 @@ public class IndirectObservation extends Observation {
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "result_time")
-  private DateTime resultTime;
+  private RmDateTime resultTime;
 
   public IndirectObservation() {}
 
-  public IndirectObservation(DateTime resultTime, Uuid uid, DateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
+  public IndirectObservation(RmDateTime resultTime, Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(uid, time, language, subject, archetypeNodeId, name);
     this.resultTime = resultTime;
   }
@@ -66,11 +70,11 @@ public class IndirectObservation extends Observation {
     return Objects.hash(super.hashCode(), resultTime);
   }
 
-  public DateTime getResultTime() {
+  public RmDateTime getResultTime() {
     return resultTime;
   }
 
-  public void setResultTime(DateTime resultTime) {
+  public void setResultTime(RmDateTime resultTime) {
     this.resultTime = resultTime;
   }
 

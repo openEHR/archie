@@ -1,16 +1,15 @@
 package org.s2.rm.base.change_control;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;
 
 /**
 * BMM name: Versioned_object
-* BMM generic parameters: Versioned_object<{@literal T Any}>
+* BMM generic parameters: {@code Versioned_object<T Any>}
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
@@ -40,11 +39,11 @@ public class VersionedObject<T> extends RMObject {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "time_created")
-  private DateTime timeCreated;
+  private RmDateTime timeCreated;
 
   public VersionedObject() {}
 
-  public VersionedObject(Uuid uid, ObjectRef ownerId, DateTime timeCreated) {
+  public VersionedObject(Uuid uid, ObjectRef ownerId, RmDateTime timeCreated) {
     this.uid = uid;
     this.ownerId = ownerId;
     this.timeCreated = timeCreated;
@@ -81,11 +80,11 @@ public class VersionedObject<T> extends RMObject {
     this.ownerId = ownerId;
   }
 
-  public DateTime getTimeCreated() {
+  public RmDateTime getTimeCreated() {
     return timeCreated;
   }
 
-  public void setTimeCreated(DateTime timeCreated) {
+  public void setTimeCreated(RmDateTime timeCreated) {
     this.timeCreated = timeCreated;
   }
 

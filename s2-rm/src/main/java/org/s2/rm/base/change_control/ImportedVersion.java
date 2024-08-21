@@ -6,8 +6,8 @@ import org.s2.rm.base.model_support.identification.ObjectRef;
 
 /**
 * BMM name: Imported_version
-* BMM generic parameters: Imported_version<{@literal T Any}>
-* BMM ancestors: Version<{@literal T}>
+* BMM generic parameters: {@code Imported_version<T Any>}
+* BMM ancestors: {@code Version<T>}
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
@@ -17,7 +17,7 @@ import org.s2.rm.base.model_support.identification.ObjectRef;
 })
 public class ImportedVersion<T> extends Version<T> {
   /**
-  * BMM name: item | BMM type: Original_version<{@literal T}>
+  * BMM name: item | BMM type: {@code Original_version<T>}
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "item")

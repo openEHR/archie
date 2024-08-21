@@ -1,5 +1,6 @@
 package org.s2.rm.base.resource;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -28,9 +29,9 @@ import javax.xml.bind.annotation.*;
   "parentResource",
   "details"
 })
-public class ResourceDescription {
+public class ResourceDescription extends RMObject {
   /**
-  * BMM name: original_author | BMM type: Hash<{@literal String,String}>
+  * BMM name: original_author | BMM type: {@code Hash<String,String>}
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "original_author")
@@ -51,7 +52,7 @@ public class ResourceDescription {
   private @Nullable String originalPublisher;
 
   /**
-  * BMM name: other_contributors | BMM type: List<{@literal String}>
+  * BMM name: other_contributors | BMM type: {@code List<String>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_contributors")
@@ -100,28 +101,28 @@ public class ResourceDescription {
   private @Nullable String resourcePackageUri;
 
   /**
-  * BMM name: ip_acknowledgements | BMM type: Hash<{@literal String,String}>
+  * BMM name: ip_acknowledgements | BMM type: {@code Hash<String,String>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "ip_acknowledgements")
   private @Nullable Map<String, String> ipAcknowledgements;
 
   /**
-  * BMM name: references | BMM type: Hash<{@literal String,String}>
+  * BMM name: references | BMM type: {@code Hash<String,String>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "references")
   private @Nullable Map<String, String> references;
 
   /**
-  * BMM name: conversion_details | BMM type: Hash<{@literal String,String}>
+  * BMM name: conversion_details | BMM type: {@code Hash<String,String>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "conversion_details")
   private @Nullable Map<String, String> conversionDetails;
 
   /**
-  * BMM name: other_details | BMM type: Hash<{@literal String,String}>
+  * BMM name: other_details | BMM type: {@code Hash<String,String>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "other_details")
@@ -135,7 +136,7 @@ public class ResourceDescription {
   private AuthoredResource parentResource;
 
   /**
-  * BMM name: details | BMM type: Hash<{@literal String,Resource_description_item}>
+  * BMM name: details | BMM type: {@code Hash<String,Resource_description_item>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "details")

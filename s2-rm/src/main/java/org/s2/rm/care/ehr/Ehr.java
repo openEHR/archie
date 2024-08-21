@@ -25,7 +25,7 @@ import org.s2.rm.base.model_support.identification.Uuid;
   "compositions",
   "contributions"
 })
-public class Ehr {
+public class Ehr extends RMObject {
   /**
   * BMM name: system_id | BMM type: Internet_id
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
@@ -45,7 +45,7 @@ public class Ehr {
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time_created")
-  private DateTime timeCreated;
+  private RmDateTime timeCreated;
 
   /**
   * BMM name: ehr_access | BMM type: Object_ref
@@ -69,21 +69,21 @@ public class Ehr {
   private @Nullable ObjectRef directory;
 
   /**
-  * BMM name: folders | BMM type: List<{@literal Object_ref}>
+  * BMM name: folders | BMM type: {@code List<Object_ref>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "folders")
   private @Nullable List<ObjectRef> folders;
 
   /**
-  * BMM name: compositions | BMM type: List<{@literal Object_ref}>
+  * BMM name: compositions | BMM type: {@code List<Object_ref>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "compositions")
   private @Nullable List<ObjectRef> compositions;
 
   /**
-  * BMM name: contributions | BMM type: List<{@literal Object_ref}>
+  * BMM name: contributions | BMM type: {@code List<Object_ref>}
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "contributions")
@@ -91,7 +91,7 @@ public class Ehr {
 
   public Ehr() {}
 
-  public Ehr(InternetId systemId, Uuid ehrId, DateTime timeCreated, ObjectRef ehrAccess, ObjectRef ehrStatus, List<ObjectRef> contributions) {
+  public Ehr(InternetId systemId, Uuid ehrId, RmDateTime timeCreated, ObjectRef ehrAccess, ObjectRef ehrStatus, List<ObjectRef> contributions) {
     this.systemId = systemId;
     this.ehrId = ehrId;
     this.timeCreated = timeCreated;
@@ -141,11 +141,11 @@ public class Ehr {
     this.ehrId = ehrId;
   }
 
-  public DateTime getTimeCreated() {
+  public RmDateTime getTimeCreated() {
     return timeCreated;
   }
 
-  public void setTimeCreated(DateTime timeCreated) {
+  public void setTimeCreated(RmDateTime timeCreated) {
     this.timeCreated = timeCreated;
   }
 

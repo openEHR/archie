@@ -3,7 +3,7 @@ package org.s2.rm.base.patterns.data_structures;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.model_support.archetyped.Locatable;
 
 /**
@@ -23,10 +23,10 @@ public abstract class Event extends Locatable {
   * isMandatory: true | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 1..1
   */
   @XmlElement(name = "time")
-  private DateTime time;
+  private RmDateTime time;
 
   /**
-  * BMM name: items | BMM type: List<{@literal Node}>
+  * BMM name: items | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "items")
@@ -34,16 +34,16 @@ public abstract class Event extends Locatable {
 
   public Event() {}
 
-  public Event(DateTime time, String archetypeNodeId, String name) {
+  public Event(RmDateTime time, String archetypeNodeId, String name) {
     super(archetypeNodeId, name);
     this.time = time;
   }
 
-  public DateTime getTime() {
+  public RmDateTime getTime() {
     return time;
   }
 
-  public void setTime(DateTime time) {
+  public void setTime(RmDateTime time) {
     this.time = time;
   }
 

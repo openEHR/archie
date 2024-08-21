@@ -1,13 +1,12 @@
 package org.s2.rm.base.patterns.participation;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.foundation_types.interval.Interval;
 import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
-import org.s2.rm.base.foundation_types.time.DateTime;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
 
 /**
 * BMM name: Participation
@@ -31,11 +30,11 @@ public class Participation extends RMObject {
   private TerminologyTerm function;
 
   /**
-  * BMM name: time | BMM type: Interval<{@literal Date_time}>
+  * BMM name: time | BMM type: {@code Interval<Date_time>}
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "time")
-  private @Nullable Interval<DateTime> time;
+  private @Nullable Interval<RmDateTime> time;
 
   /**
   * BMM name: mode | BMM type: Terminology_term
@@ -83,11 +82,11 @@ public class Participation extends RMObject {
     this.function = function;
   }
 
-  public @Nullable Interval<DateTime> getTime() {
+  public @Nullable Interval<RmDateTime> getTime() {
     return time;
   }
 
-  public void setTime(@Nullable Interval<DateTime> time) {
+  public void setTime(@Nullable Interval<RmDateTime> time) {
     this.time = time;
   }
 

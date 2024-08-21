@@ -1,8 +1,7 @@
 package org.s2.rm.base.change_control;
 
-import org.s2.util.enumerations.EnumerationVar;
-import org.s2.util.enumerations.StringEnumerationVar;
-
+import com.nedap.archie.base.RMObject;
+import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -12,14 +11,43 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Audit_change_type", propOrder = {"value"})
-public class AuditChangeType extends StringEnumerationVar<AuditChangeTypeEnum> {
+public class AuditChangeType extends RMObject {
+  /**
+  * Enumeration value.
+  */
+  @XmlElement(name = "value")
+  String value;
 
-  public AuditChangeType() {
-    this.value = AuditChangeTypeEnum.getInstance().getItemValue(0);
-  }
+  /**
+  * Enumeration type.
+  */
+  static final AuditChangeTypeEnum enumeration = new AuditChangeTypeEnum();
+
+  public AuditChangeType() {}
 
   // Enumeration value constructor.
   public AuditChangeType(String value) {
+    this.value = value;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (this == other) return true;
+    if (other == null || getClass() != other.getClass()) return false;
+    AuditChangeType otherAsAuditChangeType = (AuditChangeType) other;
+    return Objects.equals(value, otherAsAuditChangeType.value);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), value);
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
     this.value = value;
   }
 

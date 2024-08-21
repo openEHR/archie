@@ -8,7 +8,7 @@ import org.s2.rm.base.data_types.text.Text;
 
 /**
 * BMM name: Measured
-* BMM generic parameters: Measured<{@literal V Measurable}>
+* BMM generic parameters: {@code Measured<V Measurable>}
 * BMM ancestors: Ordered_datum
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
@@ -45,7 +45,7 @@ public class Measured<V extends Measurable> extends OrderedDatum {
   private @Nullable ComparisonOperator valueStatus;
 
   /**
-  * BMM name: reference_ranges | BMM type: List<{@literal Reference_range<{@literal V}>}>
+  * BMM name: reference_ranges | BMM type: {@code List<Reference_range<V>>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "reference_ranges")

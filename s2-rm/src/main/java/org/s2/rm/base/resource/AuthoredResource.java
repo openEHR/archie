@@ -1,5 +1,6 @@
 package org.s2.rm.base.resource;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
@@ -18,7 +19,7 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
   "description",
   "annotations"
 })
-public abstract class AuthoredResource {
+public abstract class AuthoredResource extends RMObject {
   /**
   * BMM name: original_language | BMM type: Terminology_code
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
@@ -34,7 +35,7 @@ public abstract class AuthoredResource {
   private boolean isControlled;
 
   /**
-  * BMM name: translations | BMM type: Hash<{@literal String,Translation_details}>
+  * BMM name: translations | BMM type: {@code Hash<String,Translation_details>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "translations")

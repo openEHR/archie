@@ -1,8 +1,7 @@
 package org.s2.rm.care.entry;
 
-import org.s2.util.enumerations.EnumerationVar;
-import org.s2.util.enumerations.StringEnumerationVar;
-
+import com.nedap.archie.base.RMObject;
+import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -12,14 +11,43 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Order_execution_transition", propOrder = {"value"})
-public class OrderExecutionTransition extends StringEnumerationVar<OrderExecutionTransitionEnum> {
+public class OrderExecutionTransition extends RMObject {
+  /**
+  * Enumeration value.
+  */
+  @XmlElement(name = "value")
+  String value;
 
-  public OrderExecutionTransition() {
-    this.value = OrderExecutionTransitionEnum.getInstance().getItemValue(0);
-  }
+  /**
+  * Enumeration type.
+  */
+  static final OrderExecutionTransitionEnum enumeration = new OrderExecutionTransitionEnum();
+
+  public OrderExecutionTransition() {}
 
   // Enumeration value constructor.
   public OrderExecutionTransition(String value) {
+    this.value = value;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (this == other) return true;
+    if (other == null || getClass() != other.getClass()) return false;
+    OrderExecutionTransition otherAsOrderExecutionTransition = (OrderExecutionTransition) other;
+    return Objects.equals(value, otherAsOrderExecutionTransition.value);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), value);
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
     this.value = value;
   }
 

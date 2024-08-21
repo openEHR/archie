@@ -1,9 +1,8 @@
 package org.s2.rm.base.change_control;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.xml.bind.annotation.*;
-
-import com.nedap.archie.base.RMObject;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;
 
@@ -34,7 +33,7 @@ public class Contribution extends RMObject {
   private AuditDetails audit;
 
   /**
-  * BMM name: versions | BMM type: List<{@literal Object_ref}>
+  * BMM name: versions | BMM type: {@code List<Object_ref>}
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: true | existence: 1..1
   */
   @XmlElement(name = "versions")

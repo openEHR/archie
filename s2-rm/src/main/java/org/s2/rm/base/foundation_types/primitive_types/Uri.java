@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Uri")
-public class Uri {
+public class Uri extends RMObject {
   // Value of the primitive type.
   private String value;
 

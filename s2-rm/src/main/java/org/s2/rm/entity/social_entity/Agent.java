@@ -18,14 +18,14 @@ import org.s2.rm.base.foundation_types.terminology.TerminologyTerm;
 })
 public abstract class Agent extends Party {
   /**
-  * BMM name: personas | BMM type: List<{@literal Persona}>
+  * BMM name: personas | BMM type: {@code List<Persona>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "personas")
   private @Nullable List<Persona> personas;
 
   /**
-  * BMM name: languages | BMM type: List<{@literal Terminology_term}>
+  * BMM name: languages | BMM type: {@code List<Terminology_term>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "languages")

@@ -4,10 +4,13 @@ import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
 import org.s2.rm.base.foundation_types.terminology.TerminologyCode;
-import org.s2.rm.base.foundation_types.time.DateTime;
-import org.s2.rm.base.foundation_types.time.Duration;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
+import org.s2.rm.base.foundation_types.time.RmDuration;
+import org.s2.rm.base.model_support.archetyped.FeederAudit;
+import org.s2.rm.base.model_support.archetyped.Link;
 import org.s2.rm.base.model_support.identification.Uuid;
 import org.s2.rm.base.patterns.data_structures.Node;
+import org.s2.rm.base.patterns.participation.Participation;
 import org.s2.rm.base.patterns.participation.PartyProxy;
 
 /**
@@ -36,10 +39,10 @@ public class Action extends CareActEntry {
   * isMandatory: false | isComputed: false | isImRuntime: true | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "duration")
-  private @Nullable Duration duration;
+  private @Nullable RmDuration duration;
 
   /**
-  * BMM name: description | BMM type: List<{@literal Node}>
+  * BMM name: description | BMM type: {@code List<Node>}
   * isMandatory: false | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 0..1
   */
   @XmlElement(name = "description")
@@ -54,7 +57,7 @@ public class Action extends CareActEntry {
 
   public Action() {}
 
-  public Action(String activityId, Uuid uid, DateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
+  public Action(String activityId, Uuid uid, RmDateTime time, TerminologyCode language, PartyProxy subject, String archetypeNodeId, String name) {
     super(uid, time, language, subject, archetypeNodeId, name);
     this.activityId = activityId;
   }
@@ -104,11 +107,11 @@ public class Action extends CareActEntry {
     this.activityId = activityId;
   }
 
-  public @Nullable Duration getDuration() {
+  public @Nullable RmDuration getDuration() {
     return duration;
   }
 
-  public void setDuration(@Nullable Duration duration) {
+  public void setDuration(@Nullable RmDuration duration) {
     this.duration = duration;
   }
 

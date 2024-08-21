@@ -1,5 +1,6 @@
 package org.s2.rm.base.foundation_types.interval;
 
+import com.nedap.archie.base.RMObject;
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
@@ -14,7 +15,7 @@ import javax.xml.bind.annotation.*;
   "isUnique",
   "interval"
 })
-public class Cardinality {
+public class Cardinality extends RMObject {
   /**
   * BMM name: is_ordered | BMM type: Boolean
   * isMandatory: true | isComputed: false | isImRuntime: false | isImInfrastructure: false | existence: 1..1
