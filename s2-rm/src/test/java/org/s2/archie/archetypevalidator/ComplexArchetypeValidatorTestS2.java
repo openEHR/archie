@@ -22,11 +22,17 @@ public class ComplexArchetypeValidatorTestS2 {
     private static Archetype archNodeCitation;
 
     private static Archetype archNodeWaveform;
+    private static Archetype archNodeMediaFile;
     private static Archetype archNodeAdverseReaction;
+    private static Archetype archNodeEnvConds;
+    private static Archetype archNodeAnatomicalLocation;
+    private static Archetype archNodeInspiredOxygen;
+
     private static Archetype archObsBloodPressure;
     private static Archetype archObsBodyWeight;
     private static Archetype archObsHeartRate;
     private static Archetype archObsHeight;
+    private static Archetype archObsPulseOx;
     private static Archetype archObsBodyTemperature;
     private static Archetype archObsRespiratoryRate;
     private static Archetype archObsBmi;
@@ -45,6 +51,10 @@ public class ComplexArchetypeValidatorTestS2 {
         archNodeCitation = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Node.citation.v0.0.1-alpha.adls"));
         archNodeLevelOfExertion = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Node.level_of_exertion.v0.0.1-alpha.adls"));
         archNodeWaveform = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Node.waveform.v0.0.1-alpha.adls"));
+        archNodeMediaFile = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Node.media_file.v1.0.2.adls"));
+        archNodeEnvConds = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Node.environmental_conditions.v0.0.1-alpha.adls"));
+        archNodeAnatomicalLocation = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Node.anatomical_location.v1.2.2.adls"));
+        archNodeInspiredOxygen = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Node.inspired_oxygen.v1.0.2.adls"));
 
         archObsHeight = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Direct_observation.height.v2.1.0.adls"));
         archObsBodyWeight = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Direct_observation.body_weight.v2.1.6.adls"));
@@ -53,6 +63,7 @@ public class ComplexArchetypeValidatorTestS2 {
         archObsBmi = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Direct_observation.body_mass_index.v2.0.6.adls"));
         archObsBloodPressure = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Direct_observation.blood_pressure.v2.0.8.adls"));
         archObsHeartRate = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Direct_observation.heart_rate.v1.0.0.adls"));
+        archObsPulseOx = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Direct_observation.pulse_oximetry.v1.1.3.adls"));
 
         archCompEncounter = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Composition.encounter.v1.0.0.adls"));
         tplCompVitalSigns = new ADLParser().parse(ComplexArchetypeValidatorTestS2.class.getResourceAsStream("s2-EHR-Composition.t_encounter-vital_signs-minimal.v1.0.0.adls"));
@@ -64,6 +75,10 @@ public class ComplexArchetypeValidatorTestS2 {
         repository.addArchetype(archNodeDevice);
         repository.addArchetype(archNodeAdverseReaction);
         repository.addArchetype(archNodeWaveform);
+        repository.addArchetype(archNodeMediaFile);
+        repository.addArchetype(archNodeEnvConds);
+        repository.addArchetype(archNodeAnatomicalLocation);
+        repository.addArchetype(archNodeInspiredOxygen);
 
         repository.addArchetype(archObsBloodPressure);
         repository.addArchetype(archObsHeartRate);
@@ -72,6 +87,7 @@ public class ComplexArchetypeValidatorTestS2 {
         repository.addArchetype(archObsBodyTemperature);
         repository.addArchetype(archObsRespiratoryRate);
         repository.addArchetype(archObsBmi);
+        repository.addArchetype(archObsPulseOx);
 
         repository.addArchetype(archCompEncounter);
         repository.addArchetype(tplCompVitalSigns);
