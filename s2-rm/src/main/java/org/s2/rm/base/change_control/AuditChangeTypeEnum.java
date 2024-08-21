@@ -7,7 +7,7 @@ import org.s2.util.enumerations.*;
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
-public class AuditChangeTypeEnum extends EnumerationString {
+public class AuditChangeTypeEnum extends EnumerationTypeString {
   static String[] _itemNames = {"creation", "amendment", "modification", "synthesis", "deleted", "attestation", "restoration", "format conversion", "other"};
   static String[] _itemValues = {};
 

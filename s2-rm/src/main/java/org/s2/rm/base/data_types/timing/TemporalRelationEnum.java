@@ -7,7 +7,7 @@ import org.s2.util.enumerations.*;
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
-public class TemporalRelationEnum extends EnumerationInteger {
+public class TemporalRelationEnum extends EnumerationTypeInteger {
   static String[] _itemNames = {"after", "before", "with"};
   static Integer[] _itemValues = {};
 

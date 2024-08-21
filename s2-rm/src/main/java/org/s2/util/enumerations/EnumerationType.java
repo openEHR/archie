@@ -6,7 +6,7 @@ import java.util.Arrays;
 /// and a set of named constants of that type. It is designed so that the default type is Integer, and the default
 /// constants are numbered 0, 1, …
 /// Optional model elements can be specified to override the values and / or the type.
-public class Enumeration<T> {
+public class EnumerationType<T> {
   static String P_BMM_ENUMERATION_UNDERLYING_TYPE_INTEGER = "Integer";
   static String P_BMM_ENUMERATION_UNDERLYING_TYPE_STRING = "RmString";
 
@@ -20,7 +20,7 @@ public class Enumeration<T> {
   /// declared use of this type.
   private final String underlyingTypeName;
 
-  public Enumeration(String underlyingTypeName, String[] itemNames, T[] itemValues) {
+  public EnumerationType(String underlyingTypeName, String[] itemNames, T[] itemValues) {
     this.underlyingTypeName = underlyingTypeName;
     this.itemNames = itemNames;
     this.itemValues = itemValues;

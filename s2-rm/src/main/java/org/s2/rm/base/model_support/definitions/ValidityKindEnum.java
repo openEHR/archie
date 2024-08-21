@@ -7,7 +7,7 @@ import org.s2.util.enumerations.*;
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
-public class ValidityKindEnum extends EnumerationString {
+public class ValidityKindEnum extends EnumerationTypeString {
   static String[] _itemNames = {"mandatory", "optional", "prohibited"};
   static String[] _itemValues = {};
 

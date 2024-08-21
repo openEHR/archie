@@ -7,7 +7,7 @@ import org.s2.util.enumerations.*;
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
-public class ComparisonOperatorEnum extends EnumerationString {
+public class ComparisonOperatorEnum extends EnumerationTypeString {
   static String[] _itemNames = {"<", "<=", ">", ">=", "="};
   static String[] _itemValues = {};
 

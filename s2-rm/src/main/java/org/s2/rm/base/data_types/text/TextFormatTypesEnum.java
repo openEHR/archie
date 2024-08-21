@@ -7,7 +7,7 @@ import org.s2.util.enumerations.*;
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
-public class TextFormatTypesEnum extends EnumerationInteger {
+public class TextFormatTypesEnum extends EnumerationTypeInteger {
   static String[] _itemNames = {"plain", "plain_no_newlines", "markdown"};
   static Integer[] _itemValues = {};
 

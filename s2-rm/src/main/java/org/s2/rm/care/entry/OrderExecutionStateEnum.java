@@ -7,7 +7,7 @@ import org.s2.util.enumerations.*;
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
-public class OrderExecutionStateEnum extends EnumerationString {
+public class OrderExecutionStateEnum extends EnumerationTypeString {
   static String[] _itemNames = {"initial", "planned", "scheduled", "postponed", "cancelled", "active", "suspended", "aborted", "completed", "expired"};
   static String[] _itemValues = {};
 

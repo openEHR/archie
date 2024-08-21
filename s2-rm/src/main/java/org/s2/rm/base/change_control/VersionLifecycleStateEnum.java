@@ -7,7 +7,7 @@ import org.s2.util.enumerations.*;
 * isAbstract: false | isPrimitiveType: false | isOverride: false
 * BMM schema: S2RM 0.8.0
 */
-public class VersionLifecycleStateEnum extends EnumerationString {
+public class VersionLifecycleStateEnum extends EnumerationTypeString {
   static String[] _itemNames = {"initial", "incomplete", "abandoned", "inactive", "deleted", "complete"};
   static String[] _itemValues = {};
 
