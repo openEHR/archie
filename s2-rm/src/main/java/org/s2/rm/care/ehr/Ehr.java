@@ -3,7 +3,9 @@ package org.s2.rm.care.ehr;
 import java.util.*;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import org.s2.rm.base.foundation_types.time.DateTime;
+
+import com.nedap.archie.base.RMObject;
+import org.s2.rm.base.foundation_types.time.RmDateTime;
 import org.s2.rm.base.model_support.identification.InternetId;
 import org.s2.rm.base.model_support.identification.ObjectRef;
 import org.s2.rm.base.model_support.identification.Uuid;

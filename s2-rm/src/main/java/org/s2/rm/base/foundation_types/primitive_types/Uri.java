@@ -1,5 +1,7 @@
 package org.s2.rm.base.foundation_types.primitive_types;
 
+import com.nedap.archie.base.RMObject;
+
 import java.util.*;
 import javax.xml.bind.annotation.*;
 
