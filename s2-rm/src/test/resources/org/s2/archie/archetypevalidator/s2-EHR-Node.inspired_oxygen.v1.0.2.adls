@@ -1,0 +1,203 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2859a129-4b4f-4bf5-b43c-85392edbedf9)
+	s2-EHR-Node.inspired_oxygen.v1.0.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, Ocean Informatics, <ian.mcnicoll@oceaninformatics.com>, 2009-06-08">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.inspired_oxygen.v1.0.2, copyright 2009 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.inspired_oxygen.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record the amount of oxygen available in the air the subject inspires at the time of observation, or the amount of oxygen that is to be delivered, if part of an order.">
+			use = <"Use within an INSTRUCTION archetype to specify an order of oxygen, in an ACTION archetype to record performed oxygen therapy, or within OBSERVATION archetypes such as Blood gases or Respirations, as part of patient state, where knowledge of ambient oxygen status is critical to interpretation of the observation.
+            
+            The SLOT 'Oxygen delivery detail' can be used to specify additional structured information on the oxygen delivery, for example humidification or assisted ventilation. This will be relevant when there is an OBSERVATION archetype at top level, where this archetype is nested, for example OBSERVATION.pulse_oximetry. In other use cases, where the oxygen delivery itself is the concept, for example an archetype about mechanical ventilation, this archetype will be useful to record the amount of oxygen the individual is receiving.
+            
+            Also use in calculation of FiO₂/PaO₂ ratio, in addition to other algorithms in intensive care medicine, for example oxygen extraction ratio, etc.
+            
+            Atmospheric pressure is assumed to equivalent to sea-level pressure, unless otherwise specified.
+            
+            Where not specifically recorded values of 21% O₂, FiO₂ of 0.21 and oxygen flow rate of zero may be assumed.
+            
+            'Inspired oxygen' implies the amount of oxygen that was ordered or actioned, and normally reported in clinical records e.g.' the patient is on 30% Oxygen' and is not intended to capture the actual 'physiological' amount of oxygen that the patient receives, which will vary depending on the delivery method and other external conditions, such as whether the individual is breathing shallowly or is frequently removing the nasal prongs.">
+			keywords = <"breathing", "oxygen", "air", "respiration", "flow rate", "therapy", "O2", "O₂", "PaO2", "FiO2">
+			misuse = <"Do not use for other inhaled gases such as nitrous oxide.">
+		>
+	>
+	other_contributors = <"Tomas Alme, DIPS ASA, Norway", "Nadim Anani, Karolinska Institutet, Sweden", "Vebjørn Arntzen, Oslo University Hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Marcus Baw, openGPSoC / BawMedical Ltd, United Kingdom", "Ivar Berge, Oslo Universitetssykehus, Norway", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "SBhusan Bhattacharyya, Sudisa Consultancy Services, India", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Marja Buur, Medisch Centrum Alkmaar, Netherlands", "Gregory Caulton PatientOS Inc., USA", "Bjørn Christensen, Helse Bergen HF, Norway", "Stig Erik Hegrestad, Helse Førde, Norway", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Heather Grain, Llewelyn Grain Informatics, Australia", "Cecilie Graver, Oslo universitetssykehus HF, Norway", "Anne Harbison, CPCER, Australia", "Sam Heard, Ocean Informatics, Australia", "Annette Hole Sjøborg, DIPS ASA, Norway", "Hilde Hollås, DIPS ASA, Norway", "Omer Hotomargolu,, Turkey", "Evelyn Hovenga, EJSH Consulting, Australia", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Sundarasan Jaganathan NHS Scotland, United Kingdom", "Andrew James, University of Toronto, Canada", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Ocean Health Systems, Australia (openEHR Editor)", "Marit Ludvigsen, St Olavs Hospital, Norway", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Bjoern Naess, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Ingrid Skard, Edproof, Norway", "Rafa Sotoca, Spanish Ministry of Health, Spain", "Roy Støle, OUS, Norway", "Tesfay Teame, Folkehelseinstituttet, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Stian Torleif Varpe, Helse Bergen, Norway", "Karl Trygve Kalleberg, Oslo Universitetssykehus, Norway", "Marc Twagirumukiza, Agfa HealthCare, Belgium", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway">
+
+definition
+	Node[id1] matches {	-- Inspired oxygen
+		items matches {
+			Node[id52] occurrences matches {0..1} matches {	-- Flow rate
+				value matches {
+					Quantity[id65] matches {	-- Flow rate (ml/min)
+						magnitude matches {|0.0..50000.0|}
+						units matches {
+							Coded_text[id67] matches {
+								term matches {
+									Terminology_term[id66] matches {
+										concept matches {[at2]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+					Quantity[id68] matches {	-- Flow rate (l/min)
+						magnitude matches {|0.0..50.0|}
+						units matches {
+							Coded_text[id70] matches {
+								term matches {
+									Terminology_term[id69] matches {
+										concept matches {[at3]}
+									}
+								}
+							}
+						}
+						precision matches {2}
+					}
+				}
+			}
+			Node[id53] occurrences matches {0..1} matches {	-- FiO₂
+				value matches {
+					Ratio[id61] matches {
+						numerator matches {|0.0..1.0|}
+						type matches {2}
+					}
+				}
+			}
+			Node[id54] occurrences matches {0..1} matches {	-- Percent O₂
+				value matches {
+					Quantity[id62] matches {
+						magnitude matches {|0.0..100.0|}
+						units matches {
+							Coded_text[id72] matches {
+								term matches {
+									Terminology_term[id71] matches {
+										concept matches {[at4]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id58] occurrences matches {0..1} matches {	-- On air
+				value matches {
+					Boolean_value[id63] 
+				}
+			}
+			Node[id55] matches {	-- Method of oxygen delivery
+				value matches {
+					Text[id64] 
+				}
+			}
+			allow_archetype Node[id59] matches {	-- Oxygen delivery detail
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at1"] = <
+				text = <"Flow rate, volume">
+				description = <"Flow rate, volume">
+			>
+			["at2"] = <
+				text = <"ml/min">
+				description = <"ml/min unit.">
+			>
+			["at3"] = <
+				text = <"L/min">
+				description = <"L/min unit.">
+			>
+			["at4"] = <
+				text = <"%">
+				description = <"Percent">
+			>
+			["id1"] = <
+				text = <"Inspired oxygen">
+				description = <"The amount of oxygen being delivered, or to be delivered, to the patient given as a fraction, percentage or indirectly as a flow rate.">
+			>
+			["id52"] = <
+				text = <"Flow rate">
+				description = <"Oxygen flow rate given to an individual.">
+			>
+			["id53"] = <
+				text = <"FiO₂">
+				description = <"Fraction of oxygen in inspired air.">
+			>
+			["id54"] = <
+				text = <"Percent O₂">
+				description = <"Percentage of oxygen in inspired air.">
+			>
+			["id55"] = <
+				text = <"Method of oxygen delivery">
+				description = <"The method used to deliver the oxygen.">
+			>
+			["id58"] = <
+				text = <"On air">
+				description = <"The patient is receiving air, equivalent to 21% O₂ or 0.21 FiO₂ and an oxygen flow rate of 0 litres per minute.">
+			>
+			["id59"] = <
+				text = <"Oxygen delivery detail">
+				description = <"Further details of the method of oxygen delivery.">
+			>
+			["id65"] = <
+				text = <"Flow rate (ml/min)">
+				description = <"Flow rate (ml/min)">
+			>
+			["id68"] = <
+				text = <"Flow rate (l/min)">
+				description = <"Flow rate (l/min)">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at1"] = <http://openehr.org/id/126>
+		>
+		["ucum"] = <
+			["at2"] = <http://ucum.org/id/ml%2Fmin>
+			["at3"] = <http://ucum.org/id/l%2Fmin>
+			["at4"] = <http://ucum.org/id/%25>
+		>
+		["snomed"] = <
+			["at2"] = <http://snomed.info/id/258859000>
+			["at3"] = <http://snomed.info/id/258994006>
+			["at4"] = <http://snomed.info/id/415067009>
+		>
+		["loinc"] = <
+			["id53"] = <http://loinc.org/71835-3>
+			["id52"] = <http://loinc.org/3151-8>
+		>
+	>
+

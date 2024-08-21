@@ -1,0 +1,467 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=297048b6-38dd-47fb-97d7-3c186dfee422)
+	s2-EHR-Node.environmental_conditions.v0.0.1-alpha
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2008-07-19">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.environmental_conditions.v0.0.1-alpha, copyright 2008 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.environmental_conditions.v0.0.1-alpha from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record information about environmental conditions that may be impacting on the individual's wellbeing.">
+			use = <"To re-use within multiple archetypes - for example the State within the temperature archetype.">
+			keywords = <"humidity", "temperature", "ambient", "thermal stress", "wind", "chill", "wet bulb globe">
+			misuse = <"">
+		>
+	>
+	other_contributors = <"Knut Bernstein", "Sam Heard">
+
+definition
+	Node[id1] matches {	-- Environmental conditions
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Ambient temperature
+				value matches {
+					Quantity[id19] matches {	-- Ambient temperature (Cel)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id21] matches {
+								term matches {
+									Terminology_term[id20] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+						precision matches {1}
+					}
+					Quantity[id22] matches {	-- Ambient temperature ([degF])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id24] matches {
+								term matches {
+									Terminology_term[id23] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+						precision matches {1}
+					}
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Relative humidity
+				value matches {
+					Quantity[id14] matches {
+						magnitude matches {|0.0..100.0|}
+						precision matches {1}
+						units matches {
+							Coded_text[id26] matches {
+								term matches {
+									Terminology_term[id25] matches {
+										concept matches {[at7]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id4] occurrences matches {0..1} matches {	-- Wind velocity
+				value matches {
+					Quantity[id27] matches {	-- Wind velocity (km/h)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id29] matches {
+								term matches {
+									Terminology_term[id28] matches {
+										concept matches {[at8]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id30] matches {	-- Wind velocity (m/h)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id32] matches {
+								term matches {
+									Terminology_term[id31] matches {
+										concept matches {[at9]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id33] matches {	-- Wind velocity (m/s)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id35] matches {
+								term matches {
+									Terminology_term[id34] matches {
+										concept matches {[at10]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Wind chill temperature
+				value matches {
+					Quantity[id36] matches {	-- Wind chill temperature (Cel)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id38] matches {
+								term matches {
+									Terminology_term[id37] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+						precision matches {1}
+					}
+					Quantity[id39] matches {	-- Wind chill temperature ([degF])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id41] matches {
+								term matches {
+									Terminology_term[id40] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+						precision matches {1}
+					}
+				}
+			}
+			Node[id11] occurrences matches {0..1} matches {	-- Wet bulb globe temperature
+				value matches {
+					Quantity[id42] matches {	-- Wet bulb globe temperature (Cel)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id44] matches {
+								term matches {
+									Terminology_term[id43] matches {
+										concept matches {[at5]}
+									}
+								}
+							}
+						}
+						precision matches {1}
+					}
+					Quantity[id45] matches {	-- Wet bulb globe temperature ([degF])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id47] matches {
+								term matches {
+									Terminology_term[id46] matches {
+										concept matches {[at6]}
+									}
+								}
+							}
+						}
+						precision matches {1}
+					}
+				}
+			}
+			Node[id12] occurrences matches {0..1} matches {	-- Atmospheric pressure
+				value matches {
+					Quantity[id48] matches {	-- Atmospheric pressure (kPa)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id50] matches {
+								term matches {
+									Terminology_term[id49] matches {
+										concept matches {[at11]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id51] matches {	-- Atmospheric pressure (Pa)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id53] matches {
+								term matches {
+									Terminology_term[id52] matches {
+										concept matches {[at12]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id54] matches {	-- Atmospheric pressure (bar)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id56] matches {
+								term matches {
+									Terminology_term[id55] matches {
+										concept matches {[at13]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id57] matches {	-- Atmospheric pressure (atm)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id59] matches {
+								term matches {
+									Terminology_term[id58] matches {
+										concept matches {[at14]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id60] matches {	-- Atmospheric pressure ([psi])
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id62] matches {
+								term matches {
+									Terminology_term[id61] matches {
+										concept matches {[at15]}
+									}
+								}
+							}
+						}
+					}
+					Quantity[id63] matches {	-- Atmospheric pressure (mbar)
+						magnitude matches {|>=0.0|}
+						units matches {
+							Coded_text[id65] matches {
+								term matches {
+									Terminology_term[id64] matches {
+										concept matches {[at16]}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["at1"] = <
+				text = <"Temperature">
+				description = <"Temperature">
+			>
+			["at10"] = <
+				text = <"m/s">
+				description = <"m/s unit.">
+			>
+			["at11"] = <
+				text = <"kPa">
+				description = <"kPa unit.">
+			>
+			["at12"] = <
+				text = <"Pa">
+				description = <"Pa unit.">
+			>
+			["at13"] = <
+				text = <"bar">
+				description = <"bar unit.">
+			>
+			["at14"] = <
+				text = <"atm">
+				description = <"atm unit.">
+			>
+			["at15"] = <
+				text = <"[psi]">
+				description = <"[psi] unit.">
+			>
+			["at16"] = <
+				text = <"mbar">
+				description = <"mbar unit.">
+			>
+			["at2"] = <
+				text = <"Qualified real">
+				description = <"Qualified real">
+			>
+			["at3"] = <
+				text = <"Velocity">
+				description = <"Velocity">
+			>
+			["at4"] = <
+				text = <"Pressure">
+				description = <"Pressure">
+			>
+			["at5"] = <
+				text = <"degC">
+				description = <"Degrees Celsius">
+			>
+			["at6"] = <
+				text = <"degF">
+				description = <"Degrees Fahrenheit">
+			>
+			["at7"] = <
+				text = <"%">
+				description = <"Percent">
+			>
+			["at8"] = <
+				text = <"km/h">
+				description = <"km/h unit.">
+			>
+			["at9"] = <
+				text = <"m/h">
+				description = <"m/h unit.">
+			>
+			["id1"] = <
+				text = <"Environmental conditions">
+				description = <"The physical environment surrounding an individual.">
+			>
+			["id11"] = <
+				text = <"Wet bulb globe temperature">
+				description = <"A composite temperature used to estimate the effect of temperature, humidity, and solar radiation on humans.">
+			>
+			["id12"] = <
+				text = <"Atmospheric pressure">
+				description = <"The pressure of the atmosphere surrounding an individual.">
+			>
+			["id19"] = <
+				text = <"Ambient temperature (Cel)">
+				description = <"Ambient temperature (Cel)">
+			>
+			["id2"] = <
+				text = <"Ambient temperature">
+				description = <"The temperature of the environment in which the individual is situated.">
+			>
+			["id22"] = <
+				text = <"Ambient temperature ([degF])">
+				description = <"Ambient temperature ([degF])">
+			>
+			["id27"] = <
+				text = <"Wind velocity (km/h)">
+				description = <"Wind velocity (km/h)">
+			>
+			["id3"] = <
+				text = <"Relative humidity">
+				description = <"Humidity of the environment in which the individual is situated.">
+			>
+			["id30"] = <
+				text = <"Wind velocity (m/h)">
+				description = <"Wind velocity (m/h)">
+			>
+			["id33"] = <
+				text = <"Wind velocity (m/s)">
+				description = <"Wind velocity (m/s)">
+			>
+			["id36"] = <
+				text = <"Wind chill temperature (Cel)">
+				description = <"Wind chill temperature (Cel)">
+			>
+			["id39"] = <
+				text = <"Wind chill temperature ([degF])">
+				description = <"Wind chill temperature ([degF])">
+			>
+			["id4"] = <
+				text = <"Wind velocity">
+				description = <"Measure of wind velocity.">
+			>
+			["id42"] = <
+				text = <"Wet bulb globe temperature (Cel)">
+				description = <"Wet bulb globe temperature (Cel)">
+			>
+			["id45"] = <
+				text = <"Wet bulb globe temperature ([degF])">
+				description = <"Wet bulb globe temperature ([degF])">
+			>
+			["id48"] = <
+				text = <"Atmospheric pressure (kPa)">
+				description = <"Atmospheric pressure (kPa)">
+			>
+			["id51"] = <
+				text = <"Atmospheric pressure (Pa)">
+				description = <"Atmospheric pressure (Pa)">
+			>
+			["id54"] = <
+				text = <"Atmospheric pressure (bar)">
+				description = <"Atmospheric pressure (bar)">
+			>
+			["id57"] = <
+				text = <"Atmospheric pressure (atm)">
+				description = <"Atmospheric pressure (atm)">
+			>
+			["id6"] = <
+				text = <"Wind chill temperature">
+				description = <"The apparent temperature felt on exposed skin, which is a function of the air temperature and wind speed.">
+			>
+			["id60"] = <
+				text = <"Atmospheric pressure ([psi])">
+				description = <"Atmospheric pressure ([psi])">
+			>
+			["id63"] = <
+				text = <"Atmospheric pressure (mbar)">
+				description = <"Atmospheric pressure (mbar)">
+			>
+		>
+	>
+	term_bindings = <
+		["openehr"] = <
+			["at1"] = <http://openehr.org/id/127>
+			["at2"] = <http://openehr.org/id/380>
+			["at3"] = <http://openehr.org/id/338>
+			["at4"] = <http://openehr.org/id/125>
+		>
+		["ucum"] = <
+			["at5"] = <http://ucum.org/id/Cel>
+			["at6"] = <http://ucum.org/id/%5BdegF%5D>
+			["at7"] = <http://ucum.org/id/%25>
+			["at8"] = <http://ucum.org/id/km%2Fh>
+			["at9"] = <http://ucum.org/id/m%2Fh>
+			["at10"] = <http://ucum.org/id/m%2Fs>
+			["at11"] = <http://ucum.org/id/kPa>
+			["at12"] = <http://ucum.org/id/Pa>
+			["at13"] = <http://ucum.org/id/bar>
+			["at14"] = <http://ucum.org/id/atm>
+			["at15"] = <http://ucum.org/id/%5Bpsi%5D>
+			["at16"] = <http://ucum.org/id/mbar>
+		>
+		["snomed"] = <
+			["at5"] = <http://snomed.info/id/258710007>
+			["at6"] = <http://snomed.info/id/258712004>
+			["at7"] = <http://snomed.info/id/415067009>
+			["at8"] = <http://snomed.info/id/272091006>
+			["at10"] = <http://snomed.info/id/272090007>
+			["at11"] = <http://snomed.info/id/259017006>
+			["at12"] = <http://snomed.info/id/259016002>
+			["at13"] = <http://snomed.info/id/259011007>
+			["at14"] = <http://snomed.info/id/304607008>
+			["at15"] = <http://snomed.info/id/259015003>
+		>
+		["loinc"] = <
+			["id12"] = <http://loinc.org/20053-5>
+			["id3"] = <http://loinc.org/65643-9>
+		>
+	>
+

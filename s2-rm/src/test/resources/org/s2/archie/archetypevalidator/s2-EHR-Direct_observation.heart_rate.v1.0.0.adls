@@ -88,10 +88,7 @@ definition
 					Text[id1069]
 				}
 			}
-			allow_archetype Node[id1031] occurrences matches {0..1} matches {	-- Exertion
-				include
-					archetype_id/value matches {/openEHR-EHR-Node\.level_of_exertion(-[a-zA-Z0-9_]+)*\.v1/}
-			}
+			use_archetype Node[id1031, s2-EHR-Node.level_of_exertion.v0] occurrences matches {0..1}
 			Node[id1006] occurrences matches {0..1} matches {	-- Sleep Status
 				value matches {
 					Coded_text[id1068] matches {
@@ -129,14 +126,7 @@ definition
 					}
 				}
 			}
-			allow_archetype Node[id1026] occurrences matches {0..1} matches {	-- Device
-				include
-					archetype_id/value matches {/s2-EHR-Node\.device(-[a-zA-Z0-9_]+)*\.v1/}
-			}
-			allow_archetype Node[id1059] matches {	-- Extension
-				include
-					archetype_id/value matches {/.*/}
-			}
+			use_archetype Node[id1026, s2-EHR-Node.device.v1] occurrences matches {0..1}
 		}
 		data_series matches {
 			Interval_event[id1043] matches {	-- Data series
@@ -399,3 +389,4 @@ terminology
 			members = <"at1012", "at1013">
 		>
 	>
+

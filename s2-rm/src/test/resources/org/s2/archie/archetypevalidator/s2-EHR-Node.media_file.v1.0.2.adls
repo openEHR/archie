@@ -1,0 +1,159 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4a215750-d290-4e6c-8ec9-9cb0359bde11)
+	s2-EHR-Node.media_file.v1.0.2
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Heather Leslie, Atomica Informatics, <heather.leslie@atomicainformatics.com>, 2019-12-10">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-CLUSTER.media_file.v1.0.2, copyright 2019 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-CLUSTER.media_file.v1.0.2 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record a media file that is acquired or used as part of the healthcare process, and details about associated metadata.">
+			use = <"Use to record a media file that is acquired or used as part of the healthcare process, and details about associated metadata.
+            
+            The intent of this archetype is only to hold the media file and the metadata describing its capture. This archetype will be nested within another archetype, usually an OBSERVATION or ACTION that will hold the context and circumstances related to the capture of the media file. For example, details about the modality, view or aspect of a radiographic image and DICOM details will be captured within the OBSERVATION.imaging_exam_result archetype. 
+            
+            Examples include, but are not limited to:
+            - A photo of an injury;
+            - A diagram of the location of a specific clinical finding;
+            - A radiological image;
+            - An audio or video recording of an interview;
+            - Scanned pathology slide;
+            - Data output from a clinical device, such as an ECG machine; or
+            - A scanned image of paper documentation or hand-written clinical notes.
+            
+            The 'Content' data Node allows for the media file to be captured and stored within the health record using the Multimedia data type. The Multimedia data type has many RM attributes such as the size of file and URI to an external source. See https://specifications.openehr.org/releases/RM/latest/data_types.html#_dv_multimedia_class.
+            
+            If more than one media file has been captured, such as 'before' and 'after' images of a wound, use a separate instance of this archetype to represent each media file.
+            
+            If a series of media files is represented as a single item, such as a CT scan, one instance of this archetype can be used to represent a URI path to the group.">
+			keywords = <"image", "audio", "text", "video", "application", "file", "multimedia", "audio", "DICOM", "digital", "document", "photo", "voice">
+			misuse = <"Not to be used to represent information, instructional or educational material supplied to an individual, or their carer, for example patient education leaflets. Use the Node.information_resource for this purpose.
+            
+            Not to be used to record a reference to a knowledge base - use Node.knowledge_base_reference for this purpose.">
+		>
+	>
+	other_contributors = <"Michael Anywar, Universitätsklinikum SH, Germany", "Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)", "Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)", "Paulo Bandiera-Paiva, Federal University of Sao Paulo, Brazil", "itai Basel, Private, Israel", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Stefan Dubois, Dep't of Pathology and Genetics, University Hospitals of Lund and Malmö, Sweden", "Grant Forrest, Lunaria Ltd, United Kingdom", "Rosane Gotardo, Systema Ltda., Brazil", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse-Nord, Norway (openEHR Editor)", "Joost Holslag, Nedap, Netherlands", "Anjali Kulkarni, Karkinos, India", "Jörgen Kuylenstierna, eWeave AB, Sweden", "Liv Laugen, ​Oslo University Hospital, Norway, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Michael Lutz, BITsoft, Germany", "Manisha Mantri, C-DAC, India", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Arunakiry Natarajan, medondo, Germany", "Mikael Nyström, Cambio Healthcare Systems AB, Sweden", "Ana Pereira, CINTESIS, CUF-Porto, Portugal", "Sidharth Ramesh, Kasturba Medical College, India", "FREDERICO RIBEIRO, Hospital das Clínicas da UFPE, Brazil", "Saeed Samie, Pars Hospital, Iran", "Bjoern Schreiweis, UKSH, Germany", "Natalia Strauch, Medizinische Hochschule Hannover, Germany", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Health Systems, Australia", "John Tore Valand, Helse Bergen, Norway (openEHR Editor)", "Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)", "Michael Zampaglione, Australia", "Wouter Zanen, Eurotranplant, Netherlands", "Lin Zhang, Taikang Insurance Group, China">
+
+definition
+	Node[id1] matches {	-- Media file
+		items matches {
+			Node[id2] occurrences matches {0..1} matches {	-- Content
+				value matches {
+					Multimedia[id15] 
+				}
+			}
+			Node[id3] occurrences matches {0..1} matches {	-- Content name
+				value matches {
+					Text[id16] 
+				}
+			}
+			Node[id11] matches {	-- Identifier
+				value matches {
+					Rwe_id_ref[id17] 
+					Text[id18] 
+				}
+			}
+			Node[id6] occurrences matches {0..1} matches {	-- Description
+				value matches {
+					Text[id19] 
+				}
+			}
+			Node[id5] occurrences matches {0..1} matches {	-- Created
+				value matches {
+					Date_time_value[id20] 
+					Range<Date_time_value>[id21] 
+				}
+			}
+			use_archetype Node[id13, s2-EHR-Node.person.v1] 
+			use_archetype Node[id12, s2-EHR-Node.device.v1] 
+			allow_archetype Node[id14] matches {	-- Additional details
+				include
+					archetype_id/value matches {/.*/}
+			}
+			Node[id8] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id22] 
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"Media file">
+				description = <"A media file that is acquired or used as part of the healthcare process, and associated metadata.">
+			>
+			["id11"] = <
+				text = <"Identifier">
+				description = <"Unique ID for the media file.">
+			>
+			["id12"] = <
+				text = <"Source device">
+				description = <"Details about the device used to generate or author the media file.">
+			>
+			["id13"] = <
+				text = <"Creator">
+				description = <"Details about the individual or organization who generated or authored the media file.">
+			>
+			["id14"] = <
+				text = <"Additional details">
+				description = <"Additional structured details about the media file.">
+			>
+			["id2"] = <
+				text = <"Content">
+				description = <"Digital representation of the media file.">
+			>
+			["id3"] = <
+				text = <"Content name">
+				description = <"Descriptive name or title for the media file.">
+			>
+			["id5"] = <
+				text = <"Created">
+				description = <"The date/time, partial date or period when the media file was generated or authored.">
+			>
+			["id6"] = <
+				text = <"Description">
+				description = <"Narrative description about the media file.">
+			>
+			["id8"] = <
+				text = <"Comment">
+				description = <"Additional narrative about the media file not captured in other fields.">
+			>
+		>
+	>
+	term_bindings = <
+		["loinc"] = <
+			["id6"] = <http://loinc.org/1c814f9b-cbe7-ee11-8869-6045bdc71c8b>
+			["id8"] = <http://loinc.org/106173-8>
+			["id12"] = <http://loinc.org/82307-0>
+			["id13"] = <http://loinc.org/104976-6>
+		>
+	>
+

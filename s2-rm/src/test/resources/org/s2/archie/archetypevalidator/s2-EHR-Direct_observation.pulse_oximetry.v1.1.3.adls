@@ -1,0 +1,322 @@
+archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5a111860-bb19-49d5-9601-892da41f99c0)
+	s2-EHR-Direct_observation.pulse_oximetry.v1.1.3
+
+language
+	original_language = <[iso_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"S2 Health - Knowledge Engineering">
+		["organisation"] = <"S2 Health <http://www.s2health.org>">
+		["email"] = <"models@s2health.org">
+		["date"] = <"2024-08-09">
+	>
+	original_namespace = <"org.openehr">
+	custodian_namespace = <"org.s2health">
+	custodian_organisation = <"S2 Health <http://s2health.org>">
+	copyright = <"Copyright (c) 2024 S2 Health">
+	licence = <"Creative Commons CC-BY 4.0 unported <http://creativecommons.org/>">
+	ip_acknowledgements = <
+		["original_author"] = <"Ian McNicoll, Ocean Informatics, United Kingdom, <Ian.mcnicoll@oceaninformatics.com>, 2010-10-26">
+		["openehr"] = <"Content adapted from openEHR archetype openEHR-EHR-OBSERVATION.pulse_oximetry.v1.1.3, copyright 2010 openEHR International <http://www.openEHR.org>">
+		["loinc"] = <"Content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at <http://loinc.org/terms-of-use>">
+		["snomed"] = <"Content from SNOMED CT® is copyright © 2007 SNOMED International <http://snomed.org>">
+		["rxnorm"] = <"Content from RxNorm is used Courtesy of the U.S. National Library of Medicine <http://www.nlm.nih.gov/>">
+	>
+	conversion_details = <
+		["source_model"] = <"openEHR archetype openEHR-EHR-OBSERVATION.pulse_oximetry.v1.1.3 from <https://ckm.openehr.org>">
+		["tool"] = <"s2 convert openehr">
+		["date"] = <"2024-08-09">
+	>
+	details = <
+		["en"] = <
+			language = <[iso_639-1::en]>
+			purpose = <"To record blood oxygen and related measurements, measured by pulse oximetry or pulse CO-oximetry.">
+			use = <"Use to record blood oxygen and related measurements, measured by pulse oximetry or pulse CO-oximetry.
+            
+            Waveforms should be recorded here when used to document quality of the blood gas measurement.">
+			keywords = <"oxygen", "oxygenation", "saturation", "SpO2", "spMet", "spCO", "spOC", "carboxyhaemoglobin", "methaemoglobin", "pulse", "oximeter", "oximetry", "concentration", "partial", "pressure", "non-invasive", "vital", "O2", "SaO₂", "SaO2", "sat", "sats", "hypoxaemia">
+			misuse = <"Not used for other non-invasive blood gas measurements such as transcutaneous CO₂, lateral end-tidal CO₂ or non-invasive cerebral oximetry.
+            
+            Not to be used for recording plethysmography. Use another appropriate archetype for this purpose.
+            
+            Not to be used for recording another type of measurement, such as pulse rate, where the recording device also provides this. This should be recorded in a separate archetype, appropriate for that particular measurement to allow consistent querying. In this example, record the pulse rate in the OBSERVATION.pulse archetype.
+            
+            Not to be used to record any peripheral blood gas measurement that involves direct contact with blood. For example, PaO₂, PaCO₂ should be recorded using the OBSERVATION.laboratory_test_result archetype.
+            
+            Not to be used to record invasive blood gas measurement. For example, arterial (SaO₂), venous (SvO₂) oxygen saturation or Oxygen content (CaOC) which are usually determined by invasive methods such as laboratory blood gases or vascular catheter devices. These should also be recorded within the OBSERVATION.laboratory_test_result archetype.">
+		>
+	>
+	other_contributors = <"Morten Aas, Oslo Universitetssykehus, Norway", "Tomas Alme, DIPS, Norway", "Nadim Anani, Karolinska Institutet, Sweden", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Mate Bestek, National Institute of Public Health of Slovenia, Slovenia", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Marja Buur, Medisch Centrum Alkmaar/ Code24, Netherlands", "Sergio Carmona, Chile", "Ady Angelica Castro Acosta, CIBERES-Hospital 12 de Octubre, Spain", "Rong Chen, Cambio Healthcare Systems, Sweden", "Stephen Chu, Queensland Health, Australia", "Tamsin Cockayne, Australia", "Ed Conley, Cardiff University", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Graham Denyer, Australian Antarctic Division, Australia", "Paul Donaldson, Nursing Informatics Australia, Australia", "Samo Drnovsek, Marand ltd, Slovenia", "Stig Erik Hegrestad, Helse Førde, Norway", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Sebastian Garde, Ocean Informatics, Germany (Editor)", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Karsten Heusser, Hannover Medical School, Germany", "Omer Hotomaroglu, Turkey (Editor)", "Evelyn Hovenga, EJSH Consulting, Australia", "Pieter Hummel, Medisch Centrum Alkmaar, Netherlands", "Eugene Igras, IRIS Systems, Inc., Canada", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Patrícia Ivo, Prefeitura Municipal de Fortaleza, Brazil", "Sundaresan Jagannathan, Scottish NHS, United Kingdom", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Gorazd Kalan, University Medical Centre Ljubljana, Slovenia", "Konstantinos Kalliamvakos, Cambio Healthcare Systems, Sweden", "Hilde Karen Ofte, Nordlandssykehuset HF, Norway", "Harmony Kosola, Alberta Health Services, Canada", "Russell Leftwich, Russell B Leftwich MD, United States", "Heather Leslie, Ocean Health Systems, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Mark Luciani, Gloucestershire Hospital NHS Foundation Trust, United Kingdom", "Vincent McCauley, Medical Software Industry Association, Australia", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Jeroen Meintjens, Medisch Centrum Alkmaar, Netherlands", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Udo Müller, CompuGROUP Software, Germany", "Andrej Orel, Marand d.o.o., Slovenia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Arturo Romero, SESCAM, Spain", "Jussara Rotzsch, UNB, Brazil", "Anoop Shah, University College London, United Kingdom", "Tony Shannon, frectal ltd, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Trine Strand, Oslo Universitetssykehus (OUS), Norway", "Roy Støle, OUS, Norway", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Micaela Thierley, Helse Bergen, Norway", "Rowan Thomas, St. Vincent's Hospital Melbourne, Australia", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Stian Torleif Varpe, Helse Bergen, Norway">
+
+definition
+	Direct_observation[id1] matches {	-- Pulse oximetry
+		data matches {
+			Node[id7] occurrences matches {0..1} matches {	-- SpO₂
+				value matches {
+					Measured<Quantity>[id74] matches {
+						value matches {
+							Quantity[id63] matches {
+								magnitude matches {|0.0..100.0|}
+								units matches {
+									Coded_text[id73] matches {
+										term matches {
+											Terminology_term[id72] matches {
+												concept matches {[at66]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id45] occurrences matches {0..1} matches {	-- SpOC
+				value matches {
+					Measured<Quantity>[id75] matches {
+						value matches {
+							Quantity[id64] matches {
+								magnitude matches {|>=0.0|}
+								units matches {
+									Coded_text[id77] matches {
+										term matches {
+											Terminology_term[id76] matches {
+												concept matches {[at67]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id46] occurrences matches {0..1} matches {	-- SpCO
+				value matches {
+					Measured<Quantity>[id80] matches {
+						value matches {
+							Quantity[id65] matches {
+								magnitude matches {|0.0..100.0|}
+								units matches {
+									Coded_text[id79] matches {
+										term matches {
+											Terminology_term[id78] matches {
+												concept matches {[at66]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Node[id47] occurrences matches {0..1} matches {	-- SpMet
+				value matches {
+					Measured<Quantity>[id83] matches {
+						value matches {
+							Quantity[id66] matches {
+								magnitude matches {|0.0..100.0|}
+								units matches {
+									Coded_text[id82] matches {
+										term matches {
+											Terminology_term[id81] matches {
+												concept matches {[at66]}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id55, s2-EHR-Node.waveform.v0] 
+			use_archetype Node[id61, s2-EHR-Node.media_file.v1] 
+			Node[id59] matches {	-- Interpretation
+				value matches {
+					Text[id67] 
+				}
+			}
+			Node[id37] occurrences matches {0..1} matches {	-- Comment
+				value matches {
+					Text[id68] 
+				}
+			}
+		}
+		state matches {
+			use_archetype Node[id35, s2-EHR-Node.level_of_exertion.v0] occurrences matches {0..1} 
+			use_archetype Node[id16, s2-EHR-Node.inspired_oxygen.v1] occurrences matches {0..1} 
+			Node[id17] matches {	-- Confounding factors
+				value matches {
+					Text[id69] 
+				}
+			}
+		}
+		qualifiers matches {
+			Node[id10] occurrences matches {0..1} matches {	-- Sensor site
+				value matches {
+					Text[id70] 
+				}
+			}
+			Node[id62] occurrences matches {0..1} matches {	-- Pre/post-ductal
+				value matches {
+					Coded_text[id71] matches {
+						term matches {
+							Terminology_term[id84] matches {
+								concept matches {[ac1]}		-- Pre/post-ductal (synthesised)
+							}
+						}
+					}
+				}
+			}
+			use_archetype Node[id19, s2-EHR-Node.device.v1] occurrences matches {0..1} 
+			allow_archetype Node[id60] matches {	-- Extension
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["ac1"] = <
+				text = <"Pre/post-ductal (synthesised)">
+				description = <"Sensor site relative to the ductus arteriosus in neonates, to determine whether the blood supply to limb of the sensor site is pre- or post-ductal in cases of patent ductus arteriosus. (synthesised)">
+			>
+			["at62"] = <
+				text = <"Pre-ductal">
+				description = <"The sensor site is pre-ductal.">
+			>
+			["at63"] = <
+				text = <"Post-ductal">
+				description = <"The sensor site is post-ductal.">
+			>
+			["at64"] = <
+				text = <"Indeterminate">
+				description = <"Unable to assess whether the sensor site is pre- or post-ductal.">
+			>
+			["at65"] = <
+				text = <"Concentration">
+				description = <"Concentration">
+			>
+			["at66"] = <
+				text = <"%">
+				description = <"Percent">
+			>
+			["at67"] = <
+				text = <"mL/dL">
+				description = <"Concentration">
+			>
+			["id1"] = <
+				text = <"Pulse oximetry">
+				description = <"Blood oxygen and related measurements, measured by pulse oximetry or pulse CO-oximetry.">
+			>
+			["id10"] = <
+				text = <"Sensor site">
+				description = <"The site of the measurement sensor.">
+			>
+			["id16"] = <
+				text = <"Inspired oxygen">
+				description = <"Details of the amount of oxygen available to the subject at the time of observation.">
+			>
+			["id17"] = <
+				text = <"Confounding factors">
+				description = <"Comment on and record other incidental factors that may be affect interpretation of the observation.">
+			>
+			["id19"] = <
+				text = <"Oximetry device">
+				description = <"Details of the non-invasive oximetry device used.">
+			>
+			["id3"] = <
+				text = <"Any event">
+				description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+			>
+			["id35"] = <
+				text = <"Exertion">
+				description = <"Details about physical activity undertaken at the time of measurement.">
+			>
+			["id37"] = <
+				text = <"Comment">
+				description = <"A text comment about the pulse oximetry result.">
+			>
+			["id45"] = <
+				text = <"SpOC">
+				description = <"The oxygen content of the peripheral blood, calculated based on pulse oximetry and pulse CO-oximetry.">
+			>
+			["id46"] = <
+				text = <"SpCO">
+				description = <"The saturation of carboxyhaemoglobin in the peripheral blood, measured via pulse CO-oximetry.">
+			>
+			["id47"] = <
+				text = <"SpMet">
+				description = <"The saturation of methaemoglobin in the peripheral blood, measured via pulse CO-oximetry.">
+			>
+			["id55"] = <
+				text = <"Waveform">
+				description = <"A waveform reading associated with the oximetry measurement.">
+			>
+			["id59"] = <
+				text = <"Interpretation">
+				description = <"Single word, phrase or brief description which represents the clinical meaning and significance of the measurements.">
+			>
+			["id60"] = <
+				text = <"Extension">
+				description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+			>
+			["id61"] = <
+				text = <"Multimedia image">
+				description = <"Details of a series of oximetry readings, other than waveforms, expressed as a multimedia image or series of images. Waveforms should be recorded using the Waveform slot and associated Node archetype.">
+			>
+			["id62"] = <
+				text = <"Pre/post-ductal">
+				description = <"Sensor site relative to the ductus arteriosus in neonates, to determine whether the blood supply to limb of the sensor site is pre- or post-ductal in cases of patent ductus arteriosus.">
+			>
+			["id7"] = <
+				text = <"SpO₂">
+				description = <"The saturation of oxygen in the peripheral blood, measured via pulse oximetry.">
+			>
+		>
+	>
+	term_bindings = <
+		["snomed"] = <
+			["id7"] = <http://snomed.info/id/431314004>
+			["id16"] = <http://snomed.info/id/16206004>
+			["id19"] = <http://snomed.info/id/448703006>
+			["id55"] = <http://snomed.info/id/277923006>
+			["at66"] = <http://snomed.info/id/415067009>
+			["at67"] = <http://snomed.info/id/258862002>
+		>
+		["loinc"] = <
+			["id7"] = <http://loinc.org/59408-5>
+			["id10"] = <http://loinc.org/20081-6>
+			["id45"] = <http://loinc.org/57800-5>
+			["id46"] = <http://loinc.org/86904-0>
+			["id47"] = <http://loinc.org/2614-6>
+			["id1"] = <http://loinc.org/24336-0>
+			["id17"] = <http://loinc.org/100752-5>
+			["id37"] = <http://loinc.org/48767-8>
+			["id59"] = <http://loinc.org/64110-0>
+			["id19"] = <http://loinc.org/82307-0>
+		>
+		["openehr"] = <
+			["at65"] = <http://openehr.org/id/119>
+		>
+		["ucum"] = <
+			["at66"] = <http://ucum.org/id/%25>
+			["at67"] = <http://ucum.org/id/ml%2Fdl>
+		>
+		["s2"] = <
+			["ac1"] = <http://s2health.org/id/s2.PrepostDuctal>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at62", "at63", "at64">
+		>
+	>
+
