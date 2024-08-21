@@ -1,6 +1,8 @@
 package org.s2.rm.care.entry;
 
-import java.util.*;
+import org.s2.util.enumerations.EnumerationVar;
+import org.s2.util.enumerations.StringEnumerationVar;
+
 import javax.xml.bind.annotation.*;
 
 /**
@@ -10,43 +12,14 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Order_execution_state", propOrder = {"value"})
-public class OrderExecutionState {
-  /**
-  * Enumeration value.
-  */
-  @XmlElement(name = "value")
-  String value;
+public class OrderExecutionState extends StringEnumerationVar<OrderExecutionStateEnum> {
 
-  /**
-  * Enumeration type.
-  */
-  static final OrderExecutionStateEnum enumeration = new OrderExecutionStateEnum();
-
-  public OrderExecutionState() {}
+  public OrderExecutionState() {
+    this.value = OrderExecutionStateEnum.getInstance().getItemValue(0);
+  }
 
   // Enumeration value constructor.
   public OrderExecutionState(String value) {
-    this.value = value;
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    if (this == other) return true;
-    if (other == null || getClass() != other.getClass()) return false;
-    OrderExecutionState otherAsOrderExecutionState = (OrderExecutionState) other;
-    return Objects.equals(value, otherAsOrderExecutionState.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), value);
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
     this.value = value;
   }
 

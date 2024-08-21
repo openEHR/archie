@@ -1,8 +1,8 @@
 package org.s2.rm.base.model_support.definitions;
 
-import com.nedap.archie.base.RMObject;
+import org.s2.util.enumerations.EnumerationVar;
+import org.s2.util.enumerations.StringEnumerationVar;
 
-import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -12,43 +12,14 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Trend_kind", propOrder = {"value"})
-public class TrendKind extends RMObject {
-  /**
-  * Enumeration value.
-  */
-  @XmlElement(name = "value")
-  String value;
+public class TrendKind extends StringEnumerationVar<TrendKindEnum> {
 
-  /**
-  * Enumeration type.
-  */
-  static final TrendKindEnum enumeration = new TrendKindEnum();
-
-  public TrendKind() {}
+  public TrendKind() {
+    this.value = TrendKindEnum.getInstance().getItemValue(0);
+  }
 
   // Enumeration value constructor.
   public TrendKind(String value) {
-    this.value = value;
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    if (this == other) return true;
-    if (other == null || getClass() != other.getClass()) return false;
-    TrendKind otherAsTrendKind = (TrendKind) other;
-    return Objects.equals(value, otherAsTrendKind.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), value);
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
     this.value = value;
   }
 

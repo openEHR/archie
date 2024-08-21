@@ -1,8 +1,8 @@
 package org.s2.rm.base.model_support.definitions;
 
-import com.nedap.archie.base.RMObject;
+import org.s2.util.enumerations.EnumerationVar;
+import org.s2.util.enumerations.StringEnumerationVar;
 
-import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -12,43 +12,14 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sample_function_kind", propOrder = {"value"})
-public class SampleFunctionKind extends RMObject {
-  /**
-  * Enumeration value.
-  */
-  @XmlElement(name = "value")
-  String value;
+public class SampleFunctionKind extends StringEnumerationVar<SampleFunctionKindEnum> {
 
-  /**
-  * Enumeration type.
-  */
-  static final SampleFunctionKindEnum enumeration = new SampleFunctionKindEnum();
-
-  public SampleFunctionKind() {}
+  public SampleFunctionKind() {
+    this.value = SampleFunctionKindEnum.getInstance().getItemValue(0);
+  }
 
   // Enumeration value constructor.
   public SampleFunctionKind(String value) {
-    this.value = value;
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    if (this == other) return true;
-    if (other == null || getClass() != other.getClass()) return false;
-    SampleFunctionKind otherAsSampleFunctionKind = (SampleFunctionKind) other;
-    return Objects.equals(value, otherAsSampleFunctionKind.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), value);
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
     this.value = value;
   }
 
@@ -60,4 +31,5 @@ public class SampleFunctionKind extends RMObject {
   public String toString() {
     return "Sample_function_kind";
   }
+
 }

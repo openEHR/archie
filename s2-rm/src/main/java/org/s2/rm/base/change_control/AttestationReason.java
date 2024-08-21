@@ -1,6 +1,8 @@
 package org.s2.rm.base.change_control;
 
-import java.util.*;
+import org.s2.util.enumerations.EnumerationVar;
+import org.s2.util.enumerations.StringEnumerationVar;
+
 import javax.xml.bind.annotation.*;
 
 /**
@@ -10,43 +12,14 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Attestation_reason", propOrder = {"value"})
-public class AttestationReason {
-  /**
-  * Enumeration value.
-  */
-  @XmlElement(name = "value")
-  String value;
+public class AttestationReason extends StringEnumerationVar<AttestationReasonEnum> {
 
-  /**
-  * Enumeration type.
-  */
-  static final AttestationReasonEnum enumeration = new AttestationReasonEnum();
-
-  public AttestationReason() {}
+  public AttestationReason() {
+    this.value = AttestationReasonEnum.getInstance().getItemValue(0);
+  }
 
   // Enumeration value constructor.
   public AttestationReason(String value) {
-    this.value = value;
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    if (this == other) return true;
-    if (other == null || getClass() != other.getClass()) return false;
-    AttestationReason otherAsAttestationReason = (AttestationReason) other;
-    return Objects.equals(value, otherAsAttestationReason.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), value);
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
     this.value = value;
   }
 
@@ -58,4 +31,5 @@ public class AttestationReason {
   public String toString() {
     return "Attestation_reason";
   }
+
 }

@@ -1,6 +1,8 @@
 package org.s2.rm.base.data_types.quantity;
 
-import java.util.*;
+import org.s2.util.enumerations.EnumerationVar;
+import org.s2.util.enumerations.StringEnumerationVar;
+
 import javax.xml.bind.annotation.*;
 
 /**
@@ -10,43 +12,14 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Comparison_operator", propOrder = {"value"})
-public class ComparisonOperator {
-  /**
-  * Enumeration value.
-  */
-  @XmlElement(name = "value")
-  String value;
+public class ComparisonOperator extends StringEnumerationVar<ComparisonOperatorEnum> {
 
-  /**
-  * Enumeration type.
-  */
-  static final ComparisonOperatorEnum enumeration = new ComparisonOperatorEnum();
-
-  public ComparisonOperator() {}
+  public ComparisonOperator() {
+    this.value = ComparisonOperatorEnum.getInstance().getItemValue(0);
+  }
 
   // Enumeration value constructor.
   public ComparisonOperator(String value) {
-    this.value = value;
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    if (this == other) return true;
-    if (other == null || getClass() != other.getClass()) return false;
-    ComparisonOperator otherAsComparisonOperator = (ComparisonOperator) other;
-    return Objects.equals(value, otherAsComparisonOperator.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), value);
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
     this.value = value;
   }
 

@@ -1,8 +1,8 @@
 package org.s2.rm.base.data_types.timing;
 
-import com.nedap.archie.base.RMObject;
+import org.s2.util.enumerations.EnumerationVar;
+import org.s2.util.enumerations.IntegerEnumerationVar;
 
-import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -12,43 +12,14 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Temporal_relation", propOrder = {"value"})
-public class TemporalRelation extends RMObject {
-  /**
-  * Enumeration value.
-  */
-  @XmlElement(name = "value")
-  int value;
+public class TemporalRelation extends IntegerEnumerationVar<TemporalRelationEnum> {
 
-  /**
-  * Enumeration type.
-  */
-  static final TemporalRelationEnum enumeration = new TemporalRelationEnum();
-
-  public TemporalRelation() {}
+  public TemporalRelation() {
+    this.value = TemporalRelationEnum.getInstance().getItemValue(0);
+  }
 
   // Enumeration value constructor.
   public TemporalRelation(int value) {
-    this.value = value;
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    if (this == other) return true;
-    if (other == null || getClass() != other.getClass()) return false;
-    TemporalRelation otherAsTemporalRelation = (TemporalRelation) other;
-    return Objects.equals(value, otherAsTemporalRelation.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), value);
-  }
-
-  public int getValue() {
-    return value;
-  }
-
-  public void setValue(int value) {
     this.value = value;
   }
 

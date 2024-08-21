@@ -1,8 +1,8 @@
 package org.s2.rm.base.model_support.definitions;
 
-import com.nedap.archie.base.RMObject;
+import org.s2.util.enumerations.EnumerationVar;
+import org.s2.util.enumerations.StringEnumerationVar;
 
-import java.util.*;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -12,43 +12,14 @@ import javax.xml.bind.annotation.*;
 */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Validity_kind", propOrder = {"value"})
-public class ValidityKind extends RMObject {
-  /**
-  * Enumeration value.
-  */
-  @XmlElement(name = "value")
-  String value;
+public class ValidityKind extends StringEnumerationVar<ValidityKindEnum> {
 
-  /**
-  * Enumeration type.
-  */
-  static final ValidityKindEnum enumeration = new ValidityKindEnum();
-
-  public ValidityKind() {}
+  public ValidityKind() {
+    this.value = ValidityKindEnum.getInstance().getItemValue(0);
+  }
 
   // Enumeration value constructor.
   public ValidityKind(String value) {
-    this.value = value;
-  }
-
-  @Override
-  public boolean equals(Object other) {
-    if (this == other) return true;
-    if (other == null || getClass() != other.getClass()) return false;
-    ValidityKind otherAsValidityKind = (ValidityKind) other;
-    return Objects.equals(value, otherAsValidityKind.value);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), value);
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
     this.value = value;
   }
 
