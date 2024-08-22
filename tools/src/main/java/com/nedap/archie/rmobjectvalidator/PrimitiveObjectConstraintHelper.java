@@ -10,6 +10,7 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
+import com.nedap.archie.terminology.IANATerminologyAccess;
 import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
 
 import java.net.URI;
@@ -128,6 +129,8 @@ class PrimitiveObjectConstraintHelper {
                 values = terminologyCode.getValueSetExpanded();
             } else if (terminologyId.equalsIgnoreCase("openehr")) {
                 values = getOpenEHRValueSetExpanded(terminologyCode);
+            } else if (terminologyId.equalsIgnoreCase("IANA_media-types")) {
+                values = getIANAMediaTypesValueSetExpanded(terminologyCode);
             } else {
                 // This is not a local nor an openehr terminology.
                 // If a term binding is there, we may be able to validate, if external, we wil not be able to.
@@ -162,6 +165,28 @@ class PrimitiveObjectConstraintHelper {
                 String code = terminologyAccess.parseTerminologyURI(termBinding.toString());
                 if (code != null) {
                     result.add(code);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private List<String> getIANAMediaTypesValueSetExpanded(CTerminologyCode terminologyCode) {
+        List<String> atCodes = terminologyCode.getValueSetExpanded();
+        ArchetypeTerminology terminology = getTerminology(terminologyCode);
+        List<String> result = new ArrayList<>();
+
+        if(terminology == null) {
+            return result;
+        }
+
+        for (String atCode : atCodes) {
+            URI termBinding = terminology.getTermBinding("IANA_media-types", atCode);
+            if (termBinding != null) {
+                String value = IANATerminologyAccess.parseTerminologyURI(termBinding.toString());
+                if (value != null) {
+                    result.add(value);
                 }
             }
         }
