@@ -10,7 +10,6 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
-import com.nedap.archie.terminology.IANATerminologyAccess;
 import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
 
 import java.net.URI;
@@ -175,6 +174,7 @@ class PrimitiveObjectConstraintHelper {
     private List<String> getIANAMediaTypesValueSetExpanded(CTerminologyCode terminologyCode) {
         List<String> atCodes = terminologyCode.getValueSetExpanded();
         ArchetypeTerminology terminology = getTerminology(terminologyCode);
+        OpenEHRTerminologyAccess terminologyAccess = OpenEHRTerminologyAccess.getInstance();
         List<String> result = new ArrayList<>();
 
         if(terminology == null) {
@@ -184,7 +184,7 @@ class PrimitiveObjectConstraintHelper {
         for (String atCode : atCodes) {
             URI termBinding = terminology.getTermBinding("IANA_media-types", atCode);
             if (termBinding != null) {
-                String value = IANATerminologyAccess.parseTerminologyURI(termBinding.toString());
+                String value = terminologyAccess.parseIANATerminologyURI(termBinding.toString());
                 if (value != null) {
                     result.add(value);
                 }
