@@ -61,16 +61,17 @@ public class S2RmObjectValidatorTest {
 
         validator.setRunInvariantChecks(false);
         List<RMObjectValidationMessage> validationMessages = validator.validate(opt, node);
-        assertEquals("There should be 1 errors", 1, validationMessages.size());
-        assertEquals("There should be a validation message about the numerator", "Attribute numerator of class Proportion does not match existence 1..1", validationMessages.get(0).getMessage());
-        assertEquals("The path should be correct", "/value/numerator", validationMessages.get(0).getPath());
-        assertEquals("The archetype path should be correct", "/value[id2]/numerator", validationMessages.get(0).getArchetypePath());
+        assertEquals("There should be 2 errors", 2, validationMessages.size());
+        assertEquals("There should be a validation message about the numerator", "Attribute numerator of class Proportion does not match existence 1..1", validationMessages.get(1).getMessage());
+        assertEquals("There should be a validation message about the magnitiude", "Attribute magnitude of class Proportion does not match existence 1..1", validationMessages.get(0).getMessage());
+        assertEquals("The path should be correct", "/value/numerator", validationMessages.get(1).getPath());
+        assertEquals("The archetype path should be correct", "/value[id2]/numerator", validationMessages.get(1).getArchetypePath());
 
+        proportion.setMagnitude(BigDecimal.valueOf(0.5));
         proportion.setNumerator(new Quantity(new BigDecimal("2.0"), new CodedText(new TerminologyTerm("ml", new TerminologyCode("snomed", "258773002")), "mL")));
 
         validationMessages = validator.validate(opt, node);
         assertEquals("There should be 0 errors", 0, validationMessages.size());
-
     }
 
     private OperationalTemplate createOpt(Archetype archetype) {
