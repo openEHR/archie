@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=91aaf1e4-68df-46e4-93bf-d2d048eaeabb)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=91aaf1e4-68df-46e4-93bf-d2d048eaeabb)
     s2-EHR-Score.clinical_frailty_scale2.v1.0.0
 
 language

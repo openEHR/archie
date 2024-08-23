@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=64836072-d72d-4b1a-8ce7-eef38aed6411)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=64836072-d72d-4b1a-8ce7-eef38aed6411)
 	s2-EHR-Node.lymph_node_metastases.v0.0.1-alpha
 
 language

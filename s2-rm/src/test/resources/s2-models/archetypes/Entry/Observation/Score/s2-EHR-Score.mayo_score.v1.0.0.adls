@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4fa072ad-5381-4f61-8535-10e211643ba2)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=4fa072ad-5381-4f61-8535-10e211643ba2)
     s2-EHR-Score.mayo_score.v1.0.0
 
 language

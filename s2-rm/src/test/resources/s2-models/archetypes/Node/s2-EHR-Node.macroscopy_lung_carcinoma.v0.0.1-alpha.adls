@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=32ef73a4-741f-47f1-bb89-3bb20702dba3)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=32ef73a4-741f-47f1-bb89-3bb20702dba3)
 	s2-EHR-Node.macroscopy_lung_carcinoma.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=f05a3431-1a21-4f29-8f02-760b30d9d4fc)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=f05a3431-1a21-4f29-8f02-760b30d9d4fc)
     s2-EHR-Node.exam-foot.v0.0.1-alpha
 
 specialize

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e2ef554a-dbeb-4b6b-b0c0-d7141057284a)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e2ef554a-dbeb-4b6b-b0c0-d7141057284a)
 	s2-EHR-Node.exam-tympanic_membrane.v0.0.1-alpha
 
 specialize

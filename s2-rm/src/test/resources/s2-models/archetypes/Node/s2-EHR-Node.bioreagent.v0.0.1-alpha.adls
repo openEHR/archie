@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9876c96a-005a-42bf-a680-b15506f181de)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=9876c96a-005a-42bf-a680-b15506f181de)
 	s2-EHR-Node.bioreagent.v0.0.1-alpha
 
 language

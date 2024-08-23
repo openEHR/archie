@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1855c926-f403-4c4a-9996-b02728eb801e)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=1855c926-f403-4c4a-9996-b02728eb801e)
     s2-EHR-Node.laboratory_test_panel.v0.0.1-alpha
 
 language

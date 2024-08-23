@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8493e671-fcb9-470b-8393-f842a4921b86)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=8493e671-fcb9-470b-8393-f842a4921b86)
     s2-Entity-Address.electronic_communication.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e933a4be-984e-4058-bd4f-f71fe6d1c8bf)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e933a4be-984e-4058-bd4f-f71fe6d1c8bf)
     s2-EHR-Score.pga_eczema_treat.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fef3b912-563e-45ed-93cb-d5fe650426c0)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=fef3b912-563e-45ed-93cb-d5fe650426c0)
     s2-EHR-Node.promis_bank_v20_physical_function.v0.0.1-alpha
 
 language

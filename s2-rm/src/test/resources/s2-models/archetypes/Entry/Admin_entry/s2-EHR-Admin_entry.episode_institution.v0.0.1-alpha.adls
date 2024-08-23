@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d2f3655a-2e33-4a4a-b776-4a61cc91381a)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d2f3655a-2e33-4a4a-b776-4a61cc91381a)
 	s2-EHR-Admin_entry.episode_institution.v0.0.1-alpha
 
 language

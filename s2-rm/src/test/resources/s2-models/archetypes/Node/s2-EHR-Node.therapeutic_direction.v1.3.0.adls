@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e11288cd-c63c-4d9f-b397-96c0370ea83d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e11288cd-c63c-4d9f-b397-96c0370ea83d)
 	s2-EHR-Node.therapeutic_direction.v1.3.0
 
 language

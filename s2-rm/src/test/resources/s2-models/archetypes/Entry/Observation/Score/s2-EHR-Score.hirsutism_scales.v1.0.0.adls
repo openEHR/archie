@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=41fbe253-887c-42ac-b5ee-97ba8c5f6ed2)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=41fbe253-887c-42ac-b5ee-97ba8c5f6ed2)
     s2-EHR-Score.hirsutism_scales.v1.0.0
 
 language

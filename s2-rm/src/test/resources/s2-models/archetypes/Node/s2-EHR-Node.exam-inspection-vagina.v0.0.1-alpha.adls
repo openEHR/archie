@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=5d02a9bc-36e3-4c50-9afa-a0962ebfbb7e)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=5d02a9bc-36e3-4c50-9afa-a0962ebfbb7e)
     s2-EHR-Node.exam-inspection-vagina.v0.0.1-alpha
 
 specialize

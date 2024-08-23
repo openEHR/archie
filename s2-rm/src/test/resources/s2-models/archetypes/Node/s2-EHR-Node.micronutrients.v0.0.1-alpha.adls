@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=702de5db-ba46-463f-9a3d-b689aeb8de60)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=702de5db-ba46-463f-9a3d-b689aeb8de60)
     s2-EHR-Node.micronutrients.v0.0.1-alpha
 
 language

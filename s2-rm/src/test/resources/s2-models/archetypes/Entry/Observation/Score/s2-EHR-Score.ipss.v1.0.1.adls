@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=bf63d99c-882a-439f-ba3a-8cd3058750f7)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=bf63d99c-882a-439f-ba3a-8cd3058750f7)
 	s2-EHR-Score.ipss.v1.0.1
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=49b904e9-4055-4f6c-8b64-4ce0c5233e12)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=49b904e9-4055-4f6c-8b64-4ce0c5233e12)
 	s2-EHR-Node.medication_authorisation.v0.0.1-alpha
 
 language

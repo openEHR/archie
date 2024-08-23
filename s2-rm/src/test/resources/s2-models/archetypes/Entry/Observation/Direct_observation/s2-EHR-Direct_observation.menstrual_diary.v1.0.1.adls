@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a41ae9d9-e815-40d7-86d7-80bcf7bba324)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=a41ae9d9-e815-40d7-86d7-80bcf7bba324)
     s2-EHR-Direct_observation.menstrual_diary.v1.0.1
 
 language

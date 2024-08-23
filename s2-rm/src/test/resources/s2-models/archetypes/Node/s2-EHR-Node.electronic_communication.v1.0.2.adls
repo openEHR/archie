@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fdff5851-463b-4545-8f05-487a34123cea)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=fdff5851-463b-4545-8f05-487a34123cea)
 	s2-EHR-Node.electronic_communication.v1.0.2
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d43f87d9-3794-48e8-b31e-2763e381acab)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d43f87d9-3794-48e8-b31e-2763e381acab)
     s2-EHR-Direct_observation.ygtss_revised.v1.0.0
 
 language

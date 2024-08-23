@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f66fd89c-13e8-4cd7-9c76-199df660fa96)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f66fd89c-13e8-4cd7-9c76-199df660fa96)
 	s2-EHR-Assessment.specimen_summary.v1.1.0
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=92f6b1d4-90f1-42db-a0fe-439f3524411c)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=92f6b1d4-90f1-42db-a0fe-439f3524411c)
     s2-EHR-Node.hip_arthroplasty_component.v0.0.1-alpha
 
 language

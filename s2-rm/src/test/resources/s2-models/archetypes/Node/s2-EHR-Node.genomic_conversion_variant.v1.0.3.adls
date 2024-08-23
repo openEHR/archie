@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=22544d77-1b25-428c-954f-cb2436b2614f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=22544d77-1b25-428c-954f-cb2436b2614f)
     s2-EHR-Node.genomic_conversion_variant.v1.0.3
 
 language

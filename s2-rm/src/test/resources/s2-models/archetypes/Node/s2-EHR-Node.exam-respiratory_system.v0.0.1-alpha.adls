@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=c88252cf-1bb4-4e86-8ba0-c8e8fbd2def2)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=c88252cf-1bb4-4e86-8ba0-c8e8fbd2def2)
     s2-EHR-Node.exam-respiratory_system.v0.0.1-alpha
 
 specialize

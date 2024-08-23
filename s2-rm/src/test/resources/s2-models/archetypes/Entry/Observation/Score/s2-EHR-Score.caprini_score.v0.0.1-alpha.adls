@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=3d173fd7-35f2-4942-b0df-cf2b158a5901)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=3d173fd7-35f2-4942-b0df-cf2b158a5901)
 	s2-EHR-Score.caprini_score.v0.0.1-alpha
 
 language

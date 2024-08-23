@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=7c7360a6-8cf6-4e38-95fe-02822f160a0a)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=7c7360a6-8cf6-4e38-95fe-02822f160a0a)
     s2-EHR-Direct_observation.das28-CRP.v0.0.1-alpha
 
 specialize

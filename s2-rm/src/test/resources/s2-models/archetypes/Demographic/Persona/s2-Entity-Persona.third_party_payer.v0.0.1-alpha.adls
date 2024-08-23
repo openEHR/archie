@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=984ee8bc-b8ce-46b6-8d36-9d2147714f1d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=984ee8bc-b8ce-46b6-8d36-9d2147714f1d)
     s2-Entity-Persona.third_party_payer.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=68f07423-8a36-49eb-bc19-aa42dd5384ee)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=68f07423-8a36-49eb-bc19-aa42dd5384ee)
     s2-EHR-Direct_observation.lenke_classification.v1.0.0
 
 language

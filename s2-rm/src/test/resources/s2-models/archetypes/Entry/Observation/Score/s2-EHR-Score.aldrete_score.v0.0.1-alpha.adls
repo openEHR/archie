@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5a315033-8dce-401f-bd7f-b59cfff1a28f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=5a315033-8dce-401f-bd7f-b59cfff1a28f)
     s2-EHR-Score.aldrete_score.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a221eb32-8af2-4366-b084-79eaf9717634)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=a221eb32-8af2-4366-b084-79eaf9717634)
     s2-EHR-Score.ccs_angina_status.v0.0.1-alpha
 
 language

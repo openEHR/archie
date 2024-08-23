@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=d744e12c-7054-46c7-ae9c-3ed60bc1fda9)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=d744e12c-7054-46c7-ae9c-3ed60bc1fda9)
     s2-EHR-Node.exam-chest.v0.0.1-alpha
 
 specialize

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c712a543-796f-4923-af4f-6cec85a1ffa4)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=c712a543-796f-4923-af4f-6cec85a1ffa4)
     s2-EHR-Score.abbey_pain_scale.v0.0.1-alpha
 
 language

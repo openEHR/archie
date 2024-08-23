@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=4eae6c58-36ba-4f3f-862b-6e0adee2fed8)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=4eae6c58-36ba-4f3f-862b-6e0adee2fed8)
     s2-EHR-Node.exam-skin.v0.0.1-alpha
 
 specialize

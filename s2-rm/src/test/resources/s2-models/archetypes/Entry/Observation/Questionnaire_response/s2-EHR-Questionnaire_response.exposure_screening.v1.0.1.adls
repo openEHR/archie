@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=314d47bd-9cdf-4607-bdc3-9076d062bc77)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=314d47bd-9cdf-4607-bdc3-9076d062bc77)
 	s2-EHR-Questionnaire_response.exposure_screening.v1.0.1
 
 language

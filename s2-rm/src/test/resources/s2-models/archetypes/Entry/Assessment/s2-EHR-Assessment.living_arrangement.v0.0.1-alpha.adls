@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4a501082-aee6-48c2-9bd1-81f359037fc1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=4a501082-aee6-48c2-9bd1-81f359037fc1)
 	s2-EHR-Assessment.living_arrangement.v0.0.1-alpha
 
 language

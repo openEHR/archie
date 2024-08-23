@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d74b33db-90d4-449f-b056-8a0a6045b414)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d74b33db-90d4-449f-b056-8a0a6045b414)
     s2-EHR-Section.medication_list.v0.0.1-alpha
 
 language

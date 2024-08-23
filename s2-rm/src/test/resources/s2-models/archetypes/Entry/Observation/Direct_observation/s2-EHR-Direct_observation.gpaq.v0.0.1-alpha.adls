@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=805286ee-48c5-4b58-bb3f-f3232a1c01dc)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=805286ee-48c5-4b58-bb3f-f3232a1c01dc)
     s2-EHR-Direct_observation.gpaq.v0.0.1-alpha
 
 language

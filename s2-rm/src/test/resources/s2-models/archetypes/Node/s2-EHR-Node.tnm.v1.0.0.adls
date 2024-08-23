@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ea1d4a3c-b4f1-4fa5-82f2-632451d8e899)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=ea1d4a3c-b4f1-4fa5-82f2-632451d8e899)
     s2-EHR-Node.tnm.v1.0.0
 
 language

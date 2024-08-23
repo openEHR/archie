@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8f46c5a3-84eb-4066-82d3-083ca8b4d3d6)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=8f46c5a3-84eb-4066-82d3-083ca8b4d3d6)
 	s2-EHR-Assessment.gender.v1.1.1
 
 language

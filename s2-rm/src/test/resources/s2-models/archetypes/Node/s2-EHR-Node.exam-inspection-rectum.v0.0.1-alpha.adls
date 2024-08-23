@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=70177e5a-61f4-430d-a53c-777b2007e822)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=70177e5a-61f4-430d-a53c-777b2007e822)
     s2-EHR-Node.exam-inspection-rectum.v0.0.1-alpha
 
 specialize

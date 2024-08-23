@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=cbe88789-b53b-4c69-aa96-cdb61cd62729)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=cbe88789-b53b-4c69-aa96-cdb61cd62729)
     s2-EHR-Node.exam-palpation-vagina.v0.0.1-alpha
 
 specialize

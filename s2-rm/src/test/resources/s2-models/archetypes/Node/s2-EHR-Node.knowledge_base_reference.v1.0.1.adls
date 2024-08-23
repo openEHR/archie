@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4dd870c3-ca72-41c2-9e3e-e3c9826bd386)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=4dd870c3-ca72-41c2-9e3e-e3c9826bd386)
 	s2-EHR-Node.knowledge_base_reference.v1.0.1
 
 language

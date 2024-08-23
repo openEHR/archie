@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ad02c946-005b-46bc-8673-af93e48864a6)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=ad02c946-005b-46bc-8673-af93e48864a6)
     s2-EHR-Node.imaging_exam-scrotum.v0.0.1-alpha
 
 specialize

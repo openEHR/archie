@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c3a152fe-96a3-431c-b934-fbe7fcf201b9)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=c3a152fe-96a3-431c-b934-fbe7fcf201b9)
 	s2-EHR-Node.cobb_angle.v0.0.1-alpha
 
 language

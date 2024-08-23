@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=de466b2a-89bf-4532-8b7d-8a28cca73c00)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=de466b2a-89bf-4532-8b7d-8a28cca73c00)
     s2-EHR-Node.exam-placenta.v0.0.1-alpha
 
 specialize

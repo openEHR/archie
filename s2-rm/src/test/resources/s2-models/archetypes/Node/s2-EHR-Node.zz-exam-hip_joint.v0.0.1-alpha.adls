@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; uid=7bed0e4b-3603-4a0a-8f20-75b80d81be9b)
+archetype (adl_version=2.0.6; rm_release=0.8.5; uid=7bed0e4b-3603-4a0a-8f20-75b80d81be9b)
 	s2-EHR-Node.zz-exam-hip_joint.v0.0.1-alpha
 
 specialize

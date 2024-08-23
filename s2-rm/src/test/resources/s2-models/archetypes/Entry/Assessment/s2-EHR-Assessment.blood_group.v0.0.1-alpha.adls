@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1f547792-00bb-4e0a-9919-9a7073b6f5d4)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=1f547792-00bb-4e0a-9919-9a7073b6f5d4)
     s2-EHR-Assessment.blood_group.v0.0.1-alpha
 
 language

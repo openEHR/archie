@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d05183dd-b657-4d24-b969-5cfae4ba424a)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d05183dd-b657-4d24-b969-5cfae4ba424a)
     s2-EHR-Order.service_request.v1.1.1
 
 language

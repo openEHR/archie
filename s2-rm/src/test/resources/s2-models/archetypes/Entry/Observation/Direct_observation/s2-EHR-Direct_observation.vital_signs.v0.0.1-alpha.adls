@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=da6df559-9629-41db-b7de-f9f161aa6874)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=da6df559-9629-41db-b7de-f9f161aa6874)
 	s2-EHR-Section.vital_signs.v0.0.1-alpha
 
 language

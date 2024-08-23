@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=efad79cd-6c3a-4293-a9aa-8541bab83290)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=efad79cd-6c3a-4293-a9aa-8541bab83290)
     s2-EHR-Direct_observation.visual_acuity.v0.0.1-alpha
 
 language

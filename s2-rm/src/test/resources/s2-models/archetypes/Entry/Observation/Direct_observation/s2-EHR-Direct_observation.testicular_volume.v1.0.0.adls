@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7418005b-5efa-4c4f-b3f4-c0619314d7b4)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=7418005b-5efa-4c4f-b3f4-c0619314d7b4)
     s2-EHR-Direct_observation.testicular_volume.v1.0.0
 
 language

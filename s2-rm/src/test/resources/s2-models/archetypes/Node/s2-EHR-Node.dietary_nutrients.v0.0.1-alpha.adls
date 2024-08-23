@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d1e45c44-259c-4086-8a86-6af3fd9e5bf1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d1e45c44-259c-4086-8a86-6af3fd9e5bf1)
     s2-EHR-Node.dietary_nutrients.v0.0.1-alpha
 
 language

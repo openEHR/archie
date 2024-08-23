@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=85c13f3e-f9c0-4771-b8e0-eacf06860b5c)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=85c13f3e-f9c0-4771-b8e0-eacf06860b5c)
     s2-EHR-Node.clinical_evidence.v1.1.3
 
 language

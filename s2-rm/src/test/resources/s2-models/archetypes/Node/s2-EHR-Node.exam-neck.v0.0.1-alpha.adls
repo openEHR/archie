@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=62d4c4cf-053a-42df-bef3-efb51a40af31)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=62d4c4cf-053a-42df-bef3-efb51a40af31)
     s2-EHR-Node.exam-neck.v0.0.1-alpha
 
 specialize

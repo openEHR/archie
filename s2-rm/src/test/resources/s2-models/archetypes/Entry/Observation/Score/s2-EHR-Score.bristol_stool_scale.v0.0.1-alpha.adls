@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9223de01-530f-4936-bf9f-c6eba4345511)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=9223de01-530f-4936-bf9f-c6eba4345511)
 	s2-EHR-Score.bristol_stool_scale.v0.0.1-alpha
 
 language

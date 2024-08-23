@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e1946e37-4da3-4c0f-a9fe-0ab15da17082)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e1946e37-4da3-4c0f-a9fe-0ab15da17082)
 	s2-EHR-Assessment.art_cycle_summary.v1.0.0
 
 language

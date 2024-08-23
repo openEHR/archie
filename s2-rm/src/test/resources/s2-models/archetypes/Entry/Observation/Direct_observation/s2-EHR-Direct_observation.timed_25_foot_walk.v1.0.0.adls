@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=409c5b75-e3e8-461f-8417-28f9bb048d94)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=409c5b75-e3e8-461f-8417-28f9bb048d94)
     s2-EHR-Direct_observation.timed_25_foot_walk.v1.0.0
 
 language

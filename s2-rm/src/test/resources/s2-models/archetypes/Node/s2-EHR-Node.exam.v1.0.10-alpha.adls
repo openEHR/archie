@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2613fa06-77d2-4239-b727-2e1adf7b0d4b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=2613fa06-77d2-4239-b727-2e1adf7b0d4b)
 	s2-EHR-Node.exam.v1.0.10-alpha
 
 language

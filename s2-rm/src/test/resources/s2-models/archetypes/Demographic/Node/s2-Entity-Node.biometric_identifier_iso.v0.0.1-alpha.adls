@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9c21ee2c-9913-4a78-bbd1-b63eef4f0419)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=9c21ee2c-9913-4a78-bbd1-b63eef4f0419)
     s2-Entity-Node.biometric_identifier_iso.v0.0.1-alpha
 
 language

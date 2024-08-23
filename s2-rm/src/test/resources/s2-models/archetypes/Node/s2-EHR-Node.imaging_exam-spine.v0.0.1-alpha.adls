@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d796fcc5-36c1-4ca4-b4ab-230acfcf2630)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d796fcc5-36c1-4ca4-b4ab-230acfcf2630)
     s2-EHR-Node.imaging_exam-spine.v0.0.1-alpha
 
 specialize

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1670d848-c4f1-4b99-a5e8-8b26c983966f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=1670d848-c4f1-4b99-a5e8-8b26c983966f)
     s2-EHR-Score.edinburgh_pnd_scale.v0.0.1-alpha
 
 language

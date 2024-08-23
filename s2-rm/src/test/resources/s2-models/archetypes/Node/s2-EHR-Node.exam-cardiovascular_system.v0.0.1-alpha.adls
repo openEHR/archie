@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=20c30285-dd1d-4294-9132-f11fb9127ee1)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=20c30285-dd1d-4294-9132-f11fb9127ee1)
     s2-EHR-Node.exam-cardiovascular_system.v0.0.1-alpha
 
 specialize

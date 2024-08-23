@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=04d30c0b-332a-41e4-b73c-ea65eedf6ebd)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=04d30c0b-332a-41e4-b73c-ea65eedf6ebd)
 	s2-EHR-Direct_observation.substance_use.v0.0.1-alpha
 
 language

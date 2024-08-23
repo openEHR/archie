@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b0ef3fdd-04f2-4f58-b0ea-9d75bab14f78)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=b0ef3fdd-04f2-4f58-b0ea-9d75bab14f78)
 	s2-EHR-Assessment.health_risk.v1.1.8
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=476b1393-3cd4-4098-a6d8-8288749815e6)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=476b1393-3cd4-4098-a6d8-8288749815e6)
 	s2-EHR-Assessment.social_network.v1.0.1
 
 language

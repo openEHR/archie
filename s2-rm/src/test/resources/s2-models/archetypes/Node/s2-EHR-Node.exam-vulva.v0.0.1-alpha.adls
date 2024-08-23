@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5a466522-efbf-4a8a-9b80-8aae8bfcf41d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=5a466522-efbf-4a8a-9b80-8aae8bfcf41d)
     s2-EHR-Node.exam-vulva.v0.0.1-alpha
 
 specialize

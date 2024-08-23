@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=74d28a38-204d-496d-8543-debf357c8422)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=74d28a38-204d-496d-8543-debf357c8422)
 	s2-EHR-Node.specimen.v1.1.2
 
 language

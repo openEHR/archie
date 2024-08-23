@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=74091ef7-429d-45c8-a5af-5676d25e4ec1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=74091ef7-429d-45c8-a5af-5676d25e4ec1)
     s2-EHR-Score.trunk_impairment_scale.v0.0.1-alpha
 
 language

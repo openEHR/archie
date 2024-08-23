@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f4717ead-f842-4e37-ade8-94e8161e9a3d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f4717ead-f842-4e37-ade8-94e8161e9a3d)
     s2-EHR-Node.exam-auscultation-breath_sounds.v0.0.1-alpha
 
 specialize

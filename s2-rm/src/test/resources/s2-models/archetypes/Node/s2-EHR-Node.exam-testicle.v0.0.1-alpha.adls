@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=81a7b09c-e11c-4a28-bb1b-5c94d5d6f2b2)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=81a7b09c-e11c-4a28-bb1b-5c94d5d6f2b2)
     s2-EHR-Node.exam-testicle.v0.0.1-alpha
 
 specialize

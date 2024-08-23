@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c08f9b92-79a4-4a44-8ed6-d942b0a16e43)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=c08f9b92-79a4-4a44-8ed6-d942b0a16e43)
     s2-EHR-Node.exam-penis.v0.0.1-alpha
 
 specialize

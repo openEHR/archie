@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2e3cfec3-7aca-42f5-9abb-4e6ec7df4e11)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=2e3cfec3-7aca-42f5-9abb-4e6ec7df4e11)
 	s2-EHR-Assessment.absence.v2.0.1
 
 language

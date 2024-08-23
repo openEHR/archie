@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=681ef5d2-dc00-44ca-83aa-38dbeea40372)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=681ef5d2-dc00-44ca-83aa-38dbeea40372)
     s2-EHR-Node.imaging_exam-ovary.v1.0.0
 
 specialize

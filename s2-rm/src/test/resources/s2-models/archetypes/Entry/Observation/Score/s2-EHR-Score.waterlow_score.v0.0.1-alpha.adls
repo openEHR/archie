@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5de2e8e4-d008-4364-8937-90c5e8ae39d8)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=5de2e8e4-d008-4364-8937-90c5e8ae39d8)
 	s2-EHR-Score.waterlow_score.v0.0.1-alpha
 
 language

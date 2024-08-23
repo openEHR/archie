@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a17f89c4-e82f-4b92-a719-da63b2081008)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=a17f89c4-e82f-4b92-a719-da63b2081008)
 	s2-EHR-Assessment.smokeless_tobacco_summary.v1.0.0
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e2c39d3e-6554-404e-b3b6-267bde887339)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e2c39d3e-6554-404e-b3b6-267bde887339)
 	s2-EHR-Node.education_record.v1.0.1
 
 language

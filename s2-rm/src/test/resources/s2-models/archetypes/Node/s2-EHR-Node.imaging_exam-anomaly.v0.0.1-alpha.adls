@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9d8484e9-73c1-4d66-9f9c-038af3082328)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=9d8484e9-73c1-4d66-9f9c-038af3082328)
     s2-EHR-Node.imaging_exam-anomaly.v0.0.1-alpha
 
 specialize

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5d00bd94-4dfd-4cf7-ae76-8f73dafc4a75)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=5d00bd94-4dfd-4cf7-ae76-8f73dafc4a75)
 	s2-EHR-Node.family_prevalence.v1.0.5
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=cb6da6c6-c903-44b4-82e9-ab09d5af84d9)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=cb6da6c6-c903-44b4-82e9-ab09d5af84d9)
     s2-EHR-Direct_observation.fluid_output-blood.v0.0.1-alpha
 
 specialize

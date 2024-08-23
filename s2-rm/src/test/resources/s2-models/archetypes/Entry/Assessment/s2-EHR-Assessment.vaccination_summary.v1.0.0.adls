@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; uid=5cc4d51e-ecdd-455e-bb9c-8af11e633fee)
+archetype (adl_version=2.1.0; rm_release=0.8.5; uid=5cc4d51e-ecdd-455e-bb9c-8af11e633fee)
     s2-EHR-Assessment.vaccination_summary.v1.0.0
 
 language

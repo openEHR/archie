@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0858cb11-0cbe-4d34-b78f-8a89e098efc0)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=0858cb11-0cbe-4d34-b78f-8a89e098efc0)
     s2-EHR-Score.dash_score.v0.0.1-alpha
 
 language

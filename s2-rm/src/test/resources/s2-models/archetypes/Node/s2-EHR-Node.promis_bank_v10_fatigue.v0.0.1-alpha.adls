@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=3b64e294-2f6b-4202-a9f1-53865cb57472)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=3b64e294-2f6b-4202-a9f1-53865cb57472)
     s2-EHR-Node.promis_bank_v10_fatigue.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=26adff85-21c0-4302-b67f-36f9ffb7fb58)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=26adff85-21c0-4302-b67f-36f9ffb7fb58)
 	s2-EHR-Node.cessation_attempts.v0.0.1-alpha
 
 language

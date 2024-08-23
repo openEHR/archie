@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f85ce3d0-da71-47bc-9f05-af099775596d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f85ce3d0-da71-47bc-9f05-af099775596d)
 	s2-EHR-Score.humpty_dumpty_falls_risk_assessment_tool.v0.0.1-alpha
 
 language

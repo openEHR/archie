@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a25531f6-d7f5-48d6-ab6d-98eb5b9af97a)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=a25531f6-d7f5-48d6-ab6d-98eb5b9af97a)
     s2-EHR-Score.richmond_agitation_sedation_scale.v0.0.1-alpha
 
 language

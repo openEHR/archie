@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c79b62df-2772-4687-baf1-9136b059218b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=c79b62df-2772-4687-baf1-9136b059218b)
     s2-EHR-Node.genomic_deletion_insertion_variant.v1.0.3
 
 language

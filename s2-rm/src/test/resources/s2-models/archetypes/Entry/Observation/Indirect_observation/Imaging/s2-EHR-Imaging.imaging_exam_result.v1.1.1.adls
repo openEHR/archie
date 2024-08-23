@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5caa3056-b1e0-474b-837a-f2e48867cf0c)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=5caa3056-b1e0-474b-837a-f2e48867cf0c)
 	s2-EHR-Imaging.imaging_exam_result.v1.1.1
 
 language

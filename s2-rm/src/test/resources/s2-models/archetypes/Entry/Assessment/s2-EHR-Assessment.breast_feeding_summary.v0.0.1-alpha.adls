@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=65c20b9e-9951-40a7-a4e0-5d17a7ce9c92)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=65c20b9e-9951-40a7-a4e0-5d17a7ce9c92)
 	s2-EHR-Assessment.breast_feeding_summary.v0.0.1-alpha
 
 language

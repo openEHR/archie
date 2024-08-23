@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=cdc49150-e379-477e-b935-dfcba1e4279c)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=cdc49150-e379-477e-b935-dfcba1e4279c)
 	s2-EHR-Direct_observation.fluid_input.v1.0.2
 
 language

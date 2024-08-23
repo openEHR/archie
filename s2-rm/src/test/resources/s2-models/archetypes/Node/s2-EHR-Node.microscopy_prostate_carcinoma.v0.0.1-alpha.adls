@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0f2cdf3f-b72b-4a0f-8489-0cdfe67b43b7)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=0f2cdf3f-b72b-4a0f-8489-0cdfe67b43b7)
 	s2-EHR-Node.microscopy_prostate_carcinoma.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=feeef0a9-fe68-4a0b-83ea-1cbca3380908)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=feeef0a9-fe68-4a0b-83ea-1cbca3380908)
 	s2-EHR-Score.hannallah_pain_scale.v0.0.1-alpha
 
 language

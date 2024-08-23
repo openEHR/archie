@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=24953cd4-4c93-4d18-80fd-f37773354654)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=24953cd4-4c93-4d18-80fd-f37773354654)
     s2-EHR-Direct_observation.intermacs_profile.v0.0.1-alpha
 
 language

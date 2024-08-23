@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=da9a4c92-9141-47b2-8bd7-c07dc29893b8)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=da9a4c92-9141-47b2-8bd7-c07dc29893b8)
 	s2-EHR-Action.imaging_exam.v0.0.1-alpha
 
 language

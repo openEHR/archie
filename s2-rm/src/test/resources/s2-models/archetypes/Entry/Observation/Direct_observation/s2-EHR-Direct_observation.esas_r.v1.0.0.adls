@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1c33fb64-9a82-4c15-9fc4-5583c1655c1d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=1c33fb64-9a82-4c15-9fc4-5583c1655c1d)
     s2-EHR-Direct_observation.esas_r.v1.0.0
 
 language

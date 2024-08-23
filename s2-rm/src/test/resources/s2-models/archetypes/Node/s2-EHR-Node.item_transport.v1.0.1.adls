@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5eca060a-3492-4271-9976-6cc68cbba086)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=5eca060a-3492-4271-9976-6cc68cbba086)
 	s2-EHR-Node.item_transport.v1.0.1
 
 language

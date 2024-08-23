@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=c7be68ba-2f0e-43cc-8f0b-fc9c59b99223)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=c7be68ba-2f0e-43cc-8f0b-fc9c59b99223)
     s2-Entity-Persona.healthcare_provider_organisation.v0.0.1-alpha
 
 language

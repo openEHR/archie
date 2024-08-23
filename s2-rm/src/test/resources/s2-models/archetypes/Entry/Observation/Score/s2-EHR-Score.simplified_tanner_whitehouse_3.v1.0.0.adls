@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=68b98f4b-4719-4414-b5b8-dc755804cef9)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=68b98f4b-4719-4414-b5b8-dc755804cef9)
     s2-EHR-Score.simplified_tanner_whitehouse_3.v1.0.0
 
 language

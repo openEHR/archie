@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=3773fb1e-6b4e-4560-b543-0ada49d99e78)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=3773fb1e-6b4e-4560-b543-0ada49d99e78)
 	s2-EHR-Score.glasgow_coma_scale.v1.2.0
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9f1f4302-38d3-487b-82d7-a035571d5ded)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=9f1f4302-38d3-487b-82d7-a035571d5ded)
     s2-EHR-Node.exam-toenail.v0.0.1-alpha
 
 specialize

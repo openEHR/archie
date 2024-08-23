@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6a4aa450-bf2c-484f-afd8-e87a92d9de51)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=6a4aa450-bf2c-484f-afd8-e87a92d9de51)
 	s2-EHR-Direct_observation.fetal_biometry.v1.0.2
 
 language

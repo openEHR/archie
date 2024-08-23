@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=393f569a-0ee3-426d-991c-4a512d8b5f3a)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=393f569a-0ee3-426d-991c-4a512d8b5f3a)
     s2-EHR-Node.promis_bank_v10_depression.v0.0.1-alpha
 
 language

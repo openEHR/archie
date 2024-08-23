@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=78fbe49c-80b6-4771-aa0a-5ac8760c27fe)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=78fbe49c-80b6-4771-aa0a-5ac8760c27fe)
     s2-EHR-Node.exam-toe.v0.0.1-alpha
 
 specialize

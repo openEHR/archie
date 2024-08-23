@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ab03e3d5-bf45-4f70-9bf7-61ad00057d97)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=ab03e3d5-bf45-4f70-9bf7-61ad00057d97)
     s2-EHR-Node.exam-fundus_eye.v0.0.1-alpha
 
 specialize

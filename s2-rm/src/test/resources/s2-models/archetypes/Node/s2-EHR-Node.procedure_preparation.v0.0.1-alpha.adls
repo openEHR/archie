@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d82891b5-cc66-45e7-b5b9-9a09252c5e93)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d82891b5-cc66-45e7-b5b9-9a09252c5e93)
 	s2-EHR-Node.procedure_preparation.v0.0.1-alpha
 
 language

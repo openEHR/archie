@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=30add678-5425-4a98-8248-2493fea30ff6)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=30add678-5425-4a98-8248-2493fea30ff6)
     s2-EHR-Node.exam_blastocyst.v1.0.1
 
 language

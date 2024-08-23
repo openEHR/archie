@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1b10fbd2-32d3-4a27-8c8b-cba8ffb496e5)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=1b10fbd2-32d3-4a27-8c8b-cba8ffb496e5)
 	s2-EHR-Order.informed_consent_request.v0.0.1-alpha
 
 language

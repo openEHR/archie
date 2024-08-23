@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b4a480b1-e79c-4a50-a5b4-6b6422554c60)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=b4a480b1-e79c-4a50-a5b4-6b6422554c60)
 	s2-EHR-Node.oedema.v0.0.1-alpha
 
 language

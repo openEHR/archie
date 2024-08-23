@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=74cd77f6-1968-4e58-b564-7930bea51ab1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=74cd77f6-1968-4e58-b564-7930bea51ab1)
     s2-EHR-Score.bishop_score.v0.0.1-alpha
 
 language

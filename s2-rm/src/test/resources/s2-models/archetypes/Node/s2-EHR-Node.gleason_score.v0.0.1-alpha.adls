@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=70a663fa-efe8-4871-b34a-4022a46371e0)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=70a663fa-efe8-4871-b34a-4022a46371e0)
     s2-EHR-Node.gleason_score.v0.0.1-alpha
 
 language

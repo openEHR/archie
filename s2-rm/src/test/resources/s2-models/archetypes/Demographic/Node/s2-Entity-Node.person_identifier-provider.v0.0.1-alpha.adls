@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=09b53b01-7aee-4799-95f5-465ae196f945)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=09b53b01-7aee-4799-95f5-465ae196f945)
     s2-Entity-Node.person_identifier-provider.v0.0.1-alpha
 
 specialize

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6c5a7e0b-e3ab-42a8-bec7-8d251b0ea5d7)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=6c5a7e0b-e3ab-42a8-bec7-8d251b0ea5d7)
 	s2-EHR-Score.news_uk_rcp.v1.2.2
 
 language

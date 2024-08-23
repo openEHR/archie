@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=afb0c9df-aa95-437f-b609-0ec471fc16b3)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=afb0c9df-aa95-437f-b609-0ec471fc16b3)
     s2-EHR-Node.tnm-pathological.v1.0.2
 
 specialize

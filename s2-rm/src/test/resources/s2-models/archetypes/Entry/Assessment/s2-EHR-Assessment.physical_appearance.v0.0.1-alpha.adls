@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fc5f1b5e-97af-4c2a-9f70-898d4e232265)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=fc5f1b5e-97af-4c2a-9f70-898d4e232265)
 	s2-EHR-Assessment.physical_appearance.v0.0.1-alpha
 
 language

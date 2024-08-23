@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f44a4bfb-e8c7-4165-ae74-dbd329b35d18)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f44a4bfb-e8c7-4165-ae74-dbd329b35d18)
 	s2-EHR-Direct_observation.mantoux_test_result.v0.0.1-alpha
 
 language

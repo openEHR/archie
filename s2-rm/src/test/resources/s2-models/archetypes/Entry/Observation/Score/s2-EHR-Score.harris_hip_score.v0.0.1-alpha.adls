@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=272fc007-eb1d-4b34-8fa2-45e2d7431f9b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=272fc007-eb1d-4b34-8fa2-45e2d7431f9b)
     s2-EHR-Score.harris_hip_score.v0.0.1-alpha
 
 language

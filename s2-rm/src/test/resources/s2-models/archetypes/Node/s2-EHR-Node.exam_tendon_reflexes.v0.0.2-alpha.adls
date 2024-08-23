@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9621cbcf-9d66-4864-8a96-8ee615e68696)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=9621cbcf-9d66-4864-8a96-8ee615e68696)
 	s2-EHR-Node.exam_tendon_reflexes.v0.0.2-alpha
 
 language

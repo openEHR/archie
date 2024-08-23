@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=599e0dd5-835e-4ac4-acdc-f392e056af3f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=599e0dd5-835e-4ac4-acdc-f392e056af3f)
 	s2-EHR-Node.ear_cleaning.v0.0.1-alpha
 
 language

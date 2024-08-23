@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=88f00338-90c2-4466-9d40-60b53e794cd6)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=88f00338-90c2-4466-9d40-60b53e794cd6)
     s2-EHR-Node.vascularisation_ultrasound.v0.0.1-alpha
 
 language

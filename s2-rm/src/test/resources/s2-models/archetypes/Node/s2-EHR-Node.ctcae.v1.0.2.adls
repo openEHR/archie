@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=34f28290-268f-412e-9e76-1a5cf86db626)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=34f28290-268f-412e-9e76-1a5cf86db626)
     s2-EHR-Node.ctcae.v1.0.2
 
 language

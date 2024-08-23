@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ddf8e689-94ee-4042-ad52-77e5568a917e)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=ddf8e689-94ee-4042-ad52-77e5568a917e)
 	s2-EHR-Node.microscopy_breast_carcinoma.v1.0.0
 
 language

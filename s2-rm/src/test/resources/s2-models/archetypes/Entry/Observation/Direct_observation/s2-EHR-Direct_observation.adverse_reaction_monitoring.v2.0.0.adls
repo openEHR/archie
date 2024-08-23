@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; uid=579713aa-f7e7-4853-a1b3-6d47eb3abc20)
+archetype (adl_version=2.1.0; rm_release=0.8.5; uid=579713aa-f7e7-4853-a1b3-6d47eb3abc20)
 	s2-EHR-Direct_observation.adverse_reaction_monitoring.v2.0.0
 
 language

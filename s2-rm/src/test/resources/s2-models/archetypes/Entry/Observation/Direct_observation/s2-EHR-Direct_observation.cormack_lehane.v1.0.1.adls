@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0dfd35e7-2a4f-49e5-bc9d-1c9af9a18d0a)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=0dfd35e7-2a4f-49e5-bc9d-1c9af9a18d0a)
     s2-EHR-Direct_observation.cormack_lehane.v1.0.1
 
 language

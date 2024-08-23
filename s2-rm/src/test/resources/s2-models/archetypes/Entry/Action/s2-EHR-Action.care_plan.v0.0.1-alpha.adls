@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=52da0085-b40a-4efd-ba1c-2cdc2dc4e7dd)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=52da0085-b40a-4efd-ba1c-2cdc2dc4e7dd)
 	s2-EHR-Action.care_plan.v0.0.1-alpha
 
 language

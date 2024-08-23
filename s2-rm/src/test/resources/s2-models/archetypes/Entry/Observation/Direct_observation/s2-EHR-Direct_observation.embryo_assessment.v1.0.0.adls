@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=899fdb6c-3f20-4266-a96d-000f06f00d05)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=899fdb6c-3f20-4266-a96d-000f06f00d05)
 	s2-EHR-Direct_observation.embryo_assessment.v1.0.0
 
 language

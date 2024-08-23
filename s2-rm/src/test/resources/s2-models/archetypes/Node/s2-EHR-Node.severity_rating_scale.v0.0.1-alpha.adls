@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b590097e-474e-48dc-969d-805c246f62d2)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=b590097e-474e-48dc-969d-805c246f62d2)
 	s2-EHR-Node.severity_rating_scale.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7b1ea250-9274-41d0-b391-01360f910f0b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=7b1ea250-9274-41d0-b391-01360f910f0b)
     s2-EHR-Node.macroscopy_colorectal_carcinoma.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1a6c39d5-86f0-43f4-8a8b-b3d7da2f0509)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=1a6c39d5-86f0-43f4-8a8b-b3d7da2f0509)
 	s2-EHR-Direct_observation.fetal_heart.v0.0.1-alpha
 
 language

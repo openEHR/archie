@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=952ca36e-5036-48fb-a2d0-cfa0c912ee10)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=952ca36e-5036-48fb-a2d0-cfa0c912ee10)
 	s2-EHR-Assessment.medication_summary.v1.0.1
 
 language

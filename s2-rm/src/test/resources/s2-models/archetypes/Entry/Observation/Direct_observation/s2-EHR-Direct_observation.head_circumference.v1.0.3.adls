@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a6a05404-5e6d-4c5a-a11c-4e7b1053e57a)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=a6a05404-5e6d-4c5a-a11c-4e7b1053e57a)
 	s2-EHR-Direct_observation.head_circumference.v1.0.3
 
 language

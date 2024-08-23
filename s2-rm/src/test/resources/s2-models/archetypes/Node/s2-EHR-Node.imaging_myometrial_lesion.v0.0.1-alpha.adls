@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e951732f-fc82-4fd8-ac84-22581e88bb1d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e951732f-fc82-4fd8-ac84-22581e88bb1d)
 	s2-EHR-Node.imaging_myometrial_lesion.v0.0.1-alpha
 
 language

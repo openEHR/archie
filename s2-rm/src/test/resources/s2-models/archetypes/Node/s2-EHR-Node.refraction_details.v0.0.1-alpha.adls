@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=646f62f0-42a3-4e42-935c-e2bdb9aa589b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=646f62f0-42a3-4e42-935c-e2bdb9aa589b)
     s2-EHR-Node.refraction_details.v0.0.1-alpha
 
 language

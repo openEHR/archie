@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b3ca4f91-97f6-4bc8-8fba-ad21504f9ec1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=b3ca4f91-97f6-4bc8-8fba-ad21504f9ec1)
     s2-EHR-Direct_observation.iss-revised.v0.0.1-alpha
 
 specialize

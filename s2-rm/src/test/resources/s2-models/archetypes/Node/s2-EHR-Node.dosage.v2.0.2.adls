@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=884c4ef4-49ed-4bca-8a3b-1aee8f4aaf1d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=884c4ef4-49ed-4bca-8a3b-1aee8f4aaf1d)
 	s2-EHR-Node.dosage.v2.0.2
 
 language

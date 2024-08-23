@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=173342bb-97d5-49a4-899b-775f9eee6b0f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=173342bb-97d5-49a4-899b-775f9eee6b0f)
     s2-EHR-Node.exam-palpation-cervix.v0.0.1-alpha
 
 specialize

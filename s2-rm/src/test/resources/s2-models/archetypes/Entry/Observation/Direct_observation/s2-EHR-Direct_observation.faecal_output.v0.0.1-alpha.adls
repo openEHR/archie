@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d0e36987-9c1a-4f27-86bd-4f6220d05691)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d0e36987-9c1a-4f27-86bd-4f6220d05691)
 	s2-EHR-Direct_observation.faecal_output.v0.0.1-alpha
 
 language

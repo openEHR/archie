@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f742641d-c2e9-4818-a805-527e58ea98c8)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f742641d-c2e9-4818-a805-527e58ea98c8)
 	s2-EHR-Questionnaire_response.hearing_screening_result.v0.0.1-alpha
 
 language

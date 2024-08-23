@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f0cce310-2f10-488c-84f2-4ab642af377f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f0cce310-2f10-488c-84f2-4ab642af377f)
 	s2-EHR-Score.critical_pain_observation_tool.v0.0.1-alpha
 
 language

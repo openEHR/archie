@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2a013bb4-3645-4d99-a31c-0c60f9a58631)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=2a013bb4-3645-4d99-a31c-0c60f9a58631)
 	s2-EHR-Assessment.maternal_mortality_classification.v0.0.1-alpha
 
 language

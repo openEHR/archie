@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b3e25a8e-93ad-4549-bbc0-cd07714f79b3)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=b3e25a8e-93ad-4549-bbc0-cd07714f79b3)
     s2-EHR-Node.promis_bank_v11_pain_interference.v0.0.1-alpha
 
 language

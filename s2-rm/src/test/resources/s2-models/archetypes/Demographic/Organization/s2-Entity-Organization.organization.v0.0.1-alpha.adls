@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8fc1a6fb-1d9c-4f1f-9175-e49f6b9daccb)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=8fc1a6fb-1d9c-4f1f-9175-e49f6b9daccb)
     s2-Entity-Organization.organization.v0.0.1-alpha
 
 language

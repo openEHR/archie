@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f39d7bbc-a233-4be9-a206-e0cea688c10b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f39d7bbc-a233-4be9-a206-e0cea688c10b)
 	s2-EHR-Assessment.cause_of_death.v1.0.1
 
 language

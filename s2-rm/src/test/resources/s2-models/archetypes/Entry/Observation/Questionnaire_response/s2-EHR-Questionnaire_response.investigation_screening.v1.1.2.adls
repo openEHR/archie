@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c0c52c15-8abf-4cc2-add9-12e8bf0758e5)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=c0c52c15-8abf-4cc2-add9-12e8bf0758e5)
     s2-EHR-Questionnaire_response.investigation_screening.v1.1.2
 
 language

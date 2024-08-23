@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=51a2f4d9-addd-4a6d-96d2-3a34bbec187c)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=51a2f4d9-addd-4a6d-96d2-3a34bbec187c)
     s2-EHR-Assessment.pregnancy_care_summary.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=94f94fd7-c97f-494d-996f-b167d4d68641)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=94f94fd7-c97f-494d-996f-b167d4d68641)
     s2-EHR-Node.exam-upper_limb.v0.0.1-alpha
 
 specialize

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6e66df9c-8aeb-4a36-ab12-2cc45f941800)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=6e66df9c-8aeb-4a36-ab12-2cc45f941800)
 	s2-EHR-Node.adverse_reaction_event.v1.0.0
 
 language

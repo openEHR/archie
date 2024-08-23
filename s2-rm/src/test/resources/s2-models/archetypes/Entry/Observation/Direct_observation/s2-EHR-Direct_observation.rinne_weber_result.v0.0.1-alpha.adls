@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=771ab163-8c96-44dd-9c4e-550c64afe2df)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=771ab163-8c96-44dd-9c4e-550c64afe2df)
 	s2-EHR-Direct_observation.rinne_weber_result.v0.0.1-alpha
 
 language

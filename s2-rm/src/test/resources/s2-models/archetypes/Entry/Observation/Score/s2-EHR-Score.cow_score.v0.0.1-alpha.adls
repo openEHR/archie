@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=08860495-b5fb-41c2-b7f1-8718854bc3df)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=08860495-b5fb-41c2-b7f1-8718854bc3df)
     s2-EHR-Score.cow_score.v0.0.1-alpha
 
 language

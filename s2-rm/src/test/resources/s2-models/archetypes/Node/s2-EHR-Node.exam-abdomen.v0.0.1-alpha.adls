@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=f0a12f58-30dc-4c1d-abe3-1f3a1a892968)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=f0a12f58-30dc-4c1d-abe3-1f3a1a892968)
     s2-EHR-Node.exam-abdomen.v0.0.1-alpha
 
 specialize

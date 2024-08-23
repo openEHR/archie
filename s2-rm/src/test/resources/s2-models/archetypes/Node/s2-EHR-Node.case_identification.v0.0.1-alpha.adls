@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e01d5344-df13-47af-9481-fe43d78233ac)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e01d5344-df13-47af-9481-fe43d78233ac)
 	s2-EHR-Node.case_identification.v0.0.1-alpha
 
 language

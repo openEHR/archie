@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=981496e3-0163-4ac3-8750-f38b7abf67ac)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=981496e3-0163-4ac3-8750-f38b7abf67ac)
     s2-EHR-Node.imaging_exam-sacrum.v0.0.1-alpha
 
 specialize

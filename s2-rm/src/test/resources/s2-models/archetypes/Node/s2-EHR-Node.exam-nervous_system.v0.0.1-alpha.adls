@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=61e2f7e3-04fe-4bc4-a468-1ea30d97620f)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=61e2f7e3-04fe-4bc4-a468-1ea30d97620f)
     s2-EHR-Node.exam-nervous_system.v0.0.1-alpha
 
 specialize

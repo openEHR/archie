@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8911bf8f-1fb0-4444-a81e-a13b3f23d7f1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=8911bf8f-1fb0-4444-a81e-a13b3f23d7f1)
     s2-EHR-Score.neonatal_skin_risk_assessment.v0.0.1-alpha
 
 language

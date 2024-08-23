@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=dc46d385-296a-488a-ba56-718553964a47)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=dc46d385-296a-488a-ba56-718553964a47)
     s2-EHR-Node.promis_scale_v12_global_health.v0.0.1-alpha
 
 language

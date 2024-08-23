@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=eb914b32-3177-48d7-976e-af7f2da4092f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=eb914b32-3177-48d7-976e-af7f2da4092f)
 	s2-EHR-Node.structured_address.v0.0.1
 
 language

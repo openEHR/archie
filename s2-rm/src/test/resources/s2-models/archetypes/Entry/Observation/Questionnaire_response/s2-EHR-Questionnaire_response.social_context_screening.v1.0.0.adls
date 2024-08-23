@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e608b9fc-b3f9-43f9-95ee-c93c791dbd08)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e608b9fc-b3f9-43f9-95ee-c93c791dbd08)
     s2-EHR-Questionnaire_response.social_context_screening.v1.0.0
 
 language

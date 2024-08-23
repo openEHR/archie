@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=24eec881-6ca7-48af-bd42-b6bb7d61a6c1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=24eec881-6ca7-48af-bd42-b6bb7d61a6c1)
 	s2-EHR-Assessment.infection_investigation_classification.v0.0.1-alpha
 
 language

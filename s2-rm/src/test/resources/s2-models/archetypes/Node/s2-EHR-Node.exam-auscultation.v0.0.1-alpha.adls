@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f88c9c19-651a-48b0-b98b-930741e30ba9)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f88c9c19-651a-48b0-b98b-930741e30ba9)
     s2-EHR-Node.exam-auscultation.v0.0.1-alpha
 
 specialize

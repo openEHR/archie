@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=eb553185-080f-4be6-a0c4-86ef8b1555a7)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=eb553185-080f-4be6-a0c4-86ef8b1555a7)
     s2-EHR-Node.exam-breasts.v0.0.1-alpha
 
 specialize

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4cdce555-1477-4123-81f6-36ec7f1ab77b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=4cdce555-1477-4123-81f6-36ec7f1ab77b)
     s2-EHR-Node.imaging_exam-umbilical_cord.v0.0.1-alpha
 
 specialize

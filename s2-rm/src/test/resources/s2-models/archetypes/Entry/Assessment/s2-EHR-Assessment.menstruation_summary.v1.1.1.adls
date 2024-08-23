@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=76c10403-4454-4662-8996-3875f9916566)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=76c10403-4454-4662-8996-3875f9916566)
 	s2-EHR-Assessment.menstruation_summary.v1.1.1
 
 language

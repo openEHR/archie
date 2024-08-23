@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=44190464-b8f7-45c0-8997-c1db1f582b48)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=44190464-b8f7-45c0-8997-c1db1f582b48)
     s2-EHR-Direct_observation.foetal_movement.v0.0.1-alpha
 
 language

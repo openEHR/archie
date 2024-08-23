@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=801ce528-930f-4746-b12b-1214bb1c502f)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=801ce528-930f-4746-b12b-1214bb1c502f)
     s2-EHR-Node.imaging_exam-placenta.v0.0.1-alpha
 
 specialize

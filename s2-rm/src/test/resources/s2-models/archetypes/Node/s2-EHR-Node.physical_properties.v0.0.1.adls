@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=1a09b1e6-d862-48b2-8b4b-72b5d015737b)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=1a09b1e6-d862-48b2-8b4b-72b5d015737b)
     s2-EHR-Node.physical_properties.v0.0.1
 
 language

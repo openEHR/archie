@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e075e1aa-0462-4365-87e8-7c85f2cbbc6f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e075e1aa-0462-4365-87e8-7c85f2cbbc6f)
     s2-EHR-Node.exam-auscultation-bowel_sounds.v0.0.1-alpha
 
 specialize

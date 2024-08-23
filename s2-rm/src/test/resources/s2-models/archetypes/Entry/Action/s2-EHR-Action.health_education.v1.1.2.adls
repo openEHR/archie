@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=79ab3a9a-2565-4933-9469-b646d6fe61eb)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=79ab3a9a-2565-4933-9469-b646d6fe61eb)
     s2-EHR-Action.health_education.v1.1.2
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4ace410b-b772-41ec-b919-97af42313707)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=4ace410b-b772-41ec-b919-97af42313707)
 	s2-EHR-Node.inspection_body_fluid-urine.v0.0.1-alpha
 
 specialize

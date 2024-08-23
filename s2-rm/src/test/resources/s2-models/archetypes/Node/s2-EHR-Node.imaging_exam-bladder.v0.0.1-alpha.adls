@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=989893ee-c5d3-4823-ae75-9c3109610cb6)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=989893ee-c5d3-4823-ae75-9c3109610cb6)
     s2-EHR-Node.imaging_exam-bladder.v0.0.1-alpha
 
 specialize

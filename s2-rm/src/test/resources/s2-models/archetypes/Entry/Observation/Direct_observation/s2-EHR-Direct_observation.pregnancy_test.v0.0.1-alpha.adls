@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6e833f9e-ed80-4dec-b917-7aa68c7d01e1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=6e833f9e-ed80-4dec-b917-7aa68c7d01e1)
     s2-EHR-Direct_observation.pregnancy_test.v0.0.1-alpha
 
 language

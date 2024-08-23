@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=67d3e06f-87bf-4395-9d4b-aec67fd1b7fe)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=67d3e06f-87bf-4395-9d4b-aec67fd1b7fe)
 	s2-Entity-Party_identity.organization_name.v0.0.1-alpha
 
 language

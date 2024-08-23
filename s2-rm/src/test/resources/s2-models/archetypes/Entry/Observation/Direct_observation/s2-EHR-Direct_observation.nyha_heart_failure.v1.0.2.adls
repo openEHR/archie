@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=932df832-dc6e-454a-b27f-224718c2bc1f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=932df832-dc6e-454a-b27f-224718c2bc1f)
 	s2-EHR-Direct_observation.nyha_heart_failure.v1.0.2
 
 language

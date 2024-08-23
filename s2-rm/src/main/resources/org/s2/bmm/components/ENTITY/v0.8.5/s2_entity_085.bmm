@@ -1,0 +1,553 @@
+-- 
+-- 	component:   Graphite Reference Model BMM
+-- 	description: Graphite Reference Model component formal expression. This file is an ODIN serialisation of
+--                   the BMM object meta-model classes found at 
+--                   https://www.openEHR.org/releases/LANG/latest/p_bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphite.atlassian.net/issues/
+-- 	copyright:   Copyright (c) 2023- Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+--
+
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"entity">
+rm_release = <"0.8.5">
+
+model_name = <"ENTITY">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.8.5.1">
+schema_lifecycle_state = <"development">
+schema_description = <"S2 Release 0.8.5 Entity model schema"> 
+schema_author = <"Thomas Beale <thomas.beale@graphitehealth.io>">
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_base_0.8.5">
+	>
+>
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.s2.entity"] = <
+		name = <"org.s2.entity">
+		packages = <
+			["entity"] = <
+				name = <"entity">
+				classes = <"Entity", "Entity_relationship">
+			>
+			["physical_entity"] = <
+				name = <"physical_entity">
+				classes = <"Physical_entity", "Materially_dependent_entity", "Material_entity", "Object_extension_part", "Object_aggregate", 
+					"Independent_object", "Space", "Artefact", "Substance", "Biological_entity", "Facility", "Material_location", 
+					"Spatial_region", "Fiat_point", "Fiat_line", "Fiat_surface", "Geographical_site">
+			>
+			["social_entity"] = <
+				name = <"social_entity">
+				classes = <"Social_entity", "Party", "Persona", "Person", "Organization", "Org_unit", "Org_entity", 
+					"Agent", "Aggregate_agent", "Individual_agent", "Automaton", "Team", "Party_relationship", "Capability", 
+					"Accountability", "Contact", "Address", "Party_identity">
+			>
+			["resource"] = <
+				name = <"resource">
+				classes = <"Resource_use", "Service_use", "Consumable_use">
+			>
+		>
+	>
+>
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	------------------------------------------------------
+	-- entity
+	------------------------------------------------------
+
+	["Entity"] = <
+		name = <"Entity">
+		ancestors = <"Locatable">
+		is_abstract = <True>
+		properties = <
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+			>
+		>
+	>
+
+	["Entity_relationship"] = <
+		name = <"Entity_relationship">
+		ancestors = <"Locatable">
+		is_abstract = <True>
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"Terminology_term">
+				is_mandatory = <True>
+			>
+			["source"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"source">
+				type = <"Object_ref">
+				is_mandatory = <True>
+			>
+			["target"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"target">
+				type = <"Object_ref">
+				is_mandatory = <True>
+			>
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+			>
+			["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"time_validity">
+				type_def = <
+					root_type = <"Interval">
+					generic_parameters = <"Date">
+				>
+				is_im_runtime = <True>
+			>
+		>
+	>
+
+	------------------------------------------------------
+	-- social_entity
+	------------------------------------------------------
+
+	["Social_entity"] = <
+		name = <"Social_entity">
+		ancestors = <"Entity">
+		is_abstract = <True>
+	>
+
+	["Party"] = <
+		name = <"Party">
+		is_abstract = <True>
+		ancestors = <"Social_entity">
+		properties = <
+			["legal_status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"legal_status">
+				type = <"String">
+			>
+			["identities"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identities">
+				type_def = <
+					container_type = <"List">
+					type = <"Party_identity">
+				>
+				is_mandatory = <True>
+				cardinality = <|>=1|>
+			>
+			["contacts"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contacts">
+				type_def = <
+					container_type = <"Set">
+					type = <"Contact">
+				>
+				cardinality = <|>=1|>
+			>
+			["accountability_types"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"accountability_types">
+				type_def = <
+					container_type = <"List">
+					type = <"Accountability">
+				>
+			>
+		>
+	>
+    
+	["Party_identity"] = <
+		name = <"Party_identity">
+		ancestors = <"Locatable">
+		properties = <
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+				is_mandatory = <True>
+			>
+		>
+	>
+	
+	["Contact"] = <
+		name = <"Contact">
+		ancestors = <"Locatable">
+		properties = <
+			["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"time_validity">
+				type_def = <
+					root_type = <"Interval">
+					generic_parameters = <"Date">
+				>
+				is_im_runtime = <True>
+			>
+			["addresses"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"addresses">
+				type_def = <
+					container_type = <"List">
+					type = <"Address">
+				>
+			>
+		>
+	>
+	
+	["Address"] = <
+		name = <"Address">
+		ancestors = <"Locatable">
+		properties = <
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+	
+	["Agent"] = <
+		name = <"Agent">
+		is_abstract = <True>
+		ancestors = <"Party">
+		properties = <
+			["personas"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"personas">
+				type_def = <
+					container_type = <"List">
+					type = <"Persona">
+				>
+				cardinality = <|>=1|>
+			>
+			["languages"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"languages">
+				type_def = <
+					container_type = <"List">
+					type = <"Terminology_term">
+				>
+			>
+		>
+	>
+
+	["Aggregate_agent"] = <
+		name = <"Aggregate_agent">
+		ancestors = <"Agent">
+		is_abstract = <True>
+	>
+
+	["Individual_agent"] = <
+		name = <"Individual_agent">
+		ancestors = <"Agent">
+		is_abstract = <True>
+	>
+
+	["Org_entity"] = <
+		name = <"Org_entity">
+		ancestors = <"Aggregate_agent">
+		is_abstract = <True>
+	>
+
+	["Org_unit"] = <
+		name = <"Org_unit">
+		ancestors = <"Org_entity">
+	>
+
+	["Organization"] = <
+		name = <"Organization">
+		ancestors = <"Org_entity">
+	>
+
+	["Team"] = <
+		name = <"Team">
+		ancestors = <"Aggregate_agent">
+	>
+
+	["Person"] = <
+		name = <"Person">
+		ancestors = <"Individual_agent">
+	>
+
+	["Automaton"] = <
+		name = <"Automaton">
+		ancestors = <"Individual_agent">
+	>
+
+	["Persona"] = <
+		name = <"Persona">
+		ancestors = <"Party">
+		properties = <
+			["performer"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"performer">
+				type = <"Object_ref">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"time_validity">
+				type_def = <
+					root_type = <"Interval">
+					generic_parameters = <"Date">
+				>
+				is_im_runtime = <True>
+			>
+			["capabilities"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"capabilities">
+				type_def = <
+					container_type = <"List">
+					type = <"Capability">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["Capability"] = <
+		name = <"Capability">
+		ancestors = <"Locatable">
+		properties = <
+			["credentials"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"credentials">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+				cardinality = <|>=1|>
+			>
+			["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"time_validity">
+				type_def = <
+					root_type = <"Interval">
+					generic_parameters = <"Date">
+				>
+				is_im_runtime = <True>
+			>
+		>
+	>
+
+	["Party_relationship"] = <
+		name = <"Party_relationship">
+		ancestors = <"Entity_relationship">
+		properties = <
+			["scoper"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"scoper">
+				type = <"Accountability">
+			>
+		>
+	>
+
+	["Accountability"] = <
+		name = <"Accountability">
+		ancestors = <"Locatable">
+		properties = <
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"Node">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	------------------------------------------------------
+	-- Physical_entity
+	------------------------------------------------------
+
+	["Physical_entity"] = <
+		name = <"Physical_entity">
+		ancestors = <"Entity">
+		is_abstract = <True>
+	>
+
+	["Materially_dependent_entity"] = <
+		name = <"Materially_dependent_entity">
+		ancestors = <"Physical_entity">
+		is_abstract = <True>
+	>
+
+	["Spatial_region"] = <
+		name = <"Spatial_region">
+		ancestors = <"Physical_entity">
+		is_abstract = <True>
+	>
+
+	["Material_entity"] = <
+		name = <"Material_entity">
+		ancestors = <"Materially_dependent_entity">
+		is_abstract = <True>
+	>
+
+	["Object_aggregate"] = <
+		name = <"Object_aggregate">
+		ancestors = <"Material_entity">
+	>
+
+	["Facility"] = <
+		name = <"Facility">
+		ancestors = <"Object_aggregate">
+	>
+
+	["Object_extension_part"] = <
+		name = <"Object_extension_part">
+		ancestors = <"Material_entity">
+		is_abstract = <True>
+		properties = <
+			["parts"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"parts">
+				type_def = <
+					container_type = <"List">
+					type = <"Object_extension_part">
+				>
+			>
+		>
+	>
+
+	["Independent_object"] = <
+		name = <"Independent_object">
+		ancestors = <"Object_extension_part">
+	>
+
+	["Space"] = <
+		name = <"Space">
+		ancestors = <"Object_extension_part">
+		properties = <
+			["parts"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"parts">
+				type_def = <
+					container_type = <"List">
+					type = <"Space">
+				>
+			>
+		>
+	>
+
+	["Artefact"] = <
+		name = <"Artefact">
+		ancestors = <"Independent_object">
+	>
+
+	["Substance"] = <
+		name = <"Substance">
+		ancestors = <"Independent_object">
+	>
+
+	["Biological_entity"] = <
+		name = <"Biological_entity">
+		ancestors = <"Independent_object">
+	>
+
+	["Material_location"] = <
+		name = <"Material_location">
+		ancestors = <"Materially_dependent_entity">
+		is_abstract = <True>
+	>
+
+	["Fiat_point"] = <
+		name = <"Fiat_point">
+		ancestors = <"Material_location">
+	>
+
+	["Fiat_line"] = <
+		name = <"Fiat_line">
+		ancestors = <"Material_location">
+		properties = <
+			["is_closed"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_closed">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["Fiat_surface"] = <
+		name = <"Fiat_surface">
+		ancestors = <"Material_location">
+		properties = <
+			["is_closed"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_closed">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["Geographical_site"] = <
+		name = <"Geographical_site">
+		ancestors = <"Fiat_line">
+	>
+
+	------------------------------------------------------
+	-- resource
+	------------------------------------------------------
+
+	["Resource_use"] = <
+		name = <"Resource_use">
+		ancestors = <"Locatable">
+		is_abstract = <True>
+		properties = <
+			["start_time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"start_time">
+				type = <"Date_time">
+				is_mandatory = <True>
+			>
+			["duration"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"duration">
+				type = <"Duration">
+			>
+			["cost_data"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"cost_data">
+				type = <"Node">
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"Node">
+			>
+		>
+	>
+
+	["Service_use"] = <
+		name = <"Service_use">
+		ancestors = <"Resource_use">
+	>
+
+	["Consumable_use"] = <
+		name = <"Consumable_use">
+		ancestors = <"Resource_use">
+		properties = <
+			["amount"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"amount">
+				type = <"Decimal">
+			>
+		>
+	>
+
+>
+

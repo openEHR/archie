@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=94e3265b-6713-46a2-b6e6-0263fd3163b8)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=94e3265b-6713-46a2-b6e6-0263fd3163b8)
     s2-EHR-Node.tumour_colorectal_staging_non_tnm.v0.0.1-alpha
 
 language

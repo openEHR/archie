@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=852a04eb-a33a-4659-bf0d-4c36d6086da2)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=852a04eb-a33a-4659-bf0d-4c36d6086da2)
 	s2-EHR-Action.service.v1.0.1
 
 language

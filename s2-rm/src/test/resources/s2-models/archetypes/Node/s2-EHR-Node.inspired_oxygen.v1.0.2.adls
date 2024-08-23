@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2859a129-4b4f-4bf5-b43c-85392edbedf9)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=2859a129-4b4f-4bf5-b43c-85392edbedf9)
 	s2-EHR-Node.inspired_oxygen.v1.0.2
 
 language

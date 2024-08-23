@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7af18287-05dd-4e50-b5de-35bd75bd5203)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=7af18287-05dd-4e50-b5de-35bd75bd5203)
 	s2-EHR-Node.laboratory_test_analyte.v1.1.6
 
 language

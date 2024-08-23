@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=80d3b0b7-b097-4d76-b112-4329c524b424)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=80d3b0b7-b097-4d76-b112-4329c524b424)
 	s2-EHR-Direct_observation.nutrition_intake.v0.0.1-alpha
 
 language

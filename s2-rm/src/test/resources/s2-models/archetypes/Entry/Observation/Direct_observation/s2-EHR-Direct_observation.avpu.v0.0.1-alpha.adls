@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fe409117-e9b4-4b6f-9033-8652596694c8)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=fe409117-e9b4-4b6f-9033-8652596694c8)
 	s2-EHR-Direct_observation.avpu.v0.0.1-alpha
 
 language

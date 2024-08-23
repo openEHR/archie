@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2b1e8722-54b7-4dff-ac17-f347349a0c2d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=2b1e8722-54b7-4dff-ac17-f347349a0c2d)
     s2-EHR-Score.qsofa_score.v1.0.1
 
 language

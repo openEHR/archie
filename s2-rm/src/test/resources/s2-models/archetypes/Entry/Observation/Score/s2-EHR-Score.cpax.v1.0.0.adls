@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=18e0321d-5ea5-4b24-ac90-40fdf6504284)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=18e0321d-5ea5-4b24-ac90-40fdf6504284)
     s2-EHR-Score.cpax.v1.0.0
 
 language

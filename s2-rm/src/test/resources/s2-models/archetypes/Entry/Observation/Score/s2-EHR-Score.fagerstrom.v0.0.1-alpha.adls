@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=3fd46c3c-96a6-4c1c-b4a6-adee23e45cc5)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=3fd46c3c-96a6-4c1c-b4a6-adee23e45cc5)
     s2-EHR-Score.fagerstrom.v0.0.1-alpha
 
 language

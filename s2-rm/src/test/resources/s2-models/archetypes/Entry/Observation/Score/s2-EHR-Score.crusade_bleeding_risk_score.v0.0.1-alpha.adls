@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a200dea3-75a7-429c-a2fd-43f420375612)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=a200dea3-75a7-429c-a2fd-43f420375612)
     s2-EHR-Score.crusade_bleeding_risk_score.v0.0.1-alpha
 
 language

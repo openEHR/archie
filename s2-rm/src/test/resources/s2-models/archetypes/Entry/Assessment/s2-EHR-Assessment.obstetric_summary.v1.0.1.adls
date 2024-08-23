@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=59b18612-72e7-4d0c-9274-400220fdf255)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=59b18612-72e7-4d0c-9274-400220fdf255)
 	s2-EHR-Assessment.obstetric_summary.v1.0.1
 
 language

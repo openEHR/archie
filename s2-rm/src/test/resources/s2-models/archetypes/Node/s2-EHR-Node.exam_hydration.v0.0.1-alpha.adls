@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=877dcf18-da22-4f97-bc52-af5497e58ea7)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=877dcf18-da22-4f97-bc52-af5497e58ea7)
     s2-EHR-Node.exam_hydration.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=701bce60-848c-4341-bab3-1aebd1cf5660)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=701bce60-848c-4341-bab3-1aebd1cf5660)
 	s2-EHR-Direct_observation.capillary_refill.v1.0.0
 
 language

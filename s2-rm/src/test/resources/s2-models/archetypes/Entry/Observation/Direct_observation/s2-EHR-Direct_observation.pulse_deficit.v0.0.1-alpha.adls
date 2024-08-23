@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=bd4019c5-21c7-4037-87b1-f5caee60e8a5)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=bd4019c5-21c7-4037-87b1-f5caee60e8a5)
     s2-EHR-Direct_observation.pulse_deficit.v0.0.1-alpha
 
 language

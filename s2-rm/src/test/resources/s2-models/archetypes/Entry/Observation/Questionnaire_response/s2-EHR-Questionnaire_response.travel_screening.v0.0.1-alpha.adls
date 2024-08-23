@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f8fd8669-88d7-482d-be68-625a15e53cd1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f8fd8669-88d7-482d-be68-625a15e53cd1)
     s2-EHR-Questionnaire_response.travel_screening.v0.0.1-alpha
 
 language

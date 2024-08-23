@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f0aee6fb-a65e-49f4-91c2-9601f4056e2d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f0aee6fb-a65e-49f4-91c2-9601f4056e2d)
     s2-EHR-Direct_observation.audiology_speech_test_result.v0.0.1-alpha
 
 language

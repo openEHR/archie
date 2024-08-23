@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=928dabfc-ccd6-4638-bd83-807f29ab4a74)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=928dabfc-ccd6-4638-bd83-807f29ab4a74)
     s2-EHR-Score.mskcc_motzer.v0.0.1-alpha
 
 language

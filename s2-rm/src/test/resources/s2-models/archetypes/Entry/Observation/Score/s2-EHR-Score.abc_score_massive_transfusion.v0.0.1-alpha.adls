@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8879e8e3-3631-4645-80f9-b2e875b08de0)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=8879e8e3-3631-4645-80f9-b2e875b08de0)
 	s2-EHR-Score.abc_score_massive_transfusion.v0.0.1-alpha
 
 language

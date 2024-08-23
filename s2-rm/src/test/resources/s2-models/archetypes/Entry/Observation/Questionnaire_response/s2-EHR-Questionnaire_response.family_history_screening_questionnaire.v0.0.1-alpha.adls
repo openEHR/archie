@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b0f0bb93-1cb3-491f-9690-d2e562335cf2)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=b0f0bb93-1cb3-491f-9690-d2e562335cf2)
 	s2-EHR-Questionnaire_response.family_history_screening_questionnaire.v0.0.1-alpha
 
 language

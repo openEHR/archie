@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=889978d3-10d4-4520-8574-132da037f951)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=889978d3-10d4-4520-8574-132da037f951)
     s2-EHR-Node.consent_details.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c29758c9-970e-4661-a297-097d62d0bf55)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=c29758c9-970e-4661-a297-097d62d0bf55)
 	s2-EHR-Assessment.problem_diagnosis.v1.3.1
 
 language

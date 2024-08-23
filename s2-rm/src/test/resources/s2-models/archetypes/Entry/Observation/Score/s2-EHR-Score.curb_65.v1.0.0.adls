@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5f997327-f619-4040-89e5-8278964b5d7c)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=5f997327-f619-4040-89e5-8278964b5d7c)
     s2-EHR-Score.curb_65.v1.0.0
 
 language

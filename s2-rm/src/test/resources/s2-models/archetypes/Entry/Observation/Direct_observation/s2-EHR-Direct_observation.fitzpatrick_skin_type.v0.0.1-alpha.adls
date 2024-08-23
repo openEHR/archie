@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=acd7ffad-2974-40e0-a3ab-1d6ffa29f492)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=acd7ffad-2974-40e0-a3ab-1d6ffa29f492)
     s2-EHR-Direct_observation.fitzpatrick_skin_type.v0.0.1-alpha
 
 language

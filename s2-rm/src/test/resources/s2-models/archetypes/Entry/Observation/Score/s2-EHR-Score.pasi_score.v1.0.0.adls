@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=17922a11-ddc0-42a1-8ed5-f48eb3e77d74)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=17922a11-ddc0-42a1-8ed5-f48eb3e77d74)
     s2-EHR-Score.pasi_score.v1.0.0
 
 language

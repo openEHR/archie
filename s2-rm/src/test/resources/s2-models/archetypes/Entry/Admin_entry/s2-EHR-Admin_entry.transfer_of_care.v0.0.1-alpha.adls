@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f75e15eb-88df-4801-b3be-73f06d27bcee)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f75e15eb-88df-4801-b3be-73f06d27bcee)
 	s2-EHR-Admin_entry.transfer_of_care.v0.0.1-alpha
 
 language

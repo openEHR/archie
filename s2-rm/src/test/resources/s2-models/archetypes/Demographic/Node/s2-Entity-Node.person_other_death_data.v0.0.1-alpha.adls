@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c9624cba-746e-4035-9de9-b03bd0040591)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=c9624cba-746e-4035-9de9-b03bd0040591)
 	s2-Entity-Node.person_other_death_data.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0; generated; uid=b93af047-42e7-441d-a904-38556b606017)
+archetype (adl_version=2.0.6; rm_release=0.8.5; generated; uid=b93af047-42e7-441d-a904-38556b606017)
     s2-EHR-Node.exam-external_auditory_canal.v0.0.1-alpha
 
 specialize

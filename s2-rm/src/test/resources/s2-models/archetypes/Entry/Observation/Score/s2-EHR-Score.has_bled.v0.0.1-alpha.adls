@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d73167fa-56d3-471d-a15c-0f7711022af2)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d73167fa-56d3-471d-a15c-0f7711022af2)
     s2-EHR-Score.has_bled.v0.0.1-alpha
 
 language

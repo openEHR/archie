@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9b0033b7-83d9-4a11-92de-153612e86350)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=9b0033b7-83d9-4a11-92de-153612e86350)
     s2-EHR-Node.exclusion_exam.v1.1.1
 
 language

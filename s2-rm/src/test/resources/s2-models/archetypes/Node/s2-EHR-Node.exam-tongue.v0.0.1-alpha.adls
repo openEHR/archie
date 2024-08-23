@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=542c1671-1fa4-4212-b5b1-595cb78047c0)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=542c1671-1fa4-4212-b5b1-595cb78047c0)
     s2-EHR-Node.exam-tongue.v0.0.1-alpha
 
 specialize

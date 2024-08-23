@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8ec192a8-dc62-4133-a476-8c13fdc6d0c1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=8ec192a8-dc62-4133-a476-8c13fdc6d0c1)
     s2-EHR-Node.exam_zygote.v1.0.1
 
 language

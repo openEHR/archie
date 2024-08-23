@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fc2d70b7-74c1-40de-ba27-02b98eaae2a5)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=fc2d70b7-74c1-40de-ba27-02b98eaae2a5)
 	s2-EHR-Node.symptom_sign.v2.1.0
 
 language

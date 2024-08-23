@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a5529628-aeba-46d0-9c34-3d6a196338fc)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=a5529628-aeba-46d0-9c34-3d6a196338fc)
     s2-EHR-Node.exam-inspection-cervix.v0.0.1-alpha
 
 specialize

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=386c9a55-7aef-49cc-9d00-525c28577b9b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=386c9a55-7aef-49cc-9d00-525c28577b9b)
     s2-EHR-Direct_observation.estimated_glomerular_filtration_rate.v0.0.1-alpha
 
 language

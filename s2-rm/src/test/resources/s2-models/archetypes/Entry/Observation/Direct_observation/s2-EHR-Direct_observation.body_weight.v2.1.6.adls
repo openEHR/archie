@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f3fbec37-c2e9-4acf-bdba-2c7b534e28d8)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f3fbec37-c2e9-4acf-bdba-2c7b534e28d8)
 	s2-EHR-Direct_observation.body_weight.v2.1.6
 
 language

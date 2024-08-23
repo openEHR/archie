@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a9e35784-4fc6-4a8d-a53a-dd70793b1c7b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=a9e35784-4fc6-4a8d-a53a-dd70793b1c7b)
     s2-EHR-Section.adverse_reaction_list.v0.0.1-alpha
 
 language

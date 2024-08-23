@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c9588ad0-dee2-4785-813c-1aa5e9fd462f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=c9588ad0-dee2-4785-813c-1aa5e9fd462f)
 	s2-EHR-Direct_observation.waist_circumference.v1.0.3
 
 language

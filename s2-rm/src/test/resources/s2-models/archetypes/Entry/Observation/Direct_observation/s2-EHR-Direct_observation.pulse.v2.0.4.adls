@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d6576634-2a75-4b02-8d79-395ca964ba6c)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d6576634-2a75-4b02-8d79-395ca964ba6c)
 	s2-EHR-Direct_observation.pulse.v2.0.4
 
 language

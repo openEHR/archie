@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0d607372-fab7-4f9a-b5e8-78611d88ab96)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=0d607372-fab7-4f9a-b5e8-78611d88ab96)
 	s2-EHR-Node.exam_wound.v0.0.1-alpha
 
 language

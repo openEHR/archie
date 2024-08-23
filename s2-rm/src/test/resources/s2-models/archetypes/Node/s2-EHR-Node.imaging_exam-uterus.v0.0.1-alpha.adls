@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e82d264f-2791-4ab4-8d58-bb419ae514cd)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e82d264f-2791-4ab4-8d58-bb419ae514cd)
     s2-EHR-Node.imaging_exam-uterus.v0.0.1-alpha
 
 specialize

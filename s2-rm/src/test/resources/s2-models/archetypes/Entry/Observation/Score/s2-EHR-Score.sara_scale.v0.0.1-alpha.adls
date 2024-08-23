@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f15a210b-16bf-4f36-a57c-2bbb987379ad)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f15a210b-16bf-4f36-a57c-2bbb987379ad)
     s2-EHR-Score.sara_scale.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=db404efc-aa62-4352-b142-b15712251a3d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=db404efc-aa62-4352-b142-b15712251a3d)
 	s2-EHR-Assessment.death_summary.v1.0.0
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=1dfdbf1a-6cce-42b5-9a28-ac769909ca1e)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=1dfdbf1a-6cce-42b5-9a28-ac769909ca1e)
     s2-EHR-Questionnaire_response.symptom_sign_screening.v1.0.3
 
 language

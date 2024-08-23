@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9f18ba91-5772-41a2-ab6c-6d09cff488f6)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=9f18ba91-5772-41a2-ab6c-6d09cff488f6)
     s2-EHR-Score.atria_stroke_risk.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=5b2c556d-750f-4fa1-9f99-5eb4f192b9ee)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=5b2c556d-750f-4fa1-9f99-5eb4f192b9ee)
     s2-EHR-Node.timing_nondaily.v1.1.2
 
 language

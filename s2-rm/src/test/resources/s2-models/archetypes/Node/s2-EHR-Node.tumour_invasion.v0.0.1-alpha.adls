@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d98a219d-9c26-4d11-9eec-c1032bf0beb4)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d98a219d-9c26-4d11-9eec-c1032bf0beb4)
 	s2-EHR-Node.tumour_invasion.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=7b79a7e7-e2b4-4aef-9155-4c6e2247c665)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=7b79a7e7-e2b4-4aef-9155-4c6e2247c665)
     s2-EHR-Score.cgas.v1.0.2
 
 language

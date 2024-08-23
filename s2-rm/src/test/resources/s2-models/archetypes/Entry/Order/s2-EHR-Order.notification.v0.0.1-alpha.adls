@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d23ce735-8d8f-4963-93ab-07c053195303)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d23ce735-8d8f-4963-93ab-07c053195303)
 	s2-EHR-Order.notification.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ccebf947-88ed-403e-80b1-11a32bbe5267)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=ccebf947-88ed-403e-80b1-11a32bbe5267)
 	s2-EHR-Assessment.precaution.v1.0.4
 
 language

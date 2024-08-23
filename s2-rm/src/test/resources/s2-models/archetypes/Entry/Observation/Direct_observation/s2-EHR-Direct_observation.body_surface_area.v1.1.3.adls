@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a1f99e29-8ef8-46d2-910d-6e5b5fdfcf20)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=a1f99e29-8ef8-46d2-910d-6e5b5fdfcf20)
 	s2-EHR-Direct_observation.body_surface_area.v1.1.3
 
 language

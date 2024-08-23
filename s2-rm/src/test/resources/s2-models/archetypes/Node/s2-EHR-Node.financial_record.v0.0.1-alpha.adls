@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=cac8a2a0-2d15-4b53-bc09-4149a0a0e06d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=cac8a2a0-2d15-4b53-bc09-4149a0a0e06d)
 	s2-EHR-Node.financial_record.v0.0.1-alpha
 
 language

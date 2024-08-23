@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=cd7d013d-2d8c-4ec7-a3e3-1565e115e6d4)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=cd7d013d-2d8c-4ec7-a3e3-1565e115e6d4)
 	s2-EHR-Node.imaging_exam-foetus.v1.0.0
 
 specialize

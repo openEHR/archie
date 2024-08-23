@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d9fb68b8-19e6-4117-b95a-99a4399c58b2)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d9fb68b8-19e6-4117-b95a-99a4399c58b2)
 	s2-EHR-Admin_entry.travel_event.v0.0.1-alpha
 
 language

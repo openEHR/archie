@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=9fcc3fc7-248f-4442-bb93-da698755ffeb)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=9fcc3fc7-248f-4442-bb93-da698755ffeb)
     s2-EHR-Direct_observation.physical_activity.v0.0.1-alpha
 
 language

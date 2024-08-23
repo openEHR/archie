@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0bca86bb-cd56-4e5b-a924-3367f0e630de)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=0bca86bb-cd56-4e5b-a924-3367f0e630de)
 	s2-EHR-Direct_observation.body_segment_circumference.v1.0.1
 
 language

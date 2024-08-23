@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=310c2fb8-5941-41a8-997d-157ddda197dc)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=310c2fb8-5941-41a8-997d-157ddda197dc)
     s2-EHR-Node.imaging_exam-liver.v0.0.1-alpha
 
 specialize

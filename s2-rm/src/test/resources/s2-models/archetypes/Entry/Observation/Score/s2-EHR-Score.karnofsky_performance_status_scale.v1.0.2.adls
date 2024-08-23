@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=34d63338-6bd7-4c46-bd8b-77bf6e190414)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=34d63338-6bd7-4c46-bd8b-77bf6e190414)
     s2-EHR-Score.karnofsky_performance_status_scale.v1.0.2
 
 language

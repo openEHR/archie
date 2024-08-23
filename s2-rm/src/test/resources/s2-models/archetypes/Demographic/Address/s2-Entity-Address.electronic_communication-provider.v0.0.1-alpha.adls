@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=af7394e5-efcf-4ab0-81a1-0f97e8c13d9b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=af7394e5-efcf-4ab0-81a1-0f97e8c13d9b)
     s2-Entity-Address.electronic_communication-provider.v0.0.1-alpha
 
 specialize

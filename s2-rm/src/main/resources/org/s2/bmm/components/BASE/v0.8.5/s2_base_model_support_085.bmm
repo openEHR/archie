@@ -1,0 +1,223 @@
+-- 
+-- 	component:   Graphite BMMs
+-- 	description: Graphite BASE Component schema. This file format is based on the BMM specification
+--  				http://www.openEHR.org/releases/BASE/latest/docs/bmm/bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphitehealth.atlassian.net/projects/issues
+-- 	copyright:   Copyright (c) 2023 Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+-- 
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"base_model_support">
+rm_release = <"0.8.5">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.8.5.1">
+schema_lifecycle_state = <"trial">
+schema_description = <"S2 Release 0.8.5 BASE model base types packages">
+schema_author = <"Thomas Beale <thomas.beale@graphite.org>">
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_base_foundation_types_0.8.5">
+	>
+>
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.s2.base.model_support"] = <
+		name = <"org.s2.base.model_support">
+		packages = <
+			["definitions"] = <
+				name = <"definitions">
+				classes = <"Validity_kind", "Version_status", "Sample_function_kind", "Trend_kind">
+			>
+			["identification"] = <
+				name = <"identification">
+				classes = <"Object_ref", "Object_id", "Primitive_id", "Locatable_ref",
+					"Artifact_id", "Terminology_id", "Archetype_id", "Object_version_id", 
+					"Version_tree_id", "Internet_id", "Uuid", "Iso_oid"
+				>
+			>
+		>
+	>
+>
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	------------------------------------------------------------
+	------------------ base.model_support.identification ---------------
+	------------------------------------------------------------
+
+	["Object_ref"] = <
+		name = <"Object_ref">
+		ancestors = <"Any">
+		properties = <
+			["id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"id">
+				type = <"Object_id">
+				is_mandatory = <True>
+			>
+			["namespace"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"namespace">
+				type = <"String">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Locatable_ref"] = <
+		name = <"Locatable_ref">
+		ancestors = <"Object_ref">
+		properties = <
+			["id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"id">
+				type = <"Object_version_id">
+				is_mandatory = <True>
+			>
+			["path"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"path">
+				type = <"String">
+				is_im_infrastructure = <True>
+			>
+		>
+	>
+
+	["Object_id"] = <
+		name = <"Object_id">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Artifact_id"] = <
+		name = <"Artifact_id">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Terminology_id"] = <
+		name = <"Terminology_id">
+		ancestors = <"Artifact_id">
+	>
+	
+	
+	["Archetype_id"] = <
+		name = <"Archetype_id">
+		ancestors = <"Artifact_id">
+	>
+	
+	["Object_version_id"] = <
+		name = <"Object_version_id">
+		ancestors = <"Object_id">
+	>
+
+	
+	["Version_tree_id"] = <
+		name = <"Version_tree_id">
+		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	
+	["Primitive_id"] = <
+		name = <"Primitive_id">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	
+	["Internet_id"] = <
+		name = <"Internet_id">
+		ancestors = <"Primitive_id">
+	>
+	
+	["Iso_oid"] = <
+		name = <"Iso_oid">
+		ancestors = <"Primitive_id">
+	>
+	
+	["Uuid"] = <
+		name = <"Uuid">
+		ancestors = <"Primitive_id">
+	>
+	
+	--
+	--------------------- base.model_support.definitions ------------------
+	--
+
+	["Validity_kind"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Validity_kind">
+		ancestors = <"String">
+		item_names = <"mandatory", "optional", "prohibited">
+	>
+
+	["Version_status"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Version_status">
+		ancestors = <"String">
+		item_names = <"alpha", "beta", "release_candidate", "released", "build">
+	>
+
+	["Sample_function_kind"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Sample_function_kind">
+		ancestors = <"String">
+		item_names = <"actual", "minimum", "maximum", "mean", "mode", "median", "increase", "decrease", "change", "total">
+	>
+
+	["Trend_kind"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Trend_kind">
+		ancestors = <"String">
+		item_names = <"decrease", "increase", "change">
+	>
+
+>

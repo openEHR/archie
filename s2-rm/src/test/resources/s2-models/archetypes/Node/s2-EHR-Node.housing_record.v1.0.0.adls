@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=aadaf58b-77a1-45b1-af4a-f03724a9de38)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=aadaf58b-77a1-45b1-af4a-f03724a9de38)
 	s2-EHR-Node.housing_record.v1.0.0
 
 language

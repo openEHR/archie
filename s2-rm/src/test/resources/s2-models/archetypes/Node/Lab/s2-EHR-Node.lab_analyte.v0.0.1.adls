@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0)
+archetype (adl_version=2.1.0; rm_release=0.8.5)
 	s2-EHR-Node.lab_analyte.v0.0.1
 
 language

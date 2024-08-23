@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=65de6a03-c336-4bfb-87ab-e95c379e7580)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=65de6a03-c336-4bfb-87ab-e95c379e7580)
     s2-EHR-Node.exam-throat.v0.0.1-alpha
 
 specialize

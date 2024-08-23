@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=010f7467-ce50-4def-9b09-217e9067bbd2)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=010f7467-ce50-4def-9b09-217e9067bbd2)
 	s2-EHR-Node.genetic_variant_presence.v0.0.1-alpha
 
 language

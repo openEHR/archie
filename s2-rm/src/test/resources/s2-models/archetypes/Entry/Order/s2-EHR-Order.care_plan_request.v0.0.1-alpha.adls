@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=53dd60f6-12a1-4bf4-b014-30f319cc77f6)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=53dd60f6-12a1-4bf4-b014-30f319cc77f6)
 	s2-EHR-Order.care_plan_request.v0.0.1-alpha
 
 language

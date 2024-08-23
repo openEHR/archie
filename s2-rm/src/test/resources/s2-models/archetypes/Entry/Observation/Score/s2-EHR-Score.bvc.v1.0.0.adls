@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=be2cde8f-2bf8-40ee-a4bd-b5d789f0fdaf)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=be2cde8f-2bf8-40ee-a4bd-b5d789f0fdaf)
     s2-EHR-Score.bvc.v1.0.0
 
 language

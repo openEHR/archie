@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e8de092e-d588-4c61-9912-7a17cb688127)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e8de092e-d588-4c61-9912-7a17cb688127)
     s2-EHR-Assessment.exclusion_global.v1.1.4
 
 language

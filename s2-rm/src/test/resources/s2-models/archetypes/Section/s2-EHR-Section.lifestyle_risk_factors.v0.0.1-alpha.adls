@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4397ede7-3047-4ba4-9d4e-12ee4112c921)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=4397ede7-3047-4ba4-9d4e-12ee4112c921)
     s2-EHR-Section.lifestyle_risk_factors.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=4fe05d16-1908-45c7-be38-d2887b9e096b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=4fe05d16-1908-45c7-be38-d2887b9e096b)
     s2-EHR-Score.atria_bleeding_risk.v0.0.1-alpha
 
 language

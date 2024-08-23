@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=fb7feed3-d276-4aa2-a83a-22c1491037bc)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=fb7feed3-d276-4aa2-a83a-22c1491037bc)
     s2-Entity-Node.high_level_address_other_data_br.v0.0.1-alpha
 
 language

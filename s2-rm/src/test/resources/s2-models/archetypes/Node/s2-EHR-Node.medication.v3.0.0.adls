@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; uid=1de66765-9e18-4dc1-97b1-5bb2b62c9869)
+archetype (adl_version=2.1.0; rm_release=0.8.5; uid=1de66765-9e18-4dc1-97b1-5bb2b62c9869)
 	s2-EHR-Node.medication.v3.0.0
 
 language

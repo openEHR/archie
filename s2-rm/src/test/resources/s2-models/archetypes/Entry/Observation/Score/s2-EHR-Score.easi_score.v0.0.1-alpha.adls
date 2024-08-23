@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ebb2afb7-22ad-4242-8f25-70dfcd3c5446)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=ebb2afb7-22ad-4242-8f25-70dfcd3c5446)
     s2-EHR-Score.easi_score.v0.0.1-alpha
 
 language

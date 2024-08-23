@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=88dfe996-53b9-4257-8eaf-cf0b8ab5fbfc)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=88dfe996-53b9-4257-8eaf-cf0b8ab5fbfc)
 	s2-EHR-Direct_observation.respiration.v2.0.10
 
 language

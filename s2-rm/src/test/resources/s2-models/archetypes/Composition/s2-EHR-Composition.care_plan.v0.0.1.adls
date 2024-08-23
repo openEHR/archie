@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=0.8.0)
+archetype (adl_version=2.0.6; rm_release=0.8.5)
 	s2-EHR-Composition.care_plan.v0.0.1
 
 language

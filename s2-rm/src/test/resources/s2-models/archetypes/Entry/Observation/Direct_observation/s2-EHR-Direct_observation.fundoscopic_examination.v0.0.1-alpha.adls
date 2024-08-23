@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=8ce3c53d-13ff-4ee7-abae-5759cda91abe)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=8ce3c53d-13ff-4ee7-abae-5759cda91abe)
 	s2-EHR-Direct_observation.fundoscopic_examination.v0.0.1-alpha
 
 language

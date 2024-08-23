@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=a9e5cb92-0a11-4dde-a0c8-c79b33cd7e3d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=a9e5cb92-0a11-4dde-a0c8-c79b33cd7e3d)
     s2-EHR-Direct_observation.paced_auditory_serial_addition_test.v1.0.0
 
 language

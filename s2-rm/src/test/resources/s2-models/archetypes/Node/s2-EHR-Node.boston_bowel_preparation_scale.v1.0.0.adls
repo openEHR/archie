@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b3465f17-42c7-4ac1-85f7-801ff11dd48c)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=b3465f17-42c7-4ac1-85f7-801ff11dd48c)
     s2-EHR-Node.boston_bowel_preparation_scale.v1.0.0
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=f0f23490-a66d-4e36-a5c5-c5cb2bcb0711)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=f0f23490-a66d-4e36-a5c5-c5cb2bcb0711)
 	s2-EHR-Direct_observation.blood_pressure.v2.0.8
 
 language

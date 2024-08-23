@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2723747d-2b8c-4fa2-82cb-69abfb13e3e1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=2723747d-2b8c-4fa2-82cb-69abfb13e3e1)
 	s2-EHR-Node.anatomical_location.v1.2.2
 
 language

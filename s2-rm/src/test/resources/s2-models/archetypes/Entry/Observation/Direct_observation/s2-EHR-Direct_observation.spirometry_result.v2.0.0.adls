@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2d1e6bdd-2f83-4898-b2b8-ab65f76338a1)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=2d1e6bdd-2f83-4898-b2b8-ab65f76338a1)
 	s2-EHR-Direct_observation.spirometry_result.v2.0.0
 
 language

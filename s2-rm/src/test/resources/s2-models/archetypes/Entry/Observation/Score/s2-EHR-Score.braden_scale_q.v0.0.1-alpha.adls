@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=6d085bfe-1c34-42cb-a879-345fd33e9514)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=6d085bfe-1c34-42cb-a879-345fd33e9514)
 	s2-EHR-Score.braden_scale_q.v0.0.1-alpha
 
 language

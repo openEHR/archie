@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=d499172d-3f24-4717-93f5-4aecee2aed7f)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=d499172d-3f24-4717-93f5-4aecee2aed7f)
 	s2-EHR-Assessment.alcohol_consumption_summary.v1.0.6
 
 language

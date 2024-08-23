@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=28186c15-625d-49ff-a4eb-4b4684f8155d)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=28186c15-625d-49ff-a4eb-4b4684f8155d)
     s2-Entity-Node.provider_identifier.v0.0.1-alpha
 
 language

@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e473b407-ca1d-425e-8cc0-35a2c0a4f4d9)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e473b407-ca1d-425e-8cc0-35a2c0a4f4d9)
     s2-EHR-Questionnaire_response.scoff_questionnaire.v0.0.1-alpha
 
 language

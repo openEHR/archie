@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=aca3de89-bd1f-480e-8788-2c61319ea644)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=aca3de89-bd1f-480e-8788-2c61319ea644)
 	s2-EHR-Action.transfusion.v0.0.1-alpha
 
 language

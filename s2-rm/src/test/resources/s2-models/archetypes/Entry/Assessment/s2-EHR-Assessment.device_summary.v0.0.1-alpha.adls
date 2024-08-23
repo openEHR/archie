@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=2907fab5-8c86-415e-b71f-85d5afbab683)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=2907fab5-8c86-415e-b71f-85d5afbab683)
 	s2-EHR-Assessment.device_summary.v0.0.1-alpha
 
 language

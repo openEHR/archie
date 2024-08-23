@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e17ef5f7-ed3a-48ad-bd80-94e793aa8361)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e17ef5f7-ed3a-48ad-bd80-94e793aa8361)
     s2-EHR-Node.exam-cranial_nerves.v0.0.1-alpha
 
 specialize

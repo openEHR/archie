@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=c6bc0f54-6642-45a8-91b5-d2b20e3f9b23)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=c6bc0f54-6642-45a8-91b5-d2b20e3f9b23)
     s2-EHR-Direct_observation.temperature.v0.0.1-alpha
 
 language

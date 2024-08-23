@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=b8cfeed9-4d56-4502-9ff4-441f7c04ed9e)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=b8cfeed9-4d56-4502-9ff4-441f7c04ed9e)
     s2-EHR-Node.exam-palpation-prostate.v0.0.1-alpha
 
 specialize

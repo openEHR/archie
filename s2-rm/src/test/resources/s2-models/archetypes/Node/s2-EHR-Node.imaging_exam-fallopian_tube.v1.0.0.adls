@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=e3cc5bb8-8e96-4089-99a9-fb53490fef00)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=e3cc5bb8-8e96-4089-99a9-fb53490fef00)
     s2-EHR-Node.imaging_exam-fallopian_tube.v1.0.0
 
 specialize

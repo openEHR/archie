@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=ebb50e26-b6da-4cf8-898b-e6c4daa62a5b)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=ebb50e26-b6da-4cf8-898b-e6c4daa62a5b)
 	s2-EHR-Score.charlson_comorbidity_index.v1.0.0
 
 language

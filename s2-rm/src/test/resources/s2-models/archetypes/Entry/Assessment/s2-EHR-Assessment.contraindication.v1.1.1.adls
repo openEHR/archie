@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=04bc8886-0280-4f29-81dd-578337117ce3)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=04bc8886-0280-4f29-81dd-578337117ce3)
 	s2-EHR-Assessment.contraindication.v1.1.1
 
 language

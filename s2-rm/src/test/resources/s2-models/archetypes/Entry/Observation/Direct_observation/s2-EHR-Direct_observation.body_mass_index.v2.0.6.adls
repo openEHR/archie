@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=0bead8c2-089c-477a-b1bc-8199c72a2763)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=0bead8c2-089c-477a-b1bc-8199c72a2763)
 	s2-EHR-Direct_observation.body_mass_index.v2.0.6
 
 language

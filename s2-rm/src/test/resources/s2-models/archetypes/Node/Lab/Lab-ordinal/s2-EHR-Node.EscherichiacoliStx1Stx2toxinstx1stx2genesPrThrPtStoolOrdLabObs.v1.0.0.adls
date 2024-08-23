@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0)
+archetype (adl_version=2.1.0; rm_release=0.8.5)
     s2-EHR-Node.EscherichiacoliStx1Stx2toxinstx1stx2genesPrThrPtStoolOrdLabObs.v1.0.0
 
 specialize

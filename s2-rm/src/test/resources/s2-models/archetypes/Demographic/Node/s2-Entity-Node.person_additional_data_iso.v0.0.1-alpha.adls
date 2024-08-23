@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=41f06600-2a9d-4a8b-9c41-3868520cd1ae)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=41f06600-2a9d-4a8b-9c41-3868520cd1ae)
 	s2-Entity-Node.person_additional_data_iso.v0.0.1-alpha
 
 language

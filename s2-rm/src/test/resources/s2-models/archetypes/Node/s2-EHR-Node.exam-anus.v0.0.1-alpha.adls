@@ -1,4 +1,4 @@
-archetype (adl_version=2.1.0; rm_release=0.8.0; generated; uid=11f4bbe5-ed0a-4bb9-9bc8-9b9debbfad51)
+archetype (adl_version=2.1.0; rm_release=0.8.5; generated; uid=11f4bbe5-ed0a-4bb9-9bc8-9b9debbfad51)
     s2-EHR-Node.exam-anus.v0.0.1-alpha
 
 specialize
