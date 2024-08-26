@@ -34,12 +34,18 @@ definition
                     DV_CODED_TEXT[id5]
                 }
             }
+            ELEMENT[id6] occurrences matches {1} matches {
+                value matches {
+                    DV_MULTIMEDIA[id7]
+                }
+            }
         }
     }
 
 rules
     /items[id2]/value/defining_code matches {[at9000]}
     /items[id4]/value/defining_code matches {[ac3]}
+    /items[id6]/value/media_type matches {[at9008]}
 
 terminology
     term_bindings = <
@@ -52,6 +58,10 @@ terminology
             ["at9005"] = <http://openehr.org/id/530>
             ["at9006"] = <http://openehr.org/id/531>
             ["at9007"] = <http://openehr.org/id/532>
+        >
+        ["IANA_media-types"] = <
+            ["at9008"] = <https://www.w3.org/ns/iana/media-types/image/jpeg#Resource>
+            ["at9009"] = <https://www.w3.org/ns/iana/media-types/text/plain#Resource>
         >
     >
     value_sets = <
