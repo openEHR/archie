@@ -843,8 +843,13 @@ public abstract class ParsedRulesEvaluationTest {
         DvMultimedia dvMultimedia = (DvMultimedia) root.itemAtPath("items[id6]/value[id7]");
         dvMultimedia.setMediaType(new CodePhrase(new TerminologyId("IANA_media-types"), "image/jpeg"));
         evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-//        assertEquals(2, evaluationResult.getAssertionResults().size());
-//        assertTrue(evaluationResult.getAssertionResults().get(2).getResult());
+        assertEquals(3, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(2).getResult());
+
+        dvMultimedia.setMediaType(new CodePhrase(new TerminologyId("IANA_media-types"), "text/plain"));
+        evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(3, evaluationResult.getAssertionResults().size());
+        assertFalse(evaluationResult.getAssertionResults().get(2).getResult());
     }
 
 }

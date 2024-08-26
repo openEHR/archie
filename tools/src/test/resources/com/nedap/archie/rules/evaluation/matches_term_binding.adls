@@ -45,7 +45,7 @@ definition
 rules
     /items[id2]/value/defining_code matches {[at9000]}
     /items[id4]/value/defining_code matches {[ac3]}
-    /items[id6]/value[id7]/media_type/code_string matches {[at9008]}
+    /items[id6]/value/media_type matches {[at9008]}
 
 terminology
     term_bindings = <
