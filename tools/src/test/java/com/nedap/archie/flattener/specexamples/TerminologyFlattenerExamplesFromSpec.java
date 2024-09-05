@@ -30,7 +30,7 @@ public class TerminologyFlattenerExamplesFromSpec {
 
         Archetype specialized = parse(this.getClass(), "openEHR-EHR-ELEMENT.interval_value_set_specialized.v1.0.0.adls");
 
-        Archetype flat = new Flattener(repository, AllMetaModelsInitialiser.getNativeRms()).flatten(specialized);
+        Archetype flat = new Flattener(repository, AllMetaModelsInitialiser.getNativeRms()).flatten(specialized, 0);
         Map<String, ValueSet> valueSets = flat.getTerminology().getValueSets();
 
         CTerminologyCode code = flat.itemAtPath("/name/defining_code[1]");

@@ -221,7 +221,7 @@ public class SiblingOrderFlattenerTest {
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
 
-        return new Flattener(repository, AllMetaModelsInitialiser.getNativeRms()).flatten(parse(fileName));
+        return new Flattener(repository, AllMetaModelsInitialiser.getNativeRms()).flatten(parse(fileName), 0);
     }
 
     private Archetype parseAndCreateOPT(String fileName) throws IOException, ADLParseException {
@@ -231,7 +231,7 @@ public class SiblingOrderFlattenerTest {
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
 
-        return new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(parse(fileName));
+        return new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(parse(fileName), 0);
     }
 
     private Archetype parseAndFlattenRemoveZeroOccurrences(String fileName) throws IOException, ADLParseException {
@@ -242,6 +242,6 @@ public class SiblingOrderFlattenerTest {
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
         FlattenerConfiguration config = FlattenerConfiguration.forFlattened();
         config.setRemoveZeroOccurrencesObjects(true);
-        return new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), config).flatten(parse(fileName));
+        return new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), config).flatten(parse(fileName), 0);
     }
 }

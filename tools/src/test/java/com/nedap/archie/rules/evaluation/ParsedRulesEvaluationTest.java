@@ -723,7 +723,7 @@ public abstract class ParsedRulesEvaluationTest {
         repository.addArchetype(parent);
         repository.addArchetype(valueSet);
         Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(parent);
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(parent, 0);
         ExampleJsonInstanceGenerator generator = new ExampleJsonInstanceGenerator(AllMetaModelsInitialiser.getMetaModels(), "en");
         Map<String, Object> exampleInstance = generator.generate(opt);
         Cluster cluster = OpenEhrRmJacksonUtil.getObjectMapper().readValue(OpenEhrRmJacksonUtil.getObjectMapper().writeValueAsString(exampleInstance), Cluster.class);

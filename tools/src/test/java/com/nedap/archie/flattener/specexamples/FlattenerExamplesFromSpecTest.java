@@ -45,7 +45,7 @@ public class FlattenerExamplesFromSpecTest {
         Archetype labTest = parse(this.getClass(), "openEHR-EHR-OBSERVATION.lab-test.v1.0.0.adls");
         repository.addArchetype(labTest);
         Archetype specializationPaths = parse(this.getClass(), "specialization_paths.adls");
-        Archetype flattened = new Flattener(repository, models).flatten(specializationPaths);
+        Archetype flattened = new Flattener(repository, models).flatten(specializationPaths, 0);
         assertEquals(specializationPaths.getParentArchetypeId(), flattened.getParentArchetypeId());
 
         CObject originalConstraint = flattened.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id79]");
@@ -70,7 +70,7 @@ public class FlattenerExamplesFromSpecTest {
         Archetype problem = parse(this.getClass(), "problem.adls");
         repository.addArchetype(problem);
         Archetype diagnosis = parse(this.getClass(), "diagnosis.adls");
-        Archetype flattenedDiagnosis = new Flattener(repository, models).flatten(diagnosis);
+        Archetype flattenedDiagnosis = new Flattener(repository, models).flatten(diagnosis, 0);
 
         assertEquals("Recording of diagnosis", flattenedDiagnosis.getDefinition().getTerm().getText());
 
@@ -107,7 +107,7 @@ public class FlattenerExamplesFromSpecTest {
         Archetype labTestPanel = parse(this.getClass(), "openEHR-EHR-CLUSTER.laboratory_test_panel.v1.0.0.adls");
         repository.addArchetype(labTestPanel);
         Archetype lipidStudiesPanel = parse(this.getClass(), "openEHR-EHR-CLUSTER.lipid_studies_panel.adls");
-        Archetype flattenedLipidStudies = new Flattener(repository, models).flatten(lipidStudiesPanel);
+        Archetype flattenedLipidStudies = new Flattener(repository, models).flatten(lipidStudiesPanel, 0);
 
         List<CObject> itemNodes = flattenedLipidStudies.getDefinition().getAttribute("items").getChildren();
         List<String> nodeIds = itemNodes.stream().map(cObject -> cObject.getNodeId()).collect(Collectors.toList());
@@ -137,8 +137,8 @@ public class FlattenerExamplesFromSpecTest {
         Archetype mandatory = parse(this.getClass(), "openEHR-EHR-OBSERVATION.protocol_mandatory.v1.0.0.adls");
         Archetype exclusion = parse(this.getClass(), "openEHR-EHR-OBSERVATION.protocol_exclusion.v1.0.0.adls");
 
-        Archetype mandatoryFlat = new Flattener(repository, models).flatten(mandatory);
-        Archetype exclusionFlat = new Flattener(repository, models).flatten(exclusion);
+        Archetype mandatoryFlat = new Flattener(repository, models).flatten(mandatory, 0);
+        Archetype exclusionFlat = new Flattener(repository, models).flatten(exclusion, 0);
 
         CAttribute mandatoryProtocol = mandatoryFlat.getDefinition().getAttribute("protocol");
         assertTrue(mandatoryProtocol.getExistence().isMandatory());
@@ -156,7 +156,7 @@ public class FlattenerExamplesFromSpecTest {
         repository.addArchetype(cardinalityParent);
         Archetype specialized = parse(this.getClass(), "openEHR-EHR-CLUSTER.cardinality_specialized.v1.0.0.adls");
 
-        Archetype flat = new Flattener(repository, models).flatten(specialized);
+        Archetype flat = new Flattener(repository, models).flatten(specialized, 0);
 
         CAttribute items = flat.getDefinition().getAttribute("items").getChildren().get(0).getAttribute("items");
         assertEquals(new Cardinality(3, 10), items.getCardinality());
@@ -179,7 +179,7 @@ public class FlattenerExamplesFromSpecTest {
 
         Archetype occurrencesSpecialized = parse(this.getClass(), "openEHR-EHR-CLUSTER.occurrences_specialized.v1.0.0.adls");
 
-        Archetype flat = new Flattener(repository, models).removeZeroOccurrencesConstraints(true).flatten(occurrencesSpecialized);
+        Archetype flat = new Flattener(repository, models).removeZeroOccurrencesConstraints(true).flatten(occurrencesSpecialized, 0);
         CAttribute attribute = flat.itemAtPath("/items[id3]/value");
         assertNotNull(flat.itemAtPath("/items[id3]/value[id5]"));
         assertNotNull(flat.itemAtPath("/items[id3]/value[id6]"));
@@ -196,7 +196,7 @@ public class FlattenerExamplesFromSpecTest {
 
         Archetype occurrencesSpecialized = parse(this.getClass(), "openEHR-EHR-CLUSTER.occurrences_specialized.v1.0.0.adls");
 
-        Archetype flat = new Flattener(repository, models).flatten(occurrencesSpecialized);
+        Archetype flat = new Flattener(repository, models).flatten(occurrencesSpecialized, 0);
         CAttribute attribute = flat.itemAtPath("/items[id3]/value");
         assertNotNull(flat.itemAtPath("/items[id3]/value[id5]"));
         assertNotNull(flat.itemAtPath("/items[id3]/value[id6]"));
@@ -220,7 +220,7 @@ public class FlattenerExamplesFromSpecTest {
         Archetype specialized = parse(this.getClass(), "openEHR-EHR-ELEMENT.type_refinement_specialized.v1.0.0.adls");
         repository.addArchetype(rmTypeRefinement);
 
-        Archetype flat = new Flattener(repository, models).flatten(specialized);
+        Archetype flat = new Flattener(repository, models).flatten(specialized, 0);
 
         CAttribute value = flat.itemAtPath("/value");
         assertEquals(3, value.getChildren().size());
@@ -247,7 +247,7 @@ public class FlattenerExamplesFromSpecTest {
         repository.addArchetype(parent);
         Archetype specialized = parse(this.getClass(), "openEHR-EHR-ENTRY.reference_redefinition_specialized.v1.0.0.adls");
 
-        Archetype flat = new Flattener(repository, models).flatten(specialized);
+        Archetype flat = new Flattener(repository, models).flatten(specialized, 0);
         assertNotNull(flat.itemAtPath("/data[id3]/items[id4]"));
         assertNotNull(flat.itemAtPath("/data[id3]/items[id0.1]"));
         assertNull(flat.itemAtPath("/data[id2]/items[id0.1]"));
@@ -260,7 +260,7 @@ public class FlattenerExamplesFromSpecTest {
         Archetype parent = parse(this.getClass(), "openEHR-EHR-ENTRY.reference_redefinition_parent.v1.0.0.adls");
         repository.addArchetype(parent);
         Archetype specialized = parse(this.getClass(), "openEHR-EHR-ENTRY.reference_redefinition_no_replacement.v1.0.0.adls");
-        Archetype flat = new Flattener(repository, models).flatten(specialized);
+        Archetype flat = new Flattener(repository, models).flatten(specialized, 0);
 
         ArchetypeModelObject cluster = flat.itemAtPath("/data[id3]");
         assertEquals(CComplexObjectProxy.class, cluster.getClass());
@@ -273,7 +273,7 @@ public class FlattenerExamplesFromSpecTest {
         Archetype parent = parse(this.getClass(), "openEHR-EHR-ELEMENT.numeric_primitive_parent.v1.0.0.adls");
         repository.addArchetype(parent);
         Archetype specialized = parse(this.getClass(), "openEHR-EHR-ELEMENT.numeric_primitive_specialized.v1.0.0.adls");
-        Archetype flat = new Flattener(repository, models).flatten(specialized);
+        Archetype flat = new Flattener(repository, models).flatten(specialized, 0);
 
         CReal flatConstraint = flat.itemAtPath("/value[id3]/magnitude[1]");
         assertEquals(4.0d, flatConstraint.getConstraint().get(0).getLower(), 0.0001d);
@@ -289,7 +289,7 @@ public class FlattenerExamplesFromSpecTest {
         Archetype parent = parse(this.getClass(), "openEHR-EHR-ELEMENT.tuple_parent.v1.0.0.adls");
         repository.addArchetype(parent);
         Archetype specialized = parse(this.getClass(), "openEHR-EHR-ELEMENT.tuple_specialized.v1.0.0.adls");
-        Archetype flat = new Flattener(repository, models).flatten(specialized);
+        Archetype flat = new Flattener(repository, models).flatten(specialized, 0);
         //the tuple should be completely replaced with the new tuple
         //the attributes should be correct
         CComplexObject dvQuantity = flat.itemAtPath("/value[1]");
@@ -317,7 +317,7 @@ public class FlattenerExamplesFromSpecTest {
         Archetype parent = parse(this.getClass(), "openEHR-EHR-ELEMENT.type_refinement_parent.v1.0.0.adls");
         repository.addArchetype(parent);
         Archetype specialized = parse(this.getClass(), "openEHR-EHR-ELEMENT.add_tuple.v1.0.0.adls");
-        Archetype flat = new Flattener(repository, models).flatten(specialized);
+        Archetype flat = new Flattener(repository, models).flatten(specialized, 0);
         //the tuple should be completely replaced with the new tuple
         //the attributes should be correct
         CComplexObject dvQuantity = flat.itemAtPath("/value[1]");

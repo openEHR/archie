@@ -44,7 +44,7 @@ public class AnnotationsFlattenerTest {
 
         flattener = new Flattener(repository, models).createOperationalTemplate(true);
 
-        Archetype flattened = flattener.flatten(child);
+        Archetype flattened = flattener.flatten(child, 0);
         ResourceAnnotations annotations = flattened.getAnnotations();
         assertEquals("xxxxxx", annotations.getDocumentation().get("en").get("/subject").get("design note"));
         assertEquals("this is a design note on allergic reaction, with some extra information", annotations.getDocumentation().get("en").get("/data[id2]/events[id3]/data[id4]/items[id5]").get("design note"));
@@ -58,7 +58,7 @@ public class AnnotationsFlattenerTest {
 
         flattener = new Flattener(repository, models).createOperationalTemplate(true);
 
-        Archetype flattened = flattener.flatten(parent);
+        Archetype flattened = flattener.flatten(parent, 0);
         ResourceAnnotations annotations = flattened.getAnnotations();
         assertEquals("xxxxxx", annotations.getDocumentation().get("en").get("/subject").get("design note"));
         assertEquals("this is a design note on allergic reaction", annotations.getDocumentation().get("en").get("/data[id2]/events[id3]/data[id4]/items[id5]").get("design note"));
@@ -71,7 +71,7 @@ public class AnnotationsFlattenerTest {
 
         flattener = new Flattener(repository, models);
 
-        Archetype flattened = flattener.flatten(child);
+        Archetype flattened = flattener.flatten(child, 0);
         ResourceAnnotations annotations = flattened.getAnnotations();
         assertEquals("xxxxxx", annotations.getDocumentation().get("en").get("/subject").get("design note"));
         assertEquals("this is a design note on allergic reaction, with some extra information", annotations.getDocumentation().get("en").get("/data[id2]/events[id3]/data[id4]/items[id5]").get("design note"));
@@ -85,7 +85,7 @@ public class AnnotationsFlattenerTest {
 
         flattener = new Flattener(repository, models);
 
-        Archetype flattened = flattener.flatten(parent);
+        Archetype flattened = flattener.flatten(parent, 0);
         ResourceAnnotations annotations = flattened.getAnnotations();
         assertEquals("xxxxxx", annotations.getDocumentation().get("en").get("/subject").get("design note"));
         assertEquals("this is a design note on allergic reaction", annotations.getDocumentation().get("en").get("/data[id2]/events[id3]/data[id4]/items[id5]").get("design note"));
@@ -98,7 +98,7 @@ public class AnnotationsFlattenerTest {
 
         flattener = new Flattener(repository, models).createOperationalTemplate(true);
 
-        Archetype flattend = flattener.flatten(withUsedArchetype);
+        Archetype flattend = flattener.flatten(withUsedArchetype, 0);
         ResourceAnnotations annotations = flattend.getAnnotations();
         assertEquals("xxxxxx", annotations.getDocumentation().get("en").get("/subject").get("design note"));
         assertEquals("this is a design note on allergic reaction", annotations.getDocumentation().get("en").get("/data[id2]/events[id3]/data[id4]/items[id5]").get("design note"));

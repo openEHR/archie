@@ -141,7 +141,7 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         repository.addArchetype(heightTemplate);
 
         Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels()).createOperationalTemplate(true);
-        Archetype operationalTemplate = flattener.flatten(bloodPressureComposition);
+        Archetype operationalTemplate = flattener.flatten(bloodPressureComposition, 0);
         Archetype parsed = roundtrip(operationalTemplate);
         TestUtil.assertCObjectEquals(operationalTemplate.getDefinition(), parsed.getDefinition());
     }

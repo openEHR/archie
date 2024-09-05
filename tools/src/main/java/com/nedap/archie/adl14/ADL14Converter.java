@@ -86,7 +86,7 @@ public class ADL14Converter {
                     if(parent == null) {
                         throw new RuntimeException(MessageFormat.format("Cannot find parent {0} for archetype {1}", archetype.getParentArchetypeId(), archetype.getArchetypeId()));
                     }
-                    Archetype flatParent = new Flattener(repository, metaModels).flatten(parent);
+                    Archetype flatParent = new Flattener(repository, metaModels).flatten(parent, 0);
                     result = convert(archetype, flatParent, previousConversion);
                     if (result.getArchetype() != null) {
                         if(conversionConfiguration.isApplyDiff()) {

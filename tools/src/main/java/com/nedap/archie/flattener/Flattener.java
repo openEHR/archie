@@ -100,7 +100,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         return this;
     }
 
-    public Archetype flatten(Archetype toFlatten) {
+    public Archetype flatten(Archetype toFlatten, int depth) {
         if(parent != null) {
             throw new IllegalStateException("You've used this flattener before - single use instance, please create a new one!");
         }
@@ -114,7 +114,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                 OperationalTemplate template = optCreator.createOperationalTemplate(toFlatten);
                 result = template;
                 //make an operational template by just filling complex object proxies and archetype slots
-                optCreator.fillSlots(template);
+                optCreator.fillSlots(template, depth);
                 optCreator.expandValueSets((OperationalTemplate) result);
                 fillOptEmptyOccurrences(result);
                 TerminologyFlattener.filterLanguages(template, config.isRemoveLanguagesFromMetaData(), config.getLanguagesToKeep());
@@ -147,7 +147,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         if(parent.getParentArchetypeId() != null) {
             //parent needs flattening first
             Flattener parentFlattener = getNewFlattenerForParent();
-            parent = parentFlattener.flatten(parent);
+            parent = parentFlattener.flatten(parent, 0);
             // Add the template overlays from the parents (if any) to the repository,
             // so template overlays specializing other template overlays can be flattened.
             parentFlattener.getRepository().getExtraArchetypes().forEach(
@@ -190,7 +190,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         //but be added to the rules section additionally to the base rules.
         rulesFlattener.combineRules(child, result, prefix, "", "", true /* override statements with same tag */);
         if(config.isCreateOperationalTemplate()) {
-            optCreator.fillSlots((OperationalTemplate) result);
+            optCreator.fillSlots((OperationalTemplate) result, depth);
 
         }
         fillOptEmptyOccurrences(result);
@@ -213,7 +213,7 @@ public class Flattener implements IAttributeFlattenerSupport {
             Template childTemplate = (Template) child;
             //we need to add the flattened template overlays. For operational template these have been added to the archetype structure, so not needed
             for(TemplateOverlay overlay:((Template) child).getTemplateOverlays()){
-                TemplateOverlay flatOverlay = (TemplateOverlay) getNewFlattener().flatten(overlay);
+                TemplateOverlay flatOverlay = (TemplateOverlay) getNewFlattener().flatten(overlay, 0);
                 ResourceDescription description = (ResourceDescription) result.getDescription().clone();
                 //not sure whether to do this or to implement these methods using the owningTemplate param.
                 //in many cases you do want this information...

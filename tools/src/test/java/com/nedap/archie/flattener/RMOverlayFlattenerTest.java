@@ -42,7 +42,7 @@ public class RMOverlayFlattenerTest {
         repository.compile(new ArchetypeValidator(AllMetaModelsInitialiser.getMetaModels()));
 
         repository.getAllValidationResults().forEach(v -> assertTrue(v.getErrors().toString(), !v.hasWarningsOrErrors()));
-        OperationalTemplate opt = (OperationalTemplate) new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(composition);
+        OperationalTemplate opt = (OperationalTemplate) new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(composition, 0);
         assertEquals(VisibilityType.HIDE, opt.getRmOverlay().getRmVisibility().get("/content[id2]/subject").getVisibility());
         assertEquals("at12", opt.getRmOverlay().getRmVisibility().get("/content[id2]/subject").getAlias().getCodeString());
     }

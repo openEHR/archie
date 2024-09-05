@@ -32,7 +32,7 @@ public class TermCodeSpecializationTest {
             assertTrue(validationResult.toString(), validationResult.passes());
         }
         Flattener flattener = new Flattener(repo, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(child);
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(child, 0);
         ValueSet valueSet = opt.getTerminology().getValueSets().get("ac0.2");
         assertEquals(new LinkedHashSet<>(Arrays.asList("at1", "at2", "at3", "at0.1")), valueSet.getMembers());
     }

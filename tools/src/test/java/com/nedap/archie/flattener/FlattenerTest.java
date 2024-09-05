@@ -91,7 +91,7 @@ public class FlattenerTest {
 
     @Test
     public void archetypeSlotReplacement() {
-        Archetype flattened = flattener.flatten(bloodPressureWithSynopsis);
+        Archetype flattened = flattener.flatten(bloodPressureWithSynopsis, 0);
         List<CObject> content = flattened.getDefinition().getAttribute("content").getChildren();
         assertEquals(2, content.size());
         //one archetyperoot, one slot. Slot is closed and this is an operational template
@@ -110,13 +110,13 @@ public class FlattenerTest {
 
     @Test
     public void reportResult() throws Exception {
-        Archetype flattened = flattener.flatten(reportResult);
+        Archetype flattened = flattener.flatten(reportResult, 0);
         //TODO: nice to know there are no exceptions. Now add assertions
     }
 
     @Test
     public void checkParentReplacement() throws Exception {
-        Archetype flattened = flattener.flatten(bloodPressureComposition);
+        Archetype flattened = flattener.flatten(bloodPressureComposition, 0);
 
         Stack<CObject> worklist = new Stack<>();
         worklist.add(flattened.getDefinition());
@@ -143,7 +143,7 @@ public class FlattenerTest {
 
     @Test
     public void useNodeReplacement() throws Exception {
-        Archetype flattened = flattener.flatten(bloodPressureComposition);
+        Archetype flattened = flattener.flatten(bloodPressureComposition, 0);
 
         Stack<CObject> worklist = new Stack<>();
         worklist.add(flattened.getDefinition());
@@ -167,7 +167,7 @@ public class FlattenerTest {
 
     @Test
     public void testComponentTerminologies() throws Exception {
-        Archetype flattened = flattener.flatten(bloodPressureComposition);
+        Archetype flattened = flattener.flatten(bloodPressureComposition, 0);
 
         CComplexObject definition = flattened.getDefinition();
         //you definately need component terminologies to translate this :)
@@ -179,7 +179,7 @@ public class FlattenerTest {
 
     @Test
     public void testTermForArchetypeRoot() {
-        Archetype flattened = flattener.flatten(reportWithSynopsis);
+        Archetype flattened = flattener.flatten(reportWithSynopsis, 0);
 
         CComplexObject definition = flattened.getDefinition();
         CObject object = (CObject) flattened.itemAtPath("/content[id0.0.3]");
@@ -190,7 +190,7 @@ public class FlattenerTest {
     @Test
     public void height() throws Exception {
         assertTrue(heightTemplate.isDifferential());
-        Archetype flattened = flattener.flatten(heightTemplate);
+        Archetype flattened = flattener.flatten(heightTemplate, 0);
         assertFalse(flattened.isDifferential());
         CObject object = (CObject) flattened.itemAtPath("/content[openEHR-EHR-OBSERVATION.ovl-length-height-001.v1.0.0]");
 
@@ -220,7 +220,7 @@ data matches {
         assertTrue(bloodPressureObservation.getTerminology().getTermDefinitions().containsKey("nl"));
         assertTrue(bloodPressureObservation.getTerminology().getTermDefinitions().containsKey("en"));
 
-        Archetype flattened = flattener.flatten(bloodPressureObservation);
+        Archetype flattened = flattener.flatten(bloodPressureObservation, 0);
         assertFalse(flattened.getTerminology().getTermDefinitions().containsKey("ru"));
         assertTrue(flattened.getTerminology().getTermDefinitions().containsKey("nl"));
         assertTrue(flattened.getTerminology().getTermDefinitions().containsKey("en"));
@@ -237,10 +237,10 @@ data matches {
 
     @Test
     public void removeLanguagesFromComponentTerminologies() throws Exception {
-        OperationalTemplate flattenedWithLanguages = (OperationalTemplate) flattener.flatten(bloodPressureComposition);
+        OperationalTemplate flattenedWithLanguages = (OperationalTemplate) flattener.flatten(bloodPressureComposition, 0);
 
         flattener = new Flattener(repository, models).createOperationalTemplate(true).keepLanguages("en", "nl");
-        OperationalTemplate flattenedWithoutLanguages = (OperationalTemplate) flattener.flatten(bloodPressureComposition);
+        OperationalTemplate flattenedWithoutLanguages = (OperationalTemplate) flattener.flatten(bloodPressureComposition, 0);
 
         for(String key:flattenedWithoutLanguages.getComponentTerminologies().keySet()) {
             assertFalse(flattenedWithoutLanguages.getComponentTerminologies().get(key).getTermDefinitions().containsKey("es-ar"));
@@ -256,7 +256,7 @@ data matches {
         assertTrue(bloodPressureObservation.getTerminology().getTermDefinitions().containsKey("ru"));
         assertTrue(bloodPressureObservation.getTerminology().getTermDefinitions().containsKey("nl"));
         assertTrue(bloodPressureObservation.getTerminology().getTermDefinitions().containsKey("en"));
-        Archetype flattened = flattener.flatten(bloodPressureObservation);
+        Archetype flattened = flattener.flatten(bloodPressureObservation, 0);
         assertFalse(flattened.getTerminology().getTermDefinitions().containsKey("ru"));
         assertTrue(flattened.getTerminology().getTermDefinitions().containsKey("nl"));
         assertTrue(flattened.getTerminology().getTermDefinitions().containsKey("en"));

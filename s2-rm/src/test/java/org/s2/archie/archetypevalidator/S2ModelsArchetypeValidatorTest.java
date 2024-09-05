@@ -44,7 +44,7 @@ public class S2ModelsArchetypeValidatorTest {
 
 
     @Test
-    public void fullCKMTest() {
+    public void fullRepoTestRm() {
 
         FullArchetypeRepository repository = ArchetypeRepositoryBuilder.parseRepository(this.getClass(), "s2-models");
         ReferenceModels models = new ReferenceModels();
@@ -56,7 +56,7 @@ public class S2ModelsArchetypeValidatorTest {
     }
 
     @Test
-    public void fullCKMTestBmm() {
+    public void fullRepoTestBmm() {
         MetaModels bmmReferenceModels = new MetaModels(null, AllMetaModelsInitialiser.getBmmRepository(), AllMetaModelsInitialiser.getAomProfiles());
 
         FullArchetypeRepository repository = ArchetypeRepositoryBuilder.parseRepository(this.getClass(), "s2-models");

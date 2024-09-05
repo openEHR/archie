@@ -28,7 +28,7 @@ public class OperationalTemplateCreatorTest {
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.cluster_with_annotations.v1.adls")) {
             Archetype archetype = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(stream);
             Flattener flattener = new Flattener(new SimpleArchetypeRepository(), AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype);
+            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype, 0);
 
             Stack<CObject> workList = new Stack<>();
             workList.push(template.getDefinition());
@@ -53,7 +53,7 @@ public class OperationalTemplateCreatorTest {
             FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forOperationalTemplate();
             flattenerConfiguration.setFillEmptyOccurrences(false);
             Flattener flattener = new Flattener(new SimpleArchetypeRepository(), AllMetaModelsInitialiser.getMetaModels(), flattenerConfiguration);
-            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype);
+            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype, 0);
 
             Stack<CObject> workList = new Stack<>();
             workList.push(template.getDefinition());
@@ -77,7 +77,7 @@ public class OperationalTemplateCreatorTest {
             Archetype archetype = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(stream);
             FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forOperationalTemplate();
             Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), flattenerConfiguration);
-            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype);
+            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype, 0);
             fail();
         }
     }
@@ -89,7 +89,7 @@ public class OperationalTemplateCreatorTest {
             FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forOperationalTemplate();
             flattenerConfiguration.setFailOnMissingUsedArchetype(false);
             Flattener flattener = new Flattener(new SimpleArchetypeRepository(), AllMetaModelsInitialiser.getMetaModels(), flattenerConfiguration);
-            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype);
+            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype, 0);
 
             CArchetypeRoot archetypeRoot = template.getDefinition().itemAtPath("/data[id2]/events[id3]/data[id4]/items[id8]");
             assertEquals("openEHR-EHR-CLUSTER.cluster_with_annotations.v1", archetypeRoot.getArchetypeRef());
@@ -140,7 +140,7 @@ public class OperationalTemplateCreatorTest {
         models.registerModel(OpenEhrRmInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
-        return new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), config).flatten(parse(fileName));
+        return new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), config).flatten(parse(fileName), 0);
     }
 
     private Archetype parse(String filePath) throws IOException, ADLParseException {

@@ -36,7 +36,7 @@ public class ArchetypeTerminologyTest {
 
         //create operational template
         Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(repository.getArchetype("openEHR-EHR-COMPOSITION.parent.v1.0.0"));
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(repository.getArchetype("openEHR-EHR-COMPOSITION.parent.v1.0.0"), 0);
 
         //and check the getTerm() functionality
         CArchetypeRoot useArchetype = opt.itemAtPath("/content[id2]");

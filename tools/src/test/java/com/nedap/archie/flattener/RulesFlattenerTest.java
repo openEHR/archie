@@ -47,7 +47,7 @@ public class RulesFlattenerTest {
 
     @Test
     public void specializedRules() throws ADLParseException {
-        Archetype flattened = flattener.flatten(specializedRules);
+        Archetype flattened = flattener.flatten(specializedRules, 0);
         assertEquals(5, flattened.getRules().getRules().size()); //three original rules, one overwritten, one added
 
         ExpressionVariable systolic = (ExpressionVariable) flattened.getRules().getRules().get(0);
@@ -73,7 +73,7 @@ public class RulesFlattenerTest {
 
     @Test
     public void flattenedRules() throws Exception {
-        Archetype flattened = flattener.flatten(containingRules);
+        Archetype flattened = flattener.flatten(containingRules, 0);
 
         CObject systolicCObject = flattened.itemAtPath("/content[id5]/data/events/data/items[id5]");
         assertEquals("systolic", systolicCObject.getTerm().getText());

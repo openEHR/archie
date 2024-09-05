@@ -5,6 +5,7 @@ import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.definitions.AdlDefinitions;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
 
 import java.util.*;
@@ -49,10 +50,10 @@ class OperationalTemplateCreator {
         result.setParentArchetypeId(override.getParentArchetypeId());
     }
 
-    public void fillSlots(OperationalTemplate archetype) { //should this be OperationalTemplate?
+    public void fillSlots(OperationalTemplate archetype, int depth) { //should this be OperationalTemplate?
         //TODO: closing archetype slots should be moved to AFTER including other archetypes
         closeArchetypeSlots(archetype);
-        fillArchetypeRoots(archetype);
+        fillArchetypeRoots(archetype, depth);
         fillComplexObjectProxies(archetype);
     }
 
@@ -135,7 +136,7 @@ class OperationalTemplateCreator {
         }
     }
 
-    private void fillArchetypeRoots(OperationalTemplate result) {
+    private void fillArchetypeRoots(OperationalTemplate result, int depth) {
         if(!getConfig().isFillArchetypeRoots()) {
             return;
         }
@@ -146,7 +147,7 @@ class OperationalTemplateCreator {
             for(CAttribute attribute:object.getAttributes()) {
                 for(CObject child:attribute.getChildren()) {
                     if(child instanceof CArchetypeRoot) { //use_archetype
-                        fillArchetypeRoot((CArchetypeRoot) child, result);
+                        fillArchetypeRoot((CArchetypeRoot) child, result, depth + 1);
                     }
                     workList.push(child);
                 }
@@ -187,8 +188,10 @@ class OperationalTemplateCreator {
     /**
      * Only fillArchetypeRoot if this is not done yet
      */
-    private void fillArchetypeRoot(CArchetypeRoot root, OperationalTemplate result) {
-        if(flattener.getCreateOperationalTemplate() && ( root.getAttributes() == null || root.getAttributes().isEmpty()) ) {
+    private void fillArchetypeRoot(CArchetypeRoot root, OperationalTemplate result, int depth) {
+        if(flattener.getCreateOperationalTemplate() &&
+                ( root.getAttributes() == null || root.getAttributes().isEmpty()) &&
+                depth <= AdlDefinitions.TemplateMaxDepth) {
             String archetypeRef = root.getArchetypeRef();
             String newArchetypeRef = archetypeRef;
             OverridingArchetypeRepository repository = flattener.getRepository();
@@ -208,7 +211,7 @@ class OperationalTemplateCreator {
                     return;
                 }
             }
-            archetype = flattener.getNewFlattener().flatten(archetype);
+            archetype = flattener.getNewFlattener().flatten(archetype, depth);
 
             //
             CComplexObject rootToFill = root;

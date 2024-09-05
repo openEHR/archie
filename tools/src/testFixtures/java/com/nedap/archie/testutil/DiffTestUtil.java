@@ -32,7 +32,7 @@ public class DiffTestUtil {
         Archetype parent = ParseValidArchetypeTestUtil.parse(caller, archetypesResourceLocation + parentFileName);
         repository.addArchetype(parent);
         Archetype child = ParseValidArchetypeTestUtil.parse(caller, archetypesResourceLocation + childFileName);
-        Archetype flattened = new Flattener(repository, models).flatten(child);
+        Archetype flattened = new Flattener(repository, models).flatten(child, 0);
         assertEquals(child.getParentArchetypeId(), flattened.getParentArchetypeId());
 
         Archetype diffed = new Differentiator(AllMetaModelsInitialiser.getMetaModels()).differentiate(flattened, parent);
@@ -52,7 +52,7 @@ public class DiffTestUtil {
         repository.addArchetype(parent);
         Archetype child = ParseValidArchetypeTestUtil.parse(caller, archetypesResourceLocation + childFileName);
         Archetype expectedDiff = ParseValidArchetypeTestUtil.parse(caller, expectationsResourceLocation + childFileName);
-        Archetype flattened = new Flattener(repository, models).flatten(child);
+        Archetype flattened = new Flattener(repository, models).flatten(child, 0);
         assertEquals(child.getParentArchetypeId(), flattened.getParentArchetypeId());
 
         Archetype diffed = new Differentiator(AllMetaModelsInitialiser.getMetaModels()).differentiate(flattened, parent);

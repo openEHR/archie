@@ -33,4 +33,8 @@ public class AdlDefinitions extends BasicDefinitions {
     public static final String GENERATED = "generated";
     public static final String RM_RELEASE = "rm_release";
     public static final String UID = "uid";
+
+    // Maximum depth of use_archetype reference graph created by a template
+    public final static int TemplateMaxDepth = 10;
+
 }
