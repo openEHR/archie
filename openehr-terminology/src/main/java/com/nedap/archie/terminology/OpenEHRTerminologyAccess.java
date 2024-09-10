@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class OpenEHRTerminologyAccess implements TerminologyAccess {
 
     private static final Pattern openEHRTermIdPattern = Pattern.compile("http://openehr.org/id/(?<id>[0-9]+)");
-    private static final Pattern IANATermIdPattern = Pattern.compile("https://www.w3.org/ns/iana/media-types/(?<type>[A-Za-z]+)/(?<subtype>[A-Za-z]+)#Resource");
+    private static final Pattern IANATermIdPattern = Pattern.compile("https://www.w3.org/ns/iana/media-types/(?<type>.+)/(?<subtype>.+)#Resource");
 
     static volatile OpenEHRTerminologyAccess instance;
     static boolean READ_FROM_JSON = true;
