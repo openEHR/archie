@@ -150,7 +150,7 @@ class FixableAssertionsChecker {
                             /// it would be better to check the actual type, but hasn't been done now
                             //this limits this to the OpenEHR RM
                             path = path + "/defining_code/code_string";
-                        } else if (path.endsWith("defining_code")) {
+                        } else {
                             path = path + "/code_string";
                         }
                         setPathsToValues(assertionResult, path, valueList);

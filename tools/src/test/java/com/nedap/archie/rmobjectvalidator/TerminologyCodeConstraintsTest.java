@@ -48,6 +48,10 @@ public class TerminologyCodeConstraintsTest {
             put("openehr", new HashMap<String, URI>() {{
                 put("at9000", URI.create("http://openehr.org/id/532"));
             }});
+
+            put("IANA_media-types", new HashMap<String, URI>() {{
+                put("at9001", URI.create("https://www.w3.org/ns/iana/media-types/text/plain#Resource"));
+            }});
         }});
         archetype.setTerminology(terminology);
 
@@ -107,6 +111,26 @@ public class TerminologyCodeConstraintsTest {
         text.setDefiningCode(new CodePhrase("[openehr::532]"));
         assertTrue(validationHelper.isValidValue(code, text));
         text.setDefiningCode(new CodePhrase("[openehr::999]"));
+        assertFalse(validationHelper.isValidValue(code, text));
+        text.setDefiningCode(new CodePhrase());
+        assertFalse(validationHelper.isValidValue(code, text));
+        text.setDefiningCode(null);
+        assertFalse(validationHelper.isValidValue(code, text));
+        assertFalse(validationHelper.isValidValue(code, null));
+    }
+
+    @Test
+    public void IANATerminology() {
+        CTerminologyCode code = new CTerminologyCode();
+        code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
+        code.addConstraint("at9001");
+        code.setConstraintStatus(ConstraintStatus.REQUIRED);
+
+        DvCodedText text = new DvCodedText();
+        text.setValue("does not matter for this validation");
+        text.setDefiningCode(new CodePhrase("[IANA_media-types::text/plain]"));
+        assertTrue(validationHelper.isValidValue(code, text));
+        text.setDefiningCode(new CodePhrase("[IANA_media-types::abc/def]"));
         assertFalse(validationHelper.isValidValue(code, text));
         text.setDefiningCode(new CodePhrase());
         assertFalse(validationHelper.isValidValue(code, text));
