@@ -21,6 +21,8 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
+import org.openehr.bmm.persistence.validation.BmmDefinitions;
+
 import java.util.List;
 
 /**
@@ -36,7 +38,7 @@ public class BmmContainerType extends BmmType {
     private BmmGenericClass containerType;
 
     /**
-     *
+     * The type of the contained item
      */
     private BmmUnitaryType baseType;
 
@@ -90,7 +92,8 @@ public class BmmContainerType extends BmmType {
      */
     @Override
     public String getTypeName() {
-        return containerType.getName() + "<" + baseType.getTypeName() + ">";
+        return containerType.getName() +
+                BmmDefinitions.GENERIC_LEFT_DELIMITER + baseType.getTypeName() + BmmDefinitions.GENERIC_RIGHT_DELIMITER;
     }
 
     /**
