@@ -122,7 +122,7 @@ public class RMPathQueryTest {
         Archetype archetype_specialised = TestUtil.parseFailOnErrors(this.getClass(),"/basic_specialised.adls");
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
         Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised);
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised,0);
         root = (Pathable) testUtil.constructEmptyRMObject(opt.getDefinition());
 
         Element element = new RMPathQuery("/context/other_context[id2]/items[id3]/items[id5]", true).find(OpenEhrRmInfoLookup.getInstance(), root);
@@ -137,7 +137,7 @@ public class RMPathQueryTest {
         Archetype archetype_specialised = TestUtil.parseFailOnErrors(this.getClass(),"/basic_specialised.adls");
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
         Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised);
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised,0);
         root = (Pathable) testUtil.constructEmptyRMObject(opt.getDefinition());
 
         List<RMObjectWithPath> list = new RMPathQuery("/context/other_context[id2]/items[id3]/items[id5]", true).findList(OpenEhrRmInfoLookup.getInstance(), root);
@@ -154,7 +154,7 @@ public class RMPathQueryTest {
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised_twice);
         Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised_twice);
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised_twice,0);
         root = (Pathable) testUtil.constructEmptyRMObject(opt.getDefinition());
 
         List<RMObjectWithPath> listId5 = new RMPathQuery("/context/other_context[id2]/items[id3]/items[id5]", true).findList(OpenEhrRmInfoLookup.getInstance(), root);

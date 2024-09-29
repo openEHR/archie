@@ -94,7 +94,7 @@ public class JAXBAOMRoundTripTest {
         repository.addArchetype(heightTemplate);
 
         Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getNativeRms()).createOperationalTemplate(true);
-        Archetype operationalTemplate = flattener.flatten(bloodPressureComposition);
+        Archetype operationalTemplate = flattener.flatten(bloodPressureComposition, 0);
         operationalTemplate.getOtherMetaData().put("test", "something");
         String xml = marshal(operationalTemplate);
         System.out.println(xml);

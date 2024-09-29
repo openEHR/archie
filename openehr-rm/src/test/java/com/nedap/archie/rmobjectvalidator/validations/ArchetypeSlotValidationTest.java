@@ -53,9 +53,9 @@ public class ArchetypeSlotValidationTest {
         repository.addArchetype(included);
         repository.addArchetype(parentOfIncluded);
 
-        parentOpt = (OperationalTemplate) createFlattener().flatten(parent);
-        includedOpt = (OperationalTemplate) createFlattener().flatten(included);
-        parentOfIncludedOpt = (OperationalTemplate) createFlattener().flatten(parentOfIncluded);
+        parentOpt = (OperationalTemplate) createFlattener().flatten(parent,0);
+        includedOpt = (OperationalTemplate) createFlattener().flatten(included,0);
+        parentOfIncludedOpt = (OperationalTemplate) createFlattener().flatten(parentOfIncluded,0);
 
         repository.setOperationalTemplate(parentOpt);
         repository.setOperationalTemplate(includedOpt);

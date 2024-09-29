@@ -305,7 +305,7 @@ public class FlatJsonGeneratorTest {
         try (InputStream stream = getClass().getResourceAsStream(BLOOD_PRESSURE_PATH)) {
             Archetype bloodPressure = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(stream);
             Flattener flattener = new Flattener(new SimpleArchetypeRepository(), AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-            return (OperationalTemplate) flattener.flatten(bloodPressure);
+            return (OperationalTemplate) flattener.flatten(bloodPressure,0);
         }
     }
 
@@ -313,7 +313,7 @@ public class FlatJsonGeneratorTest {
         try (InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.element_with_two_dv_types.v1.0.0.adls")) {
             Archetype typeAlternatives = new ADLParser(AllMetaModelsInitialiser.getMetaModels()).parse(stream);
             Flattener flattener = new Flattener(new SimpleArchetypeRepository(), AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-            return (OperationalTemplate) flattener.flatten(typeAlternatives);
+            return (OperationalTemplate) flattener.flatten(typeAlternatives,0);
         }
     }
 

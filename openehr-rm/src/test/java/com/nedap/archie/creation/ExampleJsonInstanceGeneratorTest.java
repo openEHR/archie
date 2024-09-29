@@ -172,7 +172,7 @@ public class ExampleJsonInstanceGeneratorTest {
                 String json = "";
                 try {
                     Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels()).createOperationalTemplate(true);
-                    OperationalTemplate template = (OperationalTemplate) flattener.flatten(result.getSourceArchetype());
+                    OperationalTemplate template = (OperationalTemplate) flattener.flatten(result.getSourceArchetype(),0);
                     Map<String, Object> example = structureGenerator.generate(template);
                     json = mapper.writeValueAsString(example);
 
@@ -253,7 +253,7 @@ public class ExampleJsonInstanceGeneratorTest {
         Archetype archetype = parse(s2);
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(archetype);
-        return (OperationalTemplate) new Flattener(repository, AllMetaModelsInitialiser.getMetaModels()).createOperationalTemplate(true).flatten(archetype);
+        return (OperationalTemplate) new Flattener(repository, AllMetaModelsInitialiser.getMetaModels()).createOperationalTemplate(true).flatten(archetype,0);
     }
 
     private Archetype parse(String filename) throws IOException, ADLParseException {

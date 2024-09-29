@@ -186,7 +186,7 @@ public class TerminologyCodeConstraintsTest {
 
         //create operational template
         Flattener flattener = new Flattener(repository, AllMetaModelsInitialiser.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
-        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(repository.getArchetype("openEHR-EHR-COMPOSITION.parent.v1.0.0"));
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(repository.getArchetype("openEHR-EHR-COMPOSITION.parent.v1.0.0"),0);
         CTerminologyCode code = opt.itemAtPath("/content/data/items/value/defining_code[1]");
         assertEquals(Lists.newArrayList("at4", "at5", "at6"), code.getValueSetExpanded());
     }
