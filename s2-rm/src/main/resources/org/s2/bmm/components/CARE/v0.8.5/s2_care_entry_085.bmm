@@ -104,7 +104,7 @@ class_definitions = <
 			>
 			["subject"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"subject">
-				type = <"Party_proxy">
+				type = <"Entity_ref_node">
 				is_mandatory = <True>
 			>
 			["reporter"] = (P_BMM_SINGLE_PROPERTY) <

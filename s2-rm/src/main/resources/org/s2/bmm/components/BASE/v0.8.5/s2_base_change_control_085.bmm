@@ -91,7 +91,7 @@ class_definitions = <
 			>
 			["committer"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"committer">
-				type = <"Party_proxy">
+				type = <"Entity_ref_node">
 				is_mandatory = <True>
 			>
 		>

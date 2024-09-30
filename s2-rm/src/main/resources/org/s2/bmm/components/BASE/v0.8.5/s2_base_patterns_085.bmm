@@ -53,11 +53,11 @@ packages = <
         packages = <
             ["data_structures"] = <
                 name = <"data_structures">
-		        classes = <"Node", "Event", "Point_event", "Interval_event">
+		        classes = <"Node", "Info_node", "Entity_ref_node", "Event", "Point_event", "Interval_event">
 		    >
 			["participation"] = <
 				name = <"participation">
-				classes = <"Participation", "Party_proxy", "Party_identified", "Party_related", "Party_self">
+				classes = <"Participation">
 			>
 			["archetyped"] = <
 				name = <"archetyped">
@@ -81,13 +81,10 @@ class_definitions = <
 	["Node"] = <
 		name = <"Node">
 		ancestors = <"Info_item">
+		is_abstract = <True>
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
-				type = <"Data_value">
-			>
-			["original_value"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"original_value">
 				type = <"Data_value">
 			>
 			["null_flavor"] = (P_BMM_SINGLE_PROPERTY) <
@@ -107,6 +104,33 @@ class_definitions = <
 					container_type = <"List">
 					type = <"Node">
 				>
+			>
+		>
+	>
+
+	["Info_node"] = <
+		name = <"Info_node">
+		ancestors = <"Node">
+		properties = <
+			["original_value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"original_value">
+				type = <"Data_value">
+			>
+		>
+	>
+
+	["Entity_ref_node"] = <
+		name = <"Entity_ref_node">
+		ancestors = <"Node">
+		properties = <
+			["is_self"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_self">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["entity_ref"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"entity_ref">
+				type = <"Object_ref">
 			>
 		>
 	>
@@ -165,7 +189,7 @@ class_definitions = <
 
 	["Participation"] = <
 		name = <"Participation">
-		ancestors = <"Any">
+		ancestors = <"Locatable">
 		properties = <
 			["function"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"function">
@@ -192,62 +216,10 @@ class_definitions = <
 			>
 			["performer"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"performer">
-				type = <"Party_proxy">
+				type = <"Entity_ref_node">
 				is_mandatory = <True>
 			>
 		>
-	>
-
-	["Party_proxy"] = <
-		name = <"Party_proxy">
-		is_abstract = <True>
-		ancestors = <"Any">
-		properties = <
-			["external_ref"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"external_ref">
-				type = <"Object_ref">
-				is_im_infrastructure = <True>
-			>
-		>
-	>
-
-	["Party_identified"] = <
-		name = <"Party_identified">
-		ancestors = <"Party_proxy">
-		properties = <
-			["name"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"name">
-				type = <"String">
-			>
-			["identifiers"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"identifiers">
-				type_def = <
-					container_type = <"List">
-					type = <"Rwe_id_ref">
-				>
-				is_im_runtime = <True>
-			>
-		>
-	>
-
-	["Party_related"] = <
-		name = <"Party_related">
-		ancestors = <"Party_identified">
-		properties = <
-			["relationship"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"relationship">
-				type_ref = <
-					type = <"Terminology_term">
-					value_constraint = <"s2.Relationship">
-				>
-				is_mandatory = <True>
-			>
-		>
-	>
-
-	["Party_self"] = <
-		name = <"Party_self">
-		ancestors = <"Party_proxy">
 	>
 
 	--
@@ -418,17 +390,17 @@ class_definitions = <
 			>
 			["location"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"location">
-				type = <"Party_identified">
+				type = <"Entity_ref_node">
 				is_im_runtime = <True>
 			>
 			["provider"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"provider">
-				type = <"Party_identified">
+				type = <"Entity_ref_node">
 				is_im_runtime = <True>
 			>
 			["subject"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"subject">
-				type = <"Party_proxy">
+				type = <"Entity_ref_node">
 				is_im_runtime = <True>
 			>
 			["time"] = (P_BMM_SINGLE_PROPERTY) <

@@ -1,0 +1,128 @@
+-- 
+-- 	component:   Graphite Reference Model BMM
+-- 	description: Graphite Reference Model component formal expression. This file is an ODIN serialisation of
+--                   the BMM object meta-model classes found at 
+--                   https://www.openEHR.org/releases/LANG/latest/p_bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphite.atlassian.net/issues/
+-- 	copyright:   Copyright (c) 2023- Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+--
+
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"admin">
+rm_release = <"0.8.5">
+
+model_name = <"ADMIN">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.8.5.1">
+schema_lifecycle_state = <"development">
+schema_description = <"S2 Release 0.8.5 Admin model schema"> 
+schema_author = <"Thomas Beale <thomas.beale@graphitehealth.io>">
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_entity_0.8.5">
+	>
+>
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.s2.admin"] = <
+		name = <"org.s2.admin">
+		classes = <"Billing_encounter", "Service_event", "Service_event_state", "Encounter_state">
+	>
+>
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	------------------------------------------------------
+	-- admin
+	------------------------------------------------------
+
+	["Billing_encounter"] = <
+		name = <"Billing_encounter">
+		ancestors = <"Care_process">
+		properties = <
+			["identifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"identifier">
+				type = <"Rwe_id_ref">
+				is_mandatory = <True>
+			>
+			["external_identifiers"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"external_identifiers">
+				type_def = <
+					container_type = <"List">
+					type = <"Id_use">
+				>
+			>
+			["interaction_type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"interaction_type">
+				type = <"Terminology_term">
+			>
+			["lifecycle_state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lifecycle_state">
+				type = <"Encounter_state">
+			>
+			["service_events"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"service_events">
+				type_def = <
+					container_type = <"List">
+					type = <"Service_event">
+				>
+			>
+		>
+	>
+
+	["Service_event"] = <
+		name = <"Service_event">
+		ancestors = <"Care_process">
+		properties = <
+			["lifecycle_state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lifecycle_state">
+				type = <"Service_event_state">
+			>
+			["facility"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"facility">
+				type = <"Entity_ref_node">
+			>
+		>
+	>
+
+	["Encounter_state"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Encounter_state">
+		ancestors = <"String">
+		item_names = <"planned", "in_progress", "on_hold", "discharged", "completed", "cancelled", "discontinued">
+	>
+
+	["Service_event_state"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"Service_event_state">
+		ancestors = <"String">
+		item_names = <"planned", "in_progress", "on_hold", "completed", "cancelled", "abandoned">
+	>
+
+>
+

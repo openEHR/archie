@@ -56,9 +56,9 @@ packages = <
 			["quantity"] = <
 				name = <"quantity">
 				classes = <
-					"Range", "Ordered_datum", "Ordered_value", "Quantified",
-					"Money", "Coded_ordinal", "Measurable", "Compound_measurable", "Simple_measurable",
-					"Quantity", "Proportion", "Ratio", "Titer", "Count", "Ratio_kind", "Stratified",
+					"Range", "Ordered_datum", "Ordered_value",
+					"Money", "Coded_ordinal", "Measurable",
+					"Quantity", "Proportion", "Ratio", "Count", "Ratio_kind",
 					"Measured", "Comparison_operator", "Reference_range", 
 					"Temporal_value", "Date_value", "Date_time_value", "Time_value", "Duration_value"
 				>
@@ -266,13 +266,12 @@ class_definitions = <
 		name = <"Ordered_value">
 		is_abstract = <True>
 		ancestors = <"Ordered_datum">
-	>
-
-	["Quantified"] = <
-		name = <"Quantified">
-		is_abstract = <True>
-		ancestors = <"Ordered_value">
 		properties = <
+			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"magnitude">
+				type = <"Comparable">
+				is_mandatory = <True>
+			>
 			["precision"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"precision">
 				type = <"Integer">
@@ -283,24 +282,11 @@ class_definitions = <
 	["Measurable"] = <
 		name = <"Measurable">
 		is_abstract = <True>
-		ancestors = <"Quantified">
-	>
-
-	["Compound_measurable"] = <
-		name = <"Compound_measurable">
-		is_abstract = <True>
-		ancestors = <"Measurable">
-	>
-
-	["Simple_measurable"] = <
-		name = <"Simple_measurable">
-		is_abstract = <True>
-		ancestors = <"Measurable">
+		ancestors = <"Ordered_value">
 		properties = <
 			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"magnitude">
 				type = <"Numeric">
-				is_mandatory = <True>
 			>
 		>
 	>
@@ -377,7 +363,7 @@ class_definitions = <
 				name = <"interpretation">
 				type_ref = <
 					type = <"Coded_text">
-					value_constraint = <"s2.MeasuredInterpretation">
+					value_constraint = <"s2.QuantitativeInterpretation">
 				>
 			>
 			["interpretation_guide"] = (P_BMM_SINGLE_PROPERTY) <
@@ -395,7 +381,7 @@ class_definitions = <
 
 	["Quantity"] = <
 		name = <"Quantity">
-		ancestors = <"Simple_measurable">
+		ancestors = <"Measurable">
 		properties = <
 			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"magnitude">
@@ -412,7 +398,7 @@ class_definitions = <
 
 	["Count"] = <
 		name = <"Count">
-		ancestors = <"Simple_measurable">
+		ancestors = <"Measurable">
 		properties = <
 			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"magnitude">
@@ -424,8 +410,13 @@ class_definitions = <
 
 	["Proportion"] = <
 		name = <"Proportion">
-		ancestors = <"Compound_measurable">
+		ancestors = <"Measurable">
 		properties = <
+			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"magnitude">
+				type = <"Decimal">
+				is_mandatory = <True>
+			>
 			["numerator"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"numerator">
 				type = <"Quantity">
@@ -439,27 +430,15 @@ class_definitions = <
 		>
 	>
 
-	["Titer"] = <
-		name = <"Titer">
-		ancestors = <"Compound_measurable">
-		properties = <
-			["analyte_factor"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"analyte_factor">
-				type = <"Integer">
-				is_mandatory = <True>
-			>
-			["dilution_factor"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"dilution_factor">
-				type = <"Integer">
-				is_mandatory = <True>
-			>
-		>
-	>
-
 	["Ratio"] = <
 		name = <"Ratio">
-		ancestors = <"Compound_measurable">
+		ancestors = <"Measurable">
 		properties = <
+			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"magnitude">
+				type = <"Decimal">
+				is_mandatory = <True>
+			>
 			["numerator"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"numerator">
 				type = <"Decimal">
@@ -483,44 +462,6 @@ class_definitions = <
 		ancestors = <"Integer">
 		item_names = <"rational_fraction", "fraction", "ratio">
 	>
-
-	["Stratified"] = <
-		name = <"Stratified">
-		ancestors = <"Measurable">
-		generic_parameter_defs = <
-			["V"] = <
-				name = <"V">
-				conforms_to_type = <"Simple_measurable">
-			>
-		>
-		properties = <
-			["value"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
-				name = <"value">
-				type = <"V">
-			>
-			["stratification_range"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"stratification_range">
-				type_def = <
-					root_type = <"Interval">
-					generic_parameters = <"Decimal">
-				>
-				is_im_runtime = <True>
-			>
-			["stratification_system"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"stratification_system">
-				type = <"Terminology_term">
-			>
-			["range_value"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"range_value">
-				type = <"Decimal">
-			>
-			["range_description"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"range_description">
-				type = <"Terminology_term">
-			>
-		>
-	>
-
 
 --
 -- Not needed but may help some tools (replicate for Measured_count etc if used)

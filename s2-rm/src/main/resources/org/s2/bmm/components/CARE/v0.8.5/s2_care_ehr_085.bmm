@@ -155,7 +155,7 @@ class_definitions = <
 		properties = <
 			["subject"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"subject">
-				type = <"Party_self">
+				type = <"Entity_ref_node">
 				is_mandatory = <True>
 			>
 			["is_queryable"] = (P_BMM_SINGLE_PROPERTY) <
@@ -218,7 +218,7 @@ class_definitions = <
 			>
 			["author"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"author">
-				type = <"Party_proxy">
+				type = <"Entity_ref_node">
 				is_mandatory = <True>
 			>
 			["context"] = (P_BMM_SINGLE_PROPERTY) <
@@ -242,7 +242,7 @@ class_definitions = <
 		properties = <
 			["health_care_facility"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"health_care_facility">
-				type = <"Party_identified">
+				type = <"Entity_ref_node">
 			>
 			["start_time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"start_time">
@@ -271,6 +271,10 @@ class_definitions = <
 					type = <"Terminology_term">
 					value_constraint = <"s2.Setting">
 				>
+			>
+			["encounter"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"encounter">
+				type = <"Entity_ref_node">
 			>
 			["other_context"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"other_context">
