@@ -1,0 +1,187 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=dc53a546-cd68-4a22-8625-f1d1f77b02df; build_uid=c774033c-528b-48c9-8176-326f8ade9785)
+    openEHR-EHR-CLUSTER.testts.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::de]>
+
+description
+    original_author = <
+        ["name"] = <"">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"B8E70E8505967D15EC267BEB2EC84885">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Testts
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- A simple existing value set
+                value matches {
+                    DV_CODED_TEXT[id9000] matches {
+                        defining_code matches {[ac2]}    -- test
+                    }
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- With non-existing value set
+                value matches {
+                    DV_CODED_TEXT[id9001] matches {
+                        defining_code matches {[ac3]}    -- test-non
+                    }
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- With just a constraint def, no binding
+                value matches {
+                    DV_CODED_TEXT[id9002] matches {
+                        defining_code matches {[ac4]}    -- a VS without a binding
+                    }
+                }
+            }
+            ELEMENT[id5] occurrences matches {0..1} matches {    -- A hierarchical VS with predefined display, using expand
+                value matches {
+                    DV_CODED_TEXT[id9003] matches {
+                        defining_code matches {[ac5]}    -- a hierachical VS (using expand for predefined)
+                    }
+                }
+            }
+            ELEMENT[id6] occurrences matches {0..1} matches {    -- A hierarchical VS with predefined display, using direct url
+                value matches {
+                    DV_CODED_TEXT[id9004] matches {
+                        defining_code matches {[ac6]}    -- a hierachical VS (not using expand for predefined)
+                    }
+                }
+            }
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- An intensional VS with many codes if expanded
+                value matches {
+                    DV_CODED_TEXT[id9005] matches {
+                        defining_code matches {[ac7]}    -- a INTENSIONAL vs with many codes if expanded
+                    }
+                }
+            }
+            ELEMENT[id8] occurrences matches {0..1} matches {    -- An intensional VS with 40+ codes if expanded
+                value matches {
+                    DV_CODED_TEXT[id9006] matches {
+                        defining_code matches {[ac8]}    -- a INTENSIONAL vs with 40+ codes if expanded
+                    }
+                }
+            }
+            ELEMENT[id9] occurrences matches {0..1} matches {    -- Covid example VS
+                value matches {
+                    DV_CODED_TEXT[id9007] matches {
+                        defining_code matches {[ac9]}    -- Covid example VS
+                    }
+                }
+            }
+            ELEMENT[id9] occurrences matches {0..1} matches {    -- Covid example VS
+                value matches {
+                    DV_CODED_TEXT[id9008] matches {
+                        defining_code matches {[ac10]}    -- Some URN
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["id9"] = <
+                text = <"Covid example VS">
+                description = <"*">
+            >
+            ["id8"] = <
+                text = <"An intensional VS with 40+ codes if expanded">
+                description = <"*">
+            >
+            ["id7"] = <
+                text = <"An intensional VS with many codes if expanded">
+                description = <"*">
+            >
+            ["id6"] = <
+                text = <"A hierarchical VS with predefined display, using direct url">
+                description = <"*">
+            >
+            ["id5"] = <
+                text = <"A hierarchical VS with predefined display, using expand">
+                description = <"*">
+            >
+            ["id4"] = <
+                text = <"With just a constraint def, no binding">
+                description = <"*">
+            >
+            ["id3"] = <
+                text = <"With non-existing value set">
+                description = <"*">
+            >
+            ["id2"] = <
+                text = <"A simple existing value set">
+                description = <"*">
+            >
+            ["id1"] = <
+                text = <"Testts">
+                description = <"unknown">
+            >
+            ["ac10"] = <
+                text = <"Some URN">
+                description = <"*">
+            >
+            ["ac9"] = <
+                text = <"Covid example VS">
+                description = <"*">
+            >
+            ["ac8"] = <
+                text = <"a INTENSIONAL vs with 40+ codes if expanded">
+                description = <"*">
+            >
+            ["ac7"] = <
+                text = <"a INTENSIONAL vs with many codes if expanded">
+                description = <"*">
+            >
+            ["ac6"] = <
+                text = <"a hierachical VS (not using expand for predefined)">
+                description = <"*">
+            >
+            ["ac5"] = <
+                text = <"a hierachical VS (using expand for predefined)">
+                description = <"*">
+            >
+            ["ac4"] = <
+                text = <"a VS without a binding">
+                description = <"*">
+            >
+            ["ac3"] = <
+                text = <"test-non">
+                description = <"*">
+            >
+            ["ac2"] = <
+                text = <"test">
+                description = <"*">
+            >
+        >
+    >
+    term_bindings = <
+        ["SNOMED-CT"] = <
+            ["ac2"] = <terminology://fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/vs/snomed-example-vs>
+            ["ac3"] = <terminology:SNOMED-CT/408733002?subset=Diabetic%20Retinopathy%20Study%20field>
+            ["ac5"] = <terminology://fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/example-hierarchical>
+            ["ac6"] = <terminology://fhir.hl7.org/ValueSet/example-hierarchical>
+            ["ac7"] = <terminology://fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/allergyintolerance-code>
+            ["ac8"] = <terminology://fhir.hl7.org/ValueSet/$expand?url=http://hl7.org/fhir/ValueSet/additional-instruction-codes>
+            ["ac9"] = <terminology://fhir.hl7.org/ValueSet/SARS-CoV-2-symptoms/$expand>
+            ["ac10"] = <urn:something:somethingelse:andmore>
+        >
+    >

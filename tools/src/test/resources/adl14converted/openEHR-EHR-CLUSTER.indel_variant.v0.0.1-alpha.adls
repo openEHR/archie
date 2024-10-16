@@ -1,0 +1,143 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=e72f9e8f-4c1f-49e8-8437-6232e65ab516; build_uid=0413b37a-7361-4108-b1b2-47e63797c145)
+    openEHR-EHR-CLUSTER.indel_variant.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Liv Laugen">
+                ["organisation"] = <"OUS">
+                ["email"] = <"liv.laugen@ous-hf.no">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Cecilia Mascia">
+        ["organisation"] = <"CRS4, Italy">
+        ["email"] = <"cecilia.mascia@crs4.it">
+        ["date"] = <"2017-02-24">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Florian Kaercher, Charité Berlin, Germany", "Francesca Frexia, CRS4, Italy", "Gianluigi Zanetti, CRS4, Italy", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Gideon Giacomelli, Charité Berlin, Germany", "Paolo Uva, CRS4, Italy", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Simon Schumacher, HiGHmed, Germany">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"\"Den Dunnen et al. (2016) HGVS recommendations for the description of sequence variants: 2016 update. Hum.Mutat. 25: 37: 564-569\".">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"42FF653B3255E9F13DD0BE56759CCBAC">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å dokumentere en Indelvarianter funnet i en sekvensering basert på HGVS nomenklaturen.">
+            keywords = <"Indel, varianter, genetikk, genom, variasjon, mutasjon, genetisk endring, nukleotidendring, nukleotidrekkefølge, DNA-sekvens, punktmutasjon, inversjoner og delesjoner", ...>
+            use = <"Denne arketypen skal brukes i \"Variant\" SLOT i \"Genetisk variant\" arketypen.">
+            misuse = <"">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To describe an indel variant observed in a sequence according to the HGVS nomenclature.">
+            keywords = <"indel", "variation", "genetic", "genomic", "variant">
+            use = <"This archetype should be used inside the \"Variant\" SLOT of the \"Genetic variant\" archetype.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Indel variant
+        items cardinality matches {2..*} matches {
+            ELEMENT[id2] occurrences matches {1} matches {    -- Start position
+                value matches {
+                    DV_COUNT[id9000] 
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- End position
+                value matches {
+                    DV_COUNT[id9001] 
+                }
+            }
+            ELEMENT[id6] occurrences matches {0..1} matches {    -- Deleted nucleotide(s)
+                value matches {
+                    DV_TEXT[id9002] 
+                }
+            }
+            ELEMENT[id8] occurrences matches {1} matches {    -- Inserted nucleotide(s)
+                value matches {
+                    DV_TEXT[id9003] 
+                }
+            }
+            allow_archetype CLUSTER[id9] matches {     -- Reference sequence
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.reference_sequence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["id9"] = <
+                text = <"Referansesekvens">
+                description = <"Sekvensfilen som har blitt brukt som en referanse for å beskrive varianten.">
+            >
+            ["id8"] = <
+                text = <"Substitusjonsnukleotid">
+                description = <"Sekvensen som er lagt til.">
+            >
+            ["id6"] = <
+                text = <"Deletert nukleotid">
+                description = <"Nukleotidet eller nukleotidesekvensen som er fjernet.">
+            >
+            ["id4"] = <
+                text = <"Sluttposisjon">
+                description = <"Posisjonen til det siste nukleotidet i det slettede området. (Posisjonen til det siste nukleotidet i delesjonen)">
+            >
+            ["id2"] = <
+                text = <"Startposisjon">
+                description = <"Posisjonen til det slettede nukleotidet eller det første nukleotidet i det slettede området.">
+            >
+            ["id1"] = <
+                text = <"Indel variant">
+                description = <"En endring i DNA-sekvensen hvor en eller flere nukleotider erstattes av en eller flere nukleotider, og som verken er en substisjon, inversjon eller conversion (en) 
+    
+    (en spesiell variant definert som en endring som resulterer i både innsetting (insersjon) av nukleotider og en fjerning (delesjon) av nuklotider)
+    
+    ">
+            >
+        >
+        ["en"] = <
+            ["id9"] = <
+                text = <"Reference sequence">
+                description = <"The sequence file that has been used as a reference to describe the variant.">
+            >
+            ["id8"] = <
+                text = <"Inserted nucleotide(s)">
+                description = <"The sequence inserted.">
+            >
+            ["id6"] = <
+                text = <"Deleted nucleotide(s)">
+                description = <"The deleted nucleotide or sequence.">
+            >
+            ["id4"] = <
+                text = <"End position">
+                description = <"Position of the last nucleotide of the deleted range.">
+            >
+            ["id2"] = <
+                text = <"Start position">
+                description = <"Position of the deleted nucleotide or the first nucleotide of the deleted range.">
+            >
+            ["id1"] = <
+                text = <"Indel variant">
+                description = <"A sequence change where, compared to a reference sequence, one or more nucleotides are replaced by one or more other nucleotides and which is not a substitution, inversion or conversion.">
+            >
+        >
+    >

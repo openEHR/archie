@@ -1,0 +1,527 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=baca045c-2114-4cbe-8918-bda7ee772c67; build_uid=36796d10-b5bf-444c-bdff-64fc9ec4452f)
+    openEHR-EHR-EVALUATION.medication_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            author = <
+                ["name"] = <"Ramona Wellmann">
+                ["organisation"] = <"Medizinische Hochschule Hannover">
+                ["email"] = <"wellmann.ramona@mh-hannover.de">
+            >
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Gro-Hilde Ulriksen">
+                ["organisation"] = <"Norwegian centre for e-health research">
+            >
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Adriana Kitajima, Débora Farage, Fernanda Maia, Laíse Figueiredo, Marivan Abrahão">
+                ["organisation"] = <"Core Consulting">
+                ["email"] = <"contato@coreconsulting.com.br">
+            >
+            accreditation = <"Hospital Alemão Oswaldo Cruz (HAOC)">
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"2015-12-08">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway", "Ian McNicoll, FreshEHR Clinical Informatics, United Kingdom">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"75082BEEF15E139A76B4F5BD3D2E70B3">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"Zur Darstellung von zusammenfassenden Informationen über die Verabreichung und Einnahme eines speziellen Medikaments oder einer bestimmten Medikamentenklasse über die Lebenszeit einer Person.">
+            use = <"Zur Darstellung von zusammenfassenden Informationen über die Verabreichung und Einnahme eines speziellen Medikaments oder einer bestimmten Medikamentenklasse über die Lebenszeit einer Person.
+    ">
+            misuse = <"Nicht zur Darstellung einer Anordnung zur Verabreichung oder Einnahme eines Medikamentes - für diesen Zweck bitte den Archetyp INSTRUCTION.medication_order verwenden.
+    
+    Nicht zur Darstellung der Verabreichung oder Einnahme eines Medikamentes - für diesen Zweck bitte den Archetyp ACTION.medication verwenden.
+    
+    
+    ">
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere et sammendrag om administrasjon eller forbruk av et spesifisert legemiddel eller legemiddelklasse over individets levetid.">
+            use = <"Brukes for å registrere et sammendrag om administrasjon eller forbruk av et spesifisert legemiddel eller legemiddelklasse over individets levetid.">
+            misuse = <"Brukes ikke for å registrere en ordinering av et legemiddel som skal administreres eller forbrukes - bruk arketypen INSTRUCTION.medication_order (Legemiddelordinering) for dette formålet.">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para registrar informações sumarizadas sobre a administração ou histórico de consumo de um medicamento específico ou de uma classe de medicamento durante a vida do indivíduo.
+    ">
+            use = <"Usado para registrar informações sumarizadas sobre a administração ou histórico de consumo de um medicamento específico ou de uma classe de medicamento durante a vida do indivíduo.
+    ">
+            misuse = <"Não deve ser usado para registrar uma solicitação de administração ou consumo de um medicamento - use INSTRUCTION.medication_order para este propósito.
+    
+    Não deve ser usado documentar a administração ou consumo de um medicamento - use ACTION.medication para este propósito.
+    ">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For recording summary information about the administration or consumption history for a specified medication or class of medication over the individual's lifetime.">
+            use = <"Use for recording summary information about the administration or consumption history for a specified medication or class of medication over the individual's lifetime.">
+            misuse = <"Not to be used for recordning an order for a medication to be administered or consumed - use INSTRUCTION.medication_order for this purpose.
+    
+    Not to be used for documenting the administration or consumption of a medication - use ACTION.medication for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Medication summary
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Medication name
+                        value matches {
+                            DV_TEXT[id9000] 
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Ever used?
+                        value matches {
+                            DV_BOOLEAN[id9001] matches {
+                                value matches {True}
+                            }
+                        }
+                    }
+                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Current use?
+                        value matches {
+                            DV_BOOLEAN[id9002] matches {
+                                value matches {True, False}
+                            }
+                        }
+                    }
+                    ELEMENT[id8] occurrences matches {0..1} matches {    -- Clinical description
+                        value matches {
+                            DV_TEXT[id9003] 
+                        }
+                    }
+                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Onset of use
+                        value matches {
+                            DV_DATE_TIME[id9004] 
+                        }
+                    }
+                    CLUSTER[id9] matches {    -- Episode
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id22] occurrences matches {0..1} matches {    -- Specific name
+                                value matches {
+                                    DV_TEXT[id9005] 
+                                }
+                            }
+                            ELEMENT[id12] occurrences matches {0..1} matches {    -- Episode onset
+                                value matches {
+                                    DV_DATE_TIME[id9006] 
+                                }
+                            }
+                            ELEMENT[id19] occurrences matches {0..1} matches {    -- Clinical indication
+                                value matches {
+                                    DV_TEXT[id9007] 
+                                }
+                            }
+                            ELEMENT[id21] occurrences matches {0..1} matches {    -- Intent
+                                value matches {
+                                    DV_TEXT[id9008] 
+                                }
+                            }
+                            ELEMENT[id15] occurrences matches {0..1} matches {    -- Description
+                                value matches {
+                                    DV_TEXT[id9009] 
+                                }
+                            }
+                            ELEMENT[id13] occurrences matches {0..1} matches {    -- Episode cessation
+                                value matches {
+                                    DV_DATE_TIME[id9010] 
+                                }
+                            }
+                            ELEMENT[id17] occurrences matches {0..1} matches {    -- Episode dose
+                                value matches {
+                                    DV_QUANTITY[id9011] 
+                                }
+                            }
+                            ELEMENT[id14] occurrences matches {0..1} matches {    -- Reason for cessation
+                                value matches {
+                                    DV_TEXT[id9012] 
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id16] occurrences matches {0..1} matches {    -- Cumulative dose
+                        value matches {
+                            DV_QUANTITY[id9013] 
+                        }
+                    }
+                    ELEMENT[id11] occurrences matches {0..1} matches {    -- Cessation of use
+                        value matches {
+                            DV_DATE_TIME[id9014] 
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id6] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Last updated
+                        value matches {
+                            DV_DATE_TIME[id9015] 
+                        }
+                    }
+                    allow_archetype CLUSTER[id20] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["id22"] = <
+                text = <"Genaue Bezeichnung">
+                description = <"Genaue Bezeichnung des Medikaments.">
+                comment = <"Dient der Identifizierung des Medikaments, wenn unter \"Name des Medikaments\" eine Medikamentenklasse angegeben wurde. Bitte tragen Sie hier die tatsächliche Medikationsbezeichnung ein. Falls bei \"Name des Medikaments\" bereits die genaue Bezeichnung angegeben wurde, ist dieser Eintrag hier redundant.
+    
+    ">
+            >
+            ["id21"] = <
+                text = <"Intention">
+                description = <"Anwendungszweck">
+                comment = <"Zum Beispiel: palliativ; kurzzeitig; oder für eine bestimmte Dauer">
+            >
+            ["id20"] = <
+                text = <"Erweiterung">
+                description = <"Zusätzliche Informationen zur Erfassung lokaler Inhalte oder Anpassung an andere Referenzmodelle/Formalismen.">
+                comment = <"Zum Beispiel: Lokaler Informationsbedarf oder zusätzliche Metadaten zur Anpassung an FHIR-Ressourcen oder CIMI-Modelle.">
+            >
+            ["id19"] = <
+                text = <"Klinische Indikation">
+                description = <"Die klinische Indikation für die Verabreichung oder die Einnahme des Medikaments.">
+            >
+            ["id17"] = <
+                text = <"Dosis innerhalb des Anwendungszeitraums">
+                description = <"Gesamtdosis innerhalb des Anwendungszeitraums.">
+            >
+            ["id16"] = <
+                text = <"Gesamtdosis">
+                description = <"Gesamtmenge, die jemals verabreicht wurde.">
+            >
+            ["id15"] = <
+                text = <"Beschreibung">
+                description = <"Beschreibung der Anwendung des Medikaments während des definierten Anwendungszeitraums.">
+            >
+            ["id14"] = <
+                text = <"Grund für das Ende der Anwendung">
+                description = <"Der Grund, warum die Anwendung des Medikaments beendet wurde.">
+            >
+            ["id13"] = <
+                text = <"Ende des Anwendungszeitraums">
+                description = <"Das Datum der letzten Anwendung im Anwendungszeitraum.">
+            >
+            ["id12"] = <
+                text = <"Beginn des Anwendungszeitraums">
+                description = <"Das Datum zum Beginn des Anwendungszeitraums.">
+            >
+            ["id11"] = <
+                text = <"Ende der Anwendung">
+                description = <"Datum der letzten Anwendung.">
+            >
+            ["id10"] = <
+                text = <"Beginn der Anwendung">
+                description = <"Erster Tag der ersten Anwendung.">
+            >
+            ["id9"] = <
+                text = <"Anwendungszeitraum">
+                description = <"Details zu jedem Zeitraum der Anwendung.">
+            >
+            ["id8"] = <
+                text = <"Klinische Beschreibung">
+                description = <"Beschreibung der Medikamentenanwendung.">
+            >
+            ["id7"] = <
+                text = <"Datum der letzten Aktualisierung">
+                description = <"Das Datum der letzten Aktualisierung der Zusammenfassung">
+            >
+            ["id5"] = <
+                text = <"Aktuelle Anwendung?">
+                description = <"Findet derzeit das Medikament oder die Medikamentenklasse bei der Person die Anwendung?">
+            >
+            ["id4"] = <
+                text = <"Jemals angewendet?">
+                description = <"Fand das Medikament oder die Medikamentenklasse bei der Person jemals die Anwendung?">
+            >
+            ["id3"] = <
+                text = <"Name des Medikaments">
+                description = <"Name des Medikaments oder der Medikamentenklasse.">
+            >
+            ["id1"] = <
+                text = <"Zusammenfassung der Medikation">
+                description = <"Zusammenfassende Informationen über die Verabreichungen und Einnahmen eines speziellen Medikaments oder einer bestimmten Medikamentenklasse über die Lebenszeit einer Person.">
+            >
+        >
+        ["nb"] = <
+            ["id22"] = <
+                text = <"Detaljert navn">
+                description = <"Detaljert navn på medikamentet">
+                comment = <"Brukt for å identifisere et spesifikt medikament som brukes, hvis en klasse medikamenter er identifisert i 'Medikament navn'">
+            >
+            ["id21"] = <
+                text = <"Hensikt">
+                description = <"Hensikt med bruk">
+                comment = <"For eksempel lindrende, kort tid, spesifikk lengde">
+            >
+            ["id20"] = <
+                text = <"Forlengelse">
+                description = <"Tilleggsinformasjon nødvendig for å fange opp lokalt innhold eller synkronisere med andre referansemodeller">
+                comment = <"For eksempel: krav til lokal informasjon eller tilleggs data for å kunne synkronisere med FHIR eller CIMI ekvivalenter">
+            >
+            ["id19"] = <
+                text = <"Klinisk indikasjon">
+                description = <"Klinisk indikasjon for bruk av medikament">
+            >
+            ["id17"] = <
+                text = <"Totaldose for en episode">
+                description = <"Total medikamentdose for en definert episode">
+            >
+            ["id16"] = <
+                text = <"Samlet dose">
+                description = <"Total mengde en person har inntatt av et medikament">
+            >
+            ["id15"] = <
+                text = <"Beskrivelse">
+                description = <"Beskrivelse av bruk i løpet av en identifisert episode">
+            >
+            ["id14"] = <
+                text = <"Årsak til å avslutte">
+                description = <"Årsak til at medikament ble avsluttet">
+            >
+            ["id13"] = <
+                text = <"Episode slutt">
+                description = <"Dato for avslutning av medikamentbruk knytte til en spesifikk episode">
+            >
+            ["id12"] = <
+                text = <"Starttidspunkt for episoden">
+                description = <"Datoen en episode startet">
+            >
+            ["id11"] = <
+                text = <"Avsluttet bruk">
+                description = <"Sist avsluttet bruk">
+            >
+            ["id10"] = <
+                text = <"**Startet bruk">
+                description = <"Første gang personen startet å bruke medikamentet">
+            >
+            ["id9"] = <
+                text = <"Episode">
+                description = <"Detaljer om hver episode som har ført til bruk av medikamentet">
+            >
+            ["id8"] = <
+                text = <"Klinisk beskrivelse">
+                description = <"Fritekstbeskrivelse om bruken av legemeddelet.">
+            >
+            ["id7"] = <
+                text = <"Sists oppdatert">
+                description = <"Datoen da medikament oppsummeringen sist ble oppdatert">
+            >
+            ["id5"] = <
+                text = <"Nåværende bruk">
+                description = <"Bruker personen medikamentet nå?">
+            >
+            ["id4"] = <
+                text = <"Bruk av medikament">
+                description = <"Har personen noen gang brukt dette medikamentet?">
+            >
+            ["id3"] = <
+                text = <"Legemiddel">
+                description = <"Legemiddelets navn eller klasse.">
+            >
+            ["id1"] = <
+                text = <"Legemiddelsammendrag">
+                description = <"Sammendrag om administrasjon eller forbruk av et spesifisert legemiddel eller legemiddelklasse over individets levetid.">
+            >
+        >
+        ["pt-br"] = <
+            ["id22"] = <
+                text = <"Nome específico">
+                description = <"Nome específico do medicamento.">
+                comment = <"Usado para identificar o medicamento específico utilizado caso a classe esteja identificada em \"Nome do medicamento\". Redundante se o nome é identificado usando o elemento de dado \"Nome do medicamento\".">
+            >
+            ["id21"] = <
+                text = <"Intenção">
+                description = <"Intenção do uso.">
+                comment = <"Por exemplo: paliativo; curto prazo; ou duração específica">
+            >
+            ["id20"] = <
+                text = <"Extensão">
+                description = <"Informação adicional requerida para entender o contexto local ou alinhar com outros modelos de referência/formalismos.">
+                comment = <"Por exemplo: requisitos de informação local ou metadados adicionais para alinhar com equivalentes do FHIR ou CIMI.">
+            >
+            ["id19"] = <
+                text = <"Indicação clínica">
+                description = <"Indicação clínica para a administração ou consumo desse medicamento.">
+            >
+            ["id17"] = <
+                text = <"Dose do episódio">
+                description = <"Dose total para o episódio identificado.">
+            >
+            ["id16"] = <
+                text = <"Dose cumulativa">
+                description = <"Quantidade total já consumida.">
+            >
+            ["id15"] = <
+                text = <"Descrição">
+                description = <"Descrição do uso durante o episódio de uso identificado.">
+            >
+            ["id14"] = <
+                text = <"Razão para interrpução">
+                description = <"Razão pela qual esse medicamento foi interrompido.">
+            >
+            ["id13"] = <
+                text = <"Término do episódio">
+                description = <"Data do término desse episódio de uso.">
+            >
+            ["id12"] = <
+                text = <"Início do episódio">
+                description = <"Data de início para este episódio de uso.">
+            >
+            ["id11"] = <
+                text = <"Interrupção do uso">
+                description = <"Interrupção de uso mais recente.">
+            >
+            ["id10"] = <
+                text = <"Início de uso">
+                description = <"Primeiro início de uso.">
+            >
+            ["id9"] = <
+                text = <"Episódio">
+                description = <"Detalhes sobre cada episódio de uso.">
+            >
+            ["id8"] = <
+                text = <"Descrição clínica">
+                description = <"Narrativa descritiva sobre o uso do medicamento.">
+            >
+            ["id7"] = <
+                text = <"Última atualização">
+                description = <"A última data em que esse sumário de medicamente foi atualizado.">
+            >
+            ["id5"] = <
+                text = <"Usa atualmente?">
+                description = <"O indivíduo está atualmente usando esse medicamento ou essa classe de medicamento?">
+            >
+            ["id4"] = <
+                text = <"Já usou?">
+                description = <"O indivíduo já usou alguma vez esse medicamento ou essa classe de medicamento?">
+            >
+            ["id3"] = <
+                text = <"Nome do medicamento">
+                description = <"Nome ou classe do medicamento.">
+            >
+            ["id1"] = <
+                text = <"Sumário de medicamentos">
+                description = <"Informações sumarizadas sobre a administração ou histórico de consumo de um medicamento específico ou de uma classe de medicamento durante a vida do indivíduo.">
+            >
+        >
+        ["en"] = <
+            ["id22"] = <
+                text = <"Specific name">
+                description = <"Specific name of medication.">
+                comment = <"Use to identify the specific medication used if a class is identified in 'Medication name'. Redundant if the name is identified using the 'Medication name' data element.">
+            >
+            ["id21"] = <
+                text = <"Intent">
+                description = <"Intent for use.">
+                comment = <"For example: palliative; short term; or a specified duration">
+            >
+            ["id20"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id19"] = <
+                text = <"Clinical indication">
+                description = <"The clinical indication for the administration or consumption of the medication.">
+            >
+            ["id17"] = <
+                text = <"Episode dose">
+                description = <"Total dose for the identified episode.">
+            >
+            ["id16"] = <
+                text = <"Cumulative dose">
+                description = <"Total amount ever consumed.">
+            >
+            ["id15"] = <
+                text = <"Description">
+                description = <"Description of use during the identified episode of use.">
+            >
+            ["id14"] = <
+                text = <"Reason for cessation">
+                description = <"The reason why the medication was ceased.">
+            >
+            ["id13"] = <
+                text = <"Episode cessation">
+                description = <"The date of cessation for this episode of use.">
+            >
+            ["id12"] = <
+                text = <"Episode onset">
+                description = <"The date of onset for this episode of use.">
+            >
+            ["id11"] = <
+                text = <"Cessation of use">
+                description = <"Most recent cessation of use.">
+            >
+            ["id10"] = <
+                text = <"Onset of use">
+                description = <"First ever onset of use.">
+            >
+            ["id9"] = <
+                text = <"Episode">
+                description = <"Details about each episode of use.">
+            >
+            ["id8"] = <
+                text = <"Clinical description">
+                description = <"Narrative description about the medication use.">
+            >
+            ["id7"] = <
+                text = <"Last updated">
+                description = <"The date this medication summary was last updated.">
+            >
+            ["id5"] = <
+                text = <"Current use?">
+                description = <"Is the individual currently using the medication or class of medications?">
+            >
+            ["id4"] = <
+                text = <"Ever used?">
+                description = <"Has the individual ever used the medication or class of medication?">
+            >
+            ["id3"] = <
+                text = <"Medication name">
+                description = <"Name of medication or class of medication.">
+            >
+            ["id1"] = <
+                text = <"Medication summary">
+                description = <"Summary information about the administration or consumption history for a specified medication or class of medication over the individual's lifetime.">
+            >
+        >
+    >

@@ -1,0 +1,88 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=31e5f83a-fea5-4ee3-9209-058f2f35e654; build_uid=d5a3b6d8-8712-4dbe-a60a-45999dde521e)
+    openEHR-EHR-CLUSTER.inversion_variant.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Cecilia Mascia">
+        ["organisation"] = <"CRS4, Italy">
+        ["email"] = <"cecilia.mascia@crs4.it">
+        ["date"] = <"2017-02-23">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Florian Kaercher, Charité Berlin, Germany", "Francesca Frexia, CRS4, Italy", "Gianluigi Zanetti, CRS4, Italy", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Gideon Giacomelli, Charité Berlin, Germany", "Paolo Uva, CRS4, Italy", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Simon Schumacher, HiGHmed, Germany">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"den Dunnen JT, Dalgleish R, Maglott DR, Hart RK, Greenblatt MS, McGowan-Jordan J, Roux AF, Smith T, Antonarakis SE, Taschner PE. HGVS Recommendations for the Description of Sequence Variants: 2016 Update. Hum Mutat. 2016 Jun;37(6):564-9. doi: 10.1002/humu.22981. Epub 2016 Mar 25. PubMed PMID: 26931183.">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"1A379910D2284EE0B768894DC7EE0A2B">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the details about an inversion variant observed in a genetic sequence according to the HGVS nomenclature.">
+            keywords = <"inversion", "variation", "genetic", "genomic", "variant">
+            use = <"Use to record the findings for an inversion variant observed in a genetic sequence according to the HGVS nomenclature.
+    This archetype has been specifically designed to be used in the 'Variant' SLOT within the CLUSTER.genetic_variant archetype, but can also be used within other ENTRY or CLUSTER archetypes, where clinically appropriate.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Genetic inversion variant
+        items cardinality matches {2..*} matches {
+            ELEMENT[id2] occurrences matches {1} matches {    -- Start position
+                value matches {
+                    DV_COUNT[id9000] 
+                }
+            }
+            ELEMENT[id5] occurrences matches {1} matches {    -- End position
+                value matches {
+                    DV_COUNT[id9001] 
+                }
+            }
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- Inverted sequence
+                value matches {
+                    DV_TEXT[id9002] 
+                }
+            }
+            allow_archetype CLUSTER[id8] matches {     -- Reference sequence
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.reference_sequence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id8"] = <
+                text = <"Reference sequence">
+                description = <"The sequence file that has been used as a reference to describe the variant.">
+            >
+            ["id7"] = <
+                text = <"Inverted sequence">
+                description = <"The nucleotide sequence of the reference sequence at th given positions.">
+            >
+            ["id5"] = <
+                text = <"End position">
+                description = <"Position of the last nucleotide of the inverted range.">
+            >
+            ["id2"] = <
+                text = <"Start position">
+                description = <"Position of the first nucleotide of the inverted range.">
+            >
+            ["id1"] = <
+                text = <"Genetic inversion variant">
+                description = <"A genetic sequence change where, compared to a reference sequence, more than one nucleotide replacing the original sequence are the reverse complement of the original sequence.">
+            >
+        >
+    >

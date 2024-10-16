@@ -1,0 +1,259 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=ceb0a5b3-1032-3334-8ed9-fe226eabb938; build_uid=cbf49db5-05a6-458d-8bbf-aefb08dd9fa9)
+    openEHR-EHR-OBSERVATION.fetal_heart.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2011-12-20">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"SOGC Fetal health Surveillance: antepartum and intrapartum Consensus Guideline: http://www.sogc.org/guidelines/documents/gui197CPG0709r.pdf">
+        ["2"] = <"Intrapartum care: management and delivery of care to women in labour: http://www.nice.org.uk/nicemedia/live/11837/36275/36275.pdf">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics, Australia">
+        ["MD5-CAM-1.0.1"] = <"33E87488ECAB3CC3DE97115C41F455BC">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details about the fetal heart rate via intermittent observations.">
+            keywords = <"fetal", "heart", "beat", "rate", "rhythm">
+            use = <"Use to record the intermittent observations of the heart rate and heart beat characteristics of a fetus during pregnancy.
+    
+    Only to be used where the subject of care is the fetus.">
+            misuse = <"Not to be used to record more the complex details required for intervals of electronic fetal heart monitoring - use the specialisation OBSERVATION.fetal_heart-monitoring instead.
+    
+    Not to be used for recording the heart rate of infants, children or adults.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Fetal heart rate
+        subject matches {
+            PARTY_RELATED[id9004] matches {
+                relationship matches {
+                    DV_CODED_TEXT[id9005] matches {
+                        defining_code matches {[at9000]}    -- foetus
+                    }
+                }
+            }
+        }
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] occurrences matches {0..1} matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Presence
+                                        value matches {
+                                            DV_CODED_TEXT[id9006] matches {
+                                                defining_code matches {[ac9001]}    -- Presence (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Rate
+                                        value matches {
+                                            DV_QUANTITY[id9007] matches {
+                                                magnitude matches {|0.0..<1000.0|}
+                                                units matches {"1/min"}
+                                                precision matches {0}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id11] matches {    -- Clinical interpretation
+                                        value matches {
+                                            DV_TEXT[id9008] 
+                                        }
+                                    }
+                                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9009] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id12] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Position of mother
+                                        value matches {
+                                            DV_CODED_TEXT[id9010] matches {
+                                                defining_code matches {[ac9002]}    -- Position of mother (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id23] occurrences matches {0..1} matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9011] 
+                                        }
+                                    }
+                                    ELEMENT[id24] occurrences matches {0..1} matches {    -- In labour
+                                        value matches {
+                                            DV_CODED_TEXT[id9012] matches {
+                                                defining_code matches {[ac9003]}    -- In labour (synthesised)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id19] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id21] matches {     -- Device
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                    allow_archetype CLUSTER[id22] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"foetus">
+                description = <"foetus">
+            >
+            ["ac9001"] = <
+                text = <"Presence (synthesised)">
+                description = <"The fetal heart beat is detected. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Position of mother (synthesised)">
+                description = <"The position of the mother when the fetal heart rate was measured. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"In labour (synthesised)">
+                description = <"Is the mother in active labor during the observation? (synthesised)">
+            >
+            ["at27"] = <
+                text = <"Absent">
+                description = <"The fetal heart beat is not detected.">
+            >
+            ["at26"] = <
+                text = <"Present">
+                description = <"The fetal heart beat is detected.">
+            >
+            ["at25"] = <
+                text = <"Not in labour">
+                description = <"The mother is not in labour as the observation is made.">
+            >
+            ["at24"] = <
+                text = <"In labour">
+                description = <"The mother is in labour as the observation is made.">
+            >
+            ["id24"] = <
+                text = <"In labour">
+                description = <"Is the mother in active labor during the observation?">
+            >
+            ["id23"] = <
+                text = <"Confounding factors">
+                description = <"Description of incidental factors, not recorded elsewhere, that may be influencing the fetal heart rate measurement.">
+                comment = <"For example, maternal fever or exertion.">
+            >
+            ["id22"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id21"] = <
+                text = <"Device">
+                description = <"Details about the device used to detect the fetal heart rate.">
+                comment = <"For example, Pinard's stethoscope or Doppler Ultrasound.">
+            >
+            ["at17"] = <
+                text = <"Lying with tilt to left">
+                description = <"Mother lying flat with some lateral tilt towards the left.">
+            >
+            ["at16"] = <
+                text = <"Lying">
+                description = <"Lying flat at the time of fetal heart rate measurement.">
+            >
+            ["at15"] = <
+                text = <"Reclining">
+                description = <"Mother reclining at the time of fetal heart rate measurement.">
+            >
+            ["at14"] = <
+                text = <"Sitting">
+                description = <"Mother sitting at the time of fetail heart rate measurement.">
+            >
+            ["at13"] = <
+                text = <"Standing">
+                description = <"Mother standing at the time of fetal heart rate measurement.">
+            >
+            ["id13"] = <
+                text = <"Position of mother">
+                description = <"The position of the mother when the fetal heart rate was measured.">
+            >
+            ["id11"] = <
+                text = <"Clinical interpretation">
+                description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the fetal heart rate.">
+                comment = <"For example, bradycardia or tachycardia.">
+            >
+            ["id10"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the fetal heart rate, not captured in other fields.">
+            >
+            ["id6"] = <
+                text = <"Rate">
+                description = <"The observed fetal heart rate.">
+            >
+            ["id5"] = <
+                text = <"Presence">
+                description = <"The fetal heart beat is detected.">
+                comment = <"Implied as present if fetal heart rate > 0.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Fetal heart rate">
+                description = <"Observations about the fetal heart rate.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/3>
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at13", "at14", "at15", "at16", "at17">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at26", "at27">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at24", "at25">
+        >
+    >

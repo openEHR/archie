@@ -1,0 +1,129 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=a74ebb80-82ef-4dec-b861-b8cf676b56db; build_uid=ee096872-73d6-4130-a8a6-a178281489cf)
+    openEHR-EHR-EVALUATION.nutrition_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Hugh Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["date"] = <"2010-12-17">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Stephen Chu, NEHTA, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Derived from: Derived from: Nutrition summary, Draft archetype [Internet]. Australian Digital Health Agency (NEHTA), ADHA Clinical Knowledge Manager. Authored: 2010 Dec 17. Available at: http://dcm.nehta.org.au/ckm#showArchetype_1013.1.931_1 (discontinued).">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics, Australia<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"1FC48C2A2851CB8936AE4AB273638A22">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record an overview of the nutritional status of an individual.">
+            keywords = <"nutrition", "obese", "overweight", "underweight", "malnourished">
+            use = <"Use to record an overview of the nutritional status of an individual, as assessed by a clinician.">
+            misuse = <"Not to be used to record measurements such as weight, height or Body Mass Index. Use specific archetypes to record these measurements - OBSERVATION.weight, OBSERVATION.height and OBSERVATION.body_mass_index.">
+            copyright = <"© Australian Digital Health Agency, openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Nutrition summary
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Nutrition status
+                        value matches {
+                            DV_TEXT[id9001] 
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Weight status
+                        value matches {
+                            DV_CODED_TEXT[id9002] matches {
+                                defining_code matches {[ac9000]}    -- Weight status (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Dietary preference
+                        value matches {
+                            DV_TEXT[id9003] 
+                        }
+                    }
+                    ELEMENT[id10] matches {    -- Dietary Requirements
+                        value matches {
+                            DV_TEXT[id9004] 
+                        }
+                    }
+                    ELEMENT[id11] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            DV_TEXT[id9005] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Weight status (synthesised)">
+                description = <"Assessment of the individual's weight status. (synthesised)">
+            >
+            ["id11"] = <
+                text = <"Comment">
+                description = <"Comment about the individual's nutrition.">
+            >
+            ["id10"] = <
+                text = <"Dietary Requirements">
+                description = <"Description of a special dietary requirement e.g. Lactose free or Gluten free.  Coding with a terminology is desirable, where possible.">
+            >
+            ["id9"] = <
+                text = <"Dietary preference">
+                description = <"A description of an individual's dietary preference e.g. Vegetarian or Vegan.  Coding with a terminology is desirable, where possible.">
+            >
+            ["at7"] = <
+                text = <"Normal">
+                description = <"Is normal weight for age and sex according to BMI or other measure.">
+            >
+            ["at6"] = <
+                text = <"Obese">
+                description = <"Is obese for age and sex according to BMI or other measure.">
+            >
+            ["at5"] = <
+                text = <"Overweight">
+                description = <"Is overweight for age and sex according to BMI or other measure.">
+            >
+            ["at4"] = <
+                text = <"Underweight">
+                description = <"Is underweight for age and sex according to BMI or other measure.">
+            >
+            ["id4"] = <
+                text = <"Weight status">
+                description = <"Assessment of the individual's weight status.">
+            >
+            ["id3"] = <
+                text = <"Nutrition status">
+                description = <"Description of the individual's nutritional status as assessed by a clinician, for example, malnourished or well nourished.  Coding with a terminology is desirable, where possible.">
+            >
+            ["id1"] = <
+                text = <"Nutrition summary">
+                description = <"Summary of the nutritional status of an individual, as assessed by a clinician.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at4", "at7", "at5", "at6">
+        >
+    >

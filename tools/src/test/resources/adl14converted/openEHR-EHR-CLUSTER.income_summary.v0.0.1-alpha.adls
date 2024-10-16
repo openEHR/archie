@@ -1,0 +1,137 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=d1845ac8-c353-45ca-986d-a765b7dc97c6; build_uid=21858aeb-4657-420e-bb7d-0f44e2913bf4)
+    openEHR-EHR-CLUSTER.income_summary.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Silje Ljosland Bakke">
+        ["organisation"] = <"Nasjonal IKT HF">
+        ["email"] = <"silje.ljosland.bakke@nasjonalikt.no">
+        ["date"] = <"2017-10-09">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Heather Leslie, Ocean Health Systems, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"30EECA9C2A55EB5CB49EC0FE7F29D827">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record information about the current overall income and narrative information about the income history of an individual.">
+            use = <"Use to record information about the current overall income and narrative information about the income history of an individual.
+    
+    This archetype has been specifically designed to be used in the 'Details' SLOT within the EVALUATION.social_summary archetype, but can also be used within any other ENTRY or CLUSTER archetypes, where clinically appropriate.">
+            misuse = <"Not to be used to record information about the occupation(s) of the individual. Use the CLUSTER.occupation_summary or CLUSTER.occupation_episode archetypes for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Income summary
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- Primary source of income
+                value matches {
+                    DV_TEXT[id9001] 
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Personal income value
+                value matches {
+                    DV_QUANTITY[id9002] matches {
+                        property matches {[at9000]}    -- Frequency
+                        [magnitude, units] matches {
+                            [{|>=0.0|}, {"1/h"}],
+                            [{|>=0.0|}, {"1/d"}],
+                            [{|>=0.0|}, {"1/wk"}],
+                            [{|>=0.0|}, {"1/mo"}],
+                            [{|>=0.0|}, {"1/a"}]
+                        }
+                    }
+                    DV_TEXT[id9003] 
+                }
+            }
+            ELEMENT[id6] occurrences matches {0..1} matches {    -- Household income value
+                value matches {
+                    DV_QUANTITY[id9004] matches {
+                        property matches {[at9000]}    -- Frequency
+                        [magnitude, units] matches {
+                            [{|>=0.0|}, {"1/h"}],
+                            [{|>=0.0|}, {"1/d"}],
+                            [{|>=0.0|}, {"1/wk"}],
+                            [{|>=0.0|}, {"1/mo"}],
+                            [{|>=0.0|}, {"1/a"}]
+                        }
+                    }
+                    DV_TEXT[id9005] 
+                }
+            }
+            ELEMENT[id5] occurrences matches {0..1} matches {    -- Income currency
+                value matches {
+                    DV_TEXT[id9006] 
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    DV_TEXT[id9007] 
+                }
+            }
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    DV_TEXT[id9008] 
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Frequency">
+                description = <"Frequency">
+            >
+            ["id7"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the income summary not captured in other fields.">
+            >
+            ["id6"] = <
+                text = <"Household income value">
+                description = <"The current total income value of the individual's household.">
+                comment = <"For example \"200 000\" or \"Between 200 000 and 400 000\". The Text data type is intended to be used to record income brackets.">
+            >
+            ["id5"] = <
+                text = <"Income currency">
+                description = <"The current total income currency of the individual.">
+                comment = <"Coding with a terminology such as ISO 4217 is strongly recommended.">
+            >
+            ["id4"] = <
+                text = <"Description">
+                description = <"Narrative description of the income history of the individual.">
+            >
+            ["id3"] = <
+                text = <"Personal income value">
+                description = <"The current total income value of the individual.">
+                comment = <"For example \"100 000\" or \"Between 100 000 and 200 000\". The Text data type is intended to be used to record income brackets.">
+            >
+            ["id2"] = <
+                text = <"Primary source of income">
+                description = <"The current primary source of income for the individual.">
+                comment = <"For example: Paid employment, family support, student loan, pension, sickness benefit, maternity benefit, unemployment benefit, etc. Coding with a terminology is desirable, where possible. If an individual has multiple sources of income, the intent for this data element is to identify the primary source of income. Detail about each source of income can be recorded within the CLUSTER.income archetype.">
+            >
+            ["id1"] = <
+                text = <"Income summary">
+                description = <"Summary information providing an overview of the primary income of an individual.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/382>
+        >
+    >

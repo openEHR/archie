@@ -1,0 +1,91 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=5f1fef7d-9241-4c65-8805-4029f262db89; build_uid=aaec5628-59b3-473d-9d11-a4763b680bc9)
+    openEHR-EHR-ADMIN_ENTRY.triage.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics, Australia">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2007-04-12">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"Derived from: Triage  Priority, Draft Archetype [Internet]. Digital Health Agency, Australian Digital Health Agency Clinical Knowledge Manager. No longer available.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics, Australia<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"C54E3E7C1EFDD8C155B69FD9CB1D219A">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details about the assignment of a degree of urgency to wounds or illnesses, in order to decide the order of treatment of a large number of patients or casualties.">
+            keywords = <"triage", "evaluation", "assessment", "priority", "emergency", "screening", "disaster">
+            use = <"Use to record details about the assignment of a degree of urgency to wounds or illnesses, in order to decide the order of treatment of a large number of patients or casualties.
+    
+    This archetype has been designed to provide a generic framework for any triage priority, which may be specifically defined for a specific clinical location or event within a template for a specified clinical scenario. The triage priority may be time-related, indicating that the patient must be attended to within a specified timeframe.
+    
+    This archetype may be specialised to represent specific triage assessment tools.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    ADMIN_ENTRY[id1] matches {    -- Triage
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {0..1} matches {    -- Priority assignment
+                        value matches {
+                            DV_TEXT[id9000] 
+                        }
+                    }
+                    ELEMENT[id4] occurrences matches {0..1} matches {    -- Rationale
+                        value matches {
+                            DV_TEXT[id9001] 
+                        }
+                    }
+                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Disposition
+                        value matches {
+                            DV_TEXT[id9002] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id5"] = <
+                text = <"Disposition">
+                description = <"The immediate plan for continuing health care for an individual after triage has occurred.">
+                comment = <"For example: To be seen/registered; refer to  other facility; or refer to other department.
+     Coding with an external terminology is preferred, where possible.">
+            >
+            ["id4"] = <
+                text = <"Rationale">
+                description = <"The rationale for the assessment provided.">
+                comment = <"Coding with an external terminology is preferred, where possible.">
+            >
+            ["id3"] = <
+                text = <"Priority assignment">
+                description = <"Clinical assessment of the degree of urgency appropriate for treatement of an injury or illness.">
+                comment = <"There are many examples of triage categories in use. This archetype allows for any and all to be modelled by inclusion of specific values in this data element within a template for a specific clinical scenario. For example: High or Low; Now (immediate/life-threatening), Soon (urgent, up to 1 hour), Walk (delayed; up to 3 hours), Dead (no care required); or other defined categories.">
+            >
+            ["id1"] = <
+                text = <"Triage">
+                description = <"The assignment of a degree of urgency to wounds or illnesses, in order to decide the order of treatment of a large number of patients or casualties.">
+            >
+        >
+    >

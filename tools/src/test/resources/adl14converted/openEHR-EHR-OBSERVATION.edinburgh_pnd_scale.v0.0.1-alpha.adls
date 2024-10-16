@@ -1,0 +1,517 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=88992e41-9321-3c60-b8d4-196691e6dbdf; build_uid=6b9db9c0-a732-4eb7-8989-2194ee13a319)
+    openEHR-EHR-OBSERVATION.edinburgh_pnd_scale.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"NT Department of Health">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"2012-08-18">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Cox, J.L., Holden, J.M., and Sagovsky, R. 1987. Detection of postnatal depression: Development of the 10-item Edinburgh Postnatal Depression Scale.">
+        ["2"] = <"British Journal of Psychiatry 150:782–786">
+        ["3"] = <"Queensland Health Department. Edinburgh Postnatal Depression Scale. http://www.health.qld.gov.au/maternity/docs/epds-combined.pdf">
+        ["4"] = <"Beyond Blue. The Edinburgh Postnatal Depression Scale: A Health Professional's Guide, http://docent.gplearning.com.au/docent/cds/default_shared/GPEA/modules/g03/EPDS_GP.pdf">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"E10E95E89B146D500F592396873574A7">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To detect depression in women who are pregnant or have recently had a baby. Developed by Cox JL, Holden JM and Sagovsky R 1987 (See references).
+    
+    Internationally, the Edinburgh Postnatal Depression Scale (EPDS) is the most widely accepted screening instrument used in the perinatal period. The EPDS was designed to allow screening of postnatal depression in the primary care setting1. It excludes some symptoms that are common in the perinatal period (tiredness, sleep disturbance, irritability) that other depression instruments include, as such symptoms do not differentiate between depressed and non-depressed postnatal women.
+    
+    The value of the EPDS lies in the fact that it is easy to complete, has been validated in relation to other standardized psychiatric
+    measures and has been found to be acceptable to women who are asked to complete it. Its use provides women with the
+    opportunity to discuss their feelings and enables health professionals to discreetly raise the issue of postnatal depression.">
+            keywords = <"childbirth", "score">
+            use = <"As a screening instrument, the EPDS should only be used to assess a woman’s mood over the past seven (7) days. High scores
+    do not themselves confirm a depressive illness and, similarly, some women who score below a set threshold might have depression.
+    Thus, the EPDS does not provide a clinical diagnosis of depression and it should not be used as a substitute for full psychiatric
+    assessment or clinical judgement. Importantly the EPDS cannot be used to predict whether or not a respondent will experience
+    depression in the future - it can only be used to determine current mood.
+    
+    There is consensus in the literature that women with scores
+    consistently ≥13 have a 60-100% probability of meeting diagnostic criteria for depression.">
+            misuse = <"Should not be used to assess depression in general population.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Edinburgh postnatal depression scale
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any Event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- I have been able to laugh and see the funny side of things
+                                        value matches {
+                                            DV_ORDINAL[id9010] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}],
+                                                    [{3}, {[at8]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id10] occurrences matches {0..1} matches {    -- I have looked forward with enjoyment to things
+                                        value matches {
+                                            DV_ORDINAL[id9011] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}],
+                                                    [{2}, {[at12]}],
+                                                    [{3}, {[at13]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id15] occurrences matches {0..1} matches {    -- I have blamed myself unnecessarily when things went wrong
+                                        value matches {
+                                            DV_ORDINAL[id9012] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at15]}],
+                                                    [{1}, {[at16]}],
+                                                    [{2}, {[at17]}],
+                                                    [{3}, {[at18]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id20] occurrences matches {0..1} matches {    -- I have been worried and anxious for no good reason
+                                        value matches {
+                                            DV_ORDINAL[id9013] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at20]}],
+                                                    [{1}, {[at21]}],
+                                                    [{2}, {[at22]}],
+                                                    [{3}, {[at23]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id25] occurrences matches {0..1} matches {    -- I have felt scared or panicky for no very good reason
+                                        value matches {
+                                            DV_ORDINAL[id9014] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at25]}],
+                                                    [{1}, {[at26]}],
+                                                    [{2}, {[at27]}],
+                                                    [{3}, {[at28]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id30] occurrences matches {0..1} matches {    -- Things have been getting on top of me
+                                        value matches {
+                                            DV_ORDINAL[id9015] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at30]}],
+                                                    [{1}, {[at31]}],
+                                                    [{2}, {[at32]}],
+                                                    [{3}, {[at33]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id35] occurrences matches {0..1} matches {    -- I have been so unhappy that I have had difficulties sleeping
+                                        value matches {
+                                            DV_ORDINAL[id9016] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at35]}],
+                                                    [{1}, {[at36]}],
+                                                    [{2}, {[at37]}],
+                                                    [{3}, {[at38]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id40] occurrences matches {0..1} matches {    -- I have felt sad or miserable
+                                        value matches {
+                                            DV_ORDINAL[id9017] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at40]}],
+                                                    [{1}, {[at41]}],
+                                                    [{2}, {[at42]}],
+                                                    [{3}, {[at43]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id45] occurrences matches {0..1} matches {    -- I have been so unhappy that I have been crying
+                                        value matches {
+                                            DV_ORDINAL[id9018] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at45]}],
+                                                    [{1}, {[at46]}],
+                                                    [{2}, {[at47]}],
+                                                    [{3}, {[at48]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id50] occurrences matches {0..1} matches {    -- The thought of harming myself has occurred to me
+                                        value matches {
+                                            DV_ORDINAL[id9019] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at50]}],
+                                                    [{1}, {[at51]}],
+                                                    [{2}, {[at52]}],
+                                                    [{3}, {[at53]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id55] occurrences matches {0..1} matches {    -- Total score
+                                        value matches {
+                                            DV_COUNT[id9020] matches {
+                                                magnitude matches {|0..30|}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id56] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id57] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"I have been able to laugh and see the funny side of things (synthesised)">
+                description = <"Item 1. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"I have looked forward with enjoyment to things (synthesised)">
+                description = <"Item 2. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"I have blamed myself unnecessarily when things went wrong (synthesised)">
+                description = <"Item 3. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"I have been worried and anxious for no good reason (synthesised)">
+                description = <"Item 4. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"I have felt scared or panicky for no very good reason (synthesised)">
+                description = <"Item 5. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Things have been getting on top of me (synthesised)">
+                description = <"Item 6. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"I have been so unhappy that I have had difficulties sleeping (synthesised)">
+                description = <"Item 7. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"I have felt sad or miserable (synthesised)">
+                description = <"Item 8. (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"I have been so unhappy that I have been crying (synthesised)">
+                description = <"Item 9. (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"The thought of harming myself has occurred to me (synthesised)">
+                description = <"Item 10. (synthesised)">
+            >
+            ["id57"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id55"] = <
+                text = <"Total score">
+                description = <"Total score for the Edinburgh Postnatal Depression Scale.">
+            >
+            ["at53"] = <
+                text = <"Yes, quite often">
+                description = <"I do have thoughts of harming myself quite frequently.">
+            >
+            ["at52"] = <
+                text = <"Sometimes">
+                description = <"I have had thoughts of harming myself from time to time.">
+            >
+            ["at51"] = <
+                text = <"Hardly ever">
+                description = <"I have had thoughts of harming myself but only very occasionally.">
+            >
+            ["at50"] = <
+                text = <"Never">
+                description = <"I do not have thoughts of harming myself.">
+            >
+            ["id50"] = <
+                text = <"The thought of harming myself has occurred to me">
+                description = <"Item 10.">
+                comment = <"Display responses in reverse score order 3-0">
+            >
+            ["at48"] = <
+                text = <"Yes, most of the time">
+                description = <"I am almost always crying because I am so unhappy.">
+            >
+            ["at47"] = <
+                text = <"Yes, quite often">
+                description = <"I am crying because I am so unhappy frequently.">
+            >
+            ["at46"] = <
+                text = <"Only occasionally">
+                description = <"Sometimes I cry because I have been very unhappy.">
+            >
+            ["at45"] = <
+                text = <"No, never">
+                description = <"I am not crying at all.">
+            >
+            ["id45"] = <
+                text = <"I have been so unhappy that I have been crying">
+                description = <"Item 9.">
+                comment = <"Display responses in reverse score order 3-0">
+            >
+            ["at43"] = <
+                text = <"Yes, most of the time">
+                description = <"I am almost constantly sad or miserable.">
+            >
+            ["at42"] = <
+                text = <"Yes, quite often">
+                description = <"I am frequently sad or miserable.">
+            >
+            ["at41"] = <
+                text = <"Not very often">
+                description = <"I am only occasionally sad or sad or miserable.">
+            >
+            ["at40"] = <
+                text = <"No, not at all">
+                description = <"I am not sad or miserable at all.">
+            >
+            ["id40"] = <
+                text = <"I have felt sad or miserable">
+                description = <"Item 8.">
+                comment = <"Display responses in reverse score order 3-0">
+            >
+            ["at38"] = <
+                text = <"Yes, most of the time">
+                description = <"Most of the time I am having difficulties sleeping due to unhappiness.">
+            >
+            ["at37"] = <
+                text = <"Yes, quite often">
+                description = <"I have difficulties sleeping due to feeling unhappy quite frequently.">
+            >
+            ["at36"] = <
+                text = <"Not very often">
+                description = <"I have occasionally had difficulties sleeping because I have felt unhappy.">
+            >
+            ["at35"] = <
+                text = <"No, not at all">
+                description = <"Difficulty sleeping due to unhappiness has not been a problem.">
+            >
+            ["id35"] = <
+                text = <"I have been so unhappy that I have had difficulties sleeping">
+                description = <"Item 7.">
+                comment = <"Display responses in reverse score order 3-0">
+            >
+            ["at33"] = <
+                text = <"Yes, most of the time I haven't been able to cope at all">
+                description = <"Often things are getting on top of me and I am not coping at all.">
+            >
+            ["at32"] = <
+                text = <"Yes, sometimes I haven't been coping as well as usual">
+                description = <"Sometimes things get on top of me and I am not coping.">
+            >
+            ["at31"] = <
+                text = <"No, most of the time I have coped">
+                description = <"I am coping most of the time.">
+            >
+            ["at30"] = <
+                text = <"No, I have been coping as well as ever">
+                description = <"Things do not get on top of me.">
+            >
+            ["id30"] = <
+                text = <"Things have been getting on top of me">
+                description = <"Item 6.">
+                comment = <"Display responses in reverse score order 3-0">
+            >
+            ["at28"] = <
+                text = <"Yes, quite a lot">
+                description = <"I am scared or panicky quite often.">
+            >
+            ["at27"] = <
+                text = <"Yes, sometimes">
+                description = <"Sometimes I do get scared or panicky.">
+            >
+            ["at26"] = <
+                text = <"No, not much">
+                description = <"I hardly ever get scared or panicky.">
+            >
+            ["at25"] = <
+                text = <"No, not at all">
+                description = <"I do not get scared or panicky at all.">
+            >
+            ["id25"] = <
+                text = <"I have felt scared or panicky for no very good reason">
+                description = <"Item 5.">
+            >
+            ["at23"] = <
+                text = <"Yes, very often">
+                description = <"I am worried or anxious for no good reason frequently.">
+            >
+            ["at22"] = <
+                text = <"Yes, sometimes">
+                description = <"I am definitely worried or anxious when there is no good reason but not often.">
+            >
+            ["at21"] = <
+                text = <"Hardly ever">
+                description = <"I do get worried very occasionally when there is no good reason.">
+            >
+            ["at20"] = <
+                text = <"No, not at all">
+                description = <"I have not been worried or anxious unless there is good reason.">
+            >
+            ["id20"] = <
+                text = <"I have been worried and anxious for no good reason">
+                description = <"Item 4.">
+            >
+            ["at18"] = <
+                text = <"Yes, most of the time">
+                description = <"I almost always blame myself unnecessarily.">
+            >
+            ["at17"] = <
+                text = <"Yes, some of the time">
+                description = <"I do sometimes blame myself unnecessarily.">
+            >
+            ["at16"] = <
+                text = <"Not very often">
+                description = <"I hardly ever blame myself unnecessarily.">
+            >
+            ["at15"] = <
+                text = <"Never">
+                description = <"I do not blame myself unnecessarily.">
+            >
+            ["id15"] = <
+                text = <"I have blamed myself unnecessarily when things went wrong">
+                description = <"Item 3.">
+                comment = <"Display responses in reverse score order 3-0">
+            >
+            ["at13"] = <
+                text = <"Hardly at all">
+                description = <"Almost always not looking forward to things.">
+            >
+            ["at12"] = <
+                text = <"Definitely less than I used to">
+                description = <"Definitely looking forward to things less than in the past.">
+            >
+            ["at11"] = <
+                text = <"Rather less than I used to">
+                description = <"Still looking forward to things but a little less than in the past.">
+            >
+            ["at10"] = <
+                text = <"As much as I ever did">
+                description = <"Looking forward to things as much as in the past.">
+            >
+            ["id10"] = <
+                text = <"I have looked forward with enjoyment to things">
+                description = <"Item 2.">
+            >
+            ["at8"] = <
+                text = <"Not at all">
+                description = <"Not able to laugh at all.">
+            >
+            ["at7"] = <
+                text = <"Definitely not so much now">
+                description = <"Laughing considerably less than in the past.">
+            >
+            ["at6"] = <
+                text = <"Not quite so much now">
+                description = <"Able to laugh but a little less than in the past.">
+            >
+            ["at5"] = <
+                text = <"As much as I always could">
+                description = <"Able to laugh as much as in the past.">
+            >
+            ["id5"] = <
+                text = <"I have been able to laugh and see the funny side of things">
+                description = <"Item 1.">
+            >
+            ["id3"] = <
+                text = <"Any Event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Edinburgh postnatal depression scale">
+                description = <"The 10-question Edinburgh Postnatal Depression Scale (EPDS) is used to screen for pregnancy or postnatal depression by assessing how a women has been feeling over the past 7 days.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9009"] = <
+            id = <"ac9009">
+            members = <"at50", "at51", "at52", "at53">
+        >
+        ["ac9008"] = <
+            id = <"ac9008">
+            members = <"at45", "at46", "at47", "at48">
+        >
+        ["ac9007"] = <
+            id = <"ac9007">
+            members = <"at40", "at41", "at42", "at43">
+        >
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at15", "at16", "at17", "at18">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at10", "at11", "at12", "at13">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at5", "at6", "at7", "at8">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at35", "at36", "at37", "at38">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at30", "at31", "at32", "at33">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at25", "at26", "at27", "at28">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at20", "at21", "at22", "at23">
+        >
+    >

@@ -1,0 +1,327 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=852dd935-7b57-4aa7-ba77-c13c42c8d3ef; build_uid=9aa24f9a-7d4b-45ec-a87f-a349ea01a360)
+    openEHR-EHR-EVALUATION.gender.v1.0.4
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            author = <
+                ["name"] = <"Kim Sommer">
+                ["organisation"] = <"Medizinische Hochschule Hannover">
+            >
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Vebjørn Arntzen/Mikkel Johan Gaup Grønmo">
+                ["organisation"] = <"Nasjonal IKT HF/Helse Nord, Norway">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Vebjørn Arntzen">
+        ["organisation"] = <"Oslo University Hospital">
+        ["email"] = <"varntzen@ous-hf.no">
+        ["date"] = <"2017-11-30">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Amund Aakerholt, Helse Stavanger, KORFOR, Norway", "Morten Aas, Oslo Universitetssykehus, Norway", "Tomas Alme, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "SB Bhattacharyya, Sudisa Consultancy Services, India", "Simon Chapman, King's College Hospital, United Kingdom", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Are Edvardsen, SKDE, Helse Nord RHF, Norway", "Rupert Fawdry, WISDAM Enterprises & Electronic Encyclopaedia of Perinatal Data, United Kingdom", "Shahla Foozonkhah, Iran ministry of health and education, Iran", "Heather Grain, Llewelyn Grain Informatics, Australia", "Ira Haraldsen, Oslo universitetssykehus HF, Norway", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Hilde Hollås, DIPS AS, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "henrik haaland jahren, Tankeboksen AS, Norway", "Mikkel Johan Gaup Grønmo, Helse Nord RHF, Norway", "Pétur Júlíusson, Barneklinikken, HUS og K2, UIB, Norway", "Lars Morgan Karlsen, Nordlandssykehuset Bodø, Norway", "Christian Jasmine Karud-Lund, Forbundet for Transpersoner i Norge, Norway", "Nils Kolstrup, Skansen Legekontor og Nasjonalt Senter for samhandling og telemedisin, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Hildegard McNicoll, freshEHR Clinical Informatics Ltd., United Kingdom", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Phuong Pedersen, DIPS, Norway", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Ragnhild Sandvold, Vestre Viken HF, Norway", "Danielle Santos Alves, Federal University of Pernambuco, Brazil", "Anoop Shah, University College London, United Kingdom", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Trine Strand, Oslo Universitetssykehus (OUS), Norway", "Nyree Taylor, Ocean Informatics, Australia", "Tesfay Teame, Folkehelseinstituttet, Norway", "Jon Tysdahl, Furst medlab AS, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)">
+    lifecycle_state = <"published">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"Copied from deprecated CLUSTER version of this archetype: Gender, Deprecated archetype [Internet]. openEHR Foundation, openEHR Clinical Knowledge Manager [cited: 2019-04-19]. Available from: https://ckm.openehr.org/ckm/#showArchetype_1013.1.2818.">
+        ["2"] = <"Originally derived from: Kjønn, Draft archetype [Internet]. Nasjonal IKT, Nasjonal IKT Clinical Knowledge Manager [cited: 2017-12-01]. Available from: http://arketyper.no/ckm/#showArchetype_1078.36.1426.">
+        ["3"] = <"University of California, Santa Barbara (2018), UCSB SexInfo, http://www.soc.ucsb.edu/sexinfo/article/glossary-sexual-orientationgender-terminology">
+        ["4"] = <"It's Pronounced Metrosexual, (2015), The Genderbread Person v3, http://itspronouncedmetrosexual.com/2015/03/the-genderbread-person-v3">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"EF96C484C92DFA57E8F10DE3D42BE8D1">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"Zur Erfassung des Geschlechts einer Person.">
+            keywords = <"Geschlecht", "männlich", "weiblich", "divers", "androgyn", "Junge", "Mädchen", "Mann", "Frau", "transexuell", "Bigender", "geschlechtslos", "agender", "transgeschlechtlich", "transident", "Trans Frau", "Trans Mann">
+            use = <"Zur Erfassung des Geschlechts der Person, einschließlich des administrativen, rechtlichen und zugewiesenem Geschlechts, sowie der Geschlechtsidentität, dem Ausdruck des Geschlechts und des bevorzugten Pronomens.
+    
+    Das Ziel dieses Archetyps ist es, Details, die mit dem Geschlecht einer Person verbunden sind, zu erfassen. Aufgrund des modernen Gender-Denkens sowie neuer Erkenntnisse über psychologische, biologische und soziale Manifestationen von Geschlecht ergibt sich ein breiteres Spektrum an Beschreibungen.
+    
+    Dieser Archetyp erlaubt auch die Erfassung und Unterscheidung zwischen rechtlichem und administrativem Geschlecht.
+    
+    In den meisten Fällen wird das \"administrative Geschlecht\" als Äquivalent zur traditionellen Definition von \"Geschlecht\" in veralteten Systemen verwendet.
+    ">
+            misuse = <"Nicht zur Aufzeichnung von Informationen über die sexuelle Orientierung oder Ausübung einer Person verwenden.
+    
+    Nicht für die Aufzeichnung des genetischen Geschlechts verwenden. Derzeit wird dies in der Regel entweder als Diagnose oder als Laborbefund erfasst. Die Werte für \"Genetisches Geschlecht\" sind noch nicht genau definiert und können die Kombination von verschiedenen Informationen, einschließlich Chromosomen- und Rezeptordaten, Mosaikvarianten und Diagnosen beinhalten.">
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere individets kjønn.">
+            keywords = <"kjønn", "mann", "kvinne", "androgyn", "gutt", "jente", "pike", "trans", "transmann", "transkvinne", "transseksuell">
+            use = <"Brukes for å angi individets kjønn, inkludert administrativt, juridisk, og anatomisk kjønn. I tillegg kjønnsidentitet, fremtoning og foretrukne pronomen.
+    
+    Arketypen er laget for å brukes innenfor en ENTRY-arketype der det er relevant, f.eks. i OBSERVATION.story (Anamnese), INSTRUCTION.laboratory_test (Laboratorierekvisisjon) eller CLUSTER.interpreter.
+    
+    Ambisjonen til denne arketypen er å gjøre det mulig å registrere et bredere spekter av detaljer som er knyttet til kjønnet til et individ, som gjenspeiler moderne tenkning om kjønn så vel som ny kunnskap om hvordan kjønn manifesterer seg psykologisk, biologisk og sosialt.
+    
+    I Norge er det niende sifferet i fødselsnummeret en markering på kjønn. De fleste systemer i Norge benytter dette til å utlede individets kjønn. Med denne arketypen kan man skille mellom det juridiske kjønnet, slik det fremkommer i fødselsnummeret og det kjønnet man administrativt vil tilordne et individ, for eksempel for praktiske formål som å planlegge hvilket rom et individ skal legges på. Det er opp til leverandørene og implementasjon om man som utgangspunkt skal benytte \"Administrativt kjønn\" eller \"Juridisk kjønn\", eller om man vil sette verdien i disse to elementene likt og åpne for å kunne endre manuelt i de tilfellene man trenger det. Eksempel på dette siste er om juridisk kjønn ikke er oppdatert i henhold til hvordan et individ fremstår.
+    
+    Denne arketypen kan på et senere utvides til å inneholde informasjon om kjønn som ennå ikke er vanlig brukt, eller dette kan legges inn i SLOT'et \"Detaljer\".">
+            misuse = <"Skal ikke brukes til å registrere informasjon relatert til seksuell orientering eller adferd.
+    
+    Skal ikke brukes til å registrere genetisk kjønn. Per i dag registeres dette som regel som en diagnose eller et laboratoriesvar. Verdisett for et dataelement som \"Genetisk kjønn\" er heller ennå ikke godt definert, og kan bestå av kombinasjoner av forskjellige akser, inkludert data knyttet til kromosomer og reseptorkjønn, mosaikktilstander og diagnoser.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details about the gender of an individual.">
+            keywords = <"sex", "male", "female", "androgynous", "boy", "girl", "man", "woman", "transsexual", "bigender", "agender", "transgender", "transman", "transwoman">
+            use = <"Use to record details about the individual's gender, including administrative and legal gender and assigned sex at birth, in addition to gender identity, expression and preferred pronoun.
+    
+    The intent of this archetype is todetails about a broad range of details connected to the gender of an individual, due to modern thinking of gender as well as new knowledge of psychological, biological and social manifestations of gender. 
+    
+    This archetype also allows the recording of, and differentiation between, legal and administrative gender.
+    
+    In most common use cases 'Administrative gender' will be used, as equivalent of the traditional definition of \"Sex\" in current or legacy systems.">
+            misuse = <"Not to be used for recording information relating to the sexual orientation or sexual activity of an individual.
+    
+    Not to be used for recording genetic or chromosomal sex. Currently this is usually recorded as a laboratory test result. Formal representation of 'Genetic sex' is not yet well defined and may involve the combination of information axes, including chromosomal and receptor data, mosaic variants and diagnoses.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Gender
+        data matches {
+            ITEM_TREE[id3] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id23] occurrences matches {0..1} matches {    -- Administrative gender
+                        value matches {
+                            DV_TEXT[id9000] 
+                        }
+                    }
+                    ELEMENT[id27] occurrences matches {0..1} matches {    -- Legal gender
+                        value matches {
+                            DV_TEXT[id9001] 
+                        }
+                    }
+                    ELEMENT[id20] occurrences matches {0..1} matches {    -- Sex assigned at birth
+                        value matches {
+                            DV_TEXT[id9002] 
+                        }
+                    }
+                    ELEMENT[id26] occurrences matches {0..1} matches {    -- Gender expression
+                        value matches {
+                            DV_TEXT[id9003] 
+                        }
+                    }
+                    ELEMENT[id2] occurrences matches {0..1} matches {    -- Gender identity
+                        value matches {
+                            DV_TEXT[id9004] 
+                        }
+                    }
+                    ELEMENT[id21] occurrences matches {0..1} matches {    -- Preferred pronoun
+                        value matches {
+                            DV_TEXT[id9005] 
+                        }
+                    }
+                    allow_archetype CLUSTER[id24] matches {     -- Additional details
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                    ELEMENT[id15] occurrences matches {0..1} matches {    -- Comment
+                        value matches {
+                            DV_TEXT[id9006] 
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id4] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Last updated
+                        value matches {
+                            DV_DATE_TIME[id9007] 
+                        }
+                    }
+                    allow_archetype CLUSTER[id6] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["id27"] = <
+                text = <"Rechtliches Geschlecht">
+                description = <"Das Geschlecht einer Person, das für offizielle oder rechtliche Zwecke verwendet wird.">
+                comment = <"Zum Beispiel: Ausweisdokumente wie Geburtsurkunde oder (Reise-)Pass.">
+            >
+            ["id26"] = <
+                text = <"Ausdruck des Geschlechts">
+                description = <"Der Ausdruck des Geschlechts durch das Individuum in Form von Verhalten, Sprache, Kleidung oder anderen äußeren Merkmalen.">
+                comment = <"Zum Beispiel \"männlich\", \"weiblich\" oder \"androgyn\". Oder eine Beschreibung.">
+            >
+            ["id24"] = <
+                text = <"Zusätzliche Details">
+                description = <"Zusätzliche strukturierte Angaben zum Geschlecht der Person.">
+                comment = <"Zusätzliche strukturierte Angaben zum Geschlecht der Person.">
+            >
+            ["id23"] = <
+                text = <"Administratives Geschlecht">
+                description = <"Das Geschlecht einer Person, das für administrative Zwecke verwendet wird.">
+                comment = <"Dieses Element beschreibt das, was die meisten Systeme heutzutage als \"Geschlecht\" (vgl. engl.: \"Sex\" oder \"Gender\") bezeichnen. Zum Beispiel \"Männlich\", \"Weiblich\", \"Divers\". Dieser Archetyp entspricht dem HL7 FHIR Element \"Person.gender\"'. Die Kodierung mit einer Terminologie wird empfohlen, wenn möglich.">
+            >
+            ["id21"] = <
+                text = <"Bevorzugtes Pronomen">
+                description = <"Das Pronomen, mit dem sich eine Person identifiziert, und welches die Person bevorzugen würde, wenn andere mit oder über diese Person sprechen.">
+                comment = <"Zum Beispiel:\"sie\"; \"er\"; \"they\"; (oder \"xier\"). Die Kodierung mit einer Terminologie wird, wenn möglich, empfohlen.">
+            >
+            ["id20"] = <
+                text = <"Zugewiesenes Geschlecht/ \"Stempelgeschlecht\"">
+                description = <"Das Geschlecht einer Person, bestimmt durch anatomische Merkmale, welches bei der Geburt festgestellt und eingetragen wurden.">
+                comment = <"Zum Beispiel: \"Männlich\", \"Weiblich\", \"Divers\". Die Kodierung mit einer Terminologie wird empfohlen, wenn möglich. Falls notwendig, benutzen Sie das Element \"Kommentar\" oder den SLOT \"Details\" um genauere Angaben zum Geschlecht der Person zu machen.">
+            >
+            ["id15"] = <
+                text = <"Kommentar">
+                description = <"Zusätzliche Beschreibung über das Geschlecht, die nicht in anderen Datenelementen erfasst ist.">
+            >
+            ["id6"] = <
+                text = <"Erweiterung">
+                description = <"Zusätzliche Informationen, die erforderlich sind, um lokale Inhalte zu erfassen oder mit anderen Referenzmodellen/Formalismen zu harmonisieren.">
+                comment = <"Zum Beispiel: Lokale Informationsanforderungen oder zusätzliche Metadaten zur Anpassung an FHIR- oder CIMI-Äquivalente.">
+            >
+            ["id5"] = <
+                text = <"Letzte Aktualisierung">
+                description = <"Das Datum, an dem diese Daten zum Geschlecht zuletzt aktualisiert wurden.">
+            >
+            ["id2"] = <
+                text = <"Geschlechtsidentität">
+                description = <"Die persönliche Wahrnehmung des eigenen Geschlechts.">
+                comment = <"Zum Beispiel: \"Frau\"; \"Mann\"; \"nicht-binär\". Die Kodierung mit einer Terminologie wird, wenn möglich, empfohlen.">
+            >
+            ["id1"] = <
+                text = <"Geschlecht">
+                description = <"Detaillierte Beschreibung des Geschlechts einer Person.">
+            >
+        >
+        ["nb"] = <
+            ["id27"] = <
+                text = <"Juridisk kjønn">
+                description = <"Et individs kjønn brukt til offentlige eller rettslige formål. I Norge vil det normalt også bli brukt til administrative formål.">
+                comment = <"For eksempel identifikasjonspapirer som fødselsattest eller pass.">
+            >
+            ["id26"] = <
+                text = <"Kjønnsuttrykk">
+                description = <"Individets kjønnsmessige fremtoning og kjønnsuttrykk, basert på oppførsel, tale, i klesveien eller andre ytre karakteristika.">
+                comment = <"For eksempel 'Maskulin', 'Feminin' eller 'Androgyn'. Eller en fritekstbeskrivelse.">
+            >
+            ["id24"] = <
+                text = <"Detaljer">
+                description = <"Tilleggsinformasjon om et individs kjønn.">
+                comment = <"Flere detaljer om kjønn.">
+            >
+            ["id23"] = <
+                text = <"Administrativt kjønn">
+                description = <"Et individs kjønn til administrativt bruk.">
+                comment = <"Dette elementet tilsvarer det systemer flest bruker for å beskrive 'Kjønn' per i dag. For eksempel 'Mann', 'Kvinne', 'Annet'. I Norge vil det være \"Juridisk kjønn\" som skal brukes, siden det som regel er samsvar mellom personnummerts kjønn og administrativt kjønn. Begge de to kan bli brukt til praktiske formål, så som rapportering eller tildele sengeplass på en sengepost. \"Administrativt kjønn\" sammenfaller med HL7 FHIRs 'Person.gender'. Det bør om mulig benyttes terminologi for å angi administrativt kjønn.">
+            >
+            ["id21"] = <
+                text = <"Foretrukket pronomen">
+                description = <"Pronomenet som individet ønsker å identifiseres med og brukt når andre snakker om individet.">
+                comment = <"For eksempel: 'Hun', 'Han,' Hen'. Det bør om mulig benyttes terminologi for å angi pronomen.">
+            >
+            ["id20"] = <
+                text = <"Anatomisk kjønn">
+                description = <"Kjønnet til et individ, bestemt på bakgrunn av anatomiske karakteristika.">
+                comment = <"For eksempel: 'Mann', 'Kvinne',' Ubestemmelig' eller 'Ikke spesifisert'. Det bør om mulig benyttes terminologi for å angi anatomisk kjønn. Skal man angi anatomisk eller biologisk kjønn ytterligere, for eksempel om 'hormonelt kjønn', kan man benytte elementet \"Kommentar\" eller SLOT'et \"Detaljer\" for dette. Hvordan elementet skal brukes, bør tydeliggjøres i brukergrensesnittet til systemer som tar denne arketypen i bruk.">
+            >
+            ["id15"] = <
+                text = <"Kommentar">
+                description = <"Ytterligere fritekst om kjønn som ikke er dekket av andre felt.">
+            >
+            ["id6"] = <
+                text = <"Tilleggsinformasjon">
+                description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
+                comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
+            >
+            ["id5"] = <
+                text = <"Sist oppdatert">
+                description = <"Datoen da opplysninger om individets kjønn sist ble oppdatert.">
+            >
+            ["id2"] = <
+                text = <"Kjønnsidentitet">
+                description = <"Individets oppfatning av eget kjønn.">
+                comment = <"For eksempel 'kvinne', 'mann', eller 'ikke-binær'.">
+            >
+            ["id1"] = <
+                text = <"Kjønn">
+                description = <"Detaljert beskrivelse av et individs kjønn.">
+            >
+        >
+        ["en"] = <
+            ["id27"] = <
+                text = <"Legal gender">
+                description = <"The gender of an individual used for official or legal purposes.">
+                comment = <"For example: identification documents such as birth certificate or passport.">
+            >
+            ["id26"] = <
+                text = <"Gender expression">
+                description = <"The expression of the gender by the individual as demonstrated by behaviour, speech, clothes or other external characteristics.">
+                comment = <"For example 'Masculine', 'Feminine', 'Androgynous' or 'Alternating'. Alternatively, a narrative description.">
+            >
+            ["id24"] = <
+                text = <"Additional details">
+                description = <"Additional structured details about the individuals gender.">
+                comment = <"Additional structured details about the gender of an individual.">
+            >
+            ["id23"] = <
+                text = <"Administrative gender">
+                description = <"The gender of an individual used for administrative purposes.">
+                comment = <"This element is what most systems today describes as 'Sex' or 'Gender'. For example 'Male', 'Female', 'Other'. This aligns with HL7 FHIR 'Person.gender'. Coding with a terminology is recommended, where possible.">
+            >
+            ["id21"] = <
+                text = <"Preferred pronoun">
+                description = <"The pronoun an individual chooses to identify with, and would prefer others to use when talking to or about that individual.">
+                comment = <"For example: 'she'; 'he'; 'they'; or 'ze'. Coding with a terminology is recommended, where possible.">
+            >
+            ["id20"] = <
+                text = <"Sex assigned at birth">
+                description = <"The sex of an individual determined by anatomical characteristics observed and registered at birth.">
+                comment = <"For example: 'Male', 'Female', 'Intersex'. Coding with a terminology is recommended, where possible. Use the element 'Comment' or the SLOT 'Details' if needed to register more specific details of the individuals gender.">
+            >
+            ["id15"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the individual's gender not captured in other data elements.">
+            >
+            ["id6"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id5"] = <
+                text = <"Last updated">
+                description = <"The date this gender data was last updated.">
+            >
+            ["id2"] = <
+                text = <"Gender identity">
+                description = <"The individual's perception of their own gender.">
+                comment = <"For example: 'male'; 'female'; or 'non-binary'. Coding with a terminology is recommended, where possible.">
+            >
+            ["id1"] = <
+                text = <"Gender">
+                description = <"Details about the gender of an individual.">
+            >
+        >
+    >

@@ -1,0 +1,63 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=1bec3791-48da-429e-be69-36a6dd432706; build_uid=f0695314-2325-4ba4-90bc-d267d712de63)
+    openEHR-EHR-CLUSTER.testnegativeduration.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["date"] = <"2020-08-28">
+    >
+    original_namespace = <"com.oceaninformatics">
+    original_publisher = <"Ocean Informatics">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"com.oceaninformatics">
+    custodian_organisation = <"Ocean Informatics">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- testnegativeduration
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- nd
+                value matches {
+                    DV_DURATION[id9000] matches {
+                        value matches {|>=-PT2S|}
+                    }
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- nd2
+                value matches {
+                    DV_DURATION[id9001] matches {
+                        value matches {|-PT2M..-PT1M|}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id3"] = <
+                text = <"nd2">
+                description = <"">
+            >
+            ["id2"] = <
+                text = <"nd">
+                description = <"test">
+            >
+            ["id1"] = <
+                text = <"testnegativeduration">
+                description = <"testnegativeduration">
+            >
+        >
+    >

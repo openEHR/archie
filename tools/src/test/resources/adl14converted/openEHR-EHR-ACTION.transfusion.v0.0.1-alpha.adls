@@ -1,0 +1,793 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=80444e04-647c-4f7e-b041-17b09a70168c; build_uid=d0c5f3de-98a5-440e-9469-3d1adfe26cac)
+    openEHR-EHR-ACTION.transfusion.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            author = <
+                ["name"] = <"Jasmin Buck, Sebastian Garde">
+                ["organisation"] = <"University of Heidelberg, Central Queensland University">
+            >
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Osmeire Sanzovo">
+                ["organisation"] = <"Hospital Sírio Libanês">
+                ["email"] = <"osmeire.acsanzovo@hsl.org.br">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics, Australia">
+        ["email"] = <"healther.leslie@oceaninformatics.com">
+        ["date"] = <"2012-09-08">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heather Leslie, Ocean Informatics, Australia (Editor)", "Ian McNicoll, Ocean Informatics, United Kingdom (Editor)">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"020B810D16EC0D21377941C939EF95AB">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"Zur Dokumentation der Handlungen, die während einer Transfusion durchgeführt werden.">
+            keywords = <"Transfusion", "Blut">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para registro das ações ocorridas durante a transfusão.">
+            keywords = <"transfusão", "sangue">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For recording the actions taken during transfusion.">
+            keywords = <"transfusion", "blood">
+            use = <"">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    ACTION[id1] matches {    -- Transfusion
+        ism_transition matches {
+            ISM_TRANSITION[id3] matches {    -- Planned
+                current_state matches {
+                    DV_CODED_TEXT[id9008] matches {
+                        defining_code matches {[at9000]}    -- initial
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9009] matches {
+                        defining_code matches {[at2]}    -- Planned
+                    }
+                }
+            }
+            ISM_TRANSITION[id5] matches {    -- Prepared (Matching)
+                current_state matches {
+                    DV_CODED_TEXT[id9010] matches {
+                        defining_code matches {[at9000]}    -- initial
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9011] matches {
+                        defining_code matches {[at4]}    -- Prepared (Matching)
+                    }
+                }
+            }
+            ISM_TRANSITION[id13] matches {    -- Consent obtained
+                current_state matches {
+                    DV_CODED_TEXT[id9012] matches {
+                        defining_code matches {[at9000]}    -- initial
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9013] matches {
+                        defining_code matches {[at12]}    -- Consent obtained
+                    }
+                }
+            }
+            ISM_TRANSITION[id6] matches {    -- Postponed
+                current_state matches {
+                    DV_CODED_TEXT[id9014] matches {
+                        defining_code matches {[at9001]}    -- postponed
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9015] matches {
+                        defining_code matches {[at5]}    -- Postponed
+                    }
+                }
+            }
+            ISM_TRANSITION[id7] matches {    -- Cancelled
+                current_state matches {
+                    DV_CODED_TEXT[id9016] matches {
+                        defining_code matches {[at9002]}    -- cancelled
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9017] matches {
+                        defining_code matches {[at6]}    -- Cancelled
+                    }
+                }
+            }
+            ISM_TRANSITION[id4] matches {    -- Blood products ordered
+                current_state matches {
+                    DV_CODED_TEXT[id9018] matches {
+                        defining_code matches {[at9003]}    -- scheduled
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9019] matches {
+                        defining_code matches {[at3]}    -- Blood products ordered
+                    }
+                }
+            }
+            ISM_TRANSITION[id8] matches {    -- Blood and patient identification checked
+                current_state matches {
+                    DV_CODED_TEXT[id9020] matches {
+                        defining_code matches {[at9004]}    -- active
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9021] matches {
+                        defining_code matches {[at7]}    -- Blood and patient identification checked
+                    }
+                }
+            }
+            ISM_TRANSITION[id9] matches {    -- Transfusion unit commenced
+                current_state matches {
+                    DV_CODED_TEXT[id9022] matches {
+                        defining_code matches {[at9004]}    -- active
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9023] matches {
+                        defining_code matches {[at8]}    -- Transfusion unit commenced
+                    }
+                }
+            }
+            ISM_TRANSITION[id14] matches {    -- Transfusion unit completed
+                current_state matches {
+                    DV_CODED_TEXT[id9024] matches {
+                        defining_code matches {[at9004]}    -- active
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9025] matches {
+                        defining_code matches {[at13]}    -- Transfusion unit completed
+                    }
+                }
+            }
+            ISM_TRANSITION[id10] matches {    -- Transfusion suspended
+                current_state matches {
+                    DV_CODED_TEXT[id9026] matches {
+                        defining_code matches {[at9005]}    -- suspended
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9027] matches {
+                        defining_code matches {[at9]}    -- Transfusion suspended
+                    }
+                }
+            }
+            ISM_TRANSITION[id11] matches {    -- Transfusion stopped
+                current_state matches {
+                    DV_CODED_TEXT[id9028] matches {
+                        defining_code matches {[at9006]}    -- aborted
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9029] matches {
+                        defining_code matches {[at10]}    -- Transfusion stopped
+                    }
+                }
+            }
+            ISM_TRANSITION[id12] matches {    -- Transfusion has been completed
+                current_state matches {
+                    DV_CODED_TEXT[id9030] matches {
+                        defining_code matches {[at9007]}    -- complete
+                    }
+                }
+                careflow_step matches {
+                    DV_CODED_TEXT[id9031] matches {
+                        defining_code matches {[at11]}    -- Transfusion has been completed
+                    }
+                }
+            }
+        }
+        description matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id15] occurrences matches {0..1} matches {    -- Type of blood unit
+                        value matches {
+                            DV_TEXT[id9032] 
+                        }
+                    }
+                    CLUSTER[id23] occurrences matches {0..1} matches {    -- Administration details
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id16] occurrences matches {0..1} matches {    -- Sequence number
+                                value matches {
+                                    DV_COUNT[id9033] 
+                                }
+                            }
+                            ELEMENT[id17] occurrences matches {0..1} matches {    -- Proportion administered
+                                value matches {
+                                    DV_PROPORTION[id9034] matches {
+                                        numerator matches {|>=0.0|}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id18] occurrences matches {0..1} matches {    -- Reason
+                        value matches {
+                            DV_TEXT[id9035] 
+                        }
+                    }
+                    CLUSTER[id21] occurrences matches {0..1} matches {    -- Reaction details
+                        items cardinality matches {1..*; unordered} matches {
+                            ELEMENT[id20] occurrences matches {0..1} matches {    -- Clinical description
+                                value matches {
+                                    DV_TEXT[id9036] 
+                                }
+                            }
+                        }
+                    }
+                    ELEMENT[id22] occurrences matches {0..1} matches {    -- Related records
+                        value matches {
+                            DV_URI[id9037] 
+                        }
+                    }
+                    ELEMENT[id19] occurrences matches {0..1} matches {    -- Country of origin of blood product
+                        value matches {
+                            DV_TEXT[id9038] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["at9000"] = <
+                text = <"* initial (en)">
+                description = <"* initial (en)">
+            >
+            ["at9001"] = <
+                text = <"* postponed (en)">
+                description = <"* postponed (en)">
+            >
+            ["at9002"] = <
+                text = <"* cancelled (en)">
+                description = <"* cancelled (en)">
+            >
+            ["at9003"] = <
+                text = <"* scheduled (en)">
+                description = <"* scheduled (en)">
+            >
+            ["at9004"] = <
+                text = <"* active (en)">
+                description = <"* active (en)">
+            >
+            ["at9005"] = <
+                text = <"* suspended (en)">
+                description = <"* suspended (en)">
+            >
+            ["at9006"] = <
+                text = <"* aborted (en)">
+                description = <"* aborted (en)">
+            >
+            ["at9007"] = <
+                text = <"* complete (en)">
+                description = <"* complete (en)">
+            >
+            ["id23"] = <
+                text = <"Verabreichungseinzelheiten">
+                description = <"Einzelheiten der Verabreichung.">
+            >
+            ["id22"] = <
+                text = <"zugehörige Aufzeichnungen">
+                description = <"Ein Verweis auf beliebige zugehörige Beobachtungen oder dokumentierte Einträge.">
+            >
+            ["id21"] = <
+                text = <"Reaktionseinzelheit">
+                description = <"Beliebige Einzelheiten einer Reaktion.">
+            >
+            ["id20"] = <
+                text = <"klinische Beschreibung">
+                description = <"Beliebige Reaktion auf die Transfusion.">
+            >
+            ["id19"] = <
+                text = <"Herkunftsland des Blutproduktes">
+                description = <"Das Herkunftsland des Blutproduktes.">
+            >
+            ["id18"] = <
+                text = <"Grund">
+                description = <"Grund für die Handlung.">
+            >
+            ["id17"] = <
+                text = <"Verabreichter Anteil">
+                description = <"Anteil der verabreichten Einheit(en).">
+            >
+            ["id16"] = <
+                text = <"Laufnummer">
+                description = <"Die Nummer der begonnenen oder beendeten Einheit.">
+            >
+            ["id15"] = <
+                text = <"Art des Blutproduktes">
+                description = <"Das transfundierte Blutprodukt.">
+            >
+            ["id14"] = <
+                text = <"Transfusionseinheit beendet">
+                description = <"Eine Einheit Blutprodukt wurde transfundiert.">
+            >
+            ["at13"] = <
+                text = <"Transfusionseinheit beendet">
+                description = <"Eine Einheit Blutprodukt wurde transfundiert.">
+            >
+            ["id13"] = <
+                text = <"Einwilligung eingeholt">
+                description = <"Einwilligung zur Transfusion wurde eingeholt.">
+            >
+            ["at12"] = <
+                text = <"Einwilligung eingeholt">
+                description = <"Einwilligung zur Transfusion wurde eingeholt.">
+            >
+            ["id12"] = <
+                text = <"Transfusion wurde beendet">
+                description = <"Die Transfusion wurde beendet.">
+            >
+            ["at11"] = <
+                text = <"Transfusion wurde beendet">
+                description = <"Die Transfusion wurde beendet.">
+            >
+            ["id11"] = <
+                text = <"Transfusion gestoppt">
+                description = <"Die Transfusion wurde gestoppt und wird nicht fortgesetzt.">
+            >
+            ["at10"] = <
+                text = <"Transfusion gestoppt">
+                description = <"Die Transfusion wurde gestoppt und wird nicht fortgesetzt.">
+            >
+            ["id10"] = <
+                text = <"Transfusion ausgesetzt">
+                description = <"Die Transfusion wurde ausgesetzt und kann neu begonnen werden.">
+            >
+            ["at9"] = <
+                text = <"Transfusion ausgesetzt">
+                description = <"Die Transfusion wurde ausgesetzt und kann neu begonnen werden.">
+            >
+            ["id9"] = <
+                text = <"Transfusionseinheit begonnen">
+                description = <"Die Transfusion wurde mit einer Einheit Blutprodukt begonnen.">
+            >
+            ["at8"] = <
+                text = <"Transfusionseinheit begonnen">
+                description = <"Die Transfusion wurde mit einer Einheit Blutprodukt begonnen.">
+            >
+            ["id8"] = <
+                text = <"Blut- und Patientenidentifikation überprüft">
+                description = <"Die Identifikation des Transfusionsproduktes und des Patienten wurden auf Übereinstimmung kontrolliert.">
+            >
+            ["at7"] = <
+                text = <"Blut- und Patientenidentifikation überprüft">
+                description = <"Die Identifikation des Transfusionsproduktes und des Patienten wurden auf Übereinstimmung kontrolliert.">
+            >
+            ["id7"] = <
+                text = <"Abgebrochen">
+                description = <"Die Transfusion wurde abgebrochen, weil sie nicht weiter erforderlich oder angebracht ist.">
+            >
+            ["at6"] = <
+                text = <"Abgebrochen">
+                description = <"Die Transfusion wurde abgebrochen, weil sie nicht weiter erforderlich oder angebracht ist.">
+            >
+            ["id6"] = <
+                text = <"Verschoben">
+                description = <"Die Transfusion wurde verschoben.">
+            >
+            ["at5"] = <
+                text = <"Verschoben">
+                description = <"Die Transfusion wurde verschoben.">
+            >
+            ["id5"] = <
+                text = <"Vorbereitet (Probe)">
+                description = <"Blut wurde zum Testen geeigneter Blutprodukte gesendet.">
+            >
+            ["at4"] = <
+                text = <"Vorbereitet (Probe)">
+                description = <"Blut wurde zum Testen geeigneter Blutprodukte gesendet.">
+            >
+            ["id4"] = <
+                text = <"Blutprodukte bestellt">
+                description = <"Die Blutprodukte wurde bestellt.">
+            >
+            ["at3"] = <
+                text = <"Blutprodukte bestellt">
+                description = <"Die Blutprodukte wurde bestellt.">
+            >
+            ["id3"] = <
+                text = <"Geplant">
+                description = <"Die Transfusion wurde geplant.">
+            >
+            ["at2"] = <
+                text = <"Geplant">
+                description = <"Die Transfusion wurde geplant.">
+            >
+            ["id1"] = <
+                text = <"Transfusion">
+                description = <"Dokumentation der Handlungen, die während einer Transfusion durchgeführt werden.">
+            >
+        >
+        ["pt-br"] = <
+            ["at9000"] = <
+                text = <"* initial (en)">
+                description = <"* initial (en)">
+            >
+            ["at9001"] = <
+                text = <"* postponed (en)">
+                description = <"* postponed (en)">
+            >
+            ["at9002"] = <
+                text = <"* cancelled (en)">
+                description = <"* cancelled (en)">
+            >
+            ["at9003"] = <
+                text = <"* scheduled (en)">
+                description = <"* scheduled (en)">
+            >
+            ["at9004"] = <
+                text = <"* active (en)">
+                description = <"* active (en)">
+            >
+            ["at9005"] = <
+                text = <"* suspended (en)">
+                description = <"* suspended (en)">
+            >
+            ["at9006"] = <
+                text = <"* aborted (en)">
+                description = <"* aborted (en)">
+            >
+            ["at9007"] = <
+                text = <"* complete (en)">
+                description = <"* complete (en)">
+            >
+            ["id23"] = <
+                text = <"Detalhes da administração">
+                description = <"Detalhes sobre a administração">
+            >
+            ["id22"] = <
+                text = <"Registros relatados">
+                description = <"Eventuais observações relacionadas ou entradas do registro">
+            >
+            ["id21"] = <
+                text = <"Detalhes da reação">
+                description = <"Qualquer detalhe da reação">
+            >
+            ["id20"] = <
+                text = <"Descrilção clínica">
+                description = <"Qualquer reação à transfusão">
+            >
+            ["id19"] = <
+                text = <"País de origem do produto do sangue">
+                description = <"O país de origem do produto do sangue">
+            >
+            ["id18"] = <
+                text = <"Razão">
+                description = <"Motivo da ação">
+            >
+            ["id17"] = <
+                text = <"Proporção administrada">
+                description = <"A proporção de uma unidade administrada">
+            >
+            ["id16"] = <
+                text = <"Sequência numérica">
+                description = <"O número de unidades finalizados ou iniciados.">
+            >
+            ["id15"] = <
+                text = <"Unidade de tipo de sangue">
+                description = <"O produto do sangue transfundido">
+            >
+            ["id14"] = <
+                text = <"Unidade de transfusão completadas">
+                description = <"A unidade do produto do sangue que foi transfundida">
+            >
+            ["at13"] = <
+                text = <"Unidade de transfusão completadas">
+                description = <"A unidade do produto do sangue que foi transfundida">
+            >
+            ["id13"] = <
+                text = <"Consentimento obtido">
+                description = <"Consentimento para transfusão foi obtido">
+            >
+            ["at12"] = <
+                text = <"Consentimento obtido">
+                description = <"Consentimento para transfusão foi obtido">
+            >
+            ["id12"] = <
+                text = <"A transfusão foi completada">
+                description = <"A transfusão foi finalizada">
+            >
+            ["at11"] = <
+                text = <"A transfusão foi completada">
+                description = <"A transfusão foi finalizada">
+            >
+            ["id11"] = <
+                text = <"Transfusão interrompida">
+                description = <"Transfusão foi interrompida e não pode continuar.">
+            >
+            ["at10"] = <
+                text = <"Transfusão interrompida">
+                description = <"Transfusão foi interrompida e não pode continuar.">
+            >
+            ["id10"] = <
+                text = <"Transfusão suspensa">
+                description = <"A transfusão foi suspensa e pode ser reiniciada">
+            >
+            ["at9"] = <
+                text = <"Transfusão suspensa">
+                description = <"A transfusão foi suspensa e pode ser reiniciada">
+            >
+            ["id9"] = <
+                text = <"Unidade de transfusão iniciada">
+                description = <"Transfusão começou em uma unidade do produto do sangue">
+            >
+            ["at8"] = <
+                text = <"Unidade de transfusão iniciada">
+                description = <"Transfusão começou em uma unidade do produto do sangue">
+            >
+            ["id8"] = <
+                text = <"Identificação de sangue e paciente verificados">
+                description = <"A identificação do produto da transfusão e a identificação do paciente correspondem">
+            >
+            ["at7"] = <
+                text = <"Identificação de sangue e paciente verificados">
+                description = <"A identificação do produto da transfusão e a identificação do paciente correspondem">
+            >
+            ["id7"] = <
+                text = <"Cancelada">
+                description = <"A transfusão foi cancelada por não ser mais apropriada ou necessária">
+            >
+            ["at6"] = <
+                text = <"Cancelada">
+                description = <"A transfusão foi cancelada por não ser mais apropriada ou necessária">
+            >
+            ["id6"] = <
+                text = <"Adiada">
+                description = <"Transfusão foi adiada">
+            >
+            ["at5"] = <
+                text = <"Adiada">
+                description = <"Transfusão foi adiada">
+            >
+            ["id5"] = <
+                text = <"Preparada">
+                description = <"Sangue enviado para testar produtos de sangue adequado">
+            >
+            ["at4"] = <
+                text = <"Preparada">
+                description = <"Sangue enviado para testar produtos de sangue adequado">
+            >
+            ["id4"] = <
+                text = <"Produto do sangue prescritos">
+                description = <"Produto do sangue foram prescritos">
+            >
+            ["at3"] = <
+                text = <"Produto do sangue prescritos">
+                description = <"Produto do sangue foram prescritos">
+            >
+            ["id3"] = <
+                text = <"Planejada">
+                description = <"Transfusão foi planejada">
+            >
+            ["at2"] = <
+                text = <"Planejada">
+                description = <"Transfusão foi planejada">
+            >
+            ["id1"] = <
+                text = <"Transfusão">
+                description = <"Registro das ações durante a transfusão">
+            >
+        >
+        ["en"] = <
+            ["at9000"] = <
+                text = <"initial">
+                description = <"initial">
+            >
+            ["at9001"] = <
+                text = <"postponed">
+                description = <"postponed">
+            >
+            ["at9002"] = <
+                text = <"cancelled">
+                description = <"cancelled">
+            >
+            ["at9003"] = <
+                text = <"scheduled">
+                description = <"scheduled">
+            >
+            ["at9004"] = <
+                text = <"active">
+                description = <"active">
+            >
+            ["at9005"] = <
+                text = <"suspended">
+                description = <"suspended">
+            >
+            ["at9006"] = <
+                text = <"aborted">
+                description = <"aborted">
+            >
+            ["at9007"] = <
+                text = <"complete">
+                description = <"complete">
+            >
+            ["id23"] = <
+                text = <"Administration details">
+                description = <"Details about the administration.">
+            >
+            ["id22"] = <
+                text = <"Related records">
+                description = <"A pointer to any related observations or record entries.">
+            >
+            ["id21"] = <
+                text = <"Reaction details">
+                description = <"Any details of a reaction.">
+            >
+            ["id20"] = <
+                text = <"Clinical description">
+                description = <"Any reaction to the transfusion.">
+            >
+            ["id19"] = <
+                text = <"Country of origin of blood product">
+                description = <"The country of origin of the blood product.">
+            >
+            ["id18"] = <
+                text = <"Reason">
+                description = <"Reason for action.">
+            >
+            ["id17"] = <
+                text = <"Proportion administered">
+                description = <"The proportion of the unit(s) administered.">
+            >
+            ["id16"] = <
+                text = <"Sequence number">
+                description = <"The number of the unit completed or commenced.">
+            >
+            ["id15"] = <
+                text = <"Type of blood unit">
+                description = <"The blood product transfused.">
+            >
+            ["id14"] = <
+                text = <"Transfusion unit completed">
+                description = <"A unit of blood product has been transfused.">
+            >
+            ["at13"] = <
+                text = <"Transfusion unit completed">
+                description = <"A unit of blood product has been transfused.">
+            >
+            ["id13"] = <
+                text = <"Consent obtained">
+                description = <"Consent for the transfusion has been obtained.">
+            >
+            ["at12"] = <
+                text = <"Consent obtained">
+                description = <"Consent for the transfusion has been obtained.">
+            >
+            ["id12"] = <
+                text = <"Transfusion has been completed">
+                description = <"The transfusion has been completed.">
+            >
+            ["at11"] = <
+                text = <"Transfusion has been completed">
+                description = <"The transfusion has been completed.">
+            >
+            ["id11"] = <
+                text = <"Transfusion stopped">
+                description = <"Transfusion has been ceased and will not continue.">
+            >
+            ["at10"] = <
+                text = <"Transfusion stopped">
+                description = <"Transfusion has been ceased and will not continue.">
+            >
+            ["id10"] = <
+                text = <"Transfusion suspended">
+                description = <"The transfusion has been suspended and may restart.">
+            >
+            ["at9"] = <
+                text = <"Transfusion suspended">
+                description = <"The transfusion has been suspended and may restart.">
+            >
+            ["id9"] = <
+                text = <"Transfusion unit commenced">
+                description = <"Transfusion has begun on a unit of blood product.">
+            >
+            ["at8"] = <
+                text = <"Transfusion unit commenced">
+                description = <"Transfusion has begun on a unit of blood product.">
+            >
+            ["id8"] = <
+                text = <"Blood and patient identification checked">
+                description = <"The transfusion product identification and patient identification have been matched.">
+            >
+            ["at7"] = <
+                text = <"Blood and patient identification checked">
+                description = <"The transfusion product identification and patient identification have been matched.">
+            >
+            ["id7"] = <
+                text = <"Cancelled">
+                description = <"The transfusion has been cancelled as no longer appropriate or required.">
+            >
+            ["at6"] = <
+                text = <"Cancelled">
+                description = <"The transfusion has been cancelled as no longer appropriate or required.">
+            >
+            ["id6"] = <
+                text = <"Postponed">
+                description = <"Transfusion has been postponed.">
+            >
+            ["at5"] = <
+                text = <"Postponed">
+                description = <"Transfusion has been postponed.">
+            >
+            ["id5"] = <
+                text = <"Prepared (Matching)">
+                description = <"Blood sent for testing appropriate blood products.">
+            >
+            ["at4"] = <
+                text = <"Prepared (Matching)">
+                description = <"Blood sent for testing appropriate blood products.">
+            >
+            ["id4"] = <
+                text = <"Blood products ordered">
+                description = <"The blood products have been ordered.">
+            >
+            ["at3"] = <
+                text = <"Blood products ordered">
+                description = <"The blood products have been ordered.">
+            >
+            ["id3"] = <
+                text = <"Planned">
+                description = <"Transfusion has been planned.">
+            >
+            ["at2"] = <
+                text = <"Planned">
+                description = <"Transfusion has been planned.">
+            >
+            ["id1"] = <
+                text = <"Transfusion">
+                description = <"Recording the actions taken during transfusion.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/524>
+            ["at9001"] = <http://openehr.org/id/527>
+            ["at9002"] = <http://openehr.org/id/528>
+            ["at9003"] = <http://openehr.org/id/529>
+            ["at9004"] = <http://openehr.org/id/245>
+            ["at9005"] = <http://openehr.org/id/530>
+            ["at9006"] = <http://openehr.org/id/531>
+            ["at9007"] = <http://openehr.org/id/532>
+        >
+    >

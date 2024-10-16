@@ -1,0 +1,213 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=1a30b06f-887a-4b08-ab42-243bf6757c33; build_uid=b32e5307-b36c-4bde-ac97-36080ad30f35)
+    openEHR-EHR-CLUSTER.clinical_evidence.v1.1.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke">
+                ["organisation"] = <"Nasjonal IKT HF">
+                ["email"] = <"silje.ljosland.bakke@nasjonalikt.no">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"2015-01-23">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Morten Aas, Oslo Universitetssykehus, Norway", "Ole Andreas Bjordal, Webmed, Norway", "Stein Arne Rimehaug, Sunnaas sykehus, Norway", "Vebjørn Arntzen, Oslo University Hospital, Norway", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Kristian Berg, Universitetssykehuset Nord Norge, Norway", "SB BHATTACHARYYA, Sudisa Consultancy Services, India", "SBhusan Bhattacharyya, Sudisa Consultancy Services, India", "Bjørn Christensen, Helse Bergen HF, Norway", "Chris Dickson, NHS Digital, United Kingdom", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Bente Gjelsvik, Helse Bergen, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Hanne Joensen, Helse Bergen HUS, Norway", "Siri Larønningen, Kreftregisteret, Norway", "Heather Leslie, Ocean Informatics, Australia (openEHR Editor)", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Lars Morgan Karlsen, DIPS ASA, Norway", "Bjørn Næss, DIPS ASA, Norway", "Andrej Orel, Marand d.o.o., Slovenia", "Vladimir Pizzo, Hospital Sírio Libanês, Brazil", "Navin Ramachandran, NHS, United Kingdom", "Raymond Simkus, Brookswood Family Practice, Canada", "Iztok Stotl, UKCLJ, Slovenia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Mette Wam, Esito AS, Norway">
+    lifecycle_state = <"published">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com">
+        ["MD5-CAM-1.0.1"] = <"231248071BB314B31BE7C3F5AAA40F96">
+    >
+    details = <
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere eksplisitte detaljer om grunnlaget for et klinisk utsagn, for eksempel en problem/diagnose, risiko for overfølsomhetsreaksjon, helserisiko, eller kontraindikasjon.">
+            keywords = <"diagnose", "evidens", "tilstand", "sykdom", "problem", "observasjon", "begrunnelse">
+            use = <"Brukes for å registrere eksplisitte detaljer om grunnlaget for et klinisk utsagn, enten som en oppsummering av data som er tilgjengelig i andre arketyper (ofte av OBSERVATION-klassen), eller når de opprinnelige dataene ikke er tilgjengelige for applikasjonen.
+    
+    Denne arketypen er ment å legges i et SLOT i arketypene EVALUATION.problem_diagnosis, EVALUATION.adverse_reaction_risk, EVALUATION.health_risk, EVALUATION.contraindication eller lignende oppsummerende arketyper, der utsagnet allerede er spesifisert i EVALUATION-arketypen. Den fungerer der som en valgfri utvidelse av datasettet i EVALUATION-arketypen.
+    
+    Som spesifisert i openEHR referansemodellen kan det benyttes lenker for å lenke til data som ligger andre steder i journalen, mens denne arketypen er laget for å gjøre dette eksplisitt, og for å gjøre det mulig å vise og gjennomgå disse dataene klinisk der dette er relevant.
+    
+    Grunnlaget kan legges direkte i denne i arketypen som et \"Funn\", eller referansen kan benyttes for å peke direkte til dataene som ligger et annet sted i journalen.">
+            misuse = <"Skal ikke brukes til å registrere sammendrag om et problem eller en diagnose. For dette brukes arketypen EVALUATION.problem_diagnosis.
+    
+    Skal ikke brukes til å registrere sammendrag om risiko for overfølsomhetsreaksjoner. For dette brukes arketypen EVALUATION.adverse_reaction_risk.
+    
+    Skal ikke brukes til å registrere sammendrag om en helserisiko. For dette brukes arketypen EVALUATION.health_risk.
+    
+    Skal ikke brukes til å registrere sammendrag om en kontraindikasjon. For dette brukes arketypen EVALUATION.contraindication.">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record an explicit finding in support of a clinical assertion, such as a problem/diagnosis, adverse reaction risk, health risk assessment, or contraindication.">
+            keywords = <"diagnosis", "evidence", "condition", "disease", "problem", "assertion", "finding", "observation">
+            use = <"Use to record details about findings that support a clinical assertion, either as a summary of data available in other (often OBSERVATION class) archetypes, or when the original observational data is not available.
+    
+    This archetype is designed to be nested within a SLOT in the EVALUATION.problem_diagnosis, EVALUATION.adverse_reaction_risk, EVALUATION.health_risk, EVALUATION.contraindication, or similar summary archetypes, where the name of the assertion has already been specified in the EVALUATION, in order to extend its content with this additional and optional dataset. While LINKs within the openEHR Reference Model allow for linkage to data held elsewhere within the health record, this archetype has been developed to make this functionality explicit, and to enable clinical visibility and review of this data, where it may be relevant in a template or specification.
+    
+    The clinical evidence can be entered directly into this archetype as a 'Finding', or a citation can be used to explicitly point to data within the health record.">
+            misuse = <"Not to be used to record summary details about an identified problem or diagnosis - use the EVALUATION.problem_diagnosis for this purpose.
+    
+    Not to be used to record summary details about an identified adverse reaction risk - use the EVALUATION.adverse_reaction_risk for this purpose.
+    
+    Not to be used to record summary details about an identified health risk - use the EVALUATION.health_risk for this purpose.
+    
+    Not to be used to record summary details about an identified contraindication - use the EVALUATION.contraindication for this purpose.">
+            copyright = <"© openEHR Foundation, Nasjonal IKT HF">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Clinical evidence
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Finding
+                value matches {
+                    DV_TEXT[id9000] 
+                }
+            }
+            ELEMENT[id5] occurrences matches {0..1} matches {    -- Finding description
+                value matches {
+                    DV_TEXT[id9001] 
+                }
+            }
+            ELEMENT[id6]     -- Result
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- Date identified
+                value matches {
+                    DV_DATE_TIME[id9002] 
+                }
+            }
+            allow_archetype CLUSTER[id8] matches {     -- Citation
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.citation(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            ELEMENT[id23] matches {    -- Method
+                value matches {
+                    DV_TEXT[id9003] 
+                }
+            }
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- Method description
+                value matches {
+                    DV_TEXT[id9004] 
+                }
+            }
+            allow_archetype CLUSTER[id19] matches {     -- Multimedia representation
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.multimedia(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            ELEMENT[id24] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    DV_TEXT[id9005] 
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nb"] = <
+            ["id24"] = <
+                text = <"Kommentar">
+                description = <"Ytterligere informasjon om funnet, som ikke kan registreres i andre felter.">
+            >
+            ["id23"] = <
+                text = <"Metode">
+                description = <"Typen undersøkelse eller utredning som er utført for å komme fram til funnet.">
+                comment = <"Metoden bør vurderes kodet med en terminologi der dette er mulig. For eksempel fysisk undersøkelse, røntgen thorax, patologisvar, koloskopi.">
+            >
+            ["id19"] = <
+                text = <"Multimediarepresentasjon">
+                description = <"Digitalt bilde, video eller diagram som representerer det kliniske grunnlaget.">
+            >
+            ["id8"] = <
+                text = <"Referanse">
+                description = <"Detaljerte data om funnet i andre deler av journalen.">
+            >
+            ["id7"] = <
+                text = <"Dato">
+                description = <"Datoen da funnet ble klinisk anerkjent.">
+                comment = <"For eksempel: Datoen da funnet ble gjort eller gjort tilgjengelig for klinikeren.">
+            >
+            ["id6"] = <
+                text = <"Resultat">
+                description = <"Måling eller verdi knyttet til funnet.">
+                comment = <"For eksempel mantouxtestresultat.">
+            >
+            ["id5"] = <
+                text = <"Beskrivelse av funn">
+                description = <"Fritekstbeskrivelse av funnet.">
+            >
+            ["id4"] = <
+                text = <"Funn">
+                description = <"Funnet som støtter utsagnet.">
+                comment = <"Det anbefales å kode \"Funn\" med en terminologi, der det er mulig.">
+            >
+            ["id2"] = <
+                text = <"*Method description(en)">
+                description = <"*Narrative description of the method/s used to identify the evidence.(en)">
+            >
+            ["id1"] = <
+                text = <"Klinisk grunnlag">
+                description = <"Grunnlaget for et klinisk utsagn.">
+            >
+        >
+        ["en"] = <
+            ["id24"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the finding not captured in other fields.">
+            >
+            ["id23"] = <
+                text = <"Method">
+                description = <"Type of examination or investigation used to identify the evidence.">
+                comment = <"Consider coding 'Method' with a terminology, where possible. For example: Physical examination, Chest x-ray, Histopathology result, Colonoscopy.">
+            >
+            ["id19"] = <
+                text = <"Multimedia representation">
+                description = <"Digital image, video or diagram representing the clinical evidence.">
+            >
+            ["id8"] = <
+                text = <"Citation">
+                description = <"Detailed data available about the evidence held in another part of the health record.">
+            >
+            ["id7"] = <
+                text = <"Date identified">
+                description = <"The date on which the finding was clinically identified.">
+                comment = <"For example: The date when the finding was made by or made available to the clinician.">
+            >
+            ["id6"] = <
+                text = <"Result">
+                description = <"Measurement or value associated with the finding.">
+                comment = <"For example: Mantoux test result.">
+            >
+            ["id5"] = <
+                text = <"Finding description">
+                description = <"Narrative description of the finding.">
+            >
+            ["id4"] = <
+                text = <"Finding">
+                description = <"Identification of the finding that supports the assertion.">
+                comment = <"It is recommended that 'Finding' should be coded with a terminology, where possible.">
+            >
+            ["id2"] = <
+                text = <"Method description">
+                description = <"Narrative description of the method/s used to identify the evidence.">
+            >
+            ["id1"] = <
+                text = <"Clinical evidence">
+                description = <"Details about findings that support a clinical assertion.">
+            >
+        >
+    >

@@ -1,0 +1,97 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=9b996e4e-21de-4223-8ae0-788e26afa86a; build_uid=8d8c824d-c429-4341-a955-ca8dd0f121ea)
+    openEHR-EHR-CLUSTER.repeated_sequence_variant.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Cecilia Mascia">
+        ["organisation"] = <"CRS4, Italy">
+        ["email"] = <"cecilia.mascia@crs4.it">
+        ["date"] = <"2017-02-24">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Florian Kaercher, Charité Berlin, Germany", "Francesca Frexia, CRS4, Italy", "Gianluigi Zanetti, CRS4, Italy", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Gideon Giacomelli, Charité Berlin, Germany", "Paolo Uva, CRS4, Italy", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Simon Schumacher, HiGHmed, Germany">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"den Dunnen JT, Dalgleish R, Maglott DR, Hart RK, Greenblatt MS, McGowan-Jordan J, Roux AF, Smith T, Antonarakis SE, Taschner PE. HGVS Recommendations for the Description of Sequence Variants: 2016 Update. Hum Mutat. 2016 Jun;37(6):564-9. doi: 10.1002/humu.22981. Epub 2016 Mar 25. PubMed PMID: 26931183.">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"366366C2C652F471EC77C8D195F2A3C9">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the details about a repeated sequence variant observed in a genetic sequence according to the HGVS nomenclature.">
+            keywords = <"repeated sequence", "variation", "genetic", "genomic", "variant">
+            use = <"Use to record the findings for a repeated sequence variant observed in a genetic sequence according to the HGVS nomenclature.
+    This archetype has been specifically designed to be used in the 'Variant' SLOT within the CLUSTER.genetic_variant archetype, but can also be used within other ENTRY or CLUSTER archetypes, where clinically appropriate.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Genetic repeated sequence variant
+        items cardinality matches {2..*} matches {
+            ELEMENT[id2] occurrences matches {1} matches {    -- Start position
+                value matches {
+                    DV_COUNT[id9000] 
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- End position
+                value matches {
+                    DV_COUNT[id9001] 
+                }
+            }
+            ELEMENT[id6] occurrences matches {0..1} matches {    -- Repeated sequence
+                value matches {
+                    DV_TEXT[id9002] 
+                }
+            }
+            ELEMENT[id8] occurrences matches {1} matches {    -- Copy number
+                value matches {
+                    DV_COUNT[id9003] 
+                }
+            }
+            allow_archetype CLUSTER[id9] matches {     -- Reference sequence
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.reference_sequence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id9"] = <
+                text = <"Reference sequence">
+                description = <"The sequence file that has been used as a reference to describe the variant.">
+            >
+            ["id8"] = <
+                text = <"Copy number">
+                description = <"Number of repeat units.">
+            >
+            ["id6"] = <
+                text = <"Repeated sequence">
+                description = <"The sequence of nucleotides that has been repeated.">
+            >
+            ["id4"] = <
+                text = <"End position">
+                description = <"Position of the last nucleotide of the repeated range.">
+            >
+            ["id2"] = <
+                text = <"Start position">
+                description = <"Position of the first nucleotide of the repeated range.">
+            >
+            ["id1"] = <
+                text = <"Genetic repeated sequence variant">
+                description = <"A genetic sequence where, compared to a reference sequence, a segment of one or more nucleotides (the repeat unit) is present several times, one after the other.">
+            >
+        >
+    >

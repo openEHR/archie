@@ -1,0 +1,389 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=c4cb423f-6372-44e0-a7f0-b0109464f2bf; build_uid=6975d3c6-3d18-4eb3-9e29-22a44285c8a1)
+    openEHR-EHR-OBSERVATION.head_circumference.v1.0.2
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Kirsi Poikela">
+                ["organisation"] = <"Tieto Sweden AB">
+                ["email"] = <"ext.kirsi.poikela@tieto.com">
+            >
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke and John Tore Valand">
+                ["organisation"] = <"Nasjonal IKT HF; Helse Bergen HF">
+            >
+        >
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            author = <
+                ["name"] = <"Alan March">
+                ["organisation"] = <"Hospital Universitario Austral">
+                ["email"] = <"amarch@cas.austral.edu.ar">
+            >
+            accreditation = <"MD">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Marivan Abrahão, Gabriela Alves, Adriana Kitajima e Maria Ângela Scatena">
+                ["organisation"] = <"Core Consulting">
+                ["email"] = <"contato@coreconsulting.com.br">
+            >
+            accreditation = <"Hospital Alemão Oswaldo Cruz (HAOC)">
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics, Australia">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"2016-08-22">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "Kristian Berg, Vestvågøy kommune - Fagutviklingsavdelingen, Norway", "Malin Berg, DIPS ASA, Norway", "Ruth Caudwell, retired, United Kingdom", "Tone Engen, Norway", "Hildegard Franke, freshEHR Clinical Informatics Ltd., United Kingdom", "Heather Grain, Llewelyn Grain Informatics, Australia", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Hilde Hollås, DIPS ASA, Norway", "Evelyn Hovenga, EJSH Consulting, Australia", "Pétur Júlíusson, Barneklinikken, HUS og K2, UIB, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Adriana Kitajima, CORE Consulting, Brazil", "Harmony Kosola, Alberta Health Services, Canada", "Siv Marie Lien, DIPS ASA, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "Andrej Orel, Marand d.o.o., Slovenia", "Norwegian Review Summary, Nasjonal IKT HF, Norway", "Line Silsand, Universitetssykehuset i Nord-Norge, Norway", "Annette Hole Sjøborg, DIPS ASA, Norway", "Tove Stenquist, Helseforetak, Norway", "Terje Sundstrøm, Helse Bergen HF, Norway", "Nyree Taylor, Ocean Informatics, Australia", "Gro-Hilde Ulriksen, Norwegian center for ehealthresearch, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Stian Torleif Varpe, Helse Bergen, Norway">
+    lifecycle_state = <"published">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"C15626E03B2D9CA0E945CD9ED8D4B6DC">
+    >
+    details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"Att mäta huvudomfånget.">
+            keywords = <"antropometri", "mätning", "uppskattning", "omfång", "-huvud?", "perimeter", "*HC(en)">
+            use = <"Används för att mäta den största huvudomkretsen.
+    Denna arketyp kan även användas för att registrera en uppskattning av huvudomkretsen i ett kliniskt scenario där det inte är möjligt att få ett exakt mätvärde, exempelvis vid mätning av ett icke-samarbetsvilligt barn. Detta har inte modellerats explicit i arketypen. OpenEHRs referensmodell tillåter attribut för approximation till vilken som helst kvantitetsdatatyp. 
+    
+    
+    Vid användning kan exempelvis applikationens gränssnitt tillåta kliniker att välja en kryssruta som indikerar att det registrerade huvudomfånget är en uppskattning istället för den verkliga. Ett utlåtande som identifierar att mätningen av huvudomfånget inte är exakt kan registreras i fältet \"Påverkande faktorer\".
+    ">
+            misuse = <"Används inte för att mäta omkretsen av en annan kroppsdel. Då ska istället OBSERVATION.body_segment användas, förutsatt att det inte finns en specifik arketyp som är mer lämplig till ändamålet som exempelvis observation. waist_circumference.">
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere måling av den lengste distansen rundt hodet.">
+            keywords = <"antropometri", "måling", "estimering", "omkrets", "hodestørrelse">
+            use = <"Brukes for å registrere måling av den lengste distansen rundt hodet.
+    
+    Denne arketypen kan også brukes for å registrere et anslag av hodeomkretsen i et klinisk scenario der det ikke er mulig å få til en nøyaktig måling, f.eks. ved måling av et barn som ikke samarbeider. Dette er ikke modellert eksplisitt inn i arketypen, siden openEHR referansemodellen tillater attributten \"Approksimering\" for datatypen \"Quantity\". Ved implementasjon kan f.eks. et brukergrensesnitt tillate klinikerne å velge en avkrysningsboks ved siden av elementet \"Hodeomkrets\" for å indikere at omkretsen er en approksimering heller enn en faktisk måling. Et utsagn om at hodet ikke er fysisk intakt kan registreres i elementet \"Konfunderende faktorer\" hvis nødvendig.">
+            misuse = <"Brukes ikke til å registrere omkretsen av andre kroppsdeler. Bruk OBSERVATION.body_segment i disse tilfellene med unntak av der det finnes mer spesifikke arketyper som for eksempel OBSERVATION.waist_circumference.">
+        >
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            purpose = <"Para el registro de la medición de la distancia mas larga alrededor de la cabeza.">
+            keywords = <"antropometria", "medición", "estimación", "circunferencia", "perímetro", "cefálico", "HC">
+            use = <"Utilizado para registrar la medición de la distancia mas larga alrededor de la cabeza.
+    
+    Este arquetipo puede ser utilizado para el registro aproximado de la medida del perímetro cefálico en un escenario clínico donde no es posible obtener una medición exacta - por ejemplo, la medición efectuada en un niño que no colabora. Esto no ha sido modelado explícitamente en el arquetipo dado que el modelo de referencia openEHR permite el atributo de Aproximación para cualquier tipo de dato cuantitativo. En una implementación, por ejemplo, una interface con el usuario podrá permitir que un clínico seleccione una opción adyacente al campo Perímetro cefálico para indicar que el mismo es una aproximación, y no el valor real. En caso de ser necesario, el dato de una posible solución de continuidad en la cabeza puede ser registrado en el elemento 'Factores de confusión' del protocolo.">
+            misuse = <"No debe ser utilizado para el registro de perímetros de otras partes del cuerpo. En este caso se debe utilizar OBSERVATION.body_segment, excepto en casos donde existan arquetipos mas específicos, tales como OBSERVATION.waist_circumference.">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para gravar o perímetro cefálico de um indivíduo.">
+            keywords = <"antropometria", "medição", "estimativa", "circunferência">
+            use = <"Use para gravar o perímetro cefálico de um indivíduo.
+    
+    Este arquétipo também pode ser usado para gravar uma medição aproximada do perímetro cefálico, em um cenário clínico em que não é possível medir uma altura ou comprimento exato - por exemplo, medição de uma criança não colaborativa. Isto não é modelado explicitamente no arquétipo, com o modelo de referência openEHR é possível que o atributo de aproximação para qualquer de tipo de dados quantitativo. Na aplicação, por exemplo, uma interface de usuário da aplicação pode permitir aos clínicos selecionar numa caixa de verificação, apropriadamente marcada ao lado do campo de dados de altura, para indicar que a altura gravada é uma aproximação, em vez de instrução atual. A declaração identificando a incompletude física da cabeça, pode ser gravado no elemento de protocolo \"Fatores de confusão\", se necessário.
+    
+    Usar para registar o crescimento a partir de medições repetidas. Este atualmente pode ser modelado para restringir o \"algum evento\" para um intervalo em um modelo com função matemática de aumento associada, conforme o caso.">
+            misuse = <"Não deve ser usado para gravar a velocidade de crescimento.
+    
+    Não deve ser usado para gravar a circunferência de outra parte do corpo. Usar OBSERVATION.body_segment nestas circunstâncias, exceto quando existem arquétipos mais específicos tais como OBSERVATION.waist_hip.">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the measurement of the longest distance around the head.">
+            keywords = <"anthropometry", "measurement", "estimation", "circumference", "cephalic", "perimeter", "HC">
+            use = <"Use to record the measurement of the longest distance around the head.
+    
+    This archetype can also be used for recording an approximation of the head circumference measurement in a clinical scenario where it is not possible to measure an accurate head circumference - for example, measuring an uncooperative child. This is not modelled explicitly in the archetype as the openEHR Reference model allows the attribute of Approximation for any Quantity data type. At implementation, for example, an application user interface could allow clinicians to select an appropriately labelled check box adjacent to the Head circumference data field to indicate that the recorded head circumference is an approximation, rather than actual. A statement identifying the physical incompleteness of the head can be recorded in the 'Confounding factors' protocol element, if required.">
+            misuse = <"Not to be used to record the circumference of another body part. Use OBSERVATION.body_segment in these circumstances except where more specific archetypes exist such as OBSERVATION.waist_circumference.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Head circumference
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id11] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {1..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Head circumference
+                                        value matches {
+                                            DV_QUANTITY[id9001] matches {
+                                                property matches {[at9000]}    -- Length
+                                                [magnitude, units] matches {
+                                                    [{|0.0..100.0|}, {"cm"}],
+                                                    [{|0.0..40.0|}, {"[in_i]"}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id8] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9002] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id9] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id10] matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9003] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    POINT_EVENT[id12] occurrences matches {0..1} matches {    -- Birth
+                        data matches {
+                            use_node ITEM_TREE[id9004] /data[id2]/events[id11]/data[id4]
+                        }
+                        state matches {
+                            use_node ITEM_TREE[id9005] /data[id2]/events[id11]/state[id9]
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id6] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id7] occurrences matches {0..1} matches {     -- Device
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                    allow_archetype CLUSTER[id13] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["sv"] = <
+            ["at9000"] = <
+                text = <"* Length (en)">
+                description = <"* Length (en)">
+            >
+            ["id13"] = <
+                text = <"Extra information">
+                description = <"Ytterligare information som krävs för att fånga lokal kontext eller för anpassning till andra referensmodeller och formalismer.">
+                comment = <"Exempelvis: lokal avdelningsinformation eller ytterligare metadata för anpassning till FHIR eller CIMI motsvarigheter.">
+            >
+            ["id12"] = <
+                text = <"Födelse">
+                description = <"Den första mätningen av huvudomkretsen som registreras strax efter födseln. Den här händelsen registreras endast en gång per patientjournal.">
+            >
+            ["id11"] = <
+                text = <"Ospecifik händelse">
+                description = <"Standardval, ospecificerad tidpunkt eller intervallhändelse som explicit kan definieras i en mall eller vid körning av program.">
+            >
+            ["id10"] = <
+                text = <"Påverkande faktorer">
+                description = <"En beskrivning av eventuella problem eller faktorer som kan påverka mätningen">
+                comment = <"Exempelvis: icke-samarbetsvilligt barn, huvud & form efter förlossning och hematom.">
+            >
+            ["id8"] = <
+                text = <"Kommentar">
+                description = <"Ytterligare beskrivning om huvudomfånget som inte beskrivits i andra fält.">
+            >
+            ["id7"] = <
+                text = <"Utrustning">
+                description = <"Information om utrustningen som används vid mätningen.">
+            >
+            ["id5"] = <
+                text = <"Huvudomfång">
+                description = <"Mätningen av den största huvudomkretsen.">
+            >
+            ["id1"] = <
+                text = <"Huvudomfång">
+                description = <"Mätning av den största omkretsen av huvudet.">
+            >
+        >
+        ["nb"] = <
+            ["at9000"] = <
+                text = <"* Length (en)">
+                description = <"* Length (en)">
+            >
+            ["id13"] = <
+                text = <"Tilleggsinformasjon">
+                description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
+                comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
+            >
+            ["id12"] = <
+                text = <"Fødsel">
+                description = <"Den første målingen av hodeomkrets som registreres kort tid etter fødsel. Denne hendelsen skal kun benyttes én gang per journal.">
+            >
+            ["id11"] = <
+                text = <"Uspesifisert hendelse">
+                description = <"Standard, uspesifisert tidspunkt eller tidsintervall som kan defineres mer eksplisitt i en template eller i en applikasjon.">
+            >
+            ["id10"] = <
+                text = <"Konfunderende faktorer">
+                description = <"Fritekstbeskrivelse av problemer eller faktorer som kan ha påvirkning på målingene.">
+                comment = <"For eksempel: \"Ikke samarbeidende barn, sammenklemming i fødselskanalen eller hematom\".">
+            >
+            ["id8"] = <
+                text = <"Kommentar">
+                description = <"Ytterligere fritekst om hodeomkretsen som ikke er registrert i andre felt.">
+            >
+            ["id7"] = <
+                text = <"Måleutstyr">
+                description = <"Detaljer om utstyret som ble brukt til målingen.">
+            >
+            ["id5"] = <
+                text = <"Hodeomkrets">
+                description = <"Måling av den lengste distansen rundt hodet.">
+            >
+            ["id1"] = <
+                text = <"Hodeomkrets">
+                description = <"Måling av den lengste distansen rundt hodet.">
+            >
+        >
+        ["es-ar"] = <
+            ["at9000"] = <
+                text = <"* Length (en)">
+                description = <"* Length (en)">
+            >
+            ["id13"] = <
+                text = <"Extensión">
+                description = <"Información adicional requerida para la captura del contexto local o para el alineamiento con otros modelos o formalismos de referencia.">
+                comment = <"Por ejemplo: Información local del departamento hospitalario o metadatos adicionales para el alineamiento con FHIR, CIMI o equivalentes.">
+            >
+            ["id12"] = <
+                text = <"Nacimiento">
+                description = <"La primera medición del perímetro cefálico registrar en forma inmediata al nacimiento. Este evento debe ser utilizado solo una vez por registro.">
+            >
+            ["id11"] = <
+                text = <"Cualquier evento">
+                description = <"Punto en el tiempo o intervalo que puede ser explícitamente definido en una plantilla o en tiempo de ejecución, por defecto.">
+            >
+            ["id10"] = <
+                text = <"Factores de confusión">
+                description = <"Descripción de cualquier situación que pueda impactar sobre la medición.">
+                comment = <"Por ejemplo: 'niño no coprativo', 'caput succedaneum y amoldamiento postnatal' y 'hematoma'.">
+            >
+            ["id8"] = <
+                text = <"Comentario">
+                description = <"Narrativa adicional acerca del perímetro cefálico no representada en otros campos.">
+            >
+            ["id7"] = <
+                text = <"Dispositivo">
+                description = <"Detalles del dispositivo utilizado para la medición.">
+            >
+            ["id5"] = <
+                text = <"Perímetro cefálico">
+                description = <"La medición de la distancia mas larga alrededor de la cabeza.">
+            >
+            ["id1"] = <
+                text = <"Perímetro cefálico">
+                description = <"La medición de la distancia mas larga alrededor de la cabeza.">
+            >
+        >
+        ["pt-br"] = <
+            ["at9000"] = <
+                text = <"* Length (en)">
+                description = <"* Length (en)">
+            >
+            ["id13"] = <
+                text = <"Extensão">
+                description = <"Informações adicionais, necessárias para capturar o contexto local ou para alinhar com outros modelos de referência / formalismos.">
+                comment = <"Por exemplo: departamento de informações do hospital local ou metadados adicionais para alinhar ao FHIR ou CIMI equivalentes.">
+            >
+            ["id12"] = <
+                text = <"Nascimento">
+                description = <"A primeira medição do perímetro cefálico, que é gravado logo após o nascimento.">
+            >
+            ["id11"] = <
+                text = <"*Any event(en)">
+                description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+            >
+            ["id10"] = <
+                text = <"*Confounding factors(en)">
+                description = <"*Narrative descripiton of any issues or factors that may impact on the measurement.(en)">
+                comment = <"*For example: 'uncooperative child','caput & moulding post birth' and 'haematoma'.(en)">
+            >
+            ["id8"] = <
+                text = <"*Comment(en)">
+                description = <"*Additional narrative about the head circumference not captured in other fields.(en)">
+            >
+            ["id7"] = <
+                text = <"*Device(en)">
+                description = <"*Details about the device used for the measurement.(en)">
+            >
+            ["id5"] = <
+                text = <"*Head circumference(en)">
+                description = <"*The measurement of the longest distance around the head.(en)">
+            >
+            ["id1"] = <
+                text = <"*Head circumference(en)">
+                description = <"*The measurement of the longest distance around the head.(en)">
+            >
+        >
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["id13"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+                comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id12"] = <
+                text = <"Birth">
+                description = <"The first measurement of head circumference that is recorded soon after birth. This event should only be used once per record.">
+            >
+            ["id11"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id10"] = <
+                text = <"Confounding factors">
+                description = <"Narrative descripiton of any issues or factors that may impact on the measurement.">
+                comment = <"For example: 'uncooperative child','caput & moulding post birth' and 'haematoma'.">
+            >
+            ["id8"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the head circumference not captured in other fields.">
+            >
+            ["id7"] = <
+                text = <"Device">
+                description = <"Details about the device used for the measurement.">
+            >
+            ["id5"] = <
+                text = <"Head circumference">
+                description = <"The measurement of the longest distance around the head.">
+            >
+            ["id1"] = <
+                text = <"Head circumference">
+                description = <"The measurement of the longest distance around the head.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/122>
+        >
+    >

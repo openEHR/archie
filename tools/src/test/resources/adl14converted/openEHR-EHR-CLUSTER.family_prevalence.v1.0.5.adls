@@ -1,0 +1,456 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=28365b69-c6b7-4320-9329-c890dabd8b63; build_uid=252b7c71-387a-41d0-93ec-87cd7ee23cc8)
+    openEHR-EHR-CLUSTER.family_prevalence.v1.0.5
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            author = <
+                ["name"] = <"Sarah Ballout">
+                ["email"] = <"ballout.sarah@mh-hannover.de">
+            >
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Osmeire Chamelette Sanzovo">
+                ["organisation"] = <"Hospital Sírio Libanês - SP">
+                ["email"] = <"osmeire.acsanzovo@hsl.org.br">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2015-05-05">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Vebjoern Arntzen, Oslo university hospital, Norway", "Koray Atalag, University of Auckland, New Zealand", "Silje Ljosland Bakke, National ICT Norway, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University hospital, Norway", "Shahla Foozonkhah, Ocean Informatics, Australia", "Einar Fosse, National Centre for Integrated Care and Telemedicine, Norway", "Heather Grain, Llewelyn Grain Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Lars Karlsen, DIPS ASA, Norway", "Shinji Kobayashi, Kyoto University, Japan", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Hugh Leslie, Ocean Informatics, Australia", "Hallvard Lærum, Oslo University Hospital, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Andrej Orel, Marand d.o.o., Slovenia", "Jussara Rotzsch, UNB, Brazil">
+    lifecycle_state = <"published">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"Risk of condition based on family history, rejected archetype, openEHR Clinical Knowledge Manager [Internet]. openEHR Foundation. Authored: 2006 04 23. Available at: http://www.openehr.org/ckm/#showArchetype_1013.1.125 (last accessed 2015 03 05).">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"A76B97FA164830629EA15341E9229D7C">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"Zur Repräsentation von Informationen über die Prävalenz eines bestimmten Risikofaktors, eines Problems oder einer Diagnose bei genetischen und nicht-genetischen Familienmitgliedern.">
+            keywords = <"Familienanamnese", "Prävalenz", "betroffen", "genetisch">
+            use = <"Zur Repräsentation von Informationen über die Prävalenz eines bestimmten Risikofaktors, eines Problems oder einer Diagnose bei genetischen und nicht-genetischen Familienmitgliedern.
+    
+    Dieser Archetyp wurde speziell für die Verwendung im 'Detail' SLOT innerhalb des Archetyps EVALUATION.health_risk entwickelt, um die Risikobewertung im Bereich der Pflege für den ermittelten Risikofaktors und der \"Familienprävalenz\" Slot im Archetyp EVALUATION.family_history zu unterstützen. Es kann auch in der SLOT \"Spezifische Details\" innerhalb des Archetyps EVALUATION.problem_diagnosis ,oder anderer EVALUATION- oder CLUSTER-Archetypen verwendet werden, falls dies klinisch angemessen ist.
+    ">
+            misuse = <"Nicht zur Repräsentation von aktuellen Gesundheitsinformationen über Problemen oder Diagnosen einzelner Familienmitglieder verwenden - verwenden Sie dazu EVALUATION.family_history.">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para registrar informações sobre a prevalência de um fator de risco identificado, problema ou diagnóstico não-genético ou genético em membros da família.">
+            keywords = <"história familiar", "prevalência", "afetado", "genético">
+            use = <"Use para registrar informações sobre a prevalência de um fator de risco identificado, problema ou diagnóstico não-genético ou genético em membros da família .
+    
+    Este arquétipo foi projetado especificamente para ser usado no SLOT detalhe dentro do arquétipo de EVALUATION.healthrisk para apoiar a avaliação de risco em objeto de cuidados para o fator de risco identificado e a família prevalência SLOT no arquétipo de EVALUATION.familyhistory. Também pode ser usada em detalhes específicos SLOT dentro do arquétipo de EVALUATION.problemdiagnosis, ou outros arquétipos de avaliação ou de CLUSTER, quando clinicamente apropriado.">
+            misuse = <"Não deve ser utilizado para registrar informações sobre problemas ou diagnósticos individuais de membros da família - use EVALUATION.family_history para essa finalidade.">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record information about the prevalence of an identified risk factor, problem or diagnosis in genetic and non-genetic family members.">
+            keywords = <"family history", "prevalence", "affected", "genetic">
+            use = <"Use to record information about the prevalence of an identified risk factor, problem or diagnosis in genetic and non-genetic family members.
+    
+    This archetype has specifically been designed to be used in the 'Detail' SLOT within the EVALUATION.health_risk archetype to support assessment of risk in the subject of care for the identified 'Risk factor' and the 'Family prevalence' SLOT in the EVALUATION.family_history archetype. It can also be used in the 'Specific details' SLOT within the EVALUATION.problem_diagnosis archetype or other EVALUATION or CLUSTER archetypes, where clinically appropriate.">
+            misuse = <"Not to be used to record actual health information about problems or diagnoses in individual family members - use EVALUATION.family_history for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Family prevalence
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id31] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    DV_TEXT[id9003] 
+                }
+            }
+            ELEMENT[id56] occurrences matches {0..1} matches {    -- Genetic predisposition?
+                value matches {
+                    DV_BOOLEAN[id9004] matches {
+                        value matches {True}
+                    }
+                }
+            }
+            ELEMENT[id57] occurrences matches {0..1} matches {    -- Inheritance type
+                value matches {
+                    DV_TEXT[id9005] 
+                }
+            }
+            CLUSTER[id32] matches {    -- Affected family
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id33] occurrences matches {0..1} matches {    -- Relationship
+                        value matches {
+                            DV_CODED_TEXT[id9006] matches {
+                                defining_code matches {[ac9000]}    -- Relationship (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id52] occurrences matches {0..1} matches {    -- Family line
+                        value matches {
+                            DV_CODED_TEXT[id9007] matches {
+                                defining_code matches {[ac9001]}    -- Family line (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id34] occurrences matches {0..1} matches {    -- Biological sex
+                        value matches {
+                            DV_CODED_TEXT[id9008] matches {
+                                defining_code matches {[ac9002]}    -- Biological sex (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id35] occurrences matches {0..1} matches {    -- Number affected
+                        value matches {
+                            DV_COUNT[id9009] matches {
+                                magnitude matches {|>=0|}
+                            }
+                        }
+                    }
+                    ELEMENT[id55] occurrences matches {0..1} matches {    -- Number eligible
+                        value matches {
+                            DV_COUNT[id9010] matches {
+                                magnitude matches {|>=0|}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["ac9000"] = <
+                text = <"Verwandtschaft (synthesised)">
+                description = <"Der Verwandtschaftsgrad zwischen dem Pflegebedürftigen und einer bestimmten Gruppe von Familienmitgliedern. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Familienlinie (synthesised)">
+                description = <"Bestimmung der mütterlichen oder väterlichen Familienlinie in der Verwandtschaft. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Biologisches Geschlecht (synthesised)">
+                description = <"Das biologische Geschlecht des/der Familienmitglieder(s). (synthesised)">
+            >
+            ["id57"] = <
+                text = <"Vererbungstyp">
+                description = <"Kategorie der Vererbung für den ermittelten Risikofaktor, das Problem oder die Diagnose.">
+                comment = <"Zum Beispiel: autosomal dominant, autosomal rezessiv, X-linked dominant, X-linked rezessiv, codominant oder mitochondrial.">
+            >
+            ["id56"] = <
+                text = <"Genetische Veranlagung?">
+                description = <"Gibt es eine genetische Grundlage für den diagnostizierten Risikofaktors, das Problem oder die Diagnose?">
+                comment = <"Optionale Eintragung als Wahr, wenn eine anerkannte genetische Prädisposition vorliegt. In vielen Fällen kann dies aus dem Risikofaktor, dem Problem oder der Diagnose abgeleitet werden und muss nicht explizit erfasst werden.">
+            >
+            ["id55"] = <
+                text = <"Anzahl der Berechtigten">
+                description = <"Die Anzahl der berechtigten Familienmitglieder.">
+                comment = <"Die Anzahl der Familienmitglieder, die möglicherweise betroffen sein könnten UND die auch zu ausgewählten Beziehungs-, Familienlinien- und Geschlechterkriterien passen. Diese Zahl ist faktisch der Nenner für die Berechnung eines \"Affected Ratio\".">
+            >
+            ["at52"] = <
+                text = <"Unbestimmt/Intersex/nicht spezifiziert">
+                description = <"Ein Familienmitglied, das entweder die biologischen Eigenschaften beider Geschlechter hat oder einige der biologischen Eigenschaften nicht aufweist, die als notwendig erachtet werden, um als das eine oder andere Geschlecht definiert zu werden.">
+            >
+            ["id52"] = <
+                text = <"Familienlinie">
+                description = <"Bestimmung der mütterlichen oder väterlichen Familienlinie in der Verwandtschaft.">
+                comment = <"Ausschließlich für die Verwendung mit genetischen Familienmitgliedern.">
+            >
+            ["at50"] = <
+                text = <"Nichtgenetische Familie">
+                description = <"Alle nicht-genetischen Familienmitglieder.">
+            >
+            ["at44"] = <
+                text = <"Weiblich">
+                description = <"Ein biologisches Familienmitglied, das biologisch weiblich ist.">
+            >
+            ["at43"] = <
+                text = <"Männlich">
+                description = <"Ein biologisches Familienmitglied, das biologisch männlich ist.">
+            >
+            ["at42"] = <
+                text = <"Genetische Familie">
+                description = <"Alle genetisch verwandten Familienmitglieder.">
+            >
+            ["at41"] = <
+                text = <"Väterliche Linie">
+                description = <"Verwandt mit dem Vater des Patienten.">
+            >
+            ["at40"] = <
+                text = <"Mütterliche Linie">
+                description = <"Verwandt mit der Mutter des Patienten.">
+            >
+            ["at39"] = <
+                text = <"Relativ dritten Grades">
+                description = <"12,5% genetischer Anteil mit dem Patienten - zum Beispiel Urgroßeltern, Großtante, Großonkel, Erster Cousin, Kinder von Nichten und Neffen und Urenkelkinder.">
+            >
+            ["at38"] = <
+                text = <"Relativ zum zweiten Grad">
+                description = <"25% genetischer Anteil mit dem Patienten - zum Beispiel Großeltern, Tanten, Onkel, Nichten, Neffen, Enkelkinder und Halbgeschwister.">
+            >
+            ["at37"] = <
+                text = <"Verwandter ersten Grades">
+                description = <"50% genetischer Anteil mit dem Patienten - zum Beispiel Elternteil, Geschwister oder Kind.">
+            >
+            ["id35"] = <
+                text = <"Anzahl der betroffenen">
+                description = <"Die Anzahl der bekannten Familienmitgliedern, die davon betroffen sind.">
+                comment = <"Die Anzahl der betroffenen Familienmitglieder, die auch zu bestimmten Kriterien wie Beziehung, Familienlinien- und Geschlechterkriterien passen. Diese Zahl ist faktisch der Nenner für die Berechnung eines \"Affected Ratio\".">
+            >
+            ["id34"] = <
+                text = <"Biologisches Geschlecht">
+                description = <"Das biologische Geschlecht des/der Familienmitglieder(s).">
+            >
+            ["id33"] = <
+                text = <"Verwandtschaft">
+                description = <"Der Verwandtschaftsgrad zwischen dem Pflegebedürftigen und einer bestimmten Gruppe von Familienmitgliedern.">
+            >
+            ["id32"] = <
+                text = <"Betroffene Familienmitglieder">
+                description = <"Angaben über die Anzahl der betroffenen Familienmitglieder.">
+                comment = <"Dieses Cluster wird für jede Verwandtschaft, Familienlinie, Geschlechtswert oder Kombination aller drei wiederholt. Zum Beispiel wird dieses Cluster für einen oder alle männlichen Verwandten ersten Grades (ohne Geschlecht angegeben), einen Verwandten ersten Grades von der mütterlichen Linie, einen Verwandten ersten Grades männlichen Verwandten oder weiblichen Verwandten ersten Grades oder alle männlichen, alle weiblichen Verwandten wiederholt.
+    ">
+            >
+            ["id31"] = <
+                text = <"Beschreibung">
+                description = <"Beschreibung des Ereignis bei den Familienmitgliedern.">
+            >
+            ["id1"] = <
+                text = <"Familienprävalenz">
+                description = <"Zusammenfassung von information über die Prävalenz eines Risikofaktors, eines Problems oder einer Diagnose bei allen Familienmitgliedern.">
+            >
+        >
+        ["pt-br"] = <
+            ["ac9000"] = <
+                text = <"Relacionamento (synthesised)">
+                description = <"O grau de relacionamento entre o sujeito do cuidado e o grupo selecionado dos membros da família. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Linha Familiar (synthesised)">
+                description = <"Identificação da linha familiar materna ou paterna na relação (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Sexo Biológico (synthesised)">
+                description = <"O sexo biológico dos membros da família. (synthesised)">
+            >
+            ["id57"] = <
+                text = <"Tipo de Herança">
+                description = <"Categoria de herança para o identificar o diagnóstico, problema ou fator de risco.">
+                comment = <"Por exemplo: autossômica dominante, autossômica recessiva, dominante ligada ao X, recessiva ligada ao X, co-dominante, ou mitocondrial.">
+            >
+            ["id56"] = <
+                text = <"Predisposição genética?">
+                description = <"Há uma base genética para o fator de risco identificado, o problema ou o diagnóstico?">
+                comment = <"Opção de gravação como True se houver uma predisposição genética reconhecida. Em muitos casos, isso pode ser inferido a partir do fator de risco, o problema ou o diagnóstico e não precisa ser gravado explicitamente.">
+            >
+            ["id55"] = <
+                text = <"Números de elegíveis">
+                description = <"O número de membros elegíveis da família.">
+                comment = <"Este é o número de membros da família que potencialmente poderiam ser afetados, e que também se encaixam a relação selecionada, linhagem familiar e critérios de sexo. Este número é, efetivamente, o denominador para cálculo da proporção de afetados.">
+            >
+            ["at52"] = <
+                text = <"Indeterminado/Intersexo/Inespecífico">
+                description = <"Membro da família que possui os atributos biológicos de ambos os sexos ou carece de alguns dos atributos biológicos considerados necessários para ser definido como um ou outro sexo.">
+            >
+            ["id52"] = <
+                text = <"Linha Familiar">
+                description = <"Identificação da linha familiar materna ou paterna na relação">
+                comment = <"Somente para uso com membros genéticos da família.">
+            >
+            ["at50"] = <
+                text = <"Família Não Genética">
+                description = <"Todos os membros da família não-genética.">
+            >
+            ["at44"] = <
+                text = <"Feminino">
+                description = <"Membros da família que são biologicamente do sexo feminino.">
+            >
+            ["at43"] = <
+                text = <"Masculino">
+                description = <"Membros da família que são biologicamente do sexo masculino.">
+            >
+            ["at42"] = <
+                text = <"Genética familiar">
+                description = <"Todos os membros da família geneticamente relacionados.">
+            >
+            ["at41"] = <
+                text = <"Linha Paterna">
+                description = <"Assuntos relacionados à linha paterna.">
+            >
+            ["at40"] = <
+                text = <"Linha materna">
+                description = <"Assuntos relacionados à família materna.">
+            >
+            ["at39"] = <
+                text = <"Relação de Terceiro Grau">
+                description = <"12,5% compartilhamento genético com o sujeito - por exemplo, bisavós, tia-avó, tio-avô, primo de segundo grau, filhos de sobrinhos e de sobrinhas e bisnetos.">
+            >
+            ["at38"] = <
+                text = <"Relação de Segundo Grau">
+                description = <"25% compartilhamento genético com o sujeito - por exemplo, avós, tia, tio, sobrinha, sobrinho, netos. e meio-irmãos">
+            >
+            ["at37"] = <
+                text = <"Relação de Primeiro Grau">
+                description = <"50% compartilhamento genético com o sujeito - por exemplo, pais, irmãos ou filhos">
+            >
+            ["id35"] = <
+                text = <"Número de afetados">
+                description = <"O número de membros da família conhecido por serem afetados">
+                comment = <"Este é o número de membros da família que são afetados e que também se encaixam na relação selecionada, linhagem familiar e critérios de sexo. Efetivamente, este número é o numerador para o cálculo de uma proporção de afetados.">
+            >
+            ["id34"] = <
+                text = <"Sexo Biológico">
+                description = <"O sexo biológico dos membros da família.">
+            >
+            ["id33"] = <
+                text = <"Relacionamento">
+                description = <"O grau de relacionamento entre o sujeito do cuidado e o grupo selecionado dos membros da família.">
+            >
+            ["id32"] = <
+                text = <"Familiares afetados">
+                description = <"Detalhes sobre o número de membros da família afetados">
+                comment = <"Este cluster será repetido para cada relação, linha de família, valor do sexo ou combinação dos três. Por exemplo, o cluster será repetido para qualquer um ou todos de primeiro grau relativo (sem sexo especificado), primeiro grau relativo de linha materna; primeiro grau de parente masculino ou primeiro grau de parente feminino; ou todos os homens, ou todas as mulheres.">
+            >
+            ["id31"] = <
+                text = <"Descrição">
+                description = <"Descrição narrativa sobre ocorrência em membros da família.">
+            >
+            ["id1"] = <
+                text = <"Prevalência Familiar">
+                description = <"Resumo das informações sobre a prevalência de um fator de risco, o problema ou o diagnóstico em todos os membros da família.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Relationship (synthesised)">
+                description = <"The degree of relationship between the subject of care and a selected group of family members. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Family line (synthesised)">
+                description = <"Identification of the maternal or paternal family line in the relationship. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Biological sex (synthesised)">
+                description = <"The biological sex of the family member/s. (synthesised)">
+            >
+            ["id57"] = <
+                text = <"Inheritance type">
+                description = <"Category of inheritance for the identified risk factor, problem or diagnosis.">
+                comment = <"For example: autosomal dominant, autosomal recessive, X-linked dominant, X-linked recessive, codominant, or mitochondrial.">
+            >
+            ["id56"] = <
+                text = <"Genetic predisposition?">
+                description = <"Is there a genetic basis for the identified risk factor, problem or diagnosis?">
+                comment = <"Optional to record as True if there is a recognised genetic predisposition. In many cases, this may be inferred from the risk factor, problem or diagnosis and not need to be recorded explicitly.">
+            >
+            ["id55"] = <
+                text = <"Number eligible">
+                description = <"The number of eligible family members.">
+                comment = <"This is the number of family members who potentially could be affected AND who also fit selected relationship, family line and sex criteria. Effectively this number is the denominator for calculation of an 'Affected ratio'.">
+            >
+            ["at52"] = <
+                text = <"Indeterminate/Intersex/Unspecified">
+                description = <"Family member who either has the biological attributes of both sexes or lacks some of the biological attributes considered necessary to be defined as one or the other sex.">
+            >
+            ["id52"] = <
+                text = <"Family line">
+                description = <"Identification of the maternal or paternal family line in the relationship.">
+                comment = <"Only for use with genetic family members.">
+            >
+            ["at50"] = <
+                text = <"Non-genetic family">
+                description = <"All non-genetic family members.">
+            >
+            ["at44"] = <
+                text = <"Female">
+                description = <"Family member who is biologically female.">
+            >
+            ["at43"] = <
+                text = <"Male">
+                description = <"Family member who is biologically male.">
+            >
+            ["at42"] = <
+                text = <"Genetic family">
+                description = <"All genetically-related family members.">
+            >
+            ["at41"] = <
+                text = <"Paternal line">
+                description = <"Related through the subject's father.">
+            >
+            ["at40"] = <
+                text = <"Maternal line">
+                description = <"Related through the subject's mother.">
+            >
+            ["at39"] = <
+                text = <"Third degree relative">
+                description = <"12.5% genetic share with the subject - for example, great grandparent, great aunt, great uncle, first cousin, children of nieces and nephews, and great grandchildren.">
+            >
+            ["at38"] = <
+                text = <"Second degree relative">
+                description = <"25% genetic share with the subject - for example, grandparent, aunt, uncle, niece, nephew, grandchildren and half siblings.">
+            >
+            ["at37"] = <
+                text = <"First degree relative">
+                description = <"50% genetic share with the subject - for example, parent, sibling or child.">
+            >
+            ["id35"] = <
+                text = <"Number affected">
+                description = <"The number of family members known to be affected.">
+                comment = <"This is the number of family members who are affected AND who also fit selected relationship, family line and sex criteria. Effectively this number is the numerator for calculation of an 'Affected ratio'.">
+            >
+            ["id34"] = <
+                text = <"Biological sex">
+                description = <"The biological sex of the family member/s.">
+            >
+            ["id33"] = <
+                text = <"Relationship">
+                description = <"The degree of relationship between the subject of care and a selected group of family members.">
+            >
+            ["id32"] = <
+                text = <"Affected family">
+                description = <"Details about the numbers of family members affected.">
+                comment = <"This cluster will be repeated for each relationship, family line, sex value or combination of all three. For example, the cluster will be repeated for any or all of first degree relative (without sex specified), first degree relative from maternal line; first degree male relative or first degree female relative; or all males, all females.">
+            >
+            ["id31"] = <
+                text = <"Description">
+                description = <"Narrative description about occurrence in family members.">
+            >
+            ["id1"] = <
+                text = <"Family prevalence">
+                description = <"Summary information about the prevalence of a risk factor, problem or diagnosis in all family members.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at43", "at44", "at52">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at40", "at41">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at37", "at38", "at39", "at42", "at50">
+        >
+    >

@@ -1,0 +1,545 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=f76df12a-08bd-4a73-be4c-bf7176001072; build_uid=90e91e00-286f-4f19-adb8-b7777af4c5d4)
+    openEHR-EHR-CLUSTER.lymph_node_metastases.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            author = <
+                ["name"] = <"Mona Saleh">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Dr Ian McNicoll">
+        ["organisation"] = <"Ocean Informatics, Scotland">
+        ["email"] = <"ian.mcnicoll@oceaninformatics.com">
+        ["date"] = <"17/05/2009">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"C2E092B3BBFFB74D4FC89BEB77C32939">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record detailed findings of lymph node metastases as part of microscopic histopathological examination of tissue. ">
+            keywords = <"tumour", "lymph node", "metastases", "pathology", "histopathology", "cancer", "malignancy">
+            use = <"To record detailed findings about lymph node metastases as part of microscopic examination of tissue. 
+    Use as a component archetype in the context of a suite of archetypes that make up a histopathology report ie OBSERVATION.lab_test.histopathology.">
+            misuse = <"Not designed to be used within any other archetype other than OBSERVATION.lab_test.histopathology.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            purpose = <"لتسجيل الموجودات التفصيلية لنقائل العقد الليمفاوية كجزء من الفحص الهيستوباثولوجي المجهري للنسيج.">
+            keywords = <"الورم", "العقدة الليمفاوية", "النقائل", "الباثولوجيا/المرَضية", "الهيستوباثولوجيا", "السرطان", "الخباثة">
+            use = <"لتسجيل الموجودات التفصيلية حول نقائل العقد الليمفاوية كجزء من الفحص المجهري للنسيج.
+    يستخدم كجزء من مكونات النموذج في سياق سلسلة نماذج يتكون منها تقرير الهيستوباثولوجيا, مثل: ملاحظة. الاختبار المعملي.الهيستوباثولوجيا.">
+            misuse = <"لم يتم تصميم هذا النموذج ليتم استخدامه في داخل أي نموذج آخر غير نموذج ملاحظة. اختبار المعمل.الهيستوباثولوجيا.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Tumour- Lymph node metastases
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id42] occurrences matches {0..1} matches {    -- Lymph node site name
+                value matches {
+                    DV_TEXT[id9007] 
+                }
+            }
+            allow_archetype CLUSTER[id11] occurrences matches {0..1} matches {     -- Lymph node site location     
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.anatomical_location-precise\.v1\..*/}
+                exclude
+                    archetype_id/value matches {/.*/}
+            }
+            ELEMENT[id45] occurrences matches {0..1} matches {    -- Tissue available
+                value matches {
+                    DV_CODED_TEXT[id9008] matches {
+                        defining_code matches {[ac9000]}    -- Tissue available (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id26] occurrences matches {0..1} matches {    -- Tumour involvement
+                value matches {
+                    DV_CODED_TEXT[id9009] matches {
+                        defining_code matches {[ac9001]}    -- Tumour involvement (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id12] occurrences matches {0..1} matches {    -- Nature of involvement
+                value matches {
+                    DV_CODED_TEXT[id9010] matches {
+                        defining_code matches {[ac9002]}    -- Nature of involvement (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id47] occurrences matches {0..1} matches {    -- Route of involvement
+                value matches {
+                    DV_CODED_TEXT[id9011] matches {
+                        defining_code matches {[ac9003]}    -- Route of involvement (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- Number of nodes examined
+                value matches {
+                    DV_COUNT[id9012] matches {
+                        magnitude matches {|>=0|}
+                    }
+                }
+            }
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Number of nodes with tumour
+                value matches {
+                    DV_COUNT[id9013] matches {
+                        magnitude matches {|>=0|}
+                    }
+                }
+            }
+            ELEMENT[id10] occurrences matches {0..1} matches {    -- Extent of tumour
+                value matches {
+                    DV_QUANTITY[id9014] matches {
+                        property matches {[at9004]}    -- Length
+                        magnitude matches {|>=0.0|}
+                        units matches {"mm"}
+                    }
+                }
+            }
+            CLUSTER[id40] occurrences matches {0..1} matches {    -- Extra-nodal extension
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id35] occurrences matches {0..1} matches {    -- Extra-capsular extension
+                        value matches {
+                            DV_CODED_TEXT[id9015] matches {
+                                defining_code matches {[ac9005]}    -- Extra-capsular extension (synthesised)
+                            }
+                        }
+                    }
+                    ELEMENT[id15] occurrences matches {0..1} matches {    -- Extent of extranodal tumour
+                        value matches {
+                            DV_QUANTITY[id9016] matches {
+                                property matches {[at9004]}    -- Length
+                                magnitude matches {|>=0.0|}
+                                units matches {"mm"}
+                            }
+                        }
+                    }
+                }
+            }
+            ELEMENT[id41] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    DV_TEXT[id9017] 
+                }
+            }
+            ELEMENT[id52] occurrences matches {0..1} matches {    -- Marker dye uptake
+                value matches {
+                    DV_TEXT[id9018] 
+                }
+            }
+            allow_archetype CLUSTER[id46] matches {     -- Lymph node details
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.lymph_node_metastases\.v1\..*/}
+                exclude
+                    archetype_id/value matches {/.*/}
+            }
+            ELEMENT[id53] occurrences matches {0..1} matches {    -- Radioactivity count
+                value matches {
+                    DV_QUANTITY[id9019] matches {
+                        property matches {[at9006]}    -- Frequency
+                        [magnitude, units, precision] matches {
+                            [{|>=0.0|}, {"/s"}, {0}],
+                            [{|>=0.0|}, {"/min"}, {0}]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Tissue available (synthesised)">
+                description = <"Has the appropriate lymph node tissue been made available for examination? (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Tumour involvement (synthesised)">
+                description = <"Findings of lymph node involvement with tumour. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Nature of involvement (synthesised)">
+                description = <"Nature or grade of the tumour, if present. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Route of involvement (synthesised)">
+                description = <"The route by which the tumour became involved in lymph node tissue. (synthesised)">
+            >
+            ["at9004"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["ac9005"] = <
+                text = <"Extra-capsular extension (synthesised)">
+                description = <"Findings of extension of tumour beyond a node capsule. (synthesised)">
+            >
+            ["at9006"] = <
+                text = <"Frequency">
+                description = <"Frequency">
+            >
+            ["id53"] = <
+                text = <"Radioactivity count">
+                description = <"Radioactivity count measured after use of radiocolloid. ">
+            >
+            ["id52"] = <
+                text = <"Marker dye uptake">
+                description = <"Findings of whether marker dye has been taken up by the lymph node or lymph node group.">
+            >
+            ["at50"] = <
+                text = <"Absent">
+                description = <"Lymph node tissue is absent.">
+            >
+            ["at49"] = <
+                text = <"Present">
+                description = <"Lymph node tissue is present.">
+            >
+            ["at48"] = <
+                text = <"Metastasis">
+                description = <"The tumour involved the lymph node by metastasis.">
+            >
+            ["at47"] = <
+                text = <"Direct spread">
+                description = <"The tumour involved the lymph node by direct spread.">
+            >
+            ["id47"] = <
+                text = <"Route of involvement">
+                description = <"The route by which the tumour became involved in lymph node tissue.">
+            >
+            ["id46"] = <
+                text = <"Lymph node details">
+                description = <"Further details of lymph node metastasis at this site e.g individual nodes or further levels">
+            >
+            ["id45"] = <
+                text = <"Tissue available">
+                description = <"Has the appropriate lymph node tissue been made available for examination?">
+            >
+            ["at42"] = <
+                text = <"Present">
+                description = <"Lymph node involvement with tumour is present.">
+            >
+            ["id42"] = <
+                text = <"Lymph node site name">
+                description = <"The name for the lymph node site being reported. May be a general location e.g. 'Axillary nodes', a relative site e.g. 'Sentinel nodes' or a individual node.">
+            >
+            ["id41"] = <
+                text = <"Description">
+                description = <"A text description of lymph node involvement by tumour.">
+            >
+            ["id40"] = <
+                text = <"Extra-nodal extension">
+                description = <"Findings related to extension of tumour external to the nodal capsule.">
+            >
+            ["at38"] = <
+                text = <"Indeterminate">
+                description = <"Extra-capsular involvement by tumour has not been determined.">
+            >
+            ["at37"] = <
+                text = <"Equivocal">
+                description = <"Extra-capsular involvement by tumour is equivocal.">
+            >
+            ["at36"] = <
+                text = <"Absent">
+                description = <"Extra-capsular involvement by tumour is absent.">
+            >
+            ["at35"] = <
+                text = <"Present">
+                description = <"Extra-capsular involvement by tumour is present.">
+            >
+            ["id35"] = <
+                text = <"Extra-capsular extension">
+                description = <"Findings of extension of tumour beyond a node capsule.">
+            >
+            ["at33"] = <
+                text = <"Indeterminate">
+                description = <"The nature of tumour has not been determnined.">
+            >
+            ["at31"] = <
+                text = <"Indeterminate">
+                description = <"Llymph node involvement by tumour has not been determined.">
+            >
+            ["at30"] = <
+                text = <"Equivocal">
+                description = <"Lymph node involvement by tumour is equivocal.">
+            >
+            ["at29"] = <
+                text = <"Absent">
+                description = <"Tumour is absent from the lymph node site.">
+            >
+            ["at28"] = <
+                text = <"Present - bilateral nodes">
+                description = <"Tumour is present in nodes on both sides.">
+            >
+            ["at27"] = <
+                text = <"Present - right side nodes only">
+                description = <"Tumour is present in right side nodes only.">
+            >
+            ["at26"] = <
+                text = <"Present - left side nodes only">
+                description = <"Tumour is present in left sided nodes only.">
+            >
+            ["id26"] = <
+                text = <"Tumour involvement">
+                description = <"Findings of lymph node involvement with tumour.">
+            >
+            ["at24"] = <
+                text = <"Complete">
+                description = <"The node is completely invaded by tumour.">
+            >
+            ["id15"] = <
+                text = <"Extent of extranodal tumour">
+                description = <"Extent of extranodal tumour expressed as a maximum length.">
+            >
+            ["at13"] = <
+                text = <"Diffuse">
+                description = <"The tumour is of a diffuse nature.">
+            >
+            ["at12"] = <
+                text = <"Focal">
+                description = <"The tumour is of a focal nature.">
+            >
+            ["id12"] = <
+                text = <"Nature of involvement">
+                description = <"Nature or grade of the tumour, if present.">
+            >
+            ["id11"] = <
+                text = <"Lymph node site location     ">
+                description = <"The anatomical location of the lymph node or site being reported.">
+            >
+            ["id10"] = <
+                text = <"Extent of tumour">
+                description = <"Extent of tumour expressed as a maximum length. Applies only to an individual node.">
+            >
+            ["id3"] = <
+                text = <"Number of nodes with tumour">
+                description = <"Number of nodes which show tumour involvement.">
+            >
+            ["id2"] = <
+                text = <"Number of nodes examined">
+                description = <"Number of nodes examined.">
+            >
+            ["id1"] = <
+                text = <"Tumour- Lymph node metastases">
+                description = <"To record findings of tumour metastases in lymph nodes.">
+            >
+        >
+        ["ar-sy"] = <
+            ["ac9000"] = <
+                text = <"النسيج المتاح/المتوفر (synthesised)">
+                description = <"هل تم جعل نسيج العقدة الليمفاوية المناسب متاحا/متوفرا للفحص ? (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"اكتناف الورم (synthesised)">
+                description = <"الموجودات الخاصة باكتناف العقدة الليمفاوية بالورم (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"طبيعة الاكتناف (synthesised)">
+                description = <"طبيعة أو درجة الورم, إن وُجِد (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"طريق الاكتناف (synthesised)">
+                description = <"الطريق الذي أصبح به الورم مكتنفا لنسيج العقدة الليمفاوية. (synthesised)">
+            >
+            ["at9004"] = <
+                text = <"* Length (en)">
+                description = <"* Length (en)">
+            >
+            ["ac9005"] = <
+                text = <"الامتداد خارج المِحفظة (synthesised)">
+                description = <"الموجودات المتعلقة بامتداد الورم فيما يتجاوز مِحفظة العقدة. (synthesised)">
+            >
+            ["at9006"] = <
+                text = <"* Frequency (en)">
+                description = <"* Frequency (en)">
+            >
+            ["id53"] = <
+                text = <"عدد النشاط الإشعاعي">
+                description = <"عدد النشاط الإشعاعي يتم قياسه بعد استخدام الغرواني الإشعاعي.">
+            >
+            ["id52"] = <
+                text = <"قَبْط الصبغة الواصِمة">
+                description = <"الموجودات المتعلقة بما إذا كانت الصبغة الواصمة قد تم قبطها بواسطة العقدة الليمفاوية أو مجموعة العقد الليمفاوية.">
+            >
+            ["at50"] = <
+                text = <"غائب">
+                description = <"لا يوجد نسيج عقدة ليمفاوية متوفر ">
+            >
+            ["at49"] = <
+                text = <"موجود">
+                description = <"نسيج العقدة الليمفاوية متوفر/موجود">
+            >
+            ["at48"] = <
+                text = <"النَّقيلة">
+                description = <"تم انتشار الورم في العقدة الليمفاوية عن طريق النَّقيلة">
+            >
+            ["at47"] = <
+                text = <"انتشار مباشر">
+                description = <"قام الورم باكتناف العقدة الليمفاوية عن طريق الانتشار المباشر">
+            >
+            ["id47"] = <
+                text = <"طريق الاكتناف">
+                description = <"الطريق الذي أصبح به الورم مكتنفا لنسيج العقدة الليمفاوية.">
+            >
+            ["id46"] = <
+                text = <"تفاصيل العقد الليمفاوية">
+                description = <"تفاصيل أكثر عن نقيلة العقد الليمفاوية في هذا الموقع, مثل العقد المنفردة أو مستويات أبعد من الوصف.">
+            >
+            ["id45"] = <
+                text = <"النسيج المتاح/المتوفر">
+                description = <"هل تم جعل نسيج العقدة الليمفاوية المناسب متاحا/متوفرا للفحص ?">
+            >
+            ["at42"] = <
+                text = <"موجود">
+                description = <"يوجد اكتناف للغدة الليمفاوية بالورم">
+            >
+            ["id42"] = <
+                text = <"اسم موقع العقدة الليمفاوية">
+                description = <"اسم موقع العقدة الليمفاوية التي يتم كتابة التقرير عنها. قد يكون موقعا عامّا مثل العقد الإبطية, أو موقعا نسبيا مثل عقد الخفير أو عقدة ليمفاوية معيَّنة.">
+            >
+            ["id41"] = <
+                text = <"الوصف">
+                description = <"وصف نَصِّي لاكتناف العقدة الليمفاوية بالورم">
+            >
+            ["id40"] = <
+                text = <"الامتداد في خارج العقدة">
+                description = <"الموجودات المتعلقة بامتداد الورم خارج مِحفظة العقدة.">
+            >
+            ["at38"] = <
+                text = <"غير محدد">
+                description = <"لم يتم تحديد اكتناف الورم خارج المِحفظة">
+            >
+            ["at37"] = <
+                text = <"غير قابل للتحديد">
+                description = <"اكتناف الورم خارج المحفظة غير قابل للتحديد">
+            >
+            ["at36"] = <
+                text = <"غائب">
+                description = <"لا يوجد اكتناف للورم خارج المِحفظة">
+            >
+            ["at35"] = <
+                text = <"موجود">
+                description = <"يوجد اكتناف للورم خارج المِحفظة">
+            >
+            ["id35"] = <
+                text = <"الامتداد خارج المِحفظة">
+                description = <"الموجودات المتعلقة بامتداد الورم فيما يتجاوز مِحفظة العقدة.">
+            >
+            ["at33"] = <
+                text = <"غامض">
+                description = <"لم يتم تحديد طبيعة الورم">
+            >
+            ["at31"] = <
+                text = <"غامض">
+                description = <"اكتناف العقد الليمفاوية بالورم لم يتم تحديده">
+            >
+            ["at30"] = <
+                text = <"غير قابل للتحديد">
+                description = <"اكتناف العقد الليمفاوية بالورم غير قابل للتحديد.">
+            >
+            ["at29"] = <
+                text = <"غائب">
+                description = <"الورم غير موجود في هذا الموقع من العقد الليمفاوية">
+            >
+            ["at28"] = <
+                text = <"موجود - عُقَد الجانبين">
+                description = <"الورم موجود في العُقَد على الجانبين.">
+            >
+            ["at27"] = <
+                text = <"موجود - عُقَد الجانب الأيمن فقط">
+                description = <"الورم موجود في العقد على الجانب الأيمن فقط">
+            >
+            ["at26"] = <
+                text = <"موجود - عُقَد الجانب الأيسر فقط">
+                description = <"الورم موجود في العقد على الجانب الأيسر فقط">
+            >
+            ["id26"] = <
+                text = <"اكتناف الورم">
+                description = <"الموجودات الخاصة باكتناف العقدة الليمفاوية بالورم">
+            >
+            ["at24"] = <
+                text = <"كلّي">
+                description = <"تم غزو جميع العقدة الليمفاوية بالورم">
+            >
+            ["id15"] = <
+                text = <"مدى الورم خارج العقدة">
+                description = <"مدى الورم خارج العقدة و التي يتم التعبير عنها لحد أقصى للطول.">
+            >
+            ["at13"] = <
+                text = <"منتشر">
+                description = <"لدى الورم طبيعة منتشرة">
+            >
+            ["at12"] = <
+                text = <"بُؤْرِي">
+                description = <"لدى الورم طبيعة بُؤْرِيَّة">
+            >
+            ["id12"] = <
+                text = <"طبيعة الاكتناف">
+                description = <"طبيعة أو درجة الورم, إن وُجِد">
+            >
+            ["id11"] = <
+                text = <"موقع العقدة الليمفاوية">
+                description = <"الموقع التشريحي للعقدة الليمفاوية أو الموقع الذي يتم كتابة التقرير حوله.">
+            >
+            ["id10"] = <
+                text = <"مدى الورم">
+                description = <"مدى الورم يتم التعبير عنه بالحد الأقصى للطول. و ينطبق على العقدة المنفردة/الواحدة.">
+            >
+            ["id3"] = <
+                text = <"عدد العقد التي يوجد بها اكتناف للورم">
+                description = <"عدد العقد التي يظهر فيها اكتناف الورم">
+            >
+            ["id2"] = <
+                text = <"عدد العقد الليمفاوية التي تم فحصها">
+                description = <"عدد العقد التي تم فحصها">
+            >
+            ["id1"] = <
+                text = <"الورم - نقائل العقد الليمفاوية">
+                description = <"لتسجيل الموجودات الخاصة بنقائل الورم في العقد الليمفاوية.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9004"] = <http://openehr.org/id/122>
+            ["at9006"] = <http://openehr.org/id/382>
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at12", "at13", "at24", "at33">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at42", "at26", "at27", "at28", "at29", "at30", "at31">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at49", "at50">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at35", "at36", "at37", "at38">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at47", "at48">
+        >
+    >

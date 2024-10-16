@@ -1,0 +1,251 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=5e30a983-e443-4a60-98b4-41df2dccbf7c; build_uid=4ac33691-2e19-4723-8ff2-ac43a2253b3a)
+    openEHR-EHR-OBSERVATION.intravascular_pressure.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"2006-06-28">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Ian McNicoll, freshEHR Clinical Informatics, UK", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"667EDA5A0737A67F40B75DFAA28EB982">
+    >
+    details = <
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            purpose = <"قياس الضغط داخل الوعاء الدموي, سواء أكان وريدا أو شريانا أو رئويا أو قلبيا. و عادة ما يتم المزيد من التخصيص له بقياسات للضغط أكثر تحديدا مثل الضغط داخل الوريد الرقبي (الوداجي) و الضغط الوريدي المركزي.">
+            keywords = <"الضغط", "داخل الوعاء الدموي">
+            use = <"">
+            misuse = <"لا يستخدم لقياس ضغط الدم المجموعي. استخدم نموذج (ملاحظة. ضغط الدم) لذلك.">
+            copyright = <"© 2011 openEHR Foundation, openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record intravascular venous, arterial, pulmonary or cardiac pressure measurement.">
+            keywords = <"pressure", "intravascular", "central", "venous">
+            use = <"Use to record the measured pressure in a specific location, blood vessel or heart cavity, at a specific phase of the heart or an average over the heart cycle.">
+            misuse = <"Not to be used for Systolic and Diastolic blood pressure. Use the OBSERVATION.blood_pressure for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Intravascular pressure
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {1..*} matches {
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Pressure
+                                        value matches {
+                                            DV_QUANTITY[id9002] 
+                                        }
+                                    }
+                                    allow_archetype CLUSTER[id34] occurrences matches {0..1} matches {     -- Multimedia representation
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.waveform(-[a-zA-Z0-9_]+)*\.v0\..*|openEHR-EHR-CLUSTER\.multimedia(-[a-zA-Z0-9_]+)*\.v0\..*/}
+                                    }
+                                    ELEMENT[id43] matches {    -- Clinical interpretation
+                                        value matches {
+                                            DV_TEXT[id9003] 
+                                        }
+                                    }
+                                    ELEMENT[id36] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9004] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id39] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id40] occurrences matches {0..1} matches {    -- Position
+                                        value matches {
+                                            DV_TEXT[id9005] 
+                                        }
+                                    }
+                                    ELEMENT[id41] occurrences matches {0..1} matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9006] 
+                                        }
+                                    }
+                                    ELEMENT[id8] occurrences matches {0..1} matches {    -- Phase of heart cycle
+                                        value matches {
+                                            DV_CODED_TEXT[id9007] matches {
+                                                defining_code matches {[ac9000]}    -- Phase of heart cycle (synthesised)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    INTERVAL_EVENT[id5] matches {    -- Average over heart cycle
+                        math_function matches {
+                            DV_CODED_TEXT[id9008] matches {
+                                defining_code matches {[at9001]}    -- mean
+                            }
+                        }
+                        data matches {
+                            use_node ITEM_TREE[id9009] /data[id2]/events[id3]/data[id4]
+                        }
+                        state matches {
+                            use_node ITEM_TREE[id9010] /data[id2]/events[id3]/state[id39]
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id22] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id45] occurrences matches {0..1} matches {    -- Method
+                        value matches {
+                            DV_TEXT[id9011] 
+                        }
+                    }
+                    ELEMENT[id44] occurrences matches {0..1} matches {    -- Location of measurement
+                        value matches {
+                            DV_TEXT[id9012] 
+                        }
+                    }
+                    allow_archetype CLUSTER[id37] occurrences matches {0..1} matches {     -- Structured measurement location
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-CLUSTER\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                        exclude
+                            archetype_id/value matches {/.*/}
+                    }
+                    allow_archetype CLUSTER[id31] matches {     -- Device
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                    allow_archetype CLUSTER[id42] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Phase of heart cycle (synthesised)">
+                description = <"The phase of the heart cycle at the time of the measurement. (synthesised)">
+            >
+            ["at9001"] = <
+                text = <"mean">
+                description = <"mean">
+            >
+            ["id45"] = <
+                text = <"Method">
+                description = <"Description about how the intravascular pressure was measured.">
+            >
+            ["id44"] = <
+                text = <"Location of measurement">
+                description = <"Simple body site where blood pressure was measured.">
+            >
+            ["id43"] = <
+                text = <"Clinical interpretation">
+                description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the intravascular pressure.">
+            >
+            ["id42"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id41"] = <
+                text = <"Confounding factors">
+                description = <"Comment on and record other incidental factors that may be contributing to the intravascular pressure measurement.">
+            >
+            ["id40"] = <
+                text = <"Position">
+                description = <"Position of patient during measurement.">
+            >
+            ["id37"] = <
+                text = <"Structured measurement location">
+                description = <"Structured anatomical location of where the measurement was taken.">
+            >
+            ["id36"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the intravascular pressure measurement not captured in other fields.">
+            >
+            ["id34"] = <
+                text = <"Multimedia representation">
+                description = <"Digital image, video, wave form or diagram representing the findings.">
+            >
+            ["id31"] = <
+                text = <"Device">
+                description = <"Details about the device used to record the measurement.">
+            >
+            ["at27"] = <
+                text = <"Whole cycle">
+                description = <"The pressure measueerd is over the whole heart cycle.">
+            >
+            ["at24"] = <
+                text = <"Pre-diastolic">
+                description = <"The phase of the heart immediately prior to filling of the ventricle.">
+            >
+            ["at23"] = <
+                text = <"Pre-systolic">
+                description = <"Phase of the heart immediately prior to contraction of the heart.">
+            >
+            ["at9"] = <
+                text = <"Diastolic">
+                description = <"During relaxation of the heart.">
+            >
+            ["at8"] = <
+                text = <"Systolic">
+                description = <"During contraction of the heart.">
+            >
+            ["id8"] = <
+                text = <"Phase of heart cycle">
+                description = <"The phase of the heart cycle at the time of the measurement.">
+            >
+            ["id6"] = <
+                text = <"Pressure">
+                description = <"The measured intravascular pressure.">
+            >
+            ["id5"] = <
+                text = <"Average over heart cycle">
+                description = <"The average over one heart cycle.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Intravascular pressure">
+                description = <"The measured pressure in a specific location, blood vessel or heart cavity, at a specific phase of the heart or an average over the heart cycle.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9001"] = <http://openehr.org/id/146>
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at8", "at9", "at23", "at24", "at27">
+        >
+    >

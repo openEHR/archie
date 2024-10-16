@@ -1,0 +1,92 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=3a4cbf30-77f5-465d-9e12-da3761bba7b5; build_uid=53a466c3-95ff-4727-8ea0-294ea1e22ed3)
+    openEHR-EHR-EVALUATION.citation.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Marivan Abrahao">
+                ["organisation"] = <"Core Consulting">
+                ["email"] = <"contato@coreconsulting.com.br">
+            >
+            accreditation = <"Hospital Alemão Oswaldo Cruz (HAOC)">
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"18/06/2010">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heather Leslie, Ocean Informatics, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"A65A1108F9DBF88964F644C81B8074F4">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Shell ENTRY archetype to contain the Citation cluster.">
+            keywords = <"citation", "reference">
+            use = <"Use as the shell ENTRY archetype to contain the CLUSTER.citation archetype when a citation is required to occur as a stand-alone instance of information. The actual data elements are fully detailed within CLUSTER.citation, which is able to be inserted within a slot in this EVALUATION or as part of the fuller context of any other archetype, as required.">
+            misuse = <"">
+            copyright = <"© copyright (c) 2010 openEHR Foundation, openEHR Foundation">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Arquétipo envelope ENTRY utilizado para conter o cluster Citação.">
+            keywords = <"citação", "referência">
+            use = <"Usado como o arquétipo envelope ENTRY para conter o arquétipo CLUSTER.citation (cluster Citação) quando é necessário que uma citação ocorra como uma instância de informação independente. Os elementos de dados reais são descritos detalhadamente dentro do CLUSTER.citation, o qual é capaz de ser inserido dentro de um SLOT neste aquétipo EVALUATION ou como parte de um contexto mais amplo de qualquer outro arquétipo, conforme necessário.">
+            misuse = <"">
+            copyright = <"© copyright (c) 2010 openEHR Foundation, openEHR Foundation">
+        >
+    >
+
+definition
+    EVALUATION[id1] matches {    -- Citation
+        data matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id3] matches {     -- Citation content
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.citation(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                        exclude
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["pt-br"] = <
+            ["id3"] = <
+                text = <"Conteúdo da citação">
+                description = <"Detalhes da citação (especificados no arquétipo CLUSTER).">
+            >
+            ["id1"] = <
+                text = <"Citação">
+                description = <"Referência a informação mantida em outro lugar, no mesmo RES ou externo ao RES.">
+            >
+        >
+        ["en"] = <
+            ["id3"] = <
+                text = <"Citation content">
+                description = <"Citation details (specified in CLUSTER archetype).">
+            >
+            ["id1"] = <
+                text = <"Citation">
+                description = <"Reference to information held elsewhere, in the same EHR or external to the EHR.">
+            >
+        >
+    >

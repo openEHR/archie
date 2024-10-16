@@ -1,0 +1,201 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=e017f833-04e4-4e8a-ae51-3ba9735c5b01; build_uid=8b5686e1-2020-4bb3-8d05-ee2feefa80f5)
+    openEHR-EHR-SECTION.medication_order_list.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["ru"] = <
+            language = <[ISO_639-1::ru]>
+            author = <
+                ["name"] = <"Art Latyp; Латыпов Артур Шамилевич">
+                ["organisation"] = <"RusBITech; РусБИТех, Москва">
+                ["email"] = <"alatypov@asteis.net">
+            >
+            accreditation = <"hmm">
+        >
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            author = <
+                ["name"] = <"Alan March">
+                ["organisation"] = <"Hospital Universitario Austral, Pilar, Buenos Aires, Argentina.">
+                ["email"] = <"alandmarch@gmail.com">
+            >
+            accreditation = <"MD">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Adriana Kitajima, Débora Farage, Fernanda Maia, Laíse Figueiredo, Marivan Abrahão">
+                ["organisation"] = <"Core Consulting">
+                ["email"] = <"contato@coreconsulting.com.br">
+            >
+            accreditation = <"Hospital Alemão Oswaldo Cruz (HAOC)">
+        >
+        ["es"] = <
+            language = <[ISO_639-1::es]>
+            author = <
+                ["name"] = <"Pablo Pazos">
+                ["organisation"] = <"CaboLabs">
+                ["pablo,pazos@cabolabs.com"] = <"pablo,pazos@cabolabs.com">
+            >
+            accreditation = <"Computer Engineer">
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"heather.leslie@oceaninformatics.com">
+        ["date"] = <"7/03/2010">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Ian McNicoll, Ocean Informatics, United Kingdom", "Heath Frankel, Ocean Informatics, Australia">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"C8E3ADC1BD9F001642D5E28CAC0235CC">
+    >
+    details = <
+        ["ru"] = <
+            language = <[ISO_639-1::ru]>
+            purpose = <"Показать дизайн листа лекарственных назначений">
+            keywords = <"лекарство", "медикамент", "препарат", "текущий", "список", "лист", "назначений", "отмена">
+            use = <"Используется для представления списка назначенных медикаментов, а также для утверждений об отсутствии лекарственных назначений, как в общем, так и по конкретным наименованиям.
+    
+    Наличие назначений медикаментов может быть представлено в виде отдельных записей.
+    
+    Утверждения об отсутствии назначения медикаментов, как вообще, так и конкретно, могут указывать только на состояние в момент записи информации, то есть основаны на событии. Поэтому нерационально создавать постоянную запись об отсутствии назначений, поскольку любое последующее назначение лечащим врачом или консультантом, или самостоятельный прием лекарств пациентом, делает такую запись устаревшей. 
+    
+    Возможно указывать в шаблоне оба утверждения, как об определенных назначениях, так и о их отсутствии (например, пациент получает сальбутамол и глибенкламид, но  никогда не получал преднизолон). Тем не менее, в большинстве случаев используются либо утверждения о присутствии определенных назначений (скажем, пациент получает сальбутамол или глибенкламид), либо общее утверждение о отсутствии известных назначений (например, в настоящее время не получает никаких лекарств), но не оба вместе. 
+    
+    Хотя в ограничениях слота явно включены УКАЗАНИЕ.медикамент [INSTRUCTION.medication] и СУЖДЕНИЕ.исключение_медикамента [EVALUATION.exclusion-medication] со своими спецификациями,  другие архетипы явно не исключаются. Это означает, что при необходимости также могут  быть включены любые другие архетипы, например, если необходимы структурное данные или есть необходимость вставить краткое описание (эпикриз), можно включить и использовать архетип СУЖДЕНИЕ.эпикриз [EVALUATION.clinical_synopsis].
+    
+    В данном случае как наилучший вариант представления списка медикаментов предлагается  архетип УКАЗАНИЕ.медикамент [INSTRUCTION.medication], так как обычно он обеспечивает наилучшее представление локального текущего списка медикаментов. Клиницисты могут вводить лекарства, принимаемые больным самостоятельно,  или не учитываемые системой медикаменты в систему назначений как УКАЗАНИЯ, что в свою очередь позволяет указывать неблагоприятные реакции, сверяясь со всеми УКАЗАНИЯМИ, как назначенными врачом, так и нет. Поэтому текущие списки медикаментов могут эффективно отображать все лекарственные назначения, как назначенные лечащим врачом, так и другими клиницистами, и также самим пациентом. Список медикаментов, включающий только ДЕЙСТВИЯ, отображает только медикаменты, назначенные лечащим клиницистом.
+    ">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["es-ar"] = <
+            language = <[ISO_639-1::es-ar]>
+            purpose = <"Demostración de una ptrón de diseño para la representación de una Lista de Órdenes de Medicamentos.">
+            keywords = <"medicamento", "medicación", "exclusión", "ausencia", "actual", "list">
+            use = <"Utilizar para apoyar la representación de afirmaciones acerca de órdenes de medicamentos que han sido registradas Y para realizar afirmaciones acerca de la ausencia de órdenes de medicamentos, ya sea como afirmaciones generales acerca de la ausencia o afirmaciones específicas acerca de la ausencia de una orden de medicamentos identificada específicamente.
+    La existencia de órdenes de medicamentos puede ser persistida en registros.
+    Las afirmaciones acerca de la ausencia de órdenes de medicamentos, sean generales o específicas, solo pueden indicar el estado del tema al momento en que la información fue efectivamente registrada, por lo que están basadas en eventos. No resulta sensato persistir la ausencia efectiva de un medicamento que podría ser subsecuentemente indicado o autoadministrado por el paciente, lo cual tornaría obsoletas a cualquiera o a todas las afirmaciones sobre ausencias.
+    Es posible representar tantas afirmaciones positivas sobre órdenes de medicamentos específicos junto con afirmaciones positivas acerca de la ausencia de órdenes de medicamentos específicos. (ejemplo: el paciente está recibiendo salbutamol y glibenclamida pero nunca ha recibido prednisolona). Sin embargo, en la mayoría de los casos de uso se representan o bien afirmaciones específicas acerca de la presencia de problemas/diagnósticos específicos (ejemplo: el paciente está recibiendo salbutamol y glibenclamida), o bien afirmaciones generales acerca de la ausencia efectiva de cualquier problema/diagnóstico (ejemplo: no recibe medicación alguna en la actualidad), pero no ambas.
+    En tanto que INSTRUCTION.medication y EVALUATION.exclusion-medication y sus especializaciones han sido explícitamente incluidas como restricciones de slot, no se han excluido otros arquetipos en forma explícita. Esto significa que otros arquetipos puede ser incluidos aquí si fuera necesario (por ejemplo, cuando no existen datos estructurados o se necesita proveer un resumen, en cuyo caso EVALUATION.clinical_synopsis puede ser insertado y utilizado.
+    Se sugiere al arquetipo INSTRUCTION.medication como el que mejor puede incluirse en una lista de medicamentos ya que es el que mejor representa un medicamento indicado en una lista de medicamentos indicados actualmente. Los médicos pueden ingresar medicamentos administrados al paciente o medicamentos de venta libre en un sistema de prescripciones como INSTRUCTIONs, lo cual a su vez permite el chequeo de reacciones adversas respecto de todas las INSTRUCTIONs, estén las mismas prescriptas y/o impresas, o no. De modo tal que una lista de medicamentos que está constituida solo por ACTIONs solo representará aquellos medicamentos que han sido prescriptos y/o impresos por el médico que los registró.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para demonstrar um padrão de projeto para representação de uma Lista de Solicitação de Medicamentos.">
+            keywords = <"medicamento", "exclusão", "ausência", "atual", "lista">
+            use = <"Use para apoiar a representação de declarações sobre solicitação de medicamentos que foram registradas e também para fazer declarações positivas sobre a ausência de solicitação de medicamentos - declarações gerais de ausência ou declarações específicas de ausência de uma solicitação de medicamento identificada.
+    
+    A existência de solicitações de medicamento conhecidas pode ser mantida nos registros.
+    
+    As declarações sobre a ausência de solicitações de medicamento, gerais ou específicas, só podem indicar o estado do indivíduo no momento em que a informação foi realmente registrada - ou seja, são baseadas em eventos. Não é sensato continuar o registro de uma ausência positiva de uma solicitação de medicamento, pois o medicamento pode ser posteriormente solicitado ou auto-administrado pelo paciente, o que pode tornar obsoleta toda as afirmações positivas anteriores de ausência.
+    
+    É possível representar as afirmações positivas sobre solicitação de medicamentos identificadas juntamente com declarações positivas específicas sobre a ausência de solicitação de medicamentos identificadas em um template (por exemplo, o paciente está tomando salbutamol e glibenclamida, mas nunca tomou prednisolona). No entanto, na maioria dos casos de uso, há declarações específicas sobre a presença de problemas/diagnósticos identificados (por exemplo, o paciente está tomando salbutamol e glibenclamida) ou declarações gerais sobre a ausência positiva de problemas/diagnósticos conhecidos serão representados (por exemplo, não está tomando nenhum medicamentos atualmente), mas não os dois.
+    
+    Mesmo que INSTRUCTION.medication e EVALUATION.exclusion-medication e suas especializações estejam explicitamente incluídas nas restrições do slot, outros arquétipos não foram explicitamente excluídos. Isso significa que quaisquer outros arquétipos também podem ser incluídos, se necessário - por exemplo, onde os dados estruturados não estão disponíveis ou há necessidade de fornecer um resumo, EVALUATION.clinical_synopsis pode ser inserido e usado.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To demonstrate a design pattern for representation of a Medication Order List.">
+            keywords = <"medication", "exclusion", "absence", "current", "list">
+            use = <"Use to support the representation of statements about medication orders that have been recorded PLUS to make positive statements about the absence of medication orders - either general statements of absence or specific statements of absence of an identified medication order.
+    
+    The existence of known medication orders can be persisted in records.
+    
+    Statements about the absence of medication orders, either general or specific, can only indicate the state of the subject at the time that the information was actually recorded - that is, they are event based. It is not sensible to persist the recording of a positive absence of a medication order as it may subsequently be ordered or self-administered by the patient, which may render any or all previous positive statements of absence obsolete. 
+    
+    It is possible to represent both positive statements about identified medication orders alongside specific positive statements about the absence of identified medication orders in a template (eg patient is taking salbutamol and glibenclamide, but has never taken prednisolone). However in most use cases either specific statements about the presence of identified problems/diagnoses (eg patient is taking salbutamol and glibenclamide) or general statements about the positive absence of any known problems/diagnoses will be represented (eg Not currently taking any medication), but not both. 
+    
+    While INSTRUCTION.medication and EVALUATION.exclusion-medication and their specialisations have been explicitly included in the slot constraints, other archetypes have not been explicitly excluded. This means that any other archetypes can also be included here, if needed - for example, where structured data is not available or there is a need to provide a synopis, the EVALUATION.clinical_synopsis can be inserted and used.
+    
+    INSTRUCTION.medication is suggested as the best archetype to represent a Medication list in this instance as it generally provides the best representation of a local Current Medication List. Clinicians can enter patient-administered medications or 'over the counter' medications into a Prescribing system as INSTRUCTIONs, which in turn can enable adverse reaction checking against all INSTRUCTIONS, whether prescribed/printed or not. So Current Medication lists can effectively contain all orders for medications, given by both the recording clinician, other clinicians and the patient. A Medication list comprising only ACTIONs will represent only those medication that have been prescribed/printed by the recording clinician.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["es"] = <
+            language = <[ISO_639-1::es]>
+            purpose = <"Lista de medicamentos de la prescripción.">
+            keywords = <"medicación", "exclusión", "orden", "prescripción", "lista">
+            use = <"Usar para representar las declaraciones sobre prescripción de medicamentos, y para realizar declaraciones positivas sobre la ausencia de prescripción de medicamentos.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    SECTION[id1] matches {    -- Medication Order List
+        items cardinality matches {0..*; unordered} matches {
+            allow_archetype ENTRY[id5] matches {     -- Medication inclusions/exclusions
+                include
+                    archetype_id/value matches {/openEHR-EHR-INSTRUCTION\.medication(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-EVALUATION\.exclusion-medication(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["ru"] = <
+            ["id5"] = <
+                text = <"Включения/исключения медикаментов">
+                description = <"Слот, ограничивающий включение архетипов, представляющих назначение известных медикаментов и исключение/отсутствие таких назначений">
+            >
+            ["id1"] = <
+                text = <"Лист лекарственных назначений">
+                description = <"Дизайн для включения листа назначений в шаблон">
+            >
+        >
+        ["es-ar"] = <
+            ["id5"] = <
+                text = <"Inclusiones/Exclusiones de Medicamentos">
+                description = <"El slot restringido para la inclusión específica de arquetipos que representan órdenes de medicamentos conocidas y exclusiones o ausencias de órdenes de medicamentos.">
+            >
+            ["id1"] = <
+                text = <"Lista de Órdenes de Medicamentos">
+                description = <"Patrón de diseño sugerido para incluir una Lista de Órdenes de Medicamentos en una plantilla.">
+            >
+        >
+        ["pt-br"] = <
+            ["id5"] = <
+                text = <"Inclusão/exclusão de medicamento">
+                description = <"Slot restringido para incluir especificamente arquétipos que representam solicitações de medicamento conhecidas e exclusão, inclusão ou ausência de solicitação de medicamento.">
+            >
+            ["id1"] = <
+                text = <"Lista de medicamentos solicitados">
+                description = <"Padrão de projeto sugerido para a inclusão de uma Lista de Solicitação de Medicamentos em um template.">
+            >
+        >
+        ["en"] = <
+            ["id5"] = <
+                text = <"Medication inclusions/exclusions">
+                description = <"Slot constrained to specifically include archetypes representing known medication orders and exclusion or absence of medication orders.">
+            >
+            ["id1"] = <
+                text = <"Medication Order List">
+                description = <"Suggested design pattern for including an Medication Order List in a template.">
+            >
+        >
+        ["es"] = <
+            ["id5"] = <
+                text = <"Inclusión/Exclusión de medicamentos">
+                description = <"Inclusión/Exclusión de medicamentos">
+            >
+            ["id1"] = <
+                text = <"Lista de medicamentos">
+                description = <"Lista de medicamentos">
+            >
+        >
+    >

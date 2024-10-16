@@ -1,0 +1,358 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=a369e633-783e-4947-8a14-34a5cf4c24f7; build_uid=2ef328f6-c56c-4a49-b1e9-9d58b7a423fa)
+    openEHR-EHR-CLUSTER.physical_properties.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            author = <
+                ["name"] = <"Simon Schumacher">
+                ["organisation"] = <"HiGHmed">
+                ["email"] = <"sschuma9@uni-koeln.de">
+            >
+        >
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            author = <
+                ["name"] = <"Mona Saleh">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2018-09-14">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"DEBF6895CDB33B2D23938EA19BCD5EBA">
+    >
+    details = <
+        ["de"] = <
+            language = <[ISO_639-1::de]>
+            purpose = <"Zur Dokumentation der physischen Eigenschaften eines Objektes, wie z.B. einer Probe oder einer Läsion.">
+            keywords = <"Laborprobe", "Labor", "Probe", "Pathologie", "Objekt", "Gerät", "Implantat">
+            use = <"Zur Dokumentation der physischen Eigenschaften eines Objektes, wie z.B. einer Probe oder einer Läsion.">
+            misuse = <"Nicht zur Dokumentation des Körpergewichtes oder der Körpergröße benutzen. Wird ebenfalls nicht zur Erfassung korrigierter oder geschätzter Körpermaße wie z.B. dem Umfang der Taille genutzt.
+    
+    Nicht zur Dokumentation des Körpergewichtes nutzen. Bitte hierfür den Archetyp OBSERVATION.body_weight verwenden.
+    
+    Nicht zur Dokumentation der Körpergröße oder der Körperlänge nutzen. Bitte hierfür den Archetyp OBSERVATION.height verwenden.
+    
+    Nicht zur Dokumentation der Messung des Kopfumfangs nutzen. Bitte hierfür den Archetyp OBSERVATION.head_circumference verwenden.
+    
+    Nicht zur Dokumentation der Messung des Hüftumfangs nutzen. Bitte hierfür den Archetyp OBSERVATION.hip_circumference verwenden.
+    
+    Nicht zur Dokumentation der Messung des Taillenumfangs nutzen. Bitte hierfür den Archetyp OBSERVATION.waist_circumference verwenden.
+    
+    Nicht zur Dokumentation der Messung von Körperteilen nutzen. Bitte hierfür den Archetyp OBSERVATION.body_segment verwenden.
+    
+    Nicht zur Dokumentation der Messungen von Charakteristika nutzen, welche die Qualität einer Testinterpretation beeinflussen könnten. Bitte hierfür das Element 'Specimen received issues' aus dem Specimen Archetyp für diesen Zweck verwenden.">
+        >
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            purpose = <"لتسجيل الخصائص الفيزيائية لشيئ ما, مثل جزء من الجسم, عينة أو آفة.">
+            keywords = <"العينة/النموذج", "المعمل/المختبر", "العينة", "الباثولوجيا/المرضية", "شيئ", "جهيزة", "الغِرْسة">
+            use = <"لتسجيل التفاصيل الفيزيائية لجزء من الجسم, جهيزة, آفة أو عينة.">
+            misuse = <"لا يستخدم لتسجيل الوزن أو الطول الكلي للجسم سواء أكان حقيقيا أو مُصحَّحا أو تقديرات أخرى كلية لحجم الجسم, مثل قياسات الخصر/موضع الحزام ">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the physical properties of an object, such as a specimen or lesion.">
+            keywords = <"specimen", "laboratory", "sample", "pathology", "object", "device", "implant">
+            use = <"Use to record physical properties of an object, such as a specimen or lesion.">
+            misuse = <"Do not use to record whole body weight / height whether actual or adjusted or other overall estimates of bidy size such as waist/ girth measurement.
+    
+    Not to be used to record measurements for body weight. Use OBSERVATION.body_weight.
+    
+    Not to be used to record measurements for height/length. Use OBSERVATION.height.
+    
+    Not to be used to record measurements for  head circumference. Use OBSERVATION.head_circumference.
+    
+    Not to be used to record measurements for hip circumference. Use OBSERVATION.hip_circumference.
+    
+    Not to be used to record measurements for waist circumference. Use OBSERVATION.waist_circumference.
+    
+    Not to be used to record measurements for body segments. Use the OBSERVATION.body_segment.
+    
+    Not to be used to record characteristics that might affect the quality of a test interpretation - use 'Specimen received issues' in the Specimen archetype for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Physical properties of an object
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id37] occurrences matches {0..1} matches {    -- Object name
+                value matches {
+                    DV_TEXT[id9004] 
+                }
+            }
+            ELEMENT[id24] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    DV_TEXT[id9005] 
+                }
+            }
+            ELEMENT[id43] occurrences matches {0..1} matches {    -- Length
+                value matches {
+                    DV_QUANTITY[id9006] matches {
+                        property matches {[at9000]}    -- Length
+                    }
+                }
+            }
+            ELEMENT[id44] occurrences matches {0..1} matches {    -- Width
+                value matches {
+                    DV_QUANTITY[id9007] matches {
+                        property matches {[at9000]}    -- Length
+                    }
+                }
+            }
+            ELEMENT[id45] occurrences matches {0..1} matches {    -- Height
+                value matches {
+                    DV_QUANTITY[id9008] matches {
+                        property matches {[at9000]}    -- Length
+                    }
+                }
+            }
+            ELEMENT[id46] occurrences matches {0..1} matches {    -- Circumference
+                value matches {
+                    DV_QUANTITY[id9009] 
+                }
+            }
+            ELEMENT[id48] occurrences matches {0..1} matches {    -- Area
+                value matches {
+                    DV_QUANTITY[id9010] matches {
+                        property matches {[at9001]}    -- Area
+                    }
+                }
+            }
+            ELEMENT[id47] occurrences matches {0..1} matches {    -- Volume
+                value matches {
+                    DV_QUANTITY[id9011] matches {
+                        property matches {[at9002]}    -- Volume
+                    }
+                }
+            }
+            ELEMENT[id21] occurrences matches {0..1} matches {    -- Weight
+                value matches {
+                    DV_QUANTITY[id9012] matches {
+                        property matches {[at9003]}    -- Mass
+                    }
+                }
+            }
+            allow_archetype CLUSTER[id42] matches {     -- Multimedia representation
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.multimedia(-[a-zA-Z0-9_]+)*\.v0\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["de"] = <
+            ["at9000"] = <
+                text = <"* Length (en)">
+                description = <"* Length (en)">
+            >
+            ["at9001"] = <
+                text = <"* Area (en)">
+                description = <"* Area (en)">
+            >
+            ["at9002"] = <
+                text = <"* Volume (en)">
+                description = <"* Volume (en)">
+            >
+            ["at9003"] = <
+                text = <"* Mass (en)">
+                description = <"* Mass (en)">
+            >
+            ["id48"] = <
+                text = <"Fläche">
+                description = <"Die zweidimensionale Fläche des Objektes.">
+            >
+            ["id47"] = <
+                text = <"Volumen">
+                description = <"Das dreidimensionale Volumen des Objektes.">
+            >
+            ["id46"] = <
+                text = <"Umfang">
+                description = <"Die Distanz um das Objekt herum.">
+            >
+            ["id45"] = <
+                text = <"Höhe">
+                description = <"Die vertikale Höhe oder Tiefe des Objektes.">
+            >
+            ["id44"] = <
+                text = <"Weite">
+                description = <"Die Weite oder Breite des Objektes von einer Seite bis zur anderen Seite.">
+            >
+            ["id43"] = <
+                text = <"Länge">
+                description = <"Die Länge des Objektes.">
+            >
+            ["id42"] = <
+                text = <"Multimediale Repräsentation">
+                description = <"Ein digitales Bild, ein Video oder ein Diagramm, das die Erkenntnisse repräsentiert.">
+            >
+            ["id37"] = <
+                text = <"Objektname">
+                description = <"Der Name des Objektes.">
+            >
+            ["id24"] = <
+                text = <"Beschreibung">
+                description = <"Beschreibung der physischen Eigenschaften des Objektes.">
+            >
+            ["id21"] = <
+                text = <"Gewicht">
+                description = <"Das Gewicht des Objektes.">
+            >
+            ["id1"] = <
+                text = <"Physische Eigenschaften eines Objektes">
+                description = <"Zur Dokumentation der physikalischen Eigenschaften eines Objektes.">
+            >
+        >
+        ["ar-sy"] = <
+            ["at9000"] = <
+                text = <"* Length (en)">
+                description = <"* Length (en)">
+            >
+            ["at9001"] = <
+                text = <"* Area (en)">
+                description = <"* Area (en)">
+            >
+            ["at9002"] = <
+                text = <"* Volume (en)">
+                description = <"* Volume (en)">
+            >
+            ["at9003"] = <
+                text = <"* Mass (en)">
+                description = <"* Mass (en)">
+            >
+            ["id48"] = <
+                text = <"*Area(en)">
+                description = <"*The two dimensional area of the object.(en)">
+            >
+            ["id47"] = <
+                text = <"*Volume(en)">
+                description = <"*The three dimensional volume of the object.(en)">
+            >
+            ["id46"] = <
+                text = <"*Circumference(en)">
+                description = <"*The distance around the object.(en)">
+            >
+            ["id45"] = <
+                text = <"*Height(en)">
+                description = <"*The vertical height or depth of the object.(en)">
+            >
+            ["id44"] = <
+                text = <"*Width(en)">
+                description = <"*The width or breadth of the object from side to side.(en)">
+            >
+            ["id43"] = <
+                text = <"*Length(en)">
+                description = <"*The length of the object.(en)">
+            >
+            ["id42"] = <
+                text = <"*Multimedia representation(en)">
+                description = <"*Digital image, video or diagram representing the findings.(en)">
+            >
+            ["id37"] = <
+                text = <"*Object name(en)">
+                description = <"*The name of the object.(en)">
+            >
+            ["id24"] = <
+                text = <"*Description(en)">
+                description = <"*Narrative description of the physical properties of the object.(en)">
+            >
+            ["id21"] = <
+                text = <"الوزن">
+                description = <"وزن الشيئ">
+            >
+            ["id1"] = <
+                text = <"*Physical properties of an object(en)">
+                description = <"*To record the phycial properties of an object.(en)">
+            >
+        >
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Length">
+                description = <"Length">
+            >
+            ["at9001"] = <
+                text = <"Area">
+                description = <"Area">
+            >
+            ["at9002"] = <
+                text = <"Volume">
+                description = <"Volume">
+            >
+            ["at9003"] = <
+                text = <"Mass">
+                description = <"Mass">
+            >
+            ["id48"] = <
+                text = <"Area">
+                description = <"The two dimensional area of the object.">
+            >
+            ["id47"] = <
+                text = <"Volume">
+                description = <"The three dimensional volume of the object.">
+            >
+            ["id46"] = <
+                text = <"Circumference">
+                description = <"The distance around the object.">
+            >
+            ["id45"] = <
+                text = <"Height">
+                description = <"The vertical height or depth of the object.">
+            >
+            ["id44"] = <
+                text = <"Width">
+                description = <"The width or breadth of the object from side to side.">
+            >
+            ["id43"] = <
+                text = <"Length">
+                description = <"The length of the object.">
+            >
+            ["id42"] = <
+                text = <"Multimedia representation">
+                description = <"Digital image, video or diagram representing the findings.">
+            >
+            ["id37"] = <
+                text = <"Object name">
+                description = <"The name of the object.">
+            >
+            ["id24"] = <
+                text = <"Description">
+                description = <"Narrative description of the physical properties of the object.">
+            >
+            ["id21"] = <
+                text = <"Weight">
+                description = <"Weight of the object.">
+            >
+            ["id1"] = <
+                text = <"Physical properties of an object">
+                description = <"To record the phycial properties of an object.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/122>
+            ["at9001"] = <http://openehr.org/id/335>
+            ["at9002"] = <http://openehr.org/id/129>
+            ["at9003"] = <http://openehr.org/id/124>
+        >
+    >

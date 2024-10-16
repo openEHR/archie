@@ -5,6 +5,7 @@ import com.nedap.archie.adlparser.antlr.Adl14Lexer;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.archetypevalidator.ValidationResult;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.diff.Differentiator;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
@@ -20,7 +21,7 @@ import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -77,8 +78,10 @@ public class LargeSetOfADL14sTest {
             if(conversionResult.getException() != null) {
                 logger.error("exception in converter for archetype id " + conversionResult.getArchetypeId(), conversionResult.getException());
             }
+
+            // if we have a result, we'll write it out to the resources area
             if (conversionResult.getArchetype() != null) {
-//                System.out.println(ADLArchetypeSerializer.serialize(conversionResult.getArchetype()));
+                writeConvertedArchetype (conversionResult);
             } else {
                 logger.warn("archetype null: " + conversionResult.getArchetypeId());
             }
@@ -120,11 +123,12 @@ public class LargeSetOfADL14sTest {
         }
         ADL2ConversionResultList converted = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration)
                 .convert(archetypes);
-        for(ADL2ConversionResult result:converted.getConversionResults()) {
-            if(result.getArchetype() != null) {// && result.getArchetype().getParentArchetypeId() != null) {
+        for(ADL2ConversionResult conversionResult:converted.getConversionResults()) {
+            if(conversionResult.getArchetype() != null) {// && result.getArchetype().getParentArchetypeId() != null) {
 //              System.out.println(ADLArchetypeSerializer.serialize(result.getArchetype()));
+                writeConvertedArchetype (conversionResult);
             } else {
-                logger.warn("archetype null: " + result.getArchetypeId());
+                logger.warn("archetype null: " + conversionResult.getArchetypeId());
             }
         }
 
@@ -217,5 +221,23 @@ public class LargeSetOfADL14sTest {
         return null;
     }
 
+    File adl4convertedDir = new File("src/test/resources/adl14converted");
 
+    private void writeConvertedArchetype (ADL2ConversionResult conversionResult) {
+        File opFile;
+        String opFileName = conversionResult.getArchetypeId() + ".adls";
+        try {
+            opFile = new File (adl4convertedDir, opFileName);
+            if (!opFile.exists()) {
+                opFile.createNewFile();
+            }
+            FileWriter outputFileWriter = new FileWriter(opFile);
+            outputFileWriter.write(ADLArchetypeSerializer.serialize(conversionResult.getArchetype()));
+            outputFileWriter.close();
+        }
+        catch (IOException e) {
+            System.out.println("Failed to create " + opFileName);
+            e.printStackTrace();
+        }
+    }
 }
