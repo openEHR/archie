@@ -1,0 +1,284 @@
+-- 
+-- 	component:   Graphite Canonical Model BMM - BASE Change control
+-- 	description: Graphite Canonical Model component formal expression. This file is an ODIN serialisation of
+--                   the BMM object meta-model classes found at 
+--                   https://www.openEHR.org/releases/LANG/latest/p_bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale <thomas.beale@graphitehealth.io>
+-- 	support:     https://graphite.atlassian.net/issues/
+-- 	copyright:   Copyright (c) 2023- Graphite Health <https://www.graphitehealth.io>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+--
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"s2">
+schema_name = <"base_change_control">
+rm_release = <"0.7.0">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.7.0.1">
+schema_lifecycle_state = <"trial">
+schema_description = <"S2 Release 0.7.0 change control schema">
+schema_author = <"Thomas Beale <thomas.beale@graphitehealth.io>">
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"s2_base_model_support_0.7.0">
+	>
+>
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+
+packages = <
+	["org.s2.base.change_control"] = <
+		name = <"org.s2.base.change_control">
+		classes = <"Versioned_object", "Contribution", "Version", "Original_version", "Imported_version", "Audit_details", "Attestation">
+	>
+>
+
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	["Audit_details"] = <
+		name = <"Audit_details">
+		ancestors = <"Any">
+		properties = <
+			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system_id">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["time_committed"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"time_committed">
+				type = <"Date_time">
+				is_mandatory = <True>
+			>
+			["change_type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"change_type">
+				type = <"Terminology_term">
+				is_mandatory = <True>
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"Terminology_term">
+			>
+			["committer"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"committer">
+				type = <"Party_proxy">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Attestation"] = <
+		name = <"Attestation">
+		ancestors = <"Audit_details">
+		properties = <
+			["attested_view"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"attested_view">
+				type = <"Multimedia">
+			>
+			["proof"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"proof">
+				type = <"String">
+			>
+			["items"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"items">
+				type_def = <
+					container_type = <"List">
+					type = <"Uri">
+				>
+				cardinality = <|>=0|>
+			>
+			["reason"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"reason">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["is_pending"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_pending">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Contribution"] = <
+		name = <"Contribution">
+		ancestors = <"Any">
+		properties = <
+			["uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uid">
+				type = <"Uuid">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["audit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"audit">
+				type = <"Audit_details">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["versions"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"versions">
+				type_def = <
+					container_type = <"List">
+					type = <"Object_ref">
+				>
+				cardinality = <|>=0|>
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+		>
+	>
+
+	["Versioned_object"] = <
+		name = <"Versioned_object">
+		ancestors = <"Any">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+		properties = <
+			["uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uid">
+				type = <"Uuid">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["owner_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"owner_id">
+				type = <"Object_ref">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["time_created"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"time_created">
+				type = <"Date_time">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+		>
+	>
+
+	["Version"] = <
+		name = <"Version">
+		ancestors = <"Any">
+		is_abstract = <True>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+		properties = <
+			["contribution"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"contribution">
+				type = <"Object_ref">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["commit_audit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"commit_audit">
+				type = <"Audit_details">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["signature"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"signature">
+				type = <"String">
+				is_im_infrastructure = <True>
+			>
+		>
+	>
+
+	["Original_version"] = <
+		name = <"Original_version">
+		ancestors = <"Version">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+		properties = <
+			["uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uid">
+				type = <"Object_version_id">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["preceding_version_uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"preceding_version_uid">
+				type = <"Object_version_id">
+				is_im_infrastructure = <True>
+			>
+			["other_input_version_uids"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_input_version_uids">
+				type_def = <
+					container_type = <"List">
+					type = <"Object_version_id">
+				>
+				cardinality = <|>=1|>
+				is_im_infrastructure = <True>
+			>
+			["attestations"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"attestations">
+				type_def = <
+					container_type = <"List">
+					type = <"Attestation">
+				>
+				cardinality = <|>=1|>
+			>
+			["lifecycle_state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lifecycle_state">
+				type = <"Terminology_term">
+				is_mandatory = <True>
+			>
+			["data"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"data">
+				type = <"T">
+			>
+		>
+	>
+
+	["Imported_version"] = <
+		name = <"Imported_version">
+		ancestors = <"Version">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+		properties = <
+			["item"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"item">
+				type_def = <
+					root_type = <"Original_version">
+					generic_parameters = <"T">
+				>
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+		>
+	>
+
+>
