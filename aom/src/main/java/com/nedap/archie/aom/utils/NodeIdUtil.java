@@ -2,10 +2,13 @@ package com.nedap.archie.aom.utils;
 
 import com.google.common.base.Joiner;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
+import org.apache.commons.lang3.StringUtils;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class NodeIdUtil {
 
@@ -68,7 +71,18 @@ public class NodeIdUtil {
 
     public String toString() {
         return prefix + Joiner.on('.').join(codes);
+    }
 
+
+    /**
+     * Convert to string, left padding all the node id codes if necessary, to create ADL 1.4 style node ids
+     * @param size the size of the result
+     * @return the padded node id
+     */
+    public String toStringWithLeftPaddedCodes(int size) {
+        return prefix + codes.stream()
+                .map(code -> StringUtils.leftPad(Integer.toString(code), size, '0'))
+                .collect(Collectors.joining("."));
     }
 
 
