@@ -153,6 +153,10 @@
       "items": [
         {
           "_type": "EVALUATION",
+          "time_asserted": {
+            "_type": "DV_DATE_TIME",
+            "value": "2021-10-22T15:34:09.788+03:00"
+          },
           "data": {
             "_type": "ITEM_SINGLE",
             "item": {
