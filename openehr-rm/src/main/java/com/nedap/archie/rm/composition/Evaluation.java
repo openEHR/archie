@@ -25,7 +25,7 @@ import java.util.Objects;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "EVALUATION", propOrder = {
-        "time_asserted",
+        "timeAsserted",
         "data"
 })
 public class Evaluation extends CareEntry {
