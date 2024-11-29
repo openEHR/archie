@@ -7,6 +7,7 @@ import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.generic.Participation;
 import com.nedap.archie.rm.generic.PartyProxy;
 import com.nedap.archie.rm.support.identification.ObjectId;
@@ -14,10 +15,7 @@ import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,17 +25,32 @@ import java.util.Objects;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "EVALUATION", propOrder = {
+        "time_asserted",
         "data"
 })
 public class Evaluation extends CareEntry {
+
+    @Nullable
+    @XmlElement(name = "time_asserted")
+    private DvDateTime timeAsserted;
     private ItemStructure data;
 
     public Evaluation() {
     }
 
-    public Evaluation(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef<? extends ObjectId> workflowId, @Nullable List<Participation> otherParticipations, @Nullable ItemStructure protocol, @Nullable ObjectRef<? extends ObjectId> guidelineId, ItemStructure data) {
+    public Evaluation(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef<? extends ObjectId> workflowId, @Nullable List<Participation> otherParticipations, @Nullable ItemStructure protocol, @Nullable ObjectRef<? extends ObjectId> guidelineId, @Nullable DvDateTime timeAsserted, ItemStructure data) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName, language, encoding, subject, provider, workflowId, otherParticipations, protocol, guidelineId);
+        this.timeAsserted = timeAsserted;
         this.data = data;
+    }
+
+    @Nullable
+    public DvDateTime getTimeAsserted() {
+        return timeAsserted;
+    }
+
+    public void setTimeAsserted(@Nullable DvDateTime timeAsserted) {
+        this.timeAsserted = timeAsserted;
     }
 
     public ItemStructure getData() {
@@ -56,11 +69,12 @@ public class Evaluation extends CareEntry {
         if (!super.equals(o)) return false;
         Evaluation that = (Evaluation) o;
 
-        return Objects.equals(data, that.data);
+        return Objects.equals(timeAsserted, that.timeAsserted) &&
+                Objects.equals(data, that.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), data);
+        return Objects.hash(super.hashCode(), timeAsserted, data);
     }
 }
