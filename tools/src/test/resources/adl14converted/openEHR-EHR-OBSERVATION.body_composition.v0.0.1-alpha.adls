@@ -1,0 +1,916 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=5a7ad223-0ac9-4767-9521-ae076cfc727c; build_uid=37a6fdf9-5f7b-489d-9668-375ac63d451e)
+    openEHR-EHR-OBSERVATION.body_composition.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["pt"] = <
+            language = <[ISO_639-1::pt]>
+            author = <
+                ["name"] = <"?">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Priscila Maranhão e Gustavo Bacelar">
+        ["organisation"] = <"MEDCIDS-FMUP/ VIRTUAL CARE">
+        ["email"] = <"priscilamaranhao@gmail.com; gbacelar@gmail.com">
+        ["date"] = <"2016-11-25">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Ricardo Correia", "Pedro Marques", "Duarte Ferreira", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Weber, DR; Leonard, MB; Zenel, BS. Body composition analysis in the pediatric population. Pediatric. Endocrinol, 2012, nov; 10(1) 130-139.">
+        ["2"] = <"Vale, M.D.C.A; Lisboa, P.L. O papel do tecido adiposo no controle do armazenamento de energia e na composição corporal. In: Waitzberg, Dan. Fisiologia da nutrição na saúde e na doença. Ed. Atheneu, 2013.">
+        ["3"] = <"Vitolo, M.R. Avaliação nutricional do adulto. in: Vitolo, m.R. Nutrição da gestação ao envelhecimento. Rio de Janeiro: ed. Rubio, 2008.">
+        ["4"] = <"Fosbol, M.O and zerahn, BO. Comtemporany methods of body composition measurement. clin Physiol Funct Imaging, 2015, ,35, pp81-97.">
+        ["5"] = <"Shen, W; Wang, Z; Punyanita, M; et al. Adipose tissue quantification by imaging  methods: a proposed classification. Obesity Research, vol. 11, n.1, 2003.">
+        ["6"] = <"Prescott, J.W; Priddy, M; Best, T.M et al. An automated to detect intestitial adipose tissue in thigh muscle for patients with osteoarthritis.  Conf proc IEEE Eng. med. Biol Soc, 1, 630-60, 2009.">
+    >
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"E136138EDBC1E9B51BB3C0C913E11313">
+    >
+    details = <
+        ["pt"] = <
+            language = <[ISO_639-1::pt]>
+            purpose = <"*To diagnose nutritional abnormalities proposing improvement of nutritional intervention.(en)">
+            keywords = <"*Body fat(en)", "*Muscle mass(en)", "*Fat free mass(en)", "*Adiposity(en)", "*Body fat percentage(en)", "Compartment">
+            use = <"*To be used to record body composition of both adults and children.
+    
+    To be used to enter the body composition either manually  (adipometer) or automatically (software and image). 
+    
+    (en)">
+            misuse = <"Not to be used in patients with edema, ascites, dehydration.
+    
+    Not to be used computed tomography method in children and pregnant women.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the measurement of the amounts and percentages of fat, bone, water and muscle in the body of an individual.">
+            keywords = <"Body fat", "Muscle mass", "Fat free mass", "Adiposity", "Body fat percentage", "body fat %">
+            use = <"Use to record the measurement of the amounts and percentages of fat, bone, water and muscle in the body of an individual, either directly or through calculation from measurements of skin folds or similar.">
+            misuse = <"Not to be used to record the total body weight of an individual. Use the OBSERVATION.body_weight archetype for this purpose.
+    
+    Not to be used for recording the actual measurement of skin folds or other measurements that may be used to calculate body composition. Use other relevant OBSERVATION archetypes for these purposes.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Body composition
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    CLUSTER[id121] occurrences matches {0..1} matches {    -- Basic model
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id6] occurrences matches {1} matches {    -- Fat mass
+                                                value matches {
+                                                    DV_QUANTITY[id9004] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id125] occurrences matches {0..1} matches {    -- Fat percentage
+                                                value matches {
+                                                    DV_PROPORTION[id9005] matches {
+                                                        numerator matches {|0.0..100.0|}
+                                                        type matches {2}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id9] occurrences matches {0..1} matches {    -- Fat free mass
+                                                value matches {
+                                                    DV_QUANTITY[id9006] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id61] occurrences matches {0..1} matches {    -- Atomic level
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id99] occurrences matches {0..1} matches {    -- Chemical elements
+                                                value matches {
+                                                    DV_QUANTITY[id9007] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id101] occurrences matches {0..1} matches {    -- Hydrogen
+                                                value matches {
+                                                    DV_QUANTITY[id9008] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id98] occurrences matches {0..1} matches {    -- Carbon
+                                                value matches {
+                                                    DV_QUANTITY[id9009] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id97] occurrences matches {0..1} matches {    -- Oxygen
+                                                value matches {
+                                                    DV_QUANTITY[id9010] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id65] occurrences matches {0..1} matches {    -- Molecular level
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id105] occurrences matches {0..1} matches {    -- Minerals
+                                                value matches {
+                                                    DV_QUANTITY[id9011] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id104] occurrences matches {0..1} matches {    -- Protein
+                                                value matches {
+                                                    DV_QUANTITY[id9012] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id103] occurrences matches {0..1} matches {    -- Fat
+                                                value matches {
+                                                    DV_QUANTITY[id9013] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id102] occurrences matches {0..1} matches {    -- Water
+                                                value matches {
+                                                    DV_QUANTITY[id9014] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id66] occurrences matches {0..1} matches {    -- Cellular level
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id108] occurrences matches {0..1} matches {    -- Extracellular solids
+                                                value matches {
+                                                    DV_QUANTITY[id9015] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id107] occurrences matches {0..1} matches {    -- Extracellular fluids
+                                                value matches {
+                                                    DV_QUANTITY[id9016] matches {
+                                                        property matches {[at9001]}    -- Volume
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"l"}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id106] occurrences matches {0..1} matches {    -- Cell mass
+                                                value matches {
+                                                    DV_QUANTITY[id9017] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id69] occurrences matches {0..1} matches {    -- Tissue-system level
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id113] occurrences matches {0..1} matches {    -- Other tissues
+                                                value matches {
+                                                    DV_QUANTITY[id9018] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id112] occurrences matches {0..1} matches {    -- Visceral organs
+                                                value matches {
+                                                    DV_QUANTITY[id9019] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id111] occurrences matches {0..1} matches {    -- Bone
+                                                value matches {
+                                                    DV_QUANTITY[id9020] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id110] occurrences matches {0..1} matches {    -- Skeletal muscle
+                                                value matches {
+                                                    DV_QUANTITY[id9021] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id145] occurrences matches {0..1} matches {    -- Total adipose tissue
+                                                value matches {
+                                                    DV_QUANTITY[id9022] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                            CLUSTER[id140] occurrences matches {0..1} matches {    -- Adipose Tissue
+                                                items cardinality matches {1..*; unordered} matches {
+                                                    ELEMENT[id146] occurrences matches {0..1} matches {    -- Visceral adipose tissue mass
+                                                        value matches {
+                                                            DV_QUANTITY[id9023] matches {
+                                                                property matches {[at9000]}    -- Mass
+                                                                magnitude matches {|>=0.0|}
+                                                                units matches {"kg"}
+                                                                precision matches {1}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id161] occurrences matches {0..1} matches {    -- Visceral adipose tissue area
+                                                        value matches {
+                                                            DV_QUANTITY[id9024] matches {
+                                                                property matches {[at9002]}    -- Area
+                                                                magnitude matches {|>=0.0|}
+                                                                units matches {"cm2"}
+                                                                precision matches {1}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id162] occurrences matches {0..1} matches {    -- Visceral adipose tissue volume
+                                                        value matches {
+                                                            DV_QUANTITY[id9025] matches {
+                                                                property matches {[at9001]}    -- Volume
+                                                                magnitude matches {|>=0.0|}
+                                                                units matches {"cm3"}
+                                                                precision matches {1}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id164] occurrences matches {0..1} matches {    -- Subcutaneous adipose tissue volume
+                                                        value matches {
+                                                            DV_QUANTITY[id9026] matches {
+                                                                property matches {[at9001]}    -- Volume
+                                                                magnitude matches {|>=0.0|}
+                                                                units matches {"cm3"}
+                                                                precision matches {1}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id142] occurrences matches {0..1} matches {    -- Subcutaneous adipose tissue mass
+                                                        value matches {
+                                                            DV_QUANTITY[id9027] matches {
+                                                                property matches {[at9000]}    -- Mass
+                                                                magnitude matches {|>=0.0|}
+                                                                units matches {"kg"}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id163] occurrences matches {0..1} matches {    -- Subcutaneous adipose tissue area
+                                                        value matches {
+                                                            DV_QUANTITY[id9028] matches {
+                                                                property matches {[at9002]}    -- Area
+                                                                magnitude matches {|>=0.0|}
+                                                                units matches {"cm2"}
+                                                                precision matches {1}
+                                                            }
+                                                        }
+                                                    }
+                                                    ELEMENT[id147] occurrences matches {0..1} matches {    -- Interstitial adipose tissue area
+                                                        value matches {
+                                                            DV_QUANTITY[id9029] matches {
+                                                                property matches {[at9002]}    -- Area
+                                                                magnitude matches {|>=0.0|}
+                                                                units matches {"cm2"}
+                                                                precision matches {1}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id70] occurrences matches {0..1} matches {    -- Whole body
+                                        items cardinality matches {1..*; unordered} matches {
+                                            ELEMENT[id119] occurrences matches {0..1} matches {    -- Lower limbs
+                                                value matches {
+                                                    DV_QUANTITY[id9030] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id120] occurrences matches {0..1} matches {    -- Upper limbs
+                                                value matches {
+                                                    DV_QUANTITY[id9031] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id117] occurrences matches {0..1} matches {    -- Trunk
+                                                value matches {
+                                                    DV_QUANTITY[id9032] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id115] occurrences matches {0..1} matches {    -- Neck
+                                                value matches {
+                                                    DV_QUANTITY[id9033] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id114] occurrences matches {0..1} matches {    -- Head
+                                                value matches {
+                                                    DV_QUANTITY[id9034] matches {
+                                                        property matches {[at9000]}    -- Mass
+                                                        magnitude matches {|>=0.0|}
+                                                        units matches {"kg"}
+                                                        precision matches {1}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id29] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id37] occurrences matches {0..1} matches {    -- State of dress
+                                        value matches {
+                                            DV_CODED_TEXT[id9035] matches {
+                                                defining_code matches {[ac9003]}    -- State of dress (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id43] occurrences matches {0..1} matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9036] 
+                                        }
+                                    }
+                                    allow_archetype ELEMENT[id143] matches {     -- Menstrual cycle
+                                        include
+                                            archetype_id/value matches {/openEHR-EHR-ELEMENT\.last_normal_menstrual_period(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id11] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Method
+                        value matches {
+                            DV_TEXT[id9037] 
+                        }
+                    }
+                    allow_archetype CLUSTER[id19] matches {     -- Device
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.device(-[a-zA-Z0-9_]+)*\.v1\..*/}
+                    }
+                    ELEMENT[id23] occurrences matches {0..1} matches {    -- Fat percentage formula
+                        value matches {
+                            DV_TEXT[id9038] 
+                        }
+                    }
+                    ELEMENT[id151] occurrences matches {0..1} matches {    -- Location of measurement
+                        value matches {
+                            DV_TEXT[id9039] 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["pt"] = <
+            ["at9000"] = <
+                text = <"massa">
+                description = <"massa">
+            >
+            ["at9001"] = <
+                text = <"volume">
+                description = <"volume">
+            >
+            ["at9002"] = <
+                text = <"área">
+                description = <"área">
+            >
+            ["ac9003"] = <
+                text = <"*State of dress(en) (synthesised)">
+                description = <"*Description of the state of dress of the individual at the time of measurement.(en) (synthesised)">
+            >
+            ["id164"] = <
+                text = <"*Subcutaneous adipose tissue volume(en)">
+                description = <"*Measurement of subcutaneous adipose tissue (SAT) volume. (en)">
+            >
+            ["id163"] = <
+                text = <"*Subcutaneous adipose tissue area(en)">
+                description = <"*Measurement of subcutaneous adipose tissue (SAT) area. (en)">
+            >
+            ["id162"] = <
+                text = <"*Visceral adipose tissue volume(en)">
+                description = <"*Measurement of visceral adipose tissue (VAT) volume.(en)">
+            >
+            ["id161"] = <
+                text = <"*Visceral adipose tissue area(en)">
+                description = <"*Measurement of visceral adipose tissue (VAT) area.(en)">
+            >
+            ["id151"] = <
+                text = <"*Location of measurement(en)">
+                description = <"*Body site where the measurement was performed.(en)">
+                comment = <"*For example: triceps, subscapular, biceps, suprailiac, abdominal  and thigh thickness (skinfold thickness); In tetrapolar bioimpedance analysis the eletrodes should be  placed at the wrist and ipsilateral ankle.(en)">
+            >
+            ["id147"] = <
+                text = <"Intersticial adipose tissue">
+                description = <"*Measurement of intersticial adipose tissue (IAT).">
+            >
+            ["id146"] = <
+                text = <"*Visceral adipose tissue mass(en)">
+                description = <"*Measurement of visceral adipose tissue (VAT) mass.(en)">
+            >
+            ["id145"] = <
+                text = <"Total adipose tissue">
+                description = <"Measurement of adipose tissue (TAT)(en)">
+            >
+            ["id143"] = <
+                text = <"*Menstrual cycle(en)">
+                description = <"*Details of women's menstrual cycle. (en)">
+            >
+            ["id142"] = <
+                text = <"*Subcutaneous adipose tissue mass(en)">
+                description = <"*Measurement of subcutaneous adipose tissue (SAT) mass.  (en)">
+            >
+            ["id140"] = <
+                text = <"Adipose Tissue">
+                description = <"Measurement of adipose tissue.">
+            >
+            ["id125"] = <
+                text = <"Fat percentage">
+                description = <"Body fat measurement in percentage.">
+            >
+            ["id121"] = <
+                text = <"Basic model">
+                description = <"Measurement of two compartment models with partitions into fat mass (FM) and fat-free mass (FFM).">
+            >
+            ["id120"] = <
+                text = <"Upper limbs">
+                description = <"Measurement of upper limbs. (en)">
+            >
+            ["id119"] = <
+                text = <"Lower limbs">
+                description = <"Measurement of lower limbs. (en)">
+            >
+            ["id117"] = <
+                text = <"Trunk">
+                description = <"Measurement of trunk (en)">
+            >
+            ["id115"] = <
+                text = <"Neck">
+                description = <"Measurement of Neck (en)">
+            >
+            ["id114"] = <
+                text = <"Head">
+                description = <"Measurement of head(en)">
+            >
+            ["id113"] = <
+                text = <"Other tissues">
+                description = <"Measurement of other body tissues.">
+            >
+            ["id112"] = <
+                text = <"Visceral organs">
+                description = <"Measurement of visceral organs. (en)">
+            >
+            ["id111"] = <
+                text = <"Bone">
+                description = <"Measurement of bone(en)">
+            >
+            ["id110"] = <
+                text = <"*Skeletal muscle (en)">
+                description = <"*Measurement of skeletal muscle.(en)">
+            >
+            ["id108"] = <
+                text = <"*Extracellular solids(en)">
+                description = <"*Measurement of extracellular solids. (en)">
+            >
+            ["id107"] = <
+                text = <"*Extracellular fluids(en)">
+                description = <"*Measurement of extracellular fluids. (en)">
+            >
+            ["id106"] = <
+                text = <"Cell mass">
+                description = <"Measurement of cell mass.">
+            >
+            ["id105"] = <
+                text = <"Minerals">
+                description = <"Assessment of body minerals.">
+            >
+            ["id104"] = <
+                text = <"Protein">
+                description = <"Assessment of body protein.">
+            >
+            ["id103"] = <
+                text = <"Fat">
+                description = <"Assessment of body fat.">
+            >
+            ["id102"] = <
+                text = <"Water">
+                description = <"Assessment of body water.">
+            >
+            ["id101"] = <
+                text = <"Hydrogen">
+                description = <"Assessment of chemical element hydrogen.">
+            >
+            ["id99"] = <
+                text = <"*Chemical elements (en)">
+                description = <"*Assessment of chemical elements eg: N, Ca, P, S, Na, K, Cl ; H, C and O. (en)">
+            >
+            ["id98"] = <
+                text = <"Carbon">
+                description = <"Assessment of chemical element carbon.">
+            >
+            ["id97"] = <
+                text = <"Oxygen">
+                description = <"Assessment of chemical element oxygen.">
+            >
+            ["id70"] = <
+                text = <"Whole body">
+                description = <"*Measurement of five compartment  models of body composition, eg: lower limbs, upper limbs, trunk, neck and head. (en)">
+            >
+            ["id69"] = <
+                text = <"Tissue-system level">
+                description = <"*Measurement of five compartment  models of body composition, eg: other tissue, visceral organs, bone, skeletel muscle and adipose tissue. (en)">
+            >
+            ["id66"] = <
+                text = <"*Cellular level(en)">
+                description = <"*Measurement of three compartments model of body composition. eg: fat mass, lean body mass and bone. (en)">
+            >
+            ["id65"] = <
+                text = <"Molecular level">
+                description = <"Measurement of four compartment  models of body composition, eg: Minerals, protein, fat and water.">
+            >
+            ["id61"] = <
+                text = <"Atomic level">
+                description = <"Measurement of four compartment models of body composition.">
+            >
+            ["at45"] = <
+                text = <"*Nappy/diaper(en)">
+                description = <"*Wearing only a nappy. (en)">
+            >
+            ["at44"] = <
+                text = <"*Naked(en)">
+                description = <"*Without any clothes. (en)">
+            >
+            ["at43"] = <
+                text = <"*Lighty clothed/underwear(en)">
+                description = <"*Clothing which will not add to weight significantly.(en)">
+            >
+            ["id43"] = <
+                text = <"*Confounding factors (en)">
+                description = <"*Other incidental factors that may impact on the body composition measurement.(en)">
+                comment = <"*For example: menstrual period, oedema and ascites, dehydration, caffeine and alcohool consumption, excessive physical activity, body position, skin temperature and dietary intake, mainly in conductivity techinique (eg: BIA).(en)">
+            >
+            ["id37"] = <
+                text = <"*State of dress(en)">
+                description = <"*Description of the state of dress of the individual at the time of measurement.(en)">
+            >
+            ["id23"] = <
+                text = <"*Fat percentage formula(en)">
+                description = <"*Formula used to calculate the fat percentage by skinfold thickness.(en)">
+                comment = <"*For example: Jackson & Pollock formula and Durnin and Womersley.  (en)">
+            >
+            ["id19"] = <
+                text = <"Device(en)">
+                description = <"Details about devices used to measurement of body composition.">
+            >
+            ["id13"] = <
+                text = <"*Method(en)">
+                description = <"*The methods used to measure body composition.(en)">
+                comment = <"*For example: Determination of body density and volume (hydrostatic weighing or air displacement plethysmography), anthropometrics (e.g  weight, BMI, skinfold thickness), conductivity (e.g: bioelectrical impedance analysis,bioelectrical impedance spectroscopy), total body count (e.g: DXA - dual energy x-ray  absormetry) or imaging (e.g:  Ultrasonography; Nuclear magnetic ressonance, Computed tomography (CT) and Magnetic resonance imaging (MRI). (en)">
+            >
+            ["id9"] = <
+                text = <"Fat free mass">
+                description = <"Measurement of fat free mass (FFM) which corresponds to protein, water and  minerals.">
+            >
+            ["id6"] = <
+                text = <"Fat mass">
+                description = <"Body fat measurement in mass. (en)">
+            >
+            ["id3"] = <
+                text = <"*Any event(en)">
+                description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+            >
+            ["id1"] = <
+                text = <"*Body composition(en)">
+                description = <"*Measurement of the amounts and percentages of fat, bone, water and muscle in the body of an individual.(en)">
+            >
+        >
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Mass">
+                description = <"Mass">
+            >
+            ["at9001"] = <
+                text = <"Volume">
+                description = <"Volume">
+            >
+            ["at9002"] = <
+                text = <"Area">
+                description = <"Area">
+            >
+            ["ac9003"] = <
+                text = <"State of dress (synthesised)">
+                description = <"Description of the state of dress of the individual at the time of measurement. (synthesised)">
+            >
+            ["id164"] = <
+                text = <"Subcutaneous adipose tissue volume">
+                description = <"Measurement of subcutaneous adipose tissue (SAT) volume.">
+            >
+            ["id163"] = <
+                text = <"Subcutaneous adipose tissue area">
+                description = <"Measurement of subcutaneous adipose tissue (SAT) area.">
+            >
+            ["id162"] = <
+                text = <"Visceral adipose tissue volume">
+                description = <"Measurement of visceral adipose tissue (VAT) volume.">
+            >
+            ["id161"] = <
+                text = <"Visceral adipose tissue area">
+                description = <"Measurement of visceral adipose tissue (VAT) area.">
+            >
+            ["id151"] = <
+                text = <"Location of measurement">
+                description = <"Body site where the measurement was performed.">
+                comment = <"For example: triceps, subscapular, biceps, suprailiac, abdominal  and thigh thickness (skinfold thickness); In tetrapolar bioimpedance analysis the eletrodes should be  placed at the wrist and ipsilateral ankle.">
+            >
+            ["id147"] = <
+                text = <"Interstitial adipose tissue area">
+                description = <"Measurement of Intersticial adipose tissue (IAT).">
+            >
+            ["id146"] = <
+                text = <"Visceral adipose tissue mass">
+                description = <"Measurement of visceral adipose tissue (VAT) mass.">
+            >
+            ["id145"] = <
+                text = <"Total adipose tissue">
+                description = <"Measurement of adipose tissue (TAT).">
+            >
+            ["id143"] = <
+                text = <"Menstrual cycle">
+                description = <"Details of women's menstrual cycle.">
+            >
+            ["id142"] = <
+                text = <"Subcutaneous adipose tissue mass">
+                description = <"Measurement of subcutaneous adipose tissue (SAT) mass.">
+            >
+            ["id140"] = <
+                text = <"Adipose Tissue">
+                description = <"Adipose tissue is defined as sum of adipose tissue, usually excluding bone marrow and adipose tissue
+     in the head, hands, and feet.">
+            >
+            ["id125"] = <
+                text = <"Fat percentage">
+                description = <"Body fat measurement in percentage.">
+            >
+            ["id121"] = <
+                text = <"Basic model">
+                description = <"Two compartment model with partitions into fat mass (FM) and fat-free mass (FFM).">
+            >
+            ["id120"] = <
+                text = <"Upper limbs">
+                description = <"Measurement of upper limbs.">
+            >
+            ["id119"] = <
+                text = <"Lower limbs">
+                description = <"Measurement of lower limbs.">
+            >
+            ["id117"] = <
+                text = <"Trunk">
+                description = <"Measurement of trunk.">
+            >
+            ["id115"] = <
+                text = <"Neck">
+                description = <"Measurement of neck.">
+            >
+            ["id114"] = <
+                text = <"Head">
+                description = <"Measurement of head.">
+            >
+            ["id113"] = <
+                text = <"Other tissues">
+                description = <"Measurement of other body tissues.">
+            >
+            ["id112"] = <
+                text = <"Visceral organs">
+                description = <"Measurement of visceral organs.">
+            >
+            ["id111"] = <
+                text = <"Bone">
+                description = <"Measurement of body bone.">
+            >
+            ["id110"] = <
+                text = <"Skeletal muscle">
+                description = <"Measurement of skeletal muscle.">
+            >
+            ["id108"] = <
+                text = <"Extracellular solids">
+                description = <"Measurement of extracellular solids.">
+            >
+            ["id107"] = <
+                text = <"Extracellular fluids">
+                description = <"Measurement of extracellular fluids.">
+            >
+            ["id106"] = <
+                text = <"Cell mass">
+                description = <"Measurement of cellular mass.">
+            >
+            ["id105"] = <
+                text = <"Minerals">
+                description = <"Assessment of body minerals.">
+            >
+            ["id104"] = <
+                text = <"Protein">
+                description = <"Assessment of body protein.">
+            >
+            ["id103"] = <
+                text = <"Fat">
+                description = <"Assessment of body fat.">
+            >
+            ["id102"] = <
+                text = <"Water">
+                description = <"Assessment of body water.">
+            >
+            ["id101"] = <
+                text = <"Hydrogen">
+                description = <"Assessment of chemical element hydrogen.">
+            >
+            ["id99"] = <
+                text = <"Chemical elements">
+                description = <"Assessment of chemical elements eg: N, Ca, P, S, Na, K, Cl ; H, C and O.">
+            >
+            ["id98"] = <
+                text = <"Carbon">
+                description = <"Assessment of chemical element carbon.">
+            >
+            ["id97"] = <
+                text = <"Oxygen">
+                description = <"Assessment of chemical element oxygen.">
+            >
+            ["id70"] = <
+                text = <"Whole body">
+                description = <"Measurement of five compartments  model of body composition, eg: lower limbs, upper limbs, trunk, neck and head.">
+            >
+            ["id69"] = <
+                text = <"Tissue-system level">
+                description = <"Measurement of five compartments  model of body composition, eg: other tissue, visceral organs, bone, skeletel muscle and adipose tissue.">
+            >
+            ["id66"] = <
+                text = <"Cellular level">
+                description = <"Measurement of three compartments model of body composition. eg: fat mass, lean body mass and bone.">
+            >
+            ["id65"] = <
+                text = <"Molecular level">
+                description = <"Measurement of four compartments  model of body composition, eg: Minerals, protein, fat and water.">
+            >
+            ["id61"] = <
+                text = <"Atomic level">
+                description = <"Measurement of four compartments model of body composition.">
+            >
+            ["at45"] = <
+                text = <"Nappy/diaper">
+                description = <"Wearing only a nappy.">
+            >
+            ["at44"] = <
+                text = <"Naked">
+                description = <"Without any clothes.">
+            >
+            ["at43"] = <
+                text = <"Lighty clothed/underwear">
+                description = <"Clothing which will not add to weight significantly.">
+            >
+            ["id43"] = <
+                text = <"Confounding factors">
+                description = <"Other incidental factors that may impact on the body composition measurement.">
+                comment = <"For example: menstrual period, oedema and ascites, dehydration, caffeine and alcohool consumption, excessive physical activity, body position, skin temperature and dietary intake, mainly in conductivity techinique (eg: BIA).">
+            >
+            ["id37"] = <
+                text = <"State of dress">
+                description = <"Description of the state of dress of the individual at the time of measurement.">
+            >
+            ["id23"] = <
+                text = <"Fat percentage formula">
+                description = <"Formula used to calculate the fat percentage by skinfold thickness.">
+                comment = <"For example: Jackson & Pollock formula and Durnin and Womersley. ">
+            >
+            ["id19"] = <
+                text = <"Device">
+                description = <"Details about devices used to measurement of body composition.">
+            >
+            ["id13"] = <
+                text = <"Method">
+                description = <"The methods used to measure body composition.">
+                comment = <"For example: Determination of body density and volume (hydrostatic weighing or air displacement plethysmography), anthropometrics (e.g  weight, BMI, skinfold thickness), conductivity (e.g: bioelectrical impedance analysis,bioelectrical impedance spectroscopy), total body count (e.g: DXA - dual energy x-ray  absormetry) or imaging (e.g:  Ultrasonography; Nuclear magnetic ressonance, Computed tomography (CT) and Magnetic resonance imaging (MRI).">
+            >
+            ["id9"] = <
+                text = <"Fat free mass">
+                description = <"Measurement of fat free mass (FFM) which corresponds to protein, water and  minerals.">
+            >
+            ["id6"] = <
+                text = <"Fat mass">
+                description = <"Body fat measurement in mass.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Body composition">
+                description = <"Measurement of the amounts and percentages of fat, bone, water and muscle in the body of an individual.">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/124>
+            ["at9001"] = <http://openehr.org/id/129>
+            ["at9002"] = <http://openehr.org/id/335>
+        >
+    >
+    value_sets = <
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at43", "at44", "at45">
+        >
+    >

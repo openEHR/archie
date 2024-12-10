@@ -1,0 +1,119 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=454a222a-85c2-49e9-a755-70da329f405c; build_uid=07ba9de2-c596-428b-9cdf-8d8aacc842d3)
+    openEHR-EHR-OBSERVATION.pefr_result.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2019-04-03">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Ian McNicoll, freshEHR Clinical Informatics, UK", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics, Australia <heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"68186792FAA8FBAACB61714D1CF0A6C8">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the measured peak expiratory flow rate.">
+            keywords = <"pulmonary", "function", "peak", "expiratory", "PEF", "PEFR">
+            use = <"Use to record the measured peak expiratory flow rate.
+    
+    Multiple events and state information may be used to capture multiple measurements, pre- and post-bronchial challenge or bronchodilation results.">
+            misuse = <"Not to be used to record the results of blood gas tests. Use the OBSERVATION.laboratory_test_result for this purpose.
+    
+    Not to be used to record measurements about pulse oximetry. Use the OBSERVATION.pulse_oximetry for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Peak expiratory flow rate test result
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {0..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Flow rate
+                                        value matches {
+                                            DV_QUANTITY[id9000] matches {
+                                                units matches {"l/m"}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id9] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9001] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id6] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id8] matches {     -- Device
+                        include
+                            archetype_id/value matches {/openEHR-EHR-CLUSTER\.device\.v1\..*/}
+                    }
+                    allow_archetype CLUSTER[id7] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id10"] = <
+                text = <"Confounding factors">
+                description = <"Record any issues or factors that may impact on the measurement of peak expiratory flow rate.">
+            >
+            ["id8"] = <
+                text = <"Device">
+                description = <"Details of the device used to measure pulmonary function.">
+            >
+            ["id7"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id5"] = <
+                text = <"Flow rate">
+                description = <"The measured peak expiratory flow rate.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Peak expiratory flow rate test result">
+                description = <"The measured peak expiratory flow rate.">
+            >
+        >
+    >

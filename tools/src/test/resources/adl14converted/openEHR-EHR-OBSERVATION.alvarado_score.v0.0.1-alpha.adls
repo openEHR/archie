@@ -1,0 +1,530 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=0638a5d4-4012-43a5-a97d-cf379a960f99; build_uid=40c42695-658c-445d-8da8-4e3526ba3880)
+    openEHR-EHR-OBSERVATION.alvarado_score.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Dennis Forslund">
+                ["organisation"] = <"Cambio Healthcare Systems">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Syeeda S Farruque">
+        ["organisation"] = <"Cambio Healthcare Systems">
+        ["email"] = <"models@cambiocds.com">
+        ["date"] = <"2016-12-28">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Alvarado A. A practical score for the early diagnosis of acute appendicitis. Ann Emerg Med. 1986 May;15(5):557-64. PubMed PMID: 3963537.">
+        ["2"] = <"McKay R, Shepherd J. The use of the clinical scoring system by Alvarado in the decision to perform computed tomography for acute appendicitis in the ED. Am J Emerg Med. 2007 Jun;25(5):489-93. doi: 10.1016/j.ajem.2006.08.020. PubMed PMID: 17543650.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"040354CC247D57E2E8569F37700C5478">
+    >
+    details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"Alvarado score utvecklades för att understödja diagnostik vid misstänkt akut appendicit.">
+            keywords = <"alvarado", "appendicit">
+            use = <"Använd för att understödja diagnostik vid misstänkt akut appendicit. Totala poängen uppgår till maximalt 10p och utgörs av summan av följande faktorer:
+    
+    +2 poäng - Ömhet höger fossa
+    +1 poäng - Förhöjd temperatur (>37.3°C eller 99.1°F)
+    +1 poäng - Släppömhet
+    +1 poäng - Smärtvandring till höger fossa
+    +1 poäng - Anorexi/aptitlöshet
+    +1 poäng - Illamående eller kräkning
+    +2 poäng - LPK > 10,000
+    +1 poäng - Vänsterförskjuten diff
+    
+    - Poäng om ≤3p anses vara låg risk utan behov av vidare utredning med DT
+    - DT rekommenderas om 4-6p
+    - Poäng om ≥7p bör föranleda kontakt med kirurg. ">
+            misuse = <"Ej att anse som diagnostisk utan är endast till för att understödja klinisk bedömning.">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To determine the likelihood of appendicitis based on symptoms, signs and laboratory test results.">
+            keywords = <"acute appendicitis", "appendicitis">
+            use = <"Use to determine the likelihood of appendicitis based on symptoms, signs and laboratory test results.
+    
+    The total score, derived by adding up the individual scores for each of the 8 items ranges from 0 to 10 with score weights allocated thus:
+    
+    +2 points - Right lower quadrant tenderness
+    +1 point - Elevated temperature (>37.3°C or 99.1°F)
+    +1 point - Rebound tenderness
+    +1 point - Migration of pain to the right lower quadrant
+    +1 point - Anorexia
+    +1 point - Nausea or vomiting
+    +2 point - Leukocytosis > 10,000
+    +1 point - Leukocyte left shift 
+    
+    - A CT scan is recommended for scores 4-6 
+    - A surgical consultation for scores  ≥ 7. 
+    - For scores  ≤ 3: a CT scan is not needed due to the low probability of appendicitis.">
+            misuse = <"">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Alvarado score
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Right lower quadrant tenderness?
+                                        value matches {
+                                            DV_ORDINAL[id9008] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at14]}],
+                                                    [{2}, {[at15]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Elevated temperature (>37.3°C or 99.1°F)?
+                                        value matches {
+                                            DV_ORDINAL[id9009] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at16]}],
+                                                    [{1}, {[at17]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Rebound tenderness?
+                                        value matches {
+                                            DV_ORDINAL[id9010] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at18]}],
+                                                    [{1}, {[at19]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id8] occurrences matches {0..1} matches {    -- Migration of pain to the right lower quadrant?
+                                        value matches {
+                                            DV_ORDINAL[id9011] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at20]}],
+                                                    [{1}, {[at21]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Anorexia?
+                                        value matches {
+                                            DV_ORDINAL[id9012] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at22]}],
+                                                    [{1}, {[at23]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Nausea or vomiting?
+                                        value matches {
+                                            DV_ORDINAL[id9013] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at24]}],
+                                                    [{1}, {[at25]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id11] occurrences matches {0..1} matches {    -- Leukocytosis > 10,000?
+                                        value matches {
+                                            DV_ORDINAL[id9014] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at26]}],
+                                                    [{2}, {[at27]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id12] occurrences matches {0..1} matches {    -- Leukocyte left shift
+                                        value matches {
+                                            DV_ORDINAL[id9015] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at28]}],
+                                                    [{1}, {[at29]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Total score
+                                        value matches {
+                                            DV_COUNT[id9016] matches {
+                                                magnitude matches {|0..10|}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id31] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id32] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["sv"] = <
+            ["ac9000"] = <
+                text = <"Ömhet höger fossa? (synthesised)">
+                description = <"2p om föreliggande. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Förhöjd temperatur (>37.3°C eller 99.1°F)? (synthesised)">
+                description = <"1p om föreliggande. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Släppömhet? (synthesised)">
+                description = <"1p om föreliggande. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Smärtvandring till höger fossa? (synthesised)">
+                description = <"1p om föreliggande. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Anorexi eller aptitlöshet? (synthesised)">
+                description = <"1p om föreliggande. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Illamående eller kräkning? (synthesised)">
+                description = <"1p om föreliggande. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"LPK > 10,000? (synthesised)">
+                description = <"2p om föreliggande. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Vänsterförskjuten diff? (synthesised)">
+                description = <"1p om föreliggande. (synthesised)">
+            >
+            ["id32"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
+                comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["at29"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Nej">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"Nej">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"Nej">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at22"] = <
+                text = <"Nej">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"Nej">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Nej">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"Nej">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Ja">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"Nej">
+                description = <"*">
+            >
+            ["id13"] = <
+                text = <"Total poäng">
+                description = <"Summan av samtliga faktorer">
+            >
+            ["id12"] = <
+                text = <"Vänsterförskjuten diff?">
+                description = <"1p om föreliggande.">
+            >
+            ["id11"] = <
+                text = <"LPK > 10,000?">
+                description = <"2p om föreliggande.">
+            >
+            ["id10"] = <
+                text = <"Illamående eller kräkning?">
+                description = <"1p om föreliggande.">
+            >
+            ["id9"] = <
+                text = <"Anorexi eller aptitlöshet?">
+                description = <"1p om föreliggande.">
+            >
+            ["id8"] = <
+                text = <"Smärtvandring till höger fossa?">
+                description = <"1p om föreliggande.">
+            >
+            ["id7"] = <
+                text = <"Släppömhet?">
+                description = <"1p om föreliggande.">
+            >
+            ["id6"] = <
+                text = <"Förhöjd temperatur (>37.3°C eller 99.1°F)?">
+                description = <"1p om föreliggande.">
+            >
+            ["id5"] = <
+                text = <"Ömhet höger fossa?">
+                description = <"2p om föreliggande.">
+            >
+            ["id3"] = <
+                text = <"*Any event(en)">
+                description = <"**(en)">
+            >
+            ["id1"] = <
+                text = <"Alvarado appendicitis score">
+                description = <"Alvarado score utvecklades för att understödja diagnostik vid misstänkt akut appendicit.">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Right lower quadrant tenderness? (synthesised)">
+                description = <"Score 2 if positive. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Elevated temperature (>37.3°C or 99.1°F)? (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Rebound tenderness? (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Migration of pain to the right lower quadrant? (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Anorexia? (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Nausea or vomiting? (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Leukocytosis > 10,000? (synthesised)">
+                description = <"Score 2 if positive. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Leukocyte left shift (synthesised)">
+                description = <"Score 1 if positive. (synthesised)">
+            >
+            ["id32"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["at29"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at22"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["at15"] = <
+                text = <"Yes">
+                description = <"*">
+            >
+            ["at14"] = <
+                text = <"No">
+                description = <"*">
+            >
+            ["id13"] = <
+                text = <"Total score">
+                description = <"The sum of each ordinal score recorded for each of the eight component responses.">
+            >
+            ["id12"] = <
+                text = <"Leukocyte left shift">
+                description = <"Score 1 if positive.">
+            >
+            ["id11"] = <
+                text = <"Leukocytosis > 10,000?">
+                description = <"Score 2 if positive.">
+            >
+            ["id10"] = <
+                text = <"Nausea or vomiting?">
+                description = <"Score 1 if positive.">
+            >
+            ["id9"] = <
+                text = <"Anorexia?">
+                description = <"Score 1 if positive.">
+            >
+            ["id8"] = <
+                text = <"Migration of pain to the right lower quadrant?">
+                description = <"Score 1 if positive.">
+            >
+            ["id7"] = <
+                text = <"Rebound tenderness?">
+                description = <"Score 1 if positive.">
+            >
+            ["id6"] = <
+                text = <"Elevated temperature (>37.3°C or 99.1°F)?">
+                description = <"Score 1 if positive.">
+            >
+            ["id5"] = <
+                text = <"Right lower quadrant tenderness?">
+                description = <"Score 2 if positive.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Alvarado score">
+                description = <"Clinical scoring system used to determine the likelihood of appendicitis based on symptoms, signs and laboratory test results.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9007"] = <
+            id = <"ac9007">
+            members = <"at28", "at29">
+        >
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at18", "at19">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at16", "at17">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at14", "at15">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at26", "at27">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at24", "at25">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at22", "at23">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at20", "at21">
+        >
+    >

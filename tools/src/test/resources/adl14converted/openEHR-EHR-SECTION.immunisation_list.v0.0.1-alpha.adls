@@ -1,0 +1,80 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=b48f667c-03fe-4c38-b817-cc18cbefb4db; build_uid=9a832e77-8658-453d-bf44-22f87dd9ee18)
+    openEHR-EHR-SECTION.immunisation_list.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2019-02-11">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"9D52B50BE1D2F0678089F9604E9D21C0">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"A design pattern for a persistent and managed list of vaccinations administered that may influence clinical decision-making and care provision for the individual.">
+            keywords = <"immunisation", "vaccination", "exclusion", "absence", "list">
+            use = <"Use as a suggested framework or design guidance to support consistent modelling of the Immunisation list of vaccinations administered that may influence clinical decision-making and care provision for the individual. This archetype is intended to be used within the COMPOSITION.immunisation_list.
+    
+    This list can be comprised of three types of statements, each represented by specific archetypes:
+    - statements about the positive presence of immunisations administered are recorded using the ACTION.medication OR
+    - statements about the positive exclusion of immunisations administered  can be recorded using the specific EVALUATION.exclusion-global ; OR
+    - statements about no information being available - neither a positive presence of an immunisation administered nor a positive exclusion - can be recorded using the EVALUATION.absence archetype.">
+            misuse = <"Not to be used to record the actual administration of a vaccination. Use ACTION.medication for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    SECTION[id1] matches {    -- Immunisation list
+        items cardinality matches {1..*; unordered} matches {
+            allow_archetype ENTRY[id2] matches {     -- Vaccinations administered
+                include
+                    archetype_id/value matches {/openEHR-EHR-ACTION\.medication\.v1\..*/}
+            }
+            allow_archetype EVALUATION[id3] matches {     -- Exclusion statement
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.exclusion_global\.v1\..*/}
+            }
+            allow_archetype EVALUATION[id4] matches {     -- Absence statement
+                include
+                    archetype_id/value matches {/openEHR-EHR-EVALUATION\.absence\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id4"] = <
+                text = <"Absence statement">
+                description = <"Positive statement that no information is available about vaccinations administered.">
+                comment = <"For example: \"No information available about vaccinations administered\".">
+            >
+            ["id3"] = <
+                text = <"Exclusion statement">
+                description = <"Positive statement about the known exclusion of vaccinations administered.">
+                comment = <"For example: \"No vaccinations administered\".">
+            >
+            ["id2"] = <
+                text = <"Vaccinations administered">
+                description = <"Details about vaccinations that have been administered to the subject.">
+            >
+            ["id1"] = <
+                text = <"Immunisation list">
+                description = <"Suggested design pattern for an Immunisation List.">
+            >
+        >
+    >

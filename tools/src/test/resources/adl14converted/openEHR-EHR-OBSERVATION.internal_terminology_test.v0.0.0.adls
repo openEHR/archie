@@ -1,0 +1,57 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=4b00d9b9-12f7-46f7-94bb-ae4adffbcc72; build_uid=20f370dc-a6eb-3426-8913-20322e9317b8)
+    openEHR-EHR-OBSERVATION.internal_terminology_test.v0.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["date"] = <"2022-11-09">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"unmanaged">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- int term test
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] 
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id8]     -- Item tree of which the test is longer than 19 characters so this one should stay
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id8"] = <
+                text = <"Item tree of which the test is longer than 19 characters so this one should stay">
+                description = <"@ internal @">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"@ internal @">
+            >
+            ["id1"] = <
+                text = <"int term test">
+                description = <"@ internal @">
+            >
+        >
+    >

@@ -1,0 +1,163 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=4d5cc43d-6106-4752-97d0-7e45ab4ba56c; build_uid=10bddf3e-3be4-4c34-baf9-945963b17880)
+    openEHR-EHR-CLUSTER.procedure_preparation.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"11C01DEA8763F3E24C23279692559578">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record details about the preparation aspects for a procedure.">
+            keywords = <"cleaning", "shaving", "sterilisation", "disinfection">
+            use = <"Use to record details about the preparation aspects for a procedure.
+    
+    This archetype is designed to be nested within the 'Procedure detail' SLOT within the ACTION or INSTRUCTION.procedure archetype or similar, which will identify the name of the procedure and information that is common to all types of procedures. 
+    
+    Other CLUSTER archetypes can be inserted into the SLOTs to extend this generic archetype to catpure further details about the preparative aspects for a specific procedure for example shaving. 
+    
+    Scope: This archetype is specifically designed to be used to capture deails about physiological preparation of the human body in readiness for a procedure. ">
+            misuse = <"Not to be used to capture psychological or educational information provided to the patient about the procedure - use ACTION or INSTRUCTION_health education for this purpose. 
+    
+    Not to be used to record details of preoperative medications - use ACTION.medication or NSTRUCTION_medication order for this purpose.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Procedure preparation
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- Preparation type
+                value matches {
+                    DV_CODED_TEXT[id9001] matches {
+                        defining_code matches {[ac9000]}    -- Preparation type (synthesised)
+                    }
+                }
+            }
+            ELEMENT[id6] occurrences matches {0..1} matches {    -- Body site
+                value matches {
+                    DV_TEXT[id9002] 
+                }
+            }
+            allow_archetype CLUSTER[id7] matches {     -- Structured body site
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.anatomical_location\.v1\..*/}
+            }
+            ELEMENT[id9] occurrences matches {0..1} matches {    -- Description
+                value matches {
+                    DV_TEXT[id9003] 
+                }
+            }
+            ELEMENT[id10] occurrences matches {0..1} matches {    -- Wash solution
+                value matches {
+                    DV_TEXT[id9004] 
+                }
+            }
+            ELEMENT[id11] occurrences matches {0..1} matches {    -- Method
+                value matches {
+                    DV_TEXT[id9005] 
+                }
+            }
+            ELEMENT[id12] occurrences matches {0..1} matches {    -- Instrument
+                value matches {
+                    DV_TEXT[id9006] 
+                }
+            }
+            allow_archetype CLUSTER[id14] matches {     -- Additional details
+                include
+                    archetype_id/value matches {/.*/}
+            }
+            ELEMENT[id15] occurrences matches {0..1} matches {    -- Outcome
+                value matches {
+                    DV_TEXT[id9007] 
+                }
+            }
+            ELEMENT[id16] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    DV_TEXT[id9008] 
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Preparation type (synthesised)">
+                description = <"The category or kind of preparation. (synthesised)">
+            >
+            ["id16"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the procedure preparation not captured in other fields.">
+            >
+            ["id15"] = <
+                text = <"Outcome">
+                description = <"Narrative description of the outcome of the procedure preparation performed.">
+            >
+            ["id14"] = <
+                text = <"Additional details">
+                description = <"*">
+            >
+            ["id12"] = <
+                text = <"Instrument">
+                description = <"Narrative description of the tool to clean the body site or area. ">
+                comment = <"This could include betadine brush wash or body clippers.">
+            >
+            ["id11"] = <
+                text = <"Method">
+                description = <"Narrative description of the technique to clean the body site or area.">
+            >
+            ["id10"] = <
+                text = <"Wash solution">
+                description = <"Narrative description of the solution to clean the body site.">
+            >
+            ["id9"] = <
+                text = <"Description">
+                description = <"Narrative description about the prepation aspects of a procedure.">
+            >
+            ["id7"] = <
+                text = <"Structured body site">
+                description = <"Additional detail using a specific region or a point on, or within, the identified body site.">
+            >
+            ["id6"] = <
+                text = <"Body site">
+                description = <"Identification of a single physical site either on, or within, the human body.">
+            >
+            ["at4"] = <
+                text = <"shaving">
+                description = <"Removing hair from a body site.">
+            >
+            ["at3"] = <
+                text = <"hair">
+                description = <"Bodily filaments found in the surface of the skin or epidermis.">
+            >
+            ["at2"] = <
+                text = <"skin">
+                description = <"Body surface layer or area for intended procedure.">
+            >
+            ["id2"] = <
+                text = <"Preparation type">
+                description = <"The category or kind of preparation.">
+            >
+            ["id1"] = <
+                text = <"Procedure preparation">
+                description = <"Details about a substance or process in the preparatory aspects for a procedure.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at2", "at3", "at4">
+        >
+    >

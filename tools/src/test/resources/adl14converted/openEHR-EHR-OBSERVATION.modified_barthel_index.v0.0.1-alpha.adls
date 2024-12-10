@@ -1,0 +1,1431 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=a957dd67-200d-491f-b1da-aee9c1da7b1a; build_uid=99eb7c50-5922-4a68-ab87-9c6f8cd55669)
+    openEHR-EHR-OBSERVATION.modified_barthel_index.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["ru"] = <
+            language = <[ISO_639-1::ru]>
+            author = <
+                ["name"] = <"Igor Lizunov">
+                ["email"] = <"i.lizunov@infinnity.ru">
+            >
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            author = <
+                ["name"] = <"Silje Ljosland Bakke">
+                ["organisation"] = <"Nasjonal IKT HF">
+            >
+        >
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            author = <
+                ["name"] = <"Mona Saleh">
+            >
+        >
+        ["nl"] = <
+            language = <[ISO_639-1::nl]>
+            author = <
+                ["name"] = <"????">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Sam Heard">
+        ["organisation"] = <"Ocean Informatics">
+        ["email"] = <"sam.heard@oceaninformatics.com">
+        ["date"] = <"2006-03-22">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Grethe Almenning, Bergen kommune, Norway", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Lars Morgan Karlsen, DIPS ASA, Norway", "Sabine Leh, Helse-Bergen, Norway", "Hallvard Lærum, Oslo Universitetssykehus HF, Norway", "Lars Ivar Mehlum, Helse Bergen HF, Norway", "Bjørn Næss, DIPS ASA, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Micaela Thierley, Helse Bergen, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Editor)">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    references = <
+        ["1"] = <"Collin C, Wade DT, Davies S, Horne V. The Barthel ADL Index: a reliability study. Int Disabil Stud. 1988;10(2):61-3. PubMed PMID: 3403500.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics, Australia">
+        ["MD5-CAM-1.0.1"] = <"BEC21D866D1B93C5A62AB43721FECD94">
+    >
+    details = <
+        ["ru"] = <
+            language = <[ISO_639-1::ru]>
+            purpose = <"Для записи оценки зависимости от посторонней помощи в повседневной жизни. Общая оценка - сумма баллов каждого атрибута.">
+            keywords = <"баллы", "индекс", "активность", "независимость", "повседневная жизнь">
+            use = <"Для оценки независимости от посторонней помощи. Часто в доме престарелых.">
+            misuse = <"Не использовать для описания индивидуальных особенностей.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["nb"] = <
+            language = <[ISO_639-1::nb]>
+            purpose = <"For å registrere Barthel ADL-indeks skår for behov for hjelp til aktiviteter i dagliglivet.">
+            keywords = <"Registrering", "Indeks", "Aktivitet", "Daglig", "Avhengighet", "Hjelpebehov", "Mestring", "Selvstendighet">
+            use = <"Brukes for å registrere Barthel ADL-indeks skår for behov for hjelp til aktiviteter i dagliglivet. Totalskåren er summen av de enkelte underpunktene.
+    
+    OBS: Maryland State Medical Society har copyright på Barthel indeks. Den kan brukes til ikke-kommersielle formål med følgende sitat:
+    Mahoney FI, Barthel D. “Functional evaluation: the Barthel Index.” Maryland State Med Journal 1965;14:56-61. Used with permission. 
+    
+    For modifisering eller kommersiell bruk kreves det tillatelse.">
+            misuse = <"Om en kun bruker enkeltelementer fra scoringen må feltet \"Totalskår\" ikke benyttes, siden summering av enkeltelementer fra arketypen vil gi ufullstendig totalskår.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["ar-sy"] = <
+            language = <[ISO_639-1::ar-sy]>
+            purpose = <"لتسجيل حرز الاعتماد على المساعدة للقيام بالأنشطة المهمة في الحياة اليومية. 
+    الحرز الإجمالي هو مجموع الأحراز الترتيبية لكل صفة.">
+            keywords = <"الحرز", "المعامل", "الأنشطة", "الحياة اليومية", "الاعتمادية">
+            use = <"لتجميع حرز استقلالية الأشخاص - حتى في دار المسنين.">
+            misuse = <"لا يستخدم لتسجيل خصائص الأفراد.">
+            copyright = <"© openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record a functional assessment for activities of daily living using the modified version of the Barthel index.">
+            keywords = <"score", "index", "activities", "daily living", "dependency">
+            use = <"Use to record a functional assessment for activities of daily living using the modified version of the Barthel index.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+        ["nl"] = <
+            language = <[ISO_639-1::nl]>
+            purpose = <"To record a score of dependency on help to undertake important activities of daily living. The total score is the sum of the ordinal scores for each attribute.">
+            keywords = <"score", "index", "activities", "daily living", "dependency">
+            use = <"For scoring people's independence - often in a nursing home.">
+            misuse = <"Not to be used to record individual features.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Modified Barthel index
+        data matches {
+            HISTORY[id3] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id4] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id2] matches {
+                                items matches {
+                                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Bowels
+                                        value matches {
+                                            DV_ORDINAL[id9010] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at37]}],
+                                                    [{1}, {[at44]}],
+                                                    [{2}, {[at38]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Bladder
+                                        value matches {
+                                            DV_ORDINAL[id9011] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at5]}],
+                                                    [{1}, {[at6]}],
+                                                    [{2}, {[at7]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id35] occurrences matches {0..1} matches {    -- Grooming
+                                        value matches {
+                                            DV_ORDINAL[id9012] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at35]}],
+                                                    [{1}, {[at36]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id31] occurrences matches {0..1} matches {    -- Toilet use
+                                        value matches {
+                                            DV_ORDINAL[id9013] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at31]}],
+                                                    [{1}, {[at32]}],
+                                                    [{2}, {[at33]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id27] occurrences matches {0..1} matches {    -- Feeding
+                                        value matches {
+                                            DV_ORDINAL[id9014] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at27]}],
+                                                    [{1}, {[at28]}],
+                                                    [{2}, {[at29]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id22] occurrences matches {0..1} matches {    -- Transfer
+                                        value matches {
+                                            DV_ORDINAL[id9015] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at22]}],
+                                                    [{1}, {[at23]}],
+                                                    [{2}, {[at24]}],
+                                                    [{3}, {[at25]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id18] occurrences matches {0..1} matches {    -- Mobility
+                                        value matches {
+                                            DV_ORDINAL[id9016] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at18]}],
+                                                    [{1}, {[at19]}],
+                                                    [{2}, {[at20]}],
+                                                    [{3}, {[at39]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Dressing
+                                        value matches {
+                                            DV_ORDINAL[id9017] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at13]}],
+                                                    [{1}, {[at14]}],
+                                                    [{2}, {[at11]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id41] occurrences matches {0..1} matches {    -- Stairs
+                                        value matches {
+                                            DV_ORDINAL[id9018] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at41]}],
+                                                    [{1}, {[at42]}],
+                                                    [{2}, {[at43]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Bathing
+                                        value matches {
+                                            DV_ORDINAL[id9019] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at10]}],
+                                                    [{1}, {[at11]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id17] occurrences matches {0..1} matches {    -- Total score
+                                        value matches {
+                                            DV_COUNT[id9020] matches {
+                                                magnitude matches {|0..20|}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id48] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9021] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        state matches {
+                            ITEM_TREE[id49] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id50] occurrences matches {0..1} matches {    -- Confounding factors
+                                        value matches {
+                                            DV_TEXT[id9022] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id46] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id47] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["ru"] = <
+            ["ac9000"] = <
+                text = <"*Bowels(en) (synthesised)">
+                description = <"*Over the previous week, occasional accident is once per week.(en) (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"*Bladder(en) (synthesised)">
+                description = <"*Assessment of urinary control over the previous week, occasional accident <= 1 time per week.(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Grooming(en) (synthesised)">
+                description = <"*Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing.(en) (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Пользование туалетом (synthesised)">
+                description = <"Самостоятельно - может сам пойти в туалет, достаточно раздеться, соблюсти чистоту, одеться и уйти. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"*Feeding(en) (synthesised)">
+                description = <"*Ability to eat food.(en) (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"*Transfer(en) (synthesised)">
+                description = <"*Transfer from bed to chair and back.(en) (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Подвижность (synthesised)">
+                description = <"Прогулки, по неровной поверхности. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"*Dressing(en) (synthesised)">
+                description = <"*Ability to choose clothes, put them on and fasten them.(en) (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"Лестницы (synthesised)">
+                description = <"Лестницы. (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"Пользование ванной/душем (synthesised)">
+                description = <"Самостоятельно: без присмотра и помощи может дойти до ванной  и самостоятельно моется. (synthesised)">
+            >
+            ["id50"] = <
+                text = <"*Confounding factors(en)">
+                description = <"*Narrative descripiton of any issues or factors that may impact on the scoring.(en)">
+            >
+            ["id48"] = <
+                text = <"*Comment(en)">
+                description = <"*Additional narrative about the modified Barthel index, not captured in other fields.(en)">
+            >
+            ["id47"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
+                comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["at44"] = <
+                text = <"*Occasional accident(en)">
+                description = <"*Less than or equal to once per week.(en)">
+            >
+            ["at43"] = <
+                text = <"Самостоятельно поднимается и опускается">
+                description = <"*">
+            >
+            ["at42"] = <
+                text = <"С помощью слов или поддерживающих устройств">
+                description = <"*">
+            >
+            ["at41"] = <
+                text = <"Невозможно">
+                description = <"*">
+            >
+            ["id41"] = <
+                text = <"Лестницы">
+                description = <"Лестницы.">
+            >
+            ["at39"] = <
+                text = <"Самостоятельно">
+                description = <"*">
+            >
+            ["at38"] = <
+                text = <"Задержка">
+                description = <"*">
+            >
+            ["at37"] = <
+                text = <"Недержание">
+                description = <"*">
+            >
+            ["at36"] = <
+                text = <"Полностью самостоятельно (мытьё лица, волос, бритьё, чистка зубов)">
+                description = <"*">
+            >
+            ["at35"] = <
+                text = <"Требуется помощь">
+                description = <"*">
+            >
+            ["id35"] = <
+                text = <"*Grooming(en)">
+                description = <"*Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing.(en)">
+            >
+            ["at33"] = <
+                text = <"Независимый (включения и выключения, одевания и раздевания, вытирания">
+                description = <"*">
+            >
+            ["at32"] = <
+                text = <"С посторонней помощью, некоторые действия - самостоятельно">
+                description = <"*">
+            >
+            ["at31"] = <
+                text = <"Невозможно">
+                description = <"*">
+            >
+            ["id31"] = <
+                text = <"Пользование туалетом">
+                description = <"Самостоятельно - может сам пойти в туалет, достаточно раздеться, соблюсти чистоту, одеться и уйти.">
+            >
+            ["at29"] = <
+                text = <"Самостоятельно">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Нужна помощь: нарезать, намазать масло и т.д.">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Невозможно">
+                description = <"*">
+            >
+            ["id27"] = <
+                text = <"*Feeding(en)">
+                description = <"*Ability to eat food.(en)">
+            >
+            ["at25"] = <
+                text = <"*Independent(en)">
+                description = <"*Person can move from bed to chair independently.(en)">
+            >
+            ["at24"] = <
+                text = <"С незначительной физической или словесной помощью">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"*Major help, can sit(en)">
+                description = <"*A strong trained person or 2 people required, patient can sit straight.(en)">
+            >
+            ["at22"] = <
+                text = <"*Unable, no sitting balance(en)">
+                description = <"*No sitting balance, a lifting device is used.(en)">
+            >
+            ["id22"] = <
+                text = <"*Transfer(en)">
+                description = <"*Transfer from bed to chair and back.(en)">
+            >
+            ["at20"] = <
+                text = <"*Walks with help(en)">
+                description = <"*Person walks with assistance of one person, with physical or verbal assistance.(en)">
+            >
+            ["at19"] = <
+                text = <"*Wheel chair independent(en)">
+                description = <"*Wheelchair independent (including corners).(en)">
+            >
+            ["at18"] = <
+                text = <"*Immobile(en)">
+                description = <"*Person can get less than 50 metres in wheelchair.(en)">
+            >
+            ["id18"] = <
+                text = <"Подвижность">
+                description = <"Прогулки, по неровной поверхности.">
+            >
+            ["id17"] = <
+                text = <"Общий">
+                description = <"Общий индекс Бартеля - значение.">
+            >
+            ["at14"] = <
+                text = <"Нужна помощь с кнопками, пуговицами, молниями">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Невозможно">
+                description = <"*">
+            >
+            ["id13"] = <
+                text = <"*Dressing(en)">
+                description = <"*Ability to choose clothes, put them on and fasten them.(en)">
+            >
+            ["at11"] = <
+                text = <"Самостоятельно">
+                description = <"*">
+            >
+            ["at10"] = <
+                text = <"Невозможно">
+                description = <"*">
+            >
+            ["id10"] = <
+                text = <"Пользование ванной/душем">
+                description = <"Самостоятельно: без присмотра и помощи может дойти до ванной  и самостоятельно моется.">
+            >
+            ["id9"] = <
+                text = <"*Bowels(en)">
+                description = <"*Over the previous week, occasional accident is once per week.(en)">
+            >
+            ["at7"] = <
+                text = <"Запор (задержка стула более 7 дней)">
+                description = <"*">
+            >
+            ["at6"] = <
+                text = <"Иногда аварии (макс. 1 раз в 24 часа)">
+                description = <"*">
+            >
+            ["at5"] = <
+                text = <"Недержание или калоприёмник">
+                description = <"*">
+            >
+            ["id5"] = <
+                text = <"*Bladder(en)">
+                description = <"*Assessment of urinary control over the previous week, occasional accident <= 1 time per week.(en)">
+            >
+            ["id4"] = <
+                text = <"*Any event(en)">
+                description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+            >
+            ["id1"] = <
+                text = <"*Modified Barthel index(en)">
+                description = <"*Modification of the Barthel index, used as a functional assessment for activities of daily living (ADL).(en)">
+            >
+        >
+        ["nb"] = <
+            ["ac9000"] = <
+                text = <"*Bowels(en) (synthesised)">
+                description = <"*Over the previous week, occasional accident is once per week.(en) (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"*Bladder(en) (synthesised)">
+                description = <"*Assessment of urinary control over the previous week, occasional accident <= 1 time per week.(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Grooming(en) (synthesised)">
+                description = <"*Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing.(en) (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Toalettbesøk (synthesised)">
+                description = <"Evne til å gå på toalettet. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"*Feeding(en) (synthesised)">
+                description = <"*Ability to eat food.(en) (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"*Transfer(en) (synthesised)">
+                description = <"*Transfer from bed to chair and back.(en) (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Mobilitet (synthesised)">
+                description = <"Evne til å forflytte seg til fots eller i rullestol. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"*Dressing(en) (synthesised)">
+                description = <"*Ability to choose clothes, put them on and fasten them.(en) (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"Trappegang (synthesised)">
+                description = <"Evne til å gå i trapper. (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"Bading/dusj (synthesised)">
+                description = <"Evne til å bade eller dusje på egen hånd. (synthesised)">
+            >
+            ["id50"] = <
+                text = <"Konfunderende faktorer">
+                description = <"Fritekstbeskrivelse av problemer eller faktorer som kan ha påvirkning på skåringen.">
+            >
+            ["id48"] = <
+                text = <"*Comment(en)">
+                description = <"*Additional narrative about the modified Barthel index, not captured in other fields.(en)">
+            >
+            ["id47"] = <
+                text = <"Tilleggsinformasjon">
+                description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
+                comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR eller CIMI.">
+            >
+            ["at44"] = <
+                text = <"Nedsatt kontroll">
+                description = <"Nedsatt kontroll og enkelte \"uhell\" eller trenger hjelp til evt. å sette stikkpiller/klyx.">
+            >
+            ["at43"] = <
+                text = <"Selvhjulpen">
+                description = <"Kan evt. bruke ganghjelpemidler.">
+            >
+            ["at42"] = <
+                text = <"Trenger hjelp/tilsyn">
+                description = <"Trenger hjelp/tilsyn av en person.">
+            >
+            ["at41"] = <
+                text = <"Kan ikke gå i trapp">
+                description = <"Kan ikke gå i trapp.">
+            >
+            ["id41"] = <
+                text = <"Trappegang">
+                description = <"Evne til å gå i trapper.">
+            >
+            ["at39"] = <
+                text = <"Kan gå uten hjelp, evt med stokk/krykker">
+                description = <"Klarer å gå 50 meter, kan bruke stokk eller krykker, men ikke annet ganghjelpemiddel.">
+            >
+            ["at38"] = <
+                text = <"Kontinent">
+                description = <"Klarer selv evt. å sette stikkpille/klyx.">
+            >
+            ["at37"] = <
+                text = <"Helt inkontinent">
+                description = <"Helt inkontinent eller hyppige \"uhell\".">
+            >
+            ["at36"] = <
+                text = <"Selvhjulpen">
+                description = <"Selvhjulpen. Klarer å vaske ansiktet, kjemme håret, 
+    pusse tenner og barbere seg.">
+            >
+            ["at35"] = <
+                text = <"Trenger hjelp">
+                description = <"Trenger hjelp til en eller flere oppgaver.">
+            >
+            ["id35"] = <
+                text = <"*Grooming(en)">
+                description = <"*Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing.(en)">
+            >
+            ["at33"] = <
+                text = <"Selvhjulpen">
+                description = <"Selvhjulpen ved toalettbesøk eller bruk av toalettstol. Ordner klær, tørker seg, spyler toalettet eller tømmer 
+    bekken.">
+            >
+            ["at32"] = <
+                text = <"Trenger hjelp">
+                description = <"Trenger hjelp til forflytning, klær, tørke seg.">
+            >
+            ["at31"] = <
+                text = <"Kan ikke bruke toalett">
+                description = <"Kan ikke bruke toalett.">
+            >
+            ["id31"] = <
+                text = <"Toalettbesøk">
+                description = <"Evne til å gå på toalettet.">
+            >
+            ["at29"] = <
+                text = <"Selvhjulpen">
+                description = <"Helt selvhjulpen. Kan bruke nødvendige hjelpemidler 
+    og spiser innen rimelig tid.">
+            >
+            ["at28"] = <
+                text = <"Behov for noe hjelp">
+                description = <"Behov for noe hjelp, f.eks. til å skjære opp maten.">
+            >
+            ["at27"] = <
+                text = <"Helt avhengig av hjelp">
+                description = <"Helt avhengig av hjelp.">
+            >
+            ["id27"] = <
+                text = <"*Feeding(en)">
+                description = <"*Ability to eat food.(en)">
+            >
+            ["at25"] = <
+                text = <"*Independent(en)">
+                description = <"*Person can move from bed to chair independently.(en)">
+            >
+            ["at24"] = <
+                text = <"Klarer forflytning med litt hjelp eller tilsyn">
+                description = <"Klarer forflytning med litt hjelp eller tilsyn.">
+            >
+            ["at23"] = <
+                text = <"*Major help, can sit(en)">
+                description = <"*A strong trained person or 2 people required, patient can sit straight.(en)">
+            >
+            ["at22"] = <
+                text = <"*Unable, no sitting balance(en)">
+                description = <"*No sitting balance, a lifting device is used.(en)">
+            >
+            ["id22"] = <
+                text = <"*Transfer(en)">
+                description = <"*Transfer from bed to chair and back.(en)">
+            >
+            ["at20"] = <
+                text = <"*Walks with help(en)">
+                description = <"*Person walks with assistance of one person, with physical or verbal assistance.(en)">
+            >
+            ["at19"] = <
+                text = <"*Wheel chair independent(en)">
+                description = <"*Wheelchair independent (including corners).(en)">
+            >
+            ["at18"] = <
+                text = <"*Immobile(en)">
+                description = <"*Person can get less than 50 metres in wheelchair.(en)">
+            >
+            ["id18"] = <
+                text = <"Mobilitet">
+                description = <"Evne til å forflytte seg til fots eller i rullestol.">
+            >
+            ["id17"] = <
+                text = <"Sumskår">
+                description = <"Summen av de 10 elementene i Barthel ADL-indeks. Tall på 0-9 indikerer høyt hjelpebehov, 10-19 moderat hjelpebehov og 20 er selvhjulpen.">
+                comment = <"Dette feltet skal ikke brukes dersom man kun benytter utvalgte felt i arketypen.">
+            >
+            ["at14"] = <
+                text = <"Trenger hjelp, men klarer halvparten innen rimelig tid">
+                description = <"Trenger hjelp, men klarer halvparten innen rimelig tid.">
+            >
+            ["at13"] = <
+                text = <"Trenger hjelp til mer enn halvparten">
+                description = <"Trenger hjelp til mer enn halvparten ved påkledning.">
+            >
+            ["id13"] = <
+                text = <"*Dressing(en)">
+                description = <"*Ability to choose clothes, put them on and fasten them.(en)">
+            >
+            ["at11"] = <
+                text = <"Selvhjulpen">
+                description = <"Helt selvhjulpen.">
+            >
+            ["at10"] = <
+                text = <"Trenger hjelp">
+                description = <"Trenger hjelp.">
+            >
+            ["id10"] = <
+                text = <"Bading/dusj">
+                description = <"Evne til å bade eller dusje på egen hånd.">
+            >
+            ["id9"] = <
+                text = <"*Bowels(en)">
+                description = <"*Over the previous week, occasional accident is once per week.(en)">
+            >
+            ["at7"] = <
+                text = <"Kontinent">
+                description = <"Holder seg evt. tørr ved bruk av uridom 
+    eller mestrer bruk av kateter på egen hånd.">
+            >
+            ["at6"] = <
+                text = <"Nedsatt kontroll">
+                description = <"Nedsatt kontroll og enkelte \"uhell\" eller holder seg tørr med uridom eller kateter, men trenger hjelp for å bruke dette.">
+            >
+            ["at5"] = <
+                text = <"Helt inkontinent">
+                description = <"Helt inkontinent eller trenger permanent kateter.">
+            >
+            ["id5"] = <
+                text = <"*Bladder(en)">
+                description = <"*Assessment of urinary control over the previous week, occasional accident <= 1 time per week.(en)">
+            >
+            ["id4"] = <
+                text = <"Uspesifisert hendelse">
+                description = <"Standard, uspesifisert tidspunkt eller tidsintervall som kan defineres mer eksplisitt i en template eller i en applikasjon.">
+            >
+            ["id1"] = <
+                text = <"*Modified Barthel index(en)">
+                description = <"*Modification of the Barthel index, used as a functional assessment for activities of daily living (ADL).(en)">
+            >
+        >
+        ["ar-sy"] = <
+            ["ac9000"] = <
+                text = <"*Bowels(en) (synthesised)">
+                description = <"*Over the previous week, occasional accident is once per week.(en) (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"*Bladder(en) (synthesised)">
+                description = <"*Assessment of urinary control over the previous week, occasional accident <= 1 time per week.(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Grooming(en) (synthesised)">
+                description = <"*Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing.(en) (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"*Toiletgebruik(nl) (synthesised)">
+                description = <"*Met hulp = kan zich afvegen en enige van bovenstaande handelingen uitvoeren.Onafhankelijk = in staat om naar toilet te gaan, zich voldoende uit te kleden, schoon te maken, aan te kleden en weg te gaan.(nl) (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"*Feeding(en) (synthesised)">
+                description = <"*Ability to eat food.(en) (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"*Transfer(en) (synthesised)">
+                description = <"*Transfer from bed to chair and back.(en) (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"*Mobiliteit(nl) (synthesised)">
+                description = <"*Hulp = een ongetraind persoon, incl. toezicht en morele steun.Onafhankelijk = kan zich verplaatsen in huis of op afdeling; hulpmiddel mag worden gebruikt. Een patiÃ«nt in rolstoel moet zonder hulp met hoeken en deuren kunnen omgaan.(nl) (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"*Dressing(en) (synthesised)">
+                description = <"*Ability to choose clothes, put them on and fasten them.(en) (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"*Trappen(nl) (synthesised)">
+                description = <"*Trappen.(nl) (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"*Baden/douche(nl) (synthesised)">
+                description = <"*Onafhankelijk = zonder toezicht of hulp in en uit bad stappen en zichzelf wassen.(nl) (synthesised)">
+            >
+            ["id50"] = <
+                text = <"*Confounding factors(en)">
+                description = <"*Narrative descripiton of any issues or factors that may impact on the scoring.(en)">
+            >
+            ["id48"] = <
+                text = <"*Comment(en)">
+                description = <"*Additional narrative about the modified Barthel index, not captured in other fields.(en)">
+            >
+            ["id47"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
+                comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["at44"] = <
+                text = <"*Occasional accident(en)">
+                description = <"*Less than or equal to once per week.(en)">
+            >
+            ["at43"] = <
+                text = <"*Onafhankelijk naar boven en naar beneden(nl)">
+                description = <"**(nl)">
+            >
+            ["at42"] = <
+                text = <"*Heeft hulp nodig (woorden, lichamelijk of hulpmiddel)(nl)">
+                description = <"**(nl)">
+            >
+            ["at41"] = <
+                text = <"*Neit in staat(nl)">
+                description = <"**(nl)">
+            >
+            ["id41"] = <
+                text = <"*Trappen(nl)">
+                description = <"*Trappen.(nl)">
+            >
+            ["at39"] = <
+                text = <"*Onafhankelijk(nl)">
+                description = <"**(nl)">
+            >
+            ["at38"] = <
+                text = <"*Continent(nl)">
+                description = <"**(nl)">
+            >
+            ["at37"] = <
+                text = <"*Incontinent(nl)">
+                description = <"**(nl)">
+            >
+            ["at36"] = <
+                text = <"*Onafhankelijk (gezicht, haar, tanden, scheren)(nl)">
+                description = <"**(nl)">
+            >
+            ["at35"] = <
+                text = <"*Heeft hulp nodig(nl)">
+                description = <"**(nl)">
+            >
+            ["id35"] = <
+                text = <"*Grooming(en)">
+                description = <"*Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing.(en)">
+            >
+            ["at33"] = <
+                text = <"*Onafhankelijk (op en af, uit- en aankleden, afvegen)(nl)">
+                description = <"**(nl)">
+            >
+            ["at32"] = <
+                text = <"*Heeft enige hulp nodig maar kan sommige dingen zelf(nl)">
+                description = <"**(nl)">
+            >
+            ["at31"] = <
+                text = <"*Afhankelijk(nl)">
+                description = <"**(nl)">
+            >
+            ["id31"] = <
+                text = <"*Toiletgebruik(nl)">
+                description = <"*Met hulp = kan zich afvegen en enige van bovenstaande handelingen uitvoeren.Onafhankelijk = in staat om naar toilet te gaan, zich voldoende uit te kleden, schoon te maken, aan te kleden en weg te gaan.(nl)">
+            >
+            ["at29"] = <
+                text = <"*Onafhankelijk(nl)">
+                description = <"**(nl)">
+            >
+            ["at28"] = <
+                text = <"*Heeft hulp nodig bij snijden, smeren van boter, enz.(nl)">
+                description = <"**(nl)">
+            >
+            ["at27"] = <
+                text = <"*Niet in staat(nl)">
+                description = <"**(nl)">
+            >
+            ["id27"] = <
+                text = <"*Feeding(en)">
+                description = <"*Ability to eat food.(en)">
+            >
+            ["at25"] = <
+                text = <"*Independent(en)">
+                description = <"*Person can move from bed to chair independently.(en)">
+            >
+            ["at24"] = <
+                text = <"*Weinig hulp (met hulp van woorden of lichamelijk)(nl)">
+                description = <"**(nl)">
+            >
+            ["at23"] = <
+                text = <"*Major help, can sit(en)">
+                description = <"*A strong trained person or 2 people required, patient can sit straight.(en)">
+            >
+            ["at22"] = <
+                text = <"*Unable, no sitting balance(en)">
+                description = <"*No sitting balance, a lifting device is used.(en)">
+            >
+            ["id22"] = <
+                text = <"*Transfer(en)">
+                description = <"*Transfer from bed to chair and back.(en)">
+            >
+            ["at20"] = <
+                text = <"*Walks with help(en)">
+                description = <"*Person walks with assistance of one person, with physical or verbal assistance.(en)">
+            >
+            ["at19"] = <
+                text = <"*Wheel chair independent(en)">
+                description = <"*Wheelchair independent (including corners).(en)">
+            >
+            ["at18"] = <
+                text = <"*Immobile(en)">
+                description = <"*Person can get less than 50 metres in wheelchair.(en)">
+            >
+            ["id18"] = <
+                text = <"*Mobiliteit(nl)">
+                description = <"*Hulp = een ongetraind persoon, incl. toezicht en morele steun.Onafhankelijk = kan zich verplaatsen in huis of op afdeling; hulpmiddel mag worden gebruikt. Een patiÃ«nt in rolstoel moet zonder hulp met hoeken en deuren kunnen omgaan.(nl)">
+            >
+            ["id17"] = <
+                text = <"*Totaal(nl)">
+                description = <"*Totaal Barthel-index voorbeeld.(nl)">
+            >
+            ["at14"] = <
+                text = <"*Heeft hulp nodig maar kan oeveer de helft zelf(nl)">
+                description = <"**(nl)">
+            >
+            ["at13"] = <
+                text = <"*Afhankelijk(nl)">
+                description = <"**(nl)">
+            >
+            ["id13"] = <
+                text = <"*Dressing(en)">
+                description = <"*Ability to choose clothes, put them on and fasten them.(en)">
+            >
+            ["at11"] = <
+                text = <"*Onafinankelik(nl)">
+                description = <"**(nl)">
+            >
+            ["at10"] = <
+                text = <"*Afhankelijk(nl)">
+                description = <"**(nl)">
+            >
+            ["id10"] = <
+                text = <"*Baden/douche(nl)">
+                description = <"*Onafhankelijk = zonder toezicht of hulp in en uit bad stappen en zichzelf wassen.(nl)">
+            >
+            ["id9"] = <
+                text = <"*Bowels(en)">
+                description = <"*Over the previous week, occasional accident is once per week.(en)">
+            >
+            ["at7"] = <
+                text = <"*Continent (gedurende meer dan 7 dagen)(nl)">
+                description = <"**(nl)">
+            >
+            ["at6"] = <
+                text = <"*Af en toe een ongelukje (max. 1 keer per 24 uur)(nl)">
+                description = <"**(nl)">
+            >
+            ["at5"] = <
+                text = <"*Incontinent of catheter(nl)">
+                description = <"**(nl)">
+            >
+            ["id5"] = <
+                text = <"*Bladder(en)">
+                description = <"*Assessment of urinary control over the previous week, occasional accident <= 1 time per week.(en)">
+            >
+            ["id4"] = <
+                text = <"*Any event(en)">
+                description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+            >
+            ["id1"] = <
+                text = <"*Modified Barthel index(en)">
+                description = <"*Modification of the Barthel index, used as a functional assessment for activities of daily living (ADL).(en)">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Bowels (synthesised)">
+                description = <"Over the previous week, occasional accident is once per week. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Bladder (synthesised)">
+                description = <"Assessment of urinary control over the previous week, occasional accident <= 1 time per week. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Grooming (synthesised)">
+                description = <"Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing. (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Toilet use (synthesised)">
+                description = <"Ability to use toilet over the previous 48 hours. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Feeding (synthesised)">
+                description = <"Ability to eat food. (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Transfer (synthesised)">
+                description = <"Transfer from bed to chair and back. (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Mobility (synthesised)">
+                description = <"Ability to get about the house or institution. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Dressing (synthesised)">
+                description = <"Ability to choose clothes, put them on and fasten them. (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"Stairs (synthesised)">
+                description = <"Ability to negotiate stairs. (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"Bathing (synthesised)">
+                description = <"Independent = without supervision or help when getting in and out of the bath and when washing. (synthesised)">
+            >
+            ["id50"] = <
+                text = <"Confounding factors">
+                description = <"Narrative descripiton of any issues or factors that may impact on the scoring.">
+            >
+            ["id48"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the modified Barthel index, not captured in other fields.">
+            >
+            ["id47"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["at44"] = <
+                text = <"Occasional accident">
+                description = <"Less than or equal to once per week.">
+            >
+            ["at43"] = <
+                text = <"Independent">
+                description = <"Can carry aid alone if required.">
+            >
+            ["at42"] = <
+                text = <"Needs help">
+                description = <"Verbal, physical or other assistance.">
+            >
+            ["at41"] = <
+                text = <"Unable">
+                description = <"Unable to use stairs.">
+            >
+            ["id41"] = <
+                text = <"Stairs">
+                description = <"Ability to negotiate stairs.">
+            >
+            ["at39"] = <
+                text = <"Independent">
+                description = <"Person can use any aid (not wheelchair) around the house or ward.">
+            >
+            ["at38"] = <
+                text = <"Continent">
+                description = <"Continent of faeces.">
+            >
+            ["at37"] = <
+                text = <"Incontinent (or requires enemas)">
+                description = <"Incontinent of faeces or requires enemas.">
+            >
+            ["at36"] = <
+                text = <"Independent">
+                description = <"Able to brush teeth, hair, wash face, shave.">
+            >
+            ["at35"] = <
+                text = <"Needs help">
+                description = <"Needs help with personal care.">
+            >
+            ["id35"] = <
+                text = <"Grooming">
+                description = <"Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing.">
+            >
+            ["at33"] = <
+                text = <"Independent (on & off, dressing, wiping)">
+                description = <"Person is fully self-supporting in all toileting tasks.">
+            >
+            ["at32"] = <
+                text = <"Needs some help but can do some tasks alone">
+                description = <"Person is self-supporting in some toileting tasks.">
+            >
+            ["at31"] = <
+                text = <"Dependent">
+                description = <"Person is completely dependent of others to use the toilet.">
+            >
+            ["id31"] = <
+                text = <"Toilet use">
+                description = <"Ability to use toilet over the previous 48 hours.">
+            >
+            ["at29"] = <
+                text = <"Independent">
+                description = <"Able to eat alone.">
+            >
+            ["at28"] = <
+                text = <"Needs help">
+                description = <"Requires help cutting, spreading butter or requires modified diet - able to eat alone.">
+            >
+            ["at27"] = <
+                text = <"Unable to eat unassisted">
+                description = <"Requires manual feeding.">
+            >
+            ["id27"] = <
+                text = <"Feeding">
+                description = <"Ability to eat food.">
+            >
+            ["at25"] = <
+                text = <"Independent">
+                description = <"Person can move from bed to chair independently.">
+            >
+            ["at24"] = <
+                text = <"Minor help">
+                description = <"A person is required for supervision or some help.">
+            >
+            ["at23"] = <
+                text = <"Major help, can sit">
+                description = <"A strong trained person or 2 people required, patient can sit straight.">
+            >
+            ["at22"] = <
+                text = <"Unable, no sitting balance">
+                description = <"No sitting balance, a lifting device is used.">
+            >
+            ["id22"] = <
+                text = <"Transfer">
+                description = <"Transfer from bed to chair and back.">
+            >
+            ["at20"] = <
+                text = <"Walks with help">
+                description = <"Person walks with assistance of one person, with physical or verbal assistance.">
+            >
+            ["at19"] = <
+                text = <"Wheel chair independent">
+                description = <"Wheelchair independent (including corners).">
+            >
+            ["at18"] = <
+                text = <"Immobile">
+                description = <"Person can get less than 50 metres in wheelchair.">
+            >
+            ["id18"] = <
+                text = <"Mobility">
+                description = <"Ability to get about the house or institution.">
+            >
+            ["id17"] = <
+                text = <"Total score">
+                description = <"Sum of the individual scores assigned for each of the contributing variables.">
+                comment = <"A score of 0-9 indicates high dependency, 10-19 moderate dependency and 20 is independent.">
+            >
+            ["at14"] = <
+                text = <"Needs help but can do about half unaided">
+                description = <"Needs help only with buttons, zippers but can put on clothes unaided.">
+            >
+            ["at13"] = <
+                text = <"Dependent">
+                description = <"Requires assistance choosing and putting on clothes.">
+            >
+            ["id13"] = <
+                text = <"Dressing">
+                description = <"Ability to choose clothes, put them on and fasten them.">
+            >
+            ["at11"] = <
+                text = <"Independent">
+                description = <"No help required when getting in and out of the bath or when washing.">
+            >
+            ["at10"] = <
+                text = <"Dependent">
+                description = <"Needs assistance with baths or showers.">
+            >
+            ["id10"] = <
+                text = <"Bathing">
+                description = <"Independent = without supervision or help when getting in and out of the bath and when washing.">
+            >
+            ["id9"] = <
+                text = <"Bowels">
+                description = <"Over the previous week, occasional accident is once per week.">
+            >
+            ["at7"] = <
+                text = <"Continent (manages catheter alone)">
+                description = <"Continent includes self management of catheter.">
+            >
+            ["at6"] = <
+                text = <"Occasional accident">
+                description = <"Less than or equal to once per week.">
+            >
+            ["at5"] = <
+                text = <"Incontinent (or unable to manage catheter)">
+                description = <"Incontinent of urine or catheterised.">
+            >
+            ["id5"] = <
+                text = <"Bladder">
+                description = <"Assessment of urinary control over the previous week, occasional accident <= 1 time per week.">
+            >
+            ["id4"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Modified Barthel index">
+                description = <"Modification of the Barthel index, used as a functional assessment for activities of daily living (ADL).">
+            >
+        >
+        ["nl"] = <
+            ["ac9000"] = <
+                text = <"*Bowels(en) (synthesised)">
+                description = <"*Over the previous week, occasional accident is once per week.(en) (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"*Bladder(en) (synthesised)">
+                description = <"*Assessment of urinary control over the previous week, occasional accident <= 1 time per week.(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Grooming(en) (synthesised)">
+                description = <"*Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing.(en) (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Toiletgebruik (synthesised)">
+                description = <"Met hulp = kan zich afvegen en enige van bovenstaande handelingen uitvoeren.Onafhankelijk = in staat om naar toilet te gaan, zich voldoende uit te kleden, schoon te maken, aan te kleden en weg te gaan. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"*Feeding(en) (synthesised)">
+                description = <"*Ability to eat food.(en) (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"*Transfer(en) (synthesised)">
+                description = <"*Transfer from bed to chair and back.(en) (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Mobiliteit (synthesised)">
+                description = <"Hulp = een ongetraind persoon, incl. toezicht en morele steun.Onafhankelijk = kan zich verplaatsen in huis of op afdeling; hulpmiddel mag worden gebruikt. Een patiÃ«nt in rolstoel moet zonder hulp met hoeken en deuren kunnen omgaan. (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"*Dressing(en) (synthesised)">
+                description = <"*Ability to choose clothes, put them on and fasten them.(en) (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"Trappen (synthesised)">
+                description = <"Trappen. (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"Baden/douche (synthesised)">
+                description = <"Onafhankelijk = zonder toezicht of hulp in en uit bad stappen en zichzelf wassen. (synthesised)">
+            >
+            ["id50"] = <
+                text = <"*Confounding factors(en)">
+                description = <"*Narrative descripiton of any issues or factors that may impact on the scoring.(en)">
+            >
+            ["id48"] = <
+                text = <"*Comment(en)">
+                description = <"*Additional narrative about the modified Barthel index, not captured in other fields.(en)">
+            >
+            ["id47"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
+                comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["at44"] = <
+                text = <"*Occasional accident(en)">
+                description = <"*Less than or equal to once per week.(en)">
+            >
+            ["at43"] = <
+                text = <"Onafhankelijk naar boven en naar beneden">
+                description = <"*">
+            >
+            ["at42"] = <
+                text = <"Heeft hulp nodig (woorden, lichamelijk of hulpmiddel)">
+                description = <"*">
+            >
+            ["at41"] = <
+                text = <"Neit in staat">
+                description = <"*">
+            >
+            ["id41"] = <
+                text = <"Trappen">
+                description = <"Trappen.">
+            >
+            ["at39"] = <
+                text = <"Onafhankelijk">
+                description = <"*">
+            >
+            ["at38"] = <
+                text = <"Continent">
+                description = <"*">
+            >
+            ["at37"] = <
+                text = <"Incontinent">
+                description = <"*">
+            >
+            ["at36"] = <
+                text = <"Onafhankelijk (gezicht, haar, tanden, scheren)">
+                description = <"*">
+            >
+            ["at35"] = <
+                text = <"Heeft hulp nodig">
+                description = <"*">
+            >
+            ["id35"] = <
+                text = <"*Grooming(en)">
+                description = <"*Ability over the previous 24-48 hours to attend to personal hygiene such as brushing teeth, shaving and washing.(en)">
+            >
+            ["at33"] = <
+                text = <"Onafhankelijk (op en af, uit- en aankleden, afvegen)">
+                description = <"*">
+            >
+            ["at32"] = <
+                text = <"Heeft enige hulp nodig maar kan sommige dingen zelf">
+                description = <"*">
+            >
+            ["at31"] = <
+                text = <"Afhankelijk">
+                description = <"*">
+            >
+            ["id31"] = <
+                text = <"Toiletgebruik">
+                description = <"Met hulp = kan zich afvegen en enige van bovenstaande handelingen uitvoeren.Onafhankelijk = in staat om naar toilet te gaan, zich voldoende uit te kleden, schoon te maken, aan te kleden en weg te gaan.">
+            >
+            ["at29"] = <
+                text = <"Onafhankelijk">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Heeft hulp nodig bij snijden, smeren van boter, enz.">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Niet in staat">
+                description = <"*">
+            >
+            ["id27"] = <
+                text = <"*Feeding(en)">
+                description = <"*Ability to eat food.(en)">
+            >
+            ["at25"] = <
+                text = <"*Independent(en)">
+                description = <"*Person can move from bed to chair independently.(en)">
+            >
+            ["at24"] = <
+                text = <"Weinig hulp (met hulp van woorden of lichamelijk)">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"*Major help, can sit(en)">
+                description = <"*A strong trained person or 2 people required, patient can sit straight.(en)">
+            >
+            ["at22"] = <
+                text = <"*Unable, no sitting balance(en)">
+                description = <"*No sitting balance, a lifting device is used.(en)">
+            >
+            ["id22"] = <
+                text = <"*Transfer(en)">
+                description = <"*Transfer from bed to chair and back.(en)">
+            >
+            ["at20"] = <
+                text = <"*Walks with help(en)">
+                description = <"*Person walks with assistance of one person, with physical or verbal assistance.(en)">
+            >
+            ["at19"] = <
+                text = <"*Wheel chair independent(en)">
+                description = <"*Wheelchair independent (including corners).(en)">
+            >
+            ["at18"] = <
+                text = <"*Immobile(en)">
+                description = <"*Person can get less than 50 metres in wheelchair.(en)">
+            >
+            ["id18"] = <
+                text = <"Mobiliteit">
+                description = <"Hulp = een ongetraind persoon, incl. toezicht en morele steun.Onafhankelijk = kan zich verplaatsen in huis of op afdeling; hulpmiddel mag worden gebruikt. Een patiÃ«nt in rolstoel moet zonder hulp met hoeken en deuren kunnen omgaan.">
+            >
+            ["id17"] = <
+                text = <"Totaal">
+                description = <"Totaal Barthel-index voorbeeld.">
+            >
+            ["at14"] = <
+                text = <"Heeft hulp nodig maar kan oeveer de helft zelf">
+                description = <"*">
+            >
+            ["at13"] = <
+                text = <"Afhankelijk">
+                description = <"*">
+            >
+            ["id13"] = <
+                text = <"*Dressing(en)">
+                description = <"*Ability to choose clothes, put them on and fasten them.(en)">
+            >
+            ["at11"] = <
+                text = <"Onafinankelik">
+                description = <"*">
+            >
+            ["at10"] = <
+                text = <"Afhankelijk">
+                description = <"*">
+            >
+            ["id10"] = <
+                text = <"Baden/douche">
+                description = <"Onafhankelijk = zonder toezicht of hulp in en uit bad stappen en zichzelf wassen.">
+            >
+            ["id9"] = <
+                text = <"*Bowels(en)">
+                description = <"*Over the previous week, occasional accident is once per week.(en)">
+            >
+            ["at7"] = <
+                text = <"Continent (gedurende meer dan 7 dagen)">
+                description = <"*">
+            >
+            ["at6"] = <
+                text = <"Af en toe een ongelukje (max. 1 keer per 24 uur)">
+                description = <"*">
+            >
+            ["at5"] = <
+                text = <"Incontinent of catheter">
+                description = <"*">
+            >
+            ["id5"] = <
+                text = <"*Bladder(en)">
+                description = <"*Assessment of urinary control over the previous week, occasional accident <= 1 time per week.(en)">
+            >
+            ["id4"] = <
+                text = <"*Any event(en)">
+                description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+            >
+            ["id1"] = <
+                text = <"*Modified Barthel index(en)">
+                description = <"*Modification of the Barthel index, used as a functional assessment for activities of daily living (ADL).(en)">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9009"] = <
+            id = <"ac9009">
+            members = <"at10", "at11">
+        >
+        ["ac9008"] = <
+            id = <"ac9008">
+            members = <"at41", "at42", "at43">
+        >
+        ["ac9007"] = <
+            id = <"ac9007">
+            members = <"at13", "at14", "at11">
+        >
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at35", "at36">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at5", "at6", "at7">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at37", "at44", "at38">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at18", "at19", "at20", "at39">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at22", "at23", "at24", "at25">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at27", "at28", "at29">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at31", "at32", "at33">
+        >
+    >

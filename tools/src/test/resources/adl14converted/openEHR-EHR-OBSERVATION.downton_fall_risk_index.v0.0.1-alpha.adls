@@ -1,0 +1,428 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=91c498c9-de25-4a2e-81b1-59a1208b7c51; build_uid=3d914e3d-e5e6-4044-ae1e-93c2bf10cd5a)
+    openEHR-EHR-OBSERVATION.downton_fall_risk_index.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Dennis Forslund">
+                ["organisation"] = <"Cambio Healthcare Systems">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Konstantinos Kalliamvakos">
+        ["organisation"] = <"Cambio Healthcare Systems">
+        ["email"] = <"models@cambiocds.com">
+        ["date"] = <"2015-01-15">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Oskar Nielsen", "Dennis Forslund", "Heather Leslie, Atomica Informatics, Australia", "Alan D. March, Hospital Universitario Austral, Argentina">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Downton JH. Falls in the Elderly. London: Edward Arnold; 1993. p. 128-30.">
+        ["2"] = <"Downton JH, Andrews K. Prevalence, characteristics and factors associated with falls among the elderly living at home. Aging (Milano). 1991 Sep;3(3):219-28. PubMed PMID: 1764490.">
+        ["3"] = <"Rosendahl E, Lundin-Olsson L, Kallin K, Jensen J, Gustafson Y, Nyberg L. Prediction of falls among older people in residential care facilities by the Downton index. Aging Clin Exp Res. 2003 Apr;15(2):142-7. PubMed PMID: 12889846.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"16282DB1CF0C5A4C9190965B5F231FDD">
+    >
+    details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"Att bedöma och registrera fallrisk hos äldre med hjälp av riskbedömningsverktyget DFRI.">
+            keywords = <"Downton Fall Risk Index", "DFRI", "Geriatrik", "Äldrevård", "Risk", "Fall", "Senior Alert">
+            use = <"Använd för att bedöma och registrera fallrisk hos äldre.
+    
+    Downton Risk Index är en etablerad metod och inkluderar väldokumenterade riskfaktorer för fall hos äldre. Riskfaktorerna bidrar med en poäng vardera till totala poängen. Tre eller fler poäng indikerar hög risk för fall.
+    
+    - Tidigare kända fall
+    - Medicinering: sedativa, diuretika, antihypertensiva, antiparkinson, antidepressiva (en poäng vardera)
+    - Sensorisk funktionsnedsättning: syn-, hörselnedsättning, nedsatt motorik (en poäng vardera)
+    - Kognitiv funktionsnedsättning (konfusion)
+    - Osäker gångförmåga (med eller utan hjälpmedel)">
+            misuse = <"Särskild uppmärksamhet bör riktas mot existerande riskfaktorer och inte enbart totala poängen, då dessa bidrar med värdefull information att agera på för att minska fallrisken. Skalan bör användas regelbundet för att snabbt identifiera förändringar bidragande till ökad fallrisk.">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the component values and total score of the DFRI risk assessment tool.">
+            keywords = <"DFRI", "elderly", "fall", "risk">
+            use = <"Use to record the component values and total score of the DFRI risk assessment tool.
+    
+    The 'Medications' and 'Sensory deficits' data elements both allow multiple occurrences so that multiple values can be selected, if required. The values for each component are indicated in the description of each data element.">
+            misuse = <"">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Downton Fall Risk Index (DFRI)
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Known previous falls
+                                        value matches {
+                                            DV_CODED_TEXT[id9005] matches {
+                                                defining_code matches {[ac9000]}    -- Known previous falls (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id8] matches {    -- Medications
+                                        value matches {
+                                            DV_CODED_TEXT[id9006] matches {
+                                                defining_code matches {[ac9001]}    -- Medications (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id20] matches {    -- Sensory deficits
+                                        value matches {
+                                            DV_CODED_TEXT[id9007] matches {
+                                                defining_code matches {[ac9002]}    -- Sensory deficits (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id25] occurrences matches {0..1} matches {    -- Mental state
+                                        value matches {
+                                            DV_CODED_TEXT[id9008] matches {
+                                                defining_code matches {[ac9003]}    -- Mental state (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id28] occurrences matches {0..1} matches {    -- Ability to walk
+                                        value matches {
+                                            DV_CODED_TEXT[id9009] matches {
+                                                defining_code matches {[ac9004]}    -- Ability to walk (synthesised)
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id32] occurrences matches {0..1} matches {    -- Total score
+                                        value matches {
+                                            DV_COUNT[id9010] matches {
+                                                magnitude matches {|0..11|}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id35] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id36] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["sv"] = <
+            ["ac9000"] = <
+                text = <"*Known previous falls(en) (synthesised)">
+                description = <"*Known previous falls.(en) (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"*Medications(en) (synthesised)">
+                description = <"*Current use of medication.(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"*Sensory deficits(en) (synthesised)">
+                description = <"*Current sensory deficit(s).(en) (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"*Mental state(en) (synthesised)">
+                description = <"*Current mental state.(en) (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"*Ability to walk(en) (synthesised)">
+                description = <"*Current ability to walk.(en) (synthesised)">
+            >
+            ["id36"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
+                comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["at33"] = <
+                text = <"*Unable(en)">
+                description = <"*Component score = 0.(en)">
+            >
+            ["at32"] = <
+                text = <"*Normal (safe without walking aids)(en)">
+                description = <"*Component score = 0.(en)">
+            >
+            ["id32"] = <
+                text = <"*Total score(en)">
+                description = <"*Sum of the individual scores assigned for each of the contributing variables.(en)">
+            >
+            ["at29"] = <
+                text = <"*Unsafe (with/without walking aids)(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["at28"] = <
+                text = <"*Safe with walking aids(en)">
+                description = <"*Component score = 0.(en)">
+            >
+            ["id28"] = <
+                text = <"*Ability to walk(en)">
+                description = <"*Current ability to walk.(en)">
+            >
+            ["at26"] = <
+                text = <"*Confused(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["at25"] = <
+                text = <"*Oriented(en)">
+                description = <"*Component score = 0.(en)">
+            >
+            ["id25"] = <
+                text = <"*Mental state(en)">
+                description = <"*Current mental state.(en)">
+            >
+            ["at23"] = <
+                text = <"*Motor impairment(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["at22"] = <
+                text = <"*Hearing impairment(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["at21"] = <
+                text = <"*Visual impairment(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["id20"] = <
+                text = <"*Sensory deficits(en)">
+                description = <"*Current sensory deficit(s).(en)">
+                comment = <"*This data element has multiple occurrences. If the individual is has no sensory deficits or only one type of deficity then this data element only needs to be recorded once. If the individual is has more than one type of deficit then this data element can be recorded as many times as required to capture each type of deficit.(en)">
+            >
+            ["at18"] = <
+                text = <"*Antidepressants(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["at17"] = <
+                text = <"*Antiparkinsonian drugs(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["at16"] = <
+                text = <"*Antihypertensives (other than diuretics)(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["at15"] = <
+                text = <"*Diuretics(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["at12"] = <
+                text = <"*Tranquilizers/sedatives(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["at10"] = <
+                text = <"*Other medications(en)">
+                description = <"*Component score = 0.(en)">
+            >
+            ["at8"] = <
+                text = <"*None(en)">
+                description = <"*Component score = 0.(en)">
+            >
+            ["id8"] = <
+                text = <"*Medications(en)">
+                description = <"*Current use of medication.(en)">
+                comment = <"*This data element has multiple occurrences. If the individual is taking no medications or one type of medication, then this data element only needs to be recorded once. If the individual is taking more than one type of medication then this data element can be recorded as many times as required to capture each type of medication used.(en)">
+            >
+            ["at6"] = <
+                text = <"*Yes(en)">
+                description = <"*Component score = 1.(en)">
+            >
+            ["at5"] = <
+                text = <"*No(en)">
+                description = <"*Component score = 0.(en)">
+            >
+            ["id5"] = <
+                text = <"*Known previous falls(en)">
+                description = <"*Known previous falls.(en)">
+            >
+            ["id3"] = <
+                text = <"*Any event(en)">
+                description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+            >
+            ["id1"] = <
+                text = <"*Downton Fall Risk Index (DFRI)(en)">
+                description = <"*Multidimensional Tool to assess the risk of falling in the elderly.(en)">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Known previous falls (synthesised)">
+                description = <"Known previous falls. (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Medications (synthesised)">
+                description = <"Current use of medication. (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Sensory deficits (synthesised)">
+                description = <"Current sensory deficit(s). (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Mental state (synthesised)">
+                description = <"Current mental state. (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Ability to walk (synthesised)">
+                description = <"Current ability to walk. (synthesised)">
+            >
+            ["id36"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["at33"] = <
+                text = <"Unable">
+                description = <"Component score = 0.">
+            >
+            ["at32"] = <
+                text = <"Normal (safe without walking aids)">
+                description = <"Component score = 0.">
+            >
+            ["id32"] = <
+                text = <"Total score">
+                description = <"Sum of the individual scores assigned for each of the contributing variables.">
+            >
+            ["at29"] = <
+                text = <"Unsafe (with/without walking aids)">
+                description = <"Component score = 1.">
+            >
+            ["at28"] = <
+                text = <"Safe with walking aids">
+                description = <"Component score = 0.">
+            >
+            ["id28"] = <
+                text = <"Ability to walk">
+                description = <"Current ability to walk.">
+            >
+            ["at26"] = <
+                text = <"Confused">
+                description = <"Component score = 1.">
+            >
+            ["at25"] = <
+                text = <"Oriented">
+                description = <"Component score = 0.">
+            >
+            ["id25"] = <
+                text = <"Mental state">
+                description = <"Current mental state.">
+            >
+            ["at23"] = <
+                text = <"Motor impairment">
+                description = <"Component score = 1.">
+            >
+            ["at22"] = <
+                text = <"Hearing impairment">
+                description = <"Component score = 1.">
+            >
+            ["at21"] = <
+                text = <"Visual impairment">
+                description = <"Component score = 1.">
+            >
+            ["id20"] = <
+                text = <"Sensory deficits">
+                description = <"Current sensory deficit(s).">
+                comment = <"This data element has multiple occurrences. If the individual is has no sensory deficits or only one type of deficity then this data element only needs to be recorded once. If the individual is has more than one type of deficit then this data element can be recorded as many times as required to capture each type of deficit.">
+            >
+            ["at18"] = <
+                text = <"Antidepressants">
+                description = <"Component score = 1.">
+            >
+            ["at17"] = <
+                text = <"Antiparkinsonian drugs">
+                description = <"Component score = 1.">
+            >
+            ["at16"] = <
+                text = <"Antihypertensives (other than diuretics)">
+                description = <"Component score = 1.">
+            >
+            ["at15"] = <
+                text = <"Diuretics">
+                description = <"Component score = 1.">
+            >
+            ["at12"] = <
+                text = <"Tranquilizers/sedatives">
+                description = <"Component score = 1.">
+            >
+            ["at10"] = <
+                text = <"Other medications">
+                description = <"Component score = 0.">
+            >
+            ["at8"] = <
+                text = <"None">
+                description = <"Component score = 0.">
+            >
+            ["id8"] = <
+                text = <"Medications">
+                description = <"Current use of medication.">
+                comment = <"This data element has multiple occurrences. If the individual is taking no medications or one type of medication, then this data element only needs to be recorded once. If the individual is taking more than one type of medication then this data element can be recorded as many times as required to capture each type of medication used.">
+            >
+            ["at6"] = <
+                text = <"Yes">
+                description = <"Component score = 1.">
+            >
+            ["at5"] = <
+                text = <"No">
+                description = <"Component score = 0.">
+            >
+            ["id5"] = <
+                text = <"Known previous falls">
+                description = <"Known previous falls.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Downton Fall Risk Index (DFRI)">
+                description = <"Multidimensional Tool to assess the risk of falling in the elderly.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at8", "at21", "at22", "at23">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at8", "at12", "at15", "at16", "at17", "at18", "at10">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at5", "at6">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at32", "at28", "at29", "at33">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at25", "at26">
+        >
+    >

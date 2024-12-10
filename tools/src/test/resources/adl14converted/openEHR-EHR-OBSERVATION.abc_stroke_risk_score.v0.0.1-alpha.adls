@@ -1,0 +1,189 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=a9702222-2706-49c9-a578-cbeb698f8aad; build_uid=951c1f0d-1e99-4e2d-89e6-56ba8db7074e)
+    openEHR-EHR-OBSERVATION.abc_stroke_risk_score.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Eneimi Allwell-Brown">
+        ["organisation"] = <"Cambio Healthcare Systems">
+        ["email"] = <"models@cambiocds.com">
+        ["date"] = <"2016-11-13">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Hijazi Z, Lindbäck J, Alexander JH, Hanna M, Held C, Hylek EM, Lopes RD, Oldgren J, Siegbahn A, Stewart RA, et al. The ABC (age, biomarkers, clinical history) stroke risk score: a biomarker-based risk score for predicting stroke in atrial fibrillation. Eur Heart J. 2016 May 21;37(20):1582-90. doi: 10.1093/eurheartj/ehw054. Epub 2016 Feb 25. PubMed PMID: 26920728; PubMed Central PMCID: PMC4875560.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"338F218B78ED770F8C3DBF7C072777FF">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the component values and the total of the ABC-stroke risk score, plus the predicted risk values based on the total score.">
+            keywords = <"atrial fibrillation", "stroke risk", "systemic embolism risk">
+            use = <"Use to record the component values and the total of the ABC-stroke risk score, plus the predicted risk values based on the total score.">
+            misuse = <"Not to be used to record the actual values of each component. Use separate archetypes for this purpose: OBSERVATION.age, OBSERVATION.laboratory_test_result and EVALUATION.problem_diagnosis for this purpose.">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- ABC-stroke risk score
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Prior stroke or transient ischaemic attack
+                                        value matches {
+                                            DV_QUANTITY[id9001] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                units matches {"1"}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Age
+                                        value matches {
+                                            DV_QUANTITY[id9002] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                units matches {"1"}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id8] occurrences matches {0..1} matches {    -- cTnT-hs
+                                        value matches {
+                                            DV_QUANTITY[id9003] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                units matches {"1"}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id9] occurrences matches {0..1} matches {    -- NT-proBNP
+                                        value matches {
+                                            DV_QUANTITY[id9004] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                units matches {"1"}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Total score
+                                        value matches {
+                                            DV_QUANTITY[id9005] matches {
+                                                property matches {[at9000]}    -- Qualified real
+                                                units matches {"%"}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id16] occurrences matches {0..1} matches {    -- 1-year risk
+                                        value matches {
+                                            DV_PROPORTION[id9006] matches {
+                                                numerator matches {|>=0.0|}
+                                                is_integral matches {False}
+                                                type matches {2}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id17] occurrences matches {0..1} matches {    -- 3-year risk
+                                        value matches {
+                                            DV_PROPORTION[id9007] matches {
+                                                numerator matches {|>=0.0|}
+                                                is_integral matches {False}
+                                                type matches {2}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Comment
+                                        value matches {
+                                            DV_TEXT[id9008] 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id14] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id15] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Qualified real">
+                description = <"Qualified real">
+            >
+            ["id17"] = <
+                text = <"3-year risk">
+                description = <"Predicted risk of developing a stroke or systemic embolism within 3 years based on ABC-stroke score.">
+            >
+            ["id16"] = <
+                text = <"1-year risk">
+                description = <"Predicted risk of developing a stroke or systemic embolism within 1 year based on ABC-stroke score.">
+            >
+            ["id15"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["id13"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the score, not captured in other fields.">
+            >
+            ["id10"] = <
+                text = <"Total score">
+                description = <"Sum of the points assigned for each of the contributing variables.">
+            >
+            ["id9"] = <
+                text = <"NT-proBNP">
+                description = <"Points assigned based on an individual's plasma concentration of N-terminal fragment B-type natriuretic peptide.">
+            >
+            ["id8"] = <
+                text = <"cTnT-hs">
+                description = <"Points assigned based on an individual's plasma concentration of cardiac troponin-T high-sensitivity (or cardiac troponin-I high sensitivity).">
+            >
+            ["id7"] = <
+                text = <"Age">
+                description = <"Points assigned based on an individual's age.">
+            >
+            ["id6"] = <
+                text = <"Prior stroke or transient ischaemic attack">
+                description = <"Points assigned based on the presence or absence of a prior history of stroke or TIA in an individual.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"ABC-stroke risk score">
+                description = <"Biomarker-based risk assessment tool for predicting stroke in individuals with atrial fibrillation.">
+                comment = <"ABC stroke risk score = ABC stroke score">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/380>
+        >
+    >

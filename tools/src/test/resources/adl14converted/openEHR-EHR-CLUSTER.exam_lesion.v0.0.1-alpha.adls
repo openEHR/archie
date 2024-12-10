@@ -1,0 +1,231 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=920347ee-9598-4227-90cf-be3b04c28a1d; build_uid=2855eb1c-e592-4a90-87ec-2c4df3ae6fd8)
+    openEHR-EHR-CLUSTER.exam_lesion.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            author = <
+                ["name"] = <"Osmeire Sanzovo">
+                ["organisation"] = <"Hospital Sírio Libanês">
+                ["email"] = <"osmeire.acsanzovo@hsl.org.br">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Heather Leslie">
+        ["organisation"] = <"Atomica Informatics">
+        ["email"] = <"heather.leslie@atomicainformatics.com">
+        ["date"] = <"2015-06-25">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Silje Ljosland Bakke, Bergen Hospital Trust, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom", "John Tore Valand, Haukeland Universitetssjukehus, Norway", "Heather Leslie, Atomica Informatics, Australia">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"FC08A47619EFC4E271F5ADFB1808A217">
+    >
+    details = <
+        ["pt-br"] = <
+            language = <[ISO_639-1::pt-br]>
+            purpose = <"Para registro de uma descrição narrativa e interpretação clínica dos resultados observados durante o exame físico de uma lesão identificada 
+    ">
+            use = <"Use para registrar uma descrição narrativa das conclusões gerais observados durante o exame físico de uma lesão identificada. Este projeto de arquétipo inicial consiste apenas dos elementos padrão de dados de exames de núcleo (como por CLUSTER.exam_pattern) e, provavelmente, deve ser expandida ao longo do tempo com necessidades clínicas específicas assim que sejam identificadas.
+    
+    Este arquétipo foi especificamente projetado para ser usado no slot 'achados de exame' dentro do arquétipo CLUSTER.exame_pele ou o OBSERVATION.exame, mas também pode ser usado dentro de qualquer outra observação ou CLUSTER arquétipos, onde clinicamente apropriado - por exemplo, cluster. exame_mama ou CLUSTER.exame_pênis.
+    
+    Use para fornecer um quadro no qual os arquétipos cluster podem ser inseridos em SLOT dos achados de exame para gravar achados do exame físico estruturados adicionais.
+    
+    O arquétipo CLUSTER.exclusão_exame podem ser inserido dentro do campo: 'Exame não feito \", opcionalmente, e registrar detalhes explícitos sobre o exame não realizado.
+    
+    Use para incorporar as descrições narrativas de achados clínicos nos sistemas clínicos existentes ou legados em um formato arquetipado, utilização \"descrição clínica 'elemento de dados.
+    ">
+            misuse = <"Não deve ser usado para a gravação de dados não relacionados com o exame físico de uma lesão identificada .
+    
+    Não deve ser utilizado para a gravação do histórico clínico - usar a observação e Cluster arquétipos específicos. Por exemplo OBSERVATION.story e CLUSTER.symptom .
+    
+    Não deve ser usado para registrar as observações ou medições clínicas ou os resultados dos testes - usar arquétipos observação específicos . Por exemplo OBSERVATION.blood_pressure ou OBSERVATION.imaging_exam .">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"For recording a narrative description and clinical interpretation of the findings observed during the physical examination of an identified lesion.">
+            use = <"Use to record a narrative description of the overall findings observed during the physical examination of an identified lesion. This initial draft archetype consists only of the core examination pattern data elements (as per CLUSTER.exam_pattern) and will likely be expanded further over time as specific clinical requirements are identified.
+    
+    This archetype has been specifically designed to be used in the 'Examination findings' SLOT within the CLUSTER.exam_skin archetype or the OBSERVATION.exam, but can also be used within any other OBSERVATION or CLUSTER archetypes, where clinically appropriate - for example, CLUSTER.exam_breast or CLUSTER.exam_penis.
+    
+    Use to provide a framework in which CLUSTER archetypes can be nested in the 'Examination findings' SLOT to record additional structured physical examination findings. 
+    
+    The CLUSTER.exclusion_exam archetype can be nested within the 'Examination not done' SLOT to optionally record explicit details about the examination not being performed.
+    
+    Use to incorporate the narrative descriptions of clinical findings within existing or legacy clinical systems into an archetyped format, using the 'Clinical Description' data element.">
+            misuse = <"Not to be used for recording data not related to the physical examination of an identified lesion.
+    
+    Not to be used for recording the clinical history - use specific OBSERVATION and CLUSTER archetypes. For example OBSERVATION.story and CLUSTER.symptom.
+    
+    Not to be used to record stand-alone clinical observations or measurements or test results - use specific OBSERVATION archetypes. For example OBSERVATION.blood_pressure or OBSERVATION.imaging_exam.">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Examination of a lesion
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id3] occurrences matches {0..1} matches {    -- Lesion type
+                value matches {
+                    DV_TEXT[id9000] 
+                }
+            }
+            ELEMENT[id13] occurrences matches {0..1} matches {    -- Alias
+                value matches {
+                    DV_TEXT[id9001] 
+                }
+            }
+            ELEMENT[id4] occurrences matches {0..1} matches {    -- Clinical description
+                value matches {
+                    DV_TEXT[id9002] 
+                }
+            }
+            ELEMENT[id2] occurrences matches {0..1} matches {    -- Body site
+                value matches {
+                    DV_TEXT[id9003] 
+                }
+            }
+            allow_archetype CLUSTER[id12] matches {     -- Structured body site
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.anatomical_location(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-CLUSTER\.anatomical_location_relative(-[a-zA-Z0-9_]+)*\.v1\..*|openEHR-EHR-CLUSTER\.anatomical_location_clock(-[a-zA-Z0-9_]+)*\.v0\..*/}
+            }
+            allow_archetype CLUSTER[id5] matches {     -- Examination findings
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.dimensions(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            allow_archetype CLUSTER[id6] matches {     -- Multimedia representation
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.multimedia(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            ELEMENT[id7] matches {    -- Clinical interpretation
+                value matches {
+                    DV_TEXT[id9004] 
+                }
+            }
+            ELEMENT[id8] occurrences matches {0..1} matches {    -- Comment
+                value matches {
+                    DV_TEXT[id9005] 
+                }
+            }
+            allow_archetype CLUSTER[id9] matches {     -- Examination not done
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.exclusion_exam(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["pt-br"] = <
+            ["id13"] = <
+                text = <"Número da lesão">
+                description = <"Identificação, usando um apelido ou numeração da lesão, para distinguir de outra lesão semelhante no mesmo local do corpo">
+                comment = <"Por exemplo, \"Papiloma #1\" foi marcado no diagrama do lado do corpo na parte superior">
+            >
+            ["id12"] = <
+                text = <"Local anatômico (estruturado)">
+                description = <"A localização anatómica da lesão estruturada">
+            >
+            ["id9"] = <
+                text = <"Exame não realizado">
+                description = <"Registrar explicitamente que este exame não foi realizado">
+                comment = <"Lesão deve ser codificada com a terminologia, quando possível.">
+            >
+            ["id8"] = <
+                text = <"Comentários">
+                description = <"Narrativa adicionais sobre os achados do exame físico , não contemplados em outros campos">
+            >
+            ["id7"] = <
+                text = <"Interpretação Clínica">
+                description = <"Única palavra , frase ou breve descrição que representa o significado clínico e relevância dos achados do exame físico">
+            >
+            ["id6"] = <
+                text = <"Representação multimídia">
+                description = <"Imagem Digital, vídeo ou diagrama que representa os achados do exame físico">
+            >
+            ["id5"] = <
+                text = <"Achados da lesão">
+                description = <"Detalhes estruturados sobre os achados do exame físico">
+            >
+            ["id4"] = <
+                text = <"Descrição Clínica">
+                description = <"Descrição Narrativa dos resultados globais observados durante o exame físico.">
+            >
+            ["id3"] = <
+                text = <"Tipo de Lesão">
+                description = <"Identificação do tipo de lesão encontrada no exame físico.">
+                comment = <"Por exemplo, papiloma ou área despigmentada">
+            >
+            ["id2"] = <
+                text = <"Local anatômico da lesão">
+                description = <"Identificação do local do corpo em exame">
+                comment = <"O local do corpo pode ser numa área da pele ou membrana mucosa, por exemplo: joelho direito, palato ou duodeno. Se o lado do corpo foi previamente identificado em outro arquétipo no qual este arquétipo é agrupado, este dado ficará redundante">
+            >
+            ["id1"] = <
+                text = <"Exame da Lesão">
+                description = <"Os resultados observados durante o exame físico de uma lesão identificado">
+            >
+        >
+        ["en"] = <
+            ["id13"] = <
+                text = <"Alias">
+                description = <"Identification, by using a alias name, of the lesion to distinguish one lesion from similar lesions at the same body site.">
+                comment = <"For example, 'Mole #1' as marked on a diagram of the body site.">
+            >
+            ["id12"] = <
+                text = <"Structured body site">
+                description = <"A structured anatomical location of the lesion.">
+                comment = <"If the body site has previously been identified in another archetype in which this archetype is then nested, this SLOT becomes redundant.">
+            >
+            ["id9"] = <
+                text = <"Examination not done">
+                description = <"Details to explicitly record that this examination was not performed.">
+            >
+            ["id8"] = <
+                text = <"Comment">
+                description = <"Additional narrative about the physical examination findings, not captured in other fields.">
+            >
+            ["id7"] = <
+                text = <"Clinical interpretation">
+                description = <"Single word, phrase or brief description that represents the clinical meaning and significance of the physical examination findings.">
+            >
+            ["id6"] = <
+                text = <"Multimedia representation">
+                description = <"Digital image, video or diagram representing the physical examination findings.">
+            >
+            ["id5"] = <
+                text = <"Examination findings">
+                description = <"Structured details about the physical examination findings.">
+            >
+            ["id4"] = <
+                text = <"Clinical description">
+                description = <"Narrative description of the overall findings observed during the physical examination.">
+            >
+            ["id3"] = <
+                text = <"Lesion type">
+                description = <"Identification of the type of lesion found on physical examination.">
+                comment = <"'Lesion type' should be coded with a terminology, where possible. For example, mole, papilloma or depigmented area. ">
+            >
+            ["id2"] = <
+                text = <"Body site">
+                description = <"Identification of the body site under examination.">
+                comment = <"The body site could be on an area of skin or a mucous membrane, for example the right knee, palate or duodenum. If the body site has previously been identified in another archetype in which this archetype is nested, this data element becomes redundant.">
+            >
+            ["id1"] = <
+                text = <"Examination of a lesion">
+                description = <"Findings observed during the physical examination of an identified lesion.">
+            >
+        >
+    >

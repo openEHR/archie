@@ -1,0 +1,973 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=792bcb5d-08be-4d89-a5c7-16f1cff9685d; build_uid=205153bc-efb5-44c4-8b3b-322ffd831760)
+    openEHR-EHR-OBSERVATION.ymrs.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            author = <
+                ["name"] = <"Dennis Forslund">
+                ["organisation"] = <"Cambio Healthcare Systems">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Dennis Forslund">
+        ["organisation"] = <"Cambio Healthcare Systems">
+        ["email"] = <"models@cambiocds.com">
+        ["date"] = <"2016-12-14">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Heather Leslie, Atomica Informatics, Australia", ...>
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+    references = <
+        ["1"] = <"Young RC, Biggs JT, Ziegler VE, Meyer DA. A rating scale for mania: reliability, validity and sensitivity. Br J Psychiatry. 1978 Nov;133:429-35. PubMed PMID: 728692.">
+    >
+    other_details = <
+        ["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+        ["MD5-CAM-1.0.1"] = <"896357B7F869A6CEB7ADA1C2F6A0D786">
+    >
+    details = <
+        ["sv"] = <
+            language = <[ISO_639-1::sv]>
+            purpose = <"Att uppskatta och registrera allvarlighetsgrad av manisk episod.">
+            keywords = <"YMRS", "Young Mania Rating Scale", "DSM", "mani", "hypomani", "psykiatri">
+            use = <"Använd för att uppskatta och registrera allvarlighetsgrad av manisk episod.
+    
+    Young Mania Rating Scale (YMRS) används för att uppskatta allvarlighetsgrad av manisk episod. Formuläret består av elva frågor och klinikern värderar patientens svar på en skala. Varje svar bidrar med poäng till totala summan vilken uppgår till maximalt 60p.
+    
+    - Förhöjt stämningsläge
+    - Ökad motorisk aktivitet
+    - Sexuellt intresse
+    - Sömn
+    - Irritabilitet
+    - Tal (flöde och mängd)
+    - Språk-/och tankestörning
+    - Tankeinnehåll
+    - Aggressivitet
+    - Yttre
+    - Insikt
+    
+    Tolkning av resultat:
+    14-19 poäng indikerar hypomani
+    20-30 poäng indikerar medelsvår mani
+    >30 poäng indikerar svår mani">
+            misuse = <"">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To assess and record the severity of a manic episode.">
+            keywords = <"YMRS", "Young Mania Rating Scale", "mania", "hypomania", "DSM", "psychiatry">
+            use = <"Use as a tool to assess and record the severity of a manic episode.
+    
+    The questionnaire consists of eleven items which the clinician rates based on the assessment of the patients current condition during the course of the interview. Each contributes points to the total score which ranges from 0-60. 
+    
+    - Elevated mood
+    - Increased motor activity-energy
+    - Sexual interest
+    - Sleep
+    - Irritability
+    - Speech (rate and amount)
+    - Language-thought disorder
+    - Content
+    - Disruptive-aggressive behaviour
+    - Appearance
+    - Insight
+    
+    Score interpretation:
+    14-19 points indicate hypomania
+    20-30 points indicate moderate mania
+    >30 points indicate severe mania.">
+            misuse = <"">
+            copyright = <"© Cambio Healthcare Systems, openEHR Foundation">
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Young Mania Rating Scale (YMRS)
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1..*; unordered} matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items cardinality matches {0..*; unordered} matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Elevated mood
+                                        value matches {
+                                            DV_ORDINAL[id9011] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at16]}],
+                                                    [{1}, {[at17]}],
+                                                    [{2}, {[at18]}],
+                                                    [{3}, {[at19]}],
+                                                    [{4}, {[at20]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id6] occurrences matches {0..1} matches {    -- Increased motor activity-energy
+                                        value matches {
+                                            DV_ORDINAL[id9012] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at21]}],
+                                                    [{1}, {[at22]}],
+                                                    [{2}, {[at23]}],
+                                                    [{3}, {[at24]}],
+                                                    [{4}, {[at25]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Sexual interest
+                                        value matches {
+                                            DV_ORDINAL[id9013] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at26]}],
+                                                    [{1}, {[at27]}],
+                                                    [{2}, {[at28]}],
+                                                    [{3}, {[at29]}],
+                                                    [{4}, {[at30]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id8] occurrences matches {0..1} matches {    -- Sleep
+                                        value matches {
+                                            DV_ORDINAL[id9014] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at31]}],
+                                                    [{1}, {[at32]}],
+                                                    [{2}, {[at33]}],
+                                                    [{3}, {[at34]}],
+                                                    [{4}, {[at35]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id9] occurrences matches {0..1} matches {    -- Irritability
+                                        value matches {
+                                            DV_ORDINAL[id9015] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at36]}],
+                                                    [{2}, {[at37]}],
+                                                    [{4}, {[at38]}],
+                                                    [{6}, {[at39]}],
+                                                    [{8}, {[at40]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id10] occurrences matches {0..1} matches {    -- Speech (rate and amount)
+                                        value matches {
+                                            DV_ORDINAL[id9016] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at41]}],
+                                                    [{2}, {[at42]}],
+                                                    [{4}, {[at43]}],
+                                                    [{6}, {[at44]}],
+                                                    [{8}, {[at45]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id11] occurrences matches {0..1} matches {    -- Language - thought disorder
+                                        value matches {
+                                            DV_ORDINAL[id9017] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at46]}],
+                                                    [{1}, {[at47]}],
+                                                    [{2}, {[at48]}],
+                                                    [{3}, {[at49]}],
+                                                    [{4}, {[at50]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id12] occurrences matches {0..1} matches {    -- Content
+                                        value matches {
+                                            DV_ORDINAL[id9018] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at51]}],
+                                                    [{2}, {[at52]}],
+                                                    [{4}, {[at53]}],
+                                                    [{6}, {[at54]}],
+                                                    [{8}, {[at55]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id13] occurrences matches {0..1} matches {    -- Disruptive-aggressive behaviour
+                                        value matches {
+                                            DV_ORDINAL[id9019] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at56]}],
+                                                    [{2}, {[at57]}],
+                                                    [{4}, {[at58]}],
+                                                    [{6}, {[at59]}],
+                                                    [{8}, {[at60]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id14] occurrences matches {0..1} matches {    -- Appearance
+                                        value matches {
+                                            DV_ORDINAL[id9020] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at61]}],
+                                                    [{1}, {[at62]}],
+                                                    [{2}, {[at63]}],
+                                                    [{3}, {[at64]}],
+                                                    [{4}, {[at65]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id15] occurrences matches {0..1} matches {    -- Insight
+                                        value matches {
+                                            DV_ORDINAL[id9021] matches {
+                                                [value, symbol] matches {
+                                                    [{0}, {[at66]}],
+                                                    [{1}, {[at67]}],
+                                                    [{2}, {[at68]}],
+                                                    [{3}, {[at69]}],
+                                                    [{4}, {[at70]}]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id16] occurrences matches {0..1} matches {    -- Total score
+                                        value matches {
+                                            DV_COUNT[id9022] matches {
+                                                magnitude matches {|0..60|}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        protocol matches {
+            ITEM_TREE[id72] matches {
+                items cardinality matches {0..*; unordered} matches {
+                    allow_archetype CLUSTER[id73] matches {     -- Extension
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["sv"] = <
+            ["ac9000"] = <
+                text = <"Förhöjt stämningsläge (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Ökad motorisk aktivitet (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Sexuellt intresse (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Sömn (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Irritabilitet (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Tal (flöde och mängd) (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Språk-/tankestörning (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Tankeinnehåll (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"Aggressivitet (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"Yttre (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["ac9010"] = <
+                text = <"Insikt (synthesised)">
+                description = <"**(en) (synthesised)">
+            >
+            ["id73"] = <
+                text = <"*CLUSTER(en)">
+                description = <"**(en)">
+            >
+            ["at70"] = <
+                text = <"Saknar helt insikt; förnekar beteendeförändring">
+                description = <"*">
+            >
+            ["at69"] = <
+                text = <"Medger möjlig beteendeförändring men ej sjukdom">
+                description = <"*">
+            >
+            ["at68"] = <
+                text = <"Medger beteendeförändring men ej sjukdom">
+                description = <"*">
+            >
+            ["at67"] = <
+                text = <"Medger möjlig sjukdom">
+                description = <"*">
+            >
+            ["at66"] = <
+                text = <"Insiktsfull; medger sjukdom och behov av behandling">
+                description = <"*">
+            >
+            ["at65"] = <
+                text = <"Svårt vanvårdad; bisarr klädsel, smink">
+                description = <"*">
+            >
+            ["at64"] = <
+                text = <"Vanvårdad; delvis oklädd; uppseendeväckande smink">
+                description = <"*">
+            >
+            ["at63"] = <
+                text = <"Påtagligt ovårdad; ovårdad eller slarvigt klädd">
+                description = <"*">
+            >
+            ["at62"] = <
+                text = <"Minimalt ovårdad">
+                description = <"*">
+            >
+            ["at61"] = <
+                text = <"Adekvat, vårdat yttre">
+                description = <"*">
+            >
+            ["at60"] = <
+                text = <"Går till fysiskt angrepp; destruktivt beteende; ej möjligt genomföra samtal">
+                description = <"*">
+            >
+            ["at59"] = <
+                text = <"Hotar intervjuaren; skriker; svårt genomföra samtalet">
+                description = <"*">
+            >
+            ["at58"] = <
+                text = <"Krävande; hotfull">
+                description = <"*">
+            >
+            ["at57"] = <
+                text = <"Sarkastisk; högljudd ibland; på sin vakt">
+                description = <"*">
+            >
+            ["at56"] = <
+                text = <"Uppvisar inte aggressivt beteende">
+                description = <"*">
+            >
+            ["at55"] = <
+                text = <"Vanföreställningar; hallucinationer">
+                description = <"*">
+            >
+            ["at54"] = <
+                text = <"Grandiosa eller paranoida föreställningar; hänsyftningsidéer">
+                description = <"*">
+            >
+            ["at53"] = <
+                text = <"Speciella projekt; hyperreligiös">
+                description = <"*">
+            >
+            ["at52"] = <
+                text = <"Tveksamma planer; nya intressen">
+                description = <"*">
+            >
+            ["at51"] = <
+                text = <"Normalt">
+                description = <"*">
+            >
+            ["at50"] = <
+                text = <"Osammanhängande; kommunikation ej möjlig">
+                description = <"*">
+            >
+            ["at49"] = <
+                text = <"Tankeflykt; irrelevanta svar; svårt att följa tanketråd; ekolali">
+                description = <"*">
+            >
+            ["at48"] = <
+                text = <"Lättdistraherad; tappar tanketråd; byter ofta ämne; uppvarvad tankegång">
+                description = <"*">
+            >
+            ["at47"] = <
+                text = <"Omständlig; något lättdistraherad; snabba tankar">
+                description = <"*">
+            >
+            ["at46"] = <
+                text = <"Ingen störning">
+                description = <"*">
+            >
+            ["at45"] = <
+                text = <"Forcerat tal; talar konstant; omöjlig att avbryta">
+                description = <"*">
+            >
+            ["at44"] = <
+                text = <"Talar näst intill konstant; svår att avbryta">
+                description = <"*">
+            >
+            ["at43"] = <
+                text = <"Ökad talhastighet eller -flöde; omständliga formuleringar">
+                description = <"*">
+            >
+            ["at42"] = <
+                text = <"Känner sig pratsam">
+                description = <"*">
+            >
+            ["at41"] = <
+                text = <"Ej påverkat">
+                description = <"*">
+            >
+            ["at40"] = <
+                text = <"Fientlig, ej samarbetsvillig; omöjligt genomföra samtal">
+                description = <"*(en)">
+            >
+            ["at39"] = <
+                text = <"Ofta irritabel under samtalet; kortfattad och tvär">
+                description = <"*(en)">
+            >
+            ["at38"] = <
+                text = <"Irritabel ibland under samtalet; nyligen haft återkommande episoder av ilska eller irritabilitet">
+                description = <"*(en)">
+            >
+            ["at37"] = <
+                text = <"Subjektivt ökad">
+                description = <"*(en)">
+            >
+            ["at36"] = <
+                text = <"Ej irritabel">
+                description = <"*(en)">
+            >
+            ["at35"] = <
+                text = <"Uppger avsaknad av sömnbehov">
+                description = <"*">
+            >
+            ["at34"] = <
+                text = <"Uppger minskat sömnbehov">
+                description = <"*">
+            >
+            ["at33"] = <
+                text = <"Sover mer än en timme mindre än normalt ">
+                description = <"*">
+            >
+            ["at32"] = <
+                text = <"Sover upp till en timme mindre än normalt">
+                description = <"*">
+            >
+            ["at31"] = <
+                text = <"Rapporterar ej minskad sömn">
+                description = <"*">
+            >
+            ["at30"] = <
+                text = <"Öppet sexuellt beteende (gentemot andra patienter, personal eller administrerande kliniker)">
+                description = <"*">
+            >
+            ["at29"] = <
+                text = <"Tankar med sexuellt innehåll framkommer spontant; förhöjt självrapporterat intresse ">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Subjektivt ökad på fråga">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Lätt ökat">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"Normalt; ej ökat">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Kontinuerlig hyperaktivitet, ej avledbar">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"Överskottsenergi; hyperaktiv; rastlös men avledbar">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Animerad; ökat kroppspråk">
+                description = <"*">
+            >
+            ["at22"] = <
+                text = <"Subjektivt ökad">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"Ej ökat">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"Euforisk; olämpliga skratt; glatt sjungande">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Förhöjt, inadekvat tankeinnehåll; skämtsam">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Subjektivt förhöjt, spontant; optimistisk, självsäker; entusiastisk; adekvat tankeinnehåll">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Lätt förhöjt, ibland noterbart först på fråga">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"Ej förhöjt">
+                description = <"*">
+            >
+            ["id16"] = <
+                text = <"Total poäng">
+                description = <"Summan av samtliga faktorer">
+            >
+            ["id15"] = <
+                text = <"Insikt">
+                description = <"**(en)">
+            >
+            ["id14"] = <
+                text = <"Yttre">
+                description = <"**(en)">
+            >
+            ["id13"] = <
+                text = <"Aggressivitet">
+                description = <"**(en)">
+            >
+            ["id12"] = <
+                text = <"Tankeinnehåll">
+                description = <"**(en)">
+            >
+            ["id11"] = <
+                text = <"Språk-/tankestörning">
+                description = <"**(en)">
+            >
+            ["id10"] = <
+                text = <"Tal (flöde och mängd)">
+                description = <"**(en)">
+            >
+            ["id9"] = <
+                text = <"Irritabilitet">
+                description = <"**(en)">
+            >
+            ["id8"] = <
+                text = <"Sömn">
+                description = <"**(en)">
+            >
+            ["id7"] = <
+                text = <"Sexuellt intresse">
+                description = <"**(en)">
+            >
+            ["id6"] = <
+                text = <"Ökad motorisk aktivitet">
+                description = <"**(en)">
+            >
+            ["id5"] = <
+                text = <"Förhöjt stämningsläge">
+                description = <"**(en)">
+            >
+            ["id3"] = <
+                text = <"*Any event(en)">
+                description = <"**(en)">
+            >
+            ["id1"] = <
+                text = <"Young Mania Rating Scale">
+                description = <"Young Mania Rating Scale (YMRS) används för att uppskatta allvarlighetsgrad av manisk episod. Formuläret består av elva frågor och klinikern värderar patientens svar på en skala. ">
+            >
+        >
+        ["en"] = <
+            ["ac9000"] = <
+                text = <"Elevated mood (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9001"] = <
+                text = <"Increased motor activity-energy (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9002"] = <
+                text = <"Sexual interest (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9003"] = <
+                text = <"Sleep (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9004"] = <
+                text = <"Irritability (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9005"] = <
+                text = <"Speech (rate and amount) (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9006"] = <
+                text = <"Language - thought disorder (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9007"] = <
+                text = <"Content (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9008"] = <
+                text = <"Disruptive-aggressive behaviour (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9009"] = <
+                text = <"Appearance (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["ac9010"] = <
+                text = <"Insight (synthesised)">
+                description = <"* (synthesised)">
+            >
+            ["id73"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+                comment = <"For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["at70"] = <
+                text = <"Denies any behaviour change">
+                description = <"*">
+            >
+            ["at69"] = <
+                text = <"Admits possible change in behaviour, but denies illness">
+                description = <"*">
+            >
+            ["at68"] = <
+                text = <"Admits behaviour change, but denies illness">
+                description = <"*">
+            >
+            ["at67"] = <
+                text = <"Possibly ill">
+                description = <"*">
+            >
+            ["at66"] = <
+                text = <"Present; admits illness; agrees with need for treatment">
+                description = <"*">
+            >
+            ["at65"] = <
+                text = <"Completely unkempt; decorated; bizarre garb">
+                description = <"*">
+            >
+            ["at64"] = <
+                text = <"Dishevelled; partly clothed; garish make-up">
+                description = <"*">
+            >
+            ["at63"] = <
+                text = <"Poorly groomed; moderately dishevelled; overdressed">
+                description = <"*">
+            >
+            ["at62"] = <
+                text = <"Minimally unkempt">
+                description = <"*">
+            >
+            ["at61"] = <
+                text = <"Appropriate dress and grooming">
+                description = <"*">
+            >
+            ["at60"] = <
+                text = <"Assaultive; destructive; interview impossible">
+                description = <"*">
+            >
+            ["at59"] = <
+                text = <"Threatens interviewer; shouting; interview difficult">
+                description = <"*">
+            >
+            ["at58"] = <
+                text = <"Demanding; threats on ward">
+                description = <"*">
+            >
+            ["at57"] = <
+                text = <"Sarcastic; loud at times, guarded">
+                description = <"*">
+            >
+            ["at56"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at55"] = <
+                text = <"Delusions; hallucinations">
+                description = <"*">
+            >
+            ["at54"] = <
+                text = <"Grandiose or paranoid ideas; ideas of reference">
+                description = <"*">
+            >
+            ["at53"] = <
+                text = <"Special project(s); hyperreligous">
+                description = <"*">
+            >
+            ["at52"] = <
+                text = <"Questionable plans, new interests">
+                description = <"*">
+            >
+            ["at51"] = <
+                text = <"Normal">
+                description = <"*">
+            >
+            ["at50"] = <
+                text = <"Incoherent; communication impossible">
+                description = <"*">
+            >
+            ["at49"] = <
+                text = <"Flight of ideas; tangentiality; difficult to follow; rhyming, echolalia">
+                description = <"*">
+            >
+            ["at48"] = <
+                text = <"Distractible; loses goal of thought; changes topics frequently; racing thoughts">
+                description = <"*">
+            >
+            ["at47"] = <
+                text = <"Circumstantial; mild distractibility; quick thoughts">
+                description = <"*">
+            >
+            ["at46"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at45"] = <
+                text = <"Pressured; uninterruptible, continuous speech">
+                description = <"*">
+            >
+            ["at44"] = <
+                text = <"Push; consistently increased rate and amount; difficult to interrupt">
+                description = <"*">
+            >
+            ["at43"] = <
+                text = <"Increased rate or amount at times, verbose at times">
+                description = <"*">
+            >
+            ["at42"] = <
+                text = <"Feels talkative">
+                description = <"*">
+            >
+            ["at41"] = <
+                text = <"No increase">
+                description = <"*">
+            >
+            ["at40"] = <
+                text = <"Hostile, unco-operative; interview impossible">
+                description = <"*">
+            >
+            ["at39"] = <
+                text = <"Frequently irritable during interview; short, curt throughout">
+                description = <"*">
+            >
+            ["at38"] = <
+                text = <"Irritable at times during interview; recent episodes of anges or annoyance on ward">
+                description = <"*">
+            >
+            ["at37"] = <
+                text = <"Subjectively increased">
+                description = <"*">
+            >
+            ["at36"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at35"] = <
+                text = <"Denies need for sleep">
+                description = <"*">
+            >
+            ["at34"] = <
+                text = <"Reports decreased need for sleep">
+                description = <"*">
+            >
+            ["at33"] = <
+                text = <"Sleeping less than normal by more than one hour">
+                description = <"*">
+            >
+            ["at32"] = <
+                text = <"Sleeping less than normal amount by up to one hour">
+                description = <"*">
+            >
+            ["at31"] = <
+                text = <"Reports no decrease in sleep">
+                description = <"*">
+            >
+            ["at30"] = <
+                text = <"Overt sexual acts (toward patients, staff or interviewer)">
+                description = <"*">
+            >
+            ["at29"] = <
+                text = <"Spontaneous sexual content; elaborates on sexual matters; hypersexual by self-report">
+                description = <"*">
+            >
+            ["at28"] = <
+                text = <"Definite subjective increase on questioning">
+                description = <"*">
+            >
+            ["at27"] = <
+                text = <"Mildly or possibly increased">
+                description = <"*">
+            >
+            ["at26"] = <
+                text = <"Normal; not increased">
+                description = <"*">
+            >
+            ["at25"] = <
+                text = <"Motor excitement; continuous hyperactivity (cannot be calmed)">
+                description = <"*">
+            >
+            ["at24"] = <
+                text = <"Excessive energy; hyperactive at times; restless (can be calmed)">
+                description = <"*">
+            >
+            ["at23"] = <
+                text = <"Animated; gestures increased">
+                description = <"*">
+            >
+            ["at22"] = <
+                text = <"Subjectively increased">
+                description = <"*">
+            >
+            ["at21"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["at20"] = <
+                text = <"Euphoric; inappropriate laughter; singing">
+                description = <"*">
+            >
+            ["at19"] = <
+                text = <"Elevated, inappropriate to content; humorous">
+                description = <"*">
+            >
+            ["at18"] = <
+                text = <"Definite subjective elevation; optimistic, self-confident; cheerful; appropriate to content">
+                description = <"*">
+            >
+            ["at17"] = <
+                text = <"Mildly or possibly increased on questioning">
+                description = <"*">
+            >
+            ["at16"] = <
+                text = <"Absent">
+                description = <"*">
+            >
+            ["id16"] = <
+                text = <"Total score">
+                description = <"The sum of each ordinal scores recorded for each of the eleven component responses.">
+            >
+            ["id15"] = <
+                text = <"Insight">
+                description = <"*">
+            >
+            ["id14"] = <
+                text = <"Appearance">
+                description = <"*">
+            >
+            ["id13"] = <
+                text = <"Disruptive-aggressive behaviour">
+                description = <"*">
+            >
+            ["id12"] = <
+                text = <"Content">
+                description = <"*">
+            >
+            ["id11"] = <
+                text = <"Language - thought disorder">
+                description = <"*">
+            >
+            ["id10"] = <
+                text = <"Speech (rate and amount)">
+                description = <"*">
+            >
+            ["id9"] = <
+                text = <"Irritability">
+                description = <"*">
+            >
+            ["id8"] = <
+                text = <"Sleep">
+                description = <"*">
+            >
+            ["id7"] = <
+                text = <"Sexual interest">
+                description = <"*">
+            >
+            ["id6"] = <
+                text = <"Increased motor activity-energy">
+                description = <"*">
+            >
+            ["id5"] = <
+                text = <"Elevated mood">
+                description = <"*">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+            >
+            ["id1"] = <
+                text = <"Young Mania Rating Scale (YMRS)">
+                description = <"Clinical interview scale to assess the severity of manic episodes.">
+            >
+        >
+    >
+    value_sets = <
+        ["ac9009"] = <
+            id = <"ac9009">
+            members = <"at61", "at62", "at63", "at64", "at65">
+        >
+        ["ac9008"] = <
+            id = <"ac9008">
+            members = <"at56", "at57", "at58", "at59", "at60">
+        >
+        ["ac9007"] = <
+            id = <"ac9007">
+            members = <"at51", "at52", "at53", "at54", "at55">
+        >
+        ["ac9002"] = <
+            id = <"ac9002">
+            members = <"at26", "at27", "at28", "at29", "at30">
+        >
+        ["ac9001"] = <
+            id = <"ac9001">
+            members = <"at21", "at22", "at23", "at24", "at25">
+        >
+        ["ac9000"] = <
+            id = <"ac9000">
+            members = <"at16", "at17", "at18", "at19", "at20">
+        >
+        ["ac9010"] = <
+            id = <"ac9010">
+            members = <"at66", "at67", "at68", "at69", "at70">
+        >
+        ["ac9006"] = <
+            id = <"ac9006">
+            members = <"at46", "at47", "at48", "at49", "at50">
+        >
+        ["ac9005"] = <
+            id = <"ac9005">
+            members = <"at41", "at42", "at43", "at44", "at45">
+        >
+        ["ac9004"] = <
+            id = <"ac9004">
+            members = <"at36", "at37", "at38", "at39", "at40">
+        >
+        ["ac9003"] = <
+            id = <"ac9003">
+            members = <"at31", "at32", "at33", "at34", "at35">
+        >
+    >

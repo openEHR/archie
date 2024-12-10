@@ -1,0 +1,110 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=844062c0-06ff-4716-a092-68126437466c; build_uid=a12648ff-9497-4b79-b4b6-62a70e696321)
+    openEHR-EHR-CLUSTER.translocation_variant.v0.0.1-alpha
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Gideon Giacomelli">
+        ["organisation"] = <"Charité Berlin, Germany">
+        ["email"] = <"gideon.giacomelli@charite.de">
+        ["date"] = <"2019-02-01">
+    >
+    original_namespace = <"org.openehr">
+    original_publisher = <"openEHR Foundation">
+    other_contributors = <"Cecilia Mascia, CRS4, Italy", "Christina Jaeger-Schmidt, Heidelberg University Hospital, Germany", "Florian Kaercher, Charité Berlin, Germany", "Francesca Frexia, CRS4, Italy", "Gianluigi Zanetti, CRS4, Italy", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Paolo Uva, CRS4, Italy", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Simon Schumacher, HiGHmed, Germany">
+    lifecycle_state = <"in_development">
+    custodian_namespace = <"org.openehr">
+    custodian_organisation = <"openEHR Foundation">
+    licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+    other_details = <
+        ["MD5-CAM-1.0.1"] = <"B3D1D6C85D66C29980EA43CF8C2BDFA3">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"To record the details about a translocation variant observed in a genetic sequence.">
+            use = <"Use to record the findings for a traslocation variant observed in a genetic sequence according to the HGVS nomenclature.
+    This archetype has been specifically designed to be used in the 'Variant' SLOT within the CLUSTER.genetic_variant archetype, but can also be used within other ENTRY or CLUSTER archetypes, where clinically appropriate.">
+            misuse = <"">
+            copyright = <"© openEHR Foundation">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- Genetic translocation variant
+        items cardinality matches {1..*; unordered} matches {
+            ELEMENT[id4] occurrences matches {1} matches {    -- Breakpoint position 1
+                value matches {
+                    DV_COUNT[id9000] 
+                }
+            }
+            ELEMENT[id6] occurrences matches {0..1} matches {    -- Strand 1
+                value matches {
+                    DV_COUNT[id9001] 
+                }
+            }
+            allow_archetype CLUSTER[id8] matches {     -- Reference sequence 1
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.reference_sequence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            ELEMENT[id5] occurrences matches {1} matches {    -- Breakpoint position 2
+                value matches {
+                    DV_COUNT[id9002] 
+                }
+            }
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- Strand 2
+                value matches {
+                    DV_COUNT[id9003] 
+                }
+            }
+            allow_archetype CLUSTER[id9] matches {     -- Reference sequence 2
+                include
+                    archetype_id/value matches {/openEHR-EHR-CLUSTER\.reference_sequence(-[a-zA-Z0-9_]+)*\.v1\..*/}
+            }
+            ELEMENT[id10] occurrences matches {0..1} matches {    -- HGVS term
+                value matches {
+                    DV_TEXT[id9004] 
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id10"] = <
+                text = <"HGVS term">
+                description = <"The description of the variant using the recommendations of the accepted HGVS nomeclature named extension ISCN.">
+            >
+            ["id9"] = <
+                text = <"Reference sequence 2">
+                description = <"Chromosome of second breakpoint.">
+            >
+            ["id8"] = <
+                text = <"Reference sequence 1">
+                description = <"Chromosome of first breakpoint.">
+            >
+            ["id7"] = <
+                text = <"Strand 2">
+                description = <"A value of \"+\" indicates that the chromosomal segment at the first breakpoint is connected to the chromosomal segment at the second breakpoint right of \"Breakpoint position 2\". A value of \"-\" indicates that the chromosomal segment at the first breakpoint is connected to the chromosomal segment of the second breakpoint left of \"Breakpoint position 2\".">
+            >
+            ["id6"] = <
+                text = <"Strand 1">
+                description = <"A value of \"+\" indicates that the chromosomal segment at the second breakpoint is connected to the chromosomal segment at the first breakpoint right of \"Breakpoint position 1\". A value of \"-\" indicates that the chromosomal segment at the second breakpoint is connected to the chromosomal segment of the first breakpoint left of \"Breakpoint position 1\".">
+            >
+            ["id5"] = <
+                text = <"Breakpoint position 2">
+                description = <"Position of second breakpoint relative to start of \"Chromosome 2\".">
+            >
+            ["id4"] = <
+                text = <"Breakpoint position 1">
+                description = <"Position of first breakpoint relative to start of \"Chromosome 1\".">
+            >
+            ["id1"] = <
+                text = <"Genetic translocation variant">
+                description = <"Translocation variant.">
+            >
+        >
+    >

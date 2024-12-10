@@ -1,0 +1,85 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0; generated)
+    openEHR-EHR-CLUSTER.value_binding.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+    translations = <
+        ["no-bk"] = <
+            language = <[ISO_639-1::no-bk]>
+            author = <
+                ["name"] = <"Pieter Bos">
+                ["organisation"] = <"Nonsense translation inc.">
+            >
+        >
+    >
+
+description
+    original_author = <
+        ["name"] = <"Pieter Bos">
+    >
+    other_details = <
+        ["oid"] = <"1.2.36.1.2001.1001.100.137.1.0">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"A test for value binding">
+            use = <"">
+            misuse = <"">
+        >
+        ["no-bk"] = <
+            language = <[ISO_639-1::no-bk]>
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- root node
+        items matches {
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- element
+                value matches {
+                    DV_QUANTITY[id9001] matches {
+                        property matches {[at9000]}    -- Mass
+                        magnitude matches {|>=0.0|}
+                        units matches {"g"}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["no-bk"] = <
+            ["at9000"] = <
+                text = <"* Mass (en)">
+                description = <"* Mass (en)">
+            >
+            ["id7"] = <
+                text = <"element">
+                description = <"Element">
+            >
+            ["id1"] = <
+                text = <"root node">
+                description = <"Root node">
+            >
+        >
+        ["en"] = <
+            ["at9000"] = <
+                text = <"Mass">
+                description = <"Mass">
+            >
+            ["id7"] = <
+                text = <"element">
+                description = <"Element">
+            >
+            ["id1"] = <
+                text = <"root node">
+                description = <"Root node">
+            >
+        >
+    >
+    term_bindings = <
+        ["openehr"] = <
+            ["at9000"] = <http://openehr.org/id/124>
+        >
+    >
