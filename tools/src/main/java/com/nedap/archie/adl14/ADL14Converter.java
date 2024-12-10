@@ -25,23 +25,10 @@ public class ADL14Converter {
     private final MetaModels metaModels;
     private TerminologyAccess terminologyAccess = OpenEHRTerminologyAccess.getInstance();
     private final ADL14ConversionConfiguration conversionConfiguration;
-    private InMemoryFullArchetypeRepository existingRepository;
 
     public ADL14Converter(MetaModels metaModels, ADL14ConversionConfiguration conversionConfiguration) {
         this.metaModels = metaModels;
         this.conversionConfiguration = conversionConfiguration;
-    }
-
-
-    /**
-     * Set the base repository for this converter. If you don't set it yourself, the converter will create an empty repository.
-     * The archetypes in the repository will be used as base archetypes, but will not be converted themselves. Please
-     * note that this repository will be modified, it will have all the converted archetypes added to it!
-     *
-     * @param existingRepository the existing repository to use
-     */
-    public void setExistingRepository(InMemoryFullArchetypeRepository existingRepository) {
-        this.existingRepository = existingRepository;
     }
 
     public ADL2ConversionResultList convert(List<Archetype> archetypes) {
@@ -50,11 +37,7 @@ public class ADL14Converter {
 
     public ADL2ConversionResultList convert(List<Archetype> archetypes, ADL2ConversionRunLog previousConversion) {
         ADL2ConversionResultList resultList = new ADL2ConversionResultList();
-
-        InMemoryFullArchetypeRepository repository = existingRepository;
-        if(repository == null) {
-            repository = new InMemoryFullArchetypeRepository();
-        }
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         List<Archetype> unprocessed = new ArrayList<>(archetypes);
 
         List<Archetype> templateOverlays = new ArrayList<>();
