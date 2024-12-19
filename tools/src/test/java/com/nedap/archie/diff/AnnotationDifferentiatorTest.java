@@ -5,6 +5,7 @@ import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -30,8 +31,8 @@ public class AnnotationDifferentiatorTest {
     @Test
     public void extraAnnotationsAtLevel1Test() {
         // Setup
-        Map<String, String> pathMap = Map.of("newKey", "newValue");
-        Map<String, Map<String, String>> languageMap = Map.of("/data[id2]/events[id3]/data[id4]/items[id5]", pathMap);
+        Map<String, String> pathMap = Collections.singletonMap("newKey", "newValue");
+        Map<String, Map<String, String>> languageMap = Collections.singletonMap("/data[id2]/events[id3]/data[id4]/items[id5]", pathMap);
         child.getAnnotations().getDocumentation().put("en", languageMap);
 
         // Test
@@ -48,7 +49,7 @@ public class AnnotationDifferentiatorTest {
     @Test
     public void extraAnnotationsAtLevel2Test() {
         // Setup
-        Map<String, String> pathMap = Map.of("newKey", "newValue");
+        Map<String, String> pathMap = Collections.singletonMap("newKey", "newValue");
         child.getAnnotations().getDocumentation().get("nl").put("/data[id2]/events[id3]/data[id4]/items[id5]", pathMap);
 
         // Test
@@ -97,8 +98,8 @@ public class AnnotationDifferentiatorTest {
     @Test
     public void extraAnnotationsAtAllLevelsTest() {
         // Setup
-        Map<String, String> pathMap = Map.of("newKey", "newValue");
-        Map<String, Map<String, String>> languageMap = Map.of("/data[id2]/events[id3]/data[id4]/items[id5]", pathMap);
+        Map<String, String> pathMap = Collections.singletonMap("newKey", "newValue");
+        Map<String, Map<String, String>> languageMap = Collections.singletonMap("/data[id2]/events[id3]/data[id4]/items[id5]", pathMap);
         child.getAnnotations().getDocumentation().put("en", languageMap);
         child.getAnnotations().getDocumentation().get("nl").put("/data[id2]/events[id3]/data[id4]/items[id5]", pathMap);
         child.getAnnotations().getDocumentation().get("nl").get("/data[id2]/events[id3]/data[id4]/items[id7]/value[id8]").put("newKey", "newValue");
