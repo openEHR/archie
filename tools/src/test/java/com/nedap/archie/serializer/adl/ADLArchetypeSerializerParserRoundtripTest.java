@@ -5,10 +5,14 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.DefaultValueContainer;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerTest;
+import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
+import com.nedap.archie.json.ArchieRMObjectMapperProvider;
+import com.nedap.archie.rminfo.RMObjectMapperProvider;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,6 +25,7 @@ import java.net.URI;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -92,23 +97,61 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         Assert.assertThat(parsed.getDescription().getLicence(), is("license with a \\\"-mark" ));
     }
 
+    @Test
+    public void ckm() throws ADLParseException {
+        FullArchetypeRepository ckmRepository = TestUtil.parseCKM();
+
+        for(Archetype archetype : ckmRepository.getAllArchetypes()) {
+            roundtrip(archetype);
+        }
+    }
+
+    @Test
+    public void defaultValues() throws Exception {
+        Archetype archetype = load("openEHR-EHR-CLUSTER.default_values.v1.adls");
+
+        Archetype result = roundtrip(archetype);
+
+        CComplexObject startDvTextConstraint = archetype.itemAtPath("/items[id2]/value[id21]");
+        CComplexObject resultDvTextConstraint = result.itemAtPath("/items[id2]/value[id21]");
+        assertEquals(startDvTextConstraint.getDefaultValue(), resultDvTextConstraint.getDefaultValue());
+
+        CComplexObject startDvCodedTextConstraint = archetype.itemAtPath("/items[id3]/value[id31]");
+        CComplexObject resultDvCodedTextConstraint = result.itemAtPath("/items[id3]/value[id31]");
+        assertEquals(startDvCodedTextConstraint.getDefaultValue(), resultDvCodedTextConstraint.getDefaultValue());
+
+        CComplexObject startClusterConstraint = archetype.getDefinition();
+        CComplexObject resultClusterConstraint = result.getDefinition();
+
+        DefaultValueContainer startClusterDefaultValueContainer = (DefaultValueContainer) startClusterConstraint.getDefaultValue();
+        DefaultValueContainer resultClusterDefaultValueContainer = (DefaultValueContainer) resultClusterConstraint.getDefaultValue();
+
+        assertEquals(startClusterDefaultValueContainer.getFormat(), resultClusterDefaultValueContainer.getFormat());
+        assertEquals(startClusterDefaultValueContainer.getContent(), resultClusterDefaultValueContainer.getContent());
+    }
+
     private Archetype roundtrip(Archetype archetype) throws ADLParseException {
-        String serialized = ADLArchetypeSerializer.serialize(archetype);
+        RMObjectMapperProvider rmObjectMapperProvider = new ArchieRMObjectMapperProvider();
+        String serialized = ADLArchetypeSerializer.serialize(archetype, null, rmObjectMapperProvider);
         logger.info(serialized);
 
-        ADLParser parser = new ADLParser();
+        ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
         Archetype result = parser.parse(serialized);
 
         assertTrue("roundtrip parsing should never cause errors: " + parser.getErrors().toString(), parser.getErrors().hasNoErrors());
+
+        String serialized2 = ADLArchetypeSerializer.serialize(result, null, rmObjectMapperProvider);
+        assertEquals("roundtrip serialization should be idempotent", serialized, serialized2);
+
         return result;
     }
 
     private Archetype load(String resourceName) throws IOException, ADLParseException {
-        return new ADLParser().parse(ADLArchetypeSerializerTest.class.getResourceAsStream(resourceName));
+        return new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(ADLArchetypeSerializerTest.class.getResourceAsStream(resourceName));
     }
 
     private Archetype loadRoot(String resourceName) throws IOException, ADLParseException {
-        return new ADLParser().parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
+        return new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
     }
 
     @Test

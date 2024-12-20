@@ -53,6 +53,8 @@ public class ODINMapper extends ObjectMapper
         setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         disable(SerializationFeature.WRITE_NULL_MAP_VALUES);
         disable(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS);
+        enable(SerializationFeature.INDENT_OUTPUT);
+        setDefaultPrettyPrinter(new ODINPrettyPrinter());
         setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         enableDefaultTyping(DefaultTyping.JAVA_LANG_OBJECT);
