@@ -9,7 +9,7 @@ import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
+import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.rminfo.RMProperty;
@@ -236,7 +236,7 @@ public class Archetype extends AuthoredResource {
 
         Archetype result = (Archetype) super.clone();
         //fix some things that are not handled automatically
-        ArchetypeParsePostProcesser.fixArchetype(result);
+        ArchetypeParsePostProcessor.fixArchetype(result);
         return result;
 
     }
