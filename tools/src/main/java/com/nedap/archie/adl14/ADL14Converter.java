@@ -22,10 +22,24 @@ public class ADL14Converter {
 
     private final MetaModels metaModels;
     private final ADL14ConversionConfiguration conversionConfiguration;
+    private InMemoryFullArchetypeRepository existingRepository;
 
     public ADL14Converter(MetaModels metaModels, ADL14ConversionConfiguration conversionConfiguration) {
         this.metaModels = metaModels;
         this.conversionConfiguration = conversionConfiguration;
+    }
+
+    /**
+     * Set the base repository for this converter. If you don't set it yourself, the converter will create an empty repository.
+     * The archetypes in the repository will be used as base archetypes, but will not be converted themselves. Please
+     * note that this repository will be modified, it will have all the converted archetypes added to it!
+     * <p>
+     * This method is part of the public API and is intended for external use.
+     *
+     * @param existingRepository the existing repository to use
+     */
+    public void setExistingRepository(InMemoryFullArchetypeRepository existingRepository) {
+        this.existingRepository = existingRepository;
     }
 
     public ADL2ConversionResultList convert(List<Archetype> archetypes) {
@@ -34,7 +48,11 @@ public class ADL14Converter {
 
     public ADL2ConversionResultList convert(List<Archetype> archetypes, ADL2ConversionRunLog previousConversion) {
         ADL2ConversionResultList resultList = new ADL2ConversionResultList();
-        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+
+        InMemoryFullArchetypeRepository repository = existingRepository;
+        if (repository == null) {
+            repository = new InMemoryFullArchetypeRepository();
+        }
         List<Archetype> unprocessed = new ArrayList<>(archetypes);
 
         // ADL 1.4 does not really have templates. This code is here for the Better Care template conversion
