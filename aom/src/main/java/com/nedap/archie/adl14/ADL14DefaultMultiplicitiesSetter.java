@@ -10,7 +10,7 @@ import com.nedap.archie.rminfo.MetaModels;
 
 /**
  * Sets the default occurrences with ADL 1.4 rules ({1..1}), if not explicitly set in a given Archetype.
- * Useful for conversion to ADL 2, where the default values are different ({0..*}), and it is good to start
+ * Useful for conversion to ADL 2, where the default values are different, and it is good to start
  * with the correct values already present.
  * <p>
  * Cardinality and existence are also specified to have a default value. However, this is not used
