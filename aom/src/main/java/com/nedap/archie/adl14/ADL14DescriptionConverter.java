@@ -6,6 +6,11 @@ import com.nedap.archie.aom.ResourceDescription;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Converts the Description section from ADL1.4 to ADL2
+ * <a href="https://specifications.openehr.org/releases/AM/latest/ADL1.4.html#_description_section">Specifications ADL1.4</a>
+ * <a href="https://specifications.openehr.org/releases/AM/Release-2.3.0/ADL2.html#_description_section">Specifications ADL2</a>
+ */
 public class ADL14DescriptionConverter {
 
     public void convert(Archetype archetype) {
@@ -44,12 +49,10 @@ public class ADL14DescriptionConverter {
             }
             description.setIpAcknowledgements(acknowledgements);
         }
-
         String revision = description.getOtherDetails().remove("revision");
         if(revision != null) {
             archetype.getArchetypeId().setReleaseVersion(revision);
         }
-
         archetype.setGenerated(true);
     }
 }
