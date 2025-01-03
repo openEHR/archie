@@ -18,8 +18,9 @@ public class ADL2ConversionResult {
     private MessageLogger log;
     private Exception exception;
 
+    /* Empty construction for Jackson parsing */
     public ADL2ConversionResult() {
-        /* Empty construction for Jackson parsing */
+
     }
 
     public ADL2ConversionResult(Archetype archetype) {
