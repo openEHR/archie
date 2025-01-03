@@ -2,7 +2,7 @@ package com.nedap.archie.flattener;
 
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;
-import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
+import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.openehr.bmm.v2.validation.BmmRepository;
@@ -220,7 +220,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                 flatOverlay.setDescription(description);
                 flatOverlay.setOriginalLanguage(result.getOriginalLanguage());
                 flatOverlay.setTranslationList(result.getTranslationList());
-                ArchetypeParsePostProcesser.fixArchetype(flatOverlay);
+                ArchetypeParsePostProcessor.fixArchetype(flatOverlay);
                 resultTemplate.getTemplateOverlays().add(flatOverlay);
             }
         }
@@ -230,7 +230,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         result.setDifferential(false);//mark this archetype as being flat
         result.setGenerated(true);
 
-        ArchetypeParsePostProcesser.fixArchetype(result);
+        ArchetypeParsePostProcessor.fixArchetype(result);
 
         //set the single/multiple attributes correctly
         new ReflectionConstraintImposer(metaModels.getSelectedModel())
