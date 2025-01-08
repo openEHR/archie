@@ -1,10 +1,12 @@
 package com.nedap.archie.serializer.adl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.nedap.archie.serializer.adl.jackson.ArchetypeODINMapperFactory;
 import com.nedap.archie.serializer.odin.StructureStringBuilder;
 import com.nedap.archie.serializer.odin.StructuredStringAppendable;
 import org.openehr.odin.jackson.ODINMapper;
+import org.openehr.odin.jackson.ODINPrettyPrinter;
 
 import static com.nedap.archie.serializer.odin.OdinStringBuilder.quoteText;
 
@@ -53,8 +55,11 @@ public class ADLStringBuilder implements StructuredStringAppendable {
 
     public ADLStringBuilder odin(Object structure) {
         try {
-            String odin = odinMapper.writeValueAsString(structure);
-            appendMultipleLines(odin);
+            // Pass the current ident depth to the ODINPrettyPrinter
+            ObjectWriter objectWriter = odinMapper.writer().with(new ODINPrettyPrinter(builder.getIndentDepth()));
+
+            String odin = objectWriter.writeValueAsString(structure).trim();
+            builder.append(odin).newline();
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
