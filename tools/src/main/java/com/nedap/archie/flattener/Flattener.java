@@ -8,6 +8,7 @@ import com.nedap.archie.rminfo.ReferenceModels;
 import org.openehr.bmm.v2.validation.BmmRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -260,7 +261,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                     List<CObject> objectsToRemove = new ArrayList<>();
                     for (CObject child : attribute.getChildren()) {
                         if (!child.isAllowed()) {
-                            FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, List.of(child));
+                            FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, Collections.singletonList(child));
                             if(child instanceof CComplexObject) {
                                 ((CComplexObject) child).setAttributes(new ArrayList<>());
                             }
