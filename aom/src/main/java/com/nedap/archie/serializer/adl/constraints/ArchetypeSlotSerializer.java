@@ -45,7 +45,7 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
 
     private void appendMatches(ArchetypeSlot cobj) {
         int mark = builder.mark();
-        builder.append(" matches { ");
+        builder.append(" matches {");
         builder.lineComment(serializer.getTermText(cobj));
         boolean hasContent = false;
 
