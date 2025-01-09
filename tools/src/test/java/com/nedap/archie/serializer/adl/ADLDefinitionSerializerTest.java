@@ -297,9 +297,9 @@ public class ADLDefinitionSerializerTest {
         List<CObject> archetypeRoots = archetype.getDefinition().getAttribute("content").getChildren();
 
         assertThat(serializeConstraint(archetypeRoots.get(0)).trim(),
-                equalTo("use_archetype SECTION[id2, openEHR-EHR-SECTION.section_parent.v1] occurrences matches {0..1}"));
+                equalTo("use_archetype SECTION[id2, openEHR-EHR-SECTION.section_parent.v1] occurrences matches {0..1}    -- Section"));
         assertThat(serializeConstraint(archetypeRoots.get(1)).trim(),
-                equalTo("use_archetype OBSERVATION[id3, openEHR-EHR-OBSERVATION.spec_test_obs.v1] occurrences matches {1}"));
+                equalTo("use_archetype OBSERVATION[id3, openEHR-EHR-OBSERVATION.spec_test_obs.v1] occurrences matches {1}    -- Observation"));
     }
 
     @Test
