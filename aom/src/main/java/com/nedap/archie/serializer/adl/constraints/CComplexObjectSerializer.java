@@ -33,12 +33,11 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
         if (cobj.getNodeId() != null) {
             builder.append("[").append(cobj.getNodeId()).append("]");
         }
-        builder.append(" ");
         appendOccurrences(cobj);
         if (cobj.getAttributes().isEmpty() && cobj.getAttributeTuples().isEmpty() && cobj.getDefaultValue() == null) {
             builder.lineComment(serializer.getTermText(cobj));
         } else {
-            builder.append("matches {");
+            builder.ensureSpace().append("matches {");
             builder.lineComment(serializer.getTermText(cobj));
             buildAttributesAndTuples(cobj);
 
