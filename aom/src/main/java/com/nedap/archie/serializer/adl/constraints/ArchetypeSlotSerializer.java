@@ -30,6 +30,7 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
                 .append(cobj.getRmTypeName()).append("[").append(cobj.getNodeId()).append("]");
         if(cobj.isClosed()) {
             builder.append(" closed");
+            builder.lineComment(serializer.getTermText(cobj));
         } else {
             if (cobj.getOccurrences() != null) {
                 builder.append(" occurrences matches {");
