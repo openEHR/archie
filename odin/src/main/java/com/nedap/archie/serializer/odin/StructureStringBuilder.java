@@ -129,6 +129,10 @@ public class StructureStringBuilder implements StructuredStringAppendable {
         return currentLineLength;
     }
 
+    public int getIndentDepth() {
+        return indentDepth;
+    }
+
     @Override
     public String toString() {
         return builder.toString();
