@@ -279,6 +279,11 @@ public class ADLDefinitionSerializerTest {
                 "            archetype_id/value matches {/openEHR-EHR-OBSERVATION\\.blood_pressure([a-zA-Z0-9_]+)*\\.v1/}\n" +
                 "    }", serialized);
 
+        archetype = loadRoot("adl2-tests/features/aom_structures/slots/openEHR-EHR-SECTION.slot_include_empty_exclude_empty.v1.0.0.adls");
+        slot = archetype.itemAtPath("/items[id2]");
+        serialized = serializeConstraint(slot);
+        assertEquals("\n    allow_archetype OBSERVATION[id2] occurrences matches {0..1}    -- Vital signs", serialized);
+
         archetype = loadRoot("adl2-tests/features/aom_structures/slots/openEHR-EHR-SECTION.slot_closed.v1.0.0.adls");
         slot = archetype.itemAtPath("/items[id2]");
         serialized = serializeConstraint(slot);

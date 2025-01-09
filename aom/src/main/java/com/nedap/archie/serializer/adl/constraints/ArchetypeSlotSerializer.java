@@ -49,7 +49,7 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
         builder.lineComment(serializer.getTermText(cobj));
         boolean hasContent = false;
 
-        ADLRulesSerializer serializer = new ADLRulesSerializer(builder, super.serializer);
+        ADLRulesSerializer rulesSerializer = new ADLRulesSerializer(builder, super.serializer);
         if (cobj.getIncludes() != null && cobj.getIncludes().size() > 0) {
             hasContent = true;
             builder.indent().newline()
@@ -58,7 +58,7 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
 
             for (Assertion a : cobj.getIncludes()) {
                 builder.newline();
-                serializer.serializeRuleElement(a.getExpression());
+                rulesSerializer.serializeRuleElement(a.getExpression());
             }
             builder.unindent().unindent();
         }
@@ -69,7 +69,7 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
                     .indent();
             for (Assertion a : cobj.getExcludes()) {
                 builder.newline();
-                serializer.serializeRuleElement(a.getExpression());
+                rulesSerializer.serializeRuleElement(a.getExpression());
             }
             builder.unindent().unindent();
         }
@@ -79,6 +79,7 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
             builder.newline().append("}");
         } else {
             builder.revert(mark);
+            builder.lineComment(serializer.getTermText(cobj));
         }
     }
 }
