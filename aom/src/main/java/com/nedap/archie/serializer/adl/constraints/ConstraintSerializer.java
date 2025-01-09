@@ -38,7 +38,7 @@ public abstract class ConstraintSerializer<T extends CObject> {
             builder.ensureSpace();
             builder.append("occurrences matches {");
             buildOccurrences(builder, cobj.getOccurrences());
-            builder.append("} ");
+            builder.append("}");
         }
     }
 

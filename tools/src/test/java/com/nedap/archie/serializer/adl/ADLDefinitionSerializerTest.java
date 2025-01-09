@@ -207,6 +207,18 @@ public class ADLDefinitionSerializerTest {
     }
 
     @Test
+    public void serializeBasicCComplexObject() throws Exception {
+        Archetype archetype = loadRoot("adl2-tests/features/aom_structures/basic/openEHR-TEST_PKG-WHOLE.most_minimal.v1.0.0.adls");
+        CComplexObject whole = archetype.getDefinition();
+        String serialized = serializeConstraint(whole);
+        assertThat(serialized, equalTo("\n    WHOLE[id1]    -- most minimal"));
+
+        whole.setOccurrences(MultiplicityInterval.createMandatory());
+        String serialized2 = serializeConstraint(whole);
+        assertThat(serialized2, equalTo("\n    WHOLE[id1] occurrences matches {1}    -- most minimal"));
+    }
+
+    @Test
     public void serializeTupleOrdinal() throws Exception {
         Archetype archetype = loadRoot("adl2-tests/features/aom_structures/tuples/CIMI-CORE-ITEM_GROUP.real_ordinal.v1.0.0.adls");
         CComplexObject ordinal = archetype.itemAtPath("/item[id2]/value[id3]");
