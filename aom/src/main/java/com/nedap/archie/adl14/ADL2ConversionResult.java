@@ -18,7 +18,7 @@ public class ADL2ConversionResult {
     private MessageLogger log;
     private Exception exception;
 
-    /* Empty construction for Jackson parsing */
+    /** Empty construction for Jackson parsing, do not use */
     public ADL2ConversionResult() {
 
     }
@@ -34,7 +34,7 @@ public class ADL2ConversionResult {
         log = new MessageLogger();
     }
 
-    /** GETTERS **/
+    /* GETTERS **/
     public String getArchetypeId() {
         return archetypeId;
     }
@@ -55,7 +55,7 @@ public class ADL2ConversionResult {
         return exception;
     }
 
-    /** SETTERS **/
+    /* SETTERS **/
     public void setArchetype(Archetype archetype) {
         this.archetype = archetype;
     }
