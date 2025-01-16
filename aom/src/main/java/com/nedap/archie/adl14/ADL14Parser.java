@@ -10,7 +10,7 @@ import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
+import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.rminfo.MetaModels;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -74,7 +74,7 @@ public class ADL14Parser {
             walker = new ParseTreeWalker();
             walker.walk(listener, tree);
             result = listener.getArchetype();
-            ArchetypeParsePostProcesser.fixArchetype(result);
+            ArchetypeParsePostProcessor.fixArchetype(result);
             if (metaModels != null) {
                 metaModels.selectModel(result);
                 if (metaModels.getSelectedBmmModel() != null) {

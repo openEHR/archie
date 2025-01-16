@@ -7,7 +7,7 @@ import org.openehr.utils.message.MessageLogger;
 
 /**
  * ADL 2 conversion result. Always has the archetypeId field set.
- * Either has archetype and conversionLog non-null in case of a succesful conversion, or
+ * Either has archetype and conversionLog non-null in case of a successful conversion, or
  * exception non-null in case of an unexpected Exception
  */
 public class ADL2ConversionResult {
@@ -18,24 +18,14 @@ public class ADL2ConversionResult {
     private MessageLogger log;
     private Exception exception;
 
-    /**
-     * empty constructor for JSON parsing. Do not use
-     */
+    /** Empty construction for Jackson parsing, do not use */
     public ADL2ConversionResult() {
 
     }
 
     public ADL2ConversionResult(Archetype archetype) {
-        this.archetypeId = archetype.getArchetypeId().getFullId();
+        this(archetype.getArchetypeId().getFullId(), null);
         this.archetype = archetype;
-        log = new MessageLogger();
-    }
-
-    public ADL2ConversionResult(Archetype archetype, ADL2ConversionLog conversionLog) {
-        this.archetypeId = archetype.getArchetypeId().getFullId();
-        this.archetype = archetype;
-        this.conversionLog = conversionLog;
-        log = new MessageLogger();
     }
 
     public ADL2ConversionResult(String archetypeId, Exception exception) {
@@ -44,12 +34,9 @@ public class ADL2ConversionResult {
         log = new MessageLogger();
     }
 
+    /* GETTERS **/
     public String getArchetypeId() {
         return archetypeId;
-    }
-
-    public void setArchetypeId(String archetypeId) {
-        this.archetypeId = archetypeId;
     }
 
     public Archetype getArchetype() {
@@ -60,14 +47,6 @@ public class ADL2ConversionResult {
         return conversionLog;
     }
 
-    public void setConversionLog(ADL2ConversionLog conversionLog) {
-        this.conversionLog = conversionLog;
-    }
-
-    public void setArchetype(Archetype archetype) {
-        this.archetype = archetype;
-    }
-
     public MessageLogger getLog() {
         return log;
     }
@@ -76,9 +55,12 @@ public class ADL2ConversionResult {
         return exception;
     }
 
-    public void setException(Exception exception) {
-        this.exception = exception;
+    /* SETTERS **/
+    public void setArchetype(Archetype archetype) {
+        this.archetype = archetype;
     }
 
-
+    public void setConversionLog(ADL2ConversionLog conversionLog) {
+        this.conversionLog = conversionLog;
+    }
 }
