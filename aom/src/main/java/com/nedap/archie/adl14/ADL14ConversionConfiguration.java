@@ -21,12 +21,15 @@ public class ADL14ConversionConfiguration {
      */
     private boolean applyDiff = true;
 
-
     /**
      * ADL 1.4 contains no rm release version, 2 does. So one needs to be added. Set to the desired rm_release. Defaults to 1.1.0
      */
     private String rmRelease = "1.1.0";
 
+    /**
+     * Set to the ADL version the ADL 1.4 archetype should be converted into. Options: 2.0.6, 2.4.0. Defaults to 2.0.6.
+     */
+    private String adlVersion = "2.0.6";
 
     public List<TerminologyUriTemplate> getTerminologyConversionTemplates() {
         return terminologyConversionTemplates;
@@ -70,5 +73,13 @@ public class ADL14ConversionConfiguration {
 
     public void setRmRelease(String rmRelease) {
         this.rmRelease = rmRelease;
+    }
+
+    public String getAdlVersion() {
+        return adlVersion;
+    }
+
+    public void setAdlVersion(String adlVersion) {
+        this.adlVersion = adlVersion;
     }
 }
