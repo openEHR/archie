@@ -130,6 +130,10 @@ public class ADLStringBuilder implements StructuredStringAppendable {
         return builder.getCurrentLineLength();
     }
 
+    public int getIndentDepth() {
+        return builder.getIndentDepth();
+    }
+
     public ODINMapper getOdinMapper() {
         return odinMapper;
     }
