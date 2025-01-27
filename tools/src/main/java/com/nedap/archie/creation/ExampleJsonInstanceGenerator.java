@@ -38,6 +38,7 @@ public  class ExampleJsonInstanceGenerator {
     private final String language;
     private final MetaModels models;
     private OperationalTemplate archetype;
+    private String rmRelease;
     private BmmModel bmm;
     private AomProfile aomProfile;
 
@@ -56,7 +57,7 @@ public  class ExampleJsonInstanceGenerator {
 
     public Map<String, Object> generate(OperationalTemplate archetype) {
         this.archetype = archetype;
-        String rmRelease = archetype.getRmRelease();
+        rmRelease = archetype.getRmRelease();
         //rm release 1.0.4 and 1.1.0 supported. if other versions, switch to 1.1.0 automatically to support other archetypes
         if(rmRelease == null ||
                 !(rmRelease.equalsIgnoreCase("1.0.4") || rmRelease.equalsIgnoreCase("1.1.0"))) {
@@ -504,5 +505,9 @@ public  class ExampleJsonInstanceGenerator {
 
     protected OperationalTemplate getArchetype() {
         return archetype;
+    }
+
+    protected String getRmRelease() {
+        return rmRelease;
     }
 }

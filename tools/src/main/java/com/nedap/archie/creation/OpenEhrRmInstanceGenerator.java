@@ -142,7 +142,7 @@ class OpenEhrRmInstanceGenerator {
         archetypeId.put(typePropertyName, "ARCHETYPE_ID");
         archetypeId.put("value", archetypeIdValue);
         archetypeDetails.put("archetype_id", archetypeId); //TODO: add template id?
-        archetypeDetails.put("rm_version", "1.0.4");
+        archetypeDetails.put("rm_version", generator.getRmRelease());
         return archetypeDetails;
     }
 
