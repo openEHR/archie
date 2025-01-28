@@ -1,5 +1,6 @@
 package com.nedap.archie.serializer.adl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
@@ -107,10 +108,25 @@ public class ADLArchetypeSerializerParserRoundtripTest {
     }
 
     @Test
-    public void defaultValues() throws Exception {
+    public void defaultValuesJson() throws Exception {
+        testDefaultValues(new ArchieRMObjectMapperProvider());
+    }
+
+    @Test
+    public void defaultValuesOdin() throws Exception {
+        testDefaultValues(new ArchieRMObjectMapperProvider() {
+            // Make this only return ODIN object mappers
+            @Override
+            public ObjectMapper getJsonObjectMapper() {
+                return null;
+            }
+        });
+    }
+
+    private void testDefaultValues(RMObjectMapperProvider rmObjectMapperProvider) throws Exception {
         Archetype archetype = load("openEHR-EHR-CLUSTER.default_values.v1.adls");
 
-        Archetype result = roundtrip(archetype);
+        Archetype result = roundtrip(archetype, rmObjectMapperProvider);
 
         CComplexObject startDvTextConstraint = archetype.itemAtPath("/items[id2]/value[id21]");
         CComplexObject resultDvTextConstraint = result.itemAtPath("/items[id2]/value[id21]");
@@ -131,7 +147,10 @@ public class ADLArchetypeSerializerParserRoundtripTest {
     }
 
     private Archetype roundtrip(Archetype archetype) throws ADLParseException {
-        RMObjectMapperProvider rmObjectMapperProvider = new ArchieRMObjectMapperProvider();
+        return roundtrip(archetype, new ArchieRMObjectMapperProvider());
+    }
+
+    private Archetype roundtrip(Archetype archetype, RMObjectMapperProvider rmObjectMapperProvider) throws ADLParseException {
         String serialized = ADLArchetypeSerializer.serialize(archetype, null, rmObjectMapperProvider);
         logger.info(serialized);
 
@@ -152,6 +171,49 @@ public class ADLArchetypeSerializerParserRoundtripTest {
 
     private Archetype loadRoot(String resourceName) throws IOException, ADLParseException {
         return new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
+    }
+
+    @Test
+    public void defaultValuesNoMetamodels() throws Exception {
+        Archetype archetype = new ADLParser(/* no metamodels */).parse(ADLArchetypeSerializerTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.default_values.v1.adls"));
+
+        String serialized = ADLArchetypeSerializer.serialize(archetype, null, null);
+        logger.info(serialized);
+
+        ADLParser parser = new ADLParser(/* no metamodels */);
+        Archetype result = parser.parse(serialized);
+
+        assertTrue("roundtrip parsing should never cause errors: " + parser.getErrors().toString(), parser.getErrors().hasNoErrors());
+
+        String serialized2 = ADLArchetypeSerializer.serialize(result, null, null);
+        assertEquals("roundtrip serialization should be idempotent", serialized, serialized2);
+
+        CComplexObject startDvTextConstraint = archetype.itemAtPath("/items[id2]/value[id21]");
+        CComplexObject resultDvTextConstraint = result.itemAtPath("/items[id2]/value[id21]");
+
+        DefaultValueContainer startDvTextDefaultValueContainer = (DefaultValueContainer) startDvTextConstraint.getDefaultValue();
+        DefaultValueContainer resultDvTextDefaultValueContainer = (DefaultValueContainer) resultDvTextConstraint.getDefaultValue();
+
+        assertEquals(startDvTextDefaultValueContainer.getFormat(), resultDvTextDefaultValueContainer.getFormat());
+        assertEquals(startDvTextDefaultValueContainer.getContent(), resultDvTextDefaultValueContainer.getContent());
+
+        CComplexObject startDvCodedTextConstraint = archetype.itemAtPath("/items[id3]/value[id31]");
+        CComplexObject resultDvCodedTextConstraint = result.itemAtPath("/items[id3]/value[id31]");
+
+        DefaultValueContainer startDvCodedTextDefaultValueContainer = (DefaultValueContainer) startDvCodedTextConstraint.getDefaultValue();
+        DefaultValueContainer resultDvCodedTextDefaultValueContainer = (DefaultValueContainer) resultDvCodedTextConstraint.getDefaultValue();
+
+        assertEquals(startDvCodedTextDefaultValueContainer.getFormat(), resultDvCodedTextDefaultValueContainer.getFormat());
+        assertEquals(startDvCodedTextDefaultValueContainer.getContent(), resultDvCodedTextDefaultValueContainer.getContent());
+
+        CComplexObject startClusterConstraint = archetype.getDefinition();
+        CComplexObject resultClusterConstraint = result.getDefinition();
+
+        DefaultValueContainer startClusterDefaultValueContainer = (DefaultValueContainer) startClusterConstraint.getDefaultValue();
+        DefaultValueContainer resultClusterDefaultValueContainer = (DefaultValueContainer) resultClusterConstraint.getDefaultValue();
+
+        assertEquals(startClusterDefaultValueContainer.getFormat(), resultClusterDefaultValueContainer.getFormat());
+        assertEquals(startClusterDefaultValueContainer.getContent(), resultClusterDefaultValueContainer.getContent());
     }
 
     @Test
