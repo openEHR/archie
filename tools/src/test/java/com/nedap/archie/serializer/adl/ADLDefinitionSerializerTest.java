@@ -307,11 +307,11 @@ public class ADLDefinitionSerializerTest {
         List<CObject> ccobjProxies = parentCObj.getAttribute("addresses").getChildren();
 
         assertThat(serializeConstraint(ccobjProxies.get(0)).trim(),
-                equalTo("use_node ADDRESS[id11] /contacts[id6]/addresses[id7]"));
+                equalTo("use_node ADDRESS[id11] /contacts[id6]/addresses[id7]    -- work fax number"));
         assertThat(serializeConstraint(ccobjProxies.get(1)).trim(),
-                equalTo("use_node ADDRESS[id12] /contacts[id6]/addresses[id8]"));
+                equalTo("use_node ADDRESS[id12] /contacts[id6]/addresses[id8]    -- work email address"));
         assertThat(serializeConstraint(ccobjProxies.get(2)).trim(),
-                equalTo("use_node ADDRESS[id13] occurrences matches {1..3} /contacts[id6]/addresses[id9]"));
+                equalTo("use_node ADDRESS[id13] occurrences matches {1..3} /contacts[id6]/addresses[id9]    -- work contact"));
     }
 
     @Test
