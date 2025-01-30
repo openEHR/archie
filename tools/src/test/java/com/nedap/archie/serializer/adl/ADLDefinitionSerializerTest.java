@@ -226,9 +226,9 @@ public class ADLDefinitionSerializerTest {
         assertThat(serialized, equalTo("\n" +
                 "    ORDINAL[id3] matches {\n" +
                 "        [symbol, value] matches {\n" +
-                "            [{[at1]}, {0.0}],\n" +
-                "            [{[at2]}, {1.0}],\n" +
-                "            [{[at3]}, {2.0}]\n" +
+                "            [{[at1]}, {0.0}],    -- min\n" +
+                "            [{[at2]}, {1.0}],    -- med\n" +
+                "            [{[at3]}, {2.0}]    -- max\n" +
                 "        }\n" +
                 "    }"));
     }
