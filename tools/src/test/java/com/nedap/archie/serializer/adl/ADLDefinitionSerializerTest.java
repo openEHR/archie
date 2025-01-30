@@ -318,6 +318,28 @@ public class ADLDefinitionSerializerTest {
     }
 
     @Test
+    public void serializeComments() throws IOException, ADLParseException {
+        Archetype archetype = load("openEHR-EHR-CLUSTER.comments.v1.adls");
+
+        CComplexObject parentCObj = archetype.getDefinition();
+
+        assertThat(serializeConstraint(parentCObj.itemAtPath("/items[id2]")).trim(),
+                // Should not have a comment as the text is empty
+                equalTo("ELEMENT[id2] matches {\n" +
+                        "        value matches {\n" +
+                        "            DV_TEXT[id21]\n" +
+                        "        }\n" +
+                        "    }"));
+        assertThat(serializeConstraint(parentCObj.itemAtPath("/items[id3]")).trim(),
+                // Comment should be on a single line
+                equalTo("ELEMENT[id3] matches {    -- This text has multiple lines!\n" +
+                        "        value matches {\n" +
+                        "            DV_CODED_TEXT[id31]\n" +
+                        "        }\n" +
+                        "    }"));
+    }
+
+    @Test
     public void serializeOccurrencesTest() {
         checkOccurrences("5..*", MultiplicityInterval.createUpperUnbounded(5));
         checkOccurrences("1", MultiplicityInterval.createMandatory());
