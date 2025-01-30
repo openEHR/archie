@@ -2,10 +2,7 @@ package com.nedap.archie.serializer.adl;
 
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.base.MultiplicityInterval;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -315,6 +312,21 @@ public class ADLDefinitionSerializerTest {
                 equalTo("use_node ADDRESS[id12] /contacts[id6]/addresses[id8]"));
         assertThat(serializeConstraint(ccobjProxies.get(2)).trim(),
                 equalTo("use_node ADDRESS[id13] occurrences matches {1..3} /contacts[id6]/addresses[id9]"));
+    }
+
+    @Test
+    public void serializeTemplateOverlay() throws IOException, ADLParseException {
+        Template template = (Template) loadRoot("com/nedap/archie/archetypevalidator/openEHR-EHR-OBSERVATION.specialized_template_observation.v1.0.0.adls");
+
+        TemplateOverlay templateOverlay = template.getTemplateOverlay("openEHR-EHR-CLUSTER.simple_test_cluster-ovl.v1.0.0");
+        CObject clusterCObj = templateOverlay.getDefinition();
+
+        assertThat(serializeConstraint(clusterCObj).trim(),
+                equalTo("CLUSTER[id1.1] matches {    -- Simple test cluster\n" +
+                        "        items matches {\n" +
+                        "            ELEMENT[id2.1]    -- Just a DV_TEXT that is specialized in a Template Overlay\n" +
+                        "        }\n" +
+                        "    }"));
     }
 
     @Test

@@ -69,6 +69,7 @@ public class ADLDefinitionSerializer {
         }
         Archetype archetype = cobj.getArchetype();
         String originalLanguage = ofNullable(archetype)
+                .map(a -> a instanceof TemplateOverlay ? ((TemplateOverlay) a).getOwningTemplate() : a)
                 .flatMap(a -> ofNullable(a.getOriginalLanguage()))
                 .map(TerminologyCode::getCodeString)
                 .orElse(null);
