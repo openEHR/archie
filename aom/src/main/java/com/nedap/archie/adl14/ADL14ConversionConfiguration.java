@@ -21,19 +21,28 @@ public class ADL14ConversionConfiguration {
      */
     private boolean applyDiff = true;
 
-
     /**
      * ADL 1.4 contains no rm release version, 2 does. So one needs to be added. Set to the desired rm_release. Defaults to 1.1.0
      */
     private String rmRelease = "1.1.0";
 
+    /**
+     * Current adlVersion
+     */
+    private String adlVersion = "2.3.0";
 
-    public List<TerminologyUriTemplate> getTerminologyConversionTemplates() {
-        return terminologyConversionTemplates;
+    /**
+     * Set to the ADL version the ADL 1.4 archetype should be converted into. Options: ID_CODED, AT_CODED. Defaults to ID_CODED.
+     */
+    private ADL2VERSION adlConfiguration = ADL2VERSION.ID_CODED;
+    public enum ADL2VERSION {
+        ID_CODED,
+        AT_CODED
     }
 
-    public void setTerminologyConversionTemplates(List<TerminologyUriTemplate> terminologyConversionTemplates) {
-        this.terminologyConversionTemplates = terminologyConversionTemplates;
+    // GETTERS
+    public List<TerminologyUriTemplate> getTerminologyConversionTemplates() {
+        return terminologyConversionTemplates;
     }
 
     public TerminologyUriTemplate getTerminologyUriTemplate(String terminologyId, String version) {
@@ -52,23 +61,44 @@ public class ADL14ConversionConfiguration {
         return allowDuplicateFieldNames;
     }
 
-    public void setAllowDuplicateFieldNames(boolean allowDuplicateFieldNames) {
-        this.allowDuplicateFieldNames = allowDuplicateFieldNames;
-    }
-
     public boolean isApplyDiff() {
         return applyDiff;
-    }
-
-    public void setApplyDiff(boolean applyDiff) {
-        this.applyDiff = applyDiff;
     }
 
     public String getRmRelease() {
         return rmRelease;
     }
 
+    public ADL2VERSION getAdlConfiguration() {
+        return adlConfiguration;
+    }
+
+    public String getAdlVersion() {
+        if (adlConfiguration == ADL2VERSION.AT_CODED) {
+            return "2.4.0";
+        } else {
+            return adlVersion;
+        }
+    }
+
+    // SETTERS
+    public void setTerminologyConversionTemplates(List<TerminologyUriTemplate> terminologyConversionTemplates) {
+        this.terminologyConversionTemplates = terminologyConversionTemplates;
+    }
+
+    public void setAllowDuplicateFieldNames(boolean allowDuplicateFieldNames) {
+        this.allowDuplicateFieldNames = allowDuplicateFieldNames;
+    }
+
+    public void setApplyDiff(boolean applyDiff) {
+        this.applyDiff = applyDiff;
+    }
+
     public void setRmRelease(String rmRelease) {
         this.rmRelease = rmRelease;
+    }
+
+    public void setAdlConfiguration(ADL2VERSION adlConfiguration) {
+        this.adlConfiguration = adlConfiguration;
     }
 }
