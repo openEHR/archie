@@ -56,6 +56,11 @@ public class ADL2ConversionResult {
     }
 
     /* SETTERS **/
+
+    public void setArchetypeId(String archetypeId) {
+        this.archetypeId = archetypeId;
+    }
+
     public void setArchetype(Archetype archetype) {
         this.archetype = archetype;
     }
