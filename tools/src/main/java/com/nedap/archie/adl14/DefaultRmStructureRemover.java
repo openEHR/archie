@@ -27,6 +27,15 @@ public class DefaultRmStructureRemover {
     private BMMConstraintImposer constraintImposer;
 
     /**
+     * Construct a DefaultRmStructureRemover that does not remove empty attributes
+     * @param metaModels the metamodels containing metamodel information for the preset archetypes
+     * Part of the public API, do not remove
+     */
+    public DefaultRmStructureRemover(MetaModels metaModels) {
+        this(metaModels, false);
+    }
+
+    /**
      * Construct a DefaultRmStructureRemover
      *
      * @param metaModels            the metamodels containing metamodel information for the preset archetypes
