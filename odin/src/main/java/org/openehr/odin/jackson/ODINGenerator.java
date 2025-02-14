@@ -160,24 +160,6 @@ public class ODINGenerator extends GeneratorBase
     /**********************************************************
      */
 
-    /**
-     * Not sure what to do here; could reset indentation to some value maybe?
-     */
-    @Override
-    public ODINGenerator useDefaultPrettyPrinter()
-    {
-        return this;
-    }
-
-    /**
-     * Not sure what to do here; will always indent, but uses
-     * YAML-specific settings etc.
-     */
-    @Override
-    public ODINGenerator setPrettyPrinter(PrettyPrinter pp) {
-        return this;
-    }
-
     @Override
     public Object getOutputTarget() {
         return _writer;
@@ -264,8 +246,13 @@ public class ODINGenerator extends GeneratorBase
         if (status == JsonWriteContext.STATUS_EXPECT_VALUE) {
             _reportError("Can not write a field name, expecting a value");
         }
-        //no comma's in odin, so don't need to check status
-        builder.tryNewLine().append(name).append(" = ");
+
+        if ((status == JsonWriteContext.STATUS_OK_AFTER_COMMA)) {
+            _cfgPrettyPrinter.writeObjectEntrySeparator(this);
+        } else {
+            _cfgPrettyPrinter.beforeObjectEntries(this);
+        }
+        builder.append(name);
     }
 
     @Override
@@ -326,6 +313,9 @@ public class ODINGenerator extends GeneratorBase
             _objectId = null;
         }
 
+        // We don't know yet if we are in a primitive or object array, so we can't call
+        // _cfgPrettyPrinter.writeStartArray yet. This will be done in writeStartObject if needed.
+
         builder.append("<");
     }
 
@@ -345,9 +335,15 @@ public class ODINGenerator extends GeneratorBase
         if(index == 0 && !this.typeIdContext.arrayHasObjects()) {
             builder.append(", ...");
         }
-        //TODO: if this was a list of objects and not just primitives, add an unindentednewline here
-        //requires a custom writeContext to do properly though
-        builder.append(">");
+
+        if(typeIdContext.arrayHasObjects()) {
+            // Object array
+            _cfgPrettyPrinter.writeEndArray(this, _writeContext.getEntryCount());
+        } else {
+            // Primitive array, just write a closing bracket
+            builder.append(">");
+        }
+
         _writeContext = _writeContext.getParent();
         typeIdContext = typeIdContext.getParent();
     }
@@ -376,17 +372,18 @@ public class ODINGenerator extends GeneratorBase
             //so that's what we do here.
             //on the parsing side this WILL require a custom map to list converter
             if(_writeContext.getCurrentIndex() == 0) {
-                //we need an extra indent because of the keyed list, but only on the first member
-                //can't do it on array start because there is no way to know then what the type of the array is
-                builder.indent();
+                // This is the start of an object array, so call the pretty printer now.
+                _cfgPrettyPrinter.writeStartArray(this);
+                _cfgPrettyPrinter.beforeArrayValues(this);
             }
-            builder.newline().append("[" + (_writeContext.getCurrentIndex() + 1) + "] = ");
+            builder.append("[" + (_writeContext.getCurrentIndex() + 1) + "] = ");
         }
 
         if(typeIdContext.hasTypeId()) {
-            builder.append("(").append(typeIdContext.getTypeId().toString()).append(") <").indent();
+            builder.append("(").append(typeIdContext.getTypeId().toString()).append(") ");
+            _cfgPrettyPrinter.writeStartObject(this);
         } else if(!_writeContext.inRoot()) {
-            builder.append("<").indent();
+            _cfgPrettyPrinter.writeStartObject(this);
         }
 
         _writeContext = _writeContext.createChildObjectContext();
@@ -404,11 +401,11 @@ public class ODINGenerator extends GeneratorBase
         _writeContext = _writeContext.getParent();
 
         if(_writeContext.inArray()) {
-            builder.newUnindentedLine().append(">");
+            _cfgPrettyPrinter.writeEndObject(this, _writeContext.getEntryCount());
         } else if (_writeContext.inRoot() && _typeIdAtRoot != null) {
-            builder.newUnindentedLine().append(">");
+            _cfgPrettyPrinter.writeEndObject(this, _writeContext.getEntryCount());
         } else if(!_writeContext.inRoot())  {
-            builder.newUnindentedLine().append(">");
+            _cfgPrettyPrinter.writeEndObject(this, _writeContext.getEntryCount());
         }
         // just to make sure we don't "leak" type ids
         _typeId = null;
@@ -702,12 +699,44 @@ public class ODINGenerator extends GeneratorBase
         throws IOException
     {
         int status = _writeContext.writeValue();
-        if (status == JsonWriteContext.STATUS_EXPECT_NAME) {
-            _reportError("Can not "+typeMsg+", expecting field name");
+        switch (status) {
+            case JsonWriteContext.STATUS_OK_AFTER_COMMA:
+                if(_writeContext.inArray()) {
+                    if (typeIdContext.arrayHasObjects()) {
+                        _cfgPrettyPrinter.writeArrayValueSeparator(this);
+                    } else {
+                        // Primitive array, just write a comma
+                        writeRaw(", ");
+                    }
+                }
+                break;
+            case JsonWriteContext.STATUS_OK_AFTER_COLON:
+                _cfgPrettyPrinter.writeObjectFieldValueSeparator(this);
+                break;
+            case JsonWriteContext.STATUS_OK_AFTER_SPACE:
+                _cfgPrettyPrinter.writeRootValueSeparator(this);
+                break;
+            case JsonWriteContext.STATUS_OK_AS_IS:
+                // First entry, but of which context?
+                if (_writeContext.inArray()) {
+                    // We don't know yet if we are in a primitive or object array, so do nothing now.
+                    // _cfgPrettyPrinter.beforeArrayValues is called in writeStartObject if needed.
+                } else if (_writeContext.inObject()) {
+                    _cfgPrettyPrinter.beforeObjectEntries(this);
+                }
+                break;
+            case JsonWriteContext.STATUS_EXPECT_NAME:
+                _reportError("Can not "+typeMsg+", expecting field name");
+                break;
+            default:
+                _throwInternal();
+                break;
         }
-        if(status == JsonWriteContext.STATUS_OK_AFTER_COMMA && _writeContext.inArray() && !typeIdContext.arrayHasObjects()) {
-            builder.append(", ");
-        }
+    }
+
+    @Override
+    protected PrettyPrinter _constructDefaultPrettyPrinter() {
+        return new ODINPrettyPrinter();
     }
 
     @Override
