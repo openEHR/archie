@@ -12,7 +12,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @deprecated This class will be removed. Use the RMObjectValidator instead.
+ */
+@Deprecated
 public class RMMultiplicityValidation {
+    /**
+     * @deprecated This method will be removed. Use the RMObjectValidator instead.
+     */
+    @Deprecated
     public static List<RMObjectValidationMessage> validate(CAttribute attribute, String pathSoFar, Object attributeValue) {
         if (attributeValue instanceof Collection) {
             Collection<?> collectionValue = (Collection<?>) attributeValue;

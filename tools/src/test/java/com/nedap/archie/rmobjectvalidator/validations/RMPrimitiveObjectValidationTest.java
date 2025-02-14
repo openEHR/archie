@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+@Deprecated
 public class RMPrimitiveObjectValidationTest {
 
     private static ArchieRMInfoLookup lookup;

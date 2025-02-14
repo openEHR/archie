@@ -207,6 +207,18 @@ public class ADLDefinitionSerializerTest {
     }
 
     @Test
+    public void serializeBasicCComplexObject() throws Exception {
+        Archetype archetype = loadRoot("adl2-tests/features/aom_structures/basic/openEHR-TEST_PKG-WHOLE.most_minimal.v1.0.0.adls");
+        CComplexObject whole = archetype.getDefinition();
+        String serialized = serializeConstraint(whole);
+        assertThat(serialized, equalTo("\n    WHOLE[id1]    -- most minimal"));
+
+        whole.setOccurrences(MultiplicityInterval.createMandatory());
+        String serialized2 = serializeConstraint(whole);
+        assertThat(serialized2, equalTo("\n    WHOLE[id1] occurrences matches {1}    -- most minimal"));
+    }
+
+    @Test
     public void serializeTupleOrdinal() throws Exception {
         Archetype archetype = loadRoot("adl2-tests/features/aom_structures/tuples/CIMI-CORE-ITEM_GROUP.real_ordinal.v1.0.0.adls");
         CComplexObject ordinal = archetype.itemAtPath("/item[id2]/value[id3]");
@@ -244,7 +256,7 @@ public class ADLDefinitionSerializerTest {
         Archetype archetype = loadRoot("adl2-tests/features/aom_structures/slots/openEHR-EHR-SECTION.slot_include_any_exclude_empty.v1.0.0.adls");
         ArchetypeSlot slot = archetype.itemAtPath("/items[id2]");
         String serialized = serializeConstraint(slot);
-        assertEquals("\n    allow_archetype OBSERVATION[id2] occurrences matches {0..1} matches {     -- Vital signs\n" +
+        assertEquals("\n    allow_archetype OBSERVATION[id2] occurrences matches {0..1} matches {    -- Vital signs\n" +
                 "        include\n" +
                 "            archetype_id/value matches {/.*/}\n" +
                 "    }", serialized);
@@ -253,7 +265,7 @@ public class ADLDefinitionSerializerTest {
         archetype = load("openEHR-EHR-CLUSTER.device.v1.adls");
         slot = archetype.itemAtPath("/items[id10]");
         serialized = serializeConstraint(slot);
-        assertEquals("\n    allow_archetype CLUSTER[id10] occurrences matches {0..*} matches {     -- Properties\n" +
+        assertEquals("\n    allow_archetype CLUSTER[id10] occurrences matches {0..*} matches {    -- Properties\n" +
                 "        include\n" +
                 "            archetype_id/value matches {/openEHR-EHR-CLUSTER\\.dimensions(-a-zA-Z0-9_]+)*\\.v1|openEHR-EHR-CLUSTER\\.catheter(-a-zA-Z0-9_]+)*\\.v1/}\n" +
                 "    }", serialized);
@@ -262,15 +274,20 @@ public class ADLDefinitionSerializerTest {
         archetype = loadRoot("adl2-tests/features/aom_structures/slots/openEHR-EHR-SECTION.slot_include_empty_exclude_non_any.v1.0.0.adls");
         slot = archetype.itemAtPath("/items[id2]");
         serialized = serializeConstraint(slot);
-        assertEquals("\n    allow_archetype OBSERVATION[id2] occurrences matches {0..1} matches {     -- Vital signs\n" +
+        assertEquals("\n    allow_archetype OBSERVATION[id2] occurrences matches {0..1} matches {    -- Vital signs\n" +
                 "        exclude\n" +
                 "            archetype_id/value matches {/openEHR-EHR-OBSERVATION\\.blood_pressure([a-zA-Z0-9_]+)*\\.v1/}\n" +
                 "    }", serialized);
 
+        archetype = loadRoot("adl2-tests/features/aom_structures/slots/openEHR-EHR-SECTION.slot_include_empty_exclude_empty.v1.0.0.adls");
+        slot = archetype.itemAtPath("/items[id2]");
+        serialized = serializeConstraint(slot);
+        assertEquals("\n    allow_archetype OBSERVATION[id2] occurrences matches {0..1}    -- Vital signs", serialized);
+
         archetype = loadRoot("adl2-tests/features/aom_structures/slots/openEHR-EHR-SECTION.slot_closed.v1.0.0.adls");
         slot = archetype.itemAtPath("/items[id2]");
         serialized = serializeConstraint(slot);
-        assertEquals("\n    allow_archetype OBSERVATION[id2] closed", serialized);
+        assertEquals("\n    allow_archetype OBSERVATION[id2] closed    -- Vital signs", serialized);
     }
 
     @Test
@@ -280,9 +297,9 @@ public class ADLDefinitionSerializerTest {
         List<CObject> archetypeRoots = archetype.getDefinition().getAttribute("content").getChildren();
 
         assertThat(serializeConstraint(archetypeRoots.get(0)).trim(),
-                equalTo("use_archetype SECTION[id2, openEHR-EHR-SECTION.section_parent.v1] occurrences matches {0..1}"));
+                equalTo("use_archetype SECTION[id2, openEHR-EHR-SECTION.section_parent.v1] occurrences matches {0..1}    -- Section"));
         assertThat(serializeConstraint(archetypeRoots.get(1)).trim(),
-                equalTo("use_archetype OBSERVATION[id3, openEHR-EHR-OBSERVATION.spec_test_obs.v1] occurrences matches {1}"));
+                equalTo("use_archetype OBSERVATION[id3, openEHR-EHR-OBSERVATION.spec_test_obs.v1] occurrences matches {1}    -- Observation"));
     }
 
     @Test

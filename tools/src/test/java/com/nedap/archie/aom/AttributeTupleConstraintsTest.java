@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 /**
  * Created by pieter.bos on 21/03/16.
  */
+@Deprecated
 public class AttributeTupleConstraintsTest {
 
     private static CAttributeTuple attributeTuple;

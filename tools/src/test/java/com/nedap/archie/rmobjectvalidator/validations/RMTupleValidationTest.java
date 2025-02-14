@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+@Deprecated
 public class RMTupleValidationTest {
     private static ArchieRMInfoLookup lookup;
 

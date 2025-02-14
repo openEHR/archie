@@ -10,7 +10,15 @@ import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageIds;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @deprecated This class will be removed. Use the RMObjectValidator instead.
+ */
+@Deprecated
 public class RMTupleValidation {
+    /**
+     * @deprecated This method will be removed. Use the RMObjectValidator instead.
+     */
+    @Deprecated
     public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, CObject cobject, String pathSoFar, List<RMObjectWithPath> rmObjects, CAttributeTuple tuple) {
         List<RMObjectValidationMessage> result = new ArrayList<>();
         if (rmObjects.size() != 1) {

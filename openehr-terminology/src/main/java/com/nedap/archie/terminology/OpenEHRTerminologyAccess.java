@@ -19,8 +19,10 @@ import java.util.stream.Collectors;
 
 public class OpenEHRTerminologyAccess implements TerminologyAccess {
 
-    static volatile OpenEHRTerminologyAccess instance;
+    private static final Pattern openEHRTermIdPattern = Pattern.compile("http://openehr.org/id/(?<id>[0-9]+)");
+    private static final Pattern IANATermIdPattern = Pattern.compile("https://www.w3.org/ns/iana/media-types/(?<type>.+)/(?<subtype>.+)#Resource");
 
+    static volatile OpenEHRTerminologyAccess instance;
     static boolean READ_FROM_JSON = true;
 
     @JsonProperty
@@ -30,6 +32,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
 
     private static final String[] resourceNames = {
             "/openEHR_RM/en/openehr_terminology.xml",
+            "/openEHR_RM/es/openehr_terminology.xml",
             "/openEHR_RM/ja/openehr_terminology.xml",
             "/openEHR_RM/pt/openehr_terminology.xml",
             "/openEHR_RM/openehr_external_terminologies.xml",
@@ -129,7 +132,15 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
         return Collections.emptyList();
     }
 
-    private static final Pattern openEHRTermIdPattern = Pattern.compile("http://openehr.org/id/(?<id>[0-9]+)");
+    public String parseIANATerminologyURI(String uri) {
+        Matcher matcher = IANATermIdPattern.matcher(uri);
+        if(matcher.matches()) {
+            String type = matcher.group("type");
+            String subType = matcher.group("subtype");
+            return type + "/" + subType;
+        }
+        return null;
+    }
 
     public String parseTerminologyURI(String uri) {
         Matcher matcher = openEHRTermIdPattern.matcher(uri);
@@ -190,7 +201,6 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
                 .collect(Collectors.toList());
         return codes.stream().filter(c -> c.getCodeString().equalsIgnoreCase(code)).findFirst().orElse(null);
     }
-
 }
 
 

@@ -87,7 +87,7 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
 
         builder.newline().append("rules").newIndentedLine();
         rulesSerializer.appendRules(archetype.getRules());
-        builder.newUnindentedLine();
+        builder.unindent().tryNewLine();
     }
 
     protected void appendRmOverlay() {

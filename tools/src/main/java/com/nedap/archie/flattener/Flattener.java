@@ -2,12 +2,13 @@ package com.nedap.archie.flattener;
 
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;
-import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
+import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.openehr.bmm.v2.validation.BmmRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -220,7 +221,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                 flatOverlay.setDescription(description);
                 flatOverlay.setOriginalLanguage(result.getOriginalLanguage());
                 flatOverlay.setTranslationList(result.getTranslationList());
-                ArchetypeParsePostProcesser.fixArchetype(flatOverlay);
+                ArchetypeParsePostProcessor.fixArchetype(flatOverlay);
                 resultTemplate.getTemplateOverlays().add(flatOverlay);
             }
         }
@@ -230,7 +231,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         result.setDifferential(false);//mark this archetype as being flat
         result.setGenerated(true);
 
-        ArchetypeParsePostProcesser.fixArchetype(result);
+        ArchetypeParsePostProcessor.fixArchetype(result);
 
         //set the single/multiple attributes correctly
         new ReflectionConstraintImposer(metaModels.getSelectedModel())
@@ -253,12 +254,14 @@ public class Flattener implements IAttributeFlattenerSupport {
             CObject object = workList.pop();
             for(CAttribute attribute:object.getAttributes()) {
                 if(attribute.getExistence() != null && attribute.getExistence().getUpper() == 0 && !attribute.getExistence().isUpperUnbounded()) {
-                    //remove children, but do not remove attribute itself to make sure it stays prohibited
+                    // Remove children, but do not remove attribute itself to make sure it stays prohibited
+                    FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, attribute.getChildren());
                     attribute.setChildren(new ArrayList<>());
                 } else {
                     List<CObject> objectsToRemove = new ArrayList<>();
                     for (CObject child : attribute.getChildren()) {
                         if (!child.isAllowed()) {
+                            FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, Collections.singletonList(child));
                             if(child instanceof CComplexObject) {
                                 ((CComplexObject) child).setAttributes(new ArrayList<>());
                             }
@@ -271,9 +274,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                     }
                     attribute.getChildren().removeAll(objectsToRemove);
                 }
-
             }
-
         }
     }
 

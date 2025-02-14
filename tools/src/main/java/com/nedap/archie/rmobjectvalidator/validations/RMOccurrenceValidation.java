@@ -12,7 +12,15 @@ import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @deprecated This class will be removed. Use the RMObjectValidator instead.
+ */
+@Deprecated
 public class RMOccurrenceValidation {
+    /**
+     * @deprecated This method will be removed. Use the RMObjectValidator instead.
+     */
+    @Deprecated
     public static List<RMObjectValidationMessage> validate(MetaModel metaModel, List<RMObjectWithPath> rmObjects, String pathSoFar, CObject cobject) {
         if(cobject != null) {
             MultiplicityInterval occurrences = cobject.effectiveOccurrences(metaModel::referenceModelPropMultiplicity);

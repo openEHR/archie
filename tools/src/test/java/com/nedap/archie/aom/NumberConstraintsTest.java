@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 /**
  * Created by pieter.bos on 01/11/15.
  */
+@Deprecated
 public class NumberConstraintsTest {
 
     @Test

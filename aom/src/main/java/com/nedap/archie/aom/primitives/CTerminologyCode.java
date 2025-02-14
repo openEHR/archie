@@ -86,6 +86,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     }
 
     @Override
+    @Deprecated
     public boolean isValidValue(TerminologyCode value) {
         if(getConstraint().isEmpty()) {
             return true;

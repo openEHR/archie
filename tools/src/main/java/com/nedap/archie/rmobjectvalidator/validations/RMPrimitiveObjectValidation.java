@@ -12,8 +12,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @deprecated This class will be removed. Use the RMObjectValidator instead.
+ */
+@Deprecated
 public class RMPrimitiveObjectValidation {
 
+    /**
+     * @deprecated This method will be removed. Use the RMObjectValidator instead.
+     */
+    @Deprecated
     public static List<RMObjectValidationMessage> validate(ModelInfoLookup lookup, List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
         if(cobject == null) {
             return new ArrayList<>();
@@ -31,6 +39,10 @@ public class RMPrimitiveObjectValidation {
         return validate_inner(lookup, rmObject, pathSoFar, cobject);
     }
 
+    /**
+     * @deprecated This method will be removed. Use the RMObjectValidator instead.
+     */
+    @Deprecated
     static List<RMObjectValidationMessage> validate_inner(ModelInfoLookup lookup, Object rmObject, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
         List<RMObjectValidationMessage> result = new ArrayList<>();
         if (!cobject.isValidValue(lookup, rmObject)) {

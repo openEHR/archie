@@ -15,9 +15,11 @@ import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
+import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.ExpressionVariable;
 import com.nedap.archie.rules.RuleStatement;
@@ -754,7 +756,7 @@ public abstract class ParsedRulesEvaluationTest {
     }
 
     RuleEvaluation<Pathable> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
+        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build(), archetype);
     }
 
     @Test
@@ -785,7 +787,7 @@ public abstract class ParsedRulesEvaluationTest {
         Map<String, Object> exampleInstance = generator.generate(opt);
         Cluster cluster = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(exampleInstance), Cluster.class);
         //correct case first
-        RuleEvaluation ruleEvaluation = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), opt);
+        RuleEvaluation ruleEvaluation = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build(), opt);
         DvCodedText codedText = (DvCodedText) cluster.itemAtPath("/items[1]/items[1]/value[1]");
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at4"));
         codedText.setValue("value 1");
@@ -817,25 +819,37 @@ public abstract class ParsedRulesEvaluationTest {
         DvCodedText codedText = (DvCodedText) root.itemAtPath("items[id2]/value[id3]");
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "526"));
         EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertEquals(3, evaluationResult.getAssertionResults().size());
         assertTrue(evaluationResult.getAssertionResults().get(0).getResult());
 
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "527"));
         evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertEquals(3, evaluationResult.getAssertionResults().size());
         assertFalse(evaluationResult.getAssertionResults().get(0).getResult());
 
         // Rule with value set
         DvCodedText codedText2 = (DvCodedText) root.itemAtPath("items[id4]/value[id5]");
         codedText2.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "526"));
-        EvaluationResult evaluationResult2 = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(2, evaluationResult2.getAssertionResults().size());
-        assertTrue(evaluationResult2.getAssertionResults().get(1).getResult());
+        evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(3, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(1).getResult());
 
         codedText2.setDefiningCode(new CodePhrase(new TerminologyId("openehr"), "528"));
         evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals(2, evaluationResult.getAssertionResults().size());
+        assertEquals(3, evaluationResult.getAssertionResults().size());
         assertFalse(evaluationResult.getAssertionResults().get(1).getResult());
+
+        // Rule with external terminology term binding
+        DvMultimedia dvMultimedia = (DvMultimedia) root.itemAtPath("items[id6]/value[id7]");
+        dvMultimedia.setMediaType(new CodePhrase(new TerminologyId("IANA_media-types"), "image/jpeg"));
+        evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(3, evaluationResult.getAssertionResults().size());
+        assertTrue(evaluationResult.getAssertionResults().get(2).getResult());
+
+        dvMultimedia.setMediaType(new CodePhrase(new TerminologyId("IANA_media-types"), "text/plain"));
+        evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+        assertEquals(3, evaluationResult.getAssertionResults().size());
+        assertFalse(evaluationResult.getAssertionResults().get(2).getResult());
     }
 
 }

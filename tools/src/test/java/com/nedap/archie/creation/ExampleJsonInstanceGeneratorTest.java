@@ -22,6 +22,7 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
+import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.testutil.DummyOperationalTemplateProvider;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
@@ -79,7 +80,7 @@ public class ExampleJsonInstanceGeneratorTest {
         assertEquals("POINT_EVENT", ((Map) events.get(1)).get(TYPE_PROPERTY_NAME));
         assertEquals("INTERVAL_EVENT", ((Map) events.get(2)).get(TYPE_PROPERTY_NAME));
 
-        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider)
+        List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider, new ValidationConfiguration.Builder().build())
                 .validate(opt, JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(s, Observation.class));
         assertEquals(new ArrayList<>(), validated);
 
@@ -144,6 +145,45 @@ public class ExampleJsonInstanceGeneratorTest {
         assertTrue(s.contains("{\"_type\":\"DV_ORDINAL\",\"value\":0,\"symbol\":{\"_type\":\"DV_CODED_TEXT\",\"value\":\"Absent\",\"defining_code\":{\"_type\":\"CODE_PHRASE\",\"terminology_id\":{\"_type\":\"TERMINOLOGY_ID\",\"value\":\"local\"},\"code_string\":\"at11\"}}}"));
     }
 
+    @Test
+    public void rmRelease104() throws Exception {
+        // This archetype has rm_release=1.0.4
+        OperationalTemplate opt = createOPT("/com/nedap/archie/rules/evaluation/construct_archetype_slot.adls");
+        ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator();
+
+        Map<String, Object> structure = structureGenerator.generate(opt);
+        String json = serializeToJson(structure, false);
+        Observation observation = getArchieObjectMapper().readValue(json, Observation.class);
+
+        assertEquals("1.0.4", observation.getArchetypeDetails().getRmVersion());
+    }
+
+    @Test
+    public void rmRelease110() throws Exception {
+        // This archetype has rm_release=1.1.0
+        OperationalTemplate opt = createOPT("/com/nedap/archie/diff/openEHR-EHR-OBSERVATION.basic_annotations.v1.0.0.adls");
+        ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator();
+
+        Map<String, Object> structure = structureGenerator.generate(opt);
+        String json = serializeToJson(structure, false);
+        Observation observation = getArchieObjectMapper().readValue(json, Observation.class);
+
+        assertEquals("1.1.0", observation.getArchetypeDetails().getRmVersion());
+    }
+
+    @Test
+    public void rmReleaseFallback() throws Exception {
+        // This archetype has rm_release=1.0.2, which should fall back to 1.1.0
+        OperationalTemplate opt = createOPT("/adl2-tests/features/aom_structures/tuples/openEHR-EHR-OBSERVATION.ordinal_tuple.v1.0.0.adls");
+        ExampleJsonInstanceGenerator structureGenerator = createExampleJsonInstanceGenerator();
+
+        Map<String, Object> structure = structureGenerator.generate(opt);
+        String json = serializeToJson(structure, false);
+        Observation observation = getArchieObjectMapper().readValue(json, Observation.class);
+
+        assertEquals("1.1.0", observation.getArchetypeDetails().getRmVersion());
+    }
+
     /**
      * Tests all CKM examples with the Archie JSON Schema, that properly handles polymorphism
      * This probably will go away once we have a proper solution
@@ -176,7 +216,7 @@ public class ExampleJsonInstanceGeneratorTest {
                     json = mapper.writeValueAsString(example);
 
                     RMObject parsed = archieObjectMapper.readValue(json, RMObject.class);
-                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider).validate(template, parsed);
+                    List<RMObjectValidationMessage> validated = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider, new ValidationConfiguration.Builder().build()).validate(template, parsed);
 
                     // Ignore some validations errors caused by unsupported features in the ExampleJsonInstanceGenerator
                     validated.removeIf(m -> m.getType().equals(RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH)); // Filling the correct archetype in the slot is not supported

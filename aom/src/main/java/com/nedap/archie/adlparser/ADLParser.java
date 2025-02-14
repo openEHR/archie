@@ -8,7 +8,7 @@ import com.nedap.archie.adlparser.treewalkers.ADLListener;
 import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
+import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.rminfo.MetaModels;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.*;
@@ -97,7 +97,7 @@ public class ADLParser {
             walker.walk(listener, tree);
             result = listener.getArchetype();
             //set some values that are not directly in ODIN or ADL
-            ArchetypeParsePostProcesser.fixArchetype(result);
+            ArchetypeParsePostProcessor.fixArchetype(result);
 
             if (modelConstraintImposer != null && result.getDefinition() != null) {
                 modelConstraintImposer.imposeConstraints(result.getDefinition());

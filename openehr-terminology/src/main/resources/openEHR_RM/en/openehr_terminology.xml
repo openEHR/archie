@@ -8,7 +8,12 @@
 	</codeset>
 	<codeset issuer="openehr" openehr_id="integrity check algorithms" external_id="openehr_integrity_check_algorithms">
 		<code value="SHA-1"/>
+		<code value="SHA-224"/>
 		<code value="SHA-256"/>
+		<code value="SHA-384"/>
+		<code value="SHA-512"/>
+		<code value="SHA-512/224"/>
+		<code value="SHA-512/256"/>
 	</codeset>
 	<codeset issuer="openehr" openehr_id="normal statuses" external_id="openehr_normal_statuses">
 		<code value="HHH"/>
@@ -34,7 +39,7 @@
 	</group>
 	<group name="composition category" id="composition category">
 		<concept id="431" rubric="persistent"/>
-		<concept id="435" rubric="episodic"/>
+		<concept id="451" rubric="episodic"/>
 		<concept id="433" rubric="event"/>
 	</group>
 	<group name="MultiMedia" id="MultiMedia">
@@ -99,12 +104,12 @@
 		<concept id="119" rubric="Concentration"/>
 		<concept id="350" rubric="Density"/>
 		<concept id="362" rubric="Diffusion coefficient"/>
-		<concept id="501" rubric="Electrical capacitance"/>
-		<concept id="498" rubric="Electrical charge"/>
-		<concept id="502" rubric="Electrical conductance"/>
-		<concept id="334" rubric="Electrical current"/>
-		<concept id="377" rubric="Electrical field strength"/>
-		<concept id="655" rubric="Electrical potential time"/>
+		<concept id="501" rubric="Electric capacitance"/>
+		<concept id="498" rubric="Electric charge"/>
+		<concept id="502" rubric="Electric conductance"/>
+		<concept id="334" rubric="Electric current"/>
+		<concept id="377" rubric="Electric field strength"/>
+		<concept id="655" rubric="Electric potential"/>
 		<concept id="121" rubric="Energy"/>
 		<concept id="366" rubric="Energy density"/>
 		<concept id="508" rubric="Energy dose"/>
@@ -167,9 +172,11 @@
 		<concept id="685" rubric="Refractive power"/>
 	</group>
 	<group name="version lifecycle state" id="version lifecycle state">
-		<concept id="532" rubric="complete"/>
+		<concept id="532" rubric="complete"/><!-- warning: the rubric for this concept is 'completed' in the 'instruction states' group (known issue, see SPECPR-51) -->
 		<concept id="553" rubric="incomplete"/>
 		<concept id="523" rubric="deleted"/>
+		<concept id="800" rubric="inactive"/>
+		<concept id="801" rubric="abandoned"/>
 	</group>
 	<group name="participation function" id="participation function">
 		<concept id="253" rubric="unknown"/>
@@ -223,7 +230,7 @@
 		<concept id="245" rubric="active"/>
 		<concept id="530" rubric="suspended"/>
 		<concept id="531" rubric="aborted"/>
-		<concept id="532" rubric="completed"/>
+		<concept id="532" rubric="completed"/><!-- warning: the rubric for this concept is 'complete' in the 'version lifecycle state' group (known issue, see SPECPR-51) -->
 		<concept id="533" rubric="expired"/>
 	</group>
 	<group name="instruction transitions" id="instruction transitions">
@@ -317,6 +324,25 @@
 		<concept id="235" rubric="complementary health care"/>
 		<concept id="236" rubric="dental care"/>
 		<concept id="237" rubric="nursing home care"/>
+		<concept id="802" rubric="mental healthcare"/>
 		<concept id="238" rubric="other care"/>
+	</group>
+	<group name="extract content type" id="extract content type">
+		<concept id="803" rubric="openEHR EHR"/>
+		<concept id="804" rubric="openEHR Demographic"/>
+		<concept id="805" rubric="openEHR synchronisation"/>
+		<concept id="806" rubric="openEHR generic"/>
+		<concept id="807" rubric="generic EMR"/>
+		<concept id="808" rubric="other"/>
+	</group>
+	<group name="extract action type" id="extract action type">
+		<concept id="809" rubric="cancel"/>
+		<concept id="810" rubric="resend"/>
+		<concept id="811" rubric="send new"/>
+	</group>
+	<group name="extract update trigger event type" id="extract update trigger event type">
+		<concept id="812" rubric="any change"/>
+		<concept id="813" rubric="correction"/>
+		<concept id="814" rubric="update"/>
 	</group>
 </terminology>

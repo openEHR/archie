@@ -1,7 +1,6 @@
 package com.nedap.archie.rules.evaluation;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
-import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.creation.RMObjectCreator;
@@ -12,13 +11,13 @@ import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.DvBoolean;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -211,7 +210,7 @@ public class FixableAssertionsCheckerTest {
     }
 
     private RuleEvaluation<Locatable> getRuleEvaluation() {
-        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), archetype);
+        return new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build(), archetype);
     }
 
 }
