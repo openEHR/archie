@@ -47,9 +47,7 @@ public class Cluster extends Item {
 
     public void setItems(List<Item> items) {
         this.items = items;
-
         setThisAsParent(items, "items");
-
     }
 
     public void addItem(Item item) {

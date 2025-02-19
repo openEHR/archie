@@ -30,8 +30,8 @@ public abstract class DvEncapsulated extends DataValue {
     }
 
     public DvEncapsulated(@Nullable CodePhrase charset, @Nullable CodePhrase language) {
-        this.charset = charset;
-        this.language = language;
+        setCharset(charset);
+        setLanguage(language);
     }
 
     public CodePhrase getCharset() {

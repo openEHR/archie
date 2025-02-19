@@ -24,7 +24,7 @@ public class DvURI extends DataValue implements SingleValuedDataValue<URI> {
     }
 
     public DvURI(URI value) {
-        this.value = value;
+        setValue(value);
     }
 
     /**
@@ -33,7 +33,7 @@ public class DvURI extends DataValue implements SingleValuedDataValue<URI> {
      * @param uri
      */
     public DvURI(String uri) {
-        this.value = URI.create(uri);
+        setValue(URI.create(uri));
     }
 
     @Override

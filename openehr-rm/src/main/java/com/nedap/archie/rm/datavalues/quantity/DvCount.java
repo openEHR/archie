@@ -22,12 +22,12 @@ public class DvCount extends DvAmount<DvCount, Long> {
     }
 
     public DvCount(Long magnitude) {
-        this.magnitude = magnitude;
+        setMagnitude(magnitude);
     }
 
     public DvCount(@Nullable List<ReferenceRange<DvCount>> otherReferenceRanges, @Nullable DvInterval<DvCount> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Long magnitude) {
         super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
-        this.magnitude = magnitude;
+        setMagnitude(magnitude);
     }
 
     @Override

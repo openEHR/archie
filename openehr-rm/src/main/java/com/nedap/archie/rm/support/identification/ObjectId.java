@@ -23,7 +23,7 @@ public abstract class ObjectId extends RMObject {
     }
 
     public ObjectId(String value) {
-        this.value = value;
+        setValue(value);
     }
 
     public String getValue() {

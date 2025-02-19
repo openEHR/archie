@@ -36,7 +36,7 @@ public class DvDuration extends DvAmount<DvDuration, Double> implements SingleVa
 	}
 
 	public DvDuration(TemporalAmount value) {
-		this.value = value;
+		setValue(value);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class DvDuration extends DvAmount<DvDuration, Double> implements SingleVa
 
 	public DvDuration(@Nullable List<ReferenceRange<DvDuration>> otherReferenceRanges, @Nullable DvInterval<DvDuration> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, TemporalAmount value) {
 		super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
-		this.value = value;
+		setValue(value);
 	}
 
 	@Override

@@ -39,18 +39,18 @@ public class DvProportion extends DvAmount<DvProportion, Double> {
     }
 
     public DvProportion(Double numerator, Double denominator, Long type, Long precision) {
-        this.numerator = numerator;
-        this.denominator = denominator;
-        this.type = type;
-        this.precision = precision;
+        setNumerator(numerator);
+        setDenominator(denominator);
+        setType(type);
+        setPrecision(precision);
     }
 
     public DvProportion(@Nullable List<ReferenceRange<DvProportion>> otherReferenceRanges, @Nullable DvInterval<DvProportion> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Double numerator, Double denominator, Long type, @Nullable Long precision) {
         super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
-        this.numerator = numerator;
-        this.denominator = denominator;
-        this.type = type;
-        this.precision = precision;
+        setNumerator(numerator);
+        setDenominator(denominator);
+        setType(type);
+        setPrecision(precision);
     }
 
     public Double getNumerator() {

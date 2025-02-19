@@ -52,16 +52,16 @@ public class DvQuantity extends DvAmount<DvQuantity, Double> {
     }
 
     public DvQuantity(String units, Double magnitude, @Nullable Long precision) {
-        this.precision = precision;
-        this.units = units;
-        this.magnitude = magnitude;
+        setPrecision(precision);
+        setUnits(units);
+        setMagnitude(magnitude);
     }
 
     public DvQuantity(@Nullable List<ReferenceRange<DvQuantity>> otherReferenceRanges, @Nullable DvInterval<DvQuantity> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, String units, Double magnitude, @Nullable Long precision) {
         super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
-        this.precision = precision;
-        this.units = units;
-        this.magnitude = magnitude;
+        setPrecision(precision);
+        setUnits(units);
+        setMagnitude(magnitude);
     }
 
     @Nullable

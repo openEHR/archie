@@ -44,9 +44,9 @@ public class IntervalEvent<Type extends ItemStructure> extends Event<Type> {
 
     public IntervalEvent(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, DvDateTime time, Type data, @Nullable Type state, DvDuration width, DvCodedText mathFunction, @Nullable Long sampleCount) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName, time, data, state);
-        this.width = width;
-        this.sampleCount = sampleCount;
-        this.mathFunction = mathFunction;
+        setWidth(width);
+        setSampleCount(sampleCount);
+        setMathFunction(mathFunction);
     }
 
     public DvDuration getWidth() {

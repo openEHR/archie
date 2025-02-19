@@ -28,7 +28,7 @@ public abstract class PartyProxy extends RMObject {
     }
 
     public PartyProxy(@Nullable PartyRef externalRef) {
-        this.externalRef = externalRef;
+        setExternalRef(externalRef);
     }
 
     public PartyRef getExternalRef() {

@@ -47,7 +47,7 @@ public class DvDateTime extends DvTemporal<DvDateTime, Long> implements SingleVa
 	}
 
 	public DvDateTime(TemporalAccessor value) {
-		this.value = value;
+		setValue(value);
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class DvDateTime extends DvTemporal<DvDateTime, Long> implements SingleVa
 
 	public DvDateTime(@Nullable List<ReferenceRange<DvDateTime>> otherReferenceRanges, @Nullable DvInterval<DvDateTime> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, TemporalAccessor value) {
 		super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus, accuracy);
-		this.value = value;
+		setValue(value);
 	}
 
 	@Override

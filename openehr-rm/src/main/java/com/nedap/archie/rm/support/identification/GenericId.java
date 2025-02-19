@@ -21,7 +21,7 @@ public class GenericId extends ObjectId {
 
     public GenericId(String value, String scheme) {
         super(value);
-        this.scheme = scheme;
+        setScheme(scheme);
     }
 
     public String getScheme() {
