@@ -60,14 +60,14 @@ public class Ehr extends RMObject {
     }
 
     public Ehr(HierObjectId systemId, HierObjectId ehrId, DvDateTime timeCreated, List<ObjectRef<? extends ObjectId>> contributions, ObjectRef<? extends ObjectId> ehrStatus, ObjectRef<? extends ObjectId> ehrAccess, @Nullable ObjectRef<? extends ObjectId> directory, @Nullable List<ObjectRef<? extends ObjectId>> compositions) {
-        this.systemId = systemId;
-        this.ehrId = ehrId;
-        this.contributions = contributions;
-        this.ehrStatus = ehrStatus;
-        this.ehrAccess = ehrAccess;
-        this.compositions = compositions;
-        this.directory = directory;
-        this.timeCreated = timeCreated;
+        setSystemId(systemId);
+        setEhrId(ehrId);
+        setContributions(contributions);
+        setEhrStatus(ehrStatus);
+        setEhrAccess(ehrAccess);
+        setCompositions(compositions);
+        setDirectory(directory);
+        setTimeCreated(timeCreated);
     }
 
     public HierObjectId getSystemId() {

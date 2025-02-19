@@ -41,9 +41,9 @@ public abstract class Version<Type> extends RMObject {
     }
 
     public Version(AuditDetails commitAudit, ObjectRef<? extends ObjectId> contribution, @Nullable String signature) {
-        this.contribution = contribution;
-        this.signature = signature;
-        this.commitAudit = commitAudit;
+        setContribution(contribution);
+        setSignature(signature);
+        setCommitAudit(commitAudit);
     }
 
     public ObjectRef<? extends ObjectId> getContribution() {

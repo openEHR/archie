@@ -10,8 +10,6 @@ import com.nedap.archie.rminfo.RMProperty;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.*;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -40,7 +38,7 @@ public abstract class DvQuantified<DataValueType extends DvQuantified<DataValueT
 
     public DvQuantified(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus) {
         super(otherReferenceRanges, normalRange, normalStatus);
-        this.magnitudeStatus = magnitudeStatus;
+        setMagnitudeStatus(magnitudeStatus);
     }
 
     @Nullable

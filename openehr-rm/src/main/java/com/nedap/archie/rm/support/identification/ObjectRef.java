@@ -30,9 +30,9 @@ public class ObjectRef<Idtype extends ObjectId> extends RMObject {
     }
 
     public ObjectRef(Idtype id, String namespace, String type) {
-        this.namespace = namespace;
-        this.type = type;
-        this.id = id;
+        setNamespace(namespace);
+        setType(type);
+        setId(id);
     }
 
     public String getNamespace() {

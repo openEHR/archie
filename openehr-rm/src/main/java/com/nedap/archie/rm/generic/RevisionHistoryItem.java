@@ -26,8 +26,8 @@ public class RevisionHistoryItem extends RMObject {
     }
 
     public RevisionHistoryItem(ObjectVersionId versionId, List<AuditDetails> audits) {
-        this.versionId = versionId;
-        this.audits = audits;
+        setVersionId(versionId);
+        setAudits(audits);
     }
 
     public ObjectVersionId getVersionId() {

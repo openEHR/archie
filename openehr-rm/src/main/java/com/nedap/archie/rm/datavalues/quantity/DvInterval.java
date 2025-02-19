@@ -3,14 +3,9 @@ package com.nedap.archie.rm.datavalues.quantity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datavalues.DataValue;
-import com.nedap.archie.rminfo.Invariant;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
 /**

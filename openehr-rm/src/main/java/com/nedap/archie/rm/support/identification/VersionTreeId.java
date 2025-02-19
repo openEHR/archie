@@ -24,7 +24,7 @@ public class VersionTreeId extends RMObject {
     }
 
     public VersionTreeId(String value) {
-        this.value = value;
+        setValue(value);
     }
 
     public String getValue() {

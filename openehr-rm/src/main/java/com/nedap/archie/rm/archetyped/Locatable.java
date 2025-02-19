@@ -50,18 +50,18 @@ public abstract class Locatable extends Pathable {
     }
 
     public Locatable(String archetypeNodeId, DvText name) {
-        this.name = name;
-        this.archetypeNodeId = archetypeNodeId;
+        setName(name);
+        setArchetypeNodeId(archetypeNodeId);
     }
 
     public Locatable(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName) {
         super(parent, parentAttributeName);
-        this.name = name;
-        this.archetypeNodeId = archetypeNodeId;
-        this.uid = uid;
-        this.archetypeDetails = archetypeDetails;
-        this.feederAudit = feederAudit;
-        this.links = links;
+        setName(name);
+        setArchetypeNodeId(archetypeNodeId);
+        setUid(uid);
+        setArchetypeDetails(archetypeDetails);
+        setFeederAudit(feederAudit);
+        setLinks(links);
     }
 
     public DvText getName() {
