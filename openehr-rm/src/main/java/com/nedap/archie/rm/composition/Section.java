@@ -36,12 +36,12 @@ public class Section extends ContentItem {
 
     public Section(String archetypeNodeId, DvText name, @Nullable List<ContentItem> items) {
         super(archetypeNodeId, name);
-        this.items = items;
+        setItems(items);
     }
 
     public Section(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable List<ContentItem> items) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.items = items;
+        setItems(items);
     }
 
     public List<ContentItem> getItems() {

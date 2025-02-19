@@ -43,18 +43,18 @@ public class EhrStatus extends Locatable {
 
     public EhrStatus(String archetypeNodeId, DvText name, PartySelf subject, boolean isQueryable, boolean isModifiable, @Nullable ItemStructure otherDetails) {
         super(archetypeNodeId, name);
-        this.subject = subject;
-        this.isQueryable = isQueryable;
-        this.isModifiable = isModifiable;
-        this.otherDetails = otherDetails;
+        setSubject(subject);
+        setQueryable(isQueryable);
+        setModifiable(isModifiable);
+        setOtherDetails(otherDetails);
     }
 
     public EhrStatus(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, PartySelf subject, boolean isQueryable, boolean isModifiable, @Nullable ItemStructure otherDetails) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.subject = subject;
-        this.isQueryable = isQueryable;
-        this.isModifiable = isModifiable;
-        this.otherDetails = otherDetails;
+        setSubject(subject);
+        setQueryable(isQueryable);
+        setModifiable(isModifiable);
+        setOtherDetails(otherDetails);
     }
 
     public PartySelf getSubject() {

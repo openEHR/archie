@@ -56,18 +56,18 @@ public class EventContext extends Pathable {
     }
 
     public EventContext(DvDateTime startTime, DvCodedText setting) {
-        this.startTime = startTime;
-        this.setting = setting;
+        setStartTime(startTime);
+        setSetting(setting);
     }
 
     public EventContext(@Nullable PartyIdentified healthCareFacility, DvDateTime startTime, @Nullable DvDateTime endTime, @Nullable List<Participation> participations, @Nullable String location, DvCodedText setting, @Nullable ItemStructure otherContext) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.location = location;
-        this.setting = setting;
-        this.otherContext = otherContext;
-        this.healthCareFacility = healthCareFacility;
-        this.participations = participations;
+        setStartTime(startTime);
+        setEndTime(endTime);
+        setLocation(location);
+        setSetting(setting);
+        setOtherContext(otherContext);
+        setHealthCareFacility(healthCareFacility);
+        setParticipations(participations);
     }
 
     public DvDateTime getStartTime() {
