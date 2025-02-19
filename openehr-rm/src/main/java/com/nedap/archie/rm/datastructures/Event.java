@@ -39,16 +39,16 @@ public abstract class Event<Type extends ItemStructure> extends Locatable {
 
     public Event(String archetypeNodeId, DvText name, DvDateTime time, Type data) {
         super(archetypeNodeId, name);
-        this.time = time;
-        this.data = data;
+        setTime(time);
+        setData(data);
     }
 
 
     public Event(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, DvDateTime time, Type data, @Nullable Type state) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.time = time;
-        this.state = state;
-        this.data = data;
+        setTime(time);
+        setState(state);
+        setData(data);
     }
 
     public DvDateTime getTime() {
