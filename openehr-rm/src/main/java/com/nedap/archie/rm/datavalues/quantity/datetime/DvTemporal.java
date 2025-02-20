@@ -26,12 +26,12 @@ public abstract class DvTemporal<DataValueType extends DvTemporal<DataValueType,
     }
 
     public DvTemporal(@Nullable DvDuration accuracy) {
-        this.accuracy = accuracy;
+        setAccuracy(accuracy);
     }
 
     public DvTemporal(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy) {
         super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus);
-        this.accuracy = accuracy;
+        setAccuracy(accuracy);
     }
 
     @Override

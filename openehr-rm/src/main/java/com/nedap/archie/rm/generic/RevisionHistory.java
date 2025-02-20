@@ -21,7 +21,7 @@ public class RevisionHistory extends RMObject {
     }
 
     public RevisionHistory(List<RevisionHistoryItem> items) {
-        this.items = items;
+        setItems(items);
     }
 
     private List<RevisionHistoryItem> items = new ArrayList<>();

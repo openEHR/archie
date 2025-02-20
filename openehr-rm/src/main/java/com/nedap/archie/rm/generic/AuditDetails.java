@@ -43,11 +43,11 @@ public class AuditDetails extends RMObject {
 
 
     public AuditDetails(String systemId, PartyProxy committer, DvDateTime timeCommitted, DvCodedText changeType, @Nullable DvText description) {
-        this.systemId = systemId;
-        this.timeCommitted = timeCommitted;
-        this.changeType = changeType;
-        this.description = description;
-        this.committer = committer;
+        setSystemId(systemId);
+        setTimeCommitted(timeCommitted);
+        setChangeType(changeType);
+        setDescription(description);
+        setCommitter(committer);
     }
 
     public String getSystemId() {

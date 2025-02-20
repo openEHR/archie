@@ -30,14 +30,14 @@ public class DvParsable extends DvEncapsulated implements SingleValuedDataValue<
     }
 
     public DvParsable(String value, String formalism) {
-        this.value = value;
-        this.formalism = formalism;
+        setValue(value);
+        setFormalism(formalism);
     }
 
     public DvParsable(@Nullable CodePhrase charset, @Nullable CodePhrase language, String value, String formalism) {
         super(charset, language);
-        this.value = value;
-        this.formalism = formalism;
+        setValue(value);
+        setFormalism(formalism);
     }
 
     @Override

@@ -46,7 +46,7 @@ public class DvTime extends DvTemporal<DvTime, Double> implements SingleValuedDa
     }
 
     public DvTime(TemporalAccessor value) {
-        this.value = value;
+        setValue(value);
     }
 
     /**
@@ -55,12 +55,12 @@ public class DvTime extends DvTemporal<DvTime, Double> implements SingleValuedDa
      * @param iso8601Time
      */
     public DvTime(String iso8601Time) {
-        this.value = DateTimeParsers.parseTimeValue(iso8601Time);
+        setValue(DateTimeParsers.parseTimeValue(iso8601Time));
     }
 
     public DvTime(@Nullable List<ReferenceRange<DvTime>> otherReferenceRanges, @Nullable DvInterval<DvTime> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, TemporalAccessor value) {
         super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus, accuracy);
-        this.value = value;
+        setValue(value);
     }
 
     @Override

@@ -35,8 +35,8 @@ public abstract class DvAmount<DataValueType extends DvAmount<DataValueType, Mag
 
     public DvAmount(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus) {
         super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus);
-        this.accuracy = accuracy;
-        this.accuracyIsPercent = accuracyIsPercent;
+        setAccuracy(accuracy);
+        setAccuracyIsPercent(accuracyIsPercent);
     }
 
     @Nullable

@@ -37,14 +37,14 @@ public class Archetyped extends RMObject {
     }
 
     public Archetyped(ArchetypeID archetypeId, String rmVersion) {
-        this.archetypeId = archetypeId;
-        this.rmVersion = rmVersion;
+        setArchetypeId(archetypeId);
+        setRmVersion(rmVersion);
     }
 
     public Archetyped(ArchetypeID archetypeId, @Nullable TemplateId templateId, String rmVersion) {
-        this.archetypeId = archetypeId;
-        this.templateId = templateId;
-        this.rmVersion = rmVersion;
+        setArchetypeId(archetypeId);
+        setTemplateId(templateId);
+        setRmVersion(rmVersion);
     }
 
 

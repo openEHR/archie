@@ -40,11 +40,11 @@ public class FeederAudit extends RMObject {
     }
 
     public FeederAudit(FeederAuditDetails originatingSystemAudit, @Nullable List<DvIdentifier> originatingSystemItemIds, @Nullable FeederAuditDetails feederSystemAudit, @Nullable List<DvIdentifier> feederSystemItemIds, @Nullable DvEncapsulated originalContent) {
-        this.originatingSystemItemIds = originatingSystemItemIds;
-        this.feederSystemItemIds = feederSystemItemIds;
-        this.originalContent = originalContent;
-        this.originatingSystemAudit = originatingSystemAudit;
-        this.feederSystemAudit = feederSystemAudit;
+        setOriginatingSystemItemIds(originatingSystemItemIds);
+        setFeederSystemItemIds(feederSystemItemIds);
+        setOriginalContent(originalContent);
+        setOriginatingSystemAudit(originatingSystemAudit);
+        setFeederSystemAudit(feederSystemAudit);
     }
 
     public List<DvIdentifier> getOriginatingSystemItemIds() {
