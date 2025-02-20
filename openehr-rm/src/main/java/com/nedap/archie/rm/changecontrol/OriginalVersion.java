@@ -56,12 +56,12 @@ public class    OriginalVersion<Type> extends Version<Type> {
 
     public OriginalVersion(ObjectVersionId uid, @Nullable ObjectVersionId precedingVersionUid, @Nullable Type data, DvCodedText lifecycleState, AuditDetails commitAudit, ObjectRef<? extends ObjectId> contribution, @Nullable String signature, @Nullable List<ObjectVersionId> otherInputVersionUids, @Nullable List<Attestation> attestations) {
         super(commitAudit, contribution, signature);
-        this.uid = uid;
-        this.precedingVersionUid = precedingVersionUid;
-        this.otherInputVersionUids = otherInputVersionUids;
-        this.lifecycleState = lifecycleState;
-        this.attestations = attestations;
-        this.data = data;
+        setUid(uid);
+        setPrecedingVersionUid(precedingVersionUid);
+        setOtherInputVersionUids(otherInputVersionUids);
+        setLifecycleState(lifecycleState);
+        setAttestations(attestations);
+        setData(data);
     }
 
     @Override

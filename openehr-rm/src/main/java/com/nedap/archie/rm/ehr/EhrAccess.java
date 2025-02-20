@@ -4,8 +4,6 @@ import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.security.AccessControlSettings;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
-import com.nedap.archie.rminfo.Invariant;
-import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -29,12 +27,12 @@ public class EhrAccess extends Locatable {
 
     public EhrAccess(String archetypeNodeId, DvText name, @Nullable AccessControlSettings settings) {
         super(archetypeNodeId, name);
-        this.settings = settings;
+        setSettings(settings);
     }
 
     public EhrAccess(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable AccessControlSettings settings) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.settings = settings;
+        setSettings(settings);
     }
 
     @Nullable

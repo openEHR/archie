@@ -27,14 +27,14 @@ public class DvOrdinal extends DvOrdered<DvOrdinal> implements SingleValuedDataV
     }
 
     public DvOrdinal(Long value, DvCodedText symbol) {
-        this.symbol = symbol;
-        this.value = value;
+        setSymbol(symbol);
+        setValue(value);
     }
 
     public DvOrdinal(@Nullable List<ReferenceRange<DvOrdinal>> otherReferenceRanges, @Nullable DvInterval<DvOrdinal> normalRange, Long value, DvCodedText symbol) {
         super(otherReferenceRanges, normalRange);
-        this.symbol = symbol;
-        this.value = value;
+        setSymbol(symbol);
+        setValue(value);
     }
 
     @Override

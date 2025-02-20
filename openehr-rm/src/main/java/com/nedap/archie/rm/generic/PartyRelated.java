@@ -26,7 +26,7 @@ public class PartyRelated extends PartyIdentified {
 
     public PartyRelated(@Nullable PartyRef externalRef, @Nullable String name, @Nullable List<DvIdentifier> identifiers, DvCodedText relationship) {
         super(externalRef, name, identifiers);
-        this.relationship = relationship;
+        setRelationship(relationship);
     }
 
     public DvCodedText getRelationship() {

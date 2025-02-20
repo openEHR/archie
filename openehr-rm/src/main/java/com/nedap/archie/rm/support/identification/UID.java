@@ -17,7 +17,7 @@ public abstract class UID extends RMObject {
     }
 
     public UID(String value) {
-        this.value = value;
+        setValue(value);
     }
 
     public String getValue() {

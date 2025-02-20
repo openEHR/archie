@@ -33,9 +33,9 @@ public class VersionedObject<Type> extends RMObject {
     }
 
     public VersionedObject(HierObjectId uid, ObjectRef<? extends ObjectId> ownerId, DvDateTime timeCreated) {
-        this.uid = uid;
-        this.ownerId = ownerId;
-        this.timeCreated = timeCreated;
+        setUid(uid);
+        setOwnerId(ownerId);
+        setTimeCreated(timeCreated);
     }
 
     public HierObjectId getUid() {

@@ -32,8 +32,8 @@ public class PartyIdentified extends PartyProxy {
 
     public PartyIdentified(@Nullable PartyRef externalRef, @Nullable String name, @Nullable List<DvIdentifier> identifiers) {
         super(externalRef);
-        this.name = name;
-        this.identifiers = identifiers;
+        setName(name);
+        setIdentifiers(identifiers);
     }
 
     public String getName() {
