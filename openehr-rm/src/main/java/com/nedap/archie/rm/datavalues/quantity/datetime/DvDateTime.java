@@ -56,7 +56,7 @@ public class DvDateTime extends DvTemporal<DvDateTime, Long> implements SingleVa
 	 * @param iso8601DateTime
 	 */
 	public DvDateTime(String iso8601DateTime) {
-		this.value = DateTimeParsers.parseDateTimeValue(iso8601DateTime);
+		setValue(DateTimeParsers.parseDateTimeValue(iso8601DateTime));
 	}
 
 

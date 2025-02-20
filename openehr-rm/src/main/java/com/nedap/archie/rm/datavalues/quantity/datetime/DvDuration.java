@@ -45,7 +45,7 @@ public class DvDuration extends DvAmount<DvDuration, Double> implements SingleVa
 	 * @param iso8601Duration
 	 */
 	public DvDuration(String iso8601Duration) {
-		this.value = DateTimeParsers.parseDurationValue(iso8601Duration);
+		setValue(DateTimeParsers.parseDurationValue(iso8601Duration));
 	}
 
 	public DvDuration(@Nullable List<ReferenceRange<DvDuration>> otherReferenceRanges, @Nullable DvInterval<DvDuration> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, TemporalAmount value) {

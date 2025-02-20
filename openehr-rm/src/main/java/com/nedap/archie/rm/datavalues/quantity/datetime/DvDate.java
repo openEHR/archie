@@ -66,13 +66,12 @@ public class DvDate extends DvTemporal<DvDate, Long> implements SingleValuedData
      * @param iso8601Date
      */
     public DvDate(String iso8601Date) {
-
         setValue(DateTimeParsers.parseDateValue(iso8601Date));
     }
 
     public DvDate(@Nullable List<ReferenceRange<DvDate>> otherReferenceRanges, @Nullable DvInterval<DvDate> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, Temporal value) {
         super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus, accuracy);
-        this.value = value;
+        setValue(value);
     }
 
     @Override
