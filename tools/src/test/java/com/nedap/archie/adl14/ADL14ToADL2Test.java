@@ -21,7 +21,7 @@ public class ADL14ToADL2Test {
             adl14 = parser.parse(stream, ConversionConfigForTest.getConfig());
         }
         Archetype expected;
-        try (InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.body_weight.v2.1.6.adls")) {
+        try (InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.body_weight-adl2.v2.1.8.adls")) {
             ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
             expected = parser.parse(stream);
         }

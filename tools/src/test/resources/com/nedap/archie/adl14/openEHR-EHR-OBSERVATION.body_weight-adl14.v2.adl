@@ -9,9 +9,9 @@ language
 		["de"] = <
 			language = <[ISO_639-1::de]>
 			author = <
-				["name"] = <"Sebastian Garde, Jasmin Buck, Natalia Strauch">
-				["organisation"] = <"Ocean Informatics, University of Heidelberg, Medizinische Hochschule Hannover">
-				["email"] = <"Strauch.Natalia@mh-hannover.de">
+				["name"] = <"Sebastian Garde, Jasmin Buck, Natalia Strauch, Darin Leonhardt">
+				["organisation"] = <"Ocean Informatics, University of Heidelberg, Medizinische Hochschule Hannover, PLRI für medizinische Informatik/ Medizinische Hochschule">
+				["email"] = <"Strauch.Natalia@mh-hannover.de, leonhardt.darin@mh-hannover.de">
 			>
 		>
 		["fi"] = <
@@ -31,9 +31,9 @@ language
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
 			author = <
-				["name"] = <"Kirsi Poikela">
-				["organisation"] = <"Tieto Sweden AB">
-				["email"] = <"ext.kirsi.poikela@tieto.com">
+				["name"] = <"Kirsi Poikela, Manna Vosta">
+				["organisation"] = <"Tieto Sweden AB, Karolinska University Hospital">
+				["email"] = <"ext.kirsi.poikela@tieto.com, manna.vosta@regionstockholm.se">
 			>
 			accreditation = <"Åsa Skagerhult">
 		>
@@ -89,6 +89,8 @@ language
 			language = <[ISO_639-1::ja]>
 			author = <
 				["name"] = <"Shinji Kobayashi">
+				["organisation"] = <"NPO openEHR Japan">
+				["email"] = <"skoba@moss.gr.jp">
 			>
 		>
 		["fa"] = <
@@ -107,6 +109,14 @@ language
 				["email"] = <"m.buur-krom@mca.nl, joost.holslag@nedap.com">
 			>
 			accreditation = <"Nurse informatics, MD">
+		>
+		["ca"] = <
+			language = <[ISO_639-1::ca]>
+			author = <
+				["name"] = <"Julio de Sosa">
+				["organisation"] = <"Servei Català de la Salut">
+				["email"] = <"juliodesosa@catsalut.cat">
+			>
 		>
 	>
 description
@@ -148,19 +158,16 @@ Nicht zur Darstellung eines Objekts oder eines Teils des Körpers.">
 		>
 		["sv"] = <
 			language = <[ISO_639-1::sv]>
-			purpose = <"Att registrera en individs kroppsvikt, både den faktiska och den uppskattade.">
-			use = <"Används för att registrera den faktiska kroppsvikten, även när individen saknar en kroppsdel av medfödda orsaker eller efter kirurgiskt avlägsnande. En redogörelse av kroppens fysiska ofullständighet kan vid behov registreras i fältet \"Möjliga felkällor\". Det här är den vanliga arketypen som ska användas för en typisk vägning, exempelvis när individen väger sig själv hemma, vägs av en kliniker på en klinik eller ett sjukhus, eller vägs av en instruktör på ett gym.
+			purpose = <"Att registrera en individs kroppsvikt - både den faktiska och den uppskattade.">
+			use = <"Används för att registrera den faktiska kroppsvikten, även när individen saknar en kroppsdel på grund av medfödda orsaker eller till följd av kirurgiskt avlägsnande. En redogörelse av kroppens fysiska ofullständighet kan vid behov registreras i fältet \"Möjliga felkällor\". Det här är den vanliga arketypen som ska användas för en typisk vägning, exempelvis när individen väger sig själv hemma, vägs av en kliniker på en klinik eller ett sjukhus, eller vägs av en instruktör på ett gym. 
 
-Används även för att registrera en uppskattning av kroppsvikten i ett kliniskt scenario där det inte är möjligt att mäta exakt kroppsvikt, exempelvis vid vägning av ett icke samarbetsvilligt barn eller vid uppskattning av ett ofött fosters vikt (där objektet för mätningen är fostret och registreringen sker i moderns patientjournal). Detta modelleras inte explicit i arketypen eftersom openEHRs referensmodell tillåter approximationer för alla mängder genom att attributet Magnitud_status sätts till värdet \"~\". 
-Exempelvis kan det i applikationens användargränssnitt finnas en kryssruta intill vikt-fältet som klinikern kan markera för att indikera att den registrerade vikten är en uppskattning och inte en faktisk vikt.
+Används även för att registrera en uppskattning av kroppsvikten i ett kliniskt scenario där det inte är möjligt att mäta exakt kroppsvikt, exempelvis vid vägning av ett icke samarbetsvilligt barn eller vid uppskattning av ett ofött fosters vikt (där objektet för mätningen är fostret och registreringen sker i moderns patientjournal). Detta modelleras inte explicit i arketypen eftersom openEHRs referensmodell tillåter approximationer för kvantitativ data genom att attributet Magnitud_status sätts till värdet \"~\". Exempelvis kan det i applikationens användargränssnitt finnas en kryssruta intill vikt-fältet som klinikern kan markera för att indikera att den registrerade vikten är en uppskattning och inte en faktisk vikt. 
 
-Används för att registrera viktförändring, dvs. antingen viktförlust eller viktuppgång. Detta kan modelleras genom att begränsa \"Ospecificerad händelse\" till ett intervall med tillhörande matematisk funktion av uppgång eller förlust.
-">
-			keywords = <"vikt", "uppgång", "förlust", "ökning", "minskning", "massa", "uppskattning", "faktisk">
-			misuse = <"Ska inte användas för att registrera den justerade kroppsvikten, exempelvis en beräkning av hela kroppsvikten för en individ med benamputation, baserat på andra kroppsdelsvägningar och användning av en algoritm. Använd då istället OBSERVATION.body_weight-adjusted.
+Används för att registrera viktförändring, dvs. antingen viktförlust eller viktuppgång. Detta kan modelleras genom att begränsa \"Ospecificerad händelse\" till ett intervall med tillhörande matematisk funktion av uppgång eller förlust.">
+			keywords = <"vikt", "uppgång", "viktuppgång", "ökning", "viktökning", "minskning", "viktminskning", "massa", "uppskattning", "faktisk">
+			misuse = <"Ska inte användas för att registrera den justerade kroppsvikten, exempelvis en uppskattning av hela kroppsvikten för en individ som saknat en eller flera lemmar. En justerad kroppsvikt kan baseras på uppmätt kroppsvikt, andra kroppsmått eller användning av en algoritm. Använd då istället OBSERVATION.body_weight-adjusted. 
 
-Ska inte användas för att registrera vikten av ett objekt eller en kroppsdel. 
-">
+Ska inte användas för att registrera vikten av ett objekt eller en kroppsdel.">
 		>
 		["fi"] = <
 			language = <[ISO_639-1::fi]>
@@ -289,8 +296,8 @@ Skal ikke brukes til å registrere vekten av et ikke-kroppslig objekt eller en k
 また、正確な体重測定が不可能であると臨床上想定される場面において、体重を概算して記録するときにも利用される。たとえば、非協力的な子供の体重測定や、未出産の胎児の体重を見積もるような場合である。（胎児体重を見積もる場合、「データの対象」(subject of data)は「胎児」(Fetus)であり、母親の健康を記録するときに同時に記録される。）このアーキタイプでは、openEHRの参照モデルが量(Quantity)を表すデータ型に概算であることを示す属性を明示するようにはモデリングされていない。実装する場合には、たとえばアプリケーションのユーザーインターフェースが臨床スタッフに実測したデータでは無く概算であると言うことを明示的に記録できるようなチェックボックスを用意して、体重データフィールドに記録するようにしておくこともできる。
 
 体重変化、つまり体重が増加しているか減少しているかを記録するために利用することもできる。これについては、現在では「任意のイベント」(any event)による制約を適切な間隔で制約して、数学的に足したり引いたりすることができるようにモデリングされている。">
-			keywords = <"重量", "増量", "減量", "増加", "現象", "質量", "推定値", "実測値">
-			misuse = <"新生児が生まれた直後に最初にはかる体重、つまり新生児の「生下時体重」(birth weith)を記録するためには設計されていない。生下時体重の記録にはこのアーキタイプを特殊化したOBSERVATION.body_weight-birthアーキタイプを利用すること。
+			keywords = <"重量", "増量", "減量", "増加", "減少", "質量", "推定値", "実測値">
+			misuse = <"新生児が生まれた直後に最初にはかる体重、つまり新生児の「生下時体重」(birth weight)を記録するためには設計されていない。生下時体重の記録にはこのアーキタイプを特殊化したOBSERVATION.body_weight-birthアーキタイプを利用すること。
 調整された体重、たとえば四肢を切断した人の全体重を身体の他の部位を計測して、一定のアルゴリズムに基づいて計算するような場合にも用いられない。その場合には、OBSERVATION.body_weight-adjustedを用いること。
 そのほかの物体や体の一部の重さを記録するためにも用いられない。">
 			copyright = <"© openEHR Foundation">
@@ -327,18 +334,33 @@ Dient niet te worden gebruikt voor het registreren van het aangepaste lichaamsge
 Dient niet te worden gebruikt voor het vastleggen van het gewicht van een object of lichaamsdeel.">
 			copyright = <"© openEHR Foundation">
 		>
+		["ca"] = <
+			language = <[ISO_639-1::ca]>
+			purpose = <"Registrar el pes corporal d'un individu, tant real com aproximat.">
+			use = <"S'utilitza per registrar el mesurament real del pes corporal, fins i tot quan a la persona li manca una part del cos per causa congènita o després d'una extirpació quirúrgica. Si cal, a l'element de dades \"Factors de confusió\" es pot registrar una declaració que identifiqui la incompletitud física del cos. Aquest és l'arquetip habitual que s'utilitza per a un mesurament normal del pes, per exemple, el que realitza el propi individu a casa, el que realitza un clínic en una clínica o hospital o el que realitza un monitor de fitness en un gimnàs.
+
+També es pot utilitzar per al registre del pes aproximat en un escenari clínic on no és possible mesurar amb precisió el pes corporal - per exemple, el pes d'un nen que no coopera, o l'estimació del pes d'un fetus (on el subjecte de les dades és el fetus i la gravació es produeix dins de registres de salut de la mare). Això no es modela de manera explícita a l'arquetip, ja que el model de referència d'openEHR permet aproximacions per a qualsevol tipus de dades de quantitat establint l'atribut Magnitude_status al valor \"~\". A l'aplicació, per exemple, una interfície d'usuari podria permetre als metges seleccionar una casella de verificació degudament etiquetada al costat del camp pes per indicar que el pes registrat és una aproximació.
+
+S'usarà per reflectir el canvi de registre de pes, és a dir, augment o pèrdua de pes. Això es pot modelar mitjançant la limitació de “Qualsevol esdeveniment” a un interval associat a una funció matemàtica d'increment o decrement, segons correspongui.">
+			keywords = <"pes", "guany", "pèrdua", "increment", "decrement", "massa", "estimat", "real">
+			misuse = <"No s'ha de fer servir per gravar el primer registre de pes d'un nounat (\"el pes en néixer\") que compta amb el seu propi arquetip.
+
+No s'ha de fer servir per registrar el pes corporal ajustat mitjançant algorismes.
+
+No s'ha de fer servir per registrar el pes d'un objecte o part del cos.">
+		>
 	>
 	lifecycle_state = <"published">
 	other_contributors = <"Karin Aarsheim, Helse Førde, Norway", "Grethe Almenning, Bergen kommune, Norway", "Magnus Alvestad, Helse Bergen HF, Norway", "Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (openEHR Editor)", "Lars Bitsch-Larsen, Haukeland University Hospital, Bergen, Norway", "Einar Bugge, UNN HF, Fag- og forskningssenteret, Norway", "Marja Buur-Krom, Medisch Centrum Alkmaar, Netherlands", "Rong Chen, Cambio Healthcare Systems, Sweden", "Lisbeth Dahlhaug, Helse Midt - Norge IT, Norway", "Hans Demski, Helmholtz Zentrum München, Germany", "Paul Donaldson, Nursing Informatics Australia, Australia", "Torsten Eken, Oslo universitetssykehus HF, Ullevål, Norway", "Bjørg Eli Hollund, helse-bergen, Norway", "Einar Fosse, UNN HF, Norwegian Centre for Integrated Care and Telemedicine, Norway", "Sebastian Garde, Ocean Informatics, Germany", "Mikkel Gaup Grønmo, FSE, Helse Nord, Norway (Nasjonal IKT redaktør)", "Soon Ghee Yap, Singapore Health Services Pte Ltd, Singapore", "Heather Grain, Llewelyn Grain Informatics, Australia", "Morten Granum, DIPS ASA, Norway", "Bjørn Grøva, Diretoratet for e-helse, Norway", "Anne Harbison, CPCER, Australia", "Knut Harboe, Stavanger Universitetssjukehus, Norway", "Sam Heard, Ocean Informatics, Australia", "Ingrid Heitmann, Oslo universitetssykehus HF, Norway", "Kristian Heldal, Telemark Hospital Trust, Norway", "Terje Hellemo, Helse Nord FIKS, Norway", "Andreas Hering, Helse Bergen HF, Haukeland universitetssjukehus, Norway", "Jan Inge Sørheim, Helse Bergen, Haukeland uniersitetssjukehus, Norway", "Andrew James, University of Toronto, Canada", "Tom Jarl Jakobsen, Helse Bergen, Norway", "Nils Jonsson, Landstinget i Östergötland, Sweden", "Konstantinos Kalliamvakos, Cambio Healthcare Systems, Sweden", "Sabine Leh, Helse Bergen, Norway", "Heather Leslie, Atomica Informatics, Australia (openEHR Editor)", "Rikard Lovstrom, Swedish Medical Association, Sweden", "Camilla Lund, Institute for Cancer Genetics and Informatics, Norway", "Hallvard Lærum, Direktoratet for e-helse, Norway", "Arne Løberg Sæter, DIPS ASA, Norway", "Tinna Magnusdottir, Helse Bergen, Norway", "Jone Marius Vignes, Senter for medisinsk genetikk og molekylærmedisin, Norway", "Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)", "Jeroen Meintjens, Medisch Centrum Alkmaar, Netherlands", "Hugo Nilssen, UNN HF K3K/Tromsø, Norway", "Anne-Berit Norman Paulsen, Universitetssykehuset Nord-Norge, Norway", "Bjørn Næss, DIPS ASA, Norway", "Tilde Ostborg, SUS, Norway", "Anne Pauline Anderssen, Helse Nord RHF, Norway", "Rune Pedersen, Universitetssykehuset i Nord Norge, Norway", "Lars Retterstøl, OUS, Norway", "Thomas Schopf, University Hospital of North-Norway, Norway", "Kari Sygnestveit, Helse Bergen, Norway", "Line Sæle, Nasjonal IKT HF, Norway", "Line Sørensen, Helse Bergen, Norway", "Eli Taranger Ljønes, Bodø kommune, Norway", "Micaela Thierley, Helse Bergen/Haraldsplass sykehus, Norway", "Kevin Thon, SKDE, Norway", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)", "Karl Trygve Kalleberg, Oslo Universitetssykehus, Norway", "Thomas Wilson, Finnmarkssykehuset HF Klinikk Hammerfest, Norway">
 	other_details = <
-		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
 		["custodian_organisation"] = <"openEHR Foundation">
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"B7CBE264803846DAA95A01EEF598BA3B">
-		["build_uid"] = <"7f486ee0-a285-4af0-bda6-32c007a95547">
-		["revision"] = <"2.1.6">
+		["MD5-CAM-1.0.1"] = <"AC4E9E8F5DF9E8CC0B16B1D5A7B3A945">
+		["build_uid"] = <"8df3f8fd-7a21-4437-bee6-c5efa2ec620a">
+		["revision"] = <"2.1.8">
 	>
 
 definition
@@ -431,6 +453,7 @@ definition
 			}
 		}
 	}
+
 
 
 ontology
@@ -607,8 +630,8 @@ ontology
 					description = <"*@ internal @(en)">
 				>
 				["at0003"] = <
-					text = <"*Any event(en)">
-					description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+					text = <"任意のイベント">
+					description = <"デフォルトではテンプレートや実行時に明示的に定義される特定されていない時点あるいは間隔でのイベント">
 				>
 				["at0004"] = <
 					text = <"重量">
@@ -619,8 +642,8 @@ ontology
 					description = <"*@ internal @(en)">
 				>
 				["at0009"] = <
-					text = <"*State of dress(en)">
-					description = <"*Description of the state of dress of the person at the time of weighing.(en)">
+					text = <"着衣状態">
+					description = <"体重測定時の着衣状態についての記述￥">
 				>
 				["at0010"] = <
 					text = <"靴も履いている着衣状態">
@@ -647,26 +670,25 @@ ontology
 					description = <"測定に使用された機器についての詳細な記録">
 				>
 				["at0024"] = <
-					text = <"*Comment(en)">
-					description = <"*Additional narrative about the measurement of Body weight, not captured in other fields.(en)">
+					text = <"コメント">
+					description = <"他のフィールドには記載されない体重の計測についての叙述的記録">
 				>
 				["at0025"] = <
-					text = <"*Confounding factors(en)">
-					description = <"*Record any issues or factors that may impact on the measurement of body weight eg timing in menstrual cycle, timing of recent bowel motion or noting of amputation.(en)">
+					text = <"交絡因子">
+					description = <"体重計測に影響を与えうるすべての要素や問題。例えば、月経周期や直近の排便時、四肢切断の有無。">
 				>
 				["at0026"] = <
-					text = <"*Birth(en)">
-					description = <"*Usually the first weight, measured soon after birth. This event will only be used once per health record
-.(en)">
+					text = <"生下時">
+					description = <"一般的には誕生後最初に計測される体重。このイベントは一生に1回だけ記録される。">
 				>
 				["at0027"] = <
-					text = <"*Extension(en)">
-					description = <"*Additional information required to capture local content or to align with other reference models/formalisms.(en)">
-					comment = <"*For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.(en)">
+					text = <"拡張領域">
+					description = <"ローカルの内容や他の参照モデル、形式に割り当ててデータを取得する追加情報">
+					comment = <"例えば、FHIRやCIMIと同等に割り当てられるメタデータやローカルの情報要件">
 				>
 				["at0028"] = <
-					text = <"*Fully clothed, without shoes (en)">
-					description = <"*Clothing which may add significantly to weight. (en)">
+					text = <"靴を脱いだ着衣状態">
+					description = <"体重計測に影響を与えうる着衣状態">
 				>
 			>
 		>
@@ -1041,7 +1063,7 @@ ontology
 	">
 				>
 				["at0025"] = <
-					text = <"Einflußfaktoren">
+					text = <"Einflussfaktoren">
 					description = <"Beschreibung aller Probleme oder Faktoren, die sich auf die Messung des Körpergewichts auswirken können, z. B. das Timing im Menstruationszyklus, das Timing des letzten Stuhlgangs oder das Feststellen einer Amputation.">
 				>
 				["at0026"] = <
@@ -1278,7 +1300,7 @@ ontology
 				>
 				["at0026"] = <
 					text = <"Födelse">
-					description = <"Vanligtvis den första vägningen, strax efter födseln. Den här händelsen registeras endast en gång per patientjournal.">
+					description = <"Vanligtvis den första vägningen, strax efter födseln. Den här händelsen registreras endast en gång per patientjournal.">
 				>
 				["at0027"] = <
 					text = <"Tilläggsinformation">
@@ -1286,8 +1308,8 @@ ontology
 					comment = <"Exempelvis lokala informationskrav eller metadata för anpassning till FHIR- eller CIMI-motsvarigheter.">
 				>
 				["at0028"] = <
-					text = <"*Fully clothed, without shoes (en)">
-					description = <"*Clothing which may add significantly to weight. (en)">
+					text = <"Fullt påklädd, utan skor">
+					description = <"Kläder som kan addera vikt avsevärt.">
 				>
 			>
 		>
@@ -1519,6 +1541,83 @@ ontology
 				["at0028"] = <
 					text = <"Entièrement vêtu, sans chaussures">
 					description = <"Les vêtements qui peuvent augmenter considérablement le poids.">
+				>
+			>
+		>
+		["ca"] = <
+			items = <
+				["at0000"] = <
+					text = <"Pes corporal">
+					description = <"Mesurament del pes corporal d'un individu.">
+				>
+				["at0001"] = <
+					text = <"Simple">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"history">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Qualsevol esdeveniment">
+					description = <"Esdeveniment en un interval o moment no especificat, que es pot definir explícitament en una plantilla o en temps d'execució.">
+				>
+				["at0004"] = <
+					text = <"Pes">
+					description = <"Pes de l'individu.">
+				>
+				["at0008"] = <
+					text = <"state structure">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Vestimenta">
+					description = <"Descripció de la vestimenta de la persona al moment del mesurament del pes corporal.">
+				>
+				["at0010"] = <
+					text = <"Totalment vestit/da, incloent calçat">
+					description = <"La indumentària, incloent-hi calçat, pot incrementar el pes de forma significativa.">
+				>
+				["at0011"] = <
+					text = <"Indumentària lleugera/Roba interior">
+					description = <"La indumentària no genera un increment significatiu del pes.">
+				>
+				["at0013"] = <
+					text = <"Nu/a">
+					description = <"Sense roba.">
+				>
+				["at0015"] = <
+					text = <"protocol structure">
+					description = <"@ internal @">
+				>
+				["at0017"] = <
+					text = <"Bolquers">
+					description = <"Únicament amb un bolquer. Pot incrementar el pes de forma significativa.">
+				>
+				["at0020"] = <
+					text = <"Dispositiu">
+					description = <"Detalls sobre el dispositiu de pesatge.">
+				>
+				["at0024"] = <
+					text = <"Comentaris">
+					description = <"Narració addicional sobre el mesurament del pes corporal, no registrat en altres camps.">
+				>
+				["at0025"] = <
+					text = <"Factors de confusió">
+					description = <"Registrar qualsevol problema o factor que pugui afectar el mesurament del pes corporal, per exemple, moment del cicle menstrual, evacuació intestinal recent o registre d'una amputació.">
+				>
+				["at0026"] = <
+					text = <"Pes en néixer">
+					description = <"Generalment la primera mesura de pes corporal, presa poc després del naixement. Aquest esdeveniment només es farà servir una vegada per registre mèdic.">
+				>
+				["at0027"] = <
+					text = <"Extensió">
+					description = <"Informació addicional requerida per registrar contingut local o per alinear-se amb altres models/formalismes de referència.">
+					comment = <"Per exemple: requisits d'informació local o metadades addicionals per alinear-se amb els equivalents de FHIR o CIMI.">
+				>
+				["at0028"] = <
+					text = <"Totalment vestit/da, sense calçat">
+					description = <"La indumentària, sense calçat, pot incrementar el pes de manera significativa.">
 				>
 			>
 		>
