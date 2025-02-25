@@ -105,13 +105,13 @@ public class ADL14TermConstraintConverter {
                 //local codes
                 if(cTerminologyCode.getConstraint().size() == 1) {
                     //do not create a value set, just convert the code
-                    String newCode = converter.convertValueCode(firstConstraint);
+                    String newCode = converter.convertIntoAtCode(firstConstraint);
                     converter.addConvertedCode(firstConstraint, newCode);
                     cTerminologyCode.setConstraint(Lists.newArrayList(newCode));
                 } else {
                     Set<String> localCodes = new LinkedHashSet<>();
                     for(String code:cTerminologyCode.getConstraint()) {
-                        String newCode = converter.convertValueCode(code);
+                        String newCode = converter.convertIntoAtCode(code);
                         converter.addConvertedCode(code, newCode);
                         localCodes.add(newCode);
                     }
@@ -177,7 +177,7 @@ public class ADL14TermConstraintConverter {
             if(cTerminologyCode.getAssumedValue() != null) {
                 TerminologyCode assumedValue = cTerminologyCode.getAssumedValue();
                 if(isLocalCode) {
-                    String newCode = converter.convertValueCode(assumedValue.getCodeString());
+                    String newCode = converter.convertIntoAtCode(assumedValue.getCodeString());
                     assumedValue.setCodeString(newCode);
                     assumedValue.setTerminologyId(null);
                 } else {
