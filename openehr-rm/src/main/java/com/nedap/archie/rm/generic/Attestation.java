@@ -42,11 +42,11 @@ public class Attestation extends AuditDetails {
 
     public Attestation(String systemId, PartyProxy committer, DvDateTime timeCommitted, DvCodedText changeType, @Nullable DvText description, @Nullable DvMultimedia attestedView, @Nullable String proof, @Nullable List<DvEHRURI> items, DvText reason, boolean isPending) {
         super(systemId, committer, timeCommitted, changeType, description);
-        this.attestedView = attestedView;
-        this.proof = proof;
-        this.items = items;
-        this.reason = reason;
-        this.isPending = isPending;
+        setAttestedView(attestedView);
+        setProof(proof);
+        setItems(items);
+        setReason(reason);
+        setPending(isPending);
     }
 
     @Nullable

@@ -47,10 +47,10 @@ public class Action extends CareEntry {
 
     public Action(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef<? extends ObjectId> workflowId, @Nullable List<Participation> otherParticipations, @Nullable ItemStructure protocol, @Nullable ObjectRef<? extends ObjectId> guidelineId, DvDateTime time, ItemStructure description, IsmTransition ismTransition, @Nullable InstructionDetails instructionDetails) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName, language, encoding, subject, provider, workflowId, otherParticipations, protocol, guidelineId);
-        this.time = time;
-        this.description = description;
-        this.ismTransition = ismTransition;
-        this.instructionDetails = instructionDetails;
+        setTime(time);
+        setDescription(description);
+        setIsmTransition(ismTransition);
+        setInstructionDetails(instructionDetails);
     }
 
     public DvDateTime getTime() {

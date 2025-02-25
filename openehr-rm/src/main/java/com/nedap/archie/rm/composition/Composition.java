@@ -52,22 +52,22 @@ public class Composition extends Locatable {
 
     public Composition(String archetypeNodeId, DvText name, @Nullable List<ContentItem> content, CodePhrase language, @Nullable EventContext context, PartyProxy composer, DvCodedText category, CodePhrase territory) {
         super(archetypeNodeId, name);
-        this.language = language;
-        this.territory = territory;
-        this.category = category;
-        this.composer = composer;
-        this.context = context;
-        this.content = content;
+        setLanguage(language);
+        setTerritory(territory);
+        setCategory(category);
+        setComposer(composer);
+        setContext(context);
+        setContent(content);
     }
 
     public Composition(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable List<ContentItem> content, CodePhrase language, @Nullable EventContext context, PartyProxy composer, DvCodedText category, CodePhrase territory) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.language = language;
-        this.territory = territory;
-        this.category = category;
-        this.composer = composer;
-        this.context = context;
-        this.content = content;
+        setLanguage(language);
+        setTerritory(territory);
+        setCategory(category);
+        setComposer(composer);
+        setContext(context);
+        setContent(content);
     }
 
     @JsonProperty

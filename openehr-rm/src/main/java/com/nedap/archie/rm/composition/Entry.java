@@ -58,12 +58,12 @@ public abstract class Entry extends ContentItem {
 
     public Entry(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef<? extends ObjectId> workflowId, @Nullable List<Participation> otherParticipations) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.language = language;
-        this.encoding = encoding;
-        this.workflowId = workflowId;
-        this.subject = subject;
-        this.provider = provider;
-        this.otherParticipations = otherParticipations;
+        setLanguage(language);
+        setEncoding(encoding);
+        setWorkflowId(workflowId);
+        setSubject(subject);
+        setProvider(provider);
+        setOtherParticipations(otherParticipations);
     }
 
     public PartyProxy getSubject() {

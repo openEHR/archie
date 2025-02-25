@@ -21,7 +21,7 @@ public abstract class DvTimeSpecification extends DataValue {
 	}
 
 	public DvTimeSpecification(DvParsable value) {
-		this.value = value;
+		setValue(value);
 	}
 
     public DvParsable getValue() {

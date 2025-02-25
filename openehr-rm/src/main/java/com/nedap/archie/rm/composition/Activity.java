@@ -47,16 +47,16 @@ public class Activity extends Locatable {
 
     public Activity(String archetypeNodeId, DvText name, ItemStructure description, @Nullable DvParsable timing, String actionArchetypeId) {
         super(archetypeNodeId, name);
-        this.description = description;
-        this.timing = timing;
-        this.actionArchetypeId = actionArchetypeId;
+        setDescription(description);
+        setTiming(timing);
+        setActionArchetypeId(actionArchetypeId);
     }
 
     public Activity(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, ItemStructure description, @Nullable DvParsable timing, String actionArchetypeId) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.description = description;
-        this.timing = timing;
-        this.actionArchetypeId = actionArchetypeId;
+        setDescription(description);
+        setTiming(timing);
+        setActionArchetypeId(actionArchetypeId);
     }
 
     public ItemStructure getDescription() {

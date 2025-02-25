@@ -24,7 +24,7 @@ public class ImportedVersion<T> extends Version<T> {
 
     public ImportedVersion(AuditDetails commitAudit, ObjectRef<? extends ObjectId> contribution, @Nullable String signature, OriginalVersion<T> item) {
         super(commitAudit, contribution, signature);
-        this.item = item;
+        setItem(item);
     }
 
     @Override
@@ -60,6 +60,10 @@ public class ImportedVersion<T> extends Version<T> {
 
     public OriginalVersion<T> getItem() {
         return item;
+    }
+
+    public void setItem(OriginalVersion<T> item) {
+        this.item = item;
     }
 
     @Override

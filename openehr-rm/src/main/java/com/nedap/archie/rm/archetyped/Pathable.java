@@ -42,8 +42,8 @@ public abstract class Pathable extends RMObject {
     }
 
     public Pathable(@Nullable Pathable parent, @Nullable String parentAttributeName) {
-        this.parent = parent;
-        this.parentAttributeName = parentAttributeName;
+        setParent(parent);
+        setParentAttributeName(parentAttributeName);
     }
 
     public Object itemAtPath(String s) {
