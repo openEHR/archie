@@ -36,9 +36,9 @@ public class InstructionDetails extends Pathable {
     }
 
     public InstructionDetails(LocatableRef instructionId, String activityId, @Nullable ItemStructure wfDetails) {
-        this.instructionId = instructionId;
-        this.activityId = activityId;
-        this.wfDetails = wfDetails;
+        setInstructionId(instructionId);
+        setActivityId(activityId);
+        setWfDetails(wfDetails);
     }
 
     public LocatableRef getInstructionId() {

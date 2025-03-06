@@ -32,9 +32,9 @@ public class Contribution extends RMObject {
     }
 
     public Contribution(HierObjectId uid, List<ObjectRef<? extends ObjectId>> versions, AuditDetails audit) {
-        this.uid = uid;
-        this.versions = versions;
-        this.audit = audit;
+        setUid(uid);
+        setVersions(versions);
+        setAudit(audit);
     }
 
     public HierObjectId getUid() {

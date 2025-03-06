@@ -49,17 +49,17 @@ public final class History<Type extends ItemStructure> extends DataStructure {
 
     public History(String archetypeNodeId, DvText name, DvDateTime origin, @Nullable List<Event<Type>> events) {
         super(archetypeNodeId, name);
-        this.origin = origin;
-        this.events = events;
+        setOrigin(origin);
+        setEvents(events);
     }
 
     public History(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, DvDateTime origin, @Nullable List<Event<Type>> events, @Nullable DvDuration period, @Nullable DvDuration duration, @Nullable Type summary) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.origin = origin;
-        this.period = period;
-        this.duration = duration;
-        this.summary = summary;
-        this.events = events;
+        setOrigin(origin);
+        setPeriod(period);
+        setDuration(duration);
+        setSummary(summary);
+        setEvents(events);
     }
 
     public DvDateTime getOrigin() {

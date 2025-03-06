@@ -20,7 +20,7 @@ public class DvBoolean extends DataValue implements SingleValuedDataValue<Boolea
     }
 
     public DvBoolean(Boolean value) {
-        this.value = value;
+        setValue(value);
     }
 
     @Override

@@ -37,10 +37,10 @@ public class Participation extends RMObject {
     }
 
     public Participation(PartyProxy performer, DvText function, @Nullable DvCodedText mode, @Nullable DvInterval<DvDateTime> time) {
-        this.function = function;
-        this.mode = mode;
-        this.time = time;
-        this.performer = performer;
+        setFunction(function);
+        setMode(mode);
+        setTime(time);
+        setPerformer(performer);
     }
 
     public DvText getFunction() {

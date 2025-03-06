@@ -24,9 +24,9 @@ public class Link extends RMObject {
     }
 
     public Link(DvText meaning, DvText type, DvEHRURI target) {
-        this.meaning = meaning;
-        this.type = type;
-        this.target = target;
+        setMeaning(meaning);
+        setType(type);
+        setTarget(target);
     }
 
     public DvText getMeaning() {

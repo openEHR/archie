@@ -43,9 +43,9 @@ public class CodePhrase extends RMObject {
     }
 
     public CodePhrase(TerminologyId terminologyId, String codeString, String preferredTerm) {
-        this.terminologyId = terminologyId;
-        this.codeString = codeString;
-        this.preferredTerm = preferredTerm;
+        setTerminologyId(terminologyId);
+        setCodeString(codeString);
+        setPreferredTerm(preferredTerm);
     }
 
     /**

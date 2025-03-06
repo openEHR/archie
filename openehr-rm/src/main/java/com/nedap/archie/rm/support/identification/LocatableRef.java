@@ -22,7 +22,7 @@ public class LocatableRef extends ObjectRef<UIDBasedId> {
 
     public LocatableRef(UIDBasedId id, String namespace, String type, String path) {
         super(id, namespace, type);
-        this.path = path;
+        setPath(path);
     }
 
     public String getPath() {

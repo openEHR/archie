@@ -36,12 +36,12 @@ public class ItemSingle extends ItemStructure {
 
     public ItemSingle(String archetypeNodeId, DvText name, Element item) {
         super(archetypeNodeId, name);
-        this.item = item;
+        setItem(item);
     }
 
     public ItemSingle(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, Element item) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.item = item;
+        setItem(item);
     }
 
     public Element getItem() {

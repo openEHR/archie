@@ -28,17 +28,17 @@ public class DvCodedText extends DvText {
 
     public DvCodedText(String value, CodePhrase definingCode) {
         super(value);
-        this.definingCode = definingCode;
+        setDefiningCode(definingCode);
     }
 
     public DvCodedText(String value, String definingCode) {
         super(value);
-        this.definingCode = new CodePhrase(definingCode);
+        setDefiningCode(new CodePhrase(definingCode));
     }
 
     public DvCodedText(String value, @Nullable CodePhrase language, @Nullable CodePhrase encoding, CodePhrase definingCode) {
         super(value, language, encoding);
-        this.definingCode = definingCode;
+        setDefiningCode(definingCode);
     }
 
     public CodePhrase getDefiningCode() {

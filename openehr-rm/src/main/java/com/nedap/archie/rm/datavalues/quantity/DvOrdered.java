@@ -43,14 +43,14 @@ public abstract class DvOrdered<DataValueType extends DvOrdered<DataValueType>> 
     }
 
     public DvOrdered(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange) {
-        this.normalRange = normalRange;
-        this.otherReferenceRanges = otherReferenceRanges;
+        setNormalRange(normalRange);
+        setOtherReferenceRanges(otherReferenceRanges);
     }
 
     protected DvOrdered(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange, @Nullable CodePhrase normalStatus) {
-        this.normalStatus = normalStatus;
-        this.normalRange = normalRange;
-        this.otherReferenceRanges = otherReferenceRanges;
+        setNormalStatus(normalStatus);
+        setNormalRange(normalRange);
+        setOtherReferenceRanges(otherReferenceRanges);
     }
 
 

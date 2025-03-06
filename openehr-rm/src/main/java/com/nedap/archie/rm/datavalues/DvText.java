@@ -45,13 +45,13 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
     }
 
     public DvText(String value) {
-        this.value = value;
+        setValue(value);
     }
 
     public DvText(String value, @Nullable CodePhrase language, @Nullable CodePhrase encoding) {
-        this.value = value;
-        this.language = language;
-        this.encoding = encoding;
+        setValue(value);
+        setLanguage(language);
+        setEncoding(encoding);
     }
 
     public List<TermMapping> getMappings() {

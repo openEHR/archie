@@ -27,14 +27,14 @@ public class DvScale extends DvOrdered<DvScale> implements SingleValuedDataValue
     }
 
     public DvScale(Double value, DvCodedText symbol) {
-        this.symbol = symbol;
-        this.value = value;
+        setSymbol(symbol);
+        setValue(value);
     }
 
     public DvScale(@Nullable List<ReferenceRange<DvScale>> otherReferenceRanges, @Nullable DvInterval<DvScale> normalRange, Double value, DvCodedText symbol) {
         super(otherReferenceRanges, normalRange);
-        this.symbol = symbol;
-        this.value = value;
+        setSymbol(symbol);
+        setValue(value);
     }
 
     @Override

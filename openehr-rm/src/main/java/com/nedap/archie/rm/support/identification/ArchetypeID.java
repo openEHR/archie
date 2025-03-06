@@ -96,13 +96,13 @@ public class ArchetypeID extends ObjectId {
             parseValue(value);
             setValue(value);
         } else {
-            this.qualifiedRmEntity = qualifiedRmEntity;
-            this.domainConcept = domainConcept;
-            this.rmOriginator = rmOriginator;
-            this.rmName = rmName;
-            this.rmEntity = rmEntity;
-            this.specialisation = specialisation;
-            this.versionId = versionId;
+            setQualifiedRmEntity(qualifiedRmEntity);
+            setDomainConcept(domainConcept);
+            setRmOriginator(rmOriginator);
+            setRmName(rmName);
+            setRmEntity(rmEntity);
+            setSpecialisation(specialisation);
+            setVersionId(versionId);
             setValue(getFullId());
         }
 

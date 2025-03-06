@@ -43,10 +43,10 @@ public class IsmTransition extends Pathable {
     }
 
     public IsmTransition(DvCodedText currentState, @Nullable DvCodedText transition, @Nullable DvCodedText careflowStep, @Nullable List<DvText> reason) {
-        this.currentState = currentState;
-        this.transition = transition;
-        this.careflowStep = careflowStep;
-        this.reason = reason;
+        setCurrentState(currentState);
+        setTransition(transition);
+        setCareflowStep(careflowStep);
+        setReason(reason);
     }
 
     public DvCodedText getCurrentState() {

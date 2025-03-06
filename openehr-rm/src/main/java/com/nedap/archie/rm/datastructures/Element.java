@@ -45,16 +45,16 @@ public class Element extends Item implements SingleValuedDataValue<DataValue> {
 
     public Element(String archetypeNodeId, DvText name, @Nullable DataValue value) {
         super(archetypeNodeId, name);
-        this.value = value;
+        setValue(value);
     }
 
     public Element(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails,
                    @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName,
                    @Nullable DataValue value, @Nullable DvCodedText nullFlavour, DvText nullReason) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.value = value;
-        this.nullFlavour = nullFlavour;
-        this.nullReason = nullReason;
+        setValue(value);
+        setNullFlavour(nullFlavour);
+        setNullReason(nullReason);
     }
 
     public DvCodedText getNullFlavour() {

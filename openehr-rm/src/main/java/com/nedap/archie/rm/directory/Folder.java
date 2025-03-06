@@ -42,16 +42,16 @@ public class Folder extends Locatable {
 
     public Folder(String archetypeNodeId, DvText name, ItemStructure details, @Nullable List<ObjectRef<? extends ObjectId>> items, @Nullable List<Folder> folders) {
         super(archetypeNodeId, name);
-        this.items = items;
-        this.folders = folders;
-        this.details = details;
+        setItems(items);
+        setFolders(folders);
+        setDetails(details);
     }
 
     public Folder(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, ItemStructure details, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable List<ObjectRef<? extends ObjectId>> items, @Nullable List<Folder> folders) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.items = items;
-        this.folders = folders;
-        this.details = details;
+        setItems(items);
+        setFolders(folders);
+        setDetails(details);
     }
 
     @Nullable

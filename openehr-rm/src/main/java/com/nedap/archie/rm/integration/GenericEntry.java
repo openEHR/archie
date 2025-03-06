@@ -30,12 +30,12 @@ public class GenericEntry extends ContentItem {
 
     public GenericEntry(String archetypeNodeId, DvText name, ItemTree data) {
         super(archetypeNodeId, name);
-        this.data = data;
+        setData(data);
     }
 
     public GenericEntry(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, ItemTree data) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.data = data;
+        setData(data);
     }
 
     public ItemTree getData() {
