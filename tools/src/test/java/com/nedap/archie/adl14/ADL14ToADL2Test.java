@@ -46,9 +46,6 @@ public class ADL14ToADL2Test {
         ADL2ConversionResultList resultList = converter.convert(List.of(adl14));
         Archetype result = resultList.getConversionResults().get(0).getArchetype();
 
-        Path path = Paths.get("result-id.adls");
-        Files.write(path, ADLArchetypeSerializer.serialize(result).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-
         assertEquals("2.3.0", result.getAdlVersion());
         assertArchetypes(expected, result);
         assertArchetypes(result, expected); // Also check the reverse, to check if the result doesn't have more than the expected archetype
@@ -132,9 +129,5 @@ public class ADL14ToADL2Test {
         expectedValueSets.keySet().forEach(key -> {
             assertEquals(expectedValueSets.get(key), actualValueSets.get(key));
         });
-
-        // In 'details' bij elke taal komt het nog wel eens voor dat er een extra spatie staat in het at-result
-        // In het resultaat archetype staan er nog comments achter elke CComplexObject (zoals HISTORY, ITEM_TREE) waar dat in het voorbeeld niet zo is
-        // Volgorde van de terminology is anders, omdat dit gebaseerd is op welke als laatste is toegevoegd aan de map
     }
 }
