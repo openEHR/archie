@@ -17,12 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ADL14TermConstraintConverter {
@@ -44,7 +39,6 @@ public class ADL14TermConstraintConverter {
     }
 
     private void convert(CObject cObject) {
-
         if (cObject instanceof CTerminologyCode) {
             convertCTerminologyCode((CTerminologyCode) cObject);
         }
@@ -111,9 +105,13 @@ public class ADL14TermConstraintConverter {
                 } else {
                     Set<String> localCodes = new LinkedHashSet<>();
                     for(String code:cTerminologyCode.getConstraint()) {
-                        String newCode = converter.convertIntoAtCode(code);
-                        converter.addConvertedCode(code, newCode);
-                        localCodes.add(newCode);
+                        if (converter.getConversionConfiguration().getAdlConfiguration().equals(ADL14ConversionConfiguration.ADL2VERSION.ID_CODED)) {
+                            String newCode = converter.convertIntoAtCode(code);
+                            converter.addConvertedCode(code, newCode);
+                            localCodes.add(newCode);
+                        } else {
+                            localCodes.add(code);
+                        }
                     }
 
                     ValueSet valueSet = findOrCreateValueSet(cTerminologyCode.getArchetype(), localCodes, cTerminologyCode);
@@ -330,6 +328,11 @@ public class ADL14TermConstraintConverter {
                 String oldCode = converter.getOldCodeForNewCode(cObject.getNodeId());
                 if(oldCode != null && archetype.getTerminology().getTermDefinition(language, oldCode) != null) {
                     ArchetypeTerm term = archetype.getTerminology().getTermDefinition(language, oldCode);
+                    if(term != null) {
+                        return term;
+                    }
+                } else if (archetype.getTerminology().getTermDefinition(language, cObject.getNodeId()) != null) {
+                    ArchetypeTerm term = archetype.getTerminology().getTermDefinition(language, cObject.getNodeId());
                     if(term != null) {
                         return term;
                     }

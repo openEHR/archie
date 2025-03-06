@@ -1,4 +1,4 @@
-archetype (adl_version=2.3.0; rm_release=1.1.0; generated; uid=1ae8ee42-b9ba-4704-8f3b-02a8abfd3e03; build_uid=8df3f8fd-7a21-4437-bee6-c5efa2ec620a)
+archetype (adl_version=2.4.0; rm_release=1.1.0; generated; uid=1ae8ee42-b9ba-4704-8f3b-02a8abfd3e03; build_uid=8df3f8fd-7a21-4437-bee6-c5efa2ec620a)
     openEHR-EHR-OBSERVATION.body_weight.v2.1.8
 
 language
@@ -446,7 +446,7 @@ terminology
                 text = <"Status der Bekleidung (synthesised)">
                 description = <"Beschreibung des Kleidungszustands der Person zum Zeitpunkt des Wiegens. (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"Voll bekleidet, ohne Schuhen">
                 description = <"Bekleidung, die signifikant zum Gewicht beiträgt.">
             >
@@ -472,19 +472,19 @@ terminology
                 text = <"Gerät">
                 description = <"Details über die benutzte Waage.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"Windel">
                 description = <"Trägt Windel; kann signifikant zum Gewicht beitragen.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Unbekleidet">
                 description = <"Ohne Kleidung.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"Leicht bekleidet / Unterwäsche">
                 description = <"Bekleidung, die nicht signifikant zum Gewicht beiträgt.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"Voll bekleidet, mit Schuhen">
                 description = <"Bekleidung, die signifikant zum Gewicht beiträgt, mit Schuhen.">
             >
@@ -514,7 +514,7 @@ terminology
                 text = <"*State of dress(en) (synthesised)">
                 description = <"*Description of the state of dress of the person at the time of weighing.(en) (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"*Fully clothed, without shoes (en)">
                 description = <"*Clothing which may add significantly to weight. (en)">
             >
@@ -540,19 +540,19 @@ terminology
                 text = <"Устройство">
                 description = <"Весы (устройство, на котором производилось взвешивание): информация.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"В памперсе">
                 description = <"Одет(а) только в памперс - может добавить значительный вес.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Обнажен">
                 description = <"Без какой-либо одежды и белья.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"В лёгкой одежде или раздевшись до белья">
                 description = <"Одежда, не добавляющая значительный вес.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"В одежде без обуви">
                 description = <"Одежда может добавить значительный вес.">
             >
@@ -582,7 +582,7 @@ terminology
                 text = <"Klädsel (synthesised)">
                 description = <"Beskrivning av individens klädsel vid tidpunkten för vägning. (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"Fullt påklädd, utan skor">
                 description = <"Kläder som kan addera vikt avsevärt.">
             >
@@ -607,19 +607,19 @@ terminology
                 text = <"Utrustning">
                 description = <"Detaljer om den utrustning som används för att mäta vikten.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"Blöja">
                 description = <"Iklädd endast blöja, som kan addera vikt avsevärt.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Naken">
                 description = <"Inga kläder alls.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"Lätt klädd/underkläder">
                 description = <"Kläder som inte adderar vikt avsevärt.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"Fullt påklädd, inklusive skor">
                 description = <"Kläder, inklusive skor, som kan addera vikt avsevärt.">
             >
@@ -649,7 +649,7 @@ terminology
                 text = <"Vaatetus (synthesised)">
                 description = <"Kuvaus mitattavan vaatetuksesta mittaushetkellä. (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"*Fully clothed, without shoes (en)">
                 description = <"*Clothing which may add significantly to weight. (en)">
             >
@@ -674,19 +674,19 @@ terminology
                 text = <"Laite">
                 description = <"Lisätietoja käytetystä mittalaitteesta.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"Vaippa">
                 description = <"Ainoastaan vaippa - voi lisätä merkittävästi painoa.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Alasti">
                 description = <"Ilman vaatteita.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"Kevyt vaatetus/alusvaatteet">
                 description = <"Vaatetus, joka ei merkittävästi lisää painoa.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"Vaatteet päällä, kengät jalassa">
                 description = <"Vaatetus, joka voi merkittävästi lisätä painoa, sisältäen kengät.">
             >
@@ -716,7 +716,7 @@ terminology
                 text = <"Situação do vestuário (synthesised)">
                 description = <"Descrição da situação do vestuário do indivíduo no momento da pesagem. (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"Totalmente vestida, sem sapatos">
                 description = <"Roupas que podem aumentar significativamente o peso.">
             >
@@ -741,19 +741,19 @@ terminology
                 text = <"Dispositivo">
                 description = <"Detalhes sobre o dispositivo de pesagem.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"Fralda">
                 description = <"Vestindo apenas uma fralda - pode adicionar peso significativo.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Despido">
                 description = <"Sem nenhuma roupa.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"Levemente vestido / roupa íntimas">
                 description = <"Roupas que não irão acrescentar ao peso de forma significativa.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"Totalmente vestida, incluindo sapatos">
                 description = <"Roupas que podem aumentar significativamente o peso, incluindo sapatos.">
             >
@@ -783,7 +783,7 @@ terminology
                 text = <"*State of dress(en) (synthesised)">
                 description = <"*Description of the state of dress of the person at the time of weighing.(en) (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"*Fully clothed, without shoes (en)">
                 description = <"*Clothing which may add significantly to weight. (en)">
             >
@@ -809,19 +809,19 @@ terminology
                 text = <"الجهيزة">
                 description = <"تفاصيل حول الجهيزة المستخدمة في القياس">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"حفاظة">
                 description = <"الشخص يرتدي حفاظة فقط - و قد يزيد ذلك من الوزن بشكل مؤثر">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"مُعَرَّى">
                 description = <"لا يرتدي أي ملابس">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"ملابس خفيفة/ ملابس داخلية">
                 description = <"ملابس لا تزيد الوزن بشكل مؤثر">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"ملابس كاملة, بما في ذلك الأحذية">
                 description = <"الشخص يرتدي ملابس قد تزيد الوزن بشكل مؤثر, بما في ذلك الأحذية.">
             >
@@ -851,7 +851,7 @@ terminology
                 text = <"State of dress (synthesised)">
                 description = <"Description of the state of dress of the person at the time of weighing. (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"Fully clothed, without shoes">
                 description = <"Clothing which may add significantly to weight.">
             >
@@ -877,19 +877,19 @@ terminology
                 text = <"Device">
                 description = <"Details about the weighing device.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"Nappy/diaper">
                 description = <"Wearing only a nappy - which may add significantly to weight.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Naked">
                 description = <"Without any clothes.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"Lightly clothed/underwear">
                 description = <"Clothing which will not add to weight significantly.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"Fully clothed, including shoes">
                 description = <"Clothing which may add significantly to weight, including shoes.">
             >
@@ -919,7 +919,7 @@ terminology
                 text = <"État de la tenue vestimentaire (synthesised)">
                 description = <"Description de l'état vestimentaire de la personne au moment de la pesée. (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"Entièrement vêtu, sans chaussures">
                 description = <"Les vêtements qui peuvent augmenter considérablement le poids.">
             >
@@ -944,19 +944,19 @@ terminology
                 text = <"Dispositif">
                 description = <"Détails sur le dispositif de pesage.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"Couche-culotte">
                 description = <"Ne porter qu'une couche - ce qui peut augmenter considérablement le poids.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Nu">
                 description = <"Sans vêtements.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"Légèrement vêtu/en sous-vêtement">
                 description = <"Des vêtements qui n'augmentent pas le poids de manière significative.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"Entièrement habillé, y compris les chaussures">
                 description = <"Les vêtements qui peuvent augmenter considérablement le poids, y compris les chaussures.">
             >
@@ -986,7 +986,7 @@ terminology
                 text = <"衣着状态 (synthesised)">
                 description = <"关于称重时受检人员的衣着状态 (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"衣着整齐，不包括鞋子">
                 description = <"可能会显著增加重量的衣物。">
             >
@@ -1012,19 +1012,19 @@ terminology
                 text = <"装置">
                 description = <"关于称重装置的详细信息。">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"尿布/尿不湿">
                 description = <"仅有尿布/尿不湿 - 有可能显著增加重量。">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"裸体">
                 description = <"没有穿着任何衣物。">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"衣着轻便/仅内衣">
                 description = <"所穿着衣物并不会显著增加重量。">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"衣着整齐，包括鞋子">
                 description = <"包括鞋子在内，所穿着衣物可能显著增加重量。">
             >
@@ -1054,7 +1054,7 @@ terminology
                 text = <"*State of dress(en) (synthesised)">
                 description = <"*Description of the state of dress of the person at the time of weighing.(en) (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"*Fully clothed, without shoes (en)">
                 description = <"*Clothing which may add significantly to weight. (en)">
             >
@@ -1080,19 +1080,19 @@ terminology
                 text = <"Dispositivo">
                 description = <"Detalles acerca del dispositivo de pesada.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"Pañales">
                 description = <"Únicamente con un pañal. Puede incrementar el peso de forma significativa.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Desnudo">
                 description = <"Sin ropa.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"Indumentaria ligera/Ropa interior">
                 description = <"La indumentaria no genera un incremento significativo del peso.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"Totalmente vestido incluyendo calzado">
                 description = <"La indumentaria, incluyendo calzado, puede incrementar el peso de forma significativa.">
             >
@@ -1122,7 +1122,7 @@ terminology
                 text = <"Påkledning (synthesised)">
                 description = <"Beskrivelse av personens påkledning på måletidspunktet. (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"Fullt påkledt, uten sko">
                 description = <"Påkledning som kan øke vekten signifikant.">
             >
@@ -1147,19 +1147,19 @@ terminology
                 text = <"Måleapparat">
                 description = <"Detaljer om måleapparatet brukt til vektmålingen.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"Bleie">
                 description = <"Bare ikledt bleie - kan legge til signifikant vekt.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Naken">
                 description = <"Uten klær.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"Lette klær / undertøy">
                 description = <"Påkledning som ikke endrer vekten signifikant.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"Fullt påkledt inklusive sko">
                 description = <"Påkledning som kan øke vekten signifikant, inklusive sko.">
             >
@@ -1189,7 +1189,7 @@ terminology
                 text = <"着衣状態 (synthesised)">
                 description = <"体重測定時の着衣状態についての記述￥ (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"靴を脱いだ着衣状態">
                 description = <"体重計測に影響を与えうる着衣状態">
             >
@@ -1214,19 +1214,19 @@ terminology
                 text = <"測定機器">
                 description = <"測定に使用された機器についての詳細な記録">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"おむつを付けている状態">
                 description = <"おむつだけをはいている状態。体重測定に関与しうる。">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"全裸">
                 description = <"何も着衣していない">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"軽装／下着">
                 description = <"体重測定にあまり寄与しない着衣">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"靴も履いている着衣状態">
                 description = <"靴を含めて、体重測定に大きく関与するような着衣状態">
             >
@@ -1256,7 +1256,7 @@ terminology
                 text = <"*State of dress(en) (synthesised)">
                 description = <"*Description of the state of dress of the person at the time of weighing.(en) (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"*Fully clothed, without shoes (en)">
                 description = <"*Clothing which may add significantly to weight. (en)">
             >
@@ -1282,19 +1282,19 @@ terminology
                 text = <"تجهیز">
                 description = <"توصیف تجهیز استفاده شده برای اندازه گیری وزن">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"کهنه بچه یا پوشک">
                 description = <"پوشیدن فقط یک پوشک که می تواند وزن را بطور قابل توجهی افزایش دهد">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"لخت">
                 description = <"بدون هر گونه لباس">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"لباس سبک یا لباس زیر">
                 description = <"لباسی که بطور قابل توجهی وزن را افزایش ندهد">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"کاملا لباس پوشیده ، از جمله کفش">
                 description = <"لباسی که ممکن است بطور قابل توجهی به وزن بیافزاید شامل کفش ها">
             >
@@ -1324,7 +1324,7 @@ terminology
                 text = <"Kleding (synthesised)">
                 description = <"Beschrijving van de kleding die de persoon draagt op het moment van wegen. (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"Volledig gekleed maar, zonder schoenen.">
                 description = <"Kleding die het gewicht significant beïnvloedt.">
             >
@@ -1349,19 +1349,19 @@ terminology
                 text = <"Apparaat">
                 description = <"Details over het apparaat waarmee gewogen is.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"Luier">
                 description = <"Individu draagt alleen een luier - die significant aan het gewicht kan bijdragen.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Naakt">
                 description = <"Zonder kleding.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"Lichte kleding/ondergoed">
                 description = <"Kleding die niet significant het gewicht beïnvloedt.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"Volledig gekleed, inclusief schoenen">
                 description = <"Kleren die een significante bijdrage hebben aan het gewicht, inclusief schoenen.">
             >
@@ -1391,7 +1391,7 @@ terminology
                 text = <"Vestimenta (synthesised)">
                 description = <"Descripció de la vestimenta de la persona al moment del mesurament del pes corporal. (synthesised)">
             >
-            ["at29"] = <
+            ["at0028"] = <
                 text = <"Totalment vestit/da, sense calçat">
                 description = <"La indumentària, sense calçat, pot incrementar el pes de manera significativa.">
             >
@@ -1416,19 +1416,19 @@ terminology
                 text = <"Dispositiu">
                 description = <"Detalls sobre el dispositiu de pesatge.">
             >
-            ["at18"] = <
+            ["at0017"] = <
                 text = <"Bolquers">
                 description = <"Únicament amb un bolquer. Pot incrementar el pes de forma significativa.">
             >
-            ["at14"] = <
+            ["at0013"] = <
                 text = <"Nu/a">
                 description = <"Sense roba.">
             >
-            ["at12"] = <
+            ["at0011"] = <
                 text = <"Indumentària lleugera/Roba interior">
                 description = <"La indumentària no genera un increment significatiu del pes.">
             >
-            ["at11"] = <
+            ["at0010"] = <
                 text = <"Totalment vestit/da, incloent calçat">
                 description = <"La indumentària, incloent-hi calçat, pot incrementar el pes de forma significativa.">
             >
@@ -1461,6 +1461,6 @@ terminology
     value_sets = <
         ["ac9001"] = <
             id = <"ac9001">
-            members = <"at14", "at18", "at12", "at29", "at11">
+            members = <"at0013", "at0017", "at0011", "at0028", "at0010">
         >
     >

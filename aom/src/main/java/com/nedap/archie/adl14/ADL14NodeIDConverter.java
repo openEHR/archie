@@ -162,6 +162,20 @@ public class ADL14NodeIDConverter {
                 }
             }
         }
+
+        List<String> termsToRemove = new ArrayList<>();
+        for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
+            Map<String, ArchetypeTerm> terms = archetype.getTerminology().getTermDefinitions().get(language);
+            for (String key : terms.keySet()) {
+                if (unnecessaryCodes.contains(key)) {
+                    termsToRemove.add(key);
+                }
+            }
+            for (String term : termsToRemove) {
+                terms.remove(term);
+            }
+        }
+
         //the terminology can still contain old unused codes now. The archetype validation will warn about that later
     }
 
