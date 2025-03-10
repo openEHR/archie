@@ -116,12 +116,13 @@ class PrimitiveObjectConstraintHelper {
     }
 
     private boolean isValidValue(CTerminologyCode terminologyCode, TerminologyCode value) {
+        if(value.getTerminologyId() == null || value.getCodeString() == null) {
+            return false;
+        }
         if(terminologyCode.getConstraint().isEmpty()) {
             return true;
         }
         if(terminologyCode.isConstraintRequired()) {
-            if (value == null) return false;
-
             List<String> values;
             String terminologyId = value.getTerminologyId();
             if (terminologyId == null || terminologyId.equalsIgnoreCase("local") || AOMUtils.isValueSetCode(value.getTerminologyId())) {

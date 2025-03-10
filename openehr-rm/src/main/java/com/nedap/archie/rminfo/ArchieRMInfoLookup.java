@@ -249,7 +249,9 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     @Override
     public Object convertToConstraintObject(Object object, CPrimitiveObject<?, ?> cPrimitiveObject) {
         if(cPrimitiveObject instanceof CTerminologyCode) {
-            if(object instanceof DvCodedText && ((DvCodedText) object).getDefiningCode() != null) {
+            if(object instanceof DvCodedText
+                    && ((DvCodedText) object).getDefiningCode() != null
+                    && ((DvCodedText) object).getValue() != null) {
                 return convertCodePhrase(((DvCodedText) object).getDefiningCode());
             } else if (object instanceof CodePhrase) {
                 return convertCodePhrase((CodePhrase) object);
