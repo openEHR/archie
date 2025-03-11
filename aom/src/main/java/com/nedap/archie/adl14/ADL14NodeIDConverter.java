@@ -53,7 +53,6 @@ public class ADL14NodeIDConverter {
         this.termConstraintConverter = new ADL14TermConstraintConverter(this, archetype, flatParentArchetype);
         this.previousConversionApplier = new PreviousConversionApplier(this, archetype, oldLog);
         this.conversionResult = conversionResult;
-
     }
 
     public ADL14ConversionConfiguration getConversionConfiguration() {
@@ -158,9 +157,22 @@ public class ADL14NodeIDConverter {
                         newTerm.setText(term.getText());
                         newTerm.setDescription(term.getDescription());
                         newTerm.putAll(term.getOtherItems());
-                        terms.put(newCode, term);
+                        terms.put(newCode, newTerm);
                     }
                 }
+            }
+        }
+
+        List<String> termsToRemove = new ArrayList<>();
+        for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
+            Map<String, ArchetypeTerm> terms = archetype.getTerminology().getTermDefinitions().get(language);
+            for (String key : terms.keySet()) {
+                if (unnecessaryCodes.contains(key)) {
+                    termsToRemove.add(key);
+                }
+            }
+            for (String term : termsToRemove) {
+                terms.remove(term);
             }
         }
 
@@ -290,7 +302,11 @@ public class ADL14NodeIDConverter {
      * Object needs a new nodeId, generate the next valid nodeId and add in to the terminology
      */
     private void synthesizeNodeId(CObject cObject, String path) {
-        cObject.setNodeId(idCodeGenerator.generateNextIdCode());
+        if (conversionConfiguration.getAdlConfiguration().equals(ADL14ConversionConfiguration.ADL2VERSION.ID_CODED)) {
+            cObject.setNodeId(idCodeGenerator.generateNextIdCode());
+        } else {
+            cObject.setNodeId(idCodeGenerator.generateNextValueCode());
+        }
         CreatedCode createdCode = new CreatedCode(cObject.getNodeId(), ReasonForCodeCreation.C_OBJECT_WITHOUT_NODE_ID);
         createdCode.setRmTypeName(cObject.getRmTypeName());
         createdCode.setPathCreated(path);
@@ -421,10 +437,12 @@ public class ADL14NodeIDConverter {
     private void calculateNewNodeId(CObject cObject) {
         if (cObject.getNodeId() != null) {
             String oldNodeId = cObject.getNodeId();
-            String newNodeId = convertNodeId(oldNodeId);
-            addConvertedCode(oldNodeId, newNodeId);
-
-            cObject.setNodeId(newNodeId);
+            String newNodeId;
+            if (conversionConfiguration.getAdlConfiguration().equals(ADL14ConversionConfiguration.ADL2VERSION.ID_CODED)) {
+                newNodeId = convertNodeId(oldNodeId);
+                addConvertedCode(oldNodeId, newNodeId);
+                cObject.setNodeId(newNodeId);
+            }
         }
     }
 
@@ -454,7 +472,7 @@ public class ADL14NodeIDConverter {
     /**
      * Convert old code into an at code
      */
-    protected String convertValueCode(String oldCode) {
+    protected String convertIntoAtCode(String oldCode) {
         ConvertedCodeResult convertedCodeResult = convertedCodes.get(oldCode);
         if (convertedCodeResult != null && convertedCodeResult.hasValueCode()) {
             return convertedCodeResult.getValueCode();
@@ -497,7 +515,7 @@ public class ADL14NodeIDConverter {
     public String convertPath(String key) {
         APathQuery aPathQuery = new APathQuery(key);
         for (PathSegment segment : aPathQuery.getPathSegments()) {
-            if (segment.getNodeId() != null) {
+            if (conversionConfiguration.getAdlConfiguration().equals(ADL14ConversionConfiguration.ADL2VERSION.ID_CODED) && segment.getNodeId() != null) {
                 segment.setNodeId(convertNodeId(segment.getNodeId()));
             }
         }
