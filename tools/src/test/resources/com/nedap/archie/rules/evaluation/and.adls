@@ -78,6 +78,10 @@ terminology
                 text = <"Option 1">
                 description = <"Option 1">
             >
+            ["at6"] = <
+                text = <"Option 4">
+                description = <"Option 4">
+            >
 		>
     >
     value_sets = <
