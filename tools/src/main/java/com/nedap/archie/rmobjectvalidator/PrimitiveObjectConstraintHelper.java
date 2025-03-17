@@ -1,5 +1,6 @@
 package com.nedap.archie.rmobjectvalidator;
 
+import com.google.common.base.Strings;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.primitives.COrdered;
@@ -116,7 +117,7 @@ class PrimitiveObjectConstraintHelper {
     }
 
     private boolean isValidValue(CTerminologyCode terminologyCode, TerminologyCode value) {
-        if(value.getTerminologyId() == null || value.getCodeString() == null) {
+        if(Strings.isNullOrEmpty(value.getTerminologyId()) || value.getTerminologyId().equals("null") || value.getCodeString() == null) {
             return false;
         }
         if(terminologyCode.getConstraint().isEmpty()) {
