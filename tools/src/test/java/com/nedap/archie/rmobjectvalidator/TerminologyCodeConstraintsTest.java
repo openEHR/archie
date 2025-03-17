@@ -197,6 +197,8 @@ public class TerminologyCodeConstraintsTest {
         assertTrue(validationHelper.isValidValue(code, text));
         text.setDefiningCode(new CodePhrase("[local::at24]"));
         assertFalse(validationHelper.isValidValue(code, text));
+        text.setDefiningCode(new CodePhrase("[null::at23]"));
+        assertFalse(validationHelper.isValidValue(code, text));
         text.setDefiningCode(new CodePhrase());
         assertFalse(validationHelper.isValidValue(code, text));
         text.setDefiningCode(null);
