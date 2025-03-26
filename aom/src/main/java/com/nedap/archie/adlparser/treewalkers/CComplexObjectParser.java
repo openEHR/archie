@@ -50,8 +50,8 @@ public class CComplexObjectParser extends BaseTreeWalker {
         if(context.type_id() != null) {
             object.setRmTypeName(context.type_id().getText());
         }
-        if(context.ID_CODE() != null) {
-            object.setNodeId(context.ID_CODE().getText());
+        if(context.node_identifier() != null) {
+            object.setNodeId(context.node_identifier().getText());
         } else if (context.ROOT_ID_CODE() != null) {
             object.setNodeId(context.ROOT_ID_CODE().getText());
         }
@@ -245,7 +245,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
                         } else if (siblingOrderContext.SYM_BEFORE() != null) {
                             siblingOrder.setBefore(true);
                         }
-                        siblingOrder.setSiblingNodeId(siblingOrderContext.ID_CODE().getText());
+                        siblingOrder.setSiblingNodeId(siblingOrderContext.node_identifier().getText());
                         cobject.setSiblingOrder(siblingOrder);
                     }
 
@@ -283,7 +283,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
         proxy.setOccurrences(this.parseMultiplicityInterval(proxyContext.c_occurrences()));
         proxy.setTargetPath(proxyContext.adl_path().getText());
         proxy.setRmTypeName(proxyContext.type_id().getText());
-        proxy.setNodeId(proxyContext.ID_CODE().getText());
+        proxy.setNodeId(proxyContext.node_identifier().getText());
         return proxy;
     }
 
@@ -291,7 +291,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
         CArchetypeRoot root = new CArchetypeRoot();
 
         root.setRmTypeName(archetypeRootContext.type_id().getText());
-        root.setNodeId(archetypeRootContext.ID_CODE().getText());
+        root.setNodeId(archetypeRootContext.node_identifier().getText());
         if(archetypeRootContext.archetype_ref() != null) {
             root.setArchetypeRef(archetypeRootContext.archetype_ref().getText());
         }
@@ -307,7 +307,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
     private ArchetypeSlot parseArchetypeSlot(Archetype_slotContext slotContext) {
         ArchetypeSlot slot = new ArchetypeSlot();
 
-        slot.setNodeId(slotContext.ID_CODE().getText());
+        slot.setNodeId(slotContext.node_identifier().getText());
         slot.setRmTypeName(slotContext.type_id().getText());
         if(slotContext.SYM_CLOSED() != null) {
             slot.setClosed(true);
