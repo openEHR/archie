@@ -70,6 +70,11 @@ public class TestRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
+    public void setArchetypeNodeId(Object object, String newNodeId) {
+
+    }
+
+    @Override
     public String getNameFromRMObject(Object rmObject) {
         if(rmObject == null) {
             return null;
