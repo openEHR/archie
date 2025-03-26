@@ -36,10 +36,10 @@ public class FlatFormValidation extends ValidatingVisitor {
                     addMessageWithPath(ErrorType.VUNT, cObject.path(), I18n.t("Use_node (C_COMPLEX_OBJECT_PROXY) points to type {0}, which does not conform to type {1}", replacementComplexObject.getRmTypeName(), cObject.getRmTypeName()));
                 }
             } else {
-                String cObjectTypeName = cObject instanceof CComplexObjectProxy ?
+                String replacementObjectTypeName = replacement instanceof CComplexObjectProxy ?
                         "use_node (C_COMPLEX_OBJECT)" :
-                        cObject.getClass().getSimpleName();
-                addMessageWithPath(ErrorType.VUNP, cObject.path(), I18n.t("Use_node (C_COMPLEX_OBJECT_PROXY) must point to a C_COMPLEX_OBJECT, but points to a {0}", cObjectTypeName));
+                        replacement.getClass().getSimpleName();
+                addMessageWithPath(ErrorType.VUNP, cObject.path(), I18n.t("Use_node (C_COMPLEX_OBJECT_PROXY) must point to a C_COMPLEX_OBJECT, but points to a {0}", replacementObjectTypeName));
             }
         }
     }
