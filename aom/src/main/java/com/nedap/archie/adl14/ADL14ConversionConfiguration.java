@@ -1,6 +1,7 @@
 package com.nedap.archie.adl14;
 
 import com.nedap.archie.adl14.terms.TerminologyUriTemplate;
+import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +28,10 @@ public class ADL14ConversionConfiguration {
     private String rmRelease = "1.1.0";
 
     /**
-     * Current adlVersion
-     */
-    private String adlVersion = "2.3.0";
-
-    /**
      * Set to the ADL version the ADL 1.4 archetype should be converted into. Options: ID_CODED, AT_CODED. Defaults to ID_CODED.
      */
-    private ADL2VERSION adlConfiguration = ADL2VERSION.ID_CODED;
-    public enum ADL2VERSION {
+    private NODE_ID_CODE_SYSTEM nodeIdCodeSystem = NODE_ID_CODE_SYSTEM.ID_CODED;
+    public enum NODE_ID_CODE_SYSTEM {
         ID_CODED,
         AT_CODED
     }
@@ -69,16 +65,12 @@ public class ADL14ConversionConfiguration {
         return rmRelease;
     }
 
-    public ADL2VERSION getAdlConfiguration() {
-        return adlConfiguration;
+    public NODE_ID_CODE_SYSTEM getNodeIdCodeSystem() {
+        return nodeIdCodeSystem;
     }
 
     public String getAdlVersion() {
-        if (adlConfiguration == ADL2VERSION.AT_CODED) {
-            return "2.4.0";
-        } else {
-            return adlVersion;
-        }
+        return ArchieAOMInfoLookup.ADL_VERSION;
     }
 
     // SETTERS
@@ -98,7 +90,7 @@ public class ADL14ConversionConfiguration {
         this.rmRelease = rmRelease;
     }
 
-    public void setAdlConfiguration(ADL2VERSION adlConfiguration) {
-        this.adlConfiguration = adlConfiguration;
+    public void setNodeIdCodeSystem(NODE_ID_CODE_SYSTEM nodeIdCodeSystem) {
+        this.nodeIdCodeSystem = nodeIdCodeSystem;
     }
 }

@@ -302,7 +302,7 @@ public class ADL14NodeIDConverter {
      * Object needs a new nodeId, generate the next valid nodeId and add in to the terminology
      */
     private void synthesizeNodeId(CObject cObject, String path) {
-        if (conversionConfiguration.getAdlConfiguration().equals(ADL14ConversionConfiguration.ADL2VERSION.ID_CODED)) {
+        if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
             cObject.setNodeId(idCodeGenerator.generateNextIdCode());
         } else {
             cObject.setNodeId(idCodeGenerator.generateNextValueCode());
@@ -438,7 +438,7 @@ public class ADL14NodeIDConverter {
         if (cObject.getNodeId() != null) {
             String oldNodeId = cObject.getNodeId();
             String newNodeId;
-            if (conversionConfiguration.getAdlConfiguration().equals(ADL14ConversionConfiguration.ADL2VERSION.ID_CODED)) {
+            if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
                 newNodeId = convertNodeId(oldNodeId);
                 addConvertedCode(oldNodeId, newNodeId);
                 cObject.setNodeId(newNodeId);
@@ -515,7 +515,7 @@ public class ADL14NodeIDConverter {
     public String convertPath(String key) {
         APathQuery aPathQuery = new APathQuery(key);
         for (PathSegment segment : aPathQuery.getPathSegments()) {
-            if (conversionConfiguration.getAdlConfiguration().equals(ADL14ConversionConfiguration.ADL2VERSION.ID_CODED) && segment.getNodeId() != null) {
+            if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED) && segment.getNodeId() != null) {
                 segment.setNodeId(convertNodeId(segment.getNodeId()));
             }
         }

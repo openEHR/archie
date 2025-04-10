@@ -105,7 +105,7 @@ public class ADL14TermConstraintConverter {
                 } else {
                     Set<String> localCodes = new LinkedHashSet<>();
                     for(String code:cTerminologyCode.getConstraint()) {
-                        if (converter.getConversionConfiguration().getAdlConfiguration().equals(ADL14ConversionConfiguration.ADL2VERSION.ID_CODED)) {
+                        if (converter.getConversionConfiguration().getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
                             String newCode = converter.convertIntoAtCode(code);
                             converter.addConvertedCode(code, newCode);
                             localCodes.add(newCode);

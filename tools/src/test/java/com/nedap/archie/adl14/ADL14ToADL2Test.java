@@ -7,16 +7,12 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
-import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
+import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -39,16 +35,15 @@ public class ADL14ToADL2Test {
             expected = parser.parse(stream);
         }
 
-        ADL14ConversionConfiguration configuration = new ADL14ConversionConfiguration();
-        configuration.setAdlConfiguration(ADL14ConversionConfiguration.ADL2VERSION.ID_CODED);
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), configuration);
+        // Configuration defaults to ID_CODED
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), new ADL14ConversionConfiguration());
 
         ADL2ConversionResultList resultList = converter.convert(List.of(adl14));
         Archetype result = resultList.getConversionResults().get(0).getArchetype();
 
-        assertEquals("2.3.0", result.getAdlVersion());
+        assertEquals(ArchieAOMInfoLookup.ADL_VERSION, result.getAdlVersion());
         assertArchetypes(expected, result);
-        assertArchetypes(result, expected); // Also check the reverse, to check if the result doesn't have more than the expected archetype
+        assertArchetypes(result, expected); // Also check the reverse, to check if the result doesn't have more elements than the expected archetype
     }
 
     @Test
@@ -65,18 +60,15 @@ public class ADL14ToADL2Test {
         }
 
         ADL14ConversionConfiguration configuration = new ADL14ConversionConfiguration();
-        configuration.setAdlConfiguration(ADL14ConversionConfiguration.ADL2VERSION.AT_CODED);
+        configuration.setNodeIdCodeSystem(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.AT_CODED);
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), configuration);
 
         ADL2ConversionResultList resultList = converter.convert(List.of(adl14));
         Archetype result = resultList.getConversionResults().get(0).getArchetype();
 
-        Path path = Paths.get("result-at.adls");
-        Files.write(path, ADLArchetypeSerializer.serialize(result).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-
-        assertEquals("2.4.0", result.getAdlVersion());
+        assertEquals(ArchieAOMInfoLookup.ADL_VERSION, result.getAdlVersion());
         assertArchetypes(expected, result);
-        assertArchetypes(result, expected); // Also check the reverse, to check if the result doesn't have more than the expected archetype
+        assertArchetypes(result, expected); // Also check the reverse, to check if the result doesn't have more elements than the expected archetype
     }
 
     private void assertArchetypes(Archetype expected, Archetype actual) {
@@ -103,7 +95,6 @@ public class ADL14ToADL2Test {
         assertEquals(expectedTermDefinitions.keySet(), actualTermDefinitions.keySet());
         expectedTermDefinitions.keySet().forEach(key -> {
             assertEquals(expectedTermDefinitions.get(key).keySet(), actualTermDefinitions.get(key).keySet());
-            // at0001 (ITEM_TREE), at0002 (HISTORY) en at0008 (ITEM_TREE) moeten er nog uitgefiltert
             expectedTermDefinitions.get(key).keySet().forEach(key2 -> {
                 assertEquals(expectedTermDefinitions.get(key).get(key2), expectedTermDefinitions.get(key).get(key2));
             });
