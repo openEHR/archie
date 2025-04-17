@@ -2,10 +2,7 @@ package com.nedap.archie.serializer.adl;
 
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.base.MultiplicityInterval;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -226,9 +223,9 @@ public class ADLDefinitionSerializerTest {
         assertThat(serialized, equalTo("\n" +
                 "    ORDINAL[id3] matches {\n" +
                 "        [symbol, value] matches {\n" +
-                "            [{[at1]}, {0.0}],\n" +
-                "            [{[at2]}, {1.0}],\n" +
-                "            [{[at3]}, {2.0}]\n" +
+                "            [{[at1]}, {0.0}],    -- min\n" +
+                "            [{[at2]}, {1.0}],    -- med\n" +
+                "            [{[at3]}, {2.0}]    -- max\n" +
                 "        }\n" +
                 "    }"));
     }
@@ -310,11 +307,48 @@ public class ADLDefinitionSerializerTest {
         List<CObject> ccobjProxies = parentCObj.getAttribute("addresses").getChildren();
 
         assertThat(serializeConstraint(ccobjProxies.get(0)).trim(),
-                equalTo("use_node ADDRESS[id11] /contacts[id6]/addresses[id7]"));
+                equalTo("use_node ADDRESS[id11] /contacts[id6]/addresses[id7]    -- work fax number"));
         assertThat(serializeConstraint(ccobjProxies.get(1)).trim(),
-                equalTo("use_node ADDRESS[id12] /contacts[id6]/addresses[id8]"));
+                equalTo("use_node ADDRESS[id12] /contacts[id6]/addresses[id8]    -- work email address"));
         assertThat(serializeConstraint(ccobjProxies.get(2)).trim(),
-                equalTo("use_node ADDRESS[id13] occurrences matches {1..3} /contacts[id6]/addresses[id9]"));
+                equalTo("use_node ADDRESS[id13] occurrences matches {1..3} /contacts[id6]/addresses[id9]    -- work contact"));
+    }
+
+    @Test
+    public void serializeTemplateOverlay() throws IOException, ADLParseException {
+        Template template = (Template) loadRoot("com/nedap/archie/archetypevalidator/openEHR-EHR-OBSERVATION.specialized_template_observation.v1.0.0.adls");
+
+        TemplateOverlay templateOverlay = template.getTemplateOverlay("openEHR-EHR-CLUSTER.simple_test_cluster-ovl.v1.0.0");
+        CObject clusterCObj = templateOverlay.getDefinition();
+
+        assertThat(serializeConstraint(clusterCObj).trim(),
+                equalTo("CLUSTER[id1.1] matches {    -- Simple test cluster\n" +
+                        "        items matches {\n" +
+                        "            ELEMENT[id2.1]    -- Just a DV_TEXT that is specialized in a Template Overlay\n" +
+                        "        }\n" +
+                        "    }"));
+    }
+
+    @Test
+    public void serializeComments() throws IOException, ADLParseException {
+        Archetype archetype = load("openEHR-EHR-CLUSTER.comments.v1.adls");
+
+        CComplexObject parentCObj = archetype.getDefinition();
+
+        assertThat(serializeConstraint(parentCObj.itemAtPath("/items[id2]")).trim(),
+                // Should not have a comment as the text is empty
+                equalTo("ELEMENT[id2] matches {\n" +
+                        "        value matches {\n" +
+                        "            DV_TEXT[id21]\n" +
+                        "        }\n" +
+                        "    }"));
+        assertThat(serializeConstraint(parentCObj.itemAtPath("/items[id3]")).trim(),
+                // Comment should be on a single line
+                equalTo("ELEMENT[id3] matches {    -- This text has multiple lines!\n" +
+                        "        value matches {\n" +
+                        "            DV_CODED_TEXT[id31]\n" +
+                        "        }\n" +
+                        "    }"));
     }
 
     @Test
