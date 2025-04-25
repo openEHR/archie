@@ -3,11 +3,7 @@ package com.nedap.archie.diff;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Calculates the Longest common subsequence along two sets of node ids. Useful for sibling order diffing

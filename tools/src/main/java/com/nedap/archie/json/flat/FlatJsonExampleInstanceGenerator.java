@@ -2,7 +2,6 @@ package com.nedap.archie.json.flat;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.creation.ExampleJsonInstanceGenerator;

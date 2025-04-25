@@ -1,7 +1,5 @@
 package com.nedap.archie.adl14.aom14;
 
-import com.nedap.archie.base.Interval;
-
 public class CDVQuantityAssumedValue {
 
     private String units;

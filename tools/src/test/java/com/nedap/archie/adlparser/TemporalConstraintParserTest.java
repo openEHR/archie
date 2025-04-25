@@ -12,9 +12,7 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAmount;
 import java.util.Locale;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by pieter.bos on 30/10/15.

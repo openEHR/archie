@@ -8,7 +8,6 @@ import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.rules.Assertion;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
-import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 

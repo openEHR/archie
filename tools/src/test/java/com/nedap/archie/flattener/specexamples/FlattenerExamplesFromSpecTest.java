@@ -1,17 +1,11 @@
 package com.nedap.archie.flattener.specexamples;
 
 import com.google.common.collect.Lists;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CAttributeTuple;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.base.Cardinality;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
@@ -24,7 +18,7 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.nedap.archie.flattener.specexamples.FlattenerTestUtil.*;
+import static com.nedap.archie.flattener.specexamples.FlattenerTestUtil.parse;
 import static org.junit.Assert.*;
 
 public class FlattenerExamplesFromSpecTest {

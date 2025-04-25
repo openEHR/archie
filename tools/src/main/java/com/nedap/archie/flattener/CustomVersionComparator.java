@@ -1,7 +1,6 @@
 package com.nedap.archie.flattener;
 
 import com.github.zafarkhaja.semver.Version;
-import com.nedap.archie.aom.ArchetypeHRID;
 
 import java.util.Comparator;
 

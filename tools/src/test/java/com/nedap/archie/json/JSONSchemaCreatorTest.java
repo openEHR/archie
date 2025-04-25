@@ -1,14 +1,14 @@
 package com.nedap.archie.json;
 
 
-import org.junit.Test;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.referencemodels.BuiltinReferenceModels;
-
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonWriterFactory;
 import jakarta.json.stream.JsonGenerator;
+import org.junit.Test;
+import org.openehr.bmm.core.BmmModel;
+import org.openehr.referencemodels.BuiltinReferenceModels;
+
 import java.util.HashMap;
 import java.util.Map;
 

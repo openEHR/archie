@@ -1,7 +1,6 @@
 package com.nedap.archie.rmobjectvalidator.invariants;
 
 import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.generic.PartyRelated;
 import org.junit.Test;
 

@@ -1,7 +1,5 @@
 package com.nedap.archie.serializer.odin;
 
-import com.nedap.archie.adlparser.antlr.AdlLexer;
-import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.antlr.odinLexer;
 import com.nedap.archie.adlparser.antlr.odinParser;
 import com.nedap.archie.antlr.errors.ArchieErrorListener;

@@ -3,19 +3,9 @@ package org.openehr.bmm.v2.persistence.validation;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.openehr.bmm.persistence.validation.BmmMessageIds;
-import org.openehr.bmm.v2.persistence.PBmmSchema;
-import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
-import org.openehr.bmm.v2.validation.BmmRepository;
-import org.openehr.bmm.v2.validation.BmmSchemaConverter;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.function.Consumer;
-import java.util.function.Function;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class BasicSchemaValidationsTest extends AbstractSchemaValidationsTest {
 

@@ -1,8 +1,7 @@
 package com.nedap.archie.openehrtestrm;
 
-import java.lang.String;
-import java.util.List;
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class Book extends TestRMBase {
   private String author;

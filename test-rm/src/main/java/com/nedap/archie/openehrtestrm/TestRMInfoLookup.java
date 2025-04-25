@@ -1,6 +1,5 @@
 package com.nedap.archie.openehrtestrm;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;

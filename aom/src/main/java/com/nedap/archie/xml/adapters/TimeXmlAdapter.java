@@ -1,6 +1,5 @@
 package com.nedap.archie.xml.adapters;
 
-import com.nedap.archie.adlparser.treewalkers.TemporalConstraintParser;
 import com.nedap.archie.datetime.DateTimeParsers;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;

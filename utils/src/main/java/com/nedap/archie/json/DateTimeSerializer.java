@@ -9,7 +9,6 @@ import com.nedap.archie.datetime.DateTimeSerializerFormatters;
 import java.io.IOException;
 import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
-import java.time.temporal.TemporalField;
 
 /**
  * Created by pieter.bos on 30/09/16.

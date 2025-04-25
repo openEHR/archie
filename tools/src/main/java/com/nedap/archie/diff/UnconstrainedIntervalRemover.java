@@ -1,18 +1,7 @@
 package com.nedap.archie.diff;
 
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.CArchetypeRoot;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.Template;
-import com.nedap.archie.aom.TemplateOverlay;
-import com.nedap.archie.aom.terminology.ArchetypeTerm;
-import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.aom.utils.NodeIdUtil;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.base.Interval;
-import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 
 import java.util.ArrayList;
 import java.util.List;

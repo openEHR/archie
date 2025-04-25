@@ -1,10 +1,6 @@
 package com.nedap.archie.flattener;
 
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CAttributeTuple;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.CPrimitiveTuple;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
 
 class TupleFlattener {
