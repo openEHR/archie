@@ -137,7 +137,7 @@ InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository
 for(Archetype archetype:allArchetypes) {
     repository.addArchetype(archetype);
 }
-repository.compile(BuiltinReferenceModels.getMetaModels());
+repository.compile(BuiltinReferenceModels.getMetaModelProvider());
 
 for(ValidationResult result:repository.getAllValidationResults()) {
     ... your code here
@@ -149,7 +149,7 @@ The validation result contains the validation result, listing any errors in the 
 
 ### Reference model metadata
 
-You may have noticed a call to ```BuiltinReferenceModels.getMetaModels()```. This retrieves the metadata for the reference models, which are needed to validate and flatten archetypes. Archie contains two types of metamodels: BMM, and reflection based metadata.
+You may have noticed a call to ```BuiltinReferenceModels.getMetaModelProvider()```. This retrieves the metadata for the reference models, which are needed to validate and flatten archetypes. Archie contains two types of metamodels: BMM, and reflection based metadata.
 The BMM models are a file containing metadata in a form defined by the openEHR specifications.
 The reflection based metadata contains ModelInfoLookup classes. They are derived from an implementation of a reference model. Note that the ModelInfoLookup classes are only added if you depended on them. If you depended on archie-all, you're all set.
 
@@ -162,7 +162,7 @@ Note that ADL 2 operational templates is fundamentally different from the ADL 1.
 To create an Operational Template:
 
 ```java
-Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true);
+Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider()).createOperationalTemplate(true);
 OperationalTemplate template = (OperationalTemplate) flattener.flatten(sourceArchetype);
 ```
 
@@ -221,7 +221,7 @@ The inverse operation of flattening archetypes is diffing. This is useful if you
 ```java
 Archetype flatChild, flatParent; //for how to parse and flatten, see elsewhere in the readme
 
-Differentiator differentiator = new Differentiator(BuiltinReferenceModels.getMetaModels());
+Differentiator differentiator = new Differentiator(BuiltinReferenceModels.getMetaModelProvider());
 Archetype diffed = differentiator.differentiate(flatChild, flatParent);
 ```
 
@@ -391,7 +391,7 @@ If you want to do this yourself, The RMObjectCreator creates empty reference mod
 
 Setting primitive object values works in a similar way, with ```creator.set(...)```, or by setting them explicitly on the reference model object directly.
 
-Notice the call to ```ArchieRMInfoLookup.getInstance()```, which obtains the metadata about the reference model implementation. It can also be obtained from the result of ```BuiltinReferenceModels.getMetaModels()```, or you can define your own to make Archie work with your own reference model implementation.
+Notice the call to ```ArchieRMInfoLookup.getInstance()```, which obtains the metadata about the reference model implementation. It can also be obtained from the result of ```BuiltinReferenceModels.getMetaModelProvider()```, or you can define your own to make Archie work with your own reference model implementation.
 
 ### Parsing JSON
 
@@ -456,10 +456,10 @@ Starting from version 0.7, Archie can import ADL 1.4 files, and convert them to 
 
 ```java
 ADL14ConversionConfiguration conversionConfiguration = new ADL14ConversionConfiguration();
-ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
 
 List<Archetype> archetypes = new ArrayList<>();
-ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider());
 
 for(String file:fileNames) {
    try(InputStream stream = new FileInputStream(file)) {

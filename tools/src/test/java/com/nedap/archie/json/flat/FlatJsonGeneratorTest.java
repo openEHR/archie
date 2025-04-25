@@ -19,7 +19,8 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
 import com.nedap.archie.rm.datavalues.quantity.DvCount;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import org.junit.After;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -181,7 +182,7 @@ public class FlatJsonGeneratorTest {
         config.setFilterNames(true);
         config.setFilterTypes(false);
         //config.getIgnoredAttributes().add(new AttributeReference("LOCATABLE", "name"));
-        Map<String, Object> stringObjectMap = new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModels(), "en", config);
+        Map<String, Object> stringObjectMap = new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModelProvider(), "en", config);
 
         System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
 
@@ -210,13 +211,13 @@ public class FlatJsonGeneratorTest {
         config.setFilterNames(true);
         config.setFilterTypes(true);
         //config.getIgnoredAttributes().add(new AttributeReference("LOCATABLE", "name"));
-        MetaModels metaModels = BuiltinReferenceModels.getMetaModels();
-        metaModels.selectModel(bloodPressureOpt);
+        MetaModelProvider metaModelProvider = BuiltinReferenceModels.getMetaModelProvider();
+        MetaModel metaModel = metaModelProvider.getMetaModel(bloodPressureOpt);
 
-        ExampleJsonInstanceGenerator exampleJsonInstanceGenerator = new ExampleJsonInstanceGenerator(metaModels, "en");
+        ExampleJsonInstanceGenerator exampleJsonInstanceGenerator = new ExampleJsonInstanceGenerator(metaModelProvider, "en");
         exampleJsonInstanceGenerator.setTypePropertyName("_type");
         Map<String, Object> generatedExample = exampleJsonInstanceGenerator.generate(bloodPressureOpt);
-        ObjectMapper objectMapper = metaModels.getSelectedModel().getJsonObjectMapper();
+        ObjectMapper objectMapper = metaModel.getJsonObjectMapper();
         String jsonRmObject = objectMapper.writeValueAsString(generatedExample);
         Observation bloodPressure = objectMapper.readValue(jsonRmObject, Observation.class);
         //set the name to be different from the archetype, so it will be added here
@@ -224,7 +225,7 @@ public class FlatJsonGeneratorTest {
 
 
 
-        Map<String, Object> stringObjectMap = new FlatJsonGenerator(metaModels.getSelectedModelInfoLookup(), config).buildPathsAndValues(bloodPressure, bloodPressureOpt, "en");
+        Map<String, Object> stringObjectMap = new FlatJsonGenerator(metaModel.getModelInfoLookup(), config).buildPathsAndValues(bloodPressure, bloodPressureOpt, "en");
 
 
         System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
@@ -259,19 +260,19 @@ public class FlatJsonGeneratorTest {
         OperationalTemplate bloodPressureOpt = parseBloodPressure();
         FlatJsonFormatConfiguration config = FlatJsonFormatConfiguration.nedapInternalFormat();
 
-        MetaModels metaModels = BuiltinReferenceModels.getMetaModels();
-        metaModels.selectModel(bloodPressureOpt);
+        MetaModelProvider metaModelProvider = BuiltinReferenceModels.getMetaModelProvider();
+        MetaModel metaModel = metaModelProvider.getMetaModel(bloodPressureOpt);
 
-        ExampleJsonInstanceGenerator exampleJsonInstanceGenerator = new ExampleJsonInstanceGenerator(metaModels, "en");
+        ExampleJsonInstanceGenerator exampleJsonInstanceGenerator = new ExampleJsonInstanceGenerator(metaModelProvider, "en");
         exampleJsonInstanceGenerator.setTypePropertyName("_type");
         Map<String, Object> generatedExample = exampleJsonInstanceGenerator.generate(bloodPressureOpt);
-        ObjectMapper objectMapper = metaModels.getSelectedModel().getJsonObjectMapper();
+        ObjectMapper objectMapper = metaModel.getJsonObjectMapper();
         String jsonRmObject = objectMapper.writeValueAsString(generatedExample);
         Observation bloodPressure = objectMapper.readValue(jsonRmObject, Observation.class);
 
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("nl");
 
-        new FlatJsonGenerator(metaModels.getSelectedModelInfoLookup(), config).buildPathsAndValues(bloodPressure, bloodPressureOpt, "en");
+        new FlatJsonGenerator(metaModel.getModelInfoLookup(), config).buildPathsAndValues(bloodPressure, bloodPressureOpt, "en");
 
         // The ThreadLocalDescriptiongAndMeaningLanguage should be restored to nl after the buildPathsAndValues call.
         assertEquals("nl", ArchieLanguageConfiguration.getThreadLocalDescriptiongAndMeaningLanguage());
@@ -287,7 +288,7 @@ public class FlatJsonGeneratorTest {
         config.setFilterNames(true);
         config.setFilterTypes(true);
         //config.getIgnoredAttributes().add(new AttributeReference("LOCATABLE", "name"));
-        Map<String, Object> stringObjectMap = new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModels(), "en", config);
+        Map<String, Object> stringObjectMap = new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModelProvider(), "en", config);
 
         System.out.println(JacksonUtil.getObjectMapper().writeValueAsString(stringObjectMap));
 
@@ -303,21 +304,21 @@ public class FlatJsonGeneratorTest {
 
     private OperationalTemplate parseBloodPressure() throws IOException, ADLParseException {
         try (InputStream stream = getClass().getResourceAsStream(BLOOD_PRESSURE_PATH)) {
-            Archetype bloodPressure = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
-            Flattener flattener = new Flattener(new SimpleArchetypeRepository(), BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+            Archetype bloodPressure = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
+            Flattener flattener = new Flattener(new SimpleArchetypeRepository(), BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
             return (OperationalTemplate) flattener.flatten(bloodPressure);
         }
     }
 
     private OperationalTemplate parseTypeAlternatives() throws IOException, ADLParseException {
         try (InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.element_with_two_dv_types.v1.0.0.adls")) {
-            Archetype typeAlternatives = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
-            Flattener flattener = new Flattener(new SimpleArchetypeRepository(), BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+            Archetype typeAlternatives = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
+            Flattener flattener = new Flattener(new SimpleArchetypeRepository(), BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
             return (OperationalTemplate) flattener.flatten(typeAlternatives);
         }
     }
 
     private Map<String, Object> createExampleInstance(OperationalTemplate bloodPressureOpt, FlatJsonFormatConfiguration config) throws IOException, DuplicateKeyException {
-        return new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModels(), "en", config);
+        return new FlatJsonExampleInstanceGenerator().generateExample(bloodPressureOpt, BuiltinReferenceModels.getMetaModelProvider(), "en", config);
     }
 }

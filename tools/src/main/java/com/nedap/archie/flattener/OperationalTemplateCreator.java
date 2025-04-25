@@ -99,7 +99,7 @@ class OperationalTemplateCreator {
             CObject object = workList.pop();
             if( (object instanceof CComplexObject || object instanceof ArchetypeSlot || object instanceof CComplexObjectProxy)
                     && object.getOccurrences() == null) {
-                object.setOccurrences(object.effectiveOccurrences(flattener.getMetaModels()::referenceModelPropMultiplicity));
+                object.setOccurrences(object.effectiveOccurrences(flattener.getMetaModel()::referenceModelPropMultiplicity));
             }
             for (CAttribute attribute : object.getAttributes()) {
 

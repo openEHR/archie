@@ -11,8 +11,7 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.OverridingInMemFullArchetypeRepository;
-import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.rminfo.*;
 import org.openehr.utils.message.I18n;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +27,7 @@ import java.util.Set;
 public class ArchetypeValidator {
     private static final Logger logger = LoggerFactory.getLogger(ArchetypeValidator.class);
 
-    private MetaModels combinedModels;
+    private final MetaModelProvider metaModelProvider;
     private FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forFlattened();
 
     //see comment on why there is a phase 0
@@ -41,11 +40,19 @@ public class ArchetypeValidator {
     private List<ArchetypeValidation> validationsPhase3;
 
     public ArchetypeValidator(ReferenceModels models) {
-        this(new MetaModels(models, null));
+        this(new SimpleMetaModelProvider(models, null));
     }
 
+    /**
+     * @deprecated Use {@link #ArchetypeValidator(MetaModelProvider)} instead.
+     */
+    @Deprecated
     public ArchetypeValidator(MetaModels models) {
-        this.combinedModels = models;
+        this((MetaModelProvider) models);
+    }
+
+    public ArchetypeValidator(MetaModelProvider metaModelProvider) {
+        this.metaModelProvider = metaModelProvider;
         validationsPhase0 = new ArrayList<>();
         //defined in spec, but not in three phase validator and not in grammar
         //eiffel checks these in the parser
@@ -120,14 +127,11 @@ public class ArchetypeValidator {
         }
         repository = extraRepository;
 
-        combinedModels.selectModel(archetype);
+        MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(archetype);
 
-        if(combinedModels.getSelectedModelInfoLookup() == null && combinedModels.getSelectedBmmModel() == null) {
-            throw new UnsupportedOperationException("reference model unknown for archetype " + archetype.getArchetypeId());
-        }
         //we assume we always want a new validation to be run, for example because the archetype
         //has been updated. Therefore, do not retrieve the old result from the repository
-        archetype = cloneAndPreprocess(combinedModels, archetype);//this clones the actual archetype so the source does not get changed
+        archetype = cloneAndPreprocess(metaModel, archetype);//this clones the actual archetype so the source does not get changed
         Archetype flatParent = null;
         if(archetype.isSpecialized()) {
             ValidationResult infiniteLoopResult = checkForInfiniteLoopInSpecialisation(repository, archetype);
@@ -135,7 +139,7 @@ public class ArchetypeValidator {
                 return infiniteLoopResult;
             }
             ValidationResult parentValidationResult = repository.compileAndRetrieveValidationResult(archetype.getParentArchetypeId(), this);
-            combinedModels.selectModel(archetype);
+            metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
             if(parentValidationResult != null) {
                 if(parentValidationResult.passes()) {
                     flatParent = parentValidationResult.getFlattened();
@@ -171,23 +175,23 @@ public class ArchetypeValidator {
             for(TemplateOverlay overlay:((Template) archetype).getTemplateOverlays()) {
                 //validate the overlays first, but make sure to do that only once (so don't call this same method!)
                 extraRepository.compileAndRetrieveValidationResult(overlay.getArchetypeId().toString(), this);
-                combinedModels.selectModel(archetype);
+                metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
             }
         }
 
-        List<ValidationMessage> messages = runValidations(archetype, repository, settings, flatParent, validationsPhase0);
+        List<ValidationMessage> messages = runValidations(metaModel, archetype, repository, settings, flatParent, validationsPhase0);
         ValidationResult result = new ValidationResult(archetype);
         result.setErrors(messages);
         if(result.passes()) {
             //continue running only if the basic phase 0 validation run, otherwise we get annoying exceptions
-            messages.addAll(runValidations(archetype, repository, settings, flatParent, validationsPhase1));
+            messages.addAll(runValidations(metaModel, archetype, repository, settings, flatParent, validationsPhase1));
 
             //the separate validations will check if the archtype is specialized and if they need this in phase 2
             //because the RM validations are technically phase 2 and required to run
             //also the separate validations are implemented so that they can run with errors in phase 1 without exceptions
             //plus exceptions will nicely be logged as an OTHER error type - we can safely run it and you will get
             //more errors in one go - could be useful
-            messages.addAll(runValidations(archetype, repository, settings, flatParent, validationsPhase2));
+            messages.addAll(runValidations(metaModel, archetype, repository, settings, flatParent, validationsPhase2));
         }
         result.setErrors(messages);
 
@@ -203,10 +207,10 @@ public class ArchetypeValidator {
 
         if(result.passes() || settings.isAlwaysTryToFlatten()) {
             try {
-                Archetype flattened = new Flattener(repository, combinedModels, flattenerConfiguration).flatten(archetype);
+                Archetype flattened = new Flattener(repository, metaModelProvider, flattenerConfiguration).flatten(archetype);
 
                 try {
-                    OperationalTemplate operationalTemplate = (OperationalTemplate) new Flattener(repository, combinedModels).createOperationalTemplate(true).flatten(archetype);
+                    OperationalTemplate operationalTemplate = (OperationalTemplate) new Flattener(repository, metaModelProvider).createOperationalTemplate(true).flatten(archetype);
                     extraRepository.addExtraOperationalTemplate(operationalTemplate);
                 } catch (Exception e) {
                     //this is probably an error in an included archetype, so ignore it here
@@ -217,7 +221,7 @@ public class ArchetypeValidator {
                 }
                 result.setFlattened(flattened);
                 if(result.passes()) {
-                    messages.addAll(runValidations(flattened, repository, settings, flatParent, validationsPhase3));
+                    messages.addAll(runValidations(metaModel, flattened, repository, settings, flatParent, validationsPhase3));
                 }
             } catch (Exception e) {
                 messages.add(new ValidationMessage(ErrorType.OTHER, null, "flattening failed with exception " + e));
@@ -229,18 +233,18 @@ public class ArchetypeValidator {
         return result;
     }
 
-    private Archetype cloneAndPreprocess(MetaModels models, Archetype archetype) {
+    private Archetype cloneAndPreprocess(MetaModel metaModel, Archetype archetype) {
         Archetype preprocessed = archetype.clone();
-        new ReflectionConstraintImposer(models).setSingleOrMultiple(preprocessed.getDefinition());
+        new ReflectionConstraintImposer(metaModel).setSingleOrMultiple(preprocessed.getDefinition());
         return preprocessed;
     }
 
-    private List<ValidationMessage> runValidations(Archetype archetype, FullArchetypeRepository repository, ArchetypeValidationSettings settings, Archetype flatParent, List<ArchetypeValidation> validations) {
+    private List<ValidationMessage> runValidations(MetaModel metaModel, Archetype archetype, FullArchetypeRepository repository, ArchetypeValidationSettings settings, Archetype flatParent, List<ArchetypeValidation> validations) {
 
         List<ValidationMessage> messages = new ArrayList<>();
         for(ArchetypeValidation validation: validations) {
             try {
-                messages.addAll(validation.validate(combinedModels, archetype, flatParent, repository, settings));
+                messages.addAll(validation.validate(metaModel, archetype, flatParent, repository, settings));
             } catch (Exception e) {
                 logger.error("error running validation processor", e);
                 e.printStackTrace();

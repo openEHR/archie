@@ -40,7 +40,7 @@ public class JAXBRMRoundTripTest {
     @Before
     public void setup() {
         testUtil = new TestUtil();
-        parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
     }
 
     @Test

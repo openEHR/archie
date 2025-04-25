@@ -2,10 +2,7 @@ package org.openehr.referencemodels;
 
 import com.nedap.archie.aom.profile.AomProfile;
 import com.nedap.archie.aom.profile.AomProfiles;
-import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rminfo.RMObjectMapperProvider;
-import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.rminfo.*;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmSchemaConverter;
@@ -33,6 +30,8 @@ public class BuiltinReferenceModels {
     private static AomProfiles aomProfiles;
 
     private static BmmRepository bmmRepository;
+
+    private static MetaModelProvider metaModelProvider;
 
     public static BmmRepository getBmmRepository() {
         if(bmmRepository != null) {
@@ -161,10 +160,23 @@ public class BuiltinReferenceModels {
     }
 
     /**
+     * Returns a MetaModelProvider loaded with all BMM models, ModelInfoLookups and AOM profiles that are available.
+     */
+    public static MetaModelProvider getMetaModelProvider() {
+        if (metaModelProvider != null) {
+            return metaModelProvider;
+        }
+        metaModelProvider = new SimpleMetaModelProvider(getAvailableModelInfoLookups(), getBmmRepository(), getAomProfiles());
+        return metaModelProvider;
+    }
+
+    /**
      * Returns the MetaModels loaded with all BMM, ModelInfoLookup and AOM profiles that are available.
      * Returns a new MetaModels instance every call!
      * @return
+     * @deprecated Use {@link #getMetaModelProvider()} instead.
      */
+    @Deprecated
     public static MetaModels getMetaModels() {
         MetaModels metaModels = new MetaModels(getAvailableModelInfoLookups(), getBmmRepository());
         for(AomProfile profile:getAomProfiles().getProfiles()) {

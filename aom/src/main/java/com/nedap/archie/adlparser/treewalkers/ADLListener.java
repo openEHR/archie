@@ -9,6 +9,8 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import com.nedap.archie.serializer.odin.OdinObjectParser;
@@ -39,15 +41,21 @@ public class ADLListener extends AdlBaseListener {
 
     Set<String> seenMetaDataIdentifiers = new HashSet<>();
     private Archetype archetype;
-    private CComplexObjectParser cComplexObjectParser;
     private TerminologyParser terminologyParser;
-    private MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
 
+    /**
+     * @deprecated Use {@link #ADLListener(ANTLRParserErrors, MetaModelProvider)} instead.
+     */
+    @Deprecated
     public ADLListener(ANTLRParserErrors errors, MetaModels metaModels) {
+        this(errors, (MetaModelProvider) metaModels);
+    }
+
+    public ADLListener(ANTLRParserErrors errors, MetaModelProvider metaModelProvider) {
         this.errors = errors;
-        cComplexObjectParser = new CComplexObjectParser(errors, metaModels);
         terminologyParser = new TerminologyParser(errors);
-        this.metaModels = metaModels;
+        this.metaModelProvider = metaModelProvider;
     }
 
     /** top-level constructs */
@@ -110,8 +118,8 @@ public class ADLListener extends AdlBaseListener {
         if(hrId != null) {
             ArchetypeHRID archetypeID = new ArchetypeHRID(hrId.getText());
             archetype.setArchetypeId(archetypeID);
-            if(metaModels != null) {
-                metaModels.selectModel(archetype);
+            if(metaModelProvider != null) {
+                metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
             }
         }
     }
@@ -195,6 +203,8 @@ public class ADLListener extends AdlBaseListener {
      */
     @Override
     public void enterDefinitionSection(DefinitionSectionContext ctx) {
+        MetaModel metaModel = metaModelProvider == null ? null : metaModelProvider.getMetaModel(archetype);
+        CComplexObjectParser cComplexObjectParser = new CComplexObjectParser(errors, metaModel);
         CComplexObject definition = cComplexObjectParser.parseComplexObject(ctx.c_complex_object());
         archetype.setDefinition(definition);
     }
@@ -223,6 +233,8 @@ public class ADLListener extends AdlBaseListener {
 
     @Override
     public void enterRulesSection(RulesSectionContext ctx) {
+        MetaModel metaModel = metaModelProvider == null ? null : metaModelProvider.getMetaModel(archetype);
+        CComplexObjectParser cComplexObjectParser = new CComplexObjectParser(errors, metaModel);
         archetype.setRules(cComplexObjectParser.parseRules(ctx));
     }
 

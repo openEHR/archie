@@ -38,7 +38,7 @@ public class FixableAssertionsCheckerTest {
     public void setup() {
         testUtil = new TestUtil();
         rmObjectCreator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
-        parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
     }
