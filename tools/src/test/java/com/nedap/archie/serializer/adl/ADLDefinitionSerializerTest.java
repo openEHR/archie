@@ -335,18 +335,19 @@ public class ADLDefinitionSerializerTest {
 
         CComplexObject parentCObj = archetype.getDefinition();
 
-        assertThat(serializeConstraint(parentCObj.itemAtPath("/items[id2]")).trim(),
-                // Should not have a comment as the text is empty
-                equalTo("ELEMENT[id2] matches {\n" +
-                        "        value matches {\n" +
-                        "            DV_TEXT[id21]\n" +
-                        "        }\n" +
-                        "    }"));
-        assertThat(serializeConstraint(parentCObj.itemAtPath("/items[id3]")).trim(),
-                // Comment should be on a single line
-                equalTo("ELEMENT[id3] matches {    -- This text has multiple lines!\n" +
-                        "        value matches {\n" +
-                        "            DV_CODED_TEXT[id31]\n" +
+        assertThat(serializeConstraint(parentCObj).trim(),
+                equalTo("CLUSTER[id1] matches {    -- Prescription\n" + // This comment is trimmed
+                        "        items matches {\n" +
+                        "            ELEMENT[id2] matches {\n" + // Should not have a comment as the text is empty
+                        "                value matches {\n" +
+                        "                    DV_TEXT[id21]\n" +
+                        "                }\n" +
+                        "            }\n" +
+                        "            ELEMENT[id3] matches {    -- This text has multiple lines!\n" + // Comment should be on a single line
+                        "                value matches {\n" +
+                        "                    DV_CODED_TEXT[id31]\n" +
+                        "                }\n" +
+                        "            }\n" +
                         "        }\n" +
                         "    }"));
     }
