@@ -23,7 +23,7 @@ public class ArchetypeValidatorVersionsTest {
         repo.addArchetype(parentv1);
         repo.addArchetype(parentv11);
         repo.addArchetype(child);
-        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
         //the order of validation is important for this test!
         //first validate the first parent, which is valid
         assertTrue(archetypeValidator.validate(parentv1, repo).passes());
@@ -47,7 +47,7 @@ public class ArchetypeValidatorVersionsTest {
         repo.addArchetype(parentv1);
         repo.addArchetype(parentv11);
         repo.addArchetype(child);
-        repo.compile(new ArchetypeValidator(BuiltinReferenceModels.getMetaModels()));
+        repo.compile(new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider()));
         for(ValidationResult result:repo.getAllValidationResults()) {
             assertTrue(result.getErrors().toString(), result.passes());
         }

@@ -3,7 +3,7 @@ package com.nedap.archie.diff;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModel;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -18,10 +18,10 @@ import static com.nedap.archie.diff.DiffUtil.getMatchingAttribute;
  */
 public class LCSOrderingDiff {
 
-    private final MetaModels metaModels;
+    private final MetaModel metaModel;
 
-    LCSOrderingDiff(MetaModels metaModels) {
-        this.metaModels = metaModels;
+    LCSOrderingDiff(MetaModel metaModel) {
+        this.metaModel = metaModel;
     }
 
     public void addSiblingOrder(Archetype result, Archetype flatChild, Archetype flatParent) {
@@ -68,11 +68,11 @@ public class LCSOrderingDiff {
             //descend into children first
             addSiblingOrder(resultAttribute, flatChildAttribute, parentAttribute);
 
-            if(!metaModels.isMultiple(parentAttribute.getParent().getRmTypeName(), parentAttribute.getRmAttributeName())){
+            if(!metaModel.isMultiple(parentAttribute.getParent().getRmTypeName(), parentAttribute.getRmAttributeName())){
                 continue;
             }
 
-            if(!metaModels.isOrdered(parentAttribute.getParent().getRmTypeName(), parentAttribute.getRmAttributeName())){
+            if(!metaModel.isOrdered(parentAttribute.getParent().getRmTypeName(), parentAttribute.getRmAttributeName())){
                 continue;
             }
 

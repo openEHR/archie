@@ -25,7 +25,7 @@ public class AttributeTupleValidation extends ValidatingVisitor {
                     addMessageWithPath(ErrorType.OTHER, cObject.getPath(), "An attribute tuple must have members");
                 } else {
                     for(CAttribute cAttribute:tuple.getMembers()) {
-                        if (!combinedModels.attributeExists(cObject.getRmTypeName(), cAttribute.getRmAttributeName())) {
+                        if (!metaModel.attributeExists(cObject.getRmTypeName(), cAttribute.getRmAttributeName())) {
                             addMessageWithPath(ErrorType.VCARM, cObject.getPath(),
                                     I18n.t("Tuple member attribute {0} is not an attribute of type {1}", cAttribute.getRmAttributeName(), cObject.getRmTypeName()));
                         }

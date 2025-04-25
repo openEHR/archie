@@ -198,7 +198,7 @@ public class ExampleJsonInstanceGeneratorTest {
         int numberCreated = 0, validationFailed = 0, generatedException = 0, jsonSchemaValidationRan = 0, jsonSchemaValidationFailed = 0;
         int secondJsonSchemaValidationRan = 0, reserializedJsonSchemaValidationFailed = 0;
         int rmObjectValidatorRan = 0, rmObjectValidatorFailed = 0;
-        repository.compile(BuiltinReferenceModels.getMetaModels());
+        repository.compile(BuiltinReferenceModels.getMetaModelProvider());
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
         JsonSchemaValidator firstValidator = new JsonSchemaValidator(model, true);
         JsonSchemaValidator secondValidator = new JsonSchemaValidator(model,false);
@@ -210,7 +210,7 @@ public class ExampleJsonInstanceGeneratorTest {
             if(result.passes()) {
                 String json = "";
                 try {
-                    Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true);
+                    Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider()).createOperationalTemplate(true);
                     OperationalTemplate template = (OperationalTemplate) flattener.flatten(result.getSourceArchetype());
                     Map<String, Object> example = structureGenerator.generate(template);
                     json = mapper.writeValueAsString(example);
@@ -282,7 +282,7 @@ public class ExampleJsonInstanceGeneratorTest {
     }
 
     private ExampleJsonInstanceGenerator createExampleJsonInstanceGenerator() {
-        ExampleJsonInstanceGenerator structureGenerator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
+        ExampleJsonInstanceGenerator structureGenerator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModelProvider(), "en");
         structureGenerator.setTypePropertyName(TYPE_PROPERTY_NAME);
         return structureGenerator;
     }
@@ -292,7 +292,7 @@ public class ExampleJsonInstanceGeneratorTest {
         Archetype archetype = parse(s2);
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(archetype);
-        return (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true).flatten(archetype);
+        return (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider()).createOperationalTemplate(true).flatten(archetype);
     }
 
     private Archetype parse(String filename) throws IOException, ADLParseException {
