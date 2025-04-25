@@ -87,7 +87,7 @@ public class ValidateArchetypedTest {
     }
 
     private OperationalTemplate createOpt(Archetype archetype) {
-        return (OperationalTemplate) new Flattener(repo, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(archetype);
+        return (OperationalTemplate) new Flattener(repo, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate()).flatten(archetype);
     }
 
     private Archetype parse(String filename) throws IOException, ADLParseException {

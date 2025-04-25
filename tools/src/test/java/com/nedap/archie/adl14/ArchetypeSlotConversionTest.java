@@ -20,12 +20,12 @@ public class ArchetypeSlotConversionTest {
     @Test
     public void testSlotConversion() throws Exception {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
         ADL2ConversionRunLog log = null;
 
         try(InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/adl14/openEHR-EHR-OBSERVATION.respiration.v1.adl")) {
             ADL2ConversionResultList result = converter.convert(
-                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModels()).parse(stream, conversionConfiguration)));
+                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream, conversionConfiguration)));
             Archetype archetype = result.getConversionResults().get(0).getArchetype();
             ArchetypeSlot slot = archetype.itemAtPath("/data/events[1]/state[id23]/items[id56]");
             String includesPattern = getPattern(slot.getIncludes().get(0));

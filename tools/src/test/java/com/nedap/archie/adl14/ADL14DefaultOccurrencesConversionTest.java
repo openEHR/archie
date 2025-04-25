@@ -19,10 +19,10 @@ public class ADL14DefaultOccurrencesConversionTest {
     @Test
     public void testDefaultOccurrencesConversion() throws Exception {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
         //apply the first conversion and store the log. It has created an at code to bind to [openehr::124], used in a DV_QUANTITY.property
         try (InputStream stream = getClass().getResourceAsStream("/adl14/entry/evaluation/openEHR-EHR-EVALUATION.goal.v1.adl")) {
-            ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+            ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider());
             Archetype parsed = parser.parse(stream, conversionConfiguration);
             ADL2ConversionResultList result = converter.convert(Lists.newArrayList(parsed));
             System.out.println(ADLArchetypeSerializer.serialize(result.getConversionResults().get(0).getArchetype()));

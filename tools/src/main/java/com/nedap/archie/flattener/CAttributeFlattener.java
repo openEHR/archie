@@ -315,7 +315,7 @@ public class CAttributeFlattener {
 
     private boolean shouldReplaceSpecializedParent(CObject parent, List<CObject> differentialNodes) {
 
-        MultiplicityInterval occurrences = parent.effectiveOccurrences(flattener.getMetaModels()::referenceModelPropMultiplicity);
+        MultiplicityInterval occurrences = parent.effectiveOccurrences(flattener.getMetaModel()::referenceModelPropMultiplicity);
         //isSingle/isMultiple is tricky and not doable just in the parser. Don't use those
         if(isSingle(parent.getParent())) {
             return true;
@@ -332,9 +332,9 @@ public class CAttributeFlattener {
             //in the rm, data maps to an ITEM_STRUCTURE that does not have the attribute items.
             //in the parent archetype, that is then an ITEM_TREE. We need to use ITEM_TREE here, which is what this code accomplishes.
             if(parent.getParent() == null || parent.getParent().getParent() == null) {
-                effectiveOccurrences = differentialNodes.get(0).effectiveOccurrences(flattener.getMetaModels()::referenceModelPropMultiplicity);
+                effectiveOccurrences = differentialNodes.get(0).effectiveOccurrences(flattener.getMetaModel()::referenceModelPropMultiplicity);
             } else {
-                effectiveOccurrences = differentialNodes.get(0).effectiveOccurrences((s, s2) -> flattener.getMetaModels().referenceModelPropMultiplicity(
+                effectiveOccurrences = differentialNodes.get(0).effectiveOccurrences((s, s2) -> flattener.getMetaModel().referenceModelPropMultiplicity(
                         parent.getParent().getParent().getRmTypeName(), parent.getParent().getRmAttributeName()));
             }
             if(effectiveOccurrences != null && effectiveOccurrences.upperIsOne()) {
@@ -347,7 +347,7 @@ public class CAttributeFlattener {
 
     private boolean isSingle(CAttribute attribute) {
         if(attribute != null && attribute.getParent() != null && attribute.getDifferentialPath() == null) {
-            return !flattener.getMetaModels().isMultiple(attribute.getParent().getRmTypeName(), attribute.getRmAttributeName());
+            return !flattener.getMetaModel().isMultiple(attribute.getParent().getRmTypeName(), attribute.getRmAttributeName());
         }
         return false;
     }

@@ -139,7 +139,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
     }
 
     private void validateConformsTo(CObject cObject, CObject parentCObject) {
-        ConformanceCheckResult conformanceCheckResult = cObject.cConformsTo(parentCObject, combinedModels::rmTypesConformant);
+        ConformanceCheckResult conformanceCheckResult = cObject.cConformsTo(parentCObject, metaModel::rmTypesConformant);
 
         if(!conformanceCheckResult.doesConform()) {
             if(conformanceCheckResult.getErrorType() != null) {
@@ -156,7 +156,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
                 if(cComplexObject.getAttributeTuples() != null && parentCComplexObject.getAttributeTuples() != null) {
                     for(CAttributeTuple tuple:cComplexObject.getAttributeTuples()) {
                         CAttributeTuple matchingTuple = AOMUtils.findMatchingTuple(parentCComplexObject.getAttributeTuples(), tuple);
-                        if(matchingTuple != null && ! tuple.cConformsTo(matchingTuple, combinedModels::rmTypesConformant)) {
+                        if(matchingTuple != null && ! tuple.cConformsTo(matchingTuple, metaModel::rmTypesConformant)) {
 
                             //tuple does not conform
                             addMessageWithPath(ErrorType.VTPNC, cObject.path(),
@@ -187,7 +187,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
 
     private boolean hasConformingParent(CAttribute parentAttribute, CPrimitiveObject<?, ?> member) {
         for(CObject parentCObject:parentAttribute.getChildren()) {
-            ConformanceCheckResult result = member.cConformsTo(parentCObject, (a, b) -> combinedModels.rmTypesConformant(a, b));
+            ConformanceCheckResult result = member.cConformsTo(parentCObject, (a, b) -> metaModel.rmTypesConformant(a, b));
             if(result.doesConform()) {
                 return true;
             }
@@ -257,12 +257,12 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
         String rootRmTypeName = root.getRmTypeName();
         String rootReferenceRmTypeName = new ArchetypeHRID(root.getArchetypeRef()).getRmClass();
 
-        if(!combinedModels.typeNameExists(rootRmTypeName) || !combinedModels.typeNameExists(rootReferenceRmTypeName)) {
+        if(!metaModel.typeNameExists(rootRmTypeName) || !metaModel.typeNameExists(rootReferenceRmTypeName)) {
             return false;
         }
-        else if(!combinedModels.rmTypesConformant(rootRmTypeName, slotRmTypeName)) {
+        else if(!metaModel.rmTypesConformant(rootRmTypeName, slotRmTypeName)) {
             return false;
-        } else if (!combinedModels.rmTypesConformant(rootReferenceRmTypeName, slotRmTypeName)) {
+        } else if (!metaModel.rmTypesConformant(rootReferenceRmTypeName, slotRmTypeName)) {
             return false;
         }
         return true;
