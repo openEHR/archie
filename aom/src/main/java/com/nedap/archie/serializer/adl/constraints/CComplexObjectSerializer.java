@@ -14,6 +14,7 @@ import org.openehr.odin.jackson.ODINPrettyPrinter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -195,6 +196,11 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
                 builder.append(",");
             }
 
+            cObjectTuple.getMembers().stream()
+                    .map(serializer::getSimpleCommentText)
+                    .filter(Objects::nonNull)
+                    .findFirst()
+                    .ifPresent(builder::lineComment);
         }
         builder.unindent().newline();
         builder.append("}");
