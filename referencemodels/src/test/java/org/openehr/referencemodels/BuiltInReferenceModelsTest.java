@@ -27,6 +27,7 @@ public class BuiltInReferenceModelsTest {
     }
 
     @Test
+    @Deprecated
     public void overrideModelVersion() throws Exception {
         MetaModels metaModels = BuiltinReferenceModels.getMetaModels();
         Archetype archetype = new Archetype();
