@@ -29,7 +29,15 @@ public class ReflectionConstraintImposer implements ModelConstraintImposer {
         this.lookup = new MetaModel(classLookup, null);
     }
 
+    /**
+     * @deprecated Use {@link #ReflectionConstraintImposer(MetaModel)} instead
+     */
+    @Deprecated
     public ReflectionConstraintImposer(MetaModelInterface metaModel) {
+        this.lookup = metaModel;
+    }
+
+    public ReflectionConstraintImposer(MetaModel metaModel) {
         this.lookup = metaModel;
     }
 

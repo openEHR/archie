@@ -470,7 +470,7 @@ public class AOMUtils {
     /**
      * Check if the parent attribute of the given CObject is a container attribute.
      *
-     * @see MetaModelInterface#isMultiple(String, String)
+     * @see MetaModel#isMultiple(String, String)
      */
     public static boolean parentIsMultiple(CObject cObject, Archetype flatParentArchetype, MetaModel metaModel) {
         if(cObject.getParent() != null) {
