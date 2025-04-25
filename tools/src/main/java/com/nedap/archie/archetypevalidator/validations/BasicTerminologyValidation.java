@@ -11,7 +11,10 @@ import com.nedap.archie.query.AOMPathQuery;
 import org.openehr.utils.message.I18n;
 
 import java.net.URI;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class BasicTerminologyValidation extends ArchetypeValidationBase {
 

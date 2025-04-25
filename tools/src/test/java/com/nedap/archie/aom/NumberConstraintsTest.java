@@ -5,7 +5,8 @@ import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.base.Interval;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by pieter.bos on 01/11/15.

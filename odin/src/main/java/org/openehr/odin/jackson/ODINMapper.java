@@ -9,13 +9,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
-import org.openehr.odin.jackson.serializers.OdinIntegerMapKeySerializer;
-import org.openehr.odin.jackson.serializers.OdinIntervalSerializer;
-import org.openehr.odin.jackson.serializers.OdinLongMapKeySerializer;
-import org.openehr.odin.jackson.serializers.OdinStringMapKeySerializer;
-import org.openehr.odin.jackson.serializers.OdinURISerializer;
-import org.openehr.odin.jackson.serializers.OdinURLSerializer;
-import org.openehr.odin.jackson.serializers.TerminologyCodeSerializer;
+import org.openehr.odin.jackson.serializers.*;
 
 import java.net.URI;
 import java.net.URL;

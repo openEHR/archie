@@ -1,9 +1,8 @@
 package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
+import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;

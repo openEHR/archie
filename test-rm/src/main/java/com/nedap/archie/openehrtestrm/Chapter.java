@@ -1,7 +1,5 @@
 package com.nedap.archie.openehrtestrm;
 
-import java.lang.String;
-
 public class Chapter extends TestRMBase {
   private String title;
 

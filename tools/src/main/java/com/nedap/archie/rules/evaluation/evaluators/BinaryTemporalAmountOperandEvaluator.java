@@ -6,7 +6,8 @@ import com.nedap.archie.rules.evaluation.Value;
 import com.nedap.archie.rules.evaluation.ValueList;
 import org.threeten.extra.PeriodDuration;
 
-import java.time.*;
+import java.time.Duration;
+import java.time.Period;
 import java.time.temporal.TemporalAmount;
 import java.util.List;
 

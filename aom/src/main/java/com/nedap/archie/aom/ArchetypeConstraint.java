@@ -6,7 +6,6 @@ import com.nedap.archie.paths.PathUtil;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlTransient;
-
 import java.util.List;
 
 /**

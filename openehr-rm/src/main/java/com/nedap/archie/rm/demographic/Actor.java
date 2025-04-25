@@ -1,7 +1,7 @@
 package com.nedap.archie.rm.demographic;
 
-import com.nedap.archie.rm.support.identification.PartyRef;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.support.identification.PartyRef;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;

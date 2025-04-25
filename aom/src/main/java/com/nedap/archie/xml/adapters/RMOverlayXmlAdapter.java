@@ -1,7 +1,7 @@
 package com.nedap.archie.xml.adapters;
 
-import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.xml.types.XmlRmAttributeVisibility;
 import com.nedap.archie.xml.types.XmlRmOverlay;
 

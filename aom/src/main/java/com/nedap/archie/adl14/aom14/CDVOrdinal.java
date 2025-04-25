@@ -1,6 +1,5 @@
 package com.nedap.archie.adl14.aom14;
 
-import java.util.List;
 import java.util.Map;
 
 public class CDVOrdinal {

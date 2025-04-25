@@ -1,7 +1,6 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.base.terminology.TerminologyCode;
 
 import java.util.Map;

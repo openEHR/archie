@@ -1,7 +1,6 @@
 package com.nedap.archie.json.flat;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
-import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.OperationalTemplate;

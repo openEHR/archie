@@ -5,7 +5,6 @@ import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.Interval;
-import com.nedap.archie.rminfo.ModelInfoLookup;
 import org.openehr.utils.message.I18n;
 
 import java.util.function.BiFunction;

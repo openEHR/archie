@@ -6,13 +6,9 @@ import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.lang.reflect.Type;
+import java.util.*;
 
 /**
  * Utility to create Reference model objects based on their RM name. Also can set attribute values on RM Objects based

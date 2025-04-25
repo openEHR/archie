@@ -1,6 +1,5 @@
 package com.nedap.archie.adlparser;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.base.Interval;

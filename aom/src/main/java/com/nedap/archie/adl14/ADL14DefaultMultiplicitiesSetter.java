@@ -3,9 +3,7 @@ package com.nedap.archie.adl14;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
-import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
-import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModels;
 
 /**
