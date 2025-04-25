@@ -1,18 +1,13 @@
 package org.openehr.referencemodels;
 
-import com.google.common.collect.Sets;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.rminfo.MetaModels;
 import org.junit.Test;
-import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
 
-import java.util.Map;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class BuiltInReferenceModelsTest {
 

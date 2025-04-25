@@ -10,7 +10,6 @@ import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
-import org.openehr.utils.message.MessageCode;
 import org.openehr.utils.message.MessageDescriptor;
 import org.openehr.utils.message.MessageSeverity;
 

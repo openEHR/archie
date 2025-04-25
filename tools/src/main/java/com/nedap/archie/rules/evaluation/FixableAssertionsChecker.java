@@ -4,15 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.query.RMObjectWithPath;
-import com.nedap.archie.rules.BinaryOperator;
-import com.nedap.archie.rules.Constraint;
-import com.nedap.archie.rules.Expression;
-import com.nedap.archie.rules.ForAllStatement;
-import com.nedap.archie.rules.ModelReference;
-import com.nedap.archie.rules.OperatorKind;
-import com.nedap.archie.rules.PrimitiveType;
-import com.nedap.archie.rules.RuleElement;
-import com.nedap.archie.rules.UnaryOperator;
+import com.nedap.archie.rules.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

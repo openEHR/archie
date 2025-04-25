@@ -21,11 +21,11 @@ package org.openehr.odin.antlr;
  * Author: Claude Nanjo
  */
 
-import org.openehr.odin.*;
-import org.openehr.odin.loader.OdinLoaderImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openehr.odin.*;
+import org.openehr.odin.loader.OdinLoaderImpl;
 
 import static org.junit.Assert.*;
 

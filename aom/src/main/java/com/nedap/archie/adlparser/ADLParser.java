@@ -1,17 +1,20 @@
 package com.nedap.archie.adlparser;
 
-import com.nedap.archie.adlparser.antlr.*;
+import com.nedap.archie.adlparser.antlr.AdlLexer;
+import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.modelconstraints.BMMConstraintImposer;
 import com.nedap.archie.adlparser.modelconstraints.ModelConstraintImposer;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.adlparser.treewalkers.ADLListener;
-import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
+import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.rminfo.MetaModels;
 import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.apache.commons.io.input.BOMInputStream;
 

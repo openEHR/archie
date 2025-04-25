@@ -3,7 +3,6 @@ package com.nedap.archie.flattener;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.aom.Archetype;
-
 import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;

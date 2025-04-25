@@ -1,11 +1,6 @@
 package com.nedap.archie.diff;
 
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.SiblingOrder;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.rminfo.MetaModels;
@@ -15,7 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.nedap.archie.diff.DiffUtil.*;
+import static com.nedap.archie.diff.DiffUtil.findMatchingParentCObject;
+import static com.nedap.archie.diff.DiffUtil.getMatchingAttribute;
 
 /**
  * Determines sibling orders using a longest common subsequence-based diff algorithm

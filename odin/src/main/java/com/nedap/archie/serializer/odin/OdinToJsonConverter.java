@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.nedap.archie.adlparser.antlr.odinParser.*;
 import org.apache.commons.text.StringEscapeUtils;
 
-
 import java.util.List;
 
 /**

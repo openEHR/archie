@@ -3,11 +3,8 @@ package com.nedap.archie.odin;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-
-import com.fasterxml.jackson.databind.util.Converter;
 import com.nedap.archie.rm.datastructures.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

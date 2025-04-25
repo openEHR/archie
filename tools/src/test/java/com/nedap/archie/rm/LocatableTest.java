@@ -3,11 +3,7 @@ package com.nedap.archie.rm;
 import com.google.common.collect.Lists;
 import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.History;
-import com.nedap.archie.rm.datastructures.ItemStructure;
-import com.nedap.archie.rm.datastructures.ItemTree;
-import com.nedap.archie.rm.datastructures.PointEvent;
+import com.nedap.archie.rm.datastructures.*;
 import com.nedap.archie.rm.datavalues.DvText;
 import org.junit.Test;
 

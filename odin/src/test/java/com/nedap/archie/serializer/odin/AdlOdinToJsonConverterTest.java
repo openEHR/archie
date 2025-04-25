@@ -4,10 +4,8 @@ package com.nedap.archie.serializer.odin;
 import com.nedap.archie.adlparser.antlr.AdlLexer;
 import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.antlr.errors.ArchieErrorListener;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.junit.Test;
 import org.antlr.v4.runtime.CharStreams;
-
+import org.antlr.v4.runtime.CommonTokenStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

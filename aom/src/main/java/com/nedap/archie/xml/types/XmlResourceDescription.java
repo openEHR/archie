@@ -1,6 +1,5 @@
 package com.nedap.archie.xml.types;
 
-import com.nedap.archie.aom.ResourceDescriptionItem;
 import com.nedap.archie.base.terminology.TerminologyCode;
 
 import javax.xml.bind.annotation.XmlAccessType;

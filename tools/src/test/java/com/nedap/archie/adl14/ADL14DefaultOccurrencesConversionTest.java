@@ -1,17 +1,14 @@
 package com.nedap.archie.adl14;
 
 import com.google.common.collect.Lists;
-import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
-import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;

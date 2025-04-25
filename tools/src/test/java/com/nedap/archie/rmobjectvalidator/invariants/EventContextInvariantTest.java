@@ -3,8 +3,6 @@ package com.nedap.archie.rmobjectvalidator.invariants;
 import com.nedap.archie.rm.composition.EventContext;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rminfo.Invariant;
-import com.nedap.archie.rmutil.InvariantUtil;
 import org.junit.Test;
 
 import java.time.LocalDateTime;

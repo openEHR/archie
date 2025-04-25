@@ -2,16 +2,16 @@ package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlBaseListener;
 import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
-import com.nedap.archie.aom.rmoverlay.RmOverlay;
-import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.serializer.odin.OdinObjectParser;
-import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
+import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
+import com.nedap.archie.serializer.odin.OdinObjectParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
