@@ -169,7 +169,6 @@ public class MetaModel implements MetaModelInterface {
         } else {
             return modelInfoLookup.getAttributeInfo(rmTypeName, propertyName) != null;
         }
-
     }
 
     @Override
