@@ -38,7 +38,7 @@ public class MetaModel implements MetaModelInterface {
         this.modelInfoLookup = modelInfoLookup;
         this.bmmModel = bmmModel;
         this.aomProfile = aomProfile;
-        if(provider != null) {
+        if (provider != null) {
             this.odinInputObjectMapper = provider.getInputOdinObjectMapper();
             this.odinOutputObjectMapper = provider.getOutputOdinObjectMapper();
             this.jsonObjectMapper = provider.getJsonObjectMapper();
@@ -87,8 +87,9 @@ public class MetaModel implements MetaModelInterface {
 
     /**
      * Get the object mapper to use for JSON converted from ODIN to parse this model
-     * It would be better if this was one object mapper, together with the odinInputObjectMapper, but unfortunately there is not
-     * yet one ObjectMapper that can both input converted json and output ODIN directly. Sorry about that.
+     * It would be better if this was one object mapper, together with the odinInputObjectMapper, but unfortunately
+     * there is not yet one ObjectMapper that can both input converted json and output ODIN directly. Sorry about that.
+     *
      * @return the object mapper to use for JSON converted from ODIN to parse this model
      */
     public ObjectMapper getOdinInputObjectMapper() {
@@ -97,8 +98,9 @@ public class MetaModel implements MetaModelInterface {
 
     /**
      * Get the object mapper to output ODIN from this model.
-     * It would be better if this was one object mapper, together with the odinInputObjectMapper, but unfortunately there is not
-     * yet one ObjectMapper that can both input converted json and output ODIN directly. Sorry about that.
+     * It would be better if this was one object mapper, together with the odinInputObjectMapper, but unfortunately
+     * there is not yet one ObjectMapper that can both input converted json and output ODIN directly. Sorry about that.
+     *
      * @return Get the object mapper to output ODIN from this model
      */
     public ObjectMapper getOdinOutputObjectMapper() {
@@ -112,16 +114,16 @@ public class MetaModel implements MetaModelInterface {
     @Override
     public boolean isMultiple(String typeName, String attributeNameOrPath) {
         MultiplicityInterval multiplicityInterval = referenceModelPropMultiplicity(typeName, attributeNameOrPath);
-        if(multiplicityInterval == null) {
+        if (multiplicityInterval == null) {
             return false;// by default, false if unknown property
         }
         return multiplicityInterval.isUpperUnbounded() || multiplicityInterval.getUpper() > 1;
     }
 
     private boolean isMultiple(BmmProperty<?> bmmProperty) {
-        if(bmmProperty == null) {
+        if (bmmProperty == null) {
             return false;
-        } else if(bmmProperty instanceof BmmContainerProperty) {
+        } else if (bmmProperty instanceof BmmContainerProperty) {
             return ((BmmContainerProperty) bmmProperty).getCardinality().has(2);
         } else {
             return false;
@@ -130,12 +132,12 @@ public class MetaModel implements MetaModelInterface {
 
     @Override
     public boolean rmTypesConformant(String childTypeName, String parentTypeName) {
-        if(bmmModel != null) {
+        if (bmmModel != null) {
             String parentClassName = BmmDefinitions.typeNameToClassKey(parentTypeName);//generics stripped
             String childClassName = BmmDefinitions.typeNameToClassKey(childTypeName);//generics stripped
             //TODO: generics as well. get the array and check each type?
             BmmClass childClass = bmmModel.getClassDefinition(childClassName);
-            if(childClass == null) {
+            if (childClass == null) {
                 return true;//will be checked elsewhere
             }
             List<String> allAncestors = childClass.findAllAncestors();
@@ -164,8 +166,7 @@ public class MetaModel implements MetaModelInterface {
             }
 
             return classDefinition.hasFlatPropertyWithName(propertyName);
-        }
-        else {
+        } else {
             return modelInfoLookup.getAttributeInfo(rmTypeName, propertyName) != null;
         }
 
@@ -182,23 +183,23 @@ public class MetaModel implements MetaModelInterface {
 
             BmmProperty<?> bmmProperty = classDefinition.getFlatProperties().get(attributeName);
             return !bmmProperty.getMandatory() || (bmmProperty.getExistence() != null && !bmmProperty.getExistence().isMandatory());
-        }
-        else {
+        } else {
             return modelInfoLookup.getAttributeInfo(typeId, attributeName).isNullable();
         }
     }
 
     /**
-     * return whether the attribute identified by rmTypeName.rmAttributeName can contain the type childConstraintTypeName
+     * return whether the attribute identified by rmTypeName.rmAttributeName can contain the type
+     * childConstraintTypeName
      */
     @Override
     public boolean typeConformant(String rmTypeName, String rmAttributeName, String childConstraintTypeName) {
-        if(bmmModel != null) {
+        if (bmmModel != null) {
             BmmClass parentClass = bmmModel.getClassDefinition(rmTypeName);
             BmmClass childClass = bmmModel.getClassDefinition(childConstraintTypeName);
-            if(childClass != null && parentClass != null) {
+            if (childClass != null && parentClass != null) {
                 BmmProperty<?> property = parentClass.getFlatProperties().get(rmAttributeName);
-                if(property != null) {
+                if (property != null) {
                     String propertyConfTypeName = property.getType().getEffectiveType().getTypeName();
                     // if(BmmDefinitions.validGenericTypeName(propertyConfTypeName) &&
                     //         !BmmDefinitions.validGenericTypeName(childConstraintTypeName)) {
@@ -206,8 +207,6 @@ public class MetaModel implements MetaModelInterface {
                     //}
                     return rmTypesConformant(childConstraintTypeName, propertyConfTypeName);
                 }
-
-
             }
             return false;
         } else {
@@ -227,8 +226,8 @@ public class MetaModel implements MetaModelInterface {
             return false;
         }
 
-        if(bmmModel != null) {
-            return bmmModel.hasPropertyAtPath (rmTypeName, path);
+        if (bmmModel != null) {
+            return bmmModel.hasPropertyAtPath(rmTypeName, path);
         } else {
             return AOMUtils.getAttributeInfoAtPath(modelInfoLookup, rmTypeName, path) != null;
         }
@@ -236,15 +235,15 @@ public class MetaModel implements MetaModelInterface {
 
     @Override
     public MultiplicityInterval referenceModelPropMultiplicity(String rmTypeName, String rmAttributeNameOrPath) {
-        if(bmmModel != null) {
-            BmmProperty<?> bmmProperty =  bmmModel.propertyAtPath (rmTypeName, rmAttributeNameOrPath);
-            if(bmmProperty == null) {
+        if (bmmModel != null) {
+            BmmProperty<?> bmmProperty = bmmModel.propertyAtPath(rmTypeName, rmAttributeNameOrPath);
+            if (bmmProperty == null) {
                 return null;
             }
-            if(isMultiple(bmmProperty)) {
+            if (isMultiple(bmmProperty)) {
                 return MultiplicityInterval.createUpperUnbounded(0);
             } else {
-                if(!bmmProperty.getMandatory()) {
+                if (!bmmProperty.getMandatory()) {
                     return MultiplicityInterval.createBounded(0, 1);
                 } else {
                     return MultiplicityInterval.createBounded(1, 1);
@@ -252,7 +251,7 @@ public class MetaModel implements MetaModelInterface {
             }
         } else {
             RMAttributeInfo attributeInfo = AOMUtils.getAttributeInfoAtPath(modelInfoLookup, rmTypeName, rmAttributeNameOrPath);
-            if(attributeInfo == null) {
+            if (attributeInfo == null) {
                 return null;
             }
             if (attributeInfo.isMultipleValued()) {
@@ -269,22 +268,22 @@ public class MetaModel implements MetaModelInterface {
 
     @Override
     public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject<?, ?> cObject) {
-        if(aomProfile == null && modelInfoLookup == null) {
+        if (aomProfile == null && modelInfoLookup == null) {
             throw new IllegalStateException("no AOM profile and no selected ModelInfoLookup, cannot validate primitive type");
         } else if (aomProfile == null) {
             return modelInfoLookup.validatePrimitiveType(rmTypeName, rmAttributeName, cObject);
         } else {
             String cRmTypeName = cObject.getRmTypeName();
             AomTypeMapping aomTypeMapping = aomProfile.getAomRmTypeMappings().get(cRmTypeName.toUpperCase());
-            if(aomTypeMapping != null) {
+            if (aomTypeMapping != null) {
                 //found a type mapping, replace effective type name
                 cRmTypeName = aomTypeMapping.getTargetClassName();
             }
             String modelTypeName = bmmModel.effectivePropertyType(rmTypeName, rmAttributeName);
             BmmClass bmmClass = bmmModel.getClassDefinition(rmTypeName);
-            if(bmmClass != null) {
+            if (bmmClass != null) {
                 BmmProperty<?> bmmProperty = bmmClass.getFlatProperties().get(rmAttributeName);
-                if(bmmProperty != null) {
+                if (bmmProperty != null) {
                     //check enumerated properties
                     BmmEffectiveType propertyEffectiveType = bmmProperty.getType().getEffectiveType();
                     if (propertyEffectiveType instanceof BmmDefinedType) {
@@ -293,20 +292,19 @@ public class MetaModel implements MetaModelInterface {
                             //enumeration. This should probably an integer.
                             //TODO: check if we should check the actual type as well as the string values of the enumeration?
                             modelTypeName = ((BmmEnumeration<?>) propertyClass).getUnderlyingTypeName();
-                            if(!modelTypeName.equalsIgnoreCase(cRmTypeName)) {
+                            if (!modelTypeName.equalsIgnoreCase(cRmTypeName)) {
                                 return false;//TODO: this should be a different error code/message
-                            }
-                            else if(cObject instanceof CString && propertyClass instanceof BmmEnumerationString) {
+                            } else if (cObject instanceof CString && propertyClass instanceof BmmEnumerationString) {
                                 BmmEnumerationString enumerationString = (BmmEnumerationString) propertyClass;
                                 CString cString = (CString) cObject;
-                                if(!enumerationString.getItemValues().containsAll(cString.getConstraint())) {
+                                if (!enumerationString.getItemValues().containsAll(cString.getConstraint())) {
                                     return false;
                                 }
                             } else if (cObject instanceof CInteger && propertyClass instanceof BmmEnumerationInteger) {
                                 BmmEnumerationInteger enumerationInteger = (BmmEnumerationInteger) propertyClass;
                                 CInteger cInteger = (CInteger) cObject;
                                 //TODO: BMM uses Integers instead of long, that could be aproblem as it can be Integer64 in models!
-                                if(!cInteger.getConstraintValues().stream().allMatch(item -> enumerationInteger.getItemValues().contains(item.intValue()))) {
+                                if (!cInteger.getConstraintValues().stream().allMatch(item -> enumerationInteger.getItemValues().contains(item.intValue()))) {
                                     return false;
                                 }
                             } else {
@@ -318,12 +316,12 @@ public class MetaModel implements MetaModelInterface {
                     }
                 }
             }
-            if(modelTypeName.equalsIgnoreCase(cRmTypeName)) {
+            if (modelTypeName.equalsIgnoreCase(cRmTypeName)) {
                 return true;//done :)
             }
 
             String equivalentType = aomProfile.getRmPrimitiveTypeEquivalences().get(modelTypeName);
-            if(equivalentType != null && equivalentType.equalsIgnoreCase(cRmTypeName)) {
+            if (equivalentType != null && equivalentType.equalsIgnoreCase(cRmTypeName)) {
                 return true;
             }
             String substitutedType = aomProfile.getAomRmTypeSubstitutions().get(cRmTypeName.toUpperCase());
@@ -340,8 +338,7 @@ public class MetaModel implements MetaModelInterface {
                 BmmProperty<?> bmmProperty = classDefinition.getFlatProperties().get(attributeName);
                 return isOrdered(bmmProperty);
             }
-        }
-        else {
+        } else {
             RMAttributeInfo attributeInfo = modelInfoLookup.getAttributeInfo(typeName, attributeName);
             return attributeInfo != null && List.class.isAssignableFrom(attributeInfo.getType());
         }
@@ -351,13 +348,11 @@ public class MetaModel implements MetaModelInterface {
     private boolean isOrdered(BmmProperty<?> bmmProperty) {
         if (bmmProperty == null) {
             return false;
-        }
-        else if(bmmProperty instanceof BmmContainerProperty) {
+        } else if (bmmProperty instanceof BmmContainerProperty) {
             String baseType = BmmDefinitions.typeNameToClassKey(((BmmContainerProperty) bmmProperty).getType().getContainerType().toString());
 
             return baseType.equalsIgnoreCase("list") || baseType.equalsIgnoreCase("array");//TODO: check Hash
-        }
-        else {
+        } else {
             return false;
         }
     }
