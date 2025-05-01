@@ -66,7 +66,7 @@ class OperationalTemplateCreator {
         }
     }
 
-    /** Zero occurrences constraint processing when creating OPT templates. Removes attributes */
+    /** Zero occurrences and existence constraint processing when creating OPT templates. Does not remove attributes */
     public void removeZeroOccurrencesConstraints(Archetype archetype) {
         Stack<CObject> workList = new Stack<>();
         workList.push(archetype.getDefinition());
