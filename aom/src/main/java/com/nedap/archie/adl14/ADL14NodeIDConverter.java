@@ -504,7 +504,7 @@ public class ADL14NodeIDConverter {
         nodeIdUtil.setPrefix(newCodePrefix); //will automatically strip the leading zeroes due to integer-parsing
         if (!oldCode.startsWith("at0.") && !oldCode.startsWith("ac0.")) {
             //a bit tricky, since the root of an archetype starts with at0000.0, but that's different from this I guess
-            nodeIdUtil.getCodes().set(0, nodeIdUtil.getCodes().get(0) + 1); //increment with 1, old is 0-based
+            nodeIdUtil.getCodes().set(0, String.valueOf(Integer.parseInt(nodeIdUtil.getCodes().get(0)) + 1)); //increment with 1, old is 0-based
         }
         return nodeIdUtil.toString();
     }
