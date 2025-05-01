@@ -66,16 +66,16 @@ class OperationalTemplateCreator {
         }
     }
 
-    /** Zero occurrences and existence constraint processing when creating OPT templates. Removes attributes */
+    /** Zero occurrences constraint processing when creating OPT templates. Removes attributes */
     public void removeZeroOccurrencesConstraints(Archetype archetype) {
         Stack<CObject> workList = new Stack<>();
         workList.push(archetype.getDefinition());
         while (!workList.isEmpty()) {
             CObject object = workList.pop();
-            List<CAttribute> attributesToRemove = new ArrayList<>();
             for (CAttribute attribute : object.getAttributes()) {
                 if (attribute.getExistence() != null && attribute.getExistence().getUpper() == 0 && !attribute.getExistence().isUpperUnbounded()) {
-                    attributesToRemove.add(attribute);
+                    FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, attribute.getChildren());
+                    attribute.setChildren(new ArrayList<>());
                 } else {
                     List<CObject> objectsToRemove = new ArrayList<>();
                     for (CObject child : attribute.getChildren()) {
@@ -87,10 +87,7 @@ class OperationalTemplateCreator {
                     FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, objectsToRemove);
                     attribute.getChildren().removeAll(objectsToRemove);
                 }
-
             }
-            FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, attributesToRemove);
-            object.getAttributes().removeAll(attributesToRemove);
         }
     }
 
