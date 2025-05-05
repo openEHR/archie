@@ -6,6 +6,7 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
+import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
@@ -15,13 +16,35 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
+import static com.nedap.archie.flattener.specexamples.FlattenerTestUtil.parse;
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.*;
 
 public class OperationalTemplateCreatorTest {
+
+    @Test
+    public void includeZeroExistence() throws Exception {
+        SimpleArchetypeRepository repository = new SimpleArchetypeRepository();
+        Archetype emptyObservation = parse("openEHR-EHR-OBSERVATION.empty_observation.v1.0.0.adls");
+        repository.addArchetype(emptyObservation);
+
+        try(InputStream stream = getClass().getResourceAsStream("specexamples/openEHR-EHR-OBSERVATION.protocol_exclusion.v1.0.0.adls")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+
+            // Assert protocol existence matches {0}
+            CAttribute protocol = flattener.flatten(archetype).getDefinition().getAttribute("protocol");
+            MultiplicityInterval existence = protocol.getExistence();
+            Integer zeroInt = Integer.valueOf(0);
+            assertEquals(zeroInt, existence.getLower());
+            assertEquals(zeroInt, existence.getUpper());
+            assertTrue(protocol.getChildren().isEmpty());
+        }
+    }
 
     @Test
     public void fillEmptyOccurrences() throws Exception {
