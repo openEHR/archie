@@ -143,8 +143,10 @@ public class ADL14Converter {
     }
 
     /**
-     * Set correct ADL and RM version for the archetype
-     * Add minor and patch version to archetypeId if minor version is not set in ADL1.4
+     * Set correct ADL and RM and ARCHETYPE_HRID.release_version for the archetype
+     * ADL14DescriptionConverter sets minor and patch version if 'revision' is present in RESOURCE_DESCRIPTION.other_details.
+     * this is done by Better archetype designer but is not part of the openEHR specification.  
+     * Add minor and patch version as 0.0 to archetypeId if minor version is not set in ADL1.4
      */
     private void setCorrectVersions(Archetype convertedArchetype) {
         convertedArchetype.setAdlVersion(conversionConfiguration.getAdlVersion());
