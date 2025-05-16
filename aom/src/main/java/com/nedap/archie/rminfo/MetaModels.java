@@ -158,11 +158,11 @@ public class MetaModels implements MetaModelInterface {
     }
 
     public ModelInfoLookup getSelectedModelInfoLookup() {
-        return selectedModel == null ? null : selectedModel.getSelectedModel();
+        return selectedModel == null ? null : selectedModel.getModelInfoLookup();
     }
 
     public BmmModel getSelectedBmmModel() {
-        return selectedModel == null ? null : selectedModel.getSelectedBmmModel();
+        return selectedModel == null ? null : selectedModel.getBmmModel();
     }
 
     public MetaModel getSelectedModel() {
