@@ -10,8 +10,9 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 import org.apache.commons.io.FilenameUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -118,7 +119,7 @@ public class BigArchetypeValidatorTest {
 
     @Test
     public void testFullValidityPackageBmm() {
-        testInner(new MetaModels(null, BuiltinReferenceModels.getBmmRepository(), BuiltinReferenceModels.getAomProfiles()));
+        testInner(new SimpleMetaModelProvider(null, BuiltinReferenceModels.getBmmRepository(), BuiltinReferenceModels.getAomProfiles()));
 
     }
 
@@ -130,11 +131,11 @@ public class BigArchetypeValidatorTest {
         models.registerModel(com.nedap.archie.openehrtestrm.TestRMInfoLookup.getInstance());
 
 //        access.initializeAll(schemaDirectories);
-        testInner(new MetaModels(models, (BmmRepository) null));
+        testInner(new SimpleMetaModelProvider(models, null));
 
     }
 
-    public void testInner(MetaModels metaModels) {
+    public void testInner(MetaModelProvider metaModelProvider) {
 
         Reflections reflections = new Reflections("adl2-tests.validity", Scanners.Resources);
         List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
@@ -148,7 +149,7 @@ public class BigArchetypeValidatorTest {
         int unexpectedParseErrors = 0;
         int wrongMessageCount = 0;
         List<String> errorStrings = new ArrayList<>();
-        ArchetypeValidator validator = new ArchetypeValidator(metaModels);
+        ArchetypeValidator validator = new ArchetypeValidator(metaModelProvider);
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         for(String file:adlFiles) {
             if (file.contains("legacy_adl_1.4")) {

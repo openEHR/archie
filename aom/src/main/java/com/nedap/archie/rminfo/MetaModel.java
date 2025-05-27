@@ -111,6 +111,10 @@ public class MetaModel implements MetaModelInterface {
         return jsonObjectMapper;
     }
 
+    /**
+     * determine if a property on a type is multiple or not. If the property cannot be found, returns false.
+     * Works both on properties on a type, or on path based lookup.
+     */
     @Override
     public boolean isMultiple(String typeName, String attributeNameOrPath) {
         MultiplicityInterval multiplicityInterval = referenceModelPropMultiplicity(typeName, attributeNameOrPath);

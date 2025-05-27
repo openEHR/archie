@@ -22,7 +22,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvTextOdin() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
@@ -46,7 +46,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvTextJson() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
@@ -72,7 +72,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvCodedTextJson() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
@@ -99,7 +99,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvCodedTextOdin() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
@@ -126,7 +126,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeClusterJson() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.getDefinition();
@@ -155,7 +155,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeClusterOdin() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.getDefinition();

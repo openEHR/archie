@@ -19,7 +19,7 @@ public class RMOverlayFlattenerTest {
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(parent);
         repository.addArchetype(child);
-        repository.compile(new ArchetypeValidator(BuiltinReferenceModels.getMetaModels()));
+        repository.compile(new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider()));
 
         repository.getAllValidationResults().forEach(v -> assertTrue(v.getErrors().toString(), !v.hasWarningsOrErrors()));
         Archetype flattenedChild = repository.getFlattenedArchetype("openEHR-EHR-OBSERVATION.to_flatten_child_with_overlay.v1.0.0");
@@ -39,10 +39,10 @@ public class RMOverlayFlattenerTest {
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(parent);
         repository.addArchetype(composition);
-        repository.compile(new ArchetypeValidator(BuiltinReferenceModels.getMetaModels()));
+        repository.compile(new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider()));
 
         repository.getAllValidationResults().forEach(v -> assertTrue(v.getErrors().toString(), !v.hasWarningsOrErrors()));
-        OperationalTemplate opt = (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(composition);
+        OperationalTemplate opt = (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate()).flatten(composition);
         assertEquals(VisibilityType.HIDE, opt.getRmOverlay().getRmVisibility().get("/content[id2]/subject").getVisibility());
         assertEquals("at12", opt.getRmOverlay().getRmVisibility().get("/content[id2]/subject").getAlias().getCodeString());
     }

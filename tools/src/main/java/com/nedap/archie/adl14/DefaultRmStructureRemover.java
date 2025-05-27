@@ -3,6 +3,8 @@ package com.nedap.archie.adl14;
 import com.nedap.archie.adlparser.modelconstraints.BMMConstraintImposer;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.base.MultiplicityInterval;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 
 import java.util.ArrayList;
@@ -18,17 +20,28 @@ import java.util.List;
  */
 public class DefaultRmStructureRemover {
 
-    private final MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
     private final boolean removeEmptyAttributes;
+
+    private MetaModel metaModel;
     private BMMConstraintImposer constraintImposer;
 
     /**
      * Construct a DefaultRmStructureRemover that does not remove empty attributes
      * @param metaModels the metamodels containing metamodel information for the preset archetypes
-     * Part of the public API, do not remove
+     * @deprecated Use {@link #DefaultRmStructureRemover(MetaModelProvider)} instead.
      */
+    @Deprecated
     public DefaultRmStructureRemover(MetaModels metaModels) {
         this(metaModels, false);
+    }
+
+    /**
+     * Construct a DefaultRmStructureRemover that does not remove empty attributes
+     * @param metaModelProvider the metamodel provider for the preset archetypes
+     */
+    public DefaultRmStructureRemover(MetaModelProvider metaModelProvider) {
+        this(metaModelProvider, false);
     }
 
     /**
@@ -36,25 +49,34 @@ public class DefaultRmStructureRemover {
      *
      * @param metaModels            the metamodels containing metamodel information for the preset archetypes
      * @param removeEmptyAttributes if true, will remove empty attributes. If false, will not
+     * @deprecated Use {@link #DefaultRmStructureRemover(MetaModelProvider, boolean)} instead.
      */
+    @Deprecated
     public DefaultRmStructureRemover(MetaModels metaModels, boolean removeEmptyAttributes) {
-        this.metaModels = metaModels;
+        this((MetaModelProvider) metaModels, removeEmptyAttributes);
+    }
+
+    /**
+     * Construct a DefaultRmStructureRemover
+     *
+     * @param metaModelProvider     the metamodel provider for the preset archetypes
+     * @param removeEmptyAttributes if true, will remove empty attributes. If false, will not
+     */
+    public DefaultRmStructureRemover(MetaModelProvider metaModelProvider, boolean removeEmptyAttributes) {
+        this.metaModelProvider = metaModelProvider;
         this.removeEmptyAttributes = removeEmptyAttributes;
     }
 
     public void removeRMDefaults(Archetype archetype) {
-        this.metaModels.selectModel(archetype);
-        if (metaModels.getSelectedModel() == null) {
-            throw new IllegalArgumentException("cannot find model for argument, so cannot remove default multiplicity");
-        }
-        this.constraintImposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
+        metaModel = this.metaModelProvider.selectAndGetMetaModel(archetype);
+        this.constraintImposer = new BMMConstraintImposer(metaModel.getBmmModel());
         removeRMDefaults(archetype.getDefinition());
     }
 
     private void removeRMDefaults(CObject object) {
         // Remove occurrences if they are equal to the default occurrences of the object
         if (object.getOccurrences() != null) {
-            MultiplicityInterval defaultRMOccurrences = object.getDefaultRMOccurrences(metaModels::referenceModelPropMultiplicity);
+            MultiplicityInterval defaultRMOccurrences = object.getDefaultRMOccurrences(metaModel::referenceModelPropMultiplicity);
             if (defaultRMOccurrences.equals(object.getOccurrences())) {
                 object.setOccurrences(null);
             }

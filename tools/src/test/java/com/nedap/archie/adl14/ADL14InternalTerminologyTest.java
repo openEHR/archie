@@ -19,11 +19,11 @@ public class ADL14InternalTerminologyTest {
     @Test
     public void internalTerminologyRemoved() throws IOException, ADLParseException {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
 
         try(InputStream stream = getClass().getResourceAsStream("/adl14/openEHR-EHR-OBSERVATION.internal_terminology_test.v0.adl")) {
             ADL2ConversionResultList result = converter.convert(
-                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModels()).parse(stream, conversionConfiguration)));
+                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream, conversionConfiguration)));
             Archetype converted = result.getConversionResults().get(0).getArchetype();
             // A terminology code is unnecessary if:
             //  - The text.length < 19

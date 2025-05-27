@@ -445,7 +445,9 @@ public class AOMUtils {
      * Check if the parent attribute of the given CObject is a container attribute.
      *
      * @see MetaModelInterface#isMultiple(String, String)
+     * @deprecated Use {@link #parentIsMultiple(CObject, Archetype, MetaModel)} instead.
      */
+    @Deprecated
     public static boolean parentIsMultiple(CObject cObject, Archetype flatParentArchetype, MetaModels metaModels) {
         if(cObject.getParent() != null) {
 
@@ -460,6 +462,30 @@ public class AOMUtils {
             }
             if(owningObject != null) {
                 return metaModels.isMultiple(owningObject.getRmTypeName(), parent.getRmAttributeName());
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if the parent attribute of the given CObject is a container attribute.
+     *
+     * @see MetaModel#isMultiple(String, String)
+     */
+    public static boolean parentIsMultiple(CObject cObject, Archetype flatParentArchetype, MetaModel metaModel) {
+        if(cObject.getParent() != null) {
+
+            CAttribute parent = cObject.getParent();
+            CObject owningObject = parent.getParent();
+            if (parent.getDifferentialPath() != null && flatParentArchetype != null) {
+                CAttribute attributeFromParent = (CAttribute) AOMUtils.getDifferentialPathFromParent(flatParentArchetype, parent);
+                if(attributeFromParent != null) {
+                    owningObject = attributeFromParent.getParent();
+                }
+
+            }
+            if(owningObject != null) {
+                return metaModel.isMultiple(owningObject.getRmTypeName(), parent.getRmAttributeName());
             }
         }
         return false;

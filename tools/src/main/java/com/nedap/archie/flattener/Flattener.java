@@ -3,9 +3,7 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
-import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.rminfo.ReferenceModels;
-import org.openehr.bmm.v2.validation.BmmRepository;
+import com.nedap.archie.rminfo.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,9 +20,11 @@ import static com.nedap.archie.flattener.FlattenerUtil.getPossiblyOverridenValue
  */
 public class Flattener implements IAttributeFlattenerSupport {
 
-    private final MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
     //to be able to store Template Overlays transparently during flattening
     private OverridingArchetypeRepository repository;
+
+    private MetaModel metaModel;
 
     private Archetype parent;
     private Archetype child;
@@ -43,20 +43,32 @@ public class Flattener implements IAttributeFlattenerSupport {
 
 
     public Flattener(ArchetypeRepository repository, ReferenceModels models) {
-        this.repository = new OverridingArchetypeRepository(repository);
-        this.metaModels = new MetaModels(models, (BmmRepository) null);
-        config = FlattenerConfiguration.forFlattened();
+        this(repository, new SimpleMetaModelProvider(models, null));
     }
 
+    /**
+     * @deprecated Use {@link #Flattener(ArchetypeRepository, MetaModelProvider)} instead.
+     */
+    @Deprecated
     public Flattener(ArchetypeRepository repository, MetaModels models) {
-        this.repository = new OverridingArchetypeRepository(repository);
-        this.metaModels = models;
-        config = FlattenerConfiguration.forFlattened();
+        this(repository, (MetaModelProvider) models);
     }
 
+    public Flattener(ArchetypeRepository repository, MetaModelProvider metaModelProvider) {
+        this(repository, metaModelProvider, FlattenerConfiguration.forFlattened());
+    }
+
+    /**
+     * @deprecated Use {@link #Flattener(ArchetypeRepository, MetaModelProvider, FlattenerConfiguration)} instead.
+     */
+    @Deprecated
     public Flattener(ArchetypeRepository repository, MetaModels models, FlattenerConfiguration configuration) {
+        this(repository, (MetaModelProvider) models, configuration);
+    }
+
+    public Flattener(ArchetypeRepository repository, MetaModelProvider metaModelProvider, FlattenerConfiguration configuration) {
         this.repository = new OverridingArchetypeRepository(repository);
-        this.metaModels = models;
+        this.metaModelProvider = metaModelProvider;
         this.config = configuration.clone();
     }
 
@@ -106,7 +118,7 @@ public class Flattener implements IAttributeFlattenerSupport {
             throw new IllegalStateException("You've used this flattener before - single use instance, please create a new one!");
         }
 
-        metaModels.selectModel(toFlatten);
+        metaModel = metaModelProvider.selectAndGetMetaModel(toFlatten);
 
         //validate that we can legally flatten first
         String parentId = toFlatten.getParentArchetypeId();
@@ -234,7 +246,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         ArchetypeParsePostProcessor.fixArchetype(result);
 
         //set the single/multiple attributes correctly
-        new ReflectionConstraintImposer(metaModels.getSelectedModel())
+        new ReflectionConstraintImposer(metaModel)
                 .setSingleOrMultiple(result.getDefinition());
 
         return result;
@@ -415,7 +427,7 @@ public class Flattener implements IAttributeFlattenerSupport {
      * @return
      */
     protected Flattener getNewFlattenerForParent() {
-        Flattener result = new Flattener(repository, metaModels, config)
+        Flattener result = new Flattener(repository, metaModelProvider, config)
                 .createOperationalTemplate(false); //do not create operational template except at the end.
         if(config.isRemoveZeroOccurrencesInParents()) {
             //remove all zero occurrences objects EXCEPT in the top level archetype
@@ -433,7 +445,7 @@ public class Flattener implements IAttributeFlattenerSupport {
      * @return
      */
     protected Flattener getNewFlattener() {
-        return new Flattener(repository, metaModels, config);
+        return new Flattener(repository, metaModelProvider, config);
     }
 
     private Flattener useComplexObjectForArchetypeSlotReplacement(boolean useComplexObjectForArchetypeSlotReplacement) {
@@ -446,8 +458,18 @@ public class Flattener implements IAttributeFlattenerSupport {
     }
 
     @Override
+    public MetaModel getMetaModel() {
+        return metaModel;
+    }
+
+    @Override
+    @Deprecated
     public MetaModels getMetaModels() {
-        return metaModels;
+        if(metaModelProvider instanceof MetaModels) {
+            return (MetaModels) metaModelProvider;
+        } else {
+            throw new IllegalStateException("MetaModels not available");
+        }
     }
 
     @Override

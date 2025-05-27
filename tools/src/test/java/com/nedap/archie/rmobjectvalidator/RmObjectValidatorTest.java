@@ -86,7 +86,7 @@ public class RmObjectValidatorTest {
     }
 
     private OperationalTemplate createOpt(Archetype archetype) {
-        return (OperationalTemplate) new Flattener(emptyRepo, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(archetype);
+        return (OperationalTemplate) new Flattener(emptyRepo, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate()).flatten(archetype);
     }
 
     @Test

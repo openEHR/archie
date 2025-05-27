@@ -5,34 +5,43 @@ import com.nedap.archie.adlparser.modelconstraints.BMMConstraintImposer;
 import com.nedap.archie.adlparser.modelconstraints.ModelConstraintImposer;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 
 public class Differentiator {
 
-    private final MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
 
+    /**
+     * @deprecated Use {@link #Differentiator(MetaModelProvider)} instead.
+     */
+    @Deprecated
     public Differentiator(MetaModels metaModels) {
-        this.metaModels = metaModels;
+        this((MetaModelProvider) metaModels);
     }
 
+    public Differentiator(MetaModelProvider metaModelProvider) {
+        this.metaModelProvider = metaModelProvider;
+    }
 
     public Archetype differentiate(Archetype flatChild, Archetype flatParent) {
         return differentiate(flatChild, flatParent, true);
     }
 
     public Archetype differentiate(Archetype flatChild, Archetype flatParent, boolean addSiblingOrder) {
-        metaModels.selectModel(flatChild);
+        MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(flatChild);
         ModelConstraintImposer constraintImposer;
-        if(metaModels.getSelectedBmmModel() != null) {
-            constraintImposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
+        if(metaModel.getBmmModel() != null) {
+            constraintImposer = new BMMConstraintImposer(metaModel.getBmmModel());
         } else {
-            constraintImposer = new ReflectionConstraintImposer(metaModels.getSelectedModelInfoLookup());
+            constraintImposer = new ReflectionConstraintImposer(metaModel.getModelInfoLookup());
         }
         Archetype result = flatChild.clone();
         UnconstrainedIntervalRemover.removeUnconstrainedIntervals(result);
 
         if(addSiblingOrder) {
-            new LCSOrderingDiff(metaModels).addSiblingOrder(result, flatChild, flatParent);
+            new LCSOrderingDiff(metaModel).addSiblingOrder(result, flatChild, flatParent);
         }
         new ConstraintDifferentiator(constraintImposer, flatParent).removeUnspecializedConstraints(result, flatParent);
         new AnnotationDifferentiator().differentiate(result, flatParent);
@@ -40,7 +49,7 @@ public class Differentiator {
         new DifferentialPathGenerator().replace(result);
         new TerminologyDifferentiator().differentiate(result);
 
-        new DefaultRmStructureRemover(metaModels, false).removeRMDefaults(result);
+        new DefaultRmStructureRemover(metaModelProvider, false).removeRMDefaults(result);
         result.setDifferential(true);
 
         return result;
