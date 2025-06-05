@@ -62,14 +62,14 @@ public class ArchetypeSlotValidationTest {
         repository.setOperationalTemplate(includedOpt);
         repository.setOperationalTemplate(parentOfIncludedOpt);
 
-        generator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
+        generator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModelProvider(), "en");
         Map<String, Object> generated = generator.generate(parentOpt);
         example = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(generated), Section.class);
         rmObjectValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), repository, new ValidationConfiguration.Builder().build());
     }
 
     private Flattener createFlattener() {
-        return new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        return new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
     }
 
     @Test

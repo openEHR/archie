@@ -7,6 +7,7 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.base.OpenEHRBase;
+import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rules.Assertion;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
@@ -24,12 +25,26 @@ import java.util.List;
 public class CComplexObjectParser extends BaseTreeWalker {
 
     private final PrimitivesConstraintParser primitivesConstraintParser;
+    @Deprecated
     private final MetaModels metaModels;
+    private final MetaModel metaModel;
 
+    /**
+     * @deprecated Use {@link #CComplexObjectParser(ANTLRParserErrors, MetaModel)} instead.
+     */
+    @Deprecated
     public CComplexObjectParser(ANTLRParserErrors errors, MetaModels metaModels) {
         super(errors);
         primitivesConstraintParser = new PrimitivesConstraintParser(errors);
         this.metaModels = metaModels;
+        this.metaModel = null;
+    }
+
+    public CComplexObjectParser(ANTLRParserErrors errors, MetaModel metaModel) {
+        super(errors);
+        primitivesConstraintParser = new PrimitivesConstraintParser(errors);
+        this.metaModels = null;
+        this.metaModel = metaModel;
     }
 
     public RulesSection parseRules(RulesSectionContext context) {
@@ -158,6 +173,10 @@ public class CComplexObjectParser extends BaseTreeWalker {
     }
 
     private ObjectMapper getDefaultValueJsonObjectMapper() {
+        if(metaModel != null) {
+            return metaModel.getJsonObjectMapper();
+        }
+        // For backwards compatiblity
         if(metaModels == null) {
             return null;
         }
@@ -168,6 +187,10 @@ public class CComplexObjectParser extends BaseTreeWalker {
     }
 
     private ObjectMapper getDefaultValueOdinObjectMapper() {
+        if(metaModel != null) {
+            return metaModel.getOdinInputObjectMapper();
+        }
+        // For backwards compatiblity
         if(metaModels == null) {
             return null;
         }

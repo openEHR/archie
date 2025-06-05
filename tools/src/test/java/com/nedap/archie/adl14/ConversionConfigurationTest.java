@@ -15,17 +15,17 @@ public class ConversionConfigurationTest {
     public void testRmRelease() throws Exception {
 
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
 
 
         try(InputStream stream = getClass().getResourceAsStream("openehr-EHR-COMPOSITION.review.v1.adl")) {
-            Archetype adl14 = new ADL14Parser(BuiltinReferenceModels.getMetaModels()).parse(stream, conversionConfiguration);
+            Archetype adl14 = new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream, conversionConfiguration);
             ADL2ConversionResultList result = converter.convert(Lists.newArrayList(adl14));
 
             assertEquals("1.1.0", result.getConversionResults().get(0).getArchetype().getRmRelease());
 
             conversionConfiguration.setRmRelease("1.0.4");
-            converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+            converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
 
             result = converter.convert(Lists.newArrayList(adl14));
             assertEquals("1.0.4", result.getConversionResults().get(0).getArchetype().getRmRelease());
