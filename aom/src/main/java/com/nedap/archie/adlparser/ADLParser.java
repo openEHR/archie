@@ -10,6 +10,8 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -29,7 +31,7 @@ import java.nio.charset.Charset;
  */
 public class ADLParser {
 
-    private final MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
     private final ModelConstraintImposer modelConstraintImposer;
     private ANTLRParserErrors errors;
 
@@ -46,7 +48,7 @@ public class ADLParser {
     private boolean logEnabled = true;
 
     public ADLParser() {
-        this.metaModels = null;
+        this.metaModelProvider = null;
         this.modelConstraintImposer = null;
     }
 
@@ -59,7 +61,7 @@ public class ADLParser {
     @Deprecated
     public ADLParser(ModelConstraintImposer modelConstraintImposer) {
         this.modelConstraintImposer = modelConstraintImposer;
-        this.metaModels = null;
+        this.metaModelProvider = null;
     }
 
 
@@ -67,9 +69,20 @@ public class ADLParser {
      * Creates an ADLParser with MetaModel knowledge. This is used to set the isSingle and isMultiple fields correctly
      * in the future, this will be used for more model-specific options, such as defined C_PRIMITIVE_OBJECTS and more
      * @param models
+     * @deprecated Use {@link #ADLParser(MetaModelProvider)} instead.
      */
+    @Deprecated
     public ADLParser(MetaModels models) {
-        this.metaModels = models;
+        this((MetaModelProvider) models);
+    }
+
+    /**
+     * Creates an ADLParser with MetaModel knowledge. This is used to set the isSingle and isMultiple fields correctly
+     * in the future, this will be used for more model-specific options, such as defined C_PRIMITIVE_OBJECTS and more
+     * @param metaModelProvider the provider for meta models
+     */
+    public ADLParser(MetaModelProvider metaModelProvider) {
+        this.metaModelProvider = metaModelProvider;
         this.modelConstraintImposer = null;
     }
 
@@ -95,7 +108,7 @@ public class ADLParser {
         tree = parser.adl(); // parse
 
         try {
-            ADLListener listener = new ADLListener(errors, metaModels);
+            ADLListener listener = new ADLListener(errors, metaModelProvider);
             walker = new ParseTreeWalker();
             walker.walk(listener, tree);
             result = listener.getArchetype();
@@ -104,13 +117,13 @@ public class ADLParser {
 
             if (modelConstraintImposer != null && result.getDefinition() != null) {
                 modelConstraintImposer.imposeConstraints(result.getDefinition());
-            } else if (metaModels != null) {
-                metaModels.selectModel(result);
-                if (metaModels.getSelectedBmmModel() != null) {
-                    ModelConstraintImposer imposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
+            } else if (metaModelProvider != null) {
+                MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(result);
+                if (metaModel.getBmmModel() != null) {
+                    ModelConstraintImposer imposer = new BMMConstraintImposer(metaModel.getBmmModel() );
                     imposer.setSingleOrMultiple(result.getDefinition());
-                } else if (metaModels.getSelectedModelInfoLookup() != null) {
-                    ModelConstraintImposer imposer = new ReflectionConstraintImposer(metaModels.getSelectedModelInfoLookup());
+                } else if (metaModel.getModelInfoLookup() != null) {
+                    ModelConstraintImposer imposer = new ReflectionConstraintImposer(metaModel.getModelInfoLookup());
                     imposer.setSingleOrMultiple(result.getDefinition());
                 }
             }

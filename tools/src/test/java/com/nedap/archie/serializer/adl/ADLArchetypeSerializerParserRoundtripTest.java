@@ -154,7 +154,7 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         String serialized = ADLArchetypeSerializer.serialize(archetype, null, rmObjectMapperProvider);
         logger.info(serialized);
 
-        ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         Archetype result = parser.parse(serialized);
 
         assertTrue("roundtrip parsing should never cause errors: " + parser.getErrors().toString(), parser.getErrors().hasNoErrors());
@@ -166,11 +166,11 @@ public class ADLArchetypeSerializerParserRoundtripTest {
     }
 
     private Archetype load(String resourceName) throws IOException, ADLParseException {
-        return new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(ADLArchetypeSerializerTest.class.getResourceAsStream(resourceName));
+        return new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(ADLArchetypeSerializerTest.class.getResourceAsStream(resourceName));
     }
 
     private Archetype loadRoot(String resourceName) throws IOException, ADLParseException {
-        return new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
+        return new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
     }
 
     @Test
@@ -245,7 +245,7 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         repository.addArchetype(height);
         repository.addArchetype(heightTemplate);
 
-        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true);
+        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider()).createOperationalTemplate(true);
         Archetype operationalTemplate = flattener.flatten(bloodPressureComposition);
         Archetype parsed = roundtrip(operationalTemplate);
         TestUtil.assertCObjectEquals(operationalTemplate.getDefinition(), parsed.getDefinition());

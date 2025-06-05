@@ -80,7 +80,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
                             //if not a valid path, fine
                         }
                         if (!AOMUtils.isValidCode(constraintCodeOrPath) && !(
-                                archetypeHasPath || combinedModels.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
+                                archetypeHasPath || metaModel.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
                         )
                         ) {
                             addMessage(ErrorType.VTTBK, I18n.t("Term binding key {0} in path format is not present in archetype", constraintCodeOrPath));

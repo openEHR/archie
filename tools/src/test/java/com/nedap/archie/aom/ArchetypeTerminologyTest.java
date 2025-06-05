@@ -31,11 +31,11 @@ public class ArchetypeTerminologyTest {
         repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.included.v1.0.0.adls"));
 
         //check that they are valid, just to be sure
-        repository.compile(BuiltinReferenceModels.getMetaModels());
+        repository.compile(BuiltinReferenceModels.getMetaModelProvider());
         repository.getAllValidationResults().forEach(s -> assertTrue(s.getErrors().toString(), s.getErrors().isEmpty()));
 
         //create operational template
-        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(repository.getArchetype("openEHR-EHR-COMPOSITION.parent.v1.0.0"));
 
         //and check the getTerm() functionality

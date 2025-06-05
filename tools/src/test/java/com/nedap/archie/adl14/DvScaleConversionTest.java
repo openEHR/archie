@@ -18,11 +18,11 @@ public class DvScaleConversionTest {
     public void testDvScale() throws Exception {
 
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
-        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration);
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
 
 
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.ordinalandscale.v0.adl")) {
-            ADL14Parser adl14Parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+            ADL14Parser adl14Parser = new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider());
             Archetype adl14 = adl14Parser.parse(stream, conversionConfiguration);
             assertFalse(adl14Parser.getErrors().hasErrors());
             ADL2ConversionResultList result = converter.convert(Lists.newArrayList(adl14));

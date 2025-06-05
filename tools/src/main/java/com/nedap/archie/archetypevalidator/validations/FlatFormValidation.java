@@ -35,7 +35,7 @@ public class FlatFormValidation extends ValidatingVisitor {
 
                 CComplexObject replacementComplexObject = complexObjectProxyReplacement.getReplacement();
 
-                if(!combinedModels.rmTypesConformant(replacementComplexObject.getRmTypeName(), cObject.getRmTypeName())) {
+                if(!metaModel.rmTypesConformant(replacementComplexObject.getRmTypeName(), cObject.getRmTypeName())) {
                     addMessageWithPath(ErrorType.VUNT, cObject.path(), I18n.t("Use_node (C_COMPLEX_OBJECT_PROXY) points to type {0}, which does not conform to type {1}", replacementComplexObject.getRmTypeName(), cObject.getRmTypeName()));
                 }
             } else {
@@ -78,7 +78,7 @@ public class FlatFormValidation extends ValidatingVisitor {
                     //if not a valid path, fine
                 }
                 if(!AOMUtils.isValidCode(constraintCodeOrPath) && !(
-                        archetypeHasPath || combinedModels.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
+                        archetypeHasPath || metaModel.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
                 )
                         ) {
                     addMessage(ErrorType.VTTBK, I18n.t("Term binding key {0} points to a path that cannot be found in the archetype", constraintCodeOrPath));

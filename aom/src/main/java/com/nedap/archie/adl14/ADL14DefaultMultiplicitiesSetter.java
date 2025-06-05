@@ -4,6 +4,8 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.base.MultiplicityInterval;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 
 /**
@@ -17,24 +19,32 @@ import com.nedap.archie.rminfo.MetaModels;
  */
 public class ADL14DefaultMultiplicitiesSetter {
 
-    private final MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
 
+    /**
+     * @deprecated Use {@link #ADL14DefaultMultiplicitiesSetter(MetaModelProvider)} instead.
+     */
+    @Deprecated
     public ADL14DefaultMultiplicitiesSetter(MetaModels metaModels) {
-        this.metaModels = metaModels;
+        this((MetaModelProvider) metaModels);
+    }
+
+    public ADL14DefaultMultiplicitiesSetter(MetaModelProvider metaModelProvider) {
+        this.metaModelProvider = metaModelProvider;
     }
 
     public void setDefaults(Archetype archetype) {
-        metaModels.selectModel(archetype);
-        correctItemsMultiplicities(archetype.getDefinition());
+        MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(archetype);
+        correctItemsMultiplicities(metaModel, archetype.getDefinition());
     }
 
-    private void correctItemsMultiplicities(CObject cObject) {
+    private void correctItemsMultiplicities(MetaModel metaModel, CObject cObject) {
         for (CAttribute attribute : cObject.getAttributes()) {
             for (CObject child : attribute.getChildren()) {
-                if (child.getOccurrences() == null && metaModels.isMultiple(cObject.getRmTypeName(), attribute.getRmAttributeName())) {
+                if (child.getOccurrences() == null && metaModel.isMultiple(cObject.getRmTypeName(), attribute.getRmAttributeName())) {
                     child.setOccurrences(new MultiplicityInterval(1, 1));
                 }
-                correctItemsMultiplicities(child);
+                correctItemsMultiplicities(metaModel, child);
             }
         }
 
