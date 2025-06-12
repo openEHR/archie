@@ -5,5 +5,6 @@ dependencies {
   api project(':odin')
   api project(':aom')
   testImplementation project(':openehr-rm')
+  testImplementation project(':test-rm')
   testImplementation project(':archie-utils')
 }

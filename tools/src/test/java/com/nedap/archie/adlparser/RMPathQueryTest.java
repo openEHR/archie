@@ -121,7 +121,7 @@ public class RMPathQueryTest {
         inMemoryFullArchetypeRepository.addArchetype(archetype);
         Archetype archetype_specialised = TestUtil.parseFailOnErrors("/basic_specialised.adls");
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
-        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised);
         root = (Pathable) testUtil.constructEmptyRMObject(opt.getDefinition());
 
@@ -136,7 +136,7 @@ public class RMPathQueryTest {
         inMemoryFullArchetypeRepository.addArchetype(archetype);
         Archetype archetype_specialised = TestUtil.parseFailOnErrors("/basic_specialised.adls");
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
-        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised);
         root = (Pathable) testUtil.constructEmptyRMObject(opt.getDefinition());
 
@@ -153,7 +153,7 @@ public class RMPathQueryTest {
         Archetype archetype_specialised_twice = TestUtil.parseFailOnErrors("/basic_specialised2.adls");
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised);
         inMemoryFullArchetypeRepository.addArchetype(archetype_specialised_twice);
-        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(inMemoryFullArchetypeRepository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(archetype_specialised_twice);
         root = (Pathable) testUtil.constructEmptyRMObject(opt.getDefinition());
 
