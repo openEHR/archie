@@ -82,6 +82,9 @@ public class DateTimeParserTest {
 
         TemporalAmount minusOneYear2Hours = DateTimeParsers.parseDurationValue("-P1YT2H");
         assertEquals(PeriodDuration.of(Period.of(-1 ,0, 0), Duration.of(-2, ChronoUnit.HOURS)), minusOneYear2Hours);
+
+        TemporalAmount minusMultiplePeriodDuration = DateTimeParsers.parseDurationValue("-P1Y2M4DT1H35M36S");
+        assertEquals(PeriodDuration.of(Period.of(-1,-2,-4), Duration.ofSeconds(-5736)), minusMultiplePeriodDuration);
     }
 
 }
