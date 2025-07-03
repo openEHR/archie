@@ -18,15 +18,19 @@ import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
 import com.nedap.archie.rm.datavalues.quantity.DvCount;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
 import org.junit.After;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
+import org.threeten.extra.PeriodDuration;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
+import java.time.Period;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -130,6 +134,21 @@ public class FlatJsonGeneratorTest {
         assertEquals(0l, ((Long) stringObjectMap.get("/data[id2]/events[id7,1]/data[id4]/items[id5,1]/value/precision")).longValue());
         //test indices
         assertEquals("Systolic", stringObjectMap.get("/data[id2]/events[id7,2]/data[id4]/items[id5,1]/name/value"));
+    }
+
+    @Test
+    public void testDurationFlattening() throws Exception {
+        FlatJsonGenerator flatJsonGenerator = new FlatJsonGenerator(ArchieRMInfoLookup.getInstance(), FlatJsonFormatConfiguration.nedapInternalFormat());
+
+        // Test a positive duration, make sure the value is a String and not a Duration object
+        DvDuration duration = new DvDuration(PeriodDuration.of(Period.of(1,0,0), Duration.ofHours(13)));
+        Map<String, Object> pathsAndValues = flatJsonGenerator.buildPathsAndValues(duration);
+        assertEquals("P1YT13H", pathsAndValues.get("/value"));
+
+        // Also test a negative duration
+        DvDuration negativeDuration = new DvDuration(PeriodDuration.of(Period.of(-1,-2,-4), Duration.ofSeconds(-5736)));
+        Map<String, Object> secondPathsAndValues = flatJsonGenerator.buildPathsAndValues(negativeDuration);
+        assertEquals("-P1Y2M4DT1H35M36S", secondPathsAndValues.get("/value"));
     }
 
     @Test

@@ -293,8 +293,8 @@ public class FlatJsonGenerator {
                     storeValue(result, newPath, DateTimeSerializerFormatters.ISO_8601_TIME.format(t));
                 }
             } else if (child instanceof TemporalAmount) {
-                //duration or period. now just a toString, should this be a specific formatter?
-                storeValue(result, newPath, child);
+                // Serialize using DateTimeSerializerFormatters.serializeDuration to correctly handle negative durations
+                storeValue(result, newPath, DateTimeSerializerFormatters.serializeDuration((TemporalAmount) child));
             } else if(child instanceof byte[]) {
                 storeValue(result, newPath, Base64.getEncoder().encodeToString((byte[]) child));
             } else {
