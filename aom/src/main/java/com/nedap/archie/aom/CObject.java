@@ -101,7 +101,7 @@ public abstract class CObject extends ArchetypeConstraint {
         }
         List<PathSegment> segments = parent.getPathSegments();
         if(!segments.isEmpty()) {
-            segments.get(segments.size()-1).setNodeId(getNodeId());
+            segments.set(segments.size()-1, segments.get(segments.size()-1).withNodeId(getNodeId()));
         }
         return segments;
     }

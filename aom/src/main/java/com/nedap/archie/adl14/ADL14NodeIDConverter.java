@@ -22,6 +22,7 @@ import java.net.URI;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static com.nedap.archie.aom.utils.AOMUtils.parentIsMultiple;
 
@@ -507,13 +508,19 @@ public class ADL14NodeIDConverter {
      * Convert all old codes in a path in the new codes
      */
     public String convertPath(String key) {
-        APathQuery aPathQuery = new APathQuery(key);
-        for (PathSegment segment : aPathQuery.getPathSegments()) {
-            if (segment.getNodeId() != null) {
-                segment.setNodeId(convertNodeId(segment.getNodeId()));
-            }
+        List<PathSegment> pathSegments = new APathQuery(key).getPathSegments();
+        if (pathSegments.isEmpty()) {
+            return "/";
         }
-        return aPathQuery.toString();
+        return pathSegments.stream().map(
+                segment -> {
+                    if (segment.getNodeId() != null) {
+                        return segment.withNodeId(convertNodeId(segment.getNodeId())).toString();
+                    } else {
+                        return segment.toString();
+                    }
+                }
+        ).collect(Collectors.joining());
     }
 
     /**

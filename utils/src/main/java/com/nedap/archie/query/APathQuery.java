@@ -56,8 +56,9 @@ public class APathQuery {
             List<StepContext> stepContexts = relativeLocationPathContext.step();
             for (StepContext stepContext : stepContexts) {
                 String nodeName = stepContext.nodeTest().getText();
+                String nodeId = null;
+                Integer index = null;
                 List<PredicateContext> predicateContexts = stepContext.predicate();
-                PathSegment pathSegment = new PathSegment(nodeName);
                 for (PredicateContext predicateContext : predicateContexts) {
                     //TODO: this is not a full parser. We really need one. Find one because writing an XPath parser seems like a thing that's been done before.
 
@@ -66,17 +67,17 @@ public class APathQuery {
                         if (equalityExprContext.relationalExpr().size() == 1) { //do not yet support equals or not equals operator, ignore for now
                             String expression = equalityExprContext.getText();
                             if (isDigit.matcher(expression).matches()) {
-                                pathSegment.setIndex(Integer.parseInt(expression));
+                                index = Integer.parseInt(expression);
                             } else if(expression.matches("\".*\"") || expression.matches("'.*'")) {
-                                pathSegment.setNodeId(expression.substring(1, expression.length()-1));
+                                nodeId = expression.substring(1, expression.length()-1);
                             } else {
-                                pathSegment.setNodeId(expression);
+                                nodeId = expression;
                             }
                         }
 
                     }
                 }
-                pathSegments.add(pathSegment);
+                pathSegments.add(new PathSegment(nodeName, nodeId, index));
             }
         }
     }

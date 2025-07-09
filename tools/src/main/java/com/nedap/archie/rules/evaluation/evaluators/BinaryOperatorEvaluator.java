@@ -21,6 +21,7 @@ import com.nedap.archie.rules.evaluation.*;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.nedap.archie.rules.evaluation.evaluators.FunctionUtil.checkAndHandleNull;
 
@@ -132,12 +133,14 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
     }
 
     private List<PathSegment> convertToArchetypePath(String path) {
-        List<PathSegment> segments = new APathQuery(path).getPathSegments();
-        for(PathSegment segment:segments) {
-            if(segment.getIndex() != null) {
-                segment.setIndex(null);//no indices in archetype paths
-            }
-        }
+        List<PathSegment> segments = new APathQuery(path).getPathSegments().stream().map(
+                segment -> {
+                    if (segment.getIndex() != null) {
+                        return segment.withIndex(null);//no indices in archetype paths
+                    } else {
+                        return segment;
+                    }
+                }).collect(Collectors.toList());
         String archetypePath = segments.isEmpty() ? "/" : Joiner.on("").join(segments);
         List<ArchetypeModelObject> allMatchingPredicate = new AOMPathQuery(archetypePath).findAllMatchingPredicate(archetype.getDefinition(), o -> true);
         if(allMatchingPredicate.isEmpty()) {

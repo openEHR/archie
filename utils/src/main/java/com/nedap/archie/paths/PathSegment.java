@@ -17,10 +17,11 @@ public class PathSegment {
     private String nodeName;
     private String nodeId;
     // An explicit archetype ref from a C_ARCHETYPE_ROOT (use archetype...). null otherwise
-    private String archetypeRef = null;
+    private String archetypeRef;
     private Integer index;
 
     public PathSegment() {
+        this(null, null, null, null);
     }
 
     public PathSegment(String nodeName, Integer index) {
@@ -36,8 +37,13 @@ public class PathSegment {
     }
 
     public PathSegment(String nodeName, String nodeId, Integer index) {
+        this(nodeName, nodeId, null, index);
+    }
+
+    public PathSegment(String nodeName, String nodeId, String archetypeRef, Integer index) {
         this.nodeName = nodeName;
         this.nodeId = nodeId;
+        this.archetypeRef = archetypeRef;
         this.index = index;
     }
 
@@ -45,32 +51,76 @@ public class PathSegment {
         return nodeName;
     }
 
+    /**
+     * @deprecated This object will become immuatable. Use {@link #withNodeName(String)} or a constructor instead.
+     */
+    @Deprecated
     public void setNodeName(String nodeName) {
         this.nodeName = nodeName;
+    }
+
+    /**
+     * Creates a new PathSegment with the given nodeName.
+     */
+    public PathSegment withNodeName(String nodeName) {
+        return new PathSegment(nodeName, this.nodeId, this.archetypeRef, this.index);
     }
 
     public String getNodeId() {
         return nodeId;
     }
 
+    /**
+     * @deprecated This object will become immuatable. Use {@link #withNodeId(String)} or a constructor instead.
+     */
+    @Deprecated
     public void setNodeId(String nodeId) {
         this.nodeId = nodeId;
+    }
+
+    /**
+     * Creates a new PathSegment with the given nodeId.
+     */
+    public PathSegment withNodeId(String nodeId) {
+        return new PathSegment(this.nodeName, nodeId, this.archetypeRef, this.index);
     }
 
     public Integer getIndex() {
         return index;
     }
 
+    /**
+     * @deprecated This object will become immuatable. Use {@link #withIndex(Integer)} or a constructor instead.
+     */
+    @Deprecated
     public void setIndex(Integer index) {
         this.index = index;
+    }
+
+    /**
+     * Creates a new PathSegment with the given index.
+     */
+    public PathSegment withIndex(Integer index) {
+        return new PathSegment(this.nodeName, this.nodeId, this.archetypeRef, index);
     }
 
     public String getArchetypeRef() {
         return archetypeRef;
     }
 
+    /**
+     * @deprecated This object will become immuatable. Use {@link #withArchetypeRef(String)} or a constructor instead.
+     */
+    @Deprecated
     public void setArchetypeRef(String archetypeRef) {
         this.archetypeRef = archetypeRef;
+    }
+
+    /**
+     * Creates a new PathSegment with the given archetypeRef.
+     */
+    public PathSegment withArchetypeRef(String archetypeRef) {
+        return new PathSegment(this.nodeName, this.nodeId, archetypeRef, this.index);
     }
 
     public boolean hasIdCode() {

@@ -17,6 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class AOMUtils {
 
@@ -69,13 +70,16 @@ public class AOMUtils {
     }
 
     public static String pathAtSpecializationLevel(List<PathSegment> pathSegments, int level) {
-        //todo: this doesn't clone the original
-        for(PathSegment segment:pathSegments) {
-            if(segment.getNodeId() != null && AOMUtils.isValidCode(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
-                segment.setNodeId(codeAtLevel(segment.getNodeId(), level));
-            }
-        }
-        return PathUtil.getPath(pathSegments);
+        List<PathSegment> newPathSegments = pathSegments.stream().map(
+                segment -> {
+                    if (segment.getNodeId() != null && AOMUtils.isValidCode(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
+                        return segment.withNodeId(codeAtLevel(segment.getNodeId(), level));
+                    } else {
+                        return segment;
+                    }
+                }
+        ).collect(Collectors.toList());
+        return PathUtil.getPath(newPathSegments);
     }
 
     public static String codeAtLevel(String nodeId, int level) {

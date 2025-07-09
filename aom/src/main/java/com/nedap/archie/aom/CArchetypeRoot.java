@@ -23,9 +23,7 @@ public class CArchetypeRoot extends CComplexObject {
         }
         List<PathSegment> segments = parent.getPathSegments();
         if(!segments.isEmpty()) {
-            PathSegment parentSegment = segments.get(segments.size() - 1);
-            parentSegment.setNodeId(getNodeId());
-            parentSegment.setArchetypeRef(getArchetypeRef());
+            segments.set(segments.size() - 1, segments.get(segments.size() - 1).withNodeId(getNodeId()).withArchetypeRef(getArchetypeRef()));
         }
         return segments;
     }
