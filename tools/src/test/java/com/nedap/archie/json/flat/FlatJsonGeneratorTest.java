@@ -34,6 +34,7 @@ import java.time.Period;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -78,7 +79,15 @@ public class FlatJsonGeneratorTest {
 
     }
 
+    @Test
+    public void testBloodPressureEmpty() throws Exception {
+        OperationalTemplate bloodPressureOpt = parseBloodPressure();
+        FlatJsonGenerator flatJsonGenerator = new FlatJsonGenerator(ArchieRMInfoLookup.getInstance(), FlatJsonFormatConfiguration.nedapInternalFormat());
 
+        Map<String, Object> pathsAndValues = flatJsonGenerator.buildPathsAndValues(new Observation(), bloodPressureOpt, "en");
+
+        assertTrue(pathsAndValues.isEmpty());
+    }
 
     @Test
     public void testBloodPressureExampleWithPipesForFinalFields() throws Exception {
