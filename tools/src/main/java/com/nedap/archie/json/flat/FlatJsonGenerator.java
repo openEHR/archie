@@ -121,7 +121,7 @@ public class FlatJsonGenerator {
             CAttribute cAttribute = cObject == null ? null : cObject.getAttribute(attributeName);
             RMAttributeInfo attributeInfo = typeInfo.getAttributes().get(attributeName);
             if(!attributeInfo.isComputed() && !isIgnored(typeInfo, attributeName) && attributeInfo.getGetMethod() != null) {
-                if(filterNames && cObject != null && isNameAttribute(typeInfo, attributeName)) {
+                if(filterNames && name != null && cObject != null && isNameAttribute(typeInfo, attributeName)) {
                     ArchetypeTerm term = cObject.getTerm();
                     if(term != null && name.equals(term.getText())) {
                         continue;
