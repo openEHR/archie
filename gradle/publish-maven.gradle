@@ -8,24 +8,19 @@ if(gradle.ext.shouldSign) {
     }
   }
 }
-//define the repositories on global level, not per project, or you get many of them
-publishing {
-  repositories {
-    maven {
-      name = "ossrh"
-      // OSSRH URLS
-      def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-      def snapshotsRepoUrl = 'ttps://oss.sonatype.org/content/repositories/snapshots/'
-      url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
-      credentials {
-        username = project.hasProperty('ossrhUsername') ? ossrhUsername : "Unknown user"
-        password = project.hasProperty('ossrhPassword') ? ossrhPassword : "Unknown password"
-      }
+nexusPublishing {
+  repositories {
+    // see https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/#configuration
+    sonatype {
+      nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+      snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+
+      username = project.hasProperty("centralTokenUsername") ? centralTokenUsername : "Unknown username"
+      password = project.hasProperty("centralTokenPassword") ? centralTokenPassword : "Unknown password"
     }
   }
 }
-
 
 //now uploading will have to be configured on a per subproject basis
 subprojects {
