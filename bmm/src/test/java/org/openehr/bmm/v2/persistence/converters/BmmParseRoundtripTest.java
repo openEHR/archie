@@ -32,6 +32,7 @@ public class BmmParseRoundtripTest {
         parseRoundTrip("/openehr/openehr_primitive_types_102.bmm");
         parseRoundTrip("/openehr/openehr_rm_102.bmm");
         parseRoundTrip("/openehr/openehr_structures_102.bmm");
+        parseRoundTrip("/openehr/openehr_base_110.bmm");
     }
 
     public void parseRoundTrip(String name) throws Exception {
