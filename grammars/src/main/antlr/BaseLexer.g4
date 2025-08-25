@@ -13,7 +13,7 @@ fragment ADL_ABSOLUTE_PATH : ('/' PATH_SEGMENT)+;
 fragment ADL_RELATIVE_PATH : PATH_SEGMENT ('/' PATH_SEGMENT)+;
 
 fragment PATH_SEGMENT      : ALPHA_LC_ID ('[' PATH_ATTRIBUTE ']')?;
-fragment PATH_ATTRIBUTE    : ID_CODE | STRING | INTEGER | ARCHETYPE_REF;
+fragment PATH_ATTRIBUTE    : AT_CODE | ID_CODE | STRING | INTEGER | ARCHETYPE_REF;
 
 //
 //  ======================= Lexical rules ========================
@@ -21,12 +21,11 @@ fragment PATH_ATTRIBUTE    : ID_CODE | STRING | INTEGER | ARCHETYPE_REF;
 
 // ---------- various ADL2 codes -------
 
-ROOT_ID_CODE : 'id1' '.1'* ;
+ROOT_ID_CODE : ('id1'|'at0000') '.1'* ;
 ID_CODE      : 'id' CODE_STR ;
 AT_CODE      : 'at' CODE_STR ;
 AC_CODE      : 'ac' CODE_STR ;
-fragment CODE_STR : ('0' | [1-9][0-9]*) ( '.' ('0' | [1-9][0-9]* ))* ;
-
+fragment CODE_STR : [0-9]+ ( '.' ('0' | [1-9][0-9]* ))* ;
 
 
 //a
