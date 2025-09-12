@@ -34,9 +34,6 @@ subprojects {
    //   id 'com.github.ben-manes.versions' version '0.13.0'
  // }
 
-  sourceCompatibility = '1.8'
-  targetCompatibility = '1.8'
-
   compileJava.options.encoding = "UTF-8"
   compileTestJava.options.encoding = "UTF-8"
 
@@ -50,6 +47,10 @@ subprojects {
 
 
   java {
+    toolchain {
+      languageVersion = JavaLanguageVersion.of(8)
+    }
+
     withJavadocJar()
     withSourcesJar()
   }
