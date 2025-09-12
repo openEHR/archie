@@ -7,10 +7,6 @@ repositories {
 }
 
 
-wrapper {
-    gradleVersion = '5.6.4'
-}
-
 allprojects {
   version = '3.15.0'
   group = 'com.nedap.healthcare.archie'
