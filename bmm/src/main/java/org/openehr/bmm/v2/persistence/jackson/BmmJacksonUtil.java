@@ -51,6 +51,7 @@ public class BmmJacksonUtil {
         objectMapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
         objectMapper.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
         objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         //objectMapper.
         objectMapper.addHandler(new DeserializationProblemHandler() {

@@ -27,6 +27,21 @@ public class BuiltInReferenceModelsTest {
     }
 
     @Test
+    public void bmmRepositoryNewJson() throws Exception {
+        BmmRepository bmmRepository = BuiltinReferenceModelsJson.getBmmRepository();
+
+        for(BmmValidationResult validation:bmmRepository.getInvalidModels()) {
+            System.out.println("validation " + validation.getSchemaId() + " contains errors:");
+            System.out.println(validation.getLogger().toString());
+
+        }
+        assertEquals(35, bmmRepository.getPersistentSchemas().size());
+        assertEquals(35, bmmRepository.getModels().size());
+        assertEquals(32, bmmRepository.getValidModels().size());
+        assertEquals(3, bmmRepository.getInvalidModels().size());
+    }
+
+    @Test
     @Deprecated
     public void overrideModelVersion() throws Exception {
         MetaModels metaModels = BuiltinReferenceModels.getMetaModels();
