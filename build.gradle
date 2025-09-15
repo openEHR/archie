@@ -58,9 +58,7 @@ subprojects {
     implementation(libs.reflections)
     implementation(libs.kryo)
 
-    implementation(libs.commons.io) {
-      exclude group: 'commons-logging', module: 'commons-logging'
-    }
+    implementation(libs.commons.io)
     implementation(libs.commons.text)
     implementation(libs.commons.lang3)
 
