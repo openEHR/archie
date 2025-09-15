@@ -29,6 +29,8 @@ jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 
+jakarta-json = { module = "org.glassfish:jakarta.json", version = "2.0.1" }
+
 jaxb-api = { module = "javax.xml.bind:jaxb-api", version = "2.3.1" }
 
 jaxb-core = { module = "com.sun.xml.bind:jaxb-core", version = "2.3.0.1" }
@@ -38,6 +40,8 @@ jaxb-impl = { module = "com.sun.xml.bind:jaxb-impl", version = "2.3.9" }
 junit4 = { module = "junit:junit", version = "4.+" }
 
 kryo = { module = "com.esotericsoftware.kryo:kryo5", version = "5.6.2" }
+
+leadpony-justify = { module = "org.leadpony.justify:justify", version = "3.1.0" }
 
 reflections = { module = "org.reflections:reflections", version = "0.10.2" }
 
