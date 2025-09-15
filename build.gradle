@@ -7,10 +7,6 @@ repositories {
 }
 
 
-wrapper {
-    gradleVersion = '5.6.4'
-}
-
 allprojects {
   version = '3.15.0'
   group = 'com.nedap.healthcare.archie'
@@ -38,15 +34,12 @@ subprojects {
    //   id 'com.github.ben-manes.versions' version '0.13.0'
  // }
 
-  sourceCompatibility = '1.8'
-  targetCompatibility = '1.8'
-
   compileJava.options.encoding = "UTF-8"
   compileTestJava.options.encoding = "UTF-8"
 
   repositories {
       mavenCentral()
-      maven { url 'https://jitpack.io' }
+      maven { url = 'https://jitpack.io' }
   }
 
   ext.reflectionsVersion = '0.10.2'
@@ -54,6 +47,10 @@ subprojects {
 
 
   java {
+    toolchain {
+      languageVersion = JavaLanguageVersion.of(8)
+    }
+
     withJavadocJar()
     withSourcesJar()
   }
@@ -101,20 +98,9 @@ subprojects {
 
 
   test {
-    if(JavaVersion.current() != JavaVersion.VERSION_1_8) {
-      jvmArgs = ['--add-opens', 'java.base/java.lang=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.net=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.nio=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.time=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.util=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.util.concurrent.atomic=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/sun.nio.ch=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/sun.util.calendar=ALL-UNNAMED']
-    }
    testLogging {
       events "failed"
-      exceptionFormat "full"
+      exceptionFormat = "full"
     }
   }
 
