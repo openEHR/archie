@@ -1,4 +1,6 @@
 [versions]
+antlr = "4.13.2"
+
 jackson = "2.19.2"
 
 slf4j = "1.7.36"
@@ -11,6 +13,9 @@ jackson = ["jackson-annotations", "jackson-databind", "jackson-datatype-jsr310"]
 
 [libraries]
 activation = { module = "javax.activation:activation", version = "1.1.1" }
+
+antlr4 = { module = "org.antlr:antlr4", version.ref = "antlr" }
+antlr4-runtime = { module = "org.antlr:antlr4-runtime", version.ref = "antlr" }
 
 commons-io = { module = "commons-io:commons-io", version = "2.20.0" }
 
