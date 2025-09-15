@@ -1,5 +1,5 @@
 plugins {
-  id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
+  alias(libs.plugins.nexus.publish)
 }
 
 repositories {
@@ -30,10 +30,6 @@ apply from: "${gradleScriptDir}/publish-maven.gradle"
 subprojects {
   apply plugin: 'java-library'
 
- // plugins {
-   //   id 'com.github.ben-manes.versions' version '0.13.0'
- // }
-
   compileJava.options.encoding = "UTF-8"
   compileTestJava.options.encoding = "UTF-8"
 
@@ -41,10 +37,6 @@ subprojects {
       mavenCentral()
       maven { url = 'https://jitpack.io' }
   }
-
-  ext.reflectionsVersion = '0.10.2'
-  ext.jacksonVersion = '2.19.2'
-
 
   java {
     toolchain {
@@ -57,37 +49,33 @@ subprojects {
 
 
   dependencies {
-    api 'org.slf4j:slf4j-api:1.7.36'
+    api(libs.slf4j.api)
 
-    api "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
-    api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    api(libs.bundles.jackson)
 
-    implementation 'com.google.guava:guava:33.4.8-jre'
+    implementation(libs.guava)
 
-    implementation "org.reflections:reflections:${reflectionsVersion}"
-    implementation 'com.esotericsoftware.kryo:kryo5:5.6.2'
+    implementation(libs.reflections)
+    implementation(libs.kryo)
 
-    implementation('commons-io:commons-io:2.20.0'){
+    implementation(libs.commons.io) {
       exclude group: 'commons-logging', module: 'commons-logging'
     }
-    implementation 'org.apache.commons:commons-text:1.14.0'
-    implementation 'org.apache.commons:commons-lang3:3.18.0'
+    implementation(libs.commons.text)
+    implementation(libs.commons.lang3)
 
     //java 10 no longer has these included by default, so explicit dependency is needed.
-    api 'javax.xml.bind:jaxb-api:2.3.1'
-    api 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-    runtimeOnly 'com.sun.xml.bind:jaxb-impl:2.3.9'
-    api 'javax.activation:activation:1.1.1'
+    api(libs.jaxb.api)
+    api(libs.jaxb.core)
+    runtimeOnly(libs.jaxb.impl)
+    api(libs.activation)
 
-    api 'org.threeten:threeten-extra:1.8.0'
+    api(libs.threeten.extra)
 
-    testImplementation 'junit:junit:4.+'
-    testImplementation 'org.slf4j:slf4j-simple:1.7.36'
+    testImplementation(libs.junit4)
+    testImplementation(libs.slf4j.simple)
 
-    api 'com.github.zafarkhaja:java-semver:0.10.2'
-
-
+    api(libs.zafarkhaja.semver)
   }
 
 
