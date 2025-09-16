@@ -1,8 +1,6 @@
 description = "grammars for parsing ADL, ODIN and xpath"
 apply plugin: 'antlr'
 
-ext.antlrVersion = '4.13.2'
-
 generateGrammarSource { //antlr4
   outputDirectory = new File("${project.buildDir}/generated-src/antlr/main/com/nedap/archie/adlparser/antlr".toString())
     arguments = ['-visitor', '-package', 'com.nedap.archie.adlparser.antlr', '-encoding', 'utf-8'] + arguments
@@ -18,6 +16,6 @@ classes {
 
 
 dependencies {
-  antlr "org.antlr:antlr4:${antlrVersion}"
-  api "org.antlr:antlr4-runtime:${antlrVersion}"
+  antlr(libs.antlr4)
+  api(libs.antlr4.runtime)
 }

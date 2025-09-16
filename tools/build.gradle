@@ -14,6 +14,6 @@ dependencies {
   testImplementation project(':test-rm')
   testImplementation project(':referencemodels')
 
-  api 'org.leadpony.justify:justify:3.1.0'
-  api 'org.glassfish:jakarta.json:2.0.1:module'
+  api(libs.leadpony.justify)
+  api(variantOf(libs.jakarta.json) {classifier("module") })
 }
