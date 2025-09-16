@@ -1,0 +1,53 @@
+[versions]
+antlr = "4.13.2"
+
+jackson = "2.19.2"
+
+slf4j = "1.7.36"
+
+[plugins]
+nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0" }
+
+[bundles]
+jackson = ["jackson-annotations", "jackson-databind", "jackson-datatype-jsr310"]
+
+[libraries]
+activation = { module = "javax.activation:activation", version = "1.1.1" }
+
+antlr4 = { module = "org.antlr:antlr4", version.ref = "antlr" }
+antlr4-runtime = { module = "org.antlr:antlr4-runtime", version.ref = "antlr" }
+
+commons-io = { module = "commons-io:commons-io", version = "2.20.0" }
+
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.18.0" }
+
+commons-text = { module = "org.apache.commons:commons-text", version = "1.14.0" }
+
+guava = { module = "com.google.guava:guava", version = "33.4.8-jre" }
+
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+
+jakarta-json = { module = "org.glassfish:jakarta.json", version = "2.0.1" }
+
+jaxb-api = { module = "javax.xml.bind:jaxb-api", version = "2.3.1" }
+
+jaxb-core = { module = "com.sun.xml.bind:jaxb-core", version = "2.3.0.1" }
+
+jaxb-impl = { module = "com.sun.xml.bind:jaxb-impl", version = "2.3.9" }
+
+junit4 = { module = "junit:junit", version = "4.+" }
+
+kryo = { module = "com.esotericsoftware.kryo:kryo5", version = "5.6.2" }
+
+leadpony-justify = { module = "org.leadpony.justify:justify", version = "3.1.0" }
+
+reflections = { module = "org.reflections:reflections", version = "0.10.2" }
+
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+
+threeten-extra = { module = "org.threeten:threeten-extra", version = "1.8.0" }
+
+zafarkhaja-semver = { module = "com.github.zafarkhaja:java-semver", version = "0.10.2" }
