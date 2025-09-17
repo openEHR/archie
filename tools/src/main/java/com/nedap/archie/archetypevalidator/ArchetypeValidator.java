@@ -1,6 +1,5 @@
 package com.nedap.archie.archetypevalidator;
 
-import com.google.common.base.Joiner;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
@@ -215,17 +214,18 @@ public class ArchetypeValidator {
                 } catch (Exception e) {
                     //this is probably an error in an included archetype, so ignore it here
                     //the other archetype will not validate
-                    ValidationMessage message = new ValidationMessage(ErrorType.OTHER, null, "Error during Operational template creation. This does not necessarily mean the current archetype has a problem, but perhaps one that is included with use_archetype: " + e);
+                    ValidationMessage message = new ValidationMessage(ErrorType.OTHER, null, "Error during operational template creation. This does not necessarily mean the current archetype has a problem, but perhaps one that is included with use_archetype.");
                     message.setWarning(true);
                     messages.add(message);
+                    logger.debug("Error during operational template creation", e);
                 }
                 result.setFlattened(flattened);
                 if(result.passes()) {
                     messages.addAll(runValidations(metaModel, flattened, repository, settings, flatParent, validationsPhase3));
                 }
             } catch (Exception e) {
-                messages.add(new ValidationMessage(ErrorType.OTHER, null, "flattening failed with exception " + e));
-                logger.error("error during validation", e);
+                messages.add(new ValidationMessage(ErrorType.OTHER, null, "Unexpected error during flattening"));
+                logger.error("Unexpected error during flattening", e);
             }
         }
 
@@ -246,10 +246,8 @@ public class ArchetypeValidator {
             try {
                 messages.addAll(validation.validate(metaModel, archetype, flatParent, repository, settings));
             } catch (Exception e) {
-                logger.error("error running validation processor", e);
-                e.printStackTrace();
-                messages.add(new ValidationMessage(ErrorType.OTHER, null, "error running validator : " + e.getClass().getSimpleName() +
-                        Joiner.on("\n").join(e.getStackTrace())));
+                logger.error("Unexpected error running validation processor", e);
+                messages.add(new ValidationMessage(ErrorType.OTHER, null, "Unexpected error running validation processor"));
             }
         }
         return messages;
