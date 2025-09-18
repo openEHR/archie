@@ -13,6 +13,8 @@ import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
 import org.openehr.utils.message.I18n;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
  * Created by pieter.bos on 15/02/16.
  */
 public class RMObjectValidator extends RMObjectValidatingProcessor {
+    private static final Logger logger = LoggerFactory.getLogger(RMObjectValidator.class);
 
     private final MetaModel metaModel;
     private final OperationalTemplateProvider operationalTemplateProvider;
@@ -167,13 +170,11 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                             }
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             result.add(new RMObjectValidationMessage(null, joinPaths(pathSoFar, objectWithPath.getPath()),
-                                    I18n.t("Exception {0} invoking invariant {1} on {2}: {3}\n{4}",
-                                            e.getCause() == null ? e.getClass().getSimpleName() : e.getCause().getClass().getSimpleName(),
+                                    I18n.t("Unexpected error validating invariant {0} on {1}",
                                             invariantMethod.getAnnotation().value(),
-                                            typeInfo.getRmName(),
-                                            e.getCause() == null ? e.getMessage() : e.getCause().getMessage(),
-                                            Joiner.on("\n\t").join(e.getStackTrace())),
+                                            typeInfo.getRmName()),
                                     RMObjectValidationMessageType.EXCEPTION));
+                            logger.error("Unexpected error validating invariant {} on {}", invariantMethod.getAnnotation().value(), typeInfo.getRmName(), e);
                         }
                     }
                 }
