@@ -13,15 +13,12 @@ plugins {
 
 description = "A tool that generates the official ITS-JSON json schema from the BMM files"
 
-import com.nedap.archie.json.OpenEHRRmJSONSchemaCreator;
-import com.nedap.archie.json.JsonSchemaUriProvider;
-import com.nedap.archie.json.JsonSchemaUri;
-import com.nedap.archie.json.ItsJsonUriProvider;
-import org.openehr.referencemodels.BuiltinReferenceModels;
-import jakarta.json.*;
-import jakarta.json.stream.JsonGenerator;
-import org.openehr.bmm.core.BmmClass;
 
+import com.nedap.archie.json.ItsJsonUriProvider
+import com.nedap.archie.json.JsonSchemaUri
+import com.nedap.archie.json.OpenEHRRmJSONSchemaCreator
+import jakarta.json.stream.JsonGenerator
+import org.openehr.referencemodels.BuiltinReferenceModels
 
 abstract class JsonSchemaCreationTask extends DefaultTask {
 
@@ -81,23 +78,23 @@ abstract class JsonSchemaCreationTask extends DefaultTask {
     }
 
     def printSchemas(String version, Map<JsonSchemaUri, JsonObject> schemas, JsonWriterFactory jsonWriterFactory) {
-        for(JsonSchemaUri name:schemas.keySet()) {
+        for (JsonSchemaUri name : schemas.keySet()) {
             def schema = schemas.get(name);
             def versionDir = getOutputDir().get().dir(version)
-            if(!versionDir.getAsFile().exists()) {
+            if (!versionDir.getAsFile().exists()) {
                 versionDir.getAsFile().mkdir();
             }
             System.out.println(name.getFilename());
             def split = name.getFilename().split("/");
             def fileName = null;
-            for(int i = 0; i < split.length-1;i++) {
+            for (int i = 0; i < split.length - 1; i++) {
                 String dir = split[i];
                 versionDir = versionDir.dir(dir);
-                if(!versionDir.getAsFile().exists()) {
+                if (!versionDir.getAsFile().exists()) {
                     versionDir.getAsFile().mkdir();
                 }
             }
-            fileName = split[split.length-1];
+            fileName = split[split.length - 1];
             versionDir.file(fileName).getAsFile().withWriter { writer ->
                 jsonWriterFactory.createWriter(writer).write(schema);
             }

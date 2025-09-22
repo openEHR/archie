@@ -1,10 +1,10 @@
 description = "An OpenEHR archetype object model implementation, plus parser"
 
 dependencies {
-  api project(':grammars')
-  api project(':base')
-  api project(':odin')
-  api project(':utils')
-  api project(':bmm')
-  api project(':openehr-terminology')
+    api project(':grammars')
+    api project(':base')
+    api project(':odin')
+    api project(':utils')
+    api project(':bmm')
+    api project(':openehr-terminology')
 }
