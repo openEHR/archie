@@ -1,21 +1,21 @@
 plugins {
-  alias(libs.plugins.nexus.publish)
+    alias(libs.plugins.nexus.publish)
 }
 
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
 
 allprojects {
-  version = '3.15.0'
-  group = 'com.nedap.healthcare.archie'
-  ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
-  //archivesBaseName = 'archie'
+    version = '3.15.0'
+    group = 'com.nedap.healthcare.archie'
+    ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
+    //archivesBaseName = 'archie'
 
-  tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:all', '-quiet')
-  }
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:all', '-quiet')
+    }
 }
 
 gradle.ext.ossrhUsernameSafe = hasProperty('ossrhUsername') ? ossrhUsername : ""
@@ -26,69 +26,67 @@ gradle.ext.isParallel = hasProperty('org.gradle.parallel') ? project.property('o
 apply from: "${gradleScriptDir}/publish-maven.gradle"
 
 
-
 subprojects {
-  apply plugin: 'java-library'
+    apply plugin: 'java-library'
 
-  compileJava.options.encoding = "UTF-8"
-  compileTestJava.options.encoding = "UTF-8"
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
 
-  repositories {
-      mavenCentral()
-      maven { url = 'https://jitpack.io' }
-  }
-
-  java {
-    toolchain {
-      languageVersion = JavaLanguageVersion.of(8)
+    repositories {
+        mavenCentral()
+        maven { url = 'https://jitpack.io' }
     }
 
-    withJavadocJar()
-    withSourcesJar()
-  }
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(8)
+        }
 
-
-  dependencies {
-    api(libs.slf4j.api)
-
-    api(libs.bundles.jackson)
-
-    implementation(libs.guava)
-
-    implementation(libs.reflections)
-    implementation(libs.kryo)
-
-    implementation(libs.commons.io)
-    implementation(libs.commons.text)
-    implementation(libs.commons.lang3)
-
-    //java 10 no longer has these included by default, so explicit dependency is needed.
-    api(libs.jaxb.api)
-    api(libs.jaxb.core)
-    runtimeOnly(libs.jaxb.impl)
-    api(libs.activation)
-
-    api(libs.threeten.extra)
-
-    testImplementation(libs.junit4)
-    testImplementation(libs.slf4j.simple)
-
-    api(libs.zafarkhaja.semver)
-  }
-
-
-  javadoc {
-      options.encoding = 'UTF-8'
-  }
-
-
-
-  test {
-   testLogging {
-      events "failed"
-      exceptionFormat = "full"
+        withJavadocJar()
+        withSourcesJar()
     }
-  }
+
+
+    dependencies {
+        api(libs.slf4j.api)
+
+        api(libs.bundles.jackson)
+
+        implementation(libs.guava)
+
+        implementation(libs.reflections)
+        implementation(libs.kryo)
+
+        implementation(libs.commons.io)
+        implementation(libs.commons.text)
+        implementation(libs.commons.lang3)
+
+        //java 10 no longer has these included by default, so explicit dependency is needed.
+        api(libs.jaxb.api)
+        api(libs.jaxb.core)
+        runtimeOnly(libs.jaxb.impl)
+        api(libs.activation)
+
+        api(libs.threeten.extra)
+
+        testImplementation(libs.junit4)
+        testImplementation(libs.slf4j.simple)
+
+        api(libs.zafarkhaja.semver)
+    }
+
+
+    javadoc {
+        options.encoding = 'UTF-8'
+    }
+
+
+    test {
+        testLogging {
+            events "failed"
+            exceptionFormat = "full"
+        }
+    }
 
 }
 
