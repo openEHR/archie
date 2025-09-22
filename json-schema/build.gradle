@@ -17,6 +17,9 @@ description = "A tool that generates the official ITS-JSON json schema from the 
 import com.nedap.archie.json.ItsJsonUriProvider
 import com.nedap.archie.json.JsonSchemaUri
 import com.nedap.archie.json.OpenEHRRmJSONSchemaCreator
+import jakarta.json.Json
+import jakarta.json.JsonObject
+import jakarta.json.JsonWriterFactory
 import jakarta.json.stream.JsonGenerator
 import org.openehr.referencemodels.BuiltinReferenceModels
 
