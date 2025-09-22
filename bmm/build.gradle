@@ -1,8 +1,8 @@
- description = "A basic metadata model implementation"
+description = "A basic metadata model implementation"
 
 dependencies {
-  api project(':base')
-  api project(':utils')
-  api project(':odin')
-  testImplementation project(':i18n')
+    api project(':base')
+    api project(':utils')
+    api project(':odin')
+    testImplementation project(':i18n')
 }
