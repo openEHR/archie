@@ -109,5 +109,3 @@ abstract class JsonSchemaCreationTask extends DefaultTask {
 tasks.register('generateJsonSchema', JsonSchemaCreationTask) {
     outputDir = file(layout.buildDirectory.dir('schemaOutput'))
 }
-
-
