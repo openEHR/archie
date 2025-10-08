@@ -1,7 +1,6 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.nedap.archie.base.terminology.TerminologyCode;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class ResourceDescription extends ArchetypeModelObject {
     private String originalPublisher;
     @Nullable
     private List<String> otherContributors = new ArrayList<>();
-    private TerminologyCode lifecycleState;
+    private String lifecycleState;
     @Nullable
     private String custodianNamespace;
     @Nullable
@@ -76,11 +75,11 @@ public class ResourceDescription extends ArchetypeModelObject {
         this.otherContributors = otherContributors;
     }
 
-    public TerminologyCode getLifecycleState() {
+    public String getLifecycleState() {
         return lifecycleState;
     }
 
-    public void setLifecycleState(TerminologyCode lifecycleState) {
+    public void setLifecycleState(String lifecycleState) {
         this.lifecycleState = lifecycleState;
     }
 
