@@ -15,4 +15,6 @@ dependencies {
     testImplementation project(':referencemodels')
     // Only needed to run ExampleJsonInstanceGeneratorTest, which exercises the JSON schema validator.
     testImplementation project(':json-schema-tools')
+
+    implementation(libs.zafarkhaja.semver)
 }

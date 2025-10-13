@@ -77,8 +77,6 @@ subprojects {
         testImplementation(libs.bundles.junit)
         testImplementation(libs.hamcrest)
         testImplementation(libs.slf4j.simple)
-
-        api(libs.zafarkhaja.semver)
     }
 
 
