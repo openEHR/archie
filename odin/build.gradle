@@ -3,4 +3,6 @@ description = "An odin implementation"
 dependencies {
     api project(':grammars')
     api project(':base')
+
+    implementation(libs.commons.text)
 }

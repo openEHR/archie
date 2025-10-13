@@ -5,4 +5,6 @@ dependencies {
     api project(':utils')
     api project(':odin')
     testImplementation project(':i18n')
+
+    implementation(libs.commons.lang3)
 }

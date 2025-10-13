@@ -17,4 +17,6 @@ dependencies {
     testImplementation project(':json-schema-tools')
 
     implementation(libs.zafarkhaja.semver)
+
+    testImplementation(libs.commons.io)
 }

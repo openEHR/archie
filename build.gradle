@@ -62,10 +62,6 @@ subprojects {
         implementation(libs.reflections)
         implementation(libs.kryo)
 
-        implementation(libs.commons.io)
-        implementation(libs.commons.text)
-        implementation(libs.commons.lang3)
-
         //java 10 no longer has these included by default, so explicit dependency is needed.
         implementation(libs.jakarta.xml.bind.api)
         implementation(libs.jakarta.annotation.api)

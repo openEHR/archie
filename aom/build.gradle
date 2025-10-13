@@ -8,5 +8,8 @@ dependencies {
     api project(':bmm')
     api project(':openehr-terminology')
 
+    implementation(libs.commons.io)
+    implementation(libs.commons.text)
+
     testImplementation project(':archie-utils')
 }

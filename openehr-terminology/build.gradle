@@ -4,6 +4,10 @@
 
 description = "A very basic OpenEHR terminology file binding"
 
+dependencies {
+    testImplementation(libs.commons.io)
+}
+
 //xjcGeneration {
 //    defaultAdditionalXjcOptions = ['encoding': 'UTF-8']
 //    defaultBindingFile = null //file 'src/main/resources//xjc/xjc.xjb.xml'
