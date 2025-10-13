@@ -70,7 +70,6 @@ subprojects {
         implementation(libs.jakarta.xml.bind.api)
         implementation(libs.jakarta.annotation.api)
         runtimeOnly(libs.jaxb.runtime)
-        api(libs.activation)
 
         api(libs.threeten.extra)
 
