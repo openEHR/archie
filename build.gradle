@@ -50,8 +50,6 @@ subprojects {
     dependencies {
         api(libs.slf4j.api)
 
-        api(libs.bundles.jackson)
-
         implementation(libs.guava)
 
         implementation(libs.reflections)

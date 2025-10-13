@@ -18,6 +18,8 @@ dependencies {
 
     testImplementation(libs.commons.io)
 
+    api(libs.bundles.jackson)
+
     api(libs.leadpony.justify)
     api(variantOf(libs.jakarta.json) { classifier("module") })
 }

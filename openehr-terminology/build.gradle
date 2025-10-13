@@ -6,6 +6,8 @@ description = "A very basic OpenEHR terminology file binding"
 
 dependencies {
     testImplementation(libs.commons.io)
+
+    api(libs.bundles.jackson)
 }
 
 //ext {

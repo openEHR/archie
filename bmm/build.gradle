@@ -7,4 +7,6 @@ dependencies {
     testImplementation project(':i18n')
 
     implementation(libs.commons.lang3)
+
+    api(libs.bundles.jackson)
 }
