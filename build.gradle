@@ -57,10 +57,6 @@ subprojects {
         implementation(libs.reflections)
         implementation(libs.kryo)
 
-        implementation(libs.commons.io)
-        implementation(libs.commons.text)
-        implementation(libs.commons.lang3)
-
         //java 10 no longer has these included by default, so explicit dependency is needed.
         api(libs.jaxb.api)
         api(libs.jaxb.core)

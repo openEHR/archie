@@ -16,6 +16,8 @@ dependencies {
 
     implementation(libs.zafarkhaja.semver)
 
+    testImplementation(libs.commons.io)
+
     api(libs.leadpony.justify)
     api(variantOf(libs.jakarta.json) { classifier("module") })
 }

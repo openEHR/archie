@@ -7,4 +7,6 @@ dependencies {
     api project(':path-queries')
     api project(':utils')
     testImplementation project(':archie-utils')
+
+    implementation(libs.commons.io)
 }
