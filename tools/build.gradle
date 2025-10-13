@@ -19,4 +19,6 @@ dependencies {
     implementation(libs.zafarkhaja.semver)
 
     testImplementation(libs.commons.io)
+
+    api(libs.bundles.jackson)
 }

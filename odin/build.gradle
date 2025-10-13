@@ -5,4 +5,6 @@ dependencies {
     api project(':base')
 
     implementation(libs.commons.text)
+
+    api(libs.bundles.jackson)
 }

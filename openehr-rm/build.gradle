@@ -9,4 +9,6 @@ dependencies {
     testImplementation project(':archie-utils')
 
     implementation(libs.commons.io)
+
+    api(libs.bundles.jackson)
 }
