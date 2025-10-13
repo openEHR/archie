@@ -71,8 +71,6 @@ subprojects {
 
         testImplementation(libs.junit4)
         testImplementation(libs.slf4j.simple)
-
-        api(libs.zafarkhaja.semver)
     }
 
 

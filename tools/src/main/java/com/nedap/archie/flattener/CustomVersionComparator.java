@@ -8,7 +8,7 @@ import java.util.Comparator;
  * @author vera.prinsen
  * Created on 10/06/2020
  */
-public class CustomVersionComparator implements Comparator<Version> {
+class CustomVersionComparator implements Comparator<Version> {
 
     Comparator<Version> versionComparator = Comparator.comparingInt(Version::getMajorVersion)
             .thenComparingInt(Version::getMinorVersion)
