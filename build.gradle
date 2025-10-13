@@ -65,7 +65,6 @@ subprojects {
         api(libs.jaxb.api)
         api(libs.jaxb.core)
         runtimeOnly(libs.jaxb.impl)
-        api(libs.activation)
 
         api(libs.threeten.extra)
 
