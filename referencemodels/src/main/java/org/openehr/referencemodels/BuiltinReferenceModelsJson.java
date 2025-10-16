@@ -40,7 +40,8 @@ public class BuiltinReferenceModelsJson {
         }
 
         String[] resources = { // "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_CORE.v.0.0.3.bmm",
-                "bmm/openEHR/components/RM/Release-1.1.0/RM-v1.1.0.bmm.json"
+                "bmm/openEHR/components/BASE/Release-1.2.0/openehr_base_1.2.0.bmm.json",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_1.1.0.bmm.json"
         };
         bmmRepository = new BmmRepository();
         for(String resourceName:resources) {
