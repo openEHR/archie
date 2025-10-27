@@ -19,11 +19,11 @@ antlr4-runtime = { module = "org.antlr:antlr4-runtime", version.ref = "antlr" }
 
 commons-io = { module = "commons-io:commons-io", version = "2.20.0" }
 
-commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.18.0" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.19.0" }
 
 commons-text = { module = "org.apache.commons:commons-text", version = "1.14.0" }
 
-guava = { module = "com.google.guava:guava", version = "33.4.8-jre" }
+guava = { module = "com.google.guava:guava", version = "33.5.0-jre" }
 
 jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
