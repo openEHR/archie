@@ -17,6 +17,7 @@ import org.junit.Test;
 
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.time.temporal.TemporalAmount;
@@ -283,6 +284,26 @@ public class JAXBAOMTest {
         assertEquals("one template overlay should have been unmarshalled", 1, unmarshalled.getTemplateOverlays().size());
         assertEquals("openEHR-EHR-ELEMENT.test.v0.0.1", unmarshalled.getTemplateOverlays().get(0).getArchetypeId().getFullId());
 
+    }
+
+    @Test
+    public void parseWithLifecycleStateString() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("to_flatten_parent_with_overlay_lifecycle_state_string.xml")) {
+            Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+            Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(stream);
+            // assert that the lifecycle state is set to published
+            assertEquals("published", unmarshalled.getDescription().getLifecycleState());
+        }
+    }
+
+    @Test
+    public void parseWithLifecycleStateTerminologyCode() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("to_flatten_parent_with_overlay_lifecycle_state_term_code.xml")) {
+            Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+            Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(stream);
+            // assert that the lifecycle state is set to published
+            assertEquals("published", unmarshalled.getDescription().getLifecycleState());
+        }
     }
 
 }
