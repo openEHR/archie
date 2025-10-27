@@ -8,6 +8,7 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.ResourceDescription;
 import com.nedap.archie.aom.primitives.CDuration;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
@@ -69,6 +70,51 @@ public class AOMJacksonTest {
             //System.out.println(reserialized);
             objectMapper.readValue(reserialized, Archetype.class);
         }
+    }
+
+    @Test
+    public void parseLifecycleStateStringTest() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String resourceDescriptionJson = "{ \"lifecycle_state\" :\"unmanaged\" }";
+        ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
+        // assert that the lifecycle state is set to unmanaged
+        assertEquals("unmanaged", resourceDescription.getLifecycleState());
+    }
+
+    @Test
+    public void parseLifecycleStateTerminologyCodeTest() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String resourceDescriptionJson = "{ \"lifecycle_state\" : { \"code_string\" : \"unmanaged\" }}";
+        ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
+        // assert that the lifecycle state is set to unmanaged
+        assertEquals("unmanaged", resourceDescription.getLifecycleState());
+    }
+
+    @Test
+    public void parseLifecycleStateTerminologyCodeCodeStringNullTest() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String resourceDescriptionJson = "{ \"lifecycle_state\" : { \"code_string\" : null }}";
+        ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
+        // assert that the lifecycle state is set to unmanaged
+        assertNull(resourceDescription.getLifecycleState());
+    }
+
+    @Test
+    public void parseLifecycleStateTerminologyCodeNoCodeStringTest() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String resourceDescriptionJson = "{ \"lifecycle_state\" : { \"placeholder\" : \"placeholder\" }}";
+        ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
+        // assert that the lifecycle state is set to unmanaged
+        assertNull(resourceDescription.getLifecycleState());
+    }
+
+    @Test
+    public void parseLifecycleStateArrayTest() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String resourceDescriptionJson = "{ \"lifecycle_state\" : [] }";
+        ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
+        // assert that the lifecycle state is set to unmanaged
+        assertNull(resourceDescription.getLifecycleState());
     }
 
     @Test
