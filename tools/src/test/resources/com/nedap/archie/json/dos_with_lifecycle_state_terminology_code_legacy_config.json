@@ -9,7 +9,10 @@
         "purpose": "De Delirium observatie screening (DOS) schaal is een beoordelingsschaal voor een delirium bij ouderen. De DOS bevat 13 observaties van gedrag (verbaal en non-verbaal) die de symptomen van het delirium weergeven."
       }
     },
-    "lifecycle_state": "unmanaged"
+    "lifecycle_state" : {
+      "@type" : "TerminologyCode",
+      "code_string" : "unmanaged"
+    }
   },
   "differential": false,
   "archetype_id": {
@@ -72,7 +75,7 @@
                     {
                       "@type": "C_ATTRIBUTE",
                       "rm_attribute_name": "items",
-                      
+
                       "children": [
                         {
                           "@type": "C_COMPLEX_OBJECT",
@@ -82,7 +85,7 @@
                             {
                               "@type": "C_ATTRIBUTE",
                               "rm_attribute_name": "items",
-                              
+
                               "children": [
                                 {
                                   "@type": "C_COMPLEX_OBJECT",
@@ -92,7 +95,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -116,7 +119,7 @@
                     {
                       "@type": "C_ATTRIBUTE",
                       "rm_attribute_name": "items",
-                      
+
                       "children": [
                         {
                           "@type": "C_COMPLEX_OBJECT",
@@ -126,7 +129,7 @@
                             {
                               "@type": "C_ATTRIBUTE",
                               "rm_attribute_name": "items",
-                              
+
                               "children": [
                                 {
                                   "@type": "C_COMPLEX_OBJECT",
@@ -136,7 +139,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -150,7 +153,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -164,7 +167,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -178,7 +181,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -192,7 +195,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -206,7 +209,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -220,7 +223,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -234,7 +237,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -248,7 +251,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -262,7 +265,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -276,7 +279,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -290,7 +293,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -304,7 +307,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -323,7 +326,7 @@
                             {
                               "@type": "C_ATTRIBUTE",
                               "rm_attribute_name": "items",
-                              
+
                               "children": [
                                 {
                                   "@type": "C_COMPLEX_OBJECT",
@@ -333,7 +336,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -347,7 +350,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -361,7 +364,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -375,7 +378,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -389,7 +392,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -403,7 +406,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -417,7 +420,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -431,7 +434,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -445,7 +448,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -459,7 +462,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -473,7 +476,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -487,7 +490,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -501,7 +504,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -520,7 +523,7 @@
                             {
                               "@type": "C_ATTRIBUTE",
                               "rm_attribute_name": "items",
-                              
+
                               "children": [
                                 {
                                   "@type": "C_COMPLEX_OBJECT",
@@ -530,7 +533,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -544,7 +547,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -558,7 +561,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -572,7 +575,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -586,7 +589,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -600,7 +603,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -614,7 +617,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -628,7 +631,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -642,7 +645,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -656,7 +659,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -670,7 +673,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -684,7 +687,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -698,7 +701,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],
@@ -717,7 +720,7 @@
                             {
                               "@type": "C_ATTRIBUTE",
                               "rm_attribute_name": "items",
-                              
+
                               "children": [
                                 {
                                   "@type": "C_COMPLEX_OBJECT",
@@ -727,7 +730,7 @@
                                     {
                                       "@type": "C_ATTRIBUTE",
                                       "rm_attribute_name": "value",
-                                      
+
                                       "children": []
                                     }
                                   ],

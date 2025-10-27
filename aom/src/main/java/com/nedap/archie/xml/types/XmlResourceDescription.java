@@ -1,9 +1,12 @@
 package com.nedap.archie.xml.types;
 
+import com.nedap.archie.xml.adapters.LifecycleStateXmlAdapter;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.List;
 
 /**
@@ -22,6 +25,7 @@ public class XmlResourceDescription {
     @XmlElement(name = "other_contributors")
     private List<String> otherContributors;
     @XmlElement(name = "lifecycle_state", required = true)
+    @XmlJavaTypeAdapter(LifecycleStateXmlAdapter.class)
     private String lifecycleState;
     @XmlElement(name="custodian_namespace")
     private String custodianNamespace;

@@ -1,6 +1,8 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nedap.archie.json.LifecycleStateDeserializer;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class ResourceDescription extends ArchetypeModelObject {
     private String originalPublisher;
     @Nullable
     private List<String> otherContributors = new ArrayList<>();
+    @JsonDeserialize(using = LifecycleStateDeserializer.class)
     private String lifecycleState;
     @Nullable
     private String custodianNamespace;

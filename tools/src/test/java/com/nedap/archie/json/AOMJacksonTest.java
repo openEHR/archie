@@ -72,6 +72,47 @@ public class AOMJacksonTest {
     }
 
     @Test
+    public void parseWithLifecycleStateStringLegacyConfigTest() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("delirium_observation_screening.json")) {
+            ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+            Archetype archetype = objectMapper.readValue(stream, Archetype.class);
+            // assert that the lifecycle state is set to unmanaged
+            String serialized = objectMapper.writeValueAsString(archetype);
+            assertEquals("unmanaged", archetype.getDescription().getLifecycleState());
+        }
+    }
+
+    @Test
+    public void parseWithLifecycleStateStringStandardsCompliantConfigTest() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("delirium_observation_screening_standards_compliant.json")) {
+            ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+            Archetype archetype = objectMapper.readValue(stream, Archetype.class);
+            // assert that the lifecycle state is set to unmanaged
+            assertEquals("unmanaged", archetype.getDescription().getLifecycleState());
+        }
+    }
+
+    @Test
+    public void parseWithLifecycleStateTerminologyCodeLegacyConfigTest() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("dos_with_lifecycle_state_terminology_code_legacy_config.json")) {
+            ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+            Archetype archetype = objectMapper.readValue(stream, Archetype.class);
+            // assert that the lifecycle state is set to unmanaged
+            assertEquals("unmanaged", archetype.getDescription().getLifecycleState());
+        }
+    }
+
+    @Test
+    public void parseWithLifecycleStateTerminologyCodeStandardsCompliantConfigTest() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("dos_with_lifecycle_state_terminology_code_standards_compliant.json")) {
+            ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+            Archetype archetype = objectMapper.readValue(stream, Archetype.class);
+            // assert that the lifecycle state is set to unmanaged
+            assertEquals("unmanaged", archetype.getDescription().getLifecycleState());
+        }
+    }
+
+    @Test
     public void motricityIndex() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
