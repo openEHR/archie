@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<archetype rm_release="1.0.2" is_generated="true" is_differential="true" adl_version="2.0.5" xmlns:ns2="http://schemas.openehr.org/v1">
+    <description>
+        <original_author id="name">Pieter Bos</original_author>
+        <lifecycle_state>
+
+        </lifecycle_state>
+        <copyright>copyright © 2004 openEHR Foundation &lt;http://www.openEHR.org&gt;</copyright>
+        <details>
+            <language>
+                <terminology_id>ISO_639-1</terminology_id>
+                <code_string>en</code_string>
+            </language>
+            <purpose>Test for flattening</purpose>
+            <keywords>ADL</keywords>
+            <keywords>test</keywords>
+        </details>
+    </description>
+    <original_language>
+        <terminology_id>ISO_639-1</terminology_id>
+        <code_string>en</code_string>
+    </original_language>
+    <archetype_id concept_id="to_flatten_parent_with_overlay" rm_publisher="openEHR" rm_package="EHR" rm_class="OBSERVATION" release_version="1.0.0" version_status="RELEASED" build_count=""/>
+    <definition rm_type_name="OBSERVATION" node_id="id1">
+        <attributes rm_attribute_name="data">
+            <is_multiple>false</is_multiple>
+            <children xsi:type="C_COMPLEX_OBJECT" rm_type_name="HISTORY" node_id="id2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <attributes rm_attribute_name="events">
+                    <is_multiple>true</is_multiple>
+                    <cardinality>
+                        <is_ordered>false</is_ordered>
+                        <is_unique>false</is_unique>
+                        <interval lower_unbounded="false" upper_unbounded="true" lower_included="true" upper_included="false">
+                            <lower xsi:type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                        </interval>
+                    </cardinality>
+                    <children xsi:type="C_COMPLEX_OBJECT" rm_type_name="EVENT" node_id="id3">
+                        <occurrences lower_unbounded="false" upper_unbounded="true" lower_included="true" upper_included="false">
+                            <lower xsi:type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                        </occurrences>
+                        <attributes rm_attribute_name="data">
+                            <is_multiple>false</is_multiple>
+                            <children xsi:type="C_COMPLEX_OBJECT" rm_type_name="ITEM_TREE" node_id="id4">
+                                <attributes rm_attribute_name="items">
+                                    <is_multiple>true</is_multiple>
+                                    <cardinality>
+                                        <is_ordered>false</is_ordered>
+                                        <is_unique>false</is_unique>
+                                        <interval lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="true">
+                                            <lower xsi:type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema">3</lower>
+                                            <upper xsi:type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema">3</upper>
+                                        </interval>
+                                    </cardinality>
+                                    <children xsi:type="C_COMPLEX_OBJECT" rm_type_name="ELEMENT" node_id="id5">
+                                        <attributes rm_attribute_name="value">
+                                            <is_multiple>false</is_multiple>
+                                            <children xsi:type="C_COMPLEX_OBJECT" rm_type_name="DV_QUANTITY" node_id="id13">
+                                                <attributes rm_attribute_name="magnitude">
+                                                    <is_multiple>false</is_multiple>
+                                                    <children xsi:type="C_REAL">
+                                                        <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="false">
+                                                            <lower xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">0.0</lower>
+                                                            <upper xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">1000.0</upper>
+                                                        </constraint>
+                                                    </children>
+                                                </attributes>
+                                                <attributes rm_attribute_name="units">
+                                                    <is_multiple>false</is_multiple>
+                                                    <children xsi:type="C_STRING">
+                                                        <constraint>mmHg</constraint>
+                                                    </children>
+                                                </attributes>
+                                                <attributes rm_attribute_name="precision">
+                                                    <is_multiple>false</is_multiple>
+                                                    <children xsi:type="C_INTEGER">
+                                                        <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="true">
+                                                            <lower xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                                                            <upper xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</upper>
+                                                        </constraint>
+                                                    </children>
+                                                </attributes>
+                                                <attributeTuples>
+                                                    <members xsi:type="C_ATTRIBUTE" rm_attribute_name="magnitude">
+                                                        <is_multiple>false</is_multiple>
+                                                        <children xsi:type="C_REAL">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="false">
+                                                                <lower xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">0.0</lower>
+                                                                <upper xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">1000.0</upper>
+                                                            </constraint>
+                                                        </children>
+                                                    </members>
+                                                    <members xsi:type="C_ATTRIBUTE" rm_attribute_name="units">
+                                                        <is_multiple>false</is_multiple>
+                                                        <children xsi:type="C_STRING">
+                                                            <constraint>mmHg</constraint>
+                                                        </children>
+                                                    </members>
+                                                    <members xsi:type="C_ATTRIBUTE" rm_attribute_name="precision">
+                                                        <is_multiple>false</is_multiple>
+                                                        <children xsi:type="C_INTEGER">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="true">
+                                                                <lower xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                                                                <upper xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</upper>
+                                                            </constraint>
+                                                        </children>
+                                                    </members>
+                                                    <tuples>
+                                                        <members xsi:type="C_REAL">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="false">
+                                                                <lower xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">0.0</lower>
+                                                                <upper xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">1000.0</upper>
+                                                            </constraint>
+                                                        </members>
+                                                        <members xsi:type="C_STRING">
+                                                            <constraint>mmHg</constraint>
+                                                        </members>
+                                                        <members xsi:type="C_INTEGER">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="true">
+                                                                <lower xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                                                                <upper xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</upper>
+                                                            </constraint>
+                                                        </members>
+                                                    </tuples>
+                                                </attributeTuples>
+                                            </children>
+                                        </attributes>
+                                    </children>
+                                    <children xsi:type="C_COMPLEX_OBJECT" rm_type_name="ELEMENT" node_id="id6">
+                                        <attributes rm_attribute_name="value">
+                                            <is_multiple>false</is_multiple>
+                                            <children xsi:type="C_COMPLEX_OBJECT" rm_type_name="DV_QUANTITY" node_id="id14">
+                                                <attributes rm_attribute_name="magnitude">
+                                                    <is_multiple>false</is_multiple>
+                                                    <children xsi:type="C_REAL">
+                                                        <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="false">
+                                                            <lower xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">0.0</lower>
+                                                            <upper xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">1000.0</upper>
+                                                        </constraint>
+                                                    </children>
+                                                </attributes>
+                                                <attributes rm_attribute_name="units">
+                                                    <is_multiple>false</is_multiple>
+                                                    <children xsi:type="C_STRING">
+                                                        <constraint>mmHg</constraint>
+                                                    </children>
+                                                </attributes>
+                                                <attributes rm_attribute_name="precision">
+                                                    <is_multiple>false</is_multiple>
+                                                    <children xsi:type="C_INTEGER">
+                                                        <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="true">
+                                                            <lower xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                                                            <upper xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</upper>
+                                                        </constraint>
+                                                    </children>
+                                                </attributes>
+                                                <attributeTuples>
+                                                    <members xsi:type="C_ATTRIBUTE" rm_attribute_name="magnitude">
+                                                        <is_multiple>false</is_multiple>
+                                                        <children xsi:type="C_REAL">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="false">
+                                                                <lower xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">0.0</lower>
+                                                                <upper xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">1000.0</upper>
+                                                            </constraint>
+                                                        </children>
+                                                    </members>
+                                                    <members xsi:type="C_ATTRIBUTE" rm_attribute_name="units">
+                                                        <is_multiple>false</is_multiple>
+                                                        <children xsi:type="C_STRING">
+                                                            <constraint>mmHg</constraint>
+                                                        </children>
+                                                    </members>
+                                                    <members xsi:type="C_ATTRIBUTE" rm_attribute_name="precision">
+                                                        <is_multiple>false</is_multiple>
+                                                        <children xsi:type="C_INTEGER">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="true">
+                                                                <lower xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                                                                <upper xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</upper>
+                                                            </constraint>
+                                                        </children>
+                                                    </members>
+                                                    <tuples>
+                                                        <members xsi:type="C_REAL">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="false">
+                                                                <lower xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">0.0</lower>
+                                                                <upper xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">1000.0</upper>
+                                                            </constraint>
+                                                        </members>
+                                                        <members xsi:type="C_STRING">
+                                                            <constraint>mmHg</constraint>
+                                                        </members>
+                                                        <members xsi:type="C_INTEGER">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="true">
+                                                                <lower xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                                                                <upper xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</upper>
+                                                            </constraint>
+                                                        </members>
+                                                    </tuples>
+                                                </attributeTuples>
+                                            </children>
+                                        </attributes>
+                                    </children>
+                                    <children xsi:type="C_COMPLEX_OBJECT" rm_type_name="ELEMENT" node_id="id7">
+                                        <attributes rm_attribute_name="value">
+                                            <is_multiple>false</is_multiple>
+                                            <children xsi:type="C_COMPLEX_OBJECT" rm_type_name="DV_QUANTITY" node_id="id15">
+                                                <attributes rm_attribute_name="magnitude">
+                                                    <is_multiple>false</is_multiple>
+                                                    <children xsi:type="C_REAL">
+                                                        <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="false">
+                                                            <lower xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">0.0</lower>
+                                                            <upper xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">1000.0</upper>
+                                                        </constraint>
+                                                    </children>
+                                                </attributes>
+                                                <attributes rm_attribute_name="units">
+                                                    <is_multiple>false</is_multiple>
+                                                    <children xsi:type="C_STRING">
+                                                        <constraint>mmHg</constraint>
+                                                    </children>
+                                                </attributes>
+                                                <attributes rm_attribute_name="precision">
+                                                    <is_multiple>false</is_multiple>
+                                                    <children xsi:type="C_INTEGER">
+                                                        <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="true">
+                                                            <lower xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                                                            <upper xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</upper>
+                                                        </constraint>
+                                                    </children>
+                                                </attributes>
+                                                <attributeTuples>
+                                                    <members xsi:type="C_ATTRIBUTE" rm_attribute_name="magnitude">
+                                                        <is_multiple>false</is_multiple>
+                                                        <children xsi:type="C_REAL">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="false">
+                                                                <lower xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">0.0</lower>
+                                                                <upper xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">1000.0</upper>
+                                                            </constraint>
+                                                        </children>
+                                                    </members>
+                                                    <members xsi:type="C_ATTRIBUTE" rm_attribute_name="units">
+                                                        <is_multiple>false</is_multiple>
+                                                        <children xsi:type="C_STRING">
+                                                            <constraint>mmHg</constraint>
+                                                        </children>
+                                                    </members>
+                                                    <members xsi:type="C_ATTRIBUTE" rm_attribute_name="precision">
+                                                        <is_multiple>false</is_multiple>
+                                                        <children xsi:type="C_INTEGER">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="true">
+                                                                <lower xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                                                                <upper xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</upper>
+                                                            </constraint>
+                                                        </children>
+                                                    </members>
+                                                    <tuples>
+                                                        <members xsi:type="C_REAL">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="false">
+                                                                <lower xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">0.0</lower>
+                                                                <upper xsi:type="xs:double" xmlns:xs="http://www.w3.org/2001/XMLSchema">1000.0</upper>
+                                                            </constraint>
+                                                        </members>
+                                                        <members xsi:type="C_STRING">
+                                                            <constraint>mmHg</constraint>
+                                                        </members>
+                                                        <members xsi:type="C_INTEGER">
+                                                            <constraint lower_unbounded="false" upper_unbounded="false" lower_included="true" upper_included="true">
+                                                                <lower xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</lower>
+                                                                <upper xsi:type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema">1</upper>
+                                                            </constraint>
+                                                        </members>
+                                                    </tuples>
+                                                </attributeTuples>
+                                            </children>
+                                        </attributes>
+                                    </children>
+                                </attributes>
+                            </children>
+                        </attributes>
+                    </children>
+                </attributes>
+            </children>
+        </attributes>
+    </definition>
+    <terminology archetype_id="openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0" original_language="en">
+        <concept_code>id1</concept_code>
+        <term_definitions language="en">
+            <items id="id1">
+                <description>The local measurement of arterial blood pressure which is a surrogate for arterial. pressure in the systemic circulation.  Most commonly, use of the term 'blood pressure' refers to measurement of brachial artery pressure in the upper arm.</description>
+                <text>Blood Pressure</text>
+            </items>
+            <items id="id3">
+                <description>any event</description>
+                <text>any event</text>
+            </items>
+            <items id="id5">
+                <description>Systolic Pressure</description>
+                <text>systolic</text>
+            </items>
+            <items id="id6">
+                <description>-- diastolic pressure</description>
+                <text>diastolic pressure</text>
+            </items>
+            <items id="id7">
+                <description>testing 1 2 3 </description>
+                <text>pressure difference</text>
+            </items>
+            <items id="at12">
+                <description>ingocnito mode activated</description>
+                <text>some subject</text>
+            </items>
+        </term_definitions>
+    </terminology>
+    <rm_overlay>
+        <rm_visibility>
+            <path>/subject</path>
+            <visibility>hide</visibility>
+            <alias>
+                <terminology_id>local</terminology_id>
+                <code_string>at12</code_string>
+            </alias>
+        </rm_visibility>
+        <rm_visibility>
+            <path>/data[id2]/events[id3]/data[id4]/items[id5]</path>
+            <visibility>show</visibility>
+        </rm_visibility>
+        <rm_visibility>
+            <path>/data[id2]/events[id3]/data[id4]/items[id6]</path>
+            <visibility>show</visibility>
+        </rm_visibility>
+    </rm_overlay>
+</archetype>

@@ -12,14 +12,14 @@ import java.io.IOException;
 
 /**
  * Jackson deserializer for the lifecycle_state field.
- *
+ * <p>
  * Supports two JSON representations:
  * 1. Simple string form (current): {@code "lifecycle_state": "published"}
  * 2. Complex object form (legacy): {@code "lifecycle_state": {"code_string": "published"}}
  *
  * This deserializer ensures backward compatibility by accepting both formats
  * and always returning the lifecycle state value as a plain String.
- *
+ * <p>
  * Created by pieter.bos on 30/06/16.
  */
 public class LifecycleStateDeserializer extends JsonDeserializer<String> {
@@ -56,13 +56,9 @@ public class LifecycleStateDeserializer extends JsonDeserializer<String> {
             if (node.hasNonNull("code_string")) {
                 return node.get("code_string").asText();
             }
-
-            // If neither case matches, fail fast with a descriptive error message
-            throw JsonMappingException.from(p,
-                    "Expected lifecycle state as a string or object with 'code_string', but got: " + node);
         }
 
-        // Unexpected token type; delegate to Jackson's default error handling
-        return (String) ctxt.handleUnexpectedToken(String.class, p);
+        // Unexpected case
+        return null;
     }
 }

@@ -306,4 +306,24 @@ public class JAXBAOMTest {
         }
     }
 
+    @Test
+    public void parseWithEmptyLifecycleStateBlock() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("to_flatten_parent_with_overlay_empty_lifecycle_state_block.xml")) {
+            Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+            Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(stream);
+            // assert that the lifecycle state is set to published
+            assertEquals(null, unmarshalled.getDescription().getLifecycleState());
+        }
+    }
+
+    @Test
+    public void parseWithNewlineLifecycleStateBlock() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("to_flatten_parent_with_overlay_newline_lifecycle_state_block.xml")) {
+            Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
+            Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(stream);
+            // assert that the lifecycle state is set to published
+            assertEquals(null, unmarshalled.getDescription().getLifecycleState());
+        }
+    }
+
 }

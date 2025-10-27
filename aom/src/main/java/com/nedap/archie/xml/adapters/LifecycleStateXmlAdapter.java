@@ -64,7 +64,7 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
 
     /**
      * Marshals a String to a lifecycle_state element.
-     *
+     * <p>
      * Not implemented for this adapter as marshaling is not required.
      *
      * @param v the lifecycle state value
@@ -77,7 +77,7 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
 
     /**
      * Holder class for mixed XML content (text and elements).
-     *
+     * <p>
      * Used by JAXB to capture both text nodes and child elements within the
      * lifecycle_state element. The content list may include whitespace strings
      * (from XML formatting) and Element objects.
