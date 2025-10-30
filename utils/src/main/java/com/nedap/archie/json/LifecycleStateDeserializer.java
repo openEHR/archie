@@ -41,18 +41,13 @@ public class LifecycleStateDeserializer extends JsonDeserializer<String> {
     public String deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         JsonToken t = p.getCurrentToken();
 
-        // Case 1: Simple string form (current standard)
-        // Example: "lifecycle_state": "published"
         if (t == JsonToken.VALUE_STRING) {
             return p.getValueAsString();
         }
 
-        // Case 2: Complex object form (legacy)
-        // Example: "lifecycle_state": {"code_string": "published"}
         if (t == JsonToken.START_OBJECT) {
             ObjectNode node = p.getCodec().readTree(p);
 
-            // Extract the lifecycle state from the "code_string" field
             if (node.hasNonNull("code_string")) {
                 return node.get("code_string").asText();
             }

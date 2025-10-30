@@ -35,7 +35,6 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
             return null;
         }
 
-        // First pass: check for nested <code_string> element
         for (Object o : holder.content) {
             if (o instanceof Element) {
                 Element element = (Element) o;
@@ -48,8 +47,6 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
             }
         }
 
-        // Second pass: extract non-whitespace text content (legacy simple form)
-        // This handles cases like: <lifecycle_state>published</lifecycle_state>
         for (Object o : holder.content) {
             if (o instanceof String) {
                 String text = ((String) o).trim();
