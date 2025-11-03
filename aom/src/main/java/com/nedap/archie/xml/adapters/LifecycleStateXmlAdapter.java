@@ -21,10 +21,6 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
 
     /**
      * Unmarshalls a lifecycle_state element to a String.
-     * <p>
-     * Attempts to extract the lifecycle state value from either:
-     * - A nested {@code <code_string>} element
-     * - Direct text content (legacy simple form)
      *
      * @param holder the mixed content holder containing the element's content
      * @return the lifecycle state value as a trimmed String, or null if no value is found
@@ -60,12 +56,7 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
     }
 
     /**
-     * Marshals a String to a lifecycle_state element.
-     * <p>
      * Not implemented for this adapter as marshaling is not required.
-     *
-     * @param v the lifecycle state value
-     * @return null (marshaling not supported)
      */
     @Override
     public MixedHolder marshal(String v) {
@@ -81,10 +72,6 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
      */
     @XmlRootElement(name = "lifecycle_state")
     public static class MixedHolder {
-        /**
-         * Mixed content: contains both text strings (including whitespace from formatting)
-         * and Element nodes (such as {@code <code_string>}).
-         */
         @XmlMixed
         @XmlAnyElement(lax = true)
         public List<Object> content;
