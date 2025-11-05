@@ -14,17 +14,17 @@ import java.util.List;
  * <p>
  * Supports two XML representations:
  * 1. Future/simple text form: {@code <lifecycle_state>published</lifecycle_state>}
- * 2. Current form with code_string: {@code <lifecycle_state><code_string>published</code_string></lifecycle_state>}
+ * 2. Current form of type terminology_code with a code_string: {@code <lifecycle_state><code_string>published</code_string></lifecycle_state>}
  *
- * The adapter always returns the lifecycle state value as a plain String, regardless of the input format.
+ * The adapter always returns the lifecycle state value as a terminology_code with a code_string value, regardless of the input format.
  */
 public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapter.MixedHolder, TerminologyCode> {
 
     /**
-     * Unmarshalls a lifecycle_state element to a String.
+     * Unmarshalls a lifecycle_state element to a terminology_code.
      *
      * @param holder the mixed content holder containing the element's content
-     * @return the lifecycle state value as a trimmed String, or null if no value is found
+     * @return the lifecycle_state value as a terminology_code, or null if no value is found
      */
     @Override
     public TerminologyCode unmarshal(MixedHolder holder) {
