@@ -1,7 +1,8 @@
 [versions]
 antlr = "4.13.2"
 
-jackson = "2.20"
+jackson = "2.20.0"
+jackson_annotations = "2.20"
 
 slf4j = "1.7.36"
 
@@ -25,7 +26,7 @@ commons-text = { module = "org.apache.commons:commons-text", version = "1.14.0" 
 
 guava = { module = "com.google.guava:guava", version = "33.4.8-jre" }
 
-jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson_annotations" }
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 
