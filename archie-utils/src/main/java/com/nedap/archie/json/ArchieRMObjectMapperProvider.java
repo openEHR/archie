@@ -22,7 +22,7 @@ public class ArchieRMObjectMapperProvider implements RMObjectMapperProvider {
     public ObjectMapper getInputOdinObjectMapper() {
         ObjectMapper odinMapper = new ObjectMapper();
         JacksonUtil.configureObjectMapper(odinMapper);
-        odinMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        odinMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         //keywords = <"value"> is indistinguishable from keywords = <"value1", "value2">
         odinMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         //odin sometimes does <> where it can mean either an empty array OR a null object. Nastyness
