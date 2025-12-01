@@ -18,7 +18,7 @@ activation = { module = "javax.activation:activation", version = "1.1.1" }
 antlr4 = { module = "org.antlr:antlr4", version.ref = "antlr" }
 antlr4-runtime = { module = "org.antlr:antlr4-runtime", version.ref = "antlr" }
 
-commons-io = { module = "commons-io:commons-io", version = "2.20.0" }
+commons-io = { module = "commons-io:commons-io", version = "2.21.0" }
 
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.20.0" }
 
