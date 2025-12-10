@@ -37,6 +37,8 @@ public class AssertionResult {
      * Paths that must not exist. Will be set even if it does not exist, to let the UI know if should not be added.
      */
     private List<String> pathsThatMustNotExist = new ArrayList<>();
+    private List<String> pathsThatMustBeRemoved = new ArrayList<>();
+    private List<String> pathsThatMustNotBeAdded = new ArrayList<>();
 
     /**
      * Paths where a term code must now be constrained to a value set. Use for example to change a drop down list, to a subselection of
@@ -108,6 +110,22 @@ public class AssertionResult {
         this.pathsThatMustNotExist = pathsThatMustNotExist;
     }
 
+    public List<String> getPathsThatMustBeRemoved() {
+        return pathsThatMustBeRemoved;
+    }
+
+    public void setPathsThatMustBeRemoved(List<String> pathsThatMustBeRemoved) {
+        this.pathsThatMustBeRemoved = pathsThatMustBeRemoved;
+    }
+
+    public List<String> getPathsThatMustNotBeAdded() {
+        return pathsThatMustNotBeAdded;
+    }
+
+    public void setPathsThatMustNotBeAdded(List<String> pathsThatMustNotBeAdded) {
+        this.pathsThatMustNotBeAdded = pathsThatMustNotBeAdded;
+    }
+
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("assertion");
@@ -135,6 +153,14 @@ public class AssertionResult {
 
     public void addPathsThatMustNotExist(List<String> path) {
         pathsThatMustNotExist.addAll(path);
+    }
+
+    public void addPathsThatMustBeRemoved(List<String> path) {
+        pathsThatMustBeRemoved.addAll(path);
+    }
+
+    public void addPathThatMustNotBeAdded(String path) {
+        pathsThatMustNotBeAdded.add(path);
     }
 
     public void setSetPathValue(String path, ValueList values) {

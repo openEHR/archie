@@ -93,10 +93,11 @@ class FixableAssertionsChecker {
                 ValueList list = valueLists.get(index);
                 if(list.getSingleBooleanResult()) { //it exists. It should not
                     assertionResult.addPathsThatMustNotExist(resolveModelReferenceNonNull((ModelReference) existsOperator.getOperand(), index));
+                    assertionResult.addPathsThatMustBeRemoved(resolveModelReferenceNonNull((ModelReference) existsOperator.getOperand(), index));
                 } else { //does not exist, it's fine but we should still know. We need another model reference lookup method
                     assertionResult.addPathThatMustNotExist(resolveModelReference((ModelReference) existsOperator.getOperand()));
                 }
-
+                assertionResult.addPathThatMustNotBeAdded(resolveModelReference((ModelReference) existsOperator.getOperand()));
             }
         }
     }

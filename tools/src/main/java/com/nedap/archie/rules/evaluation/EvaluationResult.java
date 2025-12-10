@@ -43,6 +43,22 @@ public class EvaluationResult {
         return result;
     }
 
+    public List<String> getPathsThatMustBeRemoved() {
+        List<String> result = new ArrayList<>();
+        for (AssertionResult assertionResult : assertionResults) {
+            result.addAll(assertionResult.getPathsThatMustBeRemoved());
+        }
+        return result;
+    }
+
+    public List<String> getPathsThatMustNotBeAdded() {
+        List<String> result = new ArrayList<>();
+        for (AssertionResult assertionResult : assertionResults) {
+            result.addAll(assertionResult.getPathsThatMustNotBeAdded());
+        }
+        return result;
+    }
+
     public Map<String, Value<?>> getSetPathValues() {
         Map<String, Value<?>> result = new LinkedHashMap<>();
         for (AssertionResult assertionResult : assertionResults) {
