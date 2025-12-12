@@ -10,7 +10,6 @@ import com.nedap.archie.rminfo.RMAttributeInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -210,18 +209,13 @@ public class AssertionsFixer {
         Object parent = objectToRemove.getParent();
         Object object = objectToRemove.getObject();
 
-        RMAttributeInfo attributeInfo = modelInfoLookup.getAttributeInfo(parent.getClass(), objectToRemove.getAttributeName());
-        try {
-            Object attributeValue = attributeInfo.getGetMethod().invoke(parent);
-            if (attributeValue instanceof List) {
-                ((List<?>) attributeValue).remove(object);
-            } else if (attributeValue == object) {
-                attributeInfo.getSetMethod().invoke(parent, (Object) null);
-            } else {
-                throw new IllegalStateException("Attribute value is not a list and not the object to remove");
-            }
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
+        Object attributeValue = attributeAccessor.getValue(parent, objectToRemove.getAttributeName());
+        if (attributeValue instanceof List) {
+            ((List<?>) attributeValue).remove(object);
+        } else if (attributeValue == object) {
+            attributeAccessor.setValue(parent, objectToRemove.getAttributeName(), null);
+        } else {
+            throw new IllegalStateException("Attribute value is not a list and not the object to remove");
         }
     }
 
