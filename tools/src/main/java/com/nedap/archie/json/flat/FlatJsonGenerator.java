@@ -7,11 +7,11 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.datetime.DateTimeSerializerFormatters;
+import com.nedap.archie.rminfo.AttributeAccessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 public class FlatJsonGenerator {
 
     private final ModelInfoLookup modelInfoLookup;
+    private final AttributeAccessor attributeAccessor;
 
     private final List<IgnoredAttribute> ignoredAttributes;
 
@@ -51,6 +52,7 @@ public class FlatJsonGenerator {
      */
     public FlatJsonGenerator(ModelInfoLookup modelInfoLookup, FlatJsonFormatConfiguration config) {
         this.modelInfoLookup = modelInfoLookup;
+        this.attributeAccessor = new AttributeAccessor(modelInfoLookup);
         this.writePipesForPrimitiveTypes = config.isWritePipesForPrimitiveTypes();
         this.humanReadableFormat = false;//TODO: this is quite a bit of work to do properly, so definately not doing this now.
         this.indexNotation = config.getIndexNotation();
@@ -127,12 +129,8 @@ public class FlatJsonGenerator {
                         continue;
                     }
                 }
-                try {
-                    Object child = attributeInfo.getGetMethod().invoke(rmObject);
-                    addAttribute(result, pathSoFar, rmObject, child, attributeName,null, cAttribute);
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    throw new RuntimeException(e);//TODO: fine for now...
-                }
+                Object child = attributeAccessor.getValue(rmObject, attributeName);
+                addAttribute(result, pathSoFar, rmObject, child, attributeName,null, cAttribute);
             }
 
         }
