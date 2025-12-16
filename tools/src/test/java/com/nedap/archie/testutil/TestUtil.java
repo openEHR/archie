@@ -1,6 +1,5 @@
 package com.nedap.archie.testutil;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
@@ -10,6 +9,7 @@ import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.AttributeAccessor;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
@@ -34,6 +34,7 @@ public class TestUtil {
     private static final Logger logger = LoggerFactory.getLogger(TestUtil.class);
 
     private RMObjectCreator creator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
+    private final AttributeAccessor attributeAccessor = new AttributeAccessor(ArchieRMInfoLookup.getInstance());
 
     /**
      * Creates an empty RM Object, fully nested, one object per CObject found.
@@ -61,10 +62,10 @@ public class TestUtil {
             }
             if(!children.isEmpty()) {
                 if(attribute.isMultiple()) {
-                    creator.set(result, attribute.getRmAttributeName(), children);
+                    attributeAccessor.setValue(result, attribute.getRmAttributeName(), children);
                 } else if(!children.isEmpty()){
                     //set the first possible result in case of multiple children for a single valued value
-                    creator.set(result, attribute.getRmAttributeName(), Lists.newArrayList(children.get(0)));
+                    attributeAccessor.setValue(result, attribute.getRmAttributeName(), children.get(0));
                 }
             }
         }
