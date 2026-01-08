@@ -87,6 +87,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test
+    @Deprecated
     public void setSingleValuedValue() {
         Element element = new Element();
         DvBoolean booleanValue = new DvBoolean();
@@ -95,6 +96,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test
+    @Deprecated
     public void setSingleValuedValuePrimitive() {
         DvBoolean booleanValue = new DvBoolean();
         creator.set(booleanValue, "value", Lists.newArrayList(true));
@@ -102,6 +104,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    @Deprecated
     public void setSingleValuedValueIncorrectly() {
         Element element = new Element();
         DvBoolean booleanValue = new DvBoolean();
@@ -110,6 +113,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    @Deprecated
     public void setSingleValuedValueUnknownArgument() {
         Element element = new Element();
         DvBoolean booleanValue = new DvBoolean();
@@ -117,6 +121,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test
+    @Deprecated
     public void setMultiValuedValue() {
         Cluster cluster = new Cluster();
         Element element = new Element();
@@ -125,6 +130,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test
+    @Deprecated
     public void setMultiValuedValue2() {
         Cluster cluster = new Cluster();
         Element element = new Element();
@@ -134,6 +140,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test
+    @Deprecated
     public void addToListOrSetSingleValue() {
         Cluster cluster = new Cluster();
         Element element = new Element();
@@ -144,6 +151,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test
+    @Deprecated
     public void addToListOrSetSingleValue2() {
         Cluster cluster = new Cluster();
         Element element = new Element();
@@ -155,6 +163,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test
+    @Deprecated
     public void addToListOrSetSingleValueWithSingleValue() {
         Element element = new Element();
         DvBoolean booleanValue = new DvBoolean();
@@ -163,6 +172,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test
+    @Deprecated
     public void addToListOrSetSingleValueWithSingleValue2() {
         Element element = new Element();
         DvBoolean booleanValue = new DvBoolean();
@@ -171,6 +181,7 @@ public class RMObjectCreatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    @Deprecated
     public void addToListOrSetSingleValueWithSingleValueIncorrect() {
         Element element = new Element();
         DvBoolean booleanValue = new DvBoolean();

@@ -4,10 +4,9 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CAttributeTuple;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.CPrimitiveTuple;
+import com.nedap.archie.rminfo.AttributeAccessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rminfo.RMAttributeInfo;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 /**
@@ -15,10 +14,12 @@ import java.util.HashMap;
  */
 public class ValidationHelper {
     private final ModelInfoLookup lookup;
+    private final AttributeAccessor attributeAccessor;
     private final PrimitiveObjectConstraintHelper primitiveObjectConstraintHelper;
 
     public ValidationHelper(ModelInfoLookup lookup, ValidationConfiguration validationConfiguration) {
         this.lookup = lookup;
+        this.attributeAccessor = new AttributeAccessor(lookup);
         this.primitiveObjectConstraintHelper = new PrimitiveObjectConstraintHelper(validationConfiguration);
     }
 
@@ -84,15 +85,11 @@ public class ValidationHelper {
 
         HashMap<String, Object> members = new HashMap<>();
         for(CAttribute attribute:cAttributeTuple.getMembers()) {
-            RMAttributeInfo attributeInfo = lookup.getAttributeInfo(value.getClass(), attribute.getRmAttributeName());
-            try {
-                if (attributeInfo != null && attributeInfo.getGetMethod() != null) {
-                    members.put(attribute.getRmAttributeName(), attributeInfo.getGetMethod().invoke(value));
-                } else {
-                    //warn? throw exception?
-                }
-            } catch (InvocationTargetException | IllegalAccessException e) {
-                throw new RuntimeException(e);
+            String attributeName = attribute.getRmAttributeName();
+            if (attributeAccessor.hasAttribute(value, attributeName)) {
+                members.put(attributeName, attributeAccessor.getValue(value, attributeName));
+            } else {
+                //warn? throw exception?
             }
         }
         return isValid(cAttributeTuple, members);
