@@ -31,7 +31,7 @@ public class AttributeAccessor {
      * @param attributeName Name of the attribute of the object
      * @param value         A single value or {@link Collection} of values to add
      * @throws IllegalArgumentException if the attribute is not a valid attribute of the object, the attribute is not
-     *                                  a multiple valued attribute or the type of the value does not match type type of
+     *                                  a multiple valued attribute or the type of the value does not match the type of
      *                                  the attribute.
      * @throws RuntimeException         if the underlying add, get or set method throws an exception.
      */
@@ -79,7 +79,7 @@ public class AttributeAccessor {
      * @param attributeName Name of the attribute of the object
      * @param value         Value(s) to add or set, or null to remove the value
      * @throws IllegalArgumentException if the attribute is not a valid attribute of the object, the attribute is a
-     *                                  read-only attribute, the type of the value does not match type type of the
+     *                                  read-only attribute, the type of the value does not match the type of the
      *                                  attribute or multiple values are assigned to a single valued attribute.
      * @throws RuntimeException         if the underlying add, get or set method throws an exception.
      */
@@ -137,15 +137,15 @@ public class AttributeAccessor {
      * Will set the given value or values to the attribute using the {@link RMAttributeInfo#getSetMethod() set method}
      * of the attribute, overwriting any existing value.
      * <p>
-     * For single valued attributes, this methods unwraps single values from a given {@link Collection}.
+     * For single valued attributes, this method unwraps single values from a given {@link Collection}.
      * <p>
-     * For multiple valued attributes, this method wrap a single value in a new instance of the collection type.
+     * For multiple valued attributes, this method wraps a single value in a new instance of the collection type.
      *
      * @param object        Object to set the attribute value of
      * @param attributeName Name of the attribute of the object
      * @param value         Value(s) to set, or null to remove the value
      * @throws IllegalArgumentException if the attribute is not a valid attribute of the object, the attribute is a
-     *                                  read-only attribute, the type of the value does not match type type of the
+     *                                  read-only attribute, the type of the value does not match the type of the
      *                                  attribute or multiple values are assigned to a single valued attribute.
      * @throws RuntimeException         if the underlying set method throws an exception.
      */
