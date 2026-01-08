@@ -1,8 +1,8 @@
 package com.nedap.archie.rmobjectvalidator.validations;
 
 import com.nedap.archie.aom.*;
-import com.nedap.archie.query.RMObjectAttributes;
 import com.nedap.archie.query.RMObjectWithPath;
+import com.nedap.archie.rminfo.AttributeAccessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageIds;
@@ -48,6 +48,7 @@ public class RMTupleValidation {
      * This will check each attribute in the tuple individually to get more specific validation messages.
      */
     private static List<RMObjectValidationMessage> validateSingleTuple(ModelInfoLookup lookup, String pathSoFar, Object rmObject, CAttributeTuple attributeTuple) {
+        AttributeAccessor attributeAccessor = new AttributeAccessor(lookup);
         List<RMObjectValidationMessage> result = new ArrayList<>();
 
         CPrimitiveTuple tuple = attributeTuple.getTuples().get(0);
@@ -56,7 +57,7 @@ public class RMTupleValidation {
         for(CAttribute attribute:attributeTuple.getMembers()) {
             String attributeName = attribute.getRmAttributeName();
             CPrimitiveObject<?, ?> cPrimitiveObject = tuple.getMembers().get(index);
-            Object value = RMObjectAttributes.getAttributeValueFromRMObject(rmObject, attributeName, lookup);
+            Object value = attributeAccessor.getValue(rmObject, attributeName);
             String path = pathSoFar + "/" + attributeName + "[" + cPrimitiveObject.getNodeId() + "]";
 
             result.addAll(RMPrimitiveObjectValidation.validate_inner(lookup, value, path, cPrimitiveObject));
