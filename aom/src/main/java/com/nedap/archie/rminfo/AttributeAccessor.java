@@ -291,7 +291,7 @@ public class AttributeAccessor {
      *
      * @param attributeInfo Attribute info object
      * @return Empty list
-     * @throws IllegalArgumentException if the attribute type is not List or Set.
+     * @throws IllegalArgumentException if the attribute type is not List.
      */
     private List<Object> newCollectionInstance(RMAttributeInfo attributeInfo) throws IllegalArgumentException {
         Class<?> type = attributeInfo.getType();
