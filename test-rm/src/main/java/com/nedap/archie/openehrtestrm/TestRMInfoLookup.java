@@ -54,6 +54,7 @@ public class TestRMInfoLookup extends ReflectionModelInfoLookup {
 
 
     @Override
+    @Deprecated
     public void processCreatedObject(Object createdObject, CObject constraint) {
 
     }
@@ -93,6 +94,7 @@ public class TestRMInfoLookup extends ReflectionModelInfoLookup {
      * @param parent
      */
     @Override
+    @Deprecated
     public Map<String, Object> pathHasBeenUpdated(Object rmObject, Archetype archetype, String pathOfParent, Object parent) {
         return new HashMap<>();
     }

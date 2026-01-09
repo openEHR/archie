@@ -10,6 +10,7 @@ import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.AttributeAccessor;
+import com.nedap.archie.rminfo.OpenEhrRmObjectProcessor;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public class TestUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(TestUtil.class);
 
-    private RMObjectCreator creator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
+    private final RMObjectCreator creator = new RMObjectCreator(ArchieRMInfoLookup.getInstance(), new OpenEhrRmObjectProcessor());
     private final AttributeAccessor attributeAccessor = new AttributeAccessor(ArchieRMInfoLookup.getInstance());
 
     /**

@@ -1,6 +1,7 @@
 package com.nedap.archie.rules.evaluation;
 
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.OpenEhrRmObjectProcessor;
 import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constant;
@@ -362,7 +363,12 @@ public class BinaryOperatorTest {
         Constant<?> rightConstant = new Constant<>(type, right);
         operator.addOperand(leftConstant);
         operator.addOperand(rightConstant);
-        RuleEvaluation<?> eval = new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build(), null);//should be archetype, not very relevant here
+        RuleEvaluation<?> eval = new RuleEvaluation<>(
+                ArchieRMInfoLookup.getInstance(),
+                new OpenEhrRmObjectProcessor(),
+                new ValidationConfiguration.Builder().build(),
+                null //should be archetype, not very relevant here
+        );
         assertEquals(expected, eval.evaluate(operator).getValueObjects().get(0));
     }
 

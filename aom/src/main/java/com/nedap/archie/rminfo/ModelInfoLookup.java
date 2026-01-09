@@ -109,7 +109,10 @@ public interface ModelInfoLookup {
     /**
      * Callback after an RM Object has been created based on a constraint. Can for example be used
      * to set names or archetype ID Node values
+     *
+     * @deprecated Use {@link RmObjectProcessor#processCreatedObject(Object, CObject)} instead.
      */
+    @Deprecated
     void processCreatedObject(Object createdObject, CObject constraint);
 
 
@@ -158,7 +161,9 @@ public interface ModelInfoLookup {
      * @param parent
      * @return Each key is a path that was updated as a result of the previously updated path and each corresponding
      * value is this path's updated value
+     * @deprecated Use {@link RmObjectProcessor#processUpdatedObject(Object, Archetype, String, Object)} instead.
      */
+    @Deprecated
     Map<String, Object> pathHasBeenUpdated(Object rmObject, Archetype archetype, String pathOfParent, Object parent);
 
     /**

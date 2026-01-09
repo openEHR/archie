@@ -246,21 +246,9 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
+    @Deprecated
     public void processCreatedObject(Object createdObject, CObject constraint) {
-        if (createdObject instanceof Locatable) { //and most often, it will be
-            Locatable locatable = (Locatable) createdObject;
-            locatable.setArchetypeNodeId(constraint.getNodeId());
-            locatable.setNameAsString(constraint.getMeaning());
-            if(constraint instanceof CArchetypeRoot) {
-                CArchetypeRoot root = (CArchetypeRoot) constraint;
-                if(root.getArchetypeRef() != null) {
-                    Archetyped details = new Archetyped();
-                    details.setArchetypeId(new ArchetypeID(root.getArchetypeRef()));
-                    details.setRmVersion(RM_VERSION);
-                    locatable.setArchetypeDetails(details);
-                }
-            }
-        }
+        new OpenEhrRmObjectProcessor().processCreatedObject(createdObject, constraint);
     }
 
     @Override
@@ -315,8 +303,9 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
      * @param parent
      */
     @Override
+    @Deprecated
     public Map<String, Object> pathHasBeenUpdated(Object rmObject, Archetype archetype, String pathOfParent, Object parent) {
-        return UpdatedValueHandler.pathHasBeenUpdated(rmObject, archetype, pathOfParent, parent);
+        return new OpenEhrRmObjectProcessor().processUpdatedObject(rmObject, archetype, pathOfParent, parent);
     }
 
     @Override

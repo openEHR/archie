@@ -2,8 +2,10 @@ package com.nedap.archie.creation;
 
 import com.google.common.collect.Lists;
 import com.nedap.archie.aom.CObject;
+import com.nedap.archie.rminfo.BackwardsCompatibleRmObjectProcessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
+import com.nedap.archie.rminfo.RmObjectProcessor;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -19,8 +21,20 @@ public class RMObjectCreator {
 
     private final ModelInfoLookup modelInfoLookup;
 
+    private final RmObjectProcessor rmObjectProcessor;
+
+    /**
+     * @deprecated Use {@link #RMObjectCreator(ModelInfoLookup, RmObjectProcessor)} instead.
+     */
+    @Deprecated
     public RMObjectCreator(ModelInfoLookup lookup) {
         this.modelInfoLookup = lookup;
+        this.rmObjectProcessor = new BackwardsCompatibleRmObjectProcessor(lookup);
+    }
+
+    public RMObjectCreator(ModelInfoLookup lookup, RmObjectProcessor rmObjectProcessor) {
+        this.modelInfoLookup = lookup;
+        this.rmObjectProcessor = rmObjectProcessor;
     }
 
     public <T> T create(CObject constraint) {
@@ -31,7 +45,7 @@ public class RMObjectCreator {
         try {
             Object result = clazz.newInstance();
 
-            modelInfoLookup.processCreatedObject(result, constraint);
+            rmObjectProcessor.processCreatedObject(result, constraint);
             return (T) result;
         } catch (InstantiationException | IllegalAccessException e) {
             throw new RuntimeException("error creating class " + constraint.getRmTypeName(), e);
