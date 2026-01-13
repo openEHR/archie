@@ -11,14 +11,14 @@ public class NodeIdUtil {
 
 
     private String prefix;
-    private List<Integer> codes = new ArrayList<>();;
+    private List<String> codes = new ArrayList<>();
 
     public NodeIdUtil(String nodeId) {
         if(AOMUtils.isValidCode(nodeId) || AOMUtils.isValidADL14Code(nodeId)) {
             String[] split = nodeId.substring(2).split("\\" + AdlCodeDefinitions.SPECIALIZATION_SEPARATOR);
             prefix = nodeId.substring(0, 2);
             for (int i = 0; i < split.length; i++) {
-                codes.add(Integer.parseInt(split[i]));
+                codes.add(split[i]);
             }
         }
     }
@@ -29,7 +29,7 @@ public class NodeIdUtil {
         }
         if(codes.size() > 1) {
             for(int i = 0; i < codes.size()-1;i++) {
-                if(codes.get(i) > 0) {
+                if(Integer.parseInt(codes.get(i)) > 0) {
                     return true;
                 }
             }
@@ -40,7 +40,6 @@ public class NodeIdUtil {
     public boolean isValid() {
         return prefix != null;
     }
-
 
     public boolean isIdCode() {
         return AdlCodeDefinitions.ID_CODE_LEADER.equals(prefix);
@@ -62,7 +61,7 @@ public class NodeIdUtil {
         this.prefix = prefix;
     }
 
-    public List<Integer> getCodes() {
+    public List<String> getCodes() {
         return codes;
     }
 
