@@ -1,16 +1,15 @@
 package com.nedap.archie.rules.evaluation;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
+import com.nedap.archie.rminfo.AttributeAccessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,17 +23,25 @@ public class AssertionsFixer {
 
     private static final Logger logger = LoggerFactory.getLogger(AssertionsFixer.class);
 
-    private final RMObjectCreator creator;
     private final RuleEvaluation<?> ruleEvaluation;
     private final RMObjectCreator rmObjectCreator;
 
     private ModelInfoLookup modelInfoLookup;
+    private final AttributeAccessor attributeAccessor;
 
+    /**
+     * @deprecated Not intended for direct usage. Use RuleEvaluation instead.
+     */
+    @Deprecated
     public AssertionsFixer(RuleEvaluation<?> evaluation, RMObjectCreator creator) {
-        this.creator = creator;
+        this(evaluation);
+    }
+
+    AssertionsFixer(RuleEvaluation<?> evaluation) {
         this.ruleEvaluation = evaluation;
         this.modelInfoLookup = ruleEvaluation.getModelInfoLookup();
         rmObjectCreator = new RMObjectCreator(evaluation.getModelInfoLookup());
+        this.attributeAccessor = new AttributeAccessor(modelInfoLookup);
     }
 
     public Map<String, Object> fixSetPathAssertions(Archetype archetype, AssertionResult assertionResult) {
@@ -63,15 +70,15 @@ public class AssertionsFixer {
                     throw new IllegalStateException("attribute " + lastPathSegment + " does not exist on type " + parent.getClass());
                 }
                 if (value.getValue() == null) {
-                    creator.set(parent, lastPathSegment, Lists.newArrayList(value.getValue()));
+                    attributeAccessor.setValue(parent, lastPathSegment, value.getValue());
                 } else if (attributeInfo.getType().equals(Long.class) && value.getValue().getClass().equals(Double.class)) {
                     Long convertedValue = ((Double) value.getValue()).longValue(); //TODO or should this round?
-                    creator.set(parent, lastPathSegment, Lists.newArrayList(convertedValue));
+                    attributeAccessor.setValue(parent, lastPathSegment, convertedValue);
                 } else if (attributeInfo.getType().equals(Double.class) && value.getValue().getClass().equals(Long.class)) {
                     Double convertedValue = ((Long) value.getValue()).doubleValue(); //TODO or should this round?
-                    creator.set(parent, lastPathSegment, Lists.newArrayList(convertedValue));
+                    attributeAccessor.setValue(parent, lastPathSegment, convertedValue);
                 } else {
-                    creator.set(parent, lastPathSegment, Lists.newArrayList(value.getValue()));
+                    attributeAccessor.setValue(parent, lastPathSegment, value.getValue());
                 }
 
                 result.putAll(modelInfoLookup.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent));
@@ -107,7 +114,7 @@ public class AssertionsFixer {
             Object newEmptyObject = null;
             newEmptyObject = constructEmptySimpleObject(newLastPathSegment, object, newEmptyObject);
 
-            creator.addElementToListOrSetSingleValues(object, newLastPathSegment, Lists.newArrayList(newEmptyObject));
+            attributeAccessor.addOrSetValue(object, newLastPathSegment, newEmptyObject);
             ruleEvaluation.refreshQueryContext();
         } else {
             CObject constraint = getCObjectFromResult(constraints);
@@ -127,7 +134,7 @@ public class AssertionsFixer {
                     attributeName = newLastPathSegment.substring(0, bracketIndex);
                 }
 
-                creator.addElementToListOrSetSingleValues(object, attributeName, Lists.newArrayList(newEmptyObject));
+                attributeAccessor.addOrSetValue(object, attributeName, newEmptyObject);
                 ruleEvaluation.refreshQueryContext();
 
             }
@@ -202,18 +209,13 @@ public class AssertionsFixer {
         Object parent = objectToRemove.getParent();
         Object object = objectToRemove.getObject();
 
-        RMAttributeInfo attributeInfo = modelInfoLookup.getAttributeInfo(parent.getClass(), objectToRemove.getAttributeName());
-        try {
-            Object attributeValue = attributeInfo.getGetMethod().invoke(parent);
-            if (attributeValue instanceof List) {
-                ((List<?>) attributeValue).remove(object);
-            } else if (attributeValue == object) {
-                attributeInfo.getSetMethod().invoke(parent, (Object) null);
-            } else {
-                throw new IllegalStateException("Attribute value is not a list and not the object to remove");
-            }
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
+        Object attributeValue = attributeAccessor.getValue(parent, objectToRemove.getAttributeName());
+        if (attributeValue instanceof List) {
+            ((List<?>) attributeValue).remove(object);
+        } else if (attributeValue == object) {
+            attributeAccessor.setValue(parent, objectToRemove.getAttributeName(), null);
+        } else {
+            throw new IllegalStateException("Attribute value is not a list and not the object to remove");
         }
     }
 

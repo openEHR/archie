@@ -84,7 +84,11 @@ public class ADLStringBuilder implements StructuredStringAppendable {
 
     public ADLStringBuilder lineComment(String comment) {
         if (comment != null) {
-            append(StructureStringBuilder.padRight("", 4)).append("-- ").append(comment);
+            // Remove line breaks and surrounding spaces
+            comment = comment.replaceAll("\\s*(\n\\s*)+", " ").trim();
+            if (!comment.isEmpty()) {
+                append(StructureStringBuilder.padRight("", 4)).append("-- ").append(comment);
+            }
         }
         return this;
     }

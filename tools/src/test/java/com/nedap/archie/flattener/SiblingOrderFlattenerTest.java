@@ -3,7 +3,6 @@ package com.nedap.archie.flattener;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.aom.Archetype;
-
 import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
@@ -231,7 +230,7 @@ public class SiblingOrderFlattenerTest {
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
 
-        return new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate()).flatten(parse(fileName));
+        return new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate()).flatten(parse(fileName));
     }
 
     private Archetype parseAndFlattenRemoveZeroOccurrences(String fileName) throws IOException, ADLParseException {
@@ -242,6 +241,6 @@ public class SiblingOrderFlattenerTest {
         assertTrue(validationResult.getErrors().toString(), validationResult.passes());
         FlattenerConfiguration config = FlattenerConfiguration.forFlattened();
         config.setRemoveZeroOccurrencesObjects(true);
-        return new Flattener(repository, BuiltinReferenceModels.getMetaModels(), config).flatten(parse(fileName));
+        return new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), config).flatten(parse(fileName));
     }
 }

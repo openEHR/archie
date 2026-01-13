@@ -1,27 +1,19 @@
 package com.nedap.archie.archetypevalidator;
 
-import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.antlr.errors.ANTLRParserErrors;
-import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.FullArchetypeRepository;
-import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
-import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertTrue;
@@ -67,11 +59,11 @@ public class CKMArchetypeValidatorTest {
 
     @Test
     public void fullCKMTestBmm() {
-        MetaModels bmmReferenceModels = new MetaModels(null, BuiltinReferenceModels.getBmmRepository(), BuiltinReferenceModels.getAomProfiles());
+        MetaModelProvider bmmReferenceModelProvider = new SimpleMetaModelProvider(null, BuiltinReferenceModels.getBmmRepository(), BuiltinReferenceModels.getAomProfiles());
 
         FullArchetypeRepository repository = TestUtil.parseCKM();
         logger.info("archetypes parsed: " + repository.getAllArchetypes().size());
-        repository.compile(bmmReferenceModels);
+        repository.compile(bmmReferenceModelProvider);
 
         runTest(repository);
 

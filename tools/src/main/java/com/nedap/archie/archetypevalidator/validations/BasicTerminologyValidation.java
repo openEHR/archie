@@ -11,7 +11,10 @@ import com.nedap.archie.query.AOMPathQuery;
 import org.openehr.utils.message.I18n;
 
 import java.net.URI;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class BasicTerminologyValidation extends ArchetypeValidationBase {
 
@@ -77,7 +80,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
                             //if not a valid path, fine
                         }
                         if (!AOMUtils.isValidCode(constraintCodeOrPath) && !(
-                                archetypeHasPath || combinedModels.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
+                                archetypeHasPath || metaModel.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
                         )
                         ) {
                             addMessage(ErrorType.VTTBK, I18n.t("Term binding key {0} in path format is not present in archetype", constraintCodeOrPath));

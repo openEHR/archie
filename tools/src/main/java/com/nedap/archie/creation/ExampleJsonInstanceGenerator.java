@@ -10,6 +10,8 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
@@ -36,9 +38,10 @@ public  class ExampleJsonInstanceGenerator {
 
     public static final String MISSING_TERM_IN_ARCHETYPE_FOR_LANGUAGE = "missing term in archetype for language ";
     private final String language;
-    private final MetaModels models;
+    private final MetaModelProvider metaModelProvider;
     private OperationalTemplate archetype;
     private String rmRelease;
+    private MetaModel metaModel;
     private BmmModel bmm;
     private AomProfile aomProfile;
 
@@ -49,9 +52,17 @@ public  class ExampleJsonInstanceGenerator {
 
     OpenEhrRmInstanceGenerator openEhrRmInstanceGenerator;
 
+    /**
+     * @deprecated Use {@link #ExampleJsonInstanceGenerator(MetaModelProvider, String)} instead.
+     */
+    @Deprecated
     public ExampleJsonInstanceGenerator(MetaModels models, String language) {
+        this((MetaModelProvider) models, language);
+    }
+
+    public ExampleJsonInstanceGenerator(MetaModelProvider metaModelProvider, String language) {
         this.language = language;
-        this.models = models;
+        this.metaModelProvider = metaModelProvider;
         openEhrRmInstanceGenerator = new OpenEhrRmInstanceGenerator(this, typePropertyName);
     }
 
@@ -63,9 +74,9 @@ public  class ExampleJsonInstanceGenerator {
                 !(rmRelease.equalsIgnoreCase("1.0.4") || rmRelease.equalsIgnoreCase("1.1.0"))) {
             rmRelease = "1.1.0";
         }
-        models.selectModel(archetype, rmRelease);
-        aomProfile = models.getSelectedAomProfile();
-        bmm = models.getSelectedBmmModel();
+        metaModel = metaModelProvider.selectAndGetMetaModel(archetype, rmRelease);
+        aomProfile = metaModel.getAomProfile();
+        bmm = metaModel.getBmmModel();
         return generate(archetype.getDefinition());
     }
 
@@ -129,7 +140,7 @@ public  class ExampleJsonInstanceGenerator {
             List<Object> children = new ArrayList<>();
 
             for (CObject child : attribute.getChildren()) {
-                MultiplicityInterval multiplicityInterval = child.effectiveOccurrences(models.getSelectedModel()::referenceModelPropMultiplicity);
+                MultiplicityInterval multiplicityInterval = child.effectiveOccurrences(metaModel::referenceModelPropMultiplicity);
                 int occurrences = Math.max(1, multiplicityInterval.getLower());
                 if(multiplicityInterval.isProhibited()) {
                     occurrences = 0;

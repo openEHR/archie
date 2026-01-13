@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.util.Converter;
 import com.nedap.archie.aom.RulesSection;
 import com.nedap.archie.rules.RuleStatement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RulesSectionToListConverter implements Converter<RulesSection, List<RuleStatement>> {

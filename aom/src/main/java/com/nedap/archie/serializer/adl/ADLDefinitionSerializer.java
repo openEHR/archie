@@ -1,12 +1,10 @@
 package com.nedap.archie.serializer.adl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
 import com.nedap.archie.serializer.adl.constraints.*;
@@ -69,6 +67,7 @@ public class ADLDefinitionSerializer {
         }
         Archetype archetype = cobj.getArchetype();
         String originalLanguage = ofNullable(archetype)
+                .map(a -> a instanceof TemplateOverlay ? ((TemplateOverlay) a).getOwningTemplate() : a)
                 .flatMap(a -> ofNullable(a.getOriginalLanguage()))
                 .map(TerminologyCode::getCodeString)
                 .orElse(null);

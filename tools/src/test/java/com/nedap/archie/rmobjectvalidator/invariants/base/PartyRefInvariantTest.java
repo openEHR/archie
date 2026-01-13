@@ -2,11 +2,8 @@ package com.nedap.archie.rmobjectvalidator.invariants.base;
 
 import com.nedap.archie.rm.support.identification.HierObjectId;
 import com.nedap.archie.rm.support.identification.PartyRef;
-import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
-
-import java.util.UUID;
 
 public class PartyRefInvariantTest {
 

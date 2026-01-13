@@ -1,17 +1,10 @@
 package com.nedap.archie.archetypevalidator.validations;
 
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
-import com.nedap.archie.rminfo.RMAttributeInfo;
-import com.nedap.archie.rminfo.RMTypeInfo;
 import org.openehr.utils.message.I18n;
 
 /**
@@ -31,7 +24,7 @@ public class ValidateAgainstReferenceModel extends ValidatingVisitor {
     }
 
     private void validateTypes(CObject cObject) {
-        if (!combinedModels.typeNameExists(cObject.getRmTypeName())) {
+        if (!metaModel.typeNameExists(cObject.getRmTypeName())) {
             addMessageWithPath(ErrorType.VCORM, cObject.getPath(), I18n.t("Type name {0} does not exist", cObject.getRmTypeName()));
         } else {
             CAttribute owningAttribute = cObject.getParent();
@@ -43,7 +36,7 @@ public class ValidateAgainstReferenceModel extends ValidatingVisitor {
                     owningObject =  differentialPathFromParent == null ? null : differentialPathFromParent.getParent();
                 }
                 if (owningObject != null) {
-                    if(!combinedModels.typeConformant(owningObject.getRmTypeName(), owningAttribute.getRmAttributeName(), cObject.getRmTypeName())) {
+                    if(!metaModel.typeConformant(owningObject.getRmTypeName(), owningAttribute.getRmAttributeName(), cObject.getRmTypeName())) {
                         addMessageWithPath(ErrorType.VCORMT, cObject.getPath(),
                                 I18n.t("Attribute {0}.{1} cannot contain type {2}",
                                         owningObject.getRmTypeName(), owningAttribute.getRmAttributeName(), cObject.getRmTypeName()));
@@ -65,7 +58,7 @@ public class ValidateAgainstReferenceModel extends ValidatingVisitor {
         CAttribute attribute = cObject.getParent();
         if(attribute.getDifferentialPath() == null) {
             CObject parentConstraint = attribute.getParent();
-            if(!combinedModels.validatePrimitiveType(parentConstraint.getRmTypeName(), attribute.getRmAttributeName(), cObject)) {
+            if(!metaModel.validatePrimitiveType(parentConstraint.getRmTypeName(), attribute.getRmAttributeName(), cObject)) {
                 addMessageWithPath(ErrorType.VCORMT, cObject.path(),
                         I18n.t("Attribute {0}.{1} cannot be constrained by a {2}",
                                 parentConstraint.getRmTypeName(), attribute.getRmAttributeName(), cObject == null ? null : cObject.getClass().getSimpleName()));
@@ -78,7 +71,7 @@ public class ValidateAgainstReferenceModel extends ValidatingVisitor {
                 if(differentialPathFromParent instanceof CAttribute) {
                     CAttribute parentAttribute = (CAttribute) differentialPathFromParent;
                     CObject parentConstraint = parentAttribute.getParent();
-                    if(!combinedModels.validatePrimitiveType(parentConstraint.getRmTypeName(), parentAttribute.getRmAttributeName(), cObject)) {
+                    if(!metaModel.validatePrimitiveType(parentConstraint.getRmTypeName(), parentAttribute.getRmAttributeName(), cObject)) {
                         I18n.t("Attribute {0}.{1} cannot be constrained by a {2}",
                                 parentConstraint.getRmTypeName(), parentAttribute.getRmAttributeName(), cObject == null ? null : cObject.getClass().getSimpleName());
                     }
@@ -101,11 +94,11 @@ public class ValidateAgainstReferenceModel extends ValidatingVisitor {
             owningObject =  differentialPathFromParent == null ? null : differentialPathFromParent.getParent();
         }
         if(owningObject != null) {
-            if (!combinedModels.attributeExists(owningObject.getRmTypeName(), cAttribute.getRmAttributeName())) {
+            if (!metaModel.attributeExists(owningObject.getRmTypeName(), cAttribute.getRmAttributeName())) {
                 addMessageWithPath(ErrorType.VCARM, cAttribute.getPath(),
                         I18n.t("{0} is not a known attribute of {1}", cAttribute.getRmAttributeName(), owningObject.getRmTypeName()));
             } else {
-                CAttribute defaultAttribute = new ReflectionConstraintImposer(combinedModels).getDefaultAttribute(owningObject.getRmTypeName(), cAttribute.getRmAttributeName());
+                CAttribute defaultAttribute = new ReflectionConstraintImposer(metaModel).getDefaultAttribute(owningObject.getRmTypeName(), cAttribute.getRmAttributeName());
                 if(defaultAttribute != null) {
                     if(cAttribute.getExistence() != null) {
                         if(!defaultAttribute.getExistence().contains(cAttribute.getExistence())) {

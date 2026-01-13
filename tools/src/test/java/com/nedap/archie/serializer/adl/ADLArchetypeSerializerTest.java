@@ -10,9 +10,9 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author markopi
@@ -119,7 +119,7 @@ public class ADLArchetypeSerializerTest {
                 "        >\n" +
                 "    >"));
 
-       Archetype parsed = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(serialized);
+       Archetype parsed = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(serialized);
        assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
        assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
    }

@@ -3,25 +3,18 @@ package org.openehr.referencemodels;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
-import org.openehr.bmm.v2.persistence.jackson.BmmJacksonUtil;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmSchemaConverter;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

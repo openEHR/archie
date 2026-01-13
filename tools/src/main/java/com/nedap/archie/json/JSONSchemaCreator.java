@@ -1,15 +1,10 @@
 package com.nedap.archie.json;
 
 
+import jakarta.json.*;
+import jakarta.json.stream.JsonGenerator;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
-
-import jakarta.json.Json;
-import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonBuilderFactory;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
 
 import java.util.*;
 import java.util.function.Supplier;

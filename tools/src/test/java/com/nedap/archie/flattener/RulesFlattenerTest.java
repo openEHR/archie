@@ -4,10 +4,8 @@ import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
-
 import com.nedap.archie.rminfo.ReferenceModels;
 import com.nedap.archie.rules.*;
-
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import org.junit.Before;
 import org.junit.Test;

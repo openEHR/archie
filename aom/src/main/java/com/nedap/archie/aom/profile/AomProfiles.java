@@ -4,8 +4,8 @@ import com.nedap.archie.serializer.odin.OdinObjectParser;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AomProfiles {
 

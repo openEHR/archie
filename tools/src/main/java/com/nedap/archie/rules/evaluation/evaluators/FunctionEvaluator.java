@@ -3,11 +3,7 @@ package com.nedap.archie.rules.evaluation.evaluators;
 import com.google.common.collect.Lists;
 import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.Function;
-import com.nedap.archie.rules.evaluation.Evaluator;
-import com.nedap.archie.rules.evaluation.FunctionCallException;
-import com.nedap.archie.rules.evaluation.FunctionImplementation;
-import com.nedap.archie.rules.evaluation.RuleEvaluation;
-import com.nedap.archie.rules.evaluation.ValueList;
+import com.nedap.archie.rules.evaluation.*;
 import com.nedap.archie.rules.evaluation.evaluators.functions.*;
 
 import java.util.ArrayList;

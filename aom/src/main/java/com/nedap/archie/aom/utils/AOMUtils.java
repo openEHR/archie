@@ -2,14 +2,7 @@ package com.nedap.archie.aom.utils;
 
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Joiner;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeHRID;
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CAttributeTuple;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
@@ -19,19 +12,10 @@ import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.query.PartialMatch;
 import com.nedap.archie.rminfo.*;
-import com.nedap.archie.rules.Assertion;
-import com.nedap.archie.rules.BinaryOperator;
-import com.nedap.archie.rules.Constraint;
-import com.nedap.archie.rules.Expression;
-import com.nedap.archie.rules.OperatorKind;
+import com.nedap.archie.rules.*;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class AOMUtils {
@@ -462,7 +446,9 @@ public class AOMUtils {
      * Check if the parent attribute of the given CObject is a container attribute.
      *
      * @see MetaModelInterface#isMultiple(String, String)
+     * @deprecated Use {@link #parentIsMultiple(CObject, Archetype, MetaModel)} instead.
      */
+    @Deprecated
     public static boolean parentIsMultiple(CObject cObject, Archetype flatParentArchetype, MetaModels metaModels) {
         if(cObject.getParent() != null) {
 
@@ -477,6 +463,30 @@ public class AOMUtils {
             }
             if(owningObject != null) {
                 return metaModels.isMultiple(owningObject.getRmTypeName(), parent.getRmAttributeName());
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if the parent attribute of the given CObject is a container attribute.
+     *
+     * @see MetaModel#isMultiple(String, String)
+     */
+    public static boolean parentIsMultiple(CObject cObject, Archetype flatParentArchetype, MetaModel metaModel) {
+        if(cObject.getParent() != null) {
+
+            CAttribute parent = cObject.getParent();
+            CObject owningObject = parent.getParent();
+            if (parent.getDifferentialPath() != null && flatParentArchetype != null) {
+                CAttribute attributeFromParent = (CAttribute) AOMUtils.getDifferentialPathFromParent(flatParentArchetype, parent);
+                if(attributeFromParent != null) {
+                    owningObject = attributeFromParent.getParent();
+                }
+
+            }
+            if(owningObject != null) {
+                return metaModel.isMultiple(owningObject.getRmTypeName(), parent.getRmAttributeName());
             }
         }
         return false;

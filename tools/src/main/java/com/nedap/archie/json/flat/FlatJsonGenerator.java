@@ -1,18 +1,17 @@
 package com.nedap.archie.json.flat;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
-import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.datetime.DateTimeSerializerFormatters;
+import com.nedap.archie.rminfo.AttributeAccessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
@@ -32,6 +31,7 @@ import java.util.stream.Collectors;
 public class FlatJsonGenerator {
 
     private final ModelInfoLookup modelInfoLookup;
+    private final AttributeAccessor attributeAccessor;
 
     private final List<IgnoredAttribute> ignoredAttributes;
 
@@ -52,6 +52,7 @@ public class FlatJsonGenerator {
      */
     public FlatJsonGenerator(ModelInfoLookup modelInfoLookup, FlatJsonFormatConfiguration config) {
         this.modelInfoLookup = modelInfoLookup;
+        this.attributeAccessor = new AttributeAccessor(modelInfoLookup);
         this.writePipesForPrimitiveTypes = config.isWritePipesForPrimitiveTypes();
         this.humanReadableFormat = false;//TODO: this is quite a bit of work to do properly, so definately not doing this now.
         this.indexNotation = config.getIndexNotation();
@@ -122,18 +123,14 @@ public class FlatJsonGenerator {
             CAttribute cAttribute = cObject == null ? null : cObject.getAttribute(attributeName);
             RMAttributeInfo attributeInfo = typeInfo.getAttributes().get(attributeName);
             if(!attributeInfo.isComputed() && !isIgnored(typeInfo, attributeName) && attributeInfo.getGetMethod() != null) {
-                if(filterNames && cObject != null && isNameAttribute(typeInfo, attributeName)) {
+                if(filterNames && name != null && cObject != null && isNameAttribute(typeInfo, attributeName)) {
                     ArchetypeTerm term = cObject.getTerm();
                     if(term != null && name.equals(term.getText())) {
                         continue;
                     }
                 }
-                try {
-                    Object child = attributeInfo.getGetMethod().invoke(rmObject);
-                    addAttribute(result, pathSoFar, rmObject, child, attributeName,null, cAttribute);
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    throw new RuntimeException(e);//TODO: fine for now...
-                }
+                Object child = attributeAccessor.getValue(rmObject, attributeName);
+                addAttribute(result, pathSoFar, rmObject, child, attributeName,null, cAttribute);
             }
 
         }
@@ -294,8 +291,8 @@ public class FlatJsonGenerator {
                     storeValue(result, newPath, DateTimeSerializerFormatters.ISO_8601_TIME.format(t));
                 }
             } else if (child instanceof TemporalAmount) {
-                //duration or period. now just a toString, should this be a specific formatter?
-                storeValue(result, newPath, child);
+                // Serialize using DateTimeSerializerFormatters.serializeDuration to correctly handle negative durations
+                storeValue(result, newPath, DateTimeSerializerFormatters.serializeDuration((TemporalAmount) child));
             } else if(child instanceof byte[]) {
                 storeValue(result, newPath, Base64.getEncoder().encodeToString((byte[]) child));
             } else {

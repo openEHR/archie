@@ -5,7 +5,6 @@ import com.nedap.archie.rm.archetyped.Archetyped;
 import com.nedap.archie.rm.archetyped.FeederAudit;
 import com.nedap.archie.rm.archetyped.Link;
 import com.nedap.archie.rm.archetyped.Pathable;
-
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvText;

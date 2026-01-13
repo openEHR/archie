@@ -1,11 +1,6 @@
 package com.nedap.archie.adlparser;
 
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CAttributeTuple;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.testutil.TestUtil;
@@ -15,9 +10,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by pieter.bos on 19/10/15.

@@ -1,6 +1,5 @@
 package com.nedap.archie.aom;
 
-import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
