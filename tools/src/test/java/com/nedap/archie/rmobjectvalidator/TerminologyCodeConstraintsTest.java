@@ -213,7 +213,7 @@ public class TerminologyCodeConstraintsTest {
         repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.included.v1.0.0.adls"));
 
         //create operational template
-        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(repository.getArchetype("openEHR-EHR-COMPOSITION.parent.v1.0.0"));
         CTerminologyCode code = opt.itemAtPath("/content/data/items/value/defining_code[1]");
         assertEquals(Lists.newArrayList("at4", "at5", "at6"), code.getValueSetExpanded());

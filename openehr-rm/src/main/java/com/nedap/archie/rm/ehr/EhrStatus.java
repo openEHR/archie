@@ -6,7 +6,6 @@ package com.nedap.archie.rm.ehr;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;

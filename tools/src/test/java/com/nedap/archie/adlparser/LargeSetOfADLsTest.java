@@ -4,8 +4,8 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import org.junit.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.util.ArrayList;

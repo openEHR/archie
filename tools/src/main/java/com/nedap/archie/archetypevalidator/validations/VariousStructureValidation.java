@@ -1,13 +1,8 @@
 package com.nedap.archie.archetypevalidator.validations;
 
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeHRID;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CArchetypeRoot;
-import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
-import com.nedap.archie.flattener.ArchetypeRepository;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.rules.Assertion;
 import org.openehr.utils.message.I18n;
@@ -58,12 +53,12 @@ public class VariousStructureValidation extends ValidatingVisitor {
                 String archetypeRootTypeName = cComplexObject.getRmTypeName();
                 String archetypeReferenceTypeName = hrId.getRmClass();
 
-                if (combinedModels.typeNameExists(archetypeRootTypeName)) {
+                if (metaModel.typeNameExists(archetypeRootTypeName)) {
                     //if parent type info not found will be checked later in phase 2
-                    if (!combinedModels.typeNameExists(archetypeReferenceTypeName)) {
+                    if (!metaModel.typeNameExists(archetypeReferenceTypeName)) {
                         addMessageWithPath(ErrorType.VCORM, cComplexObject.getPath(),
                                 I18n.t("Archetype referenced in use_archetype points to class {0}, which does not exist in this reference model", cComplexObject.getRmTypeName()));
-                    } else if (!combinedModels.rmTypesConformant(archetypeReferenceTypeName, archetypeRootTypeName)) {
+                    } else if (!metaModel.rmTypesConformant(archetypeReferenceTypeName, archetypeRootTypeName)) {
                         addMessageWithPath(ErrorType.VARXTV, cComplexObject.getPath(),
                                 I18n.t("Use_archetype points to type {0}, which is not conformant for type {1} of the archetype root used",
                                         cComplexObject.getRmTypeName(), archetypeRootTypeName));

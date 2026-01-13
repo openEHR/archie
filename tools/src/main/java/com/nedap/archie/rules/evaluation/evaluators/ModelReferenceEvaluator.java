@@ -2,7 +2,6 @@ package com.nedap.archie.rules.evaluation.evaluators;
 
 import com.google.common.collect.Lists;
 import com.nedap.archie.query.RMObjectWithPath;
-import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.PrimitiveType;
 import com.nedap.archie.rules.evaluation.Evaluator;

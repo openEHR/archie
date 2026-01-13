@@ -1,7 +1,5 @@
 package com.nedap.archie.terminology;
 
-import com.nedap.archie.terminology.openehr.Code;
-
 import java.util.HashSet;
 import java.util.Set;
 

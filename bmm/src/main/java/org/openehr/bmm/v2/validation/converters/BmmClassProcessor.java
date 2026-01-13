@@ -6,12 +6,7 @@ import org.openehr.bmm.core.BmmSimpleType;
 import org.openehr.bmm.v2.persistence.PBmmClass;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 import java.util.function.BiFunction;
 
 /**

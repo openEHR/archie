@@ -3,9 +3,7 @@ package com.nedap.archie.archetypevalidator.validations;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CAttributeTuple;
 import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveTuple;
-import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
 import org.openehr.utils.message.I18n;
@@ -27,7 +25,7 @@ public class AttributeTupleValidation extends ValidatingVisitor {
                     addMessageWithPath(ErrorType.OTHER, cObject.getPath(), "An attribute tuple must have members");
                 } else {
                     for(CAttribute cAttribute:tuple.getMembers()) {
-                        if (!combinedModels.attributeExists(cObject.getRmTypeName(), cAttribute.getRmAttributeName())) {
+                        if (!metaModel.attributeExists(cObject.getRmTypeName(), cAttribute.getRmAttributeName())) {
                             addMessageWithPath(ErrorType.VCARM, cObject.getPath(),
                                     I18n.t("Tuple member attribute {0} is not an attribute of type {1}", cAttribute.getRmAttributeName(), cObject.getRmTypeName()));
                         }

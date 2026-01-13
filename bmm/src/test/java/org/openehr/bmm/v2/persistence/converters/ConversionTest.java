@@ -11,7 +11,6 @@ import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmSchemaConverter;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

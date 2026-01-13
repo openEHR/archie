@@ -1,13 +1,5 @@
 package com.nedap.archie.adl14.aom14;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.terminology.ArchetypeTerm;
-import com.nedap.archie.aom.terminology.ValueSet;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import java.net.URI;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

@@ -6,12 +6,7 @@ import com.nedap.archie.aom.profile.AomProfile;
 import com.nedap.archie.aom.profile.AomProfiles;
 import com.nedap.archie.base.MultiplicityInterval;
 import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.v2.validation.BmmRepository;
-import org.openehr.bmm.v2.validation.BmmValidationResult;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * MetaModel class that provides some opertaions for archetype validation and flattener that is either based on
@@ -27,32 +22,28 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * Note that this class is NOT thread-safe and is to be used by a single thread only.
  *
+ * @deprecated Use {@link SimpleMetaModelProvider}, {@link OverridingMetaModelProvider} or {@link MetaModel} instead.
  */
-public class MetaModels implements MetaModelInterface {
-
+@Deprecated
+public class MetaModels implements MetaModelInterface, MetaModelProvider {
     private final ReferenceModels models;
     private final BmmRepository bmmRepository;
-    private AomProfiles aomProfiles;
+    private final AomProfiles aomProfiles;
+    private final OverridingMetaModelProvider overridingMetaModelProvider;
 
     private MetaModel selectedModel;
-    private AomProfile selectedAomProfile;
-
-    /**
-     * Allows to set a specific RM version for a specific RM model, so that one is used instead of the one in the archetype
-     */
-    private Map<String, String> overriddenMetaModelVersions = new ConcurrentHashMap<>();
-
 
     public MetaModels(ReferenceModels models, BmmRepository repository) {
-        this.models = models;
-        this.bmmRepository = repository;
-        aomProfiles = new AomProfiles();
+        this(models, repository, new AomProfiles());
     }
 
     public MetaModels(ReferenceModels models, BmmRepository repository, AomProfiles profiles) {
         this.models = models;
         this.bmmRepository = repository;
         aomProfiles = profiles;
+        this.overridingMetaModelProvider = new OverridingMetaModelProvider(
+                new SimpleMetaModelProvider(models, repository, profiles)
+        );
     }
 
     /**
@@ -64,10 +55,7 @@ public class MetaModels implements MetaModelInterface {
      * @param version the version that should be chosen
      */
     public void overrideModelVersion(String rmPublisher, String rmPackage, String version) {
-        this.overriddenMetaModelVersions.put(
-                BmmDefinitions.publisherQualifiedRmClosureName(rmPublisher, rmPackage),
-                version
-        );
+        overridingMetaModelProvider.overrideModelVersion(rmPublisher, rmPackage, version);
     }
 
     /**
@@ -76,12 +64,47 @@ public class MetaModels implements MetaModelInterface {
      * @param rmPackage the RM Package to remove the model version for
      */
     public void removeOverridenModelVersion(String rmPublisher, String rmPackage) {
-        this.overriddenMetaModelVersions.remove(BmmDefinitions.publisherQualifiedRmClosureName(rmPublisher, rmPackage));
+        overridingMetaModelProvider.removeOverridenModelVersion(rmPublisher, rmPackage);
     }
 
-
     public String getOverriddenModelVersion(String rmPublisher, String rmPackage) {
-        return this.overriddenMetaModelVersions.get(BmmDefinitions.publisherQualifiedRmClosureName(rmPublisher, rmPackage));
+        return overridingMetaModelProvider.getOverriddenModelVersion(rmPublisher, rmPackage);
+    }
+
+    @Override
+    public MetaModel getMetaModel(Archetype archetype) throws ModelNotFoundException {
+        return overridingMetaModelProvider.getMetaModel(archetype);
+    }
+
+    @Override
+    public MetaModel getMetaModel(Archetype archetype, String rmVersion) throws ModelNotFoundException {
+        return overridingMetaModelProvider.getMetaModel(archetype, rmVersion);
+    }
+
+    @Override
+    public MetaModel getMetaModel(String rmPublisher, String rmPackage, String rmRelease) throws ModelNotFoundException {
+        return overridingMetaModelProvider.getMetaModel(rmPublisher, rmPackage, rmRelease);
+    }
+
+    @Override
+    public MetaModel selectAndGetMetaModel(Archetype archetype) throws ModelNotFoundException {
+        MetaModel result = getMetaModel(archetype);
+        this.selectedModel = result;
+        return result;
+    }
+
+    @Override
+    public MetaModel selectAndGetMetaModel(Archetype archetype, String rmVersion) throws ModelNotFoundException {
+        MetaModel result = getMetaModel(archetype, rmVersion);
+        this.selectedModel = result;
+        return result;
+    }
+
+    @Override
+    public MetaModel selectAndGetMetaModel(String rmPublisher, String rmPackage, String rmRelease) throws ModelNotFoundException {
+        MetaModel result = getMetaModel(rmPublisher, rmPackage, rmRelease);
+        this.selectedModel = result;
+        return result;
     }
 
     /**
@@ -90,8 +113,7 @@ public class MetaModels implements MetaModelInterface {
      * @throws ModelNotFoundException when no BMM and no ModelInfoLookup model has been found matching the archetype
      */
     public void selectModel(Archetype archetype) throws ModelNotFoundException { ;
-        String overriddenVersion = getOverriddenModelVersion(archetype.getArchetypeId().getRmPublisher(), archetype.getArchetypeId().getRmPackage());
-        selectModel(archetype, overriddenVersion == null ? archetype.getRmRelease(): overriddenVersion);
+        selectAndGetMetaModel(archetype);
     }
 
     /**
@@ -101,7 +123,7 @@ public class MetaModels implements MetaModelInterface {
      * @throws ModelNotFoundException
      */
     public void selectModel(Archetype archetype, String rmVersion) throws ModelNotFoundException { ;
-        selectModel(archetype.getArchetypeId().getRmPublisher(), archetype.getArchetypeId().getRmPackage(), rmVersion);
+        selectAndGetMetaModel(archetype, rmVersion);
     }
 
     /**
@@ -113,56 +135,15 @@ public class MetaModels implements MetaModelInterface {
      * @throws ModelNotFoundException
      */
     public void selectModel(String rmPublisher, String rmPackage, String rmRelease) throws ModelNotFoundException {
-        ModelInfoLookup selectedModel = null;
-        BmmModel selectedBmmModel = null;
-        RMObjectMapperProvider objectMapperProvider = null;
-        if(models != null) {
-             selectedModel = models.getModel(rmPublisher, rmPackage);
-             objectMapperProvider = models.getRmObjectMapperProvider(rmPublisher, rmPackage);
-        }
-        if(bmmRepository != null) {
-            BmmValidationResult validationResult = bmmRepository.getModelByClosure(BmmDefinitions.publisherQualifiedRmClosureName(rmPublisher, rmPackage) + "_" +  rmRelease);
-            selectedBmmModel = validationResult == null ? null : validationResult.getModel();
-        }
-
-        this.selectedAomProfile = getAomProfileWithSchemaId(selectedBmmModel);
-        if(this.selectedAomProfile == null) {
-            this.selectedAomProfile = getAomProfileOnPublisher(rmPublisher);
-        }
-
-        if(selectedModel == null && selectedBmmModel == null) {
-            throw new ModelNotFoundException(String.format("model for %s.%s version %s not found", rmPublisher, rmPackage, rmRelease));
-        }
-        this.selectedModel = new MetaModel(selectedModel, selectedBmmModel, selectedAomProfile, objectMapperProvider);
-
-    }
-
-    private AomProfile getAomProfileWithSchemaId(BmmModel selectedBmmModel) {
-        if(selectedBmmModel != null) {
-            for (AomProfile profile : aomProfiles.getProfiles()) {
-                if (profile.getRmSchemaPattern().stream().anyMatch(pat -> selectedBmmModel.getSchemaId().matches(pat))) {
-                    return profile;
-                }
-            }
-        }
-        return null;
-    }
-
-    private AomProfile getAomProfileOnPublisher(String rmPublisher) {
-        for(AomProfile profile:aomProfiles.getProfiles()) {
-           if(profile.getProfileName().equalsIgnoreCase(rmPublisher)) {
-                return profile;
-            }
-        }
-        return null;
+        selectAndGetMetaModel(rmPublisher, rmPackage, rmRelease);
     }
 
     public ModelInfoLookup getSelectedModelInfoLookup() {
-        return selectedModel == null ? null : selectedModel.getSelectedModel();
+        return selectedModel == null ? null : selectedModel.getModelInfoLookup();
     }
 
     public BmmModel getSelectedBmmModel() {
-        return selectedModel == null ? null : selectedModel.getSelectedBmmModel();
+        return selectedModel == null ? null : selectedModel.getBmmModel();
     }
 
     public MetaModel getSelectedModel() {
@@ -242,7 +223,7 @@ public class MetaModels implements MetaModelInterface {
     }
 
     public AomProfile getSelectedAomProfile() {
-        return selectedAomProfile;
+        return selectedModel == null ? null : selectedModel.getAomProfile();
     }
 
 

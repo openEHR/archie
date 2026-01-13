@@ -1,11 +1,7 @@
 package com.nedap.archie.json;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.nedap.archie.odin.CodePhraseSerializer;
@@ -16,7 +12,6 @@ import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
-import org.openehr.bmm.v2.persistence.jackson.BmmJacksonUtil;
 import org.openehr.odin.jackson.ODINMapper;
 
 import java.io.IOException;
@@ -27,7 +22,7 @@ public class ArchieRMObjectMapperProvider implements RMObjectMapperProvider {
     public ObjectMapper getInputOdinObjectMapper() {
         ObjectMapper odinMapper = new ObjectMapper();
         JacksonUtil.configureObjectMapper(odinMapper);
-        odinMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        odinMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         //keywords = <"value"> is indistinguishable from keywords = <"value1", "value2">
         odinMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         //odin sometimes does <> where it can mean either an empty array OR a null object. Nastyness

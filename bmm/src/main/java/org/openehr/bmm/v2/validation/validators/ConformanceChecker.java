@@ -1,13 +1,7 @@
 package org.openehr.bmm.v2.validation.validators;
 
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
-import org.openehr.bmm.v2.persistence.PBmmClass;
-import org.openehr.bmm.v2.persistence.PBmmContainerProperty;
-import org.openehr.bmm.v2.persistence.PBmmGenericProperty;
-import org.openehr.bmm.v2.persistence.PBmmProperty;
-import org.openehr.bmm.v2.persistence.PBmmSchema;
-import org.openehr.bmm.v2.persistence.PBmmSingleProperty;
-import org.openehr.bmm.v2.persistence.PBmmSinglePropertyOpen;
+import org.openehr.bmm.v2.persistence.*;
 
 import java.util.List;
 

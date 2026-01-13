@@ -1,10 +1,6 @@
 package org.openehr.bmm.v2.validation.converters;
 
-import org.openehr.bmm.v2.persistence.CaseInsensitiveLinkedHashMap;
-import org.openehr.bmm.v2.persistence.PBmmClass;
-import org.openehr.bmm.v2.persistence.PBmmPackage;
-import org.openehr.bmm.v2.persistence.PBmmPackageContainer;
-import org.openehr.bmm.v2.persistence.PBmmSchema;
+import org.openehr.bmm.v2.persistence.*;
 
 import java.util.Map;
 

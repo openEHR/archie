@@ -1,15 +1,6 @@
 package org.openehr.bmm.v2.persistence.converters;
 
-import org.openehr.bmm.v2.persistence.BmmIncludeSpec;
-import org.openehr.bmm.v2.persistence.PBmmClass;
-import org.openehr.bmm.v2.persistence.PBmmContainerProperty;
-import org.openehr.bmm.v2.persistence.PBmmGenericParameter;
-import org.openehr.bmm.v2.persistence.PBmmPackage;
-import org.openehr.bmm.v2.persistence.PBmmProperty;
-import org.openehr.bmm.v2.persistence.PBmmSchema;
-import org.openehr.bmm.v2.persistence.PBmmType;
-
-import java.util.Set;
+import org.openehr.bmm.v2.persistence.*;
 
 import static org.junit.Assert.assertEquals;
 

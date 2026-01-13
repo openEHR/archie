@@ -13,6 +13,8 @@ import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rules.*;
 
@@ -33,7 +35,8 @@ public class ADL14NodeIDConverter {
     private final ADL14TermConstraintConverter termConstraintConverter;
     private final PreviousConversionApplier previousConversionApplier;
     private final ADL2ConversionResult conversionResult;
-    private final MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
+    private final MetaModel metaModel;
 
     private IdCodeGenerator idCodeGenerator;
 
@@ -45,15 +48,23 @@ public class ADL14NodeIDConverter {
     private final Map<String, ValueSet> createdValueSets = new LinkedHashMap<>();
     private final Map<String, String> newCodeToOldCodeMap = new LinkedHashMap<>();
 
+    /**
+     * @deprecated Use {@link #ADL14NodeIDConverter(MetaModelProvider, Archetype, Archetype, ADL14ConversionConfiguration, ADL2ConversionLog, ADL2ConversionResult)} instead.
+     */
+    @Deprecated
     public ADL14NodeIDConverter(MetaModels metaModels, Archetype archetype, Archetype flatParentArchetype, ADL14ConversionConfiguration configuration, ADL2ConversionLog oldLog, ADL2ConversionResult conversionResult) {
-        this.metaModels = metaModels;
+        this((MetaModelProvider) metaModels, archetype, flatParentArchetype, configuration, oldLog, conversionResult);
+    }
+
+    public ADL14NodeIDConverter(MetaModelProvider metaModelProvider, Archetype archetype, Archetype flatParentArchetype, ADL14ConversionConfiguration configuration, ADL2ConversionLog oldLog, ADL2ConversionResult conversionResult) {
+        this.metaModelProvider = metaModelProvider;
+        this.metaModel = metaModelProvider.getMetaModel(archetype);
         this.conversionConfiguration = configuration;
         this.archetype = archetype;
         this.flatParentArchetype = flatParentArchetype;
         this.termConstraintConverter = new ADL14TermConstraintConverter(this, archetype, flatParentArchetype);
         this.previousConversionApplier = new PreviousConversionApplier(this, archetype, oldLog);
         this.conversionResult = conversionResult;
-
     }
 
     public ADL14ConversionConfiguration getConversionConfiguration() {
@@ -61,7 +72,7 @@ public class ADL14NodeIDConverter {
     }
 
     public ADL2ConversionLog convert() {
-        metaModels.selectModel(archetype);
+        metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
 
         correctItemsCardinality(archetype.getDefinition());
         List<String> unnecessaryCodes = findUnnecessaryCodes(archetype.getDefinition(),
@@ -123,7 +134,7 @@ public class ADL14NodeIDConverter {
         ArchetypeTerm term = originalLanguageTermDefinitions.get(code);
         if (term != null && term.getText() != null && term.getText().length() < 19
                 && term.getDescription() != null && term.getDescription().contains("@ internal @")) {
-            if (!cObject.isRootNode() && !parentIsMultiple(cObject, flatParentArchetype, metaModels)) {
+            if (!cObject.isRootNode() && !parentIsMultiple(cObject, flatParentArchetype, metaModel)) {
                 result.add(code);
             }
         }
@@ -158,9 +169,22 @@ public class ADL14NodeIDConverter {
                         newTerm.setText(term.getText());
                         newTerm.setDescription(term.getDescription());
                         newTerm.putAll(term.getOtherItems());
-                        terms.put(newCode, term);
+                        terms.put(newCode, newTerm);
                     }
                 }
+            }
+        }
+
+        List<String> termsToRemove = new ArrayList<>();
+        for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
+            Map<String, ArchetypeTerm> terms = archetype.getTerminology().getTermDefinitions().get(language);
+            for (String key : terms.keySet()) {
+                if (unnecessaryCodes.contains(key)) {
+                    termsToRemove.add(key);
+                }
+            }
+            for (String term : termsToRemove) {
+                terms.remove(term);
             }
         }
 
@@ -245,7 +269,7 @@ public class ADL14NodeIDConverter {
                         synthesizeNodeId(cObject, path);
                         conversionResult.getLog().addWarningWithLocation(ADL14ConversionMessageCode.WARNING_SPECIALIZED_FIRST_MATCHING_CHILD, cObject.path());
                     } else if (cAttributeInParent.getChildren().size() == 1 || cObject.getParent().getChildren().size() == 1) {
-                        if (this.metaModels.rmTypesConformant(cObject.getRmTypeName(), cAttributeInParent.getChildren().get(0).getRmTypeName())) {
+                        if (this.metaModel.rmTypesConformant(cObject.getRmTypeName(), cAttributeInParent.getChildren().get(0).getRmTypeName())) {
                             //this replaces a parent node, so a specialisation. add id code and possibly a term
                             createSpecialisedNodeId(cObject, path, Arrays.asList(cAttributeInParent.getChildren().get(0)));
                         } else {
@@ -290,7 +314,11 @@ public class ADL14NodeIDConverter {
      * Object needs a new nodeId, generate the next valid nodeId and add in to the terminology
      */
     private void synthesizeNodeId(CObject cObject, String path) {
-        cObject.setNodeId(idCodeGenerator.generateNextIdCode());
+        if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
+            cObject.setNodeId(idCodeGenerator.generateNextIdCode());
+        } else {
+            cObject.setNodeId(idCodeGenerator.generateNextValueCode());
+        }
         CreatedCode createdCode = new CreatedCode(cObject.getNodeId(), ReasonForCodeCreation.C_OBJECT_WITHOUT_NODE_ID);
         createdCode.setRmTypeName(cObject.getRmTypeName());
         createdCode.setPathCreated(path);
@@ -421,10 +449,12 @@ public class ADL14NodeIDConverter {
     private void calculateNewNodeId(CObject cObject) {
         if (cObject.getNodeId() != null) {
             String oldNodeId = cObject.getNodeId();
-            String newNodeId = convertNodeId(oldNodeId);
-            addConvertedCode(oldNodeId, newNodeId);
-
-            cObject.setNodeId(newNodeId);
+            String newNodeId;
+            if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
+                newNodeId = convertNodeId(oldNodeId);
+                addConvertedCode(oldNodeId, newNodeId);
+                cObject.setNodeId(newNodeId);
+            }
         }
     }
 
@@ -454,7 +484,7 @@ public class ADL14NodeIDConverter {
     /**
      * Convert old code into an at code
      */
-    protected String convertValueCode(String oldCode) {
+    protected String convertIntoAtCode(String oldCode) {
         ConvertedCodeResult convertedCodeResult = convertedCodes.get(oldCode);
         if (convertedCodeResult != null && convertedCodeResult.hasValueCode()) {
             return convertedCodeResult.getValueCode();
@@ -486,7 +516,7 @@ public class ADL14NodeIDConverter {
         nodeIdUtil.setPrefix(newCodePrefix); //will automatically strip the leading zeroes due to integer-parsing
         if (!oldCode.startsWith("at0.") && !oldCode.startsWith("ac0.")) {
             //a bit tricky, since the root of an archetype starts with at0000.0, but that's different from this I guess
-            nodeIdUtil.getCodes().set(0, nodeIdUtil.getCodes().get(0) + 1); //increment with 1, old is 0-based
+            nodeIdUtil.getCodes().set(0, String.valueOf(Integer.parseInt(nodeIdUtil.getCodes().get(0)) + 1)); //increment with 1, old is 0-based
         }
         return nodeIdUtil.toString();
     }
@@ -497,7 +527,7 @@ public class ADL14NodeIDConverter {
     public String convertPath(String key) {
         APathQuery aPathQuery = new APathQuery(key);
         for (PathSegment segment : aPathQuery.getPathSegments()) {
-            if (segment.getNodeId() != null) {
+            if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED) && segment.getNodeId() != null) {
                 segment.setNodeId(convertNodeId(segment.getNodeId()));
             }
         }

@@ -1,6 +1,9 @@
 package com.nedap.archie.rmobjectvalidator.validations;
 
-import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.CAttribute;
+import com.nedap.archie.aom.CAttributeTuple;
+import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.CPrimitiveTuple;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.base.Interval;

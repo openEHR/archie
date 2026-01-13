@@ -1,21 +1,21 @@
+plugins {
+    alias(libs.plugins.nexus.publish)
+}
+
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
-
-wrapper {
-    gradleVersion = '5.6.4'
-}
 
 allprojects {
-  version = '3.13.1'
-  group = 'com.nedap.healthcare.archie'
-  ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
-  //archivesBaseName = 'archie'
+    version = '3.16.0'
+    group = 'com.nedap.healthcare.archie'
+    ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
+    //archivesBaseName = 'archie'
 
-  tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:all', '-quiet')
-  }
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:all', '-quiet')
+    }
 }
 
 gradle.ext.ossrhUsernameSafe = hasProperty('ossrhUsername') ? ossrhUsername : ""
@@ -26,93 +26,67 @@ gradle.ext.isParallel = hasProperty('org.gradle.parallel') ? project.property('o
 apply from: "${gradleScriptDir}/publish-maven.gradle"
 
 
-
 subprojects {
-  apply plugin: 'java-library'
+    apply plugin: 'java-library'
 
- // plugins {
-   //   id 'com.github.ben-manes.versions' version '0.13.0'
- // }
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
 
-  sourceCompatibility = '1.8'
-  targetCompatibility = '1.8'
-
-  compileJava.options.encoding = "UTF-8"
-  compileTestJava.options.encoding = "UTF-8"
-
-  repositories {
-      mavenCentral()
-      maven { url 'https://jitpack.io' }
-  }
-
-  ext.reflectionsVersion = '0.10.2'
-  ext.jacksonVersion = '2.18.2'
-
-
-  java {
-    withJavadocJar()
-    withSourcesJar()
-  }
-
-
-  dependencies {
-    api 'org.slf4j:slf4j-api:1.7.36'
-
-    api "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
-    api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
-
-    implementation 'com.google.guava:guava:33.4.0-jre'
-
-    implementation "org.reflections:reflections:${reflectionsVersion}"
-    implementation 'com.esotericsoftware.kryo:kryo5:5.6.2'
-
-    implementation('commons-io:commons-io:2.18.0'){
-      exclude group: 'commons-logging', module: 'commons-logging'
+    repositories {
+        mavenCentral()
+        maven { url = 'https://jitpack.io' }
     }
-    implementation 'org.apache.commons:commons-text:1.13.0'
-    implementation 'org.apache.commons:commons-lang3:3.17.0'
 
-    //java 10 no longer has these included by default, so explicit dependency is needed.
-    api 'javax.xml.bind:jaxb-api:2.3.1'
-    api 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-    runtimeOnly 'com.sun.xml.bind:jaxb-impl:2.3.3'
-    api 'javax.activation:activation:1.1.1'
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(8)
+        }
 
-    api 'org.threeten:threeten-extra:1.8.0'
-
-    testImplementation 'junit:junit:4.+'
-    testImplementation 'org.slf4j:slf4j-simple:1.7.36'
-
-    api 'com.github.zafarkhaja:java-semver:0.10.2'
-
-
-  }
-
-
-  javadoc {
-      options.encoding = 'UTF-8'
-  }
-
-
-
-  test {
-    if(JavaVersion.current() != JavaVersion.VERSION_1_8) {
-      jvmArgs = ['--add-opens', 'java.base/java.lang=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.net=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.nio=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.time=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.util=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/java.util.concurrent.atomic=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/sun.nio.ch=ALL-UNNAMED'
-                 , '--add-opens', 'java.base/sun.util.calendar=ALL-UNNAMED']
+        withJavadocJar()
+        withSourcesJar()
     }
-   testLogging {
-      events "failed"
-      exceptionFormat "full"
+
+
+    dependencies {
+        api(libs.slf4j.api)
+
+        api(libs.bundles.jackson)
+
+        implementation(libs.guava)
+
+        implementation(libs.reflections)
+        implementation(libs.kryo)
+
+        implementation(libs.commons.io)
+        implementation(libs.commons.text)
+        implementation(libs.commons.lang3)
+
+        //java 10 no longer has these included by default, so explicit dependency is needed.
+        api(libs.jaxb.api)
+        api(libs.jaxb.core)
+        runtimeOnly(libs.jaxb.impl)
+        api(libs.activation)
+
+        api(libs.threeten.extra)
+
+        testImplementation(libs.junit4)
+        testImplementation(libs.slf4j.simple)
+
+        api(libs.zafarkhaja.semver)
     }
-  }
+
+
+    javadoc {
+        options.encoding = 'UTF-8'
+    }
+
+
+    test {
+        testLogging {
+            events "failed"
+            exceptionFormat = "full"
+        }
+    }
 
 }
 

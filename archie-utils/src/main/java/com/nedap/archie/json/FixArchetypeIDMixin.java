@@ -1,7 +1,6 @@
 package com.nedap.archie.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 public abstract class FixArchetypeIDMixin {
 

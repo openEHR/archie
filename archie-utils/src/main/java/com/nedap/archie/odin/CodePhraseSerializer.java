@@ -3,7 +3,6 @@ package com.nedap.archie.odin;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.util.Converter;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 
 import java.io.IOException;

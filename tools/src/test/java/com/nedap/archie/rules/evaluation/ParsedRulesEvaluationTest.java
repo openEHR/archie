@@ -50,7 +50,7 @@ public abstract class ParsedRulesEvaluationTest {
     @Before
     public void setup() {
         testUtil = new TestUtil();
-        parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
     }
 
     public Archetype getArchetype() {
@@ -781,9 +781,9 @@ public abstract class ParsedRulesEvaluationTest {
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(parent);
         repository.addArchetype(valueSet);
-        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(parent);
-        ExampleJsonInstanceGenerator generator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
+        ExampleJsonInstanceGenerator generator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModelProvider(), "en");
         Map<String, Object> exampleInstance = generator.generate(opt);
         Cluster cluster = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(exampleInstance), Cluster.class);
         //correct case first

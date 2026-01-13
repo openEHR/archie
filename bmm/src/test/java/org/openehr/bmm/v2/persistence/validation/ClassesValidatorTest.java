@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.openehr.bmm.persistence.validation.BmmMessageIds;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
 
-import java.io.IOException;
-
 import static org.junit.Assert.assertEquals;
 
 public class ClassesValidatorTest extends AbstractSchemaValidationsTest {

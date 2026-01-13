@@ -13,8 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil.createExampleRef;
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class EhrInvariantTest {
 

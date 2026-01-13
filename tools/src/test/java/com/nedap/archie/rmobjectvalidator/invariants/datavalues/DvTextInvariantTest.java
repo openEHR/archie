@@ -6,8 +6,6 @@ import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class DvTextInvariantTest {
 
     @Test

@@ -2,6 +2,7 @@ package com.nedap.archie.flattener;
 
 import com.nedap.archie.aom.ArchetypeHRID;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
