@@ -1,7 +1,7 @@
 [versions]
 antlr = "4.13.2"
 
-jackson = "2.20.1"
+jackson = "2.21.0"
 jackson_annotations = "2.20"
 
 slf4j = "1.7.36"
