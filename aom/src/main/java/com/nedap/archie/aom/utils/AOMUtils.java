@@ -96,14 +96,14 @@ public class AOMUtils {
 
     public static String codeAtLevel(String nodeId, int level) {
         NodeIdUtil nodeIdUtil = new NodeIdUtil(nodeId);
-        List<Integer> codes = new ArrayList<>();
-        for(int i = 0; i <= level && i < nodeIdUtil.getCodes().size();i++) {
+        List<String> codes = new ArrayList<>();
+        for(int i = 0; i <= level && i < nodeIdUtil.getCodes().size(); i++) {
             codes.add(nodeIdUtil.getCodes().get(i));
         }
         //remove leading .0 codes - they are not present in the code at the given level
         int numberOfCodesToRemove = 0;
         for(int i = codes.size()-1; i >= 0 ; i--) {
-            if(codes.get(i).intValue() == 0) {
+            if(Integer.parseInt(codes.get(i)) == 0) {
                 numberOfCodesToRemove++;
             } else {
                 break;
@@ -133,7 +133,7 @@ public class AOMUtils {
         if(specialisationDepth > getSpecializationDepthFromCode(nodeId)) {
             return CodeRedefinitionStatus.INHERITED;
         } else {
-            boolean codeDefinedAtThisLevel = codeIndexAtLevel(nodeId, specialisationDepth) > 0;
+            boolean codeDefinedAtThisLevel = Integer.parseInt(codeIndexAtLevel(nodeId, specialisationDepth)) > 0;
             if(codeDefinedAtThisLevel) {
                 if(specialisationDepth > 0 && codeExistsAtLevel(nodeId, specialisationDepth-1)) {
                     return CodeRedefinitionStatus.REDEFINED;
@@ -149,7 +149,7 @@ public class AOMUtils {
         }
     }
 
-    public static int codeIndexAtLevel(String nodeId, int specialisationDepth) {
+    public static String codeIndexAtLevel(String nodeId, int specialisationDepth) {
         NodeIdUtil nodeIdUtil = new NodeIdUtil(nodeId);
         if(specialisationDepth < 0 || specialisationDepth >= nodeIdUtil.getCodes().size()) {
             throw new IllegalArgumentException("code is not valid at specialization depth " + specialisationDepth);
@@ -393,13 +393,12 @@ public class AOMUtils {
      * @return
      */
     public static String getCodeInNearestParent(String nodeId) {
-
         NodeIdUtil nodeIdUtil = new NodeIdUtil(nodeId);
 
-        List<Integer> codes = nodeIdUtil.getCodes();
+        List<String> codes = nodeIdUtil.getCodes();
         int newDepth = 0;
         for(int i = codes.size()-2; i >= 0; i--) {
-            if(codes.get(i) != 0) {
+            if(!codes.get(i).equals("0")) {
                 newDepth = i;
                 break;
             }
