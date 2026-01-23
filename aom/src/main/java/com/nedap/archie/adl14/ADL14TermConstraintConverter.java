@@ -99,9 +99,11 @@ public class ADL14TermConstraintConverter {
                 //local codes
                 if(cTerminologyCode.getConstraint().size() == 1) {
                     //do not create a value set, just convert the code
-                    String newCode = converter.convertIntoAtCode(firstConstraint);
-                    converter.addConvertedCode(firstConstraint, newCode);
-                    cTerminologyCode.setConstraint(Lists.newArrayList(newCode));
+                    if (converter.getConversionConfiguration().getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
+                        String newCode = converter.convertIntoAtCode(firstConstraint);
+                        converter.addConvertedCode(firstConstraint, newCode);
+                        cTerminologyCode.setConstraint(Lists.newArrayList(newCode));
+                    }
                 } else {
                     Set<String> localCodes = new LinkedHashSet<>();
                     for(String code:cTerminologyCode.getConstraint()) {

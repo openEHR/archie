@@ -100,7 +100,6 @@ public class AOMUtils {
         for(int i = 0; i <= level && i < nodeIdUtil.getCodes().size(); i++) {
             codes.add(nodeIdUtil.getCodes().get(i));
         }
-        //TODO: Niet uitgaan van ID-coded!!!
         //remove leading .0 codes - they are not present in the code at the given level
         int numberOfCodesToRemove = 0;
         for(int i = codes.size()-1; i >= 0 ; i--) {
@@ -394,13 +393,12 @@ public class AOMUtils {
      * @return
      */
     public static String getCodeInNearestParent(String nodeId) {
-
         NodeIdUtil nodeIdUtil = new NodeIdUtil(nodeId);
 
         List<String> codes = nodeIdUtil.getCodes();
         int newDepth = 0;
         for(int i = codes.size()-2; i >= 0; i--) {
-            if(Integer.parseInt(codes.get(i)) != 0) {
+            if(!codes.get(i).equals("0")) {
                 newDepth = i;
                 break;
             }

@@ -437,9 +437,8 @@ public class ADL14NodeIDConverter {
     private void calculateNewNodeId(CObject cObject) {
         if (cObject.getNodeId() != null) {
             String oldNodeId = cObject.getNodeId();
-            String newNodeId;
             if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
-                newNodeId = convertNodeId(oldNodeId);
+                String newNodeId = convertNodeId(oldNodeId);
                 addConvertedCode(oldNodeId, newNodeId);
                 cObject.setNodeId(newNodeId);
             }
@@ -504,7 +503,7 @@ public class ADL14NodeIDConverter {
         nodeIdUtil.setPrefix(newCodePrefix); //will automatically strip the leading zeroes due to integer-parsing
         if (!oldCode.startsWith("at0.") && !oldCode.startsWith("ac0.")) {
             //a bit tricky, since the root of an archetype starts with at0000.0, but that's different from this I guess
-            nodeIdUtil.getCodes().set(0, String.valueOf(Integer.parseInt(nodeIdUtil.getCodes().get(0)) + 1)); //increment with 1, old is 0-based
+            nodeIdUtil.getCodes().set(0, String.valueOf(Integer.parseInt(nodeIdUtil.getCodes().get(0)) + 1)); // increment with 1, old is 0-based
         }
         return nodeIdUtil.toString();
     }
