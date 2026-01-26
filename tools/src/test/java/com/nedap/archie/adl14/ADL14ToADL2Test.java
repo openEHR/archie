@@ -27,15 +27,17 @@ import static org.junit.Assert.assertNotNull;
 
 public class ADL14ToADL2Test {
 
+    private String path = "/com/nedap/archie/adl14/";
+
     @Test
     public void Adl14ToAdl2IdCodedTest() throws Exception {
         Archetype adl14;
-        try (InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.body_weight-adl14.v2.adl")) {
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.body_weight-adl14.v2.adl")) {
             ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
             adl14 = parser.parse(stream, ConversionConfigForTest.getConfig());
         }
         Archetype expected;
-        try (InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.body_weight-adl2.v2.1.8.adls")) {
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.body_weight-adl2_id.v2.1.8.adls")) {
             ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
             expected = parser.parse(stream);
         }
@@ -54,12 +56,12 @@ public class ADL14ToADL2Test {
     @Test
     public void Adl14ToAdl2AtCodedTest() throws Exception {
         Archetype adl14;
-        try (InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.body_weight-adl14.v2.adl")) {
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.body_weight-adl14.v2.adl")) {
             ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
             adl14 = parser.parse(stream, ConversionConfigForTest.getConfig());
         }
         Archetype expected;
-        try (InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.body_weight-adl2plus.v2.1.8.adls")) {
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.body_weight-adl2_at.v2.1.8.adls")) {
             ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
             expected = parser.parse(stream);
         }
