@@ -332,12 +332,13 @@ public class ADL14TermConstraintConverter {
         while(cObject != null) {
             if (cObject.getNodeId() != null) {
                 String oldCode = converter.getOldCodeForNewCode(cObject.getNodeId());
-                if(oldCode != null && archetype.getTerminology().getTermDefinition(language, oldCode) != null) {
+                if (oldCode != null && archetype.getTerminology().getTermDefinition(language, oldCode) != null) {
                     ArchetypeTerm term = archetype.getTerminology().getTermDefinition(language, oldCode);
                     if(term != null) {
                         return term;
                     }
                 } else if (archetype.getTerminology().getTermDefinition(language, cObject.getNodeId()) != null) {
+                    // It is not converted, so just use the node id of the object to find the term
                     ArchetypeTerm term = archetype.getTerminology().getTermDefinition(language, cObject.getNodeId());
                     if(term != null) {
                         return term;
