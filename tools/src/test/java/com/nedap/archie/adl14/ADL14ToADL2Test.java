@@ -134,8 +134,7 @@ public class ADL14ToADL2Test {
             ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
             childExpected = parser.parse(stream);
         }
-
-        // Configuration defaults to ID_CODED
+        
         ADL14ConversionConfiguration configuration = new ADL14ConversionConfiguration();
         configuration.setNodeIdCodeSystem(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.AT_CODED);
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), configuration);
