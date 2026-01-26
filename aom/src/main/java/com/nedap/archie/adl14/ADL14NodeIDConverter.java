@@ -84,6 +84,7 @@ public class ADL14NodeIDConverter {
         convertTermBindings(archetype);
         generateMissingNodeIds(archetype.getDefinition());
         convertTermDefinitions(archetype, convertedCodes, unnecessaryCodes);
+        removeUnnecessaryCodes(archetype, unnecessaryCodes);
         previousConversionApplier.removeCreatedUnusedTermCodesAndValueSets();
         return new ADL2ConversionLog(/*convertedCodes*/ null, createdCodes, createdValueSets);
     }
@@ -162,7 +163,12 @@ public class ADL14NodeIDConverter {
                 }
             }
         }
+    }
 
+    /**
+     * When converting to the at-coded system, some codes have not been converted, but may be unnecessary and need to be removed
+     */
+    public static void removeUnnecessaryCodes(Archetype archetype, List<String> unnecessaryCodes) {
         List<String> termsToRemove = new ArrayList<>();
         for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
             Map<String, ArchetypeTerm> terms = archetype.getTerminology().getTermDefinitions().get(language);
@@ -175,8 +181,6 @@ public class ADL14NodeIDConverter {
                 terms.remove(term);
             }
         }
-
-        //the terminology can still contain old unused codes now. The archetype validation will warn about that later
     }
 
 
