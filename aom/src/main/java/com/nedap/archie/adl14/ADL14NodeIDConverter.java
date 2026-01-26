@@ -53,7 +53,6 @@ public class ADL14NodeIDConverter {
         this.termConstraintConverter = new ADL14TermConstraintConverter(this, archetype, flatParentArchetype);
         this.previousConversionApplier = new PreviousConversionApplier(this, archetype, oldLog);
         this.conversionResult = conversionResult;
-
     }
 
     public ADL14ConversionConfiguration getConversionConfiguration() {
@@ -85,6 +84,7 @@ public class ADL14NodeIDConverter {
         convertTermBindings(archetype);
         generateMissingNodeIds(archetype.getDefinition());
         convertTermDefinitions(archetype, convertedCodes, unnecessaryCodes);
+        removeUnnecessaryCodes(archetype, unnecessaryCodes);
         previousConversionApplier.removeCreatedUnusedTermCodesAndValueSets();
         return new ADL2ConversionLog(/*convertedCodes*/ null, createdCodes, createdValueSets);
     }
@@ -158,13 +158,29 @@ public class ADL14NodeIDConverter {
                         newTerm.setText(term.getText());
                         newTerm.setDescription(term.getDescription());
                         newTerm.putAll(term.getOtherItems());
-                        terms.put(newCode, term);
+                        terms.put(newCode, newTerm);
                     }
                 }
             }
         }
+    }
 
-        //the terminology can still contain old unused codes now. The archetype validation will warn about that later
+    /**
+     * When converting to the at-coded system, some codes have not been converted, but may be unnecessary and need to be removed
+     */
+    public static void removeUnnecessaryCodes(Archetype archetype, List<String> unnecessaryCodes) {
+        List<String> termsToRemove = new ArrayList<>();
+        for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
+            Map<String, ArchetypeTerm> terms = archetype.getTerminology().getTermDefinitions().get(language);
+            for (String key : terms.keySet()) {
+                if (unnecessaryCodes.contains(key)) {
+                    termsToRemove.add(key);
+                }
+            }
+            for (String term : termsToRemove) {
+                terms.remove(term);
+            }
+        }
     }
 
 
@@ -233,7 +249,7 @@ public class ADL14NodeIDConverter {
                 //if found, this is a specialization of said node and needs to be checked for differences and/or
                 //given the same node id
                 //if not found, generate/synthesize a new node id.
-                String parentPath = AOMUtils.pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
+                String parentPath = pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
 
                 CAttribute cAttributeInParent = flatParentArchetype.itemAtPath(parentPath);
                 if (cAttributeInParent != null) {
@@ -290,7 +306,11 @@ public class ADL14NodeIDConverter {
      * Object needs a new nodeId, generate the next valid nodeId and add in to the terminology
      */
     private void synthesizeNodeId(CObject cObject, String path) {
-        cObject.setNodeId(idCodeGenerator.generateNextIdCode());
+        if (codeSystemIsIdCoded()) {
+            cObject.setNodeId(idCodeGenerator.generateNextIdCode());
+        } else {
+            cObject.setNodeId(idCodeGenerator.generateNextValueCode());
+        }
         CreatedCode createdCode = new CreatedCode(cObject.getNodeId(), ReasonForCodeCreation.C_OBJECT_WITHOUT_NODE_ID);
         createdCode.setRmTypeName(cObject.getRmTypeName());
         createdCode.setPathCreated(path);
@@ -337,7 +357,7 @@ public class ADL14NodeIDConverter {
                 //VSSID validation does not exist in ADL 1.4. Fix it here
 
                 if (flatParentArchetype != null) {
-                    String parentPath = AOMUtils.pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
+                    String parentPath = pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
                     CObject cObjectInParent = flatParentArchetype.itemAtPath(parentPath);
                     if (cObjectInParent instanceof ArchetypeSlot && !cObjectInParent.getNodeId().equalsIgnoreCase(cObject.getNodeId())) {
                         //specializing a node id for an archetype slot is not allowed in ADL 2. Set to parent node id.
@@ -414,16 +434,15 @@ public class ADL14NodeIDConverter {
     }
 
     /**
-     * If the object has a nodeId
+     * If the object has a nodeId & code system should be id coded
      * - replace it with a new nodeId
      * - store the old and new nodeId as a converted code
      */
     private void calculateNewNodeId(CObject cObject) {
-        if (cObject.getNodeId() != null) {
+        if (cObject.getNodeId() != null && codeSystemIsIdCoded()) {
             String oldNodeId = cObject.getNodeId();
             String newNodeId = convertNodeId(oldNodeId);
             addConvertedCode(oldNodeId, newNodeId);
-
             cObject.setNodeId(newNodeId);
         }
     }
@@ -454,7 +473,7 @@ public class ADL14NodeIDConverter {
     /**
      * Convert old code into an at code
      */
-    protected String convertValueCode(String oldCode) {
+    protected String convertIntoAtCode(String oldCode) {
         ConvertedCodeResult convertedCodeResult = convertedCodes.get(oldCode);
         if (convertedCodeResult != null && convertedCodeResult.hasValueCode()) {
             return convertedCodeResult.getValueCode();
@@ -486,18 +505,19 @@ public class ADL14NodeIDConverter {
         nodeIdUtil.setPrefix(newCodePrefix); //will automatically strip the leading zeroes due to integer-parsing
         if (!oldCode.startsWith("at0.") && !oldCode.startsWith("ac0.")) {
             //a bit tricky, since the root of an archetype starts with at0000.0, but that's different from this I guess
-            nodeIdUtil.getCodes().set(0, nodeIdUtil.getCodes().get(0) + 1); //increment with 1, old is 0-based
+            nodeIdUtil.getCodes().set(0, String.valueOf(Integer.parseInt(nodeIdUtil.getCodes().get(0)) + 1)); // increment with 1, old is 0-based
         }
         return nodeIdUtil.toString();
     }
 
     /**
-     * Convert all old codes in a path in the new codes
+     * Convert all old codes in a path in the new codes.
+     * If the code system should be at coded, the code should stay the same.
      */
     public String convertPath(String key) {
         APathQuery aPathQuery = new APathQuery(key);
         for (PathSegment segment : aPathQuery.getPathSegments()) {
-            if (segment.getNodeId() != null) {
+            if (codeSystemIsIdCoded() && segment.getNodeId() != null) {
                 segment.setNodeId(convertNodeId(segment.getNodeId()));
             }
         }
@@ -517,5 +537,23 @@ public class ADL14NodeIDConverter {
 
     protected IdCodeGenerator getIdCodeGenerator() {
         return idCodeGenerator;
+    }
+
+    /**
+     *
+     */
+    public boolean codeSystemIsIdCoded() {
+        return conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED);
+    }
+
+    /**
+     * Returns the path at the given specialization level. Takes node system of converter into account.
+     */
+    private String pathAtSpecializationLevel(List<PathSegment> pathSegments, int specializationLevel) {
+        if (codeSystemIsIdCoded()) {
+            return AOMUtils.pathAtSpecializationLevel(pathSegments, specializationLevel);
+        } else {
+            return AOMUtils.pathAtSpecializationLevelAtCoded(pathSegments, specializationLevel);
+        }
     }
 }
