@@ -17,12 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ADL14TermConstraintConverter {
@@ -44,7 +39,6 @@ public class ADL14TermConstraintConverter {
     }
 
     private void convert(CObject cObject) {
-
         if (cObject instanceof CTerminologyCode) {
             convertCTerminologyCode((CTerminologyCode) cObject);
         }
@@ -104,16 +98,26 @@ public class ADL14TermConstraintConverter {
             if(isLocalCode && AOMUtils.isValueCode(firstConstraint)) {
                 //local codes
                 if(cTerminologyCode.getConstraint().size() == 1) {
-                    //do not create a value set, just convert the code
-                    String newCode = converter.convertValueCode(firstConstraint);
-                    converter.addConvertedCode(firstConstraint, newCode);
-                    cTerminologyCode.setConstraint(Lists.newArrayList(newCode));
+                    // do not create a value set, just convert the code
+                    // if the code system should be at coded, the code stays the same
+                    if (converter.codeSystemIsIdCoded()) {
+                        String newCode = converter.convertIntoAtCode(firstConstraint);
+                        converter.addConvertedCode(firstConstraint, newCode);
+                        cTerminologyCode.setConstraint(Lists.newArrayList(newCode));
+                    }
                 } else {
+                    // Create a valueSet for these terminology codes
                     Set<String> localCodes = new LinkedHashSet<>();
                     for(String code:cTerminologyCode.getConstraint()) {
-                        String newCode = converter.convertValueCode(code);
-                        converter.addConvertedCode(code, newCode);
-                        localCodes.add(newCode);
+                        if (converter.codeSystemIsIdCoded()) {
+                            // If the code system should be id coded, we need to convert the local codes into at codes
+                            String newCode = converter.convertIntoAtCode(code);
+                            converter.addConvertedCode(code, newCode);
+                            localCodes.add(newCode);
+                        } else {
+                            // If the code system should be at coded, we can keep the local codes as they are
+                            localCodes.add(code);
+                        }
                     }
 
                     ValueSet valueSet = findOrCreateValueSet(cTerminologyCode.getArchetype(), localCodes, cTerminologyCode);
@@ -177,7 +181,7 @@ public class ADL14TermConstraintConverter {
             if(cTerminologyCode.getAssumedValue() != null) {
                 TerminologyCode assumedValue = cTerminologyCode.getAssumedValue();
                 if(isLocalCode) {
-                    String newCode = converter.convertValueCode(assumedValue.getCodeString());
+                    String newCode = converter.convertIntoAtCode(assumedValue.getCodeString());
                     assumedValue.setCodeString(newCode);
                     assumedValue.setTerminologyId(null);
                 } else {
@@ -330,6 +334,11 @@ public class ADL14TermConstraintConverter {
                 String oldCode = converter.getOldCodeForNewCode(cObject.getNodeId());
                 if(oldCode != null && archetype.getTerminology().getTermDefinition(language, oldCode) != null) {
                     ArchetypeTerm term = archetype.getTerminology().getTermDefinition(language, oldCode);
+                    if(term != null) {
+                        return term;
+                    }
+                } else if (archetype.getTerminology().getTermDefinition(language, cObject.getNodeId()) != null) {
+                    ArchetypeTerm term = archetype.getTerminology().getTermDefinition(language, cObject.getNodeId());
                     if(term != null) {
                         return term;
                     }
