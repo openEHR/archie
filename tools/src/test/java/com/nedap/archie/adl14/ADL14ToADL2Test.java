@@ -13,14 +13,9 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
 import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Stack;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -30,14 +25,14 @@ public class ADL14ToADL2Test {
     private String path = "/com/nedap/archie/adl14/";
 
     @Test
-    public void Adl14ToAdl2IdCodedTest() throws Exception {
+    public void demoFromAdl14ToAdl2IdCodedTest() throws Exception {
         Archetype adl14;
-        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.body_weight-adl14.v2.adl")) {
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.demo_adl14.v1.adl")) {
             ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
             adl14 = parser.parse(stream, ConversionConfigForTest.getConfig());
         }
         Archetype expected;
-        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.body_weight-adl2_id.v2.1.8.adls")) {
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.demo_adl2_id.v1.0.0.adls")) {
             ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
             expected = parser.parse(stream);
         }
@@ -54,14 +49,14 @@ public class ADL14ToADL2Test {
     }
 
     @Test
-    public void Adl14ToAdl2AtCodedTest() throws Exception {
+    public void demoFromAdl14ToAdl2AtCodedTest() throws Exception {
         Archetype adl14;
-        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.body_weight-adl14.v2.adl")) {
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.demo_adl14.v1.adl")) {
             ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
             adl14 = parser.parse(stream, ConversionConfigForTest.getConfig());
         }
         Archetype expected;
-        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.body_weight-adl2_at.v2.1.8.adls")) {
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-OBSERVATION.demo_adl2_at.v1.0.0.adls")) {
             ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
             expected = parser.parse(stream);
         }
@@ -76,6 +71,86 @@ public class ADL14ToADL2Test {
         assertEquals(ArchieAOMInfoLookup.ADL_VERSION, result.getAdlVersion());
         assertArchetypes(expected, result);
         assertArchetypes(result, expected); // Also check the reverse, to check if the result doesn't have more elements than the expected archetype
+    }
+
+    @Test
+    public void examAbdomenFromAdl14ToAdl2IdCodedTest() throws Exception {
+        Archetype parent;
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-CLUSTER.exam_adl14.v2.adl")) {
+            ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+            parent = parser.parse(stream, ConversionConfigForTest.getConfig());
+        }
+        Archetype child;
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-CLUSTER.exam-abdomen_adl14.v0.adl")) {
+            ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+            child = parser.parse(stream, ConversionConfigForTest.getConfig());
+        }
+        Archetype parentExpected;
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-CLUSTER.exam_adl2_id.v2.1.3.adls")) {
+            ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+            parentExpected = parser.parse(stream);
+        }
+        Archetype childExpected;
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-CLUSTER.exam-abdomen_adl2_id.v0.0.1-alpha.adls")) {
+            ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+            childExpected = parser.parse(stream);
+        }
+
+        // Configuration defaults to ID_CODED
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), new ADL14ConversionConfiguration());
+
+        ADL2ConversionResultList resultList = converter.convert(Arrays.asList(parent, child));
+        Archetype parentResult = resultList.getConversionResults().get(0).getArchetype();
+        Archetype childResult = resultList.getConversionResults().get(1).getArchetype();
+
+        assertEquals(ArchieAOMInfoLookup.ADL_VERSION, parentResult.getAdlVersion());
+        assertArchetypes(parentExpected, parentResult);
+        assertArchetypes(parentResult, parentExpected); // Also check the reverse, to check if the result doesn't have more elements than the expected archetype
+
+        assertEquals(ArchieAOMInfoLookup.ADL_VERSION, childResult.getAdlVersion());
+        assertArchetypes(childExpected, childResult);
+        assertArchetypes(childResult, childExpected); // Also check the reverse, to check if the result doesn't have more elements than the expected archetype
+    }
+
+    @Test
+    public void examAbdomenFromAdl14ToAdl2AtCodedTest() throws Exception {
+        Archetype parent;
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-CLUSTER.exam_adl14.v2.adl")) {
+            ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+            parent = parser.parse(stream, ConversionConfigForTest.getConfig());
+        }
+        Archetype child;
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-CLUSTER.exam-abdomen_adl14.v0.adl")) {
+            ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+            child = parser.parse(stream, ConversionConfigForTest.getConfig());
+        }
+        Archetype parentExpected;
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-CLUSTER.exam_adl2_at.v2.1.3.adls")) {
+            ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+            parentExpected = parser.parse(stream);
+        }
+        Archetype childExpected;
+        try (InputStream stream = getClass().getResourceAsStream(path + "openEHR-EHR-CLUSTER.exam-abdomen_adl2_at.v0.0.1-alpha.adls")) {
+            ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+            childExpected = parser.parse(stream);
+        }
+
+        // Configuration defaults to ID_CODED
+        ADL14ConversionConfiguration configuration = new ADL14ConversionConfiguration();
+        configuration.setNodeIdCodeSystem(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.AT_CODED);
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), configuration);
+
+        ADL2ConversionResultList resultList = converter.convert(Arrays.asList(parent, child));
+        Archetype parentResult = resultList.getConversionResults().get(0).getArchetype();
+        Archetype childResult = resultList.getConversionResults().get(1).getArchetype();
+
+        assertEquals(ArchieAOMInfoLookup.ADL_VERSION, parentResult.getAdlVersion());
+        assertArchetypes(parentExpected, parentResult);
+        assertArchetypes(parentResult, parentExpected); // Also check the reverse, to check if the result doesn't have more elements than the expected archetype
+
+        assertEquals(ArchieAOMInfoLookup.ADL_VERSION, childResult.getAdlVersion());
+        assertArchetypes(childExpected, childResult);
+        assertArchetypes(childResult, childExpected); // Also check the reverse, to check if the result doesn't have more elements than the expected archetype
     }
 
     private void assertArchetypes(Archetype expected, Archetype actual) {
