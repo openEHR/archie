@@ -38,7 +38,7 @@ public class ADL14ToADL2Test {
         // Configuration defaults to ID_CODED
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), new ADL14ConversionConfiguration());
 
-        ADL2ConversionResultList resultList = converter.convert(List.of(adl14));
+        ADL2ConversionResultList resultList = converter.convert(Arrays.asList(adl14));
         Archetype result = resultList.getConversionResults().get(0).getArchetype();
 
         assertEquals(ArchieAOMInfoLookup.ADL_VERSION, result.getAdlVersion());
@@ -63,7 +63,7 @@ public class ADL14ToADL2Test {
         configuration.setNodeIdCodeSystem(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.AT_CODED);
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), configuration);
 
-        ADL2ConversionResultList resultList = converter.convert(List.of(adl14));
+        ADL2ConversionResultList resultList = converter.convert(Arrays.asList(adl14));
         Archetype result = resultList.getConversionResults().get(0).getArchetype();
 
         assertEquals(ArchieAOMInfoLookup.ADL_VERSION, result.getAdlVersion());
