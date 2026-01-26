@@ -13,6 +13,12 @@ public class AOMUtilsTest {
         assertEquals("id1.1", AOMUtils.codeAtLevel("id1.1", 1));
         assertEquals("id1.1", AOMUtils.codeAtLevel("id1.1.1", 1));
         assertEquals("id1", AOMUtils.codeAtLevel("id1.0.1", 1));
+
+        assertEquals("at0001", AOMUtils.codeAtLevel("at0001", 0));
+        assertEquals("at0001", AOMUtils.codeAtLevel("at0001.1", 0));
+        assertEquals("at0001.1", AOMUtils.codeAtLevel("at0001.1", 1));
+        assertEquals("at0001.1", AOMUtils.codeAtLevel("at0001.1.1", 1));
+        assertEquals("at0001", AOMUtils.codeAtLevel("at0001.0.1", 1));
     }
 
 }
