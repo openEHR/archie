@@ -302,7 +302,7 @@ public class ADL14NodeIDConverter {
      * Object needs a new nodeId, generate the next valid nodeId and add in to the terminology
      */
     private void synthesizeNodeId(CObject cObject, String path) {
-        if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
+        if (codeSystemIsIdCoded()) {
             cObject.setNodeId(idCodeGenerator.generateNextIdCode());
         } else {
             cObject.setNodeId(idCodeGenerator.generateNextValueCode());
@@ -430,18 +430,16 @@ public class ADL14NodeIDConverter {
     }
 
     /**
-     * If the object has a nodeId
+     * If the object has a nodeId & code system should be id coded
      * - replace it with a new nodeId
      * - store the old and new nodeId as a converted code
      */
     private void calculateNewNodeId(CObject cObject) {
-        if (cObject.getNodeId() != null) {
+        if (cObject.getNodeId() != null && codeSystemIsIdCoded()) {
             String oldNodeId = cObject.getNodeId();
-            if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
-                String newNodeId = convertNodeId(oldNodeId);
-                addConvertedCode(oldNodeId, newNodeId);
-                cObject.setNodeId(newNodeId);
-            }
+            String newNodeId = convertNodeId(oldNodeId);
+            addConvertedCode(oldNodeId, newNodeId);
+            cObject.setNodeId(newNodeId);
         }
     }
 
@@ -509,12 +507,13 @@ public class ADL14NodeIDConverter {
     }
 
     /**
-     * Convert all old codes in a path in the new codes
+     * Convert all old codes in a path in the new codes.
+     * If the code system should be at coded, the code should stay the same.
      */
     public String convertPath(String key) {
         APathQuery aPathQuery = new APathQuery(key);
         for (PathSegment segment : aPathQuery.getPathSegments()) {
-            if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED) && segment.getNodeId() != null) {
+            if (codeSystemIsIdCoded() && segment.getNodeId() != null) {
                 segment.setNodeId(convertNodeId(segment.getNodeId()));
             }
         }
@@ -536,12 +535,21 @@ public class ADL14NodeIDConverter {
         return idCodeGenerator;
     }
 
+    /**
+     *
+     */
+    public boolean codeSystemIsIdCoded() {
+        return conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED);
+    }
+
+    /**
+     * Returns the path at the given specialization level. Takes node system of converter into account.
+     */
     private String pathAtSpecializationLevel(List<PathSegment> pathSegments, int specializationLevel) {
-        if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
+        if (codeSystemIsIdCoded()) {
             return AOMUtils.pathAtSpecializationLevel(pathSegments, specializationLevel);
-        } else if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.AT_CODED)) {
+        } else {
             return AOMUtils.pathAtSpecializationLevelAtCoded(pathSegments, specializationLevel);
         }
-        return null;
     }
 }

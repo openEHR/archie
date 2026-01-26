@@ -98,20 +98,24 @@ public class ADL14TermConstraintConverter {
             if(isLocalCode && AOMUtils.isValueCode(firstConstraint)) {
                 //local codes
                 if(cTerminologyCode.getConstraint().size() == 1) {
-                    //do not create a value set, just convert the code
-                    if (converter.getConversionConfiguration().getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
+                    // do not create a value set, just convert the code
+                    // if the code system should be at coded, the code stays the same
+                    if (converter.codeSystemIsIdCoded()) {
                         String newCode = converter.convertIntoAtCode(firstConstraint);
                         converter.addConvertedCode(firstConstraint, newCode);
                         cTerminologyCode.setConstraint(Lists.newArrayList(newCode));
                     }
                 } else {
+                    // Create a valueSet for these terminology codes
                     Set<String> localCodes = new LinkedHashSet<>();
                     for(String code:cTerminologyCode.getConstraint()) {
-                        if (converter.getConversionConfiguration().getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
+                        if (converter.codeSystemIsIdCoded()) {
+                            // If the code system should be id coded, we need to convert the local codes into at codes
                             String newCode = converter.convertIntoAtCode(code);
                             converter.addConvertedCode(code, newCode);
                             localCodes.add(newCode);
                         } else {
+                            // If the code system should be at coded, we can keep the local codes as they are
                             localCodes.add(code);
                         }
                     }

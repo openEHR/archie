@@ -28,7 +28,7 @@ public class ADL14ConversionConfiguration {
     private String rmRelease = "1.1.0";
 
     /**
-     * Set to the ADL version the ADL 1.4 archetype should be converted into. Options: ID_CODED, AT_CODED. Defaults to ID_CODED.
+     * Set to the code system the ADL 1.4 archetype should be converted into. Options: ID_CODED, AT_CODED. Defaults to ID_CODED.
      */
     private NODE_ID_CODE_SYSTEM nodeIdCodeSystem = NODE_ID_CODE_SYSTEM.ID_CODED;
     public enum NODE_ID_CODE_SYSTEM {
