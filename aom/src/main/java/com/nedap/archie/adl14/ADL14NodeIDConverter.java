@@ -245,7 +245,7 @@ public class ADL14NodeIDConverter {
                 //if found, this is a specialization of said node and needs to be checked for differences and/or
                 //given the same node id
                 //if not found, generate/synthesize a new node id.
-                String parentPath = AOMUtils.pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
+                String parentPath = pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
 
                 CAttribute cAttributeInParent = flatParentArchetype.itemAtPath(parentPath);
                 if (cAttributeInParent != null) {
@@ -353,7 +353,7 @@ public class ADL14NodeIDConverter {
                 //VSSID validation does not exist in ADL 1.4. Fix it here
 
                 if (flatParentArchetype != null) {
-                    String parentPath = AOMUtils.pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
+                    String parentPath = pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
                     CObject cObjectInParent = flatParentArchetype.itemAtPath(parentPath);
                     if (cObjectInParent instanceof ArchetypeSlot && !cObjectInParent.getNodeId().equalsIgnoreCase(cObject.getNodeId())) {
                         //specializing a node id for an archetype slot is not allowed in ADL 2. Set to parent node id.
@@ -534,5 +534,14 @@ public class ADL14NodeIDConverter {
 
     protected IdCodeGenerator getIdCodeGenerator() {
         return idCodeGenerator;
+    }
+
+    private String pathAtSpecializationLevel(List<PathSegment> pathSegments, int specializationLevel) {
+        if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED)) {
+            return AOMUtils.pathAtSpecializationLevel(pathSegments, specializationLevel);
+        } else if (conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.AT_CODED)) {
+            return AOMUtils.pathAtSpecializationLevelAtCoded(pathSegments, specializationLevel);
+        }
+        return null;
     }
 }

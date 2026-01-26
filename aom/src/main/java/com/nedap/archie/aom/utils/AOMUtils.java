@@ -94,6 +94,15 @@ public class AOMUtils {
         return PathUtil.getPath(pathSegments);
     }
 
+    public static String pathAtSpecializationLevelAtCoded(List<PathSegment> pathSegments, int level) {
+        for(PathSegment segment:pathSegments) {
+            if(segment.getNodeId() != null && AOMUtils.isValidADL14Code(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
+                segment.setNodeId(codeAtLevel(segment.getNodeId(), level));
+            }
+        }
+        return PathUtil.getPath(pathSegments);
+    }
+
     public static String codeAtLevel(String nodeId, int level) {
         NodeIdUtil nodeIdUtil = new NodeIdUtil(nodeId);
         List<String> codes = new ArrayList<>();
