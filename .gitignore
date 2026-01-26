@@ -9,4 +9,3 @@ out/
 test-output/
 grammars/gen
 grammars/src/main/antlr/gen/
-tools/src/test/resources/com/nedap/archie/adl14/ckm
