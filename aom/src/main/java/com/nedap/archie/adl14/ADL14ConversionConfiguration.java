@@ -1,6 +1,7 @@
 package com.nedap.archie.adl14;
 
 import com.nedap.archie.adl14.terms.TerminologyUriTemplate;
+import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,19 +22,23 @@ public class ADL14ConversionConfiguration {
      */
     private boolean applyDiff = true;
 
-
     /**
      * ADL 1.4 contains no rm release version, 2 does. So one needs to be added. Set to the desired rm_release. Defaults to 1.1.0
      */
     private String rmRelease = "1.1.0";
 
-
-    public List<TerminologyUriTemplate> getTerminologyConversionTemplates() {
-        return terminologyConversionTemplates;
+    /**
+     * Set to the code system the ADL 1.4 archetype should be converted into. Options: ID_CODED, AT_CODED. Defaults to ID_CODED.
+     */
+    private NODE_ID_CODE_SYSTEM nodeIdCodeSystem = NODE_ID_CODE_SYSTEM.ID_CODED;
+    public enum NODE_ID_CODE_SYSTEM {
+        ID_CODED,
+        AT_CODED
     }
 
-    public void setTerminologyConversionTemplates(List<TerminologyUriTemplate> terminologyConversionTemplates) {
-        this.terminologyConversionTemplates = terminologyConversionTemplates;
+    // GETTERS
+    public List<TerminologyUriTemplate> getTerminologyConversionTemplates() {
+        return terminologyConversionTemplates;
     }
 
     public TerminologyUriTemplate getTerminologyUriTemplate(String terminologyId, String version) {
@@ -52,23 +57,40 @@ public class ADL14ConversionConfiguration {
         return allowDuplicateFieldNames;
     }
 
-    public void setAllowDuplicateFieldNames(boolean allowDuplicateFieldNames) {
-        this.allowDuplicateFieldNames = allowDuplicateFieldNames;
-    }
-
     public boolean isApplyDiff() {
         return applyDiff;
-    }
-
-    public void setApplyDiff(boolean applyDiff) {
-        this.applyDiff = applyDiff;
     }
 
     public String getRmRelease() {
         return rmRelease;
     }
 
+    public NODE_ID_CODE_SYSTEM getNodeIdCodeSystem() {
+        return nodeIdCodeSystem;
+    }
+
+    public String getAdlVersion() {
+        return ArchieAOMInfoLookup.ADL_VERSION;
+    }
+
+    // SETTERS
+    public void setTerminologyConversionTemplates(List<TerminologyUriTemplate> terminologyConversionTemplates) {
+        this.terminologyConversionTemplates = terminologyConversionTemplates;
+    }
+
+    public void setAllowDuplicateFieldNames(boolean allowDuplicateFieldNames) {
+        this.allowDuplicateFieldNames = allowDuplicateFieldNames;
+    }
+
+    public void setApplyDiff(boolean applyDiff) {
+        this.applyDiff = applyDiff;
+    }
+
     public void setRmRelease(String rmRelease) {
         this.rmRelease = rmRelease;
+    }
+
+    public void setNodeIdCodeSystem(NODE_ID_CODE_SYSTEM nodeIdCodeSystem) {
+        this.nodeIdCodeSystem = nodeIdCodeSystem;
     }
 }
