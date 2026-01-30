@@ -7,4 +7,6 @@ dependencies {
     api(libs.jackson.annotations)
 
     api(libs.jaxb.api)
+
+    api(libs.jsr305)
 }

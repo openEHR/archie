@@ -52,7 +52,6 @@ subprojects {
 
         implementation(libs.guava)
 
-        implementation(libs.reflections)
         implementation(libs.kryo)
 
         api(libs.threeten.extra)

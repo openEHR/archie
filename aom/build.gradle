@@ -14,4 +14,8 @@ dependencies {
     api(libs.bundles.jackson)
 
     api(libs.jaxb.api)
+
+    api(libs.jsr305)
+
+    implementation(libs.reflections)
 }

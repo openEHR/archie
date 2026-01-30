@@ -6,4 +6,6 @@ dependencies {
     api project(':path-queries')
     api project(':utils')
     api project(':openehr-rm')
+
+    api(libs.jsr305)
 }
