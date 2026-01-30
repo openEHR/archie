@@ -6,11 +6,10 @@ dependencies {
     api project(':openehr-rm')
 
     api(libs.bundles.jackson)
-
     api(libs.jaxb.api)
-    runtimeOnly(libs.jaxb.impl)
 
     implementation(libs.guava)
-
     implementation(libs.threeten.extra)
+
+    runtimeOnly(libs.jaxb.impl)
 }

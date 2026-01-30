@@ -4,10 +4,8 @@ dependencies {
     api project(':base')
 
     api(libs.bundles.jackson)
-
-    implementation(libs.guava)
-
     api(libs.kryo)
 
+    implementation(libs.guava)
     implementation(libs.threeten.extra)
 }

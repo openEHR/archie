@@ -8,16 +8,12 @@ dependencies {
     api project(':utils')
     testImplementation project(':archie-utils')
 
-    implementation(libs.commons.io)
-
     api(libs.bundles.jackson)
-
     api(libs.jaxb.api)
-
     api(libs.jsr305)
 
+    implementation(libs.commons.io)
     implementation(libs.guava)
-
     implementation(libs.kryo)
 
     testImplementation(libs.threeten.extra)

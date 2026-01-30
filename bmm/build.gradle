@@ -6,11 +6,9 @@ dependencies {
     api project(':odin')
     testImplementation project(':i18n')
 
-    implementation(libs.commons.lang3)
-
     api(libs.bundles.jackson)
 
+    implementation(libs.commons.lang3)
     implementation(libs.guava)
-
     implementation(libs.kryo)
 }

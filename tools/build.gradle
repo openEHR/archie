@@ -14,24 +14,18 @@ dependencies {
     testImplementation project(':test-rm')
     testImplementation project(':referencemodels')
 
-    implementation(libs.zafarkhaja.semver)
-
-    testImplementation(libs.commons.io)
-
     api(libs.bundles.jackson)
-
     api(libs.jaxb.api)
-
     api(libs.jsr305)
-
-    testImplementation(libs.reflections)
+    api(libs.leadpony.justify)
 
     implementation(libs.guava)
-
     implementation(libs.kryo)
-
     implementation(libs.threeten.extra)
+    implementation(libs.zafarkhaja.semver)
 
-    api(libs.leadpony.justify)
     runtimeOnly(variantOf(libs.jakarta.json) { classifier("module") })
+
+    testImplementation(libs.commons.io)
+    testImplementation(libs.reflections)
 }

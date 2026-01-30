@@ -5,12 +5,12 @@
 description = "A very basic OpenEHR terminology file binding"
 
 dependencies {
-    testImplementation(libs.commons.io)
-
     api(libs.bundles.jackson)
-
     api(libs.jaxb.api)
+
     runtimeOnly(libs.jaxb.impl)
+
+    testImplementation(libs.commons.io)
 }
 
 //ext {
