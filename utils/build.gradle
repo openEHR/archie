@@ -6,4 +6,6 @@ dependencies {
     api(libs.bundles.jackson)
 
     implementation(libs.guava)
+
+    api(libs.kryo)
 }

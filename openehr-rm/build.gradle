@@ -17,4 +17,6 @@ dependencies {
     api(libs.jsr305)
 
     implementation(libs.guava)
+
+    implementation(libs.kryo)
 }

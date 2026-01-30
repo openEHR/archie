@@ -28,6 +28,8 @@ dependencies {
 
     implementation(libs.guava)
 
+    implementation(libs.kryo)
+
     api(libs.leadpony.justify)
     api(variantOf(libs.jakarta.json) { classifier("module") })
 }
