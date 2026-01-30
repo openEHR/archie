@@ -20,6 +20,8 @@ dependencies {
 
     api(libs.bundles.jackson)
 
+    api(libs.jaxb.api)
+
     api(libs.leadpony.justify)
     api(variantOf(libs.jakarta.json) { classifier("module") })
 }
