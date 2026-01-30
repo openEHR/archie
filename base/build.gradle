@@ -5,9 +5,7 @@ dependencies {
     api project(':grammars')
 
     api(libs.jackson.annotations)
-
     api(libs.jakarta.xml.bind.api)
-
     api(libs.jsr305)
 
     implementation(libs.guava)

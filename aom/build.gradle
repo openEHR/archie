@@ -8,18 +8,14 @@ dependencies {
     api project(':bmm')
     api project(':openehr-terminology')
 
-    implementation(libs.commons.io)
-    implementation(libs.commons.text)
-
     api(libs.bundles.jackson)
-
     api(libs.jakarta.xml.bind.api)
-
     api(libs.jsr305)
 
-    implementation(libs.reflections)
-
+    implementation(libs.commons.io)
+    implementation(libs.commons.text)
     implementation(libs.guava)
+    implementation(libs.reflections)
 
     testImplementation project(':archie-utils')
 }
