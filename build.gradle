@@ -56,8 +56,6 @@ subprojects {
 
         api(libs.jackson3.databind)
 
-        implementation(libs.kryo)
-
         api(libs.threeten.extra)
 
         testImplementation(libs.bundles.junit)
