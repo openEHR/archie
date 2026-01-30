@@ -27,4 +27,6 @@ dependencies {
     api(libs.jsr305)
 
     testImplementation(libs.reflections)
+
+    implementation(libs.guava)
 }

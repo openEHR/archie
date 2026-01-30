@@ -19,5 +19,7 @@ dependencies {
 
     implementation(libs.reflections)
 
+    implementation(libs.guava)
+
     testImplementation project(':archie-utils')
 }

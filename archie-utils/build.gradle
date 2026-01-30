@@ -9,4 +9,6 @@ dependencies {
 
     api(libs.jakarta.xml.bind.api)
     runtimeOnly(libs.jaxb.runtime)
+
+    implementation(libs.guava)
 }

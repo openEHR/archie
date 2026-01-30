@@ -9,4 +9,6 @@ dependencies {
     implementation(libs.commons.lang3)
 
     api(libs.bundles.jackson)
+
+    implementation(libs.guava)
 }
