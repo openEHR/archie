@@ -11,4 +11,6 @@ dependencies {
     runtimeOnly(libs.jaxb.impl)
 
     implementation(libs.guava)
+
+    implementation(libs.threeten.extra)
 }

@@ -50,8 +50,6 @@ subprojects {
     dependencies {
         implementation(libs.slf4j.api)
 
-        api(libs.threeten.extra)
-
         testImplementation(libs.junit4)
         testImplementation(libs.slf4j.simple)
     }

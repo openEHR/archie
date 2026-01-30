@@ -30,6 +30,8 @@ dependencies {
 
     implementation(libs.kryo)
 
+    implementation(libs.threeten.extra)
+
     api(libs.leadpony.justify)
     api(variantOf(libs.jakarta.json) { classifier("module") })
 }
