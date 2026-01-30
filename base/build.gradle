@@ -9,4 +9,6 @@ dependencies {
     api(libs.jaxb.api)
 
     api(libs.jsr305)
+
+    implementation(libs.guava)
 }

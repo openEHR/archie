@@ -50,8 +50,6 @@ subprojects {
     dependencies {
         implementation(libs.slf4j.api)
 
-        implementation(libs.guava)
-
         implementation(libs.kryo)
 
         api(libs.threeten.extra)

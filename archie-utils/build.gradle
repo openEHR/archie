@@ -9,4 +9,6 @@ dependencies {
 
     api(libs.jaxb.api)
     runtimeOnly(libs.jaxb.impl)
+
+    implementation(libs.guava)
 }
