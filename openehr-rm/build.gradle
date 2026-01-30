@@ -17,4 +17,6 @@ dependencies {
     api(libs.jsr305)
 
     implementation(libs.guava)
+
+    testImplementation(libs.threeten.extra)
 }

@@ -8,4 +8,6 @@ dependencies {
     implementation(libs.guava)
 
     implementation(libs.kryo)
+
+    implementation(libs.threeten.extra)
 }

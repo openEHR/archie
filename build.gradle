@@ -56,8 +56,6 @@ subprojects {
 
         api(libs.jackson3.databind)
 
-        api(libs.threeten.extra)
-
         testImplementation(libs.bundles.junit)
         testImplementation(libs.hamcrest)
         testImplementation(libs.slf4j.simple)

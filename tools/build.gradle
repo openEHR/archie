@@ -29,4 +29,6 @@ dependencies {
     testImplementation(libs.reflections)
 
     implementation(libs.guava)
+
+    implementation(libs.threeten.extra)
 }
