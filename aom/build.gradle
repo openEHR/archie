@@ -13,5 +13,7 @@ dependencies {
 
     api(libs.bundles.jackson)
 
+    api(libs.jakarta.xml.bind.api)
+
     testImplementation project(':archie-utils')
 }

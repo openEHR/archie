@@ -21,4 +21,6 @@ dependencies {
     testImplementation(libs.commons.io)
 
     api(libs.bundles.jackson)
+
+    api(libs.jakarta.xml.bind.api)
 }

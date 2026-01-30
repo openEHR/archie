@@ -61,11 +61,6 @@ subprojects {
         implementation(libs.reflections)
         implementation(libs.kryo)
 
-        //java 10 no longer has these included by default, so explicit dependency is needed.
-        implementation(libs.jakarta.xml.bind.api)
-        implementation(libs.jakarta.annotation.api)
-        runtimeOnly(libs.jaxb.runtime)
-
         api(libs.threeten.extra)
 
         testImplementation(libs.bundles.junit)
