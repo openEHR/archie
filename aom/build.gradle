@@ -15,5 +15,9 @@ dependencies {
 
     api(libs.jakarta.xml.bind.api)
 
+    api(libs.jsr305)
+
+    implementation(libs.reflections)
+
     testImplementation project(':archie-utils')
 }
