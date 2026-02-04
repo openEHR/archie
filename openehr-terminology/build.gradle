@@ -5,8 +5,10 @@
 description = "A very basic OpenEHR terminology file binding"
 
 dependencies {
-    api(libs.bundles.jackson)
+    api(libs.jackson.annotations)
     api(libs.jaxb.api)
+
+    implementation(libs.jackson.databind)
 
     runtimeOnly(libs.jaxb.impl)
 

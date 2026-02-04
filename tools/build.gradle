@@ -14,12 +14,13 @@ dependencies {
     testImplementation project(':test-rm')
     testImplementation project(':referencemodels')
 
-    api(libs.bundles.jackson)
+    api(libs.jackson.core) // Because of throws JsonProcessingException in FlatJsonExampleInstanceGenerator
     api(libs.jaxb.api)
     api(libs.jsr305)
     api(libs.leadpony.justify)
 
     implementation(libs.guava)
+    implementation(libs.jackson.databind)
     implementation(libs.kryo)
     implementation(libs.threeten.extra)
     implementation(libs.zafarkhaja.semver)

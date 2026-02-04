@@ -8,7 +8,8 @@ dependencies {
     api project(':utils')
     testImplementation project(':archie-utils')
 
-    api(libs.bundles.jackson)
+    api(libs.jackson.annotations)
+    api(libs.jackson.databind)
     api(libs.jaxb.api)
     api(libs.jsr305)
 

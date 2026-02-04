@@ -5,10 +5,12 @@ dependencies {
     api project(':aom')
     api project(':openehr-rm')
 
-    api(libs.bundles.jackson)
+    api(libs.jackson.annotations)
+    api(libs.jackson.databind)
     api(libs.jaxb.api)
 
     implementation(libs.guava)
+    implementation(libs.jackson.datatype.jsr310)
     implementation(libs.threeten.extra)
 
     runtimeOnly(libs.jaxb.impl)

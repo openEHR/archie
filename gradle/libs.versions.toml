@@ -9,9 +9,6 @@ slf4j = "1.7.36"
 [plugins]
 nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0" }
 
-[bundles]
-jackson = ["jackson-annotations", "jackson-databind", "jackson-datatype-jsr310"]
-
 [libraries]
 antlr4 = { module = "org.antlr:antlr4", version.ref = "antlr" }
 antlr4-runtime = { module = "org.antlr:antlr4-runtime", version.ref = "antlr" }
@@ -25,6 +22,7 @@ commons-text = { module = "org.apache.commons:commons-text", version = "1.15.0" 
 guava = { module = "com.google.guava:guava", version = "33.5.0-jre" }
 
 jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson_annotations" }
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jackson" }
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 

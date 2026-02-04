@@ -4,7 +4,7 @@ dependencies {
     api project(':grammars')
     api project(':base')
 
-    api(libs.bundles.jackson)
+    api(libs.jackson.databind)
 
     implementation(libs.commons.text)
 }
