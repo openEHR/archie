@@ -16,11 +16,11 @@ dependencies {
     // Only needed to run ExampleJsonInstanceGeneratorTest, which exercises the JSON schema validator.
     testImplementation project(':json-schema-tools')
 
-    api(libs.bundles.jackson)
     api(libs.jakarta.xml.bind.api)
     api(libs.jsr305)
 
     implementation(libs.guava)
+    implementation(libs.jackson.databind)
     implementation(libs.threeten.extra)
     implementation(libs.zafarkhaja.semver)
 
