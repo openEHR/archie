@@ -9,7 +9,7 @@ dependencies {
     api project(':openehr-terminology')
 
     api(libs.bundles.jackson)
-    api(libs.guava)
+    api(libs.guava) // Because of TypeToken in ReflectionModelInfoLookup
     api(libs.jaxb.api)
     api(libs.jsr305)
 
