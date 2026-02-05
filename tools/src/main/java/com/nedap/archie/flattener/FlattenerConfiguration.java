@@ -1,7 +1,6 @@
 package com.nedap.archie.flattener;
 
-import com.esotericsoftware.kryo.kryo5.Kryo;
-import com.nedap.archie.util.KryoUtil;
+import com.nedap.archie.util.CloneUtil;
 
 public class FlattenerConfiguration {
 
@@ -128,14 +127,9 @@ public class FlattenerConfiguration {
         this.languagesToKeep = languagesToKeep;
     }
 
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public FlattenerConfiguration clone() {
-        Kryo kryo = null;
-        try {
-            kryo = KryoUtil.getPool().obtain();
-            return kryo.copy(this);
-        } finally {
-            KryoUtil.getPool().free(kryo);
-        }
+        return CloneUtil.clone(this);
     }
 
     public boolean isReplaceUseNode() {
