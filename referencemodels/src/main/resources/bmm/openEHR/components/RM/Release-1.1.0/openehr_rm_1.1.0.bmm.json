@@ -610,7 +610,6 @@
                 }
             },
             "invariants": {
-                "rm_version_valid": "not rm_version.is_empty",
                 "Rm_version_valid": "not rm_version.is_empty"
             }
         },
@@ -1816,7 +1815,8 @@
                     "name": "parent_resource",
                     "documentation": "Reference to owning resource. ",
                     "is_mandatory": true,
-                    "type": "AUTHORED_RESOURCE"
+                    "type": "AUTHORED_RESOURCE",
+                    "default": "0..1"
                 },
                 "details": {
                     "_type": "P_BMM_GENERIC_PROPERTY",
@@ -2454,7 +2454,6 @@
                 }
             },
             "invariants": {
-                "Offset_validity": "",
                 "Offset_validity1": "offset \/= Void and then offset = time.diff (parent.origin)"
             }
         },
@@ -3243,6 +3242,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if this Ordered object is less than `_other_`. Redefined in descendants.",
                     "is_abstract": true,
                     "parameters": {
@@ -3395,6 +3397,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if `_other_` is less than this Quantified object. Based on comparison of `_magnitude_`.",
                     "parameters": {
                         "other": {
@@ -3504,6 +3509,9 @@
                 },
                 "add": {
                     "name": "add",
+                    "aliases": [
+                        "+"
+                    ],
                     "documentation": "Sum of two strictly comparable proportions.",
                     "parameters": {
                         "other": {
@@ -3519,6 +3527,9 @@
                 },
                 "subtract": {
                     "name": "subtract",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Difference between two strictly comparable proportions.",
                     "parameters": {
                         "other": {
@@ -3549,6 +3560,9 @@
                 },
                 "multiply": {
                     "name": "multiply",
+                    "aliases": [
+                        "&#42;"
+                    ],
                     "documentation": "Product of this Proportion and `_factor_`.",
                     "parameters": {
                         "factor": {
@@ -3564,6 +3578,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if this Proportion is less than  `_other_`. Only valid if `_is_strictly_comparable_to()_` is True.",
                     "parameters": {
                         "other": {
@@ -3636,7 +3653,24 @@
                 "Denominator is 100, numerator is understood as a percentage value.",
                 "Numerator and denominator are integral, and the presentation method uses a slash, e.g.  1\/2 . \n",
                 "Numerator and denominator are integral, and the presentation method uses a slash, e.g.  1\/2 ; if the numerator is greater than the denominator, e.g. n=3, d=2, the presentation is  1 1\/2 ."
-            ]
+            ],
+            "functions": {
+                "valid_proportion_kind": {
+                    "name": "valid_proportion_kind",
+                    "documentation": "True if n is one of the defined types. ",
+                    "parameters": {
+                        "nq": {
+                            "_type": "P_BMM_SINGLE_FUNCTION_PARAMETER",
+                            "name": "nq",
+                            "type": "Integer"
+                        }
+                    },
+                    "result": {
+                        "_type": "P_BMM_SIMPLE_TYPE",
+                        "type": "Boolean"
+                    }
+                }
+            }
         },
         "DV_AMOUNT": {
             "name": "DV_AMOUNT",
@@ -3677,6 +3711,9 @@
                 },
                 "add": {
                     "name": "add",
+                    "aliases": [
+                        "+"
+                    ],
                     "documentation": "Sum of this amount and another. The value of accuracy in the result is either:\n\n* the sum of the accuracies of the operands, if both present, or;\n* both operand accuracies are unknown_accuracy_value.\n\nIf the accuracy value is a percentage in one operand and not in the other, the form in the result is that of the larger operand.",
                     "parameters": {
                         "other": {
@@ -3695,6 +3732,9 @@
                 },
                 "subtract": {
                     "name": "subtract",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Difference of this amount and another. The value of `_accuracy_` in the result is either:\n\n* the sum of the accuracies of the operands, if both present, or;\n* unknown, if either or both operand accuracies are unknown.\n\nIf the `_accuracy_` value is a percentage in one operand and not in the other, the form in the result is that of the larger operand.",
                     "parameters": {
                         "other": {
@@ -3726,6 +3766,9 @@
                 },
                 "multiply": {
                     "name": "multiply",
+                    "aliases": [
+                        "&#42;"
+                    ],
                     "documentation": "Product of this Amount and `_factor_`.",
                     "parameters": {
                         "factor": {
@@ -3741,6 +3784,9 @@
                 },
                 "negative": {
                     "name": "negative",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Negated version of current object, such as used for representing a difference, e.g. a weight loss.",
                     "result": {
                         "_type": "P_BMM_SIMPLE_TYPE",
@@ -3749,6 +3795,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if this object is less than `_other_`. Based on comparison of `_magnitude_`.",
                     "parameters": {
                         "other": {
@@ -3847,6 +3896,9 @@
             "functions": {
                 "add": {
                     "name": "add",
+                    "aliases": [
+                        "+"
+                    ],
                     "documentation": "Sum of this `DV_QUANTITY` and `_other_`.",
                     "parameters": {
                         "other": {
@@ -3862,6 +3914,9 @@
                 },
                 "subtract": {
                     "name": "subtract",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Difference of this `DV_QUANTITY` and `_other_`.",
                     "parameters": {
                         "other": {
@@ -3877,6 +3932,9 @@
                 },
                 "multiply": {
                     "name": "multiply",
+                    "aliases": [
+                        "&#42;"
+                    ],
                     "documentation": "Product of this `DV_QUANTITY` and `_factor_`.",
                     "parameters": {
                         "factor": {
@@ -3892,6 +3950,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if this Quantified object is less than `_other_`. Based on comparison of `_magnitude_`. Only valid if `_is_strictly_comparable_to()_` is True.",
                     "parameters": {
                         "other": {
@@ -3983,6 +4044,9 @@
             "functions": {
                 "add": {
                     "name": "add",
+                    "aliases": [
+                        "+"
+                    ],
                     "documentation": "Sum of this `DV_COUNT` and `_other_`.",
                     "parameters": {
                         "other": {
@@ -3998,6 +4062,9 @@
                 },
                 "subtract": {
                     "name": "subtract",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Difference of this `DV_COUNT` and `_other_`.",
                     "parameters": {
                         "other": {
@@ -4013,6 +4080,9 @@
                 },
                 "multiply": {
                     "name": "multiply",
+                    "aliases": [
+                        "&#42;"
+                    ],
                     "documentation": "Product of this `DV_COUNT` and `_factor_`.",
                     "parameters": {
                         "factor": {
@@ -4028,6 +4098,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if `_other_` is less than this Quantified object. Based on comparison of `_magnitude_`.",
                     "parameters": {
                         "other": {
@@ -4081,6 +4154,9 @@
             "functions": {
                 "add": {
                     "name": "add",
+                    "aliases": [
+                        "+"
+                    ],
                     "documentation": "Addition of a differential amount to this quantity. \n\nThe value of accuracy in the result is either:\n\n* the sum of the accuracies of the operands, if both present, or;\n* unknown, if either or both operand accuracies are unknown.",
                     "is_abstract": true,
                     "parameters": {
@@ -4097,6 +4173,9 @@
                 },
                 "subtract": {
                     "name": "subtract",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Result of subtracting a differential amount from this quantity.\n\nThe value of `_accuracy_` in the result is either:\n\n* the sum of the accuracies of the operands, if both present, or;\n* unknown, if either or both operand accuracies are unknown.",
                     "is_abstract": true,
                     "parameters": {
@@ -4113,6 +4192,9 @@
                 },
                 "diff": {
                     "name": "diff",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Difference of two quantities.\n\nThe value of accuracy in the result is either:\n\n* the sum of the accuracies of the operands, if both present, or;\n* unknown, if either or both operand accuracies are unknown.",
                     "is_abstract": true,
                     "parameters": {
@@ -4154,6 +4236,9 @@
             "functions": {
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if this Ordinal value is less than `_other_`.",
                     "parameters": {
                         "other": {
@@ -4182,10 +4267,6 @@
                         "type": "Boolean"
                     }
                 }
-            },
-            "invariants": {
-                "Limits_valid": "limits.meaning.is_equal (\u201climits\u201d)",
-                "Reference_range_valid": "other_reference_ranges.has (limits)"
             }
         },
         "DV_SCALE": {
@@ -4228,6 +4309,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if this Scale value is less than `_other_`.",
                     "parameters": {
                         "other": {
@@ -4262,6 +4346,9 @@
             "functions": {
                 "add": {
                     "name": "add",
+                    "aliases": [
+                        "+"
+                    ],
                     "documentation": "Sum of this Duration and `_other_`.",
                     "parameters": {
                         "other": {
@@ -4277,6 +4364,9 @@
                 },
                 "subtract": {
                     "name": "subtract",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Difference of this Duration and `_other_`.",
                     "parameters": {
                         "other": {
@@ -4292,6 +4382,9 @@
                 },
                 "multiply": {
                     "name": "multiply",
+                    "aliases": [
+                        "&#42;"
+                    ],
                     "documentation": "Product of this Duration and `_factor_`.",
                     "parameters": {
                         "factor": {
@@ -4307,6 +4400,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if `_other_` is less than this Quantified object. Based on comparison of `_magnitude_`.",
                     "parameters": {
                         "other": {
@@ -4343,6 +4439,9 @@
                 },
                 "negative": {
                     "name": "negative",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Negated version of current duration.\n\nAssuming the current duration is positive, the negated version represents a time prior to some origin point, or a negative age (e.g. so-called 'adjusted age' of premature infant).",
                     "result": {
                         "_type": "P_BMM_SIMPLE_TYPE",
@@ -4380,6 +4479,9 @@
             "functions": {
                 "add": {
                     "name": "add",
+                    "aliases": [
+                        "+"
+                    ],
                     "documentation": "Addition of a Duration to this temporal entity.",
                     "is_abstract": true,
                     "parameters": {
@@ -4396,6 +4498,9 @@
                 },
                 "subtract": {
                     "name": "subtract",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Subtract a Duration from this temporal entity.",
                     "is_abstract": true,
                     "parameters": {
@@ -4412,6 +4517,9 @@
                 },
                 "diff": {
                     "name": "diff",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Difference between this temporal entity and `_other_`.",
                     "is_abstract": true,
                     "parameters": {
@@ -4470,6 +4578,9 @@
                 },
                 "add": {
                     "name": "add",
+                    "aliases": [
+                        "+"
+                    ],
                     "documentation": "Addition of a Duration to this Date.",
                     "parameters": {
                         "a_diff": {
@@ -4485,6 +4596,9 @@
                 },
                 "subtract": {
                     "name": "subtract",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Subtract a Duration from this Date.",
                     "parameters": {
                         "a_diff": {
@@ -4500,6 +4614,9 @@
                 },
                 "diff": {
                     "name": "diff",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Difference between this Date and `_other_`.",
                     "parameters": {
                         "other": {
@@ -4515,6 +4632,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if `_other_` is less than this Quantified object. Based on comparison of `_magnitude_`.",
                     "parameters": {
                         "other": {
@@ -4581,6 +4701,9 @@
                 },
                 "add": {
                     "name": "add",
+                    "aliases": [
+                        "+"
+                    ],
                     "documentation": "Addition of a Duration to this Time.",
                     "parameters": {
                         "a_diff": {
@@ -4596,6 +4719,9 @@
                 },
                 "subtract": {
                     "name": "subtract",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Subtract a Duration from this Time.",
                     "parameters": {
                         "a_diff": {
@@ -4611,6 +4737,9 @@
                 },
                 "diff": {
                     "name": "diff",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Difference between this Time and `_other_`.",
                     "parameters": {
                         "other": {
@@ -4626,6 +4755,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if `_other_` is less than this Quantified object. Based on comparison of `_magnitude_`.",
                     "parameters": {
                         "other": {
@@ -4692,6 +4824,9 @@
                 },
                 "add": {
                     "name": "add",
+                    "aliases": [
+                        "+"
+                    ],
                     "documentation": "Addition of a Duration to this Date\/time.",
                     "parameters": {
                         "a_diff": {
@@ -4707,6 +4842,9 @@
                 },
                 "subtract": {
                     "name": "subtract",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Subtract a Duration from this Date\/time.",
                     "parameters": {
                         "a_diff": {
@@ -4722,6 +4860,9 @@
                 },
                 "diff": {
                     "name": "diff",
+                    "aliases": [
+                        "-"
+                    ],
                     "documentation": "Difference between this Date\/time and `_other_`.",
                     "parameters": {
                         "other": {
@@ -4737,6 +4878,9 @@
                 },
                 "less_than": {
                     "name": "less_than",
+                    "aliases": [
+                        "<"
+                    ],
                     "documentation": "True if `_other_` is less than this Quantified object. Based on comparison of `_magnitude_`.",
                     "parameters": {
                         "other": {
@@ -5293,6 +5437,7 @@
             }
         },
         "CODE_SET_ACCESS": {
+            "_type": "P_BMM_INTERFACE",
             "name": "CODE_SET_ACCESS",
             "documentation": "Defines an object providing proxy access to a code_set.",
             "functions": {
@@ -5347,6 +5492,7 @@
             }
         },
         "TERMINOLOGY_ACCESS": {
+            "_type": "P_BMM_INTERFACE",
             "name": "TERMINOLOGY_ACCESS",
             "documentation": "Defines an object providing proxy access to a terminology. ",
             "functions": {
@@ -7036,9 +7182,6 @@
                 }
             },
             "invariants": {
-                "Setting_valid": "",
-                "unnamed2": "",
-                "unnamed3": "Terminology (Terminology_id_openehr).has_code_for_group_id (Group_id_setting, setting.defining_code)",
                 "Category_validity": "terminology (Terminology_id_openehr).has_code_for_group_id (Group_id_composition_category, category.defining_code)",
                 "Is_persistent_validity": "is_persistent implies context = Void",
                 "Territory_valid": "code_set(Code_set_id_countries).has_code(territory)",
