@@ -3671,9 +3671,15 @@
         "FUNCTION": {
             "name": "FUNCTION",
             "documentation": "Type representing a function with a return type and 0 or more arguments represented as a TUPLE.",
-            "ancestors": [
-                "ROUTINE"
-            ],
+            "ancestor_defs": {
+                "ROUTINE<ARGS>": {
+                    "_type": "P_BMM_GENERIC_TYPE",
+                    "root_type": "ROUTINE",
+                    "generic_parameters": [
+                        "ARGS"
+                    ]
+                }
+            },
             "generic_parameter_defs": {
                 "ARGS": {
                     "name": "ARGS",
@@ -3728,9 +3734,15 @@
         "PROCEDURE": {
             "name": "PROCEDURE",
             "documentation": "Type representing a procedure with 0 or more arguments represented as a TUPLE.",
-            "ancestors": [
-                "ROUTINE"
-            ],
+            "ancestor_defs": {
+                "ROUTINE<ARGS>": {
+                    "_type": "P_BMM_GENERIC_TYPE",
+                    "root_type": "ROUTINE",
+                    "generic_parameters": [
+                        "ARGS"
+                    ]
+                }
+            },
             "generic_parameter_defs": {
                 "ARGS": {
                     "name": "ARGS",

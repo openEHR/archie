@@ -11,6 +11,7 @@ import org.openehr.utils.message.MessageLogger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CreatedSchemaValidation implements BmmValidation {
     @Override
@@ -19,10 +20,10 @@ public class CreatedSchemaValidation implements BmmValidation {
 
         //check top-level names - package names cannot contain each other and be siblings
         schema.getPackages().keySet().forEach(name1 -> {
-            boolean invalidSiblings = packageNames.stream().anyMatch(name2 ->
-                    (!name1.equalsIgnoreCase(name2)) && (name1.startsWith(name2) || name2.startsWith(name1))
-            );
-            if (invalidSiblings) {
+            List<String> invalidSiblings = packageNames.stream().filter(name2 ->
+                    (!name1.equalsIgnoreCase(name2)) && (name1.startsWith(name2 + ".") || name2.startsWith(name1 + "."))
+            ).collect(Collectors.toList());
+            if (!invalidSiblings.isEmpty()) {
                 logger.addError(BmmMessageIds.EC_ILLEGAL_TOP_LEVEL_SIBLING_PACKAGES, schema.getSchemaId());
             }
         });

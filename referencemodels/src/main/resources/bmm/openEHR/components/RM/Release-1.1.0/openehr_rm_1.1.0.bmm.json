@@ -58,15 +58,6 @@
                         "FOLDER"
                     ]
                 },
-                "resource": {
-                    "name": "resource",
-                    "classes": [
-                        "AUTHORED_RESOURCE",
-                        "RESOURCE_DESCRIPTION",
-                        "TRANSLATION_DETAILS",
-                        "RESOURCE_DESCRIPTION_ITEM"
-                    ]
-                },
                 "tags": {
                     "name": "tags",
                     "classes": [
@@ -1218,11 +1209,16 @@
             },
             "properties": {
                 "item": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
+                    "_type": "P_BMM_GENERIC_PROPERTY",
                     "name": "item",
                     "documentation": "The `ORIGINAL_VERSION` object that was imported. ",
                     "is_mandatory": true,
-                    "type": "ORIGINAL_VERSION"
+                    "type_def": {
+                        "root_type": "ORIGINAL_VERSION",
+                        "generic_parameters": [
+                            "T"
+                        ]
+                    }
                 }
             },
             "functions": {
@@ -1325,7 +1321,7 @@
                     }
                 },
                 "data": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
+                    "_type": "P_BMM_SINGLE_PROPERTY_OPEN",
                     "name": "data",
                     "documentation": "Data content of this Version.",
                     "type": "T"
@@ -1679,294 +1675,6 @@
             },
             "invariants": {
                 "Folders_valid": "not folders.is_empty"
-            }
-        },
-        "AUTHORED_RESOURCE": {
-            "name": "AUTHORED_RESOURCE",
-            "documentation": "Abstract idea of an online resource created by a human author. \n",
-            "is_abstract": true,
-            "properties": {
-                "original_language": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "original_language",
-                    "documentation": "Language in which this resource was initially authored. Although there is no language primacy of resources overall, the language of original authoring is required to ensure natural language translations can preserve quality. Language is relevant in both the description and ontology sections. ",
-                    "is_mandatory": true,
-                    "type": "CODE_PHRASE"
-                },
-                "is_controlled": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "is_controlled",
-                    "documentation": "True if this resource is under any kind of change control (even file copying), in which case revision history is created. ",
-                    "type": "Boolean"
-                },
-                "translations": {
-                    "_type": "P_BMM_GENERIC_PROPERTY",
-                    "name": "translations",
-                    "documentation": "List of details for each natural-language translation made of this resource, keyed by language. For each translation listed here, there must be corresponding sections in all language-dependent parts of the resource. The `_original_language_` does not appear in this list.",
-                    "type_def": {
-                        "root_type": "Hash",
-                        "generic_parameters": [
-                            "String",
-                            "TRANSLATION_DETAILS"
-                        ]
-                    }
-                },
-                "description": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "description",
-                    "documentation": "Description and lifecycle information of the resource.",
-                    "type": "RESOURCE_DESCRIPTION"
-                },
-                "revision_history": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "revision_history",
-                    "documentation": "The revision history of the resource. Only required if `_is_controlled_ = True` (avoids large revision histories for informal or private editing situations). ",
-                    "type": "REVISION_HISTORY"
-                }
-            },
-            "functions": {
-                "current_revision": {
-                    "name": "current_revision",
-                    "documentation": "Most recent revision in `_revision_history_` if `_is_controlled_` else  (uncontrolled) . ",
-                    "post_conditions": {
-                        "Post": "Result = revision_history.most_recent_version"
-                    },
-                    "result": {
-                        "_type": "P_BMM_SIMPLE_TYPE",
-                        "type": "String"
-                    }
-                },
-                "languages_available": {
-                    "name": "languages_available",
-                    "documentation": "Total list of languages available in this resource, derived from `_original_language_` and `_translations_`.\n",
-                    "result": {
-                        "_type": "P_BMM_CONTAINER_TYPE",
-                        "container_type": "List",
-                        "type": "String"
-                    }
-                }
-            },
-            "invariants": {
-                "Original_language_valid": "code_set (Code_set_id_languages).has_code (original_language.as_string)",
-                "Languages_available_valid": "languages_available.has (original_language)",
-                "Revision_history_valid": "is_controlled xor revision_history = Void",
-                "Current_revision_valid": "(current_revision \/= Void and not is_controlled) implies current_revision.is_equal (\u201c(uncontrolled)\u201d)",
-                "Translations_valid": "translations \/= Void implies (not translations.is_empty and not translations.has (orginal_language.code_string))",
-                "Description_valid": "translations \/= Void implies (description.details.for_all (d |\ntranslations.has_key (d.language.code_string)))"
-            }
-        },
-        "RESOURCE_DESCRIPTION": {
-            "name": "RESOURCE_DESCRIPTION",
-            "documentation": "Defines the descriptive meta-data of a resource.",
-            "properties": {
-                "original_author": {
-                    "_type": "P_BMM_GENERIC_PROPERTY",
-                    "name": "original_author",
-                    "documentation": "Original author of this resource, with all relevant details, including organisation.",
-                    "is_mandatory": true,
-                    "type_def": {
-                        "root_type": "Hash",
-                        "generic_parameters": [
-                            "String",
-                            "String"
-                        ]
-                    }
-                },
-                "other_contributors": {
-                    "_type": "P_BMM_CONTAINER_PROPERTY",
-                    "name": "other_contributors",
-                    "documentation": "Other contributors to the resource, probably listed in  `'name <email>'`  form. ",
-                    "type_def": {
-                        "container_type": "List",
-                        "type": "String"
-                    },
-                    "cardinality": {
-                        "lower": 0,
-                        "upper_unbounded": true
-                    }
-                },
-                "lifecycle_state": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "lifecycle_state",
-                    "documentation": "Lifecycle state of the resource, typically including states such as: `initial | submitted | experimental | awaiting_approval | approved | superseded | obsolete`.",
-                    "is_mandatory": true,
-                    "type": "String"
-                },
-                "resource_package_uri": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "resource_package_uri",
-                    "documentation": "URI of package to which this resource belongs.",
-                    "type": "String"
-                },
-                "other_details": {
-                    "_type": "P_BMM_GENERIC_PROPERTY",
-                    "name": "other_details",
-                    "documentation": "Additional non language-senstive resource meta-data, as a list of name\/value pairs. ",
-                    "type_def": {
-                        "root_type": "Hash",
-                        "generic_parameters": [
-                            "String",
-                            "String"
-                        ]
-                    }
-                },
-                "parent_resource": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "parent_resource",
-                    "documentation": "Reference to owning resource. ",
-                    "is_mandatory": true,
-                    "type": "AUTHORED_RESOURCE",
-                    "default": "0..1"
-                },
-                "details": {
-                    "_type": "P_BMM_GENERIC_PROPERTY",
-                    "name": "details",
-                    "documentation": "Details of all parts of resource description that are natural language-dependent, keyed by language code. ",
-                    "is_mandatory": true,
-                    "type_def": {
-                        "root_type": "Hash",
-                        "generic_parameters": [
-                            "String",
-                            "RESOURCE_DESCRIPTION_ITEM"
-                        ]
-                    }
-                }
-            },
-            "invariants": {
-                "Original_author_valid": "not original_author.is_empty",
-                "Lifecycle_state_valid": "not lifecycle_state.is_empty",
-                "Details_valid": "not details.is_empty",
-                "Language_valid": "parent_resource \/= Void implies details.for_all (d | parent_resource.languages_available.has (d.language.code_string))",
-                "Parent_resource_valid": "parent_resource \/= Void implies parent_resource.description = self"
-            }
-        },
-        "TRANSLATION_DETAILS": {
-            "name": "TRANSLATION_DETAILS",
-            "documentation": "Class providing details of a natural language translation. ",
-            "properties": {
-                "language": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "language",
-                    "documentation": "Language of the translation.",
-                    "is_mandatory": true,
-                    "type": "CODE_PHRASE"
-                },
-                "author": {
-                    "_type": "P_BMM_GENERIC_PROPERTY",
-                    "name": "author",
-                    "documentation": "Translator name and other demographic details.",
-                    "is_mandatory": true,
-                    "type_def": {
-                        "root_type": "Hash",
-                        "generic_parameters": [
-                            "String",
-                            "String"
-                        ]
-                    }
-                },
-                "accreditaton": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "accreditaton",
-                    "documentation": "Accreditation of translator, usually a national translator's registration or association membership id.",
-                    "type": "String"
-                },
-                "other_details": {
-                    "_type": "P_BMM_GENERIC_PROPERTY",
-                    "name": "other_details",
-                    "documentation": "Any other meta-data.",
-                    "type_def": {
-                        "root_type": "Hash",
-                        "generic_parameters": [
-                            "String",
-                            "String"
-                        ]
-                    }
-                }
-            },
-            "invariants": {
-                "Language_valid": "code_set (Code_set_id_languages).has_code (language)"
-            }
-        },
-        "RESOURCE_DESCRIPTION_ITEM": {
-            "name": "RESOURCE_DESCRIPTION_ITEM",
-            "documentation": "Language-specific detail of resource description. When a resource is translated for use in another language environment, each `RESOURCE_DESCRIPTION_ITEM` needs to be copied and translated into the new language.",
-            "properties": {
-                "language": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "language",
-                    "documentation": "The localised language in which the items in this description item are written. Coded from openEHR code set `languages`.",
-                    "is_mandatory": true,
-                    "type": "CODE_PHRASE"
-                },
-                "purpose": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "purpose",
-                    "documentation": "Purpose of the resource.",
-                    "is_mandatory": true,
-                    "type": "String"
-                },
-                "keywords": {
-                    "_type": "P_BMM_CONTAINER_PROPERTY",
-                    "name": "keywords",
-                    "documentation": "Keywords which characterise this resource, used e.g. for indexing and searching. ",
-                    "type_def": {
-                        "container_type": "List",
-                        "type": "String"
-                    },
-                    "cardinality": {
-                        "lower": 0,
-                        "upper_unbounded": true
-                    }
-                },
-                "use": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "use",
-                    "documentation": "Description of the uses of the resource, i.e. contexts in which it could be used. \n",
-                    "type": "String"
-                },
-                "misuse": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "misuse",
-                    "documentation": "Description of any misuses of the resource, i.e. contexts in which it should not be used.",
-                    "type": "String"
-                },
-                "copyright": {
-                    "_type": "P_BMM_SINGLE_PROPERTY",
-                    "name": "copyright",
-                    "documentation": "Optional copyright statement for the resource as a knowledge resource. \n",
-                    "type": "String"
-                },
-                "original_resource_uri": {
-                    "_type": "P_BMM_GENERIC_PROPERTY",
-                    "name": "original_resource_uri",
-                    "documentation": "URIs of original clinical document(s) or description of which resource is a formalisation, in the language of this description item; keyed by meaning. ",
-                    "type_def": {
-                        "root_type": "Hash",
-                        "generic_parameters": [
-                            "String",
-                            "String"
-                        ]
-                    }
-                },
-                "other_details": {
-                    "_type": "P_BMM_GENERIC_PROPERTY",
-                    "name": "other_details",
-                    "documentation": "Additional language-senstive resource metadata, as a list of name\/value pairs. ",
-                    "type_def": {
-                        "root_type": "Hash",
-                        "generic_parameters": [
-                            "String",
-                            "String"
-                        ]
-                    }
-                }
-            },
-            "invariants": {
-                "Language_valid": "code_set (Code_set_id_languages).has_code (language)",
-                "Purpose_valid": "not purpose.is_empty",
-                "Use_valid": "use \/= Void implies not use.is_empty",
-                "misuse_valid": "misuse \/= Void implies not misuse.is_empty",
-                "copyright_valid": "copyright \/= Void implies not copyright.is_empty"
             }
         },
         "ITEM_TAG": {
