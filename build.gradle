@@ -63,8 +63,8 @@ subprojects {
 
         //java 10 no longer has these included by default, so explicit dependency is needed.
         api(libs.jaxb.api)
-        api(libs.jaxb.core)
-        runtimeOnly(libs.jaxb.impl)
+        api(libs.jakarta.xml.bind.api)
+        runtimeOnly(libs.jaxb.runtime)
         api(libs.activation)
 
         api(libs.threeten.extra)
