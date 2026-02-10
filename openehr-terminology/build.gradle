@@ -5,7 +5,7 @@
 description = "A very basic OpenEHR terminology file binding"
 
 dependencies {
-    implementation libs.jakarta.xml.bind.api
+    api libs.jakarta.xml.bind.api
     runtimeOnly libs.jaxb.runtime
 }
 

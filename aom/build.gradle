@@ -7,6 +7,7 @@ dependencies {
     api project(':utils')
     api project(':bmm')
     api project(':openehr-terminology')
-    implementation libs.jakarta.xml.bind.api
+
+    api libs.jakarta.xml.bind.api
     runtimeOnly libs.jaxb.runtime
 }
