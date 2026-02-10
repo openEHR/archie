@@ -6,8 +6,8 @@ import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
@@ -22,7 +22,7 @@ public class AttributeTupleConstraintsTest {
     
     private final ValidationHelper helper = new ValidationHelper(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build());
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() throws Exception {
         Archetype archetype = TestUtil.parseFailOnErrors("/basic.adl");
         CComplexObject valueObject = archetype.getDefinition().itemAtPath("/context[id11]/other_context[id2]/items[id3]/items[id7]/value[id16]");

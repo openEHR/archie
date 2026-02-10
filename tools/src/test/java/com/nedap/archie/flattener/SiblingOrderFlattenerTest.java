@@ -10,8 +10,8 @@ import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class SiblingOrderFlattenerTest {
 
     private Archetype parentArchetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         repository = new InMemoryFullArchetypeRepository();
         parentArchetype = parse("openEHR-EHR-CLUSTER.order-parent.v1.0.0.adls");

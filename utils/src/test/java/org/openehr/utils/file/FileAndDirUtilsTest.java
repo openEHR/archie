@@ -1,7 +1,7 @@
 package org.openehr.utils.file;
 
 import org.apache.commons.io.filefilter.IOFileFilter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.utils.operation.OperationOutcome;
 import org.openehr.utils.operation.OperationOutcomeStatus;
 

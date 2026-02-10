@@ -3,9 +3,9 @@ package com.nedap.archie.terminology;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.commons.io.IOUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -17,12 +17,12 @@ public class OpenEHRTerminologyAccessTest {
 
     private OpenEHRTerminologyAccess termAccess;
 
-    @Before
+    @BeforeEach
     public void getInstance() {
         termAccess = OpenEHRTerminologyAccess.getInstance();//should not throw an exception from parsing
     }
 
-    @After
+    @AfterEach
     public void reset() {
         OpenEHRTerminologyAccess.READ_FROM_JSON = true;
         OpenEHRTerminologyAccess.instance = null;

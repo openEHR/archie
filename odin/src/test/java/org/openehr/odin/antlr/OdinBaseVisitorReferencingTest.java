@@ -1,6 +1,6 @@
 package org.openehr.odin.antlr;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.odin.CompositeOdinObject;
 import org.openehr.odin.loader.OdinLoaderImpl;
 

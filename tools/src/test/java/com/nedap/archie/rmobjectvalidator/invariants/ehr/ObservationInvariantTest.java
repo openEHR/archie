@@ -7,7 +7,7 @@ import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datastructures.PointEvent;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 

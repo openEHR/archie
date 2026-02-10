@@ -13,8 +13,8 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.rules.PrimitiveType;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -27,7 +27,7 @@ public class FunctionsTest {
     private ADLParser parser;
     private Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() {
         parser = new ADLParser(new RMConstraintImposer());
     }

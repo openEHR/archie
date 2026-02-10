@@ -12,8 +12,8 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.datetime.DateTimeParsers;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
@@ -32,7 +32,7 @@ public class JAXBAOMTest {
     private Archetype archetype;
     private CComplexObject elementRootNode;
     private CAttribute valueAttribute;
-    @Before
+    @BeforeEach
     public void setup() {
         //create an empty archetype
         archetype = new AuthoredArchetype();

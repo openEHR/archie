@@ -1,7 +1,7 @@
 package com.nedap.archie.rmobjectvalidator;
 
 import com.nedap.archie.base.Interval;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;

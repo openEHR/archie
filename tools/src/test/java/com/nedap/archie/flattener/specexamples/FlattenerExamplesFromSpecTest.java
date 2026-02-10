@@ -11,9 +11,8 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.SimpleMetaModelProvider;
-import org.junit.Before;
-import org.junit.Test;
-import org.openehr.bmm.v2.validation.BmmRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class FlattenerExamplesFromSpecTest {
 
     protected MetaModelProvider metaModelProvider;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         repository = new SimpleArchetypeRepository();
         metaModelProvider = new SimpleMetaModelProvider(BuiltinReferenceModels.getAvailableModelInfoLookups(), null);

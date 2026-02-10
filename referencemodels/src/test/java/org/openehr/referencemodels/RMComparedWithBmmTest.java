@@ -3,7 +3,7 @@ package org.openehr.referencemodels;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.v2.validation.BmmRepository;

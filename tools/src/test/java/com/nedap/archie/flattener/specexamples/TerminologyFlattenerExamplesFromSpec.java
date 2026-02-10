@@ -5,8 +5,8 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.Map;
@@ -19,7 +19,7 @@ public class TerminologyFlattenerExamplesFromSpec {
 
     private static SimpleArchetypeRepository repository;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         repository = new SimpleArchetypeRepository();
     }

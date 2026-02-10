@@ -7,8 +7,8 @@ import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class ArchetypeValidatorTest {
 
     private ReferenceModels models;
 
-    @Before
+    @BeforeEach
     public void setup() {
         parser = new ADLParser();
         models = new ReferenceModels();

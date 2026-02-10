@@ -8,8 +8,8 @@ import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class FlattenerTest {
 
     private Flattener flattener;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
 
         models = BuiltinReferenceModels.getAvailableModelInfoLookups();

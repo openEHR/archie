@@ -22,8 +22,8 @@ import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.threeten.extra.PeriodDuration;
 
@@ -44,7 +44,7 @@ public class FlatJsonGeneratorTest {
     private static final String BLOOD_PRESSURE_PATH = "/ckm-mirror/local/archetypes/entry/observation/openEHR-EHR-OBSERVATION.blood_pressure.v1.1.0.adls";
     private static final double EPSILON = 0.00000001d;
 
-    @After
+    @AfterEach
     public void tearDown() {
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(null);
     }

@@ -2,8 +2,8 @@ package com.nedap.archie.diff;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.Map;
@@ -15,7 +15,7 @@ public class AnnotationDifferentiatorTest {
     private Archetype flatParent;
     private Archetype child;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         flatParent = TestUtil.parseFailOnErrors("/com/nedap/archie/diff/openEHR-EHR-OBSERVATION.basic_annotations.v1.0.0.adls");
         child = TestUtil.parseFailOnErrors("/com/nedap/archie/diff/openEHR-EHR-OBSERVATION.annotations_specialised_flattened.v1.0.0.adls");

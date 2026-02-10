@@ -16,8 +16,8 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class RMPathQueryTest {
     private Archetype archetype;
     private Pathable root;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         testUtil = new TestUtil();
         archetype = TestUtil.parseFailOnErrors("/basic.adl");

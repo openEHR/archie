@@ -6,8 +6,8 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 
 public class ArchetypeTerminologyTest {
 
-    @After
+    @AfterEach
     public void tearDown() {
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(null);
     }

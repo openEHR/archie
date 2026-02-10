@@ -3,7 +3,7 @@ package com.nedap.archie.adl14;
 import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CComplexObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;

@@ -25,7 +25,7 @@ import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.testutil.DummyOperationalTemplateProvider;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.leadpony.justify.api.Problem;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.referencemodels.BuiltinReferenceModels;

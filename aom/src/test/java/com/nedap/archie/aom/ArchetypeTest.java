@@ -1,7 +1,7 @@
 package com.nedap.archie.aom;
 
 import com.google.common.collect.Sets;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
