@@ -5,7 +5,7 @@ import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
 import java.time.temporal.TemporalAmount;
 import java.util.Objects;
 

@@ -8,7 +8,7 @@ import com.nedap.archie.xml.types.StringDictionaryItem;
 import com.nedap.archie.xml.types.TermBindingSet;
 import com.nedap.archie.xml.types.XmlArchetypeTerminology;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
