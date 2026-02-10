@@ -4,16 +4,11 @@
 
 description = "A very basic OpenEHR terminology file binding"
 
-//ext {
-//    jaxbVersion = '2.3.1'
-//}
-//
-//dependencies {
-//    xjc "javax.xml.bind:jaxb-api:$jaxbVersion"
-//    xjc "org.glassfish.jaxb:jaxb-runtime:$jaxbVersion"
-//    xjc "org.glassfish.jaxb:jaxb-xjc:$jaxbVersion"
-//}
-//
+dependencies {
+    implementation libs.jakarta.xml.bind.api
+    runtimeOnly libs.jaxb.runtime
+}
+
 //xjcGeneration {
 //    defaultAdditionalXjcOptions = ['encoding': 'UTF-8']
 //    defaultBindingFile = null //file 'src/main/resources//xjc/xjc.xjb.xml'
