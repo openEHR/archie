@@ -2,7 +2,7 @@ package com.nedap.archie.rminfo;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import static org.junit.Assert.assertEquals;

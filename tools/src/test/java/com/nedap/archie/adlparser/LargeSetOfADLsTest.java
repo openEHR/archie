@@ -1,7 +1,7 @@
 package com.nedap.archie.adlparser;
 
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;

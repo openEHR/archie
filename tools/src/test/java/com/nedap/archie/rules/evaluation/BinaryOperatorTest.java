@@ -6,7 +6,7 @@ import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constant;
 import com.nedap.archie.rules.ExpressionType;
 import com.nedap.archie.rules.OperatorKind;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.threeten.extra.PeriodDuration;
 
 import java.time.*;

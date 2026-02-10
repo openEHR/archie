@@ -4,7 +4,7 @@ import com.nedap.archie.antlr.errors.ANTLRParserMessage;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;

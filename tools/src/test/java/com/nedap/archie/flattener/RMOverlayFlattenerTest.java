@@ -5,7 +5,7 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import static org.junit.Assert.*;

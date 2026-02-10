@@ -3,8 +3,8 @@ package org.openehr.referencemodels;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
@@ -28,7 +28,7 @@ import static org.junit.Assert.assertTrue;
 public class AOMComparedWithBmmTest {
 
     @Test
-    @Ignore
+    @Disabled
     public void testAOM() throws Exception{
         Map<String, String> typeMap =  new HashMap<>();
         typeMap.put("Any", "OPEN_EHRBASE");

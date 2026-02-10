@@ -1,6 +1,6 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.threeten.extra.PeriodDuration;
 
 import java.time.Duration;

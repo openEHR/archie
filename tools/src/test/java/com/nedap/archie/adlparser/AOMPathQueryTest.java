@@ -9,9 +9,9 @@ import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.PartialMatch;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
@@ -24,14 +24,14 @@ public class AOMPathQueryTest {
 
     private Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         archetype = TestUtil.parseFailOnErrors("/basic.adl");
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage(null);
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(null);

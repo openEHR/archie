@@ -4,7 +4,7 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.json.JacksonUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 

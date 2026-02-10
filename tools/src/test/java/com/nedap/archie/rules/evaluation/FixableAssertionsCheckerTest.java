@@ -13,9 +13,9 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class FixableAssertionsCheckerTest {
     private TestUtil testUtil;
     private RMObjectCreator rmObjectCreator;
 
-    @Before
+    @BeforeEach
     public void setup() {
         testUtil = new TestUtil();
         rmObjectCreator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
@@ -43,7 +43,7 @@ public class FixableAssertionsCheckerTest {
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage(null);
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(null);

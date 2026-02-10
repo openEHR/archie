@@ -3,8 +3,8 @@ package com.nedap.archie.adlparser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.net.URI;
 
@@ -18,7 +18,7 @@ public class TerminologyTest {
 
     private Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         archetype = TestUtil.parseFailOnErrors("/basic.adl");;
     }

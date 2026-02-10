@@ -5,9 +5,9 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,13 +18,13 @@ public class PathTest {
 
     private Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         archetype = TestUtil.parseFailOnErrors("/basic.adl");
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage(null);
     }

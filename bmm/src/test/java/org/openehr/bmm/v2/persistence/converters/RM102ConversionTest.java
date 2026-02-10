@@ -1,8 +1,8 @@
 package org.openehr.bmm.v2.persistence.converters;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.openehr.bmm.core.BmmContainerType;
 import org.openehr.bmm.core.BmmGenericType;
 import org.openehr.bmm.core.BmmModel;
@@ -23,7 +23,7 @@ public class RM102ConversionTest {
     private static BmmModel rm102Model;
     private static BmmRepository repo;
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() throws Exception {
         repo = new BmmRepository();
         repo.addPersistentSchema(parse("/openehr/openehr_basic_types_102.bmm"));
@@ -39,7 +39,7 @@ public class RM102ConversionTest {
         rm102Model = repo.getModel("openehr_ehr_1.0.2").getModel();
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDown() {
         //not very important, but frees up some memory
         rm102Model = null;

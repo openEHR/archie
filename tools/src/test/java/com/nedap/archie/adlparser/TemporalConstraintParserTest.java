@@ -3,8 +3,8 @@ package com.nedap.archie.adlparser;
 import com.nedap.archie.aom.primitives.CDate;
 import com.nedap.archie.aom.primitives.CDuration;
 import com.nedap.archie.base.Interval;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.Period;
@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 public class TemporalConstraintParserTest extends PrimitivesConstraintParserTest {
 
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         Locale.setDefault(Locale.US);
         super.setup();

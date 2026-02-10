@@ -4,7 +4,7 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import static org.junit.Assert.assertFalse;
