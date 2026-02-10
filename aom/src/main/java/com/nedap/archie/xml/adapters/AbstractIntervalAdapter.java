@@ -2,7 +2,7 @@ package com.nedap.archie.xml.adapters;
 
 import com.nedap.archie.base.Interval;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
  * Created by pieter.bos on 28/07/16.

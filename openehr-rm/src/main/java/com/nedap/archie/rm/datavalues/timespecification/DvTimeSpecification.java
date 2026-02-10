@@ -3,9 +3,9 @@ package com.nedap.archie.rm.datavalues.timespecification;
 import com.nedap.archie.rm.datavalues.DataValue;
 import com.nedap.archie.rm.datavalues.encapsulated.DvParsable;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
