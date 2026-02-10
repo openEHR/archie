@@ -5,7 +5,7 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datavalues.DataValue;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
 import java.util.Objects;
 
 /**

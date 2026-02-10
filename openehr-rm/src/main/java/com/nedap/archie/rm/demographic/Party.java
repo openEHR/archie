@@ -7,7 +7,7 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.LocatableRef;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
