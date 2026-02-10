@@ -16,8 +16,8 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvProportion;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class RmObjectValidatorTest {
     private RMObjectValidator validatorWithoutInvariants;
 
 
-    @Before
+    @BeforeEach
     public void setup() {
 
         testUtil = new TestUtil();

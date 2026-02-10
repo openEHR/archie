@@ -1,7 +1,7 @@
 package com.nedap.archie.aom;
 
 import com.nedap.archie.definitions.VersionStatus;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;

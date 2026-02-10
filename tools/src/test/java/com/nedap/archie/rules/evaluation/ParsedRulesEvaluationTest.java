@@ -25,8 +25,8 @@ import com.nedap.archie.rules.ExpressionVariable;
 import com.nedap.archie.rules.RuleStatement;
 import com.nedap.archie.rules.VariableDeclaration;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
@@ -47,7 +47,7 @@ public abstract class ParsedRulesEvaluationTest {
 
     TestUtil testUtil;
 
-    @Before
+    @BeforeEach
     public void setup() {
         testUtil = new TestUtil();
         parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());

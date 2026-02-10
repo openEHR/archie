@@ -6,7 +6,7 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;

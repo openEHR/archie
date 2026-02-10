@@ -1,7 +1,7 @@
 package com.nedap.archie.rules.evaluation;
 
 import com.nedap.archie.rules.evaluation.evaluators.FunctionUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;

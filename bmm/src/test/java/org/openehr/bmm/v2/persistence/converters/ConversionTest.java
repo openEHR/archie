@@ -1,6 +1,6 @@
 package org.openehr.bmm.v2.persistence.converters;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmGenericType;
 import org.openehr.bmm.core.BmmModel;

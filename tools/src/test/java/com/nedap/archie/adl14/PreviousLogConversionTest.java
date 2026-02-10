@@ -8,7 +8,7 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.openehr.utils.message.MessageDescriptor;
 import org.openehr.utils.message.MessageSeverity;

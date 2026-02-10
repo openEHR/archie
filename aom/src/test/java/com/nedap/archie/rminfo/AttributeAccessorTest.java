@@ -5,7 +5,7 @@ import com.google.common.collect.Sets;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 

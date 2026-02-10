@@ -7,8 +7,8 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.rminfo.ReferenceModels;
 import com.nedap.archie.rules.*;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import static org.junit.Assert.*;
@@ -27,7 +27,7 @@ public class RulesFlattenerTest {
 
     private ReferenceModels models;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         models = BuiltinReferenceModels.getAvailableModelInfoLookups();
 

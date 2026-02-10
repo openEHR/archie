@@ -5,7 +5,8 @@ import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.utils.AOMUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
@@ -13,14 +14,10 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.List;
 
-import static junit.framework.TestCase.assertFalse;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-public class ADL14ExternalTerminologyConversionTest {
+class ADL14ExternalTerminologyConversionTest {
 
     @Test
-    public void terminologyBindingsConverted() throws IOException, ADLParseException {
+    void terminologyBindingsConverted() throws IOException, ADLParseException {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
         //apply the first conversion and store the log. It has created an at code to bind to [openehr::124], used in a DV_QUANTITY.property
@@ -30,18 +27,18 @@ public class ADL14ExternalTerminologyConversionTest {
             Archetype converted = result.getConversionResults().get(0).getArchetype();
             CTerminologyCode termCodeConstraint = converted.itemAtPath("/items/value/property[1]");
             String atCode = termCodeConstraint.getConstraint().get(0);
-            assertTrue("code must be a value, not a value set", AOMUtils.isValueCode(atCode));
-            assertEquals("Mass", converted.getTerminology().getTermDefinition("en", atCode).getText());
-            assertEquals("Mass", converted.getTerminology().getTermDefinition("en", atCode).getDescription());
+            Assertions.assertTrue(AOMUtils.isValueCode(atCode), "code must be a value, not a value set");
+            Assertions.assertEquals("Mass", converted.getTerminology().getTermDefinition("en", atCode).getText());
+            Assertions.assertEquals("Mass", converted.getTerminology().getTermDefinition("en", atCode).getDescription());
 
-            assertEquals("* Mass (en)", converted.getTerminology().getTermDefinition("no-bk", atCode).getText());
-            assertEquals("* Mass (en)", converted.getTerminology().getTermDefinition("no-bk", atCode).getDescription());
+            Assertions.assertEquals("* Mass (en)", converted.getTerminology().getTermDefinition("no-bk", atCode).getText());
+            Assertions.assertEquals("* Mass (en)", converted.getTerminology().getTermDefinition("no-bk", atCode).getDescription());
         }
 
     }
 
     @Test
-    public void twoTermbindingsInOneConstraint() throws Exception {
+    void twoTermbindingsInOneConstraint() throws Exception {
         ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
         //apply the first conversion and store the log. It has created an at code to bind to [openehr::124], used in a DV_QUANTITY.property
@@ -49,19 +46,18 @@ public class ADL14ExternalTerminologyConversionTest {
             ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider());
             ADL2ConversionResultList result = converter.convert(
                     Lists.newArrayList(parser.parse(stream, conversionConfiguration)));
-            assertFalse(parser.getErrors().hasErrors());
+            Assertions.assertFalse(parser.getErrors().hasErrors());
             Archetype converted = result.getConversionResults().get(0).getArchetype();
 
             CTerminologyCode termCodeConstraint = converted.itemAtPath("/items/value/defining_code[1]");
             String acCode = termCodeConstraint.getConstraint().get(0);
-            assertTrue("the code should have been converted to a value set", AOMUtils.isValueSetCode(acCode));
+            Assertions.assertTrue(AOMUtils.isValueSetCode(acCode), "the code should have been converted to a value set");
             List<String> atCodes = termCodeConstraint.getValueSetExpanded();
-            assertEquals(atCodes.toString(), 2, atCodes.size());
-            assertEquals(new URI("http://openehr.org/id/123"), converted.getTerminology().getTermBinding("openehr", atCodes.get(0)));
-            assertEquals(new URI("http://openehr.org/id/234"), converted.getTerminology().getTermBinding("openehr", atCodes.get(1)));
-            assertEquals("Loudness", converted.getTerminology().getTermDefinition("en", atCodes.get(0)).getText());
-            assertEquals("secondary allied health care", converted.getTerminology().getTermDefinition("en", atCodes.get(1)).getText());
-
+            Assertions.assertEquals(2, atCodes.size(), atCodes.toString());
+            Assertions.assertEquals(new URI("http://openehr.org/id/123"), converted.getTerminology().getTermBinding("openehr", atCodes.get(0)));
+            Assertions.assertEquals(new URI("http://openehr.org/id/234"), converted.getTerminology().getTermBinding("openehr", atCodes.get(1)));
+            Assertions.assertEquals("Loudness", converted.getTerminology().getTermDefinition("en", atCodes.get(0)).getText());
+            Assertions.assertEquals("secondary allied health care", converted.getTerminology().getTermDefinition("en", atCodes.get(1)).getText());
 
         }
     }

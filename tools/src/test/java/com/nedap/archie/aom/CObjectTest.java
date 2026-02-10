@@ -4,8 +4,8 @@ import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.function.BiFunction;
 
@@ -19,7 +19,7 @@ public class CObjectTest {
 
     private Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         archetype = TestUtil.parseFailOnErrors("/basic.adl");
     }

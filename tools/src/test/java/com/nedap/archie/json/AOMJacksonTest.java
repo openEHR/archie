@@ -21,8 +21,8 @@ import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.threeten.extra.PeriodDuration;
 
@@ -319,7 +319,7 @@ public class AOMJacksonTest {
         }
     }
 
-    @Ignore // for local testing
+    @Disabled // for local testing
     @Test
     public void parseS2AomJsonAll() throws Exception {
 

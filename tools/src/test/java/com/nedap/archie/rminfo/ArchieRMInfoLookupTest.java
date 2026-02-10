@@ -16,7 +16,7 @@ import com.nedap.archie.rm.support.identification.ArchetypeID;
 import com.nedap.archie.rm.support.identification.UID;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rm.support.identification.UUID;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.net.URI;

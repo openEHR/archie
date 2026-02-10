@@ -16,8 +16,8 @@ import com.nedap.archie.rm.datavalues.quantity.DvProportion;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class ValidateArchetypedTest {
     private OperationalTemplate elementOpt;
     private Archetype itemTreeArchetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         testUtil = new TestUtil();
 

@@ -2,7 +2,7 @@ package com.nedap.archie.adlparser;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * Created by pieter.bos on 31/10/15.
@@ -11,7 +11,7 @@ public abstract class PrimitivesConstraintParserTest {
 
     protected Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         archetype = TestUtil.parseFailOnErrors("/adl2-tests/features/aom_structures/basic/openehr-TEST_PKG-WHOLE.primitive_types.v1.0.0.adls");
     }

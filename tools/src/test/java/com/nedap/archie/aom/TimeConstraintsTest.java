@@ -2,7 +2,7 @@ package com.nedap.archie.aom;
 
 import com.nedap.archie.aom.primitives.CTime;
 import com.nedap.archie.base.Interval;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
 

@@ -4,7 +4,7 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.profile.AomProfiles;
 import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import static org.junit.Assert.*;

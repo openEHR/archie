@@ -19,8 +19,8 @@ import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import com.nedap.archie.xml.JAXBUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -44,7 +44,7 @@ public class JacksonRMRoundTripTest {
 
     private TestUtil testUtil;
 
-    @Before
+    @BeforeEach
     public void setup() {
         testUtil = new TestUtil();
         parser = new ADLParser(new RMConstraintImposer());

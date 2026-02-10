@@ -1,6 +1,6 @@
 package com.nedap.archie.rm.support.identification;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;

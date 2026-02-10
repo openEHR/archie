@@ -5,8 +5,8 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class InMemoryFullArchetypeRepositoryTest {
 
     InMemoryFullArchetypeRepository inMemoryFullArchetypeRepository;
 
-    @Before
+    @BeforeEach
     public void setup() throws IOException, ADLParseException {
         //Create versioned archetypes
         List<Archetype> archetypes = new ArrayList<>();

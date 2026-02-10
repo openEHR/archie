@@ -1,8 +1,8 @@
 package com.nedap.archie.aom;
 
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertFalse;
 
@@ -13,7 +13,7 @@ public class ArchetypeCloneTest {
 
     private Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         archetype = TestUtil.parseFailOnErrors("/basic.adl");
     }

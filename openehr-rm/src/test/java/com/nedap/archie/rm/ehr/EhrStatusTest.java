@@ -2,7 +2,7 @@ package com.nedap.archie.rm.ehr;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.json.JacksonUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;

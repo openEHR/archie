@@ -11,8 +11,8 @@ import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import javax.xml.bind.Marshaller;
@@ -37,7 +37,7 @@ public class JAXBRMRoundTripTest {
 
     private TestUtil testUtil;
 
-    @Before
+    @BeforeEach
     public void setup() {
         testUtil = new TestUtil();
         parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());

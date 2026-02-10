@@ -20,8 +20,8 @@ import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessageType;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class ArchetypeSlotValidationTest {
     private Section example;
     private RMObjectValidator rmObjectValidator;
 
-    @Before
+    @BeforeEach
     public void setup() throws IOException, ADLParseException {
         Archetype parent = TestUtil.parseFailOnErrors("/adl2-tests/validity/slots/openEHR-EHR-SECTION.slot_parent.v1.0.0.adls");
 
