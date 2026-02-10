@@ -7,10 +7,10 @@ import com.google.common.base.Strings;
 import com.nedap.archie.definitions.VersionStatus;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlType;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

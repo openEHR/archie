@@ -31,8 +31,6 @@ jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-dat
 
 jakarta-json = { module = "org.glassfish:jakarta.json", version = "2.0.1" }
 
-jaxb-api = { module = "javax.xml.bind:jaxb-api", version = "2.3.1" }
-
 jakarta-xml-bind-api = { module = "jakarta.xml.bind:jakarta.xml.bind-api", version = "4.0.5" }
 
 jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", version = "4.0.6" }
