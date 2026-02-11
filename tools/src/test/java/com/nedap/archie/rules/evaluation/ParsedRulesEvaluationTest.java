@@ -35,7 +35,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 01/04/16.
@@ -75,7 +76,7 @@ public abstract class ParsedRulesEvaluationTest {
 
     Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream(filename));
-        assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
+        assertThat(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;
     }
 
@@ -133,11 +134,11 @@ public abstract class ParsedRulesEvaluationTest {
         assertEquals(65d, (Double) ruleEvaluation.getVariableMap().get("arithmetic_test").getObject(0), 0.001d);
 
         List<AssertionResult> assertionResults = ruleEvaluation.getEvaluationResult().getAssertionResults();
-        assertEquals("one assertion should have been checked", 1, assertionResults.size());
+        assertEquals(1, assertionResults.size(), "one assertion should have been checked");
         AssertionResult result = assertionResults.get(0);
 
-        assertEquals("the assertion should have succeeded", true, result.getResult());
-        assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
+        assertTrue(result.getResult(), "the assertion should have succeeded");
+        assertEquals("blood_pressure_valid", result.getTag(), "the assertion tag should be correct");
         assertEquals(1, result.getRawResult().getPaths(0).size());
         assertEquals("/data[id2]/events[id3, 1]/data[id4]/items[id5, 1]/value/magnitude", result.getRawResult().getPaths(0).get(0));
 
@@ -209,11 +210,11 @@ public abstract class ParsedRulesEvaluationTest {
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
 
         List<AssertionResult> assertionResults = ruleEvaluation.getEvaluationResult().getAssertionResults();
-        assertEquals("one assertion should have been checked", 1, assertionResults.size());
+        assertEquals(1, assertionResults.size(), "one assertion should have been checked");
         AssertionResult result = assertionResults.get(0);
 
-        assertEquals("the assertion should have succeeded", true, result.getResult());
-        assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
+        assertEquals(true, result.getResult(), "the assertion should have succeeded");
+        assertEquals("blood_pressure_valid", result.getTag(), "the assertion tag should be correct");
     }
 
     @Test
@@ -226,11 +227,11 @@ public abstract class ParsedRulesEvaluationTest {
         ruleEvaluation.evaluate(root, archetype.getRules().getRules());
 
         List<AssertionResult> assertionResults = ruleEvaluation.getEvaluationResult().getAssertionResults();
-        assertEquals("one assertion should have been checked", 1, assertionResults.size());
+        assertEquals(1, assertionResults.size(), "one assertion should have been checked");
         AssertionResult result = assertionResults.get(0);
 
-        assertEquals("the assertion should have succeeded", false, result.getResult());
-        assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
+        assertEquals(false, result.getResult(), "the assertion should have succeeded");
+        assertEquals("blood_pressure_valid", result.getTag(), "the assertion tag should be correct");
     }
 
     public Pathable constructTwoBloodPressureObservations() {
@@ -667,7 +668,7 @@ public abstract class ParsedRulesEvaluationTest {
         EvaluationResult evaluationResult = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
         assertEquals(3, evaluationResult.getAssertionResults().size());
         for(AssertionResult assertionResult:evaluationResult.getAssertionResults()) {
-            assertTrue(assertionResult + " failed and it should not", assertionResult.getResult()); //all three assertions should not lead to validation errors
+            assertThat(assertionResult + " failed and it should not", assertionResult.getResult()); //all three assertions should not lead to validation errors
         }
 
         //no paths must exist, not exist or set
@@ -793,7 +794,7 @@ public abstract class ParsedRulesEvaluationTest {
         codedText.setValue("value 1");
         EvaluationResult result = ruleEvaluation.evaluate(cluster, opt.getRules().getRules());
         AssertionResult assertionResult = result.getAssertionResults().get(0);
-        assertTrue("The given validation rule should pass", assertionResult.getResult());
+        assertThat("The given validation rule should pass", assertionResult.getResult());
         assertEquals("ac3", assertionResult.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));
         assertEquals(2, result.getPathsConstrainedToValueSets().size());
         assertEquals("ac3", result.getPathsConstrainedToValueSets().get("/items[id2, 1]/items[id2]/value/defining_code"));

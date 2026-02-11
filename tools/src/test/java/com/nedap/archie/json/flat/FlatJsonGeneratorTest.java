@@ -34,10 +34,7 @@ import java.time.Period;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FlatJsonGeneratorTest {
 

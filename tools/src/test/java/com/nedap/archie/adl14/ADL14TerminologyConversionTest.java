@@ -9,9 +9,6 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 class ADL14TerminologyConversionTest {
 
     @Test

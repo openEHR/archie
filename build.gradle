@@ -70,6 +70,7 @@ subprojects {
         api(libs.threeten.extra)
 
         testImplementation(libs.junit5.jupiter)
+        testImplementation(libs.hamcrest)
         testImplementation(libs.slf4j.simple)
 
         api(libs.zafarkhaja.semver)

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 15/05/2017.
@@ -66,7 +66,7 @@ public class RulesFlattenerTest {
         String serialized= ADLArchetypeSerializer.serialize(flattened);
         ADLParser parser = new ADLParser();
         parser.parse(serialized);
-        assertFalse(parser.getErrors().toString(), parser.getErrors().hasErrors());
+        assertFalse(parser.getErrors().hasErrors(), parser.getErrors().toString());
     }
 
     @Test

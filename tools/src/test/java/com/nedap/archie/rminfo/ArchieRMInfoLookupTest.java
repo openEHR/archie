@@ -22,7 +22,7 @@ import java.lang.reflect.Field;
 import java.net.URI;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by stefan.teijgeler on 31/08/16.
@@ -134,8 +134,9 @@ public class ArchieRMInfoLookupTest {
         assertNotNull(valueAttribute);
         assertEquals("magnitude", valueAttribute.getRmName());
         assertFalse(valueAttribute.isNullable());
-        assertEquals("DvQuantity extends DvAmount<Double> should have a double magnitude field", Double.class, valueAttribute.getType());
-
+        assertEquals(Double.class, valueAttribute.getType(),
+                "DvQuantity extends DvAmount<Double> should have a double magnitude field"
+        );
     }
 
     @Test

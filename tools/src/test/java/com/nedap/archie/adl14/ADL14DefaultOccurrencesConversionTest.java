@@ -12,9 +12,6 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 class ADL14DefaultOccurrencesConversionTest {
 
     @Test

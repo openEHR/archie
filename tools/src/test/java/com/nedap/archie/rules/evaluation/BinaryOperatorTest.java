@@ -11,7 +11,7 @@ import org.threeten.extra.PeriodDuration;
 
 import java.time.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**

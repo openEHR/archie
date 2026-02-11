@@ -6,7 +6,7 @@ import org.openehr.utils.message.I18n;
 
 import java.util.Locale;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test i18n of the BmmMessageIds

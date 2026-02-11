@@ -4,7 +4,7 @@ import com.nedap.archie.testutil.TestUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 /**
  * Created by pieter.bos on 21/10/15.
@@ -21,9 +21,8 @@ public class ArchetypeCloneTest {
     @Test
     public void cloneArchetype() {
         Archetype cloned = archetype.clone();
-        assertFalse(cloned == archetype);
-        assertFalse(archetype.getDefinition().getAttributes().get(0) ==
-                cloned.getDefinition().getAttributes().get(0));
+        assertNotSame(cloned, archetype);
+        assertNotSame(archetype.getDefinition().getAttributes().get(0), cloned.getDefinition().getAttributes().get(0));
     }
 
 

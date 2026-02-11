@@ -12,7 +12,7 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAmount;
 import java.util.Locale;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 30/10/15.

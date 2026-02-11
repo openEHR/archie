@@ -16,8 +16,7 @@ import org.openehr.utils.message.MessageSeverity;
 import java.io.InputStream;
 import java.util.List;
 
-import static junit.framework.TestCase.*;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PreviousLogConversionTest {
 
@@ -64,7 +63,8 @@ public class PreviousLogConversionTest {
             log = result.getConversionLog();
             Archetype converted = result.getConversionResults().get(0).getArchetype();
             ValidationResult validated = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider()).validate(converted);
-            assertTrue(validated.toString(), validated.passes() );
+            assertNotNull(validated.toString());
+            assertTrue(validated.passes());
             assertTrue(converted.getTerminology().getTermDefinitions().get("nl").containsKey("ac9000"));
             assertTrue(converted.getTerminology().getTermDefinitions().get("nl").containsKey("ac9001"));
             assertTrue(converted.getTerminology().getTermDefinitions().get("nl").containsKey("ac9002"));
@@ -80,7 +80,8 @@ public class PreviousLogConversionTest {
             Archetype converted = result.getConversionResults().get(0).getArchetype();
 
             ValidationResult validated = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider()).validate(converted);
-            assertTrue(validated.toString(), validated.passes() );
+            assertNotNull(validated.toString());
+            assertTrue(validated.passes());
             assertTrue(converted.getTerminology().getTermDefinitions().get("nl").containsKey("ac9000"));
             assertTrue(converted.getTerminology().getTermDefinitions().get("nl").containsKey("ac9001"));
             assertTrue(converted.getTerminology().getTermDefinitions().get("nl").containsKey("ac9002"));
@@ -102,7 +103,8 @@ public class PreviousLogConversionTest {
             log = result.getConversionLog();
             Archetype converted = result.getConversionResults().get(0).getArchetype();
             ValidationResult validated = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider()).validate(converted);
-            assertTrue(validated.toString(), validated.passes() );
+            assertNotNull(validated.toString());
+            assertTrue(validated.passes());
              createdAtCode = log.getConversionLog("openEHR-EHR-CLUSTER.value_binding.v1").getCreatedCodes().get("[openehr::124]").getGeneratedCode();
             ArchetypeTerm termDefinition = converted.getTerminology().getTermDefinition("en", createdAtCode);
             assertNotNull(termDefinition);
@@ -117,11 +119,11 @@ public class PreviousLogConversionTest {
                     log);
             Archetype converted = result.getConversionResults().get(0).getArchetype();
             ValidationResult validated = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider()).validate(converted);
-            assertTrue(validated.toString(), validated.passes() );
+            assertTrue(validated.passes(), validated.toString());
 
             ArchetypeTerm termDefinition = converted.getTerminology().getTermDefinition("en", "at9000");
             assertNull(termDefinition);
-            assertFalse(validated.toString(), validated.hasWarningsOrErrors() );
+            assertFalse(validated.hasWarningsOrErrors(), validated.toString());
 
             ADL2ConversionRunLog log2 = result.getConversionLog();
             //the code should still be present in the conversion log, should it be added later on

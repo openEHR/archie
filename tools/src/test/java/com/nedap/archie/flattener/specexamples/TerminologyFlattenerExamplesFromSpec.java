@@ -12,8 +12,8 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 import java.util.Map;
 
 import static com.nedap.archie.flattener.specexamples.FlattenerTestUtil.parse;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TerminologyFlattenerExamplesFromSpec {
 

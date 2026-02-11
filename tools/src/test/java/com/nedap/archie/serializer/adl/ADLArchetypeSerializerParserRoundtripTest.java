@@ -15,7 +15,6 @@ import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.json.ArchieRMObjectMapperProvider;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.slf4j.Logger;
@@ -26,8 +25,8 @@ import java.net.URI;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author markopi
@@ -71,9 +70,9 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         archetype.getDescription().setLicence("license with a \"-mark");
         String serialized = ADLArchetypeSerializer.serialize(archetype);
 
-        Assert.assertThat(serialized, containsString("license with a \\\"-mark" ));
+        assertThat(serialized, containsString("license with a \\\"-mark" ));
         Archetype parsed = new ADLParser().parse(serialized);
-        Assert.assertThat(parsed.getDescription().getLicence(), is("license with a \"-mark" ));
+        assertThat(parsed.getDescription().getLicence(), is("license with a \"-mark" ));
     }
 
     @Test
@@ -82,9 +81,9 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         archetype.getDescription().setLicence("license with a \\-mark");
         String serialized = ADLArchetypeSerializer.serialize(archetype);
 
-        Assert.assertThat(serialized, containsString("license with a \\\\-mark" ));
+        assertThat(serialized, containsString("license with a \\\\-mark" ));
         Archetype parsed = new ADLParser().parse(serialized);
-        Assert.assertThat(parsed.getDescription().getLicence(), is("license with a \\-mark" ));
+        assertThat(parsed.getDescription().getLicence(), is("license with a \\-mark" ));
     }
 
     @Test
@@ -93,9 +92,9 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         archetype.getDescription().setLicence("license with a \\\"-mark");
         String serialized = ADLArchetypeSerializer.serialize(archetype);
 
-        Assert.assertThat(serialized, containsString("license with a \\\\\\\"-mark" ));
+        assertThat(serialized, containsString("license with a \\\\\\\"-mark" ));
         Archetype parsed = new ADLParser().parse(serialized);
-        Assert.assertThat(parsed.getDescription().getLicence(), is("license with a \\\"-mark" ));
+        assertThat(parsed.getDescription().getLicence(), is("license with a \\\"-mark" ));
     }
 
     @Test
@@ -157,10 +156,10 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         Archetype result = parser.parse(serialized);
 
-        assertTrue("roundtrip parsing should never cause errors: " + parser.getErrors().toString(), parser.getErrors().hasNoErrors());
+        assertTrue(parser.getErrors().hasNoErrors(), "roundtrip parsing should never cause errors: " + parser.getErrors().toString());
 
         String serialized2 = ADLArchetypeSerializer.serialize(result, null, rmObjectMapperProvider);
-        assertEquals("roundtrip serialization should be idempotent", serialized, serialized2);
+        assertEquals(serialized, serialized2, "roundtrip serialization should be idempotent");
 
         return result;
     }
@@ -183,10 +182,10 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         ADLParser parser = new ADLParser(/* no metamodels */);
         Archetype result = parser.parse(serialized);
 
-        assertTrue("roundtrip parsing should never cause errors: " + parser.getErrors().toString(), parser.getErrors().hasNoErrors());
+        assertTrue(parser.getErrors().hasNoErrors(),"roundtrip parsing should never cause errors: " + parser.getErrors().toString());
 
         String serialized2 = ADLArchetypeSerializer.serialize(result, null, null);
-        assertEquals("roundtrip serialization should be idempotent", serialized, serialized2);
+        assertEquals(serialized, serialized2, "roundtrip serialization should be idempotent");
 
         CComplexObject startDvTextConstraint = archetype.itemAtPath("/items[id2]/value[id21]");
         CComplexObject resultDvTextConstraint = result.itemAtPath("/items[id2]/value[id21]");

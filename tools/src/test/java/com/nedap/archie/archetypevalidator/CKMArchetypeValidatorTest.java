@@ -16,7 +16,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * False positive test for the archetype validator:
@@ -82,7 +83,7 @@ public class CKMArchetypeValidatorTest {
             error.append("\n\n");
         }
 
-        assertTrue(error.toString(), resultWithErrors.isEmpty());
+        assertThat(error.toString(), resultWithErrors.isEmpty());
     }
 
 

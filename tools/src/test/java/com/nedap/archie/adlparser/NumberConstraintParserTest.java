@@ -5,8 +5,8 @@ import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.base.Interval;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Created by pieter.bos on 01/11/15.

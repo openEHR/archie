@@ -19,8 +19,8 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.regex.Pattern;
 
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by pieter.bos on 16/10/15.

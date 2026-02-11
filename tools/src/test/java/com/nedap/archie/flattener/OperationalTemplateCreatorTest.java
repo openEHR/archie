@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-import static junit.framework.TestCase.assertNull;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OperationalTemplateCreatorTest {
 
@@ -162,7 +162,7 @@ public class OperationalTemplateCreatorTest {
         ReferenceModels models = new ReferenceModels();
         models.registerModel(ArchieRMInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
-        assertTrue(validationResult.getErrors().toString(), validationResult.passes());
+        assertThat(validationResult.getErrors().toString(), validationResult.passes());
         return new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), config).flatten(parse(fileName));
     }
 

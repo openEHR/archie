@@ -3,7 +3,7 @@ package com.nedap.archie.aom;
 import com.nedap.archie.base.MultiplicityInterval;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 14/04/2017.

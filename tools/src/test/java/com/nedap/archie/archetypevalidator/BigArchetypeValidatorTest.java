@@ -14,7 +14,6 @@ import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
 import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 import org.apache.commons.io.FilenameUtils;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.reflections.Reflections;
@@ -26,6 +25,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 import java.util.regex.Pattern;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * //TODO: add list of errortypes NOT tested by the testset, so we can add files for that
@@ -265,7 +266,7 @@ public class BigArchetypeValidatorTest {
             }
         }
         if(errorCount > 0) {
-            Assert.fail(String.format("%s errors, %s wrong messages, %s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s",
+            fail(String.format("%s errors, %s wrong messages, %s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s",
                     errorCount, wrongMessageCount, correctButShouldBeInvalid, correctCount, shouldBeFineButWasinvalid, notImplemented, unexpectedParseErrors, Joiner.on(", ").join(errorStrings)));
         }
         log.info(String.format("%s errors, %s wrong messages, %s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s",

@@ -14,7 +14,8 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 05/04/2017.
@@ -56,7 +57,7 @@ public class ArchetypeValidatorTest {
         ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
         List<ValidationMessage> messages = validationResult.getErrors();
         System.out.println(messages);
-        assertEquals(messages.toString(), 1, messages.size());
+        assertEquals(1, messages.size(), messages.toString());
         assertEquals(ErrorType.VCARM, messages.get(0).getType());
         assertNull(validationResult.getFlattened());
     }
@@ -80,7 +81,7 @@ public class ArchetypeValidatorTest {
         ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
         List<ValidationMessage> messages = validationResult.getErrors();
         System.out.println(messages);
-        assertEquals(messages.toString(), 1, messages.size());
+        assertEquals(1, messages.size(), messages.toString());
         assertEquals(ErrorType.VCORMT, messages.get(0).getType());
     }
 
@@ -93,11 +94,11 @@ public class ArchetypeValidatorTest {
     }
 
     private void assertOneError(ValidationResult validationResult, ErrorType vacdf) {
-        assertFalse(validationResult.toString(), validationResult.passes());
+        assertFalse(validationResult.passes(), validationResult.toString());
         List<ValidationMessage> messages = validationResult.getErrors();
 
-        assertEquals(validationResult.toString(), 1, messages.size());
-        assertEquals(validationResult.toString(), vacdf, messages.get(0).getType());
+        assertEquals(1, messages.size(), validationResult.toString());
+        assertEquals(vacdf, messages.get(0).getType(), validationResult.toString());
     }
 
     @Test
@@ -116,7 +117,7 @@ public class ArchetypeValidatorTest {
         System.out.println(messages);
         assertEquals(2, messages.size());
         assertEquals(ErrorType.OTHER, messages.get(0).getType());
-        assertTrue("message should complain about tuple members being incorrect", messages.get(0).getMessage().contains("In the attribute tuple 3 members were specified, but the primitive tuple has 2 members instead"));
+        assertThat("message should complain about tuple members being incorrect", messages.get(0).getMessage().contains("In the attribute tuple 3 members were specified, but the primitive tuple has 2 members instead"));
     }
 
     @Test
@@ -154,7 +155,7 @@ public class ArchetypeValidatorTest {
         }
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertThat(validationResult.toString(), validationResult.passes());
         }
     }
 
@@ -172,7 +173,7 @@ public class ArchetypeValidatorTest {
         repository.addArchetype(parse("/adl2-tests/features/reference_model/generic_types/openEHR-EHR-OBSERVATION.rm_correct_generic.v1.0.0.adls"));
 
         ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-        assertTrue(validationResult.toString(), validationResult.passes());
+        assertThat(validationResult.toString(), validationResult.passes());
     }
 
     @Test
@@ -190,7 +191,7 @@ public class ArchetypeValidatorTest {
         repository.addArchetype(parse("/adl2-tests/features/reference_model/generic_types/openEHR-EHR-OBSERVATION.rm_correct_generic.v1.0.0.adls"));
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertTrue(validationResult.passes(), validationResult.toString());
         }
 
         {
@@ -216,8 +217,8 @@ public class ArchetypeValidatorTest {
             ValidationResult validatedChild = archetypeValidator.validate(child, repository);
             ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
 
-            assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
-            assertTrue(validatedParent.getErrors().toString(), validatedParent.passes());
+            assertThat(validatedChild.getErrors().toString(), validatedChild.passes());
+            assertThat(validatedParent.getErrors().toString(), validatedParent.passes());
         }
         {
             InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
@@ -228,8 +229,8 @@ public class ArchetypeValidatorTest {
             ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
             ValidationResult validatedChild = archetypeValidator.validate(child, repository);
 
-            assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
-            assertTrue(validatedParent.getErrors().toString(), validatedParent.passes());
+            assertThat(validatedChild.getErrors().toString(), validatedChild.passes());
+            assertThat(validatedParent.getErrors().toString(), validatedParent.passes());
         }
     }
 
@@ -246,11 +247,11 @@ public class ArchetypeValidatorTest {
 
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertThat(validationResult.toString(), validationResult.passes());
         }
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(grandchildArchetype, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertThat(validationResult.toString(), validationResult.passes());
         }
     }
 
@@ -265,7 +266,7 @@ public class ArchetypeValidatorTest {
 
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-            assertFalse(validationResult.toString(), validationResult.passes());
+            assertFalse(validationResult.passes(), validationResult.toString());
             assertEquals("Occurrences 3..5, which is the sum of 2..3, 1..2, 0..0, does not conform to 1..4", validationResult.getErrors().get(0).getMessage());
         }
     }
@@ -281,7 +282,7 @@ public class ArchetypeValidatorTest {
 
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertThat(validationResult.toString(), validationResult.passes());
         }
     }
 
@@ -342,7 +343,7 @@ public class ArchetypeValidatorTest {
 
     private Archetype parse(String filename) throws IOException, ADLParseException {
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
-        assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
+        assertThat(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;
     }
 

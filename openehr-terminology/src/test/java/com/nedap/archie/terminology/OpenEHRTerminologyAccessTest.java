@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OpenEHRTerminologyAccessTest {
 
@@ -42,7 +42,7 @@ public class OpenEHRTerminologyAccessTest {
         //System.out.println(json);
         try(InputStream stream = getClass().getResourceAsStream("/openEHR_RM/fullTermFile.json")) {
             String includedJson = IOUtils.toString(stream, StandardCharsets.UTF_8);
-            assertEquals("XML and included terminology have gone out of sync. please regenerate json file!", json, includedJson);
+            assertEquals(json, includedJson, "XML and included terminology have gone out of sync. please regenerate json file!");
         }
     }
 

@@ -24,7 +24,8 @@ import java.io.IOException;
 import java.util.EnumSet;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RmObjectValidatorTest {
 
@@ -57,14 +58,14 @@ public class RmObjectValidatorTest {
         dvProportion.setType(3L);
 
         List<RMObjectValidationMessage> validationMessages = validatorWithoutInvariants.validate(opt, element);
-        assertEquals("There should be 1 errors", 1, validationMessages.size());
-        assertEquals("There should be a validation message about the numerator", "Attribute numerator of class DV_PROPORTION does not match existence 1..1", validationMessages.get(0).getMessage());
-        assertEquals("The path should be correct", "/value/numerator", validationMessages.get(0).getPath());
-        assertEquals("The archetype path should be correct", "/value[id2]/numerator", validationMessages.get(0).getArchetypePath());
+        assertEquals(1, validationMessages.size(), "There should be 1 errors");
+        assertEquals("Attribute numerator of class DV_PROPORTION does not match existence 1..1", validationMessages.get(0).getMessage(), "There should be a validation message about the numerator");
+        assertEquals("/value/numerator", validationMessages.get(0).getPath(), "The path should be correct");
+        assertEquals("/value[id2]/numerator", validationMessages.get(0).getArchetypePath(), "The archetype path should be correct");
 
         dvProportion.setNumerator(2D);
         validationMessages = validator.validate(opt, element);
-        assertEquals("There should be 0 errors", 0, validationMessages.size());
+        assertEquals(0, validationMessages.size(), "There should be 0 errors");
 
     }
 
@@ -79,7 +80,7 @@ public class RmObjectValidatorTest {
         items.remove(0);
 
         List<RMObjectValidationMessage> validationMessages = validatorWithoutInvariants.validate(opt, itemTree);
-        assertEquals("There should be 1 error", 1, validationMessages.size());
+        assertEquals(1, validationMessages.size(), "There should be 1 error");
         assertEquals("Attribute does not match cardinality 1..2", validationMessages.get(0).getMessage());
         // Type should be REQUIRED
         assertEquals(RMObjectValidationMessageType.CARDINALITY_MISMATCH, validationMessages.get(0).getType());
@@ -98,7 +99,7 @@ public class RmObjectValidatorTest {
         List<RMObjectValidationMessage> messages = validator.validate(element);
         assertEquals(2, messages.size());
         for(RMObjectValidationMessage message:messages) {
-            assertTrue(message.getPath() + " unexpected value", Sets.newHashSet("/name", "/archetype_node_id", "/").contains(message.getPath()));
+            assertThat(message.getPath() + " unexpected value", Sets.newHashSet("/name", "/archetype_node_id", "/").contains(message.getPath()));
             assertTrue(EnumSet.of(RMObjectValidationMessageType.REQUIRED, RMObjectValidationMessageType.INVARIANT_ERROR).contains(message.getType()));
         }
     }
@@ -113,9 +114,9 @@ public class RmObjectValidatorTest {
         cluster.setItems(Lists.newArrayList(element));
 
         List<RMObjectValidationMessage> messages = validator.validate(cluster);
-        assertEquals(messages.toString() ,2, messages.size());
+        assertEquals(2, messages.size(), messages.toString());
         for(RMObjectValidationMessage message:messages) {
-            assertTrue(message.getPath(), Sets.newHashSet("/items[1]/name", "/items[1]/archetype_node_id").contains(message.getPath()));
+            assertThat(message.getPath(), Sets.newHashSet("/items[1]/name", "/items[1]/archetype_node_id").contains(message.getPath()));
             assertEquals(RMObjectValidationMessageType.REQUIRED, message.getType());
         }
     }
@@ -132,7 +133,7 @@ public class RmObjectValidatorTest {
         cluster.setItems(Lists.newArrayList(element));
 
         List<RMObjectValidationMessage> messages = validator.validate(cluster);
-        assertEquals(messages.toString(), 0, messages.size());
+        assertEquals(0, messages.size(), messages.toString());
 
     }
 
@@ -145,10 +146,10 @@ public class RmObjectValidatorTest {
 
 
         List<RMObjectValidationMessage> messages = validator.validate(element);
-        assertEquals(messages.toString(), 1, messages.size());
+        assertEquals(1, messages.size(), messages.toString());
 
         messages = validatorWithoutInvariants.validate(element);
-        assertEquals(messages.toString(), 0, messages.size());
+        assertEquals(0, messages.size(), messages.toString());
 
     }
 
@@ -162,11 +163,11 @@ public class RmObjectValidatorTest {
 
         RMObjectValidator oldValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), emptyRepo);
         List<RMObjectValidationMessage> messages = oldValidator.validate(element);
-        assertEquals(messages.toString(), 1, messages.size());
+        assertEquals(1, messages.size(), messages.toString());
 
         oldValidator.setRunInvariantChecks(false);
         messages = oldValidator.validate(element);
-        assertEquals(messages.toString(), 0, messages.size());
+        assertEquals(0, messages.size(), messages.toString());
 
     }
 

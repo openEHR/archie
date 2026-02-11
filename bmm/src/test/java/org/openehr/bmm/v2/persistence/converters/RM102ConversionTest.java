@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.openehr.bmm.v2.persistence.converters.BmmTestUtil.parse;
 
 public class RM102ConversionTest {
@@ -51,40 +51,40 @@ public class RM102ConversionTest {
 
         for (BmmValidationResult validationResult:repo.getModels()) {
             System.out.println(validationResult.getLogger());
-            assertTrue("the OpenEHR RM 1.0.2 BMM files should pass validation", validationResult.passes());
+            assertTrue(validationResult.passes(), "the OpenEHR RM 1.0.2 BMM files should pass validation");
         }
     }
 
     @Test
     public void testRm102ModelPaths() throws Exception {
         // check some paths through the model
-        assertTrue ("property defined in class: (\"CARE_ENTRY\", \"/protocol\")", rm102Model.hasPropertyAtPath("CARE_ENTRY", "/protocol"));
-        assertTrue ("property defined in descendant: (\"CARE_ENTRY\", \"/data/events/data\")", rm102Model.hasPropertyAtPath("CARE_ENTRY", "/data/events/data"));
-        assertTrue ("property defined in ancestor: (\"OBSERVATION\", \"/protocol\")", rm102Model.hasPropertyAtPath("OBSERVATION", "/protocol"));
-        assertTrue ("property defined in class: (\"OBSERVATION\", \"/data/events/data\")", rm102Model.hasPropertyAtPath("OBSERVATION", "/data/events/data"));
-        assertTrue ("property defined in descendant: (\"OBSERVATION\", \"/data/events/data/items\")", rm102Model.hasPropertyAtPath("OBSERVATION", "/data/events/data/items"));
-        assertFalse ("non-existent property: (\"OBSERVATION\", \"/data/events/data/xxx\")", rm102Model.hasPropertyAtPath("OBSERVATION", "/data/events/data/xxx"));
-        assertTrue ("property defined in class: (\"COMPOSITION\", \"/context\")", rm102Model.hasPropertyAtPath("COMPOSITION", "/context"));
-        assertTrue ("property defined in descendant: (\"CLUSTER\", \"/items/items/items\")", rm102Model.hasPropertyAtPath("CLUSTER", "/items/items/items"));
-        assertTrue ("property defined in class: (\"DV_QUANTITY\", \"/normal_range\")", rm102Model.hasPropertyAtPath("DV_QUANTITY", "/normal_range"));
+        assertTrue (rm102Model.hasPropertyAtPath("CARE_ENTRY", "/protocol"), "property defined in class: (\"CARE_ENTRY\", \"/protocol\")");
+        assertTrue (rm102Model.hasPropertyAtPath("CARE_ENTRY", "/data/events/data"),"property defined in descendant: (\"CARE_ENTRY\", \"/data/events/data\")");
+        assertTrue (rm102Model.hasPropertyAtPath("OBSERVATION", "/protocol"),"property defined in ancestor: (\"OBSERVATION\", \"/protocol\")");
+        assertTrue (rm102Model.hasPropertyAtPath("OBSERVATION", "/data/events/data"),"property defined in class: (\"OBSERVATION\", \"/data/events/data\")");
+        assertTrue (rm102Model.hasPropertyAtPath("OBSERVATION", "/data/events/data/items"),"property defined in descendant: (\"OBSERVATION\", \"/data/events/data/items\")");
+        assertFalse (rm102Model.hasPropertyAtPath("OBSERVATION", "/data/events/data/xxx"),"non-existent property: (\"OBSERVATION\", \"/data/events/data/xxx\")");
+        assertTrue (rm102Model.hasPropertyAtPath("COMPOSITION", "/context"),"property defined in class: (\"COMPOSITION\", \"/context\")");
+        assertTrue (rm102Model.hasPropertyAtPath("CLUSTER", "/items/items/items"), "property defined in descendant: (\"CLUSTER\", \"/items/items/items\")");
+        assertTrue (rm102Model.hasPropertyAtPath("DV_QUANTITY", "/normal_range"), "property defined in class: (\"DV_QUANTITY\", \"/normal_range\")");
     }
 
     @Test
     public void testRm102PropertyMetatypes() throws Exception {
         // check meta-types of some properties at paths
-        assertTrue ("BmmSimpleType at path: (\"OBSERVATION\", \"/protocol\")", rm102Model.propertyAtPath("OBSERVATION", "/protocol").getType() instanceof BmmSimpleType);
-        assertTrue ("BmmContainerType at path: (\"OBSERVATION\", \"/data/events/data/items\")", rm102Model.propertyAtPath("OBSERVATION", "/data/events/data/items").getType() instanceof BmmContainerType);
-        assertTrue ("BmmGenericType at path: (\"DV_QUANTITY\", \"/normal_range\")", rm102Model.propertyAtPath("DV_QUANTITY", "/normal_range").getType() instanceof BmmGenericType);
-        assertTrue ("BmmGSimpleType at path: (\"CARE_ENTRY\", \"/subject\")", rm102Model.propertyAtPath("CARE_ENTRY", "/subject").getType() instanceof BmmSimpleType);
+        assertTrue (rm102Model.propertyAtPath("OBSERVATION", "/protocol").getType() instanceof BmmSimpleType, "BmmSimpleType at path: (\"OBSERVATION\", \"/protocol\")");
+        assertTrue (rm102Model.propertyAtPath("OBSERVATION", "/data/events/data/items").getType() instanceof BmmContainerType, "BmmContainerType at path: (\"OBSERVATION\", \"/data/events/data/items\")");
+        assertTrue (rm102Model.propertyAtPath("DV_QUANTITY", "/normal_range").getType() instanceof BmmGenericType, "BmmGenericType at path: (\"DV_QUANTITY\", \"/normal_range\")");
+        assertTrue (rm102Model.propertyAtPath("CARE_ENTRY", "/subject").getType() instanceof BmmSimpleType, "BmmGSimpleType at path: (\"CARE_ENTRY\", \"/subject\")");
     }
 
     @Test
     public void testRm102ModelDescendants() throws Exception {
         // test descendant relations
-        assertTrue ("\"OBSERVATION\" descendant of \"LOCATABLE\")", rm102Model.descendantOf("OBSERVATION", "LOCATABLE"));
-        assertFalse ("\"LOCATABLE\" not descendant of \"COMPOSITION\")", rm102Model.descendantOf("LOCATABLE", "COMPOSITION"));
-        assertTrue ("\"ITEM_TREE\" descendant of \"ITEM_STRUCTURE\")", rm102Model.descendantOf("ITEM_TREE", "ITEM_STRUCTURE"));
-        assertTrue ("\"DV_DURATION\" descendant of \"DV_ORDERED\")", rm102Model.descendantOf("DV_DURATION", "DV_ORDERED"));
+        assertTrue (rm102Model.descendantOf("OBSERVATION", "LOCATABLE"), "\"OBSERVATION\" descendant of \"LOCATABLE\")");
+        assertFalse (rm102Model.descendantOf("LOCATABLE", "COMPOSITION"), "\"LOCATABLE\" not descendant of \"COMPOSITION\")");
+        assertTrue (rm102Model.descendantOf("ITEM_TREE", "ITEM_STRUCTURE"), "\"ITEM_TREE\" descendant of \"ITEM_STRUCTURE\")");
+        assertTrue (rm102Model.descendantOf("DV_DURATION", "DV_ORDERED"), "\"DV_DURATION\" descendant of \"DV_ORDERED\")");
     }
 
     @Test
@@ -100,7 +100,7 @@ public class RM102ConversionTest {
                         "PARTY_IDENTIFIED", "PARTY_SELF", "EVENT_CONTEXT", "CONTENT_ITEM", "SECTION", "ENTRY", "GENERIC_ENTRY"
                 )
         );
-        assertEquals ("\"COMPOSITION\" has suppliers {\"CODE_PHRASE\", \"DV_TEXT\", ...})", testResult, conformanceResult);
+        assertEquals (testResult, conformanceResult, "\"COMPOSITION\" has suppliers {\"CODE_PHRASE\", \"DV_TEXT\", ...})");
     }
 
     public void testRm102PartyIdentifiedSuppliers() throws Exception {
@@ -115,7 +115,7 @@ public class RM102ConversionTest {
                 )
         );
 
-        assertEquals ("\"PARTY_IDENTIFIED\" has suppliers {\"String\", \"PARTY_REF\", ...})", testResult, conformanceResult);
+        assertEquals (testResult, conformanceResult, "\"PARTY_IDENTIFIED\" has suppliers {\"String\", \"PARTY_REF\", ...})");
     }
 
 }

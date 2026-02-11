@@ -6,7 +6,7 @@ import org.threeten.extra.PeriodDuration;
 import java.time.Duration;
 import java.time.Period;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TimeDefinitionsTest {
 

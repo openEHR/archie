@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PrimitiveObjectConstraintHelperTest {
     private final PrimitiveObjectConstraintHelper helper = new PrimitiveObjectConstraintHelper(new ValidationConfiguration.Builder().build());

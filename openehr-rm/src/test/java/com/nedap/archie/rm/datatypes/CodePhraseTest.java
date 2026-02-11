@@ -1,9 +1,9 @@
 package com.nedap.archie.rm.datatypes;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class CodePhraseTest {
 
@@ -14,10 +14,10 @@ public class CodePhraseTest {
         CodePhrase codePhraseThree = new CodePhrase("hl2::gender");
         CodePhrase codePhraseFour = new CodePhrase("hl7::color");
 
-        Assert.assertEquals(codePhraseOne, codePhraseTwo);
+        assertEquals(codePhraseOne, codePhraseTwo);
 
-        Assert.assertNotEquals(codePhraseOne, codePhraseThree);
-        Assert.assertNotEquals(codePhraseOne, codePhraseFour);
+        assertNotEquals(codePhraseOne, codePhraseThree);
+        assertNotEquals(codePhraseOne, codePhraseFour);
     }
 
     @Test

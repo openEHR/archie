@@ -20,8 +20,8 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by pieter.bos on 04/04/2017.
@@ -65,7 +65,7 @@ public class FixableAssertionsCheckerTest {
         itemTree.addItem(cluster2);
 
         EvaluationResult evaluate = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals("There are eleven values that must be set", 16, evaluate.getSetPathValues().size());
+        assertEquals(16, evaluate.getSetPathValues().size(), "There are eleven values that must be set");
 
         // Assert that paths must be set to specific values
         // DvText
@@ -134,7 +134,7 @@ public class FixableAssertionsCheckerTest {
 
         Locatable root = (Locatable) testUtil.constructEmptyRMObject(archetype.getDefinition());
         EvaluationResult evaluate = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals("There are seven values that must be set", 7, evaluate.getSetPathValues().size());
+        assertEquals(7, evaluate.getSetPathValues().size());
 
         //assert that paths must be set to specific values
         assertEquals("test string", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id5]/value/value").getValue());
@@ -174,7 +174,7 @@ public class FixableAssertionsCheckerTest {
 
         Locatable root = rmObjectCreator.create(archetype.getDefinition());
         EvaluationResult evaluate = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
-        assertEquals("there must be three values that must be set", 1, evaluate.getSetPathValues().size());
+        assertEquals(1, evaluate.getSetPathValues().size(), "there must be three values that must be set");
 
         //assert that paths must be set to specific values
         assertEquals("test string", evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id5]/value/value").getValue());

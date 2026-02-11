@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DvEhrUriInvariantTest {
 
@@ -32,7 +32,7 @@ public class DvEhrUriInvariantTest {
     public void invalid2() {
         RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), (templateId) -> null, new ValidationConfiguration.Builder().build());
         List<RMObjectValidationMessage> messages = validator.validate(new DvEHRURI(""));
-        assertEquals(messages.toString(), 2, messages.size());
+        assertEquals(2, messages.size(), messages.toString());
 
         Set<String> expectedMessages = new HashSet<>();
         expectedMessages.add("Invariant Scheme_valid failed on type DV_EHR_URI");

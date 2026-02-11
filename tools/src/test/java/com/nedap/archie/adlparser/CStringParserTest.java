@@ -6,8 +6,8 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.primitives.CString;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Test CString parsing. Does not test regexpes, see @RegexTest for that

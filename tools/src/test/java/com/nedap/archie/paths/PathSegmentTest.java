@@ -2,7 +2,7 @@ package com.nedap.archie.paths;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by stefan.teijgeler on 26/08/16.

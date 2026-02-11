@@ -7,7 +7,7 @@ import com.nedap.archie.rm.datastructures.*;
 import com.nedap.archie.rm.datavalues.DvText;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by pieter.bos on 10/11/15.

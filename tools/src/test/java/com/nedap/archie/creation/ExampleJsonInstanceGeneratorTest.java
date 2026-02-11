@@ -40,8 +40,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ExampleJsonInstanceGeneratorTest {
 
@@ -73,7 +73,7 @@ public class ExampleJsonInstanceGeneratorTest {
         Map<String, Object> encoding = (Map<String, Object>) structure.get("encoding");
         assertEquals("CODE_PHRASE", encoding.get(TYPE_PROPERTY_NAME));
         Map<String, Object> terminologyId = (Map<String, Object>) encoding.get("terminology_id");
-        assertEquals("the default value for a terminology id encoding should be \"IANA_character-sets\"", "IANA_character-sets", terminologyId.get("value"));
+        assertEquals("IANA_character-sets", terminologyId.get("value"), "the default value for a terminology id encoding should be \"IANA_character-sets\"");
         List events = (List) data.get("events");
         assertEquals(3, events.size());
         assertEquals("POINT_EVENT", ((Map) events.get(0)).get(TYPE_PROPERTY_NAME));
@@ -272,12 +272,12 @@ public class ExampleJsonInstanceGeneratorTest {
         logger.info("failed validation " + jsonSchemaValidationFailed + " of " + jsonSchemaValidationRan);
         logger.info("failed validation of reserialized json " + reserializedJsonSchemaValidationFailed + " of " + secondJsonSchemaValidationRan);
         logger.info("failed validation of RM Objects+invariants " + rmObjectValidatorFailed + " of " + rmObjectValidatorRan);
-        assertEquals("Example JSON schema should not fail", 0, jsonSchemaValidationFailed);
-        assertEquals("Example JSON schema serialized from RM implementation should not fail", 0, reserializedJsonSchemaValidationFailed);
-        assertEquals("RMObjectValidator should not fail", 0, rmObjectValidatorFailed);
-        assertEquals("no exceptions should occur during schema validation", 0, generatedException);
-        assertEquals("example data from all archetypes should be validated", 403, jsonSchemaValidationRan);
-        assertEquals("example data from all archetypes should be validated from the rm", 403, secondJsonSchemaValidationRan);
+        assertEquals(0, jsonSchemaValidationFailed, "Example JSON schema should not fail");
+        assertEquals(0, reserializedJsonSchemaValidationFailed, "Example JSON schema serialized from RM implementation should not fail");
+        assertEquals(0, rmObjectValidatorFailed, "RMObjectValidator should not fail");
+        assertEquals(0, generatedException, "no exceptions should occur during schema validation");
+        assertEquals(403, jsonSchemaValidationRan, "example data from all archetypes should be validated");
+        assertEquals(403, secondJsonSchemaValidationRan, "example data from all archetypes should be validated from the rm");
 
     }
 

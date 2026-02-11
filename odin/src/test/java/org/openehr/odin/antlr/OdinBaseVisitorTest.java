@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import org.openehr.odin.*;
 import org.openehr.odin.loader.OdinLoaderImpl;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OdinBaseVisitorTest {
     @BeforeEach
@@ -44,7 +44,7 @@ public class OdinBaseVisitorTest {
     public void loadReferenceModel() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
         OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/CIMI-RM-3.0.5.bmm"));
-        assertEquals("Stack should consist of a single item", 1, visitor.getStack().size());
+        assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateRootLevelAttributes(root);
     }
@@ -53,7 +53,7 @@ public class OdinBaseVisitorTest {
     public void loadOdinNestedAttributeStructures1() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
         OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_nested_attribute_structure1.txt"));
-        assertEquals("Stack should consist of a single item", 1, visitor.getStack().size());
+        assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateNestedAttributeStructures(root);
     }
@@ -62,7 +62,7 @@ public class OdinBaseVisitorTest {
     public void loadOdinKeyedObject() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
         OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_keyed_object.txt"));
-        assertEquals("Stack should consist of a single item", 1, visitor.getStack().size());
+        assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateKeyedObjects(root);
     }
@@ -71,7 +71,7 @@ public class OdinBaseVisitorTest {
     public void testOdinTypes() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
         OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_types.txt"));
-        assertEquals("Stack should consist of a single item", 1, visitor.getStack().size());
+        assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateOdinTypes(root);
     }
@@ -80,7 +80,7 @@ public class OdinBaseVisitorTest {
     public void testOdinNestedKeyedObjects() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
         OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_nested_keyed_object.txt"));
-        assertEquals("Stack should consist of a single item", 1, visitor.getStack().size());
+        assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateOdinNestedKeyedObject(root);
     }
@@ -89,7 +89,7 @@ public class OdinBaseVisitorTest {
     public void testOdinTermBindingTestObjects() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
         OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_term_binding_test.txt"));
-        assertEquals("Stack should consist of a single item", 1, visitor.getStack().size());
+        assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateOdinTermBindingTest(root);
     }
@@ -98,7 +98,7 @@ public class OdinBaseVisitorTest {
     public void testOdinPrimitives() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
         OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_primitive_types.txt"));
-        assertEquals("Stack should consist of a single item", 1, visitor.getStack().size());
+        assertEquals( 1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validatePrimitiveType(root, "a_string_attribute", "a string value");
         validatePrimitiveType(root, "a_boolean_attribute", false);
@@ -119,7 +119,7 @@ public class OdinBaseVisitorTest {
     public void testOdinLists() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
         OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_primitive_lists.txt"));
-        assertEquals("Stack should consist of a single item", 1, visitor.getStack().size());
+        assertEquals( 1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         OdinAttribute attribute = validatePrimitiveList(root, "a_string_list_attribute", 3);
         attribute = validatePrimitiveList(root, "a_string_list_attribute", 3);
@@ -137,7 +137,7 @@ public class OdinBaseVisitorTest {
     public void testOdinIntervals() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
         OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_primitive_intervals.txt"));
-        assertEquals("Stack should consist of a single item", 1, visitor.getStack().size());
+        assertEquals( 1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         OdinAttribute attribute = validateInterval(root, "a_integer_interval_attribute1");
         assertEquals(1, attribute.getChildCount());
@@ -219,7 +219,7 @@ public class OdinBaseVisitorTest {
     }
 
     public void validateRootLevelAttributes(CompositeOdinObject root) {
-        assertEquals("Root element should have 11 attributes", 11, root.getAttributeCount());
+        assertEquals(11, root.getAttributeCount(), "Root element should have 11 attributes");
         assertEquals("bmm_version", root.getAttributeAtIndex(0).getName());
         assertEquals(1, root.getAttributeAtIndex(0).getChildCount());
         assertEquals("2.0", root.getAttributeAtIndex(0).getStringObject().getValue());
@@ -259,14 +259,14 @@ public class OdinBaseVisitorTest {
     }
 
     public void validatePackages(CompositeOdinObject packages) {
-        assertEquals("Packages should have exactly 1 keyed object", 1, packages.getKeyedObjectCount());
-        assertEquals("Packages should have exactly 0 attributes", 0, packages.getAttributeCount());
+        assertEquals(1, packages.getKeyedObjectCount(), "Packages should have exactly 1 keyed object");
+        assertEquals(0, packages.getAttributeCount(), "Packages should have exactly 0 attributes");
         validateCimiReferenceModelKeyedObject((CompositeOdinObject) packages.getKeyedObject(new StringObject("CIMI_Reference_Model")));
     }
 
     public void validateCimiReferenceModelKeyedObject(CompositeOdinObject cimiReferenceModelKO) {
-        assertEquals("Packages should have exactly 0 keyed object", 0, cimiReferenceModelKO.getKeyedObjectCount());
-        assertEquals("Packages should have exactly 2 attributes: 'name' and 'packages'", 2, cimiReferenceModelKO.getAttributeCount());
+        assertEquals(0, cimiReferenceModelKO.getKeyedObjectCount(), "Packages should have exactly 0 keyed object");
+        assertEquals(2, cimiReferenceModelKO.getAttributeCount(),"Packages should have exactly 2 attributes: 'name' and 'packages'");
 
         //Validate name
         assertEquals("name", cimiReferenceModelKO.getAttributeAtIndex(0).getName());
@@ -282,8 +282,8 @@ public class OdinBaseVisitorTest {
         //Validate package."Core"
         CompositeOdinObject core = (CompositeOdinObject) packagesAttr.getSoleCompositeObjectBody().getKeyedObject("Core");
         assertNotNull(core);
-        assertEquals("Core has two attributes: 'name' and 'classes':", 2, core.getAttributeCount());
-        assertEquals("Core has no keyed objects:", 0, core.getKeyedObjectCount());
+        assertEquals(2, core.getAttributeCount(), "Core has two attributes: 'name' and 'classes':");
+        assertEquals(0, core.getKeyedObjectCount(), "Core has no keyed objects:");
         OdinAttribute coreName = core.getAttributeAtIndex(0);
         OdinAttribute coreClasses = core.getAttributeAtIndex(1);
         assertEquals("name", coreName.getName());
@@ -296,8 +296,8 @@ public class OdinBaseVisitorTest {
         //Validate package."Data_Value_Types"
         CompositeOdinObject dataValueTypes = (CompositeOdinObject) packagesAttr.getSoleCompositeObjectBody().getKeyedObject("Data_Value_Types");
         assertNotNull(dataValueTypes);
-        assertEquals("Data_Value_Types has two attributes: 'name' and 'classes':", 2, dataValueTypes.getAttributeCount());
-        assertEquals("Data_Value_Types has no keyed objects:", 0, dataValueTypes.getKeyedObjectCount());
+        assertEquals(2, dataValueTypes.getAttributeCount(), "Data_Value_Types has two attributes: 'name' and 'classes':");
+        assertEquals(0, dataValueTypes.getKeyedObjectCount(), "Data_Value_Types has no keyed objects:");
         OdinAttribute dataValueTypesName = dataValueTypes.getAttributeAtIndex(0);
         OdinAttribute dataValueTypesClasses = dataValueTypes.getAttributeAtIndex(1);
         assertEquals("name", dataValueTypesName.getName());
@@ -310,8 +310,8 @@ public class OdinBaseVisitorTest {
         //Validate package."Party"
         CompositeOdinObject party = (CompositeOdinObject) packagesAttr.getSoleCompositeObjectBody().getKeyedObject("Party");
         assertNotNull(party);
-        assertEquals("Party has two attributes: 'name' and 'classes':", 2, party.getAttributeCount());
-        assertEquals("Party has no keyed objects:", 0, party.getKeyedObjectCount());
+        assertEquals(2, party.getAttributeCount(), "Party has two attributes: 'name' and 'classes':");
+        assertEquals(0, party.getKeyedObjectCount(), "Party has no keyed objects:");
         OdinAttribute partyName = party.getAttributeAtIndex(0);
         OdinAttribute partyClasses = party.getAttributeAtIndex(1);
         assertEquals("name", partyName.getName());
@@ -324,8 +324,8 @@ public class OdinBaseVisitorTest {
         //Validate package."Primitive_types"
         CompositeOdinObject primitiveTypes = (CompositeOdinObject) packagesAttr.getSoleCompositeObjectBody().getKeyedObject("Primitive_Types");
         assertNotNull(primitiveTypes);
-        assertEquals("Primitive_Types has two attributes: 'name' and 'classes':", 2, primitiveTypes.getAttributeCount());
-        assertEquals("Primitive_Types has no keyed objects:", 0, primitiveTypes.getKeyedObjectCount());
+        assertEquals(2, primitiveTypes.getAttributeCount(), "Primitive_Types has two attributes: 'name' and 'classes':");
+        assertEquals(0, primitiveTypes.getKeyedObjectCount(), "Primitive_Types has no keyed objects:");
         OdinAttribute primitiveTypesName = primitiveTypes.getAttributeAtIndex(0);
         OdinAttribute primitiveTypesClasses = primitiveTypes.getAttributeAtIndex(1);
         assertEquals("name", primitiveTypesName.getName());
@@ -337,19 +337,19 @@ public class OdinBaseVisitorTest {
     }
 
     public void validatePackageAttributeType(CompositeOdinObject packagesAttribute) {
-        assertEquals("Packages should have exactly 4 keyed object", 4, packagesAttribute.getKeyedObjectCount());
-        assertEquals("Packages should have exactly 0 attributes", 0, packagesAttribute.getAttributeCount());
+        assertEquals(4, packagesAttribute.getKeyedObjectCount(), "Packages should have exactly 4 keyed object");
+        assertEquals(0, packagesAttribute.getAttributeCount(), "Packages should have exactly 0 attributes");
     }
 
     public void validateClassDefinitions(CompositeOdinObject classDefinitions) {
-        assertEquals("Class Definitions should have exactly 36 keyed object", 35, classDefinitions.getKeyedObjectCount());
-        assertEquals("Class Definitions should have exactly 0 attributes", 0, classDefinitions.getAttributeCount());
+        assertEquals(35, classDefinitions.getKeyedObjectCount(), "Class Definitions should have exactly 36 keyed object");
+        assertEquals(0, classDefinitions.getAttributeCount(), "Class Definitions should have exactly 0 attributes");
         validateClassDefinitionItemGroupKeyedObject((CompositeOdinObject) classDefinitions.getKeyedObject("ITEM_GROUP"));
     }
 
     public void validateClassDefinitionItemGroupKeyedObject(CompositeOdinObject itemGroupKO) {
-        assertEquals("Packages should have exactly 3 attributes: 'name', 'ancestors' and 'properties'", 3, itemGroupKO.getAttributeCount());
-        assertEquals("Packages should have exactly 0 keyed object", 0, itemGroupKO.getKeyedObjectCount());
+        assertEquals(3, itemGroupKO.getAttributeCount(), "Packages should have exactly 3 attributes: 'name', 'ancestors' and 'properties'");
+        assertEquals(0, itemGroupKO.getKeyedObjectCount(), "Packages should have exactly 0 keyed object");
 
         //Validate name
         assertEquals("name", itemGroupKO.getAttributeAtIndex(0).getName());
@@ -363,14 +363,14 @@ public class OdinBaseVisitorTest {
         //Validate properties
         OdinAttribute properties = itemGroupKO.getAttributeAtIndex(2);
         assertEquals("properties", properties.getName());
-        assertEquals("Properties should have exactly 2 keyed object", 2, properties.getSoleCompositeObjectBody().getKeyedObjectCount());
-        assertEquals("Properties should have exactly 0 attributes", 0, properties.getSoleCompositeObjectBody().getAttributeCount());
+        assertEquals(2, properties.getSoleCompositeObjectBody().getKeyedObjectCount(), "Properties should have exactly 2 keyed object");
+        assertEquals(0, properties.getSoleCompositeObjectBody().getAttributeCount(), "Properties should have exactly 0 attributes");
 
         //Validate properties."item"
         CompositeOdinObject item = (CompositeOdinObject) properties.getSoleCompositeObjectBody().getKeyedObject("item");
-        assertEquals("Item should have exactly 4 attributes: 'name', 'type_def', 'cardinality', 'is_mandatory'", 4, item.getAttributeCount());
-        assertEquals("Item should have exactly 0 keyed object", 0, item.getKeyedObjectCount());
-        assertEquals("Item should have a type of P_BMM_CONTAINER_PROPERTY", "P_BMM_CONTAINER_PROPERTY", item.getType());
+        assertEquals(4, item.getAttributeCount(), "Item should have exactly 4 attributes: 'name', 'type_def', 'cardinality', 'is_mandatory'");
+        assertEquals(0, item.getKeyedObjectCount(), "Item should have exactly 0 keyed object");
+        assertEquals("P_BMM_CONTAINER_PROPERTY", item.getType(), "Item should have a type of P_BMM_CONTAINER_PROPERTY");
 
         //Validate properties."item".name
         OdinAttribute itemName = item.getAttributeAtIndex(0);
@@ -381,8 +381,8 @@ public class OdinBaseVisitorTest {
         OdinAttribute typeDef = item.getAttributeAtIndex(1);
         CompositeOdinObject typeDefType = typeDef.getSoleCompositeObjectBody();
         assertEquals("type_def", typeDef.getName());
-        assertEquals("Item should have exactly 2 attributes: 'container_type', 'type'", 2, typeDef.getSoleCompositeObjectBody().getAttributeCount());
-        assertEquals("Item should have exactly 0 keyed object", 0, typeDef.getSoleCompositeObjectBody().getKeyedObjectCount());
+        assertEquals(2, typeDef.getSoleCompositeObjectBody().getAttributeCount(), "Item should have exactly 2 attributes: 'container_type', 'type'");
+        assertEquals(0, typeDef.getSoleCompositeObjectBody().getKeyedObjectCount(), "Item should have exactly 0 keyed object");
 
         //Validate properties."item".type_def.container_type
         OdinAttribute containerTypeAttribute = typeDefType.getAttributeAtIndex(0);
@@ -408,9 +408,9 @@ public class OdinBaseVisitorTest {
 
         //Validate properties."participation"
         CompositeOdinObject participation = (CompositeOdinObject) properties.getSoleCompositeObjectBody().getKeyedObject("participation");
-        assertEquals("Participation should have exactly 3 attributes: 'name', 'type_def', 'cardinality'", 3, participation.getAttributeCount());
-        assertEquals("Participation should have exactly 0 keyed object", 0, participation.getKeyedObjectCount());
-        assertEquals("Participation should have a type of P_BMM_CONTAINER_PROPERTY", "P_BMM_CONTAINER_PROPERTY", participation.getType());
+        assertEquals(3, participation.getAttributeCount(), "Participation should have exactly 3 attributes: 'name', 'type_def', 'cardinality'");
+        assertEquals(0, participation.getKeyedObjectCount(), "Participation should have exactly 0 keyed object");
+        assertEquals("P_BMM_CONTAINER_PROPERTY", participation.getType(), "Participation should have a type of P_BMM_CONTAINER_PROPERTY");
 
         //Validate properties."participation".name
         OdinAttribute participationName = participation.getAttributeAtIndex(0);
@@ -421,8 +421,8 @@ public class OdinBaseVisitorTest {
         OdinAttribute participationTypeDef = participation.getAttributeAtIndex(1);
         CompositeOdinObject participationTypeDefType = participationTypeDef.getSoleCompositeObjectBody();
         assertEquals("type_def", participationTypeDef.getName());
-        assertEquals("Item should have exactly 2 attributes: 'container_type', 'type'", 2, participationTypeDefType.getAttributeCount());
-        assertEquals("Item should have exactly 0 keyed object", 0, participationTypeDefType.getKeyedObjectCount());
+        assertEquals(2, participationTypeDefType.getAttributeCount(), "Item should have exactly 2 attributes: 'container_type', 'type'");
+        assertEquals(0, participationTypeDefType.getKeyedObjectCount(), "Item should have exactly 0 keyed object");
         assertTrue(participationTypeDefType instanceof CompositeOdinObject);
 
         //Validate properties."participation".type_def.container_type
@@ -444,13 +444,13 @@ public class OdinBaseVisitorTest {
     }
 
     public void validatePrimitiveTypes(CompositeOdinObject primitiveTypes) {
-        assertEquals("Primitive Types should have exactly 10 keyed object", 10, primitiveTypes.getKeyedObjectCount());
-        assertEquals("Primitive Types should have exactly 0 attributes", 0, primitiveTypes.getAttributeCount());
+        assertEquals(10, primitiveTypes.getKeyedObjectCount(), "Primitive Types should have exactly 10 keyed object");
+        assertEquals(0, primitiveTypes.getAttributeCount(), "Primitive Types should have exactly 0 attributes");
 
         //Validate Boolean
         CompositeOdinObject booleanType = (CompositeOdinObject) primitiveTypes.getKeyedObject("Boolean");
         assertNotNull(booleanType);
-        assertEquals("Boolean keyed object specifies a single attribute", 1, booleanType.getAttributeCount());
+        assertEquals(1, booleanType.getAttributeCount(), "Boolean keyed object specifies a single attribute");
         OdinAttribute booleanTypeName = booleanType.getAttributeAtIndex(0);
         assertEquals("name", booleanTypeName.getName());
         assertEquals("Boolean", booleanTypeName.getStringObject().getValue());
@@ -458,7 +458,7 @@ public class OdinBaseVisitorTest {
         //Validate List.name
         CompositeOdinObject listType = (CompositeOdinObject) primitiveTypes.getKeyedObject("List");
         assertNotNull(listType);
-        assertEquals("List keyed object specifies two attribute: 'name' and 'generic_parameter_defs'", 2, listType.getAttributeCount());
+        assertEquals(2, listType.getAttributeCount(), "List keyed object specifies two attribute: 'name' and 'generic_parameter_defs'");
         OdinAttribute listTypeName = listType.getAttributeAtIndex(0);
         assertEquals("name", listType.getAttributeAtIndex(0).getName());
         assertEquals("List", listType.getAttributeAtIndex(0).getStringObject().getValue());

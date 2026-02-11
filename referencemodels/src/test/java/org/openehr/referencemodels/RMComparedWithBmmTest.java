@@ -12,8 +12,8 @@ import java.text.MessageFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RMComparedWithBmmTest {
 
@@ -167,9 +167,9 @@ public class RMComparedWithBmmTest {
                 noLongerFoundErrors.add(difference);
             }
         }
-        assertTrue("unexpected model differences: "+ Joiner.on("\n").join(foundErrors), foundErrors.isEmpty());
+        assertTrue( foundErrors.isEmpty(), "unexpected model differences: "+ Joiner.on("\n").join(foundErrors));
 
-        assertTrue("difference was in known difference, but is actually not a problem anymore: "+ Joiner.on("\n").join(noLongerFoundErrors), noLongerFoundErrors.isEmpty());
+        assertTrue(noLongerFoundErrors.isEmpty(), "difference was in known difference, but is actually not a problem anymore: "+ Joiner.on("\n").join(noLongerFoundErrors));
         assertEquals(knownDifferences.size(), compared.size());
     }
 

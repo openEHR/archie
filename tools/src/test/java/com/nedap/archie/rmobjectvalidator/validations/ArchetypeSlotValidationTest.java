@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArchetypeSlotValidationTest {
 
@@ -83,7 +83,7 @@ public class ArchetypeSlotValidationTest {
         exampleIncluded.setArchetypeNodeId("id2");
 
         List<RMObjectValidationMessage> validated = rmObjectValidator.validate(parentOpt, example);
-        assertEquals(validated.toString(), 0, validated.size());
+        assertEquals(0, validated.size(), validated.toString());
 
         //now do something invalid
         Element element = (Element) example.itemAtPath("/items[id2]/data/events[id3]/data/items[id4.1]");
@@ -92,7 +92,7 @@ public class ArchetypeSlotValidationTest {
 
 
         validated = rmObjectValidator.validate(parentOpt, example);
-        assertEquals(validated.toString(), 1, validated.size());
+        assertEquals(1, validated.size(), validated.toString());
         RMObjectValidationMessage rmObjectValidationMessage = validated.get(0);
         assertEquals("/items[id2, 1]/data[id9]/events[id3, 1]/data[id10]/items[id4.1, 3]/value/defining_code[id9999]", rmObjectValidationMessage.getPath());
         assertEquals(RMObjectValidationMessageType.DEFAULT, rmObjectValidationMessage.getType());
@@ -110,7 +110,7 @@ public class ArchetypeSlotValidationTest {
         exampleIncluded.setArchetypeNodeId("id2");
 
         List<RMObjectValidationMessage> validated = rmObjectValidator.validate(parentOpt, example);
-        assertEquals(validated.toString(), 1, validated.size());
+        assertEquals(1, validated.size(), validated.toString());
         RMObjectValidationMessage rmObjectValidationMessage = validated.get(0);
         assertEquals("/items[id2, 1]", rmObjectValidationMessage.getPath());
         assertEquals(RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH, rmObjectValidationMessage.getType());
@@ -129,7 +129,7 @@ public class ArchetypeSlotValidationTest {
         exampleIncluded.setArchetypeNodeId("id2");
 
         List<RMObjectValidationMessage> validated = rmObjectValidator.validate(parentOpt, example);
-        assertEquals(validated.toString(), 1, validated.size());
+        assertEquals(1, validated.size(), validated.toString());
         RMObjectValidationMessage rmObjectValidationMessage = validated.get(0);
         assertEquals("/items[id2, 1]", rmObjectValidationMessage.getPath());
         assertEquals(RMObjectValidationMessageType.ARCHETYPE_NOT_FOUND, rmObjectValidationMessage.getType());
@@ -152,7 +152,7 @@ public class ArchetypeSlotValidationTest {
 
 
         List<RMObjectValidationMessage> validated = rmObjectValidator.validate(parentOpt, example);
-        assertEquals(validated.toString(), 3, validated.size());
+        assertEquals(3, validated.size(), validated.toString());
 
         //there must be an archetype id in a slot
         RMObjectValidationMessage rmObjectValidationMessage = validated.get(0);
