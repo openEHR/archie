@@ -88,7 +88,7 @@ public class DvDate extends DvTemporal<DvDate, Long> implements SingleValuedData
 
     @Override
     public void setValue(Temporal value) {
-        if(value.isSupported(ChronoField.HOUR_OF_DAY)) {
+        if(value != null && value.isSupported(ChronoField.HOUR_OF_DAY)) {
             //TODO: do we really need this validation?
             throw new IllegalArgumentException("value must only have a year, month or date, but this supports hours: " + value);
         }
