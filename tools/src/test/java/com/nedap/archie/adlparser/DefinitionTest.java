@@ -4,13 +4,13 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 19/10/15.
@@ -19,7 +19,7 @@ public class DefinitionTest {
 
     private Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         archetype = TestUtil.parseFailOnErrors("/basic.adl");;
     }

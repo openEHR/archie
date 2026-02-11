@@ -3,7 +3,7 @@ package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 import com.nedap.archie.rm.datavalues.quantity.DvProportion;
 import com.nedap.archie.rm.datavalues.quantity.ProportionKind;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DvProportionInvariantTest {
 

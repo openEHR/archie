@@ -14,13 +14,13 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import com.nedap.archie.xml.JAXBUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Created by pieter.bos on 03/05/16.
@@ -31,7 +31,7 @@ public class RMQueryContextTest {
     private Archetype archetype;
     private Pathable root;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
         archetype = new ADLParser(new RMConstraintImposer()).parse(getClass().getResourceAsStream("/basic.adl"));

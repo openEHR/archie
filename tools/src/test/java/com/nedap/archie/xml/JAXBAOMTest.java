@@ -12,8 +12,8 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.datetime.DateTimeParsers;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
@@ -24,15 +24,16 @@ import java.time.temporal.TemporalAmount;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JAXBAOMTest {
 
     private Archetype archetype;
     private CComplexObject elementRootNode;
     private CAttribute valueAttribute;
-    @Before
+    @BeforeEach
     public void setup() {
         //create an empty archetype
         archetype = new AuthoredArchetype();
@@ -62,8 +63,8 @@ public class JAXBAOMTest {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(archetype, writer);
         String xml = writer.toString();
-        assertTrue(xml, xml.contains("-P10D"));
-        assertTrue(xml, xml.contains("PT10S"));
+        assertThat(xml, xml.contains("-P10D"));
+        assertThat(xml, xml.contains("PT10S"));
     }
 
     @Test
@@ -79,7 +80,7 @@ public class JAXBAOMTest {
         marshaller.marshal(archetype, writer);
         String xml = writer.toString();
 
-        assertTrue(xml, xml.contains("<constraintStatus>preferred</constraintStatus>"));
+        assertThat(xml, xml.contains("<constraintStatus>preferred</constraintStatus>"));
 
         Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(xml));
@@ -281,7 +282,7 @@ public class JAXBAOMTest {
 
         Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Template unmarshalled = (Template) unmarshaller.unmarshal(new StringReader(writer.toString()));
-        assertEquals("one template overlay should have been unmarshalled", 1, unmarshalled.getTemplateOverlays().size());
+        assertEquals(1, unmarshalled.getTemplateOverlays().size(), "one template overlay should have been unmarshalled");
         assertEquals("openEHR-EHR-ELEMENT.test.v0.0.1", unmarshalled.getTemplateOverlays().get(0).getArchetypeId().getFullId());
 
     }
