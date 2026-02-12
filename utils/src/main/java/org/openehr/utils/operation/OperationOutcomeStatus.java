@@ -16,8 +16,10 @@ package org.openehr.utils.operation;
  * limitations under the License.
  * <p>
  * Created by cnanjo on 1/17/17.
+ * @deprecated This class is unused and will be removed.
  */
 
+@Deprecated
 public enum OperationOutcomeStatus {
     SUCCESS,
     FAILURE
