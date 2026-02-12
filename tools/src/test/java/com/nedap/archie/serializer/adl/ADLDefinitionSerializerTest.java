@@ -4,15 +4,15 @@ import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.base.MultiplicityInterval;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author markopi
@@ -21,7 +21,7 @@ public class ADLDefinitionSerializerTest {
     private static Archetype archetypePrimitives;
 
 
-    @BeforeClass
+    @BeforeAll
     public static void setupClass() throws IOException, ADLParseException {
         archetypePrimitives = load("openEHR-TEST_PKG-WHOLE.primitive_types.v1.adls");
     }

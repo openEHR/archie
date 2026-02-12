@@ -1,7 +1,7 @@
 package org.openehr.bmm.v2.persistence.converters;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinSerializer;

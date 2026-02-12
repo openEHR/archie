@@ -3,7 +3,7 @@ package com.nedap.archie.rmobjectvalidator.invariants.ehr;
 import com.nedap.archie.rm.composition.IsmTransition;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class IsmTransitionInvariantTest {
 
