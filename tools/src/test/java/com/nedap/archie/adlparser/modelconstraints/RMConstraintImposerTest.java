@@ -5,10 +5,10 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -17,7 +17,7 @@ public class RMConstraintImposerTest {
 
     private Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         archetype = new ADLParser(new RMConstraintImposer()).parse(getClass().getResourceAsStream("/adl2-tests/features/alternatives/openEHR-EHR-ADMIN_ENTRY.dependency_choice.v1.0.0.adls"));
     }

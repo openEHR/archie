@@ -6,8 +6,8 @@ import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OdinToJsonConverterTest extends OdinToJsonConverterBaseTest {
 
@@ -20,8 +20,8 @@ public class OdinToJsonConverterTest extends OdinToJsonConverterBaseTest {
         parser.addErrorListener(errorListener);
         OdinToJsonConverter converter = new OdinToJsonConverter();
         String result = converter.convert(parser.odin_text());
-        assertTrue(errorListener.getErrors().toString(), errorListener.getErrors().hasNoErrors());
+        assertTrue(errorListener.getErrors().hasNoErrors(), errorListener.getErrors().toString());
 
-        assertEquals("the converted json should be equal to the expected", json, result);
+        assertEquals(json, result, "the converted json should be equal to the expected");
     }
 }

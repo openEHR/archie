@@ -4,13 +4,13 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ComplexArchetypeValidatorTest {
     private ReferenceModels models;
@@ -22,7 +22,7 @@ public class ComplexArchetypeValidatorTest {
 
     private static InMemoryFullArchetypeRepository repository;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         models = BuiltinReferenceModels.getAvailableModelInfoLookups();
 

@@ -7,11 +7,11 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.rminfo.ReferenceModels;
 import com.nedap.archie.rules.*;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 15/05/2017.
@@ -27,7 +27,7 @@ public class RulesFlattenerTest {
 
     private ReferenceModels models;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         models = BuiltinReferenceModels.getAvailableModelInfoLookups();
 
@@ -66,7 +66,7 @@ public class RulesFlattenerTest {
         String serialized= ADLArchetypeSerializer.serialize(flattened);
         ADLParser parser = new ADLParser();
         parser.parse(serialized);
-        assertFalse(parser.getErrors().toString(), parser.getErrors().hasErrors());
+        assertFalse(parser.getErrors().hasErrors(), parser.getErrors().toString());
     }
 
     @Test
