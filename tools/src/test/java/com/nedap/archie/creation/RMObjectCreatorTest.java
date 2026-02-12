@@ -10,12 +10,11 @@ import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvBoolean;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 10/05/2017.
@@ -70,7 +69,7 @@ public class RMObjectCreatorTest {
         assertEquals("1.1.0", archetypeDetails.getRmVersion());
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test
     public void createUnknownType() {
         Archetype archetype = new AuthoredArchetype();
         archetype.setTerminology(new ArchetypeTerminology());
@@ -83,7 +82,7 @@ public class RMObjectCreatorTest {
         elementConstraint.setNodeId("id6");
         archetype.setDefinition(elementConstraint);
 
-        Object o = creator.create(elementConstraint);
+        assertThrows(IllegalArgumentException.class, ()-> creator.create(elementConstraint));
     }
 
     @Test
@@ -103,21 +102,21 @@ public class RMObjectCreatorTest {
         assertEquals(true, booleanValue.getValue());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     @Deprecated
     public void setSingleValuedValueIncorrectly() {
         Element element = new Element();
         DvBoolean booleanValue = new DvBoolean();
         DvBoolean booleanValue2 = new DvBoolean();
-        creator.set(element, "value", Lists.newArrayList(booleanValue, booleanValue2));
+        assertThrows(IllegalArgumentException.class, () -> creator.set(element, "value", Lists.newArrayList(booleanValue, booleanValue2)));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     @Deprecated
     public void setSingleValuedValueUnknownArgument() {
         Element element = new Element();
         DvBoolean booleanValue = new DvBoolean();
-        creator.set(element, "values", Lists.newArrayList(booleanValue));
+        assertThrows(IllegalArgumentException.class, () -> creator.set(element, "values", Lists.newArrayList(booleanValue)));
     }
 
     @Test
@@ -180,14 +179,20 @@ public class RMObjectCreatorTest {
         assertEquals(booleanValue, element.getValue());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     @Deprecated
     public void addToListOrSetSingleValueWithSingleValueIncorrect() {
         Element element = new Element();
         DvBoolean booleanValue = new DvBoolean();
         DvBoolean booleanValue2 = new DvBoolean();
-        creator.addElementToListOrSetSingleValues(element, "value", Lists.newArrayList(booleanValue, booleanValue2));
-        assertEquals(booleanValue, element.getValue());
+
+        assertThrows(IllegalArgumentException.class, () ->
+                creator.addElementToListOrSetSingleValues(
+                        element,
+                        "value",
+                        Lists.newArrayList(booleanValue, booleanValue2)
+                )
+        );
     }
 
 

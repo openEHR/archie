@@ -16,14 +16,14 @@ import com.nedap.archie.rm.datavalues.quantity.DvProportion;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ValidateArchetypedTest {
 
@@ -35,7 +35,7 @@ public class ValidateArchetypedTest {
     private OperationalTemplate elementOpt;
     private Archetype itemTreeArchetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         testUtil = new TestUtil();
 
@@ -80,9 +80,9 @@ public class ValidateArchetypedTest {
         element.setFeederAudit(feederAudit);
 
         List<RMObjectValidationMessage> validationMessages = validator.validate(elementOpt, element);
-        assertEquals("There should be 1 error", 1, validationMessages.size());
+        assertEquals(1, validationMessages.size(), "There should be 1 error");
         assertEquals("Attribute does not match cardinality 1..2", validationMessages.get(0).getMessage());
-        assertEquals("The path should be correct", "/feeder_audit/originating_system_audit/other_details[id1]/items", validationMessages.get(0).getPath());
+        assertEquals("/feeder_audit/originating_system_audit/other_details[id1]/items", validationMessages.get(0).getPath(), "The path should be correct");
         assertEquals(RMObjectValidationMessageType.CARDINALITY_MISMATCH, validationMessages.get(0).getType());
     }
 

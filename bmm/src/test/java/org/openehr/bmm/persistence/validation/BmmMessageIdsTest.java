@@ -1,12 +1,12 @@
 package org.openehr.bmm.persistence.validation;
 
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.utils.message.I18n;
 
 import java.util.Locale;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test i18n of the BmmMessageIds
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class BmmMessageIdsTest {
 
 
-    @After
+    @AfterEach
     public void tearDown() {
         I18n.setCurrentLocale(null);
     }

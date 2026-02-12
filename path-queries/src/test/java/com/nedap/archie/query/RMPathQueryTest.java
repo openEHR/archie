@@ -2,13 +2,13 @@ package com.nedap.archie.query;
 
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RMPathQueryTest {
 
@@ -22,7 +22,7 @@ public class RMPathQueryTest {
     private Element elementNoId_2;
     private Element elementArchetypeId;
 
-    @Before
+    @BeforeEach
     public void setup() {
         cluster = new Cluster();
         cluster.setArchetypeNodeId("id1");

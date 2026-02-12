@@ -3,8 +3,8 @@ package org.openehr.referencemodels;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
@@ -16,8 +16,8 @@ import org.openehr.bmm.v2.validation.BmmValidationResult;
 import java.io.InputStream;
 import java.util.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Compares the AOM with the official BMM.
@@ -28,7 +28,7 @@ import static org.junit.Assert.assertTrue;
 public class AOMComparedWithBmmTest {
 
     @Test
-    @Ignore
+    @Disabled
     public void testAOM() throws Exception{
         Map<String, String> typeMap =  new HashMap<>();
         typeMap.put("Any", "OPEN_EHRBASE");
@@ -97,9 +97,9 @@ public class AOMComparedWithBmmTest {
                 noLongerFoundErrors.add(difference);
             }
         }
-        assertTrue("unexpected model differences: "+ Joiner.on("\n").join(foundErrors), foundErrors.isEmpty());
+        assertTrue(foundErrors.isEmpty(), "unexpected model differences: "+ Joiner.on("\n").join(foundErrors));
 
-        assertTrue("difference was in known difference, but is actually not a problem anymore: "+ Joiner.on("\n").join(noLongerFoundErrors), noLongerFoundErrors.isEmpty());
+        assertTrue(noLongerFoundErrors.isEmpty(),"difference was in known difference, but is actually not a problem anymore: "+ Joiner.on("\n").join(noLongerFoundErrors));
         assertEquals(knownDifferences.size(), compared.size());
     }
 }
