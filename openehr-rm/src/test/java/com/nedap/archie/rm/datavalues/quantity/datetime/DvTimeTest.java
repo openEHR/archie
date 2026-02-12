@@ -1,6 +1,8 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
 import org.junit.jupiter.api.Test;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.nedap.archie.json.JacksonUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -22,4 +24,11 @@ public class DvTimeTest {
 
 		assertEquals(dvTimeFour, dvTimeFive);
 	}
+
+    @Test
+    public void deserializeValueEmptyString() throws JsonProcessingException {
+        String json = "{\"value\":\"\"}";
+        DvDuration actual = JacksonUtil.getObjectMapper().readValue(json, DvDuration.class);
+        assertNull(actual.getValue());
+    }
 }
