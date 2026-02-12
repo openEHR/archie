@@ -205,6 +205,10 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         return Modifier.isPublic(method.getModifiers()) && method.getAnnotation(RMPropertyIgnore.class) == null;
     }
 
+    /**
+     * @deprecated This method will become private.
+     */
+    @Deprecated
     protected void addRMAttributeInfo(Class<?> clazz, RMTypeInfo typeInfo, TypeToken<?> typeToken, Method getMethod, Map<String, Field> fieldsByName) {
         String javaFieldName = null;
         if(getMethod.getName().startsWith("is")) {
