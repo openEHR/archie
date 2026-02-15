@@ -246,7 +246,7 @@ It also does not yet diff the rules section, this must be manually performed.
 
 ### Serializing to ADL
 
-Archetype models can be serialized to ADL thanks the the serializer written by @markopi64 from Marand Labs. To use:
+Archetype models can be serialized to ADL thanks to the serializer written by @markopi64 from Marand Labs. To use:
 
 ```java
 String serialized = ADLArchetypeSerializer.serialize(archetype);
