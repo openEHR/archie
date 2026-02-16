@@ -8,7 +8,7 @@ repositories {
 
 
 allprojects {
-    version = '3.16.0'
+    version = '3.17.0'
     group = 'com.nedap.healthcare.archie'
     ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
     //archivesBaseName = 'archie'
