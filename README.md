@@ -18,7 +18,7 @@ You can depend on parts of Archie, or the entire library at once. If you want th
 
 ```gradle
 dependencies {
-    compile 'com.nedap.healthcare.archie:archie-all:3.16.0'
+    compile 'com.nedap.healthcare.archie:archie-all:3.17.0'
 }
 ```
 
@@ -28,11 +28,11 @@ or if you use maven, in your pom.xml
 <dependency>
     <groupId>com.nedap.healthcare.archie</groupId>
     <artifactId>archie-all</artifactId>
-    <version>3.16.0</version>
+    <version>3.17.0</version>
 </dependency>
 ```
 
-If you want to depend on just the AOM and BMM, without any reference model implementation, depend on com.nedap.healthcare.archie:tools:3.16.0 and com.nedap.healthcare.archie:referencemodels:3.16.0 instead
+If you want to depend on just the AOM and BMM, without any reference model implementation, depend on com.nedap.healthcare.archie:tools:3.17.0 and com.nedap.healthcare.archie:referencemodels:3.17.0 instead
 
 
 ## Build
