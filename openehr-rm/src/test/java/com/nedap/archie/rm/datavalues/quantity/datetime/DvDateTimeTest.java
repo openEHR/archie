@@ -1,9 +1,10 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.nedap.archie.json.JacksonUtil;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class DvDateTimeTest {
 
@@ -33,4 +34,11 @@ public class DvDateTimeTest {
 		assertEquals("2019-01", new DvDateTime("2019-01").getValue().toString());
 		assertEquals("2019", new DvDateTime("2019").getValue().toString());
 	}
+
+    @Test
+    public void deserializeValueEmptyString() throws JsonProcessingException {
+        String json = "{\"value\":\"\"}";
+        DvDateTime actual = JacksonUtil.getObjectMapper().readValue(json, DvDateTime.class);
+        assertNull(actual.getValue());
+    }
 }

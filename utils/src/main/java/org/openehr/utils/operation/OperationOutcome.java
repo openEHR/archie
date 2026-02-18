@@ -22,21 +22,36 @@ package org.openehr.utils.operation;
  * Class representing the outcome of an operation including the return value,
  * a flag indicating success or failure, and the exception thrown by the operation
  * if any.
+ *
+ * @deprecated This class is unused and will be removed.
  */
+@Deprecated
 public class OperationOutcome<T> {
 
     private T result;
     private OperationOutcomeStatus status;
     private Exception exception;
 
+     /**
+      * @deprecated This class is unused and will be removed.
+      */
+     @Deprecated
      public OperationOutcome(T result) {
          this(result, OperationOutcomeStatus.SUCCESS, null);
      }
 
+     /**
+      * @deprecated This class is unused and will be removed.
+      */
+     @Deprecated
      public OperationOutcome(T result, OperationOutcomeStatus status) {
          this(result, status, null);
      }
 
+     /**
+      * @deprecated This class is unused and will be removed.
+      */
+     @Deprecated
      public OperationOutcome(T result, OperationOutcomeStatus status, Exception exception) {
          this.result = result;
          this.status = status;

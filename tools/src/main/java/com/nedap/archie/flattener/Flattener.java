@@ -198,7 +198,9 @@ public class Flattener implements IAttributeFlattenerSupport {
             prohibitZeroOccurrencesConstraints(result);
         }
 
-        String prefix = child.getArchetypeId().getConceptId() + "_";
+        // Replaces dashes and convert to lower case, as dashes and variables starting with an upper case letter
+        // aren't allowed everywhere.
+        String prefix = child.getArchetypeId().getConceptId().replace("-", "_").toLowerCase() + "_";
         //Use empty tagPrefix here. If not empty, overridden rules in specialized archetype will not overwrite base rules,
         //but be added to the rules section additionally to the base rules.
         rulesFlattener.combineRules(child, result, prefix, "", "", true /* override statements with same tag */);
