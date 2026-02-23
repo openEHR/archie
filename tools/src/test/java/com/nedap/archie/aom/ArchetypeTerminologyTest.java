@@ -6,18 +6,19 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ArchetypeTerminologyTest {
 
-    @After
+    @AfterEach
     public void tearDown() {
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(null);
     }
@@ -32,7 +33,7 @@ public class ArchetypeTerminologyTest {
 
         //check that they are valid, just to be sure
         repository.compile(BuiltinReferenceModels.getMetaModelProvider());
-        repository.getAllValidationResults().forEach(s -> assertTrue(s.getErrors().toString(), s.getErrors().isEmpty()));
+        repository.getAllValidationResults().forEach(s -> assertThat(s.getErrors().toString(), s.getErrors().isEmpty()));
 
         //create operational template
         Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());

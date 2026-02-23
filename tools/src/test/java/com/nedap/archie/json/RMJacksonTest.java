@@ -6,7 +6,7 @@ import com.nedap.archie.rm.composition.Composition;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.threeten.extra.PeriodDuration;
 
 import java.io.InputStream;
@@ -15,8 +15,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RMJacksonTest {
 
@@ -151,7 +152,7 @@ public class RMJacksonTest {
 
         DvDateTime year = new DvDateTime(Year.of(2015));
         String yearString = objectMapper.writeValueAsString(year);
-        assertTrue(yearString, yearString.contains("\"2015\""));
+        assertThat(yearString, yearString.contains("\"2015\""));
         DvDateTime parsedYear = objectMapper.readValue(yearString, DvDateTime.class);
         assertEquals(year.getValue(), parsedYear.getValue());
     }

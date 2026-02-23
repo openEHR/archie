@@ -21,8 +21,8 @@ import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.threeten.extra.PeriodDuration;
 
@@ -35,7 +35,8 @@ import java.time.temporal.ChronoUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A test that tests JSON parsing of Archetypes using Jackson
@@ -319,7 +320,7 @@ public class AOMJacksonTest {
         }
     }
 
-    @Ignore // for local testing
+    @Disabled // for local testing
     @Test
     public void parseS2AomJsonAll() throws Exception {
 

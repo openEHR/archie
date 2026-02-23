@@ -18,16 +18,16 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rules.evaluation.DummyRulesPrimitiveObjectParent;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.net.URI;
 import java.util.*;
 
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by pieter.bos on 23/02/16.
@@ -39,7 +39,7 @@ public class TerminologyCodeConstraintsTest {
     private final PrimitiveObjectConstraintHelper primitiveObjectConstraintHelper = new PrimitiveObjectConstraintHelper(validationConfiguration);
     private final ValidationHelper validationHelper = new ValidationHelper(ArchieRMInfoLookup.getInstance(), validationConfiguration);
 
-    @Before
+    @BeforeEach
     public void setupArchetype() {
         archetype = new AuthoredArchetype();
 

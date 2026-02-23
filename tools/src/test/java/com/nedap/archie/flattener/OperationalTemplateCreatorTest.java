@@ -10,19 +10,17 @@ import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Optional;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-import static com.nedap.archie.flattener.specexamples.FlattenerTestUtil.parse;
-import static junit.framework.TestCase.assertNull;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OperationalTemplateCreatorTest {
 
@@ -93,16 +91,18 @@ public class OperationalTemplateCreatorTest {
         }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void failOnMissingArchetypeEnabled() throws Exception {
         SimpleArchetypeRepository repository = new SimpleArchetypeRepository();
-        try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.with_used_archetype.v1.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
-            FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forOperationalTemplate();
-            Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), flattenerConfiguration);
-            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype);
-            fail();
-        }
+        assertThrows(IllegalArgumentException.class, () -> {
+            try (InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.with_used_archetype.v1.adls")) {
+                Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
+                FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forOperationalTemplate();
+                Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), flattenerConfiguration);
+                OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype);
+                fail();
+            }
+        });
     }
 
     @Test
@@ -162,7 +162,7 @@ public class OperationalTemplateCreatorTest {
         ReferenceModels models = new ReferenceModels();
         models.registerModel(ArchieRMInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
-        assertTrue(validationResult.getErrors().toString(), validationResult.passes());
+        assertThat(validationResult.getErrors().toString(), validationResult.passes());
         return new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), config).flatten(parse(fileName));
     }
 
