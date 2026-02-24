@@ -5,12 +5,12 @@ import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.rm.support.identification.HierObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ObservationTest {
 

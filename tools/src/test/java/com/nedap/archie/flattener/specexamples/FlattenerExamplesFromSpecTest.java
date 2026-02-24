@@ -11,16 +11,15 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.SimpleMetaModelProvider;
-import org.junit.Before;
-import org.junit.Test;
-import org.openehr.bmm.v2.validation.BmmRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.nedap.archie.flattener.specexamples.FlattenerTestUtil.parse;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FlattenerExamplesFromSpecTest {
 
@@ -29,7 +28,7 @@ public class FlattenerExamplesFromSpecTest {
 
     protected MetaModelProvider metaModelProvider;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         repository = new SimpleArchetypeRepository();
         metaModelProvider = new SimpleMetaModelProvider(BuiltinReferenceModels.getAvailableModelInfoLookups(), null);
@@ -47,17 +46,17 @@ public class FlattenerExamplesFromSpecTest {
         CObject firstAddedConstraint = flattened.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id79.2]");
         CObject secondAddedConstraint = flattened.itemAtPath("/data[id2]/events[id3]/data[id4]/items[id79.7]");
 
-        assertNotNull("first constraint should have been added", firstAddedConstraint);
+        assertNotNull( firstAddedConstraint, "first constraint should have been added");
         assertEquals(new MultiplicityInterval(0, 1), firstAddedConstraint.getOccurrences());
-        assertNotNull("added constraint should have a value attribute", firstAddedConstraint.getAttribute("value"));
+        assertNotNull(firstAddedConstraint.getAttribute("value"), "added constraint should have a value attribute");
 
-        assertNotNull("second constraint should have been added", secondAddedConstraint);
+        assertNotNull(secondAddedConstraint, "second constraint should have been added");
         assertEquals(new MultiplicityInterval(0, 1), secondAddedConstraint.getOccurrences());
-        assertNull("second added constraint should not have a value attribute", secondAddedConstraint.getAttribute("value"));
+        assertNull(secondAddedConstraint.getAttribute("value"), "second added constraint should not have a value attribute");
 
         //original constraint should not have been closed and still be present
-        assertNotNull("original constraint should not have been removed", originalConstraint);
-        assertNull("original constraint should not have been closed", originalConstraint.getOccurrences());
+        assertNotNull(originalConstraint, "original constraint should not have been removed");
+        assertNull(originalConstraint.getOccurrences(), "original constraint should not have been closed");
     }
 
     @Test
@@ -71,8 +70,7 @@ public class FlattenerExamplesFromSpecTest {
 
         CObject nodeWithId4 = (CObject) flattenedDiagnosis.itemAtPath("/data[id2]/items[id3]/value[id4]");
         assertEquals("DV_CODED_TEXT", nodeWithId4.getRmTypeName());
-        assertTrue("dv coded text should now have a terminology code constraint",
-                nodeWithId4.getAttribute("defining_code").getChildren().get(0) instanceof CTerminologyCode);
+        assertInstanceOf(CTerminologyCode.class, nodeWithId4.getAttribute("defining_code").getChildren().get(0), "dv coded text should now have a terminology code constraint");
 
 
         CObject firstAddedNode = flattenedDiagnosis.itemAtPath("/data/items[id0.32]");
@@ -110,14 +108,14 @@ public class FlattenerExamplesFromSpecTest {
 
         for(String nodeId: Lists.newArrayList("1", "2", "5")) {
 
-            assertNotNull("node id3." + nodeId + " should have subnode id4",
-                    flattenedLipidStudies.itemAtPath(String.format("/items[id3.%s]/items[id4]", nodeId)));
+            assertNotNull(flattenedLipidStudies.itemAtPath(String.format("/items[id3.%s]/items[id4]", nodeId)),
+                    "node id3." + nodeId + " should have subnode id4");
 
-            assertNotNull("node id3." + nodeId + " should have subnode id2." + nodeId,
-                    flattenedLipidStudies.itemAtPath(String.format("/items[id3.%s]/items[id2.%s]", nodeId, nodeId)));
+            assertNotNull(flattenedLipidStudies.itemAtPath(String.format("/items[id3.%s]/items[id2.%s]", nodeId, nodeId)),
+                    "node id3." + nodeId + " should have subnode id2." + nodeId);
 
-            assertNull("node id3." + nodeId + " should have subnode id2." + nodeId,
-                    flattenedLipidStudies.itemAtPath(String.format("/items[id3.%s]/items[id2]", nodeId)));
+            assertNull( flattenedLipidStudies.itemAtPath(String.format("/items[id3.%s]/items[id2]", nodeId)),
+                    "node id3." + nodeId + " should have subnode id2." + nodeId);
 
         }
 
@@ -225,8 +223,8 @@ public class FlattenerExamplesFromSpecTest {
         //all three are descendants in the RM Of the value constraint, so they should match and take over any attributes of the parent
         for(CObject child:value.getChildren()) {
             CAttribute accuracyAttribute = child.getAttribute("accuracy");
-            assertNotNull(child.getNodeId() + " should have accuraccy != null", accuracyAttribute);
-            assertFalse(child.getNodeId() + " should have accuraccy !empty", accuracyAttribute.getChildren().isEmpty());
+            assertNotNull(accuracyAttribute, child.getNodeId() + " should have accuraccy != null");
+            assertFalse(accuracyAttribute.getChildren().isEmpty(), child.getNodeId() + " should have accuraccy !empty");
             CReal accuracy = (CReal) accuracyAttribute.getChildren().get(0);
             CReal parentAccuracy = rmTypeRefinement.itemAtPath("/value/accuracy[1]");
             assertEquals(parentAccuracy.getConstraint(), accuracy.getConstraint());
@@ -247,7 +245,7 @@ public class FlattenerExamplesFromSpecTest {
         assertNotNull(flat.itemAtPath("/data[id3]/items[id0.1]"));
         assertNull(flat.itemAtPath("/data[id2]/items[id0.1]"));
         CObject id3 = flat.itemAtPath("/data[id3]");
-        assertEquals("the complex object proxy should have been replaced with a regular complex object", CComplexObject.class, id3.getClass());
+        assertEquals(CComplexObject.class, id3.getClass(), "the complex object proxy should have been replaced with a regular complex object");
     }
 
     @Test
@@ -292,8 +290,8 @@ public class FlattenerExamplesFromSpecTest {
         CAttributeTuple tuple = dvQuantity.getAttributeTuples().get(0);
         assertEquals(1, tuple.getTuples().size());//only the mm[Hg] should be left
         assertEquals(Lists.newArrayList("magnitude", "units"), tuple.getMemberNames());
-        assertEquals("socParent should have been updated for units", tuple, dvQuantity.getAttribute("units").getSocParent());
-        assertEquals("socParent should have been updated for magnitude", tuple, dvQuantity.getAttribute("magnitude").getSocParent());
+        assertEquals(tuple, dvQuantity.getAttribute("units").getSocParent(), "socParent should have been updated for units");
+        assertEquals(tuple, dvQuantity.getAttribute("magnitude").getSocParent(), "socParent should have been updated for magnitude");
 
         assertEquals(1, dvQuantity.getAttribute("magnitude").getChildren().size());
         CReal magnitudeAttr = (CReal) dvQuantity.getAttribute("magnitude").getChildren().get(0);
@@ -320,8 +318,8 @@ public class FlattenerExamplesFromSpecTest {
         CAttributeTuple tuple = dvQuantity.getAttributeTuples().get(0);
         assertEquals(1, tuple.getTuples().size());//only the mm[Hg] should be left
         assertEquals(Lists.newArrayList("magnitude", "units"), tuple.getMemberNames());
-        assertEquals("socParent should have been added for units", tuple, dvQuantity.getAttribute("units").getSocParent());
-        assertEquals("socParent should have been added for magnitude", tuple, dvQuantity.getAttribute("magnitude").getSocParent());
+        assertEquals(tuple, dvQuantity.getAttribute("units").getSocParent(), "socParent should have been added for units");
+        assertEquals(tuple, dvQuantity.getAttribute("magnitude").getSocParent(), "socParent should have been added for magnitude");
 
         assertEquals(1, dvQuantity.getAttribute("magnitude").getChildren().size());
         CReal magnitudeAttr = (CReal) dvQuantity.getAttribute("magnitude").getChildren().get(0);

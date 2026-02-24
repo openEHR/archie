@@ -7,7 +7,7 @@ import com.nedap.archie.rm.generic.AuditDetails;
 import com.nedap.archie.rm.generic.PartySelf;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 

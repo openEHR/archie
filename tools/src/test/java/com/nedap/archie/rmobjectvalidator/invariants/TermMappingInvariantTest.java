@@ -3,7 +3,7 @@ package com.nedap.archie.rmobjectvalidator.invariants;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.TermMapping;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TermMappingInvariantTest {
 
