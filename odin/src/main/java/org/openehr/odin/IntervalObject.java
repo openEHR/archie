@@ -28,7 +28,7 @@ import java.io.Serializable;
 /**
  * Created by cnanjo on 4/8/16.
  */
-public abstract class IntervalObject<T extends PrimitiveObject<T>, U extends ParserRuleContext> extends OdinObject implements Serializable {
+public abstract class IntervalObject<T extends PrimitiveObject, U extends ParserRuleContext> extends OdinObject implements Serializable {
 
     private String intervalExpression;
     private T low;

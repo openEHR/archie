@@ -79,19 +79,19 @@ public class Interval<T> extends OpenEHRBase {
     }
 
     public static <T> Interval<T> lowerUnbounded(T upper, boolean upperIncluded) {
-        Interval<T> result = new Interval<>(null, upper, false, upperIncluded);
+        Interval<T> result = new Interval<T>(null, upper, false, upperIncluded);
         result.setLowerUnbounded(true);
         return result;
     }
 
     public static <T> Interval<T> upperUnbounded(T lower, boolean lowerIncluded) {
-        Interval<T> result = new Interval<>(lower, null, lowerIncluded, false);
+        Interval<T> result = new Interval<T>(lower, null, lowerIncluded, false);
         result.setUpperUnbounded(true);
         return result;
     }
 
     public static <T> Interval<T> unbounded() {
-        Interval<T> result = new Interval<>(null, null, false, false);
+        Interval<T> result = new Interval<T>(null, null, false, false);
         result.setLowerUnbounded(true);
         result.setUpperUnbounded(true);
         return result;
