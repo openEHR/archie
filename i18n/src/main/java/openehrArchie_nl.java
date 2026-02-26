@@ -44,9 +44,9 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[74] = "Id code {0} in terminology is not a valid term code, should be id, ac or at, followed by digits";
     t[75] = "Id code {0} in de terminology is geen geldige term-code. De code zou moeten beginnen met id, ac of at, gevolgd door getallen";
     t[88] = "Duplicate Reference Model schema found for model ''{0}'' in file {1}, ignoring latter";
-    t[89] = "Meer dan \u00e9\u00e9n Reference Model schema gevonden voor model ''{0}'' in bestand {1}. De tweede en volgende worden genegeerd";
+    t[89] = "Meer dan één Reference Model schema gevonden voor model ''{0}'' in bestand {1}. De tweede en volgende worden genegeerd";
     t[90] = "The specialisation depth of the archetype, {0}, must be one greater than the specialisation depth of the parent archetype, {1}";
-    t[91] = "De specialisation depth van het archetype, {0}, moet \u00e9\u00e9n groter zijn dan die van het gespecialiseerde archetype, {1}";
+    t[91] = "De specialisation depth van het archetype, {0}, moet één groter zijn dan die van het gespecialiseerde archetype, {1}";
     t[92] = "RM Release version {0} is an invalid format for a version, should be x.x.x-(rc|alpha(x)?)?";
     t[93] = "Het formaat van de RM release version {0} klopt niet. dit moet in het formaat  x.x.x-(rc|alpha(x)?)? zijn";
     t[94] = "{0} and {1}";
@@ -120,7 +120,7 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[270] = "at path: ";
     t[271] = "op het pad: ";
     t[274] = "No Reference Model schema found for package ''{0}''";
-    t[275] = "Geen referentiemodel-schema gevonden voor package \u201c{0}\u201d";
+    t[275] = "Geen referentiemodel-schema gevonden voor package “{0}”";
     t[280] = "Node id {0} is not valid here because it redefines an object illegally";
     t[281] = "Node id {0} is hier niet geldig omdat het een object herdefinieert waar dat niet is toegestaan";
     t[282] = "In the attribute tuple {0} members were specified, but the primitive tuple has {1} members instead";
@@ -152,7 +152,7 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[344] = "The use_archetype with type {0} does not match the archetype slow (allow_archetype) with type {1}";
     t[345] = "Use_archetype met {0} klopt niet met het archetype slot met type {1} uit het gespecialiseerde archetype";
     t[348] = "The specialisation depth of the archetypes must be one greater than the specialisation depth of the parent archetype";
-    t[349] = "De specialisation depth van het archetype moet \u00e9\u00e9n groter zijn dan die van het gespecialiseerde archetype";
+    t[349] = "De specialisation depth van het archetype moet één groter zijn dan die van het gespecialiseerde archetype";
     t[350] = "Node id {0} already used in archetype as {1} with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4";
     t[351] = "Node id {0} wordt al gebruikt in het archetype als {1} met een andere at, id of ac prefix. Het archetype kan niet naar ADL 1.4 geconverteerd worden";
     t[354] = "less than {0}";
@@ -160,7 +160,7 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[358] = "the given id code is not valid";
     t[359] = "de gegeven id code is niet geldig";
     t[360] = "value-set members unique. The member codes of a value set must be unique within the value set";
-    t[361] = "value-set waardes uniek. Elke waarde mag maar \u00e9\u00e9n keer gebruikt worden in een value-set";
+    t[361] = "value-set waardes uniek. Elke waarde mag maar één keer gebruikt worden in een value-set";
     t[362] = "Duplicate instance of Reference Model model {0} found; original schema {1}; ignoring instance from schema {2}";
     t[363] = "Dubbele instantie van reference model {0} gevonden. Het originele schema is {1}. Het schema van instantie {2} wordt genegeerd";
     t[364] = "an tuple member cannot specialize an attribute that is a non-tuple attribute in its parent";
@@ -182,7 +182,7 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[398] = "Differential path must point to a C_ATTRIBUTE in the flat parent, but it pointed instead to a {0}";
     t[399] = "Het differential pad moet naar een C_ATTRIBUTE verwijzen in het archetype dat gespecialiseerd wordt, maar in plaats daarvan verwijst het naar een {0}";
     t[404] = "Duplicate attribute constraint with name {0}";
-    t[405] = "Attribuut met naam {0} is twee keer gedefinieerd - dit mag maar \u00e9\u00e9n keer zijn";
+    t[405] = "Attribuut met naam {0} is twee keer gedefinieerd - dit mag maar één keer zijn";
     t[414] = "value code validity. Each value code (at-code) used in a term constraint in the archetype definition must be defined in the term_definitions part of the terminology of the flattened form of the current archetype.";
     t[415] = "Geldigheid van een value code. Elke value code (at-code) gebruikt in een term constraint in de definitie van het archetype moet in de term definities van de flat form van dit archetype opgenomen zijn.";
     t[416] = "Term binding key {0} is not present in terminology";
@@ -202,9 +202,9 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[454] = "Warning";
     t[455] = "Waarschuwing";
     t[458] = "The attribute {0} of type {1} can only have a single value, but the occurrences of the C_OBJECTS below has an upper limit of more than 1";
-    t[459] = "Het attribuut {0} van type {1} kan maar \u00e9\u00e9n waarde hebben, maar de occurrences van de C_OBJECTS in dit attibuut heeft een maximale limiet van meer dan 1";
+    t[459] = "Het attribuut {0} van type {1} kan maar één waarde hebben, maar de occurrences van de C_OBJECTS in dit attibuut heeft een maximale limiet van meer dan 1";
     t[460] = "Use_node (C_COMPLEX_OBJECT_PROXY) points to a path that resolves to more than one object";
-    t[461] = "Use_node, hergebruik van een deel van het archetype, verwijst naar een pad dat verwijst naar meer dan \u00e9\u00e9n object";
+    t[461] = "Use_node, hergebruik van een deel van het archetype, verwijst naar een pad dat verwijst naar meer dan één object";
     t[462] = "type name {0} does not conform to {1}";
     t[463] = "Naam type {0} komt niet overeen met {1}";
     t[466] = "Syntax error: terminology not specified";
@@ -242,7 +242,7 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[516] = "An object with the new node id {0} cannot be prohibited";
     t[517] = "Een object met een nieuw node id {0} mag geen occurrences van maximaal 0 hebben";
     t[520] = "Single valued attributes can not have a cardinality";
-    t[521] = "Attributen die maar \u00e9\u00e9n waarde kunnen bevatten mogen geen cardinaliteit hebben";
+    t[521] = "Attributen die maar één waarde kunnen bevatten mogen geen cardinaliteit hebben";
     t[522] = "Error in parent archetype. Fix those errors before continuing with this archetype: {0}";
     t[523] = "Fout in het gespecialiseerde archetype. Los deze fout in het bovenliggende archetype eerst op, alvorens verder te gaan met dit archetype. De gevonden fouten: {0}";
     t[524] = "child terminology constraint value code {0} does not conform to parent constraint with value code {1}";
@@ -315,7 +315,7 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
   }
   public java.util.Enumeration getKeys () {
     return
-      new java.util.Enumeration() {
+      new java.util.Enumeration<>() {
         private int idx = 0;
         { while (idx < 602 && table[idx] == null) idx += 2; }
         public boolean hasMoreElements () {

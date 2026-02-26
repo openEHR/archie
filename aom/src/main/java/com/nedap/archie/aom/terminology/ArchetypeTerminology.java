@@ -137,7 +137,7 @@ public class ArchetypeTerminology extends ArchetypeModelObject {
                 }
             }
         }
-        return new ArrayList<String>(codes);
+        return new ArrayList<>(codes);
     }
 
     public List<String> valueCodes() {

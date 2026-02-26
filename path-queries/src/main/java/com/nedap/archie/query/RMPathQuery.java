@@ -104,9 +104,7 @@ public class RMPathQuery {
                 }
             }
             return (T) currentObject;
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
+        } catch (InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
@@ -123,8 +121,7 @@ public class RMPathQuery {
                 }
                 List<RMObjectWithPath> newCurrentObjects = new ArrayList<>();
 
-                for(int i = 0; i < currentObjects.size(); i++) {
-                    RMObjectWithPath currentObject = currentObjects.get(i);
+                for (RMObjectWithPath currentObject : currentObjects) {
                     Object currentRMObject = currentObject.getObject();
                     RMAttributeInfo attributeInfo = lookup.getAttributeInfo(currentRMObject.getClass(), segment.getNodeName());
                     if (attributeInfo == null) {
@@ -133,7 +130,7 @@ public class RMPathQuery {
                     Method method = attributeInfo.getGetMethod();
                     currentRMObject = method.invoke(currentRMObject);
                     String pathSeparator = "/";
-                    if(currentObject.getPath().endsWith("/")) {
+                    if (currentObject.getPath().endsWith("/")) {
                         pathSeparator = "";
                     }
                     String newPath = currentObject.getPath() + pathSeparator + segment.getNodeName();
@@ -187,9 +184,7 @@ public class RMPathQuery {
                 currentObjects = newCurrentObjects;
             }
             return currentObjects;
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
+        } catch (InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
 

@@ -22,23 +22,12 @@ package org.openehr.odin.antlr;
  */
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openehr.odin.CompositeOdinObject;
 import org.openehr.odin.loader.OdinLoaderImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OdinBaseVisitorTest2 {
-    @BeforeEach
-    public void setUp() throws Exception {
-
-    }
-
-    @AfterEach
-    public void tearDown() throws Exception {
-
-    }
 
 //    @Test
 //    public void loadReferenceModel1() throws Exception {
@@ -51,7 +40,7 @@ public class OdinBaseVisitorTest2 {
     @Test
     public void loadReferenceModel2() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
-        OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest2.class.getResourceAsStream("/odin/CIMI_RM_CLINICAL.v.0.0.1.bmm"));
+        OdinVisitorImpl<?> visitor = loader.loadOdinFile(OdinBaseVisitorTest2.class.getResourceAsStream("/odin/CIMI_RM_CLINICAL.v.0.0.1.bmm"));
         assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
     }

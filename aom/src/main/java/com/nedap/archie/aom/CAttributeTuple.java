@@ -168,7 +168,7 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
     }
 
     public List<String> getMemberNames() {
-        return getMembers().stream().map((attr) -> attr.getRmAttributeName()).collect(Collectors.toList());
+        return getMembers().stream().map(CAttribute::getRmAttributeName).collect(Collectors.toList());
     }
 
     public boolean cConformsTo(CAttributeTuple otherTuple, BiFunction<String, String, Boolean> rmTypesConformant) {

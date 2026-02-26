@@ -111,7 +111,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         result.setType(PrimitiveType.Boolean);
         DummyRulesPrimitiveObjectParent dummyParent = null;
         if(constraint.getItem() instanceof CTerminologyCode) {
-            constraint = (Constraint) constraint.clone();
+            constraint = (Constraint<?>) constraint.clone();
             //hack to support CTerminologyConstraints properly
             dummyParent = new DummyRulesPrimitiveObjectParent(archetype);
             constraint.getItem().setParent(dummyParent);
@@ -418,7 +418,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         for(Value<?> leftValue:leftValues.getValues()) {
             for (Value<?> rightValue:rightValues.getValues()) {
                 Value<?> evaluatedRelOp = evaluateRelOp(statement, leftValue.getValue(), rightValue.getValue(), getPaths(leftValue, rightValue));
-                if (((Boolean) evaluatedRelOp.getValue()).booleanValue()) {
+                if ((Boolean) evaluatedRelOp.getValue()) {
                     return evaluatedRelOp;
                 }
             }

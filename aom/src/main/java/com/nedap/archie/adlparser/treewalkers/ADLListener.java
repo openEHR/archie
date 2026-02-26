@@ -119,7 +119,7 @@ public class ADLListener extends AdlBaseListener {
             ArchetypeHRID archetypeID = new ArchetypeHRID(hrId.getText());
             archetype.setArchetypeId(archetypeID);
             if(metaModelProvider != null) {
-                metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
+                metaModelProvider.getMetaModel(archetype); // For backwards compatibility
             }
         }
     }

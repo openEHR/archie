@@ -128,10 +128,6 @@ public abstract class CObject extends ArchetypeConstraint {
         return result;
     }
 
-    private void setTerm(ArchetypeTerm term) {
-        //hack to get Jackson to work for now
-    }
-
     /**
      * Get the meaning of this CObject in the defined meaning and description language.
      * See ArchieLanguageConfiguation

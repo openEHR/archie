@@ -30,7 +30,7 @@ public class Differentiator {
     }
 
     public Archetype differentiate(Archetype flatChild, Archetype flatParent, boolean addSiblingOrder) {
-        MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(flatChild);
+        MetaModel metaModel = metaModelProvider.getMetaModel(flatChild);
         ModelConstraintImposer constraintImposer;
         if(metaModel.getBmmModel() != null) {
             constraintImposer = new BMMConstraintImposer(metaModel.getBmmModel());
