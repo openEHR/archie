@@ -262,10 +262,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
         }
         else if(!metaModel.rmTypesConformant(rootRmTypeName, slotRmTypeName)) {
             return false;
-        } else if (!metaModel.rmTypesConformant(rootReferenceRmTypeName, slotRmTypeName)) {
-            return false;
-        }
-        return true;
+        } else return metaModel.rmTypesConformant(rootReferenceRmTypeName, slotRmTypeName);
     }
 
     /**

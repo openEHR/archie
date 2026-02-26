@@ -221,7 +221,7 @@ public class AOMJacksonTest {
         BinaryOperator operator = (BinaryOperator) slot.getIncludes().get(0).getExpression();
         assertEquals(OperatorKind.matches, operator.getOperator());
         assertEquals("archetype_id/value", ((ModelReference) operator.getLeftOperand()).getPath());
-        CString idConstraint = (CString) ((Constraint) operator.getRightOperand()).getItem();
+        CString idConstraint = (CString) ((Constraint<?>) operator.getRightOperand()).getItem();
         assertEquals("/openEHR-EHR-INSTRUCTION\\.medication\\.v1/", idConstraint.getConstraint().get(0));
     }
 
@@ -343,7 +343,7 @@ public class AOMJacksonTest {
                         Archetype parsed = mapper.readValue(stream, Archetype.class);
                         assertNotNull(parsed);
                     } catch (Exception e) {
-                        System.out.println("Error parsing " + file.toString());
+                        System.out.println("Error parsing " + file);
                         throw new RuntimeException(e);
                     }
                 });

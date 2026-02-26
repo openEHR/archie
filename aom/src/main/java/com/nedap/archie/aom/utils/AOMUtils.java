@@ -87,7 +87,7 @@ public class AOMUtils {
         //remove leading .0 codes - they are not present in the code at the given level
         int numberOfCodesToRemove = 0;
         for(int i = codes.size()-1; i >= 0 ; i--) {
-            if(codes.get(i).intValue() == 0) {
+            if(codes.get(i) == 0) {
                 numberOfCodesToRemove++;
             } else {
                 break;
@@ -144,15 +144,14 @@ public class AOMUtils {
     public static ArchetypeModelObject getDifferentialPathFromParent(Archetype flatParent, CAttribute attributeWithDifferentialPath) {
         //adl workbench deviates from spec by only allowing differential paths at root, we allow them everywhere, according to spec
         ArchetypeModelObject parentAOMObject = flatParent.itemAtPath(pathAtSpecializationLevel(attributeWithDifferentialPath.getParent().getPathSegments(), flatParent.specializationDepth()));
-        if (parentAOMObject != null && parentAOMObject instanceof CComplexObject) {
+        if (parentAOMObject instanceof CComplexObject) {
             CComplexObject parentObject = (CComplexObject) parentAOMObject;
-            ArchetypeModelObject attributeInParent = parentObject.itemAtPath(
+            return parentObject.itemAtPath(
                     pathAtSpecializationLevel( //TODO: the ADL workbench does this, so /items[id9.1]/value is a valid differential path even in openEHR-EHR-CLUSTER.exam-uterine_cervix.v1.0.0. Should it be?
                             new APathQuery(attributeWithDifferentialPath.getDifferentialPath()).getPathSegments(),
                             flatParent.specializationDepth()
                     )
             );
-            return attributeInParent;
         }
         return null;
     }
@@ -177,7 +176,7 @@ public class AOMUtils {
     public static boolean isPhantomPathAtLevel(List<PathSegment> pathSegments, int specializationDepth) {
         for(int i = pathSegments.size()-1; i >=0; i--) {
             String nodeId = pathSegments.get(i).getNodeId();
-            if(nodeId != null && AOMUtils.isValidCode(nodeId) && specializationDepth > AOMUtils.getSpecializationDepthFromCode(nodeId)) {
+            if(AOMUtils.isValidCode(nodeId) && specializationDepth > AOMUtils.getSpecializationDepthFromCode(nodeId)) {
                 return codeExistsAtLevel(nodeId, specializationDepth);
             }
         }
@@ -227,12 +226,12 @@ public class AOMUtils {
 
     private static boolean matchesInclude(Expression expression, String archetypeRef) {
         Boolean result = matchesExpression(expression, archetypeRef);
-        return result == null ? true : result;
+        return result == null || result;
     }
 
     private static boolean matchesExclude(Expression expression, String archetypeRef) {
         Boolean result = matchesExpression(expression, archetypeRef);
-        return result == null ? false : result;
+        return result != null && result;
     }
 
     //TODO: because of the split in modules we cannot use the full RuleEvaluation here, which is a pity. So for now only the minor subset.
@@ -243,7 +242,7 @@ public class AOMUtils {
                 Expression rightOperand = binary.getRightOperand();
                 if (rightOperand instanceof Constraint) {
                     Constraint<?> constraint = (Constraint<?>) rightOperand;
-                    if(constraint.getItem() != null && constraint.getItem().getConstraint() != null && constraint.getItem().getConstraint().size() > 0 &&
+                    if(constraint.getItem() != null && constraint.getItem().getConstraint() != null && !constraint.getItem().getConstraint().isEmpty() &&
                             constraint.getItem() instanceof CString) {
                         String pattern = ((CString) constraint.getItem()).getConstraint().get(0);
                         if (pattern.startsWith("^") || pattern.startsWith("/")) {
