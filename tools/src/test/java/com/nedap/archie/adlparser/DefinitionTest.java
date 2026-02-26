@@ -21,7 +21,7 @@ public class DefinitionTest {
 
     @BeforeEach
     public void setup() throws Exception {
-        archetype = TestUtil.parseFailOnErrors("/basic.adl");;
+        archetype = TestUtil.parseFailOnErrors("/basic.adl");
     }
 
     @Test

@@ -126,7 +126,7 @@ public class ArchetypeValidator {
         }
         repository = extraRepository;
 
-        MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(archetype);
+        MetaModel metaModel = metaModelProvider.getMetaModel(archetype);
 
         //we assume we always want a new validation to be run, for example because the archetype
         //has been updated. Therefore, do not retrieve the old result from the repository
@@ -138,7 +138,7 @@ public class ArchetypeValidator {
                 return infiniteLoopResult;
             }
             ValidationResult parentValidationResult = repository.compileAndRetrieveValidationResult(archetype.getParentArchetypeId(), this);
-            metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
+            metaModelProvider.getMetaModel(archetype); // For backwards compatibility
             if(parentValidationResult != null) {
                 if(parentValidationResult.passes()) {
                     flatParent = parentValidationResult.getFlattened();
@@ -174,7 +174,7 @@ public class ArchetypeValidator {
             for(TemplateOverlay overlay:((Template) archetype).getTemplateOverlays()) {
                 //validate the overlays first, but make sure to do that only once (so don't call this same method!)
                 extraRepository.compileAndRetrieveValidationResult(overlay.getArchetypeId().toString(), this);
-                metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
+                metaModelProvider.getMetaModel(archetype); // For backwards compatibility
             }
         }
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.nedap.archie.adlparser.antlr.odinParser.*;
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -12,14 +12,14 @@ import java.util.List;
 
 /**
  * A simple Odin to JSON-converter, not bound to ADL syntax and lexer rules.
- *
+ * <p>
  * We need different lexer modes, but this is very hard to do in the current version of ADL!
- *
+ * <p>
  * Perhaps better would be to create a jackson-databinding for ODIN, but this is quite some work and I don't consider
  * ODIN as having considerable benefits over JSON or YAML.
- *
+ * <p>
  * If anyone wants to do this - go ahead.
- *
+ * <p>
  * Created by pieter.bos on 01/11/15.
  */
 public class OdinToJsonConverter {
@@ -29,7 +29,7 @@ public class OdinToJsonConverter {
     private     StringBuilder output = new StringBuilder();
 
     static {
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         //keywords = <"value"> is indistinguishable from keywords = <"value1", "value2">
         objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         objectMapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
@@ -48,7 +48,7 @@ public class OdinToJsonConverter {
             output(context.attr_vals().attr_val(), null /* no type id here */);
         } else if(context.object_value_block() != null){
             output(context.object_value_block());
-        } else if (context.keyed_object() != null && context.keyed_object().size() > 0) {
+        } else if (context.keyed_object() != null && !context.keyed_object().isEmpty()) {
             outputKeyedObjects(context.keyed_object(), null /* no type id here */);
         } else {
             //empty
@@ -130,7 +130,7 @@ public class OdinToJsonConverter {
                         if(relopText.contains(">")) {
                             output.append(",\"lower_unbounded\": \"false\"");
                             output.append(",\"upper_unbounded\": \"true\"");
-                            output.append(",\"lower\": " + interval.integer_value().get(0).getText());
+                            output.append(",\"lower\": ").append(interval.integer_value().get(0).getText());
                             if(relopText.contains("=")) {
                                 output.append(",\"lower_included\": \"true\"");
                             } else {
@@ -139,7 +139,7 @@ public class OdinToJsonConverter {
                         } else if(relopText.contains("<")) {
                             output.append(",\"lower_unbounded\": \"true\"");
                             output.append(",\"upper_unbounded\": \"false\"");
-                            output.append(",\"upper\": " + interval.integer_value().get(0).getText());
+                            output.append(",\"upper\": ").append(interval.integer_value().get(0).getText());
                             if(relopText.contains("=")) {
                                 output.append(",\"upper_included\": \"true\"");
                             } else {
@@ -159,8 +159,8 @@ public class OdinToJsonConverter {
                         } else {
                             output.append(",\"upper_included\": \"true\"");
                         }
-                        output.append(",\"lower\": " + interval.integer_value().get(0).getText());
-                        output.append(",\"upper\": " + interval.integer_value().get(1).getText());
+                        output.append(",\"lower\": ").append(interval.integer_value().get(0).getText());
+                        output.append(",\"upper\": ").append(interval.integer_value().get(1).getText());
 
                     }
 
@@ -171,7 +171,7 @@ public class OdinToJsonConverter {
                         if(relopText.contains(">")) {
                             output.append(",\"lower_unbounded\": \"false\"");
                             output.append(",\"upper_unbounded\": \"true\"");
-                            output.append(",\"lower\": " + interval.real_value().get(0).getText());
+                            output.append(",\"lower\": ").append(interval.real_value().get(0).getText());
                             if(relopText.contains("=")) {
                                 output.append(",\"lower_included\": \"true\"");
                             } else {
@@ -180,7 +180,7 @@ public class OdinToJsonConverter {
                         } else if(relopText.contains("<")) {
                             output.append(",\"lower_unbounded\": \"true\"");
                             output.append(",\"upper_unbounded\": \"false\"");
-                            output.append(",\"upper\": " + interval.real_value().get(0).getText());
+                            output.append(",\"upper\": ").append(interval.real_value().get(0).getText());
                             if(relopText.contains("=")) {
                                 output.append(",\"upper_included\": \"true\"");
                             } else {
@@ -200,8 +200,8 @@ public class OdinToJsonConverter {
                         } else {
                             output.append(",\"upper_included\": \"true\"");
                         }
-                        output.append(",\"lower\": " + interval.real_value().get(0).getText());
-                        output.append(",\"upper\": " + interval.real_value().get(1).getText());
+                        output.append(",\"lower\": ").append(interval.real_value().get(0).getText());
+                        output.append(",\"upper\": ").append(interval.real_value().get(1).getText());
 
                     }
                 } else if(intervalCtx.date_time_interval_value() != null) {

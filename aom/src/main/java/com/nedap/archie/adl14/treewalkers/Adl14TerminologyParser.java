@@ -54,9 +54,7 @@ public class Adl14TerminologyParser extends BaseTreeWalker {
         if(ontology.getConstraintDefinitions() != null) {
             for(Map.Entry<String, TermCodeList> constraintDefinitions:ontology.getConstraintDefinitions().entrySet()) {
                 String language = constraintDefinitions.getKey();
-                if(terminology.getTermDefinitions().get(language) == null) {
-                    terminology.getTermDefinitions().put(language, new LinkedHashMap<>());
-                }
+                terminology.getTermDefinitions().computeIfAbsent(language, k -> new LinkedHashMap<>());
                 terminology.getTermDefinitions().get(language).putAll(constraintDefinitions.getValue().getItems());
             }
         }
