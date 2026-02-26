@@ -1,9 +1,10 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.nedap.archie.json.JacksonUtil;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DvTimeTest {
 

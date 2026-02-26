@@ -1,6 +1,6 @@
 package com.nedap.archie.serializer.odin;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * class that contains the tests for the two ODIN converters - that should be exactly the same, they just use a different

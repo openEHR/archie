@@ -7,20 +7,20 @@ import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Deprecated
 public class RMPrimitiveObjectValidationTest {
 
     private static ArchieRMInfoLookup lookup;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         lookup = ArchieRMInfoLookup.getInstance();
     }

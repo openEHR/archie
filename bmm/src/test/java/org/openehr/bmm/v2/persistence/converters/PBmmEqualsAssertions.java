@@ -2,7 +2,7 @@ package org.openehr.bmm.v2.persistence.converters;
 
 import org.openehr.bmm.v2.persistence.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PBmmEqualsAssertions {
 

@@ -4,7 +4,7 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.generic.Participation;
 import com.nedap.archie.rm.generic.PartySelf;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ParticipationInvariantTest {
 

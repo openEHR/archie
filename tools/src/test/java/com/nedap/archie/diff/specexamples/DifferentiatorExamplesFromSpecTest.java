@@ -1,14 +1,14 @@
 package com.nedap.archie.diff.specexamples;
 
 import com.nedap.archie.diff.DiffTestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class DifferentiatorExamplesFromSpecTest {
 
     private DiffTestUtil diffTestUtil;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         diffTestUtil = new DiffTestUtil("/com/nedap/archie/flattener/specexamples/", "/com/nedap/archie/diff/specexamples/");
     }
