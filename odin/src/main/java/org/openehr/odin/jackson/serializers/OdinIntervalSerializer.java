@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Serializer that serializes Intervals directly to ODIN
  */
-public class OdinIntervalSerializer extends JsonSerializer<Interval<?>> {
+public class OdinIntervalSerializer extends JsonSerializer<Interval> {
 
     @Override
     public void serialize(Interval value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
