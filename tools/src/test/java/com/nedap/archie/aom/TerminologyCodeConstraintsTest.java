@@ -40,8 +40,8 @@ public class TerminologyCodeConstraintsTest {
         archetype = new AuthoredArchetype();
 
         ArchetypeTerminology terminology = new ArchetypeTerminology();
-        terminology.setTermBindings(new HashMap<String, Map<String, URI>>() {{
-            put("openehr", new HashMap<String, URI>() {{
+        terminology.setTermBindings(new HashMap<>() {{
+            put("openehr", new HashMap<>() {{
                 put("at9000", URI.create("http://openehr.org/id/532"));
             }});
         }});

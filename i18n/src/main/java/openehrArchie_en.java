@@ -11,13 +11,13 @@ public class openehrArchie_en extends java.util.ResourceBundle {
     int hash_val = msgid.hashCode() & 0x7fffffff;
     int idx = (hash_val % 1) << 1;
     java.lang.Object found = table[idx];
-    if (found != null && msgid.equals(found))
+    if (msgid.equals(found))
       return table[idx + 1];
     return null;
   }
   public java.util.Enumeration getKeys () {
     return
-      new java.util.Enumeration() {
+      new java.util.Enumeration<>() {
         private int idx = 0;
         { while (idx < 2 && table[idx] == null) idx += 2; }
         public boolean hasMoreElements () {

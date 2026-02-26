@@ -116,13 +116,13 @@ public class LCSOrderingDiff {
     private LinkedHashMap<SiblingOrder, List<CObject>> createSiblingOrders(CAttribute parentAttribute, CComplexObject flatChild, CAttribute flatChildAttribute, CAttribute resultAttribute) {
         LinkedHashMap<SiblingOrder, List<CObject>> siblingOrders = new LinkedHashMap<>();
 
-        List<String> parentNodeIds = parentAttribute.getChildren().stream().map(cobject -> cobject.getNodeId()).collect(Collectors.toList());
-        List<String> childNodeIds = flatChildAttribute.getChildren().stream().map(cobject -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> parentNodeIds = parentAttribute.getChildren().stream().map(CObject::getNodeId).collect(Collectors.toList());
+        List<String> childNodeIds = flatChildAttribute.getChildren().stream().map(CObject::getNodeId).collect(Collectors.toList());
         int childSpecializationDepth = flatChild.getArchetype().specializationDepth();
         NodeIdLCS nodeIdLCS = new NodeIdLCS(parentNodeIds, childNodeIds, childSpecializationDepth);
         List<String> lcs = nodeIdLCS.getLCS();
 
-        if(lcs.size() == 0) {
+        if(lcs.isEmpty()) {
             //If there's no empty LCS, it's not possible to add sibling markers
         } else {
             for (int i = 0; i < childNodeIds.size(); i++) {

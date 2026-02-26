@@ -11,17 +11,18 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
  * For now only accepts rather simple xpath-like expressions.
- *
+ * <p>
  * The only queries fully supported at the moment are absolute queries with node ids, such as '/items[id1]/content[id2]/value'.
- *
+ * <p>
  * Any expression after the ID-code, such as in '[id1 and name="ignored"] are currently ignored, but they parse and function
  * as long as you add the id-code as first part of the expression.
- *
+ * <p>
  * Created by pieter.bos on 19/10/15.
  */
 public class AOMPathQuery {
@@ -85,7 +86,7 @@ public class AOMPathQuery {
         result.add(root);
         for(int i = 0; i < pathSegments.size(); i++) {
             PathSegment segment = pathSegments.get(i);
-            if (result.size() == 0) {
+            if (result.isEmpty()) {
                 return Collections.emptyList();
             }
 
@@ -110,7 +111,7 @@ public class AOMPathQuery {
                 result = findOneSegment(segment, result, matchSpecializedNodes);
             }
         }
-        return (List<T>)result.stream().filter((object) -> object != null).collect(Collectors.toList());
+        return (List<T>)result.stream().filter(Objects::nonNull).collect(Collectors.toList());
     }
 
     protected CAttribute findMatchingDifferentialPath(List<PathSegment> pathSegments, List<ArchetypeModelObject> objects) {
@@ -241,7 +242,7 @@ public class AOMPathQuery {
         List<ArchetypeModelObject> result = new ArrayList<>();
         result.add(root);
         for(PathSegment segment:this.pathSegments) {
-            if (result.size() == 0) {
+            if (result.isEmpty()) {
                 return null;
             }
             result = findOneSegment(segment, result, false);
@@ -262,7 +263,7 @@ public class AOMPathQuery {
         currentObjects.add(root);
         List<ArchetypeModelObject> results = new ArrayList<>();
         for(PathSegment segment:this.pathSegments) {
-            if (currentObjects.size() == 0) {
+            if (currentObjects.isEmpty()) {
                 return results;
             }
             currentObjects = findOneSegment(segment, currentObjects, false);
@@ -294,7 +295,7 @@ public class AOMPathQuery {
             PathSegment segment = remainingSegments.remove(0);
             result = findOneSegment(segment, result, false);
 
-            if (result.size() == 0) {
+            if (result.isEmpty()) {
                 //no more matches, return partial match.
                 //the last segment did not match anything, add it again!
                 remainingSegments.add(0, segment);

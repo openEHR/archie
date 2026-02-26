@@ -91,7 +91,7 @@ public class Interval<T> extends OpenEHRBase {
     }
 
     public static <T> Interval<T> unbounded() {
-        Interval<T> result = new Interval<T>(null, null, false, false);
+        Interval<T> result = new Interval<>(null, null, false, false);
         result.setLowerUnbounded(true);
         result.setUpperUnbounded(true);
         return result;
@@ -180,9 +180,7 @@ public class Interval<T> extends OpenEHRBase {
 
 		if (!upperUnbounded) {
             int comparedWithUpper = comparableValue.compareTo(comparableUpper);
-            if (comparedWithUpper > 0 || (!upperIncluded && comparedWithUpper == 0)) {
-                return false;
-            }
+            return comparedWithUpper <= 0 && (upperIncluded || comparedWithUpper != 0);
         }
         return true;
     }
@@ -318,8 +316,8 @@ public class Interval<T> extends OpenEHRBase {
         return Objects.hash(
                 lowerUnbounded,
                 upperUnbounded,
-                lowerUnbounded? false: lowerIncluded,
-                upperUnbounded? false: upperIncluded,
+                !lowerUnbounded && lowerIncluded,
+                !upperUnbounded && upperIncluded,
                 lowerUnbounded? null : lower,
                 upperUnbounded? null : upper);
     }

@@ -47,7 +47,7 @@ public class TerminologyFlattener {
             }
             //get the longest matching node id
             List<String> foundNodeIds = new ArrayList<>(foundTerms.keySet());
-            Collections.sort(foundNodeIds, Comparator.comparingInt((id) -> id.length()));
+            foundNodeIds.sort(Comparator.comparingInt(String::length));
             return foundTerms.get(foundNodeIds.get(foundNodeIds.size()-1));
 
         }
