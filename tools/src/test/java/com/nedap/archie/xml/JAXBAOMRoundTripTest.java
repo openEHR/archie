@@ -2,6 +2,7 @@ package com.nedap.archie.xml;
 
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerTest;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
@@ -95,7 +96,7 @@ public class JAXBAOMRoundTripTest {
 
         Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getAvailableModelInfoLookups()).createOperationalTemplate(true);
         Archetype operationalTemplate = flattener.flatten(bloodPressureComposition);
-        operationalTemplate.getOtherMetaData().put("test", "something");
+        ((AuthoredArchetype) operationalTemplate).getOtherMetaData().put("test", "something");
         String xml = marshal(operationalTemplate);
         System.out.println(xml);
 

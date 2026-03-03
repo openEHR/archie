@@ -1,6 +1,8 @@
 package com.nedap.archie.rminfo;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.AuthoredArchetype;
+import com.nedap.archie.aom.TemplateOverlay;
 
 /**
  * A provider for meta models, which can be used to retrieve the meta model for a specific reference model based on an
@@ -15,7 +17,8 @@ public interface MetaModelProvider {
      * @throws ModelNotFoundException when no BMM and no ModelInfoLookup model has been found matching the archetype
      */
     public default MetaModel getMetaModel(Archetype archetype) throws ModelNotFoundException {
-        return getMetaModel(archetype, archetype.getRmRelease());
+        if (archetype instanceof TemplateOverlay) return getMetaModel(archetype, ((TemplateOverlay) archetype).getOwningTemplate().getRmRelease());
+        return getMetaModel(archetype, ((AuthoredArchetype) archetype).getRmRelease());
     }
 
     /**
