@@ -2,6 +2,7 @@ package com.nedap.archie.rminfo;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
+import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.aom.profile.AomProfiles;
 import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class SimpleMetaModelProviderTest {
                 BuiltinReferenceModels.getAomProfiles()
         );
 
-        Archetype archetype = new Archetype();
+        AuthoredArchetype archetype = new AuthoredArchetype();
         archetype.setArchetypeId(new ArchetypeHRID("openEHR-EHR-CLUSTER.test.v1.0.0"));
         archetype.setRmRelease("1.0.3");
 
@@ -92,7 +93,7 @@ public class SimpleMetaModelProviderTest {
                 BuiltinReferenceModels.getAomProfiles()
         );
 
-        Archetype archetype = new Archetype();
+        AuthoredArchetype archetype = new AuthoredArchetype();
         archetype.setArchetypeId(new ArchetypeHRID("openEHR-EHR-CLUSTER.test.v1.0.0"));
         archetype.setRmRelease("1.0.3");
 
@@ -150,7 +151,7 @@ public class SimpleMetaModelProviderTest {
                 BuiltinReferenceModels.getAomProfiles()
         );
 
-        Archetype archetype = new Archetype();
+        AuthoredArchetype archetype = new AuthoredArchetype();
         archetype.setArchetypeId(new ArchetypeHRID("openEHR-EHR-CLUSTER.test.v1.0.0"));
         archetype.setRmRelease("1.0.3");
 
@@ -209,7 +210,7 @@ public class SimpleMetaModelProviderTest {
                 BuiltinReferenceModels.getBmmRepository()
         );
 
-        Archetype archetype = new Archetype();
+        AuthoredArchetype archetype = new AuthoredArchetype();
         archetype.setArchetypeId(new ArchetypeHRID("openEHR-EHR-CLUSTER.test.v1.0.0"));
         archetype.setRmRelease("1.0.3");
 

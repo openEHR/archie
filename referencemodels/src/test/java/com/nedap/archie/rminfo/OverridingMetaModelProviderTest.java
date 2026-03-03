@@ -2,6 +2,7 @@ package com.nedap.archie.rminfo;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
+import com.nedap.archie.aom.AuthoredArchetype;
 import org.junit.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
@@ -13,7 +14,7 @@ public class OverridingMetaModelProviderTest {
         MetaModelProvider metaModelProvider = BuiltinReferenceModels.getMetaModelProvider();
         OverridingMetaModelProvider overridingMetaModelProvider = new OverridingMetaModelProvider(metaModelProvider);
 
-        Archetype archetype = new Archetype();
+        AuthoredArchetype archetype = new AuthoredArchetype();
         archetype.setArchetypeId(new ArchetypeHRID("openEHR-EHR-CLUSTER.test.v1.0.0"));
         archetype.setRmRelease("1.0.3");
         MetaModel metaModel = overridingMetaModelProvider.getMetaModel(archetype);

@@ -161,9 +161,9 @@ public class JAXBAOMTest {
 
     @Test
     public void otherMetaData() throws Exception {
-        archetype.setOtherMetaData(new LinkedHashMap<>());
-        archetype.getOtherMetaData().put("test key", "test value");
-        archetype.getOtherMetaData().put("second test key", "second test value");
+        ((AuthoredArchetype) archetype).setOtherMetaData(new LinkedHashMap<>());
+        ((AuthoredArchetype) archetype).getOtherMetaData().put("test key", "test value");
+        ((AuthoredArchetype) archetype).getOtherMetaData().put("second test key", "second test value");
 
         Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
         StringWriter writer = new StringWriter();
@@ -176,8 +176,8 @@ public class JAXBAOMTest {
 
         Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(writer.toString()));
-        assertEquals("test value", unmarshalled.getOtherMetaData().get("test key"));
-        assertEquals("second test value", unmarshalled.getOtherMetaData().get("second test key"));
+        assertEquals("test value", ((AuthoredArchetype) unmarshalled).getOtherMetaData().get("test key"));
+        assertEquals("second test value", ((AuthoredArchetype) unmarshalled).getOtherMetaData().get("second test key"));
     }
 
     @Test
@@ -268,7 +268,7 @@ public class JAXBAOMTest {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(template, writer);
 
-        assertTrue(writer.toString().contains(" <template_overlay is_generated=\"false\" is_differential=\"false\">\n" +
+        assertTrue(writer.toString().contains(" <template_overlay is_differential=\"false\">\n" +
                 "        <description/>\n" +
                 "        <original_language>\n" +
                 "            <terminology_id>ISO_639-1</terminology_id>\n" +

@@ -2,6 +2,7 @@ package com.nedap.archie.adlparser;
 
 import com.nedap.archie.antlr.errors.ANTLRParserMessage;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class MetadataTest {
 
     @Test
     public void metadataTest() throws IOException, ADLParseException {
-        Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/adlparser/openEHR-EHR-COMPOSITION.metadata_locatable_uid.v1.0.0.adls");
+        AuthoredArchetype archetype = (AuthoredArchetype) TestUtil.parseFailOnErrors("/com/nedap/archie/adlparser/openEHR-EHR-COMPOSITION.metadata_locatable_uid.v1.0.0.adls");
 
         // (adl_version=2.0.5-alpha; rm_release= 1.0.2; generated; controlled; uid =a2bc5e00-c67e-4d7e-bb87-b3b74cdefd00;
         // build_uid = B430138C-1DD2-42EF-B54C-633909437054;reviewed_by ; Pieter=007; Bos=0.0.7; bbb007=b-b-b0-0-7)

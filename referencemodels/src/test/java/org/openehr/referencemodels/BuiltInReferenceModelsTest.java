@@ -2,6 +2,7 @@ package org.openehr.referencemodels;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
+import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.rminfo.MetaModels;
 import org.junit.Test;
 import org.openehr.bmm.v2.validation.BmmRepository;
@@ -30,7 +31,7 @@ public class BuiltInReferenceModelsTest {
     @Deprecated
     public void overrideModelVersion() throws Exception {
         MetaModels metaModels = BuiltinReferenceModels.getMetaModels();
-        Archetype archetype = new Archetype();
+        AuthoredArchetype archetype = new AuthoredArchetype();
         archetype.setArchetypeId(new ArchetypeHRID("openEHR-EHR-CLUSTER.test.v1.0.0"));
         archetype.setRmRelease("1.0.3");
         metaModels.selectModel(archetype);
