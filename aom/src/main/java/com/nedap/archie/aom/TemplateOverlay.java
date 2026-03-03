@@ -20,12 +20,6 @@ public class TemplateOverlay extends Archetype {
 
     @JsonIgnore
     @XmlTransient
-    public String getAdlVersion() {
-        return owningTemplate == null ? null : owningTemplate.getAdlVersion();
-    }
-
-    @JsonIgnore
-    @XmlTransient
     public Template getOwningTemplate() {
         return owningTemplate;
     }

@@ -21,7 +21,7 @@ public class ADL14DescriptionConverter {
         description.setOriginalPublisher(description.getOtherDetails().remove("original_publisher"));
         description.setCustodianNamespace(description.getOtherDetails().remove("custodian_namespace"));
         description.setCustodianOrganisation(description.getOtherDetails().remove("custodian_organisation"));
-        ((AuthoredArchetype) archetype).setBuildUid(description.getOtherDetails().remove("build_uid"));
+        if (archetype instanceof AuthoredArchetype) ((AuthoredArchetype) archetype).setBuildUid(description.getOtherDetails().remove("build_uid"));
         String references = description.getOtherDetails().remove("references");
         if(references != null) {
             Map<String, String> newReferences = new LinkedHashMap<>();
@@ -54,6 +54,6 @@ public class ADL14DescriptionConverter {
         if(revision != null) {
             archetype.getArchetypeId().setReleaseVersion(revision);
         }
-        ((AuthoredArchetype) archetype).setGenerated(true);
+        if (archetype instanceof AuthoredArchetype) ((AuthoredArchetype) archetype).setGenerated(true);
     }
 }
