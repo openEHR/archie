@@ -43,12 +43,15 @@ public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
     }
 
     @Override
+    public List<Boolean> getConstraintAsList() {
+        return getConstraint();
+    }
+
     public void setConstraint(List<Boolean> constraint) {
         this.constraint = constraint;
 
     }
 
-    @Override
     public void addConstraint(Boolean constraint) {
         this.constraint.add(constraint);
     }
