@@ -3,12 +3,12 @@ package com.nedap.archie.adl14;
 import com.google.common.collect.Lists;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.AuthoredArchetype;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConversionConfigurationTest {
 

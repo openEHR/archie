@@ -5,7 +5,7 @@ import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.Period;
 

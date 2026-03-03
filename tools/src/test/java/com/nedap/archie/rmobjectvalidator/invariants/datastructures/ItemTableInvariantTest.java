@@ -6,7 +6,7 @@ import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datastructures.ItemTable;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
