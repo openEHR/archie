@@ -1,6 +1,7 @@
 package com.nedap.archie.diff;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
@@ -38,7 +39,7 @@ public class DiffTestUtil {
         assertEquals(child.getParentArchetypeId(), flattened.getParentArchetypeId());
 
         Archetype diffed = new Differentiator(BuiltinReferenceModels.getMetaModelProvider()).differentiate(flattened, parent);
-        child.setGenerated(true);//this is set by the diff tool :)
+        ((AuthoredArchetype) child).setGenerated(true);//this is set by the diff tool :)
         String originalSerialized = ADLArchetypeSerializer.serialize(child);
         String diffedSerialized = ADLArchetypeSerializer.serialize(diffed);
 
@@ -58,7 +59,7 @@ public class DiffTestUtil {
         assertEquals(child.getParentArchetypeId(), flattened.getParentArchetypeId());
 
         Archetype diffed = new Differentiator(BuiltinReferenceModels.getMetaModelProvider()).differentiate(flattened, parent);
-        expectedDiff.setGenerated(true);//this is set by the diff tool :)
+        ((AuthoredArchetype) expectedDiff).setGenerated(true);//this is set by the diff tool :)
         String expectedSerialized = ADLArchetypeSerializer.serialize(expectedDiff);
         String diffedSerialized = ADLArchetypeSerializer.serialize(diffed);
 

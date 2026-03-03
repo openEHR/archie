@@ -1,6 +1,7 @@
 package com.nedap.archie.adl14;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.aom.ResourceDescription;
 
 import java.util.LinkedHashMap;
@@ -20,7 +21,7 @@ public class ADL14DescriptionConverter {
         description.setOriginalPublisher(description.getOtherDetails().remove("original_publisher"));
         description.setCustodianNamespace(description.getOtherDetails().remove("custodian_namespace"));
         description.setCustodianOrganisation(description.getOtherDetails().remove("custodian_organisation"));
-        archetype.setBuildUid(description.getOtherDetails().remove("build_uid"));
+        ((AuthoredArchetype) archetype).setBuildUid(description.getOtherDetails().remove("build_uid"));
         String references = description.getOtherDetails().remove("references");
         if(references != null) {
             Map<String, String> newReferences = new LinkedHashMap<>();
@@ -53,6 +54,6 @@ public class ADL14DescriptionConverter {
         if(revision != null) {
             archetype.getArchetypeId().setReleaseVersion(revision);
         }
-        archetype.setGenerated(true);
+        ((AuthoredArchetype) archetype).setGenerated(true);
     }
 }

@@ -20,12 +20,11 @@ public class AuthoredArchetypeMetadataChecks extends ArchetypeValidationBase {
             AuthoredArchetype authoredArchetype = (AuthoredArchetype) archetype;
 
             checkOriginalLanguagePresent();
-            checkAdlRmVersionIdFormats();
+            checkAdlRmVersionIdFormats(authoredArchetype);
             validateDescription();
             if(this.hasPassed()) {
                 checkLanguagesInTranslationAreInTerminology();
             }
-
         }
     }
 
@@ -56,12 +55,12 @@ public class AuthoredArchetypeMetadataChecks extends ArchetypeValidationBase {
         }
     }
 
-    private void checkAdlRmVersionIdFormats() {
-        if(!isValidVersion(archetype.getAdlVersion())) {
-            addMessage(ErrorType.VARAV, I18n.t("ADL version {0} is an invalid format for a version, should be x.x.x-(rc|alpha(x)?)?", archetype.getAdlVersion()));
+    private void checkAdlRmVersionIdFormats(AuthoredArchetype authoredArchetype) {
+        if(!isValidVersion(authoredArchetype.getAdlVersion())) {
+            addMessage(ErrorType.VARAV, I18n.t("ADL version {0} is an invalid format for a version, should be x.x.x-(rc|alpha(x)?)?", authoredArchetype.getAdlVersion()));
         }
-        if(!isValidVersion(archetype.getRmRelease())) {
-            addMessage(ErrorType.VARRV, I18n.t("RM Release version {0} is an invalid format for a version, should be x.x.x-(rc|alpha(x)?)?", archetype.getRmRelease()));
+        if(!isValidVersion(authoredArchetype.getRmRelease())) {
+            addMessage(ErrorType.VARRV, I18n.t("RM Release version {0} is an invalid format for a version, should be x.x.x-(rc|alpha(x)?)?", authoredArchetype.getRmRelease()));
         }
     }
 
