@@ -16,7 +16,7 @@ public class CustomVersionComparator implements Comparator<Version> {
             .thenComparing(
                     (v) -> v.getPreReleaseVersion().isEmpty() ? null : v.getPreReleaseVersion(),
                     Comparator.nullsLast(String::compareTo))
-            .thenComparingInt(v -> v.buildMetadata().equals("") ? 0 : Integer.parseInt(v.getBuildMetadata()));
+            .thenComparingInt(v -> v.getBuildMetadata().equals("") ? 0 : Integer.parseInt(v.getBuildMetadata()));
 
     @Override
     public int compare(Version v1, Version v2) {

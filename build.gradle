@@ -73,7 +73,7 @@ subprojects {
 
         api(libs.threeten.extra)
 
-        testImplementation(libs.junit5.jupiter)
+        testImplementation(libs.bundles.junit)
         testImplementation(libs.hamcrest)
         testImplementation(libs.slf4j.simple)
 
@@ -87,6 +87,7 @@ subprojects {
 
 
     test {
+        useJUnitPlatform()
         testLogging {
             events "failed"
             exceptionFormat = "full"

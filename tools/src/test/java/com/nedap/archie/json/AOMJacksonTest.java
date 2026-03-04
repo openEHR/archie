@@ -343,7 +343,7 @@ public class AOMJacksonTest {
                         Archetype parsed = mapper.readValue(stream, Archetype.class);
                         assertNotNull(parsed);
                     } catch (Exception e) {
-                        System.out.println("Error parsing " + file);
+                        System.out.println("Error parsing " + file.toString());
                         throw new RuntimeException(e);
                     }
                 });
