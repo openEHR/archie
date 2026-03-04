@@ -75,10 +75,6 @@ public class IntegerObject extends PrimitiveObject<String> implements Serializab
         IntegerObject other = (IntegerObject)obj;
         if(this == other) {
             return true;
-        } else if(this.getValue() != null && other.getValue() != null && this.getValue().equals(other.getValue())) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return this.getValue() != null && other.getValue() != null && this.getValue().equals(other.getValue());
     }
 }

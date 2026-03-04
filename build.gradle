@@ -1,3 +1,5 @@
+import org.codehaus.groovy.runtime.GStringImpl
+
 plugins {
     alias(libs.plugins.nexus.publish)
 }
@@ -10,11 +12,13 @@ repositories {
 allprojects {
     version = '3.15.0'
     group = 'com.nedap.healthcare.archie'
-    ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
+    ext.gradleScriptDir = "${rootProject.projectDir}/gradle" as GStringImpl
     //archivesBaseName = 'archie'
 
-    tasks.withType(Javadoc) {
-        options.addStringOption('Xdoclint:all', '-quiet')
+    tasks.withType(Javadoc).tap {
+        configureEach {
+            options.addStringOption('Xdoclint:all', '-quiet')
+        }
     }
 }
 
@@ -39,7 +43,7 @@ subprojects {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(8)
+            languageVersion = JavaLanguageVersion.of(11)
         }
 
         withJavadocJar()
@@ -69,7 +73,7 @@ subprojects {
 
         api(libs.threeten.extra)
 
-        testImplementation(libs.junit5.jupiter)
+        testImplementation(libs.bundles.junit)
         testImplementation(libs.hamcrest)
         testImplementation(libs.slf4j.simple)
 
@@ -83,6 +87,7 @@ subprojects {
 
 
     test {
+        useJUnitPlatform()
         testLogging {
             events "failed"
             exceptionFormat = "full"

@@ -74,7 +74,7 @@ public  class ExampleJsonInstanceGenerator {
                 !(rmRelease.equalsIgnoreCase("1.0.4") || rmRelease.equalsIgnoreCase("1.1.0"))) {
             rmRelease = "1.1.0";
         }
-        metaModel = metaModelProvider.selectAndGetMetaModel(archetype, rmRelease);
+        metaModel = metaModelProvider.getMetaModel(archetype, rmRelease);
         aomProfile = metaModel.getAomProfile();
         bmm = metaModel.getBmmModel();
         return generate(archetype.getDefinition());

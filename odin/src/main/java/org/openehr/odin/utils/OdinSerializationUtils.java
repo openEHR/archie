@@ -128,9 +128,8 @@ public class OdinSerializationUtils {
      * @return
      */
     public static String buildOdinStringList(List<String> items) {
-        List<String> elements = new ArrayList<>();
-        elements.addAll(items);
-        if(items.size() > 0 && items.get(items.size() - 1).equals("...")) { //remove training '...' when present
+        List<String> elements = new ArrayList<>(items);
+        if(!items.isEmpty() && items.get(items.size() - 1).equals("...")) { //remove training '...' when present
             elements.remove(items.size() - 1);
         }
         StringBuilder builder = new StringBuilder("<");
@@ -169,8 +168,7 @@ public class OdinSerializationUtils {
      * @return
      */
     public static String buildOdinIntegerList(List<Integer> items) {
-        List<Integer> elements = new ArrayList<>();
-        elements.addAll(items);
+        List<Integer> elements = new ArrayList<>(items);
         if(items.size() > 0 && items.get(items.size() - 1).equals("...")) { //remove training '...' when present
             elements.remove(items.size() - 1);
         }
@@ -209,11 +207,7 @@ public class OdinSerializationUtils {
      * @return
      */
     public static String indentByTabCount(int tabCount) {
-        StringBuilder builder = new StringBuilder();
-        for(int i = 0; i < tabCount; i++) {
-            builder.append("\t");
-        }
-        return builder.toString();
+        return "\t".repeat(Math.max(0, tabCount));
     }
 
     /**

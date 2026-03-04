@@ -82,7 +82,7 @@ public class Codeset {
      */
     public List<Code> getCode() {
         if (code == null) {
-            code = new ArrayList<Code>();
+            code = new ArrayList<>();
         }
         return this.code;
     }
