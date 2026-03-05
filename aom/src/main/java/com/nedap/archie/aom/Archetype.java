@@ -288,8 +288,8 @@ public class Archetype extends AuthoredResource {
             if(cObject instanceof CTerminologyCode) {
                 CTerminologyCode terminologyCode = (CTerminologyCode) cObject;
                 result.addAll(terminologyCode.getValueSetExpanded());
-                if(!terminologyCode.getConstraint().isEmpty()) {
-                    result.add(terminologyCode.getConstraint().get(0));
+                if(terminologyCode.getConstraint() != null) {
+                    result.add(terminologyCode.getConstraint());
                 }
             }
             for(CAttribute attribute:cObject.getAttributes()) {

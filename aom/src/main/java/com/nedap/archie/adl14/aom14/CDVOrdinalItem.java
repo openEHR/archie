@@ -6,8 +6,6 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 
-import java.util.Arrays;
-
 public class CDVOrdinalItem {
 
     private Integer value;
@@ -35,7 +33,7 @@ public class CDVOrdinalItem {
             return null;
         }
         CTerminologyCode result = new CTerminologyCode();
-        result.setConstraint(Arrays.asList(symbol.toString()));
+        result.setConstraint(symbol.toString());
         return result;
     }
 

@@ -1,6 +1,7 @@
 package com.nedap.archie.diff;
 
 import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.primitives.COrdered;
 import com.nedap.archie.base.Interval;
 
 import java.util.ArrayList;
@@ -29,9 +30,9 @@ public class UnconstrainedIntervalRemover {
         for(CObject cObject:cAttribute.getChildren()) {
             if(cObject instanceof CComplexObject) {
                 removeUnconstrainedIntervals((CComplexObject) cObject);
-            } else if (cObject instanceof CPrimitiveObject) {
-                CPrimitiveObject<?, ?> cPrimitiveObject = (CPrimitiveObject<?, ?>) cObject;
-                List<?> constraint = cPrimitiveObject.getConstraint();
+            } else if (cObject instanceof COrdered) {
+                COrdered<?> cOrdered = (COrdered<?>) cObject;
+                List<?> constraint = cOrdered.getConstraint();
                 List<Object> toRemove = new ArrayList<>();
                 for(Object i:constraint) {
                     if(i instanceof Interval) {
@@ -43,7 +44,7 @@ public class UnconstrainedIntervalRemover {
                 }
                 constraint.removeAll(toRemove);
                 if(constraint.isEmpty()) {
-                    cObjectsToRemove.add(cPrimitiveObject);
+                    cObjectsToRemove.add(cOrdered);
                 }
             }
         }

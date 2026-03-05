@@ -127,7 +127,7 @@ class FixableAssertionsChecker {
         if(rightOperand instanceof Constraint) {
             Constraint<?> c = (Constraint<?>) rightOperand;
             CPrimitiveObject<?, ?> object = c.getItem();
-            List<?> constraints = object.getConstraint();
+            List<?> constraints = object.getConstraintAsList();
             if(constraints.size() != 1) {
                 return;
             }

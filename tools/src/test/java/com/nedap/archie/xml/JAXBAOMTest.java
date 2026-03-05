@@ -71,7 +71,7 @@ public class JAXBAOMTest {
     public void testCTerminologyCode() throws Exception {
 
         CTerminologyCode cTerminologyCode = new CTerminologyCode();
-        cTerminologyCode.setConstraint(Lists.newArrayList("ac23"));
+        cTerminologyCode.setConstraint("ac23");
         cTerminologyCode.setConstraintStatus(ConstraintStatus.PREFERRED);
         valueAttribute.addChild(cTerminologyCode);
         StringWriter writer = new StringWriter();

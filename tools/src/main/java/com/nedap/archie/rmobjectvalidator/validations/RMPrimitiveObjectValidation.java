@@ -52,7 +52,7 @@ public class RMPrimitiveObjectValidation {
     }
 
     private static RMObjectValidationMessage createValidationMessage(Object value, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
-        List<?> constraint = cobject.getConstraint();
+        List<?> constraint = cobject.getConstraintAsList();
         String message;
 
         if(constraint.size() == 1) {

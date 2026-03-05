@@ -103,23 +103,24 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
                 //need to do parsing here because the lexer matched the entire term code ref
                 TerminologyCode terminologyCode = TerminologyCode.createFromString(qualifiedTermCodeContext.TERM_CODE_REF().getText());
                 if (terminologyCode.getTerminologyId() != null && terminologyCode.getTerminologyId().equalsIgnoreCase("local")) {
-                    result.addConstraint(terminologyCode.getCodeString());
+                    result.setConstraint(terminologyCode.getCodeString());
                 } else {
                     //non-local term constraints. Just add the text here, it will be converted later
-                    result.addConstraint(qualifiedTermCodeContext.TERM_CODE_REF().getText());
+                    result.setConstraint(qualifiedTermCodeContext.TERM_CODE_REF().getText());
                 }
             } else {
                 String terminologyId = qualifiedTermCodeContext.identifier(0).getText();
                 if (terminologyId.equalsIgnoreCase("local")) {
                     //we need to create a value set. For now just add the constraint, the value set will come after
                     //the parser
+                    // TODO: the List type of the terminologycode.constraint seems to have been used here for a tmp storage to build a value set later, check this and make sure this is still working as intended after these changes...
                     for (int i = 1; i < qualifiedTermCodeContext.identifier().size(); i++) {
-                        result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
+                        // result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
                     }
                 } else {
                     //non-local term constraints. Add the text here, will be converted later
                     for (int i = 0; i < qualifiedTermCodeContext.identifier().size(); i++) {
-                        result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
+                        // result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
                     }
                 }
 
@@ -130,7 +131,7 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
         } else {
             //this is an AC-code.
             if(terminologyCodeContext.localTermCode().AC_CODE() != null) {
-                result.addConstraint(terminologyCodeContext.localTermCode().AC_CODE().getText());
+                result.setConstraint(terminologyCodeContext.localTermCode().AC_CODE().getText());
             } else {
                 throw new RuntimeException("unknown terminology code format - this looks adl2 inside the adl 1.4 format?");
             }
