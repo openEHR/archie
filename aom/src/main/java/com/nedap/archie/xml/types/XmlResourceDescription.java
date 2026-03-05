@@ -1,6 +1,7 @@
 package com.nedap.archie.xml.types;
 
 import com.nedap.archie.xml.adapters.LifecycleStateXmlAdapter;
+import com.nedap.archie.xml.adapters.LifecycleStateXmlAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

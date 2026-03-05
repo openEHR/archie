@@ -18,8 +18,8 @@ import com.nedap.archie.testutil.DummyOperationalTemplateProvider;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InvariantTestUtil {
     private static final OperationalTemplateProvider optProvider = new DummyOperationalTemplateProvider("example");
@@ -27,7 +27,7 @@ public class InvariantTestUtil {
     public static void assertValid(Object object) {
         RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider, new ValidationConfiguration.Builder().build());
         List<RMObjectValidationMessage> messages = validator.validate(object);
-        assertTrue(messages.isEmpty(), "object should be valid, was not: " + messages);
+        assertThat("object should be valid, was not: " + messages, messages.isEmpty());
     }
 
     public static void assertInvariantInvalid(Object object, String invariantName, String path) {

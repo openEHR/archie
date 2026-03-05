@@ -38,7 +38,7 @@ public class AdlOdinToJsonConverter {
     }
 
     public static void configureObjectMapper(ObjectMapper objectMapper, boolean allowDuplicates) {
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         //keywords = <"value"> is indistinguishable from keywords = <"value1", "value2">
         objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         //odin sometimes does <> where it can mean either an empty array OR a null object. Nastyness

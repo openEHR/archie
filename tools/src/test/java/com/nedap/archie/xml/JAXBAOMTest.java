@@ -12,7 +12,6 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.datetime.DateTimeParsers;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

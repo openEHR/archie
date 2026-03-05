@@ -26,4 +26,11 @@ public class DvDateTest {
 		assertEquals(dvDateFour, dvDateFive);
 		assertEquals(dvDateSix, dvDateSeven);
 	}
+
+    @Test
+    public void deserializeValueEmptyString() throws JsonProcessingException {
+        String json = "{\"value\":\"\"}";
+        DvDate actual = JacksonUtil.getObjectMapper().readValue(json, DvDate.class);
+        assertNull(actual.getValue());
+    }
 }
