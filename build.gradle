@@ -84,6 +84,7 @@ subprojects {
 
     test {
         useJUnitPlatform()
+        outputs.upToDateWhen { false }
         testLogging {
             events "failed"
             exceptionFormat = "full"
