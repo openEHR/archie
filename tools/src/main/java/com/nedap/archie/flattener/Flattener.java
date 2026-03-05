@@ -118,7 +118,7 @@ public class Flattener implements IAttributeFlattenerSupport {
             throw new IllegalStateException("You've used this flattener before - single use instance, please create a new one!");
         }
 
-        metaModel = metaModelProvider.selectAndGetMetaModel(toFlatten);
+        metaModel = metaModelProvider.getMetaModel(toFlatten);
 
         //validate that we can legally flatten first
         String parentId = toFlatten.getParentArchetypeId();

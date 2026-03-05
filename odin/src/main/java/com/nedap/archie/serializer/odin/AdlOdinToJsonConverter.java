@@ -12,14 +12,14 @@ import java.util.List;
 
 /**
  * A simple Odin to JSON-converter TO BE USED WITHIN THE CONTEXT OF ADL!. This allows us to use standard tooling to bind to objects.
- *
+ * <p>
  * We need different lexer modes, but this is very hard to do in the current version of ADL!
- *
+ * <p>
  * Perhaps better would be to create a jackson-databinding for ODIN, but this is quite some work and I don't consider
  * ODIN as having considerable benefits over JSON or YAML.
- *
+ * <p>
  * If anyone wants to do this - go ahead.
- *
+ * <p>
  * Created by pieter.bos on 01/11/15.
  */
 public class AdlOdinToJsonConverter {
@@ -38,7 +38,7 @@ public class AdlOdinToJsonConverter {
     }
 
     public static void configureObjectMapper(ObjectMapper objectMapper, boolean allowDuplicates) {
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         //keywords = <"value"> is indistinguishable from keywords = <"value1", "value2">
         objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         //odin sometimes does <> where it can mean either an empty array OR a null object. Nastyness
@@ -70,7 +70,7 @@ public class AdlOdinToJsonConverter {
             output(context.attr_vals().attr_val(), null /* no type id here */);
         } else if(context.object_value_block() != null){
             output(context.object_value_block());
-        } else if (context.keyed_object() != null && context.keyed_object().size() > 0) {
+        } else if (context.keyed_object() != null && !context.keyed_object().isEmpty()) {
             outputKeyedObjects(context.keyed_object(), null /* no type id here */);
         } else{
             //empty
@@ -152,7 +152,7 @@ public class AdlOdinToJsonConverter {
                         if(relopText.contains(">")) {
                             output.append(",\"lower_unbounded\": \"false\"");
                             output.append(",\"upper_unbounded\": \"true\"");
-                            output.append(",\"lower\": " + interval.integer_value().get(0).getText());
+                            output.append(",\"lower\": ").append(interval.integer_value().get(0).getText());
                             if(relopText.contains("=")) {
                                 output.append(",\"lower_included\": \"true\"");
                             } else {
@@ -161,7 +161,7 @@ public class AdlOdinToJsonConverter {
                         } else if(relopText.contains("<")) {
                             output.append(",\"lower_unbounded\": \"true\"");
                             output.append(",\"upper_unbounded\": \"false\"");
-                            output.append(",\"upper\": " + interval.integer_value().get(0).getText());
+                            output.append(",\"upper\": ").append(interval.integer_value().get(0).getText());
                             if(relopText.contains("=")) {
                                 output.append(",\"upper_included\": \"true\"");
                             } else {
@@ -181,11 +181,11 @@ public class AdlOdinToJsonConverter {
                         } else {
                             output.append(",\"upper_included\": \"true\"");
                         }
-                        output.append(",\"lower\": " + interval.integer_value().get(0).getText());
+                        output.append(",\"lower\": ").append(interval.integer_value().get(0).getText());
                         if(interval.integer_value().size() > 1) {
-                            output.append(",\"upper\": " + interval.integer_value().get(1).getText());
+                            output.append(",\"upper\": ").append(interval.integer_value().get(1).getText());
                         } else {
-                            output.append(",\"upper\": " + interval.integer_value().get(0).getText());
+                            output.append(",\"upper\": ").append(interval.integer_value().get(0).getText());
                         }
 
                     }
@@ -197,7 +197,7 @@ public class AdlOdinToJsonConverter {
                         if(relopText.contains(">")) {
                             output.append(",\"lower_unbounded\": \"false\"");
                             output.append(",\"upper_unbounded\": \"true\"");
-                            output.append(",\"lower\": " + interval.real_value().get(0).getText());
+                            output.append(",\"lower\": ").append(interval.real_value().get(0).getText());
                             if(relopText.contains("=")) {
                                 output.append(",\"lower_included\": \"true\"");
                             } else {
@@ -206,7 +206,7 @@ public class AdlOdinToJsonConverter {
                         } else if(relopText.contains("<")) {
                             output.append(",\"lower_unbounded\": \"true\"");
                             output.append(",\"upper_unbounded\": \"false\"");
-                            output.append(",\"upper\": " + interval.real_value().get(0).getText());
+                            output.append(",\"upper\": ").append(interval.real_value().get(0).getText());
                             if(relopText.contains("=")) {
                                 output.append(",\"upper_included\": \"true\"");
                             } else {
@@ -226,12 +226,12 @@ public class AdlOdinToJsonConverter {
                         } else {
                             output.append(",\"upper_included\": \"true\"");
                         }
-                        output.append(",\"lower\": " + interval.real_value().get(0).getText());
+                        output.append(",\"lower\": ").append(interval.real_value().get(0).getText());
 
                         if(interval.real_value().size() > 1) {
-                            output.append(",\"upper\": " + interval.real_value().get(1).getText());
+                            output.append(",\"upper\": ").append(interval.real_value().get(1).getText());
                         } else {
-                            output.append(",\"upper\": " + interval.real_value().get(0).getText());
+                            output.append(",\"upper\": ").append(interval.real_value().get(0).getText());
                         }
 
                     }

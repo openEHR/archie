@@ -12,7 +12,7 @@ public class ArchetypeODINMapperFactory {
         SimpleModule module = new SimpleModule();
         module.addSerializer(ArchetypeTerm.class, new ArchetypeTermOdinSerializer());
         module.setMixInAnnotation(ArchetypeTerminology.class, ArchetypeTerminologyMixin.class);
-        result.disableDefaultTyping();//no typing info for archetype ODIN needed
+        result.deactivateDefaultTyping();//no typing info for archetype ODIN needed
         result.registerModule(module);
         return result;
     }

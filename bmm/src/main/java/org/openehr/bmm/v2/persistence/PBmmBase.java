@@ -18,6 +18,6 @@ public class PBmmBase extends OpenEHRBase {
     }
 
     protected boolean nullToFalse(Boolean value) {
-        return value == null ? false: value;
+        return value != null && value;
     }
 }
