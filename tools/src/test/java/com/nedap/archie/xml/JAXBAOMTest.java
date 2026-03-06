@@ -119,7 +119,7 @@ public class JAXBAOMTest {
         Interval<TemporalAmount> constraint = parsedDuration.getConstraint().get(0);
         assertEquals(1, parsedDuration.getConstraint().size());
         assertEquals(
-                new Interval<TemporalAmount>(DateTimeParsers.parseDurationValue("-P10D"), DateTimeParsers.parseDurationValue("P10YT10S")),
+                new Interval<>(DateTimeParsers.parseDurationValue("-P10D"), DateTimeParsers.parseDurationValue("P10YT10S")),
                 constraint);
     }
 

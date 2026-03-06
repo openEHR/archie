@@ -67,7 +67,7 @@ public class AuthoredArchetypeMetadataChecks extends ArchetypeValidationBase {
 
     private void checkOriginalLanguagePresent() {
         if(archetype.getOriginalLanguage() != null) {
-            String languageCode = archetype.getOriginalLanguage().getCodeString();;
+            String languageCode = archetype.getOriginalLanguage().getCodeString();
             if(languageCode != null) {
                 if(archetype.getTerminology().getTermDefinitions().get(languageCode) == null) {
                     addMessage(ErrorType.VOLT, I18n.t("Original language {0} is not defined in the terminology", languageCode));

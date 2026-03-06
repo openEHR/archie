@@ -148,7 +148,6 @@ public class    OriginalVersion<Type> extends Version<Type> {
         return Objects.equals(uid, that.uid) &&
                 Objects.equals(precedingVersionUid, that.precedingVersionUid) &&
                 Objects.equals(otherInputVersionUids, that.otherInputVersionUids) &&
-                Objects.equals(otherInputVersionUids, that.otherInputVersionUids) &&
                 Objects.equals(lifecycleState, that.lifecycleState) &&
                 Objects.equals(attestations, that.attestations) &&
                 Objects.equals(data, that.data);

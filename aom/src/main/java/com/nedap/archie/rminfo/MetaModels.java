@@ -11,15 +11,15 @@ import org.openehr.bmm.v2.validation.BmmRepository;
 /**
  * MetaModel class that provides some opertaions for archetype validation and flattener that is either based on
  * an implementation-derived model (ModelInfoLookup) or BMM
- *
+ * <p>
  * To use, select a model first using the selectModel() method. Then you can use any of the methods from MetaModelInterface
  * or obtain the underlying models directly. Trying to use the MetaModelInterface methods without selecting a model will
  * result in a NoModelSelectedException being thrown.
- *
+ * <p>
  * By default the MetaModels uses the RM version from the archetype. It is possible to override this version either for
  * the entire MetaModels, or for a specific call, with the overrideModelVersion() method, and the two-parameter
  * selectModel() method.
- *
+ * <p>
  * Note that this class is NOT thread-safe and is to be used by a single thread only.
  *
  * @deprecated Use {@link SimpleMetaModelProvider}, {@link OverridingMetaModelProvider} or {@link MetaModel} instead.
@@ -112,7 +112,7 @@ public class MetaModels implements MetaModelInterface, MetaModelProvider {
      * @param archetype the archetype to find the model for
      * @throws ModelNotFoundException when no BMM and no ModelInfoLookup model has been found matching the archetype
      */
-    public void selectModel(Archetype archetype) throws ModelNotFoundException { ;
+    public void selectModel(Archetype archetype) throws ModelNotFoundException {
         selectAndGetMetaModel(archetype);
     }
 
@@ -122,7 +122,7 @@ public class MetaModels implements MetaModelInterface, MetaModelProvider {
      * @param rmVersion the version of the reference model you want to check with.
      * @throws ModelNotFoundException
      */
-    public void selectModel(Archetype archetype, String rmVersion) throws ModelNotFoundException { ;
+    public void selectModel(Archetype archetype, String rmVersion) throws ModelNotFoundException {
         selectAndGetMetaModel(archetype, rmVersion);
     }
 

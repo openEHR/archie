@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  */
 public class RuleEvaluation<T> {
 
-    private static Logger logger = LoggerFactory.getLogger(RuleEvaluation.class);;
+    private static Logger logger = LoggerFactory.getLogger(RuleEvaluation.class);
 
     private Archetype archetype;
     private List<Evaluator<?>> evaluators = new ArrayList<>();
@@ -231,7 +231,7 @@ public class RuleEvaluation<T> {
             }
         } else {
             List<RMObjectWithPath> parentsWithPath = findListWithPaths(path);
-            return parentsWithPath.stream().map(p -> p.getObject()).collect(Collectors.toList());
+            return parentsWithPath.stream().map(RMObjectWithPath::getObject).collect(Collectors.toList());
         }
     }
 
