@@ -1,7 +1,8 @@
 [versions]
 antlr = "4.13.2"
 
-jackson = "2.19.2"
+jackson = "2.21.0"
+jackson_annotations = "2.21"
 
 slf4j = "1.7.36"
 
@@ -18,15 +19,15 @@ activation = { module = "javax.activation:activation", version = "1.1.1" }
 antlr4 = { module = "org.antlr:antlr4", version.ref = "antlr" }
 antlr4-runtime = { module = "org.antlr:antlr4-runtime", version.ref = "antlr" }
 
-commons-io = { module = "commons-io:commons-io", version = "2.20.0" }
+commons-io = { module = "commons-io:commons-io", version = "2.21.0" }
 
-commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.19.0" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.20.0" }
 
-commons-text = { module = "org.apache.commons:commons-text", version = "1.14.0" }
+commons-text = { module = "org.apache.commons:commons-text", version = "1.15.0" }
 
 guava = { module = "com.google.guava:guava", version = "33.5.0-jre" }
 
-jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson_annotations" }
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 

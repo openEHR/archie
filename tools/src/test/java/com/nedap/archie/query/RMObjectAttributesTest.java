@@ -23,6 +23,7 @@ import java.util.List;
 import static com.nedap.archie.query.RMObjectAttributes.getAttributeValueFromRMObject;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
+@Deprecated
 public class RMObjectAttributesTest {
 
     private TestUtil testUtil;

@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  * <p>
  * Created by cnanjo on 1/17/17.
  */
-
+@Deprecated
 public class FileAndDirUtilsTest {
     @Test
     public void loadDirectories() throws Exception {
