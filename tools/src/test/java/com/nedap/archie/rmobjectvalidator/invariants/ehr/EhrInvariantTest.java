@@ -4,12 +4,12 @@ import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.ehr.Ehr;
 import com.nedap.archie.rm.support.identification.HierObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
+import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil.createExampleRef;
@@ -48,7 +48,7 @@ public class EhrInvariantTest {
     @Test
     public void invalidDirectory() {
         Ehr ehr = createValidEhr();
-        ObjectRef directoryRef = createExampleRef("VERSIONED_UNKNOWN");
+        ObjectRef<UIDBasedId> directoryRef = createExampleRef("VERSIONED_UNKNOWN");
         ehr.setDirectory(directoryRef);
         ehr.setFolders(null);
         InvariantTestUtil.assertInvariantInvalid(ehr, "Directory_valid", "/");
@@ -72,7 +72,7 @@ public class EhrInvariantTest {
     @Test
     public void foldersDoesNotContainDirectory() {
         Ehr ehr = createValidEhr();
-        ObjectRef directoryRef = createExampleRef("VERSIONED_FOLDER");
+        ObjectRef<UIDBasedId> directoryRef = createExampleRef("VERSIONED_FOLDER");
         ehr.setDirectory(directoryRef);
         ehr.setFolders(new ArrayList<>());
         InvariantTestUtil.assertInvariantInvalid(ehr, "Directory_in_folders", "/");
@@ -83,9 +83,9 @@ public class EhrInvariantTest {
         ehr.setContributions(createExampleRefList("CONTRIBUTION"));
         ehr.setEhrAccess(createExampleRef("VERSIONED_EHR_ACCESS"));
         ehr.setEhrStatus(createExampleRef("VERSIONED_EHR_STATUS"));
-        ObjectRef directoryRef = createExampleRef("VERSIONED_FOLDER");
+        ObjectRef<UIDBasedId> directoryRef = createExampleRef("VERSIONED_FOLDER");
         ehr.setDirectory(directoryRef);
-        ehr.setFolders(Arrays.asList(directoryRef));
+        ehr.setFolders(List.of(directoryRef));
         ehr.setTimeCreated(new DvDateTime(LocalDateTime.now()));
         ehr.setSystemId(new HierObjectId("something"));
         ehr.setEhrId(new HierObjectId("something"));
@@ -94,7 +94,7 @@ public class EhrInvariantTest {
     }
 
     private List<ObjectRef<?>> createExampleRefList(String type) {
-        return Arrays.asList(createExampleRef(type));
+        return List.of(createExampleRef(type));
     }
 
 

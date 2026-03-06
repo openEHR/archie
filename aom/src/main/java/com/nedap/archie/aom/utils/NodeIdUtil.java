@@ -10,14 +10,14 @@ public class NodeIdUtil {
 
 
     private String prefix;
-    private List<Integer> codes = new ArrayList<>();;
+    private List<Integer> codes = new ArrayList<>();
 
     public NodeIdUtil(String nodeId) {
         if(AOMUtils.isValidCode(nodeId) || AOMUtils.isValidADL14Code(nodeId)) {
             String[] split = nodeId.substring(2).split("\\" + AdlCodeDefinitions.SPECIALIZATION_SEPARATOR);
             prefix = nodeId.substring(0, 2);
-            for (int i = 0; i < split.length; i++) {
-                codes.add(Integer.parseInt(split[i]));
+            for (String s : split) {
+                codes.add(Integer.parseInt(s));
             }
         }
     }

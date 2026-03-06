@@ -37,9 +37,11 @@ public class OperationalTemplateCreatorTest {
             // Assert protocol existence matches {0}
             CAttribute protocol = flattener.flatten(archetype).getDefinition().getAttribute("protocol");
             MultiplicityInterval existence = protocol.getExistence();
-            Integer zeroInt = Integer.valueOf(0);
+            Integer zeroInt = 0;
+            assertNotNull(existence);
             assertEquals(zeroInt, existence.getLower());
             assertEquals(zeroInt, existence.getUpper());
+            assertNotNull(protocol.getChildren());
             assertTrue(protocol.getChildren().isEmpty());
         }
     }
@@ -132,7 +134,7 @@ public class OperationalTemplateCreatorTest {
 
         Archetype flatChild =  parseAndCreateOPTWithConfig("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0.adls", repository, config);
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id5.1", "id6.1", "id7.1"),
                 nodeIds
@@ -150,7 +152,7 @@ public class OperationalTemplateCreatorTest {
 
         Archetype flatChild =  parseAndCreateOPTWithConfig("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0.adls", repository, config);
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id6.1", "id7.1"),
                 nodeIds

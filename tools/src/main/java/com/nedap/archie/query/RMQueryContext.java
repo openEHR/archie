@@ -91,7 +91,7 @@ public class RMQueryContext {
     }
 
     public <T> List<T> findList(String query) throws XPathExpressionException {
-        List<T> result = new ArrayList<T>();
+        List<T> result = new ArrayList<>();
 
         if (query.equals("/")) {
             result.add((T) rootNode);

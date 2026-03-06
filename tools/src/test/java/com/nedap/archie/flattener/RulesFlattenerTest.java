@@ -18,25 +18,21 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class RulesFlattenerTest {
 
-    private Archetype withRules;
     private Archetype specializedRules;
     private Archetype containingRules;
 
     private Flattener flattener;
-    private SimpleArchetypeRepository repository;
-
-    private ReferenceModels models;
 
     @BeforeEach
     public void setup() throws Exception {
-        models = BuiltinReferenceModels.getAvailableModelInfoLookups();
+        ReferenceModels models = BuiltinReferenceModels.getAvailableModelInfoLookups();
 
         withRules = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.with_rules.v1.adls"));
         Archetype withRulesMixedCaseDashes = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.With-rules-Mixed-case-dashes.v1.adls"));
         specializedRules = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.specialized_rules.v1.adls"));
         containingRules = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.containing_rules.v1.adls"));
 
-        repository = new SimpleArchetypeRepository();
+        SimpleArchetypeRepository repository = new SimpleArchetypeRepository();
         repository.addArchetype(withRules);
         repository.addArchetype(withRulesMixedCaseDashes);
         repository.addArchetype(specializedRules);
