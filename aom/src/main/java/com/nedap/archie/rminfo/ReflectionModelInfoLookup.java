@@ -251,7 +251,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                     getMethod,
                     setMethod,
                     addMethod,
-                    determineIfComputed(clazz, getMethod, field, setMethod, addMethod)
+                    determineIfComputed(getMethod, field, setMethod, addMethod)
             );
             if(typeInfo.getAttribute(attributeName) == null) {
                 typeInfo.addAttribute(attributeInfo);
@@ -261,10 +261,10 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
        // }
     }
 
-    private boolean determineIfComputed(Class<?> clazz, Method getMethod, Field field, Method setMethod, Method addMethod) {
+    private boolean determineIfComputed(Method getMethod, Field field, Method setMethod, Method addMethod) {
         boolean computed = setMethod == null && addMethod == null && field == null;
 
-        RMProperty annotation = getAnnotation(clazz, getMethod, field, RMProperty.class);
+        RMProperty annotation = getAnnotation(getMethod, field, RMProperty.class);
         if(annotation != null && annotation.computed() != PropertyType.AUTO_DETECT) {
             computed = annotation.computed() == PropertyType.COMPUTED;
         }
@@ -272,10 +272,10 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
     }
 
     protected boolean isNullable(Class<?> clazz, Method getMethod, Field field) {
-        return getAnnotation(clazz, getMethod, field, Nullable.class) != null;
+        return getAnnotation(getMethod, field, Nullable.class) != null;
     }
 
-    private <T extends Annotation> T getAnnotation(Class<?> clazz, Method getMethod, Field field, Class<T> annotationClass) {
+    private <T extends Annotation> T getAnnotation(Method getMethod, Field field, Class<T> annotationClass) {
         if(field != null) {
             T annotation = field.getAnnotation(annotationClass);
             if(annotation != null) {
@@ -345,7 +345,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                     getMethod,
                     setMethod,
                     addMethod,
-                    determineIfComputed(clazz, getMethod, field, setMethod, addMethod)
+                    determineIfComputed(getMethod, field, setMethod, addMethod)
             );
             typeInfo.addAttribute(attributeInfo);
         } else {

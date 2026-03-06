@@ -13,13 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 /**
- * Copyright 2017 Cognitive Medical Systems, Inc (<a href="http://www.cognitivemedicine.com">...</a>).
+ * Copyright 2017 <a href="http://www.cognitivemedicine.com">Cognitive Medical Systems, Inc</a>.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * <p>
- * <a href="http://www.apache.org/licenses/LICENSE-2.0">...</a>
+ * <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
  * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,

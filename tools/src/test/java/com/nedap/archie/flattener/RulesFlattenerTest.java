@@ -27,7 +27,7 @@ public class RulesFlattenerTest {
     public void setup() throws Exception {
         ReferenceModels models = BuiltinReferenceModels.getAvailableModelInfoLookups();
 
-        withRules = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.with_rules.v1.adls"));
+        Archetype withRules = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.with_rules.v1.adls"));
         Archetype withRulesMixedCaseDashes = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.With-rules-Mixed-case-dashes.v1.adls"));
         specializedRules = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.specialized_rules.v1.adls"));
         containingRules = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.containing_rules.v1.adls"));

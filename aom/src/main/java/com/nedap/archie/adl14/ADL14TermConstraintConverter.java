@@ -192,9 +192,7 @@ public class ADL14TermConstraintConverter {
     }
 
     private Map<String, URI> findOrCreateTermBindings(TerminologyCode termCode) {
-        Map<String, URI> termBindings = archetype.getTerminology().getTermBindings().computeIfAbsent(termCode.getTerminologyId(), k -> new LinkedHashMap<>());
-
-        return termBindings;
+        return archetype.getTerminology().getTermBindings().computeIfAbsent(termCode.getTerminologyId(), k -> new LinkedHashMap<>());
     }
 
     private String findOrAddTermBindingAndCode(TerminologyCode termCode, URI uri, Map<String, URI> termBindingsMap) {
