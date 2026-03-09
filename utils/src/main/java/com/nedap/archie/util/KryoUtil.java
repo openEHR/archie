@@ -19,8 +19,8 @@ public class KryoUtil {
 
     static {
         // Pool constructor arguments: thread safe, soft references, maximum capacity
-        pool = new Pool<Kryo>(true, false) {
-            protected Kryo create () {
+        pool = new Pool<>(true, false) {
+            protected Kryo create() {
                 Kryo kryo = new Kryo();
                 kryo.setRegistrationRequired(false);
                 kryo.setReferences(true);

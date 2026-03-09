@@ -9,18 +9,18 @@ public class DvIntervalInvariantTest {
 
     @Test
     public void valid() {
-        InvariantTestUtil.assertValid(new DvInterval(new DvCount(1l), new DvCount(5l)));
-        InvariantTestUtil.assertValid(new DvInterval(new DvCount(1l), new DvCount(1l)));
+        InvariantTestUtil.assertValid(new DvInterval<>(new DvCount(1L), new DvCount(5L)));
+        InvariantTestUtil.assertValid(new DvInterval<>(new DvCount(1L), new DvCount(1L)));
     }
 
     @Test
     public void inconsistentLimits() {
-        InvariantTestUtil.assertInvariantInvalid(new DvInterval(new DvCount(5l), new DvCount(1l)), "Limits_consistent", "INTERVAL", "/interval");
+        InvariantTestUtil.assertInvariantInvalid(new DvInterval<>(new DvCount(5L), new DvCount(1L)), "Limits_consistent", "INTERVAL", "/interval");
     }
 
     @Test
     public void intervalInvariantsChecked() {
-        DvInterval interval = new DvInterval(new DvCount(1l), new DvCount(4l));
+        DvInterval<DvCount> interval = new DvInterval<>(new DvCount(1L), new DvCount(4L));
         interval.setLowerIncluded(true);
         interval.setLowerUnbounded(true);
         InvariantTestUtil.assertInvariantInvalid(interval, "Lower_included_valid", "INTERVAL", "/interval");

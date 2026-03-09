@@ -158,9 +158,7 @@ public class AssertionsFixer {
         RMAttributeInfo attributeInfo = ruleEvaluation.getModelInfoLookup().getAttributeInfo(object.getClass(), newLastPathSegment);
         try {
             newEmptyObject = attributeInfo.getTypeInCollection().newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return newEmptyObject;

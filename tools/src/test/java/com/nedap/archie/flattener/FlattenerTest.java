@@ -24,15 +24,11 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class FlattenerTest {
 
-    private static Archetype report;
-    private static Archetype device;
     private static Archetype bloodPressureObservation;
     private static Archetype reportResult;
     private static Archetype bloodPressureComposition;
-    private static Archetype height;
     private static Archetype heightTemplate;
     private static Archetype reportWithSynopsis;
-    private static Archetype clinicalSynopsis;
     private static Archetype bloodPressureWithSynopsis;
     private static SimpleArchetypeRepository repository;
 
@@ -52,18 +48,18 @@ public class FlattenerTest {
         // it adds a blood pressure observation
         // it also adds a device
         // it contains specific template overlays for both blood pressure observation and device
-        report = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.report.v1.adls"));
+        Archetype report = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.report.v1.adls"));
         reportResult = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.report-result.v1.adls"));
-        device = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.device.v1.adls"));
+        Archetype device = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.device.v1.adls"));
 
         bloodPressureObservation = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.blood_pressure.v1.adls"));
         bloodPressureComposition = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.blood_pressure.v1.0.0.adlt"));
 
-        height = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.height.v1.adls"));
+        Archetype height = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.height.v1.adls"));
         heightTemplate = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.length.v1.0.0.adlt"));
 
         reportWithSynopsis = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.report-result-with-synopsis.v1.0.0.adls"));
-        clinicalSynopsis = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.0.adls"));
+        Archetype clinicalSynopsis = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.0.adls"));
         bloodPressureWithSynopsis = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.blood_pressure_with_synopsis.v1.0.0.adlt"));
 
 

@@ -33,7 +33,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class JAXBRMRoundTripTest {
 
     private ADLParser parser;
-    private Archetype archetype;
 
     private TestUtil testUtil;
 
@@ -45,7 +44,7 @@ public class JAXBRMRoundTripTest {
 
     @Test
     public void dataValues() throws Exception {
-        archetype = parser.parse(JAXBRMRoundTripTest.class.getResourceAsStream("/com/nedap/archie/json/openEHR-EHR-CLUSTER.datavalues.v1.adls"));
+        Archetype archetype = parser.parse(JAXBRMRoundTripTest.class.getResourceAsStream("/com/nedap/archie/json/openEHR-EHR-CLUSTER.datavalues.v1.adls"));
         Cluster cluster =  (Cluster) testUtil.constructEmptyRMObject(archetype.getDefinition());
         RMQueryContext queryContext = getQueryContext(cluster);
         DvText text = queryContext.find("/items['Text']/value");

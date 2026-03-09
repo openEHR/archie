@@ -281,10 +281,7 @@ public class BigArchetypeValidatorTest {
             return true;
         }
         Collection<ErrorType> alsoMatchingErrorTypes = this.replaceableErrorTypes.get(regression);
-        if(alsoMatchingErrorTypes != null && alsoMatchingErrorTypes.contains(type)) {
-            return true;
-        }
-        return false;
+        return alsoMatchingErrorTypes.contains(type);
     }
 
     private boolean isInOkToHaveParseErrorsList(String filename) {
