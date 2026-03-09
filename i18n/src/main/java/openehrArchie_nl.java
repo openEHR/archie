@@ -315,7 +315,7 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
   }
   public java.util.Enumeration getKeys () {
     return
-        new java.util.Enumeration() {
+      new java.util.Enumeration() {
         private int idx = 0;
         { while (idx < 602 && table[idx] == null) idx += 2; }
         public boolean hasMoreElements () {
