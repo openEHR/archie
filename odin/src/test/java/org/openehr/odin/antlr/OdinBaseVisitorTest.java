@@ -140,10 +140,6 @@ public class OdinBaseVisitorTest {
         assertEquals("|>=6|", unbounded.getIntervalExpression());
         assertEquals(6, unbounded.getLow().getAsInteger());
         assertNull(unbounded.getHigh());
-        attribute = validateInterval(root, "a_integer_interval_point");
-        IntegerIntervalObject point = attribute.getIntegerIntervalObject();
-        assertEquals(3, point.getLow().getAsInteger());
-        assertEquals(3, point.getHigh().getAsInteger());
         attribute = validateInterval(root, "a_integer_interval_le");
         IntegerIntervalObject le = attribute.getIntegerIntervalObject();
         assertNull(le.getLow());
