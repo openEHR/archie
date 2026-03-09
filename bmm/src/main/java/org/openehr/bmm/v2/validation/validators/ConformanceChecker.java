@@ -26,14 +26,7 @@ public class ConformanceChecker {
                 return typeStrictlyConformsTo(schema, aChildSingleProperty.getTypeRef().getType(), aParentSingleProperty.getTypeRef().getType());
             }
             else if (aParentProperty instanceof PBmmSingleProperty) {
-                if (aChildProperty instanceof PBmmSinglePropertyOpen) {
-                    //If both properties have the same name and are both open properties, then they do not conform.
-                    return false;
-                }
-                else if(aChildProperty instanceof PBmmSingleProperty) {
-                    return true;
-                    //TODO FIXME: proper type conformance to constraining generic type needs to be checked here
-                }
+                return false;
             }
             else if (aChildProperty instanceof PBmmContainerProperty && aParentProperty instanceof PBmmContainerProperty) {
                 PBmmContainerProperty aChildContainerProperty = (PBmmContainerProperty)aChildProperty;

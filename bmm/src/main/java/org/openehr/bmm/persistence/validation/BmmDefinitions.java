@@ -44,11 +44,7 @@ public class BmmDefinitions extends BasicDefinitions {
     /**
      * built-in container types used to represent class-class 1:N relations
      */
-    public static final List<String> BMM_CONTAINER_TYPES = Collections.unmodifiableList(new ArrayList<String>() {{
-        add("List");
-        add("Set");
-        add("Array");
-    }});
+    public static final List<String> BMM_CONTAINER_TYPES = List.of("List", "Set", "Array");
 
     public static final String BMM_SCHEMA_FILE_EXTENSION = ".bmm";
 

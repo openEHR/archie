@@ -318,18 +318,18 @@ public class Archetype extends AuthoredResource {
 
     @JsonIgnore
     public Set<String> getUsedIdCodes() {
-        return getAllUsedCodes().stream().filter(code -> AOMUtils.isIdCode(code)).collect(Collectors.toSet());
+        return getAllUsedCodes().stream().filter(AOMUtils::isIdCode).collect(Collectors.toSet());
     }
 
     @JsonIgnore
     public Set<String> getUsedValueCodes() {
-        return getAllUsedCodes().stream().filter(code -> AOMUtils.isValueCode(code)).collect(Collectors.toSet());
+        return getAllUsedCodes().stream().filter(AOMUtils::isValueCode).collect(Collectors.toSet());
 
     }
 
     @JsonIgnore
     public Set<String> getUsedValueSetCodes() {
-        return getAllUsedCodes().stream().filter(code -> AOMUtils.isValidValueSetCode(code)).collect(Collectors.toSet());
+        return getAllUsedCodes().stream().filter(AOMUtils::isValidValueSetCode).collect(Collectors.toSet());
     }
 
 

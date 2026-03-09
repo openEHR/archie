@@ -34,7 +34,7 @@ public class ADL14DefaultMultiplicitiesSetter {
     }
 
     public void setDefaults(Archetype archetype) {
-        MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(archetype);
+        MetaModel metaModel = metaModelProvider.getMetaModel(archetype);
         correctItemsMultiplicities(metaModel, archetype.getDefinition());
     }
 
