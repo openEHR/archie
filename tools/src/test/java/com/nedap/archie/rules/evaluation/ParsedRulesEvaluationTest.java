@@ -788,7 +788,7 @@ public abstract class ParsedRulesEvaluationTest {
         Map<String, Object> exampleInstance = generator.generate(opt);
         Cluster cluster = JacksonUtil.getObjectMapper().readValue(JacksonUtil.getObjectMapper().writeValueAsString(exampleInstance), Cluster.class);
         //correct case first
-        RuleEvaluation ruleEvaluation = new RuleEvaluation(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build(), opt);
+        RuleEvaluation<Object> ruleEvaluation = new RuleEvaluation<>(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build(), opt);
         DvCodedText codedText = (DvCodedText) cluster.itemAtPath("/items[1]/items[1]/value[1]");
         codedText.setDefiningCode(new CodePhrase(new TerminologyId("local"), "at4"));
         codedText.setValue("value 1");
