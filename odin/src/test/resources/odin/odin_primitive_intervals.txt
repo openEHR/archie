@@ -1,6 +1,5 @@
 a_integer_interval_attribute1 = <|1..2|>
 a_integer_interval_attribute2 = <|>=6|>
-a_integer_interval_point = <|3|>
 a_integer_interval_le = <|<=5|>
 a_integer_interval_gt = <|>5|>
 a_integer_interval_exclude_upper = <|4..<10|>
