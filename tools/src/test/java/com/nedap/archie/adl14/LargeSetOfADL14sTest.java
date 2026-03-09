@@ -194,7 +194,7 @@ public class LargeSetOfADL14sTest {
             Archetype archetype = parser.parse(stream, conversionConfiguration);
             //logger.info(JacksonUtil.getObjectMapper().writeValueAsString(conversionResult.getConversionLog()));
            // System.out.println(ADLArchetypeSerializer.serialize(archetype));
-            if(parser.errorListener.getErrors().getErrors().size() > 0) {
+            if(!parser.errorListener.getErrors().getErrors().isEmpty()) {
                 parseErrors.put(file, parser.errorListener.getErrors());
             }
             if(parser.getTree().exception != null) {
