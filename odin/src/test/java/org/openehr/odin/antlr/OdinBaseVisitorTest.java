@@ -130,8 +130,16 @@ public class OdinBaseVisitorTest {
         CompositeOdinObject root = visitor.getAstRootNode();
         OdinAttribute attribute = validateInterval(root, "a_integer_interval_attribute1");
         assertEquals(1, attribute.getChildCount());
+        IntegerIntervalObject range = attribute.getIntegerIntervalObject();
+        assertEquals("|1..2|", range.getIntervalExpression());
+        assertEquals(1, range.getLow().getAsInteger());
+        assertEquals(2, range.getHigh().getAsInteger());
         attribute = validateInterval(root, "a_integer_interval_attribute2");
         assertEquals(1, attribute.getChildCount());
+        IntegerIntervalObject unbounded = attribute.getIntegerIntervalObject();
+        assertEquals("|>=6|", unbounded.getIntervalExpression());
+        assertEquals(6, unbounded.getLow().getAsInteger());
+        assertNull(unbounded.getHigh());
         attribute = validateInterval(root, "a_real_interval_attribute");
         assertEquals(1, attribute.getChildCount());
         attribute = validateInterval(root, "a_date_interval_attribute");
