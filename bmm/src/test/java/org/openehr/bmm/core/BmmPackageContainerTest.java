@@ -21,21 +21,12 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BmmPackageContainerTest {
-    @Test
-    public void packageAtPath() throws Exception {
-
-    }
-
-    @Test
-    public void doRecursivePackages() throws Exception {
-
-    }
 
     @Test
     public void hasPackagePath() throws Exception {

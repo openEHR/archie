@@ -1,7 +1,7 @@
 package com.nedap.archie.rmobjectvalidator.invariants;
 
 import com.nedap.archie.base.Interval;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class IntervalInvariantTest {
 
@@ -22,12 +22,12 @@ public class IntervalInvariantTest {
 
     @Test
     public void limitsConsistent() {
-        InvariantTestUtil.assertInvariantInvalid(new Interval(4, 3), "Limits_consistent", "/");
+        InvariantTestUtil.assertInvariantInvalid(new Interval<>(4, 3), "Limits_consistent", "/");
     }
 
     @Test
     public void lowerIncludedInvalid() {
-        Interval interval = new Interval(1, 4);
+        Interval<Integer> interval = new Interval<>(1, 4);
         interval.setLowerIncluded(true);
         interval.setLowerUnbounded(true);
         InvariantTestUtil.assertInvariantInvalid(interval, "Lower_included_valid", "/");
@@ -35,7 +35,7 @@ public class IntervalInvariantTest {
 
     @Test
     public void upperIncludedInvalid() {
-        Interval interval = new Interval(1, 4);
+        Interval<Integer> interval = new Interval<>(1, 4);
         interval.setUpperIncluded(true);
         interval.setUpperUnbounded(true);
         InvariantTestUtil.assertInvariantInvalid(interval, "Upper_included_valid", "/");

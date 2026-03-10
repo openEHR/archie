@@ -4,20 +4,19 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ResourceAnnotations;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class AnnotationsFlattenerTest {
 
     private Archetype parent;
     private Archetype child;
-    private Archetype clusterWithAnnotations;
     private Archetype withUsedArchetype;
 
     private SimpleArchetypeRepository repository;
@@ -26,13 +25,13 @@ public class AnnotationsFlattenerTest {
 
     private ReferenceModels models;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         models = BuiltinReferenceModels.getAvailableModelInfoLookups();
 
         parent = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.to_flatten_parent_with_annotations.v1.adls"));
         child = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.to_flatten_child_with_annotations.v1.adls"));
-        clusterWithAnnotations = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.cluster_with_annotations.v1.adls"));
+        Archetype clusterWithAnnotations = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.cluster_with_annotations.v1.adls"));
         withUsedArchetype = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.with_used_archetype.v1.adls"));
 
         repository = new SimpleArchetypeRepository();

@@ -248,7 +248,9 @@ class OperationalTemplateCreator {
 
             result.addComponentTerminology(newNodeId, terminology);
 
-            String prefix = archetype.getArchetypeId().getConceptId() + "_";
+            // Replaces dashes and convert to lower case, as dashes and variables starting with an upper case letter
+            // aren't allowed everywhere.
+            String prefix = archetype.getArchetypeId().getConceptId().replace("-", "_").toLowerCase() + "_";
             flattener.getRulesFlattener().combineRules(archetype, root.getArchetype(), prefix, prefix, rootToFill.getPath(), false);
             flattener.getAnnotationsAndOverlaysFlattener().addAnnotationsWithPathPrefix(rootToFill.getPath(), archetype, result);
             flattener.getAnnotationsAndOverlaysFlattener().addVisibilityWithPathPrefix(rootToFill.getPath(), archetype, result);

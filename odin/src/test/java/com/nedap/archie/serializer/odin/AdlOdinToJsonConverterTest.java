@@ -7,22 +7,21 @@ import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AdlOdinToJsonConverterTest extends OdinToJsonConverterBaseTest {
 
     @Override
     public void assertConvertedEqual(String odin, String json) {
-        String input = odin;
-        AdlLexer adlLexer = new AdlLexer(CharStreams.fromString(input));
+        AdlLexer adlLexer = new AdlLexer(CharStreams.fromString(odin));
         AdlParser parser = new AdlParser(new CommonTokenStream(adlLexer));
         ArchieErrorListener errorListener = new ArchieErrorListener();
         parser.addErrorListener(errorListener);
         AdlOdinToJsonConverter converter = new AdlOdinToJsonConverter();
         String result = converter.convert(parser.odin_text());
-        assertTrue(errorListener.getErrors().toString(), errorListener.getErrors().hasNoErrors());
+        assertTrue(errorListener.getErrors().hasNoErrors(), errorListener.getErrors().toString());
 
-        assertEquals("the converted json should be equal to the expected", json, result);
+        assertEquals(json, result, "the converted json should be equal to the expected");
     }
 }

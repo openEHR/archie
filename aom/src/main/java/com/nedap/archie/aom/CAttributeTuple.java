@@ -1,8 +1,8 @@
 package com.nedap.archie.aom;
 
 
+import com.nedap.archie.rminfo.AttributeAccessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rminfo.RMAttributeInfo;
 
 import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlType;
@@ -96,18 +96,14 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
      */
     @Deprecated
     public boolean isValid(ModelInfoLookup lookup, Object value) {
-
+        AttributeAccessor attributeAccessor = new AttributeAccessor(lookup);
         HashMap<String, Object> members = new HashMap<>();
         for(CAttribute attribute:getMembers()) {
-            RMAttributeInfo attributeInfo = lookup.getAttributeInfo(value.getClass(), attribute.getRmAttributeName());
-            try {
-                if (attributeInfo != null && attributeInfo.getGetMethod() != null) {
-                    members.put(attribute.getRmAttributeName(), attributeInfo.getGetMethod().invoke(value));
-                } else {
-                    //warn? throw exception?
-                }
-            } catch (InvocationTargetException | IllegalAccessException e) {
-                throw new RuntimeException(e);
+            String attributeName = attribute.getRmAttributeName();
+            if (attributeAccessor.hasAttribute(value, attributeName)) {
+                members.put(attributeName, attributeAccessor.getValue(value, attributeName));
+            } else {
+                //warn? throw exception?
             }
         }
         return isValid(lookup, members);
@@ -168,7 +164,7 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
     }
 
     public List<String> getMemberNames() {
-        return getMembers().stream().map((attr) -> attr.getRmAttributeName()).collect(Collectors.toList());
+        return getMembers().stream().map(CAttribute::getRmAttributeName).collect(Collectors.toList());
     }
 
     public boolean cConformsTo(CAttributeTuple otherTuple, BiFunction<String, String, Boolean> rmTypesConformant) {

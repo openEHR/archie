@@ -10,5 +10,5 @@ public enum VisibilityType {
     HIDE,
     @JsonProperty("show")
     @XmlEnumValue("show")
-    SHOW;
+    SHOW
 }

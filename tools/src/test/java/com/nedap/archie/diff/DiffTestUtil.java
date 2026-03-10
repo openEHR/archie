@@ -8,10 +8,9 @@ import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import com.nedap.archie.testutil.TestUtil;
-import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DiffTestUtil {
 

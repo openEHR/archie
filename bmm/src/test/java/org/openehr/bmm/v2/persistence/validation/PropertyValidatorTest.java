@@ -1,11 +1,11 @@
 package org.openehr.bmm.v2.persistence.validation;
 
 import com.google.common.collect.Lists;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.bmm.persistence.validation.BmmMessageIds;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PropertyValidatorTest extends AbstractSchemaValidationsTest {
 

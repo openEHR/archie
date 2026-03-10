@@ -82,7 +82,7 @@ public class Terminology {
      */
     public List<Codeset> getCodeset() {
         if (codeset == null) {
-            codeset = new ArrayList<Codeset>();
+            codeset = new ArrayList<>();
         }
         return this.codeset;
     }
@@ -111,7 +111,7 @@ public class Terminology {
      */
     public List<Group> getGroup() {
         if (group == null) {
-            group = new ArrayList<Group>();
+            group = new ArrayList<>();
         }
         return this.group;
     }

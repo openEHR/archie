@@ -19,8 +19,8 @@ import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import com.nedap.archie.xml.JAXBUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -29,8 +29,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests JSON serialization and deserialization of RM Objects using Jackson
@@ -40,11 +40,10 @@ import static org.junit.Assert.assertThat;
 public class JacksonRMRoundTripTest {
 
     private ADLParser parser;
-    private Archetype archetype;
 
     private TestUtil testUtil;
 
-    @Before
+    @BeforeEach
     public void setup() {
         testUtil = new TestUtil();
         parser = new ADLParser(new RMConstraintImposer());
@@ -52,7 +51,7 @@ public class JacksonRMRoundTripTest {
 
     @Test
     public void dataValues() throws Exception {
-        archetype = parser.parse(JacksonRMRoundTripTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.datavalues.v1.adls"));
+        Archetype archetype = parser.parse(JacksonRMRoundTripTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.datavalues.v1.adls"));
         Cluster cluster =  (Cluster) testUtil.constructEmptyRMObject(archetype.getDefinition());
         UIDBasedId uid = new HierObjectId();
         uid.setValue("SOME_UUID");

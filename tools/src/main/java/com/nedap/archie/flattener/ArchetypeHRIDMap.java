@@ -26,14 +26,12 @@ public class ArchetypeHRIDMap<T> extends ConcurrentHashMap<ArchetypeHRID,T> {
                 filter(id -> id.getIdUpToConcept().equals(archetypeHRID.getIdUpToConcept())).
                 filter(id -> (archetypeHRID.getMajorVersion() == null) || id.getMajorVersion().equals(archetypeHRID.getMajorVersion())).
                 filter(id -> (archetypeHRID.getMinorVersion() == null) || id.getMinorVersion().equals(archetypeHRID.getMinorVersion())).
-                filter(id -> (archetypeHRID.getPatchVersion() == null) || id.getPatchVersion().equals(archetypeHRID.getPatchVersion())).
-                collect(Collectors.toList());
+                filter(id -> (archetypeHRID.getPatchVersion() == null) || id.getPatchVersion().equals(archetypeHRID.getPatchVersion())).sorted(Comparator.comparing(o -> Version.parse(o.getVersionId()), new CustomVersionComparator())).collect(Collectors.toList());
 
         //Sort in ascending order
-        keys.sort(Comparator.comparing(o -> Version.valueOf(o.getVersionId()), new CustomVersionComparator()));
 
         //Return latest version
-        return (keys.size() == 0) ? null : this.get(keys.get(keys.size() - 1));
+        return (keys.isEmpty()) ? null : this.get(keys.get(keys.size() - 1));
 
     }
 

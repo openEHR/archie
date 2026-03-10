@@ -7,7 +7,7 @@ import com.nedap.archie.rm.generic.AuditDetails;
 import com.nedap.archie.rm.generic.PartySelf;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +20,7 @@ public class OriginalVersionInvariantTest {
 
     @Test
     public void lifecycleInvalid() {
-        OriginalVersion version = createValid();
+        OriginalVersion<Object> version = createValid();
         version.setLifecycleState(new DvCodedText("something", "openehr::123"));
         InvariantTestUtil.assertInvariantInvalid(version, "Lifecycle_state_valid", "/");
     }
@@ -28,8 +28,8 @@ public class OriginalVersionInvariantTest {
     //rest of the invariants are currently ignored.
 
 
-    public OriginalVersion createValid() {
-        OriginalVersion value = new OriginalVersion();
+    public OriginalVersion<Object> createValid() {
+        OriginalVersion<Object> value = new OriginalVersion<>();
         value.setLifecycleState(new DvCodedText("complete", "openehr::532"));
         value.setUid(new ObjectVersionId("SOME_UID"));//should be an UID, but is not checked
         value.setContribution(InvariantTestUtil.createExampleRef("COMPOSITION"));

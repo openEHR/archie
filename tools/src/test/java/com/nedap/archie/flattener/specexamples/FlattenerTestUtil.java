@@ -7,9 +7,8 @@ import com.nedap.archie.aom.Archetype;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
 public class FlattenerTestUtil {
 
     public static Archetype parse(String filename) throws IOException, ADLParseException {
@@ -19,7 +18,7 @@ public class FlattenerTestUtil {
                 fail("cannot find file: " + filename);
             }
             Archetype result = parser.parse(stream);
-            assertTrue("there should be no errors parsing " + filename + ", but was: " + parser.getErrors(), parser.getErrors().hasNoMessages());
+            assertThat("there should be no errors parsing " + filename + ", but was: " + parser.getErrors(), parser.getErrors().hasNoMessages());
             return result;
         }
     }

@@ -73,7 +73,7 @@ public class Group {
      */
     public List<Concept> getConcept() {
         if (concept == null) {
-            concept = new ArrayList<Concept>();
+            concept = new ArrayList<>();
         }
         return this.concept;
     }

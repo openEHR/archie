@@ -3,11 +3,11 @@ package org.openehr.referencemodels;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.rminfo.MetaModels;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BuiltInReferenceModelsTest {
 

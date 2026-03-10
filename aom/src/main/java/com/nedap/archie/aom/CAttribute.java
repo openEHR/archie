@@ -498,9 +498,8 @@ public class CAttribute extends ArchetypeConstraint {
     public List<CObject> getChildrenByRmTypeName(String rmTypeName) {
         List<CObject> result = new ArrayList<>();
 
-        for(int i = 0; i < children.size(); i++) {
-            CObject child = children.get(i);
-            if(rmTypeName.equals(child.getRmTypeName())) {
+        for (CObject child : children) {
+            if (rmTypeName.equals(child.getRmTypeName())) {
                 result.add(child);
             }
         }

@@ -1,7 +1,8 @@
 [versions]
 antlr = "4.13.2"
 
-jackson = "2.19.2"
+jackson = "2.21.0"
+jackson_annotations = "2.21"
 
 slf4j = "1.7.36"
 
@@ -10,6 +11,7 @@ nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0
 
 [bundles]
 jackson = ["jackson-annotations", "jackson-databind", "jackson-datatype-jsr310"]
+junit = ["junit5-jupiter", "junit5-jupiter-engine", "junit5-platform-launcher"]
 
 [libraries]
 activation = { module = "javax.activation:activation", version = "1.1.1" }
@@ -17,15 +19,15 @@ activation = { module = "javax.activation:activation", version = "1.1.1" }
 antlr4 = { module = "org.antlr:antlr4", version.ref = "antlr" }
 antlr4-runtime = { module = "org.antlr:antlr4-runtime", version.ref = "antlr" }
 
-commons-io = { module = "commons-io:commons-io", version = "2.20.0" }
+commons-io = { module = "commons-io:commons-io", version = "2.21.0" }
 
-commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.19.0" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.20.0" }
 
-commons-text = { module = "org.apache.commons:commons-text", version = "1.14.0" }
+commons-text = { module = "org.apache.commons:commons-text", version = "1.15.0" }
 
 guava = { module = "com.google.guava:guava", version = "33.5.0-jre" }
 
-jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson_annotations" }
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 
@@ -35,7 +37,11 @@ jakarta-xml-bind-api = { module = "jakarta.xml.bind:jakarta.xml.bind-api", versi
 
 jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", version = "2.3.3" }
 
-junit4 = { module = "junit:junit", version = "4.+" }
+junit5-jupiter = { module = "org.junit.jupiter:junit-jupiter-api", version = "5.14.3"}
+junit5-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.14.3"}
+junit5-platform-launcher = { module = "org.junit.platform:junit-platform-launcher"}
+
+hamcrest = { module = "org.hamcrest:hamcrest", version = "2.2" }
 
 kryo = { module = "com.esotericsoftware.kryo:kryo5", version = "5.6.2" }
 

@@ -2,7 +2,6 @@ package com.nedap.archie.rules.evaluation;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rminfo.ModelInfoLookup;
@@ -29,7 +28,7 @@ import java.util.stream.Collectors;
  */
 public class RuleEvaluation<T> {
 
-    private static Logger logger = LoggerFactory.getLogger(RuleEvaluation.class);;
+    private static Logger logger = LoggerFactory.getLogger(RuleEvaluation.class);
 
     private Archetype archetype;
     private List<Evaluator<?>> evaluators = new ArrayList<>();
@@ -46,8 +45,6 @@ public class RuleEvaluation<T> {
     private FixableAssertionsChecker fixableAssertionsChecker;
 
     private ModelInfoLookup modelInfoLookup;
-
-    private RMObjectCreator creator;
 
     private final JAXBContext jaxbContext;
     private RMQueryContext rmQueryContext;
@@ -96,8 +93,7 @@ public class RuleEvaluation<T> {
     private RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, JAXBContext jaxbContext, Archetype archetype) {
         this.jaxbContext = jaxbContext;
         this.modelInfoLookup = modelInfoLookup;
-        this.creator = new RMObjectCreator(modelInfoLookup);
-        this.assertionsFixer = new AssertionsFixer(this, creator);
+        this.assertionsFixer = new AssertionsFixer(this);
         this.archetype = archetype;
         this.functionEvaluator = new FunctionEvaluator();
         add(new VariableDeclarationEvaluator());
@@ -235,7 +231,7 @@ public class RuleEvaluation<T> {
             }
         } else {
             List<RMObjectWithPath> parentsWithPath = findListWithPaths(path);
-            return parentsWithPath.stream().map(p -> p.getObject()).collect(Collectors.toList());
+            return parentsWithPath.stream().map(RMObjectWithPath::getObject).collect(Collectors.toList());
         }
     }
 

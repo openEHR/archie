@@ -1,6 +1,5 @@
 package com.nedap.archie.testutil;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
@@ -10,6 +9,7 @@ import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.AttributeAccessor;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
@@ -24,7 +24,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 06/04/16.
@@ -34,6 +35,7 @@ public class TestUtil {
     private static final Logger logger = LoggerFactory.getLogger(TestUtil.class);
 
     private RMObjectCreator creator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
+    private final AttributeAccessor attributeAccessor = new AttributeAccessor(ArchieRMInfoLookup.getInstance());
 
     /**
      * Creates an empty RM Object, fully nested, one object per CObject found.
@@ -61,10 +63,10 @@ public class TestUtil {
             }
             if(!children.isEmpty()) {
                 if(attribute.isMultiple()) {
-                    creator.set(result, attribute.getRmAttributeName(), children);
+                    attributeAccessor.setValue(result, attribute.getRmAttributeName(), children);
                 } else if(!children.isEmpty()){
                     //set the first possible result in case of multiple children for a single valued value
-                    creator.set(result, attribute.getRmAttributeName(), Lists.newArrayList(children.get(0)));
+                    attributeAccessor.setValue(result, attribute.getRmAttributeName(), children.get(0));
                 }
             }
         }
@@ -127,7 +129,8 @@ public class TestUtil {
                         .filter(
                             o -> primitiveObjectMatches(primitiveChild, o)
                         ).collect(Collectors.toList());
-                    assertFalse("a primitive object should have a matching primitive object", childObjects2.isEmpty());
+                    assertFalse(childObjects2.isEmpty(),"a primitive object should have a matching primitive object"
+                    );
                 }
 
             }
@@ -148,7 +151,7 @@ public class TestUtil {
             }
             Archetype archetype = parser.parse(stream);
             parser.getErrors().logToLogger();
-            assertFalse(parser.getErrors().toString(), parser.getErrors().hasErrors());
+            assertFalse(parser.getErrors().hasErrors(), parser.getErrors().toString());
             assertNotNull(archetype);
             return archetype;
         }
@@ -162,11 +165,11 @@ public class TestUtil {
             }
             try {
                 Archetype archetype = parser.parse(stream);
-                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+                assertThat("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
             } catch (ADLParseException ex) {
                 parser.getErrors().logToLogger();
-                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
-                assertTrue("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().filter(e -> e.getShortMessage().equalsIgnoreCase(errorCode)).findFirst().isPresent());
+                assertThat("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+                assertThat("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().filter(e -> e.getShortMessage().equalsIgnoreCase(errorCode)).findFirst().isPresent());
             }
         }
     }

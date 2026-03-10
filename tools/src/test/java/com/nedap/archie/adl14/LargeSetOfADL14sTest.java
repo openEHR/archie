@@ -7,8 +7,8 @@ import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CodePointCharStream;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
@@ -19,8 +19,8 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.regex.Pattern;
 
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by pieter.bos on 16/10/15.
@@ -30,7 +30,7 @@ public class LargeSetOfADL14sTest {
     private static Logger logger = LoggerFactory.getLogger(LargeSetOfADL14sTest.class);
     private ADL14ConversionConfiguration conversionConfiguration;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         conversionConfiguration = ConversionConfigForTest.getConfig();
     }
@@ -194,7 +194,7 @@ public class LargeSetOfADL14sTest {
             Archetype archetype = parser.parse(stream, conversionConfiguration);
             //logger.info(JacksonUtil.getObjectMapper().writeValueAsString(conversionResult.getConversionLog()));
            // System.out.println(ADLArchetypeSerializer.serialize(archetype));
-            if(parser.errorListener.getErrors().getErrors().size() > 0) {
+            if(!parser.errorListener.getErrors().getErrors().isEmpty()) {
                 parseErrors.put(file, parser.errorListener.getErrors());
             }
             if(parser.getTree().exception != null) {

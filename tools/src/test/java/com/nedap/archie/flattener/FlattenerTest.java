@@ -8,14 +8,14 @@ import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.List;
 import java.util.Stack;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * High level tests of the flattener on a relatively large set of archetypes with many features.
@@ -24,15 +24,11 @@ import static org.junit.Assert.*;
  */
 public class FlattenerTest {
 
-    private static Archetype report;
-    private static Archetype device;
     private static Archetype bloodPressureObservation;
     private static Archetype reportResult;
     private static Archetype bloodPressureComposition;
-    private static Archetype height;
     private static Archetype heightTemplate;
     private static Archetype reportWithSynopsis;
-    private static Archetype clinicalSynopsis;
     private static Archetype bloodPressureWithSynopsis;
     private static SimpleArchetypeRepository repository;
 
@@ -41,7 +37,7 @@ public class FlattenerTest {
 
     private Flattener flattener;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
 
         models = BuiltinReferenceModels.getAvailableModelInfoLookups();
@@ -52,18 +48,18 @@ public class FlattenerTest {
         // it adds a blood pressure observation
         // it also adds a device
         // it contains specific template overlays for both blood pressure observation and device
-        report = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.report.v1.adls"));
+        Archetype report = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.report.v1.adls"));
         reportResult = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.report-result.v1.adls"));
-        device = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.device.v1.adls"));
+        Archetype device = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.device.v1.adls"));
 
         bloodPressureObservation = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.blood_pressure.v1.adls"));
         bloodPressureComposition = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.blood_pressure.v1.0.0.adlt"));
 
-        height = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.height.v1.adls"));
+        Archetype height = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.height.v1.adls"));
         heightTemplate = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.length.v1.0.0.adlt"));
 
         reportWithSynopsis = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.report-result-with-synopsis.v1.0.0.adls"));
-        clinicalSynopsis = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.0.adls"));
+        Archetype clinicalSynopsis = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-EVALUATION.clinical_synopsis.v1.0.0.adls"));
         bloodPressureWithSynopsis = new ADLParser().parse(FlattenerTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.blood_pressure_with_synopsis.v1.0.0.adlt"));
 
 
@@ -155,7 +151,7 @@ public class FlattenerTest {
                 worklist.addAll(attr.getChildren());
             }
         }
-        assertTrue("a prox object should have been found", proxyFound);
+        assertTrue(proxyFound, "a prox object should have been found");
     }
 
     @Test
@@ -269,7 +265,7 @@ data matches {
         models.registerModel(com.nedap.archie.openehrtestrm.TestRMInfoLookup.getInstance());
         ((InMemoryFullArchetypeRepository) repository).compile(models);
         for(ValidationResult result:((InMemoryFullArchetypeRepository) repository).getAllValidationResults()) {
-            assertTrue(result.getArchetypeId() + " had errors or warnings: " + result.getErrors(), result.passes());
+            assertTrue(result.passes(),result.getArchetypeId() + " had errors or warnings: " + result.getErrors());
         }
         System.out.println(repository);
     }

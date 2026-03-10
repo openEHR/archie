@@ -144,18 +144,10 @@ public class AnnotationsAndOverlaysFlattener {
     private void mergeDocumentation(Map<String, Map<String, Map<String, String>>> resultDocumentation, Map<String, Map<String, Map<String, String>>> documentationToBeMergedIn) {
         for(String language:documentationToBeMergedIn.keySet()) {
             Map<String, Map<String, String>> languageAnnotationsToBeMergedIn = documentationToBeMergedIn.get(language);
-            Map<String, Map<String, String>> resultLanguageAnnotations = resultDocumentation.get(language);
-            if(resultLanguageAnnotations == null) {
-                resultLanguageAnnotations = new LinkedHashMap<>();
-                resultDocumentation.put(language, resultLanguageAnnotations);
-            }
+            Map<String, Map<String, String>> resultLanguageAnnotations = resultDocumentation.computeIfAbsent(language, k -> new LinkedHashMap<>());
             for(String path: languageAnnotationsToBeMergedIn.keySet()) {
                 Map<String, String> pathAnnotationsToBeMergedIn = languageAnnotationsToBeMergedIn.get(path);
-                Map<String, String> resultPathAnnotations = resultLanguageAnnotations.get(path);
-                if(resultPathAnnotations == null) {
-                    resultPathAnnotations = new LinkedHashMap<>();
-                    resultLanguageAnnotations.put(path, resultPathAnnotations);
-                }
+                Map<String, String> resultPathAnnotations = resultLanguageAnnotations.computeIfAbsent(path, k -> new LinkedHashMap<>());
                 resultPathAnnotations.putAll(pathAnnotationsToBeMergedIn);
             }
         }

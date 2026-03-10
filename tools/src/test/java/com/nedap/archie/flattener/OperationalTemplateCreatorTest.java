@@ -10,19 +10,17 @@ import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Optional;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-import static com.nedap.archie.flattener.specexamples.FlattenerTestUtil.parse;
-import static junit.framework.TestCase.assertNull;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OperationalTemplateCreatorTest {
 
@@ -39,9 +37,11 @@ public class OperationalTemplateCreatorTest {
             // Assert protocol existence matches {0}
             CAttribute protocol = flattener.flatten(archetype).getDefinition().getAttribute("protocol");
             MultiplicityInterval existence = protocol.getExistence();
-            Integer zeroInt = Integer.valueOf(0);
+            Integer zeroInt = 0;
+            assertNotNull(existence);
             assertEquals(zeroInt, existence.getLower());
             assertEquals(zeroInt, existence.getUpper());
+            assertNotNull(protocol.getChildren());
             assertTrue(protocol.getChildren().isEmpty());
         }
     }
@@ -93,16 +93,18 @@ public class OperationalTemplateCreatorTest {
         }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void failOnMissingArchetypeEnabled() throws Exception {
         SimpleArchetypeRepository repository = new SimpleArchetypeRepository();
-        try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.with_used_archetype.v1.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
-            FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forOperationalTemplate();
-            Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), flattenerConfiguration);
-            OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype);
-            fail();
-        }
+        assertThrows(IllegalArgumentException.class, () -> {
+            try (InputStream stream = getClass().getResourceAsStream("openEHR-EHR-OBSERVATION.with_used_archetype.v1.adls")) {
+                Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
+                FlattenerConfiguration flattenerConfiguration = FlattenerConfiguration.forOperationalTemplate();
+                Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), flattenerConfiguration);
+                OperationalTemplate template = (OperationalTemplate) flattener.flatten(archetype);
+                fail();
+            }
+        });
     }
 
     @Test
@@ -132,7 +134,7 @@ public class OperationalTemplateCreatorTest {
 
         Archetype flatChild =  parseAndCreateOPTWithConfig("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0.adls", repository, config);
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id5.1", "id6.1", "id7.1"),
                 nodeIds
@@ -150,7 +152,7 @@ public class OperationalTemplateCreatorTest {
 
         Archetype flatChild =  parseAndCreateOPTWithConfig("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0.adls", repository, config);
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id6.1", "id7.1"),
                 nodeIds
@@ -162,7 +164,7 @@ public class OperationalTemplateCreatorTest {
         ReferenceModels models = new ReferenceModels();
         models.registerModel(ArchieRMInfoLookup.getInstance());
         ValidationResult validationResult = new ArchetypeValidator(models).validate(result, repository);
-        assertTrue(validationResult.getErrors().toString(), validationResult.passes());
+        assertThat(validationResult.getErrors().toString(), validationResult.passes());
         return new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), config).flatten(parse(fileName));
     }
 
