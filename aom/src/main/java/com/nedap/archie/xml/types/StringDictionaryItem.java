@@ -1,6 +1,6 @@
 package com.nedap.archie.xml.types;
 
-import jakarta.xml.bind.annotation.*;
+import javax.xml.bind.annotation.*;
 
 /**
  * Created by pieter.bos on 22/07/16.

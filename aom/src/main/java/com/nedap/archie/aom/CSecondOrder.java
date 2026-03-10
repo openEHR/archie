@@ -1,7 +1,7 @@
 package com.nedap.archie.aom;
 
 import javax.annotation.Nullable;
-import jakarta.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 

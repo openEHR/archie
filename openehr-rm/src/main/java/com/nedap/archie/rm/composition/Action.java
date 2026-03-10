@@ -16,7 +16,7 @@ import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 
 import javax.annotation.Nullable;
-import jakarta.xml.bind.annotation.*;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 

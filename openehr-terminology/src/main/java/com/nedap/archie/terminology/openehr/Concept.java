@@ -8,7 +8,7 @@
 
 package com.nedap.archie.terminology.openehr;
 
-import jakarta.xml.bind.annotation.*;
+import javax.xml.bind.annotation.*;
 import java.math.BigInteger;
 
 

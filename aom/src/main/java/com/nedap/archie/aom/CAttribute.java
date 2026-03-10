@@ -10,7 +10,7 @@ import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.RMProperty;
 
 import javax.annotation.Nullable;
-import jakarta.xml.bind.annotation.*;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
