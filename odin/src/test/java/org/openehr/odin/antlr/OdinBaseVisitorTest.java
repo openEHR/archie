@@ -21,8 +21,6 @@ package org.openehr.odin.antlr;
  * Author: Claude Nanjo
  */
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openehr.odin.*;
 import org.openehr.odin.loader.OdinLoaderImpl;
@@ -30,20 +28,11 @@ import org.openehr.odin.loader.OdinLoaderImpl;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class OdinBaseVisitorTest {
-    @BeforeEach
-    public void setUp() throws Exception {
-
-    }
-
-    @AfterEach
-    public void tearDown() throws Exception {
-
-    }
 
     @Test
     public void loadReferenceModel() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
-        OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/CIMI-RM-3.0.5.bmm"));
+        OdinVisitorImpl<?> visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/CIMI-RM-3.0.5.bmm"));
         assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateRootLevelAttributes(root);
@@ -52,7 +41,7 @@ public class OdinBaseVisitorTest {
     @Test
     public void loadOdinNestedAttributeStructures1() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
-        OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_nested_attribute_structure1.txt"));
+        OdinVisitorImpl<?> visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_nested_attribute_structure1.txt"));
         assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateNestedAttributeStructures(root);
@@ -61,7 +50,7 @@ public class OdinBaseVisitorTest {
     @Test
     public void loadOdinKeyedObject() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
-        OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_keyed_object.txt"));
+        OdinVisitorImpl<?> visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_keyed_object.txt"));
         assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateKeyedObjects(root);
@@ -70,7 +59,7 @@ public class OdinBaseVisitorTest {
     @Test
     public void testOdinTypes() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
-        OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_types.txt"));
+        OdinVisitorImpl<?> visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_types.txt"));
         assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateOdinTypes(root);
@@ -79,7 +68,7 @@ public class OdinBaseVisitorTest {
     @Test
     public void testOdinNestedKeyedObjects() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
-        OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_nested_keyed_object.txt"));
+        OdinVisitorImpl<?> visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_nested_keyed_object.txt"));
         assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateOdinNestedKeyedObject(root);
@@ -88,7 +77,7 @@ public class OdinBaseVisitorTest {
     @Test
     public void testOdinTermBindingTestObjects() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
-        OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_term_binding_test.txt"));
+        OdinVisitorImpl<?> visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_term_binding_test.txt"));
         assertEquals(1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validateOdinTermBindingTest(root);
@@ -97,7 +86,7 @@ public class OdinBaseVisitorTest {
     @Test
     public void testOdinPrimitives() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
-        OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_primitive_types.txt"));
+        OdinVisitorImpl<?> visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_primitive_types.txt"));
         assertEquals( 1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         validatePrimitiveType(root, "a_string_attribute", "a string value");
@@ -108,41 +97,62 @@ public class OdinBaseVisitorTest {
         assertEquals(Float.valueOf(-3.05e-10f), attribute.getRealObject().getAsFloat());
         attribute = validatePrimitiveType(root, "a_char_attribute", "c");
         assertEquals(Character.valueOf('c'), attribute.getCharacterObject().getAsChar());
-        attribute = validatePrimitiveType(root, "a_term_code_attribute", "[ISO_639-1::en]");
-        attribute = validatePrimitiveType(root, "a_date_attribute", "2007-11-31");
-        attribute = validatePrimitiveType(root, "a_time_attribute", "16:23:54,5+2221");
-        attribute = validatePrimitiveType(root, "a_datetime_attribute", "2007-11-31T16:23:54,5Z");
-        attribute = validatePrimitiveType(root, "a_duration_attribute", "P5Y2M4W5DT34H34M63.276S");
+        validatePrimitiveType(root, "a_term_code_attribute", "[ISO_639-1::en]");
+        validatePrimitiveType(root, "a_date_attribute", "2007-11-31");
+        validatePrimitiveType(root, "a_time_attribute", "16:23:54,5+2221");
+        validatePrimitiveType(root, "a_datetime_attribute", "2007-11-31T16:23:54,5Z");
+        validatePrimitiveType(root, "a_duration_attribute", "P5Y2M4W5DT34H34M63.276S");
     }
 
     @Test
     public void testOdinLists() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
-        OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_primitive_lists.txt"));
+        OdinVisitorImpl<?> visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_primitive_lists.txt"));
         assertEquals( 1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
-        OdinAttribute attribute = validatePrimitiveList(root, "a_string_list_attribute", 3);
-        attribute = validatePrimitiveList(root, "a_string_list_attribute", 3);
-        attribute = validatePrimitiveList(root, "a_boolean_list_attribute", 4);
-        attribute = validatePrimitiveList(root, "a_integer_list_attribute", 5);
-        attribute = validatePrimitiveList(root, "a_real_list_attribute", 4);
-        attribute = validatePrimitiveList(root, "a_char_list_attribute", 3);
-        attribute = validatePrimitiveList(root, "a_term_code_list_attribute", 2);
-        attribute = validatePrimitiveList(root, "a_time_list_attribute", 3);
-        attribute = validatePrimitiveList(root, "a_date_list_attribute", 3);
-        attribute = validatePrimitiveList(root, "a_datetime_list_attribute", 2);
+        validatePrimitiveList(root, "a_string_list_attribute", 3);
+        validatePrimitiveList(root, "a_string_list_attribute", 3);
+        validatePrimitiveList(root, "a_boolean_list_attribute", 4);
+        validatePrimitiveList(root, "a_integer_list_attribute", 5);
+        validatePrimitiveList(root, "a_real_list_attribute", 4);
+        validatePrimitiveList(root, "a_char_list_attribute", 3);
+        validatePrimitiveList(root, "a_term_code_list_attribute", 2);
+        validatePrimitiveList(root, "a_time_list_attribute", 3);
+        validatePrimitiveList(root, "a_date_list_attribute", 3);
+        validatePrimitiveList(root, "a_datetime_list_attribute", 2);
     }
 
     @Test
     public void testOdinIntervals() throws Exception {
         OdinLoaderImpl loader = new OdinLoaderImpl();
-        OdinVisitorImpl visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_primitive_intervals.txt"));
+        OdinVisitorImpl<?> visitor = loader.loadOdinFile(OdinBaseVisitorTest.class.getResourceAsStream("/odin/odin_primitive_intervals.txt"));
         assertEquals( 1, visitor.getStack().size(), "Stack should consist of a single item");
         CompositeOdinObject root = visitor.getAstRootNode();
         OdinAttribute attribute = validateInterval(root, "a_integer_interval_attribute1");
         assertEquals(1, attribute.getChildCount());
+        IntegerIntervalObject range = attribute.getIntegerIntervalObject();
+        assertEquals("|1..2|", range.getIntervalExpression());
+        assertEquals(1, range.getLow().getAsInteger());
+        assertEquals(2, range.getHigh().getAsInteger());
         attribute = validateInterval(root, "a_integer_interval_attribute2");
         assertEquals(1, attribute.getChildCount());
+        IntegerIntervalObject unbounded = attribute.getIntegerIntervalObject();
+        assertEquals("|>=6|", unbounded.getIntervalExpression());
+        assertEquals(6, unbounded.getLow().getAsInteger());
+        assertNull(unbounded.getHigh());
+        attribute = validateInterval(root, "a_integer_interval_le");
+        IntegerIntervalObject le = attribute.getIntegerIntervalObject();
+        assertNull(le.getLow());
+        assertEquals(5, le.getHigh().getAsInteger());
+        attribute = validateInterval(root, "a_integer_interval_gt");
+        IntegerIntervalObject gt = attribute.getIntegerIntervalObject();
+        assertEquals(5, gt.getLow().getAsInteger());
+        assertTrue(gt.isExcludeLowerBound());
+        attribute = validateInterval(root, "a_integer_interval_exclude_upper");
+        IntegerIntervalObject exclUpper = attribute.getIntegerIntervalObject();
+        assertEquals(4, exclUpper.getLow().getAsInteger());
+        assertEquals(10, exclUpper.getHigh().getAsInteger());
+        assertTrue(exclUpper.isExcludeUpperBound());
         attribute = validateInterval(root, "a_real_interval_attribute");
         assertEquals(1, attribute.getChildCount());
         attribute = validateInterval(root, "a_date_interval_attribute");
@@ -246,15 +256,15 @@ public class OdinBaseVisitorTest {
         assertEquals("CIMI_Reference_Model.Core", ((StringObject) root.getAttributeAtIndex(7).getChildren().get(0)).getValue());
         assertEquals("packages", root.getAttributeAtIndex(8).getName());
         assertEquals(1, root.getAttributeAtIndex(8).getChildCount());
-        assertTrue(root.getAttributeAtIndex(8).getChildren().get(0) instanceof CompositeOdinObject);
+        assertInstanceOf(CompositeOdinObject.class, root.getAttributeAtIndex(8).getChildren().get(0));
         validatePackages((CompositeOdinObject) root.getAttributeAtIndex(8).getChildren().get(0));
         assertEquals("class_definitions", root.getAttributeAtIndex(9).getName());
         assertEquals(1, root.getAttributeAtIndex(9).getChildCount());
-        assertTrue(root.getAttributeAtIndex(9).getChildren().get(0) instanceof CompositeOdinObject);
+        assertInstanceOf(CompositeOdinObject.class, root.getAttributeAtIndex(9).getChildren().get(0));
         validateClassDefinitions(root.getAttributeAtIndex(9).getSoleCompositeObjectBody());
         assertEquals("primitive_types", root.getAttributeAtIndex(10).getName());
         assertEquals(1, root.getAttributeAtIndex(10).getChildCount());
-        assertTrue(root.getAttributeAtIndex(10).getChildren().get(0) instanceof CompositeOdinObject);
+        assertInstanceOf(CompositeOdinObject.class, root.getAttributeAtIndex(10).getChildren().get(0));
         validatePrimitiveTypes(root.getAttributeAtIndex(10).getSoleCompositeObjectBody());
     }
 
@@ -276,7 +286,7 @@ public class OdinBaseVisitorTest {
         //Validate package
         OdinAttribute packagesAttr = cimiReferenceModelKO.getAttributeAtIndex(1);
         assertEquals("packages", packagesAttr.getName());
-        assertTrue(packagesAttr.getChildren().get(0) instanceof CompositeOdinObject);
+        assertInstanceOf(CompositeOdinObject.class, packagesAttr.getChildren().get(0));
         validatePackageAttributeType((CompositeOdinObject) packagesAttr.getChildren().get(0));
 
         //Validate package."Core"
@@ -423,7 +433,7 @@ public class OdinBaseVisitorTest {
         assertEquals("type_def", participationTypeDef.getName());
         assertEquals(2, participationTypeDefType.getAttributeCount(), "Item should have exactly 2 attributes: 'container_type', 'type'");
         assertEquals(0, participationTypeDefType.getKeyedObjectCount(), "Item should have exactly 0 keyed object");
-        assertTrue(participationTypeDefType instanceof CompositeOdinObject);
+        assertInstanceOf(CompositeOdinObject.class, participationTypeDefType);
 
         //Validate properties."participation".type_def.container_type
         OdinAttribute participationContainerTypeAttribute = participationTypeDefType.getAttributeAtIndex(0);
@@ -466,7 +476,7 @@ public class OdinBaseVisitorTest {
         //Validate List.genericParameterDefs
         OdinAttribute listTypeGenericParameterDefs = listType.getAttributeAtIndex(1);
         assertEquals("generic_parameter_defs", listTypeGenericParameterDefs.getName());
-        assertTrue(listTypeGenericParameterDefs.getSoleCompositeObjectBody() instanceof CompositeOdinObject);
+        assertInstanceOf(CompositeOdinObject.class, listTypeGenericParameterDefs.getSoleCompositeObjectBody());
         assertEquals(0, listTypeGenericParameterDefs.getSoleCompositeObjectBody().getAttributeCount());
         assertEquals(1, listTypeGenericParameterDefs.getSoleCompositeObjectBody().getKeyedObjectCount());
         assertNotNull(listTypeGenericParameterDefs.getSoleCompositeObjectBody().getKeyedObject("T"));
