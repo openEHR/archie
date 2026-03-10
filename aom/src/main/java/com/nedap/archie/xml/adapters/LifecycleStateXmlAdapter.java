@@ -1,5 +1,6 @@
 package com.nedap.archie.xml.adapters;
 
+import com.nedap.archie.base.terminology.TerminologyCode;
 import org.w3c.dom.Element;
 
 import javax.xml.bind.annotation.XmlAnyElement;
@@ -30,6 +31,8 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
         if (holder == null || holder.content == null || holder.content.isEmpty()) {
             return null;
         }
+
+        TerminologyCode resultTerminologyCode = new TerminologyCode();
 
         for (Object o : holder.content) {
             if (o instanceof Element) {
