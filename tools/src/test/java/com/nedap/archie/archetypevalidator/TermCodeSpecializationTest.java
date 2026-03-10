@@ -14,6 +14,7 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,6 +51,19 @@ public class TermCodeSpecializationTest {
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_child.v1.0.0");
         assertFalse(validationResult.passes(), validationResult.toString());
         assertTrue(validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VPOV).findFirst().isPresent(), "VPOV error should be present");
+    }
+
+    @Test
+    public void invalidValueSetWithoutId() throws Exception {
+        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.incorrect_child_valueset_id_null.v1.0.0.adls");
+        InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
+        repo.addArchetype(parent);
+        repo.addArchetype(child);
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
+        repo.compile(archetypeValidator);
+        ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.incorrect_child_valueset_id_null.v1.0.0");
+        assertTrue(validationResult.getErrors().stream().anyMatch(e -> e.getType() == ErrorType.VTVSIDN && Objects.equals(e.getMessage(), "value set does not contain a set Id value")));
     }
 
     @Test
