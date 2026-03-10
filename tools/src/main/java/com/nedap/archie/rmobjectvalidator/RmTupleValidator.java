@@ -1,20 +1,20 @@
 package com.nedap.archie.rmobjectvalidator;
 
 import com.nedap.archie.aom.*;
-import com.nedap.archie.query.RMObjectAttributes;
 import com.nedap.archie.query.RMObjectWithPath;
+import com.nedap.archie.rminfo.AttributeAccessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 class RmTupleValidator {
-    private final ModelInfoLookup lookup;
+    private final AttributeAccessor attributeAccessor;
     private final ValidationHelper validationHelper;
     private final RmPrimitiveObjectValidator rmPrimitiveObjectValidator;
 
     RmTupleValidator(ModelInfoLookup lookup, ValidationHelper validationHelper, RmPrimitiveObjectValidator rmPrimitiveObjectValidator) {
-        this.lookup = lookup;
+        this.attributeAccessor = new AttributeAccessor(lookup);
         this.validationHelper = validationHelper;
         this.rmPrimitiveObjectValidator = rmPrimitiveObjectValidator;
     }
@@ -56,7 +56,7 @@ class RmTupleValidator {
         for(CAttribute attribute:attributeTuple.getMembers()) {
             String attributeName = attribute.getRmAttributeName();
             CPrimitiveObject<?, ?> cPrimitiveObject = tuple.getMembers().get(index);
-            Object value = RMObjectAttributes.getAttributeValueFromRMObject(rmObject, attributeName, lookup);
+            Object value = attributeAccessor.getValue(rmObject, attributeName);
             String path = pathSoFar + "/" + attributeName + "[" + cPrimitiveObject.getNodeId() + "]";
 
             result.addAll(rmPrimitiveObjectValidator.validate_inner(value, path, cPrimitiveObject));

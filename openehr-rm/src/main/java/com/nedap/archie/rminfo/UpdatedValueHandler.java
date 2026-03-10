@@ -59,7 +59,7 @@ public class UpdatedValueHandler {
         Map<String, Object> result = new HashMap<>();
 
         RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent.replace("/symbol/defining_code", ""));
-        DvOrdered ordered = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+        DvOrdered<?> ordered = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
         Number value;
         CAttribute symbolAttribute = archetype.itemAtPath(pathOfParent.replace("/symbol/defining_code", "/symbol"));//TODO: remove all numeric indices from path!
         if (symbolAttribute != null) {

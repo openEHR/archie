@@ -13,8 +13,7 @@ public class OdinToJsonConverterTest extends OdinToJsonConverterBaseTest {
 
     @Override
     public void assertConvertedEqual(String odin, String json) {
-        String input = odin;
-        odinLexer odinLexer = new odinLexer(CharStreams.fromString(input));
+        odinLexer odinLexer = new odinLexer(CharStreams.fromString(odin));
         odinParser parser = new odinParser(new CommonTokenStream(odinLexer));
         ArchieErrorListener errorListener = new ArchieErrorListener();
         parser.addErrorListener(errorListener);

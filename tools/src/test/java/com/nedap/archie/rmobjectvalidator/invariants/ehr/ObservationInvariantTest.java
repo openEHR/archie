@@ -39,10 +39,10 @@ public class ObservationInvariantTest {
         Observation observation = new Observation();
         InvariantTestUtil.setEntryBasics(observation);
 
-        History history = new History();
+        History<ItemStructure> history = new History<>();
         InvariantTestUtil.setLocatableBasics(history);
         history.setOrigin(new DvDateTime(LocalDateTime.now()));
-        PointEvent event = new PointEvent();
+        PointEvent<ItemStructure> event = new PointEvent<>();
         event.setTime(history.getOrigin());
         InvariantTestUtil.setLocatableBasics(event);
         history.addEvent(event);

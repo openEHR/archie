@@ -92,20 +92,25 @@ public abstract class IntervalObject<T extends PrimitiveObject, U extends Parser
             setExcludeUpperBound(false);
         } else if(ctx.children.size() == 4) {
             String relops = ctx.children.get(1).getText();
-            if(relops.equals(">=")) {
-                setLow(extractFromContext((U)ctx.children.get(2)));
-                setExcludeLowerBound(false);
-            } else if(relops.equals("<=")) {
-                setHigh(extractFromContext((U)ctx.children.get(2)));
-                setExcludeUpperBound(false);
-            } else if(relops.equals(">")) {
-                setLow(extractFromContext((U)ctx.children.get(2)));
-                setExcludeLowerBound(true);
-            } else if(relops.equals("<")) {
-                setHigh(extractFromContext((U)ctx.children.get(2)));
-                setExcludeUpperBound(true);
-            } else {
-                throw new RuntimeException("Unknown relops " + relops);
+            switch (relops) {
+                case ">=":
+                    setLow(extractFromContext((U) ctx.children.get(2)));
+                    setExcludeLowerBound(false);
+                    break;
+                case "<=":
+                    setHigh(extractFromContext((U) ctx.children.get(2)));
+                    setExcludeUpperBound(false);
+                    break;
+                case ">":
+                    setLow(extractFromContext((U) ctx.children.get(2)));
+                    setExcludeLowerBound(true);
+                    break;
+                case "<":
+                    setHigh(extractFromContext((U) ctx.children.get(2)));
+                    setExcludeUpperBound(true);
+                    break;
+                default:
+                    throw new RuntimeException("Unknown relops " + relops);
             }
         } else {
             throw new RuntimeException("Invalid number of children in parent context");

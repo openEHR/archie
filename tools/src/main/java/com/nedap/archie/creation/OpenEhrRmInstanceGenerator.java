@@ -249,17 +249,11 @@ class OpenEhrRmInstanceGenerator {
     }
 
     private void FixPartyRelated(Map<String, Object> result) {
-        Object name = result.get("name");
-        if(name == null) {
-            result.put("name", "John Doe");
-        }
+        result.putIfAbsent("name", "John Doe");
     }
 
     private void fixDvMultimedia(Map<String, Object> result) {
-        Object data = result.get("data");
-        if(data == null) {
-            result.put("data", "NDIK");
-        }
+        result.putIfAbsent("data", "NDIK");
     }
 
     private void fixElement(Map<String, Object> result) {
@@ -279,8 +273,8 @@ class OpenEhrRmInstanceGenerator {
 
     private void fixHistory(Map<String, Object> result) {
         Object events = result.get("events");
-        if(events == null || (events instanceof List && ((List) events).isEmpty())) {
-            List<Map> newEvents = new ArrayList<>();
+        if(events == null || (events instanceof List && ((List<?>) events).isEmpty())) {
+            List<Map<String,Object>> newEvents = new ArrayList<>();
             newEvents.add(this.generator.constructExampleType("EVENT"));
             result.put("events", newEvents);
         }

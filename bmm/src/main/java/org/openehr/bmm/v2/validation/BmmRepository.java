@@ -40,7 +40,7 @@ public class BmmRepository {
     }
 
     public List<BmmValidationResult> getValidModels() {
-        return modelsById.values().stream().filter(validationResult -> validationResult.passes()).collect(Collectors.toList());
+        return modelsById.values().stream().filter(BmmValidationResult::passes).collect(Collectors.toList());
     }
 
     public List<BmmValidationResult> getInvalidModels() {

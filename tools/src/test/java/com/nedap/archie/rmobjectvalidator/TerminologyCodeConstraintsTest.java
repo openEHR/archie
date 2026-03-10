@@ -44,12 +44,12 @@ public class TerminologyCodeConstraintsTest {
         archetype = new AuthoredArchetype();
 
         ArchetypeTerminology terminology = new ArchetypeTerminology();
-        terminology.setTermBindings(new HashMap<String, Map<String, URI>>() {{
-            put("openehr", new HashMap<String, URI>() {{
+        terminology.setTermBindings(new HashMap<>() {{
+            put("openehr", new HashMap<>() {{
                 put("at9000", URI.create("http://openehr.org/id/532"));
             }});
 
-            put("IANA_media-types", new HashMap<String, URI>() {{
+            put("IANA_media-types", new HashMap<>() {{
                 put("at9001", URI.create("https://www.w3.org/ns/iana/media-types/text/plain#Resource"));
             }});
         }});
