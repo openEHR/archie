@@ -7,7 +7,7 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.rminfo.RMProperty;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashSet;

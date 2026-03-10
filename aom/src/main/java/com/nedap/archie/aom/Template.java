@@ -1,6 +1,6 @@
 package com.nedap.archie.aom;
 
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 

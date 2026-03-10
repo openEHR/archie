@@ -9,7 +9,7 @@ import com.nedap.archie.rminfo.RMPropertyIgnore;
 import com.nedap.archie.rmutil.InvariantUtil;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

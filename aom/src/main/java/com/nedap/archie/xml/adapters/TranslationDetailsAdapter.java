@@ -3,7 +3,7 @@ package com.nedap.archie.xml.adapters;
 import com.nedap.archie.aom.TranslationDetails;
 import com.nedap.archie.xml.types.XmlTranslationDetails;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
  * Created by pieter.bos on 01/08/16.

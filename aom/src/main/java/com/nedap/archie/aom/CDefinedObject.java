@@ -1,8 +1,8 @@
 package com.nedap.archie.aom;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 /**
  * Defined Object. Parameterized so the default value methods can be overridden with a different type
