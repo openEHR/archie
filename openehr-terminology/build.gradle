@@ -4,11 +4,6 @@
 
 description = "A very basic OpenEHR terminology file binding"
 
-dependencies {
-    api libs.jakarta.xml.bind.api
-    runtimeOnly libs.jaxb.runtime
-}
-
 //xjcGeneration {
 //    defaultAdditionalXjcOptions = ['encoding': 'UTF-8']
 //    defaultBindingFile = null //file 'src/main/resources//xjc/xjc.xjb.xml'
