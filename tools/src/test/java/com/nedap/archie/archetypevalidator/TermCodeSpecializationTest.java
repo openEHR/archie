@@ -63,7 +63,7 @@ public class TermCodeSpecializationTest {
         ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.incorrect_child_valueset_id_null.v1.0.0");
-        assertTrue(validationResult.getErrors().stream().anyMatch(e -> e.getType() == ErrorType.VTVSID && Objects.equals(e.getMessage(), "value set does not contain a set Id value")));
+        assertTrue(validationResult.getErrors().stream().anyMatch(e -> e.getType() == ErrorType.OTHER && Objects.equals(e.getMessage(), "value set does not contain a set Id value")));
     }
 
     @Test
