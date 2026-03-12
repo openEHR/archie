@@ -17,7 +17,6 @@ public enum ErrorType implements MessageCode {
     VCATU(I18n.register("attribute uniqueness: sibling attributes occurring within an object node must be uniquely named with respect to each other, in the same way as for class definitions in an object reference model")),
     //terminology validity rules
     VTVSID(I18n.register("value-set id defined. The identifying code of a value set must be defined in the term definitions of the terminology of the current archetype")),
-    VTVSIDN(I18n.register("value-set id is null. All value sets must contain an id")),
     VTVSMD(I18n.register("value-set members defined. The member codes of a value set must be defined in the term definitions of the terminology of the flattened form of the current archetype")),
     VTLC(I18n.register("language consistency. Languages consistent: all term codes and constraint codes exist in all languages")),
     OTHER(I18n.register("an error occurred that has no standard codes")),

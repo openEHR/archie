@@ -103,7 +103,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
         int terminologySpecialisationDepth = terminology.specialisationDepth();
         for(ValueSet valueSet:terminology.getValueSets().values()){
             if(valueSet.getId() == null) {
-                addMessage(ErrorType.VTVSIDN, I18n.t("value set does not contain a set Id value"));
+                addMessage(ErrorType.VTVSID, I18n.t("value set does not contain a set Id value"));
                 continue;
             }
             if(!terminology.hasValueSetCode(valueSet.getId())) {

@@ -121,8 +121,6 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[271] = "op het pad: ";
     t[274] = "No Reference Model schema found for package ''{0}''";
     t[275] = "Geen referentiemodel-schema gevonden voor package \u201c{0}\u201d";
-    t[278] = "value-set id is null. All value sets must contain an id";
-    t[279] = "value-set id is null. Alle value sets moeten een id bevatten.";
     t[280] = "Node id {0} is not valid here because it redefines an object illegally";
     t[281] = "Node id {0} is hier niet geldig omdat het een object herdefinieert waar dat niet is toegestaan";
     t[282] = "In the attribute tuple {0} members were specified, but the primitive tuple has {1} members instead";
