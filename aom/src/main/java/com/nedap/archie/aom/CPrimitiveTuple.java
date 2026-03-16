@@ -1,6 +1,6 @@
 package com.nedap.archie.aom;
 
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlType;
 import java.util.function.BiFunction;
 
 /**

@@ -3,7 +3,7 @@ package com.nedap.archie.xml.types;
 import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
 import java.util.List;
 
 /**
