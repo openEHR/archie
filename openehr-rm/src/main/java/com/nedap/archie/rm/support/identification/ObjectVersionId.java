@@ -2,7 +2,6 @@ package com.nedap.archie.rm.support.identification;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rminfo.RMProperty;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;

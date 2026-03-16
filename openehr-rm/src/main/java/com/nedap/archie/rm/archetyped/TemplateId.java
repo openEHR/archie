@@ -1,7 +1,6 @@
 package com.nedap.archie.rm.archetyped;
 
 import com.nedap.archie.rm.support.identification.ObjectId;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;

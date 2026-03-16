@@ -3,10 +3,10 @@ package com.nedap.archie.rm.datavalues.quantity;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rminfo.Invariant;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;
+
 import java.util.Objects;
 
 /**

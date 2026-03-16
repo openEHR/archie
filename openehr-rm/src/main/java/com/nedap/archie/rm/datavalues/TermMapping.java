@@ -6,12 +6,12 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rmutil.InvariantUtil;
 import com.nedap.archie.xml.adapters.TermMappingMatchAdapter;
-
-import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Set;
 

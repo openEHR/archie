@@ -2,11 +2,11 @@ package com.nedap.archie.rm.generic;
 
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

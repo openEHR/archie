@@ -3,12 +3,12 @@ package com.nedap.archie.rm.support.identification;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Strings;
 import com.nedap.archie.rminfo.Invariant;
-
-import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by pieter.bos on 04/11/15.

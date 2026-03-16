@@ -7,11 +7,11 @@ import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rmutil.InvariantUtil;
-
-import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;
+
+import javax.annotation.Nullable;
 import java.util.Objects;
 
 /**

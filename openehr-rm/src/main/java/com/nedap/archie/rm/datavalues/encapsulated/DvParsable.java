@@ -4,12 +4,12 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rmutil.InvariantUtil;
-import org.apache.commons.io.Charsets;
-
-import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;
+import org.apache.commons.io.Charsets;
+
+import javax.annotation.Nullable;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 

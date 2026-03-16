@@ -1,10 +1,10 @@
 package com.nedap.archie.rm.datavalues;
 
 import com.nedap.archie.rminfo.Invariant;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;
+
 import java.net.URI;
 import java.util.Objects;
 

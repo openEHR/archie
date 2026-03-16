@@ -2,11 +2,11 @@ package com.nedap.archie.rm.datavalues.quantity;
 
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
-
-import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;
+
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Objects;
 

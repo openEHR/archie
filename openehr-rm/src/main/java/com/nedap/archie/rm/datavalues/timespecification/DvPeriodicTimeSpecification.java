@@ -1,7 +1,6 @@
 package com.nedap.archie.rm.datavalues.timespecification;
 
 import com.nedap.archie.rminfo.Invariant;
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;

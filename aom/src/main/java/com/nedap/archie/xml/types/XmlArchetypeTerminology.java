@@ -1,8 +1,8 @@
 package com.nedap.archie.xml.types;
 
 import com.nedap.archie.aom.terminology.ValueSet;
-
 import jakarta.xml.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

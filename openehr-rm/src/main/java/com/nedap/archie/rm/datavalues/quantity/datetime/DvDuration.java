@@ -8,13 +8,13 @@ import com.nedap.archie.rm.datavalues.quantity.DvAmount;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
 import com.nedap.archie.xml.adapters.DurationXmlAdapter;
-
-import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import javax.annotation.Nullable;
 import java.time.temporal.TemporalAmount;
 import java.util.List;
 import java.util.Objects;

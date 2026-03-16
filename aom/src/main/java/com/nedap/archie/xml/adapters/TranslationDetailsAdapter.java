@@ -2,7 +2,6 @@ package com.nedap.archie.xml.adapters;
 
 import com.nedap.archie.aom.TranslationDetails;
 import com.nedap.archie.xml.types.XmlTranslationDetails;
-
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 /**

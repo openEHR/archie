@@ -11,13 +11,13 @@ import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
 import com.nedap.archie.rminfo.PropertyType;
 import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.xml.adapters.DateXmlAdapter;
-
-import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import javax.annotation.Nullable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;

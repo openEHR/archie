@@ -5,9 +5,9 @@ import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.LocatableRef;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

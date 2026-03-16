@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.nedap.archie.aom.ArchetypeModelObject;
-
 import jakarta.xml.bind.annotation.*;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;

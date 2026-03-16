@@ -2,12 +2,12 @@ package com.nedap.archie.aom.primitives;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.base.Interval;
-
-import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
+
+import javax.annotation.Nullable;
 import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;

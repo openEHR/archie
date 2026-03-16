@@ -1,7 +1,6 @@
 package com.nedap.archie.rm.security;
 
 import com.nedap.archie.rm.RMObject;
-
 import jakarta.xml.bind.annotation.XmlType;
 
 /**

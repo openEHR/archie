@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.xml.JAXBUtil;
-import org.junit.jupiter.api.Test;
-
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
+import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.io.StringWriter;
 

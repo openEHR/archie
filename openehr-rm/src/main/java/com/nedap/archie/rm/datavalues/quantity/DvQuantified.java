@@ -7,9 +7,9 @@ import com.nedap.archie.rm.datavalues.quantity.datetime.DvTemporal;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.PropertyType;
 import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import jakarta.xml.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;

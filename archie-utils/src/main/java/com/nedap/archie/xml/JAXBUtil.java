@@ -6,9 +6,9 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.xml.types.XmlResourceDescriptionItem;
-
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -8,9 +8,9 @@ import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -3,9 +3,9 @@ package com.nedap.archie.rm.datavalues.quantity;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import com.nedap.archie.rminfo.Invariant;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import jakarta.xml.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 

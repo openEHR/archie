@@ -3,13 +3,13 @@ package com.nedap.archie.aom.primitives;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.xml.adapters.DateIntervalXmlAdapter;
 import com.nedap.archie.xml.adapters.DateXmlAdapter;
-
-import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import javax.annotation.Nullable;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.List;

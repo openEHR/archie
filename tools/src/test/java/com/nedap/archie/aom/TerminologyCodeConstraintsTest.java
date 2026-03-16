@@ -23,9 +23,7 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 import java.net.URI;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 23/02/16.

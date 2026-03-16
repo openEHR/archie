@@ -4,11 +4,11 @@ import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.security.AccessControlSettings;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
-
-import javax.annotation.Nullable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlType;
+
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Objects;
 

@@ -3,9 +3,9 @@ package com.nedap.archie.rm.datavalues.quantity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datavalues.DataValue;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import jakarta.xml.bind.annotation.*;
 import java.util.Objects;
 
 /**

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<archetype rm_release="1.0.2" is_generated="true" is_differential="true" adl_version="2.0.5" xmlns:ns2="http://schemas.openehr.org/v1">
+<archetype rm_release="1.0.2" is_generated="true" is_differential="true" adl_version="2.0.5">
     <description>
         <original_author id="name">Pieter Bos</original_author>
         <lifecycle_state>

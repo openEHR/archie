@@ -1,12 +1,12 @@
 package com.nedap.archie.xml.adapters;
 
 import com.nedap.archie.base.terminology.TerminologyCode;
-import org.w3c.dom.Element;
-
 import jakarta.xml.bind.annotation.XmlAnyElement;
 import jakarta.xml.bind.annotation.XmlMixed;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+import org.w3c.dom.Element;
+
 import java.util.List;
 
 /**

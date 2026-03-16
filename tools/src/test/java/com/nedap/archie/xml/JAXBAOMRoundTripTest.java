@@ -6,13 +6,13 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerTest;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.io.StringWriter;
 

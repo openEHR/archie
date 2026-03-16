@@ -1,7 +1,6 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
 

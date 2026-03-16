@@ -1,6 +1,7 @@
 package com.nedap.archie.xml.types;
 
 import jakarta.xml.bind.annotation.*;
+
 import java.util.List;
 
 /**

@@ -11,11 +11,11 @@ import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
+import jakarta.xml.bind.Marshaller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import jakarta.xml.bind.Marshaller;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.time.LocalDate;

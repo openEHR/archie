@@ -11,9 +11,9 @@ import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import jakarta.xml.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 

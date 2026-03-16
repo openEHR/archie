@@ -7,10 +7,10 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
 import com.nedap.archie.xml.types.XmlArchetypeTerminology;
-
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
+
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
