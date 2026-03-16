@@ -3,10 +3,9 @@ package com.nedap.archie.aom;
 
 import com.nedap.archie.rminfo.AttributeAccessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import jakarta.xml.bind.annotation.XmlType;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

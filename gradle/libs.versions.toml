@@ -31,10 +31,12 @@ jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 
+jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api", version = "3.0.0" }
+
 jakarta-json = { module = "org.glassfish:jakarta.json", version = "2.0.1" }
 
 jakarta-xml-bind-api = { module = "jakarta.xml.bind:jakarta.xml.bind-api", version = "4.0.5" }
-jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api", version = "3.0.0" }
+
 jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", version = "4.0.5" }
 
 junit5-jupiter = { module = "org.junit.jupiter:junit-jupiter-api", version = "5.14.3"}
