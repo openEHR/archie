@@ -299,4 +299,8 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         return result.toString();
     }
 
+    @Override
+    public String getRmTypeName() {
+        return "code_phrase";
+    }
 }
