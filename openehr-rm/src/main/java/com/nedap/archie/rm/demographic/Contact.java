@@ -5,9 +5,9 @@ import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

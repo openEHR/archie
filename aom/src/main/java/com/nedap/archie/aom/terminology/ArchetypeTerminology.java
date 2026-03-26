@@ -5,9 +5,9 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashSet;

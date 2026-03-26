@@ -3,9 +3,9 @@ package com.nedap.archie.base;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
 import java.time.temporal.TemporalAmount;
 import java.util.Objects;
 

@@ -12,10 +12,10 @@ import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.RuleElement;
 import com.nedap.archie.rules.RuleStatement;
 import com.nedap.archie.rules.evaluation.evaluators.*;
+import jakarta.xml.bind.JAXBContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.xpath.XPathExpressionException;
 import java.util.ArrayList;
 import java.util.HashMap;
