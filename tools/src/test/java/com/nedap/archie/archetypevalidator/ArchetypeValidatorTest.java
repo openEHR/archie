@@ -3,8 +3,14 @@ package com.nedap.archie.archetypevalidator;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
+import com.nedap.archie.rm.datatypes.CodePhrase;
+import com.nedap.archie.rm.datavalues.DvCodedText;
+import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
+import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.jupiter.api.BeforeEach;
@@ -339,6 +345,25 @@ public class ArchetypeValidatorTest {
             assertEquals("Node id ac4 already used in archetype as at4 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(4).getMessage());
             assertEquals("Node id ac12 already used in archetype as at12 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(5).getMessage());
         }
+    }
+
+    @Test
+    public void defaultValueTypeNoConform() throws Exception {
+        archetype = parse("openEHR-EHR-CLUSTER.simple_test_cluster.v1.0.0.adls");
+        CComplexObject dvTextConstraint = archetype.itemAtPath("/items[id2]/value[id3]");
+        DvOrdinal dvOrdinal = new DvOrdinal(42L, new DvCodedText("symbol", new CodePhrase(new TerminologyId("local"), "at42")));
+        dvTextConstraint.setDefaultValue(dvOrdinal);
+
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
+        assertOneError(validationResult, ErrorType.VCDVT);
+    }
+
+    @Test
+    public void defaultValueTypeInheritConforms() throws Exception {
+        archetype = parse("../serializer/adl/openEHR-EHR-CLUSTER.default_values.v1.adls");
+
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
+        assertTrue(validationResult.passes(), validationResult.toString());
     }
 
     private Archetype parse(String filename) throws IOException, ADLParseException {
