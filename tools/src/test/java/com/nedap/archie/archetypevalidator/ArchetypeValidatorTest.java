@@ -12,7 +12,9 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
 import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
+import org.apache.commons.lang3.arch.Processor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -28,14 +30,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ArchetypeValidatorTest {
 
-    private ADLParser parser;
     private Archetype archetype;
 
     private ReferenceModels models;
 
     @BeforeEach
     public void setup() {
-        parser = new ADLParser();
         models = new ReferenceModels();
         models.registerModel(ArchieRMInfoLookup.getInstance());
         models.registerModel(TestRMInfoLookup.getInstance());
@@ -349,13 +349,20 @@ public class ArchetypeValidatorTest {
 
     @Test
     public void defaultValueTypeNoConform() throws Exception {
-        archetype = parse("openEHR-EHR-CLUSTER.simple_test_cluster.v1.0.0.adls");
-        CComplexObject dvTextConstraint = archetype.itemAtPath("/items[id2]/value[id3]");
-        DvOrdinal dvOrdinal = new DvOrdinal(42L, new DvCodedText("symbol", new CodePhrase(new TerminologyId("local"), "at42")));
-        dvTextConstraint.setDefaultValue(dvOrdinal);
+        archetype = parse("openEHR-EHR-CLUSTER.default_values_invalid.v0.0.0.adls");
 
+        // Validation when model provided
         ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
         assertOneError(validationResult, ErrorType.VCDVT);
+    }
+
+    @Test
+    public void defaultValueTypeNoConformNoModel() throws Exception {
+        archetype = parse("openEHR-EHR-CLUSTER.default_values_invalid.v0.0.0.adls", null);
+
+        // No validation when no model provided
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
+        assertTrue(validationResult.passes(), validationResult.toString());
     }
 
     @Test
@@ -367,6 +374,11 @@ public class ArchetypeValidatorTest {
     }
 
     private Archetype parse(String filename) throws IOException, ADLParseException {
+        return parse(filename, BuiltinReferenceModels.getMetaModelProvider());
+    }
+
+    private Archetype parse(String filename, MetaModelProvider metaModelProvider) throws IOException, ADLParseException {
+        ADLParser parser = new ADLParser(metaModelProvider);
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertThat(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;

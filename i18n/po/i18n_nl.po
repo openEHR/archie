@@ -1121,7 +1121,7 @@ msgstr "node id ontbreekt in de flat terminologie"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:89
 msgid "object constraint default value type validity: the type of the default value of an object constraint must conform to the type of the constraint"
-msgstr ""
+msgstr "Object constraint default waarde type validiteit: het type van de default waarde van een object constraint moet conformen met het type van de constraint"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:12
 msgid "object constraint type name existence: a type name introducing an object constraint block must be defined in the underlying information model"
