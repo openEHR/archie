@@ -36,7 +36,7 @@ public class ValidateAgainstReferenceModel extends ValidatingVisitor {
 
         String defaultValueTypeName = typeInfo.getRmName();
         if (!metaModel.rmTypesConformant(defaultValueTypeName, cObject.getRmTypeName())) {
-            addMessageWithPath(ErrorType.VCDVT, cObject.getPath(),
+            addMessageWithPath(ErrorType.DEFAULT_OBJECT_TYPE_VALIDITY, cObject.getPath(),
                     I18n.t("Default value of type {0} does not conform to constraint type {1}",
                             defaultValueTypeName, cObject.getRmTypeName()));
         }

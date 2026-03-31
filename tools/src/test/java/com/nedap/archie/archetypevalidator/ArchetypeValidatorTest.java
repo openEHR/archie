@@ -3,18 +3,11 @@ package com.nedap.archie.archetypevalidator;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
-import com.nedap.archie.rm.datatypes.CodePhrase;
-import com.nedap.archie.rm.datavalues.DvCodedText;
-import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
-import com.nedap.archie.rm.support.identification.TerminologyId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.apache.commons.lang3.arch.Processor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -353,7 +346,7 @@ public class ArchetypeValidatorTest {
 
         // Validation when model provided
         ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
-        assertOneError(validationResult, ErrorType.VCDVT);
+        assertOneError(validationResult, ErrorType.DEFAULT_OBJECT_TYPE_VALIDITY);
     }
 
     @Test
