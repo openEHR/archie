@@ -6,6 +6,7 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +23,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ArchetypeValidatorTest {
 
-    private ADLParser parser;
     private Archetype archetype;
 
     private ReferenceModels models;
 
     @BeforeEach
     public void setup() {
-        parser = new ADLParser();
         models = new ReferenceModels();
         models.registerModel(ArchieRMInfoLookup.getInstance());
         models.registerModel(TestRMInfoLookup.getInstance());
@@ -341,7 +340,38 @@ public class ArchetypeValidatorTest {
         }
     }
 
+    @Test
+    public void defaultValueTypeNoConform() throws Exception {
+        archetype = parse("openEHR-EHR-CLUSTER.default_values_invalid.v0.0.0.adls");
+
+        // Validation when model provided
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
+        assertOneError(validationResult, ErrorType.DEFAULT_OBJECT_TYPE_VALIDITY);
+    }
+
+    @Test
+    public void defaultValueTypeNoConformNoModel() throws Exception {
+        archetype = parse("openEHR-EHR-CLUSTER.default_values_invalid.v0.0.0.adls", null);
+
+        // No validation when no model provided
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
+        assertTrue(validationResult.passes(), validationResult.toString());
+    }
+
+    @Test
+    public void defaultValueTypeInheritConforms() throws Exception {
+        archetype = parse("../serializer/adl/openEHR-EHR-CLUSTER.default_values.v1.adls");
+
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
+        assertTrue(validationResult.passes(), validationResult.toString());
+    }
+
     private Archetype parse(String filename) throws IOException, ADLParseException {
+        return parse(filename, BuiltinReferenceModels.getMetaModelProvider());
+    }
+
+    private Archetype parse(String filename, MetaModelProvider metaModelProvider) throws IOException, ADLParseException {
+        ADLParser parser = new ADLParser(metaModelProvider);
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
         assertThat(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;
