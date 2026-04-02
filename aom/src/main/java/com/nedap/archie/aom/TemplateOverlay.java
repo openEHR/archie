@@ -19,20 +19,6 @@ public class TemplateOverlay extends Archetype {
 
     @JsonIgnore
     @XmlTransient
-    @Override
-    public String getRmRelease() {
-        return owningTemplate == null ? super.getRmRelease() : owningTemplate.getRmRelease();
-    }
-
-    @JsonIgnore
-    @XmlTransient
-    @Override
-    public String getAdlVersion() {
-        return owningTemplate == null ? null : owningTemplate.getAdlVersion();
-    }
-
-    @JsonIgnore
-    @XmlTransient
     public Template getOwningTemplate() {
         return owningTemplate;
     }
