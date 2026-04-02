@@ -29,11 +29,11 @@ class OperationalTemplateCreator {
         result.setDifferential(false);
 
         if (clone instanceof AuthoredArchetype) {
-            AuthoredArchetype authoredArchetype = (AuthoredArchetype) clone;
-            result.setRmRelease(authoredArchetype.getRmRelease());
-            result.setAdlVersion(authoredArchetype.getAdlVersion());
-            result.setBuildUid(authoredArchetype.getBuildUid());
-            result.setOtherMetaData(authoredArchetype.getOtherMetaData());
+            AuthoredArchetype authoredArchetypeClone = (AuthoredArchetype) clone;
+            result.setRmRelease(authoredArchetypeClone.getRmRelease());
+            result.setAdlVersion(authoredArchetypeClone.getAdlVersion());
+            result.setBuildUid(authoredArchetypeClone.getBuildUid());
+            result.setOtherMetaData(authoredArchetypeClone.getOtherMetaData());
         }
 
         result.setTerminology(clone.getTerminology());

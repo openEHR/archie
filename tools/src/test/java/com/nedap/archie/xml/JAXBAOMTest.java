@@ -177,9 +177,9 @@ public class JAXBAOMTest {
         assertTrue(writer.toString().contains("<other_meta_data id=\"second test key\">second test value</other_meta_data>"));
 
         Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
-        Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(writer.toString()));
-        assertEquals("test value", ((AuthoredArchetype) unmarshalled).getOtherMetaData().get("test key"));
-        assertEquals("second test value", ((AuthoredArchetype) unmarshalled).getOtherMetaData().get("second test key"));
+        AuthoredArchetype unmarshalled = (AuthoredArchetype) unmarshaller.unmarshal(new StringReader(writer.toString()));
+        assertEquals("test value", unmarshalled.getOtherMetaData().get("test key"));
+        assertEquals("second test value", unmarshalled.getOtherMetaData().get("second test key"));
     }
 
     @Test
