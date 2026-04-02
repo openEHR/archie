@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.ResourceDescription;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CDuration;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
@@ -50,7 +47,7 @@ public class AOMJacksonTest {
         try(InputStream stream = getClass().getResourceAsStream("delirium_observation_screening.json")) {
             Archetype archetype = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration()).readValue(stream, Archetype.class);
             System.out.println(archetype);
-            assertTrue(archetype.getGenerated());
+            assertTrue(((AuthoredArchetype) archetype).getGenerated());
             assertThat(archetype.getArchetypeId().getFullId(), is("openEHR-EHR-GENERIC_ENTRY.delirium_observation_screening.v1.0.0"));
             assertThat(archetype.getDefinition().getRmTypeName(), is("GENERIC_ENTRY"));
             CComplexObject cluster = archetype.getDefinition().itemAtPath("/data[id2]/items[id3]/items[id4]");
