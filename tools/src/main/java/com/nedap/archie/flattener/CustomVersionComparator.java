@@ -7,7 +7,10 @@ import java.util.Comparator;
 /**
  * @author vera.prinsen
  * Created on 10/06/2020
+ *
+ * @deprecated This class will become non-public. Use {@link ArchetypeHRIDMap} instead.
  */
+@Deprecated
 public class CustomVersionComparator implements Comparator<Version> {
 
     Comparator<Version> versionComparator = Comparator.comparingInt(Version::getMajorVersion)

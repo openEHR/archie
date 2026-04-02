@@ -4,8 +4,8 @@ import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.xml.types.XmlRmAttributeVisibility;
 import com.nedap.archie.xml.types.XmlRmOverlay;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.ArrayList;
 import java.util.List;
 

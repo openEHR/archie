@@ -1,3 +1,5 @@
+import org.codehaus.groovy.runtime.GStringImpl
+
 plugins {
     alias(libs.plugins.nexus.publish)
 }
@@ -8,13 +10,15 @@ repositories {
 
 
 allprojects {
-    version = '3.15.0'
+    version = '3.17.0'
     group = 'com.nedap.healthcare.archie'
-    ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
+    ext.gradleScriptDir = "${rootProject.projectDir}/gradle" as GStringImpl
     //archivesBaseName = 'archie'
 
-    tasks.withType(Javadoc) {
-        options.addStringOption('Xdoclint:all', '-quiet')
+    tasks.withType(Javadoc).tap {
+        configureEach {
+            options.addStringOption('Xdoclint:all', '-quiet')
+        }
     }
 }
 
@@ -39,7 +43,7 @@ subprojects {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(8)
+            languageVersion = JavaLanguageVersion.of(11)
         }
 
         withJavadocJar()
@@ -62,14 +66,14 @@ subprojects {
         implementation(libs.commons.lang3)
 
         //java 10 no longer has these included by default, so explicit dependency is needed.
-        api(libs.jaxb.api)
-        api(libs.jaxb.core)
-        runtimeOnly(libs.jaxb.impl)
+        implementation(libs.jakarta.xml.bind.api)
+        implementation(libs.jakarta.annotation.api)
+        runtimeOnly(libs.jaxb.runtime)
         api(libs.activation)
 
         api(libs.threeten.extra)
 
-        testImplementation(libs.junit5.jupiter)
+        testImplementation(libs.bundles.junit)
         testImplementation(libs.hamcrest)
         testImplementation(libs.slf4j.simple)
 
@@ -83,6 +87,8 @@ subprojects {
 
 
     test {
+        useJUnitPlatform()
+        outputs.upToDateWhen { false }
         testLogging {
             events "failed"
             exceptionFormat = "full"

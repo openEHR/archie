@@ -86,7 +86,7 @@ public class ADL14Parser {
             result = listener.getArchetype();
             ArchetypeParsePostProcessor.fixArchetype(result);
             if (metaModelProvider != null) {
-                MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(result);
+                MetaModel metaModel = metaModelProvider.getMetaModel(result);
                 if (metaModel.getBmmModel() != null) {
                     ModelConstraintImposer imposer = new BMMConstraintImposer(metaModel.getBmmModel());
                     imposer.setSingleOrMultiple(result.getDefinition());

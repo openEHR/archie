@@ -26,6 +26,7 @@ definition
 	 COMPOSITION[id1] matches {    -- Blood pressure result
         content matches {
             use_archetype OBSERVATION[id5, openEHR-EHR-OBSERVATION.specialized_rules.v1.0.0]
+            use_archetype OBSERVATION[id6, openEHR-EHR-OBSERVATION.With-rules-Mixed-case-dashes.v1.0.0]
         }
     }
 

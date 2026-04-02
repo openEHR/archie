@@ -11,13 +11,13 @@ import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
 import com.nedap.archie.rminfo.PropertyType;
 import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.xml.adapters.DateXmlAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;
@@ -88,7 +88,7 @@ public class DvDate extends DvTemporal<DvDate, Long> implements SingleValuedData
 
     @Override
     public void setValue(Temporal value) {
-        if(value.isSupported(ChronoField.HOUR_OF_DAY)) {
+        if(value != null && value.isSupported(ChronoField.HOUR_OF_DAY)) {
             //TODO: do we really need this validation?
             throw new IllegalArgumentException("value must only have a year, month or date, but this supports hours: " + value);
         }

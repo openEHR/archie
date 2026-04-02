@@ -8,9 +8,10 @@
 
 package com.nedap.archie.terminology.openehr;
 
-import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +83,7 @@ public class Codeset {
      */
     public List<Code> getCode() {
         if (code == null) {
-            code = new ArrayList<Code>();
+            code = new ArrayList<>();
         }
         return this.code;
     }

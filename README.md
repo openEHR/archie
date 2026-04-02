@@ -18,7 +18,7 @@ You can depend on parts of Archie, or the entire library at once. If you want th
 
 ```gradle
 dependencies {
-    compile 'com.nedap.healthcare.archie:archie-all:3.15.0'
+    compile 'com.nedap.healthcare.archie:archie-all:3.17.0'
 }
 ```
 
@@ -28,11 +28,11 @@ or if you use maven, in your pom.xml
 <dependency>
     <groupId>com.nedap.healthcare.archie</groupId>
     <artifactId>archie-all</artifactId>
-    <version>3.15.0</version>
+    <version>3.17.0</version>
 </dependency>
 ```
 
-If you want to depend on just the AOM and BMM, without any reference model implementation, depend on com.nedap.healthcare.archie:tools:3.15.0 and com.nedap.healthcare.archie:referencemodels:3.15.0 instead
+If you want to depend on just the AOM and BMM, without any reference model implementation, depend on com.nedap.healthcare.archie:tools:3.17.0 and com.nedap.healthcare.archie:referencemodels:3.17.0 instead
 
 
 ## Build
@@ -40,7 +40,7 @@ If you want to depend on just the AOM and BMM, without any reference model imple
 [![Build Status](https://travis-ci.org/openEHR/archie.svg?branch=master)](https://travis-ci.org/openEHR/archie)
 [![codecov](https://codecov.io/gh/openEHR/archie/branch/master/graph/badge.svg)](https://codecov.io/gh/openEHR/archie)
 
-You need Java 11 or higher to build. When compiled, the library works on JDK 8, but building is not supported on that version.
+You need Java 11 or higher to build. When compiled, the library works on JDK 11, but building is not supported on that version.
 
 To build, Check out the source and type:
 
@@ -246,7 +246,7 @@ It also does not yet diff the rules section, this must be manually performed.
 
 ### Serializing to ADL
 
-Archetype models can be serialized to ADL thanks the the serializer written by @markopi64 from Marand Labs. To use:
+Archetype models can be serialized to ADL thanks to the serializer written by @markopi64 from Marand Labs. To use:
 
 ```java
 String serialized = ADLArchetypeSerializer.serialize(archetype);

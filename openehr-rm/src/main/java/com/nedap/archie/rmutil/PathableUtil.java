@@ -2,16 +2,17 @@ package com.nedap.archie.rmutil;
 
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
-import com.nedap.archie.query.RMObjectAttributes;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.rminfo.AttributeAccessor;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class PathableUtil {
+    private static final AttributeAccessor attributeAccessor = new AttributeAccessor(ArchieRMInfoLookup.getInstance());
+
     /**
      * Determine the unique path segments from the toplevel-RM object.
      * <p>
@@ -36,8 +37,7 @@ public class PathableUtil {
         Pathable parent = pathable.getParent();
         String parentAttributeName = unindexedPathSegment.getNodeName();
 
-        ModelInfoLookup modelInfoLookup = ArchieRMInfoLookup.getInstance();
-        Object attributeValue = RMObjectAttributes.getAttributeValueFromRMObject(parent, parentAttributeName, modelInfoLookup);
+        Object attributeValue = attributeAccessor.getValue(parent, parentAttributeName);
         Integer index = null;
 
         if (attributeValue instanceof Collection) {

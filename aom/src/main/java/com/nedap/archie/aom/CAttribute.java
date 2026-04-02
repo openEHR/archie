@@ -8,9 +8,9 @@ import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -498,9 +498,8 @@ public class CAttribute extends ArchetypeConstraint {
     public List<CObject> getChildrenByRmTypeName(String rmTypeName) {
         List<CObject> result = new ArrayList<>();
 
-        for(int i = 0; i < children.size(); i++) {
-            CObject child = children.get(i);
-            if(rmTypeName.equals(child.getRmTypeName())) {
+        for (CObject child : children) {
+            if (rmTypeName.equals(child.getRmTypeName())) {
                 result.add(child);
             }
         }

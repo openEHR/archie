@@ -13,13 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 /**
- * Copyright 2017 Cognitive Medical Systems, Inc (http://www.cognitivemedicine.com).
+ * Copyright 2017 <a href="http://www.cognitivemedicine.com">Cognitive Medical Systems, Inc</a>.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
+ * <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
  * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,11 +29,11 @@ import static org.junit.jupiter.api.Assertions.fail;
  * <p>
  * Created by cnanjo on 1/17/17.
  */
-
+@Deprecated
 public class FileAndDirUtilsTest {
     @Test
     public void loadDirectories() throws Exception {
-        List<String> directories = new ArrayList<String>();
+        List<String> directories = new ArrayList<>();
         File file = new File(".");
         directories.add(file.getCanonicalPath());
         directories.add(file.getCanonicalPath());
@@ -72,9 +72,7 @@ public class FileAndDirUtilsTest {
         };
         List<OperationOutcome<File>> loadedDirectories = FileAndDirUtils.loadDirectories(directories);
         List<File> folders = new ArrayList<>();
-        loadedDirectories.forEach( oo -> {
-            folders.add(oo.getResult());
-        });
+        loadedDirectories.forEach( oo -> folders.add(oo.getResult()));
         List<File> filteredFiles = FileAndDirUtils.filterFilesFromDirectories(folders, filter, false);
         assertEquals(2, filteredFiles.size());
     }
@@ -98,9 +96,7 @@ public class FileAndDirUtilsTest {
         };
         List<OperationOutcome<File>> loadedDirectories = FileAndDirUtils.loadDirectories(directories);
         List<File> folders = new ArrayList<>();
-        loadedDirectories.forEach( oo -> {
-            folders.add(oo.getResult());
-        });
+        loadedDirectories.forEach( oo -> folders.add(oo.getResult()));
         List<File> filteredFiles = FileAndDirUtils.filterFilesFromDirectories(folders, filter, false);
         assertEquals(1, filteredFiles.size());
     }
@@ -112,9 +108,7 @@ public class FileAndDirUtilsTest {
         directories.add(containerDir.getAbsolutePath());
         List<OperationOutcome<File>> loadedDirectories = FileAndDirUtils.loadDirectories(directories);
         List<File> folders = new ArrayList<>();
-        loadedDirectories.forEach( oo -> {
-            folders.add(oo.getResult());
-        });
+        loadedDirectories.forEach( oo -> folders.add(oo.getResult()));
         List<File> filteredFiles = FileAndDirUtils.loadFilesWithExtensionFromDirectoryPaths(folders, "baz", false);
         assertEquals(2, filteredFiles.size());
     }

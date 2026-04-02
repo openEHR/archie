@@ -12,11 +12,11 @@ import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -147,7 +147,6 @@ public class    OriginalVersion<Type> extends Version<Type> {
 
         return Objects.equals(uid, that.uid) &&
                 Objects.equals(precedingVersionUid, that.precedingVersionUid) &&
-                Objects.equals(otherInputVersionUids, that.otherInputVersionUids) &&
                 Objects.equals(otherInputVersionUids, that.otherInputVersionUids) &&
                 Objects.equals(lifecycleState, that.lifecycleState) &&
                 Objects.equals(attestations, that.attestations) &&

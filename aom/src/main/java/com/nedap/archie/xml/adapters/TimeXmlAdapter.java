@@ -1,8 +1,8 @@
 package com.nedap.archie.xml.adapters;
 
 import com.nedap.archie.datetime.DateTimeParsers;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.temporal.TemporalAccessor;
 
 /**

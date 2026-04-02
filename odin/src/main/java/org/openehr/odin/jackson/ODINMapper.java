@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.MappingJsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.nedap.archie.base.Interval;
@@ -44,7 +44,7 @@ public class ODINMapper extends ObjectMapper
 
     private void setup() {
 
-        setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         disable(SerializationFeature.WRITE_NULL_MAP_VALUES);
         disable(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS);
         enable(SerializationFeature.INDENT_OUTPUT);

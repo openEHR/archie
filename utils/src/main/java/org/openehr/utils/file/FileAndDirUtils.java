@@ -32,7 +32,10 @@ import java.util.List;
 
 /**
  * File utility class
+ *
+ * @deprecated This class is unused and will be removed.
  */
+@Deprecated
 public class FileAndDirUtils {
 
     /**
@@ -43,15 +46,17 @@ public class FileAndDirUtils {
      * </ul>
      * @param directories
      * @return
+     * @deprecated This class is unused and will be removed.
      */
+    @Deprecated
     public static List<OperationOutcome<File>> loadDirectories(List<String> directories) {
         List<OperationOutcome<File>> loadedDirectories = new ArrayList<>();
         directories.forEach( directoryPath -> {
             File directory = new File(directoryPath);
             if(directory.exists() && directory.isDirectory()) {
-                loadedDirectories.add(new OperationOutcome<File>(directory));
+                loadedDirectories.add(new OperationOutcome<>(directory));
             } else {
-                loadedDirectories.add(new OperationOutcome<File>(null, OperationOutcomeStatus.FAILURE));
+                loadedDirectories.add(new OperationOutcome<>(null, OperationOutcomeStatus.FAILURE));
             }
         });
         return loadedDirectories;
@@ -64,15 +69,19 @@ public class FileAndDirUtils {
      * @param fileFilter The filtering criterion
      * @param recursive Flag indicating whether to recurse down directories
      * @return
+     * @deprecated This class is unused and will be removed.
      */
+    @Deprecated
     public static List<File> filterFilesFromDirectories(List<File> directories, IOFileFilter fileFilter, boolean recursive) {
         List<File> loadedFiles = new ArrayList<>();
-        directories.forEach( dir -> {
-            loadedFiles.addAll(FileUtils.listFiles(dir, fileFilter, null));
-        });
+        directories.forEach( dir -> loadedFiles.addAll(FileUtils.listFiles(dir, fileFilter, null)));
         return loadedFiles;
     }
 
+    /**
+     * @deprecated This class is unused and will be removed.
+     */
+    @Deprecated
     public static List<File> loadFilesWithExtensionFromDirectoryPaths(List<File> directories, String extension, boolean recursive) {
         IOFileFilter filter = new IOFileFilter() {
             @Override
@@ -88,6 +97,10 @@ public class FileAndDirUtils {
         return filterFilesFromDirectories(directories, filter, recursive);
     }
 
+    /**
+     * @deprecated This class is unused and will be removed.
+     */
+    @Deprecated
     public static List<File> loadFilesWithExtensionFromDirectories(List<String> directoryPaths, String extension, boolean recursive) {
         List<File> directories = new ArrayList<>();
         List<OperationOutcome<File>> loadedDirectories = FileAndDirUtils.loadDirectories(directoryPaths);
@@ -99,6 +112,10 @@ public class FileAndDirUtils {
         return loadFilesWithExtensionFromDirectoryPaths(directories, extension, recursive);
     }
 
+    /**
+     * @deprecated This class is unused and will be removed.
+     */
+    @Deprecated
     public static void copyStreamToTargetFile(String sourceClassPath, String destinationFilePath) {
         InputStream is = FileAndDirUtils.class.getResourceAsStream(sourceClassPath);
         File destination = new File(destinationFilePath);
@@ -110,6 +127,10 @@ public class FileAndDirUtils {
         }
     }
 
+    /**
+     * @deprecated This class is unused and will be removed.
+     */
+    @Deprecated
     public static void copyFileToDirectory(String filePath, String dirPath) {
         File source = new File(filePath);
         File dest = new File(dirPath);
@@ -121,6 +142,10 @@ public class FileAndDirUtils {
         }
     }
 
+    /**
+     * @deprecated This class is unused and will be removed.
+     */
+    @Deprecated
     public static void copyFileToDirectory(File fileToCopy, String dirPath) {
         File dest = new File(dirPath);
         try {
@@ -131,6 +156,10 @@ public class FileAndDirUtils {
         }
     }
 
+    /**
+     * @deprecated This class is unused and will be removed.
+     */
+    @Deprecated
     public static void copyFileToDirectory(File fileToCopy, File destination) {
         try {
             FileUtils.copyFileToDirectory(fileToCopy, destination);
@@ -140,6 +169,10 @@ public class FileAndDirUtils {
         }
     }
 
+    /**
+     * @deprecated This class is unused and will be removed.
+     */
+    @Deprecated
     public static void copyDirectoryAndContent(String sourceDirPath, String destDirPath) {
         File source = new File(sourceDirPath);
         File dest = new File(destDirPath);
@@ -151,6 +184,10 @@ public class FileAndDirUtils {
         }
     }
 
+    /**
+     * @deprecated This class is unused and will be removed.
+     */
+    @Deprecated
     public static File getResourceAsFile(String resourcePath) {
         try {
             InputStream in = FileAndDirUtils.class.getResourceAsStream(resourcePath);

@@ -1,7 +1,7 @@
 package com.nedap.archie.aom;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 /**
  * Created by pieter.bos on 19/10/15.
