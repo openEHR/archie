@@ -3,7 +3,10 @@ package org.openehr.bmm.persistence.validation;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class BmmDefinitions extends BasicDefinitions {
@@ -44,11 +47,7 @@ public class BmmDefinitions extends BasicDefinitions {
     /**
      * built-in container types used to represent class-class 1:N relations
      */
-    public static final List<String> BMM_CONTAINER_TYPES = Collections.unmodifiableList(new ArrayList<String>() {{
-        add("List");
-        add("Set");
-        add("Array");
-    }});
+    public static final List<String> BMM_CONTAINER_TYPES = List.of("List", "Set", "Array");
 
     public static final String BMM_SCHEMA_FILE_EXTENSION = ".bmm";
 

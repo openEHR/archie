@@ -36,7 +36,7 @@ public class ConversionTest {
         BmmModel adlTestModel = repo.getModel("openehr_adltest_1.0.0").getModel();
 
         // Descendant relations
-        assertTrue (adlTestModel.descendantOf("GENERIC_CHILD_CLOSED", "GENERIC_PARENT<SUPPLIER_A,SUPPLIER_B>"),
+        assertTrue(adlTestModel.descendantOf("GENERIC_CHILD_CLOSED", "GENERIC_PARENT<SUPPLIER_A,SUPPLIER_B>"),
                 "\"GENERIC_CHILD_CLOSED\" descendant of \"GENERIC_PARENT<SUPPLIER_A,SUPPLIER_B>\"");
 
         // Ancestor relations

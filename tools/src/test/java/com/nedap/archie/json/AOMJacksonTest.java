@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.ResourceDescription;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CDuration;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
@@ -50,7 +47,7 @@ public class AOMJacksonTest {
         try(InputStream stream = getClass().getResourceAsStream("delirium_observation_screening.json")) {
             Archetype archetype = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration()).readValue(stream, Archetype.class);
             System.out.println(archetype);
-            assertTrue(archetype.getGenerated());
+            assertTrue(((AuthoredArchetype) archetype).getGenerated());
             assertThat(archetype.getArchetypeId().getFullId(), is("openEHR-EHR-GENERIC_ENTRY.delirium_observation_screening.v1.0.0"));
             assertThat(archetype.getDefinition().getRmTypeName(), is("GENERIC_ENTRY"));
             CComplexObject cluster = archetype.getDefinition().itemAtPath("/data[id2]/items[id3]/items[id4]");
@@ -79,7 +76,7 @@ public class AOMJacksonTest {
         String resourceDescriptionJson = "{ \"lifecycle_state\" :\"unmanaged\" }";
         ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
         // assert that the lifecycle state is set to unmanaged
-        assertEquals("unmanaged", resourceDescription.getLifecycleState().getCodeString());
+        assertEquals("unmanaged", resourceDescription.getLifecycleState());
     }
 
     @Test
@@ -88,7 +85,7 @@ public class AOMJacksonTest {
         String resourceDescriptionJson = "{ \"lifecycle_state\" : { \"code_string\" : \"unmanaged\" }}";
         ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
         // assert that the lifecycle state is set to unmanaged
-        assertEquals("unmanaged", resourceDescription.getLifecycleState().getCodeString());
+        assertEquals("unmanaged", resourceDescription.getLifecycleState());
     }
 
     @Test
@@ -97,7 +94,7 @@ public class AOMJacksonTest {
         String resourceDescriptionJson = "{ \"lifecycle_state\" : { \"code_string\" : null }}";
         ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
         // assert that the lifecycle state is set to unmanaged
-        assertNull(resourceDescription.getLifecycleState().getCodeString());
+        assertNull(resourceDescription.getLifecycleState());
     }
 
     @Test
@@ -106,7 +103,16 @@ public class AOMJacksonTest {
         String resourceDescriptionJson = "{ \"lifecycle_state\" : { \"placeholder\" : \"placeholder\" }}";
         ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
         // assert that the lifecycle state is set to unmanaged
-        assertNull(resourceDescription.getLifecycleState().getCodeString());
+        assertNull(resourceDescription.getLifecycleState());
+    }
+
+    @Test
+    public void parseLifecycleStateArrayTest() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String resourceDescriptionJson = "{ \"lifecycle_state\" : [] }";
+        ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
+        // assert that the lifecycle state is set to unmanaged
+        assertNull(resourceDescription.getLifecycleState());
     }
 
     @Test
@@ -212,7 +218,7 @@ public class AOMJacksonTest {
         BinaryOperator operator = (BinaryOperator) slot.getIncludes().get(0).getExpression();
         assertEquals(OperatorKind.matches, operator.getOperator());
         assertEquals("archetype_id/value", ((ModelReference) operator.getLeftOperand()).getPath());
-        CString idConstraint = (CString) ((Constraint) operator.getRightOperand()).getItem();
+        CString idConstraint = (CString) ((Constraint<?>) operator.getRightOperand()).getItem();
         assertEquals("/openEHR-EHR-INSTRUCTION\\.medication\\.v1/", idConstraint.getConstraint().get(0));
     }
 

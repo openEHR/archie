@@ -23,9 +23,7 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 import java.net.URI;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 23/02/16.
@@ -40,8 +38,8 @@ public class TerminologyCodeConstraintsTest {
         archetype = new AuthoredArchetype();
 
         ArchetypeTerminology terminology = new ArchetypeTerminology();
-        terminology.setTermBindings(new HashMap<String, Map<String, URI>>() {{
-            put("openehr", new HashMap<String, URI>() {{
+        terminology.setTermBindings(new HashMap<>() {{
+            put("openehr", new HashMap<>() {{
                 put("at9000", URI.create("http://openehr.org/id/532"));
             }});
         }});

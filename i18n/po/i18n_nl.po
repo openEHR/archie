@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-17 15:14+0200\n"
+"POT-Creation-Date: 2026-03-12 10:27+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pieter Bos <pieter.bos@nedap.com>\n"
 "Language-Team: \n"
@@ -60,7 +60,7 @@ msgstr "ADL-versie {0} is in een incorrect formaat. Dit zou een versie in het fo
 msgid "An archetype slot was used in the archetype, but no archetype id was present in the data."
 msgstr "Een archetype slot is gebruikt in het archetype, maar er is geen archetype id aanwezig in de data."
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:325
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:322
 #, java-format
 msgid "An object with the new node id {0} cannot be prohibited"
 msgstr "Een object met een nieuw node id {0} mag geen occurrences van maximaal 0 hebben"
@@ -151,12 +151,12 @@ msgstr "Attribuut {0}.{1} mag geen type {2}  bevatten"
 msgid "BMM Schema load error"
 msgstr "Fout bij het laden van een BMM schema"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:289
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:286
 #, java-format
 msgid "C_OBJECT in this archetype with class {0} is prohibited, which means its class must be the same as parent type {1}"
 msgstr "Het C_OBJECT in dit archetype met klasse {0} heeft 0 als maximum occurrences (prohibited), maar heeft niet dezelfde klasse als het C_OBJECT dat gespecializeerd wordt: {1}"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:293
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:290
 #, java-format
 msgid "C_OBJECT in this archetype with node id {0} is prohibited, which means its node id must be the same as parent {1}"
 msgstr "Het C_OBJECT in dit archetype met node id {0} heeft 0 als maximum occurrences  (prohibited), maar het node id is anders dan die van het C_OBJECT dat gespecialiseerd wordt {1}"
@@ -190,7 +190,7 @@ msgstr "Code {0} van de C_TERMINOLOGY_CODE heeft specialization depth {1}, maar 
 msgid "Code {0} from the C_TERMINOLOGY_CODE constraint is not defined in the terminology"
 msgstr "Code {0} van deze C_TERMINOLOGY_CODE bestaat niet in de terminology"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:164
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:168
 #, java-format
 msgid "Code {0} is in the terminology, but not used in the archetype"
 msgstr "Code {0} uit de terminologie is niet gebruikt in de definitie van het archetype"
@@ -268,7 +268,7 @@ msgstr "In het attribuut tupel zijn {0} members opgenomen, maar het primitive tu
 msgid "Incorrect root node id {0}: it must match the specialization depth of the archetype, which is {1}"
 msgstr "Fout in root node id {0}: Dit moet kloppen met de specialization depth van het archetype, {1}"
 
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:168
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:167
 #, java-format
 msgid "Invariant {0} failed on type "
 msgstr ""
@@ -321,7 +321,7 @@ msgstr "De specialization depth van node id {0} klopt niet bij de specialization
 msgid "Node id numbers should be unique without their ac, at or id-prefix, to ensure the possibility of converting the archetype to ADL 1.4"
 msgstr "Node id nummers moeten uniek zijn zonder hun ac, at of id-prefix, om conversie van het archetype naar ADL 1.4 mogelijk te maken"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:178
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:182
 #, java-format
 msgid "Node id {0} already used in archetype as {1} with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4"
 msgstr "Node id {0} wordt al gebruikt in het archetype als {1} met een andere at, id of ac prefix. Het archetype kan niet naar ADL 1.4 geconverteerd worden"
@@ -336,12 +336,12 @@ msgstr "Node id {0} is al gebruikt in pad {1}"
 msgid "Node id {0} does not conform to {1}"
 msgstr "Node id {0} komt niet overeen met {1}"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:299
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:296
 #, java-format
 msgid "Node id {0} is not valid here"
 msgstr "Node id {0} is hier niet geldig"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:304
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:301
 #, java-format
 msgid "Node id {0} is not valid here because it redefines an object illegally"
 msgstr "Node id {0} is hier niet geldig omdat het een object herdefinieert waar dat niet is toegestaan"
@@ -682,7 +682,7 @@ msgstr ""
 msgid "Schema {0} top-level sibling package definitions cannot include a package which is the child of another"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:317
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:314
 #, java-format
 msgid "Sibling order {0} refers to missing node id"
 msgstr "Sibling order {0} verwijst naar een ontbrekende node id"
@@ -890,7 +890,7 @@ msgstr "Onderdeel van tupel {0} is geen attribuut van type {1}"
 msgid "Type name {0} does not exist"
 msgstr "Type met naam {0} bestaat niet"
 
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:173
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:172
 #, fuzzy, java-format
 msgid "Unexpected error validating invariant {0} on {1}"
 msgstr "Onverwachte fout bij het valideren van invariant {0} van {1}"
@@ -1259,13 +1259,13 @@ msgstr ""
 msgid "value code validity. Each value code (at-code) used in a term constraint in the archetype definition must be defined in the term_definitions part of the terminology of the flattened form of the current archetype."
 msgstr "Geldigheid van een value code. Elke value code (at-code) gebruikt in een term constraint in de definitie van het archetype moet in de term definities van de flat form van dit archetype opgenomen zijn."
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:143
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:147
 #, java-format
 msgid "value code {0} is used in redefined value set {1}, but not present in its parent value set with members {2}"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:121
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:125
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:129
 #, java-format
 msgid "value code {0} is used in value set {1}, but not present in terminology"
 msgstr "de code {0} is gebruikt in value set {1}, maar bestaat niet in de terminologie"
@@ -1274,18 +1274,22 @@ msgstr "de code {0} is gebruikt in value set {1}, maar bestaat niet in de termin
 msgid "value set assumed value code validity. Each value code (at-code) used as an assumed_value for a value set in a term constraint in the archetype definition must exist in the value set definition in the terminology for the identified value set."
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:106
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:110
 #, java-format
 msgid "value set code {0} is not present in terminology"
 msgstr "de code {0} van een value set bestaat niet in de terminologie"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:112
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:116
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:120
 #, java-format
 msgid "value set code {0} is used in value set {1}, but not present in terminology"
 msgstr "de value set code {0} is gebruikt in value set {1}, maar bestaat niet in de terminologie"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:138
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:106
+msgid "value set does not contain a set Id value"
+msgstr ""
+
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/BasicTerminologyValidation.java:142
 #, java-format
 msgid "value set {0} has a specialized code, but the valueset it specialized cannot be found in the flat parent"
 msgstr ""
@@ -1318,3 +1322,6 @@ msgstr "{0} is niet een bekend attribuut van {1}"
 
 #~ msgid "Unknown error in conformance of specialized C_OBJECT"
 #~ msgstr "Onbekende fout bij het controleren of deze C_OBJECT die van de parent mag specialiseren"
+
+#~ msgid "value-set id is null. All value sets must contain an id"
+#~ msgstr "value-set id is null. Alle value sets moeten een id bevatten."

@@ -1,7 +1,8 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.nedap.archie.base.terminology.TerminologyCode;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class ResourceDescription extends ArchetypeModelObject {
     private String originalPublisher;
     @Nullable
     private List<String> otherContributors = new ArrayList<>();
-    private TerminologyCode lifecycleState;
+    private String lifecycleState;
     @Nullable
     private String custodianNamespace;
     @Nullable
@@ -76,12 +77,39 @@ public class ResourceDescription extends ArchetypeModelObject {
         this.otherContributors = otherContributors;
     }
 
-    public TerminologyCode getLifecycleState() {
+    public String getLifecycleState() {
         return lifecycleState;
     }
 
-    public void setLifecycleState(TerminologyCode lifecycleState) {
+    public void setLifecycleState(String lifecycleState) {
         this.lifecycleState = lifecycleState;
+    }
+
+    /**
+     * JsonSetter for the lifecycle_state field.
+     * <p>
+     * Supports two JSON representations:
+     * 1. Simple string form (current): {@code "lifecycle_state": "published"}
+     * 2. Complex object form (legacy): {@code "lifecycle_state": {"code_string": "published"}}
+     *
+     * This deserializer ensures backward compatibility by accepting both formats
+     * and always setting the lifecycle state value as a plain String.
+     */
+    @JsonSetter("lifecycle_state")
+    private void setLifecycleState(JsonNode node) {
+        if (node == null || node.isNull()) {
+            this.lifecycleState = null;
+            return;
+        }
+
+        if (node.isTextual()) {
+            this.lifecycleState = node.asText();
+            return;
+        }
+
+        JsonNode codeString = node.get("code_string");
+
+        this.lifecycleState = (codeString != null && !codeString.isNull()) ? codeString.asText() : null;
     }
 
     public String getCustodianNamespace() {

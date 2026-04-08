@@ -12,13 +12,11 @@ import java.util.Map;
 public class PropertyValidator extends ValidatorBase {
 
     private final PBmmSchema schema;
-    private MessageLogger logger;
 
     private ConformanceChecker conformanceChecker = new ConformanceChecker();
 
     public PropertyValidator(MessageLogger logger, PBmmSchema schema) {
         super(logger);
-        this.logger = logger;
         this.schema = schema;
     }
 
@@ -174,7 +172,7 @@ public class PropertyValidator extends ValidatorBase {
             PBmmClass ancestor = schema.getClassDefinition(BmmDefinitions.typeNameToClassKey(ancestorName));
             if (ancestor != null) {
                 PBmmProperty<?> ancestorProperty = ancestor.getProperties().get(pBmmProperty.getName());
-                if (ancestor != null && ancestorProperty != null && !conformanceChecker.propertyConformsTo(schema, pBmmProperty, ancestorProperty)) {
+                if (ancestorProperty != null && !conformanceChecker.propertyConformsTo(schema, pBmmProperty, ancestorProperty)) {
                     addValidityError(schema, pBmmClass.getSourceSchemaId(), BmmMessageIds.EC_OVERRIDDEN_PROPERTY_DOES_NOT_CONFORM,
                             pBmmClass.getSourceSchemaId(), pBmmClass.getName(), pBmmProperty.getName(), ancestorName);
                 }

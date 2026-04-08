@@ -17,12 +17,12 @@ import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
 import com.nedap.archie.xml.adapters.RMOverlayXmlAdapter;
 import com.nedap.archie.xml.adapters.StringDictionaryUtil;
 import com.nedap.archie.xml.types.StringDictionaryItem;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,65 +41,28 @@ import java.util.stream.Collectors;
         "definition",
         "terminology",
         "rules",
-        "buildUid",
-        "rmRelease",
-        "generated",
-        "xmlOtherMetaData",
         "rmOverlay"
 })
-public class Archetype extends AuthoredResource {
+public abstract class Archetype extends AuthoredResource {
 
     @XmlElement(name="parent_archetype_id")
     @Nullable
     private String parentArchetypeId;
+
     @XmlAttribute(name="is_differential")
     @RMProperty("is_differential")
     private boolean differential = false;
+
     @XmlElement(name = "archetype_id")
     private ArchetypeHRID archetypeId;
 
     private CComplexObject definition;
+
     @XmlJavaTypeAdapter(ArchetypeTerminologyAdapter.class)
     private ArchetypeTerminology terminology;
+
     @Nullable
     private RulesSection rules = null;
-
-    @XmlAttribute(name="adl_version")
-    @Nullable
-    private String adlVersion;
-    @XmlElement(name="build_uid")
-    private String buildUid;
-    @XmlAttribute(name="rm_release")
-    private String rmRelease;
-    @XmlAttribute(name="is_generated")
-    @RMProperty("is_generated")
-    private Boolean generated = false;
-    //this is a specific map type to make a JAXB-adapter work. ugly jaxb
-    //alternative: define an extra field, use hooks to fill it just in time instead
-    @XmlTransient
-    private Map<String, String> otherMetaData = new LinkedHashMap<>();
-
-    @XmlElement(name="other_meta_data")
-    @JsonIgnore
-    //this field should be marked transient, but JAXB will not allow it.
-    private List<StringDictionaryItem> xmlOtherMetaData;
-
-    // Invoked by Jaxb Marshaller after unmarshalling
-    public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
-        if(xmlOtherMetaData != null) {
-            otherMetaData = StringDictionaryUtil.convertStringDictionaryListToStringMap(xmlOtherMetaData);
-        }
-    }
-
-    // Invoked by Jaxb Marshaller before marshalling
-    public boolean beforeMarshal(Marshaller marshaller) {
-        if(otherMetaData == null) {
-            xmlOtherMetaData = null;
-        } else {
-            xmlOtherMetaData = StringDictionaryUtil.convertStringMapIntoStringDictionaryList(otherMetaData);
-        }
-        return true;
-    }
 
     @XmlElement(name="rm_overlay")
     @XmlJavaTypeAdapter(RMOverlayXmlAdapter.class)
@@ -154,52 +117,6 @@ public class Archetype extends AuthoredResource {
     public void setTerminology(ArchetypeTerminology terminology) {
         this.terminology = terminology;
         terminology.setOwnerArchetype(this);
-    }
-
-    public String getAdlVersion() {
-        return adlVersion;
-    }
-
-    public void setAdlVersion(String adlVersion) {
-        this.adlVersion = adlVersion;
-    }
-
-    public String getBuildUid() {
-        return buildUid;
-    }
-
-    public void setBuildUid(String buildUid) {
-        this.buildUid = buildUid;
-    }
-
-    public String getRmRelease() {
-        return rmRelease;
-    }
-
-    public void setRmRelease(String rmRelease) {
-        this.rmRelease = rmRelease;
-    }
-
-    public Boolean getGenerated() {
-        return generated;
-    }
-
-    public void setGenerated(Boolean generated) {
-        this.generated = generated;
-    }
-
-    public Map<String, String> getOtherMetaData() {
-        return otherMetaData;
-    }
-
-    public void setOtherMetaData(Map<String, String> otherMetaData) {
-        this.otherMetaData = otherMetaData;
-    }
-
-    public void addOtherMetadata(String text, String value) {
-        if (value != null) {
-            otherMetaData.put(text, value);
-        }
     }
 
     /**
@@ -318,18 +235,18 @@ public class Archetype extends AuthoredResource {
 
     @JsonIgnore
     public Set<String> getUsedIdCodes() {
-        return getAllUsedCodes().stream().filter(code -> AOMUtils.isIdCode(code)).collect(Collectors.toSet());
+        return getAllUsedCodes().stream().filter(AOMUtils::isIdCode).collect(Collectors.toSet());
     }
 
     @JsonIgnore
     public Set<String> getUsedValueCodes() {
-        return getAllUsedCodes().stream().filter(code -> AOMUtils.isValueCode(code)).collect(Collectors.toSet());
+        return getAllUsedCodes().stream().filter(AOMUtils::isValueCode).collect(Collectors.toSet());
 
     }
 
     @JsonIgnore
     public Set<String> getUsedValueSetCodes() {
-        return getAllUsedCodes().stream().filter(code -> AOMUtils.isValidValueSetCode(code)).collect(Collectors.toSet());
+        return getAllUsedCodes().stream().filter(AOMUtils::isValidValueSetCode).collect(Collectors.toSet());
     }
 
 

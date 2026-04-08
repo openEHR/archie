@@ -1,33 +1,33 @@
 package com.nedap.archie.xml.adapters;
 
 import com.nedap.archie.base.terminology.TerminologyCode;
+import jakarta.xml.bind.annotation.XmlAnyElement;
+import jakarta.xml.bind.annotation.XmlMixed;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 import org.w3c.dom.Element;
 
-import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlMixed;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.List;
 
 /**
  * JAXB adapter for deserializing lifecycle_state from XML.
  * <p>
  * Supports two XML representations:
- * 1. Future/simple text form: {@code <lifecycle_state>published</lifecycle_state>}
- * 2. Current form of type terminology_code with a code_string: {@code <lifecycle_state><code_string>published</code_string></lifecycle_state>}
+ * 1. Current/simple text form: {@code <lifecycle_state>published</lifecycle_state>}
+ * 2. Legacy form with code_string: {@code <lifecycle_state><code_string>published</code_string></lifecycle_state>}
  *
- * The adapter always returns the lifecycle state value as a terminology_code with a code_string value, regardless of the input format.
+ * The adapter always returns the lifecycle state value as a plain String, regardless of the input format.
  */
-public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapter.MixedHolder, TerminologyCode> {
+public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapter.MixedHolder, String> {
 
     /**
-     * Unmarshalls a lifecycle_state element to a terminology_code.
+     * Unmarshalls a lifecycle_state element to a String.
      *
      * @param holder the mixed content holder containing the element's content
-     * @return the lifecycle_state value as a terminology_code, or null if no value is found
+     * @return the lifecycle state value as a trimmed String, or null if no value is found
      */
     @Override
-    public TerminologyCode unmarshal(MixedHolder holder) {
+    public String unmarshal(MixedHolder holder) {
         if (holder == null || holder.content == null || holder.content.isEmpty()) {
             return null;
         }
@@ -41,10 +41,7 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
 
                 if ("code_string".equals(elementName)) {
                     String text = element.getTextContent();
-                    if (text != null) {
-                        resultTerminologyCode.setCodeString(text.trim());
-                        return resultTerminologyCode;
-                    }
+                    return text != null ? text.trim() : null;
                 }
             }
         }
@@ -53,8 +50,7 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
             if (o instanceof String) {
                 String text = ((String) o).trim();
                 if (!text.isEmpty()) {
-                    resultTerminologyCode.setCodeString(text.trim());
-                    return resultTerminologyCode;
+                    return text;
                 }
             }
         }
@@ -66,7 +62,7 @@ public class LifecycleStateXmlAdapter extends XmlAdapter<LifecycleStateXmlAdapte
      * Not implemented for this adapter as marshaling is not required.
      */
     @Override
-    public MixedHolder marshal(TerminologyCode v) {
+    public MixedHolder marshal(String v) {
         return null;
     }
 

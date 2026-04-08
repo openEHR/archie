@@ -71,6 +71,6 @@ public class RMPrimitiveObjectValidation {
             return I18n.t("empty");
         }
 
-        return (value instanceof String) ? "\"" + value.toString() + "\"" : value.toString();
+        return (value instanceof String) ? "\"" + value + "\"" : value.toString();
     }
 }

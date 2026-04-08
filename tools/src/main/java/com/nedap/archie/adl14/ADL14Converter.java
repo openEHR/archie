@@ -2,10 +2,7 @@ package com.nedap.archie.adl14;
 
 import com.nedap.archie.adl14.log.ADL2ConversionLog;
 import com.nedap.archie.adl14.log.ADL2ConversionRunLog;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ResourceDescription;
-import com.nedap.archie.aom.Template;
-import com.nedap.archie.aom.TemplateOverlay;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.diff.Differentiator;
 import com.nedap.archie.flattener.Flattener;
@@ -71,10 +68,7 @@ public class ADL14Converter {
         for (Archetype archetype : unprocessed) {
             if (archetype instanceof Template) {
                 Template t = (Template) archetype;
-                for (TemplateOverlay overlay : t.getTemplateOverlays()) {
-                    templateOverlays.add(overlay);
-                    overlay.setRmRelease(t.getRmRelease());
-                }
+                templateOverlays.addAll(t.getTemplateOverlays());
             }
         }
         unprocessed.addAll(templateOverlays);
@@ -156,8 +150,10 @@ public class ADL14Converter {
      * Add minor and patch version to archetypeId if minor version is not set in ADL1.4
      */
     private void setCorrectVersions(Archetype convertedArchetype) {
-        convertedArchetype.setAdlVersion("2.0.6");
-        convertedArchetype.setRmRelease(conversionConfiguration.getRmRelease());
+        if (convertedArchetype instanceof AuthoredArchetype) {
+            ((AuthoredArchetype) convertedArchetype).setAdlVersion("2.0.6");
+            ((AuthoredArchetype) convertedArchetype).setRmRelease(conversionConfiguration.getRmRelease());
+        }
         if (convertedArchetype.getArchetypeId().getMinorVersion() == null) {
             convertedArchetype.getArchetypeId().setReleaseVersion(convertedArchetype.getArchetypeId().getReleaseVersion() + ".0.0");
         }
@@ -174,10 +170,10 @@ public class ADL14Converter {
                 convertedArchetype.setUid(null);
             }
         }
-        if (convertedArchetype.getBuildUid() != null) {
-            if (convertedArchetype.getBuildUid().matches("[0-9]+\\.([0-9]+)+")) {
-                moveOidToMetadata(convertedArchetype, convertedArchetype.getBuildUid(), "build_oid");
-                convertedArchetype.setBuildUid(null);
+        if (convertedArchetype instanceof AuthoredArchetype && ((AuthoredArchetype) convertedArchetype).getBuildUid() != null) {
+            if (((AuthoredArchetype) convertedArchetype).getBuildUid().matches("[0-9]+\\.([0-9]+)+")) {
+                moveOidToMetadata(convertedArchetype, ((AuthoredArchetype) convertedArchetype).getBuildUid(), "build_oid");
+                ((AuthoredArchetype) convertedArchetype).setBuildUid(null);
             }
         }
     }

@@ -73,7 +73,7 @@ public class ADL14NodeIDConverter {
     }
 
     public ADL2ConversionLog convert() {
-        metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
+        metaModelProvider.getMetaModel(archetype); // For backwards compatibility
 
         correctItemsCardinality(archetype.getDefinition());
         List<String> unnecessaryCodes = findUnnecessaryCodes(archetype.getDefinition(),
