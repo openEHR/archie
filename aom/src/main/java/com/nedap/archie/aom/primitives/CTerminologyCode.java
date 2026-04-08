@@ -54,7 +54,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         this.assumedValue = assumedValue;
     }
 
-    // TODO: check usages of getConstraint().isEmpty() and (probably?) replace with null-check
+    // TODO: check usages of getConstraint().isEmpty() and (probably?) replace with null-check. Note that this only needs to be done for the cases where getConstraint() returns a String. Not an array, like instances of CTerminologyCode.
     @Override
     public String getConstraint() {
         return this.constraint;
@@ -89,7 +89,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     @Override
     @Deprecated
     public boolean isValidValue(TerminologyCode value) {
-        if(getConstraint().isEmpty()) {
+        if(getConstraint() == null || getConstraint().isEmpty()) {
             return true;
         }
         if(isConstraintRequired()) {
