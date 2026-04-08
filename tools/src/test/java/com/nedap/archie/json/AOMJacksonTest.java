@@ -276,7 +276,7 @@ public class AOMJacksonTest {
     @Test
     public void cTerminologyCode() throws Exception {
         CTerminologyCode cTermCode = new CTerminologyCode();
-        cTermCode.setConstraint(Lists.newArrayList("ac23"));
+        cTermCode.setConstraint("ac23");
         cTermCode.setConstraintStatus(ConstraintStatus.PREFERRED);
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         String json = objectMapper.writeValueAsString(cTermCode);

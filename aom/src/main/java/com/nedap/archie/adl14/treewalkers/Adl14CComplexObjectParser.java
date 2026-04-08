@@ -206,7 +206,7 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
                 CTerminologyCode cCode = new CTerminologyCode();
 
                 TerminologyCode code = TerminologyCode.createFromString(ordinal_termContext.c_terminology_code().getText());
-                cCode.addConstraint(code.getCodeString());
+                cCode.setConstraint(code.getCodeString());
 
                 primitiveTuple.addMember(cValue);
                 primitiveTuple.addMember(cCode);
@@ -275,7 +275,7 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
                 CAttribute property = new CAttribute("property");
                 CTerminologyCode code = new CTerminologyCode();
                 //will be converted later
-                code.addConstraint(cdvQuantity.getProperty().toString());
+                code.setConstraint(cdvQuantity.getProperty().toString());
                 property.addChild(code);
                 result.addAttribute(property);
             }

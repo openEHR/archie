@@ -26,7 +26,7 @@ class ADL14ExternalTerminologyConversionTest {
                     Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream, conversionConfiguration)));
             Archetype converted = result.getConversionResults().get(0).getArchetype();
             CTerminologyCode termCodeConstraint = converted.itemAtPath("/items/value/property[1]");
-            String atCode = termCodeConstraint.getConstraint().get(0);
+            String atCode = termCodeConstraint.getConstraint();
             Assertions.assertTrue(AOMUtils.isValueCode(atCode), "code must be a value, not a value set");
             Assertions.assertEquals("Mass", converted.getTerminology().getTermDefinition("en", atCode).getText());
             Assertions.assertEquals("Mass", converted.getTerminology().getTermDefinition("en", atCode).getDescription());
@@ -50,7 +50,7 @@ class ADL14ExternalTerminologyConversionTest {
             Archetype converted = result.getConversionResults().get(0).getArchetype();
 
             CTerminologyCode termCodeConstraint = converted.itemAtPath("/items/value/defining_code[1]");
-            String acCode = termCodeConstraint.getConstraint().get(0);
+            String acCode = termCodeConstraint.getConstraint();
             Assertions.assertTrue(AOMUtils.isValueSetCode(acCode), "the code should have been converted to a value set");
             List<String> atCodes = termCodeConstraint.getValueSetExpanded();
             Assertions.assertEquals(2, atCodes.size(), atCodes.toString());

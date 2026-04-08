@@ -1,6 +1,5 @@
 package com.nedap.archie.adl14;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
 import com.nedap.archie.aom.*;
@@ -16,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -56,8 +54,8 @@ public class ADL14TermConstraintConverter {
                     for (CPrimitiveObject<?, ?> cPrimitiveObject : termCodes) {
                         CTerminologyCode cTerminologyCode = (CTerminologyCode) cPrimitiveObject;
                         convertCTerminologyCode(cTerminologyCode);
-                        if(cTerminologyCode.getConstraint().size() == 1) {
-                            String constraint = cTerminologyCode.getConstraint().get(0);
+                        if(cTerminologyCode.getConstraint() != null) {
+                            String constraint = cTerminologyCode.getConstraint();
                             if(AOMUtils.isValueCode(constraint)) {
                                 atCodes.add(constraint);
                             }
@@ -93,7 +91,8 @@ public class ADL14TermConstraintConverter {
 
     private void convertCTerminologyCode(CTerminologyCode cTerminologyCode) {
         if(cTerminologyCode.getConstraint() != null && !cTerminologyCode.getConstraint().isEmpty()) {
-            String firstConstraint = cTerminologyCode.getConstraint().get(0);
+            // TODO: this seems to try to fix a complicated case that was introduced in com.nedap.archie.adl14.treewalkers.Adl14PrimitivesConstraintParser.parseCTerminologyCode, fix later
+            /*String firstConstraint = cTerminologyCode.getConstraint().get(0);
             TerminologyCode termCode = TerminologyCode.createFromString(firstConstraint);
             boolean isLocalCode = termCode.getTerminologyId() == null || termCode.getTerminologyId().equalsIgnoreCase("local");
             if(isLocalCode && AOMUtils.isValueCode(firstConstraint)) {
@@ -188,6 +187,7 @@ public class ADL14TermConstraintConverter {
                     }
                 }
             }
+             */
         }
     }
 
@@ -251,8 +251,8 @@ public class ADL14TermConstraintConverter {
                         if(cObject instanceof CTerminologyCode) {
                             CTerminologyCode termCodeInParent = (CTerminologyCode) cObject;
                             if(termCodeInParent.getConstraint() != null && !termCodeInParent.getConstraint().isEmpty()) {
-                                if(termCodeInParent.getConstraint().get(0).startsWith("ac")) {
-                                    idInparent = termCodeInParent.getConstraint().get(0);
+                                if(termCodeInParent.getConstraint().startsWith("ac")) {
+                                    idInparent = termCodeInParent.getConstraint();
                                 }
                             }
                         }
