@@ -53,11 +53,14 @@ public class CString extends CPrimitiveObject<String, String> {
     }
 
     @Override
+    public List<String> getConstraintAsList() {
+        return getConstraint();
+    }
+
     public void setConstraint(List<String> constraint) {
         this.constraint = constraint;
     }
 
-    @Override
     public void addConstraint(String constraint) {
         this.constraint.add(constraint);
     }
