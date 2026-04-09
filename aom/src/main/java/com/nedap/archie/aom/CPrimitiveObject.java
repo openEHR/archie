@@ -1,6 +1,7 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
@@ -37,6 +38,7 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
     public abstract Object getConstraint();
 
+    @JsonIgnore
     public abstract List<Constraint> getConstraintAsList();
 
     @JsonAlias("is_enumerated_type_constraint")

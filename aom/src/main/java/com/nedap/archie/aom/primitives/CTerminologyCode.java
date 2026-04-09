@@ -18,6 +18,7 @@ import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
 import org.openehr.utils.message.I18n;
 
@@ -44,6 +45,11 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     @Nullable
     private ConstraintStatus constraintStatus;
 
+    /** Temporary storage for multi-code ADL 1.4 constraints during conversion. Never serialized. */
+    @JsonIgnore
+    @XmlTransient
+    private List<String> pendingCodes;
+
     @Override
     public TerminologyCode getAssumedValue() {
         return assumedValue;
@@ -54,7 +60,6 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         this.assumedValue = assumedValue;
     }
 
-    // TODO: check usages of getConstraint().isEmpty() and (probably?) replace with null-check. Note that this only needs to be done for the cases where getConstraint() returns a String. Not an array, like instances of CTerminologyCode.
     @Override
     public String getConstraint() {
         return this.constraint;
@@ -75,6 +80,16 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
 
     public void setConstraintStatus(ConstraintStatus constraintStatus) {
         this.constraintStatus = constraintStatus;
+    }
+
+    @JsonIgnore
+    public List<String> getPendingCodes() {
+        return pendingCodes;
+    }
+
+    @JsonIgnore
+    public void setPendingCodes(List<String> pendingCodes) {
+        this.pendingCodes = pendingCodes;
     }
 
     @JsonIgnore

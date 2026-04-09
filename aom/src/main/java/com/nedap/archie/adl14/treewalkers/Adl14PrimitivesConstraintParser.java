@@ -17,6 +17,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -111,16 +112,21 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
             } else {
                 String terminologyId = qualifiedTermCodeContext.identifier(0).getText();
                 if (terminologyId.equalsIgnoreCase("local")) {
-                    //we need to create a value set. For now just add the constraint, the value set will come after
-                    //the parser
-                    // TODO: the List type of the terminologycode.constraint seems to have been used here for a tmp storage to build a value set later, check this and make sure this is still working as intended after these changes...
+                    List<String> pendingCodes = new ArrayList<>();
                     for (int i = 1; i < qualifiedTermCodeContext.identifier().size(); i++) {
-                        // result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
+                        pendingCodes.add(qualifiedTermCodeContext.identifier(i).getText());
+                    }
+                    if (!pendingCodes.isEmpty()) {
+                        result.setPendingCodes(pendingCodes);
                     }
                 } else {
-                    //non-local term constraints. Add the text here, will be converted later
-                    for (int i = 0; i < qualifiedTermCodeContext.identifier().size(); i++) {
-                        // result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
+                    // Normalise to full term code refs so the converter can treat all pending codes uniformly
+                    List<String> pendingCodes = new ArrayList<>();
+                    for (int i = 1; i < qualifiedTermCodeContext.identifier().size(); i++) {
+                        pendingCodes.add("[" + terminologyId + "::" + qualifiedTermCodeContext.identifier(i).getText() + "]");
+                    }
+                    if (!pendingCodes.isEmpty()) {
+                        result.setPendingCodes(pendingCodes);
                     }
                 }
 
