@@ -39,8 +39,8 @@ jaxb-core = { module = "com.sun.xml.bind:jaxb-core", version = "2.3.0.1" }
 
 jaxb-impl = { module = "com.sun.xml.bind:jaxb-impl", version = "2.3.9" }
 
-junit5-jupiter = { module = "org.junit.jupiter:junit-jupiter-api", version = "5.14.3" }
-junit5-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "5.14.3" }
+junit5-jupiter = { module = "org.junit.jupiter:junit-jupiter-api", version = "6.0.3" }
+junit5-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version = "6.0.3" }
 junit5-platform-launcher = { module = "org.junit.platform:junit-platform-launcher"}
 hamcrest = { module = "org.hamcrest:hamcrest", version = "3.0" }
 
