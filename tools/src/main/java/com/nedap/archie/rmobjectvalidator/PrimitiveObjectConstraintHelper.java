@@ -116,7 +116,7 @@ class PrimitiveObjectConstraintHelper {
     }
 
     private boolean isValidValue(CTerminologyCode terminologyCode, TerminologyCode value) {
-        if(terminologyCode.getConstraint() == null || terminologyCode.getConstraint().isEmpty()) {
+        if(terminologyCode.getConstraint() == null) {
             return true;
         }
         if(terminologyCode.isConstraintRequired()) {

@@ -104,7 +104,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     @Override
     @Deprecated
     public boolean isValidValue(TerminologyCode value) {
-        if(getConstraint() == null || getConstraint().isEmpty()) {
+        if(getConstraint() == null) {
             return true;
         }
         if(isConstraintRequired()) {
@@ -247,12 +247,13 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         List<String> valueSet = getValueSetExpanded();
         List<String> otherValueSet = otherCode.getValueSetExpanded();
 
-        // TODO: does this need to be removed/reworded or anything else?
-        if(constraint == null) {
-            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
-        }
+        // A null constraint means unconstrained — an unconstrained parent accepts anything,
+        // and an unconstrained child trivially conforms to any parent.
         if(otherCode.constraint == null) {
-            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("parent CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
+            return ConformanceCheckResult.conforms();
+        }
+        if(constraint == null) {
+            return ConformanceCheckResult.conforms();
         }
 
         if(!getEffectiveConstraintStatus().cConformsTo(otherCode.getEffectiveConstraintStatus()) ) {

@@ -111,7 +111,7 @@ public class ADL14TermConstraintConverter {
         }
 
         String constraint = cTerminologyCode.getConstraint();
-        if (constraint == null || constraint.isEmpty()) {
+        if (constraint == null) {
             return;
         }
 
@@ -278,7 +278,7 @@ public class ADL14TermConstraintConverter {
                         CObject cObject = cAttributeInParent.getChildren().get(0);
                         if(cObject instanceof CTerminologyCode) {
                             CTerminologyCode termCodeInParent = (CTerminologyCode) cObject;
-                            if(termCodeInParent.getConstraint() != null && !termCodeInParent.getConstraint().isEmpty()) {
+                            if(termCodeInParent.getConstraint() != null) {
                                 if(termCodeInParent.getConstraint().startsWith("ac")) {
                                     idInparent = termCodeInParent.getConstraint();
                                 }

@@ -31,6 +31,8 @@ public class UnconstrainedIntervalRemover {
             if(cObject instanceof CComplexObject) {
                 removeUnconstrainedIntervals((CComplexObject) cObject);
             } else if (cObject instanceof COrdered) {
+                // COrdered is used explicitly rather than CPrimitiveObject + getConstraintAsList(),
+                // because the list is mutated in-place and getConstraintAsList() does not guarantee a mutable list.
                 COrdered<?> cOrdered = (COrdered<?>) cObject;
                 List<?> constraint = cOrdered.getConstraint();
                 List<Object> toRemove = new ArrayList<>();

@@ -16,7 +16,7 @@ public class CTerminologyCodeSerializer extends ConstraintSerializer<CTerminolog
 
     @Override
     public void serialize(CTerminologyCode cobj) {
-        if (cobj.getConstraint() != null && !cobj.getConstraint().isEmpty()) {
+        if (cobj.getConstraint() != null) {
             if(cobj.getConstraintStatus() != null) {
                 String constraintStatusString = null;
                 switch(cobj.getConstraintStatus()) {
