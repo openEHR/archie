@@ -45,10 +45,10 @@ class PrimitiveObjectConstraintHelper {
     }
 
     private <ValueType> boolean isValidValue_inner(CPrimitiveObject<?, ValueType> cPrimitiveObject, ValueType value) {
-        if(cPrimitiveObject.getConstraint().isEmpty()) {
+        if(cPrimitiveObject.getConstraintAsList().isEmpty()) {
             return true;
         }
-        for(Object constraint:cPrimitiveObject.getConstraint()) {
+        for(Object constraint:cPrimitiveObject.getConstraintAsList()) {
             if(Objects.equals(constraint, value)) {
                 return true;
             }
@@ -116,7 +116,7 @@ class PrimitiveObjectConstraintHelper {
     }
 
     private boolean isValidValue(CTerminologyCode terminologyCode, TerminologyCode value) {
-        if(terminologyCode.getConstraint().isEmpty()) {
+        if(terminologyCode.getConstraint() == null || terminologyCode.getConstraint().isEmpty()) {
             return true;
         }
         if(terminologyCode.isConstraintRequired()) {
