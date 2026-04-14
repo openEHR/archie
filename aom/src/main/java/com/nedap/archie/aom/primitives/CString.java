@@ -22,7 +22,7 @@ import java.util.function.BiFunction;
  */
 @XmlType(name="C_STRING")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CString extends CPrimitiveObject<String, String> {
+public class CString extends CPrimitiveObject<List<String>, String> {
 
     @XmlElement(name="assumed_value")
     @Nullable

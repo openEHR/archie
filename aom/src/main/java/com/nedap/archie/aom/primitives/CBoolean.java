@@ -20,7 +20,7 @@ import java.util.function.BiFunction;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="C_BOOLEAN")
-public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
+public class CBoolean extends CPrimitiveObject<List<Boolean>, Boolean> {
     @XmlElement(name="assumed_value")
     @Nullable
     private Boolean assumedValue;

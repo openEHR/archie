@@ -36,10 +36,10 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
     public abstract void setAssumedValue(ValueType assumedValue);
 
-    public abstract Object getConstraint();
+    public abstract Constraint getConstraint();
 
     @JsonIgnore
-    public abstract List<Constraint> getConstraintAsList();
+    public abstract List<?> getConstraintAsList();
 
     @JsonAlias("is_enumerated_type_constraint")
     @RMProperty("is_enumerated_type_constraint")
@@ -77,7 +77,7 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
         if(getConstraintAsList().isEmpty()) {
             return true;
         }
-        for(Constraint constraint:getConstraintAsList()) {
+        for(Object constraint:getConstraintAsList()) {
             if(Objects.equals(constraint, value)) {
                 return true;
             }
@@ -105,7 +105,7 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
         StringBuilder result = new StringBuilder();
         result.append("{");
         boolean first = true;
-        for(Constraint constraint:getConstraintAsList()) {
+        for(Object constraint:getConstraintAsList()) {
             if(!first) {
                 result.append(", ");
             }

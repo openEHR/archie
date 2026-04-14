@@ -13,7 +13,7 @@ import java.util.function.BiFunction;
 /**
  * Created by pieter.bos on 15/10/15.
  */
-public abstract class COrdered<T> extends CPrimitiveObject<Interval<T>, T> {
+public abstract class COrdered<T> extends CPrimitiveObject<List<Interval<T>>, T> {
 
     public abstract List<Interval<T>> getConstraint();
 
