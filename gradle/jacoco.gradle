@@ -1,47 +1,46 @@
-
 //the generated ANTLR sources plus the OpenEHR Test RM implementation do not need coverage
 def excludedPaths = ["**/nedap/archie/adlparser/antlr**", "**/nedap/archie/openehrtestrm/**"]
 
 allprojects {
-  apply plugin: 'jacoco'
+    apply plugin: 'jacoco'
 }
 
 subprojects {
-  jacoco {
-    toolVersion = "0.8.7"
-  }
-
-  test {
-     testLogging {
-        events "failed"
-        exceptionFormat "full"
+    jacoco {
+        toolVersion = "0.8.7"
     }
-  }
 
-  jacocoTestReport {
-      reports {
-          xml.required = true
-          html.required = true
-      }
-      additionalSourceDirs.from = sourceSets.main.allSource.srcDirs
-      sourceDirectories.from = sourceSets.main.allSource.srcDirs
-      classDirectories.from =  sourceSets.main.output
-      afterEvaluate {
-        classDirectories.from = classDirectories.files.collect {
-           fileTree(dir: it, excludes: excludedPaths)
+    test {
+        testLogging {
+            events "failed"
+            exceptionFormat = "full"
         }
-      }
-  }
+    }
 
-  check.dependsOn jacocoTestReport
+    jacocoTestReport {
+        reports {
+            xml.required = true
+            html.required = true
+        }
+        additionalSourceDirs.from = sourceSets.main.allSource.srcDirs
+        sourceDirectories.from = sourceSets.main.allSource.srcDirs
+        classDirectories.from = sourceSets.main.output
+        afterEvaluate {
+            classDirectories.from = classDirectories.files.collect {
+                fileTree(dir: it, excludes: excludedPaths)
+            }
+        }
+    }
+
+    check.dependsOn jacocoTestReport
 }
 
 task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
     dependsOn = subprojects.test
     additionalSourceDirs.from = subprojects.sourceSets.main.allSource.srcDirs
     sourceDirectories.from = subprojects.sourceSets.main.allSource.srcDirs
-    classDirectories.from =  subprojects.sourceSets.main.output
-    executionData.from = subprojects.findAll {!it.sourceSets.test.java.isEmpty()}.jacocoTestReport.executionData
+    classDirectories.from = subprojects.sourceSets.main.output
+    executionData.from = subprojects.findAll { !it.sourceSets.test.java.isEmpty() }.jacocoTestReport.executionData
     reports {
         html.required = true
         xml.required = true
@@ -49,8 +48,8 @@ task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
     }
 
     afterEvaluate {
-      classDirectories.from = files(classDirectories.files.collect {
-         fileTree(dir: it, excludes:  excludedPaths)
-      })
+        classDirectories.from = files(classDirectories.files.collect {
+            fileTree(dir: it, excludes: excludedPaths)
+        })
     }
 }

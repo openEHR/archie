@@ -7,11 +7,7 @@ import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.persistence.validation.BmmMessageIds;
 import org.openehr.bmm.v2.persistence.PBmmPackage;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
-import org.openehr.bmm.v2.validation.converters.BmmModelCreator;
-import org.openehr.bmm.v2.validation.converters.CanonicalPackagesGenerator;
-import org.openehr.bmm.v2.validation.converters.DescendantsCalculator;
-import org.openehr.bmm.v2.validation.converters.IncludesProcessor;
-import org.openehr.bmm.v2.validation.converters.PreprocessPersistedSchema;
+import org.openehr.bmm.v2.validation.converters.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

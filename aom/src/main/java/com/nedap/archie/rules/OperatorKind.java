@@ -2,11 +2,7 @@ package com.nedap.archie.rules;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.collect.ImmutableSet;
-
-import java.util.Objects;
-import java.util.Set;
 
 /**
  * Created by pieter.bos on 27/10/15.

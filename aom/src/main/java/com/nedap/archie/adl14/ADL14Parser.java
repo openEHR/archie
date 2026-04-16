@@ -11,6 +11,8 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -29,7 +31,7 @@ import java.nio.charset.Charset;
  */
 public class ADL14Parser {
 
-    private final MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
     private ANTLRParserErrors errors;
 
     private Lexer lexer;
@@ -44,8 +46,16 @@ public class ADL14Parser {
      */
     private boolean logEnabled = true;
 
+    /**
+     * @deprecated Use {@link #ADL14Parser(MetaModelProvider)} instead.
+     */
+    @Deprecated
     public ADL14Parser(MetaModels models) {
-        this.metaModels = models;
+        this((MetaModelProvider) models);
+    }
+
+    public ADL14Parser(MetaModelProvider metaModelProvider) {
+        this.metaModelProvider = metaModelProvider;
     }
 
     public Archetype parse(String adl, ADL14ConversionConfiguration conversionConfiguration) throws ADLParseException {
@@ -75,13 +85,13 @@ public class ADL14Parser {
             walker.walk(listener, tree);
             result = listener.getArchetype();
             ArchetypeParsePostProcessor.fixArchetype(result);
-            if (metaModels != null) {
-                metaModels.selectModel(result);
-                if (metaModels.getSelectedBmmModel() != null) {
-                    ModelConstraintImposer imposer = new BMMConstraintImposer(metaModels.getSelectedBmmModel());
+            if (metaModelProvider != null) {
+                MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(result);
+                if (metaModel.getBmmModel() != null) {
+                    ModelConstraintImposer imposer = new BMMConstraintImposer(metaModel.getBmmModel());
                     imposer.setSingleOrMultiple(result.getDefinition());
-                } else if (metaModels.getSelectedModelInfoLookup() != null) {
-                    ModelConstraintImposer imposer = new ReflectionConstraintImposer(metaModels.getSelectedModelInfoLookup());
+                } else if (metaModel.getModelInfoLookup() != null) {
+                    ModelConstraintImposer imposer = new ReflectionConstraintImposer(metaModel.getModelInfoLookup());
                     imposer.setSingleOrMultiple(result.getDefinition());
                 }
             }

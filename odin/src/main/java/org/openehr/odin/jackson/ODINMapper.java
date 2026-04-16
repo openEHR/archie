@@ -2,20 +2,11 @@ package org.openehr.odin.jackson;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.MappingJsonFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
-import org.openehr.odin.jackson.serializers.OdinIntegerMapKeySerializer;
-import org.openehr.odin.jackson.serializers.OdinIntervalSerializer;
-import org.openehr.odin.jackson.serializers.OdinLongMapKeySerializer;
-import org.openehr.odin.jackson.serializers.OdinStringMapKeySerializer;
-import org.openehr.odin.jackson.serializers.OdinURISerializer;
-import org.openehr.odin.jackson.serializers.OdinURLSerializer;
-import org.openehr.odin.jackson.serializers.TerminologyCodeSerializer;
+import org.openehr.odin.jackson.serializers.*;
 
 import java.net.URI;
 import java.net.URL;
@@ -50,7 +41,7 @@ public class ODINMapper extends ObjectMapper
 
     private void setup() {
 
-        setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         disable(SerializationFeature.WRITE_NULL_MAP_VALUES);
         disable(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS);
         enable(SerializationFeature.INDENT_OUTPUT);

@@ -81,8 +81,8 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
             return ConformanceCheckResult.conforms();
         }
 
-        MultiplicityInterval parentNodeOccurrences = parentCObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
-        MultiplicityInterval childNodeOccurrences = childCObject.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
+        MultiplicityInterval parentNodeOccurrences = parentCObject.effectiveOccurrences(metaModel::referenceModelPropMultiplicity);
+        MultiplicityInterval childNodeOccurrences = childCObject.effectiveOccurrences(metaModel::referenceModelPropMultiplicity);
 
         if(parentCObject.getNodeId().equals(childCObject.getNodeId()) && parentNodeOccurrences.equals(childNodeOccurrences)) {
             //this is the parent node appearing in the flattened child archetype without change in occurrence. That is guaranteed to be valid
@@ -97,7 +97,7 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
             if (allRedefinedNodeOccurrencesSummed.isOpen()) {
                 break;
             }
-            MultiplicityInterval redefinedOccurrences = childNode.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity);
+            MultiplicityInterval redefinedOccurrences = childNode.effectiveOccurrences(metaModel::referenceModelPropMultiplicity);
             if (!allRedefinedNodeOccurrencesSummed.isLowerUnbounded()) {
                 Integer lower = allRedefinedNodeOccurrencesSummed.getLower();
                 if (!redefinedOccurrences.isLowerUnbounded()) {
@@ -119,7 +119,7 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
         }
         MultiplicityInterval cardinality = childCObject.getParent().getCardinality() == null ? null : childCObject.getParent().getCardinality().getInterval();
         if(cardinality == null) {
-            cardinality = combinedModels.referenceModelPropMultiplicity(childCObject.getParent().getParent().getRmTypeName(), childCObject.getParent().getRmAttributeName());
+            cardinality = metaModel.referenceModelPropMultiplicity(childCObject.getParent().getParent().getRmTypeName(), childCObject.getParent().getRmAttributeName());
         }
         if(cardinality != null && !cardinality.isUpperUnbounded() &&
                 (allRedefinedNodeOccurrencesSummed.isUpperUnbounded() || allRedefinedNodeOccurrencesSummed.getUpper() > cardinality.getUpper())) {
@@ -132,7 +132,7 @@ public class SpecializedOccurrencesValidation extends ValidatingVisitor {
         }
         return ConformanceCheckResult.fails(ErrorType.VSONCO, I18n.t("Occurrences {0}, which is the sum of {1}, does not conform to {2}",
                 allRedefinedNodeOccurrencesSummed,
-                allRedefinedNodes.stream().map(c -> c.effectiveOccurrences(combinedModels::referenceModelPropMultiplicity).toString()).collect(Collectors.joining(", ")),
+                allRedefinedNodes.stream().map(c -> c.effectiveOccurrences(metaModel::referenceModelPropMultiplicity).toString()).collect(Collectors.joining(", ")),
                 parentCObject.getOccurrences()));
     }
 }

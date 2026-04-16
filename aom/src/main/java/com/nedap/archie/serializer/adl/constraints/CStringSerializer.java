@@ -1,8 +1,8 @@
 package com.nedap.archie.serializer.adl.constraints;
 
 
-import com.nedap.archie.aom.primitives.*;
-import com.nedap.archie.serializer.adl.*;
+import com.nedap.archie.aom.primitives.CString;
+import com.nedap.archie.serializer.adl.ADLDefinitionSerializer;
 
 /**
  * @author Marko Pipan

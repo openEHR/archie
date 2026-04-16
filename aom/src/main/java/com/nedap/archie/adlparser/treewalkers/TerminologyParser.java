@@ -1,9 +1,9 @@
 package com.nedap.archie.adlparser.treewalkers;
 
+import com.nedap.archie.adlparser.antlr.AdlParser.TerminologySectionContext;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
-import com.nedap.archie.adlparser.antlr.AdlParser.*;
-import com.nedap.archie.serializer.odin.OdinObjectParser;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.serializer.odin.OdinObjectParser;
 
 /**
  * Parser for the terminology section of an archetype

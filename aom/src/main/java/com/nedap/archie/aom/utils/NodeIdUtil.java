@@ -3,10 +3,9 @@ package com.nedap.archie.aom.utils;
 import com.google.common.base.Joiner;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import java.util.ArrayList;
 
 public class NodeIdUtil {
 

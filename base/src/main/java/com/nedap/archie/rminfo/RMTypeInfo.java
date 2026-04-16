@@ -1,14 +1,7 @@
 package com.nedap.archie.rminfo;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by pieter.bos on 25/03/16.

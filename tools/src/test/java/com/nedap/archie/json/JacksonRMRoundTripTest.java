@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
-
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Composition;
@@ -20,10 +19,8 @@ import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import com.nedap.archie.xml.JAXBUtil;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -31,8 +28,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests JSON serialization and deserialization of RM Objects using Jackson
@@ -46,7 +44,7 @@ public class JacksonRMRoundTripTest {
 
     private TestUtil testUtil;
 
-    @Before
+    @BeforeEach
     public void setup() {
         testUtil = new TestUtil();
         parser = new ADLParser(new RMConstraintImposer());

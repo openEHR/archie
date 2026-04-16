@@ -1,9 +1,8 @@
 package org.openehr.bmm.v2.persistence.odin;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
 import org.openehr.bmm.v2.persistence.jackson.BmmJacksonUtil;
-import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
 
 import java.io.IOException;
 import java.io.InputStream;

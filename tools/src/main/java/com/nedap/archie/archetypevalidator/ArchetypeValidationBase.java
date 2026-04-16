@@ -3,7 +3,7 @@ package com.nedap.archie.archetypevalidator;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.ArchetypeRepository;
 import com.nedap.archie.flattener.FullArchetypeRepository;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 
 import java.util.ArrayList;
@@ -16,19 +16,19 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
     protected FullArchetypeRepository repository;
     protected List<ValidationMessage> messages;
     protected ModelInfoLookup lookup;
-    protected MetaModels combinedModels;
+    protected MetaModel metaModel;
     protected ArchetypeValidationSettings settings;
 
     public ArchetypeValidationBase() {
     }
 
     @Override
-    public List<ValidationMessage> validate(MetaModels models, Archetype archetype, Archetype flatParent, FullArchetypeRepository repository, ArchetypeValidationSettings settings) {
+    public List<ValidationMessage> validate(MetaModel metaModel, Archetype archetype, Archetype flatParent, FullArchetypeRepository repository, ArchetypeValidationSettings settings) {
         this.archetype = archetype;
         this.flatParent = flatParent;
         this.repository = repository;
-        this.lookup = models.getSelectedModelInfoLookup();
-        this.combinedModels = models;
+        this.lookup = metaModel.getModelInfoLookup();
+        this.metaModel = metaModel;
         this.settings = settings;
 
         messages = new ArrayList<>();

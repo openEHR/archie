@@ -7,11 +7,15 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationBase;
 import com.nedap.archie.archetypevalidator.ErrorType;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
 import org.openehr.utils.message.I18n;
 
 import java.net.URI;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class BasicTerminologyValidation extends ArchetypeValidationBase {
 
@@ -77,7 +81,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
                             //if not a valid path, fine
                         }
                         if (!AOMUtils.isValidCode(constraintCodeOrPath) && !(
-                                archetypeHasPath || combinedModels.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
+                                archetypeHasPath || metaModel.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
                         )
                         ) {
                             addMessage(ErrorType.VTTBK, I18n.t("Term binding key {0} in path format is not present in archetype", constraintCodeOrPath));
@@ -99,6 +103,10 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
         ArchetypeTerminology terminology = archetype.getTerminology();
         int terminologySpecialisationDepth = terminology.specialisationDepth();
         for(ValueSet valueSet:terminology.getValueSets().values()){
+            if(valueSet.getId() == null) {
+                addMessage(ErrorType.OTHER, I18n.t("value set does not contain a set Id value"));
+                continue;
+            }
             if(!terminology.hasValueSetCode(valueSet.getId())) {
                 addMessage(ErrorType.VTVSID, I18n.t("value set code {0} is not present in terminology", valueSet.getId()));
             }
@@ -167,7 +175,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
     private void warnAboutDuplicateNodeIdsWithoutPrefix() {
         Map<String, String> usedCodesMap = new HashMap<>();
         for (String usedCode : archetype.getAllUsedCodes()) {
-            if (archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(usedCode)) {
+            if ((archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(usedCode)) && !usedCode.startsWith(AdlCodeDefinitions.VALUE_SET_CODE_LEADER)) {
                 String usedCodeWithoutPrefix = AOMUtils.stripPrefix(usedCode);
                 if (usedCodesMap.get(usedCodeWithoutPrefix) != null) {
                     addWarningWithPath(ErrorType.ADL14_INCOMPATIBLE_NODE_IDS,

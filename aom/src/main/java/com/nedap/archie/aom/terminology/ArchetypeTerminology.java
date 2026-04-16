@@ -6,19 +6,14 @@ import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.rminfo.RMProperty;
 
-
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.List;
 
 /**
  * Created by pieter.bos on 15/10/15.

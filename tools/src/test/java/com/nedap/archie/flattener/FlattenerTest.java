@@ -3,25 +3,19 @@ package com.nedap.archie.flattener;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.CArchetypeRoot;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.OperationalTemplate;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.List;
 import java.util.Stack;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * High level tests of the flattener on a relatively large set of archetypes with many features.
@@ -47,7 +41,7 @@ public class FlattenerTest {
 
     private Flattener flattener;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
 
         models = BuiltinReferenceModels.getAvailableModelInfoLookups();
@@ -161,7 +155,7 @@ public class FlattenerTest {
                 worklist.addAll(attr.getChildren());
             }
         }
-        assertTrue("a prox object should have been found", proxyFound);
+        assertTrue(proxyFound, "a prox object should have been found");
     }
 
     @Test
@@ -275,7 +269,7 @@ data matches {
         models.registerModel(com.nedap.archie.openehrtestrm.TestRMInfoLookup.getInstance());
         ((InMemoryFullArchetypeRepository) repository).compile(models);
         for(ValidationResult result:((InMemoryFullArchetypeRepository) repository).getAllValidationResults()) {
-            assertTrue(result.getArchetypeId() + " had errors or warnings: " + result.getErrors(), result.passes());
+            assertTrue(result.passes(),result.getArchetypeId() + " had errors or warnings: " + result.getErrors());
         }
         System.out.println(repository);
     }

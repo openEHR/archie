@@ -2,9 +2,9 @@ package com.nedap.archie.rm.demographic;
 
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datastructures.ItemStructure;
-import com.nedap.archie.rm.support.identification.PartyRef;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
+import com.nedap.archie.rm.support.identification.PartyRef;
 
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;

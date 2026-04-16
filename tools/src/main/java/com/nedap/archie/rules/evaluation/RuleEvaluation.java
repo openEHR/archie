@@ -2,13 +2,12 @@ package com.nedap.archie.rules.evaluation;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.rmobjectvalidator.ValidationHelper;
-import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rmobjectvalidator.APathQueryCache;
 import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
+import com.nedap.archie.rmobjectvalidator.ValidationHelper;
 import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.RuleElement;
 import com.nedap.archie.rules.RuleStatement;
@@ -46,8 +45,6 @@ public class RuleEvaluation<T> {
     private FixableAssertionsChecker fixableAssertionsChecker;
 
     private ModelInfoLookup modelInfoLookup;
-
-    private RMObjectCreator creator;
 
     private final JAXBContext jaxbContext;
     private RMQueryContext rmQueryContext;
@@ -96,8 +93,7 @@ public class RuleEvaluation<T> {
     private RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, JAXBContext jaxbContext, Archetype archetype) {
         this.jaxbContext = jaxbContext;
         this.modelInfoLookup = modelInfoLookup;
-        this.creator = new RMObjectCreator(modelInfoLookup);
-        this.assertionsFixer = new AssertionsFixer(this, creator);
+        this.assertionsFixer = new AssertionsFixer(this);
         this.archetype = archetype;
         this.functionEvaluator = new FunctionEvaluator();
         add(new VariableDeclarationEvaluator());

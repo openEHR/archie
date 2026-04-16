@@ -1,11 +1,7 @@
 package com.nedap.archie.xml;
 
 import com.google.common.collect.Lists;
-import com.nedap.archie.aom.AuthoredResource;
-import com.nedap.archie.aom.LanguageSection;
-import com.nedap.archie.aom.ResourceDescription;
-import com.nedap.archie.aom.ResourceDescriptionItem;
-import com.nedap.archie.aom.TranslationDetails;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;

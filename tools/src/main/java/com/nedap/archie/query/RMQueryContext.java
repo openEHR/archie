@@ -1,7 +1,7 @@
 package com.nedap.archie.query;
 
+import com.nedap.archie.rminfo.AttributeAccessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rminfo.RMAttributeInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -19,7 +19,6 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +33,7 @@ import java.util.List;
 public class RMQueryContext {
 
     private final XPathFactory xPathFactory;
-    private final ModelInfoLookup modelInfoLooup;
+    private final AttributeAccessor attributeAccessor;
     private Binder<Node> binder;
     private Document domForQueries;
     private Object rootNode;
@@ -55,7 +54,7 @@ public class RMQueryContext {
     public RMQueryContext(ModelInfoLookup lookup, Object rootNode, JAXBContext jaxbContext) {
         try {
             this.rootNode = rootNode;
-            this.modelInfoLooup = lookup;
+            this.attributeAccessor = new AttributeAccessor(lookup);
             this.binder = jaxbContext.createBinder();
             domForQueries = createBlankDOMDocument(true);
 
@@ -129,12 +128,7 @@ public class RMQueryContext {
                 logger.error("trying to get a node without a parent");
                 return null;
             }
-            RMAttributeInfo attributeInfo = modelInfoLooup.getAttributeInfo(parent.getClass(), nodeName);
-            try {
-                return (T) attributeInfo.getGetMethod().invoke(parent);
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
+            return (T) attributeAccessor.getValue(parent, nodeName);
         }
     }
 

@@ -3,6 +3,10 @@ package com.nedap.archie.rminfo;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.base.MultiplicityInterval;
 
+/**
+ * @deprecated Use {@link MetaModel} instead.
+ */
+@Deprecated
 public interface MetaModelInterface {
     /**
      * determine if a property on a type is multiple or not. If the property cannot be found, returns false.

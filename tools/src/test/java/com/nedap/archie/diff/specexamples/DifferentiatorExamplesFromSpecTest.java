@@ -1,27 +1,14 @@
 package com.nedap.archie.diff.specexamples;
 
-import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.diff.DiffTestUtil;
-import com.nedap.archie.diff.Differentiator;
-import com.nedap.archie.flattener.Flattener;
-import com.nedap.archie.flattener.SimpleArchetypeRepository;
-import com.nedap.archie.flattener.specexamples.FlattenerTestUtil;
-import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
-import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
-import org.openehr.referencemodels.BuiltinReferenceModels;
-
-import java.io.IOException;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class DifferentiatorExamplesFromSpecTest {
 
     private DiffTestUtil diffTestUtil;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         diffTestUtil = new DiffTestUtil("/com/nedap/archie/flattener/specexamples/", "/com/nedap/archie/diff/specexamples/");
     }

@@ -8,7 +8,10 @@ import java.net.URI;
 
 /**
  * Created by pieter.bos on 03/11/15.
+ *
+ * @deprecated This class will be removed. Use {@link CloneUtil} instead.
  */
+@Deprecated
 public class KryoUtil {
 
     // Build pool with SoftReferences enabled (optional)

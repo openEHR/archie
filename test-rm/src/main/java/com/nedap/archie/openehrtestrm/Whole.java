@@ -1,11 +1,7 @@
 package com.nedap.archie.openehrtestrm;
 
-import java.lang.Boolean;
-import java.lang.Double;
-import java.lang.Long;
-import java.lang.String;
-import java.time.temporal.Temporal;
 import javax.annotation.Nullable;
+import java.time.temporal.Temporal;
 
 public class Whole extends TestRMBase {
   @Nullable

@@ -1,7 +1,5 @@
 package com.nedap.archie.openehrtestrm;
 
-import java.lang.Long;
-import java.lang.String;
 import javax.annotation.Nullable;
 
 public class Rim extends TestRMBase {

@@ -1,11 +1,7 @@
 package org.openehr.bmm.v2.validation;
 
 import org.openehr.bmm.v2.persistence.PBmmSchema;
-import org.openehr.bmm.v2.validation.validators.BasicSchemaValidations;
-import org.openehr.bmm.v2.validation.validators.BmmVersionValidation;
-import org.openehr.bmm.v2.validation.validators.ClassesValidator;
-import org.openehr.bmm.v2.validation.validators.CreatedSchemaValidation;
-import org.openehr.bmm.v2.validation.validators.IncludesValidation;
+import org.openehr.bmm.v2.validation.validators.*;
 import org.openehr.utils.message.MessageLogger;
 
 

@@ -66,16 +66,16 @@ class OperationalTemplateCreator {
         }
     }
 
-    /** Zero occurrences and existence constraint processing when creating OPT templates. Removes attributes */
+    /** Zero occurrences and existence constraint processing when creating OPT templates. Does not remove attributes */
     public void removeZeroOccurrencesConstraints(Archetype archetype) {
         Stack<CObject> workList = new Stack<>();
         workList.push(archetype.getDefinition());
         while (!workList.isEmpty()) {
             CObject object = workList.pop();
-            List<CAttribute> attributesToRemove = new ArrayList<>();
             for (CAttribute attribute : object.getAttributes()) {
                 if (attribute.getExistence() != null && attribute.getExistence().getUpper() == 0 && !attribute.getExistence().isUpperUnbounded()) {
-                    attributesToRemove.add(attribute);
+                    FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, attribute.getChildren());
+                    attribute.setChildren(new ArrayList<>());
                 } else {
                     List<CObject> objectsToRemove = new ArrayList<>();
                     for (CObject child : attribute.getChildren()) {
@@ -87,10 +87,7 @@ class OperationalTemplateCreator {
                     FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, objectsToRemove);
                     attribute.getChildren().removeAll(objectsToRemove);
                 }
-
             }
-            FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, attributesToRemove);
-            object.getAttributes().removeAll(attributesToRemove);
         }
     }
 
@@ -102,7 +99,7 @@ class OperationalTemplateCreator {
             CObject object = workList.pop();
             if( (object instanceof CComplexObject || object instanceof ArchetypeSlot || object instanceof CComplexObjectProxy)
                     && object.getOccurrences() == null) {
-                object.setOccurrences(object.effectiveOccurrences(flattener.getMetaModels()::referenceModelPropMultiplicity));
+                object.setOccurrences(object.effectiveOccurrences(flattener.getMetaModel()::referenceModelPropMultiplicity));
             }
             for (CAttribute attribute : object.getAttributes()) {
 
@@ -249,9 +246,15 @@ class OperationalTemplateCreator {
                 }
             }
 
+            if (terminology.getOriginalLanguage() == null && result.getOriginalLanguage() != null) {
+                terminology.setOriginalLanguage(result.getOriginalLanguage().getCodeString());
+            }
+
             result.addComponentTerminology(newNodeId, terminology);
 
-            String prefix = archetype.getArchetypeId().getConceptId() + "_";
+            // Replaces dashes and convert to lower case, as dashes and variables starting with an upper case letter
+            // aren't allowed everywhere.
+            String prefix = archetype.getArchetypeId().getConceptId().replace("-", "_").toLowerCase() + "_";
             flattener.getRulesFlattener().combineRules(archetype, root.getArchetype(), prefix, prefix, rootToFill.getPath(), false);
             flattener.getAnnotationsAndOverlaysFlattener().addAnnotationsWithPathPrefix(rootToFill.getPath(), archetype, result);
             flattener.getAnnotationsAndOverlaysFlattener().addVisibilityWithPathPrefix(rootToFill.getPath(), archetype, result);

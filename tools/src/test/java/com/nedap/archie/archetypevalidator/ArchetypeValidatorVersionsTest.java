@@ -4,12 +4,13 @@ import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ArchetypeValidatorVersionsTest {
 
@@ -23,7 +24,7 @@ public class ArchetypeValidatorVersionsTest {
         repo.addArchetype(parentv1);
         repo.addArchetype(parentv11);
         repo.addArchetype(child);
-        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
         //the order of validation is important for this test!
         //first validate the first parent, which is valid
         assertTrue(archetypeValidator.validate(parentv1, repo).passes());
@@ -31,7 +32,7 @@ public class ArchetypeValidatorVersionsTest {
         //the validator should automatically detect that v1.1 is newer, and should be used as the parent, not not parentv1
         //and create a new ValidationResult instead of reusing parent v1
         ValidationResult childValidation = archetypeValidator.validate(child, repo);
-        assertTrue(childValidation.getErrors().toString(), childValidation.passes());
+        assertThat(childValidation.getErrors().toString(), childValidation.passes());
         //and of course this should be valid as well.
         assertTrue(archetypeValidator.validate(parentv11, repo).passes());
 
@@ -47,9 +48,9 @@ public class ArchetypeValidatorVersionsTest {
         repo.addArchetype(parentv1);
         repo.addArchetype(parentv11);
         repo.addArchetype(child);
-        repo.compile(new ArchetypeValidator(BuiltinReferenceModels.getMetaModels()));
+        repo.compile(new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider()));
         for(ValidationResult result:repo.getAllValidationResults()) {
-            assertTrue(result.getErrors().toString(), result.passes());
+            assertThat(result.getErrors().toString(), result.passes());
         }
     }
 }

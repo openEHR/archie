@@ -5,14 +5,15 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author markopi
@@ -119,7 +120,7 @@ public class ADLArchetypeSerializerTest {
                 "        >\n" +
                 "    >"));
 
-       Archetype parsed = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(serialized);
+       Archetype parsed = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(serialized);
        assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
        assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
    }

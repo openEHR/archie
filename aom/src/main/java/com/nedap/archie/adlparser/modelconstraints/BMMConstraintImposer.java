@@ -2,15 +2,12 @@ package com.nedap.archie.adlparser.modelconstraints;
 
 import com.google.common.collect.Sets;
 import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
-import com.nedap.archie.rminfo.MetaModel;
 import org.openehr.bmm.core.BmmContainerProperty;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmProperty;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class BMMConstraintImposer implements ModelConstraintImposer {

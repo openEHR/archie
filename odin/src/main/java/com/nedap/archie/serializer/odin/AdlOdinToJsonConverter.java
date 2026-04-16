@@ -2,14 +2,9 @@ package com.nedap.archie.serializer.odin;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
-//import com.nedap.archie.adlparser.antlr.odinParser;
 import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;
@@ -43,7 +38,7 @@ public class AdlOdinToJsonConverter {
     }
 
     public static void configureObjectMapper(ObjectMapper objectMapper, boolean allowDuplicates) {
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         //keywords = <"value"> is indistinguishable from keywords = <"value1", "value2">
         objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         //odin sometimes does <> where it can mean either an empty array OR a null object. Nastyness

@@ -5,7 +5,7 @@ import com.nedap.archie.rm.ehr.Ehr;
 import com.nedap.archie.rm.support.identification.HierObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,8 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil.createExampleRef;
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class EhrInvariantTest {
 

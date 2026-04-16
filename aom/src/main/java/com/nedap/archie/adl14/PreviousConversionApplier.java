@@ -3,28 +3,13 @@ package com.nedap.archie.adl14;
 import com.nedap.archie.adl14.log.ADL2ConversionLog;
 import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CAttributeTuple;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveTuple;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
-import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
-import com.nedap.archie.terminology.TermCode;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Takes the ConversionLog from a previous run and applies the changes that where applied there.

@@ -25,7 +25,7 @@ import com.nedap.archie.rmobjectvalidator.RMObjectValidator;
 import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.testutil.DummyOperationalTemplateProvider;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.leadpony.justify.api.Problem;
 import org.openehr.bmm.core.BmmModel;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -40,8 +40,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ExampleJsonInstanceGeneratorTest {
 
@@ -73,7 +73,7 @@ public class ExampleJsonInstanceGeneratorTest {
         Map<String, Object> encoding = (Map<String, Object>) structure.get("encoding");
         assertEquals("CODE_PHRASE", encoding.get(TYPE_PROPERTY_NAME));
         Map<String, Object> terminologyId = (Map<String, Object>) encoding.get("terminology_id");
-        assertEquals("the default value for a terminology id encoding should be \"IANA_character-sets\"", "IANA_character-sets", terminologyId.get("value"));
+        assertEquals("IANA_character-sets", terminologyId.get("value"), "the default value for a terminology id encoding should be \"IANA_character-sets\"");
         List events = (List) data.get("events");
         assertEquals(3, events.size());
         assertEquals("POINT_EVENT", ((Map) events.get(0)).get(TYPE_PROPERTY_NAME));
@@ -198,7 +198,7 @@ public class ExampleJsonInstanceGeneratorTest {
         int numberCreated = 0, validationFailed = 0, generatedException = 0, jsonSchemaValidationRan = 0, jsonSchemaValidationFailed = 0;
         int secondJsonSchemaValidationRan = 0, reserializedJsonSchemaValidationFailed = 0;
         int rmObjectValidatorRan = 0, rmObjectValidatorFailed = 0;
-        repository.compile(BuiltinReferenceModels.getMetaModels());
+        repository.compile(BuiltinReferenceModels.getMetaModelProvider());
         BmmModel model = BuiltinReferenceModels.getBmmRepository().getModel("openehr_rm_1.0.4").getModel();
         JsonSchemaValidator firstValidator = new JsonSchemaValidator(model, true);
         JsonSchemaValidator secondValidator = new JsonSchemaValidator(model,false);
@@ -210,7 +210,7 @@ public class ExampleJsonInstanceGeneratorTest {
             if(result.passes()) {
                 String json = "";
                 try {
-                    Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true);
+                    Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider()).createOperationalTemplate(true);
                     OperationalTemplate template = (OperationalTemplate) flattener.flatten(result.getSourceArchetype());
                     Map<String, Object> example = structureGenerator.generate(template);
                     json = mapper.writeValueAsString(example);
@@ -272,17 +272,17 @@ public class ExampleJsonInstanceGeneratorTest {
         logger.info("failed validation " + jsonSchemaValidationFailed + " of " + jsonSchemaValidationRan);
         logger.info("failed validation of reserialized json " + reserializedJsonSchemaValidationFailed + " of " + secondJsonSchemaValidationRan);
         logger.info("failed validation of RM Objects+invariants " + rmObjectValidatorFailed + " of " + rmObjectValidatorRan);
-        assertEquals("Example JSON schema should not fail", 0, jsonSchemaValidationFailed);
-        assertEquals("Example JSON schema serialized from RM implementation should not fail", 0, reserializedJsonSchemaValidationFailed);
-        assertEquals("RMObjectValidator should not fail", 0, rmObjectValidatorFailed);
-        assertEquals("no exceptions should occur during schema validation", 0, generatedException);
-        assertEquals("example data from all archetypes should be validated", 403, jsonSchemaValidationRan);
-        assertEquals("example data from all archetypes should be validated from the rm", 403, secondJsonSchemaValidationRan);
+        assertEquals(0, jsonSchemaValidationFailed, "Example JSON schema should not fail");
+        assertEquals(0, reserializedJsonSchemaValidationFailed, "Example JSON schema serialized from RM implementation should not fail");
+        assertEquals(0, rmObjectValidatorFailed, "RMObjectValidator should not fail");
+        assertEquals(0, generatedException, "no exceptions should occur during schema validation");
+        assertEquals(403, jsonSchemaValidationRan, "example data from all archetypes should be validated");
+        assertEquals(403, secondJsonSchemaValidationRan, "example data from all archetypes should be validated from the rm");
 
     }
 
     private ExampleJsonInstanceGenerator createExampleJsonInstanceGenerator() {
-        ExampleJsonInstanceGenerator structureGenerator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModels(), "en");
+        ExampleJsonInstanceGenerator structureGenerator = new ExampleJsonInstanceGenerator(BuiltinReferenceModels.getMetaModelProvider(), "en");
         structureGenerator.setTypePropertyName(TYPE_PROPERTY_NAME);
         return structureGenerator;
     }
@@ -292,7 +292,7 @@ public class ExampleJsonInstanceGeneratorTest {
         Archetype archetype = parse(s2);
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         repository.addArchetype(archetype);
-        return (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModels()).createOperationalTemplate(true).flatten(archetype);
+        return (OperationalTemplate) new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider()).createOperationalTemplate(true).flatten(archetype);
     }
 
     private Archetype parse(String filename) throws IOException, ADLParseException {

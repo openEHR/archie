@@ -1,7 +1,6 @@
 package com.nedap.archie.aom.profile;
 
 import java.util.List;
-
 import java.util.Map;
 
 /**

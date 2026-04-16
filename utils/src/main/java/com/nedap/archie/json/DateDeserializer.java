@@ -17,7 +17,7 @@ public class DateDeserializer extends JsonDeserializer<Temporal> {
     @Override
     public Temporal deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
         String valueAsString = p.getValueAsString();
-        if(valueAsString == null) {
+        if(valueAsString == null || valueAsString.isEmpty()) {
             return null;
         }
         return DateTimeParsers.parseDateValue(valueAsString);

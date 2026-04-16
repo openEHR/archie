@@ -1,6 +1,5 @@
 package com.nedap.archie.xml.adapters;
 
-import javax.xml.bind.DataBindingException;
 import javax.xml.bind.ValidationException;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 

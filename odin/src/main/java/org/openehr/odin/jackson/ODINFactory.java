@@ -1,17 +1,14 @@
 package org.openehr.odin.jackson;
 
-import java.io.*;
-import java.net.URL;
-import java.nio.charset.Charset;
-
-
 import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.format.InputAccessor;
 import com.fasterxml.jackson.core.format.MatchStrength;
 import com.fasterxml.jackson.core.io.IOContext;
 import com.fasterxml.jackson.databind.MappingJsonFactory;
-import com.nedap.archie.serializer.odin.OdinStringBuilder;
-import com.nedap.archie.serializer.odin.StructuredStringAppendable;
+
+import java.io.*;
+import java.net.URL;
+import java.nio.charset.Charset;
 
 @SuppressWarnings("resource")
 public class ODINFactory extends JsonFactory
