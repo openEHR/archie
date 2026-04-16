@@ -199,12 +199,12 @@ definition
                                                 value matches {
                                                     DV_ORDINAL[id9073] matches {
                                                         [value, symbol] matches {
-                                                            [{0}, {[at39]}],
-                                                            [{1}, {[at40]}],
-                                                            [{2}, {[at41]}],
-                                                            [{5}, {[at42]}],
-                                                            [{9}, {[at43]}],
-                                                            [{10}, {[at44]}]
+                                                            [{0}, {[at39]}],    -- No pain
+                                                            [{1}, {[at40]}],    -- Slight pain
+                                                            [{2}, {[at41]}],    -- Mild pain
+                                                            [{5}, {[at42]}],    -- Moderate pain
+                                                            [{9}, {[at43]}],    -- Severe pain
+                                                            [{10}, {[at44]}]    -- Most severe pain imaginable
                                                         }
                                                     }
                                                 }
@@ -333,6 +333,179 @@ definition
 terminology
     term_definitions = <
         ["nb"] = <
+            ["id1"] = <
+                text = <"Demonstrasjon">
+                description = <"Demonstrasjonsarketype med beskrivelser og forklaringer.">
+            >
+            ["id3"] = <
+                text = <"Tidfestet hendelse">
+                description = <"Alle arketyper av OBSERVATION-klassen inneholder en HISTORY eller EVENT-modell som inneholder informasjon om tidfesting av observasjonen og \"bredden\" av informasjonen, enten et tidspunkt eller et intervall. Standardverdi er \"Tidfestet hendelse\", og det er ikke spesifisert om dette er et tidspunkt eller et intervall.">
+            >
+            ["id5"] = <
+                text = <"Overskrift1">
+                description = <"Dette er et symbol for et \"cluster\" som kan inneholde andre elementer.">
+            >
+            ["id6"] = <
+                text = <"Fri eller kodet tekst">
+                description = <"Tekstdatatype som kan inneholde fritekst eller kodet tekst. Kodingen kan legges inn enten i template eller i applikasjonen.">
+            >
+            ["id7"] = <
+                text = <"Tekst med interne koder">
+                description = <"Tekstdatatype som bruker et internt vokabular. Hver av disse \"interne kodene\" kan bindes til en terminologikode.">
+            >
+            ["at8"] = <
+                text = <"Liggende">
+                description = <"Pasienten ligger på ryggen.">
+            >
+            ["at9"] = <
+                text = <"Tilbakelent">
+                description = <"Pasienten ligger tilbakelent, støttet av en mellomstor pute.">
+            >
+            ["at10"] = <
+                text = <"Sittende">
+                description = <"Pasienten sitter i en stol.">
+            >
+            ["at11"] = <
+                text = <"Stående">
+                description = <"Pasienten står oppreist.">
+            >
+            ["id12"] = <
+                text = <"Tekst hentet fra en ekstern terminologi">
+                description = <"Tekstdata som bruker koder fra en ekstern terminologikilde, f.eks. SNOMED CT, LOINC eller ICD.">
+            >
+            ["id13"] = <
+                text = <"Kvantitet">
+                description = <"En kvantitetsdatatype som brukes til å registrere målinger tilknyttet passende enheter. Disse hentes fra ISO-standarder, og referansemodellen tillater konvertering mellom enhetene. Eksempelet vist er her lengde.">
+            >
+            ["id14"] = <
+                text = <"Antall">
+                description = <"Antall-datatypen består av et heltall uten enheter, f.eks. for å registrere antall barn. I dette eksempelet er minimum satt til 0 og maksimum er uspesifisert.">
+            >
+            ["id15"] = <
+                text = <"Dato/tid">
+                description = <"Dato/tidsdatatypen brukes til å registrere en dato og/eller tid, inklusiv deldatoer som f.eks. kun år eller kun måned og år. Standardverdi er at alle former er tillatt.">
+            >
+            ["id16"] = <
+                text = <"Ordinal">
+                description = <"Ordinaldatatyper setter sammen et tall og en tekststreng. Dette gjør det mulig å regne ut scoringer, eller vurdere progresjon dersom den brukes f.eks. i en smerteskala.">
+            >
+            ["id17"] = <
+                text = <"Boolsk verdi">
+                description = <"Boolsk verdi-datatypen brukes for å registrere verdier som sann/usann.">
+            >
+            ["id18"] = <
+                text = <"Hvilken som helst">
+                description = <"Datatypen \"hvilken som helst\" kan spesifiseres eller begrenses i template eller i applikasjonen, men modelleres ikke eksplisitt i arketypen.">
+            >
+            ["id19"] = <
+                text = <"Overskrift 2">
+                description = <"Dette er et symbol for et \"cluster\" med andre elementer inni seg.">
+            >
+            ["id20"] = <
+                text = <"Utvidelsesspor som kan inneholde andre Cluster-arketyper">
+                description = <"Listen over CLUSTER-arketyper som kan inkluderes eller ekskluderes i denne OBSERVATION-arketypen.">
+            >
+            ["id21"] = <
+                text = <"Utvidelsesspor som kan inneholde andre Element-arketyper">
+                description = <"Liste over ELEMENT-arketyper som kan inkluderes eller ekskluderes i denne OBSERVATION-arketypen.">
+            >
+            ["id22"] = <
+                text = <"Varighet">
+                description = <"Varighet-datatypen brukes til å registrere varigheten til kliniske konsepter. \"Tillat alle tidsenheter\" er standardverdi, selv om spesifikke tidsenheter kan modelleres eksplisitt. Maksimums- og minimumsverdier kan settes for hver tidsenhet.">
+            >
+            ["id23"] = <
+                text = <"Antallsintervall">
+                description = <"Antallsintervall-datatypen brukes for å registrere et intervall av antall, f.eks. 1-2 tabletter foreskrevet. Maksimums- og minimumsverdier kan settes for laveste og høyeste antall.">
+            >
+            ["id24"] = <
+                text = <"Kvantitetsintervall">
+                description = <"Kvantitetsintervaller tillater registreing av et intervall av målinger tilknyttet aktuelle enheter, f.eks. 1-2cm (foreskrevet mengde krem mot et utslett).">
+            >
+            ["id25"] = <
+                text = <"Datointervall">
+                description = <"Datointervall-datatypen brukes til å registrere et intervall av datoer, f.eks. mellom 1. september 2008 og 8. september 2008.">
+            >
+            ["id26"] = <
+                text = <"Valg">
+                description = <"Valg-datatypen tillater at man gir flere valgmuligheter for hvilken datatype et element kan tilhøre. Dette kan velges eller begrenses i template eller i applikasjonen. I dette eksempelet er valget mellom en tekstdatatype satt til fri eller kodet tekst, eller en som er begrenset til å bruke kodeverdier fra en terminologi.">
+            >
+            ["id27"] = <
+                text = <"Multimedia">
+                description = <"Multimedia-datatyper brukes for å registrere en av flere mulige typer multimediafiler. I dette eksempelet er alle mulige typer eksplisitt valgte.">
+            >
+            ["id28"] = <
+                text = <"URI-ressursidentifikator">
+                description = <"URI-datatyper tillater registrering av sammenhenger mellom disse dataene og data som er registrert andre steder. Lenkene kan være innenfor samme system, eller eksterne f.eks. en URL.">
+            >
+            ["id29"] = <
+                text = <"Forhold">
+                description = <"Forholdsdatatyper brukes til proporsjoner, prosent og brøker.">
+            >
+            ["id32"] = <
+                text = <"State-definision">
+                description = <"Alle arketyper av OBSERVATION-klassen kan inneholde en STATE-modell som inneholder informasjon om subjektet for datainnsamlingen på tidspunktet informasjonen ble innhentet, og denne informasjonen er nødvendig for trygg klinisk tolkning av kjerneinformasjonen. Et eksempel er stillingen pasienten befinner seg i under en blodtrykksmåling. Mulige datatyper er de samme som i DATA-modellen.">
+            >
+            ["id33"] = <
+                text = <"Data - definisjon">
+                description = <"Alle arketyper i OBSERVATION-klassen inneholder en DATA-modell som inneholder kjerneinformasjonen, f.eks. systolisk og diastolisk trykk for en blodtrykksmåling.">
+            >
+            ["id34"] = <
+                text = <"Navngitt tidspunkt">
+                description = <"En hendelse som er både navngitt (f.eks. fødsel) og begrenset til et tidspunkt, og brukes til å registrere dataelementer i sammenheng med et spesifikt tidspunkt, f.eks. fødselsvekt.">
+            >
+            ["id35"] = <
+                text = <"Navngitt intervall">
+                description = <"En hendelse som er både navngitt og begrenset til et intervall, og brukes til å registrere dataelementer i forbindelse med et tidsintervall, f.eks. vekttap over tid. Intervallet kan være fastsatt eller uspesifisert. I tillegg kan det spesifiseres matematiske funksjoner for å håndtere konsepter som endring, minking, økning, maksimum, minimum, gjennomsnitt, etc.">
+            >
+            ["id36"] = <
+                text = <"Forskjøvet tidspunkt">
+                description = <"Forskjøvet tidspunkt brukes til å registrere data på et tidspunkt med en fastsatt forskyvning fra en annen spesifisert hendelse, f.eks. 2-minutters Apgar-score ved 2 minutter forskyvning fra fødselen.">
+            >
+            ["id38"] = <
+                text = <"Protocol-definisjon">
+                description = <"Alle arketyper av OBSERVATION-klassen kan inneholde en PROTOCOL-modell som registrerer informasjon om hvordan informasjonen ble samlet eller målt, og eventuell annen informasjon som ikke er nødvendig for trygg klinisk tolkning av kjernedataene. Datatypene er de samme som for DATA-modellen.">
+            >
+            ["at39"] = <
+                text = <"Ingen smerte">
+                description = <"Overhodet ingen smerte.">
+            >
+            ["at40"] = <
+                text = <"Svak smerte">
+                description = <"Smertenivå vurdert som 1 av maksimalt 10.">
+            >
+            ["at41"] = <
+                text = <"Mild smerte">
+                description = <"Smertenivå vurdert som 2 av maksimalt 10.">
+            >
+            ["at42"] = <
+                text = <"Moderat smerte">
+                description = <"Smertenivå vurdert som 5 av maksimalt 10.">
+            >
+            ["at43"] = <
+                text = <"Sterk smerte">
+                description = <"Smertenivå vurdert som 9 av maksimalt 10.">
+            >
+            ["at44"] = <
+                text = <"Sterkeste mulige smerte">
+                description = <"Smertenivå vurdert som 10 av maksimalt 10.">
+            >
+            ["id45"] = <
+                text = <"Identifikator">
+                description = <"Identifikator-datatyper tillater registrering av formelle dataidentifikatorer.">
+            >
+            ["id46"] = <
+                text = <"*Extension(en)">
+                description = <"*Additional information required to capture local context or to align with other reference models/formalisms.(en)">
+                comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["ac2"] = <
+                text = <"Subsett A">
+                description = <"Terminologi-subsett fra XXX">
+            >
+            ["ac4"] = <
+                text = <"Subsett B">
+                description = <"XYZ koder fra Terminologi 123">
+            >
             ["ac9000"] = <
                 text = <"Tekst med interne koder (synthesised)">
                 description = <"Tekstdatatype som bruker et internt vokabular. Hver av disse \"interne kodene\" kan bindes til en terminologikode. (synthesised)">
@@ -557,181 +730,181 @@ terminology
                 text = <"* change (en)">
                 description = <"* change (en)">
             >
+        >
+        ["pt-br"] = <
+            ["id1"] = <
+                text = <"Demonstração">
+                description = <"Arquétipo de Demonstração com descrições e explicações. ">
+            >
+            ["id3"] = <
+                text = <"Qualquer evento">
+                description = <"Todos os arquétipos da classe de OBSERVAÇÃO contêm um modelo de HISTÓRIA ou de EVENTO que contém informação sobre o período da observação com a duração  da informação-  seja um ponto no  tempo ou um intervalo temporal. O padrão predeterminado é ' Qualquer evento' e não é especificado, se é um Ponto no tempo ou um Intervalo.">
+            >
+            ["id5"] = <
+                text = <"Cabeçalho1">
+                description = <"Este é um símbolo para um 'cluster' que pode ter outros elementos 'aninhados' dentro dele.">
+            >
+            ["id6"] = <
+                text = <"Texto livre ou Codificado">
+                description = <"Tipo de dado Texto no qual se pode entrar ou  texto livre ou códigos podem ser incoprporados seja  no template ou no tempo de execução.">
+            >
+            ["id7"] = <
+                text = <"Texto Que Usa Códigos Internos">
+                description = <"Tipo de dados  Texto que pode usar um vocabulário interno. Cada um desses ' códigos internos' pode ser vnculado a um código de uma terminologia.">
+            >
+            ["at8"] = <
+                text = <"Deitado">
+                description = <"Paciente Deitado em posição supina ou decúbito dorsal.">
+            >
+            ["at9"] = <
+                text = <"Reclinado">
+                description = <"Paciente Reclinado, apoiado em um travesseiro médio.">
+            >
+            ["at10"] = <
+                text = <"Sentado">
+                description = <"Paciente está Sentado em uma cadeira.">
+            >
+            ["at11"] = <
+                text = <"Em pé">
+                description = <"Paciente está em Pé.">
+            >
+            ["id12"] = <
+                text = <"Texto Cuja Origem é uma Terminologia Externa ">
+                description = <"Tipo de dado Texto utilizando códigos originários de uma terminologia externa como, por exemplo, um subset do SNOMED CT, do LOINC ou da CID 10. ">
+            >
+            ["id13"] = <
+                text = <"Quantidade">
+                description = <"Um tipo de dado de Quantidade usado para registrar uma medida associada com suas uniddades apropriadas. Essas unidades são derivadas de norams ISO e o modelo de  Referência possibilita a conversão entre elas. O exemplo demonstrado aqui é o comprimento.">
+            >
+            ["id14"] = <
+                text = <"Contagem ">
+                description = <"Tipos de dados de Contagem são compostos de um número inteiro sem casas decimais (integer), por exemplo, para registar o número de filhos- nesse exemplo o mínimo é colocado como 0 e o máximo não é especificado.">
+            >
+            ["id15"] = <
+                text = <"Data/Horário">
+                description = <"Tipos de dado Data/Horário permite o registro de uma data e /ou um horário, incluindo  datas parciais como somente o mês ou o ano. Permite tudo como padrão de modo que todas as formas de data/horário são permitidas.">
+            >
+            ["id16"] = <
+                text = <"Ordinal">
+                description = <"Tipos de dados Ordinal pareiam um número e texto- deste modo  pode ser calculada uma pontuação pela  aplicação a progressão ser avaliada, como por exemplo se está se utilizando de uma escala de avaliação de dor.">
+            >
+            ["id17"] = <
+                text = <"Booleano">
+                description = <"Tipo de dado  Booleano que permite repostas do tipo falso ou verdadeiro.">
+            >
+            ["id18"] = <
+                text = <"Qualquer">
+                description = <"Este tipo de dado para esse elemento 'Qualquer' pode ser especificado ou 'restrito' num modelo ou no tempo de execução, mas não é especificamente modelado no arquétipo.">
+            >
+            ["id19"] = <
+                text = <"Cabelaçalho2">
+                description = <"Esse é o símbolo de um 'cluster' que pode ter outros elementos 'aninhados' dentro dele.">
+            >
+            ["id20"] = <
+                text = <"Slot Para Conter Outros Arquétipos Clusters">
+                description = <"Lista de arquétipos  CLUSTER permitidos de serem incluídos ou excluídos dentro deste arquétipo de  OBSERVAÇÃO.">
+            >
+            ["id21"] = <
+                text = <"Slot Para Conter Outroa Arququétipos de Elementos">
+                description = <"Lista de arquétipos de ELEMENTOS permitidos de serem incluíos ou excluídos dentro deste arquétipo de OBSERVAÇÃO.">
+            >
+            ["id22"] = <
+                text = <"Duração">
+                description = <"Tipo de dado Duração permite registrar a duração dos conceitos clínicos. O padrão predeterminado é 'Permitir  todas unidades de tempo', embora unidades específicas de tempo possam ser explicitamente modeladas.   Valores máximos e mínimos podem ser configurados para cada unidade de tempo.">
+            >
+            ["id23"] = <
+                text = <"Intervalo de Integer">
+                description = <"Tipo de dados de Intervalo de Integer permite o registro de uma faixa de contagem em intervalos, por exemplo, a cada 1 a 2 comprimidos prescritos. Os valores máximo e mínimo podem ser configurados para a contagem inferior ou para a superior.">
+            >
+            ["id24"] = <
+                text = <"Intervalo de Quantidade">
+                description = <"Tipos de dados de Intervalo de Quantidade permitem registrar uma gama de mediddas  associadas com unidades apropriadas, por exemplo, 1-2cm  (quantidade de creme prescrito para um uma erupção cutânea).">
+            >
+            ["id25"] = <
+                text = <"Intervalo de Data">
+                description = <"Tipo de dado de Intervalo de Integer permite o registro de uma faixa de datas como, por exemplo, entre 1 de Setembro de 2008 e 8 de Setembro de 2008.">
+            >
+            ["id26"] = <
+                text = <"Escolha">
+                description = <"Tipo de dado Escolha permite que um número de tipos de elementos sejam simultaneamente especificados, os quais podem ser restringidos num template ou no tempo de execução. Neste exemplo, um tipo de dado Texto é configurado para Texto livre ou Codificado e outro que é configurado restritamente para  registrar códigos de uma determinada terminologia para o mesmo elemento de dado.">
+            >
+            ["id27"] = <
+                text = <"Multimídia">
+                description = <"Tipos de dado Multimídia permitem o registro de vários tipos de arquivos multimídia. Todos os tipos disponíveis foram explicitamente selecionados neste exemplo.">
+            >
+            ["id28"] = <
+                text = <"URI - Identificador de Recursos ">
+                description = <"Tipos de dados URI permitem registrar os relacionamentos entre  estes dados e os dados registrados em outros lugares. Esses enlaces (links) podem estar  no mesmo RES ou serem externos, por exemplo, pertencer a  num endereço  na internet, uma URL.">
+            >
+            ["id29"] = <
+                text = <"Porporção">
+                description = <"Tipos de dados de Proporção permitem modelar taxas, porcentagens, frações e proporções.">
+            >
+            ["id32"] = <
+                text = <"Estado - Definição">
+                description = <"Todos os arquétipos da classe de OBSERVAÇÃO podem conter um modelo de ESTADO, que contém a informação sobre o sujeito a informação na hora que o dado foi colhido, e essa informação é requisito para uma interpretação segura das informações básicas. Um exemplo disso é a posição que o paciente se encontrava quando sua pressão arterial foi medida. Os tipos de dados são idênticos aos que foram explicados no modelo de DADOS acima.">
+            >
+            ["id33"] = <
+                text = <"Dados - Definição ">
+                description = <"Todos os arquétipos da classe de OBSERVAÇÃO contêm um modelo de DADOS que contém as informações básicas, por exemplo, as pressões sistólica e diastólica, quando está se medindo a pressão sanguínea.">
+            >
+            ["id34"] = <
+                text = <"Ponto no tempo Nomeado">
+                description = <"Um evento que é ao mesmo tempo nomeado (p. ex. Nascimento) e restrito como evento em um  Ponto no tempo, registra os elementos de dados relacionados a um ponto específico no tempo, como por exemplo, Peso no Nascimento.">
+            >
+            ["id35"] = <
+                text = <"Intervalo Nomeado">
+                description = <"Um evento que é ao mesmo tempo nomeado e restrito como um evento Intervalo, registra os mesmos elementos de dados relacionados ao período de tempo, por exemplo, Perda de peso durante o determinado período. O intervalo pode ser fixado, ou deixado inespecificado. Além disso,  pode-se especificar funções matemáticas para capturar conceitos como mudança, diminuição aumento, máximo, mínimo, média,etc.">
+            >
+            ["id36"] = <
+                text = <"Deslocamento do Ponto no tempo">
+                description = <"Deslocamento  do Ponto no Tempo registra o deslocamento fixo de 5 minutos de outro evento especificado, por exemplo, registrando a leitura de um escore de Apgar de 2 minutos aos 2 minutos após o parto.">
+            >
+            ["id38"] = <
+                text = <"Protocolo-Definição">
+                description = <"Todos os arquétipos da classe de OBSERVAÇÃO podem conter um modelo de PROTOCOLO, o qual registra informação sobre como a informação foi colhida ou medida e quaisquer outras informações que não sejam necessárias para a interpretação clínica  segura das informações básicas. Os tipos de dados são idênticos àqueles explicados no modelo e DADOS acima.">
+            >
+            ["at39"] = <
+                text = <"Sem dor">
+                description = <"Nenhuma dor.">
+            >
+            ["at40"] = <
+                text = <"Dor leve">
+                description = <"Dor classificada como nível 1 numa escala máxima de 10.">
+            >
+            ["at41"] = <
+                text = <"Dor branda">
+                description = <"Dor classificada como nível 2 numa escala máxima de 10.">
+            >
+            ["at42"] = <
+                text = <"Dor Moderada">
+                description = <"Dor classificada  como nível 5 numa escala máxima de 10.">
+            >
+            ["at43"] = <
+                text = <"Dor severa">
+                description = <"Dor classificada nível 9 numa escala de 10.">
+            >
+            ["at44"] = <
+                text = <"Pior dor possível">
+                description = <"Dor classificada como nível 10 numa escala de 10.">
+            >
+            ["id45"] = <
+                text = <"Identificador">
+                description = <"Tipos de dados Identificadores possibilitam registrar identificadores formais de dados.">
+            >
             ["id46"] = <
                 text = <"*Extension(en)">
                 description = <"*Additional information required to capture local context or to align with other reference models/formalisms.(en)">
                 comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["id45"] = <
-                text = <"Identifikator">
-                description = <"Identifikator-datatyper tillater registrering av formelle dataidentifikatorer.">
-            >
-            ["at44"] = <
-                text = <"Sterkeste mulige smerte">
-                description = <"Smertenivå vurdert som 10 av maksimalt 10.">
-            >
-            ["at43"] = <
-                text = <"Sterk smerte">
-                description = <"Smertenivå vurdert som 9 av maksimalt 10.">
-            >
-            ["at42"] = <
-                text = <"Moderat smerte">
-                description = <"Smertenivå vurdert som 5 av maksimalt 10.">
-            >
-            ["at41"] = <
-                text = <"Mild smerte">
-                description = <"Smertenivå vurdert som 2 av maksimalt 10.">
-            >
-            ["at40"] = <
-                text = <"Svak smerte">
-                description = <"Smertenivå vurdert som 1 av maksimalt 10.">
-            >
-            ["at39"] = <
-                text = <"Ingen smerte">
-                description = <"Overhodet ingen smerte.">
-            >
-            ["id38"] = <
-                text = <"Protocol-definisjon">
-                description = <"Alle arketyper av OBSERVATION-klassen kan inneholde en PROTOCOL-modell som registrerer informasjon om hvordan informasjonen ble samlet eller målt, og eventuell annen informasjon som ikke er nødvendig for trygg klinisk tolkning av kjernedataene. Datatypene er de samme som for DATA-modellen.">
-            >
-            ["id36"] = <
-                text = <"Forskjøvet tidspunkt">
-                description = <"Forskjøvet tidspunkt brukes til å registrere data på et tidspunkt med en fastsatt forskyvning fra en annen spesifisert hendelse, f.eks. 2-minutters Apgar-score ved 2 minutter forskyvning fra fødselen.">
-            >
-            ["id35"] = <
-                text = <"Navngitt intervall">
-                description = <"En hendelse som er både navngitt og begrenset til et intervall, og brukes til å registrere dataelementer i forbindelse med et tidsintervall, f.eks. vekttap over tid. Intervallet kan være fastsatt eller uspesifisert. I tillegg kan det spesifiseres matematiske funksjoner for å håndtere konsepter som endring, minking, økning, maksimum, minimum, gjennomsnitt, etc.">
-            >
-            ["id34"] = <
-                text = <"Navngitt tidspunkt">
-                description = <"En hendelse som er både navngitt (f.eks. fødsel) og begrenset til et tidspunkt, og brukes til å registrere dataelementer i sammenheng med et spesifikt tidspunkt, f.eks. fødselsvekt.">
-            >
-            ["id33"] = <
-                text = <"Data - definisjon">
-                description = <"Alle arketyper i OBSERVATION-klassen inneholder en DATA-modell som inneholder kjerneinformasjonen, f.eks. systolisk og diastolisk trykk for en blodtrykksmåling.">
-            >
-            ["id32"] = <
-                text = <"State-definision">
-                description = <"Alle arketyper av OBSERVATION-klassen kan inneholde en STATE-modell som inneholder informasjon om subjektet for datainnsamlingen på tidspunktet informasjonen ble innhentet, og denne informasjonen er nødvendig for trygg klinisk tolkning av kjerneinformasjonen. Et eksempel er stillingen pasienten befinner seg i under en blodtrykksmåling. Mulige datatyper er de samme som i DATA-modellen.">
-            >
-            ["id29"] = <
-                text = <"Forhold">
-                description = <"Forholdsdatatyper brukes til proporsjoner, prosent og brøker.">
-            >
-            ["id28"] = <
-                text = <"URI-ressursidentifikator">
-                description = <"URI-datatyper tillater registrering av sammenhenger mellom disse dataene og data som er registrert andre steder. Lenkene kan være innenfor samme system, eller eksterne f.eks. en URL.">
-            >
-            ["id27"] = <
-                text = <"Multimedia">
-                description = <"Multimedia-datatyper brukes for å registrere en av flere mulige typer multimediafiler. I dette eksempelet er alle mulige typer eksplisitt valgte.">
-            >
-            ["id26"] = <
-                text = <"Valg">
-                description = <"Valg-datatypen tillater at man gir flere valgmuligheter for hvilken datatype et element kan tilhøre. Dette kan velges eller begrenses i template eller i applikasjonen. I dette eksempelet er valget mellom en tekstdatatype satt til fri eller kodet tekst, eller en som er begrenset til å bruke kodeverdier fra en terminologi.">
-            >
-            ["id25"] = <
-                text = <"Datointervall">
-                description = <"Datointervall-datatypen brukes til å registrere et intervall av datoer, f.eks. mellom 1. september 2008 og 8. september 2008.">
-            >
-            ["id24"] = <
-                text = <"Kvantitetsintervall">
-                description = <"Kvantitetsintervaller tillater registreing av et intervall av målinger tilknyttet aktuelle enheter, f.eks. 1-2cm (foreskrevet mengde krem mot et utslett).">
-            >
-            ["id23"] = <
-                text = <"Antallsintervall">
-                description = <"Antallsintervall-datatypen brukes for å registrere et intervall av antall, f.eks. 1-2 tabletter foreskrevet. Maksimums- og minimumsverdier kan settes for laveste og høyeste antall.">
-            >
-            ["id22"] = <
-                text = <"Varighet">
-                description = <"Varighet-datatypen brukes til å registrere varigheten til kliniske konsepter. \"Tillat alle tidsenheter\" er standardverdi, selv om spesifikke tidsenheter kan modelleres eksplisitt. Maksimums- og minimumsverdier kan settes for hver tidsenhet.">
-            >
-            ["id21"] = <
-                text = <"Utvidelsesspor som kan inneholde andre Element-arketyper">
-                description = <"Liste over ELEMENT-arketyper som kan inkluderes eller ekskluderes i denne OBSERVATION-arketypen.">
-            >
-            ["id20"] = <
-                text = <"Utvidelsesspor som kan inneholde andre Cluster-arketyper">
-                description = <"Listen over CLUSTER-arketyper som kan inkluderes eller ekskluderes i denne OBSERVATION-arketypen.">
-            >
-            ["id19"] = <
-                text = <"Overskrift 2">
-                description = <"Dette er et symbol for et \"cluster\" med andre elementer inni seg.">
-            >
-            ["id18"] = <
-                text = <"Hvilken som helst">
-                description = <"Datatypen \"hvilken som helst\" kan spesifiseres eller begrenses i template eller i applikasjonen, men modelleres ikke eksplisitt i arketypen.">
-            >
-            ["id17"] = <
-                text = <"Boolsk verdi">
-                description = <"Boolsk verdi-datatypen brukes for å registrere verdier som sann/usann.">
-            >
-            ["id16"] = <
-                text = <"Ordinal">
-                description = <"Ordinaldatatyper setter sammen et tall og en tekststreng. Dette gjør det mulig å regne ut scoringer, eller vurdere progresjon dersom den brukes f.eks. i en smerteskala.">
-            >
-            ["id15"] = <
-                text = <"Dato/tid">
-                description = <"Dato/tidsdatatypen brukes til å registrere en dato og/eller tid, inklusiv deldatoer som f.eks. kun år eller kun måned og år. Standardverdi er at alle former er tillatt.">
-            >
-            ["id14"] = <
-                text = <"Antall">
-                description = <"Antall-datatypen består av et heltall uten enheter, f.eks. for å registrere antall barn. I dette eksempelet er minimum satt til 0 og maksimum er uspesifisert.">
-            >
-            ["id13"] = <
-                text = <"Kvantitet">
-                description = <"En kvantitetsdatatype som brukes til å registrere målinger tilknyttet passende enheter. Disse hentes fra ISO-standarder, og referansemodellen tillater konvertering mellom enhetene. Eksempelet vist er her lengde.">
-            >
-            ["id12"] = <
-                text = <"Tekst hentet fra en ekstern terminologi">
-                description = <"Tekstdata som bruker koder fra en ekstern terminologikilde, f.eks. SNOMED CT, LOINC eller ICD.">
-            >
-            ["at11"] = <
-                text = <"Stående">
-                description = <"Pasienten står oppreist.">
-            >
-            ["at10"] = <
-                text = <"Sittende">
-                description = <"Pasienten sitter i en stol.">
-            >
-            ["at9"] = <
-                text = <"Tilbakelent">
-                description = <"Pasienten ligger tilbakelent, støttet av en mellomstor pute.">
-            >
-            ["at8"] = <
-                text = <"Liggende">
-                description = <"Pasienten ligger på ryggen.">
-            >
-            ["id7"] = <
-                text = <"Tekst med interne koder">
-                description = <"Tekstdatatype som bruker et internt vokabular. Hver av disse \"interne kodene\" kan bindes til en terminologikode.">
-            >
-            ["id6"] = <
-                text = <"Fri eller kodet tekst">
-                description = <"Tekstdatatype som kan inneholde fritekst eller kodet tekst. Kodingen kan legges inn enten i template eller i applikasjonen.">
-            >
-            ["id5"] = <
-                text = <"Overskrift1">
-                description = <"Dette er et symbol for et \"cluster\" som kan inneholde andre elementer.">
-            >
-            ["id3"] = <
-                text = <"Tidfestet hendelse">
-                description = <"Alle arketyper av OBSERVATION-klassen inneholder en HISTORY eller EVENT-modell som inneholder informasjon om tidfesting av observasjonen og \"bredden\" av informasjonen, enten et tidspunkt eller et intervall. Standardverdi er \"Tidfestet hendelse\", og det er ikke spesifisert om dette er et tidspunkt eller et intervall.">
-            >
-            ["id1"] = <
-                text = <"Demonstrasjon">
-                description = <"Demonstrasjonsarketype med beskrivelser og forklaringer.">
+            ["ac2"] = <
+                text = <"SubconjuntoA">
+                description = <"Subconjunto de terminologia originário de XXX">
             >
             ["ac4"] = <
-                text = <"Subsett B">
-                description = <"XYZ koder fra Terminologi 123">
+                text = <"SubconjuntoB">
+                description = <"Códigos XYZ da Terminologia 123">
             >
-            ["ac2"] = <
-                text = <"Subsett A">
-                description = <"Terminologi-subsett fra XXX">
-            >
-        >
-        ["pt-br"] = <
             ["ac9000"] = <
                 text = <"Texto Que Usa Códigos Internos (synthesised)">
                 description = <"Tipo de dados  Texto que pode usar um vocabulário interno. Cada um desses ' códigos internos' pode ser vnculado a um código de uma terminologia. (synthesised)">
@@ -956,181 +1129,181 @@ terminology
                 text = <"* change (en)">
                 description = <"* change (en)">
             >
-            ["id46"] = <
-                text = <"*Extension(en)">
-                description = <"*Additional information required to capture local context or to align with other reference models/formalisms.(en)">
-                comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
+        >
+        ["en"] = <
+            ["id1"] = <
+                text = <"Demonstration">
+                description = <"Demonstration archetype with descriptions and explanations.">
             >
-            ["id45"] = <
-                text = <"Identificador">
-                description = <"Tipos de dados Identificadores possibilitam registrar identificadores formais de dados.">
+            ["id3"] = <
+                text = <"Any Event">
+                description = <"All archetypes of the OBSERVATION class contain a HISTORY or EVENT model which contains information about the timing of the observation and the 'width' of the information - either a point in time or an interval.  The default is 'Any event' and it is not specified if this is a Point in time or an Interval.">
             >
-            ["at44"] = <
-                text = <"Pior dor possível">
-                description = <"Dor classificada como nível 10 numa escala de 10.">
+            ["id5"] = <
+                text = <"Heading1">
+                description = <"This is a symbol for a cluster which can have other elements 'nested' within it.">
             >
-            ["at43"] = <
-                text = <"Dor severa">
-                description = <"Dor classificada nível 9 numa escala de 10.">
+            ["id6"] = <
+                text = <"Free Text or Coded">
+                description = <"Text data type in which free text can be entered or coding can be incorporated either in the template or at run time.">
             >
-            ["at42"] = <
-                text = <"Dor Moderada">
-                description = <"Dor classificada  como nível 5 numa escala máxima de 10.">
+            ["id7"] = <
+                text = <"Text That Uses Internal Codes">
+                description = <"Text data type which can use an internal vocabulary.  Each of these 'internal codes' can be bound to a terminology code.">
             >
-            ["at41"] = <
-                text = <"Dor branda">
-                description = <"Dor classificada como nível 2 numa escala máxima de 10.">
+            ["at8"] = <
+                text = <"Lying">
+                description = <"Patient is lying supine.">
             >
-            ["at40"] = <
-                text = <"Dor leve">
-                description = <"Dor classificada como nível 1 numa escala máxima de 10.">
+            ["at9"] = <
+                text = <"Reclining">
+                description = <"Patient is reclining, propped up on one medium pillow.">
             >
-            ["at39"] = <
-                text = <"Sem dor">
-                description = <"Nenhuma dor.">
+            ["at10"] = <
+                text = <"Sitting">
+                description = <"Patient is sitting on a chair.">
             >
-            ["id38"] = <
-                text = <"Protocolo-Definição">
-                description = <"Todos os arquétipos da classe de OBSERVAÇÃO podem conter um modelo de PROTOCOLO, o qual registra informação sobre como a informação foi colhida ou medida e quaisquer outras informações que não sejam necessárias para a interpretação clínica  segura das informações básicas. Os tipos de dados são idênticos àqueles explicados no modelo e DADOS acima.">
+            ["at11"] = <
+                text = <"Standing">
+                description = <"Patient is standing.">
             >
-            ["id36"] = <
-                text = <"Deslocamento do Ponto no tempo">
-                description = <"Deslocamento  do Ponto no Tempo registra o deslocamento fixo de 5 minutos de outro evento especificado, por exemplo, registrando a leitura de um escore de Apgar de 2 minutos aos 2 minutos após o parto.">
+            ["id12"] = <
+                text = <"Text That is Sourced From an External Terminology">
+                description = <"Text data type utilising codes derived from an external terminology source eg a SNOMED-CT, LOINC or ICD subset.">
             >
-            ["id35"] = <
-                text = <"Intervalo Nomeado">
-                description = <"Um evento que é ao mesmo tempo nomeado e restrito como um evento Intervalo, registra os mesmos elementos de dados relacionados ao período de tempo, por exemplo, Perda de peso durante o determinado período. O intervalo pode ser fixado, ou deixado inespecificado. Além disso,  pode-se especificar funções matemáticas para capturar conceitos como mudança, diminuição aumento, máximo, mínimo, média,etc.">
+            ["id13"] = <
+                text = <"Quantity">
+                description = <"A quantity data type used to record a measurement associated with its' appropriate units.  These are derived from ISO standards and the Reference model enables conversion between these units. The example shown here is length.">
             >
-            ["id34"] = <
-                text = <"Ponto no tempo Nomeado">
-                description = <"Um evento que é ao mesmo tempo nomeado (p. ex. Nascimento) e restrito como evento em um  Ponto no tempo, registra os elementos de dados relacionados a um ponto específico no tempo, como por exemplo, Peso no Nascimento.">
+            ["id14"] = <
+                text = <"Count">
+                description = <"Count data types are composed of an integer with no units eg for recording the number of children - in this example the minimum is set at 0 and the maximum not specified.">
             >
-            ["id33"] = <
-                text = <"Dados - Definição ">
-                description = <"Todos os arquétipos da classe de OBSERVAÇÃO contêm um modelo de DADOS que contém as informações básicas, por exemplo, as pressões sistólica e diastólica, quando está se medindo a pressão sanguínea.">
-            >
-            ["id32"] = <
-                text = <"Estado - Definição">
-                description = <"Todos os arquétipos da classe de OBSERVAÇÃO podem conter um modelo de ESTADO, que contém a informação sobre o sujeito a informação na hora que o dado foi colhido, e essa informação é requisito para uma interpretação segura das informações básicas. Um exemplo disso é a posição que o paciente se encontrava quando sua pressão arterial foi medida. Os tipos de dados são idênticos aos que foram explicados no modelo de DADOS acima.">
-            >
-            ["id29"] = <
-                text = <"Porporção">
-                description = <"Tipos de dados de Proporção permitem modelar taxas, porcentagens, frações e proporções.">
-            >
-            ["id28"] = <
-                text = <"URI - Identificador de Recursos ">
-                description = <"Tipos de dados URI permitem registrar os relacionamentos entre  estes dados e os dados registrados em outros lugares. Esses enlaces (links) podem estar  no mesmo RES ou serem externos, por exemplo, pertencer a  num endereço  na internet, uma URL.">
-            >
-            ["id27"] = <
-                text = <"Multimídia">
-                description = <"Tipos de dado Multimídia permitem o registro de vários tipos de arquivos multimídia. Todos os tipos disponíveis foram explicitamente selecionados neste exemplo.">
-            >
-            ["id26"] = <
-                text = <"Escolha">
-                description = <"Tipo de dado Escolha permite que um número de tipos de elementos sejam simultaneamente especificados, os quais podem ser restringidos num template ou no tempo de execução. Neste exemplo, um tipo de dado Texto é configurado para Texto livre ou Codificado e outro que é configurado restritamente para  registrar códigos de uma determinada terminologia para o mesmo elemento de dado.">
-            >
-            ["id25"] = <
-                text = <"Intervalo de Data">
-                description = <"Tipo de dado de Intervalo de Integer permite o registro de uma faixa de datas como, por exemplo, entre 1 de Setembro de 2008 e 8 de Setembro de 2008.">
-            >
-            ["id24"] = <
-                text = <"Intervalo de Quantidade">
-                description = <"Tipos de dados de Intervalo de Quantidade permitem registrar uma gama de mediddas  associadas com unidades apropriadas, por exemplo, 1-2cm  (quantidade de creme prescrito para um uma erupção cutânea).">
-            >
-            ["id23"] = <
-                text = <"Intervalo de Integer">
-                description = <"Tipo de dados de Intervalo de Integer permite o registro de uma faixa de contagem em intervalos, por exemplo, a cada 1 a 2 comprimidos prescritos. Os valores máximo e mínimo podem ser configurados para a contagem inferior ou para a superior.">
-            >
-            ["id22"] = <
-                text = <"Duração">
-                description = <"Tipo de dado Duração permite registrar a duração dos conceitos clínicos. O padrão predeterminado é 'Permitir  todas unidades de tempo', embora unidades específicas de tempo possam ser explicitamente modeladas.   Valores máximos e mínimos podem ser configurados para cada unidade de tempo.">
-            >
-            ["id21"] = <
-                text = <"Slot Para Conter Outroa Arququétipos de Elementos">
-                description = <"Lista de arquétipos de ELEMENTOS permitidos de serem incluíos ou excluídos dentro deste arquétipo de OBSERVAÇÃO.">
-            >
-            ["id20"] = <
-                text = <"Slot Para Conter Outros Arquétipos Clusters">
-                description = <"Lista de arquétipos  CLUSTER permitidos de serem incluídos ou excluídos dentro deste arquétipo de  OBSERVAÇÃO.">
-            >
-            ["id19"] = <
-                text = <"Cabelaçalho2">
-                description = <"Esse é o símbolo de um 'cluster' que pode ter outros elementos 'aninhados' dentro dele.">
-            >
-            ["id18"] = <
-                text = <"Qualquer">
-                description = <"Este tipo de dado para esse elemento 'Qualquer' pode ser especificado ou 'restrito' num modelo ou no tempo de execução, mas não é especificamente modelado no arquétipo.">
-            >
-            ["id17"] = <
-                text = <"Booleano">
-                description = <"Tipo de dado  Booleano que permite repostas do tipo falso ou verdadeiro.">
+            ["id15"] = <
+                text = <"Date/Time">
+                description = <"Date/Time datatype allows recording of a date and/or time, including partial dates such as year only or month and year only.  Allow all is the default - so all forms of date/time are permitted.">
             >
             ["id16"] = <
                 text = <"Ordinal">
-                description = <"Tipos de dados Ordinal pareiam um número e texto- deste modo  pode ser calculada uma pontuação pela  aplicação a progressão ser avaliada, como por exemplo se está se utilizando de uma escala de avaliação de dor.">
+                description = <"Ordinal datatypes pair a number and text - in this way scores can be calculated in software, or progression can be assessed eg if used in a pain score.">
             >
-            ["id15"] = <
-                text = <"Data/Horário">
-                description = <"Tipos de dado Data/Horário permite o registro de uma data e /ou um horário, incluindo  datas parciais como somente o mês ou o ano. Permite tudo como padrão de modo que todas as formas de data/horário são permitidas.">
+            ["id17"] = <
+                text = <"Boolean">
+                description = <"Boolean datatype that allows for true or false answers.">
             >
-            ["id14"] = <
-                text = <"Contagem ">
-                description = <"Tipos de dados de Contagem são compostos de um número inteiro sem casas decimais (integer), por exemplo, para registar o número de filhos- nesse exemplo o mínimo é colocado como 0 e o máximo não é especificado.">
+            ["id18"] = <
+                text = <"Any">
+                description = <"The datatype for this 'any' element can be specified or constrained in a template or at run-time, but is not explicitly modelled in the archetype.">
             >
-            ["id13"] = <
-                text = <"Quantidade">
-                description = <"Um tipo de dado de Quantidade usado para registrar uma medida associada com suas uniddades apropriadas. Essas unidades são derivadas de norams ISO e o modelo de  Referência possibilita a conversão entre elas. O exemplo demonstrado aqui é o comprimento.">
+            ["id19"] = <
+                text = <"Heading 2">
+                description = <"This is a symbol for a cluster which can have other elements 'nested' within it.">
             >
-            ["id12"] = <
-                text = <"Texto Cuja Origem é uma Terminologia Externa ">
-                description = <"Tipo de dado Texto utilizando códigos originários de uma terminologia externa como, por exemplo, um subset do SNOMED CT, do LOINC ou da CID 10. ">
+            ["id20"] = <
+                text = <"Slot To Contain Other Cluster Archetypes">
+                description = <"List of CLUSTER archetypes allowed to be included or excluded within this OBSERVATION archetype.">
             >
-            ["at11"] = <
-                text = <"Em pé">
-                description = <"Paciente está em Pé.">
+            ["id21"] = <
+                text = <"Slot To Contain Other Element Archetypes">
+                description = <"List of ELEMENT archetypes allowed to be included or excluded within this OBSERVATION archetype.">
             >
-            ["at10"] = <
-                text = <"Sentado">
-                description = <"Paciente está Sentado em uma cadeira.">
+            ["id22"] = <
+                text = <"Duration">
+                description = <"Duration datatype allows recording of the duration of clinical concepts.  'Allow all time units' is the default, although specific time units can be explicitly modelled.  Maximum and minum values can be set for each time unit.">
             >
-            ["at9"] = <
-                text = <"Reclinado">
-                description = <"Paciente Reclinado, apoiado em um travesseiro médio.">
+            ["id23"] = <
+                text = <"Interval of Integer">
+                description = <"Interval of integer datatype allows for recording of a range of counts eg 1-2 tablets prescribed.  Maximum and minimum values can be set for the lower count and the upper count.">
             >
-            ["at8"] = <
-                text = <"Deitado">
-                description = <"Paciente Deitado em posição supina ou decúbito dorsal.">
+            ["id24"] = <
+                text = <"Interval of Quantity">
+                description = <"Interval of quantity datatypes allow for the recording of a range of measurements in association with appropriate units eg 1-2cm (prescribed amount of cream for a rash).">
             >
-            ["id7"] = <
-                text = <"Texto Que Usa Códigos Internos">
-                description = <"Tipo de dados  Texto que pode usar um vocabulário interno. Cada um desses ' códigos internos' pode ser vnculado a um código de uma terminologia.">
+            ["id25"] = <
+                text = <"Interval of Date">
+                description = <"Interval of integer datatype allows for recording of a range of dates eg between September 1, 2008 and September 8, 2008.">
             >
-            ["id6"] = <
-                text = <"Texto livre ou Codificado">
-                description = <"Tipo de dado Texto no qual se pode entrar ou  texto livre ou códigos podem ser incoprporados seja  no template ou no tempo de execução.">
+            ["id26"] = <
+                text = <"Choice">
+                description = <"Choice datatype allows for a number of types of element to be specified simultaneously and which can constrained or selected within a template or at run-time.  In this example, a text datatype set to Free text or Coded and another that is constrained to Terminology record data about the same data element.">
             >
-            ["id5"] = <
-                text = <"Cabeçalho1">
-                description = <"Este é um símbolo para um 'cluster' que pode ter outros elementos 'aninhados' dentro dele.">
+            ["id27"] = <
+                text = <"Multimedia">
+                description = <"Multimedia datatypes allow for the recording of many types of multimedia files to be captured.  All available types have been explicitly selected in this example.">
             >
-            ["id3"] = <
-                text = <"Qualquer evento">
-                description = <"Todos os arquétipos da classe de OBSERVAÇÃO contêm um modelo de HISTÓRIA ou de EVENTO que contém informação sobre o período da observação com a duração  da informação-  seja um ponto no  tempo ou um intervalo temporal. O padrão predeterminado é ' Qualquer evento' e não é especificado, se é um Ponto no tempo ou um Intervalo.">
+            ["id28"] = <
+                text = <"URI - resource identifier">
+                description = <"URI datatypes allow for recording of relationships from this data to data recorded elsewhere.  These links can be within the same EHR, or external eg to a  URL.">
             >
-            ["id1"] = <
-                text = <"Demonstração">
-                description = <"Arquétipo de Demonstração com descrições e explicações. ">
+            ["id29"] = <
+                text = <"Proportion">
+                description = <"Proportion datatypes allow for ratios, percent, fractions and proportions to be modelled.">
             >
-            ["ac4"] = <
-                text = <"SubconjuntoB">
-                description = <"Códigos XYZ da Terminologia 123">
+            ["id32"] = <
+                text = <"State - Definition">
+                description = <"All archetypes of the OBSERVATION class can  contain a STATE model which contains information about the subject of data at the time the information was collected, and this information is required for safe clinical interpretation of the core information. An example is the position of the patient at the time of measuring a blood pressure.  Datatypes are identical to those explained in the Data model, above.">
+            >
+            ["id33"] = <
+                text = <"Data - Definition">
+                description = <"All archetypes of the OBSERVATION class contain a DATA model  which contains the core information e.g. the systolic and diastolic pressures when measuring a blood pressure.">
+            >
+            ["id34"] = <
+                text = <"Named Point In Time">
+                description = <"An event that is both named (eg Birth) and constrained as a Point in time event records the data elements in relation to a specified point in time eg Weight at Birth.">
+            >
+            ["id35"] = <
+                text = <"Named Interval">
+                description = <"An event that is both named and constrained as an Interval event records the data elements in relation to a period of time eg Weight Loss over time.  The interval can be fixed or left unspecified.  In addition there are mathematical functions that can be specified to capture concepts such as change, decrease, increase, maximum, minimum, mean etc.">
+            >
+            ["id36"] = <
+                text = <"Offset Point In Time">
+                description = <"Offset Point in time records data at a point in time with a fixed offset of 5 minutes from another specified event eg recording a 2 minute Apgar reading at 2 minutes offset from Birth.">
+            >
+            ["id38"] = <
+                text = <"Protocol - Definition">
+                description = <"All archetypes of the OBSERVATION class can contain a PROTOCOL model which records information on how the information was gathered or measured, and any other information that is not required for safe clinical interpretation of the core Data. Datatypes are identical to those explained in the Data model, above.">
+            >
+            ["at39"] = <
+                text = <"No pain">
+                description = <"No pain at all.">
+            >
+            ["at40"] = <
+                text = <"Slight pain">
+                description = <"Pain level rated as 1 out of a possible maximum score of 10.">
+            >
+            ["at41"] = <
+                text = <"Mild pain">
+                description = <"Pain level rated as 2 out of a possible maximum score of 10.">
+            >
+            ["at42"] = <
+                text = <"Moderate pain">
+                description = <"Pain level rated as 5 out of a possible maximum score of 10.">
+            >
+            ["at43"] = <
+                text = <"Severe pain">
+                description = <"Pain level rated as 9 out of a possible maximum score of 10.">
+            >
+            ["at44"] = <
+                text = <"Most severe pain imaginable">
+                description = <"Pain level rated as 10 out of a possible maximum score of 10.">
+            >
+            ["id45"] = <
+                text = <"Identifier">
+                description = <"Identifier datatypes enable recording of formal data identifiers.">
+            >
+            ["id46"] = <
+                text = <"Extension">
+                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
+                comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
             >
             ["ac2"] = <
-                text = <"SubconjuntoA">
-                description = <"Subconjunto de terminologia originário de XXX">
+                text = <"SubsetA">
+                description = <"Terminology subset derived from XXX">
             >
-        >
-        ["en"] = <
+            ["ac4"] = <
+                text = <"SubsetB">
+                description = <"XYZ codes from Terminology 123">
+            >
             ["ac9000"] = <
                 text = <"Text That Uses Internal Codes (synthesised)">
                 description = <"Text data type which can use an internal vocabulary.  Each of these 'internal codes' can be bound to a terminology code. (synthesised)">
@@ -1354,179 +1527,6 @@ terminology
             ["at9055"] = <
                 text = <"change">
                 description = <"change">
-            >
-            ["id46"] = <
-                text = <"Extension">
-                description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
-                comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
-            >
-            ["id45"] = <
-                text = <"Identifier">
-                description = <"Identifier datatypes enable recording of formal data identifiers.">
-            >
-            ["at44"] = <
-                text = <"Most severe pain imaginable">
-                description = <"Pain level rated as 10 out of a possible maximum score of 10.">
-            >
-            ["at43"] = <
-                text = <"Severe pain">
-                description = <"Pain level rated as 9 out of a possible maximum score of 10.">
-            >
-            ["at42"] = <
-                text = <"Moderate pain">
-                description = <"Pain level rated as 5 out of a possible maximum score of 10.">
-            >
-            ["at41"] = <
-                text = <"Mild pain">
-                description = <"Pain level rated as 2 out of a possible maximum score of 10.">
-            >
-            ["at40"] = <
-                text = <"Slight pain">
-                description = <"Pain level rated as 1 out of a possible maximum score of 10.">
-            >
-            ["at39"] = <
-                text = <"No pain">
-                description = <"No pain at all.">
-            >
-            ["id38"] = <
-                text = <"Protocol - Definition">
-                description = <"All archetypes of the OBSERVATION class can contain a PROTOCOL model which records information on how the information was gathered or measured, and any other information that is not required for safe clinical interpretation of the core Data. Datatypes are identical to those explained in the Data model, above.">
-            >
-            ["id36"] = <
-                text = <"Offset Point In Time">
-                description = <"Offset Point in time records data at a point in time with a fixed offset of 5 minutes from another specified event eg recording a 2 minute Apgar reading at 2 minutes offset from Birth.">
-            >
-            ["id35"] = <
-                text = <"Named Interval">
-                description = <"An event that is both named and constrained as an Interval event records the data elements in relation to a period of time eg Weight Loss over time.  The interval can be fixed or left unspecified.  In addition there are mathematical functions that can be specified to capture concepts such as change, decrease, increase, maximum, minimum, mean etc.">
-            >
-            ["id34"] = <
-                text = <"Named Point In Time">
-                description = <"An event that is both named (eg Birth) and constrained as a Point in time event records the data elements in relation to a specified point in time eg Weight at Birth.">
-            >
-            ["id33"] = <
-                text = <"Data - Definition">
-                description = <"All archetypes of the OBSERVATION class contain a DATA model  which contains the core information e.g. the systolic and diastolic pressures when measuring a blood pressure.">
-            >
-            ["id32"] = <
-                text = <"State - Definition">
-                description = <"All archetypes of the OBSERVATION class can  contain a STATE model which contains information about the subject of data at the time the information was collected, and this information is required for safe clinical interpretation of the core information. An example is the position of the patient at the time of measuring a blood pressure.  Datatypes are identical to those explained in the Data model, above.">
-            >
-            ["id29"] = <
-                text = <"Proportion">
-                description = <"Proportion datatypes allow for ratios, percent, fractions and proportions to be modelled.">
-            >
-            ["id28"] = <
-                text = <"URI - resource identifier">
-                description = <"URI datatypes allow for recording of relationships from this data to data recorded elsewhere.  These links can be within the same EHR, or external eg to a  URL.">
-            >
-            ["id27"] = <
-                text = <"Multimedia">
-                description = <"Multimedia datatypes allow for the recording of many types of multimedia files to be captured.  All available types have been explicitly selected in this example.">
-            >
-            ["id26"] = <
-                text = <"Choice">
-                description = <"Choice datatype allows for a number of types of element to be specified simultaneously and which can constrained or selected within a template or at run-time.  In this example, a text datatype set to Free text or Coded and another that is constrained to Terminology record data about the same data element.">
-            >
-            ["id25"] = <
-                text = <"Interval of Date">
-                description = <"Interval of integer datatype allows for recording of a range of dates eg between September 1, 2008 and September 8, 2008.">
-            >
-            ["id24"] = <
-                text = <"Interval of Quantity">
-                description = <"Interval of quantity datatypes allow for the recording of a range of measurements in association with appropriate units eg 1-2cm (prescribed amount of cream for a rash).">
-            >
-            ["id23"] = <
-                text = <"Interval of Integer">
-                description = <"Interval of integer datatype allows for recording of a range of counts eg 1-2 tablets prescribed.  Maximum and minimum values can be set for the lower count and the upper count.">
-            >
-            ["id22"] = <
-                text = <"Duration">
-                description = <"Duration datatype allows recording of the duration of clinical concepts.  'Allow all time units' is the default, although specific time units can be explicitly modelled.  Maximum and minum values can be set for each time unit.">
-            >
-            ["id21"] = <
-                text = <"Slot To Contain Other Element Archetypes">
-                description = <"List of ELEMENT archetypes allowed to be included or excluded within this OBSERVATION archetype.">
-            >
-            ["id20"] = <
-                text = <"Slot To Contain Other Cluster Archetypes">
-                description = <"List of CLUSTER archetypes allowed to be included or excluded within this OBSERVATION archetype.">
-            >
-            ["id19"] = <
-                text = <"Heading 2">
-                description = <"This is a symbol for a cluster which can have other elements 'nested' within it.">
-            >
-            ["id18"] = <
-                text = <"Any">
-                description = <"The datatype for this 'any' element can be specified or constrained in a template or at run-time, but is not explicitly modelled in the archetype.">
-            >
-            ["id17"] = <
-                text = <"Boolean">
-                description = <"Boolean datatype that allows for true or false answers.">
-            >
-            ["id16"] = <
-                text = <"Ordinal">
-                description = <"Ordinal datatypes pair a number and text - in this way scores can be calculated in software, or progression can be assessed eg if used in a pain score.">
-            >
-            ["id15"] = <
-                text = <"Date/Time">
-                description = <"Date/Time datatype allows recording of a date and/or time, including partial dates such as year only or month and year only.  Allow all is the default - so all forms of date/time are permitted.">
-            >
-            ["id14"] = <
-                text = <"Count">
-                description = <"Count data types are composed of an integer with no units eg for recording the number of children - in this example the minimum is set at 0 and the maximum not specified.">
-            >
-            ["id13"] = <
-                text = <"Quantity">
-                description = <"A quantity data type used to record a measurement associated with its' appropriate units.  These are derived from ISO standards and the Reference model enables conversion between these units. The example shown here is length.">
-            >
-            ["id12"] = <
-                text = <"Text That is Sourced From an External Terminology">
-                description = <"Text data type utilising codes derived from an external terminology source eg a SNOMED-CT, LOINC or ICD subset.">
-            >
-            ["at11"] = <
-                text = <"Standing">
-                description = <"Patient is standing.">
-            >
-            ["at10"] = <
-                text = <"Sitting">
-                description = <"Patient is sitting on a chair.">
-            >
-            ["at9"] = <
-                text = <"Reclining">
-                description = <"Patient is reclining, propped up on one medium pillow.">
-            >
-            ["at8"] = <
-                text = <"Lying">
-                description = <"Patient is lying supine.">
-            >
-            ["id7"] = <
-                text = <"Text That Uses Internal Codes">
-                description = <"Text data type which can use an internal vocabulary.  Each of these 'internal codes' can be bound to a terminology code.">
-            >
-            ["id6"] = <
-                text = <"Free Text or Coded">
-                description = <"Text data type in which free text can be entered or coding can be incorporated either in the template or at run time.">
-            >
-            ["id5"] = <
-                text = <"Heading1">
-                description = <"This is a symbol for a cluster which can have other elements 'nested' within it.">
-            >
-            ["id3"] = <
-                text = <"Any Event">
-                description = <"All archetypes of the OBSERVATION class contain a HISTORY or EVENT model which contains information about the timing of the observation and the 'width' of the information - either a point in time or an interval.  The default is 'Any event' and it is not specified if this is a Point in time or an Interval.">
-            >
-            ["id1"] = <
-                text = <"Demonstration">
-                description = <"Demonstration archetype with descriptions and explanations.">
-            >
-            ["ac4"] = <
-                text = <"SubsetB">
-                description = <"XYZ codes from Terminology 123">
-            >
-            ["ac2"] = <
-                text = <"SubsetA">
-                description = <"Terminology subset derived from XXX">
             >
         >
     >

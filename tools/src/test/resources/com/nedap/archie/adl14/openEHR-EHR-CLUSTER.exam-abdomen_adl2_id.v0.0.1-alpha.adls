@@ -216,108 +216,108 @@ definition
 terminology
     term_definitions = <
         ["de"] = <
-            ["id5.1"] = <
-                text = <"Untersuchungsergebnisse">
-                description = <"Strukturierte Angaben zu den Ergebnissen der körperlichen Untersuchung.">
+            ["id1.1"] = <
+                text = <"Ergebnisse der körperlichen Untersuchung">
+                description = <"Während der körperlichen Untersuchung eines Körpersystems oder einer anatomischen Struktur beobachtete Befunde.">
             >
             ["id2.1"] = <
                 text = <"Untersuchtes System oder untersuchte Struktur">
                 description = <"Identifizierung des untersuchten Körpersystems oder der anatomischen Struktur.">
                 comment = <"Wenn möglich wird die Kodierung des untersuchten Systems oder der untersuchten Struktur mit einer Terminologie bevorzugt.">
             >
-            ["id1.1"] = <
-                text = <"Ergebnisse der körperlichen Untersuchung">
-                description = <"Während der körperlichen Untersuchung eines Körpersystems oder einer anatomischen Struktur beobachtete Befunde.">
+            ["id5.1"] = <
+                text = <"Untersuchungsergebnisse">
+                description = <"Strukturierte Angaben zu den Ergebnissen der körperlichen Untersuchung.">
             >
         >
         ["sv"] = <
-            ["id5.1"] = <
-                text = <"Fynd vid undersökning">
-                description = <"Strukturerade detaljer om fynd vid den fysiska undersökningen.">
+            ["id1.1"] = <
+                text = <"*Physical examination findings (en)">
+                description = <"Observerade fynd vid fysisk undersökning av system i kroppen, eller av anatomisk struktur">
             >
             ["id2.1"] = <
                 text = <"System eller struktur som undersökts">
                 description = <"Identifiering av systemet eller strukturen som undersökts.">
                 comment = <"Om möjligt, koda systemet eller strukturen med hjälp av ett terminologisystem.">
             >
-            ["id1.1"] = <
-                text = <"*Physical examination findings (en)">
-                description = <"Observerade fynd vid fysisk undersökning av system i kroppen, eller av anatomisk struktur">
+            ["id5.1"] = <
+                text = <"Fynd vid undersökning">
+                description = <"Strukturerade detaljer om fynd vid den fysiska undersökningen.">
             >
         >
         ["nb"] = <
-            ["id5.1"] = <
-                text = <"Spesifikke funn">
-                description = <"Ytterligere strukturerte detaljer om undersøkelsesfunnene.">
+            ["id1.1"] = <
+                text = <"*Examination of the abdomen (en)">
+                description = <"Funn ved fysisk undersøkelse av et organsystem eller anatomisk struktur.">
             >
             ["id2.1"] = <
                 text = <"Undersøkt organsystem eller struktur">
                 description = <"Identifisering av det undersøkte organsystemet eller anatomiske strukturen.">
                 comment = <"For eksempel den generiske termen \"Hud\" - som mest sannsynlig vil trenge en ytterligere spesifikasjon ved å benytte dataelementet \"Anatomisk lokalisasjon\", eller en fullstendig frase, som \"Hud på høyre kne\". Det er anbefalt å kode det undersøkte systemet eller strukturen med en terminologi, der det er mulig.">
             >
-            ["id1.1"] = <
-                text = <"*Examination of the abdomen (en)">
-                description = <"Funn ved fysisk undersøkelse av et organsystem eller anatomisk struktur.">
+            ["id5.1"] = <
+                text = <"Spesifikke funn">
+                description = <"Ytterligere strukturerte detaljer om undersøkelsesfunnene.">
             >
         >
         ["pt-br"] = <
-            ["id5.1"] = <
-                text = <"Resultados do exame">
-                description = <"Detalhes estruturados sobre os resultados do exame físico.">
+            ["id1.1"] = <
+                text = <"*Physical examination findings (en)">
+                description = <"Constatações observadas durante o exame físico de um sistema corporal ou estrutura anatômica.">
             >
             ["id2.1"] = <
                 text = <"Sistema ou estrutura examinada">
                 description = <"Identificação do sistema do corpo examinado ou da estrutura anatômica.">
                 comment = <"A codificação do sistema ou estrutura examinada com uma terminologia é preferível, sempre que possível.">
             >
-            ["id1.1"] = <
-                text = <"*Physical examination findings (en)">
-                description = <"Constatações observadas durante o exame físico de um sistema corporal ou estrutura anatômica.">
+            ["id5.1"] = <
+                text = <"Resultados do exame">
+                description = <"Detalhes estruturados sobre os resultados do exame físico.">
             >
         >
         ["el"] = <
-            ["id5.1"] = <
-                text = <"Ευρήματα εξέτασης">
-                description = <"Δομημένες λεπτομέρειες σχετικά με τα ευρήματα της φυσικής εξέτασης.">
+            ["id1.1"] = <
+                text = <"*Physical examination findings (en)">
+                description = <"Ευρήματα που παρατηρούνται κατά τη φυσική εξέταση ενός συστήματος σώματος ή ανατομικής δομής.">
             >
             ["id2.1"] = <
                 text = <"Εξεταζόμενο σύστημα ή δομή">
                 description = <"Ταυτοποίηση του εξεταζόμενου συστήματος σώματος ή ανατομικής δομής.">
                 comment = <"Προτιμάται η κωδικοποίηση του συστήματος ή της δομής που εξετάζεται με ορολογία, όπου είναι δυνατόν.">
             >
-            ["id1.1"] = <
-                text = <"*Physical examination findings (en)">
-                description = <"Ευρήματα που παρατηρούνται κατά τη φυσική εξέταση ενός συστήματος σώματος ή ανατομικής δομής.">
+            ["id5.1"] = <
+                text = <"Ευρήματα εξέτασης">
+                description = <"Δομημένες λεπτομέρειες σχετικά με τα ευρήματα της φυσικής εξέτασης.">
             >
         >
         ["en"] = <
-            ["id5.1"] = <
-                text = <"Examination findings">
-                description = <"Structured details about the physical examination findings.">
+            ["id1.1"] = <
+                text = <"Examination of the abdomen">
+                description = <"Findings observed during the physical examination of the abdomen.">
             >
             ["id2.1"] = <
                 text = <"System or structure examined">
                 description = <"Identification of the examined body system or anatomical structure.">
                 comment = <"For example: the very generic term \"skin\", which will likely require additional qualification using one of the 'Body site' data elements, or the complete phrase \"skin of right knee\". Coding of the system or structure examined with a terminology is preferred, where possible.">
             >
-            ["id1.1"] = <
-                text = <"Examination of the abdomen">
-                description = <"Findings observed during the physical examination of the abdomen.">
+            ["id5.1"] = <
+                text = <"Examination findings">
+                description = <"Structured details about the physical examination findings.">
             >
         >
         ["es"] = <
-            ["id5.1"] = <
-                text = <"*Examination findings(en)">
-                description = <"*Structured details about the physical examination findings.(en)">
+            ["id1.1"] = <
+                text = <"*Physical examination findings (en)">
+                description = <"*Findings observed during the physical examination of a body system or anatomical structure.(en)">
             >
             ["id2.1"] = <
                 text = <"*System or structure examined(en)">
                 description = <"*Identification of the examined body system or anatomical structure.(en)">
                 comment = <"*Coding of the system or structure examined with a terminology is preferred, where possible.(en)">
             >
-            ["id1.1"] = <
-                text = <"*Physical examination findings (en)">
-                description = <"*Findings observed during the physical examination of a body system or anatomical structure.(en)">
+            ["id5.1"] = <
+                text = <"*Examination findings(en)">
+                description = <"*Structured details about the physical examination findings.(en)">
             >
         >
     >

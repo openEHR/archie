@@ -199,12 +199,12 @@ definition
                                                 value matches {
                                                     DV_ORDINAL[at9073] matches {
                                                         [value, symbol] matches {
-                                                            [{0}, {[at0038]}],
-                                                            [{1}, {[at0039]}],
-                                                            [{2}, {[at0040]}],
-                                                            [{5}, {[at0041]}],
-                                                            [{9}, {[at0042]}],
-                                                            [{10}, {[at0043]}]
+                                                            [{0}, {[at0038]}],    -- No pain
+                                                            [{1}, {[at0039]}],    -- Slight pain
+                                                            [{2}, {[at0040]}],    -- Mild pain
+                                                            [{5}, {[at0041]}],    -- Moderate pain
+                                                            [{9}, {[at0042]}],    -- Severe pain
+                                                            [{10}, {[at0043]}]    -- Most severe pain imaginable
                                                         }
                                                     }
                                                 }
@@ -498,6 +498,14 @@ terminology
                 description = <"*Additional information required to capture local context or to align with other reference models/formalisms.(en)">
                 comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
+            ["ac2"] = <
+                text = <"Subsett A">
+                description = <"Terminologi-subsett fra XXX">
+            >
+            ["ac4"] = <
+                text = <"Subsett B">
+                description = <"XYZ koder fra Terminologi 123">
+            >
             ["ac9000"] = <
                 text = <"Tekst med interne koder (synthesised)">
                 description = <"Tekstdatatype som bruker et internt vokabular. Hver av disse \"interne kodene\" kan bindes til en terminologikode. (synthesised)">
@@ -722,14 +730,6 @@ terminology
                 text = <"* change (en)">
                 description = <"* change (en)">
             >
-            ["ac4"] = <
-                text = <"Subsett B">
-                description = <"XYZ koder fra Terminologi 123">
-            >
-            ["ac2"] = <
-                text = <"Subsett A">
-                description = <"Terminologi-subsett fra XXX">
-            >
         >
         ["pt-br"] = <
             ["at0000"] = <
@@ -896,6 +896,14 @@ terminology
                 text = <"*Extension(en)">
                 description = <"*Additional information required to capture local context or to align with other reference models/formalisms.(en)">
                 comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
+            >
+            ["ac2"] = <
+                text = <"SubconjuntoA">
+                description = <"Subconjunto de terminologia originário de XXX">
+            >
+            ["ac4"] = <
+                text = <"SubconjuntoB">
+                description = <"Códigos XYZ da Terminologia 123">
             >
             ["ac9000"] = <
                 text = <"Texto Que Usa Códigos Internos (synthesised)">
@@ -1121,14 +1129,6 @@ terminology
                 text = <"* change (en)">
                 description = <"* change (en)">
             >
-            ["ac4"] = <
-                text = <"SubconjuntoB">
-                description = <"Códigos XYZ da Terminologia 123">
-            >
-            ["ac2"] = <
-                text = <"SubconjuntoA">
-                description = <"Subconjunto de terminologia originário de XXX">
-            >
         >
         ["en"] = <
             ["at0000"] = <
@@ -1295,6 +1295,14 @@ terminology
                 text = <"Extension">
                 description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
                 comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
+            >
+            ["ac2"] = <
+                text = <"SubsetA">
+                description = <"Terminology subset derived from XXX">
+            >
+            ["ac4"] = <
+                text = <"SubsetB">
+                description = <"XYZ codes from Terminology 123">
             >
             ["ac9000"] = <
                 text = <"Text That Uses Internal Codes (synthesised)">
@@ -1519,14 +1527,6 @@ terminology
             ["at9055"] = <
                 text = <"change">
                 description = <"change">
-            >
-            ["ac4"] = <
-                text = <"SubsetB">
-                description = <"XYZ codes from Terminology 123">
-            >
-            ["ac2"] = <
-                text = <"SubsetA">
-                description = <"Terminology subset derived from XXX">
             >
         >
     >
