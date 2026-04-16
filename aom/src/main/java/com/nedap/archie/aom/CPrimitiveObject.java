@@ -1,6 +1,7 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
@@ -35,11 +36,10 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
     public abstract void setAssumedValue(ValueType assumedValue);
 
-    public abstract List<Constraint> getConstraint();
+    public abstract Constraint getConstraint();
 
-    public abstract void setConstraint(List<Constraint> constraint);
-
-    public abstract void addConstraint(Constraint constraint);
+    @JsonIgnore
+    public abstract List<?> getConstraintAsList();
 
     @JsonAlias("is_enumerated_type_constraint")
     @RMProperty("is_enumerated_type_constraint")
@@ -74,10 +74,10 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
      */
     @Deprecated
     public boolean isValidValue(ValueType value) {
-        if(getConstraint().isEmpty()) {
+        if(getConstraintAsList().isEmpty()) {
             return true;
         }
-        for(Constraint constraint:getConstraint()) {
+        for(Object constraint:getConstraintAsList()) {
             if(Objects.equals(constraint, value)) {
                 return true;
             }
@@ -105,7 +105,7 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
         StringBuilder result = new StringBuilder();
         result.append("{");
         boolean first = true;
-        for(Constraint constraint:getConstraint()) {
+        for(Object constraint:getConstraintAsList()) {
             if(!first) {
                 result.append(", ");
             }

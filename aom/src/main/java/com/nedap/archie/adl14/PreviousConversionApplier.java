@@ -199,7 +199,8 @@ public class PreviousConversionApplier {
         Set<String> result = new LinkedHashSet<>();
         for(CObject child:attribute.getChildren()) {
             if(child instanceof CTerminologyCode) {
-                for(String constraint:((CTerminologyCode) child).getConstraint()) {
+                String constraint = ((CTerminologyCode) child).getConstraint();
+                if(constraint != null) {
                     if(constraint.startsWith("ac")) {
                         result.add(constraint);
                     }
@@ -215,7 +216,7 @@ public class PreviousConversionApplier {
                         for(CPrimitiveTuple primitiveTuple:tuple.getTuples()) {
                             CTerminologyCode cTermCode = (CTerminologyCode) primitiveTuple.getMember(symbolIndex);
                             if(cTermCode != null) {
-                                atCodes.addAll(cTermCode.getConstraint());
+                                atCodes.addAll(cTermCode.getConstraintAsList());
                             }
                         }
                     }
