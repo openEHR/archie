@@ -2,18 +2,15 @@ package com.nedap.archie.query;
 
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.Lists;
-import com.nedap.archie.paths.PathSegment;
-
 import com.nedap.archie.adlparser.antlr.XPathLexer;
 import com.nedap.archie.adlparser.antlr.XPathParser;
 import com.nedap.archie.adlparser.antlr.XPathParser.*;
+import com.nedap.archie.paths.PathSegment;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**

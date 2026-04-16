@@ -2,7 +2,7 @@ package com.nedap.archie.rmobjectvalidator.invariants;
 
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.directory.Folder;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 

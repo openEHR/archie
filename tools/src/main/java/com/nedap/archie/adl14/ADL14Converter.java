@@ -10,6 +10,7 @@ import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.diff.Differentiator;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 
 import java.text.MessageFormat;
@@ -20,12 +21,20 @@ import java.util.List;
 
 public class ADL14Converter {
 
-    private final MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
     private final ADL14ConversionConfiguration conversionConfiguration;
     private InMemoryFullArchetypeRepository existingRepository;
 
+    /**
+     * @deprecated Use {@link #ADL14Converter(MetaModelProvider, ADL14ConversionConfiguration)} instead.
+     */
+    @Deprecated
     public ADL14Converter(MetaModels metaModels, ADL14ConversionConfiguration conversionConfiguration) {
-        this.metaModels = metaModels;
+        this((MetaModelProvider) metaModels, conversionConfiguration);
+    }
+
+    public ADL14Converter(MetaModelProvider metaModelProvider, ADL14ConversionConfiguration conversionConfiguration) {
+        this.metaModelProvider = metaModelProvider;
         this.conversionConfiguration = conversionConfiguration;
     }
 
@@ -73,7 +82,7 @@ public class ADL14Converter {
         // Process the archetypes ordered by specialization level
         unprocessed.sort(Comparator.comparingInt(Archetype::specializationDepth));
 
-        Differentiator differentiator = new Differentiator(metaModels);
+        Differentiator differentiator = new Differentiator(metaModelProvider);
         for (Archetype archetype : unprocessed) {
             ADL2ConversionResult result;
             try {
@@ -82,7 +91,7 @@ public class ADL14Converter {
                     if (parent == null) {
                         throw new RuntimeException(MessageFormat.format("Cannot find parent {0} for archetype {1}", archetype.getParentArchetypeId(), archetype.getArchetypeId()));
                     }
-                    Archetype flatParent = new Flattener(repository, metaModels).flatten(parent);
+                    Archetype flatParent = new Flattener(repository, metaModelProvider).flatten(parent);
                     result = convert(archetype, flatParent, previousConversion);
                     if (result.getArchetype() != null) {
                         if (conversionConfiguration.isApplyDiff()) {
@@ -125,16 +134,16 @@ public class ADL14Converter {
         convertHeader(convertedArchetype);
 
         // Correct default multiplicities
-        new ADL14DefaultMultiplicitiesSetter(metaModels).setDefaults(convertedArchetype);
+        new ADL14DefaultMultiplicitiesSetter(metaModelProvider).setDefaults(convertedArchetype);
 
         // Convert nodeId's
         ADL2ConversionResult result = new ADL2ConversionResult(convertedArchetype);
-        ADL14NodeIDConverter adl14NodeIDConverter = new ADL14NodeIDConverter(this.metaModels, convertedArchetype, flatParent, conversionConfiguration, previousLog, result);
+        ADL14NodeIDConverter adl14NodeIDConverter = new ADL14NodeIDConverter(metaModelProvider, convertedArchetype, flatParent, conversionConfiguration, previousLog, result);
         ADL2ConversionLog conversionLog = adl14NodeIDConverter.convert();
         result.setConversionLog(conversionLog);
 
         // Remove structures that are not default in ADL1.4, but are default in ADL2
-        new DefaultRmStructureRemover(metaModels, true).removeRMDefaults(convertedArchetype);
+        new DefaultRmStructureRemover(metaModelProvider, true).removeRMDefaults(convertedArchetype);
 
         // Set some values that are not directly in ODIN or ADL
         ArchetypeParsePostProcessor.fixArchetype(convertedArchetype);

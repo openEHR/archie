@@ -11,7 +11,10 @@ import java.net.URI;
  * A safe serializer for java.net.URI to better support cloning of a DvUri RMObject.
  * This implementation is functionally correct, but irrelevant because we only clone objects.
  * Should be removed in Kryo 6 where it will be registered by default.
+ *
+ * @deprecated This class will be removed. Use {@link com.nedap.archie.util.CloneUtil} instead.
  */
+@Deprecated
 public class URISerializer extends ImmutableSerializer<URI> {
 
     @Override

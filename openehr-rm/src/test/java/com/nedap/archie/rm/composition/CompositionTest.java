@@ -1,17 +1,17 @@
 package com.nedap.archie.rm.composition;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
+import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.xml.JAXBUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.StringWriter;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CompositionTest {
 

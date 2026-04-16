@@ -1,22 +1,16 @@
 package com.nedap.archie.json;
 
 import com.google.common.base.Charsets;
-import org.leadpony.justify.api.JsonSchema;
-import org.leadpony.justify.api.JsonSchemaReader;
-import org.leadpony.justify.api.JsonSchemaReaderFactory;
-import org.leadpony.justify.api.JsonValidationService;
-import org.leadpony.justify.api.Problem;
-import org.leadpony.justify.api.ProblemHandler;
-import org.openehr.bmm.core.BmmModel;
-
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import jakarta.json.JsonStructure;
+import org.leadpony.justify.api.*;
+import org.openehr.bmm.core.BmmModel;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

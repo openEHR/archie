@@ -1,13 +1,6 @@
 package com.nedap.archie.creation;
 
-import com.google.common.collect.Lists;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CArchetypeRoot;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.OperationalTemplate;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.utils.AOMUtils;

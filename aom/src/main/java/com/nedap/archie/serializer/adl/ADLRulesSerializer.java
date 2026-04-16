@@ -2,7 +2,6 @@ package com.nedap.archie.serializer.adl;
 
 import com.nedap.archie.aom.RulesSection;
 import com.nedap.archie.rules.*;
-
 import com.nedap.archie.serializer.adl.rules.*;
 
 import java.util.HashMap;

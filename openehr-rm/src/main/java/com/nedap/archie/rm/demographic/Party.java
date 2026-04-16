@@ -5,14 +5,9 @@ import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.LocatableRef;
-import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

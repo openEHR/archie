@@ -18,8 +18,9 @@ import com.nedap.archie.testutil.DummyOperationalTemplateProvider;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InvariantTestUtil {
     private static final OperationalTemplateProvider optProvider = new DummyOperationalTemplateProvider("example");
@@ -27,7 +28,7 @@ public class InvariantTestUtil {
     public static void assertValid(Object object) {
         RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider, new ValidationConfiguration.Builder().build());
         List<RMObjectValidationMessage> messages = validator.validate(object);
-        assertTrue("object should be valid, was not: " + messages, messages.isEmpty());
+        assertThat("object should be valid, was not: " + messages, messages.isEmpty());
     }
 
     public static void assertInvariantInvalid(Object object, String invariantName, String path) {
@@ -37,7 +38,7 @@ public class InvariantTestUtil {
     public static void assertInvariantInvalid(Object object, String invariantName, String rmTypeName, String path) {
         RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), optProvider, new ValidationConfiguration.Builder().build());
         List<RMObjectValidationMessage> messages = validator.validate(object);
-        assertEquals(messages.toString(), 1, messages.size());
+        assertEquals(1, messages.size(), messages.toString());
         assertEquals("Invariant " + invariantName + " failed on type " + rmTypeName, messages.get(0).getMessage());
         assertEquals(path, messages.get(0).getPath());
     }

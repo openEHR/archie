@@ -1,17 +1,16 @@
 package org.openehr.utils.file;
 
 import org.apache.commons.io.filefilter.IOFileFilter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.utils.operation.OperationOutcome;
 import org.openehr.utils.operation.OperationOutcomeStatus;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Copyright 2017 Cognitive Medical Systems, Inc (http://www.cognitivemedicine.com).
@@ -30,7 +29,7 @@ import static org.junit.Assert.fail;
  * <p>
  * Created by cnanjo on 1/17/17.
  */
-
+@Deprecated
 public class FileAndDirUtilsTest {
     @Test
     public void loadDirectories() throws Exception {

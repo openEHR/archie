@@ -3,7 +3,6 @@ package com.nedap.archie.serializer.adl.rules;
 import com.nedap.archie.rules.Constant;
 import com.nedap.archie.rules.ExpressionType;
 import com.nedap.archie.serializer.adl.ADLRulesSerializer;
-import com.nedap.archie.rules.ReferenceType;
 
 /**
  * Created by pieter.bos on 15/06/16.

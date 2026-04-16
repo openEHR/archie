@@ -5,6 +5,7 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationSettings;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
 
@@ -40,18 +41,26 @@ public interface FullArchetypeRepository extends ArchetypeRepository, Operationa
         compile(validator);
     }
 
+    /**
+     * @deprecated Use {@link #compile(MetaModelProvider)} instead.
+     */
+    @Deprecated
     default void compile(MetaModels models) {
-        ArchetypeValidator validator = new ArchetypeValidator(models);
+        compile((MetaModelProvider) models);
+    }
+
+    default void compile(MetaModelProvider metaModelProvider) {
+        ArchetypeValidator validator = new ArchetypeValidator(metaModelProvider);
         compile(validator);
     }
 
     /**
      * validate the validation result if necessary, and return either the newly validated one or
      * the existing validation result
-     * @param models
+     * @param metaModelProvider
      * @return
      */
-    default ValidationResult compileAndRetrieveValidationResult(String archetypeId, MetaModels models) {
+    default ValidationResult compileAndRetrieveValidationResult(String archetypeId, MetaModelProvider metaModelProvider) {
         Archetype archetype = getArchetype(archetypeId);
         if(archetype == null) {
             return null;
@@ -63,8 +72,19 @@ public interface FullArchetypeRepository extends ArchetypeRepository, Operationa
             return validationResult;
         }
 
-        ArchetypeValidator validator = new ArchetypeValidator(models);
+        ArchetypeValidator validator = new ArchetypeValidator(metaModelProvider);
         return validator.validate(archetype, this);
+    }
+
+    /**
+     * validate the validation result if necessary, and return either the newly validated one or
+     * the existing validation result
+     * @param models
+     * @return
+     */
+    @Deprecated
+    default ValidationResult compileAndRetrieveValidationResult(String archetypeId, MetaModels models) {
+        return compileAndRetrieveValidationResult(archetypeId, (MetaModelProvider) models);
     }
 
     /**

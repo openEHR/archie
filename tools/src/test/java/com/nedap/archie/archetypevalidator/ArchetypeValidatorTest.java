@@ -6,29 +6,29 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 05/04/2017.
  */
 public class ArchetypeValidatorTest {
 
-    private ADLParser parser;
     private Archetype archetype;
 
     private ReferenceModels models;
 
-    @Before
+    @BeforeEach
     public void setup() {
-        parser = new ADLParser();
         models = new ReferenceModels();
         models.registerModel(ArchieRMInfoLookup.getInstance());
         models.registerModel(TestRMInfoLookup.getInstance());
@@ -56,7 +56,7 @@ public class ArchetypeValidatorTest {
         ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
         List<ValidationMessage> messages = validationResult.getErrors();
         System.out.println(messages);
-        assertEquals(messages.toString(), 1, messages.size());
+        assertEquals(1, messages.size(), messages.toString());
         assertEquals(ErrorType.VCARM, messages.get(0).getType());
         assertNull(validationResult.getFlattened());
     }
@@ -80,7 +80,7 @@ public class ArchetypeValidatorTest {
         ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
         List<ValidationMessage> messages = validationResult.getErrors();
         System.out.println(messages);
-        assertEquals(messages.toString(), 1, messages.size());
+        assertEquals(1, messages.size(), messages.toString());
         assertEquals(ErrorType.VCORMT, messages.get(0).getType());
     }
 
@@ -93,11 +93,11 @@ public class ArchetypeValidatorTest {
     }
 
     private void assertOneError(ValidationResult validationResult, ErrorType vacdf) {
-        assertFalse(validationResult.toString(), validationResult.passes());
+        assertFalse(validationResult.passes(), validationResult.toString());
         List<ValidationMessage> messages = validationResult.getErrors();
 
-        assertEquals(validationResult.toString(), 1, messages.size());
-        assertEquals(validationResult.toString(), vacdf, messages.get(0).getType());
+        assertEquals(1, messages.size(), validationResult.toString());
+        assertEquals(vacdf, messages.get(0).getType(), validationResult.toString());
     }
 
     @Test
@@ -116,7 +116,7 @@ public class ArchetypeValidatorTest {
         System.out.println(messages);
         assertEquals(2, messages.size());
         assertEquals(ErrorType.OTHER, messages.get(0).getType());
-        assertTrue("message should complain about tuple members being incorrect", messages.get(0).getMessage().contains("In the attribute tuple 3 members were specified, but the primitive tuple has 2 members instead"));
+        assertThat("message should complain about tuple members being incorrect", messages.get(0).getMessage().contains("In the attribute tuple 3 members were specified, but the primitive tuple has 2 members instead"));
     }
 
     @Test
@@ -154,7 +154,7 @@ public class ArchetypeValidatorTest {
         }
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertThat(validationResult.toString(), validationResult.passes());
         }
     }
 
@@ -172,7 +172,7 @@ public class ArchetypeValidatorTest {
         repository.addArchetype(parse("/adl2-tests/features/reference_model/generic_types/openEHR-EHR-OBSERVATION.rm_correct_generic.v1.0.0.adls"));
 
         ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-        assertTrue(validationResult.toString(), validationResult.passes());
+        assertThat(validationResult.toString(), validationResult.passes());
     }
 
     @Test
@@ -190,7 +190,7 @@ public class ArchetypeValidatorTest {
         repository.addArchetype(parse("/adl2-tests/features/reference_model/generic_types/openEHR-EHR-OBSERVATION.rm_correct_generic.v1.0.0.adls"));
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertTrue(validationResult.passes(), validationResult.toString());
         }
 
         {
@@ -212,24 +212,24 @@ public class ArchetypeValidatorTest {
             repository.addArchetype(child);
             repository.addArchetype(parent);
 
-            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
             ValidationResult validatedChild = archetypeValidator.validate(child, repository);
             ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
 
-            assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
-            assertTrue(validatedParent.getErrors().toString(), validatedParent.passes());
+            assertThat(validatedChild.getErrors().toString(), validatedChild.passes());
+            assertThat(validatedParent.getErrors().toString(), validatedParent.passes());
         }
         {
             InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
             repository.addArchetype(child);
             repository.addArchetype(parent);
             
-            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
             ValidationResult validatedParent = archetypeValidator.validate(parent, repository);
             ValidationResult validatedChild = archetypeValidator.validate(child, repository);
 
-            assertTrue(validatedChild.getErrors().toString(), validatedChild.passes());
-            assertTrue(validatedParent.getErrors().toString(), validatedParent.passes());
+            assertThat(validatedChild.getErrors().toString(), validatedChild.passes());
+            assertThat(validatedParent.getErrors().toString(), validatedParent.passes());
         }
     }
 
@@ -246,11 +246,11 @@ public class ArchetypeValidatorTest {
 
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertThat(validationResult.toString(), validationResult.passes());
         }
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(grandchildArchetype, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertThat(validationResult.toString(), validationResult.passes());
         }
     }
 
@@ -265,7 +265,7 @@ public class ArchetypeValidatorTest {
 
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-            assertFalse(validationResult.toString(), validationResult.passes());
+            assertFalse(validationResult.passes(), validationResult.toString());
             assertEquals("Occurrences 3..5, which is the sum of 2..3, 1..2, 0..0, does not conform to 1..4", validationResult.getErrors().get(0).getMessage());
         }
     }
@@ -281,7 +281,7 @@ public class ArchetypeValidatorTest {
 
         {
             ValidationResult validationResult = new ArchetypeValidator(models).validate(childArchetype, repository);
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertThat(validationResult.toString(), validationResult.passes());
         }
     }
 
@@ -295,7 +295,7 @@ public class ArchetypeValidatorTest {
             repository.addArchetype(child1);
             repository.addArchetype(child2);
 
-            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
             ValidationResult result = archetypeValidator.validate(child1, repository);
             assertFalse(result.passes());
             assertEquals("Infinite loop caused by specialising: openEHR-EHR-CLUSTER.infinite_loop_child1.v0.0.1 in openEHR-EHR-CLUSTER.infinite_loop_child2.v0.0.1", result.getErrors().get(0).getMessage());
@@ -312,7 +312,7 @@ public class ArchetypeValidatorTest {
             repository.addArchetype(parent);
             repository.addArchetype(childWithSpecializationAfterExclusion);
 
-            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
             ValidationResult result = archetypeValidator.validate(childWithSpecializationAfterExclusion, repository);
             assertTrue(result.passes());
             assertEquals(2, result.getErrors().size());
@@ -327,22 +327,51 @@ public class ArchetypeValidatorTest {
         {
             InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
             repository.addArchetype(archetypeWithIncompatibleNodeId);
-            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModels());
+            ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
             ValidationResult result = archetypeValidator.validate(archetypeWithIncompatibleNodeId, repository);
             assertTrue(result.passes());
-            assertEquals(6, result.getErrors().size());
+            assertEquals(4, result.getErrors().size());
             assertEquals("Node id at12 already used in archetype as id12 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(0).getMessage());
             assertEquals("Node id at2 already used in archetype as id2 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(1).getMessage());
             assertEquals("Node id at3 already used in archetype as id3 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(2).getMessage());
             assertEquals("Node id at4 already used in archetype as id4 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(3).getMessage());
-            assertEquals("Node id ac4 already used in archetype as at4 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(4).getMessage());
-            assertEquals("Node id ac12 already used in archetype as at12 with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4", result.getErrors().get(5).getMessage());
         }
     }
 
+    @Test
+    public void defaultValueTypeNoConform() throws Exception {
+        archetype = parse("openEHR-EHR-CLUSTER.default_values_invalid.v0.0.0.adls");
+
+        // Validation when model provided
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
+        assertOneError(validationResult, ErrorType.DEFAULT_OBJECT_TYPE_VALIDITY);
+    }
+
+    @Test
+    public void defaultValueTypeNoConformNoModel() throws Exception {
+        archetype = parse("openEHR-EHR-CLUSTER.default_values_invalid.v0.0.0.adls", null);
+
+        // No validation when no model provided
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
+        assertTrue(validationResult.passes(), validationResult.toString());
+    }
+
+    @Test
+    public void defaultValueTypeInheritConforms() throws Exception {
+        archetype = parse("../serializer/adl/openEHR-EHR-CLUSTER.default_values.v1.adls");
+
+        ValidationResult validationResult = new ArchetypeValidator(models).validate(archetype);
+        assertTrue(validationResult.passes(), validationResult.toString());
+    }
+
     private Archetype parse(String filename) throws IOException, ADLParseException {
+        return parse(filename, BuiltinReferenceModels.getMetaModelProvider());
+    }
+
+    private Archetype parse(String filename, MetaModelProvider metaModelProvider) throws IOException, ADLParseException {
+        ADLParser parser = new ADLParser(metaModelProvider);
         archetype = parser.parse(ArchetypeValidatorTest.class.getResourceAsStream(filename));
-        assertTrue(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
+        assertThat(parser.getErrors().toString(), parser.getErrors().hasNoErrors());
         return archetype;
     }
 

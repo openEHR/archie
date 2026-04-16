@@ -6,17 +6,12 @@ import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMAttributeInfo;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.lang.reflect.Type;
+import java.util.*;
 
 /**
- * Utility to create Reference model objects based on their RM name. Also can set attribute values on RM Objects based
- * on their RM Attribute name.
+ * Utility to create Reference model objects based on their RM name.
  *
  * Created by pieter.bos on 03/02/16.
  */
@@ -43,6 +38,10 @@ public class RMObjectCreator {
         }
     }
 
+    /**
+     * @deprecated Use {@link com.nedap.archie.rminfo.AttributeAccessor#setValue(Object, String, Object)}
+     */
+    @Deprecated
     public void set(Object object, String rmAttributeName, List<Object> values) {
         try {
             RMAttributeInfo attributeInfo = modelInfoLookup.getAttributeInfo(object.getClass(), rmAttributeName);
@@ -73,6 +72,7 @@ public class RMObjectCreator {
 
     }
 
+    @Deprecated
     private void setSingleValuedAttribute(Object object, String rmAttributeName, List<Object> values, RMAttributeInfo attributeInfo) throws InvocationTargetException, IllegalAccessException {
         if(values == null || values.isEmpty()) {
             setField(object, attributeInfo, null);
@@ -85,6 +85,7 @@ public class RMObjectCreator {
         }
     }
 
+    @Deprecated
     private Object newInstance(RMAttributeInfo attributeInfo) throws InstantiationException, IllegalAccessException {
         if(attributeInfo.getType().equals(List.class)) {
             return new ArrayList<>();
@@ -97,6 +98,7 @@ public class RMObjectCreator {
         }
     }
 
+    @Deprecated
     private void setField(Object object, RMAttributeInfo field, Object value) throws InvocationTargetException, IllegalAccessException {
         Method setMethod = field.getSetMethod();
         if(setMethod == null) {
@@ -110,6 +112,10 @@ public class RMObjectCreator {
         }
     }
 
+    /**
+     * @deprecated Use {@link com.nedap.archie.rminfo.AttributeAccessor#addValue(Object, String, Object)}
+     */
+    @Deprecated
     public void addElementToList(Object object, RMAttributeInfo attributeInfo, Object element) {
         try {
             if(attributeInfo.getAddMethod() != null) {
@@ -136,6 +142,10 @@ public class RMObjectCreator {
         }
     }
 
+    /**
+     * @deprecated Use {@link com.nedap.archie.rminfo.AttributeAccessor#addOrSetValue(Object, String, Object)}
+     */
+    @Deprecated
     public void addElementToListOrSetSingleValues(Object object, String rmAttributeName, Object element) {
         RMAttributeInfo attributeInfo = this.modelInfoLookup.getAttributeInfo(object.getClass(), rmAttributeName);
         if(attributeInfo == null) {

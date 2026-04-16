@@ -1,13 +1,6 @@
 package com.nedap.archie.adl14.treewalkers;
 
-import com.nedap.archie.adlparser.antlr.Adl14Parser.C_integerContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.C_realContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Integer_interval_valueContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Integer_list_valueContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Integer_valueContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Real_interval_valueContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Real_list_valueContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Real_valueContext;
+import com.nedap.archie.adlparser.antlr.Adl14Parser.*;
 import com.nedap.archie.adlparser.treewalkers.BaseTreeWalker;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.primitives.CInteger;

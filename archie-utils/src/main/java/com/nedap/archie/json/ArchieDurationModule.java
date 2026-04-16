@@ -1,7 +1,6 @@
 package com.nedap.archie.json;
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.datatype.jsr310.PackageVersion;
 import org.threeten.extra.PeriodDuration;
 
 import java.time.Duration;

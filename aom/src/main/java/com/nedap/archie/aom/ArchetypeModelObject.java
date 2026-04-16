@@ -1,8 +1,7 @@
 package com.nedap.archie.aom;
 
-import com.esotericsoftware.kryo.kryo5.Kryo;
 import com.nedap.archie.base.OpenEHRBase;
-import com.nedap.archie.util.KryoUtil;
+import com.nedap.archie.util.CloneUtil;
 
 import java.io.Serializable;
 
@@ -13,14 +12,9 @@ import java.io.Serializable;
 //@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public abstract class ArchetypeModelObject extends OpenEHRBase implements Serializable, Cloneable {
 
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ArchetypeModelObject clone() {
-        Kryo kryo = null;
-        try {
-            kryo = KryoUtil.getPool().obtain();
-            return kryo.copy(this);
-        } finally {
-            KryoUtil.getPool().free(kryo);
-        }
+        return CloneUtil.clone(this);
     }
 
 }

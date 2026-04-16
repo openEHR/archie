@@ -13,6 +13,8 @@ import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rules.*;
 
@@ -33,7 +35,8 @@ public class ADL14NodeIDConverter {
     private final ADL14TermConstraintConverter termConstraintConverter;
     private final PreviousConversionApplier previousConversionApplier;
     private final ADL2ConversionResult conversionResult;
-    private final MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
+    private final MetaModel metaModel;
 
     private IdCodeGenerator idCodeGenerator;
 
@@ -45,8 +48,17 @@ public class ADL14NodeIDConverter {
     private final Map<String, ValueSet> createdValueSets = new LinkedHashMap<>();
     private final Map<String, String> newCodeToOldCodeMap = new LinkedHashMap<>();
 
+    /**
+     * @deprecated Use {@link #ADL14NodeIDConverter(MetaModelProvider, Archetype, Archetype, ADL14ConversionConfiguration, ADL2ConversionLog, ADL2ConversionResult)} instead.
+     */
+    @Deprecated
     public ADL14NodeIDConverter(MetaModels metaModels, Archetype archetype, Archetype flatParentArchetype, ADL14ConversionConfiguration configuration, ADL2ConversionLog oldLog, ADL2ConversionResult conversionResult) {
-        this.metaModels = metaModels;
+        this((MetaModelProvider) metaModels, archetype, flatParentArchetype, configuration, oldLog, conversionResult);
+    }
+
+    public ADL14NodeIDConverter(MetaModelProvider metaModelProvider, Archetype archetype, Archetype flatParentArchetype, ADL14ConversionConfiguration configuration, ADL2ConversionLog oldLog, ADL2ConversionResult conversionResult) {
+        this.metaModelProvider = metaModelProvider;
+        this.metaModel = metaModelProvider.getMetaModel(archetype);
         this.conversionConfiguration = configuration;
         this.archetype = archetype;
         this.flatParentArchetype = flatParentArchetype;
@@ -61,7 +73,7 @@ public class ADL14NodeIDConverter {
     }
 
     public ADL2ConversionLog convert() {
-        metaModels.selectModel(archetype);
+        metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
 
         correctItemsCardinality(archetype.getDefinition());
         List<String> unnecessaryCodes = findUnnecessaryCodes(archetype.getDefinition(),
@@ -123,7 +135,7 @@ public class ADL14NodeIDConverter {
         ArchetypeTerm term = originalLanguageTermDefinitions.get(code);
         if (term != null && term.getText() != null && term.getText().length() < 19
                 && term.getDescription() != null && term.getDescription().contains("@ internal @")) {
-            if (!cObject.isRootNode() && !parentIsMultiple(cObject, flatParentArchetype, metaModels)) {
+            if (!cObject.isRootNode() && !parentIsMultiple(cObject, flatParentArchetype, metaModel)) {
                 result.add(code);
             }
         }
@@ -140,29 +152,32 @@ public class ADL14NodeIDConverter {
      * Replace old id's in term definition with the new codes
      */
     public static void convertTermDefinitions(Archetype archetype, Map<String, ConvertedCodeResult> convertedCodes, List<String> unnecessaryCodes) {
-        //process the codes in alphabetical order, high to low, to prevent overwriting codes
-        //even better would probably be to create an empty terminology and separate all new+converted codes and old codes
-        //instead of doing this in place. Worth a refactor perhaps?
-        ArrayList<ConvertedCodeResult> sortedCodes = new ArrayList<>(convertedCodes.values());
-        Comparator<ConvertedCodeResult> comparator = Comparator.comparing(ConvertedCodeResult::getOriginalCode);
-        sortedCodes.sort(comparator.reversed());
+        archetype.getTerminology().getTermDefinitions().replaceAll((language, terms) -> {
+            Map<String, ArchetypeTerm> newTerms = new LinkedHashMap<>();
 
-        for (ConvertedCodeResult convertedCode : sortedCodes) {
-            for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
-                Map<String, ArchetypeTerm> terms = archetype.getTerminology().getTermDefinitions().get(language);
-                ArchetypeTerm term = terms.remove(convertedCode.getOriginalCode());
-                if (term != null && !unnecessaryCodes.contains(convertedCode.getOriginalCode())) {
-                    for (String newCode : convertedCode.getConvertedCodes()) {
-                        ArchetypeTerm newTerm = new ArchetypeTerm();
-                        newTerm.setCode(newCode);
-                        newTerm.setText(term.getText());
-                        newTerm.setDescription(term.getDescription());
-                        newTerm.putAll(term.getOtherItems());
-                        terms.put(newCode, term);
+            for (Map.Entry<String, ArchetypeTerm> entry : terms.entrySet()) {
+                String oldCode = entry.getKey();
+                if (!unnecessaryCodes.contains(oldCode)) {
+                    ArchetypeTerm term = entry.getValue();
+                    ConvertedCodeResult convertedCode = convertedCodes.get(oldCode);
+                    if (convertedCode != null) {
+                        for (String newCode : convertedCode.getConvertedCodes()) {
+                            ArchetypeTerm newTerm = new ArchetypeTerm();
+                            newTerm.setCode(newCode);
+                            newTerm.setText(term.getText());
+                            newTerm.setDescription(term.getDescription());
+                            newTerm.putAll(term.getOtherItems());
+                            newTerms.put(newCode, newTerm);
+                        }
+                    } else {
+                        // Code is not converted, copy it.
+                        newTerms.put(oldCode, term);
                     }
                 }
             }
-        }
+
+            return newTerms;
+        });
 
         //the terminology can still contain old unused codes now. The archetype validation will warn about that later
     }
@@ -245,7 +260,7 @@ public class ADL14NodeIDConverter {
                         synthesizeNodeId(cObject, path);
                         conversionResult.getLog().addWarningWithLocation(ADL14ConversionMessageCode.WARNING_SPECIALIZED_FIRST_MATCHING_CHILD, cObject.path());
                     } else if (cAttributeInParent.getChildren().size() == 1 || cObject.getParent().getChildren().size() == 1) {
-                        if (this.metaModels.rmTypesConformant(cObject.getRmTypeName(), cAttributeInParent.getChildren().get(0).getRmTypeName())) {
+                        if (this.metaModel.rmTypesConformant(cObject.getRmTypeName(), cAttributeInParent.getChildren().get(0).getRmTypeName())) {
                             //this replaces a parent node, so a specialisation. add id code and possibly a term
                             createSpecialisedNodeId(cObject, path, Arrays.asList(cAttributeInParent.getChildren().get(0)));
                         } else {

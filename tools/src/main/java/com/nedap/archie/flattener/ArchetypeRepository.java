@@ -1,6 +1,7 @@
 package com.nedap.archie.flattener;
 
 import com.nedap.archie.aom.Archetype;
+
 import java.util.List;
 
 /**

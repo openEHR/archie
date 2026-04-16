@@ -32,7 +32,7 @@ public class AnnotationsValidation extends ArchetypeValidationBase {
                             //apparently the operational template creation failed. Try to lookup the path anyway in the original archetype
                             operationalTemplate = archetype;
                         }
-                        if(!AOMUtils.isPathInArchetypeOrRm(combinedModels.getSelectedModel(), path, operationalTemplate)) {
+                        if(!AOMUtils.isPathInArchetypeOrRm(metaModel, path, operationalTemplate)) {
                             addMessage(ErrorType.VRANP, I18n.t("The path {0} referenced in the annotations does not exist in the flat archetype or reference model", path));
                         }
                     }

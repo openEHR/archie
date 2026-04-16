@@ -10,12 +10,12 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RmTupleValidatorTest {
     private static final ArchieRMInfoLookup lookup = ArchieRMInfoLookup.getInstance();

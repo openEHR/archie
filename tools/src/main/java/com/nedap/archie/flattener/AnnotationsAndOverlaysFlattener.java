@@ -3,8 +3,8 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.aom.ResourceAnnotations;
-import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

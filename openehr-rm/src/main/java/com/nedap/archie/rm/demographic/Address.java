@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

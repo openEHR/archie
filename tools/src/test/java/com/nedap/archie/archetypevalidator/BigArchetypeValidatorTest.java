@@ -9,14 +9,12 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 import org.apache.commons.io.FilenameUtils;
-import org.junit.Assert;
-import org.junit.Test;
-import org.openehr.bmm.v2.validation.BmmRepository;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
@@ -25,17 +23,10 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * //TODO: add list of errortypes NOT tested by the testset, so we can add files for that
@@ -128,7 +119,7 @@ public class BigArchetypeValidatorTest {
 
     @Test
     public void testFullValidityPackageBmm() {
-        testInner(new MetaModels(null, BuiltinReferenceModels.getBmmRepository(), BuiltinReferenceModels.getAomProfiles()));
+        testInner(new SimpleMetaModelProvider(null, BuiltinReferenceModels.getBmmRepository(), BuiltinReferenceModels.getAomProfiles()));
 
     }
 
@@ -140,11 +131,11 @@ public class BigArchetypeValidatorTest {
         models.registerModel(com.nedap.archie.openehrtestrm.TestRMInfoLookup.getInstance());
 
 //        access.initializeAll(schemaDirectories);
-        testInner(new MetaModels(models, (BmmRepository) null));
+        testInner(new SimpleMetaModelProvider(models, null));
 
     }
 
-    public void testInner(MetaModels metaModels) {
+    public void testInner(MetaModelProvider metaModelProvider) {
 
         Reflections reflections = new Reflections("adl2-tests.validity", Scanners.Resources);
         List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
@@ -158,7 +149,7 @@ public class BigArchetypeValidatorTest {
         int unexpectedParseErrors = 0;
         int wrongMessageCount = 0;
         List<String> errorStrings = new ArrayList<>();
-        ArchetypeValidator validator = new ArchetypeValidator(metaModels);
+        ArchetypeValidator validator = new ArchetypeValidator(metaModelProvider);
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         for(String file:adlFiles) {
             if (file.contains("legacy_adl_1.4")) {
@@ -275,7 +266,7 @@ public class BigArchetypeValidatorTest {
             }
         }
         if(errorCount > 0) {
-            Assert.fail(String.format("%s errors, %s wrong messages, %s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s",
+            fail(String.format("%s errors, %s wrong messages, %s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s",
                     errorCount, wrongMessageCount, correctButShouldBeInvalid, correctCount, shouldBeFineButWasinvalid, notImplemented, unexpectedParseErrors, Joiner.on(", ").join(errorStrings)));
         }
         log.info(String.format("%s errors, %s wrong messages, %s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s",

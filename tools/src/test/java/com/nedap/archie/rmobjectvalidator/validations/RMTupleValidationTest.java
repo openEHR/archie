@@ -1,6 +1,9 @@
 package com.nedap.archie.rmobjectvalidator.validations;
 
-import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.CAttribute;
+import com.nedap.archie.aom.CAttributeTuple;
+import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.CPrimitiveTuple;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.base.Interval;
@@ -8,19 +11,19 @@ import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rmobjectvalidator.RMObjectValidationMessage;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Deprecated
 public class RMTupleValidationTest {
     private static ArchieRMInfoLookup lookup;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         lookup = ArchieRMInfoLookup.getInstance();
     }

@@ -2,7 +2,6 @@ package com.nedap.archie.adl14;
 
 import com.nedap.archie.adl14.log.ADL2ConversionLog;
 import com.nedap.archie.aom.Archetype;
-import org.openehr.utils.message.MessageCode;
 import org.openehr.utils.message.MessageLogger;
 
 /**

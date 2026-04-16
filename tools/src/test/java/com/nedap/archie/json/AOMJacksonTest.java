@@ -8,6 +8,7 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeSlot;
 import com.nedap.archie.aom.CComplexObject;
+import com.nedap.archie.aom.ResourceDescription;
 import com.nedap.archie.aom.primitives.CDuration;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
@@ -20,8 +21,8 @@ import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.rules.OperatorKind;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.threeten.extra.PeriodDuration;
 
@@ -34,7 +35,8 @@ import java.time.temporal.ChronoUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A test that tests JSON parsing of Archetypes using Jackson
@@ -72,9 +74,45 @@ public class AOMJacksonTest {
     }
 
     @Test
+    public void parseLifecycleStateStringTest() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String resourceDescriptionJson = "{ \"lifecycle_state\" :\"unmanaged\" }";
+        ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
+        // assert that the lifecycle state is set to unmanaged
+        assertEquals("unmanaged", resourceDescription.getLifecycleState().getCodeString());
+    }
+
+    @Test
+    public void parseLifecycleStateTerminologyCodeTest() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String resourceDescriptionJson = "{ \"lifecycle_state\" : { \"code_string\" : \"unmanaged\" }}";
+        ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
+        // assert that the lifecycle state is set to unmanaged
+        assertEquals("unmanaged", resourceDescription.getLifecycleState().getCodeString());
+    }
+
+    @Test
+    public void parseLifecycleStateTerminologyCodeCodeStringNullTest() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String resourceDescriptionJson = "{ \"lifecycle_state\" : { \"code_string\" : null }}";
+        ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
+        // assert that the lifecycle state is set to unmanaged
+        assertNull(resourceDescription.getLifecycleState().getCodeString());
+    }
+
+    @Test
+    public void parseLifecycleStateTerminologyCodeNoCodeStringTest() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String resourceDescriptionJson = "{ \"lifecycle_state\" : { \"placeholder\" : \"placeholder\" }}";
+        ResourceDescription resourceDescription = objectMapper.readValue(resourceDescriptionJson, ResourceDescription.class);
+        // assert that the lifecycle state is set to unmanaged
+        assertNull(resourceDescription.getLifecycleState().getCodeString());
+    }
+
+    @Test
     public void motricityIndex() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
             String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
             //System.out.println(serialized);
             assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
@@ -116,7 +154,7 @@ public class AOMJacksonTest {
     @Test
     public void motriciyIndexJavascriptFormat() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
             String serialized = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createConfigForJavascriptUsage()).writeValueAsString(archetype);
             //System.out.println(serialized);
             assertTrue(serialized.contains("EXPR_BINARY_OPERATOR"));
@@ -136,7 +174,7 @@ public class AOMJacksonTest {
     @Test
     public void motricityIndexOldFormat() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
             ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
             config.setStandardsCompliantExpressions(false);
             String serialized = JacksonUtil.getObjectMapper(config).writeValueAsString(archetype);
@@ -155,7 +193,7 @@ public class AOMJacksonTest {
     @Test
     public void archetypeSlot() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/basic.adl")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
             ObjectMapper objectMapper = new ObjectMapper();
             JacksonUtil.configureObjectMapper(objectMapper, ArchieJacksonConfiguration.createStandardsCompliant());
             objectMapper.disable(SerializationFeature.INDENT_OUTPUT);
@@ -181,7 +219,7 @@ public class AOMJacksonTest {
     @Test
     public void archetypeSlotOldExpressionClassNames() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/basic.adl")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
             ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
             config.setStandardsCompliantExpressions(false);
             ObjectMapper objectMapper = JacksonUtil.getObjectMapper(config);
@@ -282,7 +320,7 @@ public class AOMJacksonTest {
         }
     }
 
-    @Ignore // for local testing
+    @Disabled // for local testing
     @Test
     public void parseS2AomJsonAll() throws Exception {
 

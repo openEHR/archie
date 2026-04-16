@@ -3,9 +3,10 @@ package com.nedap.archie.aom;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.base.Interval;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by pieter.bos on 01/11/15.

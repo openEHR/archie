@@ -9,7 +9,7 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.generic.PartySelf;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 

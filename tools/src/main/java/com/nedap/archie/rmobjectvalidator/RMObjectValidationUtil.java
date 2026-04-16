@@ -10,7 +10,6 @@ import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;

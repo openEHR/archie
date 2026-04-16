@@ -2,11 +2,7 @@ package com.nedap.archie.query;
 
 
 import com.google.common.collect.Lists;
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
 import org.slf4j.Logger;

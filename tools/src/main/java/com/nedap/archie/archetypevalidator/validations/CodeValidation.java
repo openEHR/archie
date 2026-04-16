@@ -29,7 +29,7 @@ public class CodeValidation extends ValidatingVisitor {
             addMessageWithPath(ErrorType.VTSD, cObject.path(),
                     I18n.t("The code specialization depth of code {0} is {1}, which is greater than archetype specialization depth {2}",
                             nodeId, codeSpecializationDepth, archetypeSpecializationDepth));
-        } else if (cObject.isRoot() || parentIsMultiple(cObject, flatParent, combinedModels)) {
+        } else if (cObject.isRoot() || parentIsMultiple(cObject, flatParent, metaModel)) {
             if ((codeSpecializationDepth < archetypeSpecializationDepth && flatParent != null && !flatParent.getTerminology().hasIdCode(nodeId)) ||
                     (codeSpecializationDepth == archetypeSpecializationDepth && !archetype.getTerminology().hasIdCode(nodeId))) {
                 addMessageWithPath(ErrorType.VATID, cObject.path(),

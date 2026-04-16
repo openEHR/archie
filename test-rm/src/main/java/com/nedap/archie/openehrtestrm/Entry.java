@@ -5,8 +5,8 @@ import com.nedap.archie.rm.datavalues.DataValue;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.DvOrdinal;
 
-import java.util.List;
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class Entry extends TestRMBase {
   @Nullable

@@ -1,10 +1,7 @@
 package com.nedap.archie.query;
 
-import com.nedap.archie.aom.CArchetypeRoot;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.*;
+
 import java.util.List;
 
 /**
