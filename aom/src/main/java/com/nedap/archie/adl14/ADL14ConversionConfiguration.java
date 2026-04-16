@@ -30,8 +30,8 @@ public class ADL14ConversionConfiguration {
     /**
      * Set to the code system the ADL 1.4 archetype should be converted into. Options: ID_CODED, AT_CODED. Defaults to ID_CODED.
      */
-    private NODE_ID_CODE_SYSTEM nodeIdCodeSystem = NODE_ID_CODE_SYSTEM.ID_CODED;
-    public enum NODE_ID_CODE_SYSTEM {
+    private NodeIdCodeSystem nodeIdCodeSystem = NodeIdCodeSystem.ID_CODED;
+    public enum NodeIdCodeSystem {
         ID_CODED,
         AT_CODED
     }
@@ -65,7 +65,7 @@ public class ADL14ConversionConfiguration {
         return rmRelease;
     }
 
-    public NODE_ID_CODE_SYSTEM getNodeIdCodeSystem() {
+    public NodeIdCodeSystem getNodeIdCodeSystem() {
         return nodeIdCodeSystem;
     }
 
@@ -90,7 +90,7 @@ public class ADL14ConversionConfiguration {
         this.rmRelease = rmRelease;
     }
 
-    public void setNodeIdCodeSystem(NODE_ID_CODE_SYSTEM nodeIdCodeSystem) {
+    public void setNodeIdCodeSystem(NodeIdCodeSystem nodeIdCodeSystem) {
         this.nodeIdCodeSystem = nodeIdCodeSystem;
     }
 }

@@ -138,17 +138,4 @@ public class ArchetypeTerm extends ArchetypeModelObject implements Map<String, S
     public Set<Entry<String, String>> entrySet() {
         return items.entrySet();
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        ArchetypeTerm other = (ArchetypeTerm) obj;
-        return code.equals(other.code) && items.equals(other.items);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

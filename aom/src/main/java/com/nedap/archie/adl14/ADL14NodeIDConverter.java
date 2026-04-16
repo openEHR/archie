@@ -543,7 +543,7 @@ public class ADL14NodeIDConverter {
      *
      */
     public boolean codeSystemIsIdCoded() {
-        return conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.ID_CODED);
+        return conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NodeIdCodeSystem.ID_CODED);
     }
 
     /**

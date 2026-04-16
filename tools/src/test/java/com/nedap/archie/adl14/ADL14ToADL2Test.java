@@ -62,7 +62,7 @@ public class ADL14ToADL2Test {
         }
 
         ADL14ConversionConfiguration configuration = new ADL14ConversionConfiguration();
-        configuration.setNodeIdCodeSystem(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.AT_CODED);
+        configuration.setNodeIdCodeSystem(ADL14ConversionConfiguration.NodeIdCodeSystem.AT_CODED);
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), configuration);
 
         ADL2ConversionResultList resultList = converter.convert(Arrays.asList(adl14));
@@ -136,7 +136,7 @@ public class ADL14ToADL2Test {
         }
         
         ADL14ConversionConfiguration configuration = new ADL14ConversionConfiguration();
-        configuration.setNodeIdCodeSystem(ADL14ConversionConfiguration.NODE_ID_CODE_SYSTEM.AT_CODED);
+        configuration.setNodeIdCodeSystem(ADL14ConversionConfiguration.NodeIdCodeSystem.AT_CODED);
         ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), configuration);
 
         ADL2ConversionResultList resultList = converter.convert(Arrays.asList(parent, child));
