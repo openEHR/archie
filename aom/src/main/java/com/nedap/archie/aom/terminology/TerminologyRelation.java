@@ -70,17 +70,4 @@ public class TerminologyRelation extends ArchetypeModelObject {
     public void addMember(String member) {
         this.members.add(member);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        TerminologyRelation that = (TerminologyRelation) obj;
-        return id.equals(that.id) && members.equals(that.members);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, members);
-    }
 }
