@@ -138,4 +138,5 @@ public class ArchetypeTerm extends ArchetypeModelObject implements Map<String, S
     public Set<Entry<String, String>> entrySet() {
         return items.entrySet();
     }
+    
 }
