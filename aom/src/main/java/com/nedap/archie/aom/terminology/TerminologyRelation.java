@@ -5,6 +5,7 @@ import com.nedap.archie.aom.ArchetypeModelObject;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -68,5 +69,18 @@ public class TerminologyRelation extends ArchetypeModelObject {
      */
     public void addMember(String member) {
         this.members.add(member);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        TerminologyRelation that = (TerminologyRelation) obj;
+        return id.equals(that.id) && members.equals(that.members);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, members);
     }
 }
