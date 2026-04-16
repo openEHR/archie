@@ -147,7 +147,7 @@ public class ADL14Converter {
      * Add minor and patch version to archetypeId if minor version is not set in ADL1.4
      */
     private void setCorrectVersions(Archetype convertedArchetype) {
-        convertedArchetype.setAdlVersion("2.0.6");
+        convertedArchetype.setAdlVersion(conversionConfiguration.getAdlVersion());
         convertedArchetype.setRmRelease(conversionConfiguration.getRmRelease());
         if (convertedArchetype.getArchetypeId().getMinorVersion() == null) {
             convertedArchetype.getArchetypeId().setReleaseVersion(convertedArchetype.getArchetypeId().getReleaseVersion() + ".0.0");
