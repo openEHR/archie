@@ -71,18 +71,6 @@ public class AOMJacksonTest {
     }
 
     @Test
-    public void backwardsCompatibilityCTerminologyCodeTypeFromJsonTest() throws Exception {
-        String json = "{\n" +
-                "  \"rm_type_name\" : \"terminology_code\",\n" +
-                "  \"node_id\" : \"id9999\",\n" +
-                "  \"constraint\" : [ \"ac23\" ]\n" +
-                "}";
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
-        CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
-        assertEquals("ac23", parsedTermCode.getConstraint());
-    }
-
-    @Test
     public void parseLifecycleStateStringTest() throws Exception {
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createLegacyConfiguration());
         String resourceDescriptionJson = "{ \"lifecycle_state\" :\"unmanaged\" }";
@@ -298,6 +286,18 @@ public class AOMJacksonTest {
         CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
         assertEquals(cTermCode.getConstraint(), parsedTermCode.getConstraint());
         assertEquals(ConstraintStatus.PREFERRED, parsedTermCode.getConstraintStatus());
+    }
+
+    @Test
+    public void backwardsCompatibilityCTerminologyCodeConstraintTypeFromJsonTest() throws Exception {
+        String json = "{\n" +
+                "  \"rm_type_name\" : \"terminology_code\",\n" +
+                "  \"node_id\" : \"id9999\",\n" +
+                "  \"constraint\" : [ \"ac23\" ]\n" +
+                "}";
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
+        assertEquals("ac23", parsedTermCode.getConstraint());
     }
 
     @Test
