@@ -42,7 +42,8 @@ public class CodeValidation extends ValidatingVisitor {
         //validate CTerminology codes
         int archetypeSpecializationDepth = archetype.specializationDepth();
 
-        for(String constraint:cTerminologyCode.getConstraint()) {
+        String constraint = cTerminologyCode.getConstraint();
+        if(constraint != null) {
             if(AOMUtils.isValueSetCode(constraint)) {
                 int codeSpecializationDepth = AOMUtils.getSpecializationDepthFromCode(constraint);
                 if(codeSpecializationDepth > archetypeSpecializationDepth) {

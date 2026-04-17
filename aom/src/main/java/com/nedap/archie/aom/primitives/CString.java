@@ -22,7 +22,7 @@ import java.util.function.BiFunction;
  */
 @XmlType(name="C_STRING")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CString extends CPrimitiveObject<String, String> {
+public class CString extends CPrimitiveObject<List<String>, String> {
 
     @XmlElement(name="assumed_value")
     @Nullable
@@ -53,11 +53,14 @@ public class CString extends CPrimitiveObject<String, String> {
     }
 
     @Override
+    public List<String> getConstraintAsList() {
+        return getConstraint();
+    }
+
     public void setConstraint(List<String> constraint) {
         this.constraint = constraint;
     }
 
-    @Override
     public void addConstraint(String constraint) {
         this.constraint.add(constraint);
     }

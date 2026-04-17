@@ -242,8 +242,7 @@ public class AOMUtils {
                 Expression rightOperand = binary.getRightOperand();
                 if (rightOperand instanceof Constraint) {
                     Constraint<?> constraint = (Constraint<?>) rightOperand;
-                    if(constraint.getItem() != null && constraint.getItem().getConstraint() != null && !constraint.getItem().getConstraint().isEmpty() &&
-                            constraint.getItem() instanceof CString) {
+                    if(constraint.getItem() != null && constraint.getItem() instanceof CString && constraint.getItem().getConstraint() != null && !((CString) constraint.getItem()).getConstraint().isEmpty()) {
                         String pattern = ((CString) constraint.getItem()).getConstraint().get(0);
                         if (pattern.startsWith("^") || pattern.startsWith("/")) {
                             //regexp
