@@ -276,9 +276,22 @@ public class AOMJacksonTest {
         String json = objectMapper.writeValueAsString(cTermCode);
 
         assertTrue(json.contains("\"constraint_status\" : \"preferred\""));
+        assertTrue(json.contains("\"constraint\" : [ \"ac23\" ]"));
         CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
         assertEquals(cTermCode.getConstraint(), parsedTermCode.getConstraint());
         assertEquals(ConstraintStatus.PREFERRED, parsedTermCode.getConstraintStatus());
+    }
+
+    @Test
+    public void forwardsCompatibilityCTerminologyCodeConstraintTypeFromJsonTest() throws Exception {
+        String json = "{\n" +
+                "  \"rm_type_name\" : \"terminology_code\",\n" +
+                "  \"node_id\" : \"id9999\",\n" +
+                "  \"constraint\" : \"ac23\"\n" +
+                "}";
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
+        assertEquals("ac23", parsedTermCode.getConstraint().get(0));
     }
 
     @Test
