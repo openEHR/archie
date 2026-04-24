@@ -298,5 +298,4 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         result.append("]}");
         return result.toString();
     }
-
 }
