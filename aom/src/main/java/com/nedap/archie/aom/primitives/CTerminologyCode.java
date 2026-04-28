@@ -301,7 +301,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
 
     @Override
     public String getRmTypeName() {
-        if (getParent() == null) {
+        if (getParent() == null || getParent().getRmAttributeName() == null) {
             return "terminology_code";
         }
         switch (getParent().getRmAttributeName()) {
