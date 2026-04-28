@@ -1,0 +1,745 @@
+{
+  "_type" : "AUTHORED_ARCHETYPE",
+  "description" : {
+    "original_author" : {
+      "name" : "vera.prinsen"
+    },
+    "other_contributors" : [ ],
+    "lifecycle_state" : {
+      "@type" : "TerminologyCode",
+      "code_string" : "DRAFT"
+    },
+    "ip_acknowledgements" : { },
+    "references" : { },
+    "conversion_details" : { },
+    "other_details" : { },
+    "details" : {
+      "nl" : {
+        "language" : {
+          "@type" : "TerminologyCode",
+          "terminology_id" : "ISO-639_1",
+          "code_string" : "nl",
+          "terminology_id_string" : "ISO-639_1"
+        },
+        "purpose" : ""
+      }
+    }
+  },
+  "archetype_id" : {
+    "rm_package" : "EHR",
+    "rm_class" : "CLUSTER",
+    "concept_id" : "c_terminology_code",
+    "release_version" : "1.0.0",
+    "version_status" : "",
+    "build_count" : "",
+    "rm_publisher" : "openEHR",
+    "full_id" : "openEHR-EHR-CLUSTER.c_terminology_code.v1.0.0",
+    "semantic_id" : "openEHR-EHR-CLUSTER.c_terminology_code.v1",
+    "minor_version" : "0",
+    "patch_version" : "0",
+    "id_up_to_concept" : "openEHR-EHR-CLUSTER.c_terminology_code",
+    "major_version" : "1"
+  },
+  "definition" : {
+    "_type" : "C_COMPLEX_OBJECT",
+    "rm_type_name" : "CLUSTER",
+    "node_id" : "id1",
+    "path" : "/",
+    "logical_path" : "/",
+    "term" : {
+      "code" : "id1",
+      "description" : "",
+      "text" : "CTerminologyCode"
+    },
+    "required" : false,
+    "allowed" : true,
+    "any_allowed" : false,
+    "attributes" : [ {
+      "rm_attribute_name" : "items",
+      "path" : "/items",
+      "logical_path" : "/items",
+      "multiple" : false,
+      "mandatory" : false,
+      "children" : [ {
+        "_type" : "C_COMPLEX_OBJECT",
+        "rm_type_name" : "ELEMENT",
+        "node_id" : "id5",
+        "path" : "/items[id5]",
+        "logical_path" : "/items[id5]",
+        "term" : {
+          "description" : "",
+          "text" : "DV_CODED_TEXT"
+        },
+        "required" : false,
+        "allowed" : true,
+        "any_allowed" : false,
+        "occurrences" : {
+          "lower" : 0,
+          "upper" : 1,
+          "lower_unbounded" : false,
+          "upper_unbounded" : false,
+          "lower_included" : true,
+          "upper_included" : true,
+          "prohibited" : false,
+          "mandatory" : false,
+          "optional" : true,
+          "open" : false
+        },
+        "attributes" : [ {
+          "rm_attribute_name" : "value",
+          "path" : "/items[id5]/value",
+          "logical_path" : "/items[id5]/value",
+          "multiple" : false,
+          "mandatory" : false,
+          "children" : [ {
+            "_type" : "C_COMPLEX_OBJECT",
+            "rm_type_name" : "DV_CODED_TEXT",
+            "node_id" : "id6",
+            "path" : "/items[id5]/value[id6]",
+            "logical_path" : "/items[id5]/value[id6]",
+            "required" : false,
+            "allowed" : true,
+            "any_allowed" : false,
+            "attributes" : [ {
+              "rm_attribute_name" : "defining_code",
+              "path" : "/items[id5]/value[id6]/defining_code",
+              "logical_path" : "/items[id5]/value[id6]/defining_code",
+              "multiple" : false,
+              "mandatory" : false,
+              "children" : [ {
+                "_type" : "C_TERMINOLOGY_CODE",
+                "rm_type_name" : "CODE_PHRASE",
+                "node_id" : "id9999",
+                "constraint" : [ "ac2" ],
+                "effective_constraint_status" : "required",
+                "terms" : [ ],
+                "logical_path" : "/items[id5]/value[id6]/defining_code",
+                "allowed" : true,
+                "prohibited" : false,
+                "required" : false,
+                "attributes" : [ ],
+                "path" : "/items[id5]/value[id6]/defining_code"
+              } ],
+              "prohibited" : false
+            } ],
+            "attribute_tuples" : [ ],
+            "prohibited" : false
+          } ],
+          "prohibited" : false
+        } ],
+        "attribute_tuples" : [ ],
+        "prohibited" : false
+      }, {
+        "_type" : "C_COMPLEX_OBJECT",
+        "rm_type_name" : "ELEMENT",
+        "node_id" : "id7",
+        "path" : "/items[id7]",
+        "logical_path" : "/items[id7]",
+        "term" : {
+          "description" : "",
+          "text" : "DV_ORDINAL"
+        },
+        "required" : false,
+        "allowed" : true,
+        "any_allowed" : false,
+        "occurrences" : {
+          "lower" : 0,
+          "upper" : 1,
+          "lower_unbounded" : false,
+          "upper_unbounded" : false,
+          "lower_included" : true,
+          "upper_included" : true,
+          "prohibited" : false,
+          "mandatory" : false,
+          "optional" : true,
+          "open" : false
+        },
+        "attributes" : [ {
+          "rm_attribute_name" : "value",
+          "path" : "/items[id7]/value",
+          "logical_path" : "/items[id7]/value",
+          "multiple" : false,
+          "mandatory" : false,
+          "children" : [ {
+            "_type" : "C_COMPLEX_OBJECT",
+            "rm_type_name" : "DV_ORDINAL",
+            "node_id" : "id8",
+            "path" : "/items[id7]/value[id8]",
+            "logical_path" : "/items[id7]/value[id8]",
+            "required" : false,
+            "allowed" : true,
+            "any_allowed" : false,
+            "attributes" : [ {
+              "rm_attribute_name" : "value",
+              "path" : "/items[id7]/value[id8]/value",
+              "logical_path" : "/items[id7]/value[id8]/value",
+              "multiple" : false,
+              "mandatory" : false,
+              "children" : [ {
+                "_type" : "C_INTEGER",
+                "rm_type_name" : "integer",
+                "node_id" : "id9999",
+                "constraint" : [ {
+                  "lower" : 0,
+                  "upper" : 0,
+                  "lower_unbounded" : false,
+                  "upper_unbounded" : false,
+                  "lower_included" : true,
+                  "upper_included" : true
+                } ],
+                "logical_path" : "/items[id7]/value[id8]/value",
+                "allowed" : true,
+                "prohibited" : false,
+                "required" : false,
+                "attributes" : [ ],
+                "path" : "/items[id7]/value[id8]/value"
+              }, {
+                "_type" : "C_INTEGER",
+                "rm_type_name" : "integer",
+                "node_id" : "id9999",
+                "constraint" : [ {
+                  "lower" : 1,
+                  "upper" : 1,
+                  "lower_unbounded" : false,
+                  "upper_unbounded" : false,
+                  "lower_included" : true,
+                  "upper_included" : true
+                } ],
+                "logical_path" : "/items[id7]/value[id8]/value",
+                "allowed" : true,
+                "prohibited" : false,
+                "required" : false,
+                "attributes" : [ ],
+                "path" : "/items[id7]/value[id8]/value"
+              } ],
+              "prohibited" : false
+            }, {
+              "rm_attribute_name" : "symbol",
+              "path" : "/items[id7]/value[id8]/symbol",
+              "logical_path" : "/items[id7]/value[id8]/symbol",
+              "multiple" : false,
+              "mandatory" : false,
+              "children" : [ {
+                "_type" : "C_TERMINOLOGY_CODE",
+                "rm_type_name" : "DV_CODED_TEXT",
+                "node_id" : "id9999",
+                "constraint" : [ "at3" ],
+                "effective_constraint_status" : "required",
+                "terms" : [ ],
+                "logical_path" : "/items[id7]/value[id8]/symbol",
+                "allowed" : true,
+                "prohibited" : false,
+                "required" : false,
+                "attributes" : [ ],
+                "path" : "/items[id7]/value[id8]/symbol"
+              }, {
+                "_type" : "C_TERMINOLOGY_CODE",
+                "rm_type_name" : "DV_CODED_TEXT",
+                "node_id" : "id9999",
+                "constraint" : [ "at4" ],
+                "effective_constraint_status" : "required",
+                "terms" : [ ],
+                "logical_path" : "/items[id7]/value[id8]/symbol",
+                "allowed" : true,
+                "prohibited" : false,
+                "required" : false,
+                "attributes" : [ ],
+                "path" : "/items[id7]/value[id8]/symbol"
+              } ],
+              "prohibited" : false
+            } ],
+            "attribute_tuples" : [ {
+              "members" : [ {
+                "rm_attribute_name" : "value",
+                "path" : "/items[id7]/value[id8]/value",
+                "logical_path" : "/items[id7]/value[id8]/value",
+                "multiple" : false,
+                "mandatory" : false,
+                "children" : [ {
+                  "_type" : "C_INTEGER",
+                  "rm_type_name" : "integer",
+                  "node_id" : "id9999",
+                  "constraint" : [ {
+                    "lower" : 0,
+                    "upper" : 0,
+                    "lower_unbounded" : false,
+                    "upper_unbounded" : false,
+                    "lower_included" : true,
+                    "upper_included" : true
+                  } ],
+                  "logical_path" : "/items[id7]/value[id8]/value",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id7]/value[id8]/value"
+                }, {
+                  "_type" : "C_INTEGER",
+                  "rm_type_name" : "integer",
+                  "node_id" : "id9999",
+                  "constraint" : [ {
+                    "lower" : 1,
+                    "upper" : 1,
+                    "lower_unbounded" : false,
+                    "upper_unbounded" : false,
+                    "lower_included" : true,
+                    "upper_included" : true
+                  } ],
+                  "logical_path" : "/items[id7]/value[id8]/value",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id7]/value[id8]/value"
+                } ],
+                "prohibited" : false
+              }, {
+                "rm_attribute_name" : "symbol",
+                "path" : "/items[id7]/value[id8]/symbol",
+                "logical_path" : "/items[id7]/value[id8]/symbol",
+                "multiple" : false,
+                "mandatory" : false,
+                "children" : [ {
+                  "_type" : "C_TERMINOLOGY_CODE",
+                  "rm_type_name" : "DV_CODED_TEXT",
+                  "node_id" : "id9999",
+                  "constraint" : [ "at3" ],
+                  "effective_constraint_status" : "required",
+                  "terms" : [ ],
+                  "logical_path" : "/items[id7]/value[id8]/symbol",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id7]/value[id8]/symbol"
+                }, {
+                  "_type" : "C_TERMINOLOGY_CODE",
+                  "rm_type_name" : "DV_CODED_TEXT",
+                  "node_id" : "id9999",
+                  "constraint" : [ "at4" ],
+                  "effective_constraint_status" : "required",
+                  "terms" : [ ],
+                  "logical_path" : "/items[id7]/value[id8]/symbol",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id7]/value[id8]/symbol"
+                } ],
+                "prohibited" : false
+              } ],
+              "tuples" : [ {
+                "members" : [ {
+                  "_type" : "C_INTEGER",
+                  "rm_type_name" : "integer",
+                  "node_id" : "id9999",
+                  "constraint" : [ {
+                    "lower" : 0,
+                    "upper" : 0,
+                    "lower_unbounded" : false,
+                    "upper_unbounded" : false,
+                    "lower_included" : true,
+                    "upper_included" : true
+                  } ],
+                  "logical_path" : "/items[id7]/value[id8]/value",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id7]/value[id8]/value"
+                }, {
+                  "_type" : "C_TERMINOLOGY_CODE",
+                  "rm_type_name" : "DV_CODED_TEXT",
+                  "node_id" : "id9999",
+                  "constraint" : [ "at3" ],
+                  "effective_constraint_status" : "required",
+                  "terms" : [ ],
+                  "logical_path" : "/items[id7]/value[id8]/symbol",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id7]/value[id8]/symbol"
+                } ]
+              }, {
+                "members" : [ {
+                  "_type" : "C_INTEGER",
+                  "rm_type_name" : "integer",
+                  "node_id" : "id9999",
+                  "constraint" : [ {
+                    "lower" : 1,
+                    "upper" : 1,
+                    "lower_unbounded" : false,
+                    "upper_unbounded" : false,
+                    "lower_included" : true,
+                    "upper_included" : true
+                  } ],
+                  "logical_path" : "/items[id7]/value[id8]/value",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id7]/value[id8]/value"
+                }, {
+                  "_type" : "C_TERMINOLOGY_CODE",
+                  "rm_type_name" : "DV_CODED_TEXT",
+                  "node_id" : "id9999",
+                  "constraint" : [ "at4" ],
+                  "effective_constraint_status" : "required",
+                  "terms" : [ ],
+                  "logical_path" : "/items[id7]/value[id8]/symbol",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id7]/value[id8]/symbol"
+                } ]
+              } ],
+              "member_names" : [ "value", "symbol" ]
+            } ],
+            "prohibited" : false
+          } ],
+          "prohibited" : false
+        } ],
+        "attribute_tuples" : [ ],
+        "prohibited" : false
+      }, {
+        "_type" : "C_COMPLEX_OBJECT",
+        "rm_type_name" : "ELEMENT",
+        "node_id" : "id9",
+        "path" : "/items[id9]",
+        "logical_path" : "/items[id9]",
+        "term" : {
+          "description" : "",
+          "text" : "DV_SCALE"
+        },
+        "required" : false,
+        "allowed" : true,
+        "any_allowed" : false,
+        "occurrences" : {
+          "lower" : 0,
+          "upper" : 1,
+          "lower_unbounded" : false,
+          "upper_unbounded" : false,
+          "lower_included" : true,
+          "upper_included" : true,
+          "prohibited" : false,
+          "mandatory" : false,
+          "optional" : true,
+          "open" : false
+        },
+        "attributes" : [ {
+          "rm_attribute_name" : "value",
+          "path" : "/items[id9]/value",
+          "logical_path" : "/items[id9]/value",
+          "multiple" : false,
+          "mandatory" : false,
+          "children" : [ {
+            "_type" : "C_COMPLEX_OBJECT",
+            "rm_type_name" : "DV_SCALE",
+            "node_id" : "id10",
+            "path" : "/items[id9]/value[id10]",
+            "logical_path" : "/items[id9]/value[id10]",
+            "required" : false,
+            "allowed" : true,
+            "any_allowed" : false,
+            "attributes" : [ {
+              "rm_attribute_name" : "value",
+              "path" : "/items[id9]/value[id10]/value",
+              "logical_path" : "/items[id9]/value[id10]/value",
+              "multiple" : false,
+              "mandatory" : false,
+              "children" : [ {
+                "_type" : "C_REAL",
+                "rm_type_name" : "real",
+                "node_id" : "id9999",
+                "constraint" : [ {
+                  "lower" : 0.5,
+                  "upper" : 0.5,
+                  "lower_unbounded" : false,
+                  "upper_unbounded" : false,
+                  "lower_included" : true,
+                  "upper_included" : true
+                } ],
+                "logical_path" : "/items[id9]/value[id10]/value",
+                "allowed" : true,
+                "prohibited" : false,
+                "required" : false,
+                "attributes" : [ ],
+                "path" : "/items[id9]/value[id10]/value"
+              }, {
+                "_type" : "C_REAL",
+                "rm_type_name" : "real",
+                "node_id" : "id9999",
+                "constraint" : [ {
+                  "lower" : 1.5,
+                  "upper" : 1.5,
+                  "lower_unbounded" : false,
+                  "upper_unbounded" : false,
+                  "lower_included" : true,
+                  "upper_included" : true
+                } ],
+                "logical_path" : "/items[id9]/value[id10]/value",
+                "allowed" : true,
+                "prohibited" : false,
+                "required" : false,
+                "attributes" : [ ],
+                "path" : "/items[id9]/value[id10]/value"
+              } ],
+              "prohibited" : false
+            }, {
+              "rm_attribute_name" : "symbol",
+              "path" : "/items[id9]/value[id10]/symbol",
+              "logical_path" : "/items[id9]/value[id10]/symbol",
+              "multiple" : false,
+              "mandatory" : false,
+              "children" : [ {
+                "_type" : "C_TERMINOLOGY_CODE",
+                "rm_type_name" : "DV_CODED_TEXT",
+                "node_id" : "id9999",
+                "constraint" : [ "at3" ],
+                "effective_constraint_status" : "required",
+                "terms" : [ ],
+                "logical_path" : "/items[id9]/value[id10]/symbol",
+                "allowed" : true,
+                "prohibited" : false,
+                "required" : false,
+                "attributes" : [ ],
+                "path" : "/items[id9]/value[id10]/symbol"
+              }, {
+                "_type" : "C_TERMINOLOGY_CODE",
+                "rm_type_name" : "DV_CODED_TEXT",
+                "node_id" : "id9999",
+                "constraint" : [ "at4" ],
+                "effective_constraint_status" : "required",
+                "terms" : [ ],
+                "logical_path" : "/items[id9]/value[id10]/symbol",
+                "allowed" : true,
+                "prohibited" : false,
+                "required" : false,
+                "attributes" : [ ],
+                "path" : "/items[id9]/value[id10]/symbol"
+              } ],
+              "prohibited" : false
+            } ],
+            "attribute_tuples" : [ {
+              "members" : [ {
+                "rm_attribute_name" : "value",
+                "path" : "/items[id9]/value[id10]/value",
+                "logical_path" : "/items[id9]/value[id10]/value",
+                "multiple" : false,
+                "mandatory" : false,
+                "children" : [ {
+                  "_type" : "C_REAL",
+                  "rm_type_name" : "real",
+                  "node_id" : "id9999",
+                  "constraint" : [ {
+                    "lower" : 0.5,
+                    "upper" : 0.5,
+                    "lower_unbounded" : false,
+                    "upper_unbounded" : false,
+                    "lower_included" : true,
+                    "upper_included" : true
+                  } ],
+                  "logical_path" : "/items[id9]/value[id10]/value",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id9]/value[id10]/value"
+                }, {
+                  "_type" : "C_REAL",
+                  "rm_type_name" : "real",
+                  "node_id" : "id9999",
+                  "constraint" : [ {
+                    "lower" : 1.5,
+                    "upper" : 1.5,
+                    "lower_unbounded" : false,
+                    "upper_unbounded" : false,
+                    "lower_included" : true,
+                    "upper_included" : true
+                  } ],
+                  "logical_path" : "/items[id9]/value[id10]/value",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id9]/value[id10]/value"
+                } ],
+                "prohibited" : false
+              }, {
+                "rm_attribute_name" : "symbol",
+                "path" : "/items[id9]/value[id10]/symbol",
+                "logical_path" : "/items[id9]/value[id10]/symbol",
+                "multiple" : false,
+                "mandatory" : false,
+                "children" : [ {
+                  "_type" : "C_TERMINOLOGY_CODE",
+                  "rm_type_name" : "DV_CODED_TEXT",
+                  "node_id" : "id9999",
+                  "constraint" : [ "at3" ],
+                  "effective_constraint_status" : "required",
+                  "terms" : [ ],
+                  "logical_path" : "/items[id9]/value[id10]/symbol",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id9]/value[id10]/symbol"
+                }, {
+                  "_type" : "C_TERMINOLOGY_CODE",
+                  "rm_type_name" : "DV_CODED_TEXT",
+                  "node_id" : "id9999",
+                  "constraint" : [ "at4" ],
+                  "effective_constraint_status" : "required",
+                  "terms" : [ ],
+                  "logical_path" : "/items[id9]/value[id10]/symbol",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id9]/value[id10]/symbol"
+                } ],
+                "prohibited" : false
+              } ],
+              "tuples" : [ {
+                "members" : [ {
+                  "_type" : "C_REAL",
+                  "rm_type_name" : "real",
+                  "node_id" : "id9999",
+                  "constraint" : [ {
+                    "lower" : 0.5,
+                    "upper" : 0.5,
+                    "lower_unbounded" : false,
+                    "upper_unbounded" : false,
+                    "lower_included" : true,
+                    "upper_included" : true
+                  } ],
+                  "logical_path" : "/items[id9]/value[id10]/value",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id9]/value[id10]/value"
+                }, {
+                  "_type" : "C_TERMINOLOGY_CODE",
+                  "rm_type_name" : "DV_CODED_TEXT",
+                  "node_id" : "id9999",
+                  "constraint" : [ "at3" ],
+                  "effective_constraint_status" : "required",
+                  "terms" : [ ],
+                  "logical_path" : "/items[id9]/value[id10]/symbol",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id9]/value[id10]/symbol"
+                } ]
+              }, {
+                "members" : [ {
+                  "_type" : "C_REAL",
+                  "rm_type_name" : "real",
+                  "node_id" : "id9999",
+                  "constraint" : [ {
+                    "lower" : 1.5,
+                    "upper" : 1.5,
+                    "lower_unbounded" : false,
+                    "upper_unbounded" : false,
+                    "lower_included" : true,
+                    "upper_included" : true
+                  } ],
+                  "logical_path" : "/items[id9]/value[id10]/value",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id9]/value[id10]/value"
+                }, {
+                  "_type" : "C_TERMINOLOGY_CODE",
+                  "rm_type_name" : "DV_CODED_TEXT",
+                  "node_id" : "id9999",
+                  "constraint" : [ "at4" ],
+                  "effective_constraint_status" : "required",
+                  "terms" : [ ],
+                  "logical_path" : "/items[id9]/value[id10]/symbol",
+                  "allowed" : true,
+                  "prohibited" : false,
+                  "required" : false,
+                  "attributes" : [ ],
+                  "path" : "/items[id9]/value[id10]/symbol"
+                } ]
+              } ],
+              "member_names" : [ "value", "symbol" ]
+            } ],
+            "prohibited" : false
+          } ],
+          "prohibited" : false
+        } ],
+        "attribute_tuples" : [ ],
+        "prohibited" : false
+      } ],
+      "prohibited" : false
+    } ],
+    "attribute_tuples" : [ ],
+    "prohibited" : false
+  },
+  "terminology" : {
+    "original_language" : "nl",
+    "concept_code" : "id1",
+    "term_definitions" : {
+      "nl" : {
+        "id1" : {
+          "code" : "id1",
+          "description" : "",
+          "text" : "CTerminologyCode"
+        },
+        "ac2" : {
+          "description" : "",
+          "text" : "valueset"
+        },
+        "at3" : {
+          "code" : "",
+          "description" : "",
+          "text" : "term 1"
+        },
+        "at4" : {
+          "description" : "",
+          "text" : "term 2"
+        },
+        "id5" : {
+          "description" : "",
+          "text" : "DV_CODED_TEXT"
+        },
+        "id7" : {
+          "description" : "",
+          "text" : "DV_ORDINAL"
+        },
+        "id9" : {
+          "description" : "",
+          "text" : "DV_SCALE"
+        }
+      }
+    },
+    "term_bindings" : { },
+    "terminology_extracts" : { },
+    "value_sets" : {
+      "ac2" : {
+        "id" : "ac2",
+        "members" : [ "at3", "at4" ]
+      }
+    }
+  },
+  "adl_version" : "2.0.5",
+  "rm_release" : "1.1.0",
+  "other_meta_data" : { },
+  "specialized" : false,
+  "original_language" : {
+    "@type" : "TerminologyCode",
+    "terminology_id" : "ISO_639-1",
+    "code_string" : "nl",
+    "terminology_id_string" : "ISO_639-1"
+  },
+  "translations" : { },
+  "is_differential" : true,
+  "is_generated" : false
+}
