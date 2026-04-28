@@ -299,4 +299,18 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         return result.toString();
     }
 
+    @Override
+    public String getRmTypeName() {
+        if (getParent() == null || getParent().getRmAttributeName() == null) {
+            return "terminology_code";
+        }
+        switch (getParent().getRmAttributeName()) {
+            case "defining_code":
+                return "CODE_PHRASE";
+            case "symbol":
+                return "DV_CODED_TEXT";
+            default:
+                return "terminology_code";
+        }
+    }
 }
