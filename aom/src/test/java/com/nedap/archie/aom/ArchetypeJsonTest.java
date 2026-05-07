@@ -1,8 +1,7 @@
 package com.nedap.archie.aom;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.json.ArchieJacksonConfiguration;
 import com.nedap.archie.json.JacksonUtil;
@@ -22,27 +21,24 @@ public class ArchetypeJsonTest {
         }
         String json = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant()).writeValueAsString(archetype);
 
-        JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
-        JsonArray elements = jsonObject.getAsJsonObject("definition")
-                .getAsJsonArray("attributes").get(0).getAsJsonObject()
-                .getAsJsonArray("children");
+        JsonNode objectNode = new ObjectMapper().readValue(json, JsonNode.class);
+        JsonNode elements = objectNode.get("definition").get("attributes").get(0).get("children");
 
-        assertRmTypeName("DV_CODED_TEXT", elements.get(0).getAsJsonObject());
-        assertRmTypeName("DV_ORDINAL", elements.get(1).getAsJsonObject());
-        assertRmTypeName("DV_SCALE", elements.get(2).getAsJsonObject());
+        assertRmTypeName("DV_CODED_TEXT", elements.get(0));
+        assertRmTypeName("DV_ORDINAL", elements.get(1));
+        assertRmTypeName("DV_SCALE", elements.get(2));
     }
 
-    private void assertRmTypeName(String expectedDataValueRmTypeName, JsonObject element) {
-        JsonObject dataValue = element.getAsJsonArray("attributes").get(0).getAsJsonObject()
-                .getAsJsonArray("children").get(0).getAsJsonObject();
-        String dataValueRmTypeName = dataValue.get("rm_type_name").getAsString(); // DV_CODED_TEXT, DV_ORDINAL or DV_SCALE
+    private void assertRmTypeName(String expectedDataValueRmTypeName, JsonNode element) {
+        JsonNode dataValue = element.get("attributes").get(0).get("children").get(0);
+        String dataValueRmTypeName = dataValue.get("rm_type_name").textValue(); // DV_CODED_TEXT, DV_ORDINAL or DV_SCALE
         assertEquals(expectedDataValueRmTypeName, dataValueRmTypeName);
 
-        JsonObject dataValueAttribute = dataValue.getAsJsonArray("attributes").get(dataValueRmTypeName.equals("DV_CODED_TEXT") ? 0 : 1).getAsJsonObject();
-        assertEquals(dataValueRmTypeName.equals("DV_CODED_TEXT") ? "defining_code" : "symbol", dataValueAttribute.get("rm_attribute_name").getAsString());
+        JsonNode dataValueAttribute = dataValue.get("attributes").get(dataValueRmTypeName.equals("DV_CODED_TEXT") ? 0 : 1);
+        assertEquals(dataValueRmTypeName.equals("DV_CODED_TEXT") ? "defining_code" : "symbol", dataValueAttribute.get("rm_attribute_name").textValue());
 
-        JsonObject cTerminologyConstraint = dataValueAttribute.getAsJsonArray("children").get(0).getAsJsonObject();
-        assertEquals("C_TERMINOLOGY_CODE", cTerminologyConstraint.get("_type").getAsString());
-        assertEquals(dataValueRmTypeName.equals("DV_CODED_TEXT") ? "CODE_PHRASE" : "DV_CODED_TEXT", cTerminologyConstraint.get("rm_type_name").getAsString());
+        JsonNode cTerminologyConstraint = dataValueAttribute.get("children").get(0);
+        assertEquals("C_TERMINOLOGY_CODE", cTerminologyConstraint.get("_type").textValue());
+        assertEquals(dataValueRmTypeName.equals("DV_CODED_TEXT") ? "CODE_PHRASE" : "DV_CODED_TEXT", cTerminologyConstraint.get("rm_type_name").textValue());
     }
 }
