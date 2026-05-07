@@ -9,5 +9,4 @@ dependencies {
     api project(':openehr-terminology')
 
     testImplementation project(':archie-utils')
-    testImplementation libs.gson
 }
