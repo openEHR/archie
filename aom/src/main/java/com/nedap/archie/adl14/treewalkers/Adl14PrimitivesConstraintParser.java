@@ -17,7 +17,6 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -92,8 +91,8 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
         }
     }
 
-    public CTerminologyCode parseCTerminologyCode(Adl14Parser.C_terminology_codeContext terminologyCodeContext) {
-        CTerminologyCode result = new CTerminologyCode();
+    public CTerminologyCodeADL14 parseCTerminologyCode(Adl14Parser.C_terminology_codeContext terminologyCodeContext) {
+        CTerminologyCodeADL14 result = new CTerminologyCodeADL14();
 
         boolean containsAssumedValue = !terminologyCodeContext.getTokens(Adl14Lexer.SYM_SEMICOLON).isEmpty();
 
@@ -104,29 +103,23 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
                 //need to do parsing here because the lexer matched the entire term code ref
                 TerminologyCode terminologyCode = TerminologyCode.createFromString(qualifiedTermCodeContext.TERM_CODE_REF().getText());
                 if (terminologyCode.getTerminologyId() != null && terminologyCode.getTerminologyId().equalsIgnoreCase("local")) {
-                    result.setConstraint(terminologyCode.getCodeString());
+                    result.addConstraint(terminologyCode.getCodeString());
                 } else {
                     //non-local term constraints. Just add the text here, it will be converted later
-                    result.setConstraint(qualifiedTermCodeContext.TERM_CODE_REF().getText());
+                    result.addConstraint(qualifiedTermCodeContext.TERM_CODE_REF().getText());
                 }
             } else {
                 String terminologyId = qualifiedTermCodeContext.identifier(0).getText();
                 if (terminologyId.equalsIgnoreCase("local")) {
-                    List<String> pendingCodes = new ArrayList<>();
+                    //we need to create a value set. For now just add the constraint, the value set will come after
+                    //the parser
                     for (int i = 1; i < qualifiedTermCodeContext.identifier().size(); i++) {
-                        pendingCodes.add(qualifiedTermCodeContext.identifier(i).getText());
-                    }
-                    if (!pendingCodes.isEmpty()) {
-                        result.setPendingCodes(pendingCodes);
+                        result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
                     }
                 } else {
-                    // Normalise to full term code refs so the converter can treat all pending codes uniformly
-                    List<String> pendingCodes = new ArrayList<>();
-                    for (int i = 1; i < qualifiedTermCodeContext.identifier().size(); i++) {
-                        pendingCodes.add("[" + terminologyId + "::" + qualifiedTermCodeContext.identifier(i).getText() + "]");
-                    }
-                    if (!pendingCodes.isEmpty()) {
-                        result.setPendingCodes(pendingCodes);
+                    //non-local term constraints. Add the text here, will be converted later
+                    for (int i = 0; i < qualifiedTermCodeContext.identifier().size(); i++) {
+                        result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
                     }
                 }
 
@@ -137,7 +130,7 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
         } else {
             //this is an AC-code.
             if(terminologyCodeContext.localTermCode().AC_CODE() != null) {
-                result.setConstraint(terminologyCodeContext.localTermCode().AC_CODE().getText());
+                result.addConstraint(terminologyCodeContext.localTermCode().AC_CODE().getText());
             } else {
                 throw new RuntimeException("unknown terminology code format - this looks adl2 inside the adl 1.4 format?");
             }

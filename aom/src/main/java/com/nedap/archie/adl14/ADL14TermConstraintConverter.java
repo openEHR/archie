@@ -4,6 +4,7 @@ import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.primitives.CTerminologyCodeADL14;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
@@ -38,27 +39,24 @@ public class ADL14TermConstraintConverter {
     }
 
     private void convert(CObject cObject) {
-
-        if (cObject instanceof CTerminologyCode) {
-            convertCTerminologyCode((CTerminologyCode) cObject);
-        }
         for(CAttribute attribute:cObject.getAttributes()) {
-            convert(attribute);
+            convertChildren(attribute);
         }
         if(cObject instanceof CComplexObject) {
             for (CAttributeTuple tuple : ((CComplexObject) cObject).getAttributeTuples()) {
                 //tuples have not been properly converted to CAttributes in this parsed model, so we can ignore them above
                 Set<Integer> tupleTermCodeIndices = getCTerminologyCodeIndices(tuple);
                 for (Integer index : tupleTermCodeIndices) {
-                    List<CPrimitiveObject<?, ?>> termCodes = tuple.getTuples().stream().map(p -> p.getMember(index)).collect(Collectors.toList());
                     Set<String> atCodes = new LinkedHashSet<>();
-                    for (CPrimitiveObject<?, ?> cPrimitiveObject : termCodes) {
-                        CTerminologyCode cTerminologyCode = (CTerminologyCode) cPrimitiveObject;
-                        convertCTerminologyCode(cTerminologyCode);
-                        if(cTerminologyCode.getConstraint() != null) {
-                            String constraint = cTerminologyCode.getConstraint();
-                            if(AOMUtils.isValueCode(constraint)) {
-                                atCodes.add(constraint);
+                    for (CPrimitiveTuple primitiveTuple : tuple.getTuples()) {
+                        CPrimitiveObject<?, ?> member = primitiveTuple.getMember(index);
+                        if (member instanceof CTerminologyCodeADL14) {
+                            CTerminologyCodeADL14 cTerminologyCode = (CTerminologyCodeADL14) member;
+                            convertCTerminologyCode(cTerminologyCode);
+                            CTerminologyCode replacement = toAdl2(cTerminologyCode);
+                            primitiveTuple.getMembers().set(index, replacement);
+                            if (replacement.getConstraint() != null && AOMUtils.isValueCode(replacement.getConstraint())) {
+                                atCodes.add(replacement.getConstraint());
                             }
                         }
                     }
@@ -70,12 +68,28 @@ public class ADL14TermConstraintConverter {
         }
     }
 
+    private void convertChildren(CAttribute attribute) {
+        List<CObject> children = attribute.getChildren();
+        for (int i = 0; i < children.size(); i++) {
+            CObject child = children.get(i);
+            if (child instanceof CTerminologyCodeADL14) {
+                CTerminologyCodeADL14 cTerminologyCode = (CTerminologyCodeADL14) child;
+                convertCTerminologyCode(cTerminologyCode);
+                CTerminologyCode replacement = toAdl2(cTerminologyCode);
+                children.set(i, replacement);
+                replacement.setParent(attribute);
+            } else {
+                convert(child);
+            }
+        }
+    }
+
     private Set<Integer> getCTerminologyCodeIndices(CAttributeTuple tuple) {
         Set<Integer> result = new LinkedHashSet<>();
         for (CPrimitiveTuple primitiveTuple : tuple.getTuples()) {
             int i = 0;
             for (CPrimitiveObject<?, ?> cPrimitiveObject : primitiveTuple.getMembers()) {
-                if(cPrimitiveObject instanceof CTerminologyCode) {
+                if(cPrimitiveObject instanceof CTerminologyCodeADL14) {
                     result.add(i);
                 }
                 i++;
@@ -84,139 +98,124 @@ public class ADL14TermConstraintConverter {
         return result;
     }
 
-    private void convert(CAttribute attribute) {
-        for(CObject object:attribute.getChildren()) {
-            convert(object);
-        }
-    }
+    private void convertCTerminologyCode(CTerminologyCodeADL14 cTerminologyCode) {
+        if(cTerminologyCode.getConstraint() != null && !cTerminologyCode.getConstraint().isEmpty()) {
+            String firstConstraint = cTerminologyCode.getConstraint().get(0);
+            TerminologyCode termCode = TerminologyCode.createFromString(firstConstraint);
+            boolean isLocalCode = termCode.getTerminologyId() == null || termCode.getTerminologyId().equalsIgnoreCase("local");
+            if(isLocalCode && AOMUtils.isValueCode(firstConstraint)) {
+                //local codes
+                if(cTerminologyCode.getConstraint().size() == 1) {
+                    //do not create a value set, just convert the code
+                    String newCode = converter.convertValueCode(firstConstraint);
+                    converter.addConvertedCode(firstConstraint, newCode);
+                    cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(newCode)));
+                } else {
+                    Set<String> localCodes = new LinkedHashSet<>();
+                    for(String code:cTerminologyCode.getConstraint()) {
+                        String newCode = converter.convertValueCode(code);
+                        converter.addConvertedCode(code, newCode);
+                        localCodes.add(newCode);
+                    }
 
-    /**
-     * Converts a single-code {@link CTerminologyCode} constraint from ADL 1.4 to ADL 2 format.
-     * Multi-code constraints (stored via {@link CTerminologyCode#getPendingCodes()} by the ADL 1.4 parser)
-     * are delegated to {@link #convertMultiCodeTerminologyCode}.
-     * <p>
-     * Three cases are handled:
-     * <ul>
-     *   <li>Local at-code (e.g. {@code at0001}): converted to its ADL 2 equivalent.</li>
-     *   <li>Local ac-code (e.g. {@code ac0001}): converted to its ADL 2 value-set code equivalent.</li>
-     *   <li>External terminology code (e.g. {@code [snomed-ct::12345]}): a term binding is created and
-     *       a new local at-code is generated to reference it.</li>
-     * </ul>
-     */
-    private void convertCTerminologyCode(CTerminologyCode cTerminologyCode) {
-        List<String> pendingCodes = cTerminologyCode.getPendingCodes();
-        if (pendingCodes != null && !pendingCodes.isEmpty()) {
-            convertMultiCodeTerminologyCode(cTerminologyCode, pendingCodes);
-            return;
-        }
+                    ValueSet valueSet = findOrCreateValueSet(cTerminologyCode.getArchetype(), localCodes, cTerminologyCode);
+                    cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(valueSet.getId())));
+                }
+            } else if (isLocalCode && AOMUtils.isValueSetCode(termCode.getCodeString())) {
+                List<String> newConstraint = new ArrayList<>();
+                for(String constraint:cTerminologyCode.getConstraint()) {
+                    TerminologyCode code = TerminologyCode.createFromString(constraint);
+                    String newCode = converter.convertValueSetCode(code.getCodeString());
+                    converter.addConvertedCode(termCode.getCodeString(), newCode);
+                    newConstraint.add(newCode);
+                }
+                cTerminologyCode.setConstraint(newConstraint);
 
-        String constraint = cTerminologyCode.getConstraint();
-        if (constraint == null) {
-            return;
-        }
+            } else {
+                if (cTerminologyCode.getConstraint().size() == 1) {
+                    try {
+                        //do not create a value set, create a code plus binding to the old non-local code
+                        URI uri = new ADL14ConversionUtil(converter.getConversionConfiguration()).convertToUri(termCode);
+                        Map<String, URI> termBindingsMap = findOrCreateTermBindings(termCode);
 
-        TerminologyCode termCode = TerminologyCode.createFromString(constraint);
-        boolean isLocalCode = termCode.getTerminologyId() == null
-                || termCode.getTerminologyId().equalsIgnoreCase("local");
+                        //TODO: check if this is a converted or old term binding - old is unusual, but could be possible!
+                        String termBinding = findOrAddTermBindingAndCode(termCode, uri, termBindingsMap);
+                        cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(termBinding)));
+                    } catch (URISyntaxException e) {
+                        //TODO
+                        logger.error("error converting term", e);
+                    }
+                } else {
+                    String terminologyId = cTerminologyCode.getConstraint().get(0);
+                    termCode = TerminologyCode.createFromString(terminologyId, null, cTerminologyCode.getConstraint().get(1));
+                    Map<String, URI> termBindingsMap = findOrCreateTermBindings(termCode);
+                    List<String> atCodes = new ArrayList<>();
+                    List<String> constraints = new ArrayList<>(cTerminologyCode.getConstraint());
+                    cTerminologyCode.setConstraint(atCodes);
+                    for(int i = 1; i < constraints.size(); i++) {
+                        String constraint = constraints.get(i);
+                        try {
+                            if(constraint.startsWith("[") && constraint.endsWith("]")) {
+                                TerminologyCode constraintCode = TerminologyCode.createFromString(constraint);
+                                URI uri = new ADL14ConversionUtil(converter.getConversionConfiguration()).convertToUri(constraintCode);
+                                atCodes.add(findOrAddTermBindingAndCode(constraintCode, uri, termBindingsMap));
+                            } else {
+                                TerminologyCode constraintCode = new TerminologyCode();
+                                constraintCode.setTerminologyId(terminologyId);
+                                constraintCode.setCodeString(constraint);
+                                URI uri = new ADL14ConversionUtil(converter.getConversionConfiguration()).convertToUri(constraintCode);
+                                atCodes.add(findOrAddTermBindingAndCode(constraintCode, uri, termBindingsMap));
+                            }
 
-        if (isLocalCode && AOMUtils.isValueCode(constraint)) {
-            // Single local at-code: convert it to its ADL 2 equivalent
-            String newCode = converter.convertValueCode(constraint);
-            converter.addConvertedCode(constraint, newCode);
-            cTerminologyCode.setConstraint(newCode);
-        } else if (isLocalCode && AOMUtils.isValueSetCode(termCode.getCodeString())) {
-            // Local value-set reference: convert the ac-code to its ADL 2 equivalent
-            String newCode = converter.convertValueSetCode(termCode.getCodeString());
-            converter.addConvertedCode(termCode.getCodeString(), newCode);
-            cTerminologyCode.setConstraint(newCode);
-        } else {
-            // External terminology: create a term binding and generate a new at-code to reference it
-            try {
-                URI uri = new ADL14ConversionUtil(converter.getConversionConfiguration()).convertToUri(termCode);
-                Map<String, URI> termBindingsMap = findOrCreateTermBindings(termCode);
-                cTerminologyCode.setConstraint(findOrAddTermBindingAndCode(termCode, uri, termBindingsMap));
-            } catch (URISyntaxException e) {
-                logger.error("error converting term", e);
-            }
-        }
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    ValueSet valueSet = findOrCreateValueSet(cTerminologyCode.getArchetype(), new LinkedHashSet<>(atCodes), cTerminologyCode);
+                    cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(valueSet.getId())));
 
-        convertAssumedValue(cTerminologyCode, isLocalCode);
-    }
-
-    /**
-     * Converts a multi-code {@link CTerminologyCode} constraint from ADL 1.4 to ADL 2 format.
-     * In ADL 1.4, a constraint may reference multiple codes inline (e.g.
-     * {@code [local::at0001, at0002]} or {@code [snomed-ct::12345, 67890]}). ADL 2 represents
-     * these as a value set (ac-code), which this method creates.
-     * <p>
-     * The {@code pendingCodes} list was populated by the ADL 1.4 parser:
-     * <ul>
-     *   <li>For local codes: raw at-codes, e.g. {@code ["at0001", "at0002"]}.</li>
-     *   <li>For external codes: full term code refs normalised by the parser,
-     *       e.g. {@code ["[snomed-ct::12345]", "[snomed-ct::67890]"]}.</li>
-     * </ul>
-     * In both cases a value set is created and the constraint is set to its ac-code.
-     */
-    private void convertMultiCodeTerminologyCode(CTerminologyCode cTerminologyCode, List<String> pendingCodes) {
-        TerminologyCode firstCode = TerminologyCode.createFromString(pendingCodes.get(0));
-        boolean isLocalCode = firstCode.getTerminologyId() == null
-                || firstCode.getTerminologyId().equalsIgnoreCase("local");
-
-        if (isLocalCode) {
-            // Convert each at-code and group them into a new value set
-            Set<String> convertedCodes = new LinkedHashSet<>();
-            for (String code : pendingCodes) {
-                String newCode = converter.convertValueCode(code);
-                converter.addConvertedCode(code, newCode);
-                convertedCodes.add(newCode);
-            }
-            ValueSet valueSet = findOrCreateValueSet(cTerminologyCode.getArchetype(), convertedCodes, cTerminologyCode);
-            cTerminologyCode.setConstraint(valueSet.getId());
-        } else {
-            // Create a term binding for each external code, then group the resulting at-codes into a value set
-            Map<String, URI> termBindingsMap = findOrCreateTermBindings(firstCode);
-            List<String> atCodes = new ArrayList<>();
-            for (String code : pendingCodes) {
-                TerminologyCode termCode = TerminologyCode.createFromString(code);
-                try {
-                    URI uri = new ADL14ConversionUtil(converter.getConversionConfiguration()).convertToUri(termCode);
-                    atCodes.add(findOrAddTermBindingAndCode(termCode, uri, termBindingsMap));
-                } catch (URISyntaxException e) {
-                    logger.error("error converting term", e);
                 }
             }
-            if (!atCodes.isEmpty()) {
-                ValueSet valueSet = findOrCreateValueSet(cTerminologyCode.getArchetype(), new LinkedHashSet<>(atCodes), cTerminologyCode);
-                cTerminologyCode.setConstraint(valueSet.getId());
+            if(cTerminologyCode.getAssumedValue() != null) {
+                TerminologyCode assumedValue = cTerminologyCode.getAssumedValue();
+                if(isLocalCode) {
+                    String newCode = converter.convertValueCode(assumedValue.getCodeString());
+                    assumedValue.setCodeString(newCode);
+                    assumedValue.setTerminologyId(null);
+                } else {
+                    try {
+                        Map<String, URI> termBindingsMap = findOrCreateTermBindings(assumedValue);
+                        URI uri = new ADL14ConversionUtil(converter.getConversionConfiguration()).convertToUri(assumedValue);
+                        assumedValue.setCodeString(findOrAddTermBindingAndCode(assumedValue, uri, termBindingsMap));
+                        assumedValue.setTerminologyId(null);
+                        assumedValue.setTerminologyVersion(null);
+                    } catch (URISyntaxException e) {
+                        //TODO
+                        e.printStackTrace();
+                    }
+                }
             }
         }
-
-        convertAssumedValue(cTerminologyCode, isLocalCode);
     }
 
     /**
-     * Converts the assumed value of a {@link CTerminologyCode} from ADL 1.4 to ADL 2 format,
-     * mirroring the logic used for the constraint itself.
+     * Build an ADL 2 {@link CTerminologyCode} from a converted {@link CTerminologyCodeADL14}.
+     * Copies all relevant CObject/CPrimitiveObject fields and collapses the single-element
+     * post-conversion constraint list into a single String.
      */
-    private void convertAssumedValue(CTerminologyCode cTerminologyCode, boolean isLocalCode) {
-        if (cTerminologyCode.getAssumedValue() == null) {
-            return;
+    private CTerminologyCode toAdl2(CTerminologyCodeADL14 source) {
+        CTerminologyCode result = new CTerminologyCode();
+        result.setRmTypeName(source.getRmTypeName());
+        result.setOccurrences(source.getOccurrences());
+        result.setDeprecated(source.getDeprecated());
+        result.setSiblingOrder(source.getSiblingOrder());
+        result.setEnumeratedTypeConstraint(source.getEnumeratedTypeConstraint());
+        result.setAssumedValue(source.getAssumedValue());
+        result.setConstraintStatus(source.getConstraintStatus());
+        if (source.getConstraint() != null && !source.getConstraint().isEmpty()) {
+            result.setConstraint(source.getConstraint().get(0));
         }
-        TerminologyCode assumedValue = cTerminologyCode.getAssumedValue();
-        if (isLocalCode) {
-            assumedValue.setCodeString(converter.convertValueCode(assumedValue.getCodeString()));
-            assumedValue.setTerminologyId(null);
-        } else {
-            try {
-                Map<String, URI> termBindingsMap = findOrCreateTermBindings(assumedValue);
-                URI uri = new ADL14ConversionUtil(converter.getConversionConfiguration()).convertToUri(assumedValue);
-                assumedValue.setCodeString(findOrAddTermBindingAndCode(assumedValue, uri, termBindingsMap));
-                assumedValue.setTerminologyId(null);
-                assumedValue.setTerminologyVersion(null);
-            } catch (URISyntaxException e) {
-                logger.error("error converting term", e);
-            }
-        }
+        return result;
     }
 
     private Map<String, URI> findOrCreateTermBindings(TerminologyCode termCode) {
@@ -276,12 +275,19 @@ public class ADL14TermConstraintConverter {
                     CAttribute cAttributeInParent = (CAttribute) inParent;
                     if(!cAttributeInParent.getChildren().isEmpty()) {
                         CObject cObject = cAttributeInParent.getChildren().get(0);
-                        if(cObject instanceof CTerminologyCode) {
-                            CTerminologyCode termCodeInParent = (CTerminologyCode) cObject;
-                            if(termCodeInParent.getConstraint() != null) {
-                                if(termCodeInParent.getConstraint().startsWith("ac")) {
-                                    idInparent = termCodeInParent.getConstraint();
+                        if(cObject instanceof CTerminologyCodeADL14) {
+                            CTerminologyCodeADL14 termCodeInParent = (CTerminologyCodeADL14) cObject;
+                            if(termCodeInParent.getConstraint() != null && !termCodeInParent.getConstraint().isEmpty()) {
+                                String firstConstraint = termCodeInParent.getConstraint().get(0);
+                                if(firstConstraint.startsWith("ac")) {
+                                    idInparent = firstConstraint;
                                 }
+                            }
+                        } else if(cObject instanceof CTerminologyCode) {
+                            CTerminologyCode termCodeInParent = (CTerminologyCode) cObject;
+                            String parentConstraint = termCodeInParent.getConstraint();
+                            if(parentConstraint != null && parentConstraint.startsWith("ac")) {
+                                idInparent = parentConstraint;
                             }
                         }
                     }

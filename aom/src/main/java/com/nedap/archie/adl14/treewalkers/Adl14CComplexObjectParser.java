@@ -11,7 +11,7 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.primitives.CTerminologyCodeADL14;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
@@ -203,10 +203,10 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
 
                 CPrimitiveTuple primitiveTuple = new CPrimitiveTuple();
 
-                CTerminologyCode cCode = new CTerminologyCode();
+                CTerminologyCodeADL14 cCode = new CTerminologyCodeADL14();
 
                 TerminologyCode code = TerminologyCode.createFromString(ordinal_termContext.c_terminology_code().getText());
-                cCode.setConstraint(code.getCodeString());
+                cCode.addConstraint(code.getCodeString());
 
                 primitiveTuple.addMember(cValue);
                 primitiveTuple.addMember(cCode);
@@ -256,7 +256,7 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
                     if (item.getSymbol() != null) {
                         primitiveTuple.addMember(item.getSymbolAdl2());
                     } else if (hasSymbol) {
-                        CTerminologyCode code = new CTerminologyCode();
+                        CTerminologyCodeADL14 code = new CTerminologyCodeADL14();
                         primitiveTuple.addMember(code);//nothing we can do here!
                     }
 
@@ -273,9 +273,9 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
             CDVQuantity cdvQuantity = odinParser.convert(objectContext.domainSpecificExtension().odin_text().getText(), CDVQuantity.class);
             if(cdvQuantity.getProperty() != null) {
                 CAttribute property = new CAttribute("property");
-                CTerminologyCode code = new CTerminologyCode();
+                CTerminologyCodeADL14 code = new CTerminologyCodeADL14();
                 //will be converted later
-                code.setConstraint(cdvQuantity.getProperty().toString());
+                code.addConstraint(cdvQuantity.getProperty().toString());
                 property.addChild(code);
                 result.addAttribute(property);
             }
