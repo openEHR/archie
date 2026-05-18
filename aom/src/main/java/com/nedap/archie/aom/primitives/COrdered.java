@@ -7,12 +7,23 @@ import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.Interval;
 import org.openehr.utils.message.I18n;
 
+import java.util.List;
 import java.util.function.BiFunction;
 
 /**
  * Created by pieter.bos on 15/10/15.
  */
-public abstract class COrdered<T> extends CPrimitiveObject<Interval<T>, T> {
+public abstract class COrdered<T> extends CPrimitiveObject<List<Interval<T>>, T> {
+
+    public abstract List<Interval<T>> getConstraint();
+
+    public List<Interval<T>> getConstraintAsList() {
+        return getConstraint();
+    }
+
+    public abstract void setConstraint(List<Interval<T>> constraint);
+
+    public abstract void addConstraint(Interval<T> constraint);
 
     @Override
     @Deprecated

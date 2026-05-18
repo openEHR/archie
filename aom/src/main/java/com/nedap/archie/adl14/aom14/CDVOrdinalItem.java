@@ -2,11 +2,9 @@ package com.nedap.archie.adl14.aom14;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.primitives.CInteger;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.primitives.CTerminologyCodeADL14;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
-
-import java.util.Arrays;
 
 public class CDVOrdinalItem {
 
@@ -30,12 +28,12 @@ public class CDVOrdinalItem {
     }
 
     @JsonIgnore
-    public CTerminologyCode getSymbolAdl2() {
+    public CTerminologyCodeADL14 getSymbolAdl2() {
         if(symbol == null) {
             return null;
         }
-        CTerminologyCode result = new CTerminologyCode();
-        result.setConstraint(Arrays.asList(symbol.toString()));
+        CTerminologyCodeADL14 result = new CTerminologyCodeADL14();
+        result.addConstraint(symbol.toString());
         return result;
     }
 
