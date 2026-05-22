@@ -39,8 +39,15 @@ public class ADL14TermConstraintConverter {
     }
 
     private void convert(CObject cObject) {
-        for(CAttribute attribute:cObject.getAttributes()) {
-            convertChildren(attribute);
+        if (cObject instanceof CTerminologyCodeADL14) {
+            CTerminologyCodeADL14 cTerminologyCode = (CTerminologyCodeADL14) cObject;
+            convertCTerminologyCode(cTerminologyCode);
+            replaceInParent(cTerminologyCode, toAdl2(cTerminologyCode));
+        }
+        for (CAttribute attribute : cObject.getAttributes()) {
+            for (CObject child : attribute.getChildren()) {
+                convert(child);
+            }
         }
         if(cObject instanceof CComplexObject) {
             for (CAttributeTuple tuple : ((CComplexObject) cObject).getAttributeTuples()) {
@@ -68,20 +75,11 @@ public class ADL14TermConstraintConverter {
         }
     }
 
-    private void convertChildren(CAttribute attribute) {
-        List<CObject> children = attribute.getChildren();
-        for (int i = 0; i < children.size(); i++) {
-            CObject child = children.get(i);
-            if (child instanceof CTerminologyCodeADL14) {
-                CTerminologyCodeADL14 cTerminologyCode = (CTerminologyCodeADL14) child;
-                convertCTerminologyCode(cTerminologyCode);
-                CTerminologyCode replacement = toAdl2(cTerminologyCode);
-                children.set(i, replacement);
-                replacement.setParent(attribute);
-            } else {
-                convert(child);
-            }
-        }
+    private void replaceInParent(CObject original, CObject replacement) {
+        CAttribute parent = original.getParent();
+        int index = parent.getChildren().indexOf(original);
+        parent.getChildren().set(index, replacement);
+        replacement.setParent(parent);
     }
 
     private Set<Integer> getCTerminologyCodeIndices(CAttributeTuple tuple) {
