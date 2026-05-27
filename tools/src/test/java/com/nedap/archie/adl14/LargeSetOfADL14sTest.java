@@ -1,5 +1,6 @@
 package com.nedap.archie.adl14;
 
+import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.antlr.Adl14Lexer;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
@@ -12,6 +13,7 @@ import com.nedap.archie.aom.CPrimitiveTuple;
 import com.nedap.archie.aom.primitives.CTerminologyCodeADL14;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
+import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CodePointCharStream;
 import org.junit.jupiter.api.BeforeEach;
@@ -101,6 +103,17 @@ public class LargeSetOfADL14sTest {
                 .convert(Collections.singletonList(archetype));
         ADL2ConversionResult result = converted.getConversionResults().get(0);
         assertNotNull(result.getArchetype(), () -> "conversion returned null archetype, exception: " + result.getException());
+
+        // Round-trip the converted ADL 2 archetype: serialize → reparse → serialize-again and assert idempotent.
+        // The first serialize throws AssertionError if any CTerminologyCodeADL14 slipped through unconverted,
+        // since ADLDefinitionSerializer has no serializer registered for that type.
+        String serialized = ADLArchetypeSerializer.serialize(result.getArchetype());
+        ADLParser adl2Parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
+        Archetype reparsed = adl2Parser.parse(serialized);
+        assertTrue(adl2Parser.getErrors().hasNoErrors(),
+                () -> "roundtrip parsing of converted ADL 2 archetype produced errors: " + adl2Parser.getErrors());
+        String serializedAgain = ADLArchetypeSerializer.serialize(reparsed);
+        assertEquals(serialized, serializedAgain, "roundtrip serialization should be idempotent");
     }
 
     private void collectTerminologyCodes(CObject cObject, List<CTerminologyCodeADL14> out) {
