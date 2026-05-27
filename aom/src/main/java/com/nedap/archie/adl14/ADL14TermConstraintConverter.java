@@ -209,7 +209,12 @@ public class ADL14TermConstraintConverter {
         result.setSiblingOrder(source.getSiblingOrder());
         result.setEnumeratedTypeConstraint(source.getEnumeratedTypeConstraint());
         result.setAssumedValue(source.getAssumedValue());
+        result.setDefaultValue(source.getDefaultValue());
         result.setConstraintStatus(source.getConstraintStatus());
+        // Copy the tuple back-pointer too: when this CTerminologyCodeADL14 sits inside a CPrimitiveTuple,
+        // its socParent links back to that tuple. The caller swaps it in via members.set(index, replacement),
+        // which (unlike CPrimitiveTuple.addMember) does not set socParent, so we copy it here.
+        result.setSocParent(source.getSocParent());
         if (source.getConstraint() != null && !source.getConstraint().isEmpty()) {
             result.setConstraint(source.getConstraint().get(0));
         }
