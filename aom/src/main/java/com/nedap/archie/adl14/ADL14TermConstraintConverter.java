@@ -200,10 +200,13 @@ public class ADL14TermConstraintConverter {
      * Build an ADL 2 {@link CTerminologyCode} from a converted {@link CTerminologyCodeADL14}.
      * Copies all relevant CObject/CPrimitiveObject fields and collapses the single-element
      * post-conversion constraint list into a single String.
+     *
+     * <p>Package-private for unit testing — see ADL14TermConstraintConverterTest.</p>
      */
-    private CTerminologyCode toAdl2(CTerminologyCodeADL14 source) {
+    static CTerminologyCode toAdl2(CTerminologyCodeADL14 source) {
         CTerminologyCode result = new CTerminologyCode();
-        result.setRmTypeName(source.getRmTypeName());
+        // rmTypeName is not copied: CPrimitiveObject overrides getRmTypeName() to compute it from the
+        // class name, ignoring the field. Setting it would be a no-op.
         result.setOccurrences(source.getOccurrences());
         result.setDeprecated(source.getDeprecated());
         result.setSiblingOrder(source.getSiblingOrder());
