@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -40,7 +41,6 @@ public class Adl14PrimitivesConstraintParserTest {
 
     @Test
     public void parsesMultiCodeLocalConstraint() {
-        // This is the case that motivated the PR — used to silently parse to an empty list.
         CTerminologyCodeADL14 result = parse("[local::at0001, at0002, at0003]");
         assertEquals(Arrays.asList("at0001", "at0002", "at0003"), result.getConstraint());
     }
@@ -65,7 +65,7 @@ public class Adl14PrimitivesConstraintParserTest {
         // Qualified-form term codes carry their assumed value via the assumed_value grammar rule,
         // which the parser hands directly to setAssumedValue.
         CTerminologyCodeADL14 result = parse("[local::at0001; at0002]");
-        assertEquals(Arrays.asList("at0001"), result.getConstraint());
+        assertEquals(List.of("at0001"), result.getConstraint());
         assertEquals("at0002", result.getAssumedValue().getCodeString());
     }
 
