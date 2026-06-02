@@ -2,7 +2,7 @@
 antlr = "4.13.2"
 
 jackson = "2.21.3"
-jackson_annotations = "2.21"
+jackson_annotations = "2.22"
 
 slf4j = "1.7.36"
 
