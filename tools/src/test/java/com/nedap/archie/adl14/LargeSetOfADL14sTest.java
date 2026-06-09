@@ -63,11 +63,19 @@ public class LargeSetOfADL14sTest {
     }
 
     /**
-     * Parses a demo ADL 1.4 archetype that exercises (almost) every constraint type and asserts that every
-     * {@link CTerminologyCodeADL14} in the resulting tree has a non-empty constraint list. This guards against
-     * the regression that motivated this PR: multi-code constraints like {@code [local::at0001, at0002]} and
-     * {@code [openehr::271, 272, 273, 253]} silently parsing to an empty constraint, which existing bulk-parse
-     * tests didn't catch because they only counted parse exceptions.
+     * End-to-end check on a demo ADL 1.4 archetype that exercises (almost) every constraint type:
+     * <ol>
+     *   <li>Parses it and asserts there are no parse errors.</li>
+     *   <li>Asserts every {@link CTerminologyCodeADL14} in the tree has a non-empty constraint list, and that
+     *       at least two are multi-code. This guards against a regression where multi-code constraints like
+     *       {@code [local::at0001, at0002]} and {@code [openehr::271, 272, 273, 253]} silently parse to an empty
+     *       constraint — a bug that bulk-parse tests miss because they only count parse exceptions.</li>
+     *   <li>Serializes the parsed (pre-conversion) archetype back to ADL 1.4, exercising
+     *       {@link com.nedap.archie.serializer.adl.constraints.CTerminologyCodeADL14Serializer} and asserting
+     *       the multi-code forms reappear in the output.</li>
+     *   <li>Converts it to ADL 2 and asserts that serialize → reparse → serialize-again produces identical
+     *       text both times (a stable round-trip).</li>
+     * </ol>
      */
     @Test
     public void testDemoArchetype() throws Exception {
@@ -97,6 +105,15 @@ public class LargeSetOfADL14sTest {
         assertTrue(multiCodeCount >= 2,
                 "expected at least two multi-code terminology constraints in the demo, found " + multiCodeCount);
 
+        // Serializing the parsed (pre-conversion) ADL 1.4 archetype must work too: this exercises
+        // CTerminologyCodeADL14Serializer. Before that serializer existed, ADLDefinitionSerializer threw
+        // an AssertionError on CTerminologyCodeADL14. Assert the multi-code forms round-trip into the text.
+        String serializedAdl14 = ADLArchetypeSerializer.serialize(archetype);
+        assertTrue(serializedAdl14.contains("[local::at0007, at0008, at0009, at0010]"),
+                () -> "expected local multi-code constraint in serialized ADL 1.4, got:\n" + serializedAdl14);
+        assertTrue(serializedAdl14.contains("[openehr::271, 272, 273, 253]"),
+                () -> "expected external multi-code constraint in serialized ADL 1.4, got:\n" + serializedAdl14);
+
         // Sanity check: end-to-end conversion of the demo also succeeds.
         ADL2ConversionResultList converted = new ADL14Converter(
                 BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration)
@@ -104,16 +121,17 @@ public class LargeSetOfADL14sTest {
         ADL2ConversionResult result = converted.getConversionResults().get(0);
         assertNotNull(result.getArchetype(), () -> "conversion returned null archetype, exception: " + result.getException());
 
-        // Round-trip the converted ADL 2 archetype: serialize → reparse → serialize-again and assert idempotent.
-        // The first serialize throws AssertionError if any CTerminologyCodeADL14 slipped through unconverted,
-        // since ADLDefinitionSerializer has no serializer registered for that type.
+        // Round-trip the converted ADL 2 archetype: serialize → reparse → serialize-again and assert the two
+        // serialized strings are identical (a stable round-trip).
+        // If any CTerminologyCodeADL14 slipped through unconverted it would serialize as ADL 1.4 syntax,
+        // which the ADL 2 parser would then reject on reparse below.
         String serialized = ADLArchetypeSerializer.serialize(result.getArchetype());
         ADLParser adl2Parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         Archetype reparsed = adl2Parser.parse(serialized);
         assertTrue(adl2Parser.getErrors().hasNoErrors(),
                 () -> "roundtrip parsing of converted ADL 2 archetype produced errors: " + adl2Parser.getErrors());
         String serializedAgain = ADLArchetypeSerializer.serialize(reparsed);
-        assertEquals(serialized, serializedAgain, "roundtrip serialization should be idempotent");
+        assertEquals(serialized, serializedAgain, "serializing twice should produce identical text");
     }
 
     private void collectTerminologyCodes(CObject cObject, List<CTerminologyCodeADL14> out) {
