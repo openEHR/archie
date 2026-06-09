@@ -276,15 +276,28 @@ public class AOMJacksonTest {
     @Test
     public void cTerminologyCode() throws Exception {
         CTerminologyCode cTermCode = new CTerminologyCode();
-        cTermCode.setConstraint(Lists.newArrayList("ac23"));
+        cTermCode.setConstraint("ac23");
         cTermCode.setConstraintStatus(ConstraintStatus.PREFERRED);
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         String json = objectMapper.writeValueAsString(cTermCode);
 
         assertTrue(json.contains("\"constraint_status\" : \"preferred\""));
+        assertTrue(json.contains("\"constraint\" : \"ac23\""));
         CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
         assertEquals(cTermCode.getConstraint(), parsedTermCode.getConstraint());
         assertEquals(ConstraintStatus.PREFERRED, parsedTermCode.getConstraintStatus());
+    }
+
+    @Test
+    public void backwardsCompatibilityCTerminologyCodeConstraintTypeFromJsonTest() throws Exception {
+        String json = "{\n" +
+                "  \"rm_type_name\" : \"terminology_code\",\n" +
+                "  \"node_id\" : \"id9999\",\n" +
+                "  \"constraint\" : [ \"ac23\" ]\n" +
+                "}";
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
+        assertEquals("ac23", parsedTermCode.getConstraint());
     }
 
     @Test

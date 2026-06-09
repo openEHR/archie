@@ -20,7 +20,7 @@ import java.util.function.BiFunction;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="C_BOOLEAN")
-public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
+public class CBoolean extends CPrimitiveObject<List<Boolean>, Boolean> {
     @XmlElement(name="assumed_value")
     @Nullable
     private Boolean assumedValue;
@@ -43,12 +43,15 @@ public class CBoolean extends CPrimitiveObject<Boolean, Boolean> {
     }
 
     @Override
+    public List<Boolean> getConstraintAsList() {
+        return getConstraint();
+    }
+
     public void setConstraint(List<Boolean> constraint) {
         this.constraint = constraint;
 
     }
 
-    @Override
     public void addConstraint(Boolean constraint) {
         this.constraint.add(constraint);
     }
