@@ -1,6 +1,8 @@
 package com.nedap.archie.serializer.adl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nedap.archie.adl14.ADL14ConversionConfiguration;
+import com.nedap.archie.adl14.ADL14Parser;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
@@ -38,7 +40,7 @@ public class ADLArchetypeSerializerParserRoundtripTest {
     @Test
     public void basic() throws Exception {
         Archetype basic = loadRoot("basic.adl");
-        Archetype archetype = roundtrip(basic);
+        Archetype archetype = roundtripADL2(basic);
 
         CAttribute defining_code = archetype.itemAtPath("/category[id10]/defining_code");
         CTerminologyCode termCode = (CTerminologyCode) defining_code.getChildren().get(0);
@@ -56,7 +58,7 @@ public class ADLArchetypeSerializerParserRoundtripTest {
 
     @Test
     public void device() throws Exception {
-        Archetype archetype = roundtrip(load("openEHR-EHR-CLUSTER.device.v1.adls"));
+        Archetype archetype = roundtripADL2(load("openEHR-EHR-CLUSTER.device.v1.adls"));
 
         CComplexObject dvDeviceId = archetype.itemAtPath("/items[id22]/value[id32]");
         assertThat(dvDeviceId.getRmTypeName(), equalTo("DV_IDENTIFIER"));
@@ -102,7 +104,16 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         FullArchetypeRepository ckmRepository = TestUtil.parseCKM();
 
         for(Archetype archetype : ckmRepository.getAllArchetypes()) {
-            roundtrip(archetype);
+            roundtripADL2(archetype);
+        }
+    }
+
+    @Test
+    public void adl14() throws ADLParseException {
+        FullArchetypeRepository adl14Repository = TestUtil.parseADL14();
+
+        for(Archetype archetype : adl14Repository.getAllArchetypes()) {
+            roundtripADL14(archetype);
         }
     }
 
@@ -125,7 +136,7 @@ public class ADLArchetypeSerializerParserRoundtripTest {
     private void testDefaultValues(RMObjectMapperProvider rmObjectMapperProvider) throws Exception {
         Archetype archetype = load("openEHR-EHR-CLUSTER.default_values.v1.adls");
 
-        Archetype result = roundtrip(archetype, rmObjectMapperProvider);
+        Archetype result = roundtripADL2(archetype, rmObjectMapperProvider);
 
         CComplexObject startDvTextConstraint = archetype.itemAtPath("/items[id2]/value[id21]");
         CComplexObject resultDvTextConstraint = result.itemAtPath("/items[id2]/value[id21]");
@@ -145,11 +156,11 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         assertEquals(startClusterDefaultValueContainer.getContent(), resultClusterDefaultValueContainer.getContent());
     }
 
-    private Archetype roundtrip(Archetype archetype) throws ADLParseException {
-        return roundtrip(archetype, new ArchieRMObjectMapperProvider());
+    private Archetype roundtripADL2(Archetype archetype) throws ADLParseException {
+        return roundtripADL2(archetype, new ArchieRMObjectMapperProvider());
     }
 
-    private Archetype roundtrip(Archetype archetype, RMObjectMapperProvider rmObjectMapperProvider) throws ADLParseException {
+    private Archetype roundtripADL2(Archetype archetype, RMObjectMapperProvider rmObjectMapperProvider) throws ADLParseException {
         String serialized = ADLArchetypeSerializer.serialize(archetype, null, rmObjectMapperProvider);
         logger.info(serialized);
 
@@ -162,6 +173,23 @@ public class ADLArchetypeSerializerParserRoundtripTest {
         assertEquals(serialized, serialized2, "roundtrip serialization should be idempotent");
 
         return result;
+    }
+
+    private void roundtripADL14(Archetype archetype) throws ADLParseException {
+        roundtripADL14(archetype, new ArchieRMObjectMapperProvider());
+    }
+
+    private void roundtripADL14(Archetype archetype, RMObjectMapperProvider rmObjectMapperProvider) throws ADLParseException {
+        String serialized = ADLArchetypeSerializer.serialize(archetype, null, rmObjectMapperProvider);
+        logger.info(serialized);
+
+        ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider());
+        Archetype result = parser.parse(serialized, new ADL14ConversionConfiguration());
+
+        assertTrue(parser.getErrors().hasNoErrors(), "roundtrip parsing should never cause errors: " + parser.getErrors().toString());
+
+        String serialized2 = ADLArchetypeSerializer.serialize(result, null, rmObjectMapperProvider);
+        assertEquals(serialized, serialized2, "roundtrip serialization should be idempotent");
     }
 
     private Archetype load(String resourceName) throws IOException, ADLParseException {
@@ -246,7 +274,7 @@ public class ADLArchetypeSerializerParserRoundtripTest {
 
         Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider()).createOperationalTemplate(true);
         Archetype operationalTemplate = flattener.flatten(bloodPressureComposition);
-        Archetype parsed = roundtrip(operationalTemplate);
+        Archetype parsed = roundtripADL2(operationalTemplate);
         TestUtil.assertCObjectEquals(operationalTemplate.getDefinition(), parsed.getDefinition());
     }
 

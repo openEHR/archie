@@ -1,5 +1,7 @@
 package com.nedap.archie.testutil;
 
+import com.nedap.archie.adl14.ADL14ConversionConfiguration;
+import com.nedap.archie.adl14.ADL14Parser;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
@@ -10,6 +12,7 @@ import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.AttributeAccessor;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
@@ -204,5 +207,33 @@ public class TestUtil {
         return result;
     }
 
+    public static FullArchetypeRepository parseADL14() {
+        return parseADL14(".*\\.adl");
+    }
 
+    public static FullArchetypeRepository parseADL14(String filter) {
+        InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
+        Reflections reflections = new Reflections("adl14", Scanners.Resources);
+
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(filter)));
+
+        for(String file:adlFiles) {
+            Archetype archetype;
+            ANTLRParserErrors errors;
+            try (InputStream stream = TestUtil.class.getResourceAsStream("/" + file)) {
+                ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider());
+                parser.setLogEnabled(false);
+                archetype = parser.parse(stream, new ADL14ConversionConfiguration());
+                errors = parser.getErrors();
+                if (errors.hasNoErrors()) {
+                    result.addArchetype(archetype);
+                } else {
+                    logger.warn("error parsing archetype: {}", errors);
+                }
+            } catch (Exception e) {
+                logger.warn("exception parsing archetype {}", file, e);
+            }
+        }
+        return result;
+    }
 }
