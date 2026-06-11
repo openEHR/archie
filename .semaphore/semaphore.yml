@@ -17,8 +17,14 @@ blocks:
             - sem-version java 17
             - ./gradlew clean build
             - ./gradlew jacocoRootReport
-            - pip install codecov-cli
-            - codecovcli --verbose upload-process --disable-search -t "$ARCHIE_CODECOV_TOKEN" -n "java17-$SEMAPHORE_WORKFLOW_ID" -f ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml
+            - curl -fsS https://keybase.io/codecovsecops/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
+            - curl -Os https://uploader.codecov.io/latest/linux/codecov
+            - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
+            - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
+            - gpgv codecov.SHA256SUM.sig codecov.SHA256SUM
+            - shasum -a 256 -c codecov.SHA256SUM
+            - chmod +x codecov
+            - ./codecov -f ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml -t "$ARCHIE_CODECOV_TOKEN"
       prologue:
         commands:
           - checkout
