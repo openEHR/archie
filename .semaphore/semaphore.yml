@@ -18,6 +18,7 @@ blocks:
             - ./gradlew clean build
             - ./gradlew jacocoRootReport
             - pip install codecov-cli
+            - export PATH="$(python3 -m site --user-base)/bin:$PATH"
             - codecovcli --verbose upload-process --disable-search -t "$ARCHIE_CODECOV_TOKEN" -n "java17-$SEMAPHORE_WORKFLOW_ID" -f ./build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml
       prologue:
         commands:
