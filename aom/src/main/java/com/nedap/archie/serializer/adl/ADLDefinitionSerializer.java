@@ -43,7 +43,6 @@ public class ADLDefinitionSerializer {
         constraintSerializers.put(CReal.class, new CRealSerializer(this));
         constraintSerializers.put(CString.class, new CStringSerializer(this));
         constraintSerializers.put(CTerminologyCode.class, new CTerminologyCodeSerializer(this));
-        constraintSerializers.put(CTerminologyCodeADL14.class, new CTerminologyCodeADL14Serializer(this));
         constraintSerializers.put(CTime.class, new CTimeSerializer(this));
     }
 
