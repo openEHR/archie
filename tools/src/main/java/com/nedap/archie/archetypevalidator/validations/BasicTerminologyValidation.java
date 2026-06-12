@@ -175,7 +175,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
     private void warnAboutDuplicateNodeIdsWithoutPrefix() {
         Map<String, String> usedCodesMap = new HashMap<>();
         for (String usedCode : archetype.getAllUsedCodes()) {
-            if ((archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(usedCode))&& !usedCode.startsWith(AdlCodeDefinitions.VALUE_SET_CODE_LEADER)) {
+            if ((archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(usedCode)) && !usedCode.startsWith(AdlCodeDefinitions.VALUE_SET_CODE_LEADER)) {
                 String usedCodeWithoutPrefix = AOMUtils.stripPrefix(usedCode);
                 if (usedCodesMap.get(usedCodeWithoutPrefix) != null) {
                     addWarningWithPath(ErrorType.ADL14_INCOMPATIBLE_NODE_IDS,
