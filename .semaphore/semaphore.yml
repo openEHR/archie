@@ -17,7 +17,7 @@ blocks:
             - sem-version java 17
             - ./gradlew clean build
             - ./gradlew jacocoRootReport
-            - curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
+            - curl -L https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
             - curl -Os https://uploader.codecov.io/latest/linux/codecov
             - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
             - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
