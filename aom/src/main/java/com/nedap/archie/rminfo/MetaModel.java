@@ -19,9 +19,10 @@ public class MetaModel implements MetaModelInterface {
     private final ModelInfoLookup modelInfoLookup;
     private final BmmModel bmmModel;
     private final AomProfile aomProfile;
-    private final ObjectMapper odinInputObjectMapper;
-    private final ObjectMapper odinOutputObjectMapper;
-    private final ObjectMapper jsonObjectMapper;
+    private final RMObjectMapperProvider objectMapperProvider;
+    private volatile ObjectMapper odinInputObjectMapper;
+    private volatile ObjectMapper odinOutputObjectMapper;
+    private volatile ObjectMapper jsonObjectMapper;
 
     public MetaModel(ModelInfoLookup modelInfoLookup, BmmModel bmmModel) {
         this(modelInfoLookup, bmmModel, null);
@@ -38,15 +39,7 @@ public class MetaModel implements MetaModelInterface {
         this.modelInfoLookup = modelInfoLookup;
         this.bmmModel = bmmModel;
         this.aomProfile = aomProfile;
-        if (provider != null) {
-            this.odinInputObjectMapper = provider.getInputOdinObjectMapper();
-            this.odinOutputObjectMapper = provider.getOutputOdinObjectMapper();
-            this.jsonObjectMapper = provider.getJsonObjectMapper();
-        } else {
-            this.odinInputObjectMapper = null;
-            this.odinOutputObjectMapper = null;
-            this.jsonObjectMapper = null;
-        }
+        this.objectMapperProvider = provider;
     }
 
     /**
@@ -93,7 +86,17 @@ public class MetaModel implements MetaModelInterface {
      * @return the object mapper to use for JSON converted from ODIN to parse this model
      */
     public ObjectMapper getOdinInputObjectMapper() {
-        return odinInputObjectMapper;
+        ObjectMapper mapper = odinInputObjectMapper;
+        if (mapper == null && objectMapperProvider != null) {
+            synchronized (this) {
+                mapper = odinInputObjectMapper;
+                if (mapper == null) {
+                    mapper = objectMapperProvider.getInputOdinObjectMapper();
+                    odinInputObjectMapper = mapper;
+                }
+            }
+        }
+        return mapper;
     }
 
     /**
@@ -104,11 +107,31 @@ public class MetaModel implements MetaModelInterface {
      * @return Get the object mapper to output ODIN from this model
      */
     public ObjectMapper getOdinOutputObjectMapper() {
-        return odinOutputObjectMapper;
+        ObjectMapper mapper = odinOutputObjectMapper;
+        if (mapper == null && objectMapperProvider != null) {
+            synchronized (this) {
+                mapper = odinOutputObjectMapper;
+                if (mapper == null) {
+                    mapper = objectMapperProvider.getOutputOdinObjectMapper();
+                    odinOutputObjectMapper = mapper;
+                }
+            }
+        }
+        return mapper;
     }
 
     public ObjectMapper getJsonObjectMapper() {
-        return jsonObjectMapper;
+        ObjectMapper mapper = jsonObjectMapper;
+        if (mapper == null && objectMapperProvider != null) {
+            synchronized (this) {
+                mapper = jsonObjectMapper;
+                if (mapper == null) {
+                    mapper = objectMapperProvider.getJsonObjectMapper();
+                    jsonObjectMapper = mapper;
+                }
+            }
+        }
+        return mapper;
     }
 
     /**

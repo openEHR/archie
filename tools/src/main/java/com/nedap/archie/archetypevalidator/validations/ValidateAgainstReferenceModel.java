@@ -5,6 +5,8 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
+import com.nedap.archie.base.OpenEHRBase;
+import com.nedap.archie.rminfo.RMTypeInfo;
 import org.openehr.utils.message.I18n;
 
 /**
@@ -21,6 +23,23 @@ public class ValidateAgainstReferenceModel extends ValidatingVisitor {
     @Override
     protected void validate(CComplexObject cObject) {
         validateTypes(cObject);
+        validateDefaultValueType(cObject);
+    }
+
+    private void validateDefaultValueType(CComplexObject cObject) {
+        OpenEHRBase defaultValue = cObject.getDefaultValue();
+        RMTypeInfo typeInfo;
+        if (defaultValue == null || defaultValue instanceof DefaultValueContainer || metaModel.getModelInfoLookup() == null ||
+                (typeInfo = metaModel.getModelInfoLookup().getTypeInfo(defaultValue.getClass())) == null) {
+            return;
+        }
+
+        String defaultValueTypeName = typeInfo.getRmName();
+        if (!metaModel.rmTypesConformant(defaultValueTypeName, cObject.getRmTypeName())) {
+            addMessageWithPath(ErrorType.DEFAULT_OBJECT_TYPE_VALIDITY, cObject.getPath(),
+                    I18n.t("Default value of type {0} does not conform to constraint type {1}",
+                            defaultValueTypeName, cObject.getRmTypeName()));
+        }
     }
 
     private void validateTypes(CObject cObject) {

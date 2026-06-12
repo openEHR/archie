@@ -152,29 +152,32 @@ public class ADL14NodeIDConverter {
      * Replace old id's in term definition with the new codes
      */
     public static void convertTermDefinitions(Archetype archetype, Map<String, ConvertedCodeResult> convertedCodes, List<String> unnecessaryCodes) {
-        //process the codes in alphabetical order, high to low, to prevent overwriting codes
-        //even better would probably be to create an empty terminology and separate all new+converted codes and old codes
-        //instead of doing this in place. Worth a refactor perhaps?
-        ArrayList<ConvertedCodeResult> sortedCodes = new ArrayList<>(convertedCodes.values());
-        Comparator<ConvertedCodeResult> comparator = Comparator.comparing(ConvertedCodeResult::getOriginalCode);
-        sortedCodes.sort(comparator.reversed());
+        archetype.getTerminology().getTermDefinitions().replaceAll((language, terms) -> {
+            Map<String, ArchetypeTerm> newTerms = new LinkedHashMap<>();
 
-        for (ConvertedCodeResult convertedCode : sortedCodes) {
-            for (String language : archetype.getTerminology().getTermDefinitions().keySet()) {
-                Map<String, ArchetypeTerm> terms = archetype.getTerminology().getTermDefinitions().get(language);
-                ArchetypeTerm term = terms.remove(convertedCode.getOriginalCode());
-                if (term != null && !unnecessaryCodes.contains(convertedCode.getOriginalCode())) {
-                    for (String newCode : convertedCode.getConvertedCodes()) {
-                        ArchetypeTerm newTerm = new ArchetypeTerm();
-                        newTerm.setCode(newCode);
-                        newTerm.setText(term.getText());
-                        newTerm.setDescription(term.getDescription());
-                        newTerm.putAll(term.getOtherItems());
-                        terms.put(newCode, term);
+            for (Map.Entry<String, ArchetypeTerm> entry : terms.entrySet()) {
+                String oldCode = entry.getKey();
+                if (!unnecessaryCodes.contains(oldCode)) {
+                    ArchetypeTerm term = entry.getValue();
+                    ConvertedCodeResult convertedCode = convertedCodes.get(oldCode);
+                    if (convertedCode != null) {
+                        for (String newCode : convertedCode.getConvertedCodes()) {
+                            ArchetypeTerm newTerm = new ArchetypeTerm();
+                            newTerm.setCode(newCode);
+                            newTerm.setText(term.getText());
+                            newTerm.setDescription(term.getDescription());
+                            newTerm.putAll(term.getOtherItems());
+                            newTerms.put(newCode, newTerm);
+                        }
+                    } else {
+                        // Code is not converted, copy it.
+                        newTerms.put(oldCode, term);
                     }
                 }
             }
-        }
+
+            return newTerms;
+        });
 
         //the terminology can still contain old unused codes now. The archetype validation will warn about that later
     }
