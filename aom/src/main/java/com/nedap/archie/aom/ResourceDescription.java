@@ -1,6 +1,7 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -14,6 +15,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by pieter.bos on 15/10/15.
  */
 
+// lifecycle_state carries an extra @JsonSetter(JsonNode) for legacy-format deserialization, which otherwise
+// disturbs Jackson's property order and pushes it to the end of the description block. Pin the order explicitly.
+@JsonPropertyOrder({
+        "original_author", "original_namespace", "original_publisher", "other_contributors", "lifecycle_state",
+        "custodian_namespace", "custodian_organisation", "copyright", "licence", "ip_acknowledgements",
+        "references", "resource_package_uri", "conversion_details", "other_details", "details"
+})
 public class ResourceDescription extends ArchetypeModelObject {
 
     private Map<String, String> originalAuthor = new ConcurrentHashMap<>();
