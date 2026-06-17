@@ -24,22 +24,17 @@ import org.openehr.utils.message.I18n;
 import javax.annotation.Nullable;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 
-/**
- *
- * Created by pieter.bos on 15/10/15.
- */
 @XmlType(name="C_TERMINOLOGY_CODE")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> {
+public class CTerminologyCodeADL14 extends CPrimitiveObject<List<String>, TerminologyCode> {
 
     @XmlElement(name="assumed_value")
     @Nullable
     private TerminologyCode assumedValue;
-    private String constraint;
+    private List<String> constraint = new ArrayList<>();
 
     @Nullable
     private ConstraintStatus constraintStatus;
@@ -55,17 +50,21 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     }
 
     @Override
-    public String getConstraint() {
+    public List<String> getConstraint() {
         return this.constraint;
     }
 
     @Override
-    public List<String> getConstraintAsList() {
-        return getConstraint() == null ? Collections.emptyList() : Collections.singletonList(getConstraint());
+    public List<?> getConstraintAsList() {
+        return this.constraint;
     }
 
-    public void setConstraint(String constraint) {
+    public void setConstraint(List<String> constraint) {
         this.constraint = constraint;
+    }
+
+    public void addConstraint(String constraint) {
+        this.constraint.add(constraint);
     }
 
     public ConstraintStatus getConstraintStatus() {
@@ -88,7 +87,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     @Override
     @Deprecated
     public boolean isValidValue(TerminologyCode value) {
-        if(getConstraint() == null) {
+        if(getConstraint().isEmpty()) {
             return true;
         }
         if(isConstraintRequired()) {
@@ -137,7 +136,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         ArchetypeTerminology terminology = archetype.getTerminology(this);
         String language = ArchieLanguageConfiguration.getMeaningAndDescriptionLanguage();
         String defaultLanguage = ArchieLanguageConfiguration.getDefaultMeaningAndDescriptionLanguage();
-        if(constraint != null) {
+        for(String constraint:getConstraint()) {
             if(constraint.startsWith("at")) {
                 ArchetypeTerm termDefinition = terminology.getTermDefinition(language, constraint);
                 if(termDefinition == null) {
@@ -182,7 +181,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     public List<String> getValueSetExpanded() {
         List<String> result = new ArrayList<>();
         ArchetypeTerminology terminology = getTerminology();
-        if(constraint != null) {
+        for(String constraint:getConstraint()) {
             if(constraint.startsWith("at")) {
                 result.add(constraint);
             } else if (constraint.startsWith("ac")) {
@@ -196,17 +195,17 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         }
         return result;
     }
-    
+
     private List<String> getOpenEHRValueSetExpanded() {
         List<String> atCodes = getValueSetExpanded();
         ArchetypeTerminology terminology = getTerminology();
         OpenEHRTerminologyAccess terminologyAccess = OpenEHRTerminologyAccess.getInstance();
         List<String> result = new ArrayList<>();
-        
+
         if(terminology == null) {
             return result;
         }
-        
+
         for(String atCode : atCodes) {
             URI termBinding = terminology.getTermBinding("openehr", atCode);
             if (termBinding != null) {
@@ -216,8 +215,8 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
                 }
             }
         }
-        
-        return result;        
+
+        return result;
     }
 
     @Override
@@ -227,26 +226,24 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             return superResult;
         }
         //now guaranteed to be the same class
-        CTerminologyCode otherCode = (CTerminologyCode) other;
+        CTerminologyCodeADL14 otherCode = (CTerminologyCodeADL14) other;
         List<String> valueSet = getValueSetExpanded();
         List<String> otherValueSet = otherCode.getValueSetExpanded();
 
-        // A null constraint means unconstrained — an unconstrained parent accepts anything,
-        // and an unconstrained child trivially conforms to any parent.
-        if(otherCode.constraint == null) {
-            return ConformanceCheckResult.conforms();
+        if(constraint.size() != 1) {
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
         }
-        if(constraint == null) {
-            return ConformanceCheckResult.conforms();
+        if(otherCode.constraint.size() != 1) {
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("parent CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
         }
 
         if(!getEffectiveConstraintStatus().cConformsTo(otherCode.getEffectiveConstraintStatus()) ) {
-            //PROBLEM: if this child CTerminologyCode has no constraint status, it should override its parent.
+            //PROBLEM: if this child CTerminologyCodeADL14 has no constraint status, it should override its parent.
             //it does not here!
             return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminology code constraint status {0} is wider more than parent contraint status {1}", getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus()));
         }
-        String thisConstraint = constraint;
-        String otherConstraint = otherCode.constraint;
+        String thisConstraint = constraint.get(0);
+        String otherConstraint = otherCode.constraint.get(0);
         Archetype archetype = this.getArchetype();
         if(AOMUtils.isValidValueSetCode(thisConstraint) && AOMUtils.isValidValueSetCode(otherConstraint)) {
             if (otherValueSet.isEmpty()) {
@@ -289,8 +286,13 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("{[");
-        if(constraint != null) {
-            result.append(constraint);
+        boolean first = true;
+        for(String constraint:getConstraint()) {
+            if(!first) {
+                result.append(", ");
+            }
+            first = false;
+            result.append(constraint.toString());
         }
         result.append("]}");
         return result.toString();
