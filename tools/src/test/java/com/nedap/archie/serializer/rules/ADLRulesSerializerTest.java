@@ -5,11 +5,11 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.rules.evaluation.ParsedRulesEvaluationTest;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by pieter.bos on 15/06/16.

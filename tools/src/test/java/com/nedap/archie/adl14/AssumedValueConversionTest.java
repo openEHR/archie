@@ -6,12 +6,12 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AssumedValueConversionTest {
 
@@ -37,6 +37,7 @@ public class AssumedValueConversionTest {
 
         ValidationResult validationResult = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider()).validate(archetype);
 
-        assertTrue(validationResult.toString(), validationResult.passes());
+        assertNotNull(validationResult.toString());
+        assertTrue(validationResult.passes());
     }
 }

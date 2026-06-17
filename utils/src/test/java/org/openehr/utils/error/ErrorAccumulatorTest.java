@@ -1,7 +1,7 @@
 package org.openehr.utils.error;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.utils.message.MessageCode;
 import org.openehr.utils.message.MessageDescriptor;
 import org.openehr.utils.message.MessageLogger;
@@ -9,13 +9,13 @@ import org.openehr.utils.message.MessageSeverity;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ErrorAccumulatorTest {
 
     private MessageLogger errorAccumulator;
 
-    @Before
+    @BeforeEach
     public void setup() {
         errorAccumulator = new MessageLogger();
     }

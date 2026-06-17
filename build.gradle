@@ -8,7 +8,7 @@ repositories {
 
 
 allprojects {
-    version = '3.17.0'
+    version = '3.18.0'
     group = 'com.nedap.healthcare.archie'
     ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
     //archivesBaseName = 'archie'
@@ -69,7 +69,8 @@ subprojects {
 
         api(libs.threeten.extra)
 
-        testImplementation(libs.junit4)
+        testImplementation(libs.bundles.junit)
+        testImplementation(libs.hamcrest)
         testImplementation(libs.slf4j.simple)
 
         api(libs.zafarkhaja.semver)
@@ -82,6 +83,8 @@ subprojects {
 
 
     test {
+        useJUnitPlatform()
+        outputs.upToDateWhen { false }
         testLogging {
             events "failed"
             exceptionFormat = "full"

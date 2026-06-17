@@ -8,12 +8,12 @@ import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.rules.Assertion;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArchetypeSlotConversionTest {
 

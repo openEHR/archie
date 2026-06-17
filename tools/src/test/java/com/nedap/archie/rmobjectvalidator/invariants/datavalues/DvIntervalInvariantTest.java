@@ -3,7 +3,7 @@ package com.nedap.archie.rmobjectvalidator.invariants.datavalues;
 import com.nedap.archie.rm.datavalues.quantity.DvCount;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DvIntervalInvariantTest {
 

@@ -246,6 +246,10 @@ class OperationalTemplateCreator {
                 }
             }
 
+            if (terminology.getOriginalLanguage() == null && result.getOriginalLanguage() != null) {
+                terminology.setOriginalLanguage(result.getOriginalLanguage().getCodeString());
+            }
+
             result.addComponentTerminology(newNodeId, terminology);
 
             // Replaces dashes and convert to lower case, as dashes and variables starting with an upper case letter

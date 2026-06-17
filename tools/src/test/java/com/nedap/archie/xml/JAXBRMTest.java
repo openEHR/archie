@@ -4,7 +4,7 @@ import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.threeten.extra.PeriodDuration;
 
 import javax.xml.bind.Marshaller;
@@ -13,8 +13,9 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.time.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JAXBRMTest {
 
@@ -28,7 +29,7 @@ public class JAXBRMTest {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(element, writer);
         String xml = writer.toString();
-        assertTrue(xml, xml.contains("P10D"));
+        assertThat(xml, xml.contains("P10D"));
     }
 
     @Test
@@ -41,7 +42,7 @@ public class JAXBRMTest {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(element, writer);
         String xml = writer.toString();
-        assertTrue(xml, xml.contains("-P10D"));
+        assertThat(xml, xml.contains("-P10D"));
     }
 
     @Test

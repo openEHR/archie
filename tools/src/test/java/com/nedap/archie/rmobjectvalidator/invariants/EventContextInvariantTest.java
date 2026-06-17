@@ -3,7 +3,7 @@ package com.nedap.archie.rmobjectvalidator.invariants;
 import com.nedap.archie.rm.composition.EventContext;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 

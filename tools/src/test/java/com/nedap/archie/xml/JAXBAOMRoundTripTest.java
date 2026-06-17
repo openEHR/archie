@@ -6,8 +6,8 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerTest;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import javax.xml.bind.JAXBException;
@@ -17,7 +17,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by pieter.bos on 22/07/16.
@@ -30,7 +30,7 @@ public class JAXBAOMRoundTripTest {
     private Unmarshaller unmarshaller;
     private StringWriter writer;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         parser = new ADLParser(); //no constraints imposer in this test!
         writer = new StringWriter();

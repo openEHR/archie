@@ -8,14 +8,16 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TermCodeSpecializationTest {
 
@@ -29,7 +31,7 @@ public class TermCodeSpecializationTest {
         ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
         repo.compile(archetypeValidator);
         for(ValidationResult validationResult:repo.getAllValidationResults()) {
-            assertTrue(validationResult.toString(), validationResult.passes());
+            assertThat(validationResult.toString(), validationResult.passes());
         }
         Flattener flattener = new Flattener(repo, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
         OperationalTemplate opt = (OperationalTemplate) flattener.flatten(child);
@@ -47,8 +49,21 @@ public class TermCodeSpecializationTest {
         ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_child.v1.0.0");
-        assertFalse(validationResult.toString(), validationResult.passes());
-        assertTrue("VPOV error should be present", validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VPOV).findFirst().isPresent());
+        assertFalse(validationResult.passes(), validationResult.toString());
+        assertTrue(validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VPOV).findFirst().isPresent(), "VPOV error should be present");
+    }
+
+    @Test
+    public void invalidValueSetWithoutId() throws Exception {
+        Archetype parent = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls");
+        Archetype child = TestUtil.parseFailOnErrors("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.incorrect_child_valueset_id_null.v1.0.0.adls");
+        InMemoryFullArchetypeRepository repo = new InMemoryFullArchetypeRepository();
+        repo.addArchetype(parent);
+        repo.addArchetype(child);
+        ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
+        repo.compile(archetypeValidator);
+        ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.incorrect_child_valueset_id_null.v1.0.0");
+        assertTrue(validationResult.getErrors().stream().anyMatch(e -> e.getType() == ErrorType.OTHER && Objects.equals(e.getMessage(), "value set does not contain a set Id value")));
     }
 
     @Test
@@ -61,8 +76,8 @@ public class TermCodeSpecializationTest {
         ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_redefinition.v1.0.0");
-        assertFalse(validationResult.toString(), validationResult.passes());
-        assertEquals("one VPOV error should be present", 1, validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VPOV).count());
+        assertFalse(validationResult.passes(), validationResult.toString());
+        assertEquals(1, validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VPOV).count(), "one VPOV error should be present");
     }
 
     @Test
@@ -75,7 +90,7 @@ public class TermCodeSpecializationTest {
         ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_change_valueset_code.v1.0.0");
-        assertFalse(validationResult.toString(), validationResult.passes());
+        assertFalse(validationResult.passes(), validationResult.toString());
 
         assertEquals(ErrorType.VPOV, validationResult.getErrors().get(0).getType());
         assertEquals("/items[id2]/value[id3]/defining_code", validationResult.getErrors().get(0).getPathInArchetype());
@@ -99,8 +114,8 @@ public class TermCodeSpecializationTest {
         ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.constraint_strength_invalid_redefined_value-set.v1.0.0");
-        assertFalse(validationResult.toString(), validationResult.passes());
-        assertTrue("VALUESET_REDEFINITION_ERROR error should be present in " + validationResult, validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VALUESET_REDEFINITION_ERROR).findFirst().isPresent());
+        assertFalse(validationResult.passes(), validationResult.toString());
+        assertTrue(validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VALUESET_REDEFINITION_ERROR).findFirst().isPresent(), "VALUESET_REDEFINITION_ERROR error should be present in " + validationResult);
     }
 
     @Test
@@ -113,7 +128,7 @@ public class TermCodeSpecializationTest {
         ArchetypeValidator archetypeValidator = new ArchetypeValidator(BuiltinReferenceModels.getMetaModelProvider());
         repo.compile(archetypeValidator);
         ValidationResult validationResult = repo.getValidationResult("openEHR-EHR-CLUSTER.incorrect_parent_valueset_code.v1.0.0");
-        assertFalse(validationResult.toString(), validationResult.passes());
-        assertTrue("VALUESET_REDEFINITION_ERROR error should be present in " + validationResult, validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VALUESET_REDEFINITION_ERROR).findFirst().isPresent());
+        assertFalse(validationResult.passes(), validationResult.toString());
+        assertTrue(validationResult.getErrors().stream().filter(e -> e.getType() == ErrorType.VALUESET_REDEFINITION_ERROR).findFirst().isPresent(), "VALUESET_REDEFINITION_ERROR error should be present in " + validationResult);
     }
 }

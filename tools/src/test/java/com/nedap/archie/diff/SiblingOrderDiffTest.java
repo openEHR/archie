@@ -1,13 +1,13 @@
 package com.nedap.archie.diff;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class SiblingOrderDiffTest {
 
     private DiffTestUtil diffTestUtil;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         diffTestUtil = new DiffTestUtil("/com/nedap/archie/flattener/siblingorder/", "/com/nedap/archie/diff/siblingorderexpectations/");
     }

@@ -1,6 +1,6 @@
 package com.nedap.archie.datetime;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.threeten.extra.PeriodDuration;
 
 import java.time.*;
@@ -8,7 +8,7 @@ import java.time.temporal.*;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DateTimeSerializerFormattersTest {
 

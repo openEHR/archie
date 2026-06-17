@@ -4,11 +4,11 @@ import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.quantity.DvQuantity;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.xml.JAXBUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * runs all the tests in ParsedRuledEvaluationTest, but with JAXB intead of RMPathQuery
@@ -61,10 +61,10 @@ public class ParsedRulesEvaluationJaxbTest extends ParsedRulesEvaluationTest {
         assertEquals(65d, (Double) ruleEvaluation.getVariableMap().get("arithmetic_test").getObject(0), 0.001d);
 
         List<AssertionResult> assertionResults = ruleEvaluation.getEvaluationResult().getAssertionResults();
-        assertEquals("one assertion should have been checked", 1, assertionResults.size());
+        assertEquals(1, assertionResults.size(), "one assertion should have been checked");
         AssertionResult result = assertionResults.get(0);
 
-        assertEquals("the assertion should have succeeded", true, result.getResult());
+        assertEquals(true, result.getResult(), "the assertion should have succeeded");
         assertEquals("the assertion tag should be correct", "blood_pressure_valid", result.getTag());
         assertEquals(1, result.getRawResult().getPaths(0).size());
         assertEquals("/data[id2]/events[id3]/data[id4]/items[id5]/value/magnitude", result.getRawResult().getPaths(0).get(0));

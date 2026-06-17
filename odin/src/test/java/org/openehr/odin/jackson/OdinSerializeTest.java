@@ -1,6 +1,6 @@
 package org.openehr.odin.jackson;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.odin.jackson.testclasses.ContainerWithList;
 import org.openehr.odin.jackson.testclasses.TestObject;
 

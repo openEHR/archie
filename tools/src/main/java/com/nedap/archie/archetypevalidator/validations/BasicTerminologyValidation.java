@@ -7,6 +7,7 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationBase;
 import com.nedap.archie.archetypevalidator.ErrorType;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
 import org.openehr.utils.message.I18n;
 
@@ -102,6 +103,10 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
         ArchetypeTerminology terminology = archetype.getTerminology();
         int terminologySpecialisationDepth = terminology.specialisationDepth();
         for(ValueSet valueSet:terminology.getValueSets().values()){
+            if(valueSet.getId() == null) {
+                addMessage(ErrorType.OTHER, I18n.t("value set does not contain a set Id value"));
+                continue;
+            }
             if(!terminology.hasValueSetCode(valueSet.getId())) {
                 addMessage(ErrorType.VTVSID, I18n.t("value set code {0} is not present in terminology", valueSet.getId()));
             }
@@ -170,7 +175,7 @@ public class BasicTerminologyValidation extends ArchetypeValidationBase {
     private void warnAboutDuplicateNodeIdsWithoutPrefix() {
         Map<String, String> usedCodesMap = new HashMap<>();
         for (String usedCode : archetype.getAllUsedCodes()) {
-            if (archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(usedCode)) {
+            if ((archetype.specializationDepth() == AOMUtils.getSpecializationDepthFromCode(usedCode)) && !usedCode.startsWith(AdlCodeDefinitions.VALUE_SET_CODE_LEADER)) {
                 String usedCodeWithoutPrefix = AOMUtils.stripPrefix(usedCode);
                 if (usedCodesMap.get(usedCodeWithoutPrefix) != null) {
                     addWarningWithPath(ErrorType.ADL14_INCOMPATIBLE_NODE_IDS,

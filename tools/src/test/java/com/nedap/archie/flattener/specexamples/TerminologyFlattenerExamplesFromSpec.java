@@ -5,21 +5,21 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.SimpleArchetypeRepository;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.util.Map;
 
 import static com.nedap.archie.flattener.specexamples.FlattenerTestUtil.parse;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TerminologyFlattenerExamplesFromSpec {
 
     private static SimpleArchetypeRepository repository;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         repository = new SimpleArchetypeRepository();
     }

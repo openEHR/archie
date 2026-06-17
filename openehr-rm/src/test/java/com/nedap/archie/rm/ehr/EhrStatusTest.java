@@ -2,14 +2,14 @@ package com.nedap.archie.rm.ehr;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.json.JacksonUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Map;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EhrStatusTest {
 

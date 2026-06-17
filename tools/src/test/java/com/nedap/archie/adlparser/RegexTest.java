@@ -4,11 +4,11 @@ import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.rules.*;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by pieter.bos on 31/10/15.

@@ -1,9 +1,9 @@
 package com.nedap.archie.util;
 
 import com.nedap.archie.base.Cardinality;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CloneUtilTest {
     @Test

@@ -2,7 +2,7 @@ package com.nedap.archie.rmobjectvalidator.invariants.base;
 
 import com.nedap.archie.rm.support.identification.UUID;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UIDInvariantTest {
 

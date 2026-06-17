@@ -11,7 +11,7 @@ import com.nedap.archie.testutil.TestUtil;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DiffTestUtil {
 

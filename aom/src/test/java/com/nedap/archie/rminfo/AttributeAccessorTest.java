@@ -5,11 +5,12 @@ import com.google.common.collect.Sets;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AttributeAccessorTest {
     private static final ModelInfoLookup modelInfoLookup = new LocalClassInfoLookup();
@@ -189,7 +190,8 @@ public class AttributeAccessorTest {
         }
     }
 
-    public static class AddValue {
+    @Nested
+    class AddValue {
 
         @Test
         public void testMultipleValuedSingle() {
@@ -229,7 +231,7 @@ public class AttributeAccessorTest {
 
             attributeAccessor.addValue(group, "things", newThings);
 
-            assertNotSame("A new collection should be created", newThings, group.getThings());
+            assertNotSame(newThings, group.getThings(),"A new collection should be created");
             assertEquals(2, group.getThings().size());
             assertSame(thing1, group.getThings().get(0));
             assertSame(thing2, group.getThings().get(1));
@@ -246,7 +248,7 @@ public class AttributeAccessorTest {
 
             attributeAccessor.addValue(group, "things", newThings);
 
-            assertNotSame("A new collection should be created", newThings, group.getThings());
+            assertNotSame(newThings, group.getThings(), "A new collection should be created");
             assertEquals(2, group.getThings().size());
             assertSame(thing1, group.getThings().get(0));
             assertSame(thing2, group.getThings().get(1));
@@ -313,7 +315,7 @@ public class AttributeAccessorTest {
 
             attributeAccessor.addValue(group, "subgroups", newSubgroups);
 
-            assertNotSame("A new collection should be created", newSubgroups, group.getSubgroups());
+            assertNotSame(newSubgroups, group.getSubgroups(), "A new collection should be created");
             assertEquals(2, group.getSubgroups().size());
             assertSame(subgroup1, group.getSubgroups().get(0));
             assertSame(subgroup2, group.getSubgroups().get(1));
@@ -395,7 +397,8 @@ public class AttributeAccessorTest {
         }
     }
 
-    public static class AddOrSetValue {
+    @Nested
+    class AddOrSetValue {
 
         @Test
         public void testMultipleValuedSingle() {
@@ -435,7 +438,7 @@ public class AttributeAccessorTest {
 
             attributeAccessor.addOrSetValue(group, "things", newThings);
 
-            assertNotSame("A new collection should be created", newThings, group.getThings());
+            assertNotSame(newThings, group.getThings(), "A new collection should be created");
             assertEquals(2, group.getThings().size());
             assertSame(thing1, group.getThings().get(0));
             assertSame(thing2, group.getThings().get(1));
@@ -453,7 +456,7 @@ public class AttributeAccessorTest {
 
             attributeAccessor.addOrSetValue(group, "things", newThings);
 
-            assertNotSame("A new collection should be created", newThings, group.getThings());
+            assertNotSame(newThings, group.getThings(), "A new collection should be created");
             assertEquals(2, group.getThings().size());
             assertSame(thing1, group.getThings().get(0));
             assertSame(thing2, group.getThings().get(1));
@@ -515,7 +518,7 @@ public class AttributeAccessorTest {
 
             attributeAccessor.addOrSetValue(group, "subgroups", newSubgroups);
 
-            assertNotSame("A new collection should be created", newSubgroups, group.getSubgroups());
+            assertNotSame(newSubgroups, group.getSubgroups(), "A new collection should be created");
             assertEquals(2, group.getSubgroups().size());
             assertSame(subgroup1, group.getSubgroups().get(0));
             assertSame(subgroup2, group.getSubgroups().get(1));
@@ -697,7 +700,8 @@ public class AttributeAccessorTest {
         }
     }
 
-    public static class GetValue {
+    @Nested
+    class GetValue {
         @Test
         public void testNormal() {
             Thing thing = new Thing("test string");
@@ -736,7 +740,8 @@ public class AttributeAccessorTest {
         }
     }
 
-    public static class HasAttribute {
+    @Nested
+    class HasAttribute {
         @Test
         public void testHasAttribute() {
             assertTrue(attributeAccessor.hasAttribute(new Thing(), "name"));
@@ -745,7 +750,8 @@ public class AttributeAccessorTest {
         }
     }
 
-    public static class SetValue {
+    @Nested
+    class SetValue {
         @Test
         public void testMultipleValuedSingle() {
             Group group = new Group();

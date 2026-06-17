@@ -6,7 +6,7 @@ import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
 import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * False positive test for the archetype validator:
@@ -82,7 +83,7 @@ public class CKMArchetypeValidatorTest {
             error.append("\n\n");
         }
 
-        assertTrue(error.toString(), resultWithErrors.isEmpty());
+        assertThat(error.toString(), resultWithErrors.isEmpty());
     }
 
 

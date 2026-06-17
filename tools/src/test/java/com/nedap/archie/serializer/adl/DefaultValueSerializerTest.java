@@ -11,12 +11,13 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.TerminologyId;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DefaultValueSerializerTest {
 
@@ -177,7 +178,7 @@ public class DefaultValueSerializerTest {
 
 
             Archetype parsed = adlParser.parse(serialized);
-            assertTrue(adlParser.getErrors().toString(), adlParser.getErrors().hasNoErrors());
+            assertThat(adlParser.getErrors().toString(), adlParser.getErrors().hasNoErrors());
             assertNotNull(parsed.getDefinition().getDefaultValue());
             Cluster defaultValue = (Cluster) ((CComplexObject) parsed.getDefinition()).getDefaultValue();
             assertEquals(2, defaultValue.getItems().size());

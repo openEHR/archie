@@ -4,7 +4,7 @@ import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rmobjectvalidator.invariants.InvariantTestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ElementInvariantTest {
 

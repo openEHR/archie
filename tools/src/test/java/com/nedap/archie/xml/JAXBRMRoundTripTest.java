@@ -11,8 +11,8 @@ import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import javax.xml.bind.Marshaller;
@@ -24,8 +24,8 @@ import java.time.LocalTime;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by pieter.bos on 30/06/16.
@@ -37,7 +37,7 @@ public class JAXBRMRoundTripTest {
 
     private TestUtil testUtil;
 
-    @Before
+    @BeforeEach
     public void setup() {
         testUtil = new TestUtil();
         parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
@@ -80,7 +80,8 @@ public class JAXBRMRoundTripTest {
         assertThat(parsedQueryContext.<DvDate>find("/items['Date']/value").getValue(), is(LocalDate.of(2016, 1, 1)));
         assertThat(parsedQueryContext.<DvDateTime>find("/items['Datetime']/value").getValue(), is(LocalDateTime.of(2016, 1, 1, 12, 00)));
         assertThat(parsedQueryContext.<DvTime>find("/items['Time']/value").getValue(), is(LocalTime.of(12, 0)));
-        assertEquals("double should be correct", parsedQueryContext.find("/items['Quantity']/value/magnitude"), 23d, 0.001d);
+        assertEquals(23d, parsedQueryContext.find("/items['Quantity']/value/magnitude"), 0.001d, "double should be correct"
+        );
     }
 
     private RMQueryContext getQueryContext(Cluster cluster) {

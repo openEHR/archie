@@ -24,7 +24,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 06/04/16.
@@ -128,7 +129,8 @@ public class TestUtil {
                         .filter(
                             o -> primitiveObjectMatches(primitiveChild, o)
                         ).collect(Collectors.toList());
-                    assertFalse("a primitive object should have a matching primitive object", childObjects2.isEmpty());
+                    assertFalse(childObjects2.isEmpty(),"a primitive object should have a matching primitive object"
+                    );
                 }
 
             }
@@ -149,7 +151,7 @@ public class TestUtil {
             }
             Archetype archetype = parser.parse(stream);
             parser.getErrors().logToLogger();
-            assertFalse(parser.getErrors().toString(), parser.getErrors().hasErrors());
+            assertFalse(parser.getErrors().hasErrors(), parser.getErrors().toString());
             assertNotNull(archetype);
             return archetype;
         }
@@ -163,11 +165,11 @@ public class TestUtil {
             }
             try {
                 Archetype archetype = parser.parse(stream);
-                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+                assertThat("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
             } catch (ADLParseException ex) {
                 parser.getErrors().logToLogger();
-                assertTrue("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
-                assertTrue("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().filter(e -> e.getShortMessage().equalsIgnoreCase(errorCode)).findFirst().isPresent());
+                assertThat("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+                assertThat("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().filter(e -> e.getShortMessage().equalsIgnoreCase(errorCode)).findFirst().isPresent());
             }
         }
     }
