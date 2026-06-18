@@ -71,7 +71,8 @@ public class AOMUtils {
     public static String pathAtSpecializationLevel(List<PathSegment> pathSegments, int level) {
         //todo: this doesn't clone the original
         for(PathSegment segment:pathSegments) {
-            if(segment.getNodeId() != null && AOMUtils.isValidCode(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
+            // isValidADL14Code (a superset of isValidCode) is used so zero-padded at-coded node ids are handled too
+            if(segment.getNodeId() != null && AOMUtils.isValidADL14Code(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
                 segment.setNodeId(codeAtLevel(segment.getNodeId(), level));
             }
         }
@@ -273,7 +274,9 @@ public class AOMUtils {
     }
 
     public static boolean codesConformant(String childNodeId, String parentNodeId) {
-        return isValidCode(childNodeId) && childNodeId.startsWith(parentNodeId) &&
+        // isValidADL14Code (a superset of isValidCode) is used so zero-padded at-coded node ids (e.g. at0000.1)
+        // are accepted as well; id-coded codes are never zero-padded so this does not change their behaviour.
+        return isValidADL14Code(childNodeId) && childNodeId.startsWith(parentNodeId) &&
                 (childNodeId.length() == parentNodeId.length() || (childNodeId.length() > parentNodeId.length() && childNodeId.charAt(parentNodeId.length()) == AdlCodeDefinitions.SPECIALIZATION_SEPARATOR));
 
     }
