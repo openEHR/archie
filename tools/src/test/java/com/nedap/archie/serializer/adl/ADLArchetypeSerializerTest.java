@@ -142,6 +142,23 @@ public class ADLArchetypeSerializerTest {
         assertEquals(j2Output, j3Output);
     }
 
+    @Test
+    public void serializeWithJackson3BuilderMatchesJackson2Device() throws Exception {
+        // device archetype has terms with description fields, covering ArchetypeTermOdinSerializer description branch
+        Archetype archetype = load("openEHR-EHR-CLUSTER.device.v1.adls");
+        String j2Output = ADLArchetypeSerializer.serialize(archetype);
+        String j3Output = ADLArchetypeSerializer.serialize(archetype, null, null, ADLStringBuilder3::new);
+        assertEquals(j2Output, j3Output);
+    }
+
+    @Test
+    public void serializeWithJackson3BuilderTemplate() throws Exception {
+        Archetype archetype = loadRoot("com/nedap/archie/archetypevalidator/openEHR-EHR-OBSERVATION.specialized_template_observation.v1.0.0.adls");
+        String j2Output = ADLArchetypeSerializer.serialize(archetype);
+        String j3Output = ADLArchetypeSerializer.serialize(archetype, null, null, ADLStringBuilder3::new);
+        assertEquals(j2Output, j3Output);
+    }
+
     private Archetype load(String resourceName) throws ADLParseException, IOException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getResourceAsStream(resourceName));
     }
