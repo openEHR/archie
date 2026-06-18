@@ -36,6 +36,7 @@ public class BmmJacksonUtil3 {
                 .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
                 .enable(StreamReadFeature.STRICT_DUPLICATE_DETECTION)
                 .enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL)
+                .disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY)
                 .addHandler(new DeserializationProblemHandler() {
                     @Override
                     public boolean handleUnknownProperty(DeserializationContext ctxt, tools.jackson.core.JsonParser p,
