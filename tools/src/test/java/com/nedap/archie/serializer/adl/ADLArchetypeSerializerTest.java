@@ -4,6 +4,7 @@ import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.rmoverlay.VisibilityType;
+import com.nedap.archie.serializer.adl.jackson3.ADLStringBuilder3;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
@@ -124,6 +125,22 @@ public class ADLArchetypeSerializerTest {
        assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
        assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
    }
+
+    @Test
+    public void serializeWithJackson3BuilderMatchesJackson2() throws Exception {
+        Archetype archetype = load("openEHR-EHR-COMPOSITION.report.v1.adls");
+        String j2Output = ADLArchetypeSerializer.serialize(archetype);
+        String j3Output = ADLArchetypeSerializer.serialize(archetype, null, null, ADLStringBuilder3::new);
+        assertEquals(j2Output, j3Output);
+    }
+
+    @Test
+    public void serializeWithJackson3BuilderMatchesJackson2TermConstraints() throws Exception {
+        Archetype archetype = load("openEHR-EHR-EVALUATION.term_constraint_variations.v0.0.1.adls");
+        String j2Output = ADLArchetypeSerializer.serialize(archetype);
+        String j3Output = ADLArchetypeSerializer.serialize(archetype, null, null, ADLStringBuilder3::new);
+        assertEquals(j2Output, j3Output);
+    }
 
     private Archetype load(String resourceName) throws ADLParseException, IOException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getResourceAsStream(resourceName));
