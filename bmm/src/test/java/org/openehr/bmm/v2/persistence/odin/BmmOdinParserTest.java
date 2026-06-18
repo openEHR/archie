@@ -1,6 +1,7 @@
 package org.openehr.bmm.v2.persistence.odin;
 
 import org.junit.jupiter.api.Named;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -8,9 +9,10 @@ import org.openehr.bmm.v2.persistence.PBmmSchema;
 import org.openehr.bmm.v2.persistence.jackson.BmmJacksonUtil;
 import org.openehr.bmm.v2.persistence.jackson3.BmmJacksonUtil3;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BmmOdinParserTest {
 
@@ -32,6 +34,16 @@ public class BmmOdinParserTest {
             PBmmSchema schema = BmmOdinParser.convert(stream);
             String s = mapper.writeValueAsString(schema);
             System.out.println(s);
+        }
+    }
+
+    @Test
+    public void jackson3OutputMatchesJackson2() throws Exception {
+        try (InputStream stream = getClass().getResourceAsStream("/testbmm/TestBmm1.bmm")) {
+            PBmmSchema schema = BmmOdinParser.convert(stream);
+            String j2 = BmmJacksonUtil.getObjectMapper().writeValueAsString(schema);
+            String j3 = BmmJacksonUtil3.getObjectMapper().writeValueAsString(schema);
+            assertEquals(j2, j3);
         }
     }
 }

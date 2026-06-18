@@ -1,6 +1,7 @@
 package org.openehr.odin.jackson;
 
 import org.junit.jupiter.api.Named;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,6 +10,8 @@ import org.openehr.odin.jackson.testclasses.TestObject;
 import org.openehr.odin.jackson3.ODINMapper3;
 
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OdinSerializeTest {
 
@@ -40,5 +43,24 @@ public class OdinSerializeTest {
 
         String s = mapper.writeValueAsString(listContainer);
         System.out.println(s);
+    }
+
+    @Test
+    public void jackson3OutputMatchesJackson2() throws Exception {
+        ContainerWithList listContainer = new ContainerWithList();
+        listContainer.setSomeField("some field");
+        TestObject testObject = new TestObject();
+        testObject.setStringField("test1");
+        testObject.setIntField(1);
+        listContainer.addListItem(testObject);
+
+        TestObject testObject2 = new TestObject();
+        testObject2.setStringField("test2");
+        testObject2.setIntField(2);
+        listContainer.addListItem(testObject2);
+
+        String j2 = new ODINMapper().writeValueAsString(listContainer);
+        String j3 = ODINMapper3.builder().build().writeValueAsString(listContainer);
+        assertEquals(j2, j3);
     }
 }
