@@ -91,8 +91,8 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
         }
     }
 
-    public CTerminologyCode parseCTerminologyCode(Adl14Parser.C_terminology_codeContext terminologyCodeContext) {
-        CTerminologyCode result = new CTerminologyCode();
+    public CTerminologyCodeADL14 parseCTerminologyCode(Adl14Parser.C_terminology_codeContext terminologyCodeContext) {
+        CTerminologyCodeADL14 result = new CTerminologyCodeADL14();
 
         boolean containsAssumedValue = !terminologyCodeContext.getTokens(Adl14Lexer.SYM_SEMICOLON).isEmpty();
 
