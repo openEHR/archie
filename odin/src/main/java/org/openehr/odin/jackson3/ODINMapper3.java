@@ -3,6 +3,7 @@ package org.openehr.odin.jackson3;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.openehr.odin.jackson3.serializers.*;
 import tools.jackson.databind.DefaultTyping;
+import tools.jackson.databind.MapperFeature;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.cfg.MapperBuilder;
@@ -36,6 +37,7 @@ public class ODINMapper3 extends ObjectMapper {
             propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
             disable(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS);
             enable(SerializationFeature.INDENT_OUTPUT);
+            disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
             defaultPrettyPrinter(new ODINPrettyPrinter3());
             changeDefaultPropertyInclusion(v -> JsonInclude.Value.construct(JsonInclude.Include.NON_NULL, JsonInclude.Include.ALWAYS));
             activateDefaultTyping(
