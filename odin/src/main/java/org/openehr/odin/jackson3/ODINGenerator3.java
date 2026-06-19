@@ -153,7 +153,7 @@ public class ODINGenerator3 extends GeneratorBase {
     public final JsonGenerator writeName(String name) throws JacksonException {
         int status = _writeContext.writeName(name);
         if (status == JsonWriteContext.STATUS_EXPECT_VALUE) {
-            _reportError("Can not write a field name, expecting a value");
+            throw _constructWriteException("Can not write a field name, expecting a value");
         }
         if (status == JsonWriteContext.STATUS_OK_AFTER_COMMA) {
             _prettyPrinter.writeObjectEntrySeparator(this);
@@ -211,7 +211,7 @@ public class ODINGenerator3 extends GeneratorBase {
     @Override
     public final JsonGenerator writeEndArray() throws JacksonException {
         if (!_writeContext.inArray()) {
-            _reportError("Current context not Array but " + _writeContext.typeDesc());
+            throw _constructWriteException("Current context not Array but " + _writeContext.typeDesc());
         }
         _typeId = null;
         int index = _writeContext.getCurrentIndex();
@@ -268,7 +268,7 @@ public class ODINGenerator3 extends GeneratorBase {
     @Override
     public final JsonGenerator writeEndObject() throws JacksonException {
         if (!_writeContext.inObject()) {
-            _reportError("Current context not Object but " + _writeContext.typeDesc());
+            throw _constructWriteException("Current context not Object but " + _writeContext.typeDesc());
         }
         _writeContext = _writeContext.getParent();
         if (_writeContext.inArray()) {
@@ -357,13 +357,15 @@ public class ODINGenerator3 extends GeneratorBase {
 
     @Override
     public JsonGenerator writeRawValue(String text, int offset, int len) throws JacksonException {
-        _reportUnsupportedOperation();
+        _verifyValueWrite("write raw value");
+        writeRaw(text, offset, len);
         return this;
     }
 
     @Override
     public JsonGenerator writeRawValue(char[] text, int offset, int len) throws JacksonException {
-        _reportUnsupportedOperation();
+        _verifyValueWrite("write raw value");
+        writeRaw(text, offset, len);
         return this;
     }
 
@@ -552,8 +554,7 @@ public class ODINGenerator3 extends GeneratorBase {
                 }
                 break;
             case JsonWriteContext.STATUS_EXPECT_NAME:
-                _reportError("Can not " + typeMsg + ", expecting field name");
-                break;
+                throw _constructWriteException("Can not " + typeMsg + ", expecting field name");
             default:
                 _throwInternal();
                 break;
