@@ -46,4 +46,16 @@ public class BmmOdinParserTest {
             assertEquals(j2, j3);
         }
     }
+
+    @Test
+    public void jackson3RoundTrip() throws Exception {
+        try (InputStream stream = getClass().getResourceAsStream("/testbmm/TestBmm1.bmm")) {
+            PBmmSchema original = BmmOdinParser.convert(stream);
+            String json = BmmJacksonUtil3.getObjectMapper().writeValueAsString(original);
+            PBmmSchema roundTripped = BmmJacksonUtil3.getObjectMapper().readValue(json, PBmmSchema.class);
+            // Re-serialize to confirm the round-tripped schema produces the same output
+            String json2 = BmmJacksonUtil3.getObjectMapper().writeValueAsString(roundTripped);
+            assertEquals(json, json2);
+        }
+    }
 }
