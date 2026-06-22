@@ -42,10 +42,17 @@ public class APathQuery {
                 throw new UnsupportedOperationException("absolute path starting with // not yet supported");
             }
             RelativeLocationPathContext relativeLocationPathContext;
+            Throwable exception;
             if(absoluteLocationPathNorootContext == null) {
                 relativeLocationPathContext = locationPathContext.relativeLocationPath();
+                exception = locationPathContext.exception;
             } else {
                 relativeLocationPathContext = absoluteLocationPathNorootContext.relativeLocationPath();
+                exception = absoluteLocationPathNorootContext.exception;
+            }
+
+            if(relativeLocationPathContext == null) {
+                throw new IllegalArgumentException("invalid relative path expression: " + query, exception);
             }
 
             if (!relativeLocationPathContext.getTokens(XPathLexer.ABRPATH).isEmpty()) {
@@ -55,6 +62,9 @@ public class APathQuery {
 
             List<StepContext> stepContexts = relativeLocationPathContext.step();
             for (StepContext stepContext : stepContexts) {
+                if (stepContext.nodeTest() == null) {
+                    throw new IllegalArgumentException("invalid relative path expression: " + query, stepContext.exception);
+                }
                 String nodeName = stepContext.nodeTest().getText();
                 List<PredicateContext> predicateContexts = stepContext.predicate();
                 PathSegment pathSegment = new PathSegment(nodeName);
