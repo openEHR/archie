@@ -78,13 +78,53 @@ public class AtCodedArchetypeValidationTest {
     }
 
     @Test
+    public void atCodedRejectedByDefaultValidator() throws Exception {
+        // no repository/settings: the validator falls back to its default (ID_CODED), guaranteeing backwards
+        // compatibility, and rejecting at-coded archetypes.
+        Archetype archetype = parse("openEHR-EHR-OBSERVATION.demo_adl2_at.v1.0.0.adls");
+        ValidationResult result = new ArchetypeValidator(models).validate(archetype);
+        assertFalse(result.passes(), result.toString());
+        assertTrue(hasError(result, ErrorType.INVALID_NODE_ID_CODE_SYSTEM), result.toString());
+    }
+
+    @Test
+    public void atCodedClusterValidatesInAutoDetectMode() throws Exception {
+        Archetype archetype = parse("openEHR-EHR-CLUSTER.exam_adl2_at.v2.1.3.adls");
+        ValidationResult result = validate(archetype, NodeIdCodeSystemValidation.AUTO_DETECT);
+        assertTrue(result.passes(), result.toString());
+    }
+
+    @Test
+    public void atCodedMalformedRootRejected() throws Exception {
+        Archetype archetype = parse("openEHR-EHR-OBSERVATION.demo_adl2_at.v1.0.0.adls");
+        // an at-coded but non-at0000 root code is not of the required at0000(.1)* form (at0500 is unused here, so it
+        // does not collide with another node and lets validation proceed to the root-form check)
+        archetype.getDefinition().setNodeId("at0500");
+        ValidationResult result = validate(archetype, NodeIdCodeSystemValidation.AT_CODED);
+        assertFalse(result.passes(), result.toString());
+        assertTrue(hasError(result, ErrorType.VARCN), result.toString());
+    }
+
+    @Test
     public void mixedCodeSystemRejectedInAutoDetect() throws Exception {
         Archetype archetype = parse("openEHR-EHR-OBSERVATION.demo_adl2_id.v1.0.0.adls");
         // turn one id-coded node into an at-coded one, so the archetype mixes both code systems
-        CObject firstChild = firstNonRootChild(archetype);
+        CObject firstChild = firstNonRootChild(archetype, "id");
         assertNotNull(firstChild, "expected a child node to mutate");
         firstChild.setNodeId("at" + firstChild.getNodeId().substring(2));
         ValidationResult result = validate(archetype, NodeIdCodeSystemValidation.AUTO_DETECT);
+        assertFalse(result.passes(), result.toString());
+        assertTrue(hasError(result, ErrorType.INVALID_NODE_ID_CODE_SYSTEM), result.toString());
+    }
+
+    @Test
+    public void mixedCodeSystemRejectedInAtCodedMode() throws Exception {
+        Archetype archetype = parse("openEHR-EHR-OBSERVATION.demo_adl2_at.v1.0.0.adls");
+        // turn one at-coded node into an id-coded one, so the archetype mixes both code systems
+        CObject firstChild = firstNonRootChild(archetype, "at");
+        assertNotNull(firstChild, "expected a child node to mutate");
+        firstChild.setNodeId("id" + firstChild.getNodeId().substring(2));
+        ValidationResult result = validate(archetype, NodeIdCodeSystemValidation.AT_CODED);
         assertFalse(result.passes(), result.toString());
         assertTrue(hasError(result, ErrorType.INVALID_NODE_ID_CODE_SYSTEM), result.toString());
     }
@@ -106,10 +146,10 @@ public class AtCodedArchetypeValidationTest {
         assertNotNull(result.getFlattened(), result.toString());
     }
 
-    private CObject firstNonRootChild(Archetype archetype) {
+    private CObject firstNonRootChild(Archetype archetype, String prefix) {
         for (CAttribute attribute : archetype.getDefinition().getAttributes()) {
             for (CObject child : attribute.getChildren()) {
-                if (child.getNodeId() != null && child.getNodeId().startsWith("id")) {
+                if (child.getNodeId() != null && child.getNodeId().startsWith(prefix)) {
                     return child;
                 }
             }
