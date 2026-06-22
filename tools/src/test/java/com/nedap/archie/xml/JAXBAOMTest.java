@@ -81,6 +81,7 @@ public class JAXBAOMTest {
         String xml = writer.toString();
 
         assertThat(xml, xml.contains("<constraintStatus>preferred</constraintStatus>"));
+        assertThat(xml, xml.contains("<constraint>ac23</constraint>"));
 
         Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
         Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(xml));
