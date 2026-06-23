@@ -43,7 +43,7 @@ subprojects {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(11)
+            languageVersion = JavaLanguageVersion.of(17)
         }
 
         withJavadocJar()
@@ -55,6 +55,7 @@ subprojects {
         api(libs.slf4j.api)
 
         api(libs.bundles.jackson)
+        api(libs.jackson3.databind)
 
         implementation(libs.guava)
 
