@@ -22,6 +22,8 @@ package org.openehr.bmm.core;
  */
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * String-based enumeration type.
@@ -39,4 +41,15 @@ public class BmmEnumerationString extends BmmEnumeration<String> implements Seri
         super();
     }
 
+    /**
+     * Sets the list of names of the enumeration. If no values are supplied, the string values
+     * mimicking the literals are assumed
+     *
+     * @param itemNames
+     */
+    @Override
+    public void setItemNames(List<String> itemNames) {
+        super.setItemNames(itemNames);
+        setItemValues(new ArrayList<>(itemNames));
+    }
 }
