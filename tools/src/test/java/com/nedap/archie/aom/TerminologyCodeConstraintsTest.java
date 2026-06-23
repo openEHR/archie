@@ -68,7 +68,7 @@ public class TerminologyCodeConstraintsTest {
     public void terminologyIdConstraint() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("ac12");
+        code.setConstraint("ac12");
         assertTrue(code.isValidValue(TerminologyCode.createFromString("[ac12::at23]")));
         assertTrue(code.isValidValue(TerminologyCode.createFromString("[ac12::at24]")));
         assertFalse(code.isValidValue(TerminologyCode.createFromString("[ac12::at25]")));
@@ -79,7 +79,7 @@ public class TerminologyCodeConstraintsTest {
     public void externalTerminology() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("ac12");
+        code.setConstraint("ac12");
 
         ValidationConfiguration.setFailOnUnknownTerminologyId(false);
         assertTrue(code.isValidValue(TerminologyCode.createFromString("[snomedct::72489423]")));
@@ -94,7 +94,7 @@ public class TerminologyCodeConstraintsTest {
     public void openEHRTerminology() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at9000");
+        code.setConstraint("at9000");
         code.setConstraintStatus(ConstraintStatus.REQUIRED);
 
         DvCodedText text = new DvCodedText();
@@ -114,7 +114,7 @@ public class TerminologyCodeConstraintsTest {
     public void terminologyCodeConstraint() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at23");
+        code.setConstraint("at23");
         assertTrue(code.isValidValue(TerminologyCode.createFromString("[ac12::at23]")));
         assertTrue(code.isValidValue(TerminologyCode.createFromString("[ac13::at23]")));
         assertFalse(code.isValidValue(TerminologyCode.createFromString("[ac13::at24]")));
@@ -125,7 +125,7 @@ public class TerminologyCodeConstraintsTest {
         //DV_CODED_TEXT can be constrained by a C_TERMINOLOGY_CONSTRAINT, according to lots of DV_ORDINAL usage in the CKM
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at23");
+        code.setConstraint("at23");
         termCodeAssertions(code);
     }
 
@@ -134,7 +134,7 @@ public class TerminologyCodeConstraintsTest {
         //DV_CODED_TEXT can be constrained by a C_TERMINOLOGY_CONSTRAINT, according to lots of DV_ORDINAL usage in the CKM
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at23");
+        code.setConstraint("at23");
         code.setConstraintStatus(ConstraintStatus.REQUIRED);
         termCodeAssertions(code);
     }
@@ -144,7 +144,7 @@ public class TerminologyCodeConstraintsTest {
         //DV_CODED_TEXT can be constrained by a C_TERMINOLOGY_CONSTRAINT, according to lots of DV_ORDINAL usage in the CKM
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at23");
+        code.setConstraint("at23");
         Set<ConstraintStatus> nonRequiredBindings = EnumSet.of(ConstraintStatus.EXTENSIBLE, ConstraintStatus.EXAMPLE, ConstraintStatus.PREFERRED);
         for(ConstraintStatus status:nonRequiredBindings) {
             code.setConstraintStatus(status);
