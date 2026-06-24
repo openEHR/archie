@@ -1,0 +1,55 @@
+archetype (adl_version=2.4.0; rm_release=1.1.0)
+    openEHR-EHR-COMPOSITION.atparent.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+        ["nl"] = <
+            language = <[ISO_639-1::nl]>
+        >
+    >
+
+description
+	original_author = <
+		["name"] = <"Test">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"at-coded parent composition archetype for test">
+			keywords = <"ADL", "test">
+		>
+	>
+	lifecycle_state = <"draft">
+
+
+definition
+	COMPOSITION[at0000] matches {
+	    content matches {
+	        use_archetype GENERIC_ENTRY[at0001, openEHR-EHR-GENERIC_ENTRY.atincluded.v1]
+	    }
+	}
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at0000"] = <
+                text = <"root node en">
+                description = <"root node en">
+            >
+            ["at0001"] = <
+                text = <"included archetype en">
+                description = <"included archetype en">
+            >
+        >
+        ["nl"] = <
+            ["at0000"] = <
+                text = <"root node nl">
+                description = <"root node nl">
+            >
+             ["at0001"] = <
+                text = <"included archetype nl">
+                description = <"included archetype nl">
+            >
+        >
+    >

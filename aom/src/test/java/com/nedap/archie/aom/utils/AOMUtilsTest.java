@@ -1,6 +1,10 @@
 package com.nedap.archie.aom.utils;
 
+import com.nedap.archie.paths.PathSegment;
+import com.nedap.archie.query.APathQuery;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -38,6 +42,60 @@ public class AOMUtilsTest {
         assertEquals("at0001.1", AOMUtils.codeAtLevel("at0001.1", 1));
         assertEquals("at0001.1", AOMUtils.codeAtLevel("at0001.1.1", 1));
         assertEquals("at0001", AOMUtils.codeAtLevel("at0001.0.1", 1));
+    }
+
+    /**
+     * Gap #6 probe: stripPrefix must drop the prefix of a zero-padded at-coded node id, not leave it intact.
+     * Currently stripPrefix gates on the strict isValidCode (which rejects zero-padded at-codes), so it returns
+     * "at0000" unchanged. If this test fails, the fix (switch to isValidADL14Code) is necessary.
+     */
+    @Test
+    public void stripPrefix() {
+        // id-coded and non-padded codes already work
+        assertEquals("1", AOMUtils.stripPrefix("id1"));
+        assertEquals("1.1", AOMUtils.stripPrefix("id1.1"));
+        assertEquals("1", AOMUtils.stripPrefix("at1"));
+
+        // zero-padded at-coded node ids retained from ADL 1.4
+        assertEquals("0000", AOMUtils.stripPrefix("at0000"));
+        assertEquals("0000.1", AOMUtils.stripPrefix("at0000.1"));
+        assertEquals("0001", AOMUtils.stripPrefix("at0001"));
+    }
+
+    /**
+     * Gap #1 probe: getSpecialisationStatusFromCode / codeExistsAtLevel must treat a zero-padded at-coded code the
+     * same as its id-coded twin. codeExistsAtLevel does Integer.parseInt("0000") > 0 == false for the at0000 root,
+     * so a specialised root at0000.1 is misclassified as ADDED instead of REDEFINED, feeding wrong results into the
+     * archetype differ. If this test fails, the codeExistsAtLevel fix is necessary for correct at-coded diffs.
+     */
+    @Test
+    public void specialisationStatusOfAtCodedRoot() {
+        // the at0000 root exists at level 0, exactly as the id1 root does
+        assertTrue(AOMUtils.codeExistsAtLevel("id1.1", 0));
+        assertTrue(AOMUtils.codeExistsAtLevel("at0000.1", 0));
+
+        // a specialised root is a REDEFINITION of the existing parent root - the at-coded form must match the id-coded form
+        assertEquals(CodeRedefinitionStatus.REDEFINED, AOMUtils.getSpecialisationStatusFromCode("id1.1", 1));
+        assertEquals(CodeRedefinitionStatus.REDEFINED, AOMUtils.getSpecialisationStatusFromCode("at0000.1", 1));
+    }
+
+    /**
+     * Gap #2 probe (latent - characterization only). isPhantomPathAtLevel guards on the strict isValidCode, which
+     * rejects zero-padded at-codes, so a zero-padded at-code path segment is skipped entirely. This documents (a) the
+     * mechanism the proposed fix would change - the guard's verdict on a zero-padded at-code - and (b) that the method
+     * currently returns false for such a path. It is NOT a failing behavioural test: nothing in the codebase calls
+     * isPhantomPathAtLevel with at-coded input today, so a test cannot prove the fix is necessary, only that the
+     * helper's guard diverges from the id-coded path.
+     */
+    @Test
+    public void phantomPathGuardRejectsZeroPaddedAtCode() {
+        // the guard the #2 fix would relax: strict isValidCode rejects the zero-padded at-code; the lenient one accepts it
+        assertFalse(AOMUtils.isValidCode("at0001.1"));
+        assertTrue(AOMUtils.isValidADL14Code("at0001.1"));
+
+        // current behaviour of the helper for a zero-padded at-code path segment, pinned as a regression guard
+        List<PathSegment> atPath = new APathQuery("/items[at0001.1]").getPathSegments();
+        assertFalse(AOMUtils.isPhantomPathAtLevel(atPath, 1));
     }
 
 }
