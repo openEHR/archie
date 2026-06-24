@@ -237,8 +237,12 @@ public class RMPathQuery {
             int i = 1;
             for(Object object:collection) {
                 if(number == i) {
-                    //TODO: check for other constraints as well
-                    return Lists.newArrayList(new RMObjectWithPath(object, path + buildPathConstraint(i, lookup.getArchetypeNodeIdFromRMObject(object))));
+                    String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(object);
+                    //a pure index (no node id) matches any object; otherwise the indexed object must also satisfy the node constraint
+                    if(segment.getNodeId() == null || matchesSegment(lookup, segment, object, archetypeNodeId)) {
+                        return Lists.newArrayList(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
+                    }
+                    return new ArrayList<>();
                 }
                 i++;
             }
@@ -247,33 +251,32 @@ public class RMPathQuery {
         int i = 1;
         for(Object object:collection) {
             String archetypeNodeId = lookup.getArchetypeNodeIdFromRMObject(object);
-
-            if (segment.hasIdCode()) {
-                if (matchSpecialisedNodes) {
-                    if (AOMUtils.codesConformant(archetypeNodeId, segment.getNodeId())) {
-                        result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
-                    }
-                } else {
-                    if (segment.getNodeId().equals(archetypeNodeId)) {
-                        result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
-                    }
-                }
-
-            } else if (segment.hasArchetypeRef()) {
-                //operational templates in RM Objects have their archetype node ID set to an archetype ref. That
-                //we support. Other things not so much
-                if (segment.getNodeId().equals(archetypeNodeId)) {
-                    result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
-                }
-            } else {
-                if(equalsName(lookup.getNameFromRMObject(object), segment.getNodeId())) {
-                    logger.warn("Deprecation: Matching on object name is deprecated and will be removed. Use node id instead.");
-                    result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
-                }
+            if (matchesSegment(lookup, segment, object, archetypeNodeId)) {
+                result.add(new RMObjectWithPath(object, path + buildPathConstraint(i, archetypeNodeId)));
             }
             i++;
         }
         return result;
+    }
+
+    private boolean matchesSegment(ModelInfoLookup lookup, PathSegment segment, Object object, String archetypeNodeId) {
+        if (segment.hasIdCode()) {
+            if (matchSpecialisedNodes) {
+                return AOMUtils.codesConformant(archetypeNodeId, segment.getNodeId());
+            } else {
+                return segment.getNodeId().equals(archetypeNodeId);
+            }
+        } else if (segment.hasArchetypeRef()) {
+            //operational templates in RM Objects have their archetype node ID set to an archetype ref. That
+            //we support. Other things not so much
+            return segment.getNodeId().equals(archetypeNodeId);
+        } else {
+            if (equalsName(lookup.getNameFromRMObject(object), segment.getNodeId())) {
+                logger.warn("Deprecation: Matching on object name is deprecated and will be removed. Use node id instead.");
+                return true;
+            }
+            return false;
+        }
     }
 
     private Object findRMObject(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection) {
