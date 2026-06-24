@@ -296,14 +296,27 @@ public class AOMJacksonTest {
     @MethodSource("mappers")
     public void cTerminologyCode(JsonMapperFactory factory) throws Exception {
         CTerminologyCode cTermCode = new CTerminologyCode();
-        cTermCode.setConstraint(Lists.newArrayList("ac23"));
+        cTermCode.setConstraint("ac23");
         cTermCode.setConstraintStatus(ConstraintStatus.PREFERRED);
         JsonMapper mapper = factory.create(ArchieJacksonConfiguration.createStandardsCompliant());
         String json = mapper.writeValueAsString(cTermCode);
         assertTrue(json.contains("\"constraint_status\" : \"preferred\""));
+        assertTrue(json.contains("\"constraint\" : \"ac23\""));
         CTerminologyCode parsedTermCode = mapper.readValue(json, CTerminologyCode.class);
         assertEquals(cTermCode.getConstraint(), parsedTermCode.getConstraint());
         assertEquals(ConstraintStatus.PREFERRED, parsedTermCode.getConstraintStatus());
+    }
+
+    @Test
+    public void backwardsCompatibilityCTerminologyCodeConstraintTypeFromJsonTest() throws Exception {
+        String json = "{\n" +
+                "  \"rm_type_name\" : \"terminology_code\",\n" +
+                "  \"node_id\" : \"id9999\",\n" +
+                "  \"constraint\" : [ \"ac23\" ]\n" +
+                "}";
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
+        CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
+        assertEquals("ac23", parsedTermCode.getConstraint());
     }
 
     @ParameterizedTest
@@ -315,9 +328,26 @@ public class AOMJacksonTest {
         Archetype parsed = mapper.readValue(json, Archetype.class);
         assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
         assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
-        assertEquals("local", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getTerminologyId());
-        assertEquals(VisibilityType.SHOW, parsed.getRmOverlay().getRmVisibility().get("/data[id2]/events[id3]/data[id4]/items[id5]").getVisibility());
-        assertEquals(VisibilityType.SHOW, parsed.getRmOverlay().getRmVisibility().get("/data[id2]/events[id3]/data[id4]/items[id6]").getVisibility());
+
+        assertTrue(json.contains("  \"rm_overlay\" : {\n" +
+                "    \"rm_visibility\" : {\n" +
+                "      \"/subject\" : {\n" +
+                "        \"visibility\" : \"hide\",\n" +
+                "        \"alias\" : {\n" +
+                "          \"@type\" : \"TerminologyCode\",\n" +
+                "          \"terminology_id\" : \"local\",\n" +
+                "          \"code_string\" : \"at12\",\n" +
+                "          \"terminology_id_string\" : \"local\"\n" +
+                "        }\n" +
+                "      },\n" +
+                "      \"/data[id2]/events[id3]/data[id4]/items[id5]\" : {\n" +
+                "        \"visibility\" : \"show\"\n" +
+                "      },\n" +
+                "      \"/data[id2]/events[id3]/data[id4]/items[id6]\" : {\n" +
+                "        \"visibility\" : \"show\"\n" +
+                "      }\n" +
+                "    }\n" +
+                "  },"));
     }
 
     @ParameterizedTest
