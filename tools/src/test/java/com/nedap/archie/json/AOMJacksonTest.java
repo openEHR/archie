@@ -307,15 +307,15 @@ public class AOMJacksonTest {
         assertEquals(ConstraintStatus.PREFERRED, parsedTermCode.getConstraintStatus());
     }
 
-    @Test
-    public void backwardsCompatibilityCTerminologyCodeConstraintTypeFromJsonTest() throws Exception {
+    @ParameterizedTest
+    @MethodSource("mappers")
+    public void backwardsCompatibilityCTerminologyCodeConstraintTypeFromJsonTest(JsonMapperFactory factory) throws Exception {
         String json = "{\n" +
                 "  \"rm_type_name\" : \"terminology_code\",\n" +
                 "  \"node_id\" : \"id9999\",\n" +
                 "  \"constraint\" : [ \"ac23\" ]\n" +
                 "}";
-        ObjectMapper objectMapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
-        CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
+        CTerminologyCode parsedTermCode = factory.create(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(json, CTerminologyCode.class);
         assertEquals("ac23", parsedTermCode.getConstraint());
     }
 
@@ -329,25 +329,25 @@ public class AOMJacksonTest {
         assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
         assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
 
-        assertTrue(json.contains("  \"rm_overlay\" : {\n" +
-                "    \"rm_visibility\" : {\n" +
-                "      \"/subject\" : {\n" +
-                "        \"visibility\" : \"hide\",\n" +
-                "        \"alias\" : {\n" +
-                "          \"@type\" : \"TerminologyCode\",\n" +
-                "          \"terminology_id\" : \"local\",\n" +
-                "          \"code_string\" : \"at12\",\n" +
-                "          \"terminology_id_string\" : \"local\"\n" +
-                "        }\n" +
-                "      },\n" +
-                "      \"/data[id2]/events[id3]/data[id4]/items[id5]\" : {\n" +
-                "        \"visibility\" : \"show\"\n" +
-                "      },\n" +
-                "      \"/data[id2]/events[id3]/data[id4]/items[id6]\" : {\n" +
-                "        \"visibility\" : \"show\"\n" +
-                "      }\n" +
-                "    }\n" +
-                "  },"));
+        assertEquals(VisibilityType.SHOW, parsed.getRmOverlay().getRmVisibility().get("/data[id2]/events[id3]/data[id4]/items[id5]").getVisibility());
+        assertEquals(VisibilityType.SHOW, parsed.getRmOverlay().getRmVisibility().get("/data[id2]/events[id3]/data[id4]/items[id6]").getVisibility());
+        // J2 and J3 serialize alias fields identically; only field order within /subject differs
+        assertTrue(json.contains("""
+                "alias" : {
+                  "@type" : "TerminologyCode",
+                  "terminology_id" : "local",
+                  "code_string" : "at12",
+                  "terminology_id_string" : "local"
+                }
+        """.stripTrailing()));
+        assertTrue(json.contains("""
+              "/data[id2]/events[id3]/data[id4]/items[id5]" : {
+                "visibility" : "show"
+              },
+              "/data[id2]/events[id3]/data[id4]/items[id6]" : {
+                "visibility" : "show"
+              }
+        """.stripTrailing()));
     }
 
     @ParameterizedTest
