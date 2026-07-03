@@ -124,15 +124,16 @@ public class ADL14TermConstraintConverter {
                     cTerminologyCode.setConstraint(Lists.newArrayList(valueSet.getId()));
                 }
             } else if (isLocalCode && AOMUtils.isValueSetCode(termCode.getCodeString())) {
-                List<String> newConstraint = new ArrayList<>();
-                for(String constraint:cTerminologyCode.getConstraint()) {
-                    TerminologyCode code = TerminologyCode.createFromString(constraint);
-                    String newCode = converter.convertValueSetCode(code.getCodeString());
-                    converter.addConvertedCode(termCode.getCodeString(), newCode);
-                    newConstraint.add(newCode);
+                if (converter.codeSystemIsIdCoded()) {
+                    List<String> newConstraint = new ArrayList<>();
+                    for(String constraint:cTerminologyCode.getConstraint()) {
+                        TerminologyCode code = TerminologyCode.createFromString(constraint);
+                        String newCode = converter.convertValueSetCode(code.getCodeString());
+                        converter.addConvertedCode(termCode.getCodeString(), newCode);
+                        newConstraint.add(newCode);
+                    }
+                    cTerminologyCode.setConstraint(newConstraint);
                 }
-                cTerminologyCode.setConstraint(newConstraint);
-
             } else {
                 if (cTerminologyCode.getConstraint().size() == 1) {
                     try {
