@@ -1,6 +1,8 @@
 package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.flattener.ArchetypeRepository;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModel;
@@ -37,6 +39,36 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
     }
 
     public abstract void validate();
+
+    /**
+     * Resolve the node identifier code system this archetype must be validated against, based on the
+     * {@link ArchetypeValidationSettings} and, when set to auto-detect, the code system of the archetype root node.
+     *
+     * @return true if the archetype is expected to be at-coded, false if it is expected to be id-coded.
+     */
+    protected boolean expectsAtCodedNodeIds() {
+        switch (settings.getNodeIdCodeSystemValidation()) {
+            case AT_CODED:
+                return true;
+            case AUTO_DETECT:
+                String rootNodeId = archetype.getDefinition() == null ? null : archetype.getDefinition().getNodeId();
+                // detect on the prefix only: at-coded ADL 2.4 node ids are zero-padded (e.g. at0000), which the
+                // strict ADL 2 code format would reject, so isValidCode cannot be used here.
+                return rootNodeId != null && rootNodeId.startsWith(AdlCodeDefinitions.VALUE_CODE_LEADER);
+            case ID_CODED:
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * Code format validity check that respects the archetype code system: id-coded codes must use the strict ADL 2
+     * format (no leading zeros), while at-coded ADL 2.4 codes must use the zero-padded style retained from ADL 1.4
+     * (e.g. at0000, at0000.1).
+     */
+    protected boolean isValidCodeForCodeSystem(String code) {
+        return expectsAtCodedNodeIds() ? AOMUtils.isValidAtCodedCode(code) : AOMUtils.isValidIdCodedCode(code);
+    }
 
     public void addMessage(ErrorType errorType) {
         messages.add(new ValidationMessage(errorType));

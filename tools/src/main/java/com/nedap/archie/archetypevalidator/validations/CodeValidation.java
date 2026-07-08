@@ -3,6 +3,7 @@ package com.nedap.archie.archetypevalidator.validations;
 import com.google.common.base.Joiner;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
@@ -30,12 +31,21 @@ public class CodeValidation extends ValidatingVisitor {
                     I18n.t("The code specialization depth of code {0} is {1}, which is greater than archetype specialization depth {2}",
                             nodeId, codeSpecializationDepth, archetypeSpecializationDepth));
         } else if (cObject.isRoot() || parentIsMultiple(cObject, flatParent, metaModel)) {
-            if ((codeSpecializationDepth < archetypeSpecializationDepth && flatParent != null && !flatParent.getTerminology().hasIdCode(nodeId)) ||
-                    (codeSpecializationDepth == archetypeSpecializationDepth && !archetype.getTerminology().hasIdCode(nodeId))) {
+            if ((codeSpecializationDepth < archetypeSpecializationDepth && flatParent != null && !hasNodeId(flatParent.getTerminology(), nodeId)) ||
+                    (codeSpecializationDepth == archetypeSpecializationDepth && !hasNodeId(archetype.getTerminology(), nodeId))) {
                 addMessageWithPath(ErrorType.VATID, cObject.path(),
                         I18n.t("Node id {0} is used in the archetype, but missing in the terminology", nodeId));
             }
         }
+    }
+
+    /**
+     * Checks whether a structural node id is defined in the terminology. For id-coded archetypes the node id is an
+     * id-code; for at-coded archetypes the node id is an at-code, which shares its prefix with value codes, so a plain
+     * code lookup is used.
+     */
+    private boolean hasNodeId(ArchetypeTerminology terminology, String nodeId) {
+        return expectsAtCodedNodeIds() ? terminology.hasCode(nodeId) : terminology.hasIdCode(nodeId);
     }
 
     public void validate(CTerminologyCode cTerminologyCode) {
