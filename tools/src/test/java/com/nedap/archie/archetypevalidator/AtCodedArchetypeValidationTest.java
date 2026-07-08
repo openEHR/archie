@@ -4,6 +4,7 @@ import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ReferenceModels;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -103,6 +105,18 @@ public class AtCodedArchetypeValidationTest {
         ValidationResult result = validate(archetype, NodeIdCodeSystemValidation.AT_CODED);
         assertFalse(result.passes(), result.toString());
         assertTrue(hasError(result, ErrorType.VARCN), result.toString());
+    }
+
+    @Test
+    public void atCodedNonPaddedCodeRejected() throws Exception {
+        // at-coded ADL 2.4 codes must be zero-padded; a non-padded at-code in the terminology is invalid
+        Archetype archetype = parse("openEHR-EHR-OBSERVATION.demo_adl2_at.v1.0.0.adls");
+        for (Map<String, ArchetypeTerm> perLanguage : archetype.getTerminology().getTermDefinitions().values()) {
+            perLanguage.put("at5", new ArchetypeTerm("at5", "non-padded", "non-padded at code"));
+        }
+        ValidationResult result = validate(archetype, NodeIdCodeSystemValidation.AT_CODED);
+        assertFalse(result.passes(), result.toString());
+        assertTrue(hasError(result, ErrorType.VATCV), result.toString());
     }
 
     @Test

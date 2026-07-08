@@ -40,6 +40,37 @@ public class AOMUtilsTest {
     }
 
     @Test
+    public void isValidIdCodedCode() {
+        // strict ADL 2 format: no leading zeros, any id/at/ac prefix
+        assertTrue(AOMUtils.isValidIdCodedCode("id1"));
+        assertTrue(AOMUtils.isValidIdCodedCode("at2"));
+        assertTrue(AOMUtils.isValidIdCodedCode("ac3"));
+        assertTrue(AOMUtils.isValidIdCodedCode("id1.1"));
+        // zero-padded (at-coded) codes are not valid in the id-coded system
+        assertFalse(AOMUtils.isValidIdCodedCode("at0000"));
+        assertFalse(AOMUtils.isValidIdCodedCode("ac0001"));
+        assertFalse(AOMUtils.isValidIdCodedCode(null));
+    }
+
+    @Test
+    public void isValidAtCodedCode() {
+        // zero-padded (minimum four digit) first segment, specialisation segments without leading zeros
+        assertTrue(AOMUtils.isValidAtCodedCode("at0000"));
+        assertTrue(AOMUtils.isValidAtCodedCode("at0001.1"));
+        assertTrue(AOMUtils.isValidAtCodedCode("ac0002"));
+        assertTrue(AOMUtils.isValidAtCodedCode("ac0001.1"));
+        assertTrue(AOMUtils.isValidAtCodedCode("at9088"));
+        assertTrue(AOMUtils.isValidAtCodedCode("at12345")); // more than four digits is allowed (values > 9999)
+        // non-padded codes are not valid at-coded, even though the grammar and isValidADL14Code accept them
+        assertFalse(AOMUtils.isValidAtCodedCode("at5"));
+        assertFalse(AOMUtils.isValidAtCodedCode("at123"));
+        assertFalse(AOMUtils.isValidAtCodedCode("id1"));
+        // leading zeros are only allowed in the first segment, not in specialisation segments
+        assertFalse(AOMUtils.isValidAtCodedCode("at0000.01"));
+        assertFalse(AOMUtils.isValidAtCodedCode(null));
+    }
+
+    @Test
     public void codeAtLevel() {
         assertEquals("id1", AOMUtils.codeAtLevel("id1", 0));
         assertEquals("id1", AOMUtils.codeAtLevel("id1.1", 0));
