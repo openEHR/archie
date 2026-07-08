@@ -22,8 +22,8 @@ public class AOMUtils {
 
     private static Pattern idCodePattern = Pattern.compile("(id|at|ac)(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
     private static Pattern adl14CodePattern = Pattern.compile("(id|at|ac)([0-9]+)(\\.(0|[1-9][0-9]*))*");
-    //at-coded ADL 2.4 retains the zero-padded (minimum four digit) first segment of ADL 1.4 codes, e.g. at0000, ac0002
-    private static Pattern atCodedCodePattern = Pattern.compile("(id|at|ac)[0-9]{4,}(\\.(0|[1-9][0-9]*))*");
+    //zero-padded codes (minimum four digit first segment), as used by at-coded ADL 2.4 (retained from ADL 1.4), e.g. at0000, ac0002
+    private static Pattern zeroPaddedCodePattern = Pattern.compile("(id|at|ac)[0-9]{4,}(\\.(0|[1-9][0-9]*))*");
 
     public static int getSpecializationDepthFromCode(String code) {
         if(code == null) {
@@ -62,28 +62,29 @@ public class AOMUtils {
     }
 
     /**
-     * Whether the code is valid in the id-coded ADL 2 code system: an id/at/ac prefix followed by a number without
-     * leading zeros, with specialisation segments without leading zeros (e.g. id1, at2, ac3, id1.1). This is the
-     * strict ADL 2 code format, identical to {@link #isValidCode(String)}.
+     * Whether the code is a valid non-zero-padded code: an id/at/ac prefix followed by a number without leading zeros,
+     * with specialisation segments also without leading zeros (e.g. id1, at2, ac3, id1.1). This is the code format used
+     * by id-coded ADL 2 archetypes - where the at- and ac-codes are non-zero-padded too - and is identical to
+     * {@link #isValidCode(String)}.
      */
-    public static boolean isValidIdCodedCode(String code) {
+    public static boolean isValidNonZeroPaddedCode(String code) {
         return isValidCode(code);
     }
 
     /**
-     * Whether the code is valid in the at-coded ADL 2.4 code system: an id/at/ac prefix followed by a zero-padded
-     * (minimum four digit) number, with specialisation segments without leading zeros (e.g. at0000, at0001.1, ac0002).
-     * At-coded ADL 2.4 retains the zero-padded code style of ADL 1.4.
+     * Whether the code is a valid zero-padded code: an id/at/ac prefix followed by a zero-padded (minimum four digit)
+     * number, with specialisation segments without leading zeros (e.g. at0000, at0001.1, ac0002). This is the code
+     * format used by at-coded ADL 2.4 archetypes, which retain the zero-padded code style of ADL 1.4.
      *
      * Note this is stricter than {@link #isValidADL14Code(String)}: the latter accepts any number of digits (including
-     * non-padded forms like at5) and is used for prefix/structure-agnostic checks, whereas this method enforces the
-     * at-coded padding convention.
+     * non-zero-padded forms like at5) and is used for prefix/structure-agnostic checks, whereas this method enforces
+     * the zero-padding convention.
      */
-    public static boolean isValidAtCodedCode(String code) {
+    public static boolean isValidZeroPaddedCode(String code) {
         if(code == null) {
             return false;
         }
-        return atCodedCodePattern.matcher(code).matches();
+        return zeroPaddedCodePattern.matcher(code).matches();
     }
 
     /**
