@@ -1,6 +1,8 @@
 package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.flattener.ArchetypeRepository;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModel;
@@ -37,6 +39,39 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
     }
 
     public abstract void validate();
+
+    /**
+     * Resolve the node identifier code system this archetype must be validated against, based on the
+     * {@link ArchetypeValidationSettings} and, when set to auto-detect, the code system of the archetype root node.
+     *
+     * @return true if the archetype is expected to be at-coded, false if it is expected to be id-coded.
+     */
+    protected boolean expectsAtCodedNodeIds() {
+        switch (settings.getNodeIdCodeSystemValidation()) {
+            case AT_CODED:
+                return true;
+            case AUTO_DETECT:
+                String rootNodeId = archetype.getDefinition() == null ? null : archetype.getDefinition().getNodeId();
+                // detect on the prefix only: at-coded ADL 2.4 node ids are zero-padded (e.g. at0000), which the
+                // strict ADL 2 code format would reject, so isValidCode cannot be used here.
+                return rootNodeId != null && rootNodeId.startsWith(AdlCodeDefinitions.VALUE_CODE_LEADER);
+            case ID_CODED:
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * Code format validity check that respects the archetype code system. At-coded ADL 2.4 archetypes retain the
+     * zero-padded code style of ADL 1.4 (e.g. at0000, at0000.1), which the strict ADL 2 code format rejects, so the
+     * more lenient check (allowing leading zeros in the first segment) is used for at-coded archetypes.
+     */
+    protected boolean isValidCodeForCodeSystem(String code) {
+        if (expectsAtCodedNodeIds()) {
+            return AOMUtils.isValidADL14Code(code);
+        }
+        return AOMUtils.isValidCode(code);
+    }
 
     public void addMessage(ErrorType errorType) {
         messages.add(new ValidationMessage(errorType));

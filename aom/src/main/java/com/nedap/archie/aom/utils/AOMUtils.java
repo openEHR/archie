@@ -46,7 +46,10 @@ public class AOMUtils {
     }
 
     public static boolean isValidValueSetCode(String code) {
-        return isValueSetCode(code) && isValidCode(code);
+        // isValidADL14Code (a superset of isValidCode) is used so zero-padded at-coded value set codes (e.g. ac0001,
+        // as produced by the ADL 1.4 to ADL 2.4 at-coded converter) are accepted too; id-coded value set codes are
+        // never zero-padded so this does not change their behaviour.
+        return isValueSetCode(code) && isValidADL14Code(code);
     }
 
     public static boolean isValidCode(String code) {
@@ -71,7 +74,11 @@ public class AOMUtils {
     public static String pathAtSpecializationLevel(List<PathSegment> pathSegments, int level) {
         //todo: this doesn't clone the original
         for(PathSegment segment:pathSegments) {
-            if(segment.getNodeId() != null && AOMUtils.isValidCode(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
+            // isValidADL14Code accepts the same id/at/ac prefixes as isValidCode; it only additionally tolerates the
+            // zero-padded first segment of at-coded ADL 2.4 node ids (e.g. at0000). This check is prefix-agnostic on
+            // purpose - it just decides whether a segment is a code to reduce - so accepting id codes here does not
+            // matter; enforcing a single code system is CodeSystemValidation's job, not this helper's.
+            if(segment.getNodeId() != null && AOMUtils.isValidADL14Code(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
                 segment.setNodeId(codeAtLevel(segment.getNodeId(), level));
             }
         }
@@ -273,7 +280,9 @@ public class AOMUtils {
     }
 
     public static boolean codesConformant(String childNodeId, String parentNodeId) {
-        return isValidCode(childNodeId) && childNodeId.startsWith(parentNodeId) &&
+        // isValidADL14Code (a superset of isValidCode) is used so zero-padded at-coded node ids (e.g. at0000.1)
+        // are accepted as well; id-coded codes are never zero-padded so this does not change their behaviour.
+        return isValidADL14Code(childNodeId) && childNodeId.startsWith(parentNodeId) &&
                 (childNodeId.length() == parentNodeId.length() || (childNodeId.length() > parentNodeId.length() && childNodeId.charAt(parentNodeId.length()) == AdlCodeDefinitions.SPECIALIZATION_SEPARATOR));
 
     }
