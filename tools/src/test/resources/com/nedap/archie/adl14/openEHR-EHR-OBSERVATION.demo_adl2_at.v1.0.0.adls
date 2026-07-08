@@ -101,7 +101,7 @@ definition
                                             ELEMENT[at0011] occurrences matches {1} matches {    -- Text That is Sourced From an External Terminology
                                                 value matches {
                                                     DV_CODED_TEXT[at9058] matches {
-                                                        defining_code matches {[ac2]}    -- SubsetA
+                                                        defining_code matches {[ac0001]}    -- SubsetA
                                                     }
                                                 }
                                             }
@@ -232,7 +232,7 @@ definition
                                                         }
                                                     }
                                                     DV_CODED_TEXT[at9077] matches {
-                                                        defining_code matches {[ac4]}    -- SubsetB
+                                                        defining_code matches {[ac0003]}    -- SubsetB
                                                     }
                                                 }
                                             }
@@ -498,11 +498,11 @@ terminology
                 description = <"*Additional information required to capture local context or to align with other reference models/formalisms.(en)">
                 comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["ac2"] = <
+            ["ac0001"] = <
                 text = <"Subsett A">
                 description = <"Terminologi-subsett fra XXX">
             >
-            ["ac4"] = <
+            ["ac0003"] = <
                 text = <"Subsett B">
                 description = <"XYZ koder fra Terminologi 123">
             >
@@ -897,11 +897,11 @@ terminology
                 description = <"*Additional information required to capture local context or to align with other reference models/formalisms.(en)">
                 comment = <"*For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.(en)">
             >
-            ["ac2"] = <
+            ["ac0001"] = <
                 text = <"SubconjuntoA">
                 description = <"Subconjunto de terminologia originário de XXX">
             >
-            ["ac4"] = <
+            ["ac0003"] = <
                 text = <"SubconjuntoB">
                 description = <"Códigos XYZ da Terminologia 123">
             >
@@ -1296,11 +1296,11 @@ terminology
                 description = <"Additional information required to capture local context or to align with other reference models/formalisms.">
                 comment = <"For example: Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents.">
             >
-            ["ac2"] = <
+            ["ac0001"] = <
                 text = <"SubsetA">
                 description = <"Terminology subset derived from XXX">
             >
-            ["ac4"] = <
+            ["ac0003"] = <
                 text = <"SubsetB">
                 description = <"XYZ codes from Terminology 123">
             >

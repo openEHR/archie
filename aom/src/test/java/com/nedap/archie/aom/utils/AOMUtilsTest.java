@@ -30,6 +30,20 @@ public class AOMUtilsTest {
     }
 
     @Test
+    public void isValidValueSetCode() {
+        // non-padded value set codes (id-coded archetypes and generated at-coded codes)
+        assertTrue(AOMUtils.isValidValueSetCode("ac1"));
+        assertTrue(AOMUtils.isValidValueSetCode("ac9000"));
+        // zero-padded value set code, as produced for at-coded archetypes by the ADL 1.4 converter
+        assertTrue(AOMUtils.isValidValueSetCode("ac0001"));
+        assertTrue(AOMUtils.isValidValueSetCode("ac0001.1"));
+        // not value set codes
+        assertFalse(AOMUtils.isValidValueSetCode("at0001"));
+        assertFalse(AOMUtils.isValidValueSetCode("id1"));
+        assertFalse(AOMUtils.isValidValueSetCode("acabc"));
+    }
+
+    @Test
     public void codeAtLevel() {
         assertEquals("id1", AOMUtils.codeAtLevel("id1", 0));
         assertEquals("id1", AOMUtils.codeAtLevel("id1.1", 0));
