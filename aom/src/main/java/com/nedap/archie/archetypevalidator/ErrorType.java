@@ -86,7 +86,8 @@ public enum ErrorType implements MessageCode {
     OVERLAY_VALIDATION_FAILED(I18n.register("The validation of a template overlay failed")),
     PARENT_VALIDATION_FAILED(I18n.register("The validation of the parent archetype failed")),
     ADL14_INCOMPATIBLE_NODE_IDS(I18n.register("Node id numbers should be unique without their ac, at or id-prefix, to ensure the possibility of converting the archetype to ADL 1.4")),
-    DEFAULT_OBJECT_TYPE_VALIDITY(I18n.register("object constraint default value type validity: the type of the default value of an object constraint must conform to the type of the constraint"));
+    DEFAULT_OBJECT_TYPE_VALIDITY(I18n.register("object constraint default value type validity: the type of the default value of an object constraint must conform to the type of the constraint")),
+    INVALID_NODE_ID_CODE_SYSTEM(I18n.register("node identifier code system validity: an archetype must consistently use a single node identifier code system, either id-coded (id1, id1.1, ...) or, since ADL 2.4, at-coded (at0000, at0000.1, ...), and that code system must match the one the validator is configured to accept."));
 
     private final String description;
 
