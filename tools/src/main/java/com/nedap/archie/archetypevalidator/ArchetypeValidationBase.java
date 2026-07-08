@@ -62,15 +62,12 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
     }
 
     /**
-     * Code format validity check that respects the archetype code system. At-coded ADL 2.4 archetypes retain the
-     * zero-padded code style of ADL 1.4 (e.g. at0000, at0000.1), which the strict ADL 2 code format rejects, so the
-     * more lenient check (allowing leading zeros in the first segment) is used for at-coded archetypes.
+     * Code format validity check that respects the archetype code system: id-coded archetypes use non-zero-padded
+     * codes (the strict ADL 2 format, no leading zeros), while at-coded ADL 2.4 archetypes use zero-padded codes
+     * (the style retained from ADL 1.4, e.g. at0000, at0000.1).
      */
     protected boolean isValidCodeForCodeSystem(String code) {
-        if (expectsAtCodedNodeIds()) {
-            return AOMUtils.isValidADL14Code(code);
-        }
-        return AOMUtils.isValidCode(code);
+        return expectsAtCodedNodeIds() ? AOMUtils.isValidZeroPaddedCode(code) : AOMUtils.isValidNonZeroPaddedCode(code);
     }
 
     public void addMessage(ErrorType errorType) {
