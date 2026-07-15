@@ -50,7 +50,7 @@ public class CTerminologyCodeTest {
     public void constraintStatusDefaultsToRequired() {
         CTerminologyCode cTerminologyCode = new CTerminologyCode();
         assertNull(cTerminologyCode.getConstraintStatus(), "raw status should be null until set");
-        assertEquals(ConstraintStatus.REQUIRED, cTerminologyCode.getEffectiveConstraintStatus(),
+        assertEquals(ConstraintStatus.REQUIRED.getValue(), cTerminologyCode.getEffectiveConstraintStatus(),
                 "effective status should fall back to REQUIRED");
         assertTrue(cTerminologyCode.isConstraintRequired());
     }
@@ -60,7 +60,7 @@ public class CTerminologyCodeTest {
         CTerminologyCode cTerminologyCode = new CTerminologyCode();
         cTerminologyCode.setConstraintStatus(ConstraintStatus.PREFERRED);
         assertEquals(ConstraintStatus.PREFERRED, cTerminologyCode.getConstraintStatus());
-        assertEquals(ConstraintStatus.PREFERRED, cTerminologyCode.getEffectiveConstraintStatus());
+        assertEquals(ConstraintStatus.PREFERRED.getValue(), cTerminologyCode.getEffectiveConstraintStatus());
         assertFalse(cTerminologyCode.isConstraintRequired());
     }
 

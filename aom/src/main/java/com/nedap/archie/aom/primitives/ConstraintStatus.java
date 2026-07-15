@@ -6,18 +6,32 @@ import jakarta.xml.bind.annotation.XmlEnumValue;
 public enum ConstraintStatus {
     @JsonProperty("required")
     @XmlEnumValue("required")
-    REQUIRED,
+    REQUIRED(0),
     @JsonProperty("extensible")
     @XmlEnumValue("extensible")
-    EXTENSIBLE,
+    EXTENSIBLE(1),
     @JsonProperty("preferred")
     @XmlEnumValue("preferred")
-    PREFERRED,
+    PREFERRED(2),
     @JsonProperty("example")
     @XmlEnumValue("example")
-    EXAMPLE;
+    EXAMPLE(3);
 
-    public boolean cConformsTo(ConstraintStatus parent) {
-        return ordinal() <= parent.ordinal();
+    private final int value;
+
+    ConstraintStatus(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    /**
+     * The AOM2 C_TERMINOLOGY_CODE conformance rule: a child constraint status conforms to a parent when it is at
+     * least as strict, i.e. its effective value is <= the parent's effective value.
+     */
+    public static boolean conformsTo(int effectiveStatus, int parentEffectiveStatus) {
+        return effectiveStatus <= parentEffectiveStatus;
     }
 }

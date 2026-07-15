@@ -77,11 +77,16 @@ public class CTerminologyCodeADL14 extends CPrimitiveObject<List<String>, Termin
 
     @JsonIgnore
     public boolean isConstraintRequired() {
-        return getEffectiveConstraintStatus() == ConstraintStatus.REQUIRED;
+        return getEffectiveConstraintStatus() == ConstraintStatus.REQUIRED.getValue();
     }
 
-    public ConstraintStatus getEffectiveConstraintStatus() {
-        return constraintStatus == null ? ConstraintStatus.REQUIRED : constraintStatus;
+    /**
+     * The effective integer value of the constraint_status field if it exists, or 0 (i.e. required) if it is null.
+     * Per the AOM2 specification, C_TERMINOLOGY_CODE.effective_constraint_status() returns an Integer.
+     */
+    @JsonIgnore
+    public int getEffectiveConstraintStatus() {
+        return constraintStatus == null ? ConstraintStatus.REQUIRED.getValue() : constraintStatus.getValue();
     }
 
     @Override
@@ -237,10 +242,12 @@ public class CTerminologyCodeADL14 extends CPrimitiveObject<List<String>, Termin
             return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("parent CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
         }
 
-        if(!getEffectiveConstraintStatus().cConformsTo(otherCode.getEffectiveConstraintStatus()) ) {
+        if(!ConstraintStatus.conformsTo(getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus())) {
             //PROBLEM: if this child CTerminologyCodeADL14 has no constraint status, it should override its parent.
             //it does not here!
-            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminology code constraint status {0} is wider more than parent contraint status {1}", getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus()));
+            ConstraintStatus thisStatus = constraintStatus != null ? constraintStatus : ConstraintStatus.REQUIRED;
+            ConstraintStatus parentStatus = otherCode.constraintStatus != null ? otherCode.constraintStatus : ConstraintStatus.REQUIRED;
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminology code constraint status {0} is wider more than parent contraint status {1}", thisStatus, parentStatus));
         }
         String thisConstraint = constraint.get(0);
         String otherConstraint = otherCode.constraint.get(0);
