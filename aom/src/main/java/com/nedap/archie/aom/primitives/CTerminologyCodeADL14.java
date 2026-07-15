@@ -80,6 +80,7 @@ public class CTerminologyCodeADL14 extends CPrimitiveObject<List<String>, Termin
         return getEffectiveConstraintStatus() == ConstraintStatus.REQUIRED;
     }
 
+    @JsonIgnore
     public ConstraintStatus getEffectiveConstraintStatus() {
         return constraintStatus == null ? ConstraintStatus.REQUIRED : constraintStatus;
     }
