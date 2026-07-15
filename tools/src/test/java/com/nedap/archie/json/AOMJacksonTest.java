@@ -283,6 +283,7 @@ public class AOMJacksonTest {
 
         assertTrue(json.contains("\"constraint_status\" : \"preferred\""));
         assertTrue(json.contains("\"constraint\" : \"ac23\""));
+        assertFalse(json.contains("effective_constraint_status"));
         CTerminologyCode parsedTermCode = objectMapper.readValue(json, CTerminologyCode.class);
         assertEquals(cTermCode.getConstraint(), parsedTermCode.getConstraint());
         assertEquals(ConstraintStatus.PREFERRED, parsedTermCode.getConstraintStatus());

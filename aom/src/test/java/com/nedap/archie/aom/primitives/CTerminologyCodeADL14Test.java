@@ -51,7 +51,7 @@ public class CTerminologyCodeADL14Test {
     public void constraintStatusDefaultsToRequired() {
         CTerminologyCodeADL14 cTerminologyCode = new CTerminologyCodeADL14();
         assertNull(cTerminologyCode.getConstraintStatus(), "raw status should be null until set");
-        assertEquals(ConstraintStatus.REQUIRED, cTerminologyCode.getEffectiveConstraintStatus());
+        assertEquals(ConstraintStatus.REQUIRED.getValue(), cTerminologyCode.getEffectiveConstraintStatus());
         assertTrue(cTerminologyCode.isConstraintRequired());
     }
 
@@ -59,7 +59,7 @@ public class CTerminologyCodeADL14Test {
     public void constraintStatusGetterSetterRoundtrip() {
         CTerminologyCodeADL14 cTerminologyCode = new CTerminologyCodeADL14();
         cTerminologyCode.setConstraintStatus(ConstraintStatus.EXTENSIBLE);
-        assertEquals(ConstraintStatus.EXTENSIBLE, cTerminologyCode.getEffectiveConstraintStatus());
+        assertEquals(ConstraintStatus.EXTENSIBLE.getValue(), cTerminologyCode.getEffectiveConstraintStatus());
         assertFalse(cTerminologyCode.isConstraintRequired());
     }
 
