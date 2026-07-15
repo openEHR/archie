@@ -27,7 +27,11 @@ public enum ConstraintStatus {
         return value;
     }
 
-    public boolean cConformsTo(ConstraintStatus parent) {
-        return value <= parent.value;
+    /**
+     * The AOM2 C_TERMINOLOGY_CODE conformance rule: a child constraint status conforms to a parent when it is at
+     * least as strict, i.e. its effective value is <= the parent's effective value.
+     */
+    public static boolean conformsTo(int effectiveStatus, int parentEffectiveStatus) {
+        return effectiveStatus <= parentEffectiveStatus;
     }
 }

@@ -242,8 +242,7 @@ public class CTerminologyCodeADL14 extends CPrimitiveObject<List<String>, Termin
             return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("parent CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
         }
 
-        // conforms when this status is at least as strict as the parent, i.e. effective value <= parent effective value
-        if(getEffectiveConstraintStatus() > otherCode.getEffectiveConstraintStatus()) {
+        if(!ConstraintStatus.conformsTo(getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus())) {
             //PROBLEM: if this child CTerminologyCodeADL14 has no constraint status, it should override its parent.
             //it does not here!
             ConstraintStatus thisStatus = constraintStatus != null ? constraintStatus : ConstraintStatus.REQUIRED;
