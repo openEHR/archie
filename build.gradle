@@ -55,6 +55,7 @@ subprojects {
         api(libs.slf4j.api)
 
         api(libs.bundles.jackson)
+        api(libs.jackson3.databind)
 
         implementation(libs.guava)
 
