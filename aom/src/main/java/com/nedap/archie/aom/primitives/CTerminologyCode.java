@@ -78,12 +78,16 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
 
     @JsonIgnore
     public boolean isConstraintRequired() {
-        return getEffectiveConstraintStatus() == ConstraintStatus.REQUIRED;
+        return getEffectiveConstraintStatus() == ConstraintStatus.REQUIRED.getValue();
     }
 
+    /**
+     * The effective integer value of the constraint_status field if it exists, or 0 (i.e. required) if it is null.
+     * Per the AOM2 specification, C_TERMINOLOGY_CODE.effective_constraint_status() returns an Integer.
+     */
     @JsonIgnore
-    public ConstraintStatus getEffectiveConstraintStatus() {
-        return constraintStatus == null ? ConstraintStatus.REQUIRED : constraintStatus;
+    public int getEffectiveConstraintStatus() {
+        return constraintStatus == null ? ConstraintStatus.REQUIRED.getValue() : constraintStatus.getValue();
     }
 
     @Override
@@ -241,10 +245,13 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
             return ConformanceCheckResult.conforms();
         }
 
-        if(!getEffectiveConstraintStatus().cConformsTo(otherCode.getEffectiveConstraintStatus()) ) {
+        // conforms when this status is at least as strict as the parent, i.e. effective value <= parent effective value
+        if(getEffectiveConstraintStatus() > otherCode.getEffectiveConstraintStatus()) {
             //PROBLEM: if this child CTerminologyCode has no constraint status, it should override its parent.
             //it does not here!
-            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminology code constraint status {0} is wider more than parent contraint status {1}", getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus()));
+            ConstraintStatus thisStatus = constraintStatus != null ? constraintStatus : ConstraintStatus.REQUIRED;
+            ConstraintStatus parentStatus = otherCode.constraintStatus != null ? otherCode.constraintStatus : ConstraintStatus.REQUIRED;
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminology code constraint status {0} is wider more than parent contraint status {1}", thisStatus, parentStatus));
         }
         String thisConstraint = constraint;
         String otherConstraint = otherCode.constraint;

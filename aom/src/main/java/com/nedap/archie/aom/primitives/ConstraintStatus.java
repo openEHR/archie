@@ -6,18 +6,28 @@ import jakarta.xml.bind.annotation.XmlEnumValue;
 public enum ConstraintStatus {
     @JsonProperty("required")
     @XmlEnumValue("required")
-    REQUIRED,
+    REQUIRED(0),
     @JsonProperty("extensible")
     @XmlEnumValue("extensible")
-    EXTENSIBLE,
+    EXTENSIBLE(1),
     @JsonProperty("preferred")
     @XmlEnumValue("preferred")
-    PREFERRED,
+    PREFERRED(2),
     @JsonProperty("example")
     @XmlEnumValue("example")
-    EXAMPLE;
+    EXAMPLE(3);
+
+    private final int value;
+
+    ConstraintStatus(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
 
     public boolean cConformsTo(ConstraintStatus parent) {
-        return ordinal() <= parent.ordinal();
+        return value <= parent.value;
     }
 }
