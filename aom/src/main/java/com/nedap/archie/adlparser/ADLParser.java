@@ -118,7 +118,7 @@ public class ADLParser {
             if (modelConstraintImposer != null && result.getDefinition() != null) {
                 modelConstraintImposer.imposeConstraints(result.getDefinition());
             } else if (metaModelProvider != null) {
-                MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(result);
+                MetaModel metaModel = metaModelProvider.getMetaModel(result);
                 if (metaModel.getBmmModel() != null) {
                     ModelConstraintImposer imposer = new BMMConstraintImposer(metaModel.getBmmModel() );
                     imposer.setSingleOrMultiple(result.getDefinition());

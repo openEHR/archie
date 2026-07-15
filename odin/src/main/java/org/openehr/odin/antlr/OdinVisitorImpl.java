@@ -152,7 +152,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
      * @param ctx The attr_vals parse tree
      */
     private void visitAttr_vals_pre(odinParser.Attr_valsContext ctx) {
-        if(stack.size() == 0) {
+        if(stack.isEmpty()) {
             addComplexObjectToStack(new CompositeOdinObject());
         }
 //        CompositeOdinObject complexObject = new CompositeOdinObject();
@@ -169,7 +169,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
      */
     private void visitAttr_vals_post(odinParser.Attr_valsContext ctx) {
         if(!(ctx.getParent() instanceof odinParser.Odin_textContext)) {
-            if(stack.size() > 0 && stack.peek() instanceof OdinAttribute) {
+            if(!stack.isEmpty() && stack.peek() instanceof OdinAttribute) {
                 OdinAttribute attribute = (OdinAttribute)stack.peek();
                 stack.pop();
             }
@@ -309,7 +309,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
             }
         } else if(child instanceof odinParser.Attr_valsContext) {
             CompositeOdinObject complexObject = new CompositeOdinObject();
-            if(stack.size() > 0 && stack.peek() instanceof OdinAttribute) { //We are probably creating the body of an attribute
+            if(!stack.isEmpty() && stack.peek() instanceof OdinAttribute) { //We are probably creating the body of an attribute
                 OdinAttribute attribute = (OdinAttribute)stack.peek();
                 attribute.addChild(complexObject);
             }
@@ -461,8 +461,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
     public T visitObject_reference_block(odinParser.Object_reference_blockContext ctx) {
         OdinReferenceObject result = new OdinReferenceObject();
         stack.push(result);
-        T retVal = visitChildren(ctx);
-        return retVal;
+        return visitChildren(ctx);
     }
 
     /**
@@ -652,8 +651,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
         } else {
             integerInterval.handleRangeExpression(ctx);
         }
-        T retVal = visitChildren(ctx);
-        return retVal;
+        return visitChildren(ctx);
     }
 
     /**
@@ -716,8 +714,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
         } else {
             integerInterval.handleRangeExpression(ctx);
         }
-        T retVal = visitChildren(ctx);
-        return retVal;
+        return visitChildren(ctx);
     }
 
     /**
@@ -853,8 +850,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
         } else {
             dateInterval.handleRangeExpression(ctx);
         }
-        T retVal = visitChildren(ctx);
-        return retVal;
+        return visitChildren(ctx);
     }
 
     /**
@@ -917,8 +913,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
         } else {
             timeInterval.handleRangeExpression(ctx);
         }
-        T retVal = visitChildren(ctx);
-        return retVal;
+        return visitChildren(ctx);
     }
 
     /**
@@ -981,8 +976,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
         } else {
             dateTimeInterval.handleRangeExpression(ctx);
         }
-        T retVal = visitChildren(ctx);
-        return retVal;
+        return visitChildren(ctx);
     }
 
     /**
@@ -1045,8 +1039,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
         } else {
             durationInterval.handleRangeExpression(ctx);
         }
-        T retVal = visitChildren(ctx);
-        return retVal;
+        return visitChildren(ctx);
     }
 
     /**
@@ -1175,7 +1168,7 @@ public class OdinVisitorImpl<T> extends odinBaseVisitor<T> implements odinVisito
      * @return True if the stack is empty, false otherwise
      */
     private boolean isStackEmpty() {
-        return stack.size() == 0;
+        return stack.isEmpty();
     }
 
     /**

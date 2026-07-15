@@ -1,6 +1,5 @@
 package com.nedap.archie.json;
 
-import com.google.common.base.Charsets;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import jakarta.json.JsonStructure;
@@ -10,6 +9,7 @@ import org.openehr.bmm.core.BmmModel;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -107,7 +107,7 @@ public class JsonSchemaValidator {
 
 
     private ByteArrayInputStream createByteArrayInputStream(String json) {
-        return new ByteArrayInputStream(json.getBytes(Charsets.UTF_8));
+        return new ByteArrayInputStream(json.getBytes(StandardCharsets.UTF_8));
     }
 
     /**
@@ -119,12 +119,7 @@ public class JsonSchemaValidator {
     public List<Problem> validate(String json) throws IOException {
 
         List<Problem> allProblems = new ArrayList<>();
-        ProblemHandler problemHandler = new ProblemHandler() {
-            @Override
-            public void handleProblems(List<Problem> problems) {
-                allProblems.addAll(problems);
-            }
-        };
+        ProblemHandler problemHandler = allProblems::addAll;
 
         try (JsonReader reader = service.createReader(createByteArrayInputStream(json), schema, problemHandler)) {
             JsonStructure structure = reader.read();

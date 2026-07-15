@@ -50,7 +50,7 @@ public class RMComparedWithBmmTest {
         compared.sort(Comparator.comparing((a) -> a.getClassName() + "." + a.getType().toString()));
         compared = compared.stream().filter((diff) -> {
                 BmmClass classDefinition = model.getClassDefinition(diff.getClassName());
-                return classDefinition == null ? true : !classDefinition.getSourceSchemaId().equalsIgnoreCase("openehr_rm_ehr_extract_1.1.0");
+                return classDefinition == null || !classDefinition.getSourceSchemaId().equalsIgnoreCase("openehr_rm_ehr_extract_1.1.0");
             }).collect(Collectors.toList());
 
         Set<ModelDifference> knownDifferences = new HashSet<>();

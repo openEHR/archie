@@ -1,6 +1,6 @@
 package com.nedap.archie.rm.datavalues.timespecification;
 
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlType;
 
 /**
  * Created by pieter.bos on 08/07/16.

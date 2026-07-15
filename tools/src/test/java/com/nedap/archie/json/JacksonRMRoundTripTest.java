@@ -40,7 +40,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class JacksonRMRoundTripTest {
 
     private ADLParser parser;
-    private Archetype archetype;
 
     private TestUtil testUtil;
 
@@ -52,7 +51,7 @@ public class JacksonRMRoundTripTest {
 
     @Test
     public void dataValues() throws Exception {
-        archetype = parser.parse(JacksonRMRoundTripTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.datavalues.v1.adls"));
+        Archetype archetype = parser.parse(JacksonRMRoundTripTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.datavalues.v1.adls"));
         Cluster cluster =  (Cluster) testUtil.constructEmptyRMObject(archetype.getDefinition());
         UIDBasedId uid = new HierObjectId();
         uid.setValue("SOME_UUID");

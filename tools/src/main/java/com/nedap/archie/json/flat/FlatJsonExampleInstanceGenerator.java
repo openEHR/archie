@@ -42,7 +42,7 @@ public class FlatJsonExampleInstanceGenerator {
      * @throws DuplicateKeyException in case the FlatJsonGenerator generates incorrect data for this OperationalTemplate
      */
     public Map<String, Object> generateExample(OperationalTemplate template, MetaModelProvider metaModelProvider, String language, FlatJsonFormatConfiguration jsonFormatConfiguration) throws JsonProcessingException, DuplicateKeyException {
-        MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(template);
+        MetaModel metaModel = metaModelProvider.getMetaModel(template);
         if(metaModel.getModelInfoLookup() == null) {
             throw new IllegalArgumentException("Cannot find ModelInfoLookup for archetype");
         }

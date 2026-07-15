@@ -5,10 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PBmmClass extends PBmmBase {
@@ -87,12 +84,8 @@ public class PBmmClass extends PBmmBase {
     @JsonIgnore
     public List<String> getAncestorTypeNames() {
         if(ancestorDefs != null && !ancestorDefs.isEmpty()) {
-            return ancestorDefs.values().stream().map(type -> type.asTypeString()).collect(Collectors.toList());
-        } else if (ancestors != null) {
-            return ancestors;
-        } else {
-            return new ArrayList<>();
-        }
+            return ancestorDefs.values().stream().map(PBmmType::asTypeString).collect(Collectors.toList());
+        } else return Objects.requireNonNullElseGet(ancestors, ArrayList::new);
     }
 
     public void setAncestors(List<String> ancestors) {
@@ -146,7 +139,7 @@ public class PBmmClass extends PBmmBase {
      */
     @JsonIgnore
     public boolean isGeneric() {
-        return this.getGenericParameterDefs() != null && this.getGenericParameterDefs().size() > 0;
+        return this.getGenericParameterDefs() != null && !this.getGenericParameterDefs().isEmpty();
     }
 
     @JsonIgnore
@@ -164,7 +157,7 @@ public class PBmmClass extends PBmmBase {
 
     public BmmClass createBmmClass() {
         BmmClass bmmClass;
-        if (getGenericParameterDefs().size() > 0) {
+        if (!getGenericParameterDefs().isEmpty()) {
             bmmClass = new BmmGenericClass(getName(), getDocumentation(), nullToFalse(isAbstract()));
         } else {
             bmmClass = new BmmSimpleClass(getName(), getDocumentation(), nullToFalse(isAbstract()));

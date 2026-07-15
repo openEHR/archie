@@ -8,7 +8,8 @@
         "language": "[ISO_639-1::nl]",
         "purpose": "De Delirium observatie screening (DOS) schaal is een beoordelingsschaal voor een delirium bij ouderen. De DOS bevat 13 observaties van gedrag (verbaal en non-verbaal) die de symptomen van het delirium weergeven."
       }
-    }
+    },
+    "lifecycle_state": "unmanaged"
   },
   "differential": false,
   "archetype_id": {

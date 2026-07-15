@@ -103,7 +103,7 @@ public class FlattenerExamplesFromSpecTest {
         Archetype flattenedLipidStudies = new Flattener(repository, metaModelProvider).flatten(lipidStudiesPanel);
 
         List<CObject> itemNodes = flattenedLipidStudies.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = itemNodes.stream().map(cObject -> cObject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = itemNodes.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(Lists.newArrayList("id3", "id3.1", "id3.2", "id3.5", "id14"), nodeIds);
 
         for(String nodeId: Lists.newArrayList("1", "2", "5")) {
