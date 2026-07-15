@@ -2,7 +2,7 @@
 antlr = "4.13.2"
 
 jackson = "2.21.3"
-jackson_annotations = "2.21"
+jackson_annotations = "2.22"
 jackson3 = "3.0.0"
 
 slf4j = "1.7.36"
@@ -58,6 +58,6 @@ reflections = { module = "org.reflections:reflections", version = "0.10.2" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
 
-threeten-extra = { module = "org.threeten:threeten-extra", version = "1.8.0" }
+threeten-extra = { module = "org.threeten:threeten-extra", version = "1.10.0" }
 
 zafarkhaja-semver = { module = "com.github.zafarkhaja:java-semver", version = "0.10.2" }
