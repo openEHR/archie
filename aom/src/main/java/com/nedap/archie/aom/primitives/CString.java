@@ -5,13 +5,13 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 import org.openehr.utils.message.I18n;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +22,7 @@ import java.util.function.BiFunction;
  */
 @XmlType(name="C_STRING")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CString extends CPrimitiveObject<String, String> {
+public class CString extends CPrimitiveObject<List<String>, String> {
 
     @XmlElement(name="assumed_value")
     @Nullable
@@ -53,11 +53,14 @@ public class CString extends CPrimitiveObject<String, String> {
     }
 
     @Override
+    public List<String> getConstraintAsList() {
+        return getConstraint();
+    }
+
     public void setConstraint(List<String> constraint) {
         this.constraint = constraint;
     }
 
-    @Override
     public void addConstraint(String constraint) {
         this.constraint.add(constraint);
     }
@@ -88,12 +91,21 @@ public class CString extends CPrimitiveObject<String, String> {
     }
 
     private boolean matchesRegexp(String value, String constraint) {
-        return value.matches(constraint.substring(1).substring(0, constraint.length()-2));
+        return value.matches(stripRegexDelimiters(constraint));
     }
 
     public static boolean isRegexConstraint(String constraint) {
         return (constraint.startsWith("/") && constraint.endsWith("/")) ||
                 (constraint.startsWith("^") && constraint.endsWith("^"));
+    }
+
+    /**
+     * Strip the leading and trailing regex delimiter characters ('/…/' or '^…^') from a regex constraint,
+     * returning the bare regular expression. Only valid when {@link #isRegexConstraint(String)} is true
+     * (i.e. both delimiters are present).
+     */
+    public static String stripRegexDelimiters(String constraint) {
+        return constraint.substring(1).substring(0, constraint.length() - 2);
     }
 
     @Override

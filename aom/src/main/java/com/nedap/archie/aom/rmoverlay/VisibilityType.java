@@ -1,8 +1,7 @@
 package com.nedap.archie.aom.rmoverlay;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.xml.bind.annotation.XmlEnumValue;
+import jakarta.xml.bind.annotation.XmlEnumValue;
 
 public enum VisibilityType {
     @JsonProperty("hide")
@@ -10,5 +9,5 @@ public enum VisibilityType {
     HIDE,
     @JsonProperty("show")
     @XmlEnumValue("show")
-    SHOW;
+    SHOW
 }

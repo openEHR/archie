@@ -12,10 +12,10 @@ import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.RuleElement;
 import com.nedap.archie.rules.RuleStatement;
 import com.nedap.archie.rules.evaluation.evaluators.*;
+import jakarta.xml.bind.JAXBContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.xpath.XPathExpressionException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  */
 public class RuleEvaluation<T> {
 
-    private static Logger logger = LoggerFactory.getLogger(RuleEvaluation.class);;
+    private static Logger logger = LoggerFactory.getLogger(RuleEvaluation.class);
 
     private Archetype archetype;
     private List<Evaluator<?>> evaluators = new ArrayList<>();
@@ -231,7 +231,7 @@ public class RuleEvaluation<T> {
             }
         } else {
             List<RMObjectWithPath> parentsWithPath = findListWithPaths(path);
-            return parentsWithPath.stream().map(p -> p.getObject()).collect(Collectors.toList());
+            return parentsWithPath.stream().map(RMObjectWithPath::getObject).collect(Collectors.toList());
         }
     }
 

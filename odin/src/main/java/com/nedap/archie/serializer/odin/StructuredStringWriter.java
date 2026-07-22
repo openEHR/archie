@@ -118,11 +118,7 @@ public class StructuredStringWriter implements StructuredStringAppendable {
     }
 
     private void write(String s) {
-        if(!s.isEmpty() && s.charAt(s.length()-1) == ' ') {
-            lastCharacterWasSpace = true;
-        } else {
-            lastCharacterWasSpace = false;
-        }
+        lastCharacterWasSpace = !s.isEmpty() && s.charAt(s.length() - 1) == ' ';
         if(marked) {
             markedContent.append(s);
         } else {

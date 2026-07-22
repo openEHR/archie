@@ -67,7 +67,7 @@ public final class PBmmGenericType extends PBmmUnitaryType {
     @JsonIgnore
     public List<PBmmType> getGenericParameterRefs() {
         List<PBmmType> genericParameterReferences = new ArrayList<>();
-        if (genericParameterDefs != null && genericParameterDefs.size() > 0) {
+        if (genericParameterDefs != null && !genericParameterDefs.isEmpty()) {
             genericParameterReferences.addAll(genericParameterDefs.values());
         }
         else {

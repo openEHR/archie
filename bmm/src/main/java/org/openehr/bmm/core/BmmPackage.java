@@ -60,7 +60,7 @@ public class BmmPackage extends BmmPackageContainer implements Serializable {
      */
     public BmmPackage() {
         super();
-        classes = new LinkedHashMap<String, BmmClass>();
+        classes = new LinkedHashMap<>();
     }
 
     /**

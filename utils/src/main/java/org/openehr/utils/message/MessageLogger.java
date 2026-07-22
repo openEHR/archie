@@ -45,7 +45,7 @@ public class MessageLogger {
      * @return
      */
     public MessageDescriptor lastAdded() {
-        if(messageList != null && messageList.size() > 0) {
+        if(messageList != null && !messageList.isEmpty()) {
             return messageList.get(messageList.size() - 1);
         } else {
             return null;
@@ -63,7 +63,7 @@ public class MessageLogger {
     }
 
     private List<MessageCode> getCodesForSeverity(MessageSeverity severity) {
-        return messageList.stream().filter((message) -> message.getSeverity() == severity).map( (message) -> message.getCode()).collect(Collectors.toList());
+        return messageList.stream().filter((message) -> message.getSeverity() == severity).map(MessageDescriptor::getCode).collect(Collectors.toList());
     }
 
     /**
@@ -292,7 +292,7 @@ public class MessageLogger {
         StringBuilder builder = new StringBuilder();
         messageList.forEach(error -> {
             if(GlobalMessageLoggingLevel.shouldLog(error.getSeverity())) {
-                builder.append(error.toString()).append("\n");
+                builder.append(error).append("\n");
             }
         });
         return builder.toString();
@@ -310,11 +310,11 @@ public class MessageLogger {
         StringBuilder builder = new StringBuilder();
         messageList.forEach(message -> {
             if(includeErrors && message.getSeverity().equals(MessageSeverity.ERROR)) {
-                builder.append(message.toString()).append("\n");
+                builder.append(message).append("\n");
             } else if(includeWarnings && message.getSeverity().equals(MessageSeverity.WARNING)) {
-                builder.append(message.toString()).append("\n");
+                builder.append(message).append("\n");
             } else if(includeInfo && message.getSeverity().equals(MessageSeverity.INFO)) {
-                builder.append(message.toString()).append("\n");
+                builder.append(message).append("\n");
             }
         });
         return builder.toString();

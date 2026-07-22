@@ -17,12 +17,12 @@ import java.util.stream.Collectors;
 
 /**
  * Utility that defines the java mapping of type and attribute names of a given reference model.
- *
+ * <p>
  * Use it to obtain java classes for RM Type Names, and java fields, getters, setters and types for RM Attribute Names
- *
+ * <p>
  * This class is never directly created, but subclasses must be created that setup the correct model. Create a subclass
  * per model you want to use with Archie, for example one for an OpenEHR RM implementation, or the CIMI RM implementation
- *
+ * <p>
  * Created by pieter.bos on 02/02/16.
  */
 public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
@@ -87,7 +87,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
      * old incompatible type names
      */
     private void addAlternativeTypeNames() {
-        for(Class clazz:this.classesToRmTypeInfo.keySet()) {
+        for(Class<?> clazz:this.classesToRmTypeInfo.keySet()) {
             for(String alternativeName:namingStrategy.getAlternativeTypeNames(clazz)) {
                 String originalName = namingStrategy.getTypeName(clazz);
                 this.rmTypeNamesToRmTypeInfo.put(alternativeName, rmTypeNamesToRmTypeInfo.get(originalName));
@@ -160,7 +160,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         Set<Field> allFields = ReflectionUtils.getAllFields(clazz);
         Map<String, Field> fieldsByName = allFields.stream()
                 .filter( field -> !field.getName().startsWith("$")) //jacoco adds $ fields.. annoying :)
-                .collect(Collectors.toMap((field) -> field.getName(), (field) -> field,
+                .collect(Collectors.toMap(Field::getName, (field) -> field,
                         (duplicate1, duplicate2) -> duplicate1));
         for(Field field: fieldsByName.values()) {
             addRMAttributeInfo(clazz, typeInfo, typeToken, field);
@@ -177,7 +177,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
         }
     }
 
-    private void addInvariantChecks(Class clazz, RMTypeInfo typeInfo) {
+    private void addInvariantChecks(Class<?> clazz, RMTypeInfo typeInfo) {
         Set<Method> allInvariants = ReflectionUtils.getAllMethods(clazz, (method) -> method.getAnnotation(Invariant.class) != null);
         for(Method method:allInvariants) {
             if(method.getParameterCount() != 0) {
@@ -235,7 +235,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
 
         String attributeName = namingStrategy.getAttributeName(field, getMethod);
 
-        TypeToken<?> fieldType = typeToken.resolveType(getMethod.getGenericReturnType());;
+        TypeToken<?> fieldType = typeToken.resolveType(getMethod.getGenericReturnType());
 
         Class<?> rawFieldType = fieldType.getRawType();
         Class<?> typeInCollection = getTypeInCollection(fieldType);
@@ -251,7 +251,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                     getMethod,
                     setMethod,
                     addMethod,
-                    determineIfComputed(clazz, getMethod, field, setMethod, addMethod)
+                    determineIfComputed(getMethod, field, setMethod, addMethod)
             );
             if(typeInfo.getAttribute(attributeName) == null) {
                 typeInfo.addAttribute(attributeInfo);
@@ -261,10 +261,10 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
        // }
     }
 
-    private boolean determineIfComputed(Class<?> clazz, Method getMethod, Field field, Method setMethod, Method addMethod) {
+    private boolean determineIfComputed(Method getMethod, Field field, Method setMethod, Method addMethod) {
         boolean computed = setMethod == null && addMethod == null && field == null;
 
-        RMProperty annotation = getAnnotation(clazz, getMethod, field, RMProperty.class);
+        RMProperty annotation = getAnnotation(getMethod, field, RMProperty.class);
         if(annotation != null && annotation.computed() != PropertyType.AUTO_DETECT) {
             computed = annotation.computed() == PropertyType.COMPUTED;
         }
@@ -272,21 +272,18 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
     }
 
     protected boolean isNullable(Class<?> clazz, Method getMethod, Field field) {
-        return getAnnotation(clazz, getMethod, field, Nullable.class) != null;
+        return getAnnotation(getMethod, field, Nullable.class) != null;
     }
 
-    private <T extends Annotation> T getAnnotation(Class<?> clazz, Method getMethod, Field field, Class<T> annotationClass) {
+    private <T extends Annotation> T getAnnotation(Method getMethod, Field field, Class<T> annotationClass) {
         if(field != null) {
-            T annotation = (T) field.getAnnotation(annotationClass);
+            T annotation = field.getAnnotation(annotationClass);
             if(annotation != null) {
                 return annotation;
             }
         }
         if(getMethod != null) {
-            T annotation = (T) getMethod.getAnnotation(annotationClass);
-            if(annotation != null) {
-                return annotation;
-            }
+            return getMethod.getAnnotation(annotationClass);
         }
         return null;
     }
@@ -348,7 +345,7 @@ public abstract class ReflectionModelInfoLookup implements ModelInfoLookup {
                     getMethod,
                     setMethod,
                     addMethod,
-                    determineIfComputed(clazz, getMethod, field, setMethod, addMethod)
+                    determineIfComputed(getMethod, field, setMethod, addMethod)
             );
             typeInfo.addAttribute(attributeInfo);
         } else {

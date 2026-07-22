@@ -68,7 +68,7 @@ public class DefaultRmStructureRemover {
     }
 
     public void removeRMDefaults(Archetype archetype) {
-        metaModel = this.metaModelProvider.selectAndGetMetaModel(archetype);
+        metaModel = this.metaModelProvider.getMetaModel(archetype);
         this.constraintImposer = new BMMConstraintImposer(metaModel.getBmmModel());
         removeRMDefaults(archetype.getDefinition());
     }

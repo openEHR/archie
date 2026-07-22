@@ -27,15 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BmmPackageContainerTest {
-    @Test
-    public void packageAtPath() throws Exception {
-
-    }
-
-    @Test
-    public void doRecursivePackages() throws Exception {
-
-    }
 
     @Test
     public void hasPackagePath() throws Exception {

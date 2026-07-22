@@ -40,7 +40,7 @@ public class OdinLoaderImpl {
 
     private static Logger log = LoggerFactory.getLogger(OdinLoaderImpl.class);
 
-    public OdinVisitorImpl loadOdinFile(String bmmFilePath) {
+    public OdinVisitorImpl<?> loadOdinFile(String bmmFilePath) {
         try {
          return loadOdinFile(CharStreams.fromFileName(bmmFilePath));
         } catch (IOException ioe) {
@@ -50,11 +50,11 @@ public class OdinLoaderImpl {
         }
     }
 
-    public OdinVisitorImpl loadOdinFromString(String odinContent) {
+    public OdinVisitorImpl<?> loadOdinFromString(String odinContent) {
         return loadOdinFile(CharStreams.fromString(odinContent));
     }
 
-    public OdinVisitorImpl loadOdinFile(InputStream inputStream) {
+    public OdinVisitorImpl<?> loadOdinFile(InputStream inputStream) {
         try {
             return loadOdinFile(CharStreams.fromStream(inputStream));
         } catch (IOException ioe) {
@@ -64,9 +64,9 @@ public class OdinLoaderImpl {
         }
     }
 
-    public OdinVisitorImpl loadOdinFile(CharStream input) {
+    public OdinVisitorImpl<?> loadOdinFile(CharStream input) {
 
-        OdinVisitorImpl visitor = new OdinVisitorImpl<>();
+        OdinVisitorImpl<?> visitor = new OdinVisitorImpl<>();
         odinLexer lexer = new odinLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         odinParser parser = new odinParser(tokens);
