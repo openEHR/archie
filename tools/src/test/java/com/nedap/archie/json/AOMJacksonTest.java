@@ -315,7 +315,6 @@ public class AOMJacksonTest {
                 "      \"/subject\" : {\n" +
                 "        \"visibility\" : \"hide\",\n" +
                 "        \"alias\" : {\n" +
-                "          \"@type\" : \"TerminologyCode\",\n" +
                 "          \"terminology_id\" : \"local\",\n" +
                 "          \"code_string\" : \"at12\",\n" +
                 "          \"terminology_id_string\" : \"local\"\n" +
