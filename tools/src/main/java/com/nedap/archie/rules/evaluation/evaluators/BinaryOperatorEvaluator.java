@@ -111,7 +111,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         result.setType(PrimitiveType.Boolean);
         DummyRulesPrimitiveObjectParent dummyParent = null;
         if(constraint.getItem() instanceof CTerminologyCode) {
-            constraint = (Constraint) constraint.clone();
+            constraint = (Constraint<?>) constraint.clone();
             //hack to support CTerminologyConstraints properly
             dummyParent = new DummyRulesPrimitiveObjectParent(archetype);
             constraint.getItem().setParent(dummyParent);
@@ -417,8 +417,8 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
 
         for(Value<?> leftValue:leftValues.getValues()) {
             for (Value<?> rightValue:rightValues.getValues()) {
-                Value<?> evaluatedRelOp = evaluateRelOp(statement, leftValue.getValue(), rightValue.getValue(), getPaths(leftValue, rightValue));
-                if (((Boolean) evaluatedRelOp.getValue()).booleanValue()) {
+                Value<Boolean> evaluatedRelOp = evaluateRelOp(statement, leftValue.getValue(), rightValue.getValue(), getPaths(leftValue, rightValue));
+                if (evaluatedRelOp.getValue()) {
                     return evaluatedRelOp;
                 }
             }
@@ -433,7 +433,7 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         return allPaths;
     }
 
-    private Value<?> evaluateRelOp(BinaryOperator statement, Object leftValue, Object rightValue, List<String> paths) {
+    private Value<Boolean> evaluateRelOp(BinaryOperator statement, Object leftValue, Object rightValue, List<String> paths) {
         if(leftValue == null || rightValue == null) {
             return new Value<>(evaluateNullRelOp(statement.getOperator(), leftValue, rightValue), paths);
         }

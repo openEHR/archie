@@ -12,11 +12,11 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.datetime.DateTimeParsers;
 import com.nedap.archie.testutil.TestUtil;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -71,7 +71,7 @@ public class JAXBAOMTest {
     public void testCTerminologyCode() throws Exception {
 
         CTerminologyCode cTerminologyCode = new CTerminologyCode();
-        cTerminologyCode.setConstraint(Lists.newArrayList("ac23"));
+        cTerminologyCode.setConstraint("ac23");
         cTerminologyCode.setConstraintStatus(ConstraintStatus.PREFERRED);
         valueAttribute.addChild(cTerminologyCode);
         StringWriter writer = new StringWriter();
@@ -120,7 +120,7 @@ public class JAXBAOMTest {
         Interval<TemporalAmount> constraint = parsedDuration.getConstraint().get(0);
         assertEquals(1, parsedDuration.getConstraint().size());
         assertEquals(
-                new Interval<TemporalAmount>(DateTimeParsers.parseDurationValue("-P10D"), DateTimeParsers.parseDurationValue("P10YT10S")),
+                new Interval<>(DateTimeParsers.parseDurationValue("-P10D"), DateTimeParsers.parseDurationValue("P10YT10S")),
                 constraint);
     }
 
@@ -163,9 +163,9 @@ public class JAXBAOMTest {
 
     @Test
     public void otherMetaData() throws Exception {
-        archetype.setOtherMetaData(new LinkedHashMap<>());
-        archetype.getOtherMetaData().put("test key", "test value");
-        archetype.getOtherMetaData().put("second test key", "second test value");
+        ((AuthoredArchetype) archetype).setOtherMetaData(new LinkedHashMap<>());
+        ((AuthoredArchetype) archetype).getOtherMetaData().put("test key", "test value");
+        ((AuthoredArchetype) archetype).getOtherMetaData().put("second test key", "second test value");
 
         Marshaller marshaller = JAXBUtil.getArchieJAXBContext().createMarshaller();
         StringWriter writer = new StringWriter();
@@ -177,7 +177,7 @@ public class JAXBAOMTest {
         assertTrue(writer.toString().contains("<other_meta_data id=\"second test key\">second test value</other_meta_data>"));
 
         Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
-        Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(new StringReader(writer.toString()));
+        AuthoredArchetype unmarshalled = (AuthoredArchetype) unmarshaller.unmarshal(new StringReader(writer.toString()));
         assertEquals("test value", unmarshalled.getOtherMetaData().get("test key"));
         assertEquals("second test value", unmarshalled.getOtherMetaData().get("second test key"));
     }
@@ -270,7 +270,7 @@ public class JAXBAOMTest {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         marshaller.marshal(template, writer);
 
-        assertTrue(writer.toString().contains(" <template_overlay is_generated=\"false\" is_differential=\"false\">\n" +
+        assertTrue(writer.toString().contains(" <template_overlay is_differential=\"false\">\n" +
                 "        <description/>\n" +
                 "        <original_language>\n" +
                 "            <terminology_id>ISO_639-1</terminology_id>\n" +
@@ -294,7 +294,7 @@ public class JAXBAOMTest {
             Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
             Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(stream);
             // assert that the lifecycle state is set to published
-            assertEquals("published", unmarshalled.getDescription().getLifecycleState().getCodeString());
+            assertEquals("published", unmarshalled.getDescription().getLifecycleState());
         }
     }
 
@@ -304,7 +304,7 @@ public class JAXBAOMTest {
             Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
             Archetype unmarshalled = (Archetype) unmarshaller.unmarshal(stream);
             // assert that the lifecycle state is set to published
-            assertEquals("published", unmarshalled.getDescription().getLifecycleState().getCodeString());
+            assertEquals("published", unmarshalled.getDescription().getLifecycleState());
         }
     }
 

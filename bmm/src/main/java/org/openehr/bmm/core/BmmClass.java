@@ -44,7 +44,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
     /**
      * List of immediate inheritance parents.
      */
-    private Map<String, BmmDefinedType> ancestors = new LinkedHashMap<>();;
+    private Map<String, BmmDefinedType> ancestors = new LinkedHashMap<>();
 
     /**
      * Package this class belongs to.
@@ -70,7 +70,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
     /**
      * List of immediate inheritance descendants.
      */
-    private List<String> immediateDescendants = new ArrayList<>();;
+    private List<String> immediateDescendants = new ArrayList<>();
 
     /**
      * True if this class is abstract in its model.
@@ -181,9 +181,7 @@ public abstract class BmmClass extends BmmEntity implements Serializable {
      */
     public Map<String, BmmProperty<?>> getFlatProperties() {
         Map<String, BmmProperty<?>> result = new LinkedHashMap<>();
-        getAncestors().forEach( (ancestorName, ancestor) -> {
-            result.putAll(ancestor.getBaseClass().getFlatProperties());
-        });
+        getAncestors().forEach( (ancestorName, ancestor) -> result.putAll(ancestor.getBaseClass().getFlatProperties()));
         result.putAll(properties);
         return result;
     }

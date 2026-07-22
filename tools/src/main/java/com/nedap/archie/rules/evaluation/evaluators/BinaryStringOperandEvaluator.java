@@ -25,7 +25,7 @@ public class BinaryStringOperandEvaluator {
         for(Value<?> leftValue:leftValues.getValues()) {
             for (Value<?> rightValue:rightValues.getValues()) {
                 Value<Boolean> evaluatedRelOp = evaluateBooleanRelOp(statement, leftValue.getValue(), rightValue.getValue(), mainEvaluator.getPaths(leftValue, rightValue));
-                if (((Boolean) evaluatedRelOp.getValue()).booleanValue()) {
+                if ((Boolean) evaluatedRelOp.getValue()) {
                     return evaluatedRelOp;
                 }
             }

@@ -74,7 +74,7 @@ public  class ExampleJsonInstanceGenerator {
                 !(rmRelease.equalsIgnoreCase("1.0.4") || rmRelease.equalsIgnoreCase("1.1.0"))) {
             rmRelease = "1.1.0";
         }
-        metaModel = metaModelProvider.selectAndGetMetaModel(archetype, rmRelease);
+        metaModel = metaModelProvider.getMetaModel(archetype, rmRelease);
         aomProfile = metaModel.getAomProfile();
         bmm = metaModel.getBmmModel();
         return generate(archetype.getDefinition());
@@ -447,7 +447,7 @@ public  class ExampleJsonInstanceGenerator {
             terminologyId.put("value", "local");
             String termString = "term";
             ArchetypeTerminology terminology = archetype.getTerminology(child);
-            if(child.getConstraint().isEmpty()) {
+            if(child.getConstraint() == null) {
                 codeString = "term code";
                 CAttribute attribute = child.getParent();
                 CComplexObject parent = (CComplexObject) attribute.getParent();
@@ -456,7 +456,7 @@ public  class ExampleJsonInstanceGenerator {
                     return potentialResult;
                 }
             } else {
-                String constraint = child.getConstraint().get(0);
+                String constraint = child.getConstraint();
                 if(constraint.startsWith("ac")) {
 
                     ValueSet valueSet = terminology.getValueSets().get(constraint);

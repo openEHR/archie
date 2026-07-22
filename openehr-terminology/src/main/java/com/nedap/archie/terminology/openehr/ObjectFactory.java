@@ -8,7 +8,7 @@
 
 package com.nedap.archie.terminology.openehr;
 
-import javax.xml.bind.annotation.XmlRegistry;
+import jakarta.xml.bind.annotation.XmlRegistry;
 
 
 /**

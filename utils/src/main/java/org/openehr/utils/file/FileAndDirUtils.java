@@ -54,9 +54,9 @@ public class FileAndDirUtils {
         directories.forEach( directoryPath -> {
             File directory = new File(directoryPath);
             if(directory.exists() && directory.isDirectory()) {
-                loadedDirectories.add(new OperationOutcome<File>(directory));
+                loadedDirectories.add(new OperationOutcome<>(directory));
             } else {
-                loadedDirectories.add(new OperationOutcome<File>(null, OperationOutcomeStatus.FAILURE));
+                loadedDirectories.add(new OperationOutcome<>(null, OperationOutcomeStatus.FAILURE));
             }
         });
         return loadedDirectories;
@@ -74,9 +74,7 @@ public class FileAndDirUtils {
     @Deprecated
     public static List<File> filterFilesFromDirectories(List<File> directories, IOFileFilter fileFilter, boolean recursive) {
         List<File> loadedFiles = new ArrayList<>();
-        directories.forEach( dir -> {
-            loadedFiles.addAll(FileUtils.listFiles(dir, fileFilter, null));
-        });
+        directories.forEach( dir -> loadedFiles.addAll(FileUtils.listFiles(dir, fileFilter, null)));
         return loadedFiles;
     }
 

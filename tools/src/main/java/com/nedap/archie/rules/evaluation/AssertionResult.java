@@ -44,6 +44,9 @@ public class AssertionResult {
      */
     private Map<String, String> pathsConstrainedToValueSets = new LinkedHashMap<>();
 
+
+    private Map<String, String> pathsConstrainedToRegularExpression = new LinkedHashMap<>();
+
     public String getTag() {
         return tag;
     }
@@ -104,6 +107,14 @@ public class AssertionResult {
         this.pathsConstrainedToValueSets = pathsConstrainedToValueSets;
     }
 
+    public Map<String, String> getPathsConstrainedToRegularExpression() {
+        return pathsConstrainedToRegularExpression;
+    }
+
+    public void setPathsConstrainedToRegularExpression(Map<String, String> pathsConstrainedToRegularExpression) {
+        this.pathsConstrainedToRegularExpression = pathsConstrainedToRegularExpression;
+    }
+
     public void setPathsThatMustNotExist(List<String> pathsThatMustNotExist) {
         this.pathsThatMustNotExist = pathsThatMustNotExist;
     }
@@ -147,5 +158,9 @@ public class AssertionResult {
 
     public void constrainPathToValueSet(String path, String valueSetId) {
         pathsConstrainedToValueSets.put(path, valueSetId);
+    }
+
+    public void constrainPathToRegularExpression(String path, String regex) {
+        pathsConstrainedToRegularExpression.put(path, regex);
     }
 }

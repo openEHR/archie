@@ -33,7 +33,7 @@ public class OdinAttribute implements Serializable {
     private List<OdinObject> children;
 
     public OdinAttribute() {
-        children = new ArrayList<OdinObject>();
+        children = new ArrayList<>();
     }
 
     public OdinAttribute(String name) {

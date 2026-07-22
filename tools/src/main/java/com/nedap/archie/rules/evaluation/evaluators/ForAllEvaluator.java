@@ -25,7 +25,7 @@ public class ForAllEvaluator implements Evaluator<ForAllStatement> {
 
         ValueList pathValues = evaluation.evaluate(pathExpression);
 
-        List<String> allPaths = new ArrayList<String>();
+        List<String> allPaths = new ArrayList<>();
 
         boolean resultingCheck = true;
         for(Value<?> value:pathValues.getValues()) {
@@ -50,7 +50,7 @@ public class ForAllEvaluator implements Evaluator<ForAllStatement> {
             allPaths.addAll(evaluated.getAllPaths());
             if(evaluated.getType() == PrimitiveType.Boolean) {
                 for (Value<?> evaluatedValue : evaluated.getValues()) {
-                    if (evaluatedValue.getValue() != null && !((Boolean)evaluatedValue.getValue()).booleanValue()) {
+                    if (evaluatedValue.getValue() != null && !(Boolean) evaluatedValue.getValue()) {
                         resultingCheck = false;
                     }
                 }

@@ -118,7 +118,7 @@ public class Flattener implements IAttributeFlattenerSupport {
             throw new IllegalStateException("You've used this flattener before - single use instance, please create a new one!");
         }
 
-        metaModel = metaModelProvider.selectAndGetMetaModel(toFlatten);
+        metaModel = metaModelProvider.getMetaModel(toFlatten);
 
         //validate that we can legally flatten first
         String parentId = toFlatten.getParentArchetypeId();
@@ -137,7 +137,7 @@ public class Flattener implements IAttributeFlattenerSupport {
             }
             result.getDefinition().setArchetype(result);
             result.setDifferential(false);
-            result.setGenerated(true);
+            if (result instanceof AuthoredArchetype) ((AuthoredArchetype) result).setGenerated(true);
             return result;
         }
 
@@ -217,10 +217,12 @@ public class Flattener implements IAttributeFlattenerSupport {
         }
         result.getDefinition().setArchetype(result);
         result.setDescription(child.getDescription());
-        result.setOtherMetaData(child.getOtherMetaData());
-        result.setBuildUid(child.getBuildUid());
         result.setOriginalLanguage(child.getOriginalLanguage());
         result.setTranslations(child.getTranslations());
+        if (result instanceof AuthoredArchetype && child instanceof AuthoredArchetype) {
+            ((AuthoredArchetype) result).setOtherMetaData(((AuthoredArchetype) child).getOtherMetaData());
+            ((AuthoredArchetype) result).setBuildUid(((AuthoredArchetype) child).getBuildUid());
+        }
 
         if(child instanceof Template && !config.isCreateOperationalTemplate()) {
             Template resultTemplate = (Template) result;
@@ -243,7 +245,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         this.removeSiblingOrder(result);
 
         result.setDifferential(false);//mark this archetype as being flat
-        result.setGenerated(true);
+        if (result instanceof AuthoredArchetype) ((AuthoredArchetype) result).setGenerated(true);
 
         ArchetypeParsePostProcessor.fixArchetype(result);
 
