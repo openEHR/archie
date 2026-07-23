@@ -5,6 +5,7 @@ dependencies {
     api project(':openehr-rm')
     api project(':archie-utils')
     api project(':tools')
+    api project(':json-schema-validator')
     api project(':referencemodels')
     api project(':i18n')
 }
