@@ -44,7 +44,10 @@ public class AssertionResult {
      */
     private Map<String, String> pathsConstrainedToValueSets = new LinkedHashMap<>();
 
-
+    /**
+     * Paths where a string value must now be constrained to a regular expression. Use for example to validate free text
+     * input against a pattern. The value is the regular expression with its delimiters ('/…/' or '^…^') stripped.
+     */
     private Map<String, String> pathsConstrainedToRegularExpression = new LinkedHashMap<>();
 
     public String getTag() {
