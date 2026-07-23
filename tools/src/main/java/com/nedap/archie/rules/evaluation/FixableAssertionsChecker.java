@@ -2,6 +2,7 @@ package com.nedap.archie.rules.evaluation;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.primitives.CString;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.rules.*;
@@ -153,11 +154,16 @@ class FixableAssertionsChecker {
                     break;
                 }
                 case "CString": {
-                        String constraint = (String) constraints.get(0);
+                    String constraint = (String) constraints.get(0);
+                    String path = resolveModelReference(pathToSet);
+                    if (CString.isRegexConstraint(constraint)) {
+                        assertionResult.constrainPathToRegularExpression(path, CString.stripRegexDelimiters(constraint));
+                    } else {
                         valueList.addValue(constraint, Collections.emptyList());
-                        setPathsToValues(assertionResult, resolveModelReference(pathToSet), valueList);
+                        setPathsToValues(assertionResult, path, valueList);
                     }
-                    break;
+                }
+                break;
                 //TODO: more type of constraints
 
             }

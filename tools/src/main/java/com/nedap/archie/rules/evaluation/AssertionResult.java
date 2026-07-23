@@ -44,6 +44,12 @@ public class AssertionResult {
      */
     private Map<String, String> pathsConstrainedToValueSets = new LinkedHashMap<>();
 
+    /**
+     * Paths where a string value must now be constrained to a regular expression. Use for example to validate free text
+     * input against a pattern. The value is the regular expression with its delimiters ('/…/' or '^…^') stripped.
+     */
+    private Map<String, String> pathsConstrainedToRegularExpression = new LinkedHashMap<>();
+
     public String getTag() {
         return tag;
     }
@@ -104,6 +110,14 @@ public class AssertionResult {
         this.pathsConstrainedToValueSets = pathsConstrainedToValueSets;
     }
 
+    public Map<String, String> getPathsConstrainedToRegularExpression() {
+        return pathsConstrainedToRegularExpression;
+    }
+
+    public void setPathsConstrainedToRegularExpression(Map<String, String> pathsConstrainedToRegularExpression) {
+        this.pathsConstrainedToRegularExpression = pathsConstrainedToRegularExpression;
+    }
+
     public void setPathsThatMustNotExist(List<String> pathsThatMustNotExist) {
         this.pathsThatMustNotExist = pathsThatMustNotExist;
     }
@@ -147,5 +161,9 @@ public class AssertionResult {
 
     public void constrainPathToValueSet(String path, String valueSetId) {
         pathsConstrainedToValueSets.put(path, valueSetId);
+    }
+
+    public void constrainPathToRegularExpression(String path, String regex) {
+        pathsConstrainedToRegularExpression.put(path, regex);
     }
 }

@@ -91,12 +91,21 @@ public class CString extends CPrimitiveObject<List<String>, String> {
     }
 
     private boolean matchesRegexp(String value, String constraint) {
-        return value.matches(constraint.substring(1).substring(0, constraint.length()-2));
+        return value.matches(stripRegexDelimiters(constraint));
     }
 
     public static boolean isRegexConstraint(String constraint) {
         return (constraint.startsWith("/") && constraint.endsWith("/")) ||
                 (constraint.startsWith("^") && constraint.endsWith("^"));
+    }
+
+    /**
+     * Strip the leading and trailing regex delimiter characters ('/…/' or '^…^') from a regex constraint,
+     * returning the bare regular expression. Only valid when {@link #isRegexConstraint(String)} is true
+     * (i.e. both delimiters are present).
+     */
+    public static String stripRegexDelimiters(String constraint) {
+        return constraint.substring(1).substring(0, constraint.length() - 2);
     }
 
     @Override
