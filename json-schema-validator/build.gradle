@@ -1,0 +1,9 @@
+description = "JSON schema validator for openEHR RM instances, based on the Justify JSON schema validation library"
+
+dependencies {
+    api project(':tools')
+
+    // Justify is an unmaintained dependency and is only pulled in when the JSON schema validator is actually used.
+    api(libs.leadpony.justify)
+    api(variantOf(libs.jakarta.json) { classifier("module") })
+}
