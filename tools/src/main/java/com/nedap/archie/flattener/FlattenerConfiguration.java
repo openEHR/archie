@@ -63,12 +63,15 @@ public class FlattenerConfiguration {
     /**
      * Officially, objects can only be excluded (occurrences matches {0}) after any
      * specializations. If any object is specialized after the exclusion of the parent object, the specialization is ignored.
-     * This was not ignored before, so this config can be used to reproduce previous behaviour.
+     * This was not ignored before, so this config can be set to true to reproduce that previous (incorrect) behaviour.
+     *
+     * Defaults to false, which is the officially correct behaviour. Before Archie 4 this defaulted to true, because
+     * setting it to false is in theory backwards incompatible.
      *
      * Deprecated because this should be fixed in archetypes, rather than allowing it in a configuration.
      */
     @Deprecated
-    private boolean allowSpecializationAfterExclusion = true;
+    private boolean allowSpecializationAfterExclusion = false;
 
     private FlattenerConfiguration() {
 
