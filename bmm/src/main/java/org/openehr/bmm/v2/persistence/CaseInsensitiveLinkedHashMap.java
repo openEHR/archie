@@ -1,9 +1,6 @@
 package org.openehr.bmm.v2.persistence;
 
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class CaseInsensitiveLinkedHashMap<V>  implements Map<String, V> {
 
@@ -23,10 +20,8 @@ public class CaseInsensitiveLinkedHashMap<V>  implements Map<String, V> {
             return null;
         }
         String result = lowerCaseKeyIndex.get(lowerCaseKey(key));
-        if(result == null) {
-            return key; //in case of null values, return key
-        }
-        return result;
+        //in case of null values, return key
+        return Objects.requireNonNullElse(result, key);
     }
 
     private String putMapKey(String key) {

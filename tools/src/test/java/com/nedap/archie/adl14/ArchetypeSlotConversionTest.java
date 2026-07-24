@@ -43,8 +43,7 @@ public class ArchetypeSlotConversionTest {
         BinaryOperator matches = (BinaryOperator) assertion.getExpression();
         Constraint<?> constraint = (Constraint<?>) matches.getRightOperand();
         CString stringConstraint = (CString) constraint.getItem();
-        String pattern = stringConstraint.getConstraint().get(0);
-        return pattern;
+        return stringConstraint.getConstraint().get(0);
     }
 
 }

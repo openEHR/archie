@@ -7,8 +7,6 @@ import com.nedap.archie.testutil.TestUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.function.BiFunction;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -73,12 +71,7 @@ public class CObjectTest {
         object.setOccurrences(MultiplicityInterval.createBounded(3,5));
         parentAttribute.addChild(object);
 
-        assertEquals(MultiplicityInterval.createBounded(3, 5), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
-            @Override
-            public MultiplicityInterval apply(String s, String s2) {
-                return new MultiplicityInterval(1,2);
-            }
-        }));
+        assertEquals(MultiplicityInterval.createBounded(3, 5), object.effectiveOccurrences((s, s2) -> new MultiplicityInterval(1, 2)));
     }
 
     @Test
@@ -92,12 +85,7 @@ public class CObjectTest {
         object.setRmTypeName("OBSERVATION");
         parentAttribute.addChild(object);
 
-        assertEquals(MultiplicityInterval.createBounded(0, 2), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
-            @Override
-            public MultiplicityInterval apply(String s, String s2) {
-                return new MultiplicityInterval(1,2);
-            }
-        }));
+        assertEquals(MultiplicityInterval.createBounded(0, 2), object.effectiveOccurrences((s, s2) -> new MultiplicityInterval(1, 2)));
     }
 
     @Test
@@ -111,12 +99,7 @@ public class CObjectTest {
         object.setRmTypeName("OBSERVATION");
         parentAttribute.addChild(object);
 
-        assertEquals(MultiplicityInterval.createOpen(), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
-            @Override
-            public MultiplicityInterval apply(String s, String s2) {
-                return MultiplicityInterval.createUpperUnbounded(1);
-            }
-        }));
+        assertEquals(MultiplicityInterval.createOpen(), object.effectiveOccurrences((s, s2) -> MultiplicityInterval.createUpperUnbounded(1)));
     }
 
     @Test
@@ -130,12 +113,7 @@ public class CObjectTest {
         object.setRmTypeName("OBSERVATION");
         parentAttribute.addChild(object);
 
-        assertNull(object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
-            @Override
-            public MultiplicityInterval apply(String s, String s2) {
-                return null;
-            }
-        }));
+        assertNull(object.effectiveOccurrences((s, s2) -> null));
     }
 
     @Test
@@ -151,12 +129,7 @@ public class CObjectTest {
         parentAttribute.addChild(object);
 
         //even though it's mandatory, doesn't have to be _this_ element, so 0.
-        assertEquals(MultiplicityInterval.createUpperUnbounded(0), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
-            @Override
-            public MultiplicityInterval apply(String s, String s2) {
-                return new MultiplicityInterval(1,2);
-            }
-        }));
+        assertEquals(MultiplicityInterval.createUpperUnbounded(0), object.effectiveOccurrences((s, s2) -> new MultiplicityInterval(1, 2)));
     }
 
     @Test
@@ -174,12 +147,7 @@ public class CObjectTest {
         parentAttribute.addChild(object);
 
         //even though it's mandatory, doesn't have to be _this_ element, so 0.
-        assertEquals(MultiplicityInterval.createBounded(0, 4), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
-            @Override
-            public MultiplicityInterval apply(String s, String s2) {
-                return new MultiplicityInterval(1,2);
-            }
-        }));
+        assertEquals(MultiplicityInterval.createBounded(0, 4), object.effectiveOccurrences((s, s2) -> new MultiplicityInterval(1, 2)));
     }
     
     @Test
@@ -187,12 +155,7 @@ public class CObjectTest {
         CComplexObject object = new CComplexObject();
         object.setRmTypeName("DV_CODED_TEXT");
 
-        assertEquals(MultiplicityInterval.createOpen(), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
-            @Override
-            public MultiplicityInterval apply(String s, String s2) {
-                return new MultiplicityInterval(0,5);
-            }
-        }));
+        assertEquals(MultiplicityInterval.createOpen(), object.effectiveOccurrences((s, s2) -> new MultiplicityInterval(0, 5)));
     }
 
     @Test
@@ -204,12 +167,7 @@ public class CObjectTest {
         object.setRmTypeName("DV_CODED_TEXT");
         parentAttribute.addChild(object);
 
-        assertEquals(MultiplicityInterval.createOpen(), object.effectiveOccurrences(new BiFunction<String, String, MultiplicityInterval>() {
-            @Override
-            public MultiplicityInterval apply(String s, String s2) {
-                return new MultiplicityInterval(0,5);
-            }
-        }));
+        assertEquals(MultiplicityInterval.createOpen(), object.effectiveOccurrences((s, s2) -> new MultiplicityInterval(0, 5)));
     }
 
 

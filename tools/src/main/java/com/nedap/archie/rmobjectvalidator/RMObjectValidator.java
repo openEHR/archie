@@ -1,6 +1,5 @@
 package com.nedap.archie.rmobjectvalidator;
 
-import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;

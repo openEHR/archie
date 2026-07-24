@@ -3,9 +3,9 @@ package com.nedap.archie.aom;
 
 import com.nedap.archie.rminfo.AttributeAccessor;
 import com.nedap.archie.rminfo.ModelInfoLookup;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -163,7 +163,7 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
     }
 
     public List<String> getMemberNames() {
-        return getMembers().stream().map((attr) -> attr.getRmAttributeName()).collect(Collectors.toList());
+        return getMembers().stream().map(CAttribute::getRmAttributeName).collect(Collectors.toList());
     }
 
     public boolean cConformsTo(CAttributeTuple otherTuple, BiFunction<String, String, Boolean> rmTypesConformant) {

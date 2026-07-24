@@ -12,6 +12,7 @@ import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.v2.persistence.*;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Class that handles naming of Archie RM and AOM objects for use in Jackson.
@@ -56,12 +57,8 @@ public class BmmTypeNaming extends ClassNameIdResolver {
     @Override
     public String idFromValue(Object value) {
         String result = inverseClassNaming.get(value.getClass());
-        if (result != null) {
-            return result;
-        } else {
-            //not sure if we need this. If so, it should implement naming such as ArchieNamingStrategy (requires module restructuring)
-            return value.getClass().getSimpleName();
-        }
+        //not sure if we need this. If so, it should implement naming such as ArchieNamingStrategy (requires module restructuring)
+        return Objects.requireNonNullElseGet(result, () -> value.getClass().getSimpleName());
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.nedap.archie.base.terminology.TerminologyCode;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -13,6 +15,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by pieter.bos on 15/10/15.
  */
 
+// lifecycle_state carries an extra @JsonSetter(JsonNode) for legacy-format deserialization, which otherwise
+// disturbs Jackson's property order and pushes it to the end of the description block. Pin the order explicitly.
+@JsonPropertyOrder({
+        "original_author", "original_namespace", "original_publisher", "other_contributors", "lifecycle_state",
+        "custodian_namespace", "custodian_organisation", "copyright", "licence", "ip_acknowledgements",
+        "references", "resource_package_uri", "conversion_details", "other_details", "details"
+})
 public class ResourceDescription extends ArchetypeModelObject {
 
     private Map<String, String> originalAuthor = new ConcurrentHashMap<>();
@@ -22,7 +31,7 @@ public class ResourceDescription extends ArchetypeModelObject {
     private String originalPublisher;
     @Nullable
     private List<String> otherContributors = new ArrayList<>();
-    private TerminologyCode lifecycleState;
+    private String lifecycleState;
     @Nullable
     private String custodianNamespace;
     @Nullable
@@ -76,12 +85,39 @@ public class ResourceDescription extends ArchetypeModelObject {
         this.otherContributors = otherContributors;
     }
 
-    public TerminologyCode getLifecycleState() {
+    public String getLifecycleState() {
         return lifecycleState;
     }
 
-    public void setLifecycleState(TerminologyCode lifecycleState) {
+    public void setLifecycleState(String lifecycleState) {
         this.lifecycleState = lifecycleState;
+    }
+
+    /**
+     * JsonSetter for the lifecycle_state field.
+     * <p>
+     * Supports two JSON representations:
+     * 1. Simple string form (current): {@code "lifecycle_state": "published"}
+     * 2. Complex object form (legacy): {@code "lifecycle_state": {"code_string": "published"}}
+     *
+     * This deserializer ensures backward compatibility by accepting both formats
+     * and always setting the lifecycle state value as a plain String.
+     */
+    @JsonSetter("lifecycle_state")
+    private void setLifecycleState(JsonNode node) {
+        if (node == null || node.isNull()) {
+            this.lifecycleState = null;
+            return;
+        }
+
+        if (node.isTextual()) {
+            this.lifecycleState = node.asText();
+            return;
+        }
+
+        JsonNode codeString = node.get("code_string");
+
+        this.lifecycleState = (codeString != null && !codeString.isNull()) ? codeString.asText() : null;
     }
 
     public String getCustodianNamespace() {

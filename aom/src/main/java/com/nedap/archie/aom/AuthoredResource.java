@@ -7,10 +7,10 @@ import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 import com.nedap.archie.xml.adapters.ResourceDescriptionAdapter;
 import com.nedap.archie.xml.adapters.TranslationDetailsAdapter;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;

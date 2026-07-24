@@ -99,7 +99,7 @@ public class RMJacksonTest {
 
     @Test
     public void emptyCollectionIsNotIncluded() throws JsonProcessingException {
-        ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();;
+        ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();
         configuration.setSerializeEmptyCollections(false);
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
         DvText dvText = new DvText("");
@@ -116,7 +116,7 @@ public class RMJacksonTest {
 
     @Test
     public void emptyCollectionInCollection() throws JsonProcessingException {
-        ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();;
+        ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();
         configuration.setSerializeEmptyCollections(false);
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper(configuration);
         Map<String, Map<String, String>> map = new LinkedHashMap<>();

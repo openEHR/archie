@@ -37,8 +37,7 @@ public class Adl14RulesParser extends BaseTreeWalker {
             assertion.setExpression(parseExpression(context.expression()));
             return assertion;
         } else if (assertionContext.variableDeclaration() != null) {
-            VariableDeclaration declaration = parseVariableDeclaration(assertionContext.variableDeclaration());
-            return declaration;
+            return parseVariableDeclaration(assertionContext.variableDeclaration());
         }
         return assertion;
     }
@@ -153,7 +152,7 @@ public class Adl14RulesParser extends BaseTreeWalker {
     }
 
     private Expression parseBooleanLiteral(BooleanLiteralContext context) {
-        return new Constant<Boolean>(ExpressionType.BOOLEAN, context.SYM_TRUE() != null ? true : false);
+        return new Constant<>(ExpressionType.BOOLEAN, context.SYM_TRUE() != null);
     }
 
     private ModelReference parseModelReference(AdlRulesPathContext context) {

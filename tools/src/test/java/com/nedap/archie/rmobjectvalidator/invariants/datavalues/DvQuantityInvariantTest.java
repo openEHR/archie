@@ -80,12 +80,12 @@ public class DvQuantityInvariantTest {
         illegalrangeTop.setUnits("kg");
 
 
-        rangeTop.setNormalRange(new DvInterval(illegalRangeBottom, illegalrangeTop));
+        rangeTop.setNormalRange(new DvInterval<>(illegalRangeBottom, illegalrangeTop));
 
         List<ReferenceRange<DvQuantity>> otherReferenceRanges = new ArrayList<>();
-        ReferenceRange range = new ReferenceRange();
+        ReferenceRange<DvQuantity> range = new ReferenceRange<>();
         range.setMeaning(new DvText("some reference range"));
-        range.setRange(new DvInterval(rangeBottom, rangeTop));
+        range.setRange(new DvInterval<>(rangeBottom, rangeTop));
         otherReferenceRanges.add(range);
         DvQuantity value = createValid();
         value.setOtherReferenceRanges(otherReferenceRanges);
@@ -106,12 +106,12 @@ public class DvQuantityInvariantTest {
         DvQuantity normalRangeTop = new DvQuantity();
         normalRangeTop.setMagnitude(1000d);
         normalRangeTop.setUnits("kg");
-        value.setNormalRange(new DvInterval(normalRangeBottom, normalRangeTop));
+        value.setNormalRange(new DvInterval<>(normalRangeBottom, normalRangeTop));
 
         List<ReferenceRange<DvQuantity>> otherReferenceRanges = new ArrayList<>();
-        ReferenceRange range = new ReferenceRange();
+        ReferenceRange<DvQuantity> range = new ReferenceRange<>();
         range.setMeaning(new DvText("some reference range"));
-        range.setRange(new DvInterval(normalRangeBottom, normalRangeTop));
+        range.setRange(new DvInterval<>(normalRangeBottom, normalRangeTop));
         otherReferenceRanges.add(range);
         value.setOtherReferenceRanges(otherReferenceRanges);
 
