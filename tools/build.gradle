@@ -13,12 +13,8 @@ dependencies {
     testImplementation project(':i18n')
     testImplementation project(':test-rm')
     testImplementation project(':referencemodels')
-    // The JSON schema validator (and its Justify dependency) lives in a separate subproject so that
-    // depending on tools does not drag in Justify. It is only needed here to run the validator tests.
-    testImplementation project(':json-schema-validator')
-
-    // Required by the JSON schema creator classes in com.nedap.archie.json.
-    // The API is part of the creator's public signatures; the glassfish module provides the runtime implementation.
-    api(libs.jakarta.json.api)
-    api(variantOf(libs.jakarta.json) { classifier("module") })
+    // The JSON schema generator/validator (and its Justify + jakarta.json dependencies) live in a separate
+    // subproject so that depending on tools does not drag in Justify. It is only needed here to run the
+    // ExampleJsonInstanceGeneratorTest, which exercises the JSON schema validator.
+    testImplementation project(':json-schema-tools')
 }
