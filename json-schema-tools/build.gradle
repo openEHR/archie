@@ -1,0 +1,13 @@
+description = "Generates and validates openEHR JSON schemas from BMM models. Isolates the (unmaintained) Justify dependency."
+
+dependencies {
+    api project(':bmm')
+
+    // Justify is an unmaintained dependency; keeping the JSON schema generator/validator in a separate
+    // subproject ensures it is only pulled in when this functionality is actually used.
+    api(libs.leadpony.justify)
+    api(libs.jakarta.json.api)
+    api(variantOf(libs.jakarta.json) { classifier("module") })
+
+    testImplementation project(':referencemodels')
+}

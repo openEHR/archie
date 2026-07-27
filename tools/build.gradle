@@ -13,7 +13,8 @@ dependencies {
     testImplementation project(':i18n')
     testImplementation project(':test-rm')
     testImplementation project(':referencemodels')
-
-    api(libs.leadpony.justify)
-    api(variantOf(libs.jakarta.json) { classifier("module") })
+    // The JSON schema generator/validator (and its Justify + jakarta.json dependencies) live in a separate
+    // subproject so that depending on tools does not drag in Justify. It is only needed here to run the
+    // ExampleJsonInstanceGeneratorTest, which exercises the JSON schema validator.
+    testImplementation project(':json-schema-tools')
 }
