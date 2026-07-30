@@ -13,7 +13,6 @@ dependencies {
     testImplementation project(':i18n')
     testImplementation project(':test-rm')
     testImplementation project(':referencemodels')
-
-    api(libs.leadpony.justify)
-    api(variantOf(libs.jakarta.json) { classifier("module") })
+    // Only needed to run ExampleJsonInstanceGeneratorTest, which exercises the JSON schema validator.
+    testImplementation project(':json-schema-tools')
 }
