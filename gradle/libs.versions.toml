@@ -35,6 +35,8 @@ jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api",
 
 jakarta-json = { module = "org.glassfish:jakarta.json", version = "2.0.1" }
 
+jakarta-json-api = { module = "jakarta.json:jakarta.json-api", version = "2.0.0" }
+
 jakarta-xml-bind-api = { module = "jakarta.xml.bind:jakarta.xml.bind-api", version = "4.0.5" }
 
 jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", version = "4.0.5" }
