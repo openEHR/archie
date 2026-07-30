@@ -21,6 +21,7 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -202,11 +203,34 @@ public class FixableAssertionsCheckerTest {
         // Evaluate the rmObject and its rules.
         EvaluationResult evaluate = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
 
-        // Assert the evaluation result, it should contain the element that has to be set to a specific value.
-        assertEquals(1, evaluate.getSetPathValues().size());
+        // The rule constrains the archetype id to a regular expression. It must be routed to the regex-paths map,
+        // with its delimiters stripped, and must NOT land in setPathValues.
+        assertEquals(0, evaluate.getSetPathValues().size());
+        assertEquals(1, evaluate.getPathsConstrainedToRegularExpression().size());
         assertEquals(
-                "/openEHR-EHR-CLUSTER\\.some_archetype_option_a.v(\\d+\\.\\d+\\.\\d+)/",
-                evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id14]/items[id19]/archetype_details/archetype_id/value").getValue());
+                "openEHR-EHR-CLUSTER\\.some_archetype_option_a.v(\\d+\\.\\d+\\.\\d+)",
+                evaluate.getPathsConstrainedToRegularExpression().get("/data[id2]/events[id3]/data[id4]/items[id14]/items[id19]/archetype_details/archetype_id/value"));
+    }
+
+    @Test
+    public void constrainStringToRegularExpression() throws Exception {
+        archetype = parser.parse(ParsedRulesEvaluationTest.class.getResourceAsStream("constrain_string_to_regex.adls"));
+        RuleEvaluation<Locatable> ruleEvaluation = getRuleEvaluation();
+
+        Locatable root = (Locatable) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        EvaluationResult evaluate = ruleEvaluation.evaluate(root, archetype.getRules().getRules());
+
+        // The regex-constrained string path must be routed to the regex map (delimiters stripped) and NOT to setPathValues.
+        assertEquals(1, evaluate.getPathsConstrainedToRegularExpression().size());
+        assertEquals("[0-9]{4}",
+                evaluate.getPathsConstrainedToRegularExpression().get("/data[id2]/events[id3]/data[id4]/items[id5]/value/value"));
+        assertFalse(evaluate.getSetPathValues().containsKey("/data[id2]/events[id3]/data[id4]/items[id5]/value/value"),
+                "a regex constraint must not land in setPathValues");
+
+        // The plain (non-regex) string path must still land in setPathValues (no regression).
+        assertEquals(1, evaluate.getSetPathValues().size());
+        assertEquals("test string",
+                evaluate.getSetPathValues().get("/data[id2]/events[id3]/data[id4]/items[id7]/value/value").getValue());
     }
 
     private RuleEvaluation<Locatable> getRuleEvaluation() {
