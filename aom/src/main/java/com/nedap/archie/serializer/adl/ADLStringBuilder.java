@@ -55,7 +55,7 @@ public class ADLStringBuilder implements StructuredStringAppendable {
 
     public ADLStringBuilder odin(Object structure) {
         try {
-            // Pass the current ident depth to the ODINPrettyPrinter
+            // Pass the current indent depth to the ODINPrettyPrinter
             ObjectWriter objectWriter = odinMapper.writer().with(new ODINPrettyPrinter(builder.getIndentDepth()));
 
             String odin = objectWriter.writeValueAsString(structure).trim();
@@ -138,8 +138,4 @@ public class ADLStringBuilder implements StructuredStringAppendable {
         return builder.getIndentDepth();
     }
 
-    public ODINMapper getOdinMapper() {
-        return odinMapper;
-    }
 }
-
