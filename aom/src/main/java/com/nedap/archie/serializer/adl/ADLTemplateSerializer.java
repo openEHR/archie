@@ -12,8 +12,14 @@ import java.util.function.Function;
  */
 class ADLTemplateSerializer extends ADLAuthoredArchetypeSerializer<Template> {
 
+    // Default constructor — uses the Jackson 2 backed ADLStringBuilder.
     public ADLTemplateSerializer(Template archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
         super(archetype, flatArchetypeProvider, rmObjectMapperProvider);
+    }
+
+    // Use this constructor to supply a custom ADLStringBuilder, e.g. new ADLStringBuilder3() for Jackson 3.
+    public ADLTemplateSerializer(Template archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider, ADLStringBuilder builder) {
+        super(archetype, flatArchetypeProvider, rmObjectMapperProvider, builder);
     }
 
     @Override
