@@ -62,6 +62,11 @@ public class OpenEHRTypeNaming3 implements TypeIdResolver {
 
     @Override
     public JavaType typeFromId(DatabindContext context, String id) {
+        return _typeFromId(context, id);
+    }
+
+    /** Extension point for subclasses that resolve additional type ids. */
+    protected JavaType _typeFromId(DatabindContext context, String id) {
         Class<?> result = rmInfoLookup.getClass(id);
         if (result == null) {
             result = aomInfoLookup.getClass(id);
