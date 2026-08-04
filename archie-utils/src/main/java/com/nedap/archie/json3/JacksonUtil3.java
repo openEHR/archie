@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import tools.jackson.databind.*;
 import tools.jackson.databind.cfg.DateTimeFeature;
+import tools.jackson.databind.cfg.EnumFeature;
 import tools.jackson.databind.cfg.MapperBuilder;
 import tools.jackson.databind.deser.DeserializationProblemHandler;
 import tools.jackson.databind.json.JsonMapper;
@@ -78,6 +79,8 @@ public class JacksonUtil3 {
         builder.enable(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS);
         builder.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
         builder.disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
+        builder.disable(EnumFeature.READ_ENUMS_USING_TO_STRING);
+        builder.disable(EnumFeature.WRITE_ENUMS_USING_TO_STRING);
 
         if (!configuration.isSerializeEmptyCollections()) {
             builder.changeDefaultPropertyInclusion(v -> JsonInclude.Value.construct(
