@@ -330,25 +330,24 @@ public class AOMJacksonTest {
         assertEquals(VisibilityType.HIDE, parsed.getRmOverlay().getRmVisibility().get("/subject").getVisibility());
         assertEquals("at12", parsed.getRmOverlay().getRmVisibility().get("/subject").getAlias().getCodeString());
 
-        assertEquals(VisibilityType.SHOW, parsed.getRmOverlay().getRmVisibility().get("/data[id2]/events[id3]/data[id4]/items[id5]").getVisibility());
-        assertEquals(VisibilityType.SHOW, parsed.getRmOverlay().getRmVisibility().get("/data[id2]/events[id3]/data[id4]/items[id6]").getVisibility());
-        // J2 and J3 serialize alias fields identically; only field order within /subject differs
-        assertTrue(json.contains("""
-                "alias" : {
-                  "@type" : "TerminologyCode",
-                  "terminology_id" : "local",
-                  "code_string" : "at12",
-                  "terminology_id_string" : "local"
-                }
-        """.stripTrailing()));
-        assertTrue(json.contains("""
-              "/data[id2]/events[id3]/data[id4]/items[id5]" : {
-                "visibility" : "show"
-              },
-              "/data[id2]/events[id3]/data[id4]/items[id6]" : {
-                "visibility" : "show"
-              }
-        """.stripTrailing()));
+        assertTrue(json.contains("  \"rm_overlay\" : {\n" +
+                "    \"rm_visibility\" : {\n" +
+                "      \"/subject\" : {\n" +
+                "        \"visibility\" : \"hide\",\n" +
+                "        \"alias\" : {\n" +
+                "          \"terminology_id\" : \"local\",\n" +
+                "          \"code_string\" : \"at12\",\n" +
+                "          \"terminology_id_string\" : \"local\"\n" +
+                "        }\n" +
+                "      },\n" +
+                "      \"/data[id2]/events[id3]/data[id4]/items[id5]\" : {\n" +
+                "        \"visibility\" : \"show\"\n" +
+                "      },\n" +
+                "      \"/data[id2]/events[id3]/data[id4]/items[id6]\" : {\n" +
+                "        \"visibility\" : \"show\"\n" +
+                "      }\n" +
+                "    }\n" +
+                "  },"));
     }
 
     @ParameterizedTest
