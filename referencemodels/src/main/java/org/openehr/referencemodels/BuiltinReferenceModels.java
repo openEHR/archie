@@ -1,6 +1,5 @@
 package org.openehr.referencemodels;
 
-import com.nedap.archie.aom.profile.AomProfile;
 import com.nedap.archie.aom.profile.AomProfiles;
 import com.nedap.archie.rminfo.*;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
@@ -170,18 +169,4 @@ public class BuiltinReferenceModels {
         return metaModelProvider;
     }
 
-    /**
-     * Returns the MetaModels loaded with all BMM, ModelInfoLookup and AOM profiles that are available.
-     * Returns a new MetaModels instance every call!
-     * @return
-     * @deprecated Use {@link #getMetaModelProvider()} instead.
-     */
-    @Deprecated
-    public static MetaModels getMetaModels() {
-        MetaModels metaModels = new MetaModels(getAvailableModelInfoLookups(), getBmmRepository());
-        for(AomProfile profile:getAomProfiles().getProfiles()) {
-            metaModels.getAomProfiles().add(profile);
-        }
-        return metaModels;
-    }
 }

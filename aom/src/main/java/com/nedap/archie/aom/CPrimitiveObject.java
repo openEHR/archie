@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAlias;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
-import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMProperty;
 import org.openehr.utils.message.I18n;
 
@@ -13,7 +12,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.BiFunction;
 
 /**
@@ -61,43 +59,6 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
         if(!nodeId.equals(PRIMITIVE_NODE_ID_VALUE)) {
             throw new UnsupportedOperationException("Cannot set node id on a CPrimitiveObject");
         }
-    }
-
-    /**
-     * True if the given value is a valid value for this constraint
-     * Must be overridden in classes where the AssumedAndDefaultValue is not the actual value.
-     * For example when it is an interval or pattern
-     *
-     * @param value
-     * @return
-     * @deprecated This method will be removed. Use the RMObjectValidator instead.
-     */
-    @Deprecated
-    public boolean isValidValue(ValueType value) {
-        if(getConstraint().isEmpty()) {
-            return true;
-        }
-        for(Constraint constraint:getConstraint()) {
-            if(Objects.equals(constraint, value)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * True if the given value is a valid value for this constraint
-     * first Converts the value to a checkable value using the given ModelInfoLookup
-     * For example when it is an interval or pattern
-     *
-     * @param value
-     * @return
-     * @deprecated This method will be removed. Use the RMObjectValidator instead.
-     */
-    @Deprecated
-    public boolean isValidValue(ModelInfoLookup lookup, Object value) {
-        Object convertedValue = lookup.convertToConstraintObject(value, this);
-        return isValidValue((ValueType) convertedValue);
     }
 
     @Override

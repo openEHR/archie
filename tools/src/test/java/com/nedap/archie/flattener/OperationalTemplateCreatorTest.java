@@ -32,8 +32,8 @@ public class OperationalTemplateCreatorTest {
         repository.addArchetype(emptyObservation);
 
         try(InputStream stream = getClass().getResourceAsStream("specexamples/openEHR-EHR-OBSERVATION.protocol_exclusion.v1.0.0.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
-            Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
+            Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
 
             // Assert protocol existence matches {0}
             CAttribute protocol = flattener.flatten(archetype).getDefinition().getAttribute("protocol");

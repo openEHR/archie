@@ -49,27 +49,4 @@ public interface MetaModelProvider {
      */
     public abstract MetaModel getMetaModel(String rmPublisher, String rmPackage, String rmRelease) throws ModelNotFoundException;
 
-    /**
-     * @deprecated For backwards compatibility only. Use {@link #getMetaModel(Archetype)} instead.
-     */
-    @Deprecated
-    public default MetaModel selectAndGetMetaModel(Archetype archetype) throws ModelNotFoundException {
-        return getMetaModel(archetype);
-    }
-
-    /**
-     * @deprecated For backwards compatibility only. Use {@link #getMetaModel(Archetype, String)} instead.
-     */
-    @Deprecated
-    public default MetaModel selectAndGetMetaModel(Archetype archetype, String rmVersion) throws ModelNotFoundException {
-        return getMetaModel(archetype, rmVersion);
-    }
-
-    /**
-     * @deprecated For backwards compatibility only. Use {@link #getMetaModel(String, String, String)} instead.
-     */
-    @Deprecated
-    public default MetaModel selectAndGetMetaModel(String rmPublisher, String rmPackage, String rmRelease) throws ModelNotFoundException {
-        return getMetaModel(rmPublisher, rmPackage, rmRelease);
-    }
 }

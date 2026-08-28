@@ -1,13 +1,9 @@
 package com.nedap.archie.aom;
 
 
-import com.nedap.archie.rminfo.AttributeAccessor;
-import com.nedap.archie.rminfo.ModelInfoLookup;
-
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
@@ -41,71 +37,6 @@ public class CAttributeTuple extends CSecondOrder<CAttribute> {
 
     public void addTuple(CPrimitiveTuple tuple) {
         this.tuples.add(tuple);
-    }
-
-    /**
-     * Given a hashmap of attribute names mapping to its values, check the validity of this set of values
-     * return true if and only if the given values are valid.
-     *
-     * @deprecated This method will be removed. Use the RMObjectValidator instead.
-     */
-    @Deprecated
-    public boolean isValid(ModelInfoLookup lookup, HashMap<String, Object> values) {
-        for(CAttribute attribute:getMembers()) {
-            if(!values.containsKey(attribute.getRmAttributeName())) {
-                return false;
-            }
-        }
-
-        for(CPrimitiveTuple tuple:tuples) {
-            if (isValid(lookup, tuple, values)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Deprecated
-    private boolean isValid(ModelInfoLookup lookup, CPrimitiveTuple tuple, HashMap<String, Object> values) {
-
-        int index = 0;
-        for(CAttribute attribute:getMembers()) {
-            String attributeName = attribute.getRmAttributeName();
-
-            CPrimitiveObject<?, ?> cPrimitiveObject = tuple.getMembers().get(index);
-            Object value = values.get(attributeName);
-            if(value == null) {
-                return false;
-                //alternatively, look at occurrences or parent attribute existence?
-                //not sure if we should in a tuple - a constrained value that is null is generally an error
-            }
-            if(!cPrimitiveObject.isValidValue(lookup, value)) {
-                return false;
-            }
-            index++;
-        }
-        return true;
-    }
-
-    /**
-     * Given a reference model object, check if it is valid
-     * return true if and only if the given values are valid.
-     *
-     * @deprecated This method will be removed. Use the RMObjectValidator instead.
-     */
-    @Deprecated
-    public boolean isValid(ModelInfoLookup lookup, Object value) {
-        AttributeAccessor attributeAccessor = new AttributeAccessor(lookup);
-        HashMap<String, Object> members = new HashMap<>();
-        for(CAttribute attribute:getMembers()) {
-            String attributeName = attribute.getRmAttributeName();
-            if (attributeAccessor.hasAttribute(value, attributeName)) {
-                members.put(attributeName, attributeAccessor.getValue(value, attributeName));
-            } else {
-                //warn? throw exception?
-            }
-        }
-        return isValid(lookup, members);
     }
 
     public CAttribute getMember(String attributeName) {

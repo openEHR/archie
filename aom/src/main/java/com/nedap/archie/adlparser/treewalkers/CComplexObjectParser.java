@@ -8,7 +8,6 @@ import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rminfo.MetaModel;
-import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rules.Assertion;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -25,25 +24,11 @@ import java.util.List;
 public class CComplexObjectParser extends BaseTreeWalker {
 
     private final PrimitivesConstraintParser primitivesConstraintParser;
-    @Deprecated
-    private final MetaModels metaModels;
     private final MetaModel metaModel;
-
-    /**
-     * @deprecated Use {@link #CComplexObjectParser(ANTLRParserErrors, MetaModel)} instead.
-     */
-    @Deprecated
-    public CComplexObjectParser(ANTLRParserErrors errors, MetaModels metaModels) {
-        super(errors);
-        primitivesConstraintParser = new PrimitivesConstraintParser(errors);
-        this.metaModels = metaModels;
-        this.metaModel = null;
-    }
 
     public CComplexObjectParser(ANTLRParserErrors errors, MetaModel metaModel) {
         super(errors);
         primitivesConstraintParser = new PrimitivesConstraintParser(errors);
-        this.metaModels = null;
         this.metaModel = metaModel;
     }
 
@@ -173,32 +158,17 @@ public class CComplexObjectParser extends BaseTreeWalker {
     }
 
     private ObjectMapper getDefaultValueJsonObjectMapper() {
-        if(metaModel != null) {
-            return metaModel.getJsonObjectMapper();
-        }
-        // For backwards compatiblity
-        if(metaModels == null) {
+        if(metaModel == null) {
             return null;
         }
-        if(metaModels.getSelectedModel() == null) {
-            return null;
-        }
-        return metaModels.getSelectedModel().getJsonObjectMapper();
+        return metaModel.getJsonObjectMapper();
     }
 
     private ObjectMapper getDefaultValueOdinObjectMapper() {
-        if(metaModel != null) {
-            return metaModel.getOdinInputObjectMapper();
-        }
-        // For backwards compatiblity
-        if(metaModels == null) {
+        if(metaModel == null) {
             return null;
         }
-        if(metaModels.getSelectedModel() == null) {
-            return null;
-        }
-        return metaModels.getSelectedModel().getOdinInputObjectMapper();
-
+        return metaModel.getOdinInputObjectMapper();
     }
 
     public static String getFirstAttributeOfPath(String path) {

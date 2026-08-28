@@ -9,8 +9,6 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
-import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.rmobjectvalidator.ValidationHelper;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
@@ -44,18 +42,6 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
 
     public BinaryOperatorEvaluator(ValidationHelper validationHelper, Archetype archetype) {
         this.validationHelper = validationHelper;
-        this.archetype = archetype;
-    }
-
-    /**
-     * @deprecated Use {@link #BinaryOperatorEvaluator(ValidationHelper, Archetype)} instead.
-     */
-    @Deprecated
-    public BinaryOperatorEvaluator(ModelInfoLookup lookup, Archetype archetype) {
-        ValidationConfiguration configuration = new ValidationConfiguration.Builder()
-                .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
-                .build();
-        this.validationHelper = new ValidationHelper(lookup, configuration);
         this.archetype = archetype;
     }
 

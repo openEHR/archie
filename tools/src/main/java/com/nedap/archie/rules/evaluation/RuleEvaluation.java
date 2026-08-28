@@ -3,7 +3,6 @@ package com.nedap.archie.rules.evaluation;
 import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.query.RMObjectWithPath;
-import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rmobjectvalidator.APathQueryCache;
 import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
@@ -15,8 +14,6 @@ import com.nedap.archie.rules.evaluation.evaluators.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.xpath.XPathExpressionException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,52 +43,11 @@ public class RuleEvaluation<T> {
 
     private ModelInfoLookup modelInfoLookup;
 
-    private final JAXBContext jaxbContext;
-    private RMQueryContext rmQueryContext;
     private APathQueryCache queryCache = new APathQueryCache();
 
     private final AssertionsFixer assertionsFixer;
 
     public RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, Archetype archetype) {
-        this(modelInfoLookup, validationConfiguration, null, archetype);
-    }
-
-    /**
-     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, ValidationConfiguration, Archetype)} instead.
-     */
-    @Deprecated
-    public RuleEvaluation(ModelInfoLookup modelInfoLookup, Archetype archetype) {
-        this(
-                modelInfoLookup,
-                new ValidationConfiguration.Builder()
-                        .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
-                        .build(),
-                archetype
-        );
-    }
-
-    /**
-     * Deprecated. Use the constructor without the jaxbContext for new implementations. Here to ease transition
-     * to the new method.
-     * @param modelInfoLookup the model info lookup to make this rule evaluator for
-     * @param jaxbContext the jaxb context, use for queries. If null, will use RMPahtQuery instead
-     * @param archetype the archetype to evaluate rules for
-     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, ValidationConfiguration, Archetype)} instead.
-     */
-    @Deprecated
-    public RuleEvaluation(ModelInfoLookup modelInfoLookup, JAXBContext jaxbContext, Archetype archetype) {
-        this(
-                modelInfoLookup,
-                new ValidationConfiguration.Builder()
-                        .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
-                        .build(),
-                jaxbContext,
-                archetype
-        );
-    }
-
-    private RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, JAXBContext jaxbContext, Archetype archetype) {
-        this.jaxbContext = jaxbContext;
         this.modelInfoLookup = modelInfoLookup;
         this.assertionsFixer = new AssertionsFixer(this);
         this.archetype = archetype;
@@ -117,8 +73,6 @@ public class RuleEvaluation<T> {
     public EvaluationResult evaluate(T root, List<RuleStatement> rules) {
 
         this.root = (T) modelInfoLookup.clone(root);
-
-        refreshQueryContext();
 
         ruleElementValues = ArrayListMultimap.create();
         variables = new VariableMap();
@@ -203,36 +157,12 @@ public class RuleEvaluation<T> {
 
 
     public List<RMObjectWithPath> findListWithPaths(String path) {
-        if(rmQueryContext == null) {
-            return queryCache.getApathQuery(path).findList(getModelInfoLookup(), getRMRoot());
-        } else {
-            try {
-                return rmQueryContext.findListWithPaths(path);
-            } catch (XPathExpressionException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    public void refreshQueryContext() {
-        if(jaxbContext != null) {
-            //updating a single node does not seem to work with the default JAXB-implementation, so just reload the entire query
-            //context
-            rmQueryContext = new RMQueryContext(modelInfoLookup, root, jaxbContext);
-        }
+        return queryCache.getApathQuery(path).findList(getModelInfoLookup(), getRMRoot());
     }
 
     public List<Object> findList(String path) {
-        if(rmQueryContext != null) {
-            try {
-                return rmQueryContext.findList(path);
-            } catch (XPathExpressionException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            List<RMObjectWithPath> parentsWithPath = findListWithPaths(path);
-            return parentsWithPath.stream().map(p -> p.getObject()).collect(Collectors.toList());
-        }
+        List<RMObjectWithPath> parentsWithPath = findListWithPaths(path);
+        return parentsWithPath.stream().map(p -> p.getObject()).collect(Collectors.toList());
     }
 
 }

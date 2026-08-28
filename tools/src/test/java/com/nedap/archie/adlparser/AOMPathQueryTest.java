@@ -28,13 +28,11 @@ public class AOMPathQueryTest {
     @BeforeEach
     public void setup() throws Exception {
         archetype = TestUtil.parseFailOnErrors("/basic.adl");
-        ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
     }
 
     @AfterEach
     public void tearDown() throws Exception {
-        ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage(null);
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(null);
     }
 
@@ -81,18 +79,8 @@ public class AOMPathQueryTest {
     }
 
     @Test
-    public void logicalPaths() throws Exception {
-        AOMPathQuery query = new AOMPathQuery("/context[id11]/other_context[id2]/items[qualification]/items[orderid]");
-        ArchetypeModelObject archetypeModelObject = query.find(archetype.getDefinition());
-        assertNotNull(archetypeModelObject);
-        assertEquals("id4", ((CComplexObject) archetypeModelObject).getNodeId());
-
-    }
-
-
-    @Test
     public void indexedPath() throws Exception {
-        AOMPathQuery query = new AOMPathQuery("/context[id11]/other_context[id2]/items[qualification]/items[2]");
+        AOMPathQuery query = new AOMPathQuery("/context[id11]/other_context[id2]/items[id3]/items[2]");
         ArchetypeModelObject archetypeModelObject = query.find(archetype.getDefinition());
         assertNotNull(archetypeModelObject);
         assertEquals("id5", ((CComplexObject) archetypeModelObject).getNodeId());
@@ -102,7 +90,7 @@ public class AOMPathQueryTest {
     @Test
     public void findOneMatchingObject() {
         // Get dv_quantity object
-        AOMPathQuery query = new AOMPathQuery("/context[id11]/other_context[id2]/items[qualification]/items[4]/value[1]");
+        AOMPathQuery query = new AOMPathQuery("/context[id11]/other_context[id2]/items[id3]/items[4]/value[1]");
         CComplexObject dvQuantity = query.find(archetype.getDefinition());
 
         // Attribute magnitude in this dv_quantity has two children
@@ -122,7 +110,7 @@ public class AOMPathQueryTest {
 
     @Test
     public void findPartial() {
-        String queryString = "/context[id11]/other_context[id2]/items[qualification]/items[4]/value[1]";
+        String queryString = "/context[id11]/other_context[id2]/items[id3]/items[4]/value[1]";
         AOMPathQuery query = new AOMPathQuery(queryString);
         PartialMatch fullMatch = query.findPartial(archetype.getDefinition());
         assertTrue(fullMatch.isFullMatch(), "this should be a full match");

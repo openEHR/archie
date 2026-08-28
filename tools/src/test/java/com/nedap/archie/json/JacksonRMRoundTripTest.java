@@ -2,7 +2,7 @@ package com.nedap.archie.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rm.RMObject;
@@ -47,7 +47,7 @@ public class JacksonRMRoundTripTest {
     @BeforeEach
     public void setup() {
         testUtil = new TestUtil();
-        parser = new ADLParser(new RMConstraintImposer());
+        parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
     }
 
     @Test

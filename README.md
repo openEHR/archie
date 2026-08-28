@@ -109,15 +109,6 @@ CAttribute attribute = archetype.getDefinition()
 
 ```
 
-Or, if you prefer your paths to be human readable, you could do:
-```java
-APathQuery query = new APathQuery("/context[systolic]/items");
-
-CAttribute attribute = archetype.getDefinition()
-    .getAttribute("context").getChildByMeaning("systolic").getAttribute("items");
-    attribute.getLogicalPath(); // is 'context[systolic]/items'
-```
-
 ### Checking for parse errors
 
 The parser is setup to continue parsing even if there are errors. This means you will manually have to check for parse errors in your code, after parsing each file:
@@ -316,16 +307,8 @@ new Interval<>(2,4).has(3); //returns true
 Interval.upperUnbounded(2).has(1); //returns false
 ```
 
-CPrimitiveObject has an ```isValidValue(value)``` method, so you can do:
-
-```java
-CString cString = new CString();
-cString.addConstraint("test");
-cString.addConstraint("/more te+st/");
-cString.isValidValue("test"); //returns true
-cString.isValidValue("more teeeeest"); //returns true - regexp matching
-cString.isValidValue("mooooore test"); //returns false
-```
+To check whether a value satisfies a CPrimitiveObject constraint, validate the reference model object with
+the RMObjectValidator - see the Reference Model object validation paragraph.
 
 ISO-8601 date constraint patterns are not yet implemented.
 
@@ -560,19 +543,19 @@ The second round of checks comes after parsing, in the form of running the Arche
 
 ```java
 ReferenceModels models = new ReferenceModels(ArchieRMInfoLookup.getInstance());
-MetaModels metaModels = new MetaModels(models, null);
-ValidationResult validationResult = new ArchetypeValidator(metaModels).validate(archetype);
+MetaModelProvider metaModelProvider = new SimpleMetaModelProvider(models, null);
+ValidationResult validationResult = new ArchetypeValidator(metaModelProvider).validate(archetype);
 ```
 
 This runs all the implemented archetype validation and returns a result. This result contains the validation results, the validation results of any template overlays and a flattened version of the input archetype.
 
-Note that it requires a MetaModels class. This contains the Metadata of the reference models used.
+Note that it requires a MetaModelProvider. This provides the Metadata of the reference models used.
 
 ### Reference Model Metadata
 
 Archetype tools require metadata about the used reference model to operate. This can be the openEHR reference model, but it can also be something else. Archie has two concepts to define this metadata: Reflection based metadata and BMM metadata. Above is a short description of how to load the built-in metadata. This should be enough for most users. However, if you want to add new reference models or reference model metadata, you need this paragraph.
 
-The MetaModels class is an abstraction over these two types of models. Construct this, and it will automatically select the available metadata model. Note that if a BMM model is present for your archetype, it will use that if possible.
+The MetaModel class is an abstraction over these two types of models, and a MetaModelProvider hands out the MetaModel that matches a given archetype. Note that if a BMM model is present for your archetype, it will use that if possible. Use SimpleMetaModelProvider, or OverridingMetaModelProvider if you want to pin a specific reference model release.
 
 Reflection based metadata bases its metadata on an actual reference model implementation in Java. Two are included, the ArchieRMInfoLookup, for the openEHR Reference Model, and the TestRMInfoLookup, for the openEHR Test models. You can register these on a ReferenceModels class, see the code in the previous paragraph for an example
 
@@ -593,20 +576,22 @@ for(String fileName:bmmFiles) {
 BmmSchemaConverter converter = new BmmSchemaConverter(repo);
 converter.validateAndConvertRepository();
 
-MetaModels models = new MetaModels(new ReferenceModels(ArchieRMInfoLookup.getInstance()), repository);
-
 //now parse the AOM profiles
+AomProfiles profiles = new AomProfiles();
 String[] resourceNames = {"first aom profile", "second aom profile"};
 for(String resource:resourceNames) {
     try(InputStream odin = TestUtil.class.getResourceAsStream(resource)){
-        models.getAomProfiles().add(odin);
+        profiles.add(odin);
     } catch (IOException e) {
         throw new RuntimeException(e);
     }
-}        
+}
+
+MetaModelProvider metaModelProvider = new SimpleMetaModelProvider(
+        new ReferenceModels(ArchieRMInfoLookup.getInstance()), repository, profiles);
 ```
 
-This instantiates a MetaModels class that has both the archie reference model implementation, the BMM models and AOM profiles. The BMM models and AOM profiles will be used for the flattener and archetype validator, the other models for tools that work on reference models.
+This instantiates a MetaModelProvider that has both the archie reference model implementation, the BMM models and AOM profiles. The BMM models and AOM profiles will be used for the flattener and archetype validator, the other models for tools that work on reference models.
 
 After validating and converting, the BmmRepository allows access to the PBmmSchema, the BmmModels, all validation messages and more, through the BmmValidationResult class. See Javadoc for more information.B
 

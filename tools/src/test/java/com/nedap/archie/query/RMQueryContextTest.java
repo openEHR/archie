@@ -3,7 +3,7 @@ package com.nedap.archie.query;
 import com.google.common.collect.Lists;
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.archetyped.Pathable;
@@ -34,7 +34,7 @@ public class RMQueryContextTest {
     @BeforeEach
     public void setup() throws Exception {
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
-        archetype = new ADLParser(new RMConstraintImposer()).parse(getClass().getResourceAsStream("/basic.adl"));
+        archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(getClass().getResourceAsStream("/basic.adl"));
         testUtil = new TestUtil();
     }
 

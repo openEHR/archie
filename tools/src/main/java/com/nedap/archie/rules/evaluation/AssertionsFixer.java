@@ -29,14 +29,6 @@ public class AssertionsFixer {
     private ModelInfoLookup modelInfoLookup;
     private final AttributeAccessor attributeAccessor;
 
-    /**
-     * @deprecated Not intended for direct usage. Use RuleEvaluation instead.
-     */
-    @Deprecated
-    public AssertionsFixer(RuleEvaluation<?> evaluation, RMObjectCreator creator) {
-        this(evaluation);
-    }
-
     AssertionsFixer(RuleEvaluation<?> evaluation) {
         this.ruleEvaluation = evaluation;
         this.modelInfoLookup = ruleEvaluation.getModelInfoLookup();
@@ -82,7 +74,6 @@ public class AssertionsFixer {
                 }
 
                 result.putAll(modelInfoLookup.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent));
-                ruleEvaluation.refreshQueryContext();
             }
         }
 
@@ -115,7 +106,6 @@ public class AssertionsFixer {
             newEmptyObject = constructEmptySimpleObject(newLastPathSegment, object, newEmptyObject);
 
             attributeAccessor.addOrSetValue(object, newLastPathSegment, newEmptyObject);
-            ruleEvaluation.refreshQueryContext();
         } else {
             CObject constraint = getCObjectFromResult(constraints);
             if (constraint != null) {
@@ -135,7 +125,6 @@ public class AssertionsFixer {
                 }
 
                 attributeAccessor.addOrSetValue(object, attributeName, newEmptyObject);
-                ruleEvaluation.refreshQueryContext();
 
             }
         }
@@ -189,7 +178,6 @@ public class AssertionsFixer {
                 .flatMap(path -> findObjectsThatMustNotExist(path).stream())
                 .collect(Collectors.toList());
         objectsToRemove.forEach(this::removeObject);
-        ruleEvaluation.refreshQueryContext();
     }
 
     private List<ObjectToRemove> findObjectsThatMustNotExist(String path) {

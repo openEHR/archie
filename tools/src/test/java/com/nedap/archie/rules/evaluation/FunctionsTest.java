@@ -1,7 +1,7 @@
 package com.nedap.archie.rules.evaluation;
 
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.composition.Observation;
@@ -29,7 +29,7 @@ public class FunctionsTest {
 
     @BeforeEach
     public void setup() {
-        parser = new ADLParser(new RMConstraintImposer());
+        parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
     }
 
     @Test

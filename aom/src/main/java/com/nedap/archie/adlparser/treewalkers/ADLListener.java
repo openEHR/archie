@@ -11,7 +11,6 @@ import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import com.nedap.archie.serializer.odin.OdinObjectParser;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -43,14 +42,6 @@ public class ADLListener extends AdlBaseListener {
     private Archetype archetype;
     private TerminologyParser terminologyParser;
     private final MetaModelProvider metaModelProvider;
-
-    /**
-     * @deprecated Use {@link #ADLListener(ANTLRParserErrors, MetaModelProvider)} instead.
-     */
-    @Deprecated
-    public ADLListener(ANTLRParserErrors errors, MetaModels metaModels) {
-        this(errors, (MetaModelProvider) metaModels);
-    }
 
     public ADLListener(ANTLRParserErrors errors, MetaModelProvider metaModelProvider) {
         this.errors = errors;
@@ -118,9 +109,6 @@ public class ADLListener extends AdlBaseListener {
         if(hrId != null) {
             ArchetypeHRID archetypeID = new ArchetypeHRID(hrId.getText());
             archetype.setArchetypeId(archetypeID);
-            if(metaModelProvider != null) {
-                metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
-            }
         }
     }
 

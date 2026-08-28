@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by pieter.bos on 15/10/15.
  */
-@JsonPropertyOrder({"@type", "rm_attribute_name", "path", "logical_path", "differential_path", "multiple", "mandatory", "existence", "cardinality", "children"})
+@JsonPropertyOrder({"@type", "rm_attribute_name", "path", "differential_path", "multiple", "mandatory", "existence", "cardinality", "children"})
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="C_ATTRIBUTE", propOrder = {
         "existence",
@@ -136,25 +136,6 @@ public class CAttribute extends ArchetypeConstraint {
                     return child;
                 }
             }
-        }
-        return null;
-    }
-
-    /**
-     * @deprecated This functionality will be removed.
-     */
-    @Deprecated
-    public CObject getChildByMeaning(String meaning) {
-        meaning = meaning.toLowerCase();
-        for(CObject child:children) {
-            String childMeaning = child.getMeaning();
-            if(childMeaning != null) {
-                childMeaning = childMeaning.toLowerCase();
-                if(meaning.equals(childMeaning)){
-                    return child;
-                }
-            }
-
         }
         return null;
     }
@@ -326,18 +307,6 @@ public class CAttribute extends ArchetypeConstraint {
     @Override
     public CObject getParent() {
         return (CObject) super.getParent();
-    }
-
-    @Deprecated
-    public String getLogicalPath() {
-        String path = "/" + rmAttributeName;
-        if(getParent() != null) {
-            path = getParent().getLogicalPath() + path;
-        }
-        if(path.startsWith("//")) {
-            return path.substring(1);
-        }
-        return path;
     }
 
     public CAttribute clone() {

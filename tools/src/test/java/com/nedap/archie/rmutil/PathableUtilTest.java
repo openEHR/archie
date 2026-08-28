@@ -2,7 +2,7 @@ package com.nedap.archie.rmutil;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
@@ -31,7 +31,7 @@ public class PathableUtilTest {
     @BeforeEach
     public void setup() throws Exception {
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
-        archetype = new ADLParser(new RMConstraintImposer()).parse(getClass().getResourceAsStream("/basic.adl"));
+        archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(getClass().getResourceAsStream("/basic.adl"));
         testUtil = new TestUtil();
     }
 

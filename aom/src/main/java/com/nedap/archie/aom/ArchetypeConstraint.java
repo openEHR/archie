@@ -51,17 +51,6 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
         //setter hack for jackson, unfortunately
     }
 
-    /**
-     * @deprecated This functionality will be removed.
-     */
-    @Deprecated
-    public abstract String getLogicalPath();
-
-    @Deprecated
-    private void setLogicalPath(String path){
-        //setter hack for jackson, unfortunately
-    }
-
     public String path() {
         return getPath();
     }
