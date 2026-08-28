@@ -134,18 +134,11 @@ public class BmmSchemaConverter {
 
     private void createModelsByClosureAndVersion(BmmValidationResult validationResult) {
         BmmModel model = validationResult.getModel();
-        List<String> rmClosures = new ArrayList<>();
         String schemaId = model.getSchemaId();
         String modelPublisher = model.getRmPublisher();
         String modelName = model.getModelName();
         if (modelName != null) {
             addClosure(schemaId, validationResult, modelPublisher, modelName);
-        } else
-            //possibly old style BMM, test
-        {
-            for (String closureName:model.getArchetypeRmClosurePackages()) {
-                addClosure(schemaId, validationResult, modelPublisher, closureName);
-            }
         }
     }
 

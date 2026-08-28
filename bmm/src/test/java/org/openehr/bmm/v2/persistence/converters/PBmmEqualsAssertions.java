@@ -21,11 +21,6 @@ public class PBmmEqualsAssertions {
         assertEquals(schema1.getSchemaDescription(), schema2.getSchemaDescription());
 
         assertEquals(schema1.getSchemaContributors(), schema2.getSchemaContributors());
-        assertEquals(schema1.getArchetypeRmClosurePackages(), schema2.getArchetypeRmClosurePackages());
-
-        assertEquals(schema1.getArchetypeParentClass(), schema2.getArchetypeParentClass());
-        assertEquals(schema1.getArchetypeDataValueParentClass(), schema2.getArchetypeDataValueParentClass());
-        assertEquals(schema1.getArchetypeVisualizeDescendantsOf(), schema2.getArchetypeVisualizeDescendantsOf());
 
         assertEquals(schema1.getPrimitiveTypes().keySet(), schema2.getPrimitiveTypes().keySet());
         for(String key:schema1.getPrimitiveTypes().keySet()) {

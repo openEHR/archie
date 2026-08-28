@@ -64,22 +64,6 @@ public class IncludesProcessor {
     private void mergeIncluded(BmmValidationResult includingValidationResult, BmmValidationResult includedValidation) {
         PBmmSchema including = includingValidationResult.getSchemaWithMergedIncludes();
         PBmmSchema included = includedValidation.getSchemaWithMergedIncludes();
-        //archetype parent class: only merge if nothing already in the higher-level schema
-        if (included.getArchetypeParentClass() != null &&  including.getArchetypeParentClass() == null) {
-            including.setArchetypeParentClass(included.getArchetypeParentClass());
-        }
-
-        //archetype data value parent class: only merge if nothing already in the higher-level schema
-        if (included.getArchetypeDataValueParentClass() != null && including.getArchetypeDataValueParentClass() == null) {
-            including.setArchetypeDataValueParentClass(included.getArchetypeDataValueParentClass());
-        }
-
-        //archetype closures
-        LinkedHashSet<String> newClosurePackages = new LinkedHashSet<>();
-        newClosurePackages.addAll(included.getArchetypeRmClosurePackages());
-        newClosurePackages.addAll(including.getArchetypeRmClosurePackages());
-        included.setArchetypeRmClosurePackages(new ArrayList<>(newClosurePackages));
-
         for (Map.Entry<String, PBmmPackage> packageEntry:includedValidation.getCanonicalPackages().entrySet()) {
             if (includingValidationResult.getCanonicalPackages().containsKey(packageEntry.getKey())) {
                 PBmmPackage persistedBmmPackage = includingValidationResult.getCanonicalPackages().get(packageEntry.getKey());

@@ -1,15 +1,27 @@
 package org.openehr.bmm.v2.persistence;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+/**
+ * Legacy P_BMM fields that Archie no longer models. archetype_parent_class, archetype_data_value_parent_class and
+ * archetype_visualize_descendants_of live in the AOM profile files now; archetype_rm_closure_packages has been
+ * superseded by model_name. They are ignored rather than rejected so older P_BMM files still parse.
+ */
+@JsonIgnoreProperties({
+    "archetype_rm_closure_packages",
+    "archetype_closure_packages",
+    "archetype_parent_class",
+    "archetype_data_value_parent_class",
+    "archetype_visualize_descendants_of",
+    "archetype_visualise_descendants_of"
+})
 @JsonPropertyOrder({"bmm_version",
     "rm_publisher",
     "schema_name",
@@ -19,10 +31,6 @@ import java.util.function.Consumer;
     "schema_lifecycle_state",
     "schema_description",
     "schema_author",
-    "archetype_closure_packages",
-    "archetype_parent_class",
-    "archetype_data_value_parent_class",
-    "archetype_visualize_descendants_of",
     "includes",
     "packages",
     "primitive_types",
@@ -45,19 +53,6 @@ public final class PBmmSchema extends PBmmPackageContainer {
     private String schemaAuthor;
     private String schemaDescription;
     private List<String> schemaContributors;
-
-    /** this is present in older BMM files, so must be supported here */
-    @Deprecated
-    private List<String> archetypeRmClosurePackages;
-
-    // These fields are now stored in the Archetype Profile files, and are
-    // deprecated here - included mainly to be able to parse older P_BMM files.
-    @Deprecated
-    private String archetypeParentClass;
-    @Deprecated
-    private String archetypeDataValueParentClass;
-    @Deprecated
-    private String archetypeVisualizeDescendantsOf;
 
     public Map<String, PBmmClass> getPrimitiveTypes() {
         if (primitiveTypes == null) {
@@ -170,44 +165,6 @@ public final class PBmmSchema extends PBmmPackageContainer {
 
     public void setRmRelease(String rmRelease) {
         this.rmRelease = rmRelease;
-    }
-
-    @Deprecated
-    public List<String> getArchetypeRmClosurePackages() {
-        if(archetypeRmClosurePackages == null) {
-            archetypeRmClosurePackages = new ArrayList<>();
-        }
-        return archetypeRmClosurePackages;
-    }
-
-    @Deprecated
-    public void setArchetypeRmClosurePackages(List<String> archetypeRmClosurePackages) {
-        this.archetypeRmClosurePackages = archetypeRmClosurePackages;
-    }
-
-    public String getArchetypeParentClass() {
-        return archetypeParentClass;
-    }
-
-    public void setArchetypeParentClass(String archetypeParentClass) {
-        this.archetypeParentClass = archetypeParentClass;
-    }
-
-    public String getArchetypeDataValueParentClass() {
-        return archetypeDataValueParentClass;
-    }
-
-    public void setArchetypeDataValueParentClass(String archetypeDataValueParentClass) {
-        this.archetypeDataValueParentClass = archetypeDataValueParentClass;
-    }
-
-    @JsonAlias({"archetype_visualise_descendants_of"})
-    public String getArchetypeVisualizeDescendantsOf() {
-        return archetypeVisualizeDescendantsOf;
-    }
-
-    public void setArchetypeVisualizeDescendantsOf(String archetypeVisualizeDescendantsOf) {
-        this.archetypeVisualizeDescendantsOf = archetypeVisualizeDescendantsOf;
     }
 
     @JsonIgnore

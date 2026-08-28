@@ -5,8 +5,6 @@ import com.google.common.collect.Lists;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,8 +24,6 @@ import java.util.stream.Collectors;
  * Created by pieter.bos on 19/10/15.
  */
 public class AOMPathQuery {
-    private static final Logger logger = LoggerFactory.getLogger(AOMPathQuery.class);
-
     private final List<PathSegment> pathSegments;
 
     /** If true, extend the search through C_COMPLEX_OBJECT_PROXY objects by looking up the replacement first.*/
@@ -208,11 +204,8 @@ public class AOMPathQuery {
             int index = pathSegment.getIndex() - 1;
             return index < attribute.getChildren().size() ? attribute.getChildren().get(index) : null;
         } else if (pathSegment.getNodeId() != null) {
-            CObject match = attribute.getChildByMeaning(pathSegment.getNodeId());//TODO: the ANTLR grammar removes all whitespace. what to do here?
-            if(match != null) {
-                logger.warn("Deprecation: Matching on object name is deprecated and will be removed. Use node id instead.");
-            }
-            return match;
+            //matching an object on its name is no longer supported, use a node id instead
+            return null;
         } else {
             return attribute;
         }

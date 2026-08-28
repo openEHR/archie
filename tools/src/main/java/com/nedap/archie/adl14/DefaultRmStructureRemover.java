@@ -5,7 +5,6 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,32 +27,10 @@ public class DefaultRmStructureRemover {
 
     /**
      * Construct a DefaultRmStructureRemover that does not remove empty attributes
-     * @param metaModels the metamodels containing metamodel information for the preset archetypes
-     * @deprecated Use {@link #DefaultRmStructureRemover(MetaModelProvider)} instead.
-     */
-    @Deprecated
-    public DefaultRmStructureRemover(MetaModels metaModels) {
-        this(metaModels, false);
-    }
-
-    /**
-     * Construct a DefaultRmStructureRemover that does not remove empty attributes
      * @param metaModelProvider the metamodel provider for the preset archetypes
      */
     public DefaultRmStructureRemover(MetaModelProvider metaModelProvider) {
         this(metaModelProvider, false);
-    }
-
-    /**
-     * Construct a DefaultRmStructureRemover
-     *
-     * @param metaModels            the metamodels containing metamodel information for the preset archetypes
-     * @param removeEmptyAttributes if true, will remove empty attributes. If false, will not
-     * @deprecated Use {@link #DefaultRmStructureRemover(MetaModelProvider, boolean)} instead.
-     */
-    @Deprecated
-    public DefaultRmStructureRemover(MetaModels metaModels, boolean removeEmptyAttributes) {
-        this((MetaModelProvider) metaModels, removeEmptyAttributes);
     }
 
     /**

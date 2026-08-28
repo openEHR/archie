@@ -133,7 +133,7 @@ public class CAttributeFlattener {
                     }
 
                     // Checks for
-                    if(flattener.getConfig().isAllowSpecializationAfterExclusion() && matchingParentObject != null) {
+                    if(matchingParentObject != null) {
                         boolean thisNodeIsExclusion = false;
                         if (Objects.equals(specializedObject.getNodeId(), matchingParentObject.getNodeId()) &&
                                 specializedObject.getOccurrences() != null && specializedObject.getOccurrences().isProhibited() &&
