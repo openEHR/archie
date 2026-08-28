@@ -160,47 +160,6 @@ public abstract class CObject extends ArchetypeConstraint {
         return null;
     }
 
-    @Deprecated
-    private String getLogicalPathMeaning() {
-        if(nodeId == null) {
-            return null;
-        }
-        String meaning = null;
-        Archetype archetype = getArchetype();
-        if(archetype == null) {
-            return null;
-        }
-        ArchetypeTerm termDefinition = archetype.getTerm(this, ArchieLanguageConfiguration.getLogicalPathLanguage());
-        if(termDefinition!=null && termDefinition.getText()!=null) {
-            meaning = termDefinition.getText();
-        }
-        return meaning;
-    }
-
-    @Deprecated
-    public String getLogicalPath() {
-        //TODO: this can cause name clashes. Solve them!
-        //TODO: the text can contain []-characters. Replace them?
-        //TODO: lowercase and replace spaces with underscores?
-        if(getParent() == null) {
-            return "/";
-        }
-
-        String nodeName = getLogicalPathMeaning();
-        if(nodeName == null) {
-            nodeName = nodeId;
-        }
-        String path = getParent().getLogicalPath();
-        //TODO: this is a bit slow because we have to walk the tree to the archetype every single time
-        if(nodeName != null) {
-            path += "[" + nodeName + "]";
-        }
-        if(path.startsWith("//")) {
-            return path.substring(1);
-        }
-        return path;
-    }
-
     public boolean isAllowed() {
         if(occurrences == null) {
             return true;

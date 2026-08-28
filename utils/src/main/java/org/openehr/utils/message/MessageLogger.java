@@ -200,10 +200,6 @@ public class MessageLogger {
         addInfoWithLocation(code, null, args);
     }
 
-    public void addDebug(String message) {
-        addDebugWithLocation(null, message);
-    }
-
     /**
      * Adds an error to this error cache and sets the error flag to true.
      * @param aCode
@@ -232,16 +228,6 @@ public class MessageLogger {
      */
     public void addInfoWithLocation(MessageCode aCode, String aLocation, Object... args) {
         add(new MessageDescriptor(aCode, MessageSeverity.INFO, aCode.getMessage(args), aLocation));
-    }
-
-    /**
-     * Adds a debug message to cache.
-     *
-     * @param aLocation
-     * @param aMessage
-     */
-    public void addDebugWithLocation(String aLocation, String aMessage) {
-        add(new MessageDescriptor(new UnknownMessageCode(), MessageSeverity.DEBUG, aMessage, aLocation));
     }
 
     /**

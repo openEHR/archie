@@ -21,12 +21,6 @@ public class PathTest {
     @BeforeEach
     public void setup() throws Exception {
         archetype = TestUtil.parseFailOnErrors("/basic.adl");
-        ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
-    }
-
-    @AfterEach
-    public void tearDown() throws Exception {
-        ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage(null);
     }
 
     @Test
@@ -58,16 +52,4 @@ public class PathTest {
         assertEquals("/context[id11]/other_context[id2]/items", attribute.getPath());
     }
 
-
-    @Test
-    @Deprecated
-    public void logicalPath() {
-        CObject object = archetype.getDefinition()
-                .getAttribute("context").getChild("id11")
-                .getAttribute("other_context").getChild("id2")
-                .getAttribute("items").getChild("id3")
-                .getAttribute("items").getChild("id4");
-        //id11 and id2 are not translated
-        assertEquals("/context[id11]/other_context[id2]/items[Qualification]/items[OrderID]", object.getLogicalPath());
-    }
 }

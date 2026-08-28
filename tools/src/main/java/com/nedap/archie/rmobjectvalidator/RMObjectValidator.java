@@ -45,32 +45,6 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
      * Creates an RM Object Validator with the given ModelInfoLook class, and the given OperationalTemplateProvider
      * The ModelInfoLookup is used for model access, and model specific constructions.
      * The OperationalTemplateProvider is used to retrieve other referenced archetypes in case of ArchetypeSlots.
-     * @param lookup
-     * @param provider
-     * @deprecated Use {@link #RMObjectValidator(ModelInfoLookup, OperationalTemplateProvider, ValidationConfiguration)} instead.
-     */
-    @Deprecated
-    public RMObjectValidator(ModelInfoLookup lookup, OperationalTemplateProvider provider) {
-        this.lookup = lookup;
-        this.metaModel = new MetaModel(lookup, null);
-        constraintImposer = new ReflectionConstraintImposer(lookup);
-        this.operationalTemplateProvider = provider;
-
-        this.validationConfiguration = null; // Leave this null to indicate that no ValidationConfiguration was provided
-        ValidationConfiguration dummyValidationConfiguration = new ValidationConfiguration.Builder()
-                .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
-                .build();
-        ValidationHelper validationHelper = new ValidationHelper(this.lookup, dummyValidationConfiguration);
-        rmOccurrenceValidator = new RmOccurrenceValidator();
-        rmPrimitiveObjectValidator = new RmPrimitiveObjectValidator(validationHelper);
-        rmTupleValidator = new RmTupleValidator(this.lookup, validationHelper, rmPrimitiveObjectValidator);
-        rmMultiplicityValidator = new RmMultiplicityValidator();
-    }
-
-    /**
-     * Creates an RM Object Validator with the given ModelInfoLook class, and the given OperationalTemplateProvider
-     * The ModelInfoLookup is used for model access, and model specific constructions.
-     * The OperationalTemplateProvider is used to retrieve other referenced archetypes in case of ArchetypeSlots.
      */
     public RMObjectValidator(ModelInfoLookup lookup, OperationalTemplateProvider provider, ValidationConfiguration validationConfiguration) {
         this.lookup = lookup;
@@ -85,17 +59,6 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         rmPrimitiveObjectValidator = new RmPrimitiveObjectValidator(validationHelper);
         rmTupleValidator = new RmTupleValidator(this.lookup, validationHelper, rmPrimitiveObjectValidator);
         rmMultiplicityValidator = new RmMultiplicityValidator();
-    }
-
-    /**
-     * @deprecated Use {@link ValidationConfiguration.Builder#validateInvariants(boolean)} instead.
-     */
-    @Deprecated
-    public void setRunInvariantChecks(boolean validateInvariants) {
-        if(this.validationConfiguration != null) {
-            throw new IllegalStateException("validateInvariants is already set via validationConfiguration, cannot set it again via setRunInvariantChecks");
-        }
-        this.validateInvariants = validateInvariants;
     }
 
     public List<RMObjectValidationMessage> validate(OperationalTemplate template, Object rmObject) {

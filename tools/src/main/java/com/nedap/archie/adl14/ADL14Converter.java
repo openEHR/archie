@@ -8,7 +8,6 @@ import com.nedap.archie.diff.Differentiator;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -21,14 +20,6 @@ public class ADL14Converter {
     private final MetaModelProvider metaModelProvider;
     private final ADL14ConversionConfiguration conversionConfiguration;
     private InMemoryFullArchetypeRepository existingRepository;
-
-    /**
-     * @deprecated Use {@link #ADL14Converter(MetaModelProvider, ADL14ConversionConfiguration)} instead.
-     */
-    @Deprecated
-    public ADL14Converter(MetaModels metaModels, ADL14ConversionConfiguration conversionConfiguration) {
-        this((MetaModelProvider) metaModels, conversionConfiguration);
-    }
 
     public ADL14Converter(MetaModelProvider metaModelProvider, ADL14ConversionConfiguration conversionConfiguration) {
         this.metaModelProvider = metaModelProvider;

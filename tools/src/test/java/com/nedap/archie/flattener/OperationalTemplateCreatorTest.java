@@ -32,8 +32,8 @@ public class OperationalTemplateCreatorTest {
         repository.addArchetype(emptyObservation);
 
         try(InputStream stream = getClass().getResourceAsStream("specexamples/openEHR-EHR-OBSERVATION.protocol_exclusion.v1.0.0.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModels()).parse(stream);
-            Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModels(), FlattenerConfiguration.forOperationalTemplate());
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
+            Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
 
             // Assert protocol existence matches {0}
             CAttribute protocol = flattener.flatten(archetype).getDefinition().getAttribute("protocol");
@@ -124,38 +124,18 @@ public class OperationalTemplateCreatorTest {
     }
 
     @Test
-    public void allowSpecializationBeforeExclusionEnabled() throws Exception {
+    public void allowSpecializationBeforeExclusion() throws Exception {
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         Archetype parentArchetype = parse("/com/nedap/archie/flattener/siblingorder/openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
         repository.addArchetype(parentArchetype);
 
         FlattenerConfiguration config = FlattenerConfiguration.forOperationalTemplate();
-        // Explicitly set it to true, even though it's default
-        config.setAllowSpecializationAfterExclusion(true);
 
         Archetype flatChild =  parseAndCreateOPTWithConfig("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0.adls", repository, config);
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
         List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id5.1", "id6.1", "id7.1"),
-                nodeIds
-        );
-    }
-
-    @Test
-    public void allowSpecializationBeforeExclusionDisabled() throws Exception {
-        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
-        Archetype parentArchetype = parse("/com/nedap/archie/flattener/siblingorder/openEHR-EHR-CLUSTER.siblingorderparent.v1.0.0.adls");
-        repository.addArchetype(parentArchetype);
-
-        FlattenerConfiguration config = FlattenerConfiguration.forOperationalTemplate();
-        config.setAllowSpecializationAfterExclusion(false);
-
-        Archetype flatChild =  parseAndCreateOPTWithConfig("/com/nedap/archie/archetypevalidator/openEHR-EHR-CLUSTER.specialized_nodes_order.v1.0.0.adls", repository, config);
-        List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
-        assertEquals(
-                Lists.newArrayList("id6.1", "id7.1"),
                 nodeIds
         );
     }

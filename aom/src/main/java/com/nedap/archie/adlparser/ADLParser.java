@@ -12,7 +12,6 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -32,7 +31,6 @@ import java.nio.charset.Charset;
 public class ADLParser {
 
     private final MetaModelProvider metaModelProvider;
-    private final ModelConstraintImposer modelConstraintImposer;
     private ANTLRParserErrors errors;
 
     private Lexer lexer;
@@ -49,31 +47,6 @@ public class ADLParser {
 
     public ADLParser() {
         this.metaModelProvider = null;
-        this.modelConstraintImposer = null;
-    }
-
-    /**
-     * The ModelConstraintImposer is a bit of a relic from the beginning of Archie
-     * It's still very useful to set single/multiple, and in some tools, but not
-     * necesarilly here. So, deprecated, if you want it it's available to do yourself
-     * @param modelConstraintImposer
-     */
-    @Deprecated
-    public ADLParser(ModelConstraintImposer modelConstraintImposer) {
-        this.modelConstraintImposer = modelConstraintImposer;
-        this.metaModelProvider = null;
-    }
-
-
-    /**
-     * Creates an ADLParser with MetaModel knowledge. This is used to set the isSingle and isMultiple fields correctly
-     * in the future, this will be used for more model-specific options, such as defined C_PRIMITIVE_OBJECTS and more
-     * @param models
-     * @deprecated Use {@link #ADLParser(MetaModelProvider)} instead.
-     */
-    @Deprecated
-    public ADLParser(MetaModels models) {
-        this((MetaModelProvider) models);
     }
 
     /**
@@ -83,7 +56,6 @@ public class ADLParser {
      */
     public ADLParser(MetaModelProvider metaModelProvider) {
         this.metaModelProvider = metaModelProvider;
-        this.modelConstraintImposer = null;
     }
 
     public Archetype parse(String adl) throws ADLParseException {
@@ -115,9 +87,7 @@ public class ADLParser {
             //set some values that are not directly in ODIN or ADL
             ArchetypeParsePostProcessor.fixArchetype(result);
 
-            if (modelConstraintImposer != null && result.getDefinition() != null) {
-                modelConstraintImposer.imposeConstraints(result.getDefinition());
-            } else if (metaModelProvider != null) {
+            if (metaModelProvider != null) {
                 MetaModel metaModel = metaModelProvider.getMetaModel(result);
                 if (metaModel.getBmmModel() != null) {
                     ModelConstraintImposer imposer = new BMMConstraintImposer(metaModel.getBmmModel() );

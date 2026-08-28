@@ -169,19 +169,4 @@ public class BuiltinReferenceModels {
         metaModelProvider = new SimpleMetaModelProvider(getAvailableModelInfoLookups(), getBmmRepository(), getAomProfiles());
         return metaModelProvider;
     }
-
-    /**
-     * Returns the MetaModels loaded with all BMM, ModelInfoLookup and AOM profiles that are available.
-     * Returns a new MetaModels instance every call!
-     * @return
-     * @deprecated Use {@link #getMetaModelProvider()} instead.
-     */
-    @Deprecated
-    public static MetaModels getMetaModels() {
-        MetaModels metaModels = new MetaModels(getAvailableModelInfoLookups(), getBmmRepository());
-        for(AomProfile profile:getAomProfiles().getProfiles()) {
-            metaModels.getAomProfiles().add(profile);
-        }
-        return metaModels;
-    }
 }

@@ -65,31 +65,6 @@ public class CString extends CPrimitiveObject<List<String>, String> {
         this.constraint.add(constraint);
     }
 
-    @Override
-    @Deprecated
-    public boolean isValidValue(String value) {
-        if(getConstraint().isEmpty()) {
-            return true;
-        }
-        for(String constraint:getConstraint()) {
-            if(constraint.length() > 1 &&
-                    isRegexConstraint(constraint)) {
-                //regexp. Strip first and last character and match. If you want to input
-                //data starting and ending with '/', you cannot in the AOM, although ADL lets you express if just fine.
-                //perhaps we should make the constraint object something more expressive than a String?
-                if(matchesRegexp(value, constraint)) {
-                    return true;
-                }
-            } else {
-                //TODO: does case matter here?
-                if(Objects.equals(value, constraint)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     private boolean matchesRegexp(String value, String constraint) {
         return value.matches(stripRegexDelimiters(constraint));
     }

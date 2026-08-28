@@ -42,14 +42,6 @@ public class ArchetypeValidator {
         this(new SimpleMetaModelProvider(models, null));
     }
 
-    /**
-     * @deprecated Use {@link #ArchetypeValidator(MetaModelProvider)} instead.
-     */
-    @Deprecated
-    public ArchetypeValidator(MetaModels models) {
-        this((MetaModelProvider) models);
-    }
-
     public ArchetypeValidator(MetaModelProvider metaModelProvider) {
         this.metaModelProvider = metaModelProvider;
         validationsPhase0 = new ArrayList<>();

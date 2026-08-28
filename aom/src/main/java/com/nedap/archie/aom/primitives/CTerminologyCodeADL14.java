@@ -2,7 +2,6 @@ package com.nedap.archie.aom.primitives;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.ArchieLanguageConfiguration;
-import com.nedap.archie.ValidationConfiguration;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
@@ -84,40 +83,6 @@ public class CTerminologyCodeADL14 extends CPrimitiveObject<List<String>, Termin
     public ConstraintStatus getEffectiveConstraintStatus() {
         return constraintStatus == null ? ConstraintStatus.REQUIRED : constraintStatus;
     }
-
-    @Override
-    @Deprecated
-    public boolean isValidValue(TerminologyCode value) {
-        if(getConstraint().isEmpty()) {
-            return true;
-        }
-        if(isConstraintRequired()) {
-            if (value == null) return false;
-
-            List<String> values;
-            String terminologyId = value.getTerminologyId();
-            if (terminologyId == null || terminologyId.equalsIgnoreCase("local") || AOMUtils.isValueSetCode(value.getTerminologyId())) {
-                values = this.getValueSetExpanded();
-            } else if (terminologyId.equalsIgnoreCase("openehr")) {
-                values = this.getOpenEHRValueSetExpanded();
-            } else {
-                // This is not a local nor an openehr terminology.
-                // If a term binding is there, we may be able to validate, if external, we wil not be able to.
-                // Return true for now for non-local terminology values.
-                //TODO: implement checking for direct term bindings later
-                return !ValidationConfiguration.isFailOnUnknownTerminologyId();
-            }
-
-            if(values != null && !values.isEmpty()) {
-                return value.getCodeString() != null && values.contains(value.getCodeString());
-            }
-        } else {
-            return true;
-        }
-
-        return false;
-    }
-
 
     /**
      * Get the ArchetypeTerms in the selected meaning and description language for all the possible options if this is a
