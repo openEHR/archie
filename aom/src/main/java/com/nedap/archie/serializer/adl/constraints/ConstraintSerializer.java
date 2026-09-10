@@ -3,7 +3,7 @@ package com.nedap.archie.serializer.adl.constraints;
 
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.serializer.adl.ADLDefinitionSerializer;
-import com.nedap.archie.serializer.adl.ADLStringBuilder;
+import com.nedap.archie.serializer.adl.ADLBuilder;
 
 import static com.nedap.archie.serializer.adl.ArchetypeSerializeUtils.buildOccurrences;
 
@@ -12,11 +12,11 @@ import static com.nedap.archie.serializer.adl.ArchetypeSerializeUtils.buildOccur
  */
 public abstract class ConstraintSerializer<T extends CObject> {
     protected final ADLDefinitionSerializer serializer;
-    protected final ADLStringBuilder builder;
+    protected final ADLBuilder builder;
 
     public ConstraintSerializer(ADLDefinitionSerializer serializer) {
         this.serializer = serializer;
-        this.builder = serializer.getBuilder();
+        this.builder = serializer.getOutputBuilder();
     }
 
     abstract public void serialize(T cobj);
