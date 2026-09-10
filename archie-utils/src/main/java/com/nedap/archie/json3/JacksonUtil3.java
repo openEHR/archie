@@ -8,7 +8,6 @@ import tools.jackson.databind.cfg.EnumFeature;
 import tools.jackson.databind.cfg.MapperBuilder;
 import tools.jackson.databind.deser.DeserializationProblemHandler;
 import tools.jackson.databind.json.JsonMapper;
-import tools.jackson.databind.jsontype.TypeIdResolver;
 import tools.jackson.databind.jsontype.TypeResolverBuilder;
 import tools.jackson.databind.module.SimpleModule;
 import com.nedap.archie.aom.*;
@@ -63,13 +62,6 @@ public class JacksonUtil3 {
     }
 
     public static void configureBuilder(MapperBuilder<?, ?> builder, ArchieJacksonConfiguration configuration) {
-        configureBuilder(builder, configuration, new ArchieTypeResolverBuilder3(configuration),
-                new OpenEHRTypeNaming3(configuration.isStandardsCompliantExpressions()));
-    }
-
-    /** Configures a builder with custom type resolution. */
-    public static void configureBuilder(MapperBuilder<?, ?> builder, ArchieJacksonConfiguration configuration,
-                                        TypeResolverBuilder<?> typeResolverBuilder, TypeIdResolver typeIdResolver) {
         builder.enable(SerializationFeature.INDENT_OUTPUT);
         builder.enable(SerializationFeature.FLUSH_AFTER_WRITE_VALUE);
         builder.disable(DateTimeFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -129,14 +121,14 @@ public class JacksonUtil3 {
         builder.addModule(module);
         builder.enable(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL);
 
-        typeResolverBuilder = typeResolverBuilder.init(JsonTypeInfo.Value.construct(
+        TypeResolverBuilder<?> typeResolverBuilder = new ArchieTypeResolverBuilder3(configuration).init(JsonTypeInfo.Value.construct(
                 JsonTypeInfo.Id.NAME,
                 JsonTypeInfo.As.PROPERTY,
                 configuration.getTypePropertyName(),
                 null,
                 true,
                 null,
-                null), typeIdResolver);
+                null), new OpenEHRTypeNaming3(configuration.isStandardsCompliantExpressions()));
 
         builder.addHandler(new DeserializationProblemHandler() {
             @Override

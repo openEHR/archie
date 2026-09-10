@@ -1,11 +1,9 @@
 package com.nedap.archie.json;
 
 import com.nedap.archie.odin3.ItemMapToListConverter;
-import com.nedap.archie.odin3.TermMappingMapToListConverter;
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datastructures.Item;
 import com.nedap.archie.rm.datavalues.DvText;
-import com.nedap.archie.rm.datavalues.TermMapping;
 import org.junit.jupiter.api.Test;
 import tools.jackson.databind.json.JsonMapper;
 import tools.jackson.databind.type.TypeFactory;
@@ -46,27 +44,4 @@ public class OdinParsingConverterTest {
         assertNotNull(converter.getOutputType(tf));
     }
 
-    @Test
-    public void termMappingMapToListConverter_convertsMapToList() {
-        TermMappingMapToListConverter converter = new TermMappingMapToListConverter();
-        Map<Integer, TermMapping> map = new LinkedHashMap<>();
-        TermMapping mapping = new TermMapping();
-        map.put(1, mapping);
-        List<TermMapping> result = converter.convert(map);
-        assertEquals(1, result.size());
-        assertSame(mapping, result.get(0));
-    }
-
-    @Test
-    public void termMappingMapToListConverter_nullReturnsNull() {
-        assertNull(new TermMappingMapToListConverter().convert(null));
-    }
-
-    @Test
-    public void termMappingMapToListConverter_typeMetadata() {
-        TermMappingMapToListConverter converter = new TermMappingMapToListConverter();
-        TypeFactory tf = JsonMapper.builder().build().getTypeFactory();
-        assertNotNull(converter.getInputType(tf));
-        assertNotNull(converter.getOutputType(tf));
-    }
 }

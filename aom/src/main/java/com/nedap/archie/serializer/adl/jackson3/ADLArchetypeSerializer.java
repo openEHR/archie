@@ -1,7 +1,7 @@
-package com.nedap.archie.serializer.adl;
+package com.nedap.archie.serializer.adl.jackson3;
 
 import com.nedap.archie.aom.*;
-import com.nedap.archie.rminfo.RMObjectMapperProvider;
+import com.nedap.archie.rminfo.RMObjectMapperProvider3;
 
 import java.util.function.Function;
 
@@ -10,15 +10,15 @@ import java.util.function.Function;
  */
 abstract public class ADLArchetypeSerializer<T extends Archetype> {
     protected final T archetype;
-    final RMObjectMapperProvider rmObjectMapperProvider;
+    final RMObjectMapperProvider3 rmObjectMapperProvider;
     Function<String, Archetype> flatArchetypeProvider;
-    protected final ADLStringBuilder builder = new ADLStringBuilder();
+    protected final ADLStringBuilder3 builder = new ADLStringBuilder3();
 
     private final ADLDefinitionSerializer definitionSerializer;
     private final ADLRulesSerializer rulesSerializer;
 
 
-    protected ADLArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
+    protected ADLArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider3 rmObjectMapperProvider) {
         this.archetype = archetype;
         this.flatArchetypeProvider = flatArchetypeProvider;
         this.rmObjectMapperProvider = rmObjectMapperProvider;
@@ -36,7 +36,7 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
      *                               the standard ODIN serializer will be used, which will likekely not be correct.
      * @return the ADL output
      */
-    public static String serialize(Archetype archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
+    public static String serialize(Archetype archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider3 rmObjectMapperProvider) {
         if (archetype instanceof Template) {
             return new ADLTemplateSerializer((Template) archetype, flatArchetypeProvider, rmObjectMapperProvider).serialize();
         } else if (archetype instanceof OperationalTemplate) {
@@ -58,12 +58,6 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
      */
     public static String serialize(Archetype archetype) {
         return serialize(archetype, null, null);
-    }
-
-    public static String serializeWithJackson3(Archetype archetype, Function<String, Archetype> flatArchetypeProvider,
-            com.nedap.archie.rminfo.RMObjectMapperProvider3 rmObjectMapperProvider) {
-        return com.nedap.archie.serializer.adl.jackson3.ADLArchetypeSerializer.serialize(
-                archetype, flatArchetypeProvider, rmObjectMapperProvider);
     }
 
     protected String serialize() {
@@ -149,7 +143,7 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
 
     abstract protected void appendHeaderAttributes();
 
-    public ADLStringBuilder getBuilder() {
+    public ADLStringBuilder3 getBuilder() {
         return builder;
     }
 

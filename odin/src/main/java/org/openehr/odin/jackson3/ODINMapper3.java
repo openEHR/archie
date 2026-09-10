@@ -39,7 +39,7 @@ public class ODINMapper3 extends ObjectMapper {
             enable(SerializationFeature.INDENT_OUTPUT);
             disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
             defaultPrettyPrinter(new ODINPrettyPrinter3());
-            changeDefaultPropertyInclusion(v -> JsonInclude.Value.construct(JsonInclude.Include.NON_NULL, JsonInclude.Include.ALWAYS));
+            changeDefaultPropertyInclusion(v -> JsonInclude.Value.construct(JsonInclude.Include.NON_NULL, JsonInclude.Include.NON_NULL));
             activateDefaultTyping(
                     BasicPolymorphicTypeValidator.builder().allowIfBaseType(Object.class).build(),
                     DefaultTyping.JAVA_LANG_OBJECT);

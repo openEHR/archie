@@ -1,8 +1,8 @@
-package com.nedap.archie.serializer.adl;
+package com.nedap.archie.serializer.adl.jackson3;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.TemplateOverlay;
-import com.nedap.archie.rminfo.RMObjectMapperProvider;
+import com.nedap.archie.rminfo.RMObjectMapperProvider3;
 
 import java.util.function.Function;
 
@@ -12,7 +12,7 @@ import java.util.function.Function;
 class ADLTemplateOverlaySerializer extends ADLArchetypeSerializer<TemplateOverlay> {
 
 
-    public ADLTemplateOverlaySerializer(TemplateOverlay archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
+    public ADLTemplateOverlaySerializer(TemplateOverlay archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider3 rmObjectMapperProvider) {
         super(archetype, flatArchetypeProvider, rmObjectMapperProvider);
     }
 

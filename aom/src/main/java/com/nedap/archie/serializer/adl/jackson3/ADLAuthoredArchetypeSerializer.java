@@ -1,9 +1,9 @@
-package com.nedap.archie.serializer.adl;
+package com.nedap.archie.serializer.adl.jackson3;
 
 import com.google.common.base.Joiner;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.AuthoredArchetype;
-import com.nedap.archie.rminfo.RMObjectMapperProvider;
+import com.nedap.archie.rminfo.RMObjectMapperProvider3;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  */
 public class ADLAuthoredArchetypeSerializer<T extends AuthoredArchetype> extends ADLArchetypeSerializer<T> {
 
-    public ADLAuthoredArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
+    public ADLAuthoredArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider3 rmObjectMapperProvider) {
         super(archetype, flatArchetypeProvider, rmObjectMapperProvider);
     }
 
