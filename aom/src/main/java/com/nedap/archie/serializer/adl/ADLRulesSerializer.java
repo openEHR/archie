@@ -16,12 +16,16 @@ public class ADLRulesSerializer {
     /** the number of characters after which to start a new line in case of before a ModelReference (path) or parentheses */
     public static int NEW_LINE_LIMIT = 120;
 
-    private ADLStringBuilder builder;
+    private ADLBuilder builder;
     private ADLDefinitionSerializer definitionSerializer;
 
     private final Map<Class<?>, RuleElementSerializer<?>> ruleElementSerializers;
 
     public ADLRulesSerializer(ADLStringBuilder builder, ADLDefinitionSerializer definitionSerializer) {
+        this((ADLBuilder) builder, definitionSerializer);
+    }
+
+    public ADLRulesSerializer(ADLBuilder builder, ADLDefinitionSerializer definitionSerializer) {
         this.builder = builder;
         this.definitionSerializer = definitionSerializer;
 
@@ -39,7 +43,12 @@ public class ADLRulesSerializer {
 
     }
 
+    /** Jackson 2 accessor. Use getOutputBuilder() for either Jackson version. */
     public ADLStringBuilder getBuilder() {
+        return (ADLStringBuilder) builder;
+    }
+
+    public ADLBuilder getOutputBuilder() {
         return builder;
     }
 

@@ -1,9 +1,10 @@
 package com.nedap.archie.serializer.adl.jackson3;
 
+import com.nedap.archie.serializer.adl.ADLBuilder;
+
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.ObjectWriter;
 import com.nedap.archie.serializer.odin.StructureStringBuilder;
-import com.nedap.archie.serializer.odin.StructuredStringAppendable;
 import org.openehr.odin.jackson3.ODINMapper3;
 import org.openehr.odin.jackson3.ODINPrettyPrinter3;
 
@@ -12,7 +13,7 @@ import static com.nedap.archie.serializer.odin.OdinStringBuilder.quoteText;
 /**
  * @author josh
  */
-public class ADLStringBuilder3 implements StructuredStringAppendable {
+public class ADLStringBuilder3 implements ADLBuilder {
 
     private final StructureStringBuilder builder = new StructureStringBuilder();
 

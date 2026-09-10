@@ -34,7 +34,7 @@ public class BinaryOperatorSerializer extends RuleElementSerializer<BinaryOperat
                 builder.append(" ");
                 builder.append(operator.getOperator().getDefaultCode());
                 builder.append(" ");
-                serializer.getBuilder().indent();
+                serializer.getOutputBuilder().indent();
                 serializer.serializeRuleElement(operator.getRightOperand());
                 builder.unindent();
                 break;
