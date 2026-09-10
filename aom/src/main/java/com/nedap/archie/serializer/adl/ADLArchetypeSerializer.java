@@ -60,6 +60,12 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
         return serialize(archetype, null, null);
     }
 
+    public static String serializeWithJackson3(Archetype archetype, Function<String, Archetype> flatArchetypeProvider,
+            com.nedap.archie.rminfo.RMObjectMapperProvider3 rmObjectMapperProvider) {
+        return com.nedap.archie.serializer.adl.jackson3.ADLArchetypeSerializer.serialize(
+                archetype, flatArchetypeProvider, rmObjectMapperProvider);
+    }
+
     protected String serialize() {
         appendHead();
         appendSpecialize();
