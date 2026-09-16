@@ -10,6 +10,7 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 
 import javax.annotation.Nullable;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
@@ -17,10 +18,10 @@ import java.util.Objects;
 /**
  * Created by pieter.bos on 21/06/16.
  */
+@XmlRootElement(name = "generic_entry")
 @XmlType(name = "GENERIC_ENTRY", propOrder = {
         "data"
 })
-
 public class GenericEntry extends ContentItem {
 
     private ItemTree data;

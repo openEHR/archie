@@ -12,12 +12,14 @@ import com.nedap.archie.rm.support.identification.UIDBasedId;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
 /**
  * Created by pieter.bos on 04/11/15.
  */
+@XmlRootElement(name = "point_event")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "POINT_EVENT")
 public class PointEvent<Type extends ItemStructure> extends Event<Type> {
