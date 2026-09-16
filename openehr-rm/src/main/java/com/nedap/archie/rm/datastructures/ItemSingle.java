@@ -11,10 +11,7 @@ import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,6 +19,7 @@ import java.util.Objects;
  * added constraint is that this contains only one item
  * Created by pieter.bos on 04/11/15.
  */
+@XmlRootElement(name = "item_single")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ITEM_SINGLE", propOrder = {
         "item"
