@@ -31,7 +31,7 @@ public class RmPrimitiveObjectValidatorTest {
         List<RMObjectWithPath> rmObjects = new ArrayList<>();
         rmObjects.add(new RMObjectWithPath(-4L, null));
 
-        List<RMObjectValidationMessage> result = validator.validate(rmObjects, "/path/so/far", cInteger);
+        List<RMObjectValidationMessage> result = validator.validate(rmObjects, ValidationPath.of("/path/so/far"), cInteger);
 
         assertEquals(1, result.size());
 
@@ -48,7 +48,7 @@ public class RmPrimitiveObjectValidatorTest {
         cInteger.addConstraint(Interval.lowerUnbounded(-10L, false));
         cInteger.addConstraint(Interval.upperUnbounded(0L, true));
 
-        List<RMObjectValidationMessage> result = validator.validate_inner(-4L, "/path/so/far", cInteger);
+        List<RMObjectValidationMessage> result = validator.validate_inner(-4L, ValidationPath.of("/path/so/far"), cInteger);
 
         assertEquals(1, result.size());
 

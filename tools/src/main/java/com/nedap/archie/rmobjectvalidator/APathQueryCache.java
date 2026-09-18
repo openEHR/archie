@@ -12,6 +12,7 @@ public class APathQueryCache {
 
     private final boolean matchSpecialisedNodes;
     private final HashMap<String, RMPathQuery> queryCache = new HashMap<>();
+    private final HashMap<String, RMPathQuery> attributeCache = new HashMap<>();
 
     public APathQueryCache() {
         this(false);
@@ -22,13 +23,15 @@ public class APathQueryCache {
     }
 
     public RMPathQuery getApathQuery(String query) {
-        RMPathQuery result = queryCache.get(query);
-        if (result == null) {
-            result = new RMPathQuery(query, matchSpecialisedNodes);
-            queryCache.put(query, result);
-        }
-        return result;
+        return queryCache.computeIfAbsent(query, q -> new RMPathQuery(q, matchSpecialisedNodes));
+    }
 
+    public RMPathQuery getForAttribute(String attributeName) {
+        return attributeCache.computeIfAbsent(attributeName, att -> new RMPathQuery('/'  +att, matchSpecialisedNodes));
+    }
+
+    public RMPathQuery getForAttribute(String attributeName, String nodeId) {
+        return getApathQuery('/'  +attributeName + '[' + nodeId + ']');
     }
 
 }
