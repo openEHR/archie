@@ -10,6 +10,7 @@ import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.composition.Composition;
+import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
 import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.DvText;
@@ -168,4 +169,36 @@ public class RMPathQueryTest {
         assertEquals("/context/other_context[id2]/items[id3]/items[id6.0.1]", ((Element) listId6.get(1).getObject()).getPath());
     }
 
+    /**
+     * Test setup from {@link #multipleItems()}
+     */
+    @Test
+    public void multipleItemsQueryWithIndexDoesNotIgnoreOtherConstraints() {
+        root = (Pathable) testUtil.constructEmptyRMObject(archetype.getDefinition());
+        Composition composition = (Composition) root;
+
+        {
+            //add another cluster to the RM Object, with the same archetype id (very possible!)
+            Composition composition2 = (Composition) testUtil.constructEmptyRMObject(archetype.getDefinition());
+            ItemTree otherContext = (ItemTree) composition.getContext().getOtherContext();
+            composition2.getContext().getOtherContext().getItems().get(0).setName(new DvText("archie is great"));
+            otherContext.getItems().addAll(composition2.getContext().getOtherContext().getItems());
+        }
+
+        ModelInfoLookup modelInfoLookup = ArchieRMInfoLookup.getInstance();
+
+        // invalid name, expected empty
+        List<RMObjectWithPath> list = new RMPathQuery("/context[id11]/other_context[id2]/items[idInvalid, 1]").findList(modelInfoLookup, composition);
+        assertEquals(0, list.size());
+
+        // invalid name + out of bounds index, expected empty
+        List<RMObjectWithPath> list2 = new RMPathQuery("/context[id11]/other_context[id2]/items[idInvalid, 3]").findList(modelInfoLookup, composition);
+        assertEquals(0, list2.size());
+
+        // valid name + index, expect specific object
+        List<RMObjectWithPath> list3 = new RMPathQuery("/context[id11]/other_context[id2]/items[id3, 2]").findList(modelInfoLookup, composition);
+        assertEquals(1, list3.size());
+        Cluster cluster = (Cluster) list3.get(0).getObject();
+        assertEquals("archie is great", cluster.getNameAsString());
+    }
 }
