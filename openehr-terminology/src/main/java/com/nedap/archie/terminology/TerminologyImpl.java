@@ -3,7 +3,9 @@ package com.nedap.archie.terminology;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class TerminologyImpl {
     private String terminologyId;
@@ -49,20 +51,19 @@ class TerminologyImpl {
         return this.termsById.get(code);
     }
 
-    public List<TermCode> getAllTermsForLanguage(String language) {
+    public Stream<TermCodeImpl> streamAllTermsForLanguage(String language) {
         return getTermsById().values().stream()
                 .map(a -> a.getTermCodesByLanguage().get(language))
-                .filter(t -> t != null)
+                .filter(Objects::nonNull);
+    }
+
+    public List<TermCode> getAllTermsForLanguage(String language) {
+        return streamAllTermsForLanguage(language)
                 .collect(Collectors.toList());
     }
 
     public MultiLanguageTerm getOrCreateTermSet(String id) {
-        MultiLanguageTerm multiLanguageTerm = termsById.get(id);
-        if(multiLanguageTerm == null) {
-            multiLanguageTerm = new MultiLanguageTerm(terminologyId, id);
-            termsById.put(id, multiLanguageTerm);
-        }
-        return multiLanguageTerm;
+        return termsById.computeIfAbsent(id, d -> new MultiLanguageTerm(terminologyId, d));
     }
 
 }
