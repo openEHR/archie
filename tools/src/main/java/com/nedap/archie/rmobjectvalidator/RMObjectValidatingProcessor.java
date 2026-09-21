@@ -3,7 +3,6 @@ package com.nedap.archie.rmobjectvalidator;
 import com.nedap.archie.aom.CObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -11,10 +10,10 @@ import java.util.List;
  */
 public class RMObjectValidatingProcessor {
 
-    private List<RMObjectValidationMessage> messages = new ArrayList<>();
+    protected final ValidationMessages messages = new ValidationMessages();
 
     public List<RMObjectValidationMessage> getMessages() {
-        return messages;
+        return messages.getMessages();
     }
 
     protected void clearMessages() {
@@ -33,13 +32,56 @@ public class RMObjectValidatingProcessor {
         messages.add(new RMObjectValidationMessage(cobject, actualPath, message, type));
     }
 
-    protected void addAllMessages(Collection<RMObjectValidationMessage> messages) {
+    protected void addAllMessages(List<RMObjectValidationMessage> messages) {
         this.messages.addAll(messages);
     }
 
     protected void addAllMessagesFrom(RMObjectValidatingProcessor other) {
-        addAllMessages(other.getMessages());
+        this.messages.addAll(other.messages.messages);
 
+    }
+
+    public static final class ValidationMessages {
+
+        private List<RMObjectValidationMessage> messages = null;
+
+        public void add(RMObjectValidationMessage message) {
+            if (message == null) {
+                return;
+            }
+            if (this.messages == null) {
+                this.messages = new ArrayList<>();
+            }
+            this.messages.add(message);
+        }
+
+        public void addAll(List<RMObjectValidationMessage> newMessages) {
+            if (newMessages == null || newMessages.isEmpty()) {
+                return;
+            }
+            if (this.messages == null) {
+                this.messages = new ArrayList<>();
+            }
+            this.messages.addAll(newMessages);
+
+        }
+
+        public List<RMObjectValidationMessage> getMessages() {
+            if (this.messages == null) {
+                this.messages = new ArrayList<>();
+            }
+            return this.messages;
+        }
+
+        public void clear() {
+            if (this.messages != null) {
+                this.messages.clear();
+            }
+        }
+
+        public boolean isEmpty() {
+            return this.messages == null || this.messages.isEmpty();
+        }
     }
 
 }
