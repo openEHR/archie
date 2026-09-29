@@ -43,8 +43,16 @@ public class ADLRulesSerializer {
 
     }
 
-    /** Jackson 2 accessor. Use getOutputBuilder() for either Jackson version. */
+    /**
+     * Returns the Jackson 2 builder. Throws when this serializer was created for Jackson 3.
+     * @deprecated use {@link #getOutputBuilder()}, which works with both Jackson versions.
+     */
+    @Deprecated
     public ADLStringBuilder getBuilder() {
+        if (!(builder instanceof ADLStringBuilder)) {
+            throw new UnsupportedOperationException("getBuilder() returns the Jackson 2 builder. This serializer uses "
+                    + builder.getClass().getSimpleName() + ". Use getOutputBuilder() instead.");
+        }
         return (ADLStringBuilder) builder;
     }
 
