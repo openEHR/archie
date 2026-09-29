@@ -4,6 +4,7 @@ import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.base.MultiplicityInterval;
+import com.nedap.archie.serializer.adl.jackson3.ADLStringBuilder3;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +14,9 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author markopi
@@ -385,11 +389,23 @@ public class ADLDefinitionSerializerTest {
     private String serializeConstraint(CObject cons) {
         ADLDefinitionSerializer serializer = new ADLDefinitionSerializer(new ADLStringBuilder(), s -> null, null);
         serializer.appendCObject(cons);
-        return serializer.getBuilder().toString();
+        return serializer.getOutputBuilder().toString();
     }
 
     private Archetype loadRoot(String resourceName) throws IOException, ADLParseException {
         return new ADLParser().parse(ADLArchetypeSerializerTest.class.getClassLoader().getResourceAsStream(resourceName));
+    }
+
+
+    @Test
+    @SuppressWarnings("deprecation")
+    public void getBuilderExplainsJackson3Builder() {
+        ADLStringBuilder3 builder = new ADLStringBuilder3();
+        ADLDefinitionSerializer serializer = new ADLDefinitionSerializer(builder, s -> null, null, null);
+
+        assertSame(builder, serializer.getOutputBuilder());
+        UnsupportedOperationException e = assertThrows(UnsupportedOperationException.class, serializer::getBuilder);
+        assertTrue(e.getMessage().contains("getOutputBuilder()"));
     }
 
 }

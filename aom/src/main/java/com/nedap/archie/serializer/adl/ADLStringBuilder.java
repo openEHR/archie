@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.nedap.archie.serializer.adl.jackson.ArchetypeODINMapperFactory;
 import com.nedap.archie.serializer.odin.StructureStringBuilder;
-import com.nedap.archie.serializer.odin.StructuredStringAppendable;
 import org.openehr.odin.jackson.ODINMapper;
 import org.openehr.odin.jackson.ODINPrettyPrinter;
 
@@ -13,7 +12,7 @@ import static com.nedap.archie.serializer.odin.OdinStringBuilder.quoteText;
 /**
  * @author markopi
  */
-public class ADLStringBuilder implements StructuredStringAppendable {
+public class ADLStringBuilder implements ADLBuilder {
 
     private final StructureStringBuilder builder = new StructureStringBuilder();
 
