@@ -2,9 +2,6 @@ package com.nedap.archie.serializer.adl;
 
 import com.nedap.archie.aom.*;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
-import com.nedap.archie.rminfo.RMObjectMapperProvider3;
-import com.nedap.archie.serializer.adl.jackson3.ADLStringBuilder3;
-import java.util.function.Supplier;
 
 import java.util.function.Function;
 
@@ -14,30 +11,19 @@ import java.util.function.Function;
 abstract public class ADLArchetypeSerializer<T extends Archetype> {
     protected final T archetype;
     final RMObjectMapperProvider rmObjectMapperProvider;
-    final RMObjectMapperProvider3 rmObjectMapperProvider3;
-    final Supplier<? extends ADLBuilder> builderSupplier;
     Function<String, Archetype> flatArchetypeProvider;
-    protected final ADLBuilder builder;
+    protected final ADLStringBuilder builder = new ADLStringBuilder();
 
     private final ADLDefinitionSerializer definitionSerializer;
     private final ADLRulesSerializer rulesSerializer;
 
 
     protected ADLArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
-        this(archetype, flatArchetypeProvider, rmObjectMapperProvider, null, ADLStringBuilder::new);
-    }
-
-    ADLArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider,
-            RMObjectMapperProvider rmObjectMapperProvider, RMObjectMapperProvider3 rmObjectMapperProvider3,
-            Supplier<? extends ADLBuilder> builderSupplier) {
         this.archetype = archetype;
         this.flatArchetypeProvider = flatArchetypeProvider;
         this.rmObjectMapperProvider = rmObjectMapperProvider;
-        this.rmObjectMapperProvider3 = rmObjectMapperProvider3;
-        this.builderSupplier = builderSupplier;
-        this.builder = builderSupplier.get();
 
-        this.definitionSerializer = new ADLDefinitionSerializer(builder, flatArchetypeProvider, rmObjectMapperProvider, rmObjectMapperProvider3);
+        this.definitionSerializer = new ADLDefinitionSerializer(builder, flatArchetypeProvider, rmObjectMapperProvider);
         this.rulesSerializer = new ADLRulesSerializer(builder, definitionSerializer);
     }
 
@@ -51,20 +37,14 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
      * @return the ADL output
      */
     public static String serialize(Archetype archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
-        return serialize(archetype, flatArchetypeProvider, rmObjectMapperProvider, null, ADLStringBuilder::new);
-    }
-
-    static String serialize(Archetype archetype, Function<String, Archetype> flatArchetypeProvider,
-            RMObjectMapperProvider rmObjectMapperProvider, RMObjectMapperProvider3 rmObjectMapperProvider3,
-            Supplier<? extends ADLBuilder> builderSupplier) {
         if (archetype instanceof Template) {
-            return new ADLTemplateSerializer((Template) archetype, flatArchetypeProvider, rmObjectMapperProvider, rmObjectMapperProvider3, builderSupplier).serialize();
+            return new ADLTemplateSerializer((Template) archetype, flatArchetypeProvider, rmObjectMapperProvider).serialize();
         } else if (archetype instanceof OperationalTemplate) {
-            return new ADLOperationalTemplateSerializer((OperationalTemplate) archetype, flatArchetypeProvider, rmObjectMapperProvider, rmObjectMapperProvider3, builderSupplier).serialize();
+            return new ADLOperationalTemplateSerializer((OperationalTemplate) archetype, flatArchetypeProvider, rmObjectMapperProvider).serialize();
         } else if (archetype instanceof TemplateOverlay) {
-            return new ADLTemplateOverlaySerializer((TemplateOverlay) archetype, flatArchetypeProvider, rmObjectMapperProvider, rmObjectMapperProvider3, builderSupplier).serialize();
+            return new ADLTemplateOverlaySerializer((TemplateOverlay) archetype, flatArchetypeProvider, rmObjectMapperProvider).serialize();
         } else if (archetype instanceof AuthoredArchetype) {
-            return new ADLAuthoredArchetypeSerializer<>((AuthoredArchetype) archetype, flatArchetypeProvider, rmObjectMapperProvider, rmObjectMapperProvider3, builderSupplier).serialize();
+            return new ADLAuthoredArchetypeSerializer<>((AuthoredArchetype) archetype, flatArchetypeProvider, rmObjectMapperProvider).serialize();
         }
         throw new AssertionError("Could not serialize archetype of class " +
                 (archetype == null ? null : archetype.getClass().getName()));
@@ -78,11 +58,6 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
      */
     public static String serialize(Archetype archetype) {
         return serialize(archetype, null, null);
-    }
-
-    public static String serializeWithJackson3(Archetype archetype, Function<String, Archetype> flatArchetypeProvider,
-            com.nedap.archie.rminfo.RMObjectMapperProvider3 rmObjectMapperProvider) {
-        return serialize(archetype, flatArchetypeProvider, null, rmObjectMapperProvider, ADLStringBuilder3::new);
     }
 
     protected String serialize() {
@@ -168,20 +143,7 @@ abstract public class ADLArchetypeSerializer<T extends Archetype> {
 
     abstract protected void appendHeaderAttributes();
 
-    /**
-     * Returns the Jackson 2 builder. Throws when this serializer was created for Jackson 3.
-     * @deprecated use {@link #getOutputBuilder()}, which works with both Jackson versions.
-     */
-    @Deprecated
     public ADLStringBuilder getBuilder() {
-        if (!(builder instanceof ADLStringBuilder)) {
-            throw new UnsupportedOperationException("getBuilder() returns the Jackson 2 builder. This serializer uses "
-                    + builder.getClass().getSimpleName() + ". Use getOutputBuilder() instead.");
-        }
-        return (ADLStringBuilder) builder;
-    }
-
-    public ADLBuilder getOutputBuilder() {
         return builder;
     }
 

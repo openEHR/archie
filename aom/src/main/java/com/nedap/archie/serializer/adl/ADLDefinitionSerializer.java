@@ -7,7 +7,6 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
-import com.nedap.archie.rminfo.RMObjectMapperProvider3;
 import com.nedap.archie.serializer.adl.constraints.*;
 
 import java.util.HashMap;
@@ -20,23 +19,16 @@ import static java.util.Optional.ofNullable;
  * @author markopi
  */
 public class ADLDefinitionSerializer {
-    protected final ADLBuilder builder;
+    protected final ADLStringBuilder builder;
 
     private final Map<Class<?>, ConstraintSerializer<?>> constraintSerializers;
     private Function<String, Archetype> flatArchetypeProvider;
     private RMObjectMapperProvider rmObjectMapperProvider;
-    private final RMObjectMapperProvider3 rmObjectMapperProvider3;
 
     public ADLDefinitionSerializer(ADLStringBuilder builder, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
-        this(builder, flatArchetypeProvider, rmObjectMapperProvider, null);
-    }
-
-    ADLDefinitionSerializer(ADLBuilder builder, Function<String, Archetype> flatArchetypeProvider,
-            RMObjectMapperProvider rmObjectMapperProvider, RMObjectMapperProvider3 rmObjectMapperProvider3) {
         this.builder = builder;
         this.flatArchetypeProvider = flatArchetypeProvider;
         this.rmObjectMapperProvider = rmObjectMapperProvider;
-        this.rmObjectMapperProvider3 = rmObjectMapperProvider3;
 
         constraintSerializers = new HashMap<>();
         constraintSerializers.put(ArchetypeSlot.class, new ArchetypeSlotSerializer(this));
@@ -61,20 +53,7 @@ public class ADLDefinitionSerializer {
         return builder.toString();
     }
 
-    /**
-     * Returns the Jackson 2 builder. Throws when this serializer was created for Jackson 3.
-     * @deprecated use {@link #getOutputBuilder()}, which works with both Jackson versions.
-     */
-    @Deprecated
     public ADLStringBuilder getBuilder() {
-        if (!(builder instanceof ADLStringBuilder)) {
-            throw new UnsupportedOperationException("getBuilder() returns the Jackson 2 builder. This serializer uses "
-                    + builder.getClass().getSimpleName() + ". Use getOutputBuilder() instead.");
-        }
-        return (ADLStringBuilder) builder;
-    }
-
-    public ADLBuilder getOutputBuilder() {
         return builder;
     }
 
@@ -148,8 +127,5 @@ public class ADLDefinitionSerializer {
 
     public RMObjectMapperProvider getRmObjectMapperProvider() {
         return rmObjectMapperProvider;
-    }
-    public RMObjectMapperProvider3 getRmObjectMapperProvider3() {
-        return rmObjectMapperProvider3;
     }
 }
