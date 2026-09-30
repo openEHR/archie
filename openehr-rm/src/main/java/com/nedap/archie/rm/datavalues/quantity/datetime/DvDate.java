@@ -1,7 +1,9 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nedap.archie.datetime.DateTimeParsers;
+import com.nedap.archie.json.DateDeserializer;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
@@ -79,8 +81,7 @@ public class DvDate extends DvTemporal<DvDate, Long> implements SingleValuedData
 //            @XmlElement(type=Year.class)
 //
 //    })
-    @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.nedap.archie.json.DateDeserializer.class)
-    @tools.jackson.databind.annotation.JsonDeserialize(using = com.nedap.archie.json3.DateDeserializer.class)
+    @JsonDeserialize(using= DateDeserializer.class)
     public Temporal getValue() {
         return value;
     }

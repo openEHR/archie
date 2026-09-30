@@ -3,6 +3,7 @@ package com.nedap.archie.aom;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -101,21 +102,22 @@ public class ResourceDescription extends ArchetypeModelObject {
      *
      * This deserializer ensures backward compatibility by accepting both formats
      * and always setting the lifecycle state value as a plain String.
-     * Object parameter instead of JsonNode keeps this compatible with both Jackson 2 and 3.
      */
     @JsonSetter("lifecycle_state")
-    private void setLifecycleState(Object node) {
-        if (node == null) {
+    private void setLifecycleState(JsonNode node) {
+        if (node == null || node.isNull()) {
             this.lifecycleState = null;
-        } else if (node instanceof String) {
-            this.lifecycleState = (String) node;
-        } else if (node instanceof Map) {
-            Object codeString = ((Map<?, ?>) node).get("code_string");
-            this.lifecycleState = (codeString != null) ? codeString.toString() : null;
-        } else {
-            // Empty list or other unexpected type: treat as absent
-            this.lifecycleState = null;
+            return;
         }
+
+        if (node.isTextual()) {
+            this.lifecycleState = node.asText();
+            return;
+        }
+
+        JsonNode codeString = node.get("code_string");
+
+        this.lifecycleState = (codeString != null && !codeString.isNull()) ? codeString.asText() : null;
     }
 
     public String getCustodianNamespace() {

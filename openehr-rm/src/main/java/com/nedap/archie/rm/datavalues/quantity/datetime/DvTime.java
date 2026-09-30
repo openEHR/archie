@@ -1,7 +1,9 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nedap.archie.datetime.DateTimeParsers;
+import com.nedap.archie.json.TimeDeserializer;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
@@ -71,8 +73,7 @@ public class DvTime extends DvTemporal<DvTime, Double> implements SingleValuedDa
 //            @XmlElement(type=OffsetTime.class),
 //            @XmlElement(type=LocalTime.class)
 //    })    
-    @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.nedap.archie.json.TimeDeserializer.class)
-    @tools.jackson.databind.annotation.JsonDeserialize(using = com.nedap.archie.json3.TimeDeserializer.class)
+    @JsonDeserialize(using=TimeDeserializer.class)
     public TemporalAccessor getValue() {
         return value;
     }
