@@ -5,7 +5,6 @@ import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
-import com.nedap.archie.definitions.AdlCodeDefinitions;
 import org.openehr.utils.message.I18n;
 
 /**
@@ -48,7 +47,7 @@ public class CodeSystemValidation extends ValidatingVisitor {
         }
         if (AOMUtils.isIdCode(nodeId)) {
             idCodedNodeIdSeen = true;
-        } else if (nodeId.startsWith(AdlCodeDefinitions.VALUE_CODE_LEADER)) {
+        } else if (AOMUtils.isValueCode(nodeId)) {
             atCodedNodeIdSeen = true;
         }
     }
