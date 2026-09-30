@@ -8,6 +8,10 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
+import com.nedap.archie.rminfo.RMObjectMapperProvider3;
+import org.openehr.odin.jackson3.ODINMapper3;
+import org.openehr.odin.jackson3.ODINPrettyPrinter3;
+import tools.jackson.core.JacksonException;
 import com.nedap.archie.serializer.adl.ADLDefinitionSerializer;
 import org.openehr.odin.jackson.ODINMapper;
 import org.openehr.odin.jackson.ODINPrettyPrinter;
@@ -68,6 +72,8 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
         if(cobj.getDefaultValue() != null) {
             if(cobj.getDefaultValue() instanceof DefaultValueContainer) {
                 serializeDefaultValueContainer((DefaultValueContainer) cobj.getDefaultValue());
+            } else if (serializer.getRmObjectMapperProvider3() != null) {
+                buildDefaultValueJackson3(cobj);
             } else {
                 RMObjectMapperProvider rmObjectMapperProvider = serializer.getRmObjectMapperProvider();
                 if (rmObjectMapperProvider == null ||
@@ -101,6 +107,30 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
                     }
                 }
             }
+        }
+    }
+
+    private void buildDefaultValueJackson3(T cobj) {
+        RMObjectMapperProvider3 provider = serializer.getRmObjectMapperProvider3();
+        if (provider.getOutputOdinObjectMapper() == null && provider.getJsonObjectMapper() == null) {
+            builder.append("_default = ").newIndentedLine().odin(cobj.getDefaultValue()).newUnindentedLine();
+            return;
+        }
+        try {
+            if (provider.getJsonObjectMapper() != null) {
+                String content = provider.getJsonObjectMapper().writerFor(OpenEHRBase.class)
+                        .writeValueAsString(cobj.getDefaultValue());
+                serializeDefaultValueJson(content);
+            } else {
+                tools.jackson.databind.ObjectMapper mapper = provider.getOutputOdinObjectMapper();
+                tools.jackson.databind.ObjectWriter writer = mapper.writerFor(OpenEHRBase.class);
+                if (mapper instanceof ODINMapper3) {
+                    writer = writer.with(new ODINPrettyPrinter3(builder.getIndentDepth()));
+                }
+                serializeDefaultValueOdin(writer.writeValueAsString(cobj.getDefaultValue()));
+            }
+        } catch (JacksonException e) {
+            throw new RuntimeException(e);
         }
     }
 

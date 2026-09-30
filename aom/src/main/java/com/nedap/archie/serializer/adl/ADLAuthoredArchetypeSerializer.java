@@ -4,6 +4,8 @@ import com.google.common.base.Joiner;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
+import com.nedap.archie.rminfo.RMObjectMapperProvider3;
+import java.util.function.Supplier;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -18,6 +20,12 @@ public class ADLAuthoredArchetypeSerializer<T extends AuthoredArchetype> extends
 
     public ADLAuthoredArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
         super(archetype, flatArchetypeProvider, rmObjectMapperProvider);
+    }
+
+    ADLAuthoredArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider,
+            RMObjectMapperProvider rmObjectMapperProvider, RMObjectMapperProvider3 rmObjectMapperProvider3,
+            Supplier<? extends ADLBuilder> builderSupplier) {
+        super(archetype, flatArchetypeProvider, rmObjectMapperProvider, rmObjectMapperProvider3, builderSupplier);
     }
 
     @Override
