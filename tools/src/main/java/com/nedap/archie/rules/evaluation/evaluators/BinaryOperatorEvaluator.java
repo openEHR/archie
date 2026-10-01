@@ -47,18 +47,6 @@ public class BinaryOperatorEvaluator implements Evaluator<BinaryOperator> {
         this.archetype = archetype;
     }
 
-    /**
-     * @deprecated Use {@link #BinaryOperatorEvaluator(ValidationHelper, Archetype)} instead.
-     */
-    @Deprecated
-    public BinaryOperatorEvaluator(ModelInfoLookup lookup, Archetype archetype) {
-        ValidationConfiguration configuration = new ValidationConfiguration.Builder()
-                .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
-                .build();
-        this.validationHelper = new ValidationHelper(lookup, configuration);
-        this.archetype = archetype;
-    }
-
     @Override
     public ValueList evaluate(RuleEvaluation<?> evaluation, BinaryOperator statement) {
         switch(statement.getOperator()) {

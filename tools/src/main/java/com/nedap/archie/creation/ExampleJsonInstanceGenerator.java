@@ -12,7 +12,6 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.threeten.extra.PeriodDuration;
@@ -51,14 +50,6 @@ public  class ExampleJsonInstanceGenerator {
     private String typePropertyName = "_type";
 
     OpenEhrRmInstanceGenerator openEhrRmInstanceGenerator;
-
-    /**
-     * @deprecated Use {@link #ExampleJsonInstanceGenerator(MetaModelProvider, String)} instead.
-     */
-    @Deprecated
-    public ExampleJsonInstanceGenerator(MetaModels models, String language) {
-        this((MetaModelProvider) models, language);
-    }
 
     public ExampleJsonInstanceGenerator(MetaModelProvider metaModelProvider, String language) {
         this.language = language;

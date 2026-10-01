@@ -14,7 +14,7 @@ import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MetaModel implements MetaModelInterface {
+public class MetaModel {
 
     private final ModelInfoLookup modelInfoLookup;
     private final BmmModel bmmModel;
@@ -42,36 +42,12 @@ public class MetaModel implements MetaModelInterface {
         this.objectMapperProvider = provider;
     }
 
-    /**
-     * @deprecated Use {@link #getModelInfoLookup()} instead
-     */
-    @Deprecated
-    public ModelInfoLookup getSelectedModel() {
-        return modelInfoLookup;
-    }
-
     public ModelInfoLookup getModelInfoLookup() {
         return modelInfoLookup;
     }
 
-    /**
-     * @deprecated Use {@link #getBmmModel()} instead
-     */
-    @Deprecated
-    public BmmModel getSelectedBmmModel() {
-        return bmmModel;
-    }
-
     public BmmModel getBmmModel() {
         return bmmModel;
-    }
-
-    /**
-     * @deprecated Use {@link #getAomProfile()} instead
-     */
-    @Deprecated
-    public AomProfile getSelectedAomProfile() {
-        return aomProfile;
     }
 
     public AomProfile getAomProfile() {
@@ -138,7 +114,6 @@ public class MetaModel implements MetaModelInterface {
      * determine if a property on a type is multiple or not. If the property cannot be found, returns false.
      * Works both on properties on a type, or on path based lookup.
      */
-    @Override
     public boolean isMultiple(String typeName, String attributeNameOrPath) {
         MultiplicityInterval multiplicityInterval = referenceModelPropMultiplicity(typeName, attributeNameOrPath);
         if (multiplicityInterval == null) {
@@ -157,7 +132,6 @@ public class MetaModel implements MetaModelInterface {
         }
     }
 
-    @Override
     public boolean rmTypesConformant(String childTypeName, String parentTypeName) {
         if (bmmModel != null) {
             String parentClassName = BmmDefinitions.typeNameToClassKey(parentTypeName);//generics stripped
@@ -175,7 +149,6 @@ public class MetaModel implements MetaModelInterface {
         }
     }
 
-    @Override
     public boolean typeNameExists(String typeName) {
         if (bmmModel != null) {
             return bmmModel.getClassDefinition(typeName) != null;
@@ -184,7 +157,6 @@ public class MetaModel implements MetaModelInterface {
         }
     }
 
-    @Override
     public boolean attributeExists(String rmTypeName, String propertyName) {
         if (bmmModel != null) {
             BmmClass classDefinition = bmmModel.getClassDefinition(rmTypeName);
@@ -198,7 +170,6 @@ public class MetaModel implements MetaModelInterface {
         }
     }
 
-    @Override
     public boolean isNullable(String typeId, String attributeName) {
         if (bmmModel != null) {
             String className = BmmDefinitions.typeNameToClassKey(typeId);
@@ -218,7 +189,6 @@ public class MetaModel implements MetaModelInterface {
      * return whether the attribute identified by rmTypeName.rmAttributeName can contain the type
      * childConstraintTypeName
      */
-    @Override
     public boolean typeConformant(String rmTypeName, String rmAttributeName, String childConstraintTypeName) {
         if (bmmModel != null) {
             BmmClass parentClass = bmmModel.getClassDefinition(rmTypeName);
@@ -246,7 +216,6 @@ public class MetaModel implements MetaModelInterface {
         }
     }
 
-    @Override
     public boolean hasReferenceModelPath(String rmTypeName, String path) {
         if (!path.startsWith("/")) {
             return false;
@@ -259,7 +228,6 @@ public class MetaModel implements MetaModelInterface {
         }
     }
 
-    @Override
     public MultiplicityInterval referenceModelPropMultiplicity(String rmTypeName, String rmAttributeNameOrPath) {
         if (bmmModel != null) {
             BmmProperty<?> bmmProperty = bmmModel.propertyAtPath(rmTypeName, rmAttributeNameOrPath);
@@ -292,7 +260,6 @@ public class MetaModel implements MetaModelInterface {
         }
     }
 
-    @Override
     public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject<?, ?> cObject) {
         if (aomProfile == null && modelInfoLookup == null) {
             throw new IllegalStateException("no AOM profile and no selected ModelInfoLookup, cannot validate primitive type");
@@ -355,7 +322,6 @@ public class MetaModel implements MetaModelInterface {
         }
     }
 
-    @Override
     public boolean isOrdered(String typeName, String attributeName) {
         if (bmmModel != null) {
             BmmClass classDefinition = bmmModel.getClassDefinition(typeName);

@@ -56,40 +56,6 @@ public class RuleEvaluation<T> {
         this(modelInfoLookup, validationConfiguration, null, archetype);
     }
 
-    /**
-     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, ValidationConfiguration, Archetype)} instead.
-     */
-    @Deprecated
-    public RuleEvaluation(ModelInfoLookup modelInfoLookup, Archetype archetype) {
-        this(
-                modelInfoLookup,
-                new ValidationConfiguration.Builder()
-                        .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
-                        .build(),
-                archetype
-        );
-    }
-
-    /**
-     * Deprecated. Use the constructor without the jaxbContext for new implementations. Here to ease transition
-     * to the new method.
-     * @param modelInfoLookup the model info lookup to make this rule evaluator for
-     * @param jaxbContext the jaxb context, use for queries. If null, will use RMPahtQuery instead
-     * @param archetype the archetype to evaluate rules for
-     * @deprecated Use {@link #RuleEvaluation(ModelInfoLookup, ValidationConfiguration, Archetype)} instead.
-     */
-    @Deprecated
-    public RuleEvaluation(ModelInfoLookup modelInfoLookup, JAXBContext jaxbContext, Archetype archetype) {
-        this(
-                modelInfoLookup,
-                new ValidationConfiguration.Builder()
-                        .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
-                        .build(),
-                jaxbContext,
-                archetype
-        );
-    }
-
     private RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, JAXBContext jaxbContext, Archetype archetype) {
         this.jaxbContext = jaxbContext;
         this.modelInfoLookup = modelInfoLookup;

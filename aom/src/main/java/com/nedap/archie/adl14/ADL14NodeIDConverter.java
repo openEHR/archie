@@ -15,7 +15,6 @@ import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rules.*;
 
 import java.net.URI;
@@ -47,14 +46,6 @@ public class ADL14NodeIDConverter {
     private final Map<String, CreatedCode> createdCodes = new LinkedHashMap<>();
     private final Map<String, ValueSet> createdValueSets = new LinkedHashMap<>();
     private final Map<String, String> newCodeToOldCodeMap = new LinkedHashMap<>();
-
-    /**
-     * @deprecated Use {@link #ADL14NodeIDConverter(MetaModelProvider, Archetype, Archetype, ADL14ConversionConfiguration, ADL2ConversionLog, ADL2ConversionResult)} instead.
-     */
-    @Deprecated
-    public ADL14NodeIDConverter(MetaModels metaModels, Archetype archetype, Archetype flatParentArchetype, ADL14ConversionConfiguration configuration, ADL2ConversionLog oldLog, ADL2ConversionResult conversionResult) {
-        this((MetaModelProvider) metaModels, archetype, flatParentArchetype, configuration, oldLog, conversionResult);
-    }
 
     public ADL14NodeIDConverter(MetaModelProvider metaModelProvider, Archetype archetype, Archetype flatParentArchetype, ADL14ConversionConfiguration configuration, ADL2ConversionLog oldLog, ADL2ConversionResult conversionResult) {
         this.metaModelProvider = metaModelProvider;

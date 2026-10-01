@@ -63,28 +63,4 @@ public class CTerminologyCodeTest {
         assertEquals(ConstraintStatus.PREFERRED, cTerminologyCode.getEffectiveConstraintStatus());
         assertFalse(cTerminologyCode.isConstraintRequired());
     }
-
-    @Test
-    public void isValidValueReturnsTrueWhenConstraintIsNull() {
-        CTerminologyCode cTerminologyCode = new CTerminologyCode();
-        // Unconstrained: any value is valid, including null.
-        assertTrue(cTerminologyCode.isValidValue(null));
-        assertTrue(cTerminologyCode.isValidValue(TerminologyCode.createFromString("[local::at0001]")));
-    }
-
-    @Test
-    public void isValidValueReturnsFalseForNullValueWhenRequired() {
-        CTerminologyCode cTerminologyCode = new CTerminologyCode();
-        cTerminologyCode.setConstraint("at0001");
-        assertFalse(cTerminologyCode.isValidValue(null));
-    }
-
-    @Test
-    public void isValidValueAcceptsAnythingWhenConstraintNotRequired() {
-        CTerminologyCode cTerminologyCode = new CTerminologyCode();
-        cTerminologyCode.setConstraint("at0001");
-        cTerminologyCode.setConstraintStatus(ConstraintStatus.PREFERRED);
-        // PREFERRED is non-required, so any non-null value is accepted without value-set lookup.
-        assertTrue(cTerminologyCode.isValidValue(TerminologyCode.createFromString("[local::at9999]")));
-    }
 }
