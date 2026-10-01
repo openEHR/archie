@@ -25,7 +25,6 @@ bmm_version = <"2.0">
 rm_publisher = <"openehr">
 schema_name = <"ehr_extract">
 rm_release = <"9.9.9">
-model_name = <"EHR_EXTRACT">
 
 ------------------------------------------------------
 -- schema documentation

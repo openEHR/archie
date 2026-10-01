@@ -1,8 +1,11 @@
 package org.openehr.bmm.v2.validation.validators;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.openehr.bmm.persistence.validation.BmmMessageIds;
+import org.openehr.bmm.v2.persistence.PBmmPackage;
+import org.openehr.bmm.v2.persistence.PBmmPackageContainer;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmValidation;
@@ -22,6 +25,18 @@ public class BasicSchemaValidations implements BmmValidation {
         if (!BmmDefinitions.isValidStandardVersion(schema.getRmRelease())) {
             logger.addError(BmmMessageIds.EC_RM_RELEASE_INVALID, schema.getSchemaId(), schema.getRmRelease());
         }
+
+        //check archetype parent class in list of class names
+        if (schema.getArchetypeParentClass() != null && schema.getClassDefinition(schema.getArchetypeParentClass()) ==  null) {
+            logger.addError(BmmMessageIds.EC_ARCHETYPE_PARENT_CLASS_UNDEFINED, schema.getSchemaId(), schema.getArchetypeParentClass());
+        }
+
+        //check that all models refer to declared packages
+        schema.getArchetypeRmClosurePackages().forEach(closurePackage -> {
+            if(!hasCanonicalPackagePath(validationResult, schema, closurePackage)) {
+                logger.addError(BmmMessageIds.ec_BMM_MDLPK, schema.getSchemaId(), closurePackage);
+            }
+        });
 
         Map<String, String> packageClassList = new HashMap<>();
 
@@ -47,5 +62,31 @@ public class BasicSchemaValidations implements BmmValidation {
                 classNameList.add(className);
             }
         });
+    }
+
+    public boolean hasCanonicalPackagePath(BmmValidationResult validationResult, PBmmSchema schema, String aPath) {
+
+        if(StringUtils.isEmpty(aPath)) {
+            return false;
+        } else {
+            String[] packageNames = aPath.toUpperCase().split("\\" + BmmDefinitions.PACKAGE_NAME_DELIMITER);
+
+            //fake a PBmmPackageContgainer because the canonical packages doesn't have one
+            //maybe we should add it instead to the validationResult instead of a map?
+            PBmmPackageContainer currentPackage = new PBmmPackageContainer() {
+                @Override
+                public Map<String, PBmmPackage> getPackages() {
+                    return validationResult.getCanonicalPackages();
+                }
+            };
+
+            for(String packageName:packageNames) {
+                currentPackage = currentPackage.getPackages().get(packageName);
+                if(currentPackage == null) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

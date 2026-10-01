@@ -22,6 +22,12 @@ public class BasicSchemaValidationsTest extends AbstractSchemaValidationsTest {
     }
 
     @Test
+    public void archetypeParentClassNotDefined() throws Exception {
+        BmmValidationResult schema = parseModifyThenConvert("valid.bmm", (s) -> s.setArchetypeParentClass("unknownClass"));
+        assertEquals(Lists.newArrayList(BmmMessageIds.EC_ARCHETYPE_PARENT_CLASS_UNDEFINED), schema.getLogger().getErrorCodes());
+    }
+
+    @Test
     public void rmReleaseInvalid() throws Exception {
         BmmValidationResult schema = parseModifyThenConvert("valid.bmm", (s) -> s.setRmRelease("not_a_version"));
         assertEquals(Lists.newArrayList(BmmMessageIds.EC_RM_RELEASE_INVALID), schema.getLogger().getErrorCodes());
