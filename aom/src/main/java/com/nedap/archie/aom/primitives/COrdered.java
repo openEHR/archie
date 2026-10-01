@@ -26,20 +26,6 @@ public abstract class COrdered<T> extends CPrimitiveObject<List<Interval<T>>, T>
     public abstract void addConstraint(Interval<T> constraint);
 
     @Override
-    @Deprecated
-    public boolean isValidValue(T value) {
-        if(getConstraint().isEmpty()) {
-            return true;
-        }
-        for(Interval<T> constraint:getConstraint()) {
-            if(constraint.has(value)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
     public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
         ConformanceCheckResult superResult = super.cConformsTo(other, rmTypesConformant);
         if (!superResult.doesConform()) {

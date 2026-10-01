@@ -1,7 +1,6 @@
 package com.nedap.archie.json;
 
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.json.JacksonTestMappers.JsonMapper;
 import com.nedap.archie.json.JacksonTestMappers.JsonMapperFactory;
@@ -20,6 +19,7 @@ import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import com.nedap.archie.xml.JAXBUtil;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -47,7 +47,7 @@ public class JacksonRMRoundTripTest {
     @BeforeEach
     public void setup() {
         testUtil = new TestUtil();
-        parser = new ADLParser(new RMConstraintImposer());
+        parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
     }
 
     @ParameterizedTest

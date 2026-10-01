@@ -69,6 +69,7 @@ public class TerminologyCodeConstraintsTest {
     @Test
     public void noConstraint() {
         CTerminologyCode code = new CTerminologyCode();
+        assertTrue(primitiveObjectConstraintHelper.isValidValue(code, null));
         assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at23]")));
     }
 
@@ -77,6 +78,7 @@ public class TerminologyCodeConstraintsTest {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
         code.setConstraint("ac12");
+        assertFalse(primitiveObjectConstraintHelper.isValidValue(code, null));
         assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at23]")));
         assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at24]")));
         assertFalse(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at25]")));

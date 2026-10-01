@@ -46,24 +46,8 @@ public class Flattener implements IAttributeFlattenerSupport {
         this(repository, new SimpleMetaModelProvider(models, null));
     }
 
-    /**
-     * @deprecated Use {@link #Flattener(ArchetypeRepository, MetaModelProvider)} instead.
-     */
-    @Deprecated
-    public Flattener(ArchetypeRepository repository, MetaModels models) {
-        this(repository, (MetaModelProvider) models);
-    }
-
     public Flattener(ArchetypeRepository repository, MetaModelProvider metaModelProvider) {
         this(repository, metaModelProvider, FlattenerConfiguration.forFlattened());
-    }
-
-    /**
-     * @deprecated Use {@link #Flattener(ArchetypeRepository, MetaModelProvider, FlattenerConfiguration)} instead.
-     */
-    @Deprecated
-    public Flattener(ArchetypeRepository repository, MetaModels models, FlattenerConfiguration configuration) {
-        this(repository, (MetaModelProvider) models, configuration);
     }
 
     public Flattener(ArchetypeRepository repository, MetaModelProvider metaModelProvider, FlattenerConfiguration configuration) {
@@ -464,16 +448,6 @@ public class Flattener implements IAttributeFlattenerSupport {
     @Override
     public MetaModel getMetaModel() {
         return metaModel;
-    }
-
-    @Override
-    @Deprecated
-    public MetaModels getMetaModels() {
-        if(metaModelProvider instanceof MetaModels) {
-            return (MetaModels) metaModelProvider;
-        } else {
-            throw new IllegalStateException("MetaModels not available");
-        }
     }
 
     @Override

@@ -154,35 +154,6 @@ public class RmObjectValidatorTest {
     }
 
     @Test
-    @Deprecated
-    public void skipInvariantValidationOld(){
-        //create element with every required field filled, that does not pass invariant
-        Element element = new Element();
-        element.setArchetypeNodeId("id5");
-        element.setName(new DvText("name"));
-
-        RMObjectValidator oldValidator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), emptyRepo);
-        List<RMObjectValidationMessage> messages = oldValidator.validate(element);
-        assertEquals(1, messages.size(), messages.toString());
-
-        oldValidator.setRunInvariantChecks(false);
-        messages = oldValidator.validate(element);
-        assertEquals(0, messages.size(), messages.toString());
-
-    }
-
-    @Test
-    @Deprecated
-    public void skipInvariantValidationDouble(){
-        RMObjectValidator validator = new RMObjectValidator(ArchieRMInfoLookup.getInstance(), emptyRepo,
-                new ValidationConfiguration.Builder().build());
-
-        IllegalStateException ex = assertThrows(IllegalStateException.class, () -> validator.setRunInvariantChecks(true));
-        assertEquals("validateInvariants is already set via validationConfiguration, cannot set it again via setRunInvariantChecks", ex.getMessage());
-    }
-
-
-    @Test
     public void testNestedEmptyElementWithoutArchetype() {
         Element element = new Element();
 
