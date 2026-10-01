@@ -162,29 +162,6 @@ public class CTerminologyCodeADL14 extends CPrimitiveObject<List<String>, Termin
         return result;
     }
 
-    private List<String> getOpenEHRValueSetExpanded() {
-        List<String> atCodes = getValueSetExpanded();
-        ArchetypeTerminology terminology = getTerminology();
-        OpenEHRTerminologyAccess terminologyAccess = OpenEHRTerminologyAccess.getInstance();
-        List<String> result = new ArrayList<>();
-
-        if(terminology == null) {
-            return result;
-        }
-
-        for(String atCode : atCodes) {
-            URI termBinding = terminology.getTermBinding("openehr", atCode);
-            if (termBinding != null) {
-                String code = terminologyAccess.parseTerminologyURI(termBinding.toString());
-                if (code != null) {
-                    result.add(code);
-                }
-            }
-        }
-
-        return result;
-    }
-
     @Override
     public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
         ConformanceCheckResult superResult = super.cConformsTo(other, rmTypesConformant);
