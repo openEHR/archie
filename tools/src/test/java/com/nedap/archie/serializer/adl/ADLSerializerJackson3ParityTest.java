@@ -1,7 +1,7 @@
 package com.nedap.archie.serializer.adl;
 
-import com.nedap.archie.json3.ArchieRMObjectMapperProvider3;
-import com.nedap.archie.rminfo.RMObjectMapperProvider3;
+import com.nedap.archie.json.ArchieRMObjectMapperProvider;
+import com.nedap.archie.rminfo.RMObjectMapperProvider;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -49,17 +49,17 @@ public class ADLSerializerJackson3ParityTest {
                 jackson3Output);
     }
 
-    private static RMObjectMapperProvider3 providerFor(AdlSerializationTestUtil.MapperKind mapperKind) {
+    private static RMObjectMapperProvider providerFor(AdlSerializationTestUtil.MapperKind mapperKind) {
         switch (mapperKind) {
             case NONE:
                 return null;
             case JSON:
-                return new ArchieRMObjectMapperProvider3();
+                return new ArchieRMObjectMapperProvider();
             case ODIN:
-                return new ArchieRMObjectMapperProvider3() {
+                return new ArchieRMObjectMapperProvider() {
                     // Without a JSON mapper, default values go through the output ODIN mapper instead.
                     @Override
-                    public ObjectMapper getJsonObjectMapper() {
+                    public ObjectMapper getJsonObjectMapper3() {
                         return null;
                     }
                 };

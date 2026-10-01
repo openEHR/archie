@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.openehr.bmm.core.BmmModel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MetaModelTest {
 
@@ -61,5 +61,24 @@ public class MetaModelTest {
         assertEquals(1, provider.inputCalls);
         assertEquals(1, provider.outputCalls);
         assertEquals(1, provider.jsonCalls);
+    }
+
+    @Test
+    public void jackson3MappersThrowWhenProviderDoesNotSupportJackson3() {
+        MetaModel metaModel = new MetaModel(null, new BmmModel(), null, new CountingProvider());
+
+        UnsupportedOperationException e = assertThrows(UnsupportedOperationException.class, metaModel::getJsonObjectMapper3);
+        assertTrue(e.getMessage().contains("getJsonObjectMapper3()"));
+        assertThrows(UnsupportedOperationException.class, metaModel::getOdinInputObjectMapper3);
+        assertThrows(UnsupportedOperationException.class, metaModel::getOdinOutputObjectMapper3);
+    }
+
+    @Test
+    public void jackson3MappersAreNullWithoutProvider() {
+        MetaModel metaModel = new MetaModel(null, new BmmModel());
+
+        assertNull(metaModel.getJsonObjectMapper3());
+        assertNull(metaModel.getOdinInputObjectMapper3());
+        assertNull(metaModel.getOdinOutputObjectMapper3());
     }
 }

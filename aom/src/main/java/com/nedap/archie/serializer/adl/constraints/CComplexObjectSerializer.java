@@ -8,7 +8,6 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
-import com.nedap.archie.rminfo.RMObjectMapperProvider3;
 import org.openehr.odin.jackson3.ODINMapper3;
 import org.openehr.odin.jackson3.ODINPrettyPrinter3;
 import tools.jackson.core.JacksonException;
@@ -72,7 +71,7 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
         if(cobj.getDefaultValue() != null) {
             if(cobj.getDefaultValue() instanceof DefaultValueContainer) {
                 serializeDefaultValueContainer((DefaultValueContainer) cobj.getDefaultValue());
-            } else if (serializer.getRmObjectMapperProvider3() != null) {
+            } else if (serializer.usesJackson3()) {
                 buildDefaultValueJackson3(cobj);
             } else {
                 RMObjectMapperProvider rmObjectMapperProvider = serializer.getRmObjectMapperProvider();
@@ -111,18 +110,19 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
     }
 
     private void buildDefaultValueJackson3(T cobj) {
-        RMObjectMapperProvider3 provider = serializer.getRmObjectMapperProvider3();
-        if (provider.getOutputOdinObjectMapper() == null && provider.getJsonObjectMapper() == null) {
+        RMObjectMapperProvider provider = serializer.getRmObjectMapperProvider();
+        if (provider == null || (provider.getOutputOdinObjectMapper3() == null && provider.getJsonObjectMapper3() == null)) {
+            //fallback: serialize generic ODIN. This will likely be non-standard!
             builder.append("_default = ").newIndentedLine().odin(cobj.getDefaultValue()).newUnindentedLine();
             return;
         }
         try {
-            if (provider.getJsonObjectMapper() != null) {
-                String content = provider.getJsonObjectMapper().writerFor(OpenEHRBase.class)
+            if (provider.getJsonObjectMapper3() != null) {
+                String content = provider.getJsonObjectMapper3().writerFor(OpenEHRBase.class)
                         .writeValueAsString(cobj.getDefaultValue());
                 serializeDefaultValueJson(content);
             } else {
-                tools.jackson.databind.ObjectMapper mapper = provider.getOutputOdinObjectMapper();
+                tools.jackson.databind.ObjectMapper mapper = provider.getOutputOdinObjectMapper3();
                 tools.jackson.databind.ObjectWriter writer = mapper.writerFor(OpenEHRBase.class);
                 if (mapper instanceof ODINMapper3) {
                     writer = writer.with(new ODINPrettyPrinter3(builder.getIndentDepth()));
