@@ -12,8 +12,6 @@ public class RMObjectValidationMessage {
 
     private String archetypePath;
     private String path;
-    @Deprecated
-    private String humanReadableArchetypePath;
     private String message;
     private String archetypeId;
 
@@ -28,7 +26,6 @@ public class RMObjectValidationMessage {
         this(actualPath,
                 getArchetypeId(constraint),
                 constraint == null ? null : constraint.getPath(),
-                constraint == null ? null : constraint.getLogicalPath(),
                 message,
                 type);
     }
@@ -36,31 +33,11 @@ public class RMObjectValidationMessage {
 
     // Constructors with attribute assignment
     public RMObjectValidationMessage(String path, String archetypeId, String archetypePath, String message, RMObjectValidationMessageType type) {
-        this(path, archetypeId, archetypePath, null, message, type);
-    }
-
-    /**
-     * @deprecated humanPath will be removed. Use {@link #RMObjectValidationMessage(String, String, String, String,
-     * RMObjectValidationMessageType)} instead.
-     */
-    @Deprecated
-    public RMObjectValidationMessage(String path, String archetypeId, String archetypePath, String humanPath, String message, RMObjectValidationMessageType type) {
         this.path = path;
         this.archetypeId = archetypeId;
         this.archetypePath = archetypePath;
-        this.humanReadableArchetypePath = humanPath;
         this.message = message;
         this.type = type;
-    }
-
-    /**
-     * @deprecated The RMObjectValidationException class will be removed.
-     */
-    @Deprecated
-    public RMObjectValidationMessage(RMObjectValidationException e) {
-        this.path = e.getPath();
-        this.humanReadableArchetypePath = e.getHumanPath();
-        this.message = e.getMessage();
     }
 
     /**
@@ -103,16 +80,6 @@ public class RMObjectValidationMessage {
     }
 
     /**
-     * Get the human readable path in the archetype that this validation refers to - used to retrieve the constraint that was used to generate this error
-     * @return the human readablepath of the constraint that was used to generate this error in the archetype
-     * @deprecated This functionality will be removed.
-     */
-    @Deprecated
-    public String getHumanReadableArchetypePath() {
-        return humanReadableArchetypePath;
-    }
-
-    /**
      * Gets the validation message, which is a human readable string indicating the cause of this validation message.
      * @return the validation message
      */
@@ -121,7 +88,7 @@ public class RMObjectValidationMessage {
     }
 
     public String toString() {
-        return RMObjectValidationMessageIds.rm_VALIDATION_MESSAGE_TO_STRING.getMessage(humanReadableArchetypePath == null ? path : humanReadableArchetypePath, path, message);
+        return RMObjectValidationMessageIds.rm_VALIDATION_MESSAGE_TO_STRING.getMessage(archetypePath == null ? path : archetypePath, path, message);
     }
 
     private static String getArchetypeId(ArchetypeConstraint constraint) {
@@ -142,7 +109,6 @@ public class RMObjectValidationMessage {
         RMObjectValidationMessage that = (RMObjectValidationMessage) o;
         return Objects.equals(archetypePath, that.archetypePath) &&
                 Objects.equals(path, that.path) &&
-                Objects.equals(humanReadableArchetypePath, that.humanReadableArchetypePath) &&
                 Objects.equals(message, that.message) &&
                 Objects.equals(archetypeId, that.archetypeId) &&
                 type == that.type;
@@ -150,6 +116,6 @@ public class RMObjectValidationMessage {
 
     @Override
     public int hashCode() {
-        return Objects.hash(archetypePath, path, humanReadableArchetypePath, message, archetypeId, type);
+        return Objects.hash(archetypePath, path, message, archetypeId, type);
     }
 }

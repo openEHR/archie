@@ -29,14 +29,6 @@ public class AssertionsFixer {
     private ModelInfoLookup modelInfoLookup;
     private final AttributeAccessor attributeAccessor;
 
-    /**
-     * @deprecated Not intended for direct usage. Use RuleEvaluation instead.
-     */
-    @Deprecated
-    public AssertionsFixer(RuleEvaluation<?> evaluation, RMObjectCreator creator) {
-        this(evaluation);
-    }
-
     AssertionsFixer(RuleEvaluation<?> evaluation) {
         this.ruleEvaluation = evaluation;
         this.modelInfoLookup = ruleEvaluation.getModelInfoLookup();

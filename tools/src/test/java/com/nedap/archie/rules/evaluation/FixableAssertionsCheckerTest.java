@@ -40,13 +40,11 @@ public class FixableAssertionsCheckerTest {
         testUtil = new TestUtil();
         rmObjectCreator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
         parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
-        ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
     }
 
     @AfterEach
     public void tearDown() throws Exception {
-        ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage(null);
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage(null);
     }
 
