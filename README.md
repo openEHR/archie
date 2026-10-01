@@ -252,49 +252,6 @@ Archetype models can be serialized to ADL thanks to the serializer written by @m
 String serialized = ADLArchetypeSerializer.serialize(archetype);
 ```
 
-For Jackson 3, use the explicit method below. It uses Jackson 3 for ADL sections,
-RM default values, and template overlays. The existing Jackson 2 methods remain available.
-
-```java
-import com.nedap.archie.json3.ArchieRMObjectMapperProvider3;
-import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
-
-String serialized = ADLArchetypeSerializer.serializeWithJackson3(
-        archetype, null, new ArchieRMObjectMapperProvider3());
-```
-
-The second argument supplies flat parent archetypes. Use `null` if these are not required.
-For a custom RM implementation, supply an `RMObjectMapperProvider3`.
-Its methods return `tools.jackson.databind.ObjectMapper`.
-For JSON input and output, use `com.nedap.archie.json3.JacksonUtil3.getObjectMapper()`.
-To configure a Jackson 3 mapper builder, use `JacksonUtil3.configureBuilder(builder)` before `builder.build()`.
-
-For ADL input, use `ADLParser3` with a `MetaModelProvider3`:
-
-```java
-import com.nedap.archie.adlparser.ADLParser3;
-import com.nedap.archie.json3.ArchieRMObjectMapperProvider3;
-import com.nedap.archie.rminfo.SimpleMetaModelProvider3;
-
-var rmMappers = new ArchieRMObjectMapperProvider3();
-var models = new SimpleMetaModelProvider3(existingMetaModelProvider, rmMappers);
-Archetype parsed = new ADLParser3(models).parse(charStream);
-String serialized = ADLArchetypeSerializer.serializeWithJackson3(parsed, null, rmMappers);
-```
-
-`SimpleMetaModelProvider3` reuses the existing model lookup.
-It does not call the Jackson 2 mapper getters. It supplies the same Jackson 3 mapper
-provider for all selected models. If models need different mappers, implement
-`MetaModelProvider3.getMetaModel(publisher, rmPackage, rmRelease)` and return a
-`MetaModel3` with the applicable `RMObjectMapperProvider3`.
-
-`ADLParser3` supports `String`, `InputStream`, and ANTLR `CharStream` input.
-It uses Jackson 3 for descriptions, language, terminology, annotations, RM overlays,
-component terminologies, and JSON or ODIN default values. Without an RM mapper,
-it preserves default values as `DefaultValueContainer` objects, as the existing parser does.
-The Jackson 2 parser and serializer remain available. Both dependency sets must remain
-on the classpath; these APIs support their use in the same application.
-
 This can be done on all kinds of Archetypes, including OperationalTemplates
 
 ### JSON and XML (de)serialization
@@ -318,6 +275,20 @@ String xml = writer.toString();
 
 Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller();
 Archetype parsedArchetype = (Archetype) unmarshaller.unmarshal(new StringReader(xml));
+```
+
+### Jackson 3
+
+The parsing, serializing and JSON features above can also be used with Jackson 3:
+
+```java
+ADLParser3 parser = new ADLParser3();
+Archetype archetype = parser.parse(adlFile);
+
+String serialized = ADLArchetypeSerializer.serializeWithJackson3(archetype, null, new ArchieRMObjectMapperProvider());
+
+String json = JacksonUtil3.getObjectMapper().writeValueAsString(archetype);
+Archetype parsedArchetype = JacksonUtil3.getObjectMapper().readValue(json, Archetype.class);
 ```
 
 ### ODIN

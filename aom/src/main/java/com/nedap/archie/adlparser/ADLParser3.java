@@ -10,8 +10,8 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
-import com.nedap.archie.rminfo.MetaModel3;
-import com.nedap.archie.rminfo.MetaModelProvider3;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -30,7 +30,7 @@ import java.nio.charset.Charset;
  */
 public class ADLParser3 {
 
-    private final MetaModelProvider3 metaModelProvider;
+    private final MetaModelProvider metaModelProvider;
     private ANTLRParserErrors errors;
 
     private Lexer lexer;
@@ -49,7 +49,7 @@ public class ADLParser3 {
         this(null);
     }
 
-    public ADLParser3(MetaModelProvider3 metaModelProvider) {
+    public ADLParser3(MetaModelProvider metaModelProvider) {
         this.metaModelProvider = metaModelProvider;
     }
 
@@ -83,7 +83,7 @@ public class ADLParser3 {
             ArchetypeParsePostProcessor.fixArchetype(result);
 
             if (metaModelProvider != null) {
-                MetaModel3 metaModel = metaModelProvider.getMetaModel(result);
+                MetaModel metaModel = metaModelProvider.getMetaModel(result);
                 if (metaModel.getBmmModel() != null) {
                     ModelConstraintImposer imposer = new BMMConstraintImposer(metaModel.getBmmModel() );
                     imposer.setSingleOrMultiple(result.getDefinition());
