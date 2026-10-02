@@ -171,61 +171,61 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         }
         //now guaranteed to be the same class
         CTerminologyCode otherCode = (CTerminologyCode) other;
-        List<String> valueSet = getValueSetExpanded();
-        List<String> otherValueSet = otherCode.getValueSetExpanded();
 
-        // A null constraint means unconstrained — an unconstrained parent accepts anything,
-        // and an unconstrained child trivially conforms to any parent.
-        if(otherCode.constraint == null) {
-            return ConformanceCheckResult.conforms();
-        }
-        if(constraint == null) {
+        // An unconstrained parent accepts anything
+        if(otherCode.isAnyAllowed()) {
             return ConformanceCheckResult.conforms();
         }
 
-        if(!getEffectiveConstraintStatus().cConformsTo(otherCode.getEffectiveConstraintStatus()) ) {
-            //PROBLEM: if this child CTerminologyCode has no constraint status, it should override its parent.
-            //it does not here!
+        // The constraint status can only be narrowed: example -> preferred -> extensible -> required
+        if(!getEffectiveConstraintStatus().cConformsTo(otherCode.getEffectiveConstraintStatus())) {
             return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminology code constraint status {0} is wider more than parent contraint status {1}", getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus()));
         }
+
+        // If the parent constraint status is not required, the child automatically conforms
+        if(!otherCode.isConstraintRequired()) {
+            return ConformanceCheckResult.conforms();
+        }
+
+        // From here on, both parent and child constraint status are required
         String thisConstraint = constraint;
         String otherConstraint = otherCode.constraint;
-        Archetype archetype = this.getArchetype();
         if(AOMUtils.isValidValueSetCode(thisConstraint) && AOMUtils.isValidValueSetCode(otherConstraint)) {
+            List<String> otherValueSet = otherCode.getValueSetExpanded();
             if (otherValueSet.isEmpty()) {
+                // an empty parent value set means there is no value set constraint, so the child conforms
                 return ConformanceCheckResult.conforms();
             }
-
-            if(otherCode.isConstraintRequired()) {
-                //if required, codes can be:
-                // - reused directly
-                // - specialized
-                //this includes the value set codes
-                if (!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
-                    return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}", thisConstraint, otherConstraint));
+            //codes can be:
+            // - reused directly
+            // - specialized
+            //this includes the value set codes
+            if (!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}", thisConstraint, otherConstraint));
+            }
+            // deliberately more lenient than the specification, which requires each value to be in the parent
+            // value set: specializations of the parent values are accepted as well
+            for (String value : getValueSetExpanded()) {
+                if( !AOMUtils.valueSetContainsCodeOrParent(otherValueSet, value)) {
+                    return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} is not contained in {1}, or a direct specialization of one of its values", value, otherValueSet));
                 }
-                for (String value : valueSet) {
-                    if( !AOMUtils.valueSetContainsCodeOrParent(otherValueSet, value)) {
-                        return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} is not contained in {1}, or a direct specialization of one of its values", value, otherValueSet));
-                    }
-                }
-            } else {
-                //if not required, everything goes
-                return ConformanceCheckResult.conforms();
-//                for (String value : valueSet) {
-//                    if(valueSetContainsCodeOrSpecialization(otherValueSet, value) ||
-//                            AOMUtils.getSpecialisationStatusFromCode(value, archetypeSpecialisationDepth) == CodeRedefinitionStatus.ADDED) {
-//                        return false;
-//                    }
-//                }
             }
             return ConformanceCheckResult.conforms();
         } else {
+            // an unconstrained child does not conform, because it is wider than the parent constraint
             if(!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
                 return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} does not conform to parent constraint with value code {1}", thisConstraint, otherConstraint));
             }
             return ConformanceCheckResult.conforms();
         }
+    }
+
+    /**
+     * @return true if this constraint does not constrain the code, so any code is allowed
+     */
+    @JsonIgnore
+    public boolean isAnyAllowed() {
+        return constraint == null || constraint.isEmpty();
     }
 
     @Override

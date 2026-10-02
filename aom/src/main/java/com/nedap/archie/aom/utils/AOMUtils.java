@@ -46,7 +46,7 @@ public class AOMUtils {
     }
 
     public static boolean isValidValueSetCode(String code) {
-        return isValueSetCode(code) && isValidCode(code);
+        return isValidCode(code) && isValueSetCode(code);
     }
 
     public static boolean isValidCode(String code) {
