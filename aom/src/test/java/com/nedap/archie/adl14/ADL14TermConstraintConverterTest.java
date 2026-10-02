@@ -5,8 +5,7 @@ import com.nedap.archie.aom.CAttributeTuple;
 import com.nedap.archie.aom.CPrimitiveTuple;
 import com.nedap.archie.aom.SiblingOrder;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.aom.primitives.CTerminologyCodeADL14;
-import com.nedap.archie.aom.primitives.ConstraintStatus;
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,6 @@ public class ADL14TermConstraintConverterTest {
         source.setEnumeratedTypeConstraint(Boolean.TRUE);
         TerminologyCode assumed = TerminologyCode.createFromString("[local::at0001]");
         source.setAssumedValue(assumed);
-        source.setConstraintStatus(ConstraintStatus.PREFERRED);
         source.addConstraint("at0042");
 
         CTerminologyCode result = ADL14TermConstraintConverter.toAdl2(source);
@@ -42,7 +40,7 @@ public class ADL14TermConstraintConverterTest {
         assertSame(siblingOrder, result.getSiblingOrder());
         assertEquals(Boolean.TRUE, result.getEnumeratedTypeConstraint());
         assertSame(assumed, result.getAssumedValue());
-        assertEquals(ConstraintStatus.PREFERRED, result.getConstraintStatus());
+        assertNull(result.getConstraintStatus());
         assertEquals("at0042", result.getConstraint());
     }
 

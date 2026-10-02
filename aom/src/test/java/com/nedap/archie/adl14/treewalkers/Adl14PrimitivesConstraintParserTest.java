@@ -3,7 +3,7 @@ package com.nedap.archie.adl14.treewalkers;
 import com.nedap.archie.adlparser.antlr.Adl14Lexer;
 import com.nedap.archie.adlparser.antlr.Adl14Parser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
-import com.nedap.archie.aom.primitives.CTerminologyCodeADL14;
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.jupiter.api.Test;
