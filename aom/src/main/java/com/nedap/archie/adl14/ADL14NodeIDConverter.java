@@ -34,7 +34,6 @@ public class ADL14NodeIDConverter {
     private final ADL14TermConstraintConverter termConstraintConverter;
     private final PreviousConversionApplier previousConversionApplier;
     private final ADL2ConversionResult conversionResult;
-    private final MetaModelProvider metaModelProvider;
     private final MetaModel metaModel;
 
     private IdCodeGenerator idCodeGenerator;
@@ -48,7 +47,6 @@ public class ADL14NodeIDConverter {
     private final Map<String, String> newCodeToOldCodeMap = new LinkedHashMap<>();
 
     public ADL14NodeIDConverter(MetaModelProvider metaModelProvider, Archetype archetype, Archetype flatParentArchetype, ADL14ConversionConfiguration configuration, ADL2ConversionLog oldLog, ADL2ConversionResult conversionResult) {
-        this.metaModelProvider = metaModelProvider;
         this.metaModel = metaModelProvider.getMetaModel(archetype);
         this.conversionConfiguration = configuration;
         this.archetype = archetype;
@@ -64,8 +62,6 @@ public class ADL14NodeIDConverter {
     }
 
     public ADL2ConversionLog convert() {
-        metaModelProvider.getMetaModel(archetype); // For backwards compatibility
-
         correctItemsCardinality(archetype.getDefinition());
         List<String> unnecessaryCodes = findUnnecessaryCodes(archetype.getDefinition(),
                 archetype.getTerminology().getTermDefinitions().get(archetype.getOriginalLanguage().getCodeString()));
