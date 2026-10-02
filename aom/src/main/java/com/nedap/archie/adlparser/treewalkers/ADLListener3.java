@@ -1,7 +1,5 @@
 package com.nedap.archie.adlparser.treewalkers;
 
-import tools.jackson.databind.type.MapType;
-import tools.jackson.databind.type.TypeFactory;
 import com.nedap.archie.adlparser.antlr.AdlBaseListener;
 import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
@@ -15,6 +13,8 @@ import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter3;
 import com.nedap.archie.serializer.odin.OdinObjectParser3;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import tools.jackson.databind.type.MapType;
+import tools.jackson.databind.type.TypeFactory;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -107,9 +107,6 @@ public class ADLListener3 extends AdlBaseListener {
         if(hrId != null) {
             ArchetypeHRID archetypeID = new ArchetypeHRID(hrId.getText());
             archetype.setArchetypeId(archetypeID);
-            if(metaModelProvider != null) {
-                metaModelProvider.getMetaModel(archetype);
-            }
         }
     }
 

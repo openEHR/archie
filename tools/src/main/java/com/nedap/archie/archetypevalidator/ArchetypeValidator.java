@@ -10,7 +10,10 @@ import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.OverridingInMemFullArchetypeRepository;
-import com.nedap.archie.rminfo.*;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
+import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 import org.openehr.utils.message.I18n;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,7 +133,6 @@ public class ArchetypeValidator {
                 return infiniteLoopResult;
             }
             ValidationResult parentValidationResult = repository.compileAndRetrieveValidationResult(archetype.getParentArchetypeId(), this);
-            metaModelProvider.getMetaModel(archetype); // For backwards compatibility
             if(parentValidationResult != null) {
                 if(parentValidationResult.passes()) {
                     flatParent = parentValidationResult.getFlattened();
@@ -166,7 +168,6 @@ public class ArchetypeValidator {
             for(TemplateOverlay overlay:((Template) archetype).getTemplateOverlays()) {
                 //validate the overlays first, but make sure to do that only once (so don't call this same method!)
                 extraRepository.compileAndRetrieveValidationResult(overlay.getArchetypeId().toString(), this);
-                metaModelProvider.getMetaModel(archetype); // For backwards compatibility
             }
         }
 
