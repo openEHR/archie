@@ -10,7 +10,7 @@ import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.CPrimitiveTuple;
-import com.nedap.archie.aom.primitives.CTerminologyCodeADL14;
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;

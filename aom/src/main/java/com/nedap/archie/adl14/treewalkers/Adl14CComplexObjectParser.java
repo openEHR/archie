@@ -11,7 +11,7 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.aom.primitives.CTerminologyCodeADL14;
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
