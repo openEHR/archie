@@ -5,4 +5,10 @@ dependencies {
     api project(':utils')
     api project(':odin')
     testImplementation project(':i18n')
+
+    api(libs.jackson.annotations)
+    api(libs.jackson.databind)
+
+    implementation(libs.commons.lang3)
+    implementation(libs.guava)
 }
