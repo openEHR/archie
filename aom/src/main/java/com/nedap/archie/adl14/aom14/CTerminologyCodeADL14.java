@@ -1,11 +1,14 @@
 package com.nedap.archie.adl14.aom14;
 
+import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.base.terminology.TerminologyCode;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 
 /**
  * Terminology code constraint as parsed from ADL 1.4, which can contain multiple codes. Only used during the
@@ -43,6 +46,11 @@ public class CTerminologyCodeADL14 extends CPrimitiveObject<List<String>, Termin
 
     public void addConstraint(String constraint) {
         this.constraint.add(constraint);
+    }
+
+    @Override
+    public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
+        throw new UnsupportedOperationException("Not supported.");
     }
 
     @Override

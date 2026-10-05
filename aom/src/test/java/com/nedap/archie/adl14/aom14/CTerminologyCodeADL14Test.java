@@ -9,6 +9,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CTerminologyCodeADL14Test {
@@ -43,6 +44,13 @@ public class CTerminologyCodeADL14Test {
         TerminologyCode assumed = TerminologyCode.createFromString("[local::at0001]");
         cTerminologyCode.setAssumedValue(assumed);
         assertSame(assumed, cTerminologyCode.getAssumedValue());
+    }
+
+    @Test
+    public void cConformsToIsNotSupported() {
+        CTerminologyCodeADL14 cTerminologyCode = new CTerminologyCodeADL14();
+        assertThrows(UnsupportedOperationException.class,
+                () -> cTerminologyCode.cConformsTo(new CTerminologyCodeADL14(), (a, b) -> true));
     }
 
     @Test
