@@ -6,7 +6,6 @@ dependencies {
     api project(':aom')
     api project(':path-queries')
     api project(':utils')
-    testImplementation project(':archie-utils')
 
     api(libs.jackson.annotations)
     api(libs.jackson.databind)
@@ -16,6 +15,8 @@ dependencies {
 
     implementation(libs.commons.io)
     implementation(libs.guava)
+
+    testImplementation project(':archie-utils')
 
     testImplementation(libs.threeten.extra)
 }

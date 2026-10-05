@@ -9,6 +9,7 @@ dependencies {
     api(libs.jakarta.xml.bind.api)
 
     implementation(libs.jackson.databind)
+
     runtimeOnly(libs.jaxb.runtime)
 
     testImplementation(libs.commons.io)

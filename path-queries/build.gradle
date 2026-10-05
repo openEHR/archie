@@ -5,7 +5,8 @@ dependencies {
     api project(':grammars')
     api project(':base')
     api project(':aom') //modelInfoLookup is here and should be split and moved
-    testImplementation project(':openehr-rm')
 
     implementation(libs.guava)
+
+    testImplementation project(':openehr-rm')
 }
