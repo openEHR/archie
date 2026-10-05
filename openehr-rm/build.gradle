@@ -10,6 +10,7 @@ dependencies {
 
     api(libs.jackson.annotations)
     api(libs.jackson.databind)
+    api(libs.jackson3.databind)
     api(libs.jakarta.xml.bind.api)
     api(libs.jsr305)
 

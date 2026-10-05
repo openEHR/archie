@@ -5,6 +5,7 @@ dependencies {
     api project(':base')
 
     api(libs.jackson.databind)
+    api(libs.jackson3.databind)
 
     implementation(libs.commons.text)
 }

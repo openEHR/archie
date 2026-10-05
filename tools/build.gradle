@@ -25,5 +25,6 @@ dependencies {
     implementation(libs.zafarkhaja.semver)
 
     testImplementation(libs.commons.io)
+    testImplementation(libs.jackson3.databind)
     testImplementation(libs.reflections)
 }

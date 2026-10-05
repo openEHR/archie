@@ -54,8 +54,6 @@ subprojects {
     dependencies {
         implementation(libs.slf4j.api)
 
-        api(libs.jackson3.databind)
-
         testImplementation(libs.bundles.junit)
         testImplementation(libs.hamcrest)
         testImplementation(libs.slf4j.simple)
