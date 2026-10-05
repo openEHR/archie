@@ -2,9 +2,9 @@ description = "tools to access OpenEHR reference model metadata"
 
 dependencies {
     api project(':bmm')
-    api project(':odin')
     api project(':aom')
 
+    testImplementation project(':base')
     testImplementation project(':openehr-rm')
     testImplementation project(':test-rm')
     testImplementation project(':archie-utils')

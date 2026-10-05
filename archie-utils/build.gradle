@@ -1,14 +1,17 @@
 description = "Utils for the Archie OpenEHR library"
 
 dependencies {
-    api project(':base')
     api project(':aom')
     api project(':openehr-rm')
+    api project(':utils')
 
     api(libs.jackson.annotations)
     api(libs.jackson.databind)
     api(libs.jackson3.databind)
     api(libs.jakarta.xml.bind.api)
+
+    implementation project(':base')
+    implementation project(':odin')
 
     implementation(libs.guava)
     implementation(libs.jackson.datatype.jsr310)
