@@ -2,7 +2,6 @@ package com.nedap.archie.adl14.aom14;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.primitives.CInteger;
-import com.nedap.archie.aom.primitives.CTerminologyCodeADL14;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 

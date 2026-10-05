@@ -4,7 +4,7 @@ import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.aom.primitives.CTerminologyCodeADL14;
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
@@ -213,7 +213,6 @@ public class ADL14TermConstraintConverter {
         result.setEnumeratedTypeConstraint(source.getEnumeratedTypeConstraint());
         result.setAssumedValue(source.getAssumedValue());
         result.setDefaultValue(source.getDefaultValue());
-        result.setConstraintStatus(source.getConstraintStatus());
         // Copy the tuple back-pointer too: when this CTerminologyCodeADL14 sits inside a CPrimitiveTuple,
         // its socParent links back to that tuple. The caller swaps it in via members.set(index, replacement),
         // which (unlike CPrimitiveTuple.addMember) does not set socParent, so we copy it here.

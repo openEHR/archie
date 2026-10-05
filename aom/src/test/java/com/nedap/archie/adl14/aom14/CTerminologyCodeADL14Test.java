@@ -1,16 +1,15 @@
-package com.nedap.archie.aom.primitives;
+package com.nedap.archie.adl14.aom14;
 
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CTerminologyCodeADL14Test {
@@ -48,19 +47,10 @@ public class CTerminologyCodeADL14Test {
     }
 
     @Test
-    public void constraintStatusDefaultsToRequired() {
+    public void cConformsToIsNotSupported() {
         CTerminologyCodeADL14 cTerminologyCode = new CTerminologyCodeADL14();
-        assertNull(cTerminologyCode.getConstraintStatus(), "raw status should be null until set");
-        assertEquals(ConstraintStatus.REQUIRED, cTerminologyCode.getEffectiveConstraintStatus());
-        assertTrue(cTerminologyCode.isConstraintRequired());
-    }
-
-    @Test
-    public void constraintStatusGetterSetterRoundtrip() {
-        CTerminologyCodeADL14 cTerminologyCode = new CTerminologyCodeADL14();
-        cTerminologyCode.setConstraintStatus(ConstraintStatus.EXTENSIBLE);
-        assertEquals(ConstraintStatus.EXTENSIBLE, cTerminologyCode.getEffectiveConstraintStatus());
-        assertFalse(cTerminologyCode.isConstraintRequired());
+        assertThrows(UnsupportedOperationException.class,
+                () -> cTerminologyCode.cConformsTo(new CTerminologyCodeADL14(), (a, b) -> true));
     }
 
     @Test
@@ -99,32 +89,6 @@ public class CTerminologyCodeADL14Test {
     public void getRmTypeNameForOtherAttributeFallsBackToDefault() {
         CTerminologyCodeADL14 cTerminologyCode = withParentAttribute("something_else");
         assertEquals("terminology_code", cTerminologyCode.getRmTypeName());
-    }
-
-    @Test
-    public void getValueSetExpandedCollectsAtCodes() {
-        CTerminologyCodeADL14 cTerminologyCode = new CTerminologyCodeADL14();
-        cTerminologyCode.addConstraint("at0001");
-        cTerminologyCode.addConstraint("at0002");
-        // With no archetype attached, ac-codes are not expandable, but at-codes pass through.
-        List<String> expanded = cTerminologyCode.getValueSetExpanded();
-        assertEquals(Arrays.asList("at0001", "at0002"), expanded);
-    }
-
-    @Test
-    public void getValueSetExpandedSkipsAcCodesWithoutArchetype() {
-        CTerminologyCodeADL14 cTerminologyCode = new CTerminologyCodeADL14();
-        cTerminologyCode.addConstraint("ac0001");
-        // ac-codes need a terminology to resolve, and without one they're silently skipped.
-        assertTrue(cTerminologyCode.getValueSetExpanded().isEmpty());
-    }
-
-    @Test
-    public void getTermsReturnsEmptyWhenNoArchetype() {
-        CTerminologyCodeADL14 cTerminologyCode = new CTerminologyCodeADL14();
-        cTerminologyCode.addConstraint("at0001");
-        // No archetype attached -> early return with empty list (guards against NPE in rule contexts).
-        assertTrue(cTerminologyCode.getTerms().isEmpty());
     }
 
     private CTerminologyCodeADL14 withParentAttribute(String rmAttributeName) {
