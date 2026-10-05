@@ -9,8 +9,8 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
-import com.nedap.archie.rminfo.MetaModel3;
-import com.nedap.archie.rminfo.MetaModelProvider3;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter3;
 import com.nedap.archie.serializer.odin.OdinObjectParser3;
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -40,9 +40,9 @@ public class ADLListener3 extends AdlBaseListener {
 
     Set<String> seenMetaDataIdentifiers = new HashSet<>();
     private Archetype archetype;
-    private final MetaModelProvider3 metaModelProvider;
+    private final MetaModelProvider metaModelProvider;
 
-    public ADLListener3(ANTLRParserErrors errors, MetaModelProvider3 metaModelProvider) {
+    public ADLListener3(ANTLRParserErrors errors, MetaModelProvider metaModelProvider) {
         this.errors = errors;
         this.metaModelProvider = metaModelProvider;
     }
@@ -192,7 +192,7 @@ public class ADLListener3 extends AdlBaseListener {
      */
     @Override
     public void enterDefinitionSection(DefinitionSectionContext ctx) {
-        MetaModel3 metaModel = metaModelProvider == null ? null : metaModelProvider.getMetaModel(archetype);
+        MetaModel metaModel = metaModelProvider == null ? null : metaModelProvider.getMetaModel(archetype);
         CComplexObjectParser3 cComplexObjectParser = new CComplexObjectParser3(errors, metaModel);
         CComplexObject definition = cComplexObjectParser.parseComplexObject(ctx.c_complex_object());
         archetype.setDefinition(definition);
@@ -222,7 +222,7 @@ public class ADLListener3 extends AdlBaseListener {
 
     @Override
     public void enterRulesSection(RulesSectionContext ctx) {
-        MetaModel3 metaModel = metaModelProvider == null ? null : metaModelProvider.getMetaModel(archetype);
+        MetaModel metaModel = metaModelProvider == null ? null : metaModelProvider.getMetaModel(archetype);
         CComplexObjectParser3 cComplexObjectParser = new CComplexObjectParser3(errors, metaModel);
         archetype.setRules(cComplexObjectParser.parseRules(ctx));
     }

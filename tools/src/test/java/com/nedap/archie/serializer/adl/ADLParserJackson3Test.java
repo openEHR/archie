@@ -5,7 +5,6 @@ import com.nedap.archie.adlparser.ADLParser3;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.json.ArchieRMObjectMapperProvider;
-import com.nedap.archie.json3.ArchieRMObjectMapperProvider3;
 import com.nedap.archie.json3.JacksonUtil3;
 import com.nedap.archie.rminfo.*;
 import org.antlr.v4.runtime.CharStreams;
@@ -45,7 +44,8 @@ class ADLParserJackson3Test {
         MetaModelProvider metadata = (publisher, rmPackage, release) -> {
             MetaModel model = BuiltinReferenceModels.getMetaModelProvider()
                     .getMetaModel(publisher, rmPackage, release);
-            return new MetaModel(model.getModelInfoLookup(), model.getBmmModel(), model.getAomProfile()) {
+            return new MetaModel(model.getModelInfoLookup(), model.getBmmModel(), model.getAomProfile(),
+                    new ArchieRMObjectMapperProvider()) {
                 @Override
                 public com.fasterxml.jackson.databind.ObjectMapper getJsonObjectMapper() {
                     throw new AssertionError("Jackson 2 JSON mapper requested");
@@ -56,8 +56,7 @@ class ADLParserJackson3Test {
                 }
             };
         };
-        ADLParser3 parser = new ADLParser3(new SimpleMetaModelProvider3(metadata,
-                new ArchieRMObjectMapperProvider3()));
+        ADLParser3 parser = new ADLParser3(metadata);
         Archetype expected;
         Archetype actual;
         try (InputStream input = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.default_values.v1.adls")) {

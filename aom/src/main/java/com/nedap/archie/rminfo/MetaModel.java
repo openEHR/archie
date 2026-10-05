@@ -23,6 +23,9 @@ public class MetaModel {
     private volatile ObjectMapper odinInputObjectMapper;
     private volatile ObjectMapper odinOutputObjectMapper;
     private volatile ObjectMapper jsonObjectMapper;
+    private volatile tools.jackson.databind.ObjectMapper odinInputObjectMapper3;
+    private volatile tools.jackson.databind.ObjectMapper odinOutputObjectMapper3;
+    private volatile tools.jackson.databind.ObjectMapper jsonObjectMapper3;
 
     public MetaModel(ModelInfoLookup modelInfoLookup, BmmModel bmmModel) {
         this(modelInfoLookup, bmmModel, null);
@@ -104,6 +107,66 @@ public class MetaModel {
                 if (mapper == null) {
                     mapper = objectMapperProvider.getJsonObjectMapper();
                     jsonObjectMapper = mapper;
+                }
+            }
+        }
+        return mapper;
+    }
+
+    /**
+     * Jackson 3 version of {@link #getOdinInputObjectMapper()}.
+     *
+     * @return the Jackson 3 object mapper to use for JSON converted from ODIN to parse this model
+     * @throws UnsupportedOperationException if the object mapper provider does not support Jackson 3
+     */
+    public tools.jackson.databind.ObjectMapper getOdinInputObjectMapper3() {
+        tools.jackson.databind.ObjectMapper mapper = odinInputObjectMapper3;
+        if (mapper == null && objectMapperProvider != null) {
+            synchronized (this) {
+                mapper = odinInputObjectMapper3;
+                if (mapper == null) {
+                    mapper = objectMapperProvider.getInputOdinObjectMapper3();
+                    odinInputObjectMapper3 = mapper;
+                }
+            }
+        }
+        return mapper;
+    }
+
+    /**
+     * Jackson 3 version of {@link #getOdinOutputObjectMapper()}.
+     *
+     * @return the Jackson 3 object mapper to output ODIN from this model
+     * @throws UnsupportedOperationException if the object mapper provider does not support Jackson 3
+     */
+    public tools.jackson.databind.ObjectMapper getOdinOutputObjectMapper3() {
+        tools.jackson.databind.ObjectMapper mapper = odinOutputObjectMapper3;
+        if (mapper == null && objectMapperProvider != null) {
+            synchronized (this) {
+                mapper = odinOutputObjectMapper3;
+                if (mapper == null) {
+                    mapper = objectMapperProvider.getOutputOdinObjectMapper3();
+                    odinOutputObjectMapper3 = mapper;
+                }
+            }
+        }
+        return mapper;
+    }
+
+    /**
+     * Jackson 3 version of {@link #getJsonObjectMapper()}.
+     *
+     * @return the Jackson 3 JSON object mapper for this model
+     * @throws UnsupportedOperationException if the object mapper provider does not support Jackson 3
+     */
+    public tools.jackson.databind.ObjectMapper getJsonObjectMapper3() {
+        tools.jackson.databind.ObjectMapper mapper = jsonObjectMapper3;
+        if (mapper == null && objectMapperProvider != null) {
+            synchronized (this) {
+                mapper = jsonObjectMapper3;
+                if (mapper == null) {
+                    mapper = objectMapperProvider.getJsonObjectMapper3();
+                    jsonObjectMapper3 = mapper;
                 }
             }
         }

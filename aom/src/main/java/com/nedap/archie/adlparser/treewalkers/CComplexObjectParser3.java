@@ -7,7 +7,7 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.base.OpenEHRBase;
-import com.nedap.archie.rminfo.MetaModel3;
+import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rules.Assertion;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter3;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -24,9 +24,9 @@ import java.util.List;
 public class CComplexObjectParser3 extends BaseTreeWalker {
 
     private final PrimitivesConstraintParser primitivesConstraintParser;
-    private final MetaModel3 metaModel;
+    private final MetaModel metaModel;
 
-    public CComplexObjectParser3(ANTLRParserErrors errors, MetaModel3 metaModel) {
+    public CComplexObjectParser3(ANTLRParserErrors errors, MetaModel metaModel) {
         super(errors);
         primitivesConstraintParser = new PrimitivesConstraintParser(errors);
         this.metaModel = metaModel;
@@ -158,11 +158,11 @@ public class CComplexObjectParser3 extends BaseTreeWalker {
     }
 
     private ObjectMapper getDefaultValueJsonObjectMapper() {
-        return metaModel == null ? null : metaModel.getJsonObjectMapper();
+        return metaModel == null ? null : metaModel.getJsonObjectMapper3();
     }
 
     private ObjectMapper getDefaultValueOdinObjectMapper() {
-        return metaModel == null ? null : metaModel.getOdinInputObjectMapper();
+        return metaModel == null ? null : metaModel.getOdinInputObjectMapper3();
     }
 
     public static String getFirstAttributeOfPath(String path) {

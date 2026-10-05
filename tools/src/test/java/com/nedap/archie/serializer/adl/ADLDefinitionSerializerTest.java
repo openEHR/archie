@@ -401,7 +401,7 @@ public class ADLDefinitionSerializerTest {
     @SuppressWarnings("deprecation")
     public void getBuilderExplainsJackson3Builder() {
         ADLStringBuilder3 builder = new ADLStringBuilder3();
-        ADLDefinitionSerializer serializer = new ADLDefinitionSerializer(builder, s -> null, null, null);
+        ADLDefinitionSerializer serializer = new ADLDefinitionSerializer(builder, s -> null, null);
 
         assertSame(builder, serializer.getOutputBuilder());
         UnsupportedOperationException e = assertThrows(UnsupportedOperationException.class, serializer::getBuilder);

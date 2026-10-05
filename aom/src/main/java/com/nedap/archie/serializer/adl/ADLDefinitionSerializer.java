@@ -7,8 +7,8 @@ import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
-import com.nedap.archie.rminfo.RMObjectMapperProvider3;
 import com.nedap.archie.serializer.adl.constraints.*;
+import com.nedap.archie.serializer.adl.jackson3.ADLStringBuilder3;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,18 +25,16 @@ public class ADLDefinitionSerializer {
     private final Map<Class<?>, ConstraintSerializer<?>> constraintSerializers;
     private Function<String, Archetype> flatArchetypeProvider;
     private RMObjectMapperProvider rmObjectMapperProvider;
-    private final RMObjectMapperProvider3 rmObjectMapperProvider3;
 
     public ADLDefinitionSerializer(ADLStringBuilder builder, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
-        this(builder, flatArchetypeProvider, rmObjectMapperProvider, null);
+        this((ADLBuilder) builder, flatArchetypeProvider, rmObjectMapperProvider);
     }
 
     ADLDefinitionSerializer(ADLBuilder builder, Function<String, Archetype> flatArchetypeProvider,
-            RMObjectMapperProvider rmObjectMapperProvider, RMObjectMapperProvider3 rmObjectMapperProvider3) {
+            RMObjectMapperProvider rmObjectMapperProvider) {
         this.builder = builder;
         this.flatArchetypeProvider = flatArchetypeProvider;
         this.rmObjectMapperProvider = rmObjectMapperProvider;
-        this.rmObjectMapperProvider3 = rmObjectMapperProvider3;
 
         constraintSerializers = new HashMap<>();
         constraintSerializers.put(ArchetypeSlot.class, new ArchetypeSlotSerializer(this));
@@ -149,7 +147,8 @@ public class ADLDefinitionSerializer {
     public RMObjectMapperProvider getRmObjectMapperProvider() {
         return rmObjectMapperProvider;
     }
-    public RMObjectMapperProvider3 getRmObjectMapperProvider3() {
-        return rmObjectMapperProvider3;
+    /** True when this serializer writes with the Jackson 3 builder, so Jackson 3 mappers must be used. */
+    public boolean usesJackson3() {
+        return builder instanceof ADLStringBuilder3;
     }
 }
