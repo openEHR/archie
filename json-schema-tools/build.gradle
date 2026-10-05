@@ -5,7 +5,8 @@ dependencies {
 
     api(libs.leadpony.justify)
     api(libs.jakarta.json.api)
-    api(variantOf(libs.jakarta.json) { classifier("module") })
+
+    runtimeOnly(variantOf(libs.jakarta.json) { classifier("module") })
 
     testImplementation project(':referencemodels')
 }
