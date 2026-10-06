@@ -52,33 +52,11 @@ subprojects {
 
 
     dependencies {
-        api(libs.slf4j.api)
-
-        api(libs.bundles.jackson)
-        api(libs.jackson3.databind)
-
-        implementation(libs.guava)
-
-        implementation(libs.reflections)
-        implementation(libs.kryo)
-
-        implementation(libs.commons.io)
-        implementation(libs.commons.text)
-        implementation(libs.commons.lang3)
-
-        //java 10 no longer has these included by default, so explicit dependency is needed.
-        implementation(libs.jakarta.xml.bind.api)
-        implementation(libs.jakarta.annotation.api)
-        runtimeOnly(libs.jaxb.runtime)
-        api(libs.activation)
-
-        api(libs.threeten.extra)
+        implementation(libs.slf4j.api)
 
         testImplementation(libs.bundles.junit)
         testImplementation(libs.hamcrest)
         testImplementation(libs.slf4j.simple)
-
-        api(libs.zafarkhaja.semver)
     }
 
 
