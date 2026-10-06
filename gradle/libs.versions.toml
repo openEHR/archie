@@ -31,8 +31,6 @@ jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-dat
 
 jackson3-databind = { module = "tools.jackson.core:jackson-databind", version.ref = "jackson3" }
 
-jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api", version = "3.0.0" }
-
 jakarta-json = { module = "org.glassfish:jakarta.json", version = "2.0.1" }
 
 jakarta-json-api = { module = "jakarta.json:jakarta.json-api", version = "2.0.0" }
