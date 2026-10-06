@@ -8,6 +8,15 @@ dependencies {
     api project(':path-queries')
     api project(':utils')
     api project(':openehr-terminology')
+
+    api(libs.jakarta.xml.bind.api)
+    api(libs.jsr305)
+
+    implementation(libs.guava)
+    implementation(libs.jackson.databind)
+    implementation(libs.threeten.extra)
+    implementation(libs.zafarkhaja.semver)
+
     testImplementation project(':openehr-rm')
     testImplementation project(':archie-utils')
     testImplementation project(':i18n')
@@ -15,4 +24,8 @@ dependencies {
     testImplementation project(':referencemodels')
     // Only needed to run ExampleJsonInstanceGeneratorTest, which exercises the JSON schema validator.
     testImplementation project(':json-schema-tools')
+
+    testImplementation(libs.commons.io)
+    testImplementation(libs.jackson3.databind)
+    testImplementation(libs.reflections)
 }
