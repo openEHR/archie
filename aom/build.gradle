@@ -15,6 +15,7 @@ dependencies {
     api(libs.jsr305)
 
     implementation(libs.commons.io)
+    implementation(libs.commons.lang3)
     implementation(libs.commons.text)
     implementation(libs.guava)
     implementation(libs.reflections)
