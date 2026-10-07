@@ -61,6 +61,13 @@ public class AOMUtilsTest {
         assertTrue(AOMUtils.isValidZeroPaddedCode("ac0001.1"));
         assertTrue(AOMUtils.isValidZeroPaddedCode("at9088"));
         assertTrue(AOMUtils.isValidZeroPaddedCode("at12345")); // more than four digits is allowed (values > 9999)
+        // codes introduced in a specialised archetype are not padded, but have 0 as first segment
+        assertTrue(AOMUtils.isValidZeroPaddedCode("at0.1"));
+        assertTrue(AOMUtils.isValidZeroPaddedCode("at0.0.1"));
+        assertTrue(AOMUtils.isValidZeroPaddedCode("ac0.1"));
+        assertTrue(AOMUtils.isValidZeroPaddedCode("ac0.9000"));
+        // a 0 first segment is only valid when followed by a specialisation segment
+        assertFalse(AOMUtils.isValidZeroPaddedCode("at0"));
         // non-zero-padded codes are not valid zero-padded, even though the grammar and isValidADL14Code accept them
         assertFalse(AOMUtils.isValidZeroPaddedCode("at5"));
         assertFalse(AOMUtils.isValidZeroPaddedCode("at123"));

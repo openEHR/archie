@@ -22,8 +22,9 @@ public class AOMUtils {
 
     private static Pattern idCodePattern = Pattern.compile("(id|at|ac)(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
     private static Pattern adl14CodePattern = Pattern.compile("(id|at|ac)([0-9]+)(\\.(0|[1-9][0-9]*))*");
-    //zero-padded codes (minimum four digit first segment), as used by at-coded ADL 2.4 (retained from ADL 1.4), e.g. at0000, ac0002
-    private static Pattern zeroPaddedCodePattern = Pattern.compile("(id|at|ac)[0-9]{4,}(\\.(0|[1-9][0-9]*))*");
+    //zero-padded codes (minimum four digit first segment), as used by at-coded ADL 2.4 (retained from ADL 1.4), e.g. at0000, ac0002.
+    //codes introduced in a specialised archetype have 0 as first segment instead, followed by at least one specialisation segment, e.g. at0.1, ac0.0.1
+    private static Pattern zeroPaddedCodePattern = Pattern.compile("(id|at|ac)([0-9]{4,}|0(?=\\.))(\\.(0|[1-9][0-9]*))*");
 
     public static int getSpecializationDepthFromCode(String code) {
         if(code == null) {
@@ -75,6 +76,8 @@ public class AOMUtils {
      * Whether the code is a valid zero-padded code: an id/at/ac prefix followed by a zero-padded (minimum four digit)
      * number, with specialisation segments without leading zeros (e.g. at0000, at0001.1, ac0002). This is the code
      * format used by at-coded ADL 2.4 archetypes, which retain the zero-padded code style of ADL 1.4.
+     * Codes introduced in a specialised archetype are not padded, but have 0 as their first segment, as in ADL 1.4
+     * (e.g. at0.1, at0.0.1, ac0.1).
      *
      * Note this is stricter than {@link #isValidADL14Code(String)}: the latter accepts any number of digits (including
      * non-zero-padded forms like at5) and is used for prefix/structure-agnostic checks, whereas this method enforces
