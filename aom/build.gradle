@@ -1,11 +1,11 @@
 description = "An OpenEHR archetype object model implementation, plus parser"
 
 dependencies {
-    api project(':grammars')
     api project(':base')
+    api project(':bmm')
+    api project(':grammars')
     api project(':odin')
     api project(':utils')
-    api project(':bmm')
 
     api(libs.jackson.annotations)
     api(libs.jackson.databind)

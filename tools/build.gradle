@@ -1,8 +1,8 @@
 description = "tools that operate on the archie reference models and archetype object model"
 
 dependencies {
-    api project(':base')
     api project(':aom')
+    api project(':base')
     api project(':bmm')
     api project(':path-queries')
     api project(':utils')
@@ -18,12 +18,12 @@ dependencies {
     implementation(libs.threeten.extra)
     implementation(libs.zafarkhaja.semver)
 
-    testImplementation project(':openehr-rm')
     testImplementation project(':archie-utils')
-    testImplementation project(':test-rm')
-    testImplementation project(':referencemodels')
     // Only needed to run ExampleJsonInstanceGeneratorTest, which exercises the JSON schema validator.
     testImplementation project(':json-schema-tools')
+    testImplementation project(':openehr-rm')
+    testImplementation project(':referencemodels')
+    testImplementation project(':test-rm')
 
     testImplementation(libs.commons.io)
     testImplementation(libs.jackson3.databind)
