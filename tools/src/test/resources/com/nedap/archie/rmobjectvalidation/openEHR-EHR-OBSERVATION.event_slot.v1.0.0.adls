@@ -1,0 +1,36 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0)
+    openEHR-EHR-OBSERVATION.event_slot.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    lifecycle_state = <"draft">
+
+definition
+    OBSERVATION[id1] matches {    -- Observation with event slot
+        data matches {
+            HISTORY[id2] matches {
+                events cardinality matches {1; unordered} matches {
+                    allow_archetype EVENT[id3] matches {
+                        include
+                            archetype_id/value matches {/.*/}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Observation with event slot">
+                description = <"Observation with event slot">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"Any event">
+            >
+        >
+    >

@@ -8,12 +8,15 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.Item;
-import com.nedap.archie.rm.datastructures.ItemTree;
+import com.nedap.archie.rm.archetyped.Archetyped;
+import com.nedap.archie.rm.composition.Observation;
+import com.nedap.archie.rm.datastructures.*;
+import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvProportion;
+import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
+import com.nedap.archie.rm.generic.PartySelf;
+import com.nedap.archie.rm.support.identification.ArchetypeID;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +24,8 @@ import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -190,6 +195,75 @@ public class RmObjectValidatorTest {
         assertFalse(validate.isEmpty());
     }
 
+    @Test
+    public void testEmptyObservationWithoutArchetype() {
+        Observation observation = createObservation();
+
+        List<RMObjectValidationMessage> validationMessages = validatorWithoutInvariants.validate(observation);
+
+        assertEquals(1, validationMessages.size(), "There should be 1 errors");
+        RMObjectValidationMessage message = validationMessages.get(0);
+        assertNull(message.getArchetypePath());
+        assertEquals("/data[id2]/events[id3, 1]", message.getPath());
+        assertEquals("Observation  contains no results", message.getMessage());
+        assertNull(message.getArchetypeId());
+        assertEquals(RMObjectValidationMessageType.EMPTY_OBSERVATION, message.getType());
+    }
+
+    @Test
+    public void testEmptyObservationWithArchetype() throws Exception {
+        Archetype archetype = parse("/com/nedap/archie/rmobjectvalidation/openEHR-EHR-OBSERVATION.simple_body_weight.v1.0.0.adls");
+        OperationalTemplate opt = createOpt(archetype);
+
+        Observation observation = createObservation();
+
+        List<RMObjectValidationMessage> validationMessages = validatorWithoutInvariants.validate(opt, observation);
+
+        assertEquals(1, validationMessages.size(), "There should be 1 errors");
+        RMObjectValidationMessage message = validationMessages.get(0);
+        assertEquals("/data[id2]", message.getArchetypePath());
+        assertEquals("/data[id2]/events[id3, 1]", message.getPath());
+        assertEquals("Observation Simple body weight contains no results", message.getMessage());
+        assertEquals("openEHR-EHR-OBSERVATION.simple_body_weight.v1.0.0", message.getArchetypeId());
+        assertEquals(RMObjectValidationMessageType.EMPTY_OBSERVATION, message.getType());
+    }
+
+    @Test
+    public void testEmptyObservationWithEventSlot() throws Exception {
+        Archetype eventArchetype = parse("/com/nedap/archie/rmobjectvalidation/openEHR-EHR-EVENT.simple_body_weight.v1.0.0.adls");
+        emptyRepo.addArchetype(eventArchetype);
+        emptyRepo.setOperationalTemplate(createOpt(eventArchetype));
+        Archetype archetype = parse("/com/nedap/archie/rmobjectvalidation/openEHR-EHR-OBSERVATION.event_slot.v1.0.0.adls");
+        OperationalTemplate opt = createOpt(archetype);
+
+        Observation observation = createObservation();
+        Event<?> event = observation.getData().getEvents().get(0);
+        event.setArchetypeDetails(new Archetyped(new ArchetypeID("openEHR-EHR-EVENT.simple_body_weight.v1.0.0"), ArchieRMInfoLookup.RM_VERSION));
+
+        List<RMObjectValidationMessage> validationMessages = validatorWithoutInvariants.validate(opt, observation);
+
+        assertEquals(1, validationMessages.size(), "There should be 1 errors");
+        RMObjectValidationMessage message = validationMessages.get(0);
+        assertNull(message.getArchetypePath());
+        assertEquals("/data[id2]/events[id3, 1]", message.getPath());
+        assertEquals("Observation  contains no results", message.getMessage());
+        assertNull(message.getArchetypeId());
+        assertEquals(RMObjectValidationMessageType.EMPTY_OBSERVATION, message.getType());
+    }
+
+    private Observation createObservation() {
+        Observation observation = new Observation();
+        observation.setArchetypeNodeId("id1");
+        observation.setNameAsString("An observation");
+        observation.setData(new History<>("id2", new DvText(""), new DvDateTime(ZonedDateTime.now()), Collections.singletonList(
+                new PointEvent<>("id3", new DvText("Any event"), new DvDateTime(ZonedDateTime.now()), null)
+        )));
+        observation.getData().getEvents().get(0).setData(null);
+        observation.setSubject(new PartySelf());
+        observation.setLanguage(new CodePhrase("ISO_639-1::en"));
+        observation.setEncoding(new CodePhrase("IANA_character-sets::UTF-8"));
+        return observation;
+    }
 
     private Archetype parse(String filename) throws IOException, ADLParseException {
         return TestUtil.parseFailOnErrors(filename);
