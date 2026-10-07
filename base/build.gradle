@@ -1,9 +1,7 @@
 description = "Base classes for an OpenEHR implementation"
 
 dependencies {
-    //only for the xpath grammar. perhaps include it here?
-    api project(':grammars')
-
+    api(libs.antlr4.runtime)
     api(libs.jackson.annotations)
     api(libs.jakarta.xml.bind.api)
     api(libs.jsr305)
