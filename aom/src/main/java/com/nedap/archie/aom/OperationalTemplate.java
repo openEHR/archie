@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -181,7 +182,7 @@ public class OperationalTemplate extends AuthoredArchetype {
         // the node id of an archetype root is the code of the use_archetype node in the parent archetype, so its term is
         // defined in the terminology of the parent. Do not check on the id-code prefix here: in at-coded archetypes the
         // node id is an at-code, just like the value codes of the included archetype.
-        boolean stripLastPartOfPath = object instanceof CArchetypeRoot && code != null && code.equals(object.getNodeId());
+        boolean stripLastPartOfPath = object instanceof CArchetypeRoot && Objects.equals(code, object.getNodeId());
         ArchetypeTerm term = getTermInternal(object, code, language, stripLastPartOfPath);
         if(stripLastPartOfPath && term == null) {
             term = getTermInternal(object, code, language, false);
