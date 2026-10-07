@@ -3,9 +3,17 @@ description = "Combined dependency for the entire archie library"
 dependencies {
     api project(':aom')
     api project(':archie-utils')
+    api project(':base')
+    api project(':bmm')
+    api project(':grammars')
     api project(':i18n')
     api project(':json-schema-tools')
+    api project(':odin')
     api project(':openehr-rm')
+    api project(':openehr-terminology')
+    api project(':path-queries')
     api project(':referencemodels')
+    api project(':test-rm')
     api project(':tools')
+    api project(':utils')
 }
