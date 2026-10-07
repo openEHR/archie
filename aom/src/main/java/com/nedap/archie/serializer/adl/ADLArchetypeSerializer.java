@@ -3,9 +3,9 @@ package com.nedap.archie.serializer.adl;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
 import com.nedap.archie.serializer.adl.jackson3.ADLStringBuilder3;
-import java.util.function.Supplier;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * @author markopi

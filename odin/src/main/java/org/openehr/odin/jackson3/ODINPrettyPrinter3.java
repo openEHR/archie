@@ -2,6 +2,7 @@ package org.openehr.odin.jackson3;
 
 import tools.jackson.core.JacksonException;
 import tools.jackson.core.JsonGenerator;
+import tools.jackson.core.PrettyPrinter;
 import tools.jackson.core.SerializableString;
 import tools.jackson.core.io.SerializedString;
 import tools.jackson.core.util.DefaultIndenter;
@@ -9,7 +10,6 @@ import tools.jackson.core.util.DefaultPrettyPrinter.Indenter;
 import tools.jackson.core.util.DefaultPrettyPrinter.NopIndenter;
 import tools.jackson.core.util.Instantiatable;
 import tools.jackson.core.util.Separators;
-import tools.jackson.core.PrettyPrinter;
 
 /**
  * PrettyPrinter for ODIN with the ability to set an initial indent level.

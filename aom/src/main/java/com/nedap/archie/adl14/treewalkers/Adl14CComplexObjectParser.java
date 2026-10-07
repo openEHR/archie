@@ -1,9 +1,6 @@
 package com.nedap.archie.adl14.treewalkers;
 
-import com.nedap.archie.adl14.aom14.CDVOrdinal;
-import com.nedap.archie.adl14.aom14.CDVOrdinalItem;
-import com.nedap.archie.adl14.aom14.CDVQuantity;
-import com.nedap.archie.adl14.aom14.CDVQuantityItem;
+import com.nedap.archie.adl14.aom14.*;
 import com.nedap.archie.adlparser.antlr.Adl14Parser.*;
 import com.nedap.archie.adlparser.treewalkers.BaseTreeWalker;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
@@ -11,7 +8,6 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;

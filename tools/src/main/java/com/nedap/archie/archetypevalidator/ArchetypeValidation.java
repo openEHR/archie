@@ -5,7 +5,6 @@ import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModel;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by pieter.bos on 31/03/2017.

@@ -11,7 +11,6 @@ import tools.jackson.core.Base64Variants;
 import tools.jackson.core.JsonGenerator;
 import tools.jackson.core.ObjectWriteContext;
 import tools.jackson.core.StreamWriteFeature;
-import tools.jackson.core.util.DefaultIndenter;
 
 import java.io.StringWriter;
 import java.math.BigDecimal;

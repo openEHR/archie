@@ -1,5 +1,6 @@
 package com.nedap.archie.adl14.treewalkers;
 
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.adlparser.antlr.Adl14Lexer;
 import com.nedap.archie.adlparser.antlr.Adl14Parser;
 import com.nedap.archie.adlparser.antlr.Adl14Parser.Boolean_list_valueContext;
@@ -11,7 +12,6 @@ import com.nedap.archie.adlparser.antlr.ContainedRegexParser;
 import com.nedap.archie.adlparser.treewalkers.BaseTreeWalker;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.aom.primitives.*;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import org.antlr.v4.runtime.CharStreams;

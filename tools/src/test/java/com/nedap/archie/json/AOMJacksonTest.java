@@ -2,8 +2,6 @@ package com.nedap.archie.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.nedap.archie.json3.JacksonUtil3;
-import com.nedap.archie.json.JacksonTestMappers.JsonMapper;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.*;
@@ -13,6 +11,8 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.primitives.ConstraintStatus;
 import com.nedap.archie.aom.rmoverlay.VisibilityType;
 import com.nedap.archie.base.Interval;
+import com.nedap.archie.json.JacksonTestMappers.JsonMapper;
+import com.nedap.archie.json3.JacksonUtil3;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;
 import com.nedap.archie.rules.ModelReference;

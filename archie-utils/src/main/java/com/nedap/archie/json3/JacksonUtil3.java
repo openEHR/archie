@@ -2,6 +2,13 @@ package com.nedap.archie.json3;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.primitives.CTemporal;
+import com.nedap.archie.json.*;
+import com.nedap.archie.rm.archetyped.Pathable;
+import com.nedap.archie.rm.support.identification.ArchetypeID;
+import com.nedap.archie.rules.Operator;
+import com.nedap.archie.rules.OperatorKind;
 import tools.jackson.databind.*;
 import tools.jackson.databind.cfg.DateTimeFeature;
 import tools.jackson.databind.cfg.EnumFeature;
@@ -10,24 +17,6 @@ import tools.jackson.databind.deser.DeserializationProblemHandler;
 import tools.jackson.databind.json.JsonMapper;
 import tools.jackson.databind.jsontype.TypeResolverBuilder;
 import tools.jackson.databind.module.SimpleModule;
-import com.nedap.archie.aom.*;
-import com.nedap.archie.aom.primitives.CTemporal;
-import com.nedap.archie.json.ArchieJacksonConfiguration;
-import com.nedap.archie.json.DontSerializePathMixin;
-import com.nedap.archie.json.ExcludeEmptyCollectionsFilter;
-import com.nedap.archie.json.FixArchetypeIDMixin;
-import com.nedap.archie.json.IsPrefixArchetypeMixin;
-import com.nedap.archie.json.IsPrefixArchetypeSlotMixin;
-import com.nedap.archie.json.IsPrefixAuthoredResourceMixin;
-import com.nedap.archie.json.IsPrefixCObjectMixin;
-import com.nedap.archie.json.IsPrefixCPrimitiveObjectMixin;
-import com.nedap.archie.json.OperatorLegacyFormatMixin;
-import com.nedap.archie.json.PatternConstraintCTemporalMixin;
-import com.nedap.archie.json.RulesSectionMixin;
-import com.nedap.archie.rm.archetyped.Pathable;
-import com.nedap.archie.rm.support.identification.ArchetypeID;
-import com.nedap.archie.rules.Operator;
-import com.nedap.archie.rules.OperatorKind;
 
 import java.util.concurrent.ConcurrentHashMap;
 

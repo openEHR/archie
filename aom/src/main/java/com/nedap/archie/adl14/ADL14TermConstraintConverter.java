@@ -1,10 +1,10 @@
 package com.nedap.archie.adl14;
 
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ADL14TermConstraintConverter {
 

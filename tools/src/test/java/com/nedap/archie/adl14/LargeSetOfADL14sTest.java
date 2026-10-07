@@ -1,16 +1,10 @@
 package com.nedap.archie.adl14;
 
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.antlr.Adl14Lexer;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CAttributeTuple;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.CPrimitiveTuple;
-import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
@@ -28,10 +22,7 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.regex.Pattern;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 16/10/15.

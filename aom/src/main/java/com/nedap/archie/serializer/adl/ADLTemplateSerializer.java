@@ -4,9 +4,9 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
-import java.util.function.Supplier;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * @author markopi

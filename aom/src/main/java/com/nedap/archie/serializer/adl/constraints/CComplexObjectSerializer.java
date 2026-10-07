@@ -8,12 +8,12 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
-import org.openehr.odin.jackson3.ODINMapper3;
-import org.openehr.odin.jackson3.ODINPrettyPrinter3;
-import tools.jackson.core.JacksonException;
 import com.nedap.archie.serializer.adl.ADLDefinitionSerializer;
 import org.openehr.odin.jackson.ODINMapper;
 import org.openehr.odin.jackson.ODINPrettyPrinter;
+import org.openehr.odin.jackson3.ODINMapper3;
+import org.openehr.odin.jackson3.ODINPrettyPrinter3;
+import tools.jackson.core.JacksonException;
 
 import java.util.ArrayList;
 import java.util.List;

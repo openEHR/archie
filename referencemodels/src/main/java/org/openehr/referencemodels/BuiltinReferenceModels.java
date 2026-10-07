@@ -1,6 +1,5 @@
 package org.openehr.referencemodels;
 
-import com.nedap.archie.aom.profile.AomProfile;
 import com.nedap.archie.aom.profile.AomProfiles;
 import com.nedap.archie.rminfo.*;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;

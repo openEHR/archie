@@ -11,7 +11,10 @@ import com.nedap.archie.paths.PathUtil;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.query.PartialMatch;
-import com.nedap.archie.rminfo.*;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.rminfo.RMAttributeInfo;
+import com.nedap.archie.rminfo.RMTypeInfo;
 import com.nedap.archie.rules.*;
 import org.apache.commons.lang3.StringUtils;
 

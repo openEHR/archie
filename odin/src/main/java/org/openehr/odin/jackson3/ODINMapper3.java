@@ -1,18 +1,14 @@
 package org.openehr.odin.jackson3;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.openehr.odin.jackson3.serializers.*;
-import tools.jackson.databind.DefaultTyping;
-import tools.jackson.databind.MapperFeature;
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.databind.SerializationFeature;
-import tools.jackson.databind.cfg.MapperBuilder;
-import tools.jackson.databind.cfg.MapperBuilderState;
-import tools.jackson.databind.module.SimpleModule;
-import tools.jackson.databind.PropertyNamingStrategies;
-import tools.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
+import org.openehr.odin.jackson3.serializers.*;
+import tools.jackson.databind.*;
+import tools.jackson.databind.cfg.MapperBuilder;
+import tools.jackson.databind.cfg.MapperBuilderState;
+import tools.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
+import tools.jackson.databind.module.SimpleModule;
 
 import java.net.URI;
 import java.net.URL;

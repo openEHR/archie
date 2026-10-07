@@ -1,17 +1,16 @@
 package com.nedap.archie.serializer.odin;
 
-import tools.jackson.core.JsonParser;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
 import org.apache.commons.text.StringEscapeUtils;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.core.StreamReadFeature;
+import tools.jackson.databind.*;
+import tools.jackson.databind.cfg.MapperBuilder;
+import tools.jackson.databind.deser.DeserializationProblemHandler;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.List;
-import tools.jackson.core.JacksonException;
-import tools.jackson.databind.*;
-import tools.jackson.databind.deser.DeserializationProblemHandler;
-
-import tools.jackson.databind.json.JsonMapper;
-import tools.jackson.databind.cfg.MapperBuilder;
-import tools.jackson.core.StreamReadFeature;
 
 /** Converts ODIN in ADL to JSON with Jackson 3. */
 public class AdlOdinToJsonConverter3 {

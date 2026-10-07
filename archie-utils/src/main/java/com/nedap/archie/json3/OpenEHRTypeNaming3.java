@@ -1,14 +1,14 @@
 package com.nedap.archie.json3;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import tools.jackson.databind.DatabindContext;
-import tools.jackson.databind.JavaType;
-import tools.jackson.databind.jsontype.TypeIdResolver;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
+import tools.jackson.databind.DatabindContext;
+import tools.jackson.databind.JavaType;
+import tools.jackson.databind.jsontype.TypeIdResolver;
 
 /**
  * Jackson 3 port of {@link com.nedap.archie.json.OpenEHRTypeNaming}.

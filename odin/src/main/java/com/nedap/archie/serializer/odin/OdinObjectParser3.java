@@ -1,7 +1,7 @@
 package com.nedap.archie.serializer.odin;
 
-import tools.jackson.databind.JavaType;
 import com.nedap.archie.adlparser.antlr.AdlParser;
+import tools.jackson.databind.JavaType;
 
 
 /** Binds ODIN in ADL to objects with Jackson 3. */

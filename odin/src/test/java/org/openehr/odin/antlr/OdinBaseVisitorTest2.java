@@ -21,7 +21,7 @@ package org.openehr.odin.antlr;
  * Author: Claude Nanjo
  */
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 import org.openehr.odin.CompositeOdinObject;
 import org.openehr.odin.loader.OdinLoaderImpl;
 

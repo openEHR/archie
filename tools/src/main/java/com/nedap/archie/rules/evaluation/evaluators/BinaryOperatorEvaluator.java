@@ -9,8 +9,6 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
-import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
 import com.nedap.archie.rmobjectvalidator.ValidationHelper;
 import com.nedap.archie.rules.BinaryOperator;
 import com.nedap.archie.rules.Constraint;

@@ -1,20 +1,17 @@
 package com.nedap.archie.adl14;
 
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CAttributeTuple;
 import com.nedap.archie.aom.CPrimitiveTuple;
 import com.nedap.archie.aom.SiblingOrder;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ADL14TermConstraintConverterTest {
 

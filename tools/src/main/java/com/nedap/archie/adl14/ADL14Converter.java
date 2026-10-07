@@ -2,7 +2,10 @@ package com.nedap.archie.adl14;
 
 import com.nedap.archie.adl14.log.ADL2ConversionLog;
 import com.nedap.archie.adl14.log.ADL2ConversionRunLog;
-import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.AuthoredArchetype;
+import com.nedap.archie.aom.ResourceDescription;
+import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.diff.Differentiator;
 import com.nedap.archie.flattener.Flattener;

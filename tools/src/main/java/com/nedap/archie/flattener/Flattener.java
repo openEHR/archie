@@ -3,7 +3,10 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
-import com.nedap.archie.rminfo.*;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
+import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 
 import java.util.ArrayList;
 import java.util.Collections;

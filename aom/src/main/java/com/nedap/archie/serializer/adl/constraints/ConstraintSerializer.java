@@ -2,8 +2,8 @@ package com.nedap.archie.serializer.adl.constraints;
 
 
 import com.nedap.archie.aom.CObject;
-import com.nedap.archie.serializer.adl.ADLDefinitionSerializer;
 import com.nedap.archie.serializer.adl.ADLBuilder;
+import com.nedap.archie.serializer.adl.ADLDefinitionSerializer;
 
 import static com.nedap.archie.serializer.adl.ArchetypeSerializeUtils.buildOccurrences;
 

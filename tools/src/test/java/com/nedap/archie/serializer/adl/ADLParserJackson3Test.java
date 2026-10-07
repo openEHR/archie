@@ -6,7 +6,8 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.json.ArchieRMObjectMapperProvider;
 import com.nedap.archie.json3.JacksonUtil3;
-import com.nedap.archie.rminfo.*;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import org.antlr.v4.runtime.CharStreams;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +17,8 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 import java.io.InputStream;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ADLParserJackson3Test {
     static List<AdlSerializationTestUtil.Case> cases() throws Exception {

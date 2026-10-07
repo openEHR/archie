@@ -1,14 +1,7 @@
 package com.nedap.archie.creation;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rminfo.RMAttributeInfo;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Type;
-import java.util.*;
 
 /**
  * Utility to create Reference model objects based on their RM name.

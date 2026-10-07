@@ -6,7 +6,8 @@ import com.nedap.archie.antlr.errors.ArchieErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /** Runs the existing ODIN conversion contract with Jackson 3. */
 public class AdlOdinToJsonConverter3Test extends OdinToJsonConverterBaseTest {

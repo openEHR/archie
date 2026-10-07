@@ -1,6 +1,5 @@
 package com.nedap.archie.adlparser.treewalkers;
 
-import tools.jackson.databind.ObjectMapper;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.*;
@@ -11,8 +10,9 @@ import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rules.Assertion;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter3;
 import org.antlr.v4.runtime.tree.TerminalNode;
-
 import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import java.util.List;
 

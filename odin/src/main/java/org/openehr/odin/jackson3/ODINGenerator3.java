@@ -1,13 +1,13 @@
 package org.openehr.odin.jackson3;
 
+import com.nedap.archie.serializer.odin.OdinStringBuilder;
+import com.nedap.archie.serializer.odin.StructuredStringWriter;
+import org.openehr.odin.jackson.OdinObjectWriteContext;
 import tools.jackson.core.*;
 import tools.jackson.core.base.GeneratorBase;
 import tools.jackson.core.io.IOContext;
 import tools.jackson.core.json.JsonWriteContext;
 import tools.jackson.core.util.JacksonFeatureSet;
-import com.nedap.archie.serializer.odin.OdinStringBuilder;
-import com.nedap.archie.serializer.odin.StructuredStringWriter;
-import org.openehr.odin.jackson.OdinObjectWriteContext;
 
 import java.io.IOException;
 import java.io.InputStream;

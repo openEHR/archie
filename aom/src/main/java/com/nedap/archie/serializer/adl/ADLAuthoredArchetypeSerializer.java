@@ -4,12 +4,12 @@ import com.google.common.base.Joiner;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
-import java.util.function.Supplier;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**

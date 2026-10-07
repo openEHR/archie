@@ -1,16 +1,16 @@
 package com.nedap.archie.json3;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.nedap.archie.aom.RulesSection;
+import com.nedap.archie.base.OpenEHRBase;
+import com.nedap.archie.json.ArchieJacksonConfiguration;
+import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
+import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.RMTypeInfo;
 import tools.jackson.databind.DefaultTyping;
 import tools.jackson.databind.JavaType;
 import tools.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import tools.jackson.databind.jsontype.impl.DefaultTypeResolverBuilder;
-import com.nedap.archie.aom.RulesSection;
-import com.nedap.archie.base.OpenEHRBase;
-import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
-import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rminfo.RMTypeInfo;
-import com.nedap.archie.json.ArchieJacksonConfiguration;
 
 import java.util.ArrayList;
 import java.util.HashSet;

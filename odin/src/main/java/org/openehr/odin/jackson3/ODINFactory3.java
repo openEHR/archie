@@ -1,6 +1,8 @@
 package org.openehr.odin.jackson3;
 
-import tools.jackson.core.*;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.core.ObjectWriteContext;
 import tools.jackson.core.io.IOContext;
 import tools.jackson.core.json.JsonFactory;
 
