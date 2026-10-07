@@ -1,0 +1,56 @@
+archetype (adl_version=2.4.0; rm_release=1.1.0)
+    openEHR-EHR-GENERIC_ENTRY.atincluded.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Test">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"at-coded included generic entry archetype for test">
+            keywords = <"ADL", "test">
+        >
+    >
+    lifecycle_state = <"draft">
+
+
+definition
+    GENERIC_ENTRY[at0000] matches {
+        data matches {
+            ITEM_TREE[at0003] matches {
+                items matches {
+                    ELEMENT[at0002] matches {
+                        value matches {
+                            DV_TEXT[at0004]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at0000"] = <
+                text = <"the generic entry">
+                description = <"the generic entry">
+            >
+            ["at0002"] = <
+                text = <"an element">
+                description = <"an element">
+            >
+            ["at0003"] = <
+                text = <"a tree">
+                description = <"a tree">
+            >
+            ["at0004"] = <
+                text = <"a text value">
+                description = <"a text value">
+            >
+        >
+    >
