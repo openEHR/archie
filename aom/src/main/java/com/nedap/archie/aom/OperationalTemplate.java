@@ -3,7 +3,6 @@ package com.nedap.archie.aom;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
-import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
 import com.nedap.archie.xml.types.XmlArchetypeTerminology;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -179,7 +179,10 @@ public class OperationalTemplate extends AuthoredArchetype {
      */
     @Override
     public ArchetypeTerm getTerm(CObject object, String code, String language) {
-        boolean stripLastPartOfPath = object instanceof CArchetypeRoot && AOMUtils.isIdCode(code);
+        // the node id of an archetype root is the code of the use_archetype node in the parent archetype, so its term is
+        // defined in the terminology of the parent. Do not check on the id-code prefix here: in at-coded archetypes the
+        // node id is an at-code, just like the value codes of the included archetype.
+        boolean stripLastPartOfPath = object instanceof CArchetypeRoot && Objects.equals(code, object.getNodeId());
         ArchetypeTerm term = getTermInternal(object, code, language, stripLastPartOfPath);
         if(stripLastPartOfPath && term == null) {
             term = getTermInternal(object, code, language, false);
