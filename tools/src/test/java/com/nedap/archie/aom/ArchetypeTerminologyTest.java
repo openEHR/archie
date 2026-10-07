@@ -2,6 +2,9 @@ package com.nedap.archie.aom;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParseException;
+import com.nedap.archie.adlparser.ADLParser;
+import com.nedap.archie.archetypevalidator.ArchetypeValidationSettings;
+import com.nedap.archie.archetypevalidator.NodeIdCodeSystemValidation;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
@@ -11,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,6 +58,45 @@ public class ArchetypeTerminologyTest {
         assertEquals("an element", element.getTerm().getText());
 
 
+    }
+
+    @Test
+    public void termForUseArchetypeAtCoded() throws Exception {
+        //same as termForUseArchetype, but at-coded: the node id of the use_archetype node is an at-code, like the
+        //codes of the included archetype, so it cannot be recognised by its prefix
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        ArchetypeValidationSettings settings = new ArchetypeValidationSettings();
+        settings.setNodeIdCodeSystemValidation(NodeIdCodeSystemValidation.AT_CODED);
+        repository.setArchetypeValidationSettings(settings);
+        repository.addArchetype(parse("/com/nedap/archie/aom/openEHR-EHR-COMPOSITION.atparent.v1.0.0.adls"));
+        repository.addArchetype(parse("/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.atincluded.v1.0.0.adls"));
+
+        //check that they are valid, just to be sure
+        repository.compile(BuiltinReferenceModels.getMetaModelProvider());
+        repository.getAllValidationResults().forEach(s -> assertThat(s.getErrors().toString(), s.getErrors().isEmpty()));
+
+        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(repository.getArchetype("openEHR-EHR-COMPOSITION.atparent.v1.0.0"));
+
+        CArchetypeRoot useArchetype = opt.itemAtPath("/content[at0001]");
+        ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("nl");
+        assertEquals("included archetype nl", useArchetype.getTerm().getText());
+        ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
+        assertEquals("included archetype en", useArchetype.getTerm().getText());
+
+        //codes of the included archetype still come from its component terminology
+        CComplexObject element = opt.itemAtPath("/content[at0001]/data[at0003]/items[at0002]");
+        assertEquals("an element", element.getTerm().getText());
+    }
+
+    private Archetype parse(String resourcePath) throws Exception {
+        //FlattenerTestUtil.parse fails on parser warnings, which at-coded archetypes currently produce (see #856)
+        ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
+        try (InputStream stream = ArchetypeTerminologyTest.class.getResourceAsStream(resourcePath)) {
+            Archetype archetype = parser.parse(stream);
+            assertTrue(parser.getErrors().hasNoErrors(), parser.getErrors().toString());
+            return archetype;
+        }
     }
     
     
