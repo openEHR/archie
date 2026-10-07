@@ -3,6 +3,7 @@ package com.nedap.archie.archetypevalidator.validations;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationBase;
 import com.nedap.archie.archetypevalidator.ErrorType;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import org.openehr.utils.message.I18n;
 
 import java.util.Objects;
@@ -55,13 +56,13 @@ public class BasicChecks extends ArchetypeValidationBase {
             );
         }
         if(expectsAtCodedNodeIds()) {
-            if(!archetype.getDefinition().getNodeId().matches("at0000(\\.1)*")) {
+            if(!archetype.getDefinition().getNodeId().matches(AdlCodeDefinitions.AT_CODED_ROOT_CODE_REGEX_PATTERN)) {
                 addMessageWithPath(ErrorType.VARCN,
                         "/",
                         I18n.t("The node id is not in the form at0000.1....1: {0}", archetype.getDefinition().getNodeId())
                         );
             }
-        } else if(!archetype.getDefinition().getNodeId().matches("id1(\\.1)*")) {
+        } else if(!archetype.getDefinition().getNodeId().matches(AdlCodeDefinitions.ID_CODED_ROOT_CODE_REGEX_PATTERN)) {
             addMessageWithPath(ErrorType.VARCN,
                     "/",
                     I18n.t("The node id is not in the form id1.1....1: {0}", archetype.getDefinition().getNodeId())

@@ -3,6 +3,7 @@ package com.nedap.archie.aom;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMProperty;
@@ -58,7 +59,8 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
     }
 
     public void setNodeId(String nodeId) {
-        if(!nodeId.equals(PRIMITIVE_NODE_ID_VALUE)) {
+        // the at-coded form (at9999) is accepted as well, but the id-coded form is always used internally
+        if(!AdlCodeDefinitions.isPrimitiveNodeId(nodeId)) {
             throw new UnsupportedOperationException("Cannot set node id on a CPrimitiveObject");
         }
     }

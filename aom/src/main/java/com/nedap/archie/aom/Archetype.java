@@ -280,7 +280,7 @@ public class Archetype extends AuthoredResource {
         workList.add(definition);
         while(!workList.isEmpty()) {
             CObject cObject = workList.pop();
-            if(!Objects.equals(cObject.getNodeId(), AdlCodeDefinitions.PRIMITIVE_NODE_ID)){
+            if(!AdlCodeDefinitions.isPrimitiveNodeId(cObject.getNodeId())){
                 if(cObject.getNodeId() != null) {
                     result.add(cObject.getNodeId());
                 }

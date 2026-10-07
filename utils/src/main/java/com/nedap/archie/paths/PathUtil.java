@@ -19,7 +19,7 @@ public class PathUtil {
         for(PathSegment segment: pathSegments) {
             result.append("/");
             result.append(segment.getNodeName());
-            if(segment.getNodeId() != null && !segment.getNodeId().equals(AdlCodeDefinitions.PRIMITIVE_NODE_ID)) {
+            if(segment.getNodeId() != null && !AdlCodeDefinitions.isPrimitiveNodeId(segment.getNodeId())) {
                 result.append("[");
                 result.append(segment.getNodeId());
                 if(segment.hasNumberIndex()) {
