@@ -110,6 +110,22 @@ public class AOMJacksonTest {
     }
 
     @Test
+    public void atCodedPrimitiveNodeId() throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/adl14/openEHR-EHR-OBSERVATION.demo_adl2_at.v1.0.0.adls")) {
+            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
+            ObjectMapper objectMapper = JacksonUtil.getObjectMapper();
+            String serialized = objectMapper.writeValueAsString(archetype);
+            assertTrue(serialized.contains("\"id9999\""));
+
+            // the specification uses at9999 as the primitive node id in at-coded archetypes, which should be accepted too
+            String atCodedPrimitiveNodeIds = serialized.replace("\"id9999\"", "\"at9999\"");
+            Archetype parsed = objectMapper.readValue(atCodedPrimitiveNodeIds, Archetype.class);
+            Archetype parsedWithIdCodedPrimitiveNodeIds = objectMapper.readValue(serialized, Archetype.class);
+            assertEquals(ADLArchetypeSerializer.serialize(parsedWithIdCodedPrimitiveNodeIds), ADLArchetypeSerializer.serialize(parsed));
+        }
+    }
+
+    @Test
     public void motricityIndex() throws Exception {
         try(InputStream stream = getClass().getResourceAsStream( "/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);

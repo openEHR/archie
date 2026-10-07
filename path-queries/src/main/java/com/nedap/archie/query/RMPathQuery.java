@@ -227,7 +227,7 @@ public class RMPathQuery {
     }
 
     private boolean archetypeNodeIdPresent(String archetypeNodeId) {
-        return archetypeNodeId != null && !archetypeNodeId.equals(AdlCodeDefinitions.PRIMITIVE_NODE_ID);
+        return archetypeNodeId != null && !AdlCodeDefinitions.isPrimitiveNodeId(archetypeNodeId);
     }
 
     private Collection<RMObjectWithPath> findRMObjectsWithPathCollection(ModelInfoLookup lookup, PathSegment segment, Collection<?> collection, String path) {
