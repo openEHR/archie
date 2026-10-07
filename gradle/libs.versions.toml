@@ -1,7 +1,7 @@
 [versions]
 antlr = "4.13.2"
 
-jackson = "2.21.3"
+jackson = "2.22.3"
 jackson_annotations = "2.22"
 jackson3 = "3.0.0"
 
@@ -19,11 +19,11 @@ antlr4-runtime = { module = "org.antlr:antlr4-runtime", version.ref = "antlr" }
 
 commons-io = { module = "commons-io:commons-io", version = "2.22.0" }
 
-commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.20.0" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.21.0" }
 
 commons-text = { module = "org.apache.commons:commons-text", version = "1.15.0" }
 
-guava = { module = "com.google.guava:guava", version = "33.6.0-jre" }
+guava = { module = "com.google.guava:guava", version = "33.7.2-jre" }
 
 jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson_annotations" }
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
@@ -48,7 +48,7 @@ junit5-platform-launcher = { module = "org.junit.platform:junit-platform-launche
 
 hamcrest = { module = "org.hamcrest:hamcrest", version = "3.0" }
 
-kryo = { module = "com.esotericsoftware.kryo:kryo5", version = "5.6.2" }
+kryo = { module = "com.esotericsoftware.kryo:kryo5", version = "5.7.0" }
 
 leadpony-justify = { module = "org.leadpony.justify:justify", version = "3.1.0" }
 

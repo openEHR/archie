@@ -15,6 +15,7 @@ import java.util.Objects;
 /**
  * Created by pieter.bos on 08/07/16.
  */
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="CONTACT", propOrder = {
         "timeValidity",

@@ -4,16 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlTransient;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
  */
+@XmlRootElement(name = "party_identity")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="PARTY_IDENTITY")
 public class PartyIdentity extends Locatable {

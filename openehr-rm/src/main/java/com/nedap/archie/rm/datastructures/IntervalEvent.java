@@ -11,10 +11,7 @@ import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rmutil.InvariantUtil;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -23,6 +20,7 @@ import java.util.Objects;
 /**
  * Created by pieter.bos on 04/11/15.
  */
+@XmlRootElement(name = "interval_event")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "INTERVAL_EVENT", propOrder = {
         "width",

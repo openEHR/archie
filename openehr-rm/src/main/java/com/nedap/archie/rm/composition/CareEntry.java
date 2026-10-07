@@ -12,10 +12,7 @@ import com.nedap.archie.rm.generic.PartyProxy;
 import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -24,6 +21,7 @@ import java.util.Objects;
 /**
  * Created by pieter.bos on 04/11/15.
  */
+@XmlRootElement(name = "care_entry")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CARE_ENTRY", propOrder = {
         "protocol",

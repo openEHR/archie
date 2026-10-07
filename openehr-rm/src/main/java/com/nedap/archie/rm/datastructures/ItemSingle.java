@@ -9,10 +9,7 @@ import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlTransient;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -22,6 +19,7 @@ import java.util.Objects;
  * added constraint is that this contains only one item
  * Created by pieter.bos on 04/11/15.
  */
+@XmlRootElement(name = "item_single")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ITEM_SINGLE", propOrder = {
         "item"
