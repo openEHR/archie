@@ -1,8 +1,8 @@
 description = "An odin implementation"
 
 dependencies {
-    api project(':grammars')
     api project(':base')
+    api project(':grammars')
 
     api(libs.jackson.databind)
     api(libs.jackson3.databind)
