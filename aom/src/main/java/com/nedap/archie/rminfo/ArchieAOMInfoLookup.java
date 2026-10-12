@@ -19,6 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
 
+    public static final String ADL_VERSION = "2.4.0";
+
     private static final ConcurrentHashMap<Boolean, ArchieAOMInfoLookup> instances = new ConcurrentHashMap<>();
     public static final boolean STANDARD_COMPLIANT_EXPRESSION_NAMES_DEFAULT_SETTING = true;
 

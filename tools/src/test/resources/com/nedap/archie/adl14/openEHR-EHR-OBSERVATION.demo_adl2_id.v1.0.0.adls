@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=489ceb2a-8336-406c-9fa5-e01b44643a47; build_uid=b115156b-c2a5-46ab-ad0c-d0d99c0f979d)
+archetype (adl_version=2.4.0; rm_release=1.1.0; generated; uid=489ceb2a-8336-406c-9fa5-e01b44643a47; build_uid=b115156b-c2a5-46ab-ad0c-d0d99c0f979d)
     openEHR-EHR-OBSERVATION.demo.v1.0.0
 
 language

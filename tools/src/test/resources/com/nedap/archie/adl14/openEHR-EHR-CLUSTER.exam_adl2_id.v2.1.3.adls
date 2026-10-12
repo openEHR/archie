@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=7bed0e4b-3603-4a0a-8f20-75b80d81be9b; build_uid=06eaf774-4c3f-455d-ba3c-cdb5d81b4e0a)
+archetype (adl_version=2.4.0; rm_release=1.1.0; generated; uid=7bed0e4b-3603-4a0a-8f20-75b80d81be9b; build_uid=06eaf774-4c3f-455d-ba3c-cdb5d81b4e0a)
     openEHR-EHR-CLUSTER.exam.v2.1.3
 
 language
