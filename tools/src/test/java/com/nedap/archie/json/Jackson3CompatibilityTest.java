@@ -1,9 +1,12 @@
 package com.nedap.archie.json;
 
+import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.json3.JacksonUtil3;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import tools.jackson.databind.exc.InvalidTypeIdException;
 
 import java.net.URI;
 import java.util.LinkedHashMap;
@@ -31,5 +34,11 @@ public class Jackson3CompatibilityTest {
         String jackson3Json = JacksonUtil3.getObjectMapper(configuration).writeValueAsString(terminology);
         assertFalse(jackson3Json.contains("SNOMED-CT"), jackson3Json);
         assertEquals(jackson2Json, jackson3Json);
+    }
+
+    @Test
+    public void unknownTypeIdThrowsInvalidTypeIdException() {
+        String json = "{\"_type\": \"NOT_A_TYPE\", \"rm_type_name\": \"ELEMENT\"}";
+        assertThrows(InvalidTypeIdException.class, () -> JacksonUtil3.getObjectMapper().readValue(json, CObject.class));
     }
 }

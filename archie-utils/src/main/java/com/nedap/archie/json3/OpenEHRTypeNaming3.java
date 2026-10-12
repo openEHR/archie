@@ -8,6 +8,7 @@ import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
 import tools.jackson.databind.DatabindContext;
+import tools.jackson.databind.DeserializationContext;
 import tools.jackson.databind.JavaType;
 import tools.jackson.databind.jsontype.TypeIdResolver;
 
@@ -81,7 +82,11 @@ public class OpenEHRTypeNaming3 implements TypeIdResolver {
             Class<?> cls = Thread.currentThread().getContextClassLoader().loadClass(id);
             return context.getTypeFactory().constructSpecializedType(baseType, cls);
         } catch (ClassNotFoundException e) {
-            throw new IllegalArgumentException("No class found for OpenEHR type id: " + id, e);
+            // Same as Jackson 2: let Jackson report the unknown type id, which throws an InvalidTypeIdException
+            if (context instanceof DeserializationContext deserializationContext) {
+                return deserializationContext.handleUnknownTypeId(baseType, id, this, "no such class found");
+            }
+            return null;
         }
     }
 
