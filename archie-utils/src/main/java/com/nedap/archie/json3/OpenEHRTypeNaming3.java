@@ -2,11 +2,13 @@ package com.nedap.archie.json3;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.nedap.archie.base.OpenEHRBase;
+import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMTypeInfo;
 import tools.jackson.databind.DatabindContext;
+import tools.jackson.databind.DeserializationContext;
 import tools.jackson.databind.JavaType;
 import tools.jackson.databind.jsontype.TypeIdResolver;
 
@@ -66,6 +68,11 @@ public class OpenEHRTypeNaming3 implements TypeIdResolver {
         if (result == null) {
             result = aomInfoLookup.getClass(id);
         }
+        if (result == null && "TerminologyCode".equals(id)) {
+            //backwards compatibility: older Archie versions serialized the TERMINOLOGY_CODE type as the simple java
+            //class name "TerminologyCode" instead of the openEHR type name, so still accept that when deserializing.
+            result = TerminologyCode.class;
+        }
         JavaType baseType = _baseType != null ? _baseType : context.getTypeFactory().constructType(OpenEHRBase.class);
         if (result != null) {
             return context.getTypeFactory().constructSpecializedType(baseType, result);
@@ -75,7 +82,11 @@ public class OpenEHRTypeNaming3 implements TypeIdResolver {
             Class<?> cls = Thread.currentThread().getContextClassLoader().loadClass(id);
             return context.getTypeFactory().constructSpecializedType(baseType, cls);
         } catch (ClassNotFoundException e) {
-            throw new IllegalArgumentException("No class found for OpenEHR type id: " + id, e);
+            // Same as Jackson 2: let Jackson report the unknown type id, which throws an InvalidTypeIdException
+            if (context instanceof DeserializationContext deserializationContext) {
+                return deserializationContext.handleUnknownTypeId(baseType, id, this, "no such class found");
+            }
+            return null;
         }
     }
 
