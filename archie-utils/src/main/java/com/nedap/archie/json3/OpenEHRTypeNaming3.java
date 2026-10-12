@@ -2,6 +2,7 @@ package com.nedap.archie.json3;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.nedap.archie.base.OpenEHRBase;
+import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
@@ -65,6 +66,11 @@ public class OpenEHRTypeNaming3 implements TypeIdResolver {
         Class<?> result = rmInfoLookup.getClass(id);
         if (result == null) {
             result = aomInfoLookup.getClass(id);
+        }
+        if (result == null && "TerminologyCode".equals(id)) {
+            //backwards compatibility: older Archie versions serialized the TERMINOLOGY_CODE type as the simple java
+            //class name "TerminologyCode" instead of the openEHR type name, so still accept that when deserializing.
+            result = TerminologyCode.class;
         }
         JavaType baseType = _baseType != null ? _baseType : context.getTypeFactory().constructType(OpenEHRBase.class);
         if (result != null) {

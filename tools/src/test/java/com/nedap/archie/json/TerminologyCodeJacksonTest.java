@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,6 +63,17 @@ public class TerminologyCodeJacksonTest {
         // backwards compatibility: older Archie versions serialized the type as the simple java class name.
         ObjectMapper mapper = JacksonUtil.getObjectMapper(ArchieJacksonConfiguration.createStandardsCompliant());
         String legacyJson = "{\"_type\": \"TerminologyCode\", \"terminology_id\": \"ISO_639-1\", \"code_string\": \"en\"}";
+        TerminologyCode parsed = mapper.readValue(legacyJson, TerminologyCode.class);
+        assertEquals("ISO_639-1", parsed.getTerminologyId());
+        assertEquals("en", parsed.getCodeString());
+    }
+
+    @ParameterizedTest
+    @MethodSource("com.nedap.archie.json.JacksonTestMappers#mappers")
+    public void parsesLegacyTerminologyCodeTypeNameWithLegacyConfiguration(JacksonTestMappers.JsonMapperFactory factory) throws Exception {
+        // this is what older Archie versions actually wrote with the legacy configuration
+        JacksonTestMappers.JsonMapper mapper = factory.create(ArchieJacksonConfiguration.createLegacyConfiguration());
+        String legacyJson = "{\"@type\": \"TerminologyCode\", \"terminology_id\": \"ISO_639-1\", \"code_string\": \"en\"}";
         TerminologyCode parsed = mapper.readValue(legacyJson, TerminologyCode.class);
         assertEquals("ISO_639-1", parsed.getTerminologyId());
         assertEquals("en", parsed.getCodeString());
