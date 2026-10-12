@@ -365,7 +365,10 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
         if (parentIsEvent && attributeIsData && attributeIsEmpty && attributeShouldNotBeEmpty) {
             String message = "Observation " + RMObjectValidationUtil.getParentObservationTerm(attribute) + " contains no results";
-            result.add(new RMObjectValidationMessage(cobject == null ? null : cobject.getParent().getParent(), pathSoFar, message, RMObjectValidationMessageType.EMPTY_OBSERVATION));
+            //the cobject is the event itself, so report the error on its grandparent - if the cobject is an archetype root, it has none
+            CAttribute cobjectParent = cobject == null ? null : cobject.getParent();
+            CObject grandParent = cobjectParent == null ? null : cobjectParent.getParent();
+            result.add(new RMObjectValidationMessage(grandParent, pathSoFar, message, RMObjectValidationMessageType.EMPTY_OBSERVATION));
         }
         return result;
     }
