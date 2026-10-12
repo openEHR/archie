@@ -2,6 +2,8 @@ package com.nedap.archie.rminfo;
 
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.AuthoredArchetype;
+import com.nedap.archie.aom.Template;
+import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.aom.profile.AomProfiles;
 import com.nedap.archie.openehrtestrm.TestRMInfoLookup;
 import org.junit.jupiter.api.Test;
@@ -199,6 +201,28 @@ public class SimpleMetaModelProviderTest {
 
         ex = assertThrows(ModelNotFoundException.class, () -> metaModelProvider.getMetaModel(archetype));
         assertEquals("model for other.OTHER version 0.9.0 not found", ex.getMessage());
+    }
+
+    @Test
+    public void testGetMetaModelTemplateOverlay() {
+        MetaModelProvider metaModelProvider = BuiltinReferenceModels.getMetaModelProvider();
+
+        TemplateOverlay overlay = new TemplateOverlay();
+        overlay.setArchetypeId(new ArchetypeHRID("openEHR-EHR-CLUSTER.test_overlay.v1.0.0"));
+
+        // without an owning template there is no RM release, so only the ModelInfoLookup is found
+        MetaModel metaModel = metaModelProvider.getMetaModel(overlay);
+        assertTrue(metaModel.getModelInfoLookup() instanceof ArchieRMInfoLookup);
+        assertNull(metaModel.getBmmModel());
+
+        // with an owning template, the RM release of the template is used
+        Template template = new Template();
+        template.setArchetypeId(new ArchetypeHRID("openEHR-EHR-COMPOSITION.test_template.v1.0.0"));
+        template.setRmRelease("1.0.3");
+        template.addTemplateOverlay(overlay);
+
+        metaModel = metaModelProvider.getMetaModel(overlay);
+        assertEquals("1.0.3", metaModel.getBmmModel().getRmRelease());
     }
 
 

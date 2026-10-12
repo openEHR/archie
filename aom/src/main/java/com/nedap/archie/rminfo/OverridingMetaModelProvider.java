@@ -1,8 +1,6 @@
 package com.nedap.archie.rminfo;
 
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.AuthoredArchetype;
-import com.nedap.archie.aom.TemplateOverlay;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.util.Map;
@@ -76,10 +74,10 @@ public class OverridingMetaModelProvider implements MetaModelProvider {
                 archetype.getArchetypeId().getRmPublisher(),
                 archetype.getArchetypeId().getRmPackage()
         );
-        return getMetaModel(archetype, overriddenVersion == null ?
-                archetype instanceof TemplateOverlay ?
-                        ((TemplateOverlay) archetype).getOwningTemplate().getRmRelease() :
-                        ((AuthoredArchetype) archetype).getRmRelease() : overriddenVersion);
+        if (overriddenVersion == null) {
+            return MetaModelProvider.super.getMetaModel(archetype);
+        }
+        return getMetaModel(archetype, overriddenVersion);
     }
 
     @Override
