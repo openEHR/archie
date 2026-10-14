@@ -201,7 +201,7 @@ public abstract class Archetype extends AuthoredResource {
             if(cObject instanceof CTerminologyCode) {
                 CTerminologyCode terminologyCode = (CTerminologyCode) cObject;
                 result.addAll(terminologyCode.getValueSetExpanded());
-                if(terminologyCode.getConstraint() != null) {
+                if(!terminologyCode.isAnyAllowed()) {
                     result.add(terminologyCode.getConstraint());
                 }
             }

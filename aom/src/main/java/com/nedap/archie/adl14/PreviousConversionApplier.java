@@ -213,7 +213,7 @@ public class PreviousConversionApplier {
                     if(symbolIndex >= 0) {
                         for(CPrimitiveTuple primitiveTuple:tuple.getTuples()) {
                             CTerminologyCode cTermCode = (CTerminologyCode) primitiveTuple.getMember(symbolIndex);
-                            if(cTermCode != null && cTermCode.getConstraint() != null) {
+                            if(cTermCode != null && !cTermCode.isAnyAllowed()) {
                                 atCodes.add(cTermCode.getConstraint());
                             }
                         }

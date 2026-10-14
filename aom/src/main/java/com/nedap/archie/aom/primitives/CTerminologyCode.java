@@ -37,7 +37,10 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     @XmlElement(name="assumed_value")
     @Nullable
     private TerminologyCode assumedValue;
-    private String constraint;
+    /**
+     * The at- or ac-code of this constraint. An empty string means no constraint, as described in the specification.
+     */
+    private String constraint = "";
 
     @Nullable
     private ConstraintStatus constraintStatus;
@@ -59,11 +62,15 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
 
     @Override
     public List<String> getConstraintAsList() {
-        return getConstraint() == null ? Collections.emptyList() : Collections.singletonList(getConstraint());
+        return isAnyAllowed() ? Collections.emptyList() : Collections.singletonList(getConstraint());
     }
 
+    /**
+     * Set the at- or ac-code of this constraint. Use an empty string for no constraint. For backwards compatibility,
+     * null is accepted as well, and converted to an empty string.
+     */
     public void setConstraint(String constraint) {
-        this.constraint = constraint;
+        this.constraint = constraint == null ? "" : constraint;
     }
 
     /**
@@ -75,7 +82,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         if (constraint == null || constraint instanceof String) {
             setConstraint((String) constraint);
         } else if (constraint instanceof List<?> list && list.isEmpty()) {
-            setConstraint(null);
+            setConstraint("");
         } else if (constraint instanceof List<?> list && list.size() == 1 && list.get(0) instanceof String code) {
             setConstraint(code);
         } else {
@@ -119,7 +126,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         ArchetypeTerminology terminology = archetype.getTerminology(this);
         String language = ArchieLanguageConfiguration.getMeaningAndDescriptionLanguage();
         String defaultLanguage = ArchieLanguageConfiguration.getDefaultMeaningAndDescriptionLanguage();
-        if(constraint != null) {
+        if(!isAnyAllowed()) {
             if(constraint.startsWith("at")) {
                 ArchetypeTerm termDefinition = terminology.getTermDefinition(language, constraint);
                 if(termDefinition == null) {
@@ -164,7 +171,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     public List<String> getValueSetExpanded() {
         List<String> result = new ArrayList<>();
         ArchetypeTerminology terminology = getTerminology();
-        if(constraint != null) {
+        if(!isAnyAllowed()) {
             if(constraint.startsWith("at")) {
                 result.add(constraint);
             } else if (constraint.startsWith("ac")) {
@@ -248,7 +255,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("{[");
-        if(constraint != null) {
+        if(!isAnyAllowed()) {
             result.append(constraint);
         }
         result.append("]}");

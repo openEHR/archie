@@ -16,7 +16,7 @@ public class CTerminologyCodeSerializer extends ConstraintSerializer<CTerminolog
 
     @Override
     public void serialize(CTerminologyCode cobj) {
-        if (cobj.getConstraint() != null) {
+        if (!cobj.isAnyAllowed()) {
             if(cobj.getConstraintStatus() != null) {
                 String constraintStatusString = null;
                 switch(cobj.getConstraintStatus()) {
@@ -49,7 +49,7 @@ public class CTerminologyCodeSerializer extends ConstraintSerializer<CTerminolog
     }
 
     public String getSimpleCommentText(CTerminologyCode cobj) {
-        if (cobj.getConstraint() != null) {
+        if (!cobj.isAnyAllowed()) {
             String constraint = cobj.getConstraint();
             if(AOMUtils.isValueSetCode(constraint) || AOMUtils.isValueCode(constraint)) {
                 return serializer.getTermText(cobj, constraint);
