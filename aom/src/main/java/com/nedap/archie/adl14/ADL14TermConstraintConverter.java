@@ -217,6 +217,10 @@ public class ADL14TermConstraintConverter {
         // which (unlike CPrimitiveTuple.addMember) does not set socParent, so we copy it here.
         result.setSocParent(source.getSocParent());
         if (source.getConstraint() != null && !source.getConstraint().isEmpty()) {
+            if (source.getConstraint().size() > 1) {
+                // lists of codes should already have been converted to a value set, so this should not happen
+                throw new IllegalArgumentException("Cannot convert a terminology code constraint with more than one code to ADL 2: " + source.getConstraint());
+            }
             result.setConstraint(source.getConstraint().get(0));
         }
         return result;
