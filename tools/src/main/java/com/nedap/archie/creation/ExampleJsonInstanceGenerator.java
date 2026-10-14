@@ -438,7 +438,7 @@ public  class ExampleJsonInstanceGenerator {
             terminologyId.put("value", "local");
             String termString = "term";
             ArchetypeTerminology terminology = archetype.getTerminology(child);
-            if(child.getConstraint() == null) {
+            if(child.isAnyAllowed()) {
                 codeString = "term code";
                 CAttribute attribute = child.getParent();
                 CComplexObject parent = (CComplexObject) attribute.getParent();

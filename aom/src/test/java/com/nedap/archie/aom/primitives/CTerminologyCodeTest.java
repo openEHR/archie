@@ -13,14 +13,24 @@ public class CTerminologyCodeTest {
     @Test
     public void constraintGetterSetterRoundtrip() {
         CTerminologyCode cTerminologyCode = new CTerminologyCode();
-        assertNull(cTerminologyCode.getConstraint());
+        assertEquals("", cTerminologyCode.getConstraint());
         cTerminologyCode.setConstraint("at0001");
         assertEquals("at0001", cTerminologyCode.getConstraint());
     }
 
     @Test
-    public void getConstraintAsListReturnsEmptyWhenConstraintIsNull() {
+    public void nullConstraintIsConvertedToEmptyString() {
         CTerminologyCode cTerminologyCode = new CTerminologyCode();
+        cTerminologyCode.setConstraint("at0001");
+        cTerminologyCode.setConstraint(null);
+        assertEquals("", cTerminologyCode.getConstraint());
+        assertTrue(cTerminologyCode.isAnyAllowed());
+    }
+
+    @Test
+    public void getConstraintAsListReturnsEmptyWhenConstraintIsEmpty() {
+        CTerminologyCode cTerminologyCode = new CTerminologyCode();
+        cTerminologyCode.setConstraint("");
         assertEquals(Collections.emptyList(), cTerminologyCode.getConstraintAsList());
     }
 

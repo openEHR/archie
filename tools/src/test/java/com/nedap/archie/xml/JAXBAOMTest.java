@@ -91,6 +91,26 @@ public class JAXBAOMTest {
     }
 
     @Test
+    public void testUnconstrainedCTerminologyCode() throws Exception {
+        CTerminologyCode cTerminologyCode = new CTerminologyCode();
+        valueAttribute.addChild(cTerminologyCode);
+        StringWriter writer = new StringWriter();
+        JAXBUtil.getArchieJAXBContext().createMarshaller().marshal(archetype, writer);
+        String xml = writer.toString();
+
+        assertThat(xml, xml.contains("<constraint></constraint>"));
+
+        Archetype unmarshalled = (Archetype) JAXBUtil.getArchieJAXBContext().createUnmarshaller().unmarshal(new StringReader(xml));
+        CTerminologyCode parsedTerm = (CTerminologyCode) unmarshalled.getDefinition().getAttribute("value").getChildren().get(0);
+        assertEquals("", parsedTerm.getConstraint());
+
+        // XML without a constraint element
+        Archetype withoutConstraint = (Archetype) JAXBUtil.getArchieJAXBContext().createUnmarshaller().unmarshal(new StringReader(xml.replace("<constraint></constraint>", "")));
+        parsedTerm = (CTerminologyCode) withoutConstraint.getDefinition().getAttribute("value").getChildren().get(0);
+        assertEquals("", parsedTerm.getConstraint());
+    }
+
+    @Test
     public void parseCDuration() throws Exception {
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
                 "<archetype is_generated=\"false\" is_differential=\"false\" xmlns:ns2=\"http://schemas.openehr.org/v1\">\n" +
