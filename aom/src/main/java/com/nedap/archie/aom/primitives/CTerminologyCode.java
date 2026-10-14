@@ -1,6 +1,7 @@
 package com.nedap.archie.aom.primitives;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
@@ -63,6 +64,23 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
 
     public void setConstraint(String constraint) {
         this.constraint = constraint;
+    }
+
+    /**
+     * JSON setter for the constraint. Archie 3 serialized the constraint as a list, so to still be able to parse that
+     * output, an empty list is accepted as no constraint, and a list with one element as that element.
+     */
+    @JsonProperty("constraint")
+    private void setConstraintFromJson(Object constraint) {
+        if (constraint == null || constraint instanceof String) {
+            setConstraint((String) constraint);
+        } else if (constraint instanceof List<?> list && list.isEmpty()) {
+            setConstraint(null);
+        } else if (constraint instanceof List<?> list && list.size() == 1 && list.get(0) instanceof String code) {
+            setConstraint(code);
+        } else {
+            throw new IllegalArgumentException("constraint must be a single code, but was: " + constraint);
+        }
     }
 
     public ConstraintStatus getConstraintStatus() {

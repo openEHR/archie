@@ -15,10 +15,26 @@ public interface MetaModelProvider {
      * @param archetype the archetype to find the meta model for
      * @return the meta model for the reference model that the archetype is based on
      * @throws ModelNotFoundException when no BMM and no ModelInfoLookup model has been found matching the archetype
+     * @throws IllegalArgumentException when the type of archetype has no RM release
      */
     public default MetaModel getMetaModel(Archetype archetype) throws ModelNotFoundException {
-        if (archetype instanceof TemplateOverlay) return getMetaModel(archetype, ((TemplateOverlay) archetype).getOwningTemplate().getRmRelease());
-        return getMetaModel(archetype, ((AuthoredArchetype) archetype).getRmRelease());
+        return getMetaModel(archetype, getRmRelease(archetype));
+    }
+
+    /**
+     * A template overlay has no RM release of its own, so the RM release of its owning template is used. If the
+     * owning template is not known, null is returned.
+     *
+     * @throws IllegalArgumentException when the type of archetype has no RM release
+     */
+    private static String getRmRelease(Archetype archetype) {
+        if (archetype instanceof TemplateOverlay overlay) {
+            return overlay.getOwningTemplate() == null ? null : overlay.getOwningTemplate().getRmRelease();
+        }
+        if (archetype instanceof AuthoredArchetype authoredArchetype) {
+            return authoredArchetype.getRmRelease();
+        }
+        throw new IllegalArgumentException("Cannot determine the RM release of archetype type " + archetype.getClass().getName());
     }
 
     /**

@@ -322,6 +322,32 @@ public class AOMJacksonTest {
 
     @ParameterizedTest
     @MethodSource("mappers")
+    public void backwardsCompatibilityCTerminologyCodeEmptyConstraintListFromJsonTest(JsonMapperFactory factory) throws Exception {
+        // Archie 3 serialized an unconstrained CTerminologyCode with an empty constraint list
+        String json = "{\n" +
+                "  \"rm_type_name\" : \"terminology_code\",\n" +
+                "  \"node_id\" : \"id9999\",\n" +
+                "  \"constraint\" : [ ]\n" +
+                "}";
+        CTerminologyCode parsedTermCode = factory.create(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(json, CTerminologyCode.class);
+        assertNull(parsedTermCode.getConstraint());
+    }
+
+    @ParameterizedTest
+    @MethodSource("mappers")
+    public void cTerminologyCodeWithMultipleConstraintsFromJsonFails(JsonMapperFactory factory) {
+        String json = "{\n" +
+                "  \"rm_type_name\" : \"terminology_code\",\n" +
+                "  \"node_id\" : \"id9999\",\n" +
+                "  \"constraint\" : [ \"at1\", \"at2\" ]\n" +
+                "}";
+        JsonMapper mapper = factory.create(ArchieJacksonConfiguration.createStandardsCompliant());
+        Exception exception = assertThrows(Exception.class, () -> mapper.readValue(json, CTerminologyCode.class));
+        assertTrue(exception.getMessage().contains("constraint must be a single code"), exception.getMessage());
+    }
+
+    @ParameterizedTest
+    @MethodSource("mappers")
     public void rmOverlay(JsonMapperFactory factory) throws Exception {
         Archetype archetype = TestUtil.parseFailOnErrors("/com/nedap/archie/flattener/openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1.0.0.adls");
         JsonMapper mapper = factory.create(ArchieJacksonConfiguration.createStandardsCompliant());

@@ -86,7 +86,6 @@ public class ADLListener extends AdlBaseListener {
             if(rootArchetype instanceof Template) {
                 Template owningTemplate = (Template) rootArchetype;
                 owningTemplate.addTemplateOverlay(overlay);
-                overlay.setOwningTemplate(owningTemplate);
             } else {
                 throw new IllegalArgumentException("Template overlay in a non-template archetype is not allowed. This sounds like a grammar problem.");
             }
