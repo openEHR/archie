@@ -63,14 +63,17 @@ public class JacksonUtil3 {
         builder.disable(EnumFeature.READ_ENUMS_USING_TO_STRING);
         builder.disable(EnumFeature.WRITE_ENUMS_USING_TO_STRING);
 
+        // the content inclusion of NON_NULL replaces the Jackson 2 setting of disabling WRITE_NULL_MAP_VALUES
         if (!configuration.isSerializeEmptyCollections()) {
             builder.changeDefaultPropertyInclusion(v -> JsonInclude.Value.construct(
                     JsonInclude.Include.CUSTOM,
-                    JsonInclude.Include.USE_DEFAULTS,
+                    JsonInclude.Include.NON_NULL,
                     ExcludeEmptyCollectionsFilter.class,
                     null));
         } else {
-            builder.changeDefaultPropertyInclusion(v -> v.withValueInclusion(JsonInclude.Include.NON_NULL));
+            builder.changeDefaultPropertyInclusion(v -> v
+                    .withValueInclusion(JsonInclude.Include.NON_NULL)
+                    .withContentInclusion(JsonInclude.Include.NON_NULL));
         }
 
         if (configuration.isFailOnUnknownProperties()) {

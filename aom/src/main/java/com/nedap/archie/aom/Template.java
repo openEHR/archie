@@ -1,5 +1,6 @@
 package com.nedap.archie.aom;
 
+import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,10 +23,27 @@ public class Template extends AuthoredArchetype {
 
     public void setTemplateOverlays(List<TemplateOverlay> templateOverlays) {
         this.templateOverlays = templateOverlays;
+        setOwningTemplateOnOverlays();
     }
 
     public void addTemplateOverlay(TemplateOverlay overlay) {
         templateOverlays.add(overlay);
+        overlay.setOwningTemplate(this);
+    }
+
+    // Invoked by Jaxb Marshaller after unmarshalling. JAXB sets the templateOverlays field directly, bypassing the setter
+    @Override
+    public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
+        super.afterUnmarshal(unmarshaller, parent);
+        setOwningTemplateOnOverlays();
+    }
+
+    private void setOwningTemplateOnOverlays() {
+        if (templateOverlays != null) {
+            for (TemplateOverlay overlay : templateOverlays) {
+                overlay.setOwningTemplate(this);
+            }
+        }
     }
 
     public TemplateOverlay getTemplateOverlay(String id) {
