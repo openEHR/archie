@@ -3,19 +3,13 @@ package com.nedap.archie.json;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.json3.JacksonUtil3;
-import com.nedap.archie.rm.datastructures.Cluster;
-import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datastructures.ItemTable;
-import com.nedap.archie.rm.datavalues.DvText;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import tools.jackson.databind.exc.InvalidTypeIdException;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,24 +41,5 @@ public class Jackson3CompatibilityTest {
     public void unknownTypeIdThrowsInvalidTypeIdException() {
         String json = "{\"_type\": \"NOT_A_TYPE\", \"rm_type_name\": \"ELEMENT\"}";
         assertThrows(InvalidTypeIdException.class, () -> JacksonUtil3.getObjectMapper().readValue(json, CObject.class));
-    }
-
-    @Test
-    public void readsItemTableWrittenByJackson2InStrictMode() throws Exception {
-        ArchieJacksonConfiguration configuration = ArchieJacksonConfiguration.createStandardsCompliant();
-        configuration.setFailOnUnknownProperties(true);
-
-        Element element = new Element("id3", new DvText("element"), new DvText("value"));
-        Cluster row = new Cluster("id2", new DvText("row"), new ArrayList<>(List.of(element)));
-        ItemTable table = new ItemTable("id1", new DvText("table"), new ArrayList<>(List.of(row)));
-
-        // Jackson 2 serializes the derived items property
-        String json = JacksonUtil.getObjectMapper(configuration).writeValueAsString(table);
-        assertTrue(json.contains("\"items\""));
-
-        ItemTable parsed = JacksonUtil3.getObjectMapper(configuration).readValue(json, ItemTable.class);
-        assertEquals(1, parsed.getRows().size());
-        Element parsedElement = (Element) parsed.getRows().get(0).getItems().get(0);
-        assertEquals("value", ((DvText) parsedElement.getValue()).getValue());
     }
 }

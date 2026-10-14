@@ -62,9 +62,6 @@ public class JacksonUtil3 {
         builder.disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
         builder.disable(EnumFeature.READ_ENUMS_USING_TO_STRING);
         builder.disable(EnumFeature.WRITE_ENUMS_USING_TO_STRING);
-        // Jackson 2 default, disabled by default in Jackson 3. Needed to read getter-only list properties
-        // such as ItemTable.items, which Jackson 2 serializes
-        builder.enable(MapperFeature.USE_GETTERS_AS_SETTERS);
 
         // the content inclusion of NON_NULL replaces the Jackson 2 setting of disabling WRITE_NULL_MAP_VALUES
         if (!configuration.isSerializeEmptyCollections()) {
