@@ -1,5 +1,6 @@
 package com.nedap.archie.rminfo;
 
+import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeHRID;
 import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.aom.Template;
@@ -223,6 +224,17 @@ public class SimpleMetaModelProviderTest {
 
         metaModel = metaModelProvider.getMetaModel(overlay);
         assertEquals("1.0.3", metaModel.getBmmModel().getRmRelease());
+    }
+
+    @Test
+    public void testGetMetaModelArchetypeTypeWithoutRmRelease() {
+        MetaModelProvider metaModelProvider = BuiltinReferenceModels.getMetaModelProvider();
+
+        Archetype archetype = new Archetype() {};
+        archetype.setArchetypeId(new ArchetypeHRID("openEHR-EHR-CLUSTER.test.v1.0.0"));
+
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> metaModelProvider.getMetaModel(archetype));
+        assertTrue(ex.getMessage().startsWith("Cannot determine the RM release of archetype type"), ex.getMessage());
     }
 
 
