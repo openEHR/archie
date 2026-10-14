@@ -38,6 +38,7 @@ public class Jackson3CompatibilityTest {
 
         String jackson2Json = JacksonUtil.getObjectMapper(configuration).writeValueAsString(terminology);
         String jackson3Json = JacksonUtil3.getObjectMapper(configuration).writeValueAsString(terminology);
+        assertFalse(jackson2Json.contains("SNOMED-CT"), jackson2Json);
         assertFalse(jackson3Json.contains("SNOMED-CT"), jackson3Json);
         assertEquals(jackson2Json, jackson3Json);
     }
