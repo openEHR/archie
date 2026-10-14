@@ -83,10 +83,7 @@ public class OpenEHRTypeNaming3 implements TypeIdResolver {
             return context.getTypeFactory().constructSpecializedType(baseType, cls);
         } catch (ClassNotFoundException e) {
             // Same as Jackson 2: let Jackson report the unknown type id, which throws an InvalidTypeIdException
-            if (context instanceof DeserializationContext deserializationContext) {
-                return deserializationContext.handleUnknownTypeId(baseType, id, this, "no such class found");
-            }
-            return null;
+            return ((DeserializationContext) context).handleUnknownTypeId(baseType, id, this, "no such class found");
         }
     }
 
