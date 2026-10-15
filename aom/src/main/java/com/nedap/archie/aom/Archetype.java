@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 /**
  * Note: this Archetype does not conform to the UML model completely:
  * - it extends AuthoredResource - needed because otherwise we would have multiple inheritance
- * - it contains fields from AuthoredArchetype - needed because it saves complicated casting in java to call these methods otherwise
  *
  * Created by pieter.bos on 15/10/15.
  */

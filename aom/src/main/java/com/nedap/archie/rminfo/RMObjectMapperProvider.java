@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  * Mapper 2 and 3 would be better as one object mapper, but none such currently exist for the ODIN format, as there is
  * no native ODIN jackson parser, only a ODIN -&gt; JSON -&gt; Objects route, and there is a native ODIN serializer.
-s * The methods ending in 3 return the Jackson 3 equivalents. They are used by the Jackson 3 parser and serializer, and
+ * The methods ending in 3 return the Jackson 3 equivalents. They are used by the Jackson 3 parser and serializer, and
  * throw an {@link UnsupportedOperationException} unless an implementation overrides them.
  */
 public interface RMObjectMapperProvider {
