@@ -896,7 +896,7 @@ msgid "Type name {0} does not exist"
 msgstr "Type met naam {0} bestaat niet"
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:135
-#, fuzzy, java-format
+#, java-format
 msgid "Unexpected error validating invariant {0} on {1}"
 msgstr "Onverwachte fout bij het valideren van invariant {0} van {1}"
 
@@ -1215,9 +1215,9 @@ msgid "specialised object node occurrences validity: the sum of the lower occurr
 msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:198
-#, fuzzy, java-format
+#, java-format
 msgid "specialized CTerminologyCode constraint status {0} is wider than parent constraint status {1}"
-msgstr "child terminology constraint value code {0} komt niet overeen met dat van de parent constraint met value code {1}"
+msgstr "gespecialiseerde CTerminologyCode constraintstatus {0} is breder dan de parent constraintstatus {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:36
 msgid "terminology term binding key valid. Every term binding must be to either a defined archetype term ('at-code') or to a path that is valid in the flat archetype."
