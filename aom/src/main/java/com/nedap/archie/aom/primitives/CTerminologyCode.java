@@ -66,11 +66,10 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     }
 
     /**
-     * Set the at- or ac-code of this constraint. Use an empty string for no constraint. For backwards compatibility,
-     * null is accepted as well, and converted to an empty string.
+     * Set the at- or ac-code of this constraint. Use an empty string for no constraint.
      */
     public void setConstraint(String constraint) {
-        this.constraint = constraint == null ? "" : constraint;
+        this.constraint = constraint;
     }
 
     /**

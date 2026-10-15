@@ -341,9 +341,9 @@ public class AOMJacksonTest {
         assertTrue(json.contains("\"constraint\" : \"\""), json);
         assertEquals("", mapper.readValue(json, CTerminologyCode.class).getConstraint());
 
-        // no constraint can also be parsed from null, or a missing constraint
+        // a missing or null constraint is no constraint as well
         String nullConstraint = "{ \"rm_type_name\" : \"terminology_code\", \"constraint\" : null }";
-        assertEquals("", mapper.readValue(nullConstraint, CTerminologyCode.class).getConstraint());
+        assertTrue(mapper.readValue(nullConstraint, CTerminologyCode.class).isAnyAllowed());
         String missingConstraint = "{ \"rm_type_name\" : \"terminology_code\" }";
         assertEquals("", mapper.readValue(missingConstraint, CTerminologyCode.class).getConstraint());
     }

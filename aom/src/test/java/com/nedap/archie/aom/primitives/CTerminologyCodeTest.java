@@ -19,11 +19,10 @@ public class CTerminologyCodeTest {
     }
 
     @Test
-    public void nullConstraintIsConvertedToEmptyString() {
+    public void nullConstraintIsAnyAllowed() {
         CTerminologyCode cTerminologyCode = new CTerminologyCode();
-        cTerminologyCode.setConstraint("at0001");
         cTerminologyCode.setConstraint(null);
-        assertEquals("", cTerminologyCode.getConstraint());
+        assertNull(cTerminologyCode.getConstraint());
         assertTrue(cTerminologyCode.isAnyAllowed());
     }
 
