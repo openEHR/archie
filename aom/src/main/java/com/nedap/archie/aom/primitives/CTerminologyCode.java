@@ -195,7 +195,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
 
         // The constraint status can only be narrowed: example -> preferred -> extensible -> required
         if(!getEffectiveConstraintStatus().cConformsTo(otherCode.getEffectiveConstraintStatus())) {
-            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminology code constraint status {0} is wider more than parent contraint status {1}", getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus()));
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminologyCode constraint status {0} is wider than parent constraint status {1}", getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus()));
         }
 
         // If the parent constraint status is not required, the child automatically conforms
