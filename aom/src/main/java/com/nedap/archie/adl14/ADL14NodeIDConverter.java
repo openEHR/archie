@@ -15,7 +15,6 @@ import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rules.*;
 
 import java.net.URI;
@@ -35,7 +34,6 @@ public class ADL14NodeIDConverter {
     private final ADL14TermConstraintConverter termConstraintConverter;
     private final PreviousConversionApplier previousConversionApplier;
     private final ADL2ConversionResult conversionResult;
-    private final MetaModelProvider metaModelProvider;
     private final MetaModel metaModel;
 
     private IdCodeGenerator idCodeGenerator;
@@ -48,16 +46,7 @@ public class ADL14NodeIDConverter {
     private final Map<String, ValueSet> createdValueSets = new LinkedHashMap<>();
     private final Map<String, String> newCodeToOldCodeMap = new LinkedHashMap<>();
 
-    /**
-     * @deprecated Use {@link #ADL14NodeIDConverter(MetaModelProvider, Archetype, Archetype, ADL14ConversionConfiguration, ADL2ConversionLog, ADL2ConversionResult)} instead.
-     */
-    @Deprecated
-    public ADL14NodeIDConverter(MetaModels metaModels, Archetype archetype, Archetype flatParentArchetype, ADL14ConversionConfiguration configuration, ADL2ConversionLog oldLog, ADL2ConversionResult conversionResult) {
-        this((MetaModelProvider) metaModels, archetype, flatParentArchetype, configuration, oldLog, conversionResult);
-    }
-
     public ADL14NodeIDConverter(MetaModelProvider metaModelProvider, Archetype archetype, Archetype flatParentArchetype, ADL14ConversionConfiguration configuration, ADL2ConversionLog oldLog, ADL2ConversionResult conversionResult) {
-        this.metaModelProvider = metaModelProvider;
         this.metaModel = metaModelProvider.getMetaModel(archetype);
         this.conversionConfiguration = configuration;
         this.archetype = archetype;
@@ -73,8 +62,6 @@ public class ADL14NodeIDConverter {
     }
 
     public ADL2ConversionLog convert() {
-        metaModelProvider.selectAndGetMetaModel(archetype); // For backwards compatibility
-
         correctItemsCardinality(archetype.getDefinition());
         List<String> unnecessaryCodes = findUnnecessaryCodes(archetype.getDefinition(),
                 archetype.getTerminology().getTermDefinitions().get(archetype.getOriginalLanguage().getCodeString()));
@@ -399,8 +386,7 @@ public class ADL14NodeIDConverter {
                 Expression rightOperand = binary.getRightOperand();
                 if (rightOperand instanceof Constraint) {
                     Constraint<?> constraint = (Constraint<?>) rightOperand;
-                    if (constraint.getItem() != null && constraint.getItem().getConstraint() != null && !constraint.getItem().getConstraint().isEmpty() &&
-                            constraint.getItem() instanceof CString) {
+                    if (constraint.getItem() != null && constraint.getItem() instanceof CString && constraint.getItem().getConstraint() != null && !((CString) constraint.getItem()).getConstraint().isEmpty()) {
                         CString cString = (CString) constraint.getItem();
                         if (cString.getConstraint() == null || cString.getConstraint().isEmpty()) {
                             return;

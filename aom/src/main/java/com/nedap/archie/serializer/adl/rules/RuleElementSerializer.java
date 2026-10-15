@@ -1,19 +1,19 @@
 package com.nedap.archie.serializer.adl.rules;
 
 import com.nedap.archie.rules.RuleElement;
+import com.nedap.archie.serializer.adl.ADLBuilder;
 import com.nedap.archie.serializer.adl.ADLRulesSerializer;
-import com.nedap.archie.serializer.adl.ADLStringBuilder;
 
 /**
  * Created by pieter.bos on 15/06/16.
  */
 public abstract class RuleElementSerializer<T extends RuleElement> {
     protected final ADLRulesSerializer serializer;
-    protected final ADLStringBuilder builder;
+    protected final ADLBuilder builder;
 
     public RuleElementSerializer(ADLRulesSerializer serializer) {
         this.serializer = serializer;
-        this.builder = serializer.getBuilder();
+        this.builder = serializer.getOutputBuilder();
     }
 
     abstract public void serialize(T ruleElement);

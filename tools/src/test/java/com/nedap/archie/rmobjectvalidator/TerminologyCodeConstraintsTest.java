@@ -25,9 +25,7 @@ import org.openehr.referencemodels.BuiltinReferenceModels;
 import java.net.URI;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 23/02/16.
@@ -44,12 +42,12 @@ public class TerminologyCodeConstraintsTest {
         archetype = new AuthoredArchetype();
 
         ArchetypeTerminology terminology = new ArchetypeTerminology();
-        terminology.setTermBindings(new HashMap<String, Map<String, URI>>() {{
-            put("openehr", new HashMap<String, URI>() {{
+        terminology.setTermBindings(new HashMap<>() {{
+            put("openehr", new HashMap<>() {{
                 put("at9000", URI.create("http://openehr.org/id/532"));
             }});
 
-            put("IANA_media-types", new HashMap<String, URI>() {{
+            put("IANA_media-types", new HashMap<>() {{
                 put("at9001", URI.create("https://www.w3.org/ns/iana/media-types/text/plain#Resource"));
             }});
         }});
@@ -71,14 +69,28 @@ public class TerminologyCodeConstraintsTest {
     @Test
     public void noConstraint() {
         CTerminologyCode code = new CTerminologyCode();
+        assertTrue(primitiveObjectConstraintHelper.isValidValue(code, null));
         assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at23]")));
+    }
+
+    @Test
+    public void emptyStringOrNullConstraint() {
+        CTerminologyCode code = new CTerminologyCode();
+        code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
+        code.setConstraintStatus(ConstraintStatus.REQUIRED);
+        for (String constraint : Arrays.asList("", null)) {
+            code.setConstraint(constraint);
+            assertTrue(primitiveObjectConstraintHelper.isValidValue(code, null));
+            assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[local::at23]")));
+        }
     }
 
     @Test
     public void terminologyIdConstraint() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("ac12");
+        code.setConstraint("ac12");
+        assertFalse(primitiveObjectConstraintHelper.isValidValue(code, null));
         assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at23]")));
         assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at24]")));
         assertFalse(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at25]")));
@@ -89,7 +101,7 @@ public class TerminologyCodeConstraintsTest {
     public void externalTerminology() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("ac12");
+        code.setConstraint("ac12");
 
         assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[snomedct::72489423]")));
         assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[anything::atall]")));
@@ -103,7 +115,7 @@ public class TerminologyCodeConstraintsTest {
     public void openEHRTerminology() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at9000");
+        code.setConstraint("at9000");
         code.setConstraintStatus(ConstraintStatus.REQUIRED);
 
         DvCodedText text = new DvCodedText();
@@ -123,7 +135,7 @@ public class TerminologyCodeConstraintsTest {
     public void IANATerminology() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at9001");
+        code.setConstraint("at9001");
         code.setConstraintStatus(ConstraintStatus.REQUIRED);
 
         DvCodedText text = new DvCodedText();
@@ -143,7 +155,7 @@ public class TerminologyCodeConstraintsTest {
     public void terminologyCodeConstraint() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at23");
+        code.setConstraint("at23");
         assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac12::at23]")));
         assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac13::at23]")));
         assertFalse(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[ac13::at24]")));
@@ -154,7 +166,7 @@ public class TerminologyCodeConstraintsTest {
         //DV_CODED_TEXT can be constrained by a C_TERMINOLOGY_CONSTRAINT, according to lots of DV_ORDINAL usage in the CKM
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at23");
+        code.setConstraint("at23");
         termCodeAssertions(code);
     }
 
@@ -163,7 +175,7 @@ public class TerminologyCodeConstraintsTest {
         //DV_CODED_TEXT can be constrained by a C_TERMINOLOGY_CONSTRAINT, according to lots of DV_ORDINAL usage in the CKM
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at23");
+        code.setConstraint("at23");
         code.setConstraintStatus(ConstraintStatus.REQUIRED);
         termCodeAssertions(code);
     }
@@ -173,7 +185,7 @@ public class TerminologyCodeConstraintsTest {
         //DV_CODED_TEXT can be constrained by a C_TERMINOLOGY_CONSTRAINT, according to lots of DV_ORDINAL usage in the CKM
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
-        code.addConstraint("at23");
+        code.setConstraint("at23");
         Set<ConstraintStatus> nonRequiredBindings = EnumSet.of(ConstraintStatus.EXTENSIBLE, ConstraintStatus.EXAMPLE, ConstraintStatus.PREFERRED);
         for(ConstraintStatus status:nonRequiredBindings) {
             code.setConstraintStatus(status);

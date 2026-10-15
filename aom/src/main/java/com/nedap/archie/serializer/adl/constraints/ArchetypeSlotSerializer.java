@@ -50,7 +50,7 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
         boolean hasContent = false;
 
         ADLRulesSerializer rulesSerializer = new ADLRulesSerializer(builder, super.serializer);
-        if (cobj.getIncludes() != null && cobj.getIncludes().size() > 0) {
+        if (cobj.getIncludes() != null && !cobj.getIncludes().isEmpty()) {
             hasContent = true;
             builder.indent().newline()
                     .append("include")
@@ -62,7 +62,7 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
             }
             builder.unindent().unindent();
         }
-        if (cobj.getExcludes() != null && cobj.getExcludes().size() > 0) {
+        if (cobj.getExcludes() != null && !cobj.getExcludes().isEmpty()) {
             hasContent = true;
             builder.indent().newline()
                     .append("exclude")

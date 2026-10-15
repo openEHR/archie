@@ -11,7 +11,10 @@ import com.nedap.archie.paths.PathUtil;
 import com.nedap.archie.query.AOMPathQuery;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.query.PartialMatch;
-import com.nedap.archie.rminfo.*;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.rminfo.RMAttributeInfo;
+import com.nedap.archie.rminfo.RMTypeInfo;
 import com.nedap.archie.rules.*;
 import org.apache.commons.lang3.StringUtils;
 
@@ -46,7 +49,7 @@ public class AOMUtils {
     }
 
     public static boolean isValidValueSetCode(String code) {
-        return isValueSetCode(code) && isValidCode(code);
+        return isValidCode(code) && isValueSetCode(code);
     }
 
     public static boolean isValidCode(String code) {
@@ -87,7 +90,7 @@ public class AOMUtils {
         //remove leading .0 codes - they are not present in the code at the given level
         int numberOfCodesToRemove = 0;
         for(int i = codes.size()-1; i >= 0 ; i--) {
-            if(codes.get(i).intValue() == 0) {
+            if(codes.get(i) == 0) {
                 numberOfCodesToRemove++;
             } else {
                 break;
@@ -144,15 +147,14 @@ public class AOMUtils {
     public static ArchetypeModelObject getDifferentialPathFromParent(Archetype flatParent, CAttribute attributeWithDifferentialPath) {
         //adl workbench deviates from spec by only allowing differential paths at root, we allow them everywhere, according to spec
         ArchetypeModelObject parentAOMObject = flatParent.itemAtPath(pathAtSpecializationLevel(attributeWithDifferentialPath.getParent().getPathSegments(), flatParent.specializationDepth()));
-        if (parentAOMObject != null && parentAOMObject instanceof CComplexObject) {
+        if (parentAOMObject instanceof CComplexObject) {
             CComplexObject parentObject = (CComplexObject) parentAOMObject;
-            ArchetypeModelObject attributeInParent = parentObject.itemAtPath(
+            return parentObject.itemAtPath(
                     pathAtSpecializationLevel( //TODO: the ADL workbench does this, so /items[id9.1]/value is a valid differential path even in openEHR-EHR-CLUSTER.exam-uterine_cervix.v1.0.0. Should it be?
                             new APathQuery(attributeWithDifferentialPath.getDifferentialPath()).getPathSegments(),
                             flatParent.specializationDepth()
                     )
             );
-            return attributeInParent;
         }
         return null;
     }
@@ -177,7 +179,7 @@ public class AOMUtils {
     public static boolean isPhantomPathAtLevel(List<PathSegment> pathSegments, int specializationDepth) {
         for(int i = pathSegments.size()-1; i >=0; i--) {
             String nodeId = pathSegments.get(i).getNodeId();
-            if(nodeId != null && AOMUtils.isValidCode(nodeId) && specializationDepth > AOMUtils.getSpecializationDepthFromCode(nodeId)) {
+            if(AOMUtils.isValidCode(nodeId) && specializationDepth > AOMUtils.getSpecializationDepthFromCode(nodeId)) {
                 return codeExistsAtLevel(nodeId, specializationDepth);
             }
         }
@@ -227,12 +229,12 @@ public class AOMUtils {
 
     private static boolean matchesInclude(Expression expression, String archetypeRef) {
         Boolean result = matchesExpression(expression, archetypeRef);
-        return result == null ? true : result;
+        return result == null || result;
     }
 
     private static boolean matchesExclude(Expression expression, String archetypeRef) {
         Boolean result = matchesExpression(expression, archetypeRef);
-        return result == null ? false : result;
+        return result != null && result;
     }
 
     //TODO: because of the split in modules we cannot use the full RuleEvaluation here, which is a pity. So for now only the minor subset.
@@ -243,8 +245,7 @@ public class AOMUtils {
                 Expression rightOperand = binary.getRightOperand();
                 if (rightOperand instanceof Constraint) {
                     Constraint<?> constraint = (Constraint<?>) rightOperand;
-                    if(constraint.getItem() != null && constraint.getItem().getConstraint() != null && constraint.getItem().getConstraint().size() > 0 &&
-                            constraint.getItem() instanceof CString) {
+                    if(constraint.getItem() != null && constraint.getItem() instanceof CString && constraint.getItem().getConstraint() != null && !((CString) constraint.getItem()).getConstraint().isEmpty()) {
                         String pattern = ((CString) constraint.getItem()).getConstraint().get(0);
                         if (pattern.startsWith("^") || pattern.startsWith("/")) {
                             //regexp
@@ -436,32 +437,6 @@ public class AOMUtils {
         for(String value:valueSetMembers) {
             if(AOMUtils.codesConformant(code, value)) {
                 return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Check if the parent attribute of the given CObject is a container attribute.
-     *
-     * @see MetaModelInterface#isMultiple(String, String)
-     * @deprecated Use {@link #parentIsMultiple(CObject, Archetype, MetaModel)} instead.
-     */
-    @Deprecated
-    public static boolean parentIsMultiple(CObject cObject, Archetype flatParentArchetype, MetaModels metaModels) {
-        if(cObject.getParent() != null) {
-
-            CAttribute parent = cObject.getParent();
-            CObject owningObject = parent.getParent();
-            if (parent.getDifferentialPath() != null && flatParentArchetype != null) {
-                CAttribute attributeFromParent = (CAttribute) AOMUtils.getDifferentialPathFromParent(flatParentArchetype, parent);
-                if(attributeFromParent != null) {
-                    owningObject = attributeFromParent.getParent();
-                }
-
-            }
-            if(owningObject != null) {
-                return metaModels.isMultiple(owningObject.getRmTypeName(), parent.getRmAttributeName());
             }
         }
         return false;

@@ -44,7 +44,7 @@ public abstract class BmmPackageContainer extends BmmModelElement implements IBm
      */
     public BmmPackageContainer() {
         super();
-        packages = new LinkedHashMap<String, BmmPackage>();
+        packages = new LinkedHashMap<>();
     }
 
     /**

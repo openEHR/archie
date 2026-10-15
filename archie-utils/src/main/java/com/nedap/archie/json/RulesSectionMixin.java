@@ -1,8 +1,7 @@
 package com.nedap.archie.json;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-@JsonSerialize(converter = RulesSectionToListConverter.class)
+@com.fasterxml.jackson.databind.annotation.JsonSerialize(converter = RulesSectionToListConverter.class)
+@tools.jackson.databind.annotation.JsonSerialize(converter = com.nedap.archie.json3.RulesSectionToListConverter.class)
 public interface RulesSectionMixin {
 
 }

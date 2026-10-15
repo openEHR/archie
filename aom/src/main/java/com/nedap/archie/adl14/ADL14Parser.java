@@ -13,7 +13,6 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -45,14 +44,6 @@ public class ADL14Parser {
      * If true, write errors to the console, if false, do not
      */
     private boolean logEnabled = true;
-
-    /**
-     * @deprecated Use {@link #ADL14Parser(MetaModelProvider)} instead.
-     */
-    @Deprecated
-    public ADL14Parser(MetaModels models) {
-        this((MetaModelProvider) models);
-    }
 
     public ADL14Parser(MetaModelProvider metaModelProvider) {
         this.metaModelProvider = metaModelProvider;
@@ -86,7 +77,7 @@ public class ADL14Parser {
             result = listener.getArchetype();
             ArchetypeParsePostProcessor.fixArchetype(result);
             if (metaModelProvider != null) {
-                MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(result);
+                MetaModel metaModel = metaModelProvider.getMetaModel(result);
                 if (metaModel.getBmmModel() != null) {
                     ModelConstraintImposer imposer = new BMMConstraintImposer(metaModel.getBmmModel());
                     imposer.setSingleOrMultiple(result.getDefinition());

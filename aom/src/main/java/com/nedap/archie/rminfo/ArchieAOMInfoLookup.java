@@ -35,7 +35,7 @@ public class ArchieAOMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     public static ArchieAOMInfoLookup getInstance(boolean standardCompliantExpressionNames) {
-        return instances.computeIfAbsent(standardCompliantExpressionNames, s -> new ArchieAOMInfoLookup(s));
+        return instances.computeIfAbsent(standardCompliantExpressionNames, ArchieAOMInfoLookup::new);
     }
 
     @Override

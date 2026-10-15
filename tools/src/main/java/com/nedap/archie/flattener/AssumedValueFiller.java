@@ -41,25 +41,23 @@ public class AssumedValueFiller {
     }
 
     private static void fillAssumedValueForString(CString cObject) {
-        CString cString = cObject;
-        List<String> constraint = cString.getConstraint();
+        List<String> constraint = cObject.getConstraint();
         if(constraint != null && constraint.size() == 1) {
             String singleConstraint = constraint.get(0);
             if(!CString.isRegexConstraint(singleConstraint)) {
-                cString.setAssumedValue(singleConstraint);
+                cObject.setAssumedValue(singleConstraint);
             }
         }
     }
 
     private static <T> void fillAssumedValueForOrdered(COrdered<T> cObject) {
-        COrdered<T> cOrdered = cObject;
-        List<Interval<T>> constraint = cOrdered.getConstraint();
+        List<Interval<T>> constraint = cObject.getConstraint();
         if(constraint != null && constraint.size() == 1) {
             Interval<T> interval = constraint.get(0);
             if(!interval.isLowerUnbounded() && !interval.isUpperUnbounded() &&
                     interval.isLowerIncluded() && interval.isUpperIncluded()
                     && Objects.equals(interval.getLower(), interval.getUpper())) {
-                cOrdered.setAssumedValue(interval.getLower());
+                cObject.setAssumedValue(interval.getLower());
             }
         }
     }

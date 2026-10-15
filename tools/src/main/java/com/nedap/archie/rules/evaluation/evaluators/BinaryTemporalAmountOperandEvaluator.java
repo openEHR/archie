@@ -21,7 +21,7 @@ public class BinaryTemporalAmountOperandEvaluator {
         for (Value<?> leftValue : leftValues.getValues()) {
             for (Value<?> rightValue : rightValues.getValues()) {
                 Value<Boolean> evaluatedRelOp = evaluateBooleanRelOp(statement, leftValue.getValue(), rightValue.getValue(), mainEvaluator.getPaths(leftValue, rightValue));
-                if (evaluatedRelOp.getValue().booleanValue()) {
+                if (evaluatedRelOp.getValue()) {
                     return evaluatedRelOp;
                 }
             }

@@ -64,10 +64,7 @@ public class FlattenerConfiguration {
      * Officially, objects can only be excluded (occurrences matches {0}) after any
      * specializations. If any object is specialized after the exclusion of the parent object, the specialization is ignored.
      * This was not ignored before, so this config can be used to reproduce previous behaviour.
-     *
-     * Deprecated because this should be fixed in archetypes, rather than allowing it in a configuration.
      */
-    @Deprecated
     private boolean allowSpecializationAfterExclusion = true;
 
     private FlattenerConfiguration() {

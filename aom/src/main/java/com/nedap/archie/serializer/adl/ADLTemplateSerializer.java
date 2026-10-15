@@ -6,6 +6,7 @@ import com.nedap.archie.aom.TemplateOverlay;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * @author markopi
@@ -14,6 +15,12 @@ class ADLTemplateSerializer extends ADLAuthoredArchetypeSerializer<Template> {
 
     public ADLTemplateSerializer(Template archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
         super(archetype, flatArchetypeProvider, rmObjectMapperProvider);
+    }
+
+    ADLTemplateSerializer(Template archetype, Function<String, Archetype> flatArchetypeProvider,
+            RMObjectMapperProvider rmObjectMapperProvider,
+            Supplier<? extends ADLBuilder> builderSupplier) {
+        super(archetype, flatArchetypeProvider, rmObjectMapperProvider, builderSupplier);
     }
 
     @Override
@@ -31,6 +38,6 @@ class ADLTemplateSerializer extends ADLAuthoredArchetypeSerializer<Template> {
     private void appendTemplateOverlay(TemplateOverlay templateOverlay) {
         builder.newline()
                 .append("------------------------------------------------------------------------").newline()
-                .append(ADLArchetypeSerializer.serialize(templateOverlay, flatArchetypeProvider, rmObjectMapperProvider));
+                .append(ADLArchetypeSerializer.serialize(templateOverlay, flatArchetypeProvider, rmObjectMapperProvider, builderSupplier));
     }
 }

@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  * Node id generator that generates codes in the id/at/ac9xxx range.
- *
+ * <p>
  * This is useful for synthesized codes, so as not to create any codes that would overlap with regular edits.
  */
 public class OutsideRangeIdCodeGenerator implements IdCodeGenerator {
@@ -17,7 +17,7 @@ public class OutsideRangeIdCodeGenerator implements IdCodeGenerator {
     private final Archetype archetype;
     private final Set<String> allUsedCodes;
 
-    private Set<String> generatedCodes = new LinkedHashSet<String>();
+    private Set<String> generatedCodes = new LinkedHashSet<>();
 
     private int counter = 9000;
 
@@ -64,10 +64,6 @@ public class OutsideRangeIdCodeGenerator implements IdCodeGenerator {
     }
 
     private String generateSpecializationDepthCodePrefix (int specializationDepth) {
-        String prefix = "";
-        for(int i = 0; i < specializationDepth; i++) {
-            prefix += "0" + AdlCodeDefinitions.SPECIALIZATION_SEPARATOR;
-        }
-        return prefix;
+        return ("0" + AdlCodeDefinitions.SPECIALIZATION_SEPARATOR).repeat(Math.max(0, specializationDepth));
     }
 }

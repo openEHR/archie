@@ -65,7 +65,7 @@ public enum ErrorType implements MessageCode {
     VSANCC(I18n.register("specialised archetype attribute node cardinality conformance: the cardinality of a redefined (multiply-valued) attribute node in a specialised archetype, if stated, must conform to the cardinality of the corresponding node in the flat parent archetype by either being identical, or being wholly contained by the latter.")),
     VSONCT(I18n.register("specialised archetype object node reference type conformance: the reference model type of a redefined object node in a specialised archetype must conform to the reference model type in the corresponding node in the flat parent archetype by either being identical, or conforming via an inheritance relationship in the relevant reference model.")),
     VSONCO(I18n.register("specialised object node occurrences validity: the sum of the lower occurrences and the sum of the upper occurrences of all objects redefining a node in a specialised archetype, must be contained in the occurrences interval of the corresponding node in the flat parent archetype.")),
-    @Deprecated//TODO: not in spec why this is deprecated
+    @Deprecated // deprecated in the AOM2 specification
     VSONI(I18n.register("specialised archetype redefined object node identifier validity: if an object node in a specialised archetype is a redefinition of a node in the flat parent according to VSONIR, and the parent node carries a node identifier, it must carry a node identifier specalised at the level of the child archetype. Otherwise it must carry the same node identifier (or none) as the corresponding parent node.")),
     VPOV(I18n.register("Primitive object specialisation validation failed")),
     VUNK(I18n.register("Unknown conformance error")),

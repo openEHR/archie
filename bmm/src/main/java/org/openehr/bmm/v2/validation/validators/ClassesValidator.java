@@ -14,8 +14,6 @@ import org.openehr.utils.message.MessageLogger;
 
 public class ClassesValidator extends ValidatorBase implements BmmValidation {
 
-    private BmmValidationResult validationResult;
-    private BmmRepository repository;
     private PBmmSchema schema;
     private PropertyValidator propertyValidator;
 
@@ -23,14 +21,10 @@ public class ClassesValidator extends ValidatorBase implements BmmValidation {
     public void validate (BmmValidationResult validationResult, BmmRepository repository, MessageLogger logger, PBmmSchema schema) {
 
         setLogger(logger);
-        this.validationResult = validationResult;
-        this.repository = repository;
         this.schema = schema;
         propertyValidator = new PropertyValidator(logger, schema);
 
-        schema.doAllClasses( pBmmClass -> {
-            validateClass(pBmmClass);
-        });
+        schema.doAllClasses(this::validateClass);
     }
 
     public void validateClass(PBmmClass pBmmClass) {
