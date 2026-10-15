@@ -57,6 +57,8 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[97] = "Bericht bij {0} ({1}): {2}";
     t[98] = "at path: ";
     t[99] = "op het pad: ";
+    t[104] = "Unexpected error validating invariant {0} on {1}";
+    t[105] = "Onverwachte fout bij het valideren van invariant {0} van {1}";
     t[106] = "Node id {0} already used in archetype as {1} with a different at, id or ac prefix. The archetype will not be convertible to ADL 1.4";
     t[107] = "Node id {0} wordt al gebruikt in het archetype als {1} met een andere at, id of ac prefix. Het archetype kan niet naar ADL 1.4 geconverteerd worden";
     t[110] = "Type name {0} does not exist";
@@ -293,6 +295,8 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[629] = "leeg";
     t[632] = "{0} is not a known attribute of {1}";
     t[633] = "{0} is niet een bekend attribuut van {1}";
+    t[644] = "specialized CTerminologyCode constraint status {0} is wider than parent constraint status {1}";
+    t[645] = "gespecialiseerde CTerminologyCode constraintstatus {0} is breder dan de parent constraintstatus {1}";
     table = t;
   }
   public java.lang.Object handleGetObject (java.lang.String msgid) throws java.util.MissingResourceException {
