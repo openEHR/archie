@@ -33,7 +33,7 @@ jackson3-databind = { module = "tools.jackson.core:jackson-databind", version.re
 
 jakarta-json = { module = "org.glassfish:jakarta.json", version = "2.0.1" }
 
-jakarta-json-api = { module = "jakarta.json:jakarta.json-api", version = "2.0.0" }
+jakarta-json-api = { module = "jakarta.json:jakarta.json-api", version = "2.1.3" }
 
 jakarta-xml-bind-api = { module = "jakarta.xml.bind:jakarta.xml.bind-api", version = "4.0.5" }
 
