@@ -1,5 +1,6 @@
 package com.nedap.archie.adl14.treewalkers;
 
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.adlparser.antlr.Adl14Lexer;
 import com.nedap.archie.adlparser.antlr.Adl14Parser;
 import com.nedap.archie.adlparser.antlr.Adl14Parser.Boolean_list_valueContext;
@@ -91,8 +92,8 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
         }
     }
 
-    public CTerminologyCode parseCTerminologyCode(Adl14Parser.C_terminology_codeContext terminologyCodeContext) {
-        CTerminologyCode result = new CTerminologyCode();
+    public CTerminologyCodeADL14 parseCTerminologyCode(Adl14Parser.C_terminology_codeContext terminologyCodeContext) {
+        CTerminologyCodeADL14 result = new CTerminologyCodeADL14();
 
         boolean containsAssumedValue = !terminologyCodeContext.getTokens(Adl14Lexer.SYM_SEMICOLON).isEmpty();
 

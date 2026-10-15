@@ -59,7 +59,7 @@ public class UpdatedValueHandler {
         Map<String, Object> result = new HashMap<>();
 
         RMPathQuery rmPathQuery = new RMPathQuery(pathOfParent.replace("/symbol/defining_code", ""));
-        DvOrdered ordered = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
+        DvOrdered<?> ordered = rmPathQuery.find(ArchieRMInfoLookup.getInstance(), rmObject);
         Number value;
         CAttribute symbolAttribute = archetype.itemAtPath(pathOfParent.replace("/symbol/defining_code", "/symbol"));//TODO: remove all numeric indices from path!
         if (symbolAttribute != null) {
@@ -69,8 +69,8 @@ public class UpdatedValueHandler {
                 int symbolIndex = socParent.getMemberIndex("symbol");
                 if (valueIndex != -1 && symbolIndex != -1) {
                     for (CPrimitiveTuple tuple : socParent.getTuples()) {
-                        if ((ordered instanceof DvOrdinal && tuple.getMembers().get(symbolIndex).getConstraint().get(0).equals(((DvOrdinal) ordered).getSymbol().getDefiningCode().getCodeString())) ||
-                                ordered instanceof DvScale && tuple.getMembers().get(symbolIndex).getConstraint().get(0).equals(((DvScale) ordered).getSymbol().getDefiningCode().getCodeString())) {
+                        if ((ordered instanceof DvOrdinal && tuple.getMembers().get(symbolIndex).getConstraint().equals(((DvOrdinal) ordered).getSymbol().getDefiningCode().getCodeString())) ||
+                                ordered instanceof DvScale && tuple.getMembers().get(symbolIndex).getConstraint().equals(((DvScale) ordered).getSymbol().getDefiningCode().getCodeString())) {
                             List<Interval<Number>> valueConstraint = (List<Interval<Number>>) tuple.getMembers().get(valueIndex).getConstraint();
                             if(valueConstraint.size() == 1) {
                                 Interval<Number> interval  = valueConstraint.get(0);

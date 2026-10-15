@@ -1,9 +1,9 @@
 package com.nedap.archie.rm.datavalues.quantity;
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
 /**

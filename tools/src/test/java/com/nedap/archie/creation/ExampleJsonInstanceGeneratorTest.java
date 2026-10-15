@@ -235,7 +235,7 @@ public class ExampleJsonInstanceGeneratorTest {
 
                     jsonSchemaValidationRan++;
                     List<Problem> problems = firstValidator.validate(json);
-                    if(problems.size() > 0) {
+                    if(!problems.isEmpty()) {
                         logger.error("validation failed for {}", result.getArchetypeId());
                         logger.error(Joiner.on("\n").join(problems));
                         jsonSchemaValidationFailed++;
@@ -247,7 +247,7 @@ public class ExampleJsonInstanceGeneratorTest {
                     String serializedAgain = archieObjectMapper.writeValueAsString(parsed);
                     secondJsonSchemaValidationRan++;
                     List<Problem> secondProblems = secondValidator.validate(serializedAgain);
-                    if(secondProblems.size() > 0) {
+                    if(!secondProblems.isEmpty()) {
                         logger.error("second validation failed for {}", result.getArchetypeId());
                         logger.error(Joiner.on("\n").join(secondProblems));
                         reserializedJsonSchemaValidationFailed++;

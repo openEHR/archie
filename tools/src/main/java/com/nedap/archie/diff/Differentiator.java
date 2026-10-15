@@ -7,19 +7,10 @@ import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 
 public class Differentiator {
 
     private final MetaModelProvider metaModelProvider;
-
-    /**
-     * @deprecated Use {@link #Differentiator(MetaModelProvider)} instead.
-     */
-    @Deprecated
-    public Differentiator(MetaModels metaModels) {
-        this((MetaModelProvider) metaModels);
-    }
 
     public Differentiator(MetaModelProvider metaModelProvider) {
         this.metaModelProvider = metaModelProvider;
@@ -30,7 +21,7 @@ public class Differentiator {
     }
 
     public Archetype differentiate(Archetype flatChild, Archetype flatParent, boolean addSiblingOrder) {
-        MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(flatChild);
+        MetaModel metaModel = metaModelProvider.getMetaModel(flatChild);
         ModelConstraintImposer constraintImposer;
         if(metaModel.getBmmModel() != null) {
             constraintImposer = new BMMConstraintImposer(metaModel.getBmmModel());

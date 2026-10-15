@@ -86,7 +86,7 @@ public class CAttributeFlattener {
             // a list of all node ids that have been excluded in this operation
             Set<String> excludedNodeIds = new HashSet<>();
 
-            if (attributeInSpecialization.getChildren().size() > 0 && attributeInSpecialization.getChildren().get(0) instanceof CPrimitiveObject) {
+            if (!attributeInSpecialization.getChildren().isEmpty() && attributeInSpecialization.getChildren().get(0) instanceof CPrimitiveObject) {
                 //in case of a primitive object, just replace all nodes
                 attributeInParent.setChildren(attributeInSpecialization.getChildren());
             } else {
@@ -223,7 +223,7 @@ public class CAttributeFlattener {
                     SiblingOrder siblingOrder = new SiblingOrder();
                     siblingOrder.setSiblingNodeId(matchingNodeId);
                     siblingOrder.setBefore(cObject.getSiblingOrder().isBefore());
-                    anchor = nextAnchor(siblingOrder, cObject);;
+                    anchor = nextAnchor(siblingOrder, cObject);
                     parent.addChild(cObject, siblingOrder);
                     cObject.setSiblingOrder(null);//unset sibling order, it has been processed already
                 }
@@ -337,10 +337,8 @@ public class CAttributeFlattener {
                 effectiveOccurrences = differentialNodes.get(0).effectiveOccurrences((s, s2) -> flattener.getMetaModel().referenceModelPropMultiplicity(
                         parent.getParent().getParent().getRmTypeName(), parent.getParent().getRmAttributeName()));
             }
-            if(effectiveOccurrences != null && effectiveOccurrences.upperIsOne()) {
-                //REFINE the parent node case 2, only one child with occurrences upper == 1
-                return true;
-            }
+            //REFINE the parent node case 2, only one child with occurrences upper == 1
+            return effectiveOccurrences != null && effectiveOccurrences.upperIsOne();
         }
         return false;
     }

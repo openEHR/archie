@@ -14,9 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ComplexArchetypeValidatorTest {
     private ReferenceModels models;
-    private static Archetype simpleTestCluster;
-    private static Archetype simpleTestObservation;
-    private static Archetype observationTemplateWithOverlay;
     private static Archetype specializedObservationTemplateWithOverlay;
     private static Archetype compositionWithIncludedTemplate;
 
@@ -26,9 +23,9 @@ public class ComplexArchetypeValidatorTest {
     public void setup() throws Exception {
         models = BuiltinReferenceModels.getAvailableModelInfoLookups();
 
-        simpleTestCluster = new ADLParser().parse(ComplexArchetypeValidatorTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.simple_test_cluster.v1.0.0.adls"));
-        simpleTestObservation = new ADLParser().parse(ComplexArchetypeValidatorTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.simple_test_observation.v1.0.0.adls"));
-        observationTemplateWithOverlay = new ADLParser().parse(ComplexArchetypeValidatorTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.specialized_template_observation.v1.0.0.adls"));
+        Archetype simpleTestCluster = new ADLParser().parse(ComplexArchetypeValidatorTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.simple_test_cluster.v1.0.0.adls"));
+        Archetype simpleTestObservation = new ADLParser().parse(ComplexArchetypeValidatorTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.simple_test_observation.v1.0.0.adls"));
+        Archetype observationTemplateWithOverlay = new ADLParser().parse(ComplexArchetypeValidatorTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.specialized_template_observation.v1.0.0.adls"));
         specializedObservationTemplateWithOverlay = new ADLParser().parse(ComplexArchetypeValidatorTest.class.getResourceAsStream("openEHR-EHR-OBSERVATION.specialized_specialized_template_observation.v1.0.0.adls"));
         compositionWithIncludedTemplate = new ADLParser().parse(ComplexArchetypeValidatorTest.class.getResourceAsStream("openEHR-EHR-COMPOSITION.composition_with_included_template.v1.0.0.adls"));
 

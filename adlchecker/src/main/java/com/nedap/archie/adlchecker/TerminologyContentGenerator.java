@@ -8,7 +8,8 @@ import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 
 import java.io.IOException;
 import java.util.Comparator;
@@ -27,18 +28,19 @@ import java.util.regex.Pattern;
  */
 public class TerminologyContentGenerator {
 
-    private MetaModels models;
+    private final MetaModelProvider metaModelProvider;
+    private MetaModel metaModel;
     Pattern commentPattern = Pattern.compile(".*\\[(?<idcode>id[0-9]+)(,|\\]).*--(?<comment>.*)");
 
-    public TerminologyContentGenerator(MetaModels models) {
-        this.models = models;
+    public TerminologyContentGenerator(MetaModelProvider metaModelProvider) {
+        this.metaModelProvider = metaModelProvider;
     }
 
     public Archetype addTerms(String adlContent) {
         ADLParser parser = new ADLParser();
         try {
             Archetype archetype = parser.parse(adlContent);
-            models.selectModel(archetype);
+            metaModel = metaModelProvider.getMetaModel(archetype);
 
             //We could just run the CodeValidation in the context of an archetype repository, and process the error messages?
             //however, these cannot yet be automatically processed because they do not generate an easily readable id-code
@@ -216,7 +218,7 @@ public class TerminologyContentGenerator {
 
             }
             if(owningObject != null) {
-                return models.isMultiple(owningObject.getRmTypeName(), parent.getRmAttributeName());
+                return metaModel.isMultiple(owningObject.getRmTypeName(), parent.getRmAttributeName());
             }
         }
         return false;

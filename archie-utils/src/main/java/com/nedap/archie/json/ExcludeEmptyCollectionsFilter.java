@@ -14,10 +14,10 @@ public class ExcludeEmptyCollectionsFilter {
         }
 
         if (o instanceof Map) {
-            return ((Map) o).size() == 0;
+            return ((Map<?, ?>) o).isEmpty();
         }
         if (o instanceof Collection) {
-            return ((Collection) o).size() == 0;
+            return ((Collection<?>) o).isEmpty();
         }
 
         if (o instanceof Object[]) {

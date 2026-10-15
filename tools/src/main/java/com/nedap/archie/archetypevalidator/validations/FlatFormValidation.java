@@ -23,7 +23,7 @@ public class FlatFormValidation extends ValidatingVisitor {
     protected void validate(CComplexObjectProxy cObject) {
         //validate that CComplexObjectProxy nodes have a valid path
         List<ArchetypeModelObject> replacements = new AOMPathQuery(cObject.getTargetPath()).findList(ComplexObjectProxyReplacement.getNearestArchetypeRoot(cObject), true);
-        if(replacements.size() == 0) {
+        if(replacements.isEmpty()) {
             addMessageWithPath(ErrorType.VUNP, cObject.path(), I18n.t("Use_node (C_COMPLEX_OBJECT_PROXY) points to a path that cannot be found: {0}", cObject.getTargetPath()));
         } else if (replacements.size() > 1) {
             addMessageWithPath(ErrorType.VUNP, cObject.path(), I18n.t("Use_node (C_COMPLEX_OBJECT_PROXY) points to a path that resolves to more than one object"));

@@ -16,12 +16,16 @@ public class ADLRulesSerializer {
     /** the number of characters after which to start a new line in case of before a ModelReference (path) or parentheses */
     public static int NEW_LINE_LIMIT = 120;
 
-    private ADLStringBuilder builder;
+    private ADLBuilder builder;
     private ADLDefinitionSerializer definitionSerializer;
 
     private final Map<Class<?>, RuleElementSerializer<?>> ruleElementSerializers;
 
     public ADLRulesSerializer(ADLStringBuilder builder, ADLDefinitionSerializer definitionSerializer) {
+        this((ADLBuilder) builder, definitionSerializer);
+    }
+
+    public ADLRulesSerializer(ADLBuilder builder, ADLDefinitionSerializer definitionSerializer) {
         this.builder = builder;
         this.definitionSerializer = definitionSerializer;
 
@@ -39,7 +43,20 @@ public class ADLRulesSerializer {
 
     }
 
+    /**
+     * Returns the Jackson 2 builder. Throws when this serializer was created for Jackson 3.
+     * @deprecated use {@link #getOutputBuilder()}, which works with both Jackson versions.
+     */
+    @Deprecated
     public ADLStringBuilder getBuilder() {
+        if (!(builder instanceof ADLStringBuilder)) {
+            throw new UnsupportedOperationException("getBuilder() returns the Jackson 2 builder. This serializer uses "
+                    + builder.getClass().getSimpleName() + ". Use getOutputBuilder() instead.");
+        }
+        return (ADLStringBuilder) builder;
+    }
+
+    public ADLBuilder getOutputBuilder() {
         return builder;
     }
 

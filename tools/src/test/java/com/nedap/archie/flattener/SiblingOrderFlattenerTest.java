@@ -48,7 +48,7 @@ public class SiblingOrderFlattenerTest {
     public void reorderParentNodes() throws Exception {
         Archetype flat = parseAndFlatten("openEHR-EHR-CLUSTER.reorder_parent_nodes.v1.0.0.adls");
         List<CObject> children = flat.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id4", "id3.1", "id5", "id2.1"),
                 nodeIds
@@ -64,7 +64,7 @@ public class SiblingOrderFlattenerTest {
     public void anchoring() throws Exception {
         Archetype flat =  parseAndFlatten("openEHR-EHR-CLUSTER.test_anchoring.v1.0.0.adls");
         List<CObject> children = flat.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id2", "id3", "id0.1", "id0.2", "id4", "id0.3", "id0.4", "id5"),
                 nodeIds
@@ -81,7 +81,7 @@ public class SiblingOrderFlattenerTest {
     public void redefinitionAtSamePlace() throws Exception {
         Archetype flat =  parseAndFlatten("openEHR-EHR-CLUSTER.redefinition_at_same_place.v1.0.0.adls");
         List<CObject> children = flat.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id2.1", "id3", "id3.1", "id3.2", "id4", "id5", "id0.6"),
                 nodeIds
@@ -97,7 +97,7 @@ public class SiblingOrderFlattenerTest {
 
         Archetype flatChild =  parseAndFlatten("openEHR-EHR-CLUSTER.siblingorderchild.v1.0.0.adls");
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id0.8", "id7"),
                 nodeIds
@@ -112,7 +112,7 @@ public class SiblingOrderFlattenerTest {
 
         Archetype flatChild =  parseAndCreateOPT("openEHR-EHR-CLUSTER.siblingorderchild.v1.0.0.adls");
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id0.8"),
                 nodeIds
@@ -127,7 +127,7 @@ public class SiblingOrderFlattenerTest {
 
         Archetype flatChild =  parseAndFlattenRemoveZeroOccurrences("openEHR-EHR-CLUSTER.siblingorderchild.v1.0.0.adls");
         List<CObject> children = flatChild.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id0.2", "id5", "id0.5", "id6", "id0.9", "id0.8"),
                 nodeIds
@@ -143,7 +143,7 @@ public class SiblingOrderFlattenerTest {
     public void trickyEdgeCase() throws Exception {
         Archetype flat =  parseAndFlatten("openEHR-EHR-CLUSTER.tricky_edge_case.v1.0.0.adls");
         List<CObject> children = flat.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id0.6", "id3.1", "id0.5", "id0.7", "id2", "id4", "id5"),
                 nodeIds
@@ -158,7 +158,7 @@ public class SiblingOrderFlattenerTest {
     public void trickyEdgeCase2() throws Exception {
         Archetype flat =  parseAndFlatten("openEHR-EHR-CLUSTER.sibling_order_redefined_node_id.v1.0.0.adls");
         List<CObject> children = flat.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id0.6", "id3.1", "id0.5", "id0.7", "id2", "id4", "id5"),
                 nodeIds
@@ -169,7 +169,7 @@ public class SiblingOrderFlattenerTest {
     public void trickyEdgeCase3() throws Exception {
         Archetype flat =  parseAndFlatten("openEHR-EHR-CLUSTER.sibling_order_redefined_node_id_2.v1.0.0.adls");
         List<CObject> children = flat.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id0.6", "id3.1", "id0.5", "id0.8", "id0.7", "id2", "id4", "id5"),
                 nodeIds
@@ -180,7 +180,7 @@ public class SiblingOrderFlattenerTest {
     public void trickyEdgeCase4() throws Exception {
         Archetype flat =  parseAndFlatten("openEHR-EHR-CLUSTER.sibling_order_redefined_node_id_3.v1.0.0.adls");
         List<CObject> children = flat.getDefinition().getAttribute("items").getChildren();
-        List<String> nodeIds = children.stream().map((cobject) -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> nodeIds = children.stream().map(CObject::getNodeId).collect(Collectors.toList());
         assertEquals(
                 Lists.newArrayList("id0.6", "id0.5", "id0.8", "id3.1", "id0.7", "id2", "id4", "id5"),
                 nodeIds

@@ -6,7 +6,6 @@ import com.nedap.archie.archetypevalidator.ArchetypeValidationSettings;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 import com.nedap.archie.rminfo.ReferenceModels;
 
 import java.util.List;
@@ -41,14 +40,6 @@ public interface FullArchetypeRepository extends ArchetypeRepository, Operationa
         compile(validator);
     }
 
-    /**
-     * @deprecated Use {@link #compile(MetaModelProvider)} instead.
-     */
-    @Deprecated
-    default void compile(MetaModels models) {
-        compile((MetaModelProvider) models);
-    }
-
     default void compile(MetaModelProvider metaModelProvider) {
         ArchetypeValidator validator = new ArchetypeValidator(metaModelProvider);
         compile(validator);
@@ -74,17 +65,6 @@ public interface FullArchetypeRepository extends ArchetypeRepository, Operationa
 
         ArchetypeValidator validator = new ArchetypeValidator(metaModelProvider);
         return validator.validate(archetype, this);
-    }
-
-    /**
-     * validate the validation result if necessary, and return either the newly validated one or
-     * the existing validation result
-     * @param models
-     * @return
-     */
-    @Deprecated
-    default ValidationResult compileAndRetrieveValidationResult(String archetypeId, MetaModels models) {
-        return compileAndRetrieveValidationResult(archetypeId, (MetaModelProvider) models);
     }
 
     /**

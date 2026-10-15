@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
@@ -93,9 +94,9 @@ public class ODINGenerator extends GeneratorBase
     // numbers, booleans, should use implicit
     private final static Character STYLE_SCALAR = null;
     // Strings quoted for fun
-    private final static Character STYLE_QUOTED = Character.valueOf('"');
+    private final static Character STYLE_QUOTED = '"';
     // Strings in literal (block) style
-    private final static Character STYLE_LITERAL = Character.valueOf('|');
+    private final static Character STYLE_LITERAL = '|';
 
     // Which flow style to use for Base64? Maybe basic quoted?
     // 29-Nov-2017, tatu: Actually SnakeYAML uses block style so:
@@ -458,7 +459,7 @@ public class ODINGenerator extends GeneratorBase
     public final void writeUTF8String(byte[] text, int offset, int len)
         throws IOException
     {
-        writeString(new String(text, offset, len, "UTF-8"));
+        writeString(new String(text, offset, len, StandardCharsets.UTF_8));
     }
 
     /*
