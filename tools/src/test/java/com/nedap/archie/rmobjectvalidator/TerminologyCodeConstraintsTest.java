@@ -74,6 +74,18 @@ public class TerminologyCodeConstraintsTest {
     }
 
     @Test
+    public void emptyStringOrNullConstraint() {
+        CTerminologyCode code = new CTerminologyCode();
+        code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
+        code.setConstraintStatus(ConstraintStatus.REQUIRED);
+        for (String constraint : Arrays.asList("", null)) {
+            code.setConstraint(constraint);
+            assertTrue(primitiveObjectConstraintHelper.isValidValue(code, null));
+            assertTrue(primitiveObjectConstraintHelper.isValidValue(code, TerminologyCode.createFromString("[local::at23]")));
+        }
+    }
+
+    @Test
     public void terminologyIdConstraint() {
         CTerminologyCode code = new CTerminologyCode();
         code.setParent(new DummyRulesPrimitiveObjectParent(archetype));
