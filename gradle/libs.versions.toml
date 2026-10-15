@@ -3,7 +3,7 @@ antlr = "4.13.2"
 
 jackson = "2.22.3"
 jackson_annotations = "2.22"
-jackson3 = "3.0.0"
+jackson3 = "3.2.3"
 
 slf4j = "1.7.36"
 
