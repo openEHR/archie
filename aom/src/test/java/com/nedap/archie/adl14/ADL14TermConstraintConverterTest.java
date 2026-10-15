@@ -66,6 +66,15 @@ public class ADL14TermConstraintConverterTest {
     }
 
     @Test
+    public void toAdl2ThrowsWhenSourceConstraintListHasMoreThanOneCode() {
+        CTerminologyCodeADL14 source = new CTerminologyCodeADL14();
+        source.setConstraint(Arrays.asList("at0001", "at0002"));
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ADL14TermConstraintConverter.toAdl2(source));
+        assertEquals("Cannot convert a terminology code constraint with more than one code to ADL 2: [at0001, at0002]", exception.getMessage());
+    }
+
+    @Test
     public void toAdl2LeavesConstraintEmptyWhenSourceConstraintListIsEmpty() {
         CTerminologyCodeADL14 source = new CTerminologyCodeADL14();
         // an empty source constraint list means no constraint, which is an empty string in CTerminologyCode
