@@ -34,7 +34,6 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     private APathQueryCache queryCache = new APathQueryCache();
     private ModelInfoLookup lookup;
     private ReflectionConstraintImposer constraintImposer;
-    private final ValidationConfiguration validationConfiguration;
     private boolean validateInvariants = true;
     private final RmOccurrenceValidator rmOccurrenceValidator;
     private final RmPrimitiveObjectValidator rmPrimitiveObjectValidator;
@@ -52,7 +51,6 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         constraintImposer = new ReflectionConstraintImposer(lookup);
         this.operationalTemplateProvider = provider;
 
-        this.validationConfiguration = validationConfiguration;
         ValidationHelper validationHelper = new ValidationHelper(this.lookup, validationConfiguration);
         validateInvariants = validationConfiguration.isValidateInvariants();
         rmOccurrenceValidator = new RmOccurrenceValidator();
