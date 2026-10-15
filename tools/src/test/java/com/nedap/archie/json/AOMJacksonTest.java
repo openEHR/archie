@@ -330,7 +330,22 @@ public class AOMJacksonTest {
                 "  \"constraint\" : [ ]\n" +
                 "}";
         CTerminologyCode parsedTermCode = factory.create(ArchieJacksonConfiguration.createStandardsCompliant()).readValue(json, CTerminologyCode.class);
-        assertNull(parsedTermCode.getConstraint());
+        assertEquals("", parsedTermCode.getConstraint());
+    }
+
+    @ParameterizedTest
+    @MethodSource("mappers")
+    public void unconstrainedCTerminologyCode(JsonMapperFactory factory) throws Exception {
+        JsonMapper mapper = factory.create(ArchieJacksonConfiguration.createStandardsCompliant());
+        String json = mapper.writeValueAsString(new CTerminologyCode());
+        assertTrue(json.contains("\"constraint\" : \"\""), json);
+        assertEquals("", mapper.readValue(json, CTerminologyCode.class).getConstraint());
+
+        // a missing or null constraint is no constraint as well
+        String nullConstraint = "{ \"rm_type_name\" : \"terminology_code\", \"constraint\" : null }";
+        assertNull(mapper.readValue(nullConstraint, CTerminologyCode.class).getConstraint());
+        String missingConstraint = "{ \"rm_type_name\" : \"terminology_code\" }";
+        assertEquals("", mapper.readValue(missingConstraint, CTerminologyCode.class).getConstraint());
     }
 
     @ParameterizedTest

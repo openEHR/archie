@@ -3,6 +3,7 @@ package com.nedap.archie.serializer.adl;
 import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.serializer.adl.jackson3.ADLStringBuilder3;
 import org.junit.jupiter.api.BeforeAll;
@@ -202,6 +203,11 @@ public class ADLDefinitionSerializerTest {
         assertPrimitive("terminology_code_attr2", "[ac1]");
 
         assertPrimitive("terminology_code_attr102", "[ac1; at1003]");
+    }
+
+    @Test
+    public void serializeUnconstrainedTerminologyCode() {
+        assertEquals("", serializeConstraint(new CTerminologyCode()));
     }
 
     @Test
