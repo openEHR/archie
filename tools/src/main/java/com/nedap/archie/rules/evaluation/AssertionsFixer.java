@@ -74,7 +74,6 @@ public class AssertionsFixer {
                 }
 
                 result.putAll(modelInfoLookup.pathHasBeenUpdated(ruleEvaluation.getRMRoot(), archetype, pathOfParent, parent));
-                ruleEvaluation.refreshQueryContext();
             }
         }
 
@@ -107,7 +106,6 @@ public class AssertionsFixer {
             newEmptyObject = constructEmptySimpleObject(newLastPathSegment, object, newEmptyObject);
 
             attributeAccessor.addOrSetValue(object, newLastPathSegment, newEmptyObject);
-            ruleEvaluation.refreshQueryContext();
         } else {
             CObject constraint = getCObjectFromResult(constraints);
             if (constraint != null) {
@@ -127,7 +125,6 @@ public class AssertionsFixer {
                 }
 
                 attributeAccessor.addOrSetValue(object, attributeName, newEmptyObject);
-                ruleEvaluation.refreshQueryContext();
 
             }
         }
@@ -179,7 +176,6 @@ public class AssertionsFixer {
                 .flatMap(path -> findObjectsThatMustNotExist(path).stream())
                 .collect(Collectors.toList());
         objectsToRemove.forEach(this::removeObject);
-        ruleEvaluation.refreshQueryContext();
     }
 
     private List<ObjectToRemove> findObjectsThatMustNotExist(String path) {
