@@ -75,11 +75,12 @@ public class ADL14TermConstraintConverterTest {
     }
 
     @Test
-    public void toAdl2LeavesConstraintNullWhenSourceConstraintListIsEmpty() {
+    public void toAdl2LeavesConstraintEmptyWhenSourceConstraintListIsEmpty() {
         CTerminologyCodeADL14 source = new CTerminologyCodeADL14();
-        // empty list — converter would have produced this for an empty source; CTerminologyCode keeps it null.
+        // an empty source constraint list means no constraint, which is an empty string in CTerminologyCode
         CTerminologyCode result = ADL14TermConstraintConverter.toAdl2(source);
-        assertNull(result.getConstraint());
+        assertEquals("", result.getConstraint());
+        assertTrue(result.isAnyAllowed());
     }
 
     @Test
