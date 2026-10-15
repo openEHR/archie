@@ -343,7 +343,7 @@ public class AOMJacksonTest {
 
         // a missing or null constraint is no constraint as well
         String nullConstraint = "{ \"rm_type_name\" : \"terminology_code\", \"constraint\" : null }";
-        assertTrue(mapper.readValue(nullConstraint, CTerminologyCode.class).isAnyAllowed());
+        assertNull(mapper.readValue(nullConstraint, CTerminologyCode.class).getConstraint());
         String missingConstraint = "{ \"rm_type_name\" : \"terminology_code\" }";
         assertEquals("", mapper.readValue(missingConstraint, CTerminologyCode.class).getConstraint());
     }
