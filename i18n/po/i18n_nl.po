@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-17 10:49+0200\n"
+"POT-Creation-Date: 2026-10-15 13:40+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pieter Bos <pieter.bos@nedap.com>\n"
 "Language-Team: \n"
@@ -33,11 +33,11 @@ msgstr "In dit attribuut is een differential path gebruikt, maar dat is niet toe
 msgid "A redefined value set can only be a subset of its parent value set, nothing can be added"
 msgstr ""
 
-#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CBoolean.java:75
+#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CBoolean.java:78
 msgid "A specialised boolean constraint cannot add a constraint not in its parent"
 msgstr ""
 
-#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CBoolean.java:70
+#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CBoolean.java:73
 msgid "A specialised boolean constraint cannot include the same number of more constraints than its parent"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr "Archetype met id {0} is gebruikt met use_archetype, maar het archetype k
 msgid "Assertion violation processing RM schemas; original recipient: {0}"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:60
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:61
 #, java-format
 msgid "Assumed value {0} from the C_TERMINOLOGY_CODE is not part of value set {1}. Expected one of {2}"
 msgstr "De assumed value {0} van de C_TERMINOLOGY_CODE is geen onderdeel van value set/codelijst {1}. Verwacht was een van de codes {2}"
@@ -174,18 +174,18 @@ msgstr "Een gesloten archetype slot kan niet worden hergedefinieerd"
 msgid "Cardinality must have an interval present, but it was null"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:76
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:77
 #, java-format
 msgid "Code {0} from C_TERMINOLOGY_CODE constraint is not defined in the terminology"
 msgstr "Code {0} van deze C_TERMINOLOGY_CODE bestaat niet in de terminologie"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:49
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:72
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:50
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:73
 #, java-format
 msgid "Code {0} from the C_TERMINOLOGY_CODE constraint has specialization depth {1}, but this must be no greater than {2}"
 msgstr "Code {0} van de C_TERMINOLOGY_CODE heeft specialization depth {1}, maar dit mag niet groter dan {2} zijn voor dit archetype"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:54
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeValidation.java:55
 #, java-format
 msgid "Code {0} from the C_TERMINOLOGY_CODE constraint is not defined in the terminology"
 msgstr "Code {0} van deze C_TERMINOLOGY_CODE bestaat niet in de terminology"
@@ -247,7 +247,7 @@ msgstr ""
 msgid "Error"
 msgstr "Fout"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ArchetypeValidator.java:156
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ArchetypeValidator.java:150
 #, java-format
 msgid "Error in parent archetype. Fix those errors before continuing with this archetype: {0}"
 msgstr "Fout in het gespecialiseerde archetype. Los deze fout in het bovenliggende archetype eerst op, alvorens verder te gaan met dit archetype. De gevonden fouten: {0}"
@@ -273,7 +273,7 @@ msgstr "In het attribuut tupel zijn {0} members opgenomen, maar het primitive tu
 msgid "Incorrect root node id {0}: it must match the specialization depth of the archetype, which is {1}"
 msgstr "Fout in root node id {0}: Dit moet kloppen met de specialization depth van het archetype, {1}"
 
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:167
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:130
 #, java-format
 msgid "Invariant {0} failed on type "
 msgstr ""
@@ -312,7 +312,7 @@ msgstr ""
 msgid "No Reference Model schema found for package ''{0}''"
 msgstr "Geen referentiemodel-schema gevonden voor package “{0}”"
 
-#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CString.java:114
+#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CString.java:101
 #, java-format
 msgid "No matching constraint found in parent for contraint {0}"
 msgstr ""
@@ -336,7 +336,7 @@ msgstr "Node id {0} wordt al gebruikt in het archetype als {1} met een andere at
 msgid "Node id {0} already used in path {1}"
 msgstr "Node id {0} is al gebruikt in pad {1}"
 
-#: ../aom/src/main/java/com/nedap/archie/aom/CObject.java:282
+#: ../aom/src/main/java/com/nedap/archie/aom/CObject.java:241
 #, java-format
 msgid "Node id {0} does not conform to {1}"
 msgstr "Node id {0} komt niet overeen met {1}"
@@ -371,7 +371,7 @@ msgstr "Object moet van type {0} zijn, maar is van type {1}"
 msgid "Object with node id {0} should be specialized before excluding the parent node"
 msgstr "Object met node id {0} moet gespecialiseerd worden voordat de parent node excluded wordt"
 
-#: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:129
+#: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:90
 #, java-format
 msgid "Occurrences {0} does not conform to {1}"
 msgstr "Occurrences {0} komt niet overeen met {1}"
@@ -399,7 +399,7 @@ msgstr "Originele taal {0} ontbreekt in de terminologie"
 msgid "Parent archetype {0} not found or can not be flattened"
 msgstr "Parent archetype {0} niet gevonden, of het bevat een fout waardoor het niet kan worden geflattened"
 
-#: ../aom/src/main/java/com/nedap/archie/aom/primitives/COrdered.java:55
+#: ../aom/src/main/java/com/nedap/archie/aom/primitives/COrdered.java:52
 #, java-format
 msgid "Parent constraint contains no interval that fully contains {0}"
 msgstr ""
@@ -713,7 +713,7 @@ msgstr "Syntaxfout: existence moet een van 0..0, 0..1 of 1..1 zijn, maar was {0}
 msgid "Syntax error: terminology not specified"
 msgstr "Syntaxfout: terminologie ontbreekt"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ArchetypeValidator.java:202
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/ArchetypeValidator.java:195
 #, java-format
 msgid "Template overlay {0} had validation errors"
 msgstr "Template overlay {0} heeft validatiefouten"
@@ -834,12 +834,12 @@ msgstr "Het pad {0} gebruikt in de annotations bestaat niet in het flattened arc
 msgid "The path {0} referenced in the rm visibility does not exist in the flat archetype"
 msgstr "Het pad {0} gebruikt in de rm zichtbaarheid bestaat niet in het flattened archetype"
 
-#: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:136
+#: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:97
 #, java-format
 msgid "The primitive object of type {0} does not conform null"
 msgstr ""
 
-#: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:138
+#: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:99
 #, java-format
 msgid "The primitive object of type {0} does not conform to non-primitive object with type {1}"
 msgstr "Het primitieve object van type {0} komt niet overeen met het niet-primitieve object met type {1}"
@@ -895,7 +895,7 @@ msgstr "Onderdeel van tupel {0} is geen attribuut van type {1}"
 msgid "Type name {0} does not exist"
 msgstr "Type met naam {0} bestaat niet"
 
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:172
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:135
 #, fuzzy, java-format
 msgid "Unexpected error validating invariant {0} on {1}"
 msgstr "Onverwachte fout bij het valideren van invariant {0} van {1}"
@@ -1044,22 +1044,17 @@ msgstr ""
 msgid "cardinality/occurrences upper bound validity: where a cardinality with a finite upper bound is stated on an attribute, for all immediate child objects for which an occurrences constraint is stated, the occurrences must either have an open upper bound (i.e. n..*) which is interpreted as the maximum value allowed within the cardinality, or else a finite upper bound which is ⇐ the cardinality upper bound."
 msgstr ""
 
-#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:235
-#, java-format
-msgid "child CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}"
-msgstr ""
-
-#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:280
+#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:233
 #, java-format
 msgid "child terminology constraint value code {0} does not conform to parent constraint with value code {1}"
 msgstr "child terminology constraint value code {0} komt niet overeen met dat van de parent constraint met value code {1}"
 
-#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:264
+#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:226
 #, java-format
 msgid "child terminology constraint value code {0} is not contained in {1}, or a direct specialization of one of its values"
 msgstr ""
 
-#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:260
+#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:220
 #, java-format
 msgid "child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}"
 msgstr "child terminology constraint value set code {0} komt niet overeen de parent constraint met value set code {1}"
@@ -1073,7 +1068,6 @@ msgid "constraint code validity. Each value set code (ac-code) used in a term co
 msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RmPrimitiveObjectValidator.java:60
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/validations/RMPrimitiveObjectValidation.java:71
 msgid "empty"
 msgstr "leeg"
 
@@ -1142,11 +1136,6 @@ msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:51
 msgid "original language specified. An original_language section containing the meta-data of the original authoring language must exist."
-msgstr ""
-
-#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:238
-#, java-format
-msgid "parent CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}"
 msgstr ""
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:52
@@ -1225,10 +1214,10 @@ msgstr ""
 msgid "specialised object node occurrences validity: the sum of the lower occurrences and the sum of the upper occurrences of all objects redefining a node in a specialised archetype, must be contained in the occurrences interval of the corresponding node in the flat parent archetype."
 msgstr ""
 
-#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:244
-#, java-format
-msgid "specialized CTerminology code constraint status {0} is wider more than parent contraint status {1}"
-msgstr ""
+#: ../aom/src/main/java/com/nedap/archie/aom/primitives/CTerminologyCode.java:198
+#, fuzzy, java-format
+msgid "specialized CTerminologyCode constraint status {0} is wider than parent constraint status {1}"
+msgstr "child terminology constraint value code {0} komt niet overeen met dat van de parent constraint met value code {1}"
 
 #: ../aom/src/main/java/com/nedap/archie/archetypevalidator/ErrorType.java:36
 msgid "terminology term binding key valid. Every term binding must be to either a defined archetype term ('at-code') or to a path that is valid in the flat archetype."
@@ -1246,8 +1235,8 @@ msgstr "de gegeven id code is niet geldig"
 msgid "translations key does not match translations item language"
 msgstr ""
 
-#: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:132
-#: ../aom/src/main/java/com/nedap/archie/aom/CObject.java:285
+#: ../aom/src/main/java/com/nedap/archie/aom/CPrimitiveObject.java:93
+#: ../aom/src/main/java/com/nedap/archie/aom/CObject.java:244
 #, java-format
 msgid "type name {0} does not conform to {1}"
 msgstr "Naam type {0} komt niet overeen met {1}"
