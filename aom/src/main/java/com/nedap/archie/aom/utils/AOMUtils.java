@@ -20,10 +20,13 @@ import java.util.regex.Pattern;
 
 public class AOMUtils {
 
-    private static Pattern idCodePattern = Pattern.compile("(id|at|ac)(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
-    private static Pattern adl14CodePattern = Pattern.compile("(id|at|ac)([0-9]+)(\\.(0|[1-9][0-9]*))*");
-    //zero-padded codes (minimum four digit first segment), as used by at-coded ADL 2.4 (retained from ADL 1.4), e.g. at0000, ac0002
-    private static Pattern zeroPaddedCodePattern = Pattern.compile("(id|at|ac)[0-9]{4,}(\\.(0|[1-9][0-9]*))*");
+    // any id, at or ac code, in either the id-coded or the at-coded code system
+    private static Pattern adlCodePattern = Pattern.compile("(id|at|ac)([0-9]+)(\\.(0|[1-9][0-9]*))*");
+    // codes of id-coded archetypes: no leading zeros, e.g. id1, id1.1, at2, ac3
+    private static Pattern idCodedCodePattern = Pattern.compile("(id|at|ac)(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
+    // codes of at-coded archetypes: at- and ac-codes are zero-padded to four digits as in ADL 1.4 (at0000, at0001.1,
+    // ac0001), or start with 0 when introduced in a specialisation (at0.1, ac0.1)
+    private static Pattern atCodedCodePattern = Pattern.compile("(at|ac)([0-9]{4,}|0(?=\\.))(\\.(0|[1-9][0-9]*))*");
 
     public static int getSpecializationDepthFromCode(String code) {
         if(code == null) {
@@ -35,56 +38,82 @@ public class AOMUtils {
         }
     }
 
+    /**
+     * True if the code starts with the id-code leader, used for the node ids of id-coded archetypes.
+     */
     public static boolean isIdCode(String code) {
         return code.startsWith(AdlCodeDefinitions.ID_CODE_LEADER);
     }
 
+    /**
+     * True if the code starts with the at-code leader, used for the node ids of at-coded archetypes.
+     */
+    public static boolean isAtCode(String code) {
+        return code.startsWith(AdlCodeDefinitions.AT_CODE_LEADER);
+    }
+
+    /**
+     * True if the code starts with the value code leader, used for codes representing a single terminology item.
+     */
     public static boolean isValueCode(String code) {
         return code.startsWith(AdlCodeDefinitions.VALUE_CODE_LEADER);
     }
 
+    /**
+     * True if the code starts with the value set code leader.
+     */
     public static boolean isValueSetCode(String code) {
         return code.startsWith(AdlCodeDefinitions.VALUE_SET_CODE_LEADER);
     }
 
     public static boolean isValidValueSetCode(String code) {
-        // isValidADL14Code (a superset of isValidCode) is used so zero-padded at-coded value set codes (e.g. ac0001,
-        // as produced by the ADL 1.4 to ADL 2.4 at-coded converter) are accepted too; id-coded value set codes are
-        // never zero-padded so this does not change their behaviour.
-        return isValueSetCode(code) && isValidADL14Code(code);
+        return isValueSetCode(code) && isValidAdlCode(code);
     }
 
+    /**
+     * True if the code is a valid id, at or ac code, in either the id-coded or the at-coded code system.
+     */
+    public static boolean isValidAdlCode(String code) {
+        if(code == null) {
+            return false;
+        }
+        return adlCodePattern.matcher(code).matches();
+    }
+
+    /**
+     * True if the code is a valid code of an id-coded archetype, e.g. id1, id1.1, at2 or ac3.
+     */
+    public static boolean isValidIdCodedCode(String code) {
+        if(code == null) {
+            return false;
+        }
+        return idCodedCodePattern.matcher(code).matches();
+    }
+
+    /**
+     * True if the code is a valid code of an at-coded archetype, e.g. at0000, at0001.1, at0.1, ac0001 or ac0.1.
+     */
+    public static boolean isValidAtCodedCode(String code) {
+        if(code == null) {
+            return false;
+        }
+        return atCodedCodePattern.matcher(code).matches();
+    }
+
+    /**
+     * @deprecated Use {@link #isValidIdCodedCode(String)}, or {@link #isValidAdlCode(String)} to accept codes of both code systems.
+     */
+    @Deprecated
     public static boolean isValidCode(String code) {
-        if(code == null) {
-            return false;
-        }
-        return idCodePattern.matcher(code).matches();
+        return isValidIdCodedCode(code);
     }
 
     /**
-     * Whether the code is a valid non-zero-padded code: an id/at/ac prefix followed by a number without leading zeros,
-     * with specialisation segments also without leading zeros (e.g. id1, at2, ac3, id1.1). This is the code format used
-     * by id-coded ADL 2 archetypes - where the at- and ac-codes are non-zero-padded too - and is identical to
-     * {@link #isValidCode(String)}.
+     * @deprecated Use {@link #isValidAdlCode(String)}.
      */
-    public static boolean isValidNonZeroPaddedCode(String code) {
-        return isValidCode(code);
-    }
-
-    /**
-     * Whether the code is a valid zero-padded code: an id/at/ac prefix followed by a zero-padded (minimum four digit)
-     * number, with specialisation segments without leading zeros (e.g. at0000, at0001.1, ac0002). This is the code
-     * format used by at-coded ADL 2.4 archetypes, which retain the zero-padded code style of ADL 1.4.
-     *
-     * Note this is stricter than {@link #isValidADL14Code(String)}: the latter accepts any number of digits (including
-     * non-zero-padded forms like at5) and is used for prefix/structure-agnostic checks, whereas this method enforces
-     * the zero-padding convention.
-     */
-    public static boolean isValidZeroPaddedCode(String code) {
-        if(code == null) {
-            return false;
-        }
-        return zeroPaddedCodePattern.matcher(code).matches();
+    @Deprecated
+    public static boolean isValidADL14Code(String code) {
+        return isValidAdlCode(code);
     }
 
     /**
@@ -93,7 +122,7 @@ public class AOMUtils {
      * @return the numeric node id without any prefix
      */
     public static String stripPrefix(String nodeId) {
-        if(AOMUtils.isValidCode(nodeId)) {
+        if(AOMUtils.isValidAdlCode(nodeId)) {
             return nodeId.substring(2);
         }
         return nodeId;
@@ -102,20 +131,7 @@ public class AOMUtils {
     public static String pathAtSpecializationLevel(List<PathSegment> pathSegments, int level) {
         //todo: this doesn't clone the original
         for(PathSegment segment:pathSegments) {
-            // isValidADL14Code accepts the same id/at/ac prefixes as isValidCode; it only additionally tolerates the
-            // zero-padded first segment of at-coded ADL 2.4 node ids (e.g. at0000). This check is prefix-agnostic on
-            // purpose - it just decides whether a segment is a code to reduce - so accepting id codes here does not
-            // matter; enforcing a single code system is CodeSystemValidation's job, not this helper's.
-            if(segment.getNodeId() != null && AOMUtils.isValidADL14Code(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
-                segment.setNodeId(codeAtLevel(segment.getNodeId(), level));
-            }
-        }
-        return PathUtil.getPath(pathSegments);
-    }
-
-    public static String pathAtSpecializationLevelAtCoded(List<PathSegment> pathSegments, int level) {
-        for(PathSegment segment:pathSegments) {
-            if(segment.getNodeId() != null && AOMUtils.isValidADL14Code(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
+            if(segment.getNodeId() != null && AOMUtils.isValidAdlCode(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
                 segment.setNodeId(codeAtLevel(segment.getNodeId(), level));
             }
         }
@@ -221,7 +237,7 @@ public class AOMUtils {
     public static boolean isPhantomPathAtLevel(List<PathSegment> pathSegments, int specializationDepth) {
         for(int i = pathSegments.size()-1; i >=0; i--) {
             String nodeId = pathSegments.get(i).getNodeId();
-            if(nodeId != null && AOMUtils.isValidCode(nodeId) && specializationDepth > AOMUtils.getSpecializationDepthFromCode(nodeId)) {
+            if(nodeId != null && AOMUtils.isValidAdlCode(nodeId) && specializationDepth > AOMUtils.getSpecializationDepthFromCode(nodeId)) {
                 return codeExistsAtLevel(nodeId, specializationDepth);
             }
         }
@@ -308,9 +324,7 @@ public class AOMUtils {
     }
 
     public static boolean codesConformant(String childNodeId, String parentNodeId) {
-        // isValidADL14Code (a superset of isValidCode) is used so zero-padded at-coded node ids (e.g. at0000.1)
-        // are accepted as well; id-coded codes are never zero-padded so this does not change their behaviour.
-        return isValidADL14Code(childNodeId) && childNodeId.startsWith(parentNodeId) &&
+        return isValidAdlCode(childNodeId) && childNodeId.startsWith(parentNodeId) &&
                 (childNodeId.length() == parentNodeId.length() || (childNodeId.length() > parentNodeId.length() && childNodeId.charAt(parentNodeId.length()) == AdlCodeDefinitions.SPECIALIZATION_SEPARATOR));
 
     }
@@ -435,13 +449,6 @@ public class AOMUtils {
         }
         return nodeIdUtil.getPrefix() + Joiner.on('.').join(codes.subList(0, newDepth+1));
 
-    }
-
-    public static boolean isValidADL14Code(String code) {
-        if(code == null) {
-            return false;
-        }
-        return adl14CodePattern.matcher(code).matches();
     }
 
     /**
