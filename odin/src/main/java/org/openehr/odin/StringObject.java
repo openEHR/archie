@@ -52,10 +52,6 @@ public class StringObject extends PrimitiveObject<String> implements Serializabl
         StringObject other = (StringObject)obj;
         if(this == other) {
             return true;
-        } else if(this.getValue() != null && other.getValue() != null && this.getValue().equals(other.getValue())) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return this.getValue() != null && other.getValue() != null && this.getValue().equals(other.getValue());
     }
 }

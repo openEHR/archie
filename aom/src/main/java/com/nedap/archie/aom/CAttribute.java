@@ -8,9 +8,9 @@ import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
 import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,25 +136,6 @@ public class CAttribute extends ArchetypeConstraint {
                     return child;
                 }
             }
-        }
-        return null;
-    }
-
-    /**
-     * @deprecated This functionality will be removed.
-     */
-    @Deprecated
-    public CObject getChildByMeaning(String meaning) {
-        meaning = meaning.toLowerCase();
-        for(CObject child:children) {
-            String childMeaning = child.getMeaning();
-            if(childMeaning != null) {
-                childMeaning = childMeaning.toLowerCase();
-                if(meaning.equals(childMeaning)){
-                    return child;
-                }
-            }
-
         }
         return null;
     }
@@ -328,18 +309,6 @@ public class CAttribute extends ArchetypeConstraint {
         return (CObject) super.getParent();
     }
 
-    @Deprecated
-    public String getLogicalPath() {
-        String path = "/" + rmAttributeName;
-        if(getParent() != null) {
-            path = getParent().getLogicalPath() + path;
-        }
-        if(path.startsWith("//")) {
-            return path.substring(1);
-        }
-        return path;
-    }
-
     public CAttribute clone() {
         return (CAttribute) super.clone();
     }
@@ -498,9 +467,8 @@ public class CAttribute extends ArchetypeConstraint {
     public List<CObject> getChildrenByRmTypeName(String rmTypeName) {
         List<CObject> result = new ArrayList<>();
 
-        for(int i = 0; i < children.size(); i++) {
-            CObject child = children.get(i);
-            if(rmTypeName.equals(child.getRmTypeName())) {
+        for (CObject child : children) {
+            if (rmTypeName.equals(child.getRmTypeName())) {
                 result.add(child);
             }
         }

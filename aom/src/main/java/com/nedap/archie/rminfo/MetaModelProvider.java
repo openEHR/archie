@@ -1,6 +1,8 @@
 package com.nedap.archie.rminfo;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.AuthoredArchetype;
+import com.nedap.archie.aom.TemplateOverlay;
 
 /**
  * A provider for meta models, which can be used to retrieve the meta model for a specific reference model based on an
@@ -13,9 +15,26 @@ public interface MetaModelProvider {
      * @param archetype the archetype to find the meta model for
      * @return the meta model for the reference model that the archetype is based on
      * @throws ModelNotFoundException when no BMM and no ModelInfoLookup model has been found matching the archetype
+     * @throws IllegalArgumentException when the type of archetype has no RM release
      */
     public default MetaModel getMetaModel(Archetype archetype) throws ModelNotFoundException {
-        return getMetaModel(archetype, archetype.getRmRelease());
+        return getMetaModel(archetype, getRmRelease(archetype));
+    }
+
+    /**
+     * A template overlay has no RM release of its own, so the RM release of its owning template is used. If the
+     * owning template is not known, null is returned.
+     *
+     * @throws IllegalArgumentException when the type of archetype has no RM release
+     */
+    private static String getRmRelease(Archetype archetype) {
+        if (archetype instanceof TemplateOverlay overlay) {
+            return overlay.getOwningTemplate() == null ? null : overlay.getOwningTemplate().getRmRelease();
+        }
+        if (archetype instanceof AuthoredArchetype authoredArchetype) {
+            return authoredArchetype.getRmRelease();
+        }
+        throw new IllegalArgumentException("Cannot determine the RM release of archetype type " + archetype.getClass().getName());
     }
 
     /**
@@ -48,28 +67,4 @@ public interface MetaModelProvider {
      *                                package and release version
      */
     public abstract MetaModel getMetaModel(String rmPublisher, String rmPackage, String rmRelease) throws ModelNotFoundException;
-
-    /**
-     * @deprecated For backwards compatibility only. Use {@link #getMetaModel(Archetype)} instead.
-     */
-    @Deprecated
-    public default MetaModel selectAndGetMetaModel(Archetype archetype) throws ModelNotFoundException {
-        return getMetaModel(archetype);
-    }
-
-    /**
-     * @deprecated For backwards compatibility only. Use {@link #getMetaModel(Archetype, String)} instead.
-     */
-    @Deprecated
-    public default MetaModel selectAndGetMetaModel(Archetype archetype, String rmVersion) throws ModelNotFoundException {
-        return getMetaModel(archetype, rmVersion);
-    }
-
-    /**
-     * @deprecated For backwards compatibility only. Use {@link #getMetaModel(String, String, String)} instead.
-     */
-    @Deprecated
-    public default MetaModel selectAndGetMetaModel(String rmPublisher, String rmPackage, String rmRelease) throws ModelNotFoundException {
-        return getMetaModel(rmPublisher, rmPackage, rmRelease);
-    }
 }

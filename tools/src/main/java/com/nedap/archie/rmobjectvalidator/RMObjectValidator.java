@@ -33,39 +33,11 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     private final APathQueryCache queryCache;
     private final ModelInfoLookup lookup;
     private final ReflectionConstraintImposer constraintImposer;
-    private final ValidationConfiguration validationConfiguration;
     private boolean validateInvariants = true;
     private final RmOccurrenceValidator rmOccurrenceValidator;
     private final RmPrimitiveObjectValidator rmPrimitiveObjectValidator;
     private final RmTupleValidator rmTupleValidator;
     private final RmMultiplicityValidator rmMultiplicityValidator;
-
-    /**
-     * Creates an RM Object Validator with the given ModelInfoLook class, and the given OperationalTemplateProvider
-     * The ModelInfoLookup is used for model access, and model specific constructions.
-     * The OperationalTemplateProvider is used to retrieve other referenced archetypes in case of ArchetypeSlots.
-     * @param lookup
-     * @param provider
-     * @deprecated Use {@link #RMObjectValidator(ModelInfoLookup, OperationalTemplateProvider, ValidationConfiguration)} instead.
-     */
-    @Deprecated
-    public RMObjectValidator(ModelInfoLookup lookup, OperationalTemplateProvider provider) {
-        this.lookup = lookup;
-        this.metaModel = new MetaModel(lookup, null);
-        constraintImposer = new ReflectionConstraintImposer(lookup);
-        this.operationalTemplateProvider = provider;
-
-        this.validationConfiguration = null; // Leave this null to indicate that no ValidationConfiguration was provided
-        ValidationConfiguration dummyValidationConfiguration = new ValidationConfiguration.Builder()
-                .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
-                .build();
-        ValidationHelper validationHelper = new ValidationHelper(this.lookup, dummyValidationConfiguration);
-        rmOccurrenceValidator = new RmOccurrenceValidator();
-        rmPrimitiveObjectValidator = new RmPrimitiveObjectValidator(validationHelper);
-        rmTupleValidator = new RmTupleValidator(this.lookup, validationHelper, rmPrimitiveObjectValidator);
-        rmMultiplicityValidator = new RmMultiplicityValidator();
-        this.queryCache = new APathQueryCache();
-    }
 
     /**
      * Creates an RM Object Validator with the given ModelInfoLook class, and the given OperationalTemplateProvider
@@ -87,7 +59,6 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         constraintImposer = new ReflectionConstraintImposer(lookup);
         this.operationalTemplateProvider = provider;
 
-        this.validationConfiguration = validationConfiguration;
         ValidationHelper validationHelper = new ValidationHelper(this.lookup, validationConfiguration);
         validateInvariants = validationConfiguration.isValidateInvariants();
         rmOccurrenceValidator = new RmOccurrenceValidator();
@@ -95,17 +66,6 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         rmTupleValidator = new RmTupleValidator(this.lookup, validationHelper, rmPrimitiveObjectValidator);
         rmMultiplicityValidator = new RmMultiplicityValidator();
         this.queryCache = queryCache;
-    }
-
-    /**
-     * @deprecated Use {@link ValidationConfiguration.Builder#validateInvariants(boolean)} instead.
-     */
-    @Deprecated
-    public void setRunInvariantChecks(boolean validateInvariants) {
-        if(this.validationConfiguration != null) {
-            throw new IllegalStateException("validateInvariants is already set via validationConfiguration, cannot set it again via setRunInvariantChecks");
-        }
-        this.validateInvariants = validateInvariants;
     }
 
     public List<RMObjectValidationMessage> validate(OperationalTemplate template, Object rmObject) {
@@ -386,7 +346,10 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
         if (parentIsEvent && attributeIsData && attributeIsEmpty && attributeShouldNotBeEmpty) {
             String message = "Observation " + RMObjectValidationUtil.getParentObservationTerm(attribute) + " contains no results";
-            return new RMObjectValidationMessage(cobject == null ? null : cobject.getParent().getParent(), pathSoFar.toString(), message, RMObjectValidationMessageType.EMPTY_OBSERVATION);
+            //the cobject is the event itself, so report the error on its grandparent - if the cobject is an archetype root, it has none
+            CAttribute cobjectParent = cobject == null ? null : cobject.getParent();
+            CObject grandParent = cobjectParent == null ? null : cobjectParent.getParent();
+            return new RMObjectValidationMessage(grandParent, pathSoFar.toString(), message, RMObjectValidationMessageType.EMPTY_OBSERVATION);
         }
         return null;
     }

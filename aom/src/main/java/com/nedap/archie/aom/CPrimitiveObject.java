@@ -1,19 +1,18 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
-import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 import org.openehr.utils.message.I18n;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.BiFunction;
 
 /**
@@ -35,11 +34,10 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
     public abstract void setAssumedValue(ValueType assumedValue);
 
-    public abstract List<Constraint> getConstraint();
+    public abstract Constraint getConstraint();
 
-    public abstract void setConstraint(List<Constraint> constraint);
-
-    public abstract void addConstraint(Constraint constraint);
+    @JsonIgnore
+    public abstract List<?> getConstraintAsList();
 
     @JsonAlias("is_enumerated_type_constraint")
     @RMProperty("is_enumerated_type_constraint")
@@ -63,49 +61,12 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
         }
     }
 
-    /**
-     * True if the given value is a valid value for this constraint
-     * Must be overridden in classes where the AssumedAndDefaultValue is not the actual value.
-     * For example when it is an interval or pattern
-     *
-     * @param value
-     * @return
-     * @deprecated This method will be removed. Use the RMObjectValidator instead.
-     */
-    @Deprecated
-    public boolean isValidValue(ValueType value) {
-        if(getConstraint().isEmpty()) {
-            return true;
-        }
-        for(Constraint constraint:getConstraint()) {
-            if(Objects.equals(constraint, value)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * True if the given value is a valid value for this constraint
-     * first Converts the value to a checkable value using the given ModelInfoLookup
-     * For example when it is an interval or pattern
-     *
-     * @param value
-     * @return
-     * @deprecated This method will be removed. Use the RMObjectValidator instead.
-     */
-    @Deprecated
-    public boolean isValidValue(ModelInfoLookup lookup, Object value) {
-        Object convertedValue = lookup.convertToConstraintObject(value, this);
-        return isValidValue((ValueType) convertedValue);
-    }
-
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("{");
         boolean first = true;
-        for(Constraint constraint:getConstraint()) {
+        for(Object constraint:getConstraintAsList()) {
             if(!first) {
                 result.append(", ");
             }

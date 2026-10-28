@@ -38,7 +38,7 @@ class RmPrimitiveObjectValidator {
     }
 
     private RMObjectValidationMessage createValidationMessage(Object value, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
-        List<?> constraint = cobject.getConstraint();
+        List<?> constraint = cobject.getConstraintAsList();
         String message;
 
         if(constraint.size() == 1) {
@@ -57,6 +57,6 @@ class RmPrimitiveObjectValidator {
             return I18n.t("empty");
         }
 
-        return (value instanceof String) ? "\"" + value.toString() + "\"" : value.toString();
+        return (value instanceof String) ? "\"" + value + "\"" : value.toString();
     }
 }

@@ -1,14 +1,11 @@
 package com.nedap.archie.creation;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.rm.archetyped.Archetyped;
 import com.nedap.archie.rm.composition.Observation;
-import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
-import com.nedap.archie.rm.datavalues.DvBoolean;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import org.junit.jupiter.api.Test;
 
@@ -84,116 +81,4 @@ public class RMObjectCreatorTest {
 
         assertThrows(IllegalArgumentException.class, ()-> creator.create(elementConstraint));
     }
-
-    @Test
-    @Deprecated
-    public void setSingleValuedValue() {
-        Element element = new Element();
-        DvBoolean booleanValue = new DvBoolean();
-        creator.set(element, "value", Lists.newArrayList(booleanValue));
-        assertEquals(booleanValue, element.getValue());
-    }
-
-    @Test
-    @Deprecated
-    public void setSingleValuedValuePrimitive() {
-        DvBoolean booleanValue = new DvBoolean();
-        creator.set(booleanValue, "value", Lists.newArrayList(true));
-        assertEquals(true, booleanValue.getValue());
-    }
-
-    @Test
-    @Deprecated
-    public void setSingleValuedValueIncorrectly() {
-        Element element = new Element();
-        DvBoolean booleanValue = new DvBoolean();
-        DvBoolean booleanValue2 = new DvBoolean();
-        assertThrows(IllegalArgumentException.class, () -> creator.set(element, "value", Lists.newArrayList(booleanValue, booleanValue2)));
-    }
-
-    @Test
-    @Deprecated
-    public void setSingleValuedValueUnknownArgument() {
-        Element element = new Element();
-        DvBoolean booleanValue = new DvBoolean();
-        assertThrows(IllegalArgumentException.class, () -> creator.set(element, "values", Lists.newArrayList(booleanValue)));
-    }
-
-    @Test
-    @Deprecated
-    public void setMultiValuedValue() {
-        Cluster cluster = new Cluster();
-        Element element = new Element();
-        creator.set(cluster, "items", Lists.newArrayList(element));
-        assertEquals(Lists.newArrayList(element), cluster.getItems());
-    }
-
-    @Test
-    @Deprecated
-    public void setMultiValuedValue2() {
-        Cluster cluster = new Cluster();
-        Element element = new Element();
-        Element element2 = new Element();
-        creator.set(cluster, "items", Lists.newArrayList(element, element2));
-        assertEquals(Lists.newArrayList(element, element2), cluster.getItems());
-    }
-
-    @Test
-    @Deprecated
-    public void addToListOrSetSingleValue() {
-        Cluster cluster = new Cluster();
-        Element element = new Element();
-        Element element2 = new Element();
-        creator.set(cluster, "items", Lists.newArrayList(element));
-        creator.addElementToListOrSetSingleValues(cluster, "items", element2);
-        assertEquals(Lists.newArrayList(element, element2), cluster.getItems());
-    }
-
-    @Test
-    @Deprecated
-    public void addToListOrSetSingleValue2() {
-        Cluster cluster = new Cluster();
-        Element element = new Element();
-        Element element2 = new Element();
-        Element element3 = new Element();
-        creator.set(cluster, "items", Lists.newArrayList(element));
-        creator.addElementToListOrSetSingleValues(cluster, "items", Lists.newArrayList(element2, element3));
-        assertEquals(Lists.newArrayList(element, element2, element3), cluster.getItems());
-    }
-
-    @Test
-    @Deprecated
-    public void addToListOrSetSingleValueWithSingleValue() {
-        Element element = new Element();
-        DvBoolean booleanValue = new DvBoolean();
-        creator.addElementToListOrSetSingleValues(element, "value", booleanValue);
-        assertEquals(booleanValue, element.getValue());
-    }
-
-    @Test
-    @Deprecated
-    public void addToListOrSetSingleValueWithSingleValue2() {
-        Element element = new Element();
-        DvBoolean booleanValue = new DvBoolean();
-        creator.addElementToListOrSetSingleValues(element, "value", Lists.newArrayList(booleanValue));
-        assertEquals(booleanValue, element.getValue());
-    }
-
-    @Test
-    @Deprecated
-    public void addToListOrSetSingleValueWithSingleValueIncorrect() {
-        Element element = new Element();
-        DvBoolean booleanValue = new DvBoolean();
-        DvBoolean booleanValue2 = new DvBoolean();
-
-        assertThrows(IllegalArgumentException.class, () ->
-                creator.addElementToListOrSetSingleValues(
-                        element,
-                        "value",
-                        Lists.newArrayList(booleanValue, booleanValue2)
-                )
-        );
-    }
-
-
 }

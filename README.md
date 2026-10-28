@@ -18,7 +18,7 @@ You can depend on parts of Archie, or the entire library at once. If you want th
 
 ```gradle
 dependencies {
-    compile 'com.nedap.healthcare.archie:archie-all:3.20.0'
+    compile 'com.nedap.healthcare.archie:archie-all:4.0.0'
 }
 ```
 
@@ -28,11 +28,11 @@ or if you use maven, in your pom.xml
 <dependency>
     <groupId>com.nedap.healthcare.archie</groupId>
     <artifactId>archie-all</artifactId>
-    <version>3.20.0</version>
+    <version>4.0.0</version>
 </dependency>
 ```
 
-If you want to depend on just the AOM and BMM, without any reference model implementation, depend on com.nedap.healthcare.archie:tools:3.20.0 and com.nedap.healthcare.archie:referencemodels:3.20.0 instead
+If you want to depend on just the AOM and BMM, without any reference model implementation, depend on com.nedap.healthcare.archie:tools:4.0.0 and com.nedap.healthcare.archie:referencemodels:4.0.0 instead
 
 
 ## Build
@@ -40,7 +40,7 @@ If you want to depend on just the AOM and BMM, without any reference model imple
 [![Build Status](https://travis-ci.org/openEHR/archie.svg?branch=master)](https://travis-ci.org/openEHR/archie)
 [![codecov](https://codecov.io/gh/openEHR/archie/branch/master/graph/badge.svg)](https://codecov.io/gh/openEHR/archie)
 
-You need Java 11 or higher to build. When compiled, the library works on JDK 8, but building is not supported on that version.
+You need Java 17 or higher to build and run the library.
 
 To build, Check out the source and type:
 
@@ -109,13 +109,15 @@ CAttribute attribute = archetype.getDefinition()
 
 ```
 
-Or, if you prefer your paths to be human readable, you could do:
-```java
-APathQuery query = new APathQuery("/context[systolic]/items");
+Path segments must use node ids, or a one-based index such as `items[2]`. Matching a segment on the
+meaning of a node, as in `/context[systolic]/items`, is no longer supported. If you need to find a node
+by its term text, compare the meaning yourself:
 
-CAttribute attribute = archetype.getDefinition()
-    .getAttribute("context").getChildByMeaning("systolic").getAttribute("items");
-    attribute.getLogicalPath(); // is 'context[systolic]/items'
+```java
+CObject systolic = archetype.getDefinition()
+    .getAttribute("context").getChildren().stream()
+    .filter(child -> "systolic".equalsIgnoreCase(child.getMeaning()))
+    .findFirst().orElse(null);
 ```
 
 ### Checking for parse errors
@@ -277,6 +279,20 @@ Unmarshaller unmarshaller = JAXBUtil.getArchieJAXBContext().createUnmarshaller()
 Archetype parsedArchetype = (Archetype) unmarshaller.unmarshal(new StringReader(xml));
 ```
 
+### Jackson 3
+
+The parsing, serializing and JSON features above can also be used with Jackson 3:
+
+```java
+ADLParser3 parser = new ADLParser3();
+Archetype archetype = parser.parse(adlFile);
+
+String serialized = ADLArchetypeSerializer.serializeWithJackson3(archetype, null, new ArchieRMObjectMapperProvider());
+
+String json = JacksonUtil3.getObjectMapper().writeValueAsString(archetype);
+Archetype parsedArchetype = JacksonUtil3.getObjectMapper().readValue(json, Archetype.class);
+```
+
 ### ODIN
 
 ODIN is a JSON/YAML like notation used as part of ADL, for meta-data, terminologies and annotations. See https://github.com/openehr/odin for what more it can do. To our knowledge it's not used widely outside of ADL/openEHR. Archie can map ODIN data directly to Java-objects using Jackson.
@@ -316,15 +332,18 @@ new Interval<>(2,4).has(3); //returns true
 Interval.upperUnbounded(2).has(1); //returns false
 ```
 
-CPrimitiveObject has an ```isValidValue(value)``` method, so you can do:
+To check whether a value conforms to a CPrimitiveObject constraint, use the RMObjectValidator, or the
+ValidationHelper it is built on:
 
 ```java
 CString cString = new CString();
 cString.addConstraint("test");
 cString.addConstraint("/more te+st/");
-cString.isValidValue("test"); //returns true
-cString.isValidValue("more teeeeest"); //returns true - regexp matching
-cString.isValidValue("mooooore test"); //returns false
+
+ValidationHelper helper = new ValidationHelper(ArchieRMInfoLookup.getInstance(), new ValidationConfiguration.Builder().build());
+helper.isValidValue(cString, "test"); //returns true
+helper.isValidValue(cString, "more teeeeest"); //returns true - regexp matching
+helper.isValidValue(cString, "mooooore test"); //returns false
 ```
 
 ISO-8601 date constraint patterns are not yet implemented.
@@ -560,19 +579,19 @@ The second round of checks comes after parsing, in the form of running the Arche
 
 ```java
 ReferenceModels models = new ReferenceModels(ArchieRMInfoLookup.getInstance());
-MetaModels metaModels = new MetaModels(models, null);
-ValidationResult validationResult = new ArchetypeValidator(metaModels).validate(archetype);
+MetaModelProvider metaModelProvider = new SimpleMetaModelProvider(models, null);
+ValidationResult validationResult = new ArchetypeValidator(metaModelProvider).validate(archetype);
 ```
 
 This runs all the implemented archetype validation and returns a result. This result contains the validation results, the validation results of any template overlays and a flattened version of the input archetype.
 
-Note that it requires a MetaModels class. This contains the Metadata of the reference models used.
+Note that it requires a MetaModelProvider. This provides the Metadata of the reference models used.
 
 ### Reference Model Metadata
 
 Archetype tools require metadata about the used reference model to operate. This can be the openEHR reference model, but it can also be something else. Archie has two concepts to define this metadata: Reflection based metadata and BMM metadata. Above is a short description of how to load the built-in metadata. This should be enough for most users. However, if you want to add new reference models or reference model metadata, you need this paragraph.
 
-The MetaModels class is an abstraction over these two types of models. Construct this, and it will automatically select the available metadata model. Note that if a BMM model is present for your archetype, it will use that if possible.
+The MetaModel class is an abstraction over these two types of models, and a MetaModelProvider hands out the MetaModel for a given archetype or reference model version. Note that if a BMM model is present for your archetype, it will use that if possible.
 
 Reflection based metadata bases its metadata on an actual reference model implementation in Java. Two are included, the ArchieRMInfoLookup, for the openEHR Reference Model, and the TestRMInfoLookup, for the openEHR Test models. You can register these on a ReferenceModels class, see the code in the previous paragraph for an example
 
@@ -593,20 +612,22 @@ for(String fileName:bmmFiles) {
 BmmSchemaConverter converter = new BmmSchemaConverter(repo);
 converter.validateAndConvertRepository();
 
-MetaModels models = new MetaModels(new ReferenceModels(ArchieRMInfoLookup.getInstance()), repository);
-
 //now parse the AOM profiles
+AomProfiles aomProfiles = new AomProfiles();
 String[] resourceNames = {"first aom profile", "second aom profile"};
 for(String resource:resourceNames) {
     try(InputStream odin = TestUtil.class.getResourceAsStream(resource)){
-        models.getAomProfiles().add(odin);
+        aomProfiles.add(odin);
     } catch (IOException e) {
         throw new RuntimeException(e);
     }
-}        
+}
+
+MetaModelProvider metaModelProvider = new SimpleMetaModelProvider(
+        new ReferenceModels(ArchieRMInfoLookup.getInstance()), repository, aomProfiles);
 ```
 
-This instantiates a MetaModels class that has both the archie reference model implementation, the BMM models and AOM profiles. The BMM models and AOM profiles will be used for the flattener and archetype validator, the other models for tools that work on reference models.
+This instantiates a MetaModelProvider that has both the archie reference model implementation, the BMM models and AOM profiles. The BMM models and AOM profiles will be used for the flattener and archetype validator, the other models for tools that work on reference models.
 
 After validating and converting, the BmmRepository allows access to the PBmmSchema, the BmmModels, all validation messages and more, through the BmmValidationResult class. See Javadoc for more information.B
 

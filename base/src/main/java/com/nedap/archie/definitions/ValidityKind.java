@@ -41,5 +41,5 @@ public enum ValidityKind {
     /**
      * Constant to indicate disallowed presence of something.
      */
-    PROHIBITED;
+    PROHIBITED
 }

@@ -47,7 +47,7 @@ public class BmmModelCreator {
         BmmClassProcessor classSupplier = new BmmClassProcessor(model, schema, (pBmmClass, processor) -> pBmmClass.populateBmmClass(processor, schema));
         classSupplier.run();
         //add all properties
-        BmmClassProcessor propertySupplier = new BmmClassProcessor(model, schema, (pBmmClass, processor) -> pBmmClass.populateBmmClassProperties(processor));
+        BmmClassProcessor propertySupplier = new BmmClassProcessor(model, schema, PBmmClass::populateBmmClassProperties);
         propertySupplier.run();
 
         return model;
@@ -67,9 +67,7 @@ public class BmmModelCreator {
                 }
             }
         });
-        pBmmPackage.getPackages().forEach( (subPackageName, pBmmSubPackage) -> {
-            convertPackage(model, schema, packageName + "." + pBmmSubPackage.getName(), pBmmSubPackage, bmmPackage);
-        });
+        pBmmPackage.getPackages().forEach( (subPackageName, pBmmSubPackage) -> convertPackage(model, schema, packageName + "." + pBmmSubPackage.getName(), pBmmSubPackage, bmmPackage));
 
     }
 

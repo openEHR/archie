@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
+import jakarta.xml.bind.annotation.*;
 
-import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
 /**

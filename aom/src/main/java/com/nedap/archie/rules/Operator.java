@@ -36,7 +36,7 @@ public class Operator extends Expression {
 
     @JsonIgnore
     protected Expression getFirstOperand() {
-        return operands.size() > 0 ? operands.get(0) : null;
+        return !operands.isEmpty() ? operands.get(0) : null;
     }
 
     protected void setFirstOperand(Expression firstOperand) {

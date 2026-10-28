@@ -14,8 +14,7 @@ public class AdlOdinToJsonConverterTest extends OdinToJsonConverterBaseTest {
 
     @Override
     public void assertConvertedEqual(String odin, String json) {
-        String input = odin;
-        AdlLexer adlLexer = new AdlLexer(CharStreams.fromString(input));
+        AdlLexer adlLexer = new AdlLexer(CharStreams.fromString(odin));
         AdlParser parser = new AdlParser(new CommonTokenStream(adlLexer));
         ArchieErrorListener errorListener = new ArchieErrorListener();
         parser.addErrorListener(errorListener);

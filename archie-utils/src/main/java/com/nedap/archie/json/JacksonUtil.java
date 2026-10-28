@@ -64,22 +64,25 @@ public class JacksonUtil {
     public static void configureObjectMapper(ObjectMapper objectMapper, ArchieJacksonConfiguration configuration) {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.enable(SerializationFeature.FLUSH_AFTER_WRITE_VALUE);
-        objectMapper.disable(SerializationFeature.WRITE_NULL_MAP_VALUES);
         objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.disable(SerializationFeature.WRITE_DURATIONS_AS_TIMESTAMPS);
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         objectMapper.enable(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS);
         objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS, true);
+
+        // the content inclusion of NON_NULL excludes null map values, same as JacksonUtil3
         if(!configuration.isSerializeEmptyCollections()) {
             objectMapper.setDefaultPropertyInclusion(
                     JsonInclude.Value.construct(
                             JsonInclude.Include.CUSTOM,
-                            JsonInclude.Include.USE_DEFAULTS,
+                            JsonInclude.Include.NON_NULL,
                             ExcludeEmptyCollectionsFilter.class,
                             null));
+        } else {
+            objectMapper.setDefaultPropertyInclusion(
+                    JsonInclude.Value.construct(JsonInclude.Include.NON_NULL, JsonInclude.Include.NON_NULL));
         }
         if(configuration.isFailOnUnknownProperties()) {
             objectMapper.enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);

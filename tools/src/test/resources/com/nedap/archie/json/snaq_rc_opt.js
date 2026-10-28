@@ -5905,10 +5905,7 @@
     "ip_acknowledgements": {
 
     },
-    "lifecycle_state": {
-      "_type": "TerminologyCode",
-      "code_string": "unmanaged"
-    },
+    "lifecycle_state": "unmanaged",
     "original_author": {
 
     },

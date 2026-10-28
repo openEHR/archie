@@ -166,7 +166,7 @@ public class ConstraintDifferentiator {
         //since all occurrences and child objects have been removed if possible, if it has any left, keep this here
         if(childCObject.getOccurrences() != null
                 || childCObjectInParent == null
-                || childCObject.getAttributes().size() > 0
+                || !childCObject.getAttributes().isEmpty()
                 || childCObject.getSiblingOrder() != null) {
             return false;
         }
@@ -189,17 +189,11 @@ public class ConstraintDifferentiator {
 
         if(childCObject instanceof CPrimitiveObject) {
 
-            if(PrimitiveObjectEqualsChecker.isEqual((CPrimitiveObject<?, ?>) childCObject, (CPrimitiveObject<?, ?>) childCObjectInParent)) {
-                return true;
-            }
+            return PrimitiveObjectEqualsChecker.isEqual((CPrimitiveObject<?, ?>) childCObject, (CPrimitiveObject<?, ?>) childCObjectInParent);
         } else {
             //no children, no occurrences, child object is in parent. check specialization id
-            if(childCObject.specialisationDepth() == childCObjectInParent.specialisationDepth()) {
-                return true;
-            }
-            return false;
+            return childCObject.specialisationDepth() == childCObjectInParent.specialisationDepth();
         }
-        return false;
 
     }
 

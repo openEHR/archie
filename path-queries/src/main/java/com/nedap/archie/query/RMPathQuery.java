@@ -16,12 +16,12 @@ import java.util.List;
 
 /**
  * For now only accepts rather simple xpath-like expressions.
- *
+ * <p>
  * The only queries fully supported at the moment are absolute queries with node ids, such as '/items[id1]/content[id2]/value'.
- *
+ * <p>
  * Any expression after the ID-code, such as in '[id1 and name="ignored"] are currently ignored, but they parse and function
  * as long as you add the id-code as first part of the expression.
- *
+ * <p>
  * Created by pieter.bos on 19/10/15.
  */
 public class RMPathQuery {

@@ -17,5 +17,6 @@ classes {
 
 dependencies {
     antlr(libs.antlr4)
+
     api(libs.antlr4.runtime)
 }

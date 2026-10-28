@@ -74,7 +74,10 @@ public class OverridingMetaModelProvider implements MetaModelProvider {
                 archetype.getArchetypeId().getRmPublisher(),
                 archetype.getArchetypeId().getRmPackage()
         );
-        return getMetaModel(archetype, overriddenVersion == null ? archetype.getRmRelease() : overriddenVersion);
+        if (overriddenVersion == null) {
+            return MetaModelProvider.super.getMetaModel(archetype);
+        }
+        return getMetaModel(archetype, overriddenVersion);
     }
 
     @Override

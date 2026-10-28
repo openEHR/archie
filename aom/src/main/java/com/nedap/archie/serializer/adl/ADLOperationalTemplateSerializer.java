@@ -5,6 +5,7 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * @author markopi
@@ -13,6 +14,12 @@ class ADLOperationalTemplateSerializer extends ADLAuthoredArchetypeSerializer<Op
 
     public ADLOperationalTemplateSerializer(OperationalTemplate archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
         super(archetype, flatArchetypeProvider, rmObjectMapperProvider);
+    }
+
+    ADLOperationalTemplateSerializer(OperationalTemplate archetype, Function<String, Archetype> flatArchetypeProvider,
+            RMObjectMapperProvider rmObjectMapperProvider,
+            Supplier<? extends ADLBuilder> builderSupplier) {
+        super(archetype, flatArchetypeProvider, rmObjectMapperProvider, builderSupplier);
     }
 
     @Override
