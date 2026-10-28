@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AtCodedArchetypeValidationTest {
 
     private static final String PATH = "/com/nedap/archie/adl14/";
+    private static final String AT_CODED_PATH = "/com/nedap/archie/archetypevalidator/atcoded/";
 
     private ReferenceModels models;
 
@@ -160,6 +161,46 @@ public class AtCodedArchetypeValidationTest {
         assertNotNull(result.getFlattened(), result.toString());
     }
 
+    @Test
+    public void specializedAtCodedWithNewCodesValidatesAndFlattens() throws Exception {
+        // the child introduces a new node (at0.15, at0.16) and a new value set (ac0.1), which have 0 as first segment
+        InMemoryFullArchetypeRepository repository = createRepository(NodeIdCodeSystemValidation.AUTO_DETECT,
+                "openEHR-EHR-OBSERVATION.atbp.v1.0.0.adls", "openEHR-EHR-OBSERVATION.atbp-child.v1.0.0.adls");
+
+        ValidationResult result = repository.compileAndRetrieveValidationResult("openEHR-EHR-OBSERVATION.atbp-child.v1.0.0", new ArchetypeValidator(models));
+        assertTrue(result.passes(), result.toString());
+        assertNotNull(result.getFlattened(), result.toString());
+        assertNotNull(result.getFlattened().itemAtPath("/data[at0001]/events[at0002]/data[at0003]/items[at0.15]/value[at0.16]"));
+        assertNotNull(result.getFlattened().getTerminology().getValueSets().get("ac0.1"));
+    }
+
+    @Test
+    public void atCodedTemplateWithOverlayValidates() throws Exception {
+        // the template fills a slot with use_archetype [at0014.0.1], introduces a new node at0.0.1 and has an overlay
+        InMemoryFullArchetypeRepository repository = createRepository(NodeIdCodeSystemValidation.AUTO_DETECT,
+                "openEHR-EHR-OBSERVATION.atbp.v1.0.0.adls", "openEHR-EHR-OBSERVATION.atbp-child.v1.0.0.adls",
+                "openEHR-EHR-CLUSTER.atdevice.v1.0.0.adls", "openEHR-EHR-OBSERVATION.attemplate.v1.0.0.adlt");
+
+        ValidationResult result = repository.compileAndRetrieveValidationResult("openEHR-EHR-OBSERVATION.attemplate.v1.0.0", new ArchetypeValidator(models));
+        assertTrue(result.passes(), result.toString());
+        assertNotNull(result.getFlattened(), result.toString());
+        assertFalse(result.getOverlayValidations().isEmpty());
+        for (ValidationResult overlayResult : result.getOverlayValidations()) {
+            assertTrue(overlayResult.passes(), overlayResult.toString());
+        }
+    }
+
+    private InMemoryFullArchetypeRepository createRepository(NodeIdCodeSystemValidation codeSystem, String... fileNames) throws Exception {
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        ArchetypeValidationSettings settings = new ArchetypeValidationSettings();
+        settings.setNodeIdCodeSystemValidation(codeSystem);
+        repository.setArchetypeValidationSettings(settings);
+        for (String fileName : fileNames) {
+            repository.addArchetype(parse(AT_CODED_PATH, fileName));
+        }
+        return repository;
+    }
+
     private CObject firstNonRootChild(Archetype archetype, String prefix) {
         for (CAttribute attribute : archetype.getDefinition().getAttributes()) {
             for (CObject child : attribute.getChildren()) {
@@ -185,8 +226,12 @@ public class AtCodedArchetypeValidationTest {
     }
 
     private Archetype parse(String fileName) throws Exception {
+        return parse(PATH, fileName);
+    }
+
+    private Archetype parse(String path, String fileName) throws Exception {
         ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
-        try (InputStream stream = new BOMInputStream(AtCodedArchetypeValidationTest.class.getResourceAsStream(PATH + fileName))) {
+        try (InputStream stream = new BOMInputStream(AtCodedArchetypeValidationTest.class.getResourceAsStream(path + fileName))) {
             Archetype archetype = parser.parse(stream);
             assertTrue(parser.getErrors().hasNoErrors(), parser.getErrors().toString());
             return archetype;

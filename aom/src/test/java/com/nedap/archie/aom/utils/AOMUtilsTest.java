@@ -16,7 +16,7 @@ public class AOMUtilsTest {
         assertTrue(AOMUtils.codesConformant("id1.1.1", "id1.1"));
         assertFalse(AOMUtils.codesConformant("id2", "id1"));
 
-        // at-coded, zero-padded (ADL 2.4) - the case enabled by using isValidADL14Code instead of isValidCode
+        // at-coded
         assertTrue(AOMUtils.codesConformant("at0000", "at0000"));
         assertTrue(AOMUtils.codesConformant("at0000.1", "at0000"));
         assertTrue(AOMUtils.codesConformant("at0001.0.1", "at0001"));
@@ -27,10 +27,10 @@ public class AOMUtilsTest {
 
     @Test
     public void isValidValueSetCode() {
-        // non-padded value set codes (id-coded archetypes and generated at-coded codes)
+        // id-coded
         assertTrue(AOMUtils.isValidValueSetCode("ac1"));
         assertTrue(AOMUtils.isValidValueSetCode("ac9000"));
-        // zero-padded value set code, as produced for at-coded archetypes by the ADL 1.4 converter
+        // at-coded
         assertTrue(AOMUtils.isValidValueSetCode("ac0001"));
         assertTrue(AOMUtils.isValidValueSetCode("ac0001.1"));
         // not value set codes
@@ -40,34 +40,73 @@ public class AOMUtilsTest {
     }
 
     @Test
-    public void isValidNonZeroPaddedCode() {
-        // non-zero-padded (id-coded ADL 2) format: no leading zeros, any id/at/ac prefix
-        assertTrue(AOMUtils.isValidNonZeroPaddedCode("id1"));
-        assertTrue(AOMUtils.isValidNonZeroPaddedCode("at2"));
-        assertTrue(AOMUtils.isValidNonZeroPaddedCode("ac3"));
-        assertTrue(AOMUtils.isValidNonZeroPaddedCode("id1.1"));
-        // zero-padded (at-coded) codes are not valid in the non-zero-padded (id-coded) system
-        assertFalse(AOMUtils.isValidNonZeroPaddedCode("at0000"));
-        assertFalse(AOMUtils.isValidNonZeroPaddedCode("ac0001"));
-        assertFalse(AOMUtils.isValidNonZeroPaddedCode(null));
+    public void isAtCode() {
+        assertTrue(AOMUtils.isAtCode("at0000"));
+        assertTrue(AOMUtils.isAtCode("at0.1"));
+        assertFalse(AOMUtils.isAtCode("id1"));
+        assertFalse(AOMUtils.isAtCode("ac0001"));
     }
 
     @Test
-    public void isValidZeroPaddedCode() {
-        // zero-padded (minimum four digit) first segment, specialisation segments without leading zeros
-        assertTrue(AOMUtils.isValidZeroPaddedCode("at0000"));
-        assertTrue(AOMUtils.isValidZeroPaddedCode("at0001.1"));
-        assertTrue(AOMUtils.isValidZeroPaddedCode("ac0002"));
-        assertTrue(AOMUtils.isValidZeroPaddedCode("ac0001.1"));
-        assertTrue(AOMUtils.isValidZeroPaddedCode("at9088"));
-        assertTrue(AOMUtils.isValidZeroPaddedCode("at12345")); // more than four digits is allowed (values > 9999)
-        // non-zero-padded codes are not valid zero-padded, even though the grammar and isValidADL14Code accept them
-        assertFalse(AOMUtils.isValidZeroPaddedCode("at5"));
-        assertFalse(AOMUtils.isValidZeroPaddedCode("at123"));
-        assertFalse(AOMUtils.isValidZeroPaddedCode("id1"));
-        // leading zeros are only allowed in the first segment, not in specialisation segments
-        assertFalse(AOMUtils.isValidZeroPaddedCode("at0000.01"));
-        assertFalse(AOMUtils.isValidZeroPaddedCode(null));
+    public void isValidAdlCode() {
+        assertTrue(AOMUtils.isValidAdlCode("id1"));
+        assertTrue(AOMUtils.isValidAdlCode("id1.1"));
+        assertTrue(AOMUtils.isValidAdlCode("at2"));
+        assertTrue(AOMUtils.isValidAdlCode("at0000"));
+        assertTrue(AOMUtils.isValidAdlCode("at0000.1"));
+        assertTrue(AOMUtils.isValidAdlCode("at0.1"));
+        assertTrue(AOMUtils.isValidAdlCode("ac0001"));
+        assertFalse(AOMUtils.isValidAdlCode("at0000.01"));
+        assertFalse(AOMUtils.isValidAdlCode("xx1"));
+        assertFalse(AOMUtils.isValidAdlCode("attribute"));
+        assertFalse(AOMUtils.isValidAdlCode(null));
+    }
+
+    @Test
+    public void isValidIdCodedCode() {
+        assertTrue(AOMUtils.isValidIdCodedCode("id1"));
+        assertTrue(AOMUtils.isValidIdCodedCode("at2"));
+        assertTrue(AOMUtils.isValidIdCodedCode("ac3"));
+        assertTrue(AOMUtils.isValidIdCodedCode("id1.1"));
+        assertTrue(AOMUtils.isValidIdCodedCode("id0.1"));
+        // id-coded archetypes have no leading zeros
+        assertFalse(AOMUtils.isValidIdCodedCode("at0000"));
+        assertFalse(AOMUtils.isValidIdCodedCode("ac0001"));
+        assertFalse(AOMUtils.isValidIdCodedCode(null));
+    }
+
+    @Test
+    public void isValidAtCodedCode() {
+        assertTrue(AOMUtils.isValidAtCodedCode("at0000"));
+        assertTrue(AOMUtils.isValidAtCodedCode("at0001.1"));
+        assertTrue(AOMUtils.isValidAtCodedCode("at0001.0.1"));
+        assertTrue(AOMUtils.isValidAtCodedCode("at9088"));
+        assertTrue(AOMUtils.isValidAtCodedCode("at12345"));
+        // codes introduced in a specialised archetype
+        assertTrue(AOMUtils.isValidAtCodedCode("at0.1"));
+        assertTrue(AOMUtils.isValidAtCodedCode("at0.0.1"));
+        // ac-codes are padded the same way
+        assertTrue(AOMUtils.isValidAtCodedCode("ac0001"));
+        assertTrue(AOMUtils.isValidAtCodedCode("ac0001.1"));
+        assertTrue(AOMUtils.isValidAtCodedCode("ac0.1"));
+
+        assertFalse(AOMUtils.isValidAtCodedCode("at5"));
+        assertFalse(AOMUtils.isValidAtCodedCode("at123"));
+        assertFalse(AOMUtils.isValidAtCodedCode("at0"));
+        assertFalse(AOMUtils.isValidAtCodedCode("ac1"));
+        assertFalse(AOMUtils.isValidAtCodedCode("ac0"));
+        assertFalse(AOMUtils.isValidAtCodedCode("at0000.01"));
+        // at-coded archetypes have no id-codes
+        assertFalse(AOMUtils.isValidAtCodedCode("id1"));
+        assertFalse(AOMUtils.isValidAtCodedCode("id0001"));
+        assertFalse(AOMUtils.isValidAtCodedCode(null));
+    }
+
+    @Test
+    public void stripPrefix() {
+        assertEquals("1", AOMUtils.stripPrefix("id1"));
+        assertEquals("0000", AOMUtils.stripPrefix("at0000"));
+        assertEquals("not a code", AOMUtils.stripPrefix("not a code"));
     }
 
     @Test
