@@ -2,7 +2,6 @@ package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.flattener.ArchetypeRepository;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModel;
@@ -52,9 +51,7 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
                 return true;
             case AUTO_DETECT:
                 String rootNodeId = archetype.getDefinition() == null ? null : archetype.getDefinition().getNodeId();
-                // detect on the prefix only: at-coded ADL 2.4 node ids are zero-padded (e.g. at0000), which the
-                // strict ADL 2 code format would reject, so isValidCode cannot be used here.
-                return rootNodeId != null && rootNodeId.startsWith(AdlCodeDefinitions.VALUE_CODE_LEADER);
+                return rootNodeId != null && AOMUtils.isAtCode(rootNodeId);
             case ID_CODED:
             default:
                 return false;
@@ -62,12 +59,10 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
     }
 
     /**
-     * Code format validity check that respects the archetype code system: id-coded archetypes use non-zero-padded
-     * codes (the strict ADL 2 format, no leading zeros), while at-coded ADL 2.4 archetypes use zero-padded codes
-     * (the style retained from ADL 1.4, e.g. at0000, at0000.1).
+     * Whether the code is valid in the code system this archetype is validated against.
      */
     protected boolean isValidCodeForCodeSystem(String code) {
-        return expectsAtCodedNodeIds() ? AOMUtils.isValidZeroPaddedCode(code) : AOMUtils.isValidNonZeroPaddedCode(code);
+        return expectsAtCodedNodeIds() ? AOMUtils.isValidAtCodedCode(code) : AOMUtils.isValidIdCodedCode(code);
     }
 
     public void addMessage(ErrorType errorType) {

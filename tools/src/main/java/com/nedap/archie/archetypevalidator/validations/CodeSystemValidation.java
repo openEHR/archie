@@ -40,14 +40,12 @@ public class CodeSystemValidation extends ValidatingVisitor {
             return;
         }
         String nodeId = cObject.getNodeId();
-        // Use the lenient code check so zero-padded at-coded node ids (e.g. at0000) are recognised too; this is a
-        // superset that also matches id-coded node ids.
-        if (nodeId == null || !AOMUtils.isValidADL14Code(nodeId)) {
+        if (nodeId == null || !AOMUtils.isValidAdlCode(nodeId)) {
             return;
         }
         if (AOMUtils.isIdCode(nodeId)) {
             idCodedNodeIdSeen = true;
-        } else if (AOMUtils.isValueCode(nodeId)) {
+        } else if (AOMUtils.isAtCode(nodeId)) {
             atCodedNodeIdSeen = true;
         }
     }

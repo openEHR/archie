@@ -243,7 +243,7 @@ public class ADL14NodeIDConverter {
                 //if found, this is a specialization of said node and needs to be checked for differences and/or
                 //given the same node id
                 //if not found, generate/synthesize a new node id.
-                String parentPath = pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
+                String parentPath = AOMUtils.pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
 
                 CAttribute cAttributeInParent = flatParentArchetype.itemAtPath(parentPath);
                 if (cAttributeInParent != null) {
@@ -351,7 +351,7 @@ public class ADL14NodeIDConverter {
                 //VSSID validation does not exist in ADL 1.4. Fix it here
 
                 if (flatParentArchetype != null) {
-                    String parentPath = pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
+                    String parentPath = AOMUtils.pathAtSpecializationLevel(cObject.getPathSegments(), archetype.specializationDepth() - 1);
                     CObject cObjectInParent = flatParentArchetype.itemAtPath(parentPath);
                     if (cObjectInParent instanceof ArchetypeSlot && !cObjectInParent.getNodeId().equalsIgnoreCase(cObject.getNodeId())) {
                         //specializing a node id for an archetype slot is not allowed in ADL 2. Set to parent node id.
@@ -538,16 +538,5 @@ public class ADL14NodeIDConverter {
      */
     public boolean codeSystemIsIdCoded() {
         return conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NodeIdCodeSystem.ID_CODED);
-    }
-
-    /**
-     * Returns the path at the given specialization level. Takes node system of converter into account.
-     */
-    private String pathAtSpecializationLevel(List<PathSegment> pathSegments, int specializationLevel) {
-        if (codeSystemIsIdCoded()) {
-            return AOMUtils.pathAtSpecializationLevel(pathSegments, specializationLevel);
-        } else {
-            return AOMUtils.pathAtSpecializationLevelAtCoded(pathSegments, specializationLevel);
-        }
     }
 }
