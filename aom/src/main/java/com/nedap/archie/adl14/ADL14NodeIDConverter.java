@@ -198,7 +198,7 @@ public class ADL14NodeIDConverter {
                                 newTermbindingsMap.put(newCode, termbindingMap.get(valueOrPath));
                             }
                         } else if (!codeSystemIsIdCoded()) {
-                            // if the code system should be at coded, the at codes are not converted, so the key stays the same
+                            // if the code system should be at coded, the code stays the same
                             newTermbindingsMap.put(valueOrPath, termbindingMap.get(valueOrPath));
                         } else {
                             newTermbindingsMap.put(valueOrPath, termbindingMap.get(valueOrPath));
@@ -210,7 +210,7 @@ public class ADL14NodeIDConverter {
                                 newTermbindingsMap.put(newCode, termbindingMap.get(valueOrPath));
                             }
                         } else if (!codeSystemIsIdCoded()) {
-                            // if the code system should be at coded, the ac codes are not converted, so the key stays the same
+                            // if the code system should be at coded, the code stays the same
                             newTermbindingsMap.put(valueOrPath, termbindingMap.get(valueOrPath));
                         } else {
                             //unused value set code, this can be converted

@@ -51,7 +51,6 @@ class ADL14TerminologyConversionTest {
             ADL2ConversionResult conversionResult = result.getConversionResults().get(0);
             Archetype converted = conversionResult.getArchetype();
 
-            // at-coded archetypes keep their at and ac codes, so the term binding keys should stay the same
             Map<String, URI> snomedBindings = converted.getTerminology().getTermBindings().get("SNOMED-CT");
             Assertions.assertTrue(snomedBindings.containsKey("at0137"), snomedBindings.toString());
             Assertions.assertTrue(snomedBindings.containsKey("at0138"), snomedBindings.toString());
