@@ -119,8 +119,8 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
             }
         }
 
-        if(terminologyCodeContext.identifier() != null) {
-            String constraintStatusText = terminologyCodeContext.identifier().getText();
+        if(terminologyCodeContext.constraint_status() != null) {
+            String constraintStatusText = terminologyCodeContext.constraint_status().getText();
             switch (constraintStatusText.toLowerCase()) {
                 case "required":
                     result.setConstraintStatus(ConstraintStatus.REQUIRED);
