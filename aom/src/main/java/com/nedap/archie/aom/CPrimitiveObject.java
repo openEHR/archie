@@ -59,7 +59,6 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
     }
 
     public void setNodeId(String nodeId) {
-        // the at-coded form (at9999) is accepted as well, but the id-coded form is always used internally
         if(!AdlCodeDefinitions.isPrimitiveNodeId(nodeId)) {
             throw new UnsupportedOperationException("Cannot set node id on a CPrimitiveObject");
         }
