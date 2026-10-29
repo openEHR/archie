@@ -14,7 +14,7 @@ public class NodeIdUtil {
     private List<String> codes = new ArrayList<>();
 
     public NodeIdUtil(String nodeId) {
-        if(AOMUtils.isValidCode(nodeId) || AOMUtils.isValidADL14Code(nodeId)) {
+        if(AOMUtils.isValidAdlCode(nodeId)) {
             String[] split = nodeId.substring(2).split("\\" + AdlCodeDefinitions.SPECIALIZATION_SEPARATOR);
             prefix = nodeId.substring(0, 2);
             codes.addAll(Arrays.asList(split));
