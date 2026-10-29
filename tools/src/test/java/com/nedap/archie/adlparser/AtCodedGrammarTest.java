@@ -19,10 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AtCodedGrammarTest {
 
-    /**
-     * A leaf node such as DV_TEXT[at9056] could be parsed both as a complex object and as a terminology code constraint
-     * with a constraint status, which made the parser report an ambiguity for every such node in at-coded archetypes.
-     */
     @Test
     public void atCodedLeafNodesAreNotAmbiguous() throws Exception {
         ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
