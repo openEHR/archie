@@ -62,7 +62,6 @@ public class AssumedValueConversionTest {
         CAttribute cAttribute = archetype.itemAtPath("/data[at0001]/events[at0002]/state[at0013]/items[at0014]/value/defining_code");
         CTerminologyCode cTerminologyCode = (CTerminologyCode) cAttribute.getChildren().get(0);
 
-        // in at-coded archetypes the local codes are not converted, so neither is the assumed value
         assertNull(cTerminologyCode.getAssumedValue().getTerminologyId());
         assertEquals("at0016", cTerminologyCode.getAssumedValue().getCodeString());
         assertTrue(archetype.getTerminology().getValueSets().get(cTerminologyCode.getConstraint().get(0)).getMembers().contains("at0016"));
