@@ -69,7 +69,6 @@ public class AOMUtilsTest {
         assertTrue(AOMUtils.isValidIdCodedCode("ac3"));
         assertTrue(AOMUtils.isValidIdCodedCode("id1.1"));
         assertTrue(AOMUtils.isValidIdCodedCode("id0.1"));
-        // id-coded archetypes have no leading zeros
         assertFalse(AOMUtils.isValidIdCodedCode("at0000"));
         assertFalse(AOMUtils.isValidIdCodedCode("ac0001"));
         assertFalse(AOMUtils.isValidIdCodedCode(null));
@@ -85,7 +84,6 @@ public class AOMUtilsTest {
         // codes introduced in a specialised archetype
         assertTrue(AOMUtils.isValidAtCodedCode("at0.1"));
         assertTrue(AOMUtils.isValidAtCodedCode("at0.0.1"));
-        // ac-codes are padded the same way
         assertTrue(AOMUtils.isValidAtCodedCode("ac0001"));
         assertTrue(AOMUtils.isValidAtCodedCode("ac0001.1"));
         assertTrue(AOMUtils.isValidAtCodedCode("ac0.1"));
@@ -96,7 +94,6 @@ public class AOMUtilsTest {
         assertFalse(AOMUtils.isValidAtCodedCode("ac1"));
         assertFalse(AOMUtils.isValidAtCodedCode("ac0"));
         assertFalse(AOMUtils.isValidAtCodedCode("at0000.01"));
-        // at-coded archetypes have no id-codes
         assertFalse(AOMUtils.isValidAtCodedCode("id1"));
         assertFalse(AOMUtils.isValidAtCodedCode("id0001"));
         assertFalse(AOMUtils.isValidAtCodedCode(null));
