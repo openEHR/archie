@@ -2,13 +2,12 @@ package com.nedap.archie.definitions;
 
 public class AdlCodeDefinitions {
     /**
-     * String leader of ‘identifier’ codes, i.e. codes used to identify archetype nodes in id-coded archetypes.
+     * String leader of ‘identifier’ codes, i.e. codes used to identify id-coded archetype nodes.
      */
     public static final String ID_CODE_LEADER = "id";
 
     /**
-     * String leader of codes used to identify archetype nodes in at-coded archetypes (since ADL 2.4). Equal to the
-     * {@link #VALUE_CODE_LEADER}: in at-coded archetypes at-codes are used for both node identifiers and code values.
+     * String leader of ‘identifier’ codes, i.e. codes used to identify at-coded archetype nodes.
      */
     public static final String AT_CODE_LEADER = "at";
 

@@ -27,7 +27,7 @@ import java.util.function.BiFunction;
 @XmlAccessorType(XmlAccessType.FIELD)
 public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedObject<ValueType> {
 
-    public static final String PRIMITIVE_NODE_ID_VALUE = "id9999";
+    public static final String PRIMITIVE_NODE_ID_VALUE = AdlCodeDefinitions.PRIMITIVE_NODE_ID;
 
     @Nullable
     private Boolean enumeratedTypeConstraint;
