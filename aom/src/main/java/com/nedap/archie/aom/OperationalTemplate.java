@@ -180,8 +180,7 @@ public class OperationalTemplate extends AuthoredArchetype {
     @Override
     public ArchetypeTerm getTerm(CObject object, String code, String language) {
         // the node id of an archetype root is the code of the use_archetype node in the parent archetype, so its term is
-        // defined in the terminology of the parent. Do not check on the id-code prefix here: in at-coded archetypes the
-        // node id is an at-code, just like the value codes of the included archetype.
+        // defined in the terminology of the parent.
         boolean stripLastPartOfPath = object instanceof CArchetypeRoot && Objects.equals(code, object.getNodeId());
         ArchetypeTerm term = getTermInternal(object, code, language, stripLastPartOfPath);
         if(stripLastPartOfPath && term == null) {

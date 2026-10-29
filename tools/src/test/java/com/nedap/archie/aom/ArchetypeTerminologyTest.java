@@ -62,8 +62,7 @@ public class ArchetypeTerminologyTest {
 
     @Test
     public void termForUseArchetypeAtCoded() throws Exception {
-        //same as termForUseArchetype, but at-coded: the node id of the use_archetype node is an at-code, like the
-        //codes of the included archetype, so it cannot be recognised by its prefix
+        //same as termForUseArchetype, but at-coded
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         ArchetypeValidationSettings settings = new ArchetypeValidationSettings();
         settings.setNodeIdCodeSystemValidation(NodeIdCodeSystemValidation.AT_CODED);
@@ -90,7 +89,7 @@ public class ArchetypeTerminologyTest {
     }
 
     private Archetype parse(String resourcePath) throws Exception {
-        //FlattenerTestUtil.parse fails on parser warnings, which at-coded archetypes currently produce (see #856)
+        //FlattenerTestUtil.parse fails on the parser warnings of at-coded archetypes
         ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try (InputStream stream = ArchetypeTerminologyTest.class.getResourceAsStream(resourcePath)) {
             Archetype archetype = parser.parse(stream);
