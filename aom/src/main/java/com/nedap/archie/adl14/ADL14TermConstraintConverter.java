@@ -182,8 +182,11 @@ public class ADL14TermConstraintConverter {
             if(cTerminologyCode.getAssumedValue() != null) {
                 TerminologyCode assumedValue = cTerminologyCode.getAssumedValue();
                 if(isLocalCode) {
-                    String newCode = converter.convertIntoAtCode(assumedValue.getCodeString());
-                    assumedValue.setCodeString(newCode);
+                    // if the code system should be at coded, the code stays the same
+                    if (converter.codeSystemIsIdCoded()) {
+                        String newCode = converter.convertIntoAtCode(assumedValue.getCodeString());
+                        assumedValue.setCodeString(newCode);
+                    }
                     assumedValue.setTerminologyId(null);
                 } else {
                     try {
