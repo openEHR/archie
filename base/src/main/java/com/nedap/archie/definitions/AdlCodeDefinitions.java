@@ -2,9 +2,14 @@ package com.nedap.archie.definitions;
 
 public class AdlCodeDefinitions {
     /**
-     * String leader of ‘identifier’ codes, i.e. codes used to identify archetype nodes.
+     * String leader of ‘identifier’ codes, i.e. codes used to identify id-coded archetype nodes.
      */
     public static final String ID_CODE_LEADER = "id";
+
+    /**
+     * String leader of ‘identifier’ codes, i.e. codes used to identify at-coded archetype nodes.
+     */
+    public static final String AT_CODE_LEADER = "at";
 
     /**
      * String leader of ‘value’ codes, i.e. codes used to identify codes values, including value set members.
@@ -27,13 +32,35 @@ public class AdlCodeDefinitions {
     public static final String CODE_REGEX_PATTERN = "(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*";
 
     /**
-     * Regex pattern of the root id code of any archetype. Corresponds to codes of the form id1, id1.1, id1.1.1 etc..
+     * Regex pattern of the root code of any archetype: id1, id1.1, at0000, at0000.1 etc.
      */
-    public static final String ROOT_CODE_REGEX_PATTERN = "^id1(\\.1)*$";
+    public static final String ROOT_CODE_REGEX_PATTERN = "^(id1|at0000)(\\.1)*$";
+
+    /**
+     * Regex pattern of the root code of an id-coded archetype: id1, id1.1, id1.1.1 etc.
+     */
+    public static final String ID_CODED_ROOT_CODE_REGEX_PATTERN = "^id1(\\.1)*$";
+
+    /**
+     * Regex pattern of the root code of an at-coded archetype: at0000, at0000.1, at0000.1.1 etc.
+     */
+    public static final String AT_CODED_ROOT_CODE_REGEX_PATTERN = "^at0000(\\.1)*$";
 
     /**
      * Code id used for C_PRIMITIVE_OBJECT nodes on creation.
      */
     public static final String PRIMITIVE_NODE_ID = "id9999";
+
+    /**
+     * Code id for C_PRIMITIVE_OBJECT nodes in at-coded archetypes.
+     */
+    public static final String AT_CODED_PRIMITIVE_NODE_ID = "at9999";
+
+    /**
+     * True if the code is a primitive node id: id9999 or at9999.
+     */
+    public static boolean isPrimitiveNodeId(String code) {
+        return PRIMITIVE_NODE_ID.equals(code) || AT_CODED_PRIMITIVE_NODE_ID.equals(code);
+    }
 
 }

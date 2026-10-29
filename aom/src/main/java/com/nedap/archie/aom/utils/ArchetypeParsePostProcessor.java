@@ -3,6 +3,7 @@ package com.nedap.archie.aom.utils;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 
 import java.util.Map;
 import java.util.Stack;
@@ -34,7 +35,7 @@ public class ArchetypeParsePostProcessor {
         while (!workList.empty()) {
             CObject cObject = workList.pop();
             if (cObject instanceof CPrimitiveObject) {
-                cObject.setNodeId("id9999");//also in the implementation, but check to be sure
+                cObject.setNodeId(AdlCodeDefinitions.PRIMITIVE_NODE_ID);//also in the implementation, but check to be sure
             }
             for (CAttribute attribute : cObject.getAttributes()) {
 
