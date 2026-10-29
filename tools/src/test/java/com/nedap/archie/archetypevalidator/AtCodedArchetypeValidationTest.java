@@ -163,7 +163,7 @@ public class AtCodedArchetypeValidationTest {
 
     @Test
     public void specializedAtCodedWithNewCodesValidatesAndFlattens() throws Exception {
-        // the child introduces a new node (at0.15, at0.16) and a new value set (ac0.1), which have 0 as first segment
+        // the child introduces at0.15, at0.16 and ac0.1
         InMemoryFullArchetypeRepository repository = createRepository(NodeIdCodeSystemValidation.AUTO_DETECT,
                 "openEHR-EHR-OBSERVATION.atbp.v1.0.0.adls", "openEHR-EHR-OBSERVATION.atbp-child.v1.0.0.adls");
 
@@ -176,7 +176,7 @@ public class AtCodedArchetypeValidationTest {
 
     @Test
     public void atCodedTemplateWithOverlayValidates() throws Exception {
-        // the template fills a slot with use_archetype [at0014.0.1], introduces a new node at0.0.1 and has an overlay
+        // the template has use_archetype [at0014.0.1], a new node at0.0.1 and an overlay
         InMemoryFullArchetypeRepository repository = createRepository(NodeIdCodeSystemValidation.AUTO_DETECT,
                 "openEHR-EHR-OBSERVATION.atbp.v1.0.0.adls", "openEHR-EHR-OBSERVATION.atbp-child.v1.0.0.adls",
                 "openEHR-EHR-CLUSTER.atdevice.v1.0.0.adls", "openEHR-EHR-OBSERVATION.attemplate.v1.0.0.adlt");

@@ -20,12 +20,8 @@ import java.util.regex.Pattern;
 
 public class AOMUtils {
 
-    // any id, at or ac code, in either the id-coded or the at-coded code system
     private static Pattern adlCodePattern = Pattern.compile("(id|at|ac)([0-9]+)(\\.(0|[1-9][0-9]*))*");
-    // codes of id-coded archetypes: no leading zeros, e.g. id1, id1.1, at2, ac3
     private static Pattern idCodedCodePattern = Pattern.compile("(id|at|ac)(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
-    // codes of at-coded archetypes: at- and ac-codes are zero-padded to four digits as in ADL 1.4 (at0000, at0001.1,
-    // ac0001), or start with 0 when introduced in a specialisation (at0.1, ac0.1)
     private static Pattern atCodedCodePattern = Pattern.compile("(at|ac)([0-9]{4,}|0(?=\\.))(\\.(0|[1-9][0-9]*))*");
 
     public static int getSpecializationDepthFromCode(String code) {
@@ -38,30 +34,24 @@ public class AOMUtils {
         }
     }
 
-    /**
-     * True if the code starts with the id-code leader, used for the node ids of id-coded archetypes.
-     */
     public static boolean isIdCode(String code) {
         return code.startsWith(AdlCodeDefinitions.ID_CODE_LEADER);
     }
 
     /**
-     * True if the code starts with the at-code leader, used for the node ids of at-coded archetypes.
+     * True if the code is an at-code, as used for the node ids of at-coded archetypes.
      */
     public static boolean isAtCode(String code) {
         return code.startsWith(AdlCodeDefinitions.AT_CODE_LEADER);
     }
 
     /**
-     * True if the code starts with the value code leader, used for codes representing a single terminology item.
+     * True if the code is a value code, i.e. a code of a single terminology item.
      */
     public static boolean isValueCode(String code) {
         return code.startsWith(AdlCodeDefinitions.VALUE_CODE_LEADER);
     }
 
-    /**
-     * True if the code starts with the value set code leader.
-     */
     public static boolean isValueSetCode(String code) {
         return code.startsWith(AdlCodeDefinitions.VALUE_SET_CODE_LEADER);
     }
@@ -71,7 +61,7 @@ public class AOMUtils {
     }
 
     /**
-     * True if the code is a valid id, at or ac code, in either the id-coded or the at-coded code system.
+     * True if the code is a valid code of either code system.
      */
     public static boolean isValidAdlCode(String code) {
         if(code == null) {
@@ -101,7 +91,7 @@ public class AOMUtils {
     }
 
     /**
-     * @deprecated Use {@link #isValidIdCodedCode(String)}, or {@link #isValidAdlCode(String)} to accept codes of both code systems.
+     * @deprecated Use {@link #isValidIdCodedCode(String)} or {@link #isValidAdlCode(String)}.
      */
     @Deprecated
     public static boolean isValidCode(String code) {
