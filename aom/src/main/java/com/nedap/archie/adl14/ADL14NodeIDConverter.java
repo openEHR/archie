@@ -197,12 +197,11 @@ public class ADL14NodeIDConverter {
                             for (String newCode : convertedCodes.get(valueOrPath).getConvertedCodes()) {
                                 newTermbindingsMap.put(newCode, termbindingMap.get(valueOrPath));
                             }
-                        } else if (!codeSystemIsIdCoded()) {
-                            // if the code system should be at coded, the code stays the same
-                            newTermbindingsMap.put(valueOrPath, termbindingMap.get(valueOrPath));
                         } else {
                             newTermbindingsMap.put(valueOrPath, termbindingMap.get(valueOrPath));
-                            conversionResult.getLog().addWarningWithLocation(ADL14ConversionMessageCode.WARNING_UNKNOWN_CODE_TYPE_IN_TERMBINDING, valueOrPath, valueOrPath);
+                            if (codeSystemIsIdCoded()) {
+                                conversionResult.getLog().addWarningWithLocation(ADL14ConversionMessageCode.WARNING_UNKNOWN_CODE_TYPE_IN_TERMBINDING, valueOrPath, valueOrPath);
+                            }
                         }
                     } else if (AOMUtils.isValueSetCode(valueOrPath)) {
                         if (convertedCodes.containsKey(valueOrPath)) {
