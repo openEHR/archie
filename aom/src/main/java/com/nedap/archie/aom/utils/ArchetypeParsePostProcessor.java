@@ -3,8 +3,14 @@ package com.nedap.archie.aom.utils;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
-import com.nedap.archie.definitions.AdlCodeDefinitions;
+import com.nedap.archie.rules.Assertion;
+import com.nedap.archie.rules.Constraint;
+import com.nedap.archie.rules.ExpressionVariable;
+import com.nedap.archie.rules.Function;
+import com.nedap.archie.rules.Operator;
+import com.nedap.archie.rules.RuleElement;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -27,15 +33,74 @@ public class ArchetypeParsePostProcessor {
             archetype.getTerminology().setOriginalLanguage(originalLanguage);
         }
         setParents(archetype);
+        setPrimitiveNodeIdsOutsideDefinition(archetype);
+        if (archetype instanceof Template) {
+            for (TemplateOverlay overlay : ((Template) archetype).getTemplateOverlays()) {
+                setPrimitiveNodeIdsOutsideDefinition(overlay);
+            }
+        }
+    }
+
+    /**
+     * Primitive objects in slot assertions and rules cannot find their archetype, so set their node id here.
+     */
+    private static void setPrimitiveNodeIdsOutsideDefinition(Archetype archetype) {
+        if (archetype.getDefinition() == null) {
+            return;
+        }
+        String primitiveNodeId = AOMUtils.getPrimitiveNodeId(archetype);
+        Stack<CObject> workList = new Stack<>();
+        workList.add(archetype.getDefinition());
+        while (!workList.empty()) {
+            CObject cObject = workList.pop();
+            if (cObject instanceof ArchetypeSlot) {
+                ArchetypeSlot slot = (ArchetypeSlot) cObject;
+                setPrimitiveNodeIds(slot.getIncludes(), primitiveNodeId);
+                setPrimitiveNodeIds(slot.getExcludes(), primitiveNodeId);
+            }
+            for (CAttribute attribute : cObject.getAttributes()) {
+                workList.addAll(attribute.getChildren());
+            }
+        }
+        if (archetype.getRules() != null) {
+            setPrimitiveNodeIds(archetype.getRules().getRules(), primitiveNodeId);
+        }
+    }
+
+    private static void setPrimitiveNodeIds(List<? extends RuleElement> elements, String primitiveNodeId) {
+        if (elements != null) {
+            for (RuleElement element : elements) {
+                setPrimitiveNodeIds(element, primitiveNodeId);
+            }
+        }
+    }
+
+    private static void setPrimitiveNodeIds(RuleElement element, String primitiveNodeId) {
+        if (element instanceof Constraint) {
+            CPrimitiveObject<?, ?> item = ((Constraint<?>) element).getItem();
+            if (item != null) {
+                item.setNodeId(primitiveNodeId);
+            }
+        } else if (element instanceof Operator) {
+            setPrimitiveNodeIds(((Operator) element).getOperands(), primitiveNodeId);
+        } else if (element instanceof Function) {
+            setPrimitiveNodeIds(((Function) element).getArguments(), primitiveNodeId);
+        } else if (element instanceof Assertion) {
+            setPrimitiveNodeIds(((Assertion) element).getExpression(), primitiveNodeId);
+            setPrimitiveNodeIds(((Assertion) element).getVariables(), primitiveNodeId);
+        } else if (element instanceof ExpressionVariable) {
+            setPrimitiveNodeIds(((ExpressionVariable) element).getExpression(), primitiveNodeId);
+        }
     }
 
     private static void setParents(Archetype archetype) {
+        String primitiveNodeId = AOMUtils.getPrimitiveNodeId(archetype);
         Stack<CObject> workList = new Stack<>();
         workList.add(archetype.getDefinition());
         while (!workList.empty()) {
             CObject cObject = workList.pop();
             if (cObject instanceof CPrimitiveObject) {
-                cObject.setNodeId(AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID);//also in the implementation, but check to be sure
+                cObject.setNodeId(primitiveNodeId);
             }
             for (CAttribute attribute : cObject.getAttributes()) {
 

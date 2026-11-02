@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeSlot;
+import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.ResourceDescription;
 import com.nedap.archie.aom.primitives.CDuration;
@@ -110,17 +111,26 @@ public class AOMJacksonTest {
     }
 
     @Test
-    public void atCodedPrimitiveNodeId() throws Exception {
-        try(InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/adl14/openEHR-EHR-OBSERVATION.demo_adl2_at.v1.0.0.adls")) {
-            Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
-            ObjectMapper objectMapper = JacksonUtil.getObjectMapper();
-            String serialized = objectMapper.writeValueAsString(archetype);
-            assertTrue(serialized.contains("\"id9999\""));
+    public void primitiveNodeIdFollowsCodeSystem() throws Exception {
+        ObjectMapper objectMapper = JacksonUtil.getObjectMapper();
 
-            String atCodedPrimitiveNodeIds = serialized.replace("\"id9999\"", "\"at9999\"");
-            Archetype parsed = objectMapper.readValue(atCodedPrimitiveNodeIds, Archetype.class);
-            Archetype parsedWithIdCodedPrimitiveNodeIds = objectMapper.readValue(serialized, Archetype.class);
-            assertEquals(ADLArchetypeSerializer.serialize(parsedWithIdCodedPrimitiveNodeIds), ADLArchetypeSerializer.serialize(parsed));
+        String atCodedJson = objectMapper.writeValueAsString(parseAdl2("/com/nedap/archie/adl14/openEHR-EHR-OBSERVATION.demo_adl2_at.v1.0.0.adls"));
+        assertTrue(atCodedJson.contains("\"at9999\""));
+        assertFalse(atCodedJson.contains("\"id9999\""));
+
+        // JSON of an at-coded archetype with id9999, as written by older Archie versions, can still be read
+        Archetype fromOlderJson = objectMapper.readValue(atCodedJson.replace("\"at9999\"", "\"id9999\""), Archetype.class);
+        CAttribute property = fromOlderJson.itemAtPath("/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0012]/value[at9059]/property");
+        assertEquals("at9999", property.getChildren().get(0).getNodeId());
+
+        String idCodedJson = objectMapper.writeValueAsString(parseAdl2("/com/nedap/archie/adl14/openEHR-EHR-OBSERVATION.demo_adl2_id.v1.0.0.adls"));
+        assertTrue(idCodedJson.contains("\"id9999\""));
+        assertFalse(idCodedJson.contains("\"at9999\""));
+    }
+
+    private Archetype parseAdl2(String resource) throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream(resource)) {
+            return new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
         }
     }
 
