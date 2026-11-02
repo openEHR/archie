@@ -77,13 +77,13 @@ public class FlatFormValidation extends ValidatingVisitor {
                 } catch (Exception e) {
                     //if not a valid path, fine
                 }
-                if(!AOMUtils.isValidCode(constraintCodeOrPath) && !(
+                if(!AOMUtils.isValidIdCodedCode(constraintCodeOrPath) && !(
                         archetypeHasPath || metaModel.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
                 )
                         ) {
                     addMessage(ErrorType.VTTBK, I18n.t("Term binding key {0} points to a path that cannot be found in the archetype", constraintCodeOrPath));
                 }
-                else if(AOMUtils.isValidCode(constraintCodeOrPath) &&
+                else if(AOMUtils.isValidIdCodedCode(constraintCodeOrPath) &&
                         !terminology.hasCode(constraintCodeOrPath) &&
                         !(archetype.isSpecialized() && flatParent != null && !flatParent.getTerminology().hasCode(constraintCodeOrPath))
                         )
