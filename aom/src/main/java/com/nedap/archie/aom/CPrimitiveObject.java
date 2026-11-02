@@ -3,6 +3,7 @@ package com.nedap.archie.aom;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.rminfo.RMProperty;
@@ -26,7 +27,11 @@ import java.util.function.BiFunction;
 @XmlAccessorType(XmlAccessType.FIELD)
 public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedObject<ValueType> {
 
-    public static final String PRIMITIVE_NODE_ID_VALUE = "id9999";
+    /**
+     * @deprecated Use {@link AdlCodeDefinitions#ID_CODED_PRIMITIVE_NODE_ID}.
+     */
+    @Deprecated
+    public static final String PRIMITIVE_NODE_ID_VALUE = AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID;
 
     @Nullable
     private Boolean enumeratedTypeConstraint;
@@ -54,11 +59,11 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
 
     public String getNodeId() {
-        return PRIMITIVE_NODE_ID_VALUE;
+        return AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID;
     }
 
     public void setNodeId(String nodeId) {
-        if(!nodeId.equals(PRIMITIVE_NODE_ID_VALUE)) {
+        if(!AdlCodeDefinitions.isPrimitiveNodeId(nodeId)) {
             throw new UnsupportedOperationException("Cannot set node id on a CPrimitiveObject");
         }
     }
