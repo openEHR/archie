@@ -56,6 +56,17 @@ public class AOMUtils {
         return code.startsWith(AdlCodeDefinitions.VALUE_SET_CODE_LEADER);
     }
 
+    /**
+     * The node id of primitive objects in the given archetype: at9999 if it is at-coded, id9999 otherwise.
+     */
+    public static String getPrimitiveNodeId(Archetype archetype) {
+        CComplexObject definition = archetype == null ? null : archetype.getDefinition();
+        if(definition != null && definition.getNodeId() != null && definition.getNodeId().startsWith(AdlCodeDefinitions.AT_CODE_LEADER)) {
+            return AdlCodeDefinitions.AT_CODED_PRIMITIVE_NODE_ID;
+        }
+        return AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID;
+    }
+
     public static boolean isValidValueSetCode(String code) {
         return isValueSetCode(code) && isValidAdlCode(code);
     }
