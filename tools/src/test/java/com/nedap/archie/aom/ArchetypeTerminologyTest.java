@@ -2,6 +2,8 @@ package com.nedap.archie.aom;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParseException;
+import com.nedap.archie.archetypevalidator.ArchetypeValidationSettings;
+import com.nedap.archie.archetypevalidator.NodeIdCodeSystemValidation;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.FlattenerConfiguration;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
@@ -54,6 +56,37 @@ public class ArchetypeTerminologyTest {
         assertEquals("an element", element.getTerm().getText());
 
 
+    }
+
+    @Test
+    public void termForUseArchetypeAtCoded() throws Exception {
+        //same as termForUseArchetype, but at-coded
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
+        ArchetypeValidationSettings settings = new ArchetypeValidationSettings();
+        settings.setNodeIdCodeSystemValidation(NodeIdCodeSystemValidation.AT_CODED);
+        repository.setArchetypeValidationSettings(settings);
+        repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-COMPOSITION.atparent.v1.0.0.adls"));
+        repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.atincluded.v1.0.0.adls"));
+
+        //check that they are valid, just to be sure
+        repository.compile(BuiltinReferenceModels.getMetaModelProvider());
+        repository.getAllValidationResults().forEach(s -> assertThat(s.getErrors().toString(), s.getErrors().isEmpty()));
+
+        Flattener flattener = new Flattener(repository, BuiltinReferenceModels.getMetaModelProvider(), FlattenerConfiguration.forOperationalTemplate());
+        OperationalTemplate opt = (OperationalTemplate) flattener.flatten(repository.getArchetype("openEHR-EHR-COMPOSITION.atparent.v1.0.0"));
+
+        CArchetypeRoot useArchetype = opt.itemAtPath("/content[at0001]");
+        ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("nl");
+        assertEquals("included archetype nl", useArchetype.getTerm().getText());
+        ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
+        assertEquals("included archetype en", useArchetype.getTerm().getText());
+
+        //codes of the included archetype still come from its component terminology
+        CComplexObject element = opt.itemAtPath("/content[at0001]/data[at0003]/items[at0002]");
+        assertEquals("an element", element.getTerm().getText());
+
+        //at0000 exists in both archetypes. On the use_archetype node it is the root code of the included archetype
+        assertEquals("the generic entry", opt.getTerm(useArchetype, "at0000", "en").getText());
     }
     
     
