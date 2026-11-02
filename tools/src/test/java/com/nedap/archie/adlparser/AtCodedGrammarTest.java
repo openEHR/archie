@@ -26,9 +26,7 @@ public class AtCodedGrammarTest {
         try (InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/adl14/openEHR-EHR-OBSERVATION.demo_adl2_at.v1.0.0.adls")) {
             archetype = parser.parse(stream);
         }
-        List<ANTLRParserMessage> warnings = parser.getErrors().getWarnings();
-        assertTrue(parser.getErrors().hasNoErrors(), parser.getErrors().toString());
-        assertTrue(warnings.isEmpty(), warnings.stream().map(ANTLRParserMessage::getMessage).collect(Collectors.joining("\n")));
+        assertNoErrorsOrWarnings(parser);
 
         CObject dvText = archetype.itemAtPath("/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0005]/value[at9056]");
         assertTrue(dvText instanceof CComplexObject);
@@ -42,11 +40,17 @@ public class AtCodedGrammarTest {
         try (InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/archetypevalidator/primitives/openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0.adls")) {
             archetype = parser.parse(stream);
         }
-        assertTrue(parser.getErrors().hasNoErrors(), parser.getErrors().toString());
+        assertNoErrorsOrWarnings(parser);
         assertEquals(ConstraintStatus.REQUIRED, getTerminologyCode(archetype, "/items[id2]/value[id3]/defining_code").getConstraintStatus());
         assertEquals(ConstraintStatus.EXTENSIBLE, getTerminologyCode(archetype, "/items[id4]/value[id5]/defining_code").getConstraintStatus());
         assertEquals(ConstraintStatus.PREFERRED, getTerminologyCode(archetype, "/items[id6]/value[id7]/defining_code").getConstraintStatus());
         assertEquals(ConstraintStatus.EXAMPLE, getTerminologyCode(archetype, "/items[id8]/value[id9]/defining_code").getConstraintStatus());
+    }
+
+    private void assertNoErrorsOrWarnings(ADLParser parser) {
+        List<ANTLRParserMessage> warnings = parser.getErrors().getWarnings();
+        assertTrue(parser.getErrors().hasNoErrors(), parser.getErrors().toString());
+        assertTrue(warnings.isEmpty(), warnings.stream().map(ANTLRParserMessage::getMessage).collect(Collectors.joining("\n")));
     }
 
     private CTerminologyCode getTerminologyCode(Archetype archetype, String attributePath) {
