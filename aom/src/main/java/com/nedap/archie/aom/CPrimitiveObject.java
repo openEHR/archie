@@ -27,6 +27,10 @@ import java.util.function.BiFunction;
 @XmlAccessorType(XmlAccessType.FIELD)
 public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedObject<ValueType> {
 
+    /**
+     * @deprecated Use {@link AdlCodeDefinitions#PRIMITIVE_NODE_ID}.
+     */
+    @Deprecated
     public static final String PRIMITIVE_NODE_ID_VALUE = AdlCodeDefinitions.PRIMITIVE_NODE_ID;
 
     @Nullable
@@ -55,7 +59,7 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
 
     public String getNodeId() {
-        return PRIMITIVE_NODE_ID_VALUE;
+        return AdlCodeDefinitions.PRIMITIVE_NODE_ID;
     }
 
     public void setNodeId(String nodeId) {
