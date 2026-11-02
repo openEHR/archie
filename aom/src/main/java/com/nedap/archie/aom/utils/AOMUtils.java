@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 public class AOMUtils {
 
     private static Pattern adlCodePattern = Pattern.compile("(id|at|ac)([0-9]+)(\\.(0|[1-9][0-9]*))*");
-    private static Pattern idCodedCodePattern = Pattern.compile("(id|at|ac)(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
+    private static Pattern idCodedCodePattern = Pattern.compile("(id|at|ac)(0(?=\\.)|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
     private static Pattern atCodedCodePattern = Pattern.compile("(at|ac)([0-9]{4,}|0(?=\\.))(\\.(0|[1-9][0-9]*))*");
 
     public static int getSpecializationDepthFromCode(String code) {
