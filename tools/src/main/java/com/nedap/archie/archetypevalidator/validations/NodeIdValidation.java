@@ -1,10 +1,10 @@
 package com.nedap.archie.archetypevalidator.validations;
 
 import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import org.openehr.utils.message.I18n;
 
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public class NodeIdValidation extends ValidatingVisitor {
             addMessageWithPath(ErrorType.VCOID, cObject.getPath(),
                     I18n.t("C_OBJECT with RM type {0} must have a node id", cObject.getRmTypeName()));
         }
-        else if(!CPrimitiveObject.PRIMITIVE_NODE_ID_VALUE.equals(cObject.getNodeId()) && archetypeSpecialisationDepth == AOMUtils.getSpecializationDepthFromCode(cObject.getNodeId()) && nodeIds.containsKey(cObject.getNodeId())) {
+        else if(!AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID.equals(cObject.getNodeId()) && archetypeSpecialisationDepth == AOMUtils.getSpecializationDepthFromCode(cObject.getNodeId()) && nodeIds.containsKey(cObject.getNodeId())) {
             //every node id in a single archetype must be unique or a primitive object, or a occurrences matches {0} because sometimes that's the only way
             addMessageWithPath(ErrorType.VCOSU, cObject.getPath(), I18n.t("Node id {0} already used in path {1}", cObject.getNodeId(), nodeIds.get(cObject.getNodeId())));
         }
