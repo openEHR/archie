@@ -72,6 +72,7 @@ public class AOMUtilsTest {
         assertTrue(AOMUtils.isValidIdCodedCode("at0.0.1"));
         assertTrue(AOMUtils.isValidIdCodedCode("ac0.1"));
         assertFalse(AOMUtils.isValidIdCodedCode("id0"));
+        assertFalse(AOMUtils.isValidIdCodedCode("id0."));
         assertFalse(AOMUtils.isValidIdCodedCode("at0"));
         assertFalse(AOMUtils.isValidIdCodedCode("at0000"));
         assertFalse(AOMUtils.isValidIdCodedCode("ac0001"));
