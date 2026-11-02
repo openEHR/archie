@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
 
 public class OdinURISerializer extends JsonSerializer<URI> {
     @Override

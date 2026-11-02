@@ -35,8 +35,8 @@ public class FlatSum implements FunctionImplementation {
         List<String> paths = new ArrayList<>();
 
         for (ValueList argument: arguments) {
-            List<Value> values = argument.getValues();
-            for (Value val: values) {
+            List<Value<?>> values = argument.getValues();
+            for (Value<?> val: values) {
                 if (!val.isNull()) {
                     sum += castToDouble(val);
                 }

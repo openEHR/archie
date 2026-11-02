@@ -62,9 +62,7 @@ public class BasicDefinitions {
             if(lvalue < rvalue) {
                 retVal = true;
                 break;
-            } else if(lvalue == rvalue){
-                continue;
-            } else {
+            } else if(lvalue != rvalue){
                 break;
             }
         }

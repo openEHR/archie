@@ -15,11 +15,18 @@ public class ModelReferenceSerializer extends RuleElementSerializer<ModelReferen
 
     @Override
     public void serialize(ModelReference reference) {
+        StringBuilder toAppend = new StringBuilder();
+
         if(reference.getVariableReferencePrefix() != null) {
-            builder.append("$");
-            builder.append(reference.getVariableReferencePrefix());
+            toAppend.append("$");
+            toAppend.append(reference.getVariableReferencePrefix());
         }
-        builder.append(reference.getPath());
+        toAppend.append(reference.getPath());
+
+        if(builder.getCurrentLineLength() + toAppend.length() > ADLRulesSerializer.NEW_LINE_LIMIT) {
+            builder.newline();
+        }
+        builder.append(toAppend);
     }
 
 }

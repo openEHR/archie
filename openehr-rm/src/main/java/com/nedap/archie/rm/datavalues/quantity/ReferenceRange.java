@@ -2,10 +2,11 @@ package com.nedap.archie.rm.datavalues.quantity;
 
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rminfo.Invariant;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Objects;
         "meaning",
         "range"
 })
-public class ReferenceRange<T extends DvOrdered> extends RMObject {
+public class ReferenceRange<T extends DvOrdered<T>> extends RMObject {
 
     private DvInterval<T> range;
     private DvText meaning;
@@ -25,8 +26,8 @@ public class ReferenceRange<T extends DvOrdered> extends RMObject {
     }
 
     public ReferenceRange(DvText meaning, DvInterval<T> range) {
-        this.range = range;
-        this.meaning = meaning;
+        setRange(range);
+        setMeaning(meaning);
     }
 
     public DvInterval<T> getRange() {
@@ -57,5 +58,10 @@ public class ReferenceRange<T extends DvOrdered> extends RMObject {
     @Override
     public int hashCode() {
         return Objects.hash(range, meaning);
+    }
+
+    @Invariant("Range_is_simple")
+    public boolean rangeIsSimple() {
+        return (range.isLowerUnbounded() || (range.getLower() != null && range.getLower().isSimple())) && (range.isUpperUnbounded() || (range.getUpper() != null && range.getUpper().isSimple()));
     }
 }

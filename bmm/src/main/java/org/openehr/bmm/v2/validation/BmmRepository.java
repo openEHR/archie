@@ -1,6 +1,5 @@
 package org.openehr.bmm.v2.validation;
 
-import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
 
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class BmmRepository {
     }
 
     public List<BmmValidationResult> getValidModels() {
-        return modelsById.values().stream().filter(validationResult -> validationResult.passes()).collect(Collectors.toList());
+        return modelsById.values().stream().filter(BmmValidationResult::passes).collect(Collectors.toList());
     }
 
     public List<BmmValidationResult> getInvalidModels() {

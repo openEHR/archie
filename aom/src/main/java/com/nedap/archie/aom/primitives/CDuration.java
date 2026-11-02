@@ -3,12 +3,13 @@ package com.nedap.archie.aom.primitives;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.xml.adapters.DurationIntervalXmlAdapter;
 import com.nedap.archie.xml.adapters.DurationXmlAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.annotation.Nullable;
 import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class CDuration extends CTemporal<TemporalAmount> {
 
     @XmlJavaTypeAdapter(DurationXmlAdapter.class)
     @XmlElement(name="assumed_value")
+    @Nullable
     private TemporalAmount assumedValue;
     @XmlJavaTypeAdapter(DurationIntervalXmlAdapter.class)
     private List<Interval<TemporalAmount>> constraint = new ArrayList<>();
@@ -35,7 +37,7 @@ public class CDuration extends CTemporal<TemporalAmount> {
     public void setAssumedValue(TemporalAmount assumedValue) {
         this.assumedValue = assumedValue;
     }
-
+    
     @Override
     public List<Interval<TemporalAmount>> getConstraint() {
         return constraint;
@@ -46,9 +48,6 @@ public class CDuration extends CTemporal<TemporalAmount> {
         this.constraint = constraint;
     }
 
-    public List<Interval<TemporalAmount>> getConstraints() {
-        return constraint;
-    }
 
     @Override
     public void addConstraint(Interval<TemporalAmount> constraint) {

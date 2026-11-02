@@ -21,8 +21,6 @@ package org.openehr.bmm.core;
  * Author: Thomas Beale
  */
 
-import java.util.List;
-
 /**
  * Abstract meta-type for types 'defined' in a BMM model, compared to formal parameter types,
  * built-in types. See subtypes.
@@ -30,7 +28,11 @@ import java.util.List;
  */
 public abstract class BmmDefinedType extends BmmEffectiveType {
 
-    protected BmmClass baseClass;
+    private BmmClass baseClass;
+
+    protected BmmDefinedType(BmmClass baseClass) {
+        this.baseClass = baseClass;
+    }
 
     /**
      * Returns the target type; this converts to the first parameter in generic_parameters in BMM_GENERIC_TYPE.

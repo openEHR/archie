@@ -29,7 +29,7 @@ definition
 	COMPOSITION[id1] matches {	-- Prescription
 		category matches {
 			DV_CODED_TEXT[id10] matches {
-				defining_code matches {[at1]}
+				defining_code matches {[at17]}
 			}
 		}
 		context matches {
@@ -123,7 +123,7 @@ terminology
 				text = <"Other data">
 				description = <"Other observational or relevant data.">
 			>
-			["at1"] = <
+			["at17"] = <
 				text = <"event">
 				description = <"event">
 			>
@@ -162,7 +162,7 @@ terminology
 				text = <"Other data">
 				description = <"Other observational or relevant data.">
 			>
-			["at1"] = <
+			["at17"] = <
 				text = <"event">
 				description = <"event">
 			>
@@ -170,7 +170,7 @@ terminology
 	>
 	term_bindings = <
 		["openehr"] = <
-			["at1"] = <http://openehr.org/id/433>
+			["at17"] = <http://openehr.org/id/433>
 		>
 	>
 

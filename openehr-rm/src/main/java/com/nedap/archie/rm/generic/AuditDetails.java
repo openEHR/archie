@@ -5,12 +5,14 @@ import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
@@ -41,11 +43,11 @@ public class AuditDetails extends RMObject {
 
 
     public AuditDetails(String systemId, PartyProxy committer, DvDateTime timeCommitted, DvCodedText changeType, @Nullable DvText description) {
-        this.systemId = systemId;
-        this.timeCommitted = timeCommitted;
-        this.changeType = changeType;
-        this.description = description;
-        this.committer = committer;
+        setSystemId(systemId);
+        setTimeCommitted(timeCommitted);
+        setChangeType(changeType);
+        setDescription(description);
+        setCommitter(committer);
     }
 
     public String getSystemId() {
@@ -106,4 +108,16 @@ public class AuditDetails extends RMObject {
     public int hashCode() {
         return Objects.hash(systemId, timeCommitted, changeType, description, committer);
     }
+
+    @Invariant("System_id_valid")
+    public boolean systemIdValid() {
+        return InvariantUtil.nullOrNotEmpty(systemId);
+    }
+
+    @Invariant("Change_type_valid")
+    public boolean changeTypeValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(changeType, "audit change type");
+    }
+
+
 }

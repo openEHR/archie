@@ -7,13 +7,15 @@ import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMPathQuery;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.PropertyType;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,6 +31,7 @@ public abstract class Pathable extends RMObject {
     @JsonIgnore
     @XmlTransient
     @Nullable
+    @RMProperty(value="parent", computed=PropertyType.COMPUTED)
     private Pathable parent;
     @JsonIgnore
     @XmlTransient
@@ -39,16 +42,29 @@ public abstract class Pathable extends RMObject {
     }
 
     public Pathable(@Nullable Pathable parent, @Nullable String parentAttributeName) {
-        this.parent = parent;
-        this.parentAttributeName = parentAttributeName;
+        setParent(parent);
+        setParentAttributeName(parentAttributeName);
     }
 
     public Object itemAtPath(String s) {
         return new RMPathQuery(s).find(ArchieRMInfoLookup.getInstance(), this);
     }
 
+    public Object itemAtPathMatchSpecialisedNodes(String s) {
+        return new RMPathQuery(s, true).find(ArchieRMInfoLookup.getInstance(), this);
+    }
+
     public List<Object> itemsAtPath(String s) {
         List<RMObjectWithPath> objects = new RMPathQuery(s).findList(ArchieRMInfoLookup.getInstance(), this);
+        List<Object> result = new ArrayList<>();
+        for (RMObjectWithPath object : objects) {
+            result.add(object.getObject());
+        }
+        return result;
+    }
+
+    public List<Object> itemsAtPathMatchSpecialisedNodes(String s) {
+        List<RMObjectWithPath> objects = new RMPathQuery(s, true).findList(ArchieRMInfoLookup.getInstance(), this);
         List<Object> result = new ArrayList<>();
         for (RMObjectWithPath object : objects) {
             result.add(object.getObject());
@@ -92,6 +108,8 @@ public abstract class Pathable extends RMObject {
         }
     }
 
+    @JsonIgnore
+    @RMPropertyIgnore
     protected String getParentAttributeName() {
         return parentAttributeName;
     }

@@ -2,18 +2,26 @@ package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlBaseListener;
 import com.nedap.archie.adlparser.antlr.AdlParser;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
-import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.serializer.odin.OdinObjectParser;
-import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
+import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
+import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
+import com.nedap.archie.serializer.odin.OdinObjectParser;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
+
+import static com.nedap.archie.definitions.OpenEhrDefinitions.*;
 
 /**
  * ANTLR listener for an ADLS file. Uses the listener construction for the topmost elements, switches to custom treewalker
@@ -23,28 +31,34 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ADLListener extends AdlBaseListener {
 
+    private static final Pattern VERSION_ID_REGEX = Pattern.compile("[0-9]+.[0-9]+.[0-9]+((-rc|-alpha)(.[0-9]+)?)?");
+    private static final Pattern GUID_REGEX = Pattern.compile("[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+-[0-9a-fA-F]+");
+
     private ANTLRParserErrors errors;
 
     private Archetype rootArchetype;
 
+    Set<String> seenMetaDataIdentifiers = new HashSet<>();
     private Archetype archetype;
-    private CComplexObjectParser cComplexObjectParser;
     private TerminologyParser terminologyParser;
-    private MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
 
-    public ADLListener(ANTLRParserErrors errors, MetaModels metaModels) {
+    public ADLListener(ANTLRParserErrors errors, MetaModelProvider metaModelProvider) {
         this.errors = errors;
-        cComplexObjectParser = new CComplexObjectParser(errors, metaModels);
         terminologyParser = new TerminologyParser(errors);
-        this.metaModels = metaModels;
+        this.metaModelProvider = metaModelProvider;
     }
 
     /** top-level constructs */
     @Override
     public void enterArchetype(ArchetypeContext ctx) {
         rootArchetype = new AuthoredArchetype();
-        archetype = rootArchetype;
+        setArchetype(rootArchetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
+    }
+
+    private void setArchetype(Archetype archetype) {
+        this.archetype = archetype;
     }
 
     @Override
@@ -55,7 +69,7 @@ public class ADLListener extends AdlBaseListener {
     @Override
     public void enterTemplate(TemplateContext ctx) {
         rootArchetype = new Template();
-        archetype = rootArchetype;
+        setArchetype(rootArchetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
@@ -65,7 +79,7 @@ public class ADLListener extends AdlBaseListener {
     }
 
     @Override
-    public void enterTemplate_overlay(Template_overlayContext ctx) {
+    public void enterTemplateOverlay(TemplateOverlayContext ctx) {
         TemplateOverlay overlay =  new TemplateOverlay();
         overlay.setDifferential(true);
         if(rootArchetype != null) {
@@ -79,15 +93,15 @@ public class ADLListener extends AdlBaseListener {
         } else {
             rootArchetype = overlay;
         }
-        archetype = overlay;
+        setArchetype(overlay);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
     @Override
-    public void enterOperational_template(Operational_templateContext ctx) {
+    public void enterOperationalTemplate(OperationalTemplateContext ctx) {
         rootArchetype = new OperationalTemplate();
         rootArchetype.setDifferential(false);//operational templates are flat by definition
-        archetype = rootArchetype;
+        setArchetype(rootArchetype);
         parseArchetypeHRID(ctx.ARCHETYPE_HRID());
     }
 
@@ -95,92 +109,152 @@ public class ADLListener extends AdlBaseListener {
         if(hrId != null) {
             ArchetypeHRID archetypeID = new ArchetypeHRID(hrId.getText());
             archetype.setArchetypeId(archetypeID);
-            if(metaModels != null) {
-                metaModels.selectModel(archetype);
-            }
         }
     }
 
-    public void enterMeta_data_item(AdlParser.Meta_data_itemContext ctx) {
+    public void enterMetaDataItem(AdlParser.MetaDataItemContext ctx) {
         /*
-         SYM_ADL_VERSION '=' VERSION_ID
-        | SYM_UID '=' GUID
-        | SYM_BUILD_UID '=' GUID
-        | SYM_RM_RELEASE '=' VERSION_ID
-        | SYM_IS_CONTROLLED
-        | SYM_IS_GENERATED
         | identifier ( '=' meta_data_value )?
-
          */
-        if(archetype instanceof AuthoredArchetype) {
+        if (archetype instanceof AuthoredArchetype) {
             AuthoredArchetype authoredArchetype = (AuthoredArchetype) archetype;
+            String identifier = ctx.identifier().getText();
+            String metaDataValue = ctx.metaDataValue() != null ? ctx.metaDataValue().getText() : null;
+            // Check if identifier is declared only once
+            checkMetaDataIdentifier(identifier, ctx.identifier());
 
-            if(ctx.meta_data_tag_adl_version() != null) {
-                authoredArchetype.setAdlVersion(ctx.VERSION_ID().getText());
-            }
-            if(ctx.meta_data_tag_build_uid() != null) {
-                authoredArchetype.setBuildUid(ctx.GUID().getText());
-            }
-            if(ctx.meta_data_tag_rm_release() != null) {
-                authoredArchetype.setRmRelease(ctx.VERSION_ID().getText());
-            }
-            if(ctx.meta_data_tag_is_controlled() != null) {
-                authoredArchetype.setControlled(true);
-            }
-            if(ctx.meta_data_tag_is_generated() != null) {
-                authoredArchetype.setGenerated(true);
-            }
-            if(ctx.meta_data_tag_uid() != null) {
-                authoredArchetype.setUid(ctx.GUID().getText());
-            }
-            else if(ctx.identifier() != null) {
-                authoredArchetype.addOtherMetadata(ctx.identifier().getText(), ctx.meta_data_value() == null ? null : ctx.meta_data_value().getText());
+            // If metaDataValue present, value can be 'primitive_value', 'GUID' or 'VERSION_ID'
+            switch (identifier) {
+                case ADL_VERSION:
+                    if (metaDataValue != null && VERSION_ID_REGEX.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setAdlVersion(metaDataValue);
+                    } else {
+                        addError("Encountered metadata tag '" + ADL_VERSION + "' with an invalid version id: " + metaDataValue,
+                                "incorrect header metadata format",
+                                ctx.identifier());
+                    }
+                    break;
+                case RM_RELEASE:
+                    if (metaDataValue != null && VERSION_ID_REGEX.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setRmRelease(metaDataValue);
+                    } else {
+                        addError("Encountered metadata tag '" + RM_RELEASE + "' with an invalid version id: " + metaDataValue,
+                                "incorrect header metadata format",
+                                ctx.identifier());
+                    }
+                    break;
+                case BUILD_UID:
+                    if (metaDataValue != null && GUID_REGEX.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setBuildUid(metaDataValue);
+                    } else {
+                        addError("Encountered metadata tag '" + BUILD_UID + "' with an invalid guid: " + metaDataValue,
+                                "incorrect header metadata format",
+                                ctx.identifier());
+                    }
+                    break;
+                case UID:
+                    if (metaDataValue != null && GUID_REGEX.matcher(metaDataValue).matches()) {
+                        authoredArchetype.setUid(metaDataValue);
+                    } else {
+                        addError("Encountered metadata tag '" + UID + "' with an invalid guid: " + metaDataValue,
+                                "incorrect header metadata format",
+                                ctx.identifier());
+                    }
+                    break;
+                case CONTROLLED:
+                    if (metaDataValue == null) {
+                        authoredArchetype.setControlled(true);
+                    } else {
+                        addError("Encountered metadata tag '" + CONTROLLED + "' with a value assignment while expecting none",
+                                "incorrect header metadata format",
+                                ctx.identifier());
+                    }
+                    break;
+                case GENERATED:
+                    if (metaDataValue == null) {
+                        authoredArchetype.setGenerated(true);
+                    } else {
+                        addError("Encountered metadata tag '" + GENERATED + "' with a value assignment while expecting none",
+                                "incorrect header metadata format",
+                                ctx.identifier());
+                    }
+                    break;
+                default:
+                    authoredArchetype.addOtherMetadata(identifier, metaDataValue);
+                    break;
             }
         }
-
     }
 
     /**
      * one level below: definition, language, etc.
      */
     @Override
-    public void enterDefinition_section(Definition_sectionContext ctx) {
+    public void enterDefinitionSection(DefinitionSectionContext ctx) {
+        MetaModel metaModel = metaModelProvider == null ? null : metaModelProvider.getMetaModel(archetype);
+        CComplexObjectParser cComplexObjectParser = new CComplexObjectParser(errors, metaModel);
         CComplexObject definition = cComplexObjectParser.parseComplexObject(ctx.c_complex_object());
         archetype.setDefinition(definition);
     }
 
     @Override
-    public void enterLanguage_section(Language_sectionContext ctx) {
+    public void enterLanguageSection(LanguageSectionContext ctx) {
         archetype.setAuthoredResourceContent(OdinObjectParser.convert(ctx.odin_text(), LanguageSection.class));
     }
 
     @Override
-    public void enterTerminology_section(Terminology_sectionContext ctx) {
+    public void enterTerminologySection(TerminologySectionContext ctx) {
         archetype.setTerminology(terminologyParser.parseTerminology(ctx));
     }
 
     @Override
-    public void enterDescription_section(AdlParser.Description_sectionContext ctx) {
+    public void enterDescriptionSection(AdlParser.DescriptionSectionContext ctx) {
         archetype.setDescription(OdinObjectParser.convert(ctx.odin_text(), ResourceDescription.class));
     }
 
     @Override
-    public void enterSpecialization_section(Specialization_sectionContext ctx) {
+    public void enterSpecializationSection(SpecializationSectionContext ctx) {
         if(ctx != null && ctx.archetype_ref() != null) {
             archetype.setParentArchetypeId(ctx.archetype_ref().getText());
         }
     }
 
-    public void enterRules_section(Rules_sectionContext ctx) {
+    @Override
+    public void enterRulesSection(RulesSectionContext ctx) {
+        MetaModel metaModel = metaModelProvider == null ? null : metaModelProvider.getMetaModel(archetype);
+        CComplexObjectParser cComplexObjectParser = new CComplexObjectParser(errors, metaModel);
         archetype.setRules(cComplexObjectParser.parseRules(ctx));
     }
 
-
-    public void enterAnnotations_section(AdlParser.Annotations_sectionContext ctx) {
+    @Override
+    public void enterAnnotationsSection(AdlParser.AnnotationsSectionContext ctx) {
         archetype.setAnnotations(OdinObjectParser.convert(ctx.odin_text(), ResourceAnnotations.class));
     }
 
-    public void enterComponent_terminologies_section(AdlParser.Component_terminologies_sectionContext ctx) {
+    @Override
+    public void enterRmOverlaySection(AdlParser.RmOverlaySectionContext ctx) {
+        archetype.setRmOverlay(OdinObjectParser.convert(ctx.odin_text(), RmOverlay.class));
+    }
+
+    private void checkMetaDataIdentifier(String identifier, IdentifierContext identifierContext) {
+        if(seenMetaDataIdentifiers.contains(identifier)) {
+            addError("Encountered another metadata tag for '" + identifier + "' whilst single allowed",
+                    "only one header metadata tag allowed",
+                    identifierContext);
+        } else {
+            seenMetaDataIdentifiers.add(identifier);
+        }
+    }
+
+    private void addError(String message, String shortMessage, ParserRuleContext identifierContext) {
+        errors.addError(message, shortMessage,
+                identifierContext.getStart().getLine(),
+                identifierContext.getStart().getCharPositionInLine(),
+                identifierContext.getStart().getText().length(),
+                identifierContext.getStart().getText());
+    }
+
+    public void enterComponentTerminologiesSection(AdlParser.ComponentTerminologiesSectionContext ctx) {
         if (!(archetype instanceof OperationalTemplate)) {
             throw new IllegalArgumentException("cannot add component terminologies to anything but an operational template");
         }
@@ -201,7 +275,6 @@ public class ADLListener extends AdlBaseListener {
         }
     }
 
-
     /* getters for result */
     public Archetype getArchetype() {
         return rootArchetype;
@@ -210,6 +283,4 @@ public class ADLListener extends AdlBaseListener {
     public ANTLRParserErrors getErrors() {
         return errors;
     }
-
-
 }

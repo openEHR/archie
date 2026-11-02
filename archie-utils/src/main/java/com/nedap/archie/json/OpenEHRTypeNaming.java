@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.jsontype.impl.ClassNameIdResolver;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.nedap.archie.base.OpenEHRBase;
+import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
@@ -22,10 +23,11 @@ import java.io.IOException;
 public class OpenEHRTypeNaming extends ClassNameIdResolver {
 
     private ModelInfoLookup rmInfoLookup = ArchieRMInfoLookup.getInstance();
-    private ModelInfoLookup aomInfoLookup = ArchieAOMInfoLookup.getInstance();
+    private ModelInfoLookup aomInfoLookup;
 
-    protected OpenEHRTypeNaming() {
+    protected OpenEHRTypeNaming(boolean standardsCompliantExpressionClassNames) {
         super(TypeFactory.defaultInstance().constructType(OpenEHRBase.class), TypeFactory.defaultInstance());
+        aomInfoLookup = ArchieAOMInfoLookup.getInstance(standardsCompliantExpressionClassNames);
     }
 
     public JsonTypeInfo.Id getMechanism() {
@@ -59,10 +61,15 @@ public class OpenEHRTypeNaming extends ClassNameIdResolver {
 
     @Override
     protected JavaType _typeFromId(String typeName, DatabindContext ctxt) throws IOException {
-        Class result = rmInfoLookup.getClass(typeName);
+        Class<?> result = rmInfoLookup.getClass(typeName);
         if(result == null) {
             //AOM class?
             result = aomInfoLookup.getClass(typeName);
+        }
+        if(result == null && "TerminologyCode".equals(typeName)) {
+            //backwards compatibility: older Archie versions serialized the TERMINOLOGY_CODE type as the simple java
+            //class name "TerminologyCode" instead of the openEHR type name, so still accept that when deserializing.
+            result = TerminologyCode.class;
         }
         if(result != null) {
             TypeFactory typeFactory = (ctxt == null) ? _typeFactory : ctxt.getTypeFactory();

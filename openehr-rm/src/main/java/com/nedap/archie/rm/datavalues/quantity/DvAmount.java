@@ -2,9 +2,10 @@ package com.nedap.archie.rm.datavalues.quantity;
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
+import com.nedap.archie.rminfo.Invariant;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,7 +23,7 @@ import java.util.Objects;
         DvDuration.class,
         DvQuantity.class
 })
-public abstract class DvAmount<MagnitudeType extends Comparable> extends DvQuantified<Double, MagnitudeType> {
+public abstract class DvAmount<DataValueType extends DvAmount<DataValueType, MagnitudeType>, MagnitudeType extends Comparable<MagnitudeType>> extends DvQuantified<DataValueType, Double, MagnitudeType> {
     @Nullable
     private Double accuracy;
     @Nullable
@@ -32,10 +33,10 @@ public abstract class DvAmount<MagnitudeType extends Comparable> extends DvQuant
     public DvAmount() {
     }
 
-    public DvAmount(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus) {
+    public DvAmount(@Nullable List<ReferenceRange<DataValueType>> otherReferenceRanges, @Nullable DvInterval<DataValueType> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus) {
         super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus);
-        this.accuracy = accuracy;
-        this.accuracyIsPercent = accuracyIsPercent;
+        setAccuracy(accuracy);
+        setAccuracyIsPercent(accuracyIsPercent);
     }
 
     @Nullable
@@ -61,7 +62,7 @@ public abstract class DvAmount<MagnitudeType extends Comparable> extends DvQuant
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        DvAmount<?> dvAmount = (DvAmount<?>) o;
+        DvAmount<?, ?> dvAmount = (DvAmount<?, ?>) o;
         return Objects.equals(accuracy, dvAmount.accuracy) &&
                 Objects.equals(accuracyIsPercent, dvAmount.accuracyIsPercent);
     }
@@ -70,4 +71,22 @@ public abstract class DvAmount<MagnitudeType extends Comparable> extends DvQuant
     public int hashCode() {
         return Objects.hash(super.hashCode(), accuracy, accuracyIsPercent);
     }
+
+    @Invariant("Accuracy_is_percent_validity")
+    public boolean accuracyIsPercentValidity() {
+        if (accuracy != null && accuracy == 0.0d) {
+            return accuracyIsPercent == null || !accuracyIsPercent;
+        }
+        return true;
+
+    }
+
+    @Invariant("Accuracy_valid")
+    public boolean accuracyValid() {
+        if(accuracyIsPercent != null && accuracyIsPercent) {
+            return accuracy == null || (accuracy <= 100.0d && accuracy >= 0.0d);
+        }
+        return true;
+    }
+
 }

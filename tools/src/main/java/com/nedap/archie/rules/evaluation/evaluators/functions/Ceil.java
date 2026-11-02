@@ -32,8 +32,8 @@ public class Ceil implements FunctionImplementation {
         ValueList result = new ValueList();
         result.setType(PrimitiveType.Integer);
 
-        for(Value valueObject : arguments.get(0).getValues()) {
-            result.addValue(new Value((long) Math.ceil((Double) valueObject.getValue())));
+        for(Value<?> valueObject : arguments.get(0).getValues()) {
+            result.addValue(new Value<>((long) Math.ceil((Double) valueObject.getValue())));
         }
 
         return result;

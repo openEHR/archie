@@ -2,7 +2,6 @@ package com.nedap.archie.base;
 
 
 import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAmount;
 import java.time.temporal.TemporalUnit;
 import java.time.temporal.UnsupportedTemporalTypeException;

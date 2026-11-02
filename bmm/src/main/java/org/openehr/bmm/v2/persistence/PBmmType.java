@@ -1,10 +1,12 @@
 package org.openehr.bmm.v2.persistence;
 
-import org.openehr.bmm.core.*;
+import org.openehr.bmm.core.BmmClass;
+import org.openehr.bmm.core.BmmType;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.List;
 
-public abstract class PBmmType<T extends BmmType> extends PBmmBase {
+public abstract class PBmmType extends PBmmBase {
 
     /**
      * Effective unitary type, ignoring containers and also generic parameters
@@ -27,9 +29,10 @@ public abstract class PBmmType<T extends BmmType> extends PBmmBase {
 
     /**
      * build bmmType from classDefinition
-     * @param schema
-     * @param classDefinition
+     * @param classProcessor the classprocessor to use here
+     * @param classDefinition the class definition in which this type is defined
+     * @return
      */
-    public abstract T createBmmType(BmmModel schema, BmmClass classDefinition);
+    public abstract BmmType createBmmType(BmmClassProcessor classProcessor, BmmClass classDefinition);
 
 }

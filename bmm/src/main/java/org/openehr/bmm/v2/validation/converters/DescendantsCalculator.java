@@ -12,8 +12,10 @@ public class DescendantsCalculator {
 
         final Map<String, BmmClass> classDefinitions = model.getClassDefinitions();
 
-        for (BmmClass bmmClass:classDefinitions.values())
-            for (BmmDefinedType ancestor:bmmClass.getAncestors().values())
-                ancestor.getBaseClass().addImmediateDescendant (bmmClass.getName());
+        for (BmmClass bmmClass:classDefinitions.values()) {
+            for (BmmDefinedType ancestor : bmmClass.getAncestors().values()) {
+                ancestor.getBaseClass().addImmediateDescendant(bmmClass.getName());
+            }
+        }
     }
 }

@@ -8,18 +8,19 @@ import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.composition.Composition;
+import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import com.nedap.archie.xml.JAXBUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Created by pieter.bos on 03/05/16.
@@ -30,10 +31,11 @@ public class RMQueryContextTest {
     private Archetype archetype;
     private Pathable root;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
-        archetype = new ADLParser(new RMConstraintImposer()).parse(getClass().getResourceAsStream("/basic.adl"));
+        archetype = new ADLParser().parse(getClass().getResourceAsStream("/basic.adl"));
+        new RMConstraintImposer().imposeConstraints(archetype.getDefinition());
         testUtil = new TestUtil();
     }
 
@@ -72,7 +74,8 @@ public class RMQueryContextTest {
         {
             //add another cluster to the RM Object, with the same archetype id (very possible!)
             Composition composition2 = (Composition) testUtil.constructEmptyRMObject(archetype.getDefinition());
-            composition.getContext().getOtherContext().getItems().addAll(composition2.getContext().getOtherContext().getItems());
+            ItemTree otherContext = (ItemTree) composition.getContext().getOtherContext();
+            otherContext.getItems().addAll(composition2.getContext().getOtherContext().getItems());
         }
 
         RMQueryContext queryContext = getQueryContext();
@@ -84,7 +87,7 @@ public class RMQueryContextTest {
         assertEquals("/context", context.get(0).getPath());
 
         //now check that retrieving this retrieves more than one, even with the same ID.
-        List items = queryContext.findList("/context/other_context[id2]/items");
+        List<?> items = queryContext.findList("/context/other_context[id2]/items");
         assertEquals(2, items.size());
 
 
@@ -101,7 +104,8 @@ public class RMQueryContextTest {
         {
             //add another cluster to the RM Object, with the same archetype id (very possible!)
             Composition composition2 = (Composition) testUtil.constructEmptyRMObject(archetype.getDefinition());
-            composition.getContext().getOtherContext().getItems().addAll(composition2.getContext().getOtherContext().getItems());
+            ItemTree otherContext = (ItemTree) composition.getContext().getOtherContext();
+            otherContext.getItems().addAll(composition2.getContext().getOtherContext().getItems());
         }
 
         RMQueryContext queryContext = getQueryContext();

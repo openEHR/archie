@@ -20,6 +20,9 @@ public class PathSegment {
     private String archetypeRef = null;
     private Integer index;
 
+    public PathSegment() {
+    }
+
     public PathSegment(String nodeName, Integer index) {
         this(nodeName, null, index);
     }

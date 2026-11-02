@@ -1,12 +1,12 @@
 package com.nedap.archie.rm.demographic;
 
-import com.nedap.archie.rm.support.identification.PartyRef;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rm.support.identification.PartyRef;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,7 +24,7 @@ public abstract class Actor extends Party {
     @Nullable
     private List<DvText> languages = new ArrayList<>();
     @Nullable
-    private List<PartyRef> roles = new ArrayList();
+    private List<PartyRef> roles = new ArrayList<>();
 
     public List<DvText> getLanguages() {
         return languages;

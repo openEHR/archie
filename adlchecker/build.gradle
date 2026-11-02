@@ -15,4 +15,4 @@ run {
     args = ['archetypes', '--lint']//, '--outputFlat']
 }
 
-mainClassName='com.nedap.archie.adlchecker.AdlChecker'
+mainClassName = 'com.nedap.archie.adlchecker.AdlChecker'

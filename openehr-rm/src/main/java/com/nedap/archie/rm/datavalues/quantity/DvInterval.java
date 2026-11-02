@@ -1,13 +1,11 @@
 package com.nedap.archie.rm.datavalues.quantity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.rm.datavalues.DataValue;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
@@ -22,9 +20,9 @@ import java.util.Objects;
         "lowerUnbounded",
         "upperUnbounded"
 })
-public class DvInterval<Type extends DvOrdered> extends DataValue {
+public class DvInterval<Type extends DvOrdered<Type>> extends DataValue {
 
-    private final Interval<DvOrdered> interval;
+    private final Interval<Type> interval;
 
     public DvInterval() {
         interval = new Interval<>();
@@ -35,20 +33,20 @@ public class DvInterval<Type extends DvOrdered> extends DataValue {
     }
 
     @Nullable
-    public DvOrdered getLower() {
+    public Type getLower() {
         return interval.getLower();
     }
 
-    public void setLower(DvOrdered lower) {
+    public void setLower(Type lower) {
         interval.setLower(lower);
     }
 
     @Nullable
-    public DvOrdered getUpper() {
+    public Type getUpper() {
         return interval.getUpper();
     }
 
-    public void setUpper(DvOrdered upper) {
+    public void setUpper(Type upper) {
         interval.setUpper(upper);
     }
 
@@ -88,7 +86,17 @@ public class DvInterval<Type extends DvOrdered> extends DataValue {
         interval.setUpperIncluded(upperIncluded);
     }
 
-    public boolean has(DvOrdered value) {
+    /**
+     * gets the underlying interval, so it can be access and its invariants are validated
+     * @return
+     */
+    @JsonIgnore
+    @XmlTransient
+    public Interval<Type> getInterval() {
+        return interval;
+    }
+
+    public boolean has(Type value) {
         return interval.has(value);
     }
 
@@ -108,4 +116,5 @@ public class DvInterval<Type extends DvOrdered> extends DataValue {
     public int hashCode() {
         return Objects.hash(interval);
     }
+
 }

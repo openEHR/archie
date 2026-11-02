@@ -139,8 +139,8 @@ public class ConstraintDifferentiator {
             CPrimitiveTuple primitiveTuple = tuple.getTuples().get(i);
             CPrimitiveTuple primitiveTupleInParent = tupleInParent.getTuples().get(i);
             for(int j = 0; j < primitiveTuple.getMembers().size(); j++) {
-                CPrimitiveObject member = primitiveTuple.getMember(j);
-                CPrimitiveObject memberInParent = primitiveTupleInParent.getMember(j);
+                CPrimitiveObject<?, ?> member = primitiveTuple.getMember(j);
+                CPrimitiveObject<?, ?> memberInParent = primitiveTupleInParent.getMember(j);
                 if(!PrimitiveObjectEqualsChecker.isEqual(member, memberInParent)) {
                     return false; //at least one difference, keep
                 }
@@ -166,7 +166,7 @@ public class ConstraintDifferentiator {
         //since all occurrences and child objects have been removed if possible, if it has any left, keep this here
         if(childCObject.getOccurrences() != null
                 || childCObjectInParent == null
-                || childCObject.getAttributes().size() > 0
+                || !childCObject.getAttributes().isEmpty()
                 || childCObject.getSiblingOrder() != null) {
             return false;
         }
@@ -189,17 +189,11 @@ public class ConstraintDifferentiator {
 
         if(childCObject instanceof CPrimitiveObject) {
 
-            if(PrimitiveObjectEqualsChecker.isEqual((CPrimitiveObject) childCObject, (CPrimitiveObject) childCObjectInParent)) {
-                return true;
-            }
+            return PrimitiveObjectEqualsChecker.isEqual((CPrimitiveObject<?, ?>) childCObject, (CPrimitiveObject<?, ?>) childCObjectInParent);
         } else {
             //no children, no occurrences, child object is in parent. check specialization id
-            if(childCObject.specialisationDepth() == childCObjectInParent.specialisationDepth()) {
-                return true;
-            }
-            return false;
+            return childCObject.specialisationDepth() == childCObjectInParent.specialisationDepth();
         }
-        return false;
 
     }
 

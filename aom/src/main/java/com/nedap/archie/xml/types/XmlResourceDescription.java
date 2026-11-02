@@ -1,12 +1,12 @@
 package com.nedap.archie.xml.types;
 
-import com.nedap.archie.aom.ResourceDescriptionItem;
-import com.nedap.archie.base.terminology.TerminologyCode;
+import com.nedap.archie.xml.adapters.LifecycleStateXmlAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
 /**
@@ -25,7 +25,8 @@ public class XmlResourceDescription {
     @XmlElement(name = "other_contributors")
     private List<String> otherContributors;
     @XmlElement(name = "lifecycle_state", required = true)
-    private TerminologyCode lifecycleState;
+    @XmlJavaTypeAdapter(LifecycleStateXmlAdapter.class)
+    private String lifecycleState;
     @XmlElement(name="custodian_namespace")
     private String custodianNamespace;
     @XmlElement(name="custodian_organisation")
@@ -42,7 +43,7 @@ public class XmlResourceDescription {
     private List<StringDictionaryItem> conversionDetails;
     @XmlElement(name = "other_details")
     private List<StringDictionaryItem> otherDetails;
-    @XmlElement(required = true, type = ResourceDescriptionItem.class)
+    @XmlElement(required = true)
     private List<XmlResourceDescriptionItem> details;
 
     public List<StringDictionaryItem> getOriginalAuthor() {
@@ -158,11 +159,11 @@ public class XmlResourceDescription {
         this.details = details;
     }
 
-    public TerminologyCode getLifecycleState() {
+    public String getLifecycleState() {
         return lifecycleState;
     }
 
-    public void setLifecycleState(TerminologyCode lifecycleState) {
+    public void setLifecycleState(String lifecycleState) {
         this.lifecycleState = lifecycleState;
     }
 }

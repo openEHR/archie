@@ -1,12 +1,11 @@
 package com.nedap.archie.rm.security;
 
 import com.nedap.archie.rm.RMObject;
-
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlType;
 
 /**
  * Abstract class for access control settings. To be implemented by users of this library.
- *
+ * <p>
  * Created by pieter.bos on 08/07/16.
  */
 @XmlType(name="ACCESS_CONTROL_SETTINGS")

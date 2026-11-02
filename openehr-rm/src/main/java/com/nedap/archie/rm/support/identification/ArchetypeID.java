@@ -3,6 +3,7 @@ package com.nedap.archie.rm.support.identification;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
+import jakarta.xml.bind.Unmarshaller;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -95,13 +96,13 @@ public class ArchetypeID extends ObjectId {
             parseValue(value);
             setValue(value);
         } else {
-            this.qualifiedRmEntity = qualifiedRmEntity;
-            this.domainConcept = domainConcept;
-            this.rmOriginator = rmOriginator;
-            this.rmName = rmName;
-            this.rmEntity = rmEntity;
-            this.specialisation = specialisation;
-            this.versionId = versionId;
+            setQualifiedRmEntity(qualifiedRmEntity);
+            setDomainConcept(domainConcept);
+            setRmOriginator(rmOriginator);
+            setRmName(rmName);
+            setRmEntity(rmEntity);
+            setSpecialisation(specialisation);
+            setVersionId(versionId);
             setValue(getFullId());
         }
 
@@ -250,5 +251,13 @@ public class ArchetypeID extends ObjectId {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), namespace, qualifiedRmEntity, domainConcept, rmOriginator, rmName, rmEntity, specialisation, versionId);
+    }
+
+    // after JAXB unmarshalling, set the field values correctly
+    public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
+        if(this.rmName == null) {
+            parseValue(getValue());
+        }
+
     }
 }

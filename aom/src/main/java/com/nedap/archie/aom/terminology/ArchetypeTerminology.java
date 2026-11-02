@@ -4,19 +4,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.*;
 
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.annotation.Nullable;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.List;
 
 /**
  * Created by pieter.bos on 15/10/15.
@@ -25,21 +22,22 @@ import java.util.List;
 @XmlType(name="ARCHETYPE_TERMINOLOGY_TEST")
 public class ArchetypeTerminology extends ArchetypeModelObject {
 
+    @RMProperty("is_differential")
     private Boolean differential;
     @XmlElement(name="original_language")
     private String originalLanguage;
     @XmlElement(name="concept_code")
     private String conceptCode;
-    @XmlTransient//TODO!
-    //@XmlElement(name="term_definitions")
+    @XmlTransient //converted to XmlArchetypeTerminology, so not used in jaxb
     private Map<String, Map<String, ArchetypeTerm>> termDefinitions = new ConcurrentHashMap<>();
-    //@XmlElement(name="term_bindings")
-    @XmlTransient//TODO!
+    @XmlTransient //converted to XmlArchetypeTerminology, so not used in jaxb
+    @Nullable
     private Map<String, Map<String, URI>> termBindings = new ConcurrentHashMap<>();
-    //@XmlElement(name="terminology_extracts")
-    @XmlTransient//TODO!
+    @XmlTransient //converted to XmlArchetypeTerminology, so not used in jaxb
+    @Nullable
     private Map<String, Map<String, ArchetypeTerm>> terminologyExtracts = new ConcurrentHashMap<>();
     @XmlElement(name="value_sets")
+    @Nullable
     private Map<String, ValueSet> valueSets = new ConcurrentHashMap<>();
 
     @JsonIgnore
@@ -93,6 +91,7 @@ public class ArchetypeTerminology extends ArchetypeModelObject {
         this.terminologyExtracts = terminologyExtracts;
     }
 
+    @JsonIgnore
     public Archetype getOwnerArchetype() {
         return ownerArchetype;
     }
@@ -138,7 +137,7 @@ public class ArchetypeTerminology extends ArchetypeModelObject {
                 }
             }
         }
-        return new ArrayList<String>(codes);
+        return new ArrayList<>(codes);
     }
 
     public List<String> valueCodes() {

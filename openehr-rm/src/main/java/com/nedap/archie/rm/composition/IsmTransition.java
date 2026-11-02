@@ -3,12 +3,14 @@ package com.nedap.archie.rm.composition;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,16 +37,16 @@ public class IsmTransition extends Pathable {
     private DvCodedText careflowStep;
 
     @Nullable
-    private List<DvText> reason = new ArrayList();
+    private List<DvText> reason = new ArrayList<>();
 
     public IsmTransition() {
     }
 
     public IsmTransition(DvCodedText currentState, @Nullable DvCodedText transition, @Nullable DvCodedText careflowStep, @Nullable List<DvText> reason) {
-        this.currentState = currentState;
-        this.transition = transition;
-        this.careflowStep = careflowStep;
-        this.reason = reason;
+        setCurrentState(currentState);
+        setTransition(transition);
+        setCareflowStep(careflowStep);
+        setReason(reason);
     }
 
     public DvCodedText getCurrentState() {
@@ -97,5 +99,15 @@ public class IsmTransition extends Pathable {
     @Override
     public int hashCode() {
         return Objects.hash(currentState, transition, careflowStep, reason);
+    }
+
+    @Invariant("Current_state_valid")
+    public boolean currentStateValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(currentState, "instruction states");
+    }
+
+    @Invariant("Transition_valid")
+    public boolean transitionValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(transition, "instruction transitions");
     }
 }

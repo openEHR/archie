@@ -1,13 +1,14 @@
 package org.openehr.bmm.v2.persistence;
 
-import org.openehr.bmm.core.*;
+import org.openehr.bmm.core.BmmEnumeration;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.List;
 
-public class PBmmEnumeration<ItemType> extends PBmmClass<BmmEnumeration> {
+public class PBmmEnumeration<ItemType> extends PBmmClass {
 
     private List<String> itemNames;
-    protected List<ItemType> itemValues;
+    private List<ItemType> itemValues;
 
     public List<String> getItemNames() {
         return itemNames;
@@ -26,15 +27,16 @@ public class PBmmEnumeration<ItemType> extends PBmmClass<BmmEnumeration> {
     }
 
     @Override
-    public BmmEnumeration createBmmClass() {
-        BmmEnumeration bmmClass = new BmmEnumeration(getName(), getDocumentation(), nullToFalse(isAbstract()));
-        bmmClass.setSourceSchemaId(getSourceSchemaId());
-        return bmmClass;
+    public BmmEnumeration<ItemType> createBmmClass() {
+        BmmEnumeration<ItemType> newEnumeration = new BmmEnumeration<>(getName(), getDocumentation(), nullToFalse(isAbstract()));
+        newEnumeration.setSourceSchemaId(getSourceSchemaId());
+        newEnumeration.setOverride(nullToFalse(isOverride()));
+        return newEnumeration;
     }
 
     @Override
-    public BmmEnumeration populateBmmClass(BmmModel schema) {
-        BmmEnumeration bmmClass = super.populateBmmClass(schema);
+    public BmmEnumeration<ItemType> populateBmmClass(BmmClassProcessor classProcessor, PBmmSchema schema) {
+        BmmEnumeration<ItemType> bmmClass = (BmmEnumeration<ItemType>) super.populateBmmClass(classProcessor, schema);
         if (bmmClass != null) {
             bmmClass.setItemNames(itemNames);
             if (itemValues != null) {
@@ -49,7 +51,7 @@ public class PBmmEnumeration<ItemType> extends PBmmClass<BmmEnumeration> {
     /**
      * add default values
      */
-    protected void setDefaultItemValues(BmmEnumeration bmmClass) {
+    protected void setDefaultItemValues(BmmEnumeration<ItemType> bmmClass) {
         // implement in descendants
     }
 

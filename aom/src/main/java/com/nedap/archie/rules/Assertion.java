@@ -2,6 +2,7 @@ package com.nedap.archie.rules;
 
 import com.nedap.archie.aom.primitives.CString;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public final class Assertion extends RuleStatement {
     private String stringExpression;
 
     private Expression expression;
+    @Nullable
     private String tag;
 
     private List<VariableDeclaration> variables = new ArrayList<>();
@@ -75,7 +77,7 @@ public final class Assertion extends RuleStatement {
             BinaryOperator binaryOperator = (BinaryOperator) expression;
             if(binaryOperator.getOperator() == OperatorKind.matches &&
                     binaryOperator.getRightOperand() instanceof Constraint) {
-                Constraint constraint = (Constraint) binaryOperator.getRightOperand();
+                Constraint<?> constraint = (Constraint<?>) binaryOperator.getRightOperand();
                 return constraint.getItem().equals(new CString("/.*/")) ||
                         constraint.getItem().equals(new CString("^.*^"));
             }

@@ -1,9 +1,11 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.nedap.archie.rules.Assertion;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,9 @@ import java.util.List;
 })
 public class ArchetypeSlot extends CObject {
 
+    @Nullable
     private List<Assertion> includes = new ArrayList<>();
+    @Nullable
     private List<Assertion> excludes = new ArrayList<>();
     @XmlElement(name="is_closed")
     private boolean closed = false;
@@ -38,6 +42,7 @@ public class ArchetypeSlot extends CObject {
         this.excludes = excludes;
     }
 
+    @JsonAlias("is_closed")
     public boolean isClosed() {
         return closed;
     }

@@ -1,11 +1,7 @@
 package org.openehr.referencemodels;
 
-import com.nedap.archie.aom.profile.AomProfile;
 import com.nedap.archie.aom.profile.AomProfiles;
-import com.nedap.archie.rminfo.MetaModels;
-import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rminfo.RMObjectMapperProvider;
-import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.rminfo.*;
 import org.openehr.bmm.v2.persistence.odin.BmmOdinParser;
 import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmSchemaConverter;
@@ -34,6 +30,8 @@ public class BuiltinReferenceModels {
 
     private static BmmRepository bmmRepository;
 
+    private static MetaModelProvider metaModelProvider;
+
     public static BmmRepository getBmmRepository() {
         if(bmmRepository != null) {
             return bmmRepository;
@@ -53,6 +51,8 @@ public class BuiltinReferenceModels {
                 "bmm/openEHR/original/Release-1.0.2/openehr_ehr_102.bmm",
                 "bmm/openEHR/components/LANG/Release-1.0.0/openehr_lang_100.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_ehr_104.bmm",
+                "bmm/openEHR/components/PROC/Release-1.5.0/openehr_proc_task_planning_150.bmm",
+                "bmm/openEHR/components/PROC/Release-1.6.0/openehr_proc_task_planning_160.bmm",
                 "bmm/openEHR/components/PROC/latest/openehr_proc_task_planning_110.bmm",
                 "bmm/openEHR/original/Release-1.0.2/openehr_rm_102.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_structures_104.bmm",
@@ -71,7 +71,14 @@ public class BuiltinReferenceModels {
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_primitive_types_103.bmm",
                 "bmm/openEHR/components/RM/Release-1.0.3/openehr_basic_types_103.bmm",
                 // "bmm/ISO_13606/2008/BMM/cen_EN13606_0.95.bmm",
-                "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_data_types_104.bmm"
+                "bmm/openEHR/components/RM/Release-1.0.4/openehr_rm_data_types_104.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_110.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_data_types_110.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_demographic_110.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_ehr_110.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_ehr_extract_110.bmm",
+                "bmm/openEHR/components/RM/Release-1.1.0/openehr_rm_structures_110.bmm"
+
                 // "bmm/CIMI/Release-0.0.3/BMM/CIMI_RM_FOUNDATION.v.0.0.3.bmm"
         };
         bmmRepository = new BmmRepository();
@@ -152,15 +159,13 @@ public class BuiltinReferenceModels {
     }
 
     /**
-     * Returns the MetaModels loaded with all BMM, ModelInfoLookup and AOM profiles that are available.
-     * Returns a new MetaModels instance every call!
-     * @return
+     * Returns a MetaModelProvider loaded with all BMM models, ModelInfoLookups and AOM profiles that are available.
      */
-    public static MetaModels getMetaModels() {
-        MetaModels metaModels = new MetaModels(getAvailableModelInfoLookups(), getBmmRepository());
-        for(AomProfile profile:getAomProfiles().getProfiles()) {
-            metaModels.getAomProfiles().add(profile);
+    public static MetaModelProvider getMetaModelProvider() {
+        if (metaModelProvider != null) {
+            return metaModelProvider;
         }
-        return metaModels;
+        metaModelProvider = new SimpleMetaModelProvider(getAvailableModelInfoLookups(), getBmmRepository(), getAomProfiles());
+        return metaModelProvider;
     }
 }

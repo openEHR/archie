@@ -2,12 +2,12 @@ package com.nedap.archie.rm.generic;
 
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.support.identification.PartyRef;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
@@ -28,7 +28,7 @@ public abstract class PartyProxy extends RMObject {
     }
 
     public PartyProxy(@Nullable PartyRef externalRef) {
-        this.externalRef = externalRef;
+        setExternalRef(externalRef);
     }
 
     public PartyRef getExternalRef() {

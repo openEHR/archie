@@ -1,11 +1,11 @@
 package com.nedap.archie.adl14.treewalkers;
 
+import com.nedap.archie.adl14.ADL14ConversionConfiguration;
 import com.nedap.archie.adl14.ADL14ConversionUtil;
 import com.nedap.archie.adl14.aom14.ArchetypeOntology;
 import com.nedap.archie.adl14.aom14.ConstraintBindingsList;
 import com.nedap.archie.adl14.aom14.TermBindingsList;
 import com.nedap.archie.adl14.aom14.TermCodeList;
-import com.nedap.archie.adl14.ADL14ConversionConfiguration;
 import com.nedap.archie.adlparser.antlr.Adl14Parser.Terminology_sectionContext;
 import com.nedap.archie.adlparser.treewalkers.BaseTreeWalker;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
@@ -54,9 +54,7 @@ public class Adl14TerminologyParser extends BaseTreeWalker {
         if(ontology.getConstraintDefinitions() != null) {
             for(Map.Entry<String, TermCodeList> constraintDefinitions:ontology.getConstraintDefinitions().entrySet()) {
                 String language = constraintDefinitions.getKey();
-                if(terminology.getTermDefinitions().get(language) == null) {
-                    terminology.getTermDefinitions().put(language, new LinkedHashMap<>());
-                }
+                terminology.getTermDefinitions().computeIfAbsent(language, k -> new LinkedHashMap<>());
                 terminology.getTermDefinitions().get(language).putAll(constraintDefinitions.getValue().getItems());
             }
         }

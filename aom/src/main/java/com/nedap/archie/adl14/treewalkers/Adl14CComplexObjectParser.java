@@ -1,11 +1,6 @@
 package com.nedap.archie.adl14.treewalkers;
 
-import com.google.common.collect.Lists;
-import com.nedap.archie.adl14.aom14.CDVOrdinal;
-import com.nedap.archie.adl14.aom14.CDVOrdinalItem;
-import com.nedap.archie.adl14.aom14.CDVQuantity;
-import com.nedap.archie.adl14.aom14.CDVQuantityItem;
-import com.nedap.archie.adlparser.antlr.Adl14Parser;
+import com.nedap.archie.adl14.aom14.*;
 import com.nedap.archie.adlparser.antlr.Adl14Parser.*;
 import com.nedap.archie.adlparser.treewalkers.BaseTreeWalker;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
@@ -13,13 +8,11 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rules.Assertion;
-
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
@@ -179,21 +172,34 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
 
             //TODO: ordinal assumed value is not really possible in ADL 2 thanks to tuples
             CComplexObject ordinal = new CComplexObject(); //create complex object. We'll generate a node id later!
-            ordinal.setRmTypeName("DV_ORDINAL");
+            if(ordinalContainsRealNumber(ordinalContext)) {
+                ordinal.setRmTypeName("DV_SCALE");
+            } else {
+                ordinal.setRmTypeName("DV_ORDINAL");
+            }
             //plus a tuple
             CAttributeTuple tuple = new CAttributeTuple();
             List<CAttribute> members = new ArrayList<>();
             members.add(new CAttribute("value"));
             members.add(new CAttribute("symbol"));
             tuple.setMembers(members);
+            for (Ordinal_termContext ordinal_termContext : ordinalContext.ordinal_term()) {
+                CPrimitiveObject<?, ?> cValue;
+                if(ordinal_termContext.integer_value() != null) {
+                    long value = Integer.parseInt(ordinal_termContext.integer_value().getText());
+                    CInteger cInteger = new CInteger();
+                    cInteger.addConstraint(new Interval<>(value));
+                    cValue = cInteger;
+                } else {
+                    double value = Double.parseDouble(ordinal_termContext.real_value().getText());
+                    CReal cReal = new CReal();
+                    cReal.addConstraint(new Interval<>(value));
+                    cValue = cReal;
+                }
 
-            for(Ordinal_termContext ordinal_termContext: ordinalContext.ordinal_term()) {
-                long value = Integer.parseInt(ordinal_termContext.integer_value().getText());
                 CPrimitiveTuple primitiveTuple = new CPrimitiveTuple();
-                CInteger cValue = new CInteger();
-                cValue.addConstraint(new Interval<>(value));
 
-                CTerminologyCode cCode = new CTerminologyCode();
+                CTerminologyCodeADL14 cCode = new CTerminologyCodeADL14();
 
                 TerminologyCode code = TerminologyCode.createFromString(ordinal_termContext.c_terminology_code().getText());
                 cCode.addConstraint(code.getCodeString());
@@ -206,6 +212,15 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
             return ordinal;
         }
         throw new IllegalArgumentException("unknown non-primitive object: " + objectContext.getText());
+    }
+
+    private boolean ordinalContainsRealNumber(C_ordinalContext ordinalContext) {
+        for (Ordinal_termContext ordinal_termContext : ordinalContext.ordinal_term()) {
+            if(ordinal_termContext.real_value() != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void parseCDVOrdinal(C_non_primitive_objectContext objectContext, CComplexObject result) {
@@ -237,7 +252,7 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
                     if (item.getSymbol() != null) {
                         primitiveTuple.addMember(item.getSymbolAdl2());
                     } else if (hasSymbol) {
-                        CTerminologyCode code = new CTerminologyCode();
+                        CTerminologyCodeADL14 code = new CTerminologyCodeADL14();
                         primitiveTuple.addMember(code);//nothing we can do here!
                     }
 
@@ -254,7 +269,7 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
             CDVQuantity cdvQuantity = odinParser.convert(objectContext.domainSpecificExtension().odin_text().getText(), CDVQuantity.class);
             if(cdvQuantity.getProperty() != null) {
                 CAttribute property = new CAttribute("property");
-                CTerminologyCode code = new CTerminologyCode();
+                CTerminologyCodeADL14 code = new CTerminologyCodeADL14();
                 //will be converted later
                 code.addConstraint(cdvQuantity.getProperty().toString());
                 property.addChild(code);

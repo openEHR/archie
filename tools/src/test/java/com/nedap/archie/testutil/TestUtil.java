@@ -1,20 +1,17 @@
 package com.nedap.archie.testutil;
 
-import com.google.common.collect.Lists;
+import com.nedap.archie.adlparser.ADLParseException;
 import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.creation.RMObjectCreator;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
+import com.nedap.archie.rminfo.AttributeAccessor;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +24,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 06/04/16.
@@ -37,6 +35,7 @@ public class TestUtil {
     private static final Logger logger = LoggerFactory.getLogger(TestUtil.class);
 
     private RMObjectCreator creator = new RMObjectCreator(ArchieRMInfoLookup.getInstance());
+    private final AttributeAccessor attributeAccessor = new AttributeAccessor(ArchieRMInfoLookup.getInstance());
 
     /**
      * Creates an empty RM Object, fully nested, one object per CObject found.
@@ -64,10 +63,10 @@ public class TestUtil {
             }
             if(!children.isEmpty()) {
                 if(attribute.isMultiple()) {
-                    creator.set(result, attribute.getRmAttributeName(), children);
+                    attributeAccessor.setValue(result, attribute.getRmAttributeName(), children);
                 } else if(!children.isEmpty()){
                     //set the first possible result in case of multiple children for a single valued value
-                    creator.set(result, attribute.getRmAttributeName(), Lists.newArrayList(children.get(0)));
+                    attributeAccessor.setValue(result, attribute.getRmAttributeName(), children.get(0));
                 }
             }
         }
@@ -125,12 +124,13 @@ public class TestUtil {
 
 
                 } else if (childObject1 instanceof CPrimitiveObject) {
-                    CPrimitiveObject primitiveChild = (CPrimitiveObject) childObject1;
+                    CPrimitiveObject<?, ?> primitiveChild = (CPrimitiveObject<?, ?>) childObject1;
                     List<CObject> childObjects2 = attribute2.getChildren().stream()
                         .filter(
                             o -> primitiveObjectMatches(primitiveChild, o)
                         ).collect(Collectors.toList());
-                    assertFalse("a primitive object should have a matching primitive object", childObjects2.isEmpty());
+                    assertFalse(childObjects2.isEmpty(),"a primitive object should have a matching primitive object"
+                    );
                 }
 
             }
@@ -139,11 +139,11 @@ public class TestUtil {
 
     }
 
-    private static boolean primitiveObjectMatches(CPrimitiveObject o1, CObject o2) {
-        return (o2 instanceof CPrimitiveObject) && Objects.equals(((CPrimitiveObject) o2).getConstraint(), o1.getConstraint());
+    private static boolean primitiveObjectMatches(CPrimitiveObject<?, ?> o1, CObject o2) {
+        return (o2 instanceof CPrimitiveObject) && Objects.equals(((CPrimitiveObject<?, ?>) o2).getConstraint(), o1.getConstraint());
     }
 
-    public static Archetype parseFailOnErrors(String resourceName) throws IOException {
+    public static Archetype parseFailOnErrors(String resourceName) throws IOException, ADLParseException {
         ADLParser parser = new ADLParser();
         try(InputStream stream = TestUtil.class.getResourceAsStream(resourceName)) {
             if(stream == null) {
@@ -151,16 +151,39 @@ public class TestUtil {
             }
             Archetype archetype = parser.parse(stream);
             parser.getErrors().logToLogger();
-            assertFalse(parser.getErrors().toString(), parser.getErrors().hasErrors());
+            assertFalse(parser.getErrors().hasErrors(), parser.getErrors().toString());
             assertNotNull(archetype);
             return archetype;
         }
     }
 
+    public static void parseExpectErrorCode(String resourceName, String errorCode) throws IOException {
+        ADLParser parser = new ADLParser();
+        try(InputStream stream = TestUtil.class.getResourceAsStream(resourceName)) {
+            if(stream == null) {
+                throw new RuntimeException("Resource does not exist: " + resourceName);
+            }
+            try {
+                Archetype archetype = parser.parse(stream);
+                assertThat("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+            } catch (ADLParseException ex) {
+                parser.getErrors().logToLogger();
+                assertThat("Parser expected to have errors, but there were none", parser.getErrors().hasErrors());
+                assertThat("expected error code to be present: " + errorCode, parser.getErrors().getErrors().stream().filter(e -> e.getShortMessage().equalsIgnoreCase(errorCode)).findFirst().isPresent());
+            }
+        }
+    }
+
     public static FullArchetypeRepository parseCKM() {
+        return parseCKM(".*\\.adls");
+    }
+
+    public static FullArchetypeRepository parseCKM(String filter) {
         InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
-        Reflections reflections = new Reflections("ckm-mirror", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+        Reflections reflections = new Reflections("ckm-mirror", Scanners.Resources);
+
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(filter)));
+
         for(String file:adlFiles) {
             Archetype archetype;
             ANTLRParserErrors errors;
@@ -180,5 +203,6 @@ public class TestUtil {
         }
         return result;
     }
+
 
 }

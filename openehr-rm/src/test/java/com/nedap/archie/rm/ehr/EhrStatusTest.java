@@ -2,14 +2,14 @@ package com.nedap.archie.rm.ehr;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.json.JacksonUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Map;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EhrStatusTest {
 
@@ -20,7 +20,7 @@ public class EhrStatusTest {
         ObjectMapper objectMapper = JacksonUtil.getObjectMapper();
         objectMapper.writeValue(stringWriter, status);
 
-        Map actual = objectMapper.readValue(stringWriter.toString(), Map.class);
+        Map<?, ?> actual = objectMapper.readValue(stringWriter.toString(), Map.class);
         assertTrue(actual.containsKey("is_queryable"));
         assertFalse(actual.containsKey("queryable"));
         assertTrue(actual.containsKey("is_modifiable"));

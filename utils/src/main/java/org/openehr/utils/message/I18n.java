@@ -13,17 +13,17 @@ import java.util.ResourceBundle;
 public class I18n {
 
     private static final LoadingCache<Locale, Optional<ResourceBundle>> resourceCache = CacheBuilder.newBuilder().build(
-            new CacheLoader<Locale, Optional<ResourceBundle>>() {
-        @Override
-        public Optional<ResourceBundle> load(Locale locale) throws Exception {
-            try {
-                return Optional.of(ResourceBundle.getBundle("openehrArchie", locale));
-            } catch (MissingResourceException e) {
-                //TODO: warn about missing resource?
-                return Optional.empty();
-            }
-        }
-    });
+            new CacheLoader<>() {
+                @Override
+                public Optional<ResourceBundle> load(Locale locale) throws Exception {
+                    try {
+                        return Optional.of(ResourceBundle.getBundle("openehrArchie", locale));
+                    } catch (MissingResourceException e) {
+                        //TODO: warn about missing resource?
+                        return Optional.empty();
+                    }
+                }
+            });
 
     private static ThreadLocal<Locale> currentLocale = new ThreadLocal<>();
 

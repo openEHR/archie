@@ -2,12 +2,14 @@ package com.nedap.archie.flattener;
 
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;
-import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
-import org.openehr.bmm.v2.validation.BmmRepository;
+import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -21,9 +23,11 @@ import static com.nedap.archie.flattener.FlattenerUtil.getPossiblyOverridenValue
  */
 public class Flattener implements IAttributeFlattenerSupport {
 
-    private final MetaModels metaModels;
+    private final MetaModelProvider metaModelProvider;
     //to be able to store Template Overlays transparently during flattening
     private OverridingArchetypeRepository repository;
+
+    private MetaModel metaModel;
 
     private Archetype parent;
     private Archetype child;
@@ -32,7 +36,7 @@ public class Flattener implements IAttributeFlattenerSupport {
     private final FlattenerConfiguration config;
 
     private RulesFlattener rulesFlattener = new RulesFlattener();
-    private AnnotationsFlattener annotationsFlattener = new AnnotationsFlattener();
+    private AnnotationsAndOverlaysFlattener annotationsAndOverlaysFlattener = new AnnotationsAndOverlaysFlattener();
 
     CAttributeFlattener cAttributeFlattener = new CAttributeFlattener(this);
     private TupleFlattener tupleFlattener = new TupleFlattener();
@@ -42,20 +46,16 @@ public class Flattener implements IAttributeFlattenerSupport {
 
 
     public Flattener(ArchetypeRepository repository, ReferenceModels models) {
-        this.repository = new OverridingArchetypeRepository(repository);
-        this.metaModels = new MetaModels(models, (BmmRepository) null);
-        config = FlattenerConfiguration.forFlattened();
+        this(repository, new SimpleMetaModelProvider(models, null));
     }
 
-    public Flattener(ArchetypeRepository repository, MetaModels models) {
-        this.repository = new OverridingArchetypeRepository(repository);
-        this.metaModels = models;
-        config = FlattenerConfiguration.forFlattened();
+    public Flattener(ArchetypeRepository repository, MetaModelProvider metaModelProvider) {
+        this(repository, metaModelProvider, FlattenerConfiguration.forFlattened());
     }
 
-    public Flattener(ArchetypeRepository repository, MetaModels models, FlattenerConfiguration configuration) {
+    public Flattener(ArchetypeRepository repository, MetaModelProvider metaModelProvider, FlattenerConfiguration configuration) {
         this.repository = new OverridingArchetypeRepository(repository);
-        this.metaModels = models;
+        this.metaModelProvider = metaModelProvider;
         this.config = configuration.clone();
     }
 
@@ -105,7 +105,7 @@ public class Flattener implements IAttributeFlattenerSupport {
             throw new IllegalStateException("You've used this flattener before - single use instance, please create a new one!");
         }
 
-        metaModels.selectModel(toFlatten);
+        metaModel = metaModelProvider.getMetaModel(toFlatten);
 
         //validate that we can legally flatten first
         String parentId = toFlatten.getParentArchetypeId();
@@ -115,6 +115,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                 result = template;
                 //make an operational template by just filling complex object proxies and archetype slots
                 optCreator.fillSlots(template);
+                optCreator.expandValueSets((OperationalTemplate) result);
                 fillOptEmptyOccurrences(result);
                 TerminologyFlattener.filterLanguages(template, config.isRemoveLanguagesFromMetaData(), config.getLanguagesToKeep());
                 result = template;
@@ -123,7 +124,7 @@ public class Flattener implements IAttributeFlattenerSupport {
             }
             result.getDefinition().setArchetype(result);
             result.setDifferential(false);
-            result.setGenerated(true);
+            if (result instanceof AuthoredArchetype) ((AuthoredArchetype) result).setGenerated(true);
             return result;
         }
 
@@ -145,7 +146,13 @@ public class Flattener implements IAttributeFlattenerSupport {
 
         if(parent.getParentArchetypeId() != null) {
             //parent needs flattening first
-            parent = getNewFlattenerForParent().flatten(parent);
+            Flattener parentFlattener = getNewFlattenerForParent();
+            parent = parentFlattener.flatten(parent);
+            // Add the template overlays from the parents (if any) to the repository,
+            // so template overlays specializing other template overlays can be flattened.
+            parentFlattener.getRepository().getExtraArchetypes().forEach(
+                    a -> repository.addExtraArchetype(a)
+            );
         }
 
 
@@ -165,7 +172,8 @@ public class Flattener implements IAttributeFlattenerSupport {
             result.setTerminology(clonedParent.getTerminology());
             result.setRules(clonedParent.getRules());
         }
-        new AnnotationsFlattener().flatten(parent, child, result);
+        annotationsAndOverlaysFlattener.flattenAnnotations(parent, child, result);
+        annotationsAndOverlaysFlattener.flattenRmOverlay(parent, child, result);
 
         //1. redefine structure
         //2. fill archetype slots if we are creating an operational template
@@ -177,7 +185,9 @@ public class Flattener implements IAttributeFlattenerSupport {
             prohibitZeroOccurrencesConstraints(result);
         }
 
-        String prefix = child.getArchetypeId().getConceptId() + "_";
+        // Replaces dashes and convert to lower case, as dashes and variables starting with an upper case letter
+        // aren't allowed everywhere.
+        String prefix = child.getArchetypeId().getConceptId().replace("-", "_").toLowerCase() + "_";
         //Use empty tagPrefix here. If not empty, overridden rules in specialized archetype will not overwrite base rules,
         //but be added to the rules section additionally to the base rules.
         rulesFlattener.combineRules(child, result, prefix, "", "", true /* override statements with same tag */);
@@ -189,14 +199,17 @@ public class Flattener implements IAttributeFlattenerSupport {
         TerminologyFlattener.flattenTerminology(result, child);
 
         if(config.isCreateOperationalTemplate()) {
+            optCreator.expandValueSets((OperationalTemplate) result);
             TerminologyFlattener.filterLanguages((OperationalTemplate) result, config.isRemoveLanguagesFromMetaData(), config.getLanguagesToKeep());
         }
         result.getDefinition().setArchetype(result);
         result.setDescription(child.getDescription());
-        result.setOtherMetaData(child.getOtherMetaData());
-        result.setBuildUid(child.getBuildUid());
         result.setOriginalLanguage(child.getOriginalLanguage());
         result.setTranslations(child.getTranslations());
+        if (result instanceof AuthoredArchetype && child instanceof AuthoredArchetype) {
+            ((AuthoredArchetype) result).setOtherMetaData(((AuthoredArchetype) child).getOtherMetaData());
+            ((AuthoredArchetype) result).setBuildUid(((AuthoredArchetype) child).getBuildUid());
+        }
 
         if(child instanceof Template && !config.isCreateOperationalTemplate()) {
             Template resultTemplate = (Template) result;
@@ -211,7 +224,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                 flatOverlay.setDescription(description);
                 flatOverlay.setOriginalLanguage(result.getOriginalLanguage());
                 flatOverlay.setTranslationList(result.getTranslationList());
-                ArchetypeParsePostProcesser.fixArchetype(flatOverlay);
+                ArchetypeParsePostProcessor.fixArchetype(flatOverlay);
                 resultTemplate.getTemplateOverlays().add(flatOverlay);
             }
         }
@@ -219,12 +232,12 @@ public class Flattener implements IAttributeFlattenerSupport {
         this.removeSiblingOrder(result);
 
         result.setDifferential(false);//mark this archetype as being flat
-        result.setGenerated(true);
+        if (result instanceof AuthoredArchetype) ((AuthoredArchetype) result).setGenerated(true);
 
-        ArchetypeParsePostProcesser.fixArchetype(result);
+        ArchetypeParsePostProcessor.fixArchetype(result);
 
         //set the single/multiple attributes correctly
-        new ReflectionConstraintImposer(metaModels.getSelectedModel())
+        new ReflectionConstraintImposer(metaModel)
                 .setSingleOrMultiple(result.getDefinition());
 
         return result;
@@ -244,12 +257,14 @@ public class Flattener implements IAttributeFlattenerSupport {
             CObject object = workList.pop();
             for(CAttribute attribute:object.getAttributes()) {
                 if(attribute.getExistence() != null && attribute.getExistence().getUpper() == 0 && !attribute.getExistence().isUpperUnbounded()) {
-                    //remove children, but do not remove attribute itself to make sure it stays prohibited
+                    // Remove children, but do not remove attribute itself to make sure it stays prohibited
+                    FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, attribute.getChildren());
                     attribute.setChildren(new ArrayList<>());
                 } else {
                     List<CObject> objectsToRemove = new ArrayList<>();
                     for (CObject child : attribute.getChildren()) {
                         if (!child.isAllowed()) {
+                            FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, Collections.singletonList(child));
                             if(child instanceof CComplexObject) {
                                 ((CComplexObject) child).setAttributes(new ArrayList<>());
                             }
@@ -262,9 +277,7 @@ public class Flattener implements IAttributeFlattenerSupport {
                     }
                     attribute.getChildren().removeAll(objectsToRemove);
                 }
-
             }
-
         }
     }
 
@@ -348,6 +361,12 @@ public class Flattener implements IAttributeFlattenerSupport {
         }
         if(newObject instanceof ArchetypeSlot && specialized instanceof CArchetypeRoot) {
             newObject = (CObject) specialized.clone();
+            if(newObject.getOccurrences() == null && parent.getOccurrences() != null) {
+                newObject.setOccurrences(parent.getOccurrences());
+            }
+            if(newObject.getDeprecated() == null && parent.getDeprecated() != null) {
+                newObject.setDeprecated(parent.getDeprecated());
+            }
         }
         return newObject;
     }
@@ -399,7 +418,7 @@ public class Flattener implements IAttributeFlattenerSupport {
      * @return
      */
     protected Flattener getNewFlattenerForParent() {
-        Flattener result = new Flattener(repository, metaModels, config)
+        Flattener result = new Flattener(repository, metaModelProvider, config)
                 .createOperationalTemplate(false); //do not create operational template except at the end.
         if(config.isRemoveZeroOccurrencesInParents()) {
             //remove all zero occurrences objects EXCEPT in the top level archetype
@@ -417,8 +436,7 @@ public class Flattener implements IAttributeFlattenerSupport {
      * @return
      */
     protected Flattener getNewFlattener() {
-        return new Flattener(repository, metaModels, config)
-                .createOperationalTemplate(false); //do not create operational template except at the end.
+        return new Flattener(repository, metaModelProvider, config);
     }
 
     private Flattener useComplexObjectForArchetypeSlotReplacement(boolean useComplexObjectForArchetypeSlotReplacement) {
@@ -431,8 +449,13 @@ public class Flattener implements IAttributeFlattenerSupport {
     }
 
     @Override
-    public MetaModels getMetaModels() {
-        return metaModels;
+    public MetaModel getMetaModel() {
+        return metaModel;
+    }
+
+    @Override
+    public FlattenerConfiguration getConfig() {
+        return config;
     }
 
 
@@ -444,7 +467,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         return rulesFlattener;
     }
 
-    protected AnnotationsFlattener getAnnotationsFlattener() { return annotationsFlattener; }
+    protected AnnotationsAndOverlaysFlattener getAnnotationsAndOverlaysFlattener() { return annotationsAndOverlaysFlattener; }
 
     public OverridingArchetypeRepository getRepository() {
         return repository;

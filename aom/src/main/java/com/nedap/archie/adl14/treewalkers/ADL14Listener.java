@@ -2,21 +2,9 @@ package com.nedap.archie.adl14.treewalkers;
 
 import com.nedap.archie.adl14.ADL14ConversionConfiguration;
 import com.nedap.archie.adlparser.antlr.Adl14BaseListener;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.ArchetypeContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Definition_sectionContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Description_sectionContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Language_sectionContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Meta_data_itemContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Rules_sectionContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Specialization_sectionContext;
-import com.nedap.archie.adlparser.antlr.Adl14Parser.Terminology_sectionContext;
+import com.nedap.archie.adlparser.antlr.Adl14Parser.*;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeHRID;
-import com.nedap.archie.aom.AuthoredArchetype;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.LanguageSection;
-import com.nedap.archie.aom.ResourceDescription;
+import com.nedap.archie.aom.*;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**

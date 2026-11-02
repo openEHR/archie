@@ -3,13 +3,15 @@ package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openehr.bmm.core.*;
+import org.openehr.bmm.persistence.validation.BmmDefinitions;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
+public final class PBmmGenericType extends PBmmUnitaryType {
     private String rootType;
     private Map<String, PBmmType> genericParameterDefs;
     private List<String> genericParameters;
@@ -35,8 +37,9 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
     }
 
     public Map<String, PBmmType> getGenericParameterDefs() {
-        if (genericParameterDefs == null)
+        if (genericParameterDefs == null) {
             genericParameterDefs = new LinkedHashMap<>();
+        }
         return genericParameterDefs;
     }
 
@@ -45,8 +48,9 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
     }
 
     public List<String> getGenericParameters() {
-        if (genericParameters == null)
+        if (genericParameters == null) {
             genericParameters = new ArrayList<>();
+        }
         return genericParameters;
     }
 
@@ -63,14 +67,12 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
     @JsonIgnore
     public List<PBmmType> getGenericParameterRefs() {
         List<PBmmType> genericParameterReferences = new ArrayList<>();
-        if (genericParameterDefs != null && genericParameterDefs.size() > 0) {
+        if (genericParameterDefs != null && !genericParameterDefs.isEmpty()) {
             genericParameterReferences.addAll(genericParameterDefs.values());
         }
         else {
             genericParameters.forEach(param -> {
-                if (param.length() == 1) {
-                    // This is ugly because it basically checks parameter length to see if it's a generic parameter
-                    // However it's the only way in the current P_BMM version to do so.
+                if (BmmDefinitions.isFormalGenericParameterName(param)) {
                     PBmmOpenType openType = new PBmmOpenType(param);
                     genericParameterReferences.add(openType);
                 }
@@ -84,12 +86,12 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
     }
 
     @Override
-    public BmmGenericType createBmmType(BmmModel schema, BmmClass classDefinition) {
-        BmmClass rootClassDef = schema.getClassDefinition(rootType);
+    public BmmGenericType createBmmType(BmmClassProcessor processor, BmmClass classDefinition) {
+        BmmClass rootClassDef = processor.getClassDefinition(rootType);
         if (rootClassDef instanceof BmmGenericClass) {
             BmmGenericType bmmType = new BmmGenericType((BmmGenericClass)rootClassDef);
             for (PBmmType param: getGenericParameterRefs()) {
-                BmmType paramBmmType = param.createBmmType(schema, classDefinition);
+                BmmType paramBmmType = param.createBmmType(processor, classDefinition);
                 if (paramBmmType instanceof BmmUnitaryType) {
                     bmmType.addGenericParameter(paramBmmType);
                 } else {
@@ -111,15 +113,15 @@ public final class PBmmGenericType extends PBmmUnitaryType<BmmGenericType> {
     @Override
     public String asTypeString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(rootType).append("<");
+        builder.append(rootType).append(BmmDefinitions.GENERIC_LEFT_DELIMITER);
         List<PBmmType> parameterReferences = getGenericParameterRefs();
         for (int i = 0; i < parameterReferences.size(); i++) {
             builder.append(parameterReferences.get(i).asTypeString());
             if (i < parameterReferences.size() - 1) {
-                builder.append(",");
+                builder.append(BmmDefinitions.GENERIC_SEPARATOR);
             }
         }
-        builder.append(">");
+        builder.append(BmmDefinitions.GENERIC_RIGHT_DELIMITER);
         return builder.toString();
     }
 

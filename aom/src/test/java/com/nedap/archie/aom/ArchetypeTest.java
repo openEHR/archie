@@ -1,9 +1,9 @@
 package com.nedap.archie.aom;
 
 import com.google.common.collect.Sets;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ArchetypeTest {
 
@@ -32,7 +32,7 @@ public class ArchetypeTest {
     }
 
     private Archetype createLevel0Archetype() {
-        Archetype archetype = new Archetype();
+        Archetype archetype = new AuthoredArchetype();
         CComplexObject definition = new CComplexObject();
         definition.setRmTypeName("CLUSTER");
         definition.setNodeId("id1");
@@ -47,7 +47,7 @@ public class ArchetypeTest {
     }
 
     private Archetype createLevel1Archetype() {
-        Archetype archetype = new Archetype();
+        Archetype archetype = new AuthoredArchetype();
         CComplexObject definition = new CComplexObject();
         definition.setRmTypeName("CLUSTER");
         definition.setNodeId("id1.1");

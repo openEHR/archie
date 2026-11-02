@@ -5,12 +5,12 @@ import com.nedap.archie.aom.OperationalTemplate;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationSettings;
 import com.nedap.archie.archetypevalidator.ArchetypeValidator;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
 
 import java.util.List;
 
-public interface FullArchetypeRepository extends ArchetypeRepository {
+public interface FullArchetypeRepository extends ArchetypeRepository, OperationalTemplateProvider {
 
     Archetype getFlattenedArchetype(String archetypeId);
 
@@ -40,27 +40,49 @@ public interface FullArchetypeRepository extends ArchetypeRepository {
         compile(validator);
     }
 
-    default void compile(MetaModels models) {
-        ArchetypeValidator validator = new ArchetypeValidator(models);
+    default void compile(MetaModelProvider metaModelProvider) {
+        ArchetypeValidator validator = new ArchetypeValidator(metaModelProvider);
         compile(validator);
     }
 
     /**
      * validate the validation result if necessary, and return either the newly validated one or
      * the existing validation result
-     * @param models
+     * @param metaModelProvider
      * @return
      */
-    default ValidationResult compileAndRetrieveValidationResult(String archetypeId, MetaModels models) {
-        ValidationResult validationResult = getValidationResult(archetypeId);
-        if(validationResult != null) {
-            return validationResult;
-        }
+    default ValidationResult compileAndRetrieveValidationResult(String archetypeId, MetaModelProvider metaModelProvider) {
         Archetype archetype = getArchetype(archetypeId);
         if(archetype == null) {
             return null;
         }
-        ArchetypeValidator validator = new ArchetypeValidator(models);
+        ValidationResult validationResult = getValidationResult(archetype.getArchetypeId().getFullId());
+
+        if(validationResult != null) {
+            //only return if the ValidationResult is the newest version of the archetype, otherwise compile it.
+            return validationResult;
+        }
+
+        ArchetypeValidator validator = new ArchetypeValidator(metaModelProvider);
+        return validator.validate(archetype, this);
+    }
+
+    /**
+     * validate the validation result if necessary, and return either the newly validated one or
+     * the existing validation result
+     * @return
+     */
+    default ValidationResult compileAndRetrieveValidationResult(String archetypeId, ArchetypeValidator validator) {
+        Archetype archetype = getArchetype(archetypeId);
+        if(archetype == null) {
+            return null;
+        }
+        ValidationResult validationResult = getValidationResult(archetype.getArchetypeId().getFullId());
+
+        if(validationResult != null) {
+            //only return if the ValidationResult is the newest version of the archetype, otherwise compile it.
+            return validationResult;
+        }
         return validator.validate(archetype, this);
     }
 

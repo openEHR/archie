@@ -2,25 +2,80 @@ package com.nedap.archie.query;
 
 import com.nedap.archie.rm.datastructures.Cluster;
 import com.nedap.archie.rm.datastructures.Element;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import java.util.Arrays;
+import java.util.Collections;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RMPathQueryTest {
 
-    @Test
-    public void adl2NodeIdMatch() {
-        Cluster cluster = new Cluster();
-        cluster.setArchetypeNodeId("id1");
-        Element elementId2 = new Element();
-        elementId2.setArchetypeNodeId("id2");
-        Element elementId3_1 = new Element();
-        elementId3_1.setArchetypeNodeId("id3.1");
+    private Cluster cluster;
+    private Element elementId2;
+    private Element elementId3_1;
+    private Element elementId3_2;
+    private Element elementId3_3;
+    private Element elementId4Specialised;
+    private Element elementNoId_1;
+    private Element elementNoId_2;
+    private Element elementArchetypeId;
 
+    @BeforeEach
+    public void setup() {
+        cluster = new Cluster();
+        cluster.setArchetypeNodeId("id1");
+        elementId2 = new Element();
+        elementId2.setArchetypeNodeId("id2");
+        elementId3_1 = new Element();
+        elementId3_1.setArchetypeNodeId("id3.1");
+        elementId3_2 = new Element();
+        elementId3_2.setArchetypeNodeId("id3.1");
+        elementId3_3 = new Element();
+        elementId3_3.setArchetypeNodeId("id3.1.1");
+        elementId4Specialised = new Element();
+        elementId4Specialised.setArchetypeNodeId("id4.1");
+        elementNoId_1 = new Element();
+        elementNoId_2 = new Element();
+        elementArchetypeId = new Element();
+        elementArchetypeId.setArchetypeNodeId("openEHR-EHR-ELEMENT.element.v1.0.0");
+
+        cluster.addItem(elementNoId_1);
         cluster.addItem(elementId2);
         cluster.addItem(elementId3_1);
+        cluster.addItem(elementId3_2);
+        cluster.addItem(elementId3_3);
+        cluster.addItem(elementId4Specialised);
+        cluster.addItem(elementNoId_2);
+        cluster.addItem(elementArchetypeId);
+    }
+
+    @Test
+    public void adl2NodeIdMatch() {
         assertEquals(elementId2, cluster.itemAtPath("/items[id2]"));
         assertEquals(elementId3_1, cluster.itemAtPath("/items[id3.1]"));
+        assertEquals(elementId4Specialised, cluster.itemAtPathMatchSpecialisedNodes("/items[id4]"));
+        assertEquals(elementNoId_1, cluster.itemAtPath("/items[1]"));
+        assertEquals(elementArchetypeId, cluster.itemAtPath("/items[openEHR-EHR-ELEMENT.element.v1.0.0]"));
+    }
+
+    @Test
+    public void adl2NodeIdMatchSpecialisedNodes() {
+        assertEquals(elementId4Specialised, cluster.itemAtPathMatchSpecialisedNodes("/items[id4]"));
+    }
+
+    @Test
+    public void adl2NodeIdMatchList() {
+        assertEquals(Collections.singletonList(elementId2), cluster.itemsAtPath("/items[id2]"));
+        assertEquals(Arrays.asList(elementId3_1, elementId3_2), cluster.itemsAtPath("/items[id3.1]"));
+        assertEquals(Arrays.asList(elementNoId_1, elementId2, elementId3_1, elementId3_2, elementId3_3, elementId4Specialised, elementNoId_2, elementArchetypeId), cluster.itemsAtPath("/items"));
+        assertEquals(Collections.singletonList(elementArchetypeId), cluster.itemsAtPath("/items[openEHR-EHR-ELEMENT.element.v1.0.0]"));
+    }
+
+    @Test
+    public void adl2NodeIdMatchSpecialisedNodesList() {
+        assertEquals(Arrays.asList(elementId3_1, elementId3_2, elementId3_3), cluster.itemsAtPathMatchSpecialisedNodes("/items[id3]"));
     }
 
     @Test

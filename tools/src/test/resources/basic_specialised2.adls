@@ -1,0 +1,63 @@
+archetype (adl_version=2.0.5; rm_release=1.0.4; generated)
+    openEHR-EHR-COMPOSITION.basic_specialised2.v0.0.1
+
+specialize
+    openEHR-EHR-COMPOSITION.prescription_specialised.v0.0.1
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"MK">
+    >
+    lifecycle_state = <"unmanaged">
+    details = <
+        ["en"] = <
+            language = <[ISO-639_1::en]>
+            purpose = <"Testing">
+        >
+    >
+
+definition
+    COMPOSITION[id1.1.1] matches {    -- prescription specialised twice
+        /context[id11]/other_context[id2]/items[id3]/items matches {
+            ELEMENT[id5.1.1]     -- Endorsement specialized twice
+            ELEMENT[id6.0.1]     -- AuthorisationID
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1.1"] = <
+                text = <"prescription specialised twice">
+                description = <"Testing of twice specialised elements">
+                code = <"id1">
+            >
+            ["id5.1.1"] = <
+                text = <"Endorsement specialized twice">
+                description = <"Asserting that a special condition applies such as approval for  enhanced subsidy or concurrent supply. Australian examples include Regulation 24 (PBS), Hardship Conditions (RPBS) or CTG for 'close the gap'.">
+            >
+            ["id6.0.1"] = <
+                text = <"AuthorisationID">
+                description = <"An identifier authorising prescription, dispensing or reimbursement for this medication order.">
+            >
+        >
+    >
+
+annotations
+    documentation = <
+        ["en"] = <
+            ["/context/start_time"] = <
+                ["test"] = <"XXXX">
+                ["local_name"] = <"consultation start time">
+            >
+            ["/context/location"] = <
+                ["design note"] = <"Note on use of the non-archteyped context/location RM element in this data">
+            >
+            ["/context/health_care_facility/name"] = <
+                ["design note"] = <"Note on use of non-archteyped context/health_care_facility/name RM element in this data">
+            >
+        >
+    >

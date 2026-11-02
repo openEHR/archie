@@ -722,9 +722,9 @@ class_definitions = <
 				name = <"versions">
 				type_def = <
 					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"ORIGINAL_VERSION">
-						generic_parameters = <"T">
-					>
+                        root_type = <"ORIGINAL_VERSION">
+                        generic_parameters = <"T">
+                    >
 					container_type = <"List">
 				>
 				cardinality = <|>=0|>

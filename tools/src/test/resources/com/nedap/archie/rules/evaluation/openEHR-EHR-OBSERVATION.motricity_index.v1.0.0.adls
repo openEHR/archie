@@ -1,0 +1,400 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2)
+    openEHR-EHR-OBSERVATION.motricity_index.v1.0.0
+
+language
+    original_language = <[ISO_639-1::nl]>
+    translations = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            author = <
+                ["name"] = <"Pieter Bos">
+                ["organisation"] = <"Nedap">
+                ["email"] = <"pieter.bos@nedap.com">
+            >
+            accreditation = <"-">
+        >
+    >
+
+description
+    lifecycle_state = <"unmanaged">
+    copyright = <"Officiële versie: Demeurisse G, Demol O, Robaye E. Motor evaluation in vascular hemiplegia. European Neurology. 1980;19(6):382–9. Nederlandse Versie: van Peppen RPS, Kwakkel G, Harmeling-van der Wel BC. KNGF-richtlijn beroerte. Amersfoort: Koninklijk Nederlands Genootschap voor Fysiotherapie; 2006">
+    references = <
+        ["foo"] = <"Bar">
+    >
+    details = <
+        ["nl"] = <
+            language = <[ISO_639-1::nl]>
+            purpose = <"">
+        >
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+        >
+    >
+
+definition
+    OBSERVATION[id1] matches {    -- Motricity Index
+        data matches {
+            HISTORY[id2] matches {
+                events matches {
+                    EVENT[id3] matches {    -- Any event
+                        data matches {
+                            ITEM_TREE[id4] occurrences matches {1} matches {
+                                items matches {
+                                    CLUSTER[id5] occurrences matches {1} matches {    -- Arm
+                                        items matches {
+                                            ELEMENT[id7] occurrences matches {1} matches {    -- Pincetgreep
+                                                value matches {
+                                                    DV_ORDINAL[id8] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at1]}],
+                                                            [{11}, {[at2]}],
+                                                            [{19}, {[at3]}],
+                                                            [{22}, {[at4]}],
+                                                            [{26}, {[at5]}],
+                                                            [{33}, {[at6]}]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id9] occurrences matches {1} matches {    -- Elleboogflexie
+                                                value matches {
+                                                    DV_ORDINAL[id10] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at7]}],
+                                                            [{9}, {[at8]}],
+                                                            [{14}, {[at9]}],
+                                                            [{19}, {[at10]}],
+                                                            [{25}, {[at11]}],
+                                                            [{33}, {[at12]}]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id11] occurrences matches {1} matches {    -- Schouderabductie
+                                                value matches {
+                                                    DV_ORDINAL[id12] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at7]}],
+                                                            [{9}, {[at8]}],
+                                                            [{14}, {[at9]}],
+                                                            [{19}, {[at10]}],
+                                                            [{25}, {[at11]}],
+                                                            [{33}, {[at12]}]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id13] occurrences matches {1} matches {    -- Arm score
+                                                value matches {
+                                                    DV_COUNT[id114] matches {
+                                                        magnitude matches {|0..100|}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    CLUSTER[id6] occurrences matches {1} matches {    -- Been
+                                        items matches {
+                                            ELEMENT[id14] occurrences matches {1} matches {    -- Dorsale flexie enkel
+                                                value matches {
+                                                    DV_ORDINAL[id15] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at7]}],
+                                                            [{9}, {[at8]}],
+                                                            [{14}, {[at9]}],
+                                                            [{19}, {[at10]}],
+                                                            [{25}, {[at11]}],
+                                                            [{33}, {[at12]}]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id16] occurrences matches {1} matches {    -- Knie extensie
+                                                value matches {
+                                                    DV_ORDINAL[id17] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at7]}],
+                                                            [{9}, {[at8]}],
+                                                            [{14}, {[at9]}],
+                                                            [{19}, {[at10]}],
+                                                            [{25}, {[at11]}],
+                                                            [{33}, {[at12]}]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id18] occurrences matches {1} matches {    -- Heup flexie
+                                                value matches {
+                                                    DV_ORDINAL[id19] matches {
+                                                        [value, symbol] matches {
+                                                            [{0}, {[at7]}],
+                                                            [{9}, {[at8]}],
+                                                            [{14}, {[at9]}],
+                                                            [{19}, {[at10]}],
+                                                            [{25}, {[at11]}],
+                                                            [{33}, {[at12]}]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ELEMENT[id20] occurrences matches {1} matches {    -- Been score
+                                                value matches {
+                                                    DV_COUNT[id21] matches {
+                                                        magnitude matches {|0..100|}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id24] occurrences matches {1} matches {    -- Opgetelde score
+                                        value matches {
+                                            DV_COUNT[id25] matches {
+                                                magnitude matches {|0..200|}
+                                            }
+                                        }
+                                    }
+                                    ELEMENT[id22] occurrences matches {1} matches {    -- Totaalscore
+                                        value matches {
+                                            DV_COUNT[id23] matches {
+                                                magnitude matches {|0..100|}
+                                            }
+                                            DV_COUNT[id115] matches {
+                                                magnitude matches {|10..20|}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+rules
+    $arm_score:Integer ::= /data[id2]/events[id3]/data[id4]/items[id5]/items[id7]/value/value + /data[id2]/events[id3]/data[id4]/items[id5]/items[id9]/value/value + /data[id2]/events[id3]/data[id4]/items[id5]/items[id11]/value/value
+    arm: $arm_score < 99 implies /data[id2]/events[id3]/data[id4]/items[id5]/items[id13]/value/magnitude = $arm_score
+    arm_round_up: $arm_score = 99 implies /data[id2]/events[id3]/data[id4]/items[id5]/items[id13]/value/magnitude = 100
+    $leg_score:Integer ::= /data[id2]/events[id3]/data[id4]/items[id6]/items[id14]/value/value + /data[id2]/events[id3]/data[id4]/items[id6]/items[id16]/value/value + /data[id2]/events[id3]/data[id4]/items[id6]/items[id18]/value/value
+    leg: $leg_score < 99 implies /data[id2]/events[id3]/data[id4]/items[id6]/items[id20]/value/magnitude = $leg_score
+    leg_round_up: $leg_score = 99 implies /data[id2]/events[id3]/data[id4]/items[id6]/items[id20]/value/magnitude = 100
+    sum_score: /data[id2]/events[id3]/data[id4]/items[id24]/value/magnitude = /data[id2]/events[id3]/data[id4]/items[id5]/items[id13]/value/magnitude + /data[id2]/events[id3]/data[id4]/items[id6]/items[id20]/value/magnitude
+    total_score: exists /data[id2]/events[id3]/data[id4]/items[id24]/value/magnitude implies  (/data[id2]/events[id3]/data[id4]/items[id22]/value/magnitude = /data[id2]/events[id3]/data[id4]/items[id24]/value/magnitude / 2) 
+
+
+terminology
+    term_definitions = <
+        ["nl"] = <
+            ["id1"] = <
+                text = <"Motricity Index">
+                description = <"De Motricity Index (MI) is gericht op het evalueren van de willekeurige bewegingsactiviteit,
+                                                                                                                                            dan wel het meten van de maximale isometrische spierkracht, aan de hand van een ordinale 6-puntschaal
+                                                                                                                                            (0, 11, 19, 22, 26, 33 punten). Betrouwbaarheid en validiteit bij patiënten met een CVA zijn aangetoond.">
+            >
+            ["id3"] = <
+                text = <"Any event">
+            >
+            ["id5"] = <
+                text = <"Arm">
+            >
+            ["id6"] = <
+                text = <"Been">
+                description = <"Uitgangshouding patiënt: zit, knie 90° flexie, voeten plat op de grond (0° flexie)">
+            >
+            ["id7"] = <
+                text = <"Pincetgreep">
+                description = <"Vasthouden van een blokje van 2,5 x 2,5 cm tussen duim en wijsvinger">
+            >
+            ["id9"] = <
+                text = <"Elleboogflexie">
+                description = <"Willekeurige elleboogflexie tot volledige flexie (± 160°). De elleboog van de patiënt bij
+                                                                                                                                            het isometrisch testen van de weerstand (25 punten of meer) in 90° flexie houden">
+            >
+            ["id11"] = <
+                text = <"Schouderabductie">
+                description = <"Abductie van de schouder van 0° tot 90°. De schouder van de patiënt bij het isometrisch
+                                                                                                                                            testen van de weerstand (25 punten of meer) in 90° abductie houden">
+            >
+            ["id13"] = <
+                text = <"Arm score">
+                description = <"Bij een score van 99 punten mag 1 punt worden opgeteld">
+            >
+            ["id14"] = <
+                text = <"Dorsale flexie enkel">
+                description = <"Willekeurige dorsale flexie van de enkel vanuit 0° flexie. De enkel van de patiënt bij het
+                                                                                                                                            isometrisch testen van de weerstand (25 punten of meer) in ± 20° dorsale flexie houden">
+            >
+            ["id16"] = <
+                text = <"Knie extensie">
+                description = <"Willekeurige extensie van de knie vanuit 90°. De knie van de patiënt bij het
+                                                                                                                                            isometrisch testen van de weerstand (25 punten of meer) in 0° extensie houden">
+            >
+            ["id18"] = <
+                text = <"Heup flexie">
+                description = <"Willekeurige flexie van de heup vanuit 90° flexie. De heup van de patiënt bij het
+                                                                                                                                            isometrisch testen van de weerstand (25 punten of meer) in 90° flexie houden">
+            >
+            ["id20"] = <
+                text = <"Been score">
+                description = <"Bij een score van 99 punten mag 1 punt worden opgeteld">
+            >
+            ["id22"] = <
+                text = <"Totaalscore">
+                description = <"Gemiddelde van subtotaal arm en subtotaal been">
+            >
+            ["id24"] = <
+                text = <"Opgetelde score">
+                description = <"De som van subtotaal arm en subtotaal been">
+            >
+            ["at1"] = <
+                text = <"Geen beweging">
+            >
+            ["at2"] = <
+                text = <"Elke willekeurige beweging van vinger en/of duim">
+            >
+            ["at3"] = <
+                text = <"Patiënt pakt het blokje, maar kan het niet optillen (tegen de zwaartekracht in)">
+            >
+            ["at4"] = <
+                text = <"Patiënt pakt het blokje, maar kan het niet stevig vasthouden">
+            >
+            ["at5"] = <
+                text = <"Patiënt pakt het blokje op, maar kan het minder stevig vasthouden dan aan de niet-paretische zijde">
+            >
+            ["at6"] = <
+                text = <"Normale knijpkracht (in vergelijking tot de niet-paretische zijde)">
+            >
+            ["at7"] = <
+                text = <"Geen willekeurige beweging">
+            >
+            ["at8"] = <
+                text = <"Willekeurige activiteit is palpabel, maar geen beweging is zichtbaar">
+            >
+            ["at9"] = <
+                text = <"Willekeurige beweging is zichtbaar, maar niet over de hele bewegingsrange">
+            >
+            ["at10"] = <
+                text = <"Willekeurige beweging is over de hele range mogelijk, maar niet tegen een weerstand in">
+            >
+            ["at11"] = <
+                text = <"Willekeurige beweging is tegen een weerstand in over de hele range mogelijk, maar is zwakker dan aan de niet-paretische zijde">
+            >
+            ["at12"] = <
+                text = <"Normale kracht">
+            >
+        >
+        ["en"] = <
+            ["id1"] = <
+                text = <"Motricity Index">
+                description = <"* De Motricity Index (MI) is gericht op het evalueren van de willekeurige bewegingsactiviteit,
+                                                                                                                                            dan wel het meten van de maximale isometrische spierkracht, aan de hand van een ordinale 6-puntschaal
+                                                                                                                                            (0, 11, 19, 22, 26, 33 punten). Betrouwbaarheid en validiteit bij patiënten met een CVA zijn aangetoond.(nl)">
+            >
+            ["id3"] = <
+                text = <"Any event">
+                description = <"* null(nl)">
+            >
+            ["id5"] = <
+                text = <"Arm">
+                description = <"* null(nl)">
+            >
+            ["id6"] = <
+                text = <"Leg">
+                description = <"* Uitgangshouding patiënt: zit, knie 90° flexie, voeten plat op de grond (0° flexie)(nl)">
+            >
+            ["id7"] = <
+                text = <"Pinch grip">
+                description = <"* Vasthouden van een blokje van 2,5 x 2,5 cm tussen duim en wijsvinger(nl)">
+            >
+            ["id9"] = <
+                text = <"Elbow flexion">
+                description = <"* Willekeurige elleboogflexie tot volledige flexie (± 160°). De elleboog van de patiënt bij
+                                                                                                                                            het isometrisch testen van de weerstand (25 punten of meer) in 90° flexie houden(nl)">
+            >
+            ["id11"] = <
+                text = <"Shoulder abduction">
+                description = <"* Abductie van de schouder van 0° tot 90°. De schouder van de patiënt bij het isometrisch
+                                                                                                                                            testen van de weerstand (25 punten of meer) in 90° abductie houden(nl)">
+            >
+            ["id13"] = <
+                text = <"Arm score">
+                description = <"* Bij een score van 99 punten mag 1 punt worden opgeteld(nl)">
+            >
+            ["id14"] = <
+                text = <"ankle dorsiflexion">
+                description = <"* Willekeurige dorsale flexie van de enkel vanuit 0° flexie. De enkel van de patiënt bij het
+                                                                                                                                            isometrisch testen van de weerstand (25 punten of meer) in ± 20° dorsale flexie houden(nl)">
+            >
+            ["id16"] = <
+                text = <"Knee extension">
+                description = <"* Willekeurige extensie van de knie vanuit 90°. De knie van de patiënt bij het
+                                                                                                                                            isometrisch testen van de weerstand (25 punten of meer) in 0° extensie houden(nl)">
+            >
+            ["id18"] = <
+                text = <"Hip flexion">
+                description = <"* Willekeurige flexie van de heup vanuit 90° flexie. De heup van de patiënt bij het
+                                                                                                                                            isometrisch testen van de weerstand (25 punten of meer) in 90° flexie houden(nl)">
+            >
+            ["id20"] = <
+                text = <"Leg score">
+                description = <"* Bij een score van 99 punten mag 1 punt worden opgeteld(nl)">
+            >
+            ["id22"] = <
+                text = <"Total score">
+                description = <"* Gemiddelde van subtotaal arm en subtotaal been(nl)">
+            >
+            ["id24"] = <
+                text = <"Summed score">
+                description = <"* De som van subtotaal arm en subtotaal been(nl)">
+            >
+            ["at1"] = <
+                text = <"* Geen beweging(nl)">
+                description = <"* null(nl)">
+            >
+            ["at2"] = <
+                text = <"* Elke willekeurige beweging van vinger en/of duim(nl)">
+                description = <"* null(nl)">
+            >
+            ["at3"] = <
+                text = <"* Patiënt pakt het blokje, maar kan het niet optillen (tegen de zwaartekracht in)(nl)">
+                description = <"* null(nl)">
+            >
+            ["at4"] = <
+                text = <"* Patiënt pakt het blokje, maar kan het niet stevig vasthouden(nl)">
+                description = <"* null(nl)">
+            >
+            ["at5"] = <
+                text = <"* Patiënt pakt het blokje op, maar kan het minder stevig vasthouden dan aan de niet-paretische zijde(nl)">
+                description = <"* null(nl)">
+            >
+            ["at6"] = <
+                text = <"* Normale knijpkracht (in vergelijking tot de niet-paretische zijde)(nl)">
+                description = <"* null(nl)">
+            >
+            ["at7"] = <
+                text = <"* Geen willekeurige beweging(nl)">
+                description = <"* null(nl)">
+            >
+            ["at8"] = <
+                text = <"* Willekeurige activiteit is palpabel, maar geen beweging is zichtbaar(nl)">
+                description = <"* null(nl)">
+            >
+            ["at9"] = <
+                text = <"* Willekeurige beweging is zichtbaar, maar niet over de hele bewegingsrange(nl)">
+                description = <"* null(nl)">
+            >
+            ["at10"] = <
+                text = <"* Willekeurige beweging is over de hele range mogelijk, maar niet tegen een weerstand in(nl)">
+                description = <"* null(nl)">
+            >
+            ["at11"] = <
+                text = <"* Willekeurige beweging is tegen een weerstand in over de hele range mogelijk, maar is zwakker dan aan de niet-paretische zijde(nl)">
+                description = <"* null(nl)">
+            >
+            ["at12"] = <
+                text = <"* Normale kracht(nl)">
+                description = <"* null(nl)">
+            >
+        >
+    >

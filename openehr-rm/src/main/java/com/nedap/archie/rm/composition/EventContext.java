@@ -6,12 +6,14 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.generic.Participation;
 import com.nedap.archie.rm.generic.PartyIdentified;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -54,18 +56,18 @@ public class EventContext extends Pathable {
     }
 
     public EventContext(DvDateTime startTime, DvCodedText setting) {
-        this.startTime = startTime;
-        this.setting = setting;
+        setStartTime(startTime);
+        setSetting(setting);
     }
 
     public EventContext(@Nullable PartyIdentified healthCareFacility, DvDateTime startTime, @Nullable DvDateTime endTime, @Nullable List<Participation> participations, @Nullable String location, DvCodedText setting, @Nullable ItemStructure otherContext) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.location = location;
-        this.setting = setting;
-        this.otherContext = otherContext;
-        this.healthCareFacility = healthCareFacility;
-        this.participations = participations;
+        setStartTime(startTime);
+        setEndTime(endTime);
+        setLocation(location);
+        setSetting(setting);
+        setOtherContext(otherContext);
+        setHealthCareFacility(healthCareFacility);
+        setParticipations(participations);
     }
 
     public DvDateTime getStartTime() {
@@ -149,5 +151,20 @@ public class EventContext extends Pathable {
     @Override
     public int hashCode() {
         return Objects.hash(startTime, endTime, location, setting, otherContext, healthCareFacility, participations);
+    }
+
+    @Invariant("Setting_valid")
+    public boolean settingValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(setting, "setting");
+    }
+
+    @Invariant(value="Participations_validity", ignored = true)
+    public boolean participationsValid() {
+        return InvariantUtil.nullOrNotEmpty(participations);
+    }
+
+    @Invariant("Location_validity")
+    public boolean locationValid() {
+        return InvariantUtil.nullOrNotEmpty(location);
     }
 }

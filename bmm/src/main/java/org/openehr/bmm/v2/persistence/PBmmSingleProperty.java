@@ -2,15 +2,12 @@ package org.openehr.bmm.v2.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nedap.archie.base.MultiplicityInterval;
 import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmModel;
-import org.openehr.bmm.core.BmmProperty;
 import org.openehr.bmm.core.BmmSimpleType;
 import org.openehr.bmm.core.BmmUnitaryProperty;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
-public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType, BmmUnitaryProperty> {
+public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType> {
 
     private String type;
 
@@ -41,26 +38,24 @@ public final class PBmmSingleProperty extends PBmmProperty<PBmmSimpleType, BmmUn
     @Override
     @JsonIgnore
     public PBmmSimpleType getTypeRef() {
-        if (serializedTypeRef != null)
+        if (serializedTypeRef != null) {
             return serializedTypeRef;
-        else if (getTypeDef() == null)
+        } else if (getTypeDef() == null) {
             return new PBmmSimpleType(type);
+        }
         return getTypeDef();
     }
 
     @Override
-    public BmmProperty createBmmProperty(BmmModel schema, BmmClass bmmClass) {
+    public BmmUnitaryProperty createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass) {
         PBmmSimpleType typeRef = getTypeRef();
         if (typeRef != null) {
-            BmmSimpleType bmmType = typeRef.createBmmType(schema, bmmClass);
-            if (bmmType != null) {
-                BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
-                populateImBooleans(bmmProperty);
-                return bmmProperty;
-            }
+            BmmSimpleType bmmType = typeRef.createBmmType(classProcessor, bmmClass);
+            BmmUnitaryProperty bmmProperty = new BmmUnitaryProperty(getName(), bmmType, getDocumentation(), nullToFalse(isMandatory()), nullToFalse(isComputed()));
+            populateImBooleans(bmmProperty);
+            return bmmProperty;
         }
-        throw new RuntimeException("BmmTypeCreate failed for type " + typeRef.asTypeString() + " of property "
-                + getName() + " in class " + bmmClass.getName());
+        throw new RuntimeException("BmmTypeCreate failed for property " + getName() + " in class " + bmmClass.getName());
     }
 
     @JsonProperty("type_ref")

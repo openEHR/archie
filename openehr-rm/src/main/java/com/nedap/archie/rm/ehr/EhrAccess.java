@@ -4,11 +4,11 @@ import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.security.AccessControlSettings;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,12 +27,12 @@ public class EhrAccess extends Locatable {
 
     public EhrAccess(String archetypeNodeId, DvText name, @Nullable AccessControlSettings settings) {
         super(archetypeNodeId, name);
-        this.settings = settings;
+        setSettings(settings);
     }
 
     public EhrAccess(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable AccessControlSettings settings) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.settings = settings;
+        setSettings(settings);
     }
 
     @Nullable
@@ -57,4 +57,10 @@ public class EhrAccess extends Locatable {
     public int hashCode() {
         return Objects.hash(super.hashCode(), settings);
     }
+
+//TODO: invariants requierd here? this is not a concrete data type
+//    @Invariant("Is_archetype_root")
+//    public boolean archetypeRoot() {
+//        return this.isA
+//    }
 }

@@ -9,33 +9,24 @@ import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.flattener.SimpleArchetypeRepository;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModelProvider;
 import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 import org.apache.commons.io.FilenameUtils;
-import org.junit.Assert;
-import org.junit.Test;
-import org.openehr.bmm.v2.validation.BmmRepository;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * //TODO: add list of errortypes NOT tested by the testset, so we can add files for that
@@ -101,10 +92,10 @@ public class BigArchetypeValidatorTest {
 
     private FullArchetypeRepository parseAll() {
         InMemoryFullArchetypeRepository result = new InMemoryFullArchetypeRepository();
-        Reflections reflections = new Reflections("adl2-tests", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+        Reflections reflections = new Reflections("adl2-tests", Scanners.Resources);
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
         for(String file:adlFiles) {
-            if (file.contains("legacy_adl1.4")) {
+            if (file.contains("legacy_adl_1.4")) {
                 continue;
             }
             Archetype archetype = null;
@@ -128,7 +119,7 @@ public class BigArchetypeValidatorTest {
 
     @Test
     public void testFullValidityPackageBmm() {
-        testInner(new MetaModels(null, BuiltinReferenceModels.getBmmRepository(), BuiltinReferenceModels.getAomProfiles()));
+        testInner(new SimpleMetaModelProvider(null, BuiltinReferenceModels.getBmmRepository(), BuiltinReferenceModels.getAomProfiles()));
 
     }
 
@@ -140,26 +131,28 @@ public class BigArchetypeValidatorTest {
         models.registerModel(com.nedap.archie.openehrtestrm.TestRMInfoLookup.getInstance());
 
 //        access.initializeAll(schemaDirectories);
-        testInner(new MetaModels(models, (BmmRepository) null));
+        testInner(new SimpleMetaModelProvider(models, null));
 
     }
 
-    public void testInner(MetaModels metaModels) {
+    public void testInner(MetaModelProvider metaModelProvider) {
 
-        Reflections reflections = new Reflections("adl2-tests.validity", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+        Reflections reflections = new Reflections("adl2-tests.validity", Scanners.Resources);
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
 
 
         int errorCount = 0;
+        int correctButShouldBeInvalid = 0;
         int correctCount = 0;
         int shouldBeFineButWasinvalid = 0;
         int notImplemented = 0;
         int unexpectedParseErrors = 0;
+        int wrongMessageCount = 0;
         List<String> errorStrings = new ArrayList<>();
-        ArchetypeValidator validator = new ArchetypeValidator(metaModels);
-        SimpleArchetypeRepository repository = new SimpleArchetypeRepository();
+        ArchetypeValidator validator = new ArchetypeValidator(metaModelProvider);
+        InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         for(String file:adlFiles) {
-            if(file.contains("legacy_adl_1.4")){
+            if (file.contains("legacy_adl_1.4")) {
                 continue;
             }
             Archetype archetype = null;
@@ -203,6 +196,7 @@ public class BigArchetypeValidatorTest {
                         log.error("exception:", exception);
                         errorStrings.add(archetype == null ? file : archetype.getArchetypeId()  + " has exception: " + (exception == null ? "no exception": exception.getMessage()));
                         unexpectedParseErrors++;
+                        errorCount++;
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -212,19 +206,26 @@ public class BigArchetypeValidatorTest {
             }
         }
 
+        //some archetypes in the repository use some parents outside of the adl2-validity test package.
+        //these parents should be valid, but the entire package contain some invalid archetypes
+        //so validate against this bigger repository, but do not validate all of them
+        //better would be to split this in valid and invalid archetypes, and/or fix the invalid ones
+        //but now we just parse things separately: one big repository, one only with validaty tests, and use the big ones
+        //to lookup/validate parent archetypes
         FullArchetypeRepository all = parseAll();
         for(Archetype archetype:repository.getAllArchetypes()) {
             ValidationResult validation = validator.validate(archetype, all);
             String regression = archetype.getDescription().getOtherDetails().get("regression");
             if(regression != null && !regression.equalsIgnoreCase("PASS")) {
                 if(!errorTypeImplemented(archetype, regression)) {
-                    log.info("regression {} not implemented yet, so not yet tested", regression);
+                    log.info("regression {} not implemented yet, so {} not yet tested", regression, archetype.getArchetypeId());
                     notImplemented++;
                 } else {
                     if (!validation.hasWarningsOrErrors()) {
 
                         log.error("test failed: archetype {} considered valid, it should not", archetype.getArchetypeId());
                         errorStrings.add("test failed: archetype " + archetype.getArchetypeId() + " considered valid, it should not");
+                        correctButShouldBeInvalid++;
                         errorCount++;
                     } else {
                         boolean found = false;
@@ -246,6 +247,7 @@ public class BigArchetypeValidatorTest {
                                     Joiner.on(", ").join(errorTypes) + " but should be " +
                                     regression);
                             printErrors(validation);
+                            wrongMessageCount++;
                             errorCount++;
                         }
 
@@ -257,14 +259,18 @@ public class BigArchetypeValidatorTest {
                     errorStrings.add("Validation should pass, but it failed for archetype " + archetype.getArchetypeId() + ", " + regression);
                     printErrors(validation);
                     shouldBeFineButWasinvalid++;
+                    errorCount++;
                 } else {
                     correctCount++;
                 }
             }
         }
         if(errorCount > 0) {
-            Assert.fail(String.format("%s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s", errorCount, correctCount, shouldBeFineButWasinvalid, notImplemented, unexpectedParseErrors, Joiner.on(", ").join(errorStrings)));
+            fail(String.format("%s errors, %s wrong messages, %s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s",
+                    errorCount, wrongMessageCount, correctButShouldBeInvalid, correctCount, shouldBeFineButWasinvalid, notImplemented, unexpectedParseErrors, Joiner.on(", ").join(errorStrings)));
         }
+        log.info(String.format("%s errors, %s wrong messages, %s validated but should not, %s correct, %s did not validate but should, %s not yet implemented, %s unexpected parser errors: \n%s",
+                errorCount, wrongMessageCount, correctButShouldBeInvalid, correctCount, shouldBeFineButWasinvalid, notImplemented, unexpectedParseErrors, Joiner.on(", ").join(errorStrings)));
         log.info("{} not implemented yet", notImplemented);
 
 
@@ -275,10 +281,7 @@ public class BigArchetypeValidatorTest {
             return true;
         }
         Collection<ErrorType> alsoMatchingErrorTypes = this.replaceableErrorTypes.get(regression);
-        if(alsoMatchingErrorTypes != null && alsoMatchingErrorTypes.contains(type)) {
-            return true;
-        }
-        return false;
+        return alsoMatchingErrorTypes.contains(type);
     }
 
     private boolean isInOkToHaveParseErrorsList(String filename) {

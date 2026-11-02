@@ -1,15 +1,14 @@
 package com.nedap.archie.serializer.adl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
 import com.nedap.archie.serializer.adl.constraints.*;
+import com.nedap.archie.serializer.adl.jackson3.ADLStringBuilder3;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,13 +20,18 @@ import static java.util.Optional.ofNullable;
  * @author markopi
  */
 public class ADLDefinitionSerializer {
-    protected final ADLStringBuilder builder;
+    protected final ADLBuilder builder;
 
-    private final Map<Class, ConstraintSerializer> constraintSerializers;
+    private final Map<Class<?>, ConstraintSerializer<?>> constraintSerializers;
     private Function<String, Archetype> flatArchetypeProvider;
     private RMObjectMapperProvider rmObjectMapperProvider;
 
     public ADLDefinitionSerializer(ADLStringBuilder builder, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
+        this((ADLBuilder) builder, flatArchetypeProvider, rmObjectMapperProvider);
+    }
+
+    ADLDefinitionSerializer(ADLBuilder builder, Function<String, Archetype> flatArchetypeProvider,
+            RMObjectMapperProvider rmObjectMapperProvider) {
         this.builder = builder;
         this.flatArchetypeProvider = flatArchetypeProvider;
         this.rmObjectMapperProvider = rmObjectMapperProvider;
@@ -36,7 +40,7 @@ public class ADLDefinitionSerializer {
         constraintSerializers.put(ArchetypeSlot.class, new ArchetypeSlotSerializer(this));
         constraintSerializers.put(CArchetypeRoot.class, new CArchetypeRootSerializer(this));
         constraintSerializers.put(CBoolean.class, new CBooleanSerializer(this));
-        constraintSerializers.put(CComplexObject.class, new CComplexObjectSerializer(this));
+        constraintSerializers.put(CComplexObject.class, new CComplexObjectSerializer<>(this));
         constraintSerializers.put(CComplexObjectProxy.class, new CComplexObjectProxySerializer(this));
         constraintSerializers.put(CDate.class, new CDateSerializer(this));
         constraintSerializers.put(CDateTime.class, new CDateTimeSerializer(this));
@@ -55,7 +59,20 @@ public class ADLDefinitionSerializer {
         return builder.toString();
     }
 
+    /**
+     * Returns the Jackson 2 builder. Throws when this serializer was created for Jackson 3.
+     * @deprecated use {@link #getOutputBuilder()}, which works with both Jackson versions.
+     */
+    @Deprecated
     public ADLStringBuilder getBuilder() {
+        if (!(builder instanceof ADLStringBuilder)) {
+            throw new UnsupportedOperationException("getBuilder() returns the Jackson 2 builder. This serializer uses "
+                    + builder.getClass().getSimpleName() + ". Use getOutputBuilder() instead.");
+        }
+        return (ADLStringBuilder) builder;
+    }
+
+    public ADLBuilder getOutputBuilder() {
         return builder;
     }
 
@@ -69,6 +86,7 @@ public class ADLDefinitionSerializer {
         }
         Archetype archetype = cobj.getArchetype();
         String originalLanguage = ofNullable(archetype)
+                .map(a -> a instanceof TemplateOverlay ? ((TemplateOverlay) a).getOwningTemplate() : a)
                 .flatMap(a -> ofNullable(a.getOriginalLanguage()))
                 .map(TerminologyCode::getCodeString)
                 .orElse(null);
@@ -117,7 +135,7 @@ public class ADLDefinitionSerializer {
 
     @SuppressWarnings("unchecked")
     private ConstraintSerializer<CObject> getSerializer(CObject cobj) {
-        Class c = cobj.getClass();
+        Class<?> c = cobj.getClass();
         ConstraintSerializer result = constraintSerializers.get(c);
         while(result == null && c.getSuperclass() != null) {
             c = c.getSuperclass();
@@ -128,5 +146,9 @@ public class ADLDefinitionSerializer {
 
     public RMObjectMapperProvider getRmObjectMapperProvider() {
         return rmObjectMapperProvider;
+    }
+    /** True when this serializer writes with the Jackson 3 builder, so Jackson 3 mappers must be used. */
+    public boolean usesJackson3() {
+        return builder instanceof ADLStringBuilder3;
     }
 }

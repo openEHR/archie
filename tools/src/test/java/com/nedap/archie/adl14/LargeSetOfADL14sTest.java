@@ -1,35 +1,28 @@
 package com.nedap.archie.adl14;
 
-import com.nedap.archie.adl14.log.ADL2ConversionLog;
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
+import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.adlparser.antlr.Adl14Lexer;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
-import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.archetypevalidator.ValidationResult;
-import com.nedap.archie.diff.Differentiator;
-import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
-import com.nedap.archie.json.JacksonUtil;
 import com.nedap.archie.serializer.adl.ADLArchetypeSerializer;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CodePointCharStream;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 16/10/15.
@@ -39,7 +32,7 @@ public class LargeSetOfADL14sTest {
     private static Logger logger = LoggerFactory.getLogger(LargeSetOfADL14sTest.class);
     private ADL14ConversionConfiguration conversionConfiguration;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         conversionConfiguration = ConversionConfigForTest.getConfig();
     }
@@ -47,7 +40,7 @@ public class LargeSetOfADL14sTest {
     @Test
     public void parseUri() {
 //        CodePointCharStream codePointCharStream = CharStreams.fromString("terminology://SNOMED-CT.com/408733002?subset=Diabetic");//%20Retinopathy%20Study%20field");
-        CodePointCharStream codePointCharStream = CharStreams.fromString("http://test.com/bla?test=green");
+        CodePointCharStream codePointCharStream = CharStreams.fromString("<http://test.com/bla?test=green>");
         Adl14Lexer adl14Lexer = new Adl14Lexer(codePointCharStream);
         assertEquals(1, adl14Lexer.getAllTokens().size());
     }
@@ -55,22 +48,104 @@ public class LargeSetOfADL14sTest {
     @Test
     public void parseUrn() {
 //        CodePointCharStream codePointCharStream = CharStreams.fromString("terminology://SNOMED-CT.com/408733002?subset=Diabetic");//%20Retinopathy%20Study%20field");
-        CodePointCharStream codePointCharStream = CharStreams.fromString("urn:oin:2.3.1.4.4545.22.23");
+        CodePointCharStream codePointCharStream = CharStreams.fromString("< urn:oin:2.3.1.4.4545.22.23 >");
         Adl14Lexer adl14Lexer = new Adl14Lexer(codePointCharStream);
         assertEquals(1, adl14Lexer.getAllTokens().size());
+    }
+
+    /**
+     * End-to-end check on a demo ADL 1.4 archetype that exercises (almost) every constraint type:
+     * <ol>
+     *   <li>Parses it and asserts there are no parse errors.</li>
+     *   <li>Asserts every {@link CTerminologyCodeADL14} in the tree has a non-empty constraint list, and that
+     *       at least two are multi-code. This guards against a regression where multi-code constraints like
+     *       {@code [local::at0001, at0002]} and {@code [openehr::271, 272, 273, 253]} silently parse to an empty
+     *       constraint — a bug that bulk-parse tests miss because they only count parse exceptions.</li>
+     *   <li>Converts it to ADL 2 and asserts that serialize → reparse → serialize-again produces identical
+     *       text both times (a stable round-trip).</li>
+     * </ol>
+     */
+    @Test
+    public void testDemoArchetype() throws Exception {
+        ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider());
+        Archetype archetype;
+        try (InputStream stream = getClass().getResourceAsStream(
+                "/adl14/entry/observation/openEHR-EHR-OBSERVATION.demo.v1.adl")) {
+            assertNotNull(stream, "demo archetype resource not found on classpath");
+            archetype = parser.parse(stream, conversionConfiguration);
+        }
+        assertNotNull(archetype);
+        assertTrue(parser.errorListener.getErrors().getErrors().isEmpty(),
+                () -> "unexpected parse errors: " + parser.errorListener.getErrors());
+
+        List<CTerminologyCodeADL14> termCodes = new ArrayList<>();
+        collectTerminologyCodes(archetype.getDefinition(), termCodes);
+        assertFalse(termCodes.isEmpty(), "no CTerminologyCodeADL14 nodes found - demo archetype unexpectedly empty");
+        for (CTerminologyCodeADL14 termCode : termCodes) {
+            assertFalse(termCode.getConstraint().isEmpty(),
+                    () -> "empty constraint at path " + termCode.getPath()
+                            + " - multi-code parsing likely regressed");
+        }
+
+        // The demo includes both a local multi-code (4 at-codes) and an openehr multi-code (4 codes).
+        // Both used to parse to empty lists before the parser fix.
+        long multiCodeCount = termCodes.stream().filter(t -> t.getConstraint().size() > 1).count();
+        assertTrue(multiCodeCount >= 2,
+                "expected at least two multi-code terminology constraints in the demo, found " + multiCodeCount);
+
+        // Sanity check: end-to-end conversion of the demo also succeeds.
+        ADL2ConversionResultList converted = new ADL14Converter(
+                BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration)
+                .convert(Collections.singletonList(archetype));
+        ADL2ConversionResult result = converted.getConversionResults().get(0);
+        assertNotNull(result.getArchetype(), () -> "conversion returned null archetype, exception: " + result.getException());
+
+        // Round-trip the converted ADL 2 archetype: serialize → reparse → serialize-again and assert the two
+        // serialized strings are identical (a stable round-trip).
+        // The first serialize throws AssertionError if any CTerminologyCodeADL14 slipped through unconverted,
+        // since ADLDefinitionSerializer has no serializer registered for that ADL 1.4-only type.
+        String serialized = ADLArchetypeSerializer.serialize(result.getArchetype());
+        ADLParser adl2Parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
+        Archetype reparsed = adl2Parser.parse(serialized);
+        assertTrue(adl2Parser.getErrors().hasNoErrors(),
+                () -> "roundtrip parsing of converted ADL 2 archetype produced errors: " + adl2Parser.getErrors());
+        String serializedAgain = ADLArchetypeSerializer.serialize(reparsed);
+        assertEquals(serialized, serializedAgain, "serializing twice should produce identical text");
+    }
+
+    private void collectTerminologyCodes(CObject cObject, List<CTerminologyCodeADL14> out) {
+        if (cObject instanceof CTerminologyCodeADL14) {
+            out.add((CTerminologyCodeADL14) cObject);
+        }
+        for (CAttribute attribute : cObject.getAttributes()) {
+            for (CObject child : attribute.getChildren()) {
+                collectTerminologyCodes(child, out);
+            }
+        }
+        if (cObject instanceof CComplexObject) {
+            for (CAttributeTuple tuple : ((CComplexObject) cObject).getAttributeTuples()) {
+                for (CPrimitiveTuple primitiveTuple : tuple.getTuples()) {
+                    for (CPrimitiveObject<?, ?> member : primitiveTuple.getMembers()) {
+                        if (member instanceof CTerminologyCodeADL14) {
+                            out.add((CTerminologyCodeADL14) member);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Test
     public void testRiskFamilyhistory() throws Exception {
 
-        ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+        ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider());
 
         Archetype riskParent = parser.parse(getClass().getResourceAsStream("/adl14/risk_parent.adl"), conversionConfiguration);
         Archetype riskFamilyHistory = parser.parse(getClass().getResourceAsStream("/adl14/risk_history.adl"), conversionConfiguration);
 
         List<Archetype> archetypes = Arrays.asList(riskParent, riskFamilyHistory);
 
-        ADL2ConversionResultList converted = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration)
+        ADL2ConversionResultList converted = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration)
                 .convert(archetypes);
 
         for(ADL2ConversionResult conversionResult:converted.getConversionResults()) {
@@ -90,7 +165,7 @@ public class LargeSetOfADL14sTest {
                 adl2Repository.addArchetype(conversionResult.getArchetype());
             }
         }
-        adl2Repository.compile(BuiltinReferenceModels.getMetaModels());
+        adl2Repository.compile(BuiltinReferenceModels.getMetaModelProvider());
 
         for(ValidationResult validationResult:adl2Repository.getAllValidationResults()) {
             if(!validationResult.passes()) {
@@ -101,8 +176,8 @@ public class LargeSetOfADL14sTest {
 
     @Test
     public void parseLots() throws Exception {
-        Reflections reflections = new Reflections("adl14", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adl")));
+        Reflections reflections = new Reflections("adl14", Scanners.Resources);
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adl")));
 
         Map<String, Exception> exceptions = new LinkedHashMap<>();
         Map<String, ANTLRParserErrors> parseErrors = new LinkedHashMap<>();
@@ -118,7 +193,7 @@ public class LargeSetOfADL14sTest {
             }
 
         }
-        ADL2ConversionResultList converted = new ADL14Converter(BuiltinReferenceModels.getMetaModels(), conversionConfiguration)
+        ADL2ConversionResultList converted = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration)
                 .convert(archetypes);
         for(ADL2ConversionResult result:converted.getConversionResults()) {
             if(result.getArchetype() != null) {// && result.getArchetype().getParentArchetypeId() != null) {
@@ -165,10 +240,15 @@ public class LargeSetOfADL14sTest {
                 adl2Repository.addArchetype(conversionResult.getArchetype());
             }
         }
-        adl2Repository.compile(BuiltinReferenceModels.getMetaModels());
+        adl2Repository.compile(BuiltinReferenceModels.getMetaModelProvider());
         int passingValidations = 0;
         for(ValidationResult validationResult:adl2Repository.getAllValidationResults()) {
             if(validationResult.passes()) {
+                //may still have warnings, so print if that's the case, so you can at least see in the log
+                //assertions would be even better, but these are actual warnings due to ADL 1.4 archetype content
+                if(validationResult.hasWarningsOrErrors()) {
+                    logger.error(String.format("archetype %s has warning %s: ", validationResult.getArchetypeId(), validationResult.getErrors()));
+                }
                 passingValidations++;
             } else {
                 logger.error("error validating {}: {}", validationResult.getArchetypeId(), validationResult.getErrors());
@@ -193,12 +273,12 @@ public class LargeSetOfADL14sTest {
     private Archetype parse(Map<String, Exception> exceptions, Map<String, ANTLRParserErrors> parseErrors, String file) {
         try (InputStream stream = getClass().getResourceAsStream("/" + file)) {
             logger.info("trying to parse " + file);
-            ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModels());
+            ADL14Parser parser = new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider());
 
             Archetype archetype = parser.parse(stream, conversionConfiguration);
             //logger.info(JacksonUtil.getObjectMapper().writeValueAsString(conversionResult.getConversionLog()));
            // System.out.println(ADLArchetypeSerializer.serialize(archetype));
-            if(parser.errorListener.getErrors().getErrors().size() > 0) {
+            if(!parser.errorListener.getErrors().getErrors().isEmpty()) {
                 parseErrors.put(file, parser.errorListener.getErrors());
             }
             if(parser.getTree().exception != null) {

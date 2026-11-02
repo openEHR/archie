@@ -1,18 +1,15 @@
 package com.nedap.archie.archetypevalidator.validations;
 
 import com.google.common.base.Joiner;
-import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
-import com.nedap.archie.rminfo.RMAttributeInfo;
-import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmContainerProperty;
-import org.openehr.bmm.core.BmmProperty;
 import org.openehr.utils.message.I18n;
+
+import static com.nedap.archie.aom.utils.AOMUtils.parentIsMultiple;
 
 public class CodeValidation extends ValidatingVisitor {
 
@@ -32,39 +29,21 @@ public class CodeValidation extends ValidatingVisitor {
             addMessageWithPath(ErrorType.VTSD, cObject.path(),
                     I18n.t("The code specialization depth of code {0} is {1}, which is greater than archetype specialization depth {2}",
                             nodeId, codeSpecializationDepth, archetypeSpecializationDepth));
-        } else if (cObject.isRoot() || parentIsMultiple(cObject)) {
-            if( (codeSpecializationDepth < archetypeSpecializationDepth && !flatParent.getTerminology().hasIdCode(nodeId)) ||
-                    (codeSpecializationDepth == archetypeSpecializationDepth &&  !archetype.getTerminology().hasIdCode(nodeId))) {
+        } else if (cObject.isRoot() || parentIsMultiple(cObject, flatParent, metaModel)) {
+            if ((codeSpecializationDepth < archetypeSpecializationDepth && flatParent != null && !flatParent.getTerminology().hasIdCode(nodeId)) ||
+                    (codeSpecializationDepth == archetypeSpecializationDepth && !archetype.getTerminology().hasIdCode(nodeId))) {
                 addMessageWithPath(ErrorType.VATID, cObject.path(),
                         I18n.t("Node id {0} is used in the archetype, but missing in the terminology", nodeId));
             }
         }
     }
 
-    private boolean parentIsMultiple(CObject cObject) {
-        if(cObject.getParent() != null) {
-
-            CAttribute parent = cObject.getParent();
-            CObject owningObject = parent.getParent();
-            if (parent.getDifferentialPath() != null && flatParent != null) {
-                CAttribute attributeFromParent = (CAttribute) AOMUtils.getDifferentialPathFromParent(flatParent, parent);
-                if(attributeFromParent != null) {
-                    owningObject = attributeFromParent.getParent();
-                }
-
-            }
-            if(owningObject != null) {
-                return combinedModels.isMultiple(owningObject.getRmTypeName(), parent.getRmAttributeName());
-            }
-        }
-        return false;
-    }
-
     public void validate(CTerminologyCode cTerminologyCode) {
         //validate CTerminology codes
         int archetypeSpecializationDepth = archetype.specializationDepth();
 
-        for(String constraint:cTerminologyCode.getConstraint()) {
+        String constraint = cTerminologyCode.getConstraint();
+        if(constraint != null) {
             if(AOMUtils.isValueSetCode(constraint)) {
                 int codeSpecializationDepth = AOMUtils.getSpecializationDepthFromCode(constraint);
                 if(codeSpecializationDepth > archetypeSpecializationDepth) {

@@ -1,13 +1,12 @@
 package com.nedap.archie.adlparser;
 
-import com.google.common.collect.Lists;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.base.Interval;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Created by pieter.bos on 01/11/15.
@@ -154,7 +153,7 @@ public class NumberConstraintParserTest extends PrimitivesConstraintParserTest {
 
 
 		assertEquals(new Interval<>(-10l, -5l), integerAttr8.getConstraint().get(0));
-		assertEquals(new Long(-8l), integerAttr8.getAssumedValue());
+		assertEquals(Long.valueOf(-8l), integerAttr8.getAssumedValue());
 
 
     }
@@ -188,21 +187,21 @@ public class NumberConstraintParserTest extends PrimitivesConstraintParserTest {
 		assertEquals(new Interval<>(10d), realAttr2.getConstraint().get(0));
 		assertEquals(new Interval<>(20d), realAttr2.getConstraint().get(1));
 		assertEquals(new Interval<>(30d), realAttr2.getConstraint().get(2));
-		assertEquals(new Double(20d), realAttr2.getAssumedValue());
+		assertEquals(Double.valueOf(20d), realAttr2.getAssumedValue());
 
 
 		assertEquals(new Interval<>(0d, 100d), realAttr3.getConstraint().get(0));
-		assertEquals(new Double(20.4d), realAttr3.getAssumedValue());
+		assertEquals(Double.valueOf(20.4d), realAttr3.getAssumedValue());
 
 
 		assertEquals(Interval.upperUnbounded(10d, true), realAttr4.getConstraint().get(0));
-		assertEquals(new Double(20d), realAttr4.getAssumedValue());
+		assertEquals(Double.valueOf(20d), realAttr4.getAssumedValue());
 		assertEquals(Interval.lowerUnbounded(10d, true), realAttr5.getConstraint().get(0));
-		assertEquals(new Double(9.5d), realAttr5.getAssumedValue());
+		assertEquals(Double.valueOf(9.5d), realAttr5.getAssumedValue());
 		assertEquals(Interval.upperUnbounded(10d, true), realAttr6.getConstraint().get(0));
-		assertEquals(new Double(20.3d), realAttr6.getAssumedValue());
+		assertEquals(Double.valueOf(20.3d), realAttr6.getAssumedValue());
 		assertEquals(Interval.lowerUnbounded(10d, true), realAttr7.getConstraint().get(0));
-		assertEquals(new Double(8.0d), realAttr7.getAssumedValue());
+		assertEquals(Double.valueOf(8.0d), realAttr7.getAssumedValue());
 		assertEquals(new Interval<>(-10d, -5d), realAttr8.getConstraint().get(0));
 
 	}

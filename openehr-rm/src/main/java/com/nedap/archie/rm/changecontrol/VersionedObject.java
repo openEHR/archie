@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonAlias;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.support.identification.HierObjectId;
+import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
@@ -23,7 +24,7 @@ import java.util.Objects;
 public class VersionedObject<Type> extends RMObject {
     private HierObjectId uid;
     @XmlElement(name = "owner_id")
-    private ObjectRef ownerId;
+    private ObjectRef<? extends ObjectId> ownerId;
 
     @XmlElement(name = "time_created")
     private DvDateTime timeCreated;
@@ -31,10 +32,10 @@ public class VersionedObject<Type> extends RMObject {
     public VersionedObject() {
     }
 
-    public VersionedObject(HierObjectId uid, ObjectRef ownerId, DvDateTime timeCreated) {
-        this.uid = uid;
-        this.ownerId = ownerId;
-        this.timeCreated = timeCreated;
+    public VersionedObject(HierObjectId uid, ObjectRef<? extends ObjectId> ownerId, DvDateTime timeCreated) {
+        setUid(uid);
+        setOwnerId(ownerId);
+        setTimeCreated(timeCreated);
     }
 
     public HierObjectId getUid() {
@@ -45,11 +46,11 @@ public class VersionedObject<Type> extends RMObject {
         this.uid = uid;
     }
 
-    public ObjectRef getOwnerId() {
+    public ObjectRef<? extends ObjectId> getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(ObjectRef ownerId) {
+    public void setOwnerId(ObjectRef<? extends ObjectId> ownerId) {
         this.ownerId = ownerId;
     }
 

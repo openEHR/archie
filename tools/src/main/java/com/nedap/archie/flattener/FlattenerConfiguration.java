@@ -1,7 +1,6 @@
 package com.nedap.archie.flattener;
 
-import com.esotericsoftware.kryo.Kryo;
-import com.nedap.archie.util.KryoUtil;
+import com.nedap.archie.util.CloneUtil;
 
 public class FlattenerConfiguration {
 
@@ -51,6 +50,22 @@ public class FlattenerConfiguration {
      * Only for Operational templates: replace any empty occurrences with effectiveOccurrences.
      */
     private boolean fillEmptyOccurrences = true;
+
+    /**
+     * Only for Operational templates: in case a used archetype in a slot is missing, switches the following behaviour:
+     * true: throw an exception
+     * false: skip replacing the archetype root with the archetype contents, and continue creating the operational tempalte
+     *
+     * Can be useful for archetype modeling purposes.
+     */
+    private boolean failOnMissingUsedArchetype = true;
+
+    /**
+     * Officially, objects can only be excluded (occurrences matches {0}) after any
+     * specializations. If any object is specialized after the exclusion of the parent object, the specialization is ignored.
+     * This was not ignored before, so this config can be used to reproduce previous behaviour.
+     */
+    private boolean allowSpecializationAfterExclusion = true;
 
     private FlattenerConfiguration() {
 
@@ -109,14 +124,9 @@ public class FlattenerConfiguration {
         this.languagesToKeep = languagesToKeep;
     }
 
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public FlattenerConfiguration clone() {
-        Kryo kryo = null;
-        try {
-            kryo = KryoUtil.getPool().borrow();
-            return kryo.copy(this);
-        } finally {
-            KryoUtil.getPool().release(kryo);
-        }
+        return CloneUtil.clone(this);
     }
 
     public boolean isReplaceUseNode() {
@@ -157,5 +167,21 @@ public class FlattenerConfiguration {
 
     public void setFillEmptyOccurrences(boolean fillEmptyOccurrences) {
         this.fillEmptyOccurrences = fillEmptyOccurrences;
+    }
+
+    public boolean isFailOnMissingUsedArchetype() {
+        return failOnMissingUsedArchetype;
+    }
+
+    public void setFailOnMissingUsedArchetype(boolean failOnMissingUsedArchetype) {
+        this.failOnMissingUsedArchetype = failOnMissingUsedArchetype;
+    }
+
+    public boolean isAllowSpecializationAfterExclusion() {
+        return allowSpecializationAfterExclusion;
+    }
+
+    public void setAllowSpecializationAfterExclusion(boolean allowSpecializationAfterExclusion) {
+        this.allowSpecializationAfterExclusion = allowSpecializationAfterExclusion;
     }
 }

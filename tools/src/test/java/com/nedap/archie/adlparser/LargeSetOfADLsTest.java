@@ -1,11 +1,11 @@
 package com.nedap.archie.adlparser;
 
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
-import org.slf4j.LoggerFactory;
+import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by pieter.bos on 16/10/15.
@@ -25,8 +25,8 @@ public class LargeSetOfADLsTest {
 
     @Test
     public void parseLots() throws Exception {
-        Reflections reflections = new Reflections("adl2-tests", new ResourcesScanner());
-        List<String> adlFiles = new ArrayList(reflections.getResources(Pattern.compile(".*\\.adls")));
+        Reflections reflections = new Reflections("adl2-tests", Scanners.Resources);
+        List<String> adlFiles = new ArrayList<>(reflections.getResources(Pattern.compile(".*\\.adls")));
 
         Map<String, Exception> exceptions = new LinkedHashMap<>();
         Map<String, ANTLRParserErrors> parseErrors = new LinkedHashMap<>();
@@ -36,12 +36,9 @@ public class LargeSetOfADLsTest {
                 logger.info("trying to parse " + file);
                 ADLParser parser = new ADLParser();
                 parser.parse(stream);
-                if(parser.errorListener.getErrors().getErrors().size() > 0) {
-                    parseErrors.put(file, parser.errorListener.getErrors());
-                }
-                if(parser.getTree().exception != null) {
-                    exceptions.put(file, parser.getTree().exception);
-                }
+
+            } catch (ADLParseException parseException) {
+                parseErrors.put(file, parseException.getErrors());
             } catch (Exception e) {
                 exceptions.put(file, e);
             }

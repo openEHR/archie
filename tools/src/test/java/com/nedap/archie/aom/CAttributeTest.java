@@ -1,9 +1,9 @@
 package com.nedap.archie.aom;
 
 import com.nedap.archie.base.MultiplicityInterval;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by pieter.bos on 14/04/2017.
@@ -84,6 +84,17 @@ public class CAttributeTest {
         assertNull(attribute.getChild("id2"));
         assertEquals(child3, attribute.getChild("id4"));
         assertEquals(child2, attribute.getChild("id3"));
+    }
+
+    @Test
+    public void isLeaf() {
+        CAttribute cAttribute = new CAttribute("items");
+
+        assertTrue(cAttribute.isLeaf());
+
+        cAttribute.addChild(createCComplexObject("id2"));
+
+        assertFalse(cAttribute.isLeaf());
     }
 
     private CComplexObject createCComplexObject(String nodeId) {

@@ -1,11 +1,13 @@
 package com.nedap.archie.rm.support.identification;
 
 import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.rminfo.Invariant;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -18,6 +20,8 @@ import java.util.Objects;
 })
 public class ObjectRef<Idtype extends ObjectId> extends RMObject {
 
+    private static Pattern NAMESPACE_PATTERN = Pattern.compile("[a-zA-Z][a-zA-Z0-9_.:\\/&?=+-]*");
+
     private String namespace;
     private String type;
     private Idtype id;
@@ -26,9 +30,9 @@ public class ObjectRef<Idtype extends ObjectId> extends RMObject {
     }
 
     public ObjectRef(Idtype id, String namespace, String type) {
-        this.namespace = namespace;
-        this.type = type;
-        this.id = id;
+        setNamespace(namespace);
+        setType(type);
+        setId(id);
     }
 
     public String getNamespace() {
@@ -68,5 +72,13 @@ public class ObjectRef<Idtype extends ObjectId> extends RMObject {
     @Override
     public int hashCode() {
         return Objects.hash(namespace, type, id);
+    }
+
+    @Invariant("Namespace_valid") //not officially defined as invariant, but its as defined in the text
+    public boolean namespaceValid() {
+        if(namespace == null) {
+            return true;
+        }
+        return NAMESPACE_PATTERN.matcher(namespace).matches();
     }
 }

@@ -1,9 +1,9 @@
 package com.nedap.archie.json;
 
 import com.nedap.archie.adlparser.ADLParser;
-import com.nedap.archie.adlparser.modelconstraints.RMConstraintImposer;
 import com.nedap.archie.aom.Archetype;
-
+import com.nedap.archie.json.JacksonTestMappers.JsonMapper;
+import com.nedap.archie.json.JacksonTestMappers.JsonMapperFactory;
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.composition.Composition;
@@ -19,10 +19,10 @@ import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.testutil.TestUtil;
 import com.nedap.archie.xml.JAXBUtil;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -30,8 +30,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests JSON serialization and deserialization of RM Objects using Jackson
@@ -41,20 +42,19 @@ import static org.junit.Assert.assertThat;
 public class JacksonRMRoundTripTest {
 
     private ADLParser parser;
-    private Archetype archetype;
-
     private TestUtil testUtil;
 
-    @Before
+    @BeforeEach
     public void setup() {
         testUtil = new TestUtil();
-        parser = new ADLParser(new RMConstraintImposer());
+        parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
     }
 
-    @Test
-    public void dataValues() throws Exception {
-        archetype = parser.parse(JacksonRMRoundTripTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.datavalues.v1.adls"));
-        Cluster cluster =  (Cluster) testUtil.constructEmptyRMObject(archetype.getDefinition());
+    @ParameterizedTest
+    @MethodSource("com.nedap.archie.json.JacksonTestMappers#mappers")
+    public void dataValues(JsonMapperFactory factory) throws Exception {
+        Archetype archetype = parser.parse(JacksonRMRoundTripTest.class.getResourceAsStream("openEHR-EHR-CLUSTER.datavalues.v1.adls"));
+        Cluster cluster = (Cluster) testUtil.constructEmptyRMObject(archetype.getDefinition());
         UIDBasedId uid = new HierObjectId();
         uid.setValue("SOME_UUID");
         cluster.setUid(uid);
@@ -75,9 +75,9 @@ public class JacksonRMRoundTripTest {
         DvURI uri = queryContext.find("/items['Uri']/value");
         uri.setValue(URI.create("http://test.example.com"));
 
-        String json = JacksonUtil.getObjectMapper().writeValueAsString(cluster);
-        System.out.println(json);
-        Cluster parsedCluster = (Cluster) JacksonUtil.getObjectMapper().readValue(json, RMObject.class);
+        JsonMapper mapper = factory.create();
+        String json = mapper.writeValueAsString(cluster);
+        Cluster parsedCluster = mapper.readValue(json, Cluster.class);
         RMQueryContext parsedQueryContext = getQueryContext(parsedCluster);
 
         assertThat(parsedQueryContext.<DvText>find("/items['Text']/value").getValue(), is("test-text"));
@@ -88,37 +88,41 @@ public class JacksonRMRoundTripTest {
         assertThat(parsedQueryContext.<DvURI>find("/items['Uri']/value").getValue(), is(URI.create("http://test.example.com")));
         assertThat(parsedCluster.getUid().getValue(), is("SOME_UUID"));
         assertThat(parsedCluster.getArchetypeNodeId(), is("id1"));
-
     }
 
     private RMQueryContext getQueryContext(Cluster cluster) {
         return new RMQueryContext(ArchieRMInfoLookup.getInstance(), cluster, JAXBUtil.getArchieJAXBContext());
     }
 
-    @Test
-    public void composition() throws Exception {
+    @ParameterizedTest
+    @MethodSource("com.nedap.archie.json.JacksonTestMappers#mappers")
+    public void composition(JsonMapperFactory factory) throws Exception {
         Composition composition = new Composition();
-        composition.setCategory("openEhr::123");
+        composition.setCategory("persistent", "openEhr::123");
         composition.setTerritory("openEhr::456");
         composition.setLanguage("openEhr::nl");
-        String json = JacksonUtil.getObjectMapper().writeValueAsString(composition);
+        ArchieJacksonConfiguration config = ArchieJacksonConfiguration.createStandardsCompliant();
+        //include the type property name so we can parse it as an RmObject here.
+        config.setAlwaysIncludeTypeProperty(true);
 
-        Composition parsedComposition = (Composition) JacksonUtil.getObjectMapper().readValue(json, RMObject.class);
+        JsonMapper objectMapper = factory.create();
+        String json = objectMapper.writeValueAsString(composition);
+
+        Composition parsedComposition = (Composition) objectMapper.readValue(json, Composition.class);
         assertEquals(composition.getCategory().getDefiningCode().getCodeString(), parsedComposition.getCategory().getDefiningCode().getCodeString());
         assertEquals(composition.getLanguage().getCodeString(), parsedComposition.getLanguage().getCodeString());
         assertEquals(composition.getTerritory().getCodeString(), parsedComposition.getTerritory().getCodeString());
 
     }
 
-    /**
-     * Parse a 0.5.5 archie generated json and make sure it parses
-     */
-    @Test
-    public void check055BackwardsCompatibility() throws Exception {
+    @ParameterizedTest
+    @MethodSource("com.nedap.archie.json.JacksonTestMappers#mappers")
+    public void check055BackwardsCompatibility(JsonMapperFactory factory) throws Exception {
         InputStream stream = getClass().getResourceAsStream("rm_object.json");
-        JacksonUtil.getObjectMapper().readValue(stream, RMObject.class);
-
+        ArchieJacksonConfiguration standardsCompliant = ArchieJacksonConfiguration.createStandardsCompliant();
+        //unfortunately, we cannot handle two different type propety names
+        //that is sort of possible in jackson, but would require overriding internal jackson classes
+        standardsCompliant.setTypePropertyName("@type");
+        factory.create(standardsCompliant).readValue(stream, RMObject.class);
     }
-
-
 }

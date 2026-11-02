@@ -32,8 +32,8 @@ public class Round implements FunctionImplementation {
         ValueList result = new ValueList();
         result.setType(PrimitiveType.Integer);
 
-        for(Value valueObject : arguments.get(0).getValues()) {
-            result.addValue(new Value(Math.round(((Number) valueObject.getValue()).doubleValue())));
+        for(Value<?> valueObject : arguments.get(0).getValues()) {
+            result.addValue(new Value<>(Math.round(((Number) valueObject.getValue()).doubleValue())));
         }
 
         return result;

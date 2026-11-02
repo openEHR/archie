@@ -1,7 +1,7 @@
 package org.openehr.utils.error;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openehr.utils.message.MessageCode;
 import org.openehr.utils.message.MessageDescriptor;
 import org.openehr.utils.message.MessageLogger;
@@ -9,13 +9,13 @@ import org.openehr.utils.message.MessageSeverity;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ErrorAccumulatorTest {
 
     private MessageLogger errorAccumulator;
 
-    @Before
+    @BeforeEach
     public void setup() {
         errorAccumulator = new MessageLogger();
     }
@@ -33,7 +33,6 @@ public class ErrorAccumulatorTest {
         errorAccumulator.addErrorWithLocation(TestErrorCode.code1, null);
         errorAccumulator.addWarningWithLocation(TestErrorCode.code2, null);
         errorAccumulator.addInfoWithLocation(TestErrorCode.code3, null);
-        errorAccumulator.addDebugWithLocation(null, TestErrorCode.code4.getMessageTemplate());//debug does not accept codes, for some reason!
         List<MessageCode> codes = errorAccumulator.getErrorCodes();
         assertEquals(codes.size(), 1);
         assertEquals(codes.get(0), TestErrorCode.code1);
@@ -44,7 +43,6 @@ public class ErrorAccumulatorTest {
         errorAccumulator.addErrorWithLocation(TestErrorCode.code1, null);
         errorAccumulator.addWarningWithLocation(TestErrorCode.code2, null);
         errorAccumulator.addInfoWithLocation(TestErrorCode.code3, null);
-        errorAccumulator.addDebugWithLocation(null, TestErrorCode.code4.getCode());
         List<MessageCode> codes = errorAccumulator.getWarningCodes();
         assertEquals(codes.size(), 1);
         assertEquals(codes.get(0), TestErrorCode.code2);
@@ -159,12 +157,6 @@ public class ErrorAccumulatorTest {
     @Test
     public void addInfo() throws Exception {
         errorAccumulator.addInfoWithLocation(TestErrorCode.code0, null);
-        assertEquals(1, errorAccumulator.getMessageList().size());
-    }
-
-    @Test
-    public void addDebug() throws Exception {
-        errorAccumulator.addDebugWithLocation(null, TestErrorCode.code0.getCode());//debug does not use a code?!
         assertEquals(1, errorAccumulator.getMessageList().size());
     }
 

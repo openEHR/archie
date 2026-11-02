@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -48,18 +50,18 @@ public abstract class Locatable extends Pathable {
     }
 
     public Locatable(String archetypeNodeId, DvText name) {
-        this.name = name;
-        this.archetypeNodeId = archetypeNodeId;
+        setName(name);
+        setArchetypeNodeId(archetypeNodeId);
     }
 
     public Locatable(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName) {
         super(parent, parentAttributeName);
-        this.name = name;
-        this.archetypeNodeId = archetypeNodeId;
-        this.uid = uid;
-        this.archetypeDetails = archetypeDetails;
-        this.feederAudit = feederAudit;
-        this.links = links;
+        setName(name);
+        setArchetypeNodeId(archetypeNodeId);
+        setUid(uid);
+        setArchetypeDetails(archetypeDetails);
+        setFeederAudit(feederAudit);
+        setLinks(links);
     }
 
     public DvText getName() {
@@ -143,6 +145,13 @@ public abstract class Locatable extends Pathable {
         this.feederAudit = feederAudit;
     }
 
+    @JsonIgnore
+    @RMPropertyIgnore
+    @XmlTransient
+    public boolean isArchetypeRoot() {
+        return archetypeDetails != null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -160,5 +169,20 @@ public abstract class Locatable extends Pathable {
     @Override
     public int hashCode() {
         return Objects.hash(name, archetypeNodeId, uid, archetypeDetails, feederAudit, links);
+    }
+
+    @Invariant(value="Links_valid", ignored = true)
+    public boolean linksValid() {
+        return InvariantUtil.nullOrNotEmpty(links);
+    }
+
+    @Invariant(value="Archetyped_valid", ignored = true)
+    public boolean archetypedValid() {
+        return isArchetypeRoot()^ archetypeDetails != null; //this is not a data validation, again, and pretty much useless
+    }
+
+    @Invariant("Archetype_node_id_valid")
+    public boolean archetypeNodeIdValid() {
+        return InvariantUtil.nullOrNotEmpty(archetypeNodeId);
     }
 }

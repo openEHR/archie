@@ -1,14 +1,8 @@
 package com.nedap.archie.datetime;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.OffsetDateTime;
-import java.time.OffsetTime;
-import java.time.Period;
-import java.time.Year;
-import java.time.YearMonth;
+import org.threeten.extra.PeriodDuration;
+
+import java.time.*;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
@@ -21,21 +15,14 @@ public class DateTimeParsers {
 
     public static TemporalAccessor parseDateTimeValue(String text) {
         try {
-            return DateTimeFormatters.ISO_8601_DATE_TIME.parseBest(text, OffsetDateTime::from, LocalDateTime::from);
+            return DateTimeFormatters.ISO_8601_DATE_TIME.parseBest(text, OffsetDateTime::from, LocalDateTime::from, LocalDate::from, YearMonth::from, Year::from);
         } catch (DateTimeParseException e) {
-            try {
-                //Not parseable as a standard public object from datetime. We do not implement our own yet (we could!)
-                //so fallback to the Parsed object. The Parsed object is package-private, so cannot be added as a reference
-                //to the parseBest query, unfortunately.
-                return DateTimeFormatters.ISO_8601_DATE_TIME.parse(text);
-            } catch (DateTimeParseException e1) {
-                try {
-                    //some more interesting date_time expression without hyphens...
-                    return DateTimeFormatters.ISO_8601_DATE_TIME_COMPACT.parseBest(text, OffsetDateTime::from,  LocalDateTime::from);
-                } catch (DateTimeParseException e2) {
-                    throw new IllegalArgumentException(e2.getMessage() + ":" + text);
-                }
-            }
+          try {
+              //some more interesting date_time expression without hyphens...
+              return DateTimeFormatters.ISO_8601_DATE_TIME_COMPACT.parseBest(text, OffsetDateTime::from,  LocalDateTime::from);
+          } catch (DateTimeParseException e2) {
+              throw new IllegalArgumentException(e2.getMessage() + ":" + text);
+          }
         }
     }
 
@@ -74,8 +61,10 @@ public class DateTimeParsers {
 
     public static TemporalAmount parseDurationValue(String text) {
         try {
-            if(text.startsWith("PT")) {
+            if(text.startsWith("PT") || text.startsWith("-PT")) {
                 return Duration.parse(text);
+            } else if (text.contains("T")) {
+                return PeriodDuration.parse(text);
             } else {
                 return Period.parse(text);
             }

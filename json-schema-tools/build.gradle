@@ -1,0 +1,12 @@
+description = "Generates and validates openEHR JSON schemas from BMM models"
+
+dependencies {
+    api project(':bmm')
+
+    api(libs.leadpony.justify)
+    api(libs.jakarta.json.api)
+
+    runtimeOnly(variantOf(libs.jakarta.json) { classifier("module") })
+
+    testImplementation project(':referencemodels')
+}

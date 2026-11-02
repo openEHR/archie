@@ -3,12 +3,13 @@ package com.nedap.archie.aom.primitives;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.xml.adapters.TimeIntervalXmlAdapter;
 import com.nedap.archie.xml.adapters.TimeXmlAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.annotation.Nullable;
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class CTime extends CTemporal<TemporalAccessor> {
 
     @XmlJavaTypeAdapter(TimeXmlAdapter.class)
     @XmlElement(name="assumed_value")
+    @Nullable
     private TemporalAccessor assumedValue;
     @XmlJavaTypeAdapter(TimeIntervalXmlAdapter.class)
     private List<Interval<TemporalAccessor>> constraint = new ArrayList<>();
@@ -44,10 +46,6 @@ public class CTime extends CTemporal<TemporalAccessor> {
     @Override
     public void setConstraint(List<Interval<TemporalAccessor>> constraint) {
         this.constraint = constraint;
-    }
-
-    public List<Interval<TemporalAccessor>> getConstraints() {
-        return constraint;
     }
 
     @Override

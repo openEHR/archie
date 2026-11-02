@@ -10,7 +10,6 @@ import com.nedap.archie.rminfo.RMAttributeInfo;
 import com.nedap.archie.rminfo.RMTypeInfo;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,17 +25,16 @@ class RMObjectValidationUtil {
     public static String getParentObservationTerm(CAttribute attribute) {
         String result = "";
         CObject parent = attribute.getParent();
-        while (result.equals("") && parent != null) {
-            CAttribute attributeParent = parent.getParent();
-            if (attributeParent != null) {
-                parent = attributeParent.getParent();
-                if (parent.getRmTypeName().equals("OBSERVATION")) {
-                    ArchetypeTerm parentTerm = parent.getTerm();
-                    if (parentTerm != null) {
-                        result = parentTerm.getText();
-                    }
+        CAttribute attributeParent = parent.getParent();
+        while (result.equals("") && parent != null && attributeParent != null) {
+            parent = attributeParent.getParent();
+            if (parent != null && parent.getRmTypeName().equals("OBSERVATION")) {
+                ArchetypeTerm parentTerm = parent.getTerm();
+                if (parentTerm != null) {
+                    result = parentTerm.getText();
                 }
             }
+            attributeParent = parent == null ? null : parent.getParent();
         }
         return result;
     }
@@ -48,7 +46,7 @@ class RMObjectValidationUtil {
     public static List<CAttribute> getDefaultAttributeConstraints(CObject cObject, List<CAttribute> attributes, ModelInfoLookup lookup, ModelConstraintImposer constraintImposer) {
         List<CAttribute> result = new ArrayList<>();
         Set<String> alreadyConstrainedAttributes = attributes.stream()
-                .map(attribute -> attribute.getRmAttributeName())
+                .map(CAttribute::getRmAttributeName)
                 .collect(Collectors.toSet());
 
         RMTypeInfo typeInfo = lookup.getTypeInfo(cObject.getRmTypeName());

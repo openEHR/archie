@@ -22,7 +22,7 @@ public class AssumedValueFiller {
 
     public static void fillAssumedValues(CObject cObject) {
         if(cObject instanceof CPrimitiveObject) {
-            fillAssumedValue((CPrimitiveObject) cObject);
+            fillAssumedValue((CPrimitiveObject<?, ?>) cObject);
         } else {
             for(CAttribute attribute:cObject.getAttributes()) {
                 for(CObject child:attribute.getChildren()) {
@@ -32,34 +32,32 @@ public class AssumedValueFiller {
         }
     }
 
-    private static void fillAssumedValue(CPrimitiveObject cObject) {
+    private static void fillAssumedValue(CPrimitiveObject<?, ?> cObject) {
         if(cObject instanceof COrdered) {
-            fillAssumedValueForOrdered((COrdered) cObject);
+            fillAssumedValueForOrdered((COrdered<?>) cObject);
         } else if (cObject instanceof CString) {
             fillAssumedValueForString((CString) cObject);
         }
     }
 
     private static void fillAssumedValueForString(CString cObject) {
-        CString cString = cObject;
-        List<String> constraint = cString.getConstraint();
+        List<String> constraint = cObject.getConstraint();
         if(constraint != null && constraint.size() == 1) {
             String singleConstraint = constraint.get(0);
             if(!CString.isRegexConstraint(singleConstraint)) {
-                cString.setAssumedValue(singleConstraint);
+                cObject.setAssumedValue(singleConstraint);
             }
         }
     }
 
-    private static void fillAssumedValueForOrdered(COrdered cObject) {
-        COrdered cOrdered = cObject;
-        List<Interval> constraint = cOrdered.getConstraint();
+    private static <T> void fillAssumedValueForOrdered(COrdered<T> cObject) {
+        List<Interval<T>> constraint = cObject.getConstraint();
         if(constraint != null && constraint.size() == 1) {
-            Interval interval = constraint.get(0);
+            Interval<T> interval = constraint.get(0);
             if(!interval.isLowerUnbounded() && !interval.isUpperUnbounded() &&
                     interval.isLowerIncluded() && interval.isUpperIncluded()
                     && Objects.equals(interval.getLower(), interval.getUpper())) {
-                cOrdered.setAssumedValue(interval.getLower());
+                cObject.setAssumedValue(interval.getLower());
             }
         }
     }

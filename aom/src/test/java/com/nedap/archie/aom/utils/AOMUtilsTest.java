@@ -1,8 +1,8 @@
 package com.nedap.archie.aom.utils;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AOMUtilsTest {
 
@@ -14,4 +14,5 @@ public class AOMUtilsTest {
         assertEquals("id1.1", AOMUtils.codeAtLevel("id1.1.1", 1));
         assertEquals("id1", AOMUtils.codeAtLevel("id1.0.1", 1));
     }
+
 }

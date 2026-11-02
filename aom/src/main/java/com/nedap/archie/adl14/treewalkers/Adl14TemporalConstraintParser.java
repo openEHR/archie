@@ -37,7 +37,7 @@ public class Adl14TemporalConstraintParser extends BaseTreeWalker {
             if(durationPattern.endsWith("/")) {
                 durationPattern = durationPattern.substring(0, durationPattern.length()-1);
             }
-            result.setPatternedConstraint(durationPattern);
+            result.setPatternConstraint(durationPattern);
         }
         if(context.assumed_duration_value() != null) {
             result.setAssumedValue(parseDurationValue(context.assumed_duration_value().duration_value().getText()));
@@ -133,7 +133,7 @@ public class Adl14TemporalConstraintParser extends BaseTreeWalker {
         //TODO: surround with try catch, do a nice error reporting with line numbers and other nice messages here :)
         CDateTime result = new CDateTime();
         if(context.DATE_TIME_CONSTRAINT_PATTERN() != null) {
-            result.setPatternedConstraint(context.DATE_TIME_CONSTRAINT_PATTERN().getText());
+            result.setPatternConstraint(context.DATE_TIME_CONSTRAINT_PATTERN().getText());
         }
         if(context.assumed_date_time_value() != null) {
             result.setAssumedValue(parseDateTimeValue(context.assumed_date_time_value().date_time_value().getText()));
@@ -227,7 +227,7 @@ public class Adl14TemporalConstraintParser extends BaseTreeWalker {
         //TODO: surround with try catch, do a nice error reporting with line numbers and other nice messages here :)
         CTime result = new CTime();
         if(context.TIME_CONSTRAINT_PATTERN() != null) {
-            result.setPatternedConstraint(context.TIME_CONSTRAINT_PATTERN().getText());
+            result.setPatternConstraint(context.TIME_CONSTRAINT_PATTERN().getText());
         }
         if(context.assumed_time_value() != null) {
             result.setAssumedValue(parseTimeValue(context.assumed_time_value().time_value().getText()));
@@ -322,7 +322,7 @@ public class Adl14TemporalConstraintParser extends BaseTreeWalker {
         //TODO: surround with try catch, do a nice error reporting with line numbers and other nice messages here :)
         CDate result = new CDate();
         if(context.DATE_CONSTRAINT_PATTERN() != null) {
-            result.setPatternedConstraint(context.DATE_CONSTRAINT_PATTERN().getText());
+            result.setPatternConstraint(context.DATE_CONSTRAINT_PATTERN().getText());
         }
         if(context.assumed_date_value() != null) {
             result.setAssumedValue(parseDateValue(context.assumed_date_value().date_value().getText()));

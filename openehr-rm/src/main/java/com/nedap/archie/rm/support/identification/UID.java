@@ -1,6 +1,8 @@
 package com.nedap.archie.rm.support.identification;
 
+import com.google.common.base.Strings;
 import com.nedap.archie.rm.RMObject;
+import com.nedap.archie.rminfo.Invariant;
 
 import java.util.Objects;
 
@@ -15,7 +17,7 @@ public abstract class UID extends RMObject {
     }
 
     public UID(String value) {
-        this.value = value;
+        setValue(value);
     }
 
     public String getValue() {
@@ -37,5 +39,10 @@ public abstract class UID extends RMObject {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Invariant("Value_valid")
+    public boolean valueValid() {
+        return !Strings.isNullOrEmpty(value);
     }
 }

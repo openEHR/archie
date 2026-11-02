@@ -3,11 +3,13 @@ package com.nedap.archie.rm.generic;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvIdentifier;
 import com.nedap.archie.rm.support.identification.PartyRef;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +26,7 @@ public class PartyRelated extends PartyIdentified {
 
     public PartyRelated(@Nullable PartyRef externalRef, @Nullable String name, @Nullable List<DvIdentifier> identifiers, DvCodedText relationship) {
         super(externalRef, name, identifiers);
-        this.relationship = relationship;
+        setRelationship(relationship);
     }
 
     public DvCodedText getRelationship() {
@@ -47,5 +49,10 @@ public class PartyRelated extends PartyIdentified {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), relationship);
+    }
+
+    @Invariant("Relationship_valid")
+    public boolean relationshipValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(relationship, "subject relationship");
     }
 }

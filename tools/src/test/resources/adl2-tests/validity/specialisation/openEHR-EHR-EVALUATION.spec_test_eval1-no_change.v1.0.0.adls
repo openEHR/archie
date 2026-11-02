@@ -21,7 +21,7 @@ description
 	>
 	lifecycle_state = <"unmanaged">
 	other_details = <
-		["regression"] = <"VSONCO">
+		["regression"] = <"VSACO">
 	>
 
 definition

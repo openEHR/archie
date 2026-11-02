@@ -5,11 +5,13 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
@@ -35,10 +37,10 @@ public class Participation extends RMObject {
     }
 
     public Participation(PartyProxy performer, DvText function, @Nullable DvCodedText mode, @Nullable DvInterval<DvDateTime> time) {
-        this.function = function;
-        this.mode = mode;
-        this.time = time;
-        this.performer = performer;
+        setFunction(function);
+        setMode(mode);
+        setTime(time);
+        setPerformer(performer);
     }
 
     public DvText getFunction() {
@@ -89,5 +91,18 @@ public class Participation extends RMObject {
     @Override
     public int hashCode() {
         return Objects.hash(function, mode, time, performer);
+    }
+
+    @Invariant("Function_valid")
+    public boolean functionValid() {
+        if(function instanceof DvCodedText) {
+            return InvariantUtil.belongsToTerminologyByGroupId((DvCodedText) function, "participation function");
+        }
+        return true;
+    }
+
+    @Invariant("Mode_valid")
+    public boolean modeValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(mode, "participation mode");
     }
 }

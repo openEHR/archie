@@ -1,4 +1,5 @@
 gradle.properties
+lsp/
 .gradle
 build/
 target/
@@ -6,3 +7,5 @@ target/
 .idea
 out/
 test-output/
+grammars/gen
+grammars/src/main/antlr/gen/

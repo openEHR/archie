@@ -4,15 +4,19 @@ package com.nedap.archie.rm.datavalues;
  * Created by pieter.bos on 08/07/16.
  */
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DV_PARAGRAPH")
+@Deprecated
 public class DvParagraph extends DataValue {
 
     private List<DvText> items = new ArrayList<>();
@@ -40,5 +44,10 @@ public class DvParagraph extends DataValue {
     @Override
     public int hashCode() {
         return Objects.hash(items);
+    }
+
+    @Invariant(value = "Items_valid", ignored = true)
+    public boolean itemsValid() {
+        return InvariantUtil.nullOrNotEmpty(items);
     }
 }

@@ -18,8 +18,8 @@ abstract public class CTemporalSerializer<T extends CTemporal<?>> extends COrder
     }
 
     private void serializePatternedConstraint(T cobj) {
-        if (cobj.getPatternedConstraint()!=null) {
-            builder.append(cobj.getPatternedConstraint());
+        if (cobj.getPatternConstraint()!=null) {
+            builder.append(cobj.getPatternConstraint());
             if (!cobj.getConstraint().isEmpty()) {
                 builder.append("/");
             }
@@ -31,7 +31,7 @@ abstract public class CTemporalSerializer<T extends CTemporal<?>> extends COrder
         boolean result =  super.shouldIncludeAssumedValue(cobj);
         if (!result) return false;
 
-        return (cobj.getPatternedConstraint()!=null ||
+        return (cobj.getPatternConstraint()!=null ||
                 (cobj.getConstraint()!=null && !cobj.getConstraint().isEmpty()));
     }
 

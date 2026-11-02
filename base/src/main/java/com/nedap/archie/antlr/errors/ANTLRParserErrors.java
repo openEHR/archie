@@ -20,16 +20,24 @@ public class ANTLRParserErrors {
         errors.add(new ANTLRParserMessage(error));
     }
 
-    public void addError(String error, int line, int charPositionInLine) {
-        errors.add(new ANTLRParserMessage(error, line, charPositionInLine));
+    public void addError(String error, String shortMessage, int line, int charPositionInLine) {
+        errors.add(new ANTLRParserMessage(error, shortMessage, line, charPositionInLine));
+    }
+
+    public void addError(String error, String shortMessage, int line, int charPositionInLine, Integer length, String offendingSymbol) {
+        errors.add(new ANTLRParserMessage(error, shortMessage, line, charPositionInLine, length, offendingSymbol));
     }
 
     public void addWarning(String error) {
         warnings.add(new ANTLRParserMessage(error));
     }
 
-    public void addWarning(String error, int line, int charPositionInLine) {
-        warnings.add(new ANTLRParserMessage(error, line, charPositionInLine));
+    public void addWarning(String error, String shortMessage, int line, int charPositionInLine) {
+        warnings.add(new ANTLRParserMessage(error, shortMessage, line, charPositionInLine));
+    }
+
+    public void addWarning(String error, String shortMessage, int line, int charPositionInLine, int length, String offendingSymbol) {
+        warnings.add(new ANTLRParserMessage(error, shortMessage, line, charPositionInLine, length, offendingSymbol));
     }
 
     public void logToLogger() {

@@ -1,11 +1,12 @@
 package com.nedap.archie.aom.primitives;
 
 import com.nedap.archie.base.Interval;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class CReal extends COrdered<Double> {
 
     @XmlElement(name="assumed_value")
+    @Nullable
     private Double assumedValue;
     private List<Interval<Double>> constraint = new ArrayList<>();
 
@@ -39,10 +41,6 @@ public class CReal extends COrdered<Double> {
     @Override
     public void setConstraint(List<Interval<Double>> constraint) {
         this.constraint = constraint;
-    }
-
-    public List<Interval<Double>> getConstraints() {
-        return constraint;
     }
 
     @Override

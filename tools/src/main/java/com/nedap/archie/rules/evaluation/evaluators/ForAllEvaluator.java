@@ -18,17 +18,17 @@ import java.util.List;
  */
 public class ForAllEvaluator implements Evaluator<ForAllStatement> {
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, ForAllStatement statement) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, ForAllStatement statement) {
         Expression pathExpression = statement.getPathExpression();
         String variableName = statement.getVariableName();
         Expression toEvaluate = statement.getAssertion();
 
         ValueList pathValues = evaluation.evaluate(pathExpression);
 
-        List<String> allPaths = new ArrayList<String>();
+        List<String> allPaths = new ArrayList<>();
 
         boolean resultingCheck = true;
-        for(Value value:pathValues.getValues()) {
+        for(Value<?> value:pathValues.getValues()) {
             if(value.getPaths().size() > 1) {
                 throw new IllegalStateException("for all path can only have one path value per value");
             }
@@ -44,12 +44,13 @@ public class ForAllEvaluator implements Evaluator<ForAllStatement> {
 
             //set the variable
             evaluation.getVariableMap().put(variableName, valueList);
+
             //evaluate
             ValueList evaluated = evaluation.evaluate(toEvaluate);
             allPaths.addAll(evaluated.getAllPaths());
             if(evaluated.getType() == PrimitiveType.Boolean) {
-                for (Value evaluatedValue : evaluated.getValues()) {
-                    if (evaluatedValue.getValue() != null && !((Boolean)evaluatedValue.getValue()).booleanValue()) {
+                for (Value<?> evaluatedValue : evaluated.getValues()) {
+                    if (evaluatedValue.getValue() != null && !(Boolean) evaluatedValue.getValue()) {
                         resultingCheck = false;
                     }
                 }
@@ -60,11 +61,12 @@ public class ForAllEvaluator implements Evaluator<ForAllStatement> {
             }
         }
         evaluation.getVariableMap().put(variableName, null);
-        return new ValueList(Lists.newArrayList(new Value(resultingCheck, allPaths)));
+
+        return new ValueList(Lists.newArrayList(new Value<>(resultingCheck, allPaths)));
     }
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(ForAllStatement.class);
     }
 }

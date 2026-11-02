@@ -2,21 +2,26 @@ package com.nedap.archie.rules.evaluation;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.creation.RMObjectCreator;
+import com.nedap.archie.query.RMObjectWithPath;
 import com.nedap.archie.query.RMQueryContext;
 import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.rmobjectvalidator.APathQueryCache;
+import com.nedap.archie.rmobjectvalidator.ValidationConfiguration;
+import com.nedap.archie.rmobjectvalidator.ValidationHelper;
 import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.RuleElement;
 import com.nedap.archie.rules.RuleStatement;
 import com.nedap.archie.rules.evaluation.evaluators.*;
+import jakarta.xml.bind.JAXBContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBContext;
+import javax.xml.xpath.XPathExpressionException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by pieter.bos on 31/03/16.
@@ -24,11 +29,10 @@ import java.util.Map;
 public class RuleEvaluation<T> {
 
     private static Logger logger = LoggerFactory.getLogger(RuleEvaluation.class);
-    private final JAXBContext jaxbContext;
 
     private Archetype archetype;
-    private List<Evaluator> evaluators = new ArrayList<>();
-    private HashMap<Class, Evaluator> classToEvaluator = new HashMap<>();
+    private List<Evaluator<?>> evaluators = new ArrayList<>();
+    private HashMap<Class<?>, Evaluator<?>> classToEvaluator = new HashMap<>();
     private FunctionEvaluator functionEvaluator;
 
     //evaluation state
@@ -37,28 +41,31 @@ public class RuleEvaluation<T> {
     EvaluationResult evaluationResult;
     private List<AssertionResult> assertionResults;
 
-    private RMQueryContext queryContext;
-
     private ArrayListMultimap<RuleElement, ValueList> ruleElementValues = ArrayListMultimap.create();
     private FixableAssertionsChecker fixableAssertionsChecker;
 
     private ModelInfoLookup modelInfoLookup;
 
-    private RMObjectCreator creator;
+    private final JAXBContext jaxbContext;
+    private RMQueryContext rmQueryContext;
+    private APathQueryCache queryCache = new APathQueryCache();
 
     private final AssertionsFixer assertionsFixer;
 
-    public RuleEvaluation(ModelInfoLookup modelInfoLookup, JAXBContext jaxbContext, Archetype archetype) {
-        this.modelInfoLookup = modelInfoLookup;
-        this.creator = new RMObjectCreator(modelInfoLookup);
+    public RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, Archetype archetype) {
+        this(modelInfoLookup, validationConfiguration, null, archetype);
+    }
+
+    private RuleEvaluation(ModelInfoLookup modelInfoLookup, ValidationConfiguration validationConfiguration, JAXBContext jaxbContext, Archetype archetype) {
         this.jaxbContext = jaxbContext;
-        assertionsFixer = new AssertionsFixer(this, creator);
+        this.modelInfoLookup = modelInfoLookup;
+        this.assertionsFixer = new AssertionsFixer(this);
         this.archetype = archetype;
         this.functionEvaluator = new FunctionEvaluator();
         add(new VariableDeclarationEvaluator());
         add(new ConstantEvaluator());
         add(new AssertionEvaluator());
-        add(new BinaryOperatorEvaluator(modelInfoLookup));
+        add(new BinaryOperatorEvaluator(new ValidationHelper(modelInfoLookup, validationConfiguration), archetype));
         add(new UnaryOperatorEvaluator());
         add(new VariableReferenceEvaluator());
         add(new ModelReferenceEvaluator());
@@ -66,21 +73,23 @@ public class RuleEvaluation<T> {
         add(functionEvaluator);
     }
 
-    private void add(Evaluator evaluator) {
+    private void add(Evaluator<?> evaluator) {
         evaluators.add(evaluator);
-        for(Object clazz: evaluator.getSupportedClasses()) {
-            classToEvaluator.put((Class) clazz, evaluator);
+        for(Class<?> clazz: evaluator.getSupportedClasses()) {
+            classToEvaluator.put(clazz, evaluator);
         }
     }
 
     public EvaluationResult evaluate(T root, List<RuleStatement> rules) {
+
         this.root = (T) modelInfoLookup.clone(root);
+
+        refreshQueryContext();
 
         ruleElementValues = ArrayListMultimap.create();
         variables = new VariableMap();
         assertionResults = new ArrayList<>();
         evaluationResult = new EvaluationResult();
-        queryContext = new RMQueryContext(modelInfoLookup, this.root, jaxbContext);
 
         fixableAssertionsChecker = new FixableAssertionsChecker(ruleElementValues);
 
@@ -119,16 +128,6 @@ public class RuleEvaluation<T> {
         ruleElementValues.put(expression, values);
     }
 
-    public RMQueryContext getQueryContext() {
-        return queryContext;
-    }
-
-    public void refreshQueryContext() {
-        //updating a single node does not seem to work with the default JAXB-implementation, so just reload the entire query
-        //context
-        queryContext = new RMQueryContext(modelInfoLookup, root, jaxbContext);
-    }
-
     /**
      * Callback: an assertion has been evaluated with the given result
      */
@@ -147,11 +146,14 @@ public class RuleEvaluation<T> {
         //Fix any assertions that should be fixed before processing the next rule
         //this means we can calculate a score, then use that score in the next rule
         //otherwise this would mean several passes through the evaluator
-        Map<String, Object> valuesToUpdate = assertionsFixer.fixAssertions(archetype, assertionResult);
+        Map<String, Object> valuesToUpdate = assertionsFixer.fixSetPathAssertions(archetype, assertionResult);
         for (String path : valuesToUpdate.keySet()) {
             Object value = valuesToUpdate.get(path);
             assertionResult.setSetPathValue(path, new ValueList(value));
         }
+        // If assertion has paths that must not exist, remove referred object
+        // Ensures this is taken into consideration for upcoming evaluated rules
+        assertionsFixer.fixNotExistAssertions(assertionResult);
 
         //before re-evaluation, reset any overridden existence from evaluation?
     }
@@ -164,4 +166,39 @@ public class RuleEvaluation<T> {
     public ModelInfoLookup getModelInfoLookup() {
         return modelInfoLookup;
     }
+
+
+    public List<RMObjectWithPath> findListWithPaths(String path) {
+        if(rmQueryContext == null) {
+            return queryCache.getApathQuery(path).findList(getModelInfoLookup(), getRMRoot());
+        } else {
+            try {
+                return rmQueryContext.findListWithPaths(path);
+            } catch (XPathExpressionException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void refreshQueryContext() {
+        if(jaxbContext != null) {
+            //updating a single node does not seem to work with the default JAXB-implementation, so just reload the entire query
+            //context
+            rmQueryContext = new RMQueryContext(modelInfoLookup, root, jaxbContext);
+        }
+    }
+
+    public List<Object> findList(String path) {
+        if(rmQueryContext != null) {
+            try {
+                return rmQueryContext.findList(path);
+            } catch (XPathExpressionException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            List<RMObjectWithPath> parentsWithPath = findListWithPaths(path);
+            return parentsWithPath.stream().map(RMObjectWithPath::getObject).collect(Collectors.toList());
+        }
+    }
+
 }

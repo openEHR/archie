@@ -28,27 +28,29 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
         builder.append("allow_archetype")
                 .append(" ")
                 .append(cobj.getRmTypeName()).append("[").append(cobj.getNodeId()).append("]");
-        if (cobj.getOccurrences() != null) {
-            builder.append(" occurrences matches {");
-            ArchetypeSerializeUtils.buildOccurrences(builder, cobj.getOccurrences());
-            builder.append("}");
-        }
-        if (cobj.isClosed()) {
+        if(cobj.isClosed()) {
             builder.append(" closed");
+            builder.lineComment(serializer.getTermText(cobj));
         } else {
+            if (cobj.getOccurrences() != null) {
+                builder.append(" occurrences matches {");
+                ArchetypeSerializeUtils.buildOccurrences(builder, cobj.getOccurrences());
+                builder.append("}");
+            }
             appendMatches(cobj);
         }
+
         builder.unindent();
     }
 
     private void appendMatches(ArchetypeSlot cobj) {
         int mark = builder.mark();
-        builder.append(" matches { ");
+        builder.append(" matches {");
         builder.lineComment(serializer.getTermText(cobj));
         boolean hasContent = false;
 
-        ADLRulesSerializer serializer = new ADLRulesSerializer(builder, super.serializer);
-        if (cobj.getIncludes() != null && cobj.getIncludes().size() > 0) {
+        ADLRulesSerializer rulesSerializer = new ADLRulesSerializer(builder, super.serializer);
+        if (cobj.getIncludes() != null && !cobj.getIncludes().isEmpty()) {
             hasContent = true;
             builder.indent().newline()
                     .append("include")
@@ -56,18 +58,18 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
 
             for (Assertion a : cobj.getIncludes()) {
                 builder.newline();
-                serializer.serializeRuleElement(a.getExpression());
+                rulesSerializer.serializeRuleElement(a.getExpression());
             }
             builder.unindent().unindent();
         }
-        if (cobj.getExcludes() != null && cobj.getExcludes().size() > 0) {
+        if (cobj.getExcludes() != null && !cobj.getExcludes().isEmpty()) {
             hasContent = true;
             builder.indent().newline()
                     .append("exclude")
                     .indent();
             for (Assertion a : cobj.getExcludes()) {
                 builder.newline();
-                serializer.serializeRuleElement(a.getExpression());
+                rulesSerializer.serializeRuleElement(a.getExpression());
             }
             builder.unindent().unindent();
         }
@@ -77,6 +79,7 @@ public class ArchetypeSlotSerializer extends ConstraintSerializer<ArchetypeSlot>
             builder.newline().append("}");
         } else {
             builder.revert(mark);
+            builder.lineComment(serializer.getTermText(cobj));
         }
     }
 }

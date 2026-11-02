@@ -8,7 +8,7 @@ import java.util.Collection;
 public enum PrimitiveType {
     Integer, Real, Boolean, String, Character, Date, Time, DateTime, Duration, Interval, List, Unknown, ObjectReference;//TODO: interval or list with generics?
 
-    public static PrimitiveType fromJavaType(Class clazz) {
+    public static PrimitiveType fromJavaType(Class<?> clazz) {
         if(Collection.class.isAssignableFrom(clazz)) {
             return List;
         }
@@ -39,6 +39,14 @@ public enum PrimitiveType {
                 return Integer;
             case REAL:
                 return Real;
+            case DATE:
+                return Date;
+            case TIME:
+                return Time;
+            case DATETIME:
+                return DateTime;
+            case DURATION:
+                return Duration;
         }
         return null;
     }

@@ -45,7 +45,7 @@ public class MessageLogger {
      * @return
      */
     public MessageDescriptor lastAdded() {
-        if(messageList != null && messageList.size() > 0) {
+        if(messageList != null && !messageList.isEmpty()) {
             return messageList.get(messageList.size() - 1);
         } else {
             return null;
@@ -63,7 +63,7 @@ public class MessageLogger {
     }
 
     private List<MessageCode> getCodesForSeverity(MessageSeverity severity) {
-        return messageList.stream().filter((message) -> message.getSeverity() == severity).map( (message) -> message.getCode()).collect(Collectors.toList());
+        return messageList.stream().filter((message) -> message.getSeverity() == severity).map(MessageDescriptor::getCode).collect(Collectors.toList());
     }
 
     /**
@@ -200,10 +200,6 @@ public class MessageLogger {
         addInfoWithLocation(code, null, args);
     }
 
-    public void addDebug(String message) {
-        addDebugWithLocation(null, message);
-    }
-
     /**
      * Adds an error to this error cache and sets the error flag to true.
      * @param aCode
@@ -232,16 +228,6 @@ public class MessageLogger {
      */
     public void addInfoWithLocation(MessageCode aCode, String aLocation, Object... args) {
         add(new MessageDescriptor(aCode, MessageSeverity.INFO, aCode.getMessage(args), aLocation));
-    }
-
-    /**
-     * Adds a debug message to cache.
-     *
-     * @param aLocation
-     * @param aMessage
-     */
-    public void addDebugWithLocation(String aLocation, String aMessage) {
-        add(new MessageDescriptor(new UnknownMessageCode(), MessageSeverity.DEBUG, aMessage, aLocation));
     }
 
     /**
@@ -292,7 +278,7 @@ public class MessageLogger {
         StringBuilder builder = new StringBuilder();
         messageList.forEach(error -> {
             if(GlobalMessageLoggingLevel.shouldLog(error.getSeverity())) {
-                builder.append(error.toString()).append("\n");
+                builder.append(error).append("\n");
             }
         });
         return builder.toString();
@@ -310,11 +296,11 @@ public class MessageLogger {
         StringBuilder builder = new StringBuilder();
         messageList.forEach(message -> {
             if(includeErrors && message.getSeverity().equals(MessageSeverity.ERROR)) {
-                builder.append(message.toString()).append("\n");
+                builder.append(message).append("\n");
             } else if(includeWarnings && message.getSeverity().equals(MessageSeverity.WARNING)) {
-                builder.append(message.toString()).append("\n");
+                builder.append(message).append("\n");
             } else if(includeInfo && message.getSeverity().equals(MessageSeverity.INFO)) {
-                builder.append(message.toString()).append("\n");
+                builder.append(message).append("\n");
             }
         });
         return builder.toString();

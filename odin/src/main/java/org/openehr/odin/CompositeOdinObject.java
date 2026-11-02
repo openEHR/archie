@@ -22,7 +22,10 @@ package org.openehr.odin;
  */
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by cnanjo on 3/31/16.
@@ -35,9 +38,9 @@ public class CompositeOdinObject extends OdinObject implements Serializable {
     private boolean isList = false;
 
     public CompositeOdinObject() {
-        attributes = new ArrayList<OdinAttribute>();
-        keyedObjects = new LinkedHashMap<OdinObject,OdinObject>();
-        attributeIndex = new LinkedHashMap<String, OdinAttribute>();
+        attributes = new ArrayList<>();
+        keyedObjects = new LinkedHashMap<>();
+        attributeIndex = new LinkedHashMap<>();
     }
 
     public void addAttribute(OdinAttribute attribute) {
@@ -46,7 +49,7 @@ public class CompositeOdinObject extends OdinObject implements Serializable {
     }
 
     public List<OdinAttribute> getAttributes() {
-        List<OdinAttribute> attributeList = new ArrayList<OdinAttribute>();
+        List<OdinAttribute> attributeList = new ArrayList<>();
         attributeList.addAll(attributes);
         return attributeList;
     }

@@ -1,12 +1,8 @@
 package com.nedap.archie.xml.types;
 
 import com.nedap.archie.aom.terminology.ValueSet;
+import jakarta.xml.bind.annotation.*;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +14,8 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class XmlArchetypeTerminology {
 
+    @XmlAttribute(name="archetype_id")
+    private String archetypeId;
     @XmlAttribute(name="is_differential")
     private Boolean differential;
     @XmlAttribute(name="original_language")
@@ -33,6 +31,14 @@ public class XmlArchetypeTerminology {
     private List<CodeDefinitionSet> terminologyExtracts = new ArrayList<>();
     @XmlElement(name="value_sets")
     private List<ValueSet> valueSets = new ArrayList<>();
+
+    public String getArchetypeId() {
+        return archetypeId;
+    }
+
+    public void setArchetypeId(String archetypeId) {
+        this.archetypeId = archetypeId;
+    }
 
     public List<CodeDefinitionSet> getTermDefinitions() {
         return termDefinitions;

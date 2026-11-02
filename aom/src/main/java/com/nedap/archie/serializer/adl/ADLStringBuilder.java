@@ -1,25 +1,31 @@
 package com.nedap.archie.serializer.adl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.nedap.archie.serializer.adl.jackson.ArchetypeODINMapperFactory;
 import com.nedap.archie.serializer.odin.StructureStringBuilder;
-import com.nedap.archie.serializer.odin.StructuredStringAppendable;
 import org.openehr.odin.jackson.ODINMapper;
+import org.openehr.odin.jackson.ODINPrettyPrinter;
 
 import static com.nedap.archie.serializer.odin.OdinStringBuilder.quoteText;
 
 /**
  * @author markopi
  */
-public class ADLStringBuilder implements StructuredStringAppendable {
+public class ADLStringBuilder implements ADLBuilder {
 
     private final StructureStringBuilder builder = new StructureStringBuilder();
 
-    private ODINMapper odinMapper = new ArchetypeODINMapperFactory().createMapper();
+    private final ODINMapper odinMapper;
+
+    public ADLStringBuilder() {
+        odinMapper = new ArchetypeODINMapperFactory().createMapper();
+    }
 
     @Override
     public ADLStringBuilder append(Object str) {
-        builder.append(str);
+        String toAppend = str.toString();
+        builder.append(toAppend);
         return this;
     }
 
@@ -48,8 +54,11 @@ public class ADLStringBuilder implements StructuredStringAppendable {
 
     public ADLStringBuilder odin(Object structure) {
         try {
-            String odin = odinMapper.writeValueAsString(structure);
-            appendMultipleLines(odin);
+            // Pass the current ident depth to the ODINPrettyPrinter
+            ObjectWriter objectWriter = odinMapper.writer().with(new ODINPrettyPrinter(builder.getIndentDepth()));
+
+            String odin = objectWriter.writeValueAsString(structure).trim();
+            builder.append(odin).newline();
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -74,7 +83,11 @@ public class ADLStringBuilder implements StructuredStringAppendable {
 
     public ADLStringBuilder lineComment(String comment) {
         if (comment != null) {
-            append(StructureStringBuilder.padRight("", 4)).append("-- ").append(comment);
+            // Remove line breaks and surrounding spaces
+            comment = comment.replaceAll("\\s*(\n\\s*)+", " ").trim();
+            if (!comment.isEmpty()) {
+                append(StructureStringBuilder.padRight("", 4)).append("-- ").append(comment);
+            }
         }
         return this;
     }
@@ -114,6 +127,18 @@ public class ADLStringBuilder implements StructuredStringAppendable {
             builder.append(line);
             builder.newline();
         }
+    }
+
+    public int getCurrentLineLength() {
+        return builder.getCurrentLineLength();
+    }
+
+    public int getIndentDepth() {
+        return builder.getIndentDepth();
+    }
+
+    public ODINMapper getOdinMapper() {
+        return odinMapper;
     }
 }
 

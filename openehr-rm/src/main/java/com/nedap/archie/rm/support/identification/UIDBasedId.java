@@ -1,12 +1,14 @@
 package com.nedap.archie.rm.support.identification;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Strings;
+import com.nedap.archie.rminfo.Invariant;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 
 /**
  * Created by pieter.bos on 04/11/15.
@@ -36,7 +38,7 @@ public abstract class UIDBasedId extends ObjectId {
         if (index < 0) {
             resultString = value;
         } else {
-            resultString = value.substring(index);
+            resultString = value.substring(0, index);
         }
         if (resultString.matches(UUID_REGEXP)) {
             UID result = new UUID();
@@ -67,6 +69,17 @@ public abstract class UIDBasedId extends ObjectId {
         } else {
             return value.substring(index + 2);
         }
+    }
+
+    @JsonIgnore
+    public boolean hasExtension() {
+        return !Strings.isNullOrEmpty(getExtension());
+    }
+
+    //an absolutely useless invariant to check for data validity, so ignored
+    @Invariant(value="Has_extension_valid", ignored=true)
+    public boolean hasExtensionValid() {
+        return Strings.isNullOrEmpty(getExtension()) ^ hasExtension();
     }
 
 }

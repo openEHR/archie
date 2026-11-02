@@ -2,12 +2,14 @@ package com.nedap.archie.rm.archetyped;
 
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rm.support.identification.ArchetypeID;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
@@ -35,14 +37,14 @@ public class Archetyped extends RMObject {
     }
 
     public Archetyped(ArchetypeID archetypeId, String rmVersion) {
-        this.archetypeId = archetypeId;
-        this.rmVersion = rmVersion;
+        setArchetypeId(archetypeId);
+        setRmVersion(rmVersion);
     }
 
     public Archetyped(ArchetypeID archetypeId, @Nullable TemplateId templateId, String rmVersion) {
-        this.archetypeId = archetypeId;
-        this.templateId = templateId;
-        this.rmVersion = rmVersion;
+        setArchetypeId(archetypeId);
+        setTemplateId(templateId);
+        setRmVersion(rmVersion);
     }
 
 
@@ -89,4 +91,10 @@ public class Archetyped extends RMObject {
     public int hashCode() {
         return Objects.hash(archetypeId, templateId, rmVersion);
     }
+
+    @Invariant("Rm_version_valid")
+    public boolean rmVersionValid() {
+        return InvariantUtil.nullOrNotEmpty(rmVersion);
+    }
+
 }

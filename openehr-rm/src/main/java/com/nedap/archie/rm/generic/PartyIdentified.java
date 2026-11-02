@@ -2,11 +2,13 @@ package com.nedap.archie.rm.generic;
 
 import com.nedap.archie.rm.datavalues.DvIdentifier;
 import com.nedap.archie.rm.support.identification.PartyRef;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,8 +32,8 @@ public class PartyIdentified extends PartyProxy {
 
     public PartyIdentified(@Nullable PartyRef externalRef, @Nullable String name, @Nullable List<DvIdentifier> identifiers) {
         super(externalRef);
-        this.name = name;
-        this.identifiers = identifiers;
+        setName(name);
+        setIdentifiers(identifiers);
     }
 
     public String getName() {
@@ -67,5 +69,20 @@ public class PartyIdentified extends PartyProxy {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), name, identifiers);
+    }
+
+    @Invariant("Basic_validity")
+    public boolean basicValidity() {
+        return name != null || (identifiers != null && !identifiers.isEmpty()) || getExternalRef() != null;
+    }
+
+    @Invariant("Name_valid")
+    public boolean nameValid() {
+        return InvariantUtil.nullOrNotEmpty(name);
+    }
+
+    @Invariant(value = "Identifiers_valid", ignored = true)
+    public boolean identifiersValid() {
+        return InvariantUtil.nullOrNotEmpty(identifiers);
     }
 }

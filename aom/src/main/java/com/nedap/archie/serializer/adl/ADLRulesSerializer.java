@@ -2,7 +2,6 @@ package com.nedap.archie.serializer.adl;
 
 import com.nedap.archie.aom.RulesSection;
 import com.nedap.archie.rules.*;
-
 import com.nedap.archie.serializer.adl.rules.*;
 
 import java.util.HashMap;
@@ -14,16 +13,23 @@ import java.util.Map;
  */
 public class ADLRulesSerializer {
 
-    private ADLStringBuilder builder;
+    /** the number of characters after which to start a new line in case of before a ModelReference (path) or parentheses */
+    public static int NEW_LINE_LIMIT = 120;
+
+    private ADLBuilder builder;
     private ADLDefinitionSerializer definitionSerializer;
 
-    private final Map<Class, RuleElementSerializer> ruleElementSerializers;
+    private final Map<Class<?>, RuleElementSerializer<?>> ruleElementSerializers;
 
     public ADLRulesSerializer(ADLStringBuilder builder, ADLDefinitionSerializer definitionSerializer) {
+        this((ADLBuilder) builder, definitionSerializer);
+    }
+
+    public ADLRulesSerializer(ADLBuilder builder, ADLDefinitionSerializer definitionSerializer) {
         this.builder = builder;
         this.definitionSerializer = definitionSerializer;
 
-        ruleElementSerializers = new HashMap();
+        ruleElementSerializers = new HashMap<>();
         ruleElementSerializers.put(UnaryOperator.class, new UnaryOperatorSerializer(this));
         ruleElementSerializers.put(BinaryOperator.class, new BinaryOperatorSerializer(this));
         ruleElementSerializers.put(Assertion.class, new AssertionSerializer(this));
@@ -37,7 +43,20 @@ public class ADLRulesSerializer {
 
     }
 
+    /**
+     * Returns the Jackson 2 builder. Throws when this serializer was created for Jackson 3.
+     * @deprecated use {@link #getOutputBuilder()}, which works with both Jackson versions.
+     */
+    @Deprecated
     public ADLStringBuilder getBuilder() {
+        if (!(builder instanceof ADLStringBuilder)) {
+            throw new UnsupportedOperationException("getBuilder() returns the Jackson 2 builder. This serializer uses "
+                    + builder.getClass().getSimpleName() + ". Use getOutputBuilder() instead.");
+        }
+        return (ADLStringBuilder) builder;
+    }
+
+    public ADLBuilder getOutputBuilder() {
         return builder;
     }
 
@@ -45,12 +64,20 @@ public class ADLRulesSerializer {
         RuleElementSerializer serializer = getSerializer(element);
         if (serializer != null) {
             boolean shouldSerializeParentheses = isPrecedenceOverride(element);
+            boolean addedNewLine = false;
             if(shouldSerializeParentheses) {
+                if(builder.getCurrentLineLength() > ADLRulesSerializer.NEW_LINE_LIMIT) {
+                    builder.newline();
+                }
                 builder.append(" (");
+
             }
             serializer.serialize(element);
             if(shouldSerializeParentheses) {
                 builder.append(") ");
+                if(addedNewLine) {
+                    builder.newline();
+                }
             }
         } else {
             throw new AssertionError("Unsupported rule element: " + element.getClass().getName());

@@ -103,8 +103,8 @@ public class BmmSchemaCore implements IBmmSchemaCore, Serializable {
      * No-arg constructor
      */
     public BmmSchemaCore() {
-        schemaContributors = new ArrayList<String>();
-        archetypeRmClosurePackages = new ArrayList<String>();
+        schemaContributors = new ArrayList<>();
+        archetypeRmClosurePackages = new ArrayList<>();
     }
 
     public BmmSchemaCore(String aRmPublisher, String aSchemaName, String aRmRelease) {

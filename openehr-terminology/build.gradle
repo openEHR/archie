@@ -1,0 +1,32 @@
+//plugins {
+//    id 'com.github.edeandrea.xjc-generation' version '1.5'
+//}
+
+description = "A very basic OpenEHR terminology file binding"
+
+dependencies {
+    api(libs.jackson.annotations)
+    api(libs.jakarta.xml.bind.api)
+
+    implementation(libs.jackson.databind)
+
+    runtimeOnly(libs.jaxb.runtime)
+
+    testImplementation(libs.commons.io)
+}
+
+//xjcGeneration {
+//    defaultAdditionalXjcOptions = ['encoding': 'UTF-8']
+//    defaultBindingFile = null //file 'src/main/resources//xjc/xjc.xjb.xml'
+//
+//    schemas {
+//        openehr_terminology {
+//            schemaFile = 'openehr_terminology.xsd'
+//            javaPackageName = 'com.nedap.archie.terminology.openehr'
+//        }
+////        openehr_external_terminology {
+////            schemaFile = 'openehr_external_terminologies.xsd'
+////            javaPackageName = 'com.nedap.archie.terminology.external'
+////        }
+//    }
+//}

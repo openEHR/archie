@@ -6,13 +6,14 @@ import com.nedap.archie.rm.archetyped.Link;
 import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,7 +26,7 @@ import java.util.Objects;
         "rows"
 })
 @XmlRootElement(name = "item_table")
-public class ItemTable extends ItemStructure<Element> {
+public class ItemTable extends ItemStructure {
 
     @Nullable
     private List<Cluster> rows = new ArrayList<>();
@@ -68,9 +69,9 @@ public class ItemTable extends ItemStructure<Element> {
             return null;
         }
         List<Element> result = new ArrayList<>();
-        for (Cluster<Element> row : rows) {
-            for (Element element : row.getItems()) {
-                result.add(element);
+        for (Cluster row : rows) {
+            for (Item element : row.getItems()) {
+                result.add((Element) element);
             }
         }
         return result;
@@ -88,5 +89,40 @@ public class ItemTable extends ItemStructure<Element> {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), rows);
+    }
+
+    @Invariant("Valid_structure")
+    public boolean validStructure() {
+        if(rows != null) {
+            for(Cluster row:rows) {
+                if(row.getItems() != null) {
+                    for(Item item:row.getItems()) {
+                        if(!(item instanceof Element)) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    @Invariant("Valid_number_of_rows")//indicated in text only, but hey, it's a rule that must be validated
+    public boolean validNumberOfRows() {
+        if(rows != null) {
+            Integer size = null;
+            for(Cluster row:rows) {
+                if(row.getItems() != null) {
+                    if(size == null) {
+                        size = row.getItems().size();
+                    } else {
+                        if(size != row.getItems().size()) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 }

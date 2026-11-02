@@ -20,8 +20,9 @@ public class ExpressionVariableDeclarationSerializer extends RuleElementSerializ
         builder.append(":");
         builder.append(variableDeclaration.getType().toString());
         builder.append(" ::= ");
+        builder.indent();
         serializer.serializeRuleElement(variableDeclaration.getExpression());
-        builder.newline();
+        builder.newUnindentedLine();
 
     }
 }

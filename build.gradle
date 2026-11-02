@@ -1,31 +1,25 @@
-buildscript {
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
-    classpath 'org.owasp:dependency-check-gradle:1.4.5.1'
-  }
+import org.codehaus.groovy.runtime.GStringImpl
 
-
+plugins {
+    alias(libs.plugins.nexus.publish)
 }
-
 
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
-
-wrapper {
-    gradleVersion = '5.6.4'
-}
 
 allprojects {
-  version = '0.13.0'
-  group = 'com.nedap.healthcare.archie'
-  ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
-  //archivesBaseName = 'archie'
+    version = '3.20.0-snapshot'
+    group = 'com.nedap.healthcare.archie'
+    ext.gradleScriptDir = "${rootProject.projectDir}/gradle" as GStringImpl
+    //archivesBaseName = 'archie'
 
+    tasks.withType(Javadoc).tap {
+        configureEach {
+            options.addStringOption('Xdoclint:all', '-quiet')
+        }
+    }
 }
 
 gradle.ext.ossrhUsernameSafe = hasProperty('ossrhUsername') ? ossrhUsername : ""
@@ -33,85 +27,52 @@ gradle.ext.ossrhPasswordSafe = hasProperty('ossrhPassword') ? ossrhPassword : ""
 gradle.ext.shouldSign = hasProperty('signing.keyId')
 gradle.ext.isParallel = hasProperty('org.gradle.parallel') ? project.property('org.gradle.parallel') == 'true' : false
 
+apply from: "${gradleScriptDir}/publish-maven.gradle"
+
+
 subprojects {
-  apply plugin: 'java'
-  apply plugin: 'org.owasp.dependencycheck'
-  apply from: "${gradleScriptDir}/publish-maven.gradle"
+    apply plugin: 'java-library'
 
- // plugins {
-   //   id 'com.github.ben-manes.versions' version '0.13.0'
- // }
+    compileJava.options.encoding = "UTF-8"
+    compileTestJava.options.encoding = "UTF-8"
 
-  sourceCompatibility = '1.8'
-  targetCompatibility = '1.8'
-
-  compileJava.options.encoding = "UTF-8"
-  compileTestJava.options.encoding = "UTF-8"
-
-  repositories {
-      mavenCentral()
-      maven { url 'https://jitpack.io' }
-  }
-
-  ext.reflectionsVersion = '0.9.11'
-  ext.jacksonVersion = '2.10.2'
-
-  dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.28'
-
-    compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
-    compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
-
-    compile 'com.google.guava:guava:28.1-jre'
-
-    compile "org.reflections:reflections:${reflectionsVersion}"
-    compile 'com.esotericsoftware:kryo-shaded:4.0.2' //for easy and relatively fast object cloning
-
-    compile('commons-io:commons-io:2.6'){
-      exclude group: 'commons-logging', module: 'commons-logging'
+    repositories {
+        mavenCentral()
+        maven { url = 'https://jitpack.io' }
     }
-    compile 'org.apache.commons:commons-text:1.6'
-    compile 'org.apache.commons:commons-lang3:3.8.1'
 
-    //java 10 no longer has these included by default, so explicit dependency is needed.
-    compile 'javax.xml.bind:jaxb-api:2.3.0'
-    compile 'com.sun.xml.bind:jaxb-core:2.3.0'
-    runtime 'com.sun.xml.bind:jaxb-impl:2.3.0'
-    compile 'javax.activation:activation:1.1.1'
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
 
-    testCompile 'junit:junit:4.+'
-    testCompile 'org.slf4j:slf4j-simple:1.7.25'
-
-    compile 'com.github.zafarkhaja:java-semver:0.9.0'
-  }
-
-
-  javadoc {
-      options.encoding = 'UTF-8'
-  }
-
-  //configure the jar files: sources and javaod
-  task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-  }
-
-  task sourcesJar(type: Jar) {
-      classifier = 'sources'
-      from sourceSets.main.allSource
-  }
-
-  artifacts {
-      archives javadocJar, sourcesJar
-  }
-
-  test {
-   testLogging {
-      events "failed"
-      exceptionFormat "full"
+        withJavadocJar()
+        withSourcesJar()
     }
-  }
+
+
+    dependencies {
+        implementation(libs.slf4j.api)
+
+        testImplementation(libs.bundles.junit)
+        testImplementation(libs.hamcrest)
+        testImplementation(libs.slf4j.simple)
+    }
+
+
+    javadoc {
+        options.encoding = 'UTF-8'
+    }
+
+
+    test {
+        useJUnitPlatform()
+        outputs.upToDateWhen { false }
+        testLogging {
+            events "failed"
+            exceptionFormat = "full"
+        }
+    }
 
 }
 

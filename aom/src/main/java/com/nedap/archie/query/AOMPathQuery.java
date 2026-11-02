@@ -2,30 +2,28 @@ package com.nedap.archie.query;
 
 
 import com.google.common.collect.Lists;
-import com.nedap.archie.aom.ArchetypeModelObject;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.paths.PathSegment;
+import com.nedap.archie.paths.PathUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
  * For now only accepts rather simple xpath-like expressions.
- *
+ * <p>
  * The only queries fully supported at the moment are absolute queries with node ids, such as '/items[id1]/content[id2]/value'.
- *
+ * <p>
  * Any expression after the ID-code, such as in '[id1 and name="ignored"] are currently ignored, but they parse and function
  * as long as you add the id-code as first part of the expression.
- *
+ * <p>
  * Created by pieter.bos on 19/10/15.
  */
 public class AOMPathQuery {
-
     private final List<PathSegment> pathSegments;
 
     /** If true, extend the search through C_COMPLEX_OBJECT_PROXY objects by looking up the replacement first.*/
@@ -45,7 +43,7 @@ public class AOMPathQuery {
     }
 
     public <T extends ArchetypeModelObject> T find(CComplexObject root) {
-       List<T> list = findList(root);
+        List<T> list = findList(root);
         if(list.isEmpty()) {
             return null;
         } else if (list.size() == 1) {
@@ -84,7 +82,7 @@ public class AOMPathQuery {
         result.add(root);
         for(int i = 0; i < pathSegments.size(); i++) {
             PathSegment segment = pathSegments.get(i);
-            if (result.size() == 0) {
+            if (result.isEmpty()) {
                 return Collections.emptyList();
             }
 
@@ -109,7 +107,7 @@ public class AOMPathQuery {
                 result = findOneSegment(segment, result, matchSpecializedNodes);
             }
         }
-        return (List<T>)result.stream().filter((object) -> object != null).collect(Collectors.toList());
+        return (List<T>)result.stream().filter(Objects::nonNull).collect(Collectors.toList());
     }
 
     protected CAttribute findMatchingDifferentialPath(List<PathSegment> pathSegments, List<ArchetypeModelObject> objects) {
@@ -206,7 +204,8 @@ public class AOMPathQuery {
             int index = pathSegment.getIndex() - 1;
             return index < attribute.getChildren().size() ? attribute.getChildren().get(index) : null;
         } else if (pathSegment.getNodeId() != null) {
-            return attribute.getChildByMeaning(pathSegment.getNodeId());//TODO: the ANTLR grammar removes all whitespace. what to do here?
+            //matching an object on its name is no longer supported, use a node id instead
+            return null;
         } else {
             return attribute;
         }
@@ -225,18 +224,82 @@ public class AOMPathQuery {
      * Useful mainly when flattening, probably does not have many other uses
      */
     public CComplexObjectProxy findAnyInternalReference(CComplexObject root) {
+        return (CComplexObjectProxy) findMatchingPredicate(root, (o) -> o instanceof CComplexObjectProxy);
+    }
+
+    /**
+     * Find anything matching a specific predicate anywhere inside the APath query. Can be at the end of the full query, at the first matching CComplexObjectProxy or anywhere in between
+     * Useful mainly when flattening, probably does not have many other uses
+     */
+    public ArchetypeModelObject findMatchingPredicate(CComplexObject root, Predicate<? super ArchetypeModelObject> predicate) {
         List<ArchetypeModelObject> result = new ArrayList<>();
         result.add(root);
         for(PathSegment segment:this.pathSegments) {
-            if (result.size() == 0) {
+            if (result.isEmpty()) {
                 return null;
             }
             result = findOneSegment(segment, result, false);
-            if(result.size() == 1 && result.get(0) instanceof CComplexObjectProxy) {
-                return (CComplexObjectProxy) result.get(0);
+            if(result.size() == 1 && predicate.test(result.get(0))) {
+                return result.get(0);
             }
         }
         return null;
+
+    }
+
+    /**
+     * Find all path segments matching a specific predicate anywhere inside the APath query. Can be at the end of the full query, at the first matching CComplexObjectProxy or anywhere in between
+     * Useful mainly when flattening, probably does not have many other uses
+     */
+    public List<ArchetypeModelObject> findAllMatchingPredicate(CComplexObject root, Predicate<? super ArchetypeModelObject> predicate) {
+        List<ArchetypeModelObject> currentObjects = new ArrayList<>();
+        currentObjects.add(root);
+        List<ArchetypeModelObject> results = new ArrayList<>();
+        for(PathSegment segment:this.pathSegments) {
+            if (currentObjects.isEmpty()) {
+                return results;
+            }
+            currentObjects = findOneSegment(segment, currentObjects, false);
+            if(currentObjects.size() == 1 && predicate.test(currentObjects.get(0))) {
+                results.addAll(currentObjects);
+            }
+        }
+        return results;
+
+    }
+
+    /**
+     * Find a partial match, also matching if halfway a query, including what has not yet been matched and what has not
+     * Does not support finding through differential paths.
+     * So, use on an OperationalTemplate!
+     * @param root the CObject to find for
+     * @return the partial match
+     */
+    public PartialMatch findPartial(CComplexObject root) {
+
+        List<PathSegment> pathsMatched = new ArrayList<>();
+        List<PathSegment> remainingSegments = new ArrayList<>(pathSegments);
+
+        List<ArchetypeModelObject>  result = Lists.newArrayList(root);
+        List<ArchetypeModelObject>  lastResult;
+
+        while (!remainingSegments.isEmpty()) {
+            lastResult = result;
+            PathSegment segment = remainingSegments.remove(0);
+            result = findOneSegment(segment, result, false);
+
+            if (result.isEmpty()) {
+                //no more matches, return partial match.
+                //the last segment did not match anything, add it again!
+                remainingSegments.add(0, segment);
+                return new PartialMatch(lastResult, PathUtil.getPath(pathsMatched), PathUtil.getPath(remainingSegments));
+            } else {
+                pathsMatched.add(segment);
+            }
+        }
+        //full match, remainingSegments is empty
+        return new PartialMatch(result, PathUtil.getPath(pathsMatched), PathUtil.getPath(remainingSegments));
+
 
     }
 }

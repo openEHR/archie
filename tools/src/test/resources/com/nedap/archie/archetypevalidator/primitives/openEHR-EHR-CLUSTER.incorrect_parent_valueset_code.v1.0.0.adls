@@ -1,0 +1,52 @@
+archetype (adl_version=2.0.5; rm_release=1.0.4)
+    openEHR-EHR-CLUSTER.incorrect_parent_valueset_code.v1.0.0
+
+specialize
+    openEHR-EHR-CLUSTER.constraint_strength_parent.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    lifecycle_state = <"unmanaged">
+    other_details = <
+        ["regression"] = <"VALUESET_REDEFINITION_ERROR">
+    >
+
+definition
+    CLUSTER[id1.1] matches {
+        /items[id8]/value[id9]/defining_code matches {[ac7.1]} -- example
+
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"Child">
+                description = <"Child">
+            >
+            ["ac7.1"] = <
+                text = <"Score valueset">
+                description = <"Score valueset">
+            >
+            ["at0.1"] = <
+                text = <"One">
+                description = <"One">
+            >
+            ["at0.2"] = <
+                text = <"Two">
+                description = <"Two">
+            >
+            ["at0.3"] = <
+                text = <"Three">
+                description = <"Three">
+            >
+        >
+    >
+    value_sets = <
+        ["ac7.1"] = <
+            id = <"ac7.1">
+            members = <"at0.1", "at0.2", "at0.3">
+        >
+    >

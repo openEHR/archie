@@ -12,6 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  * Mapper 2 and 3 would be better as one object mapper, but none such currently exist for the ODIN format, as there is
  * no native ODIN jackson parser, only a ODIN -&gt; JSON -&gt; Objects route, and there is a native ODIN serializer.
+s * The methods ending in 3 return the Jackson 3 equivalents. They are used by the Jackson 3 parser and serializer, and
+ * throw an {@link UnsupportedOperationException} unless an implementation overrides them.
  */
 public interface RMObjectMapperProvider {
 
@@ -20,4 +22,21 @@ public interface RMObjectMapperProvider {
     ObjectMapper getOutputOdinObjectMapper();
 
     ObjectMapper getJsonObjectMapper();
+
+    default tools.jackson.databind.ObjectMapper getInputOdinObjectMapper3() {
+        throw unsupportedJackson3("getInputOdinObjectMapper3");
+    }
+
+    default tools.jackson.databind.ObjectMapper getOutputOdinObjectMapper3() {
+        throw unsupportedJackson3("getOutputOdinObjectMapper3");
+    }
+
+    default tools.jackson.databind.ObjectMapper getJsonObjectMapper3() {
+        throw unsupportedJackson3("getJsonObjectMapper3");
+    }
+
+    private UnsupportedOperationException unsupportedJackson3(String method) {
+        return new UnsupportedOperationException(getClass().getName() + " does not support Jackson 3. Override "
+                + method + "() to use it with the Jackson 3 parser or serializer.");
+    }
 }

@@ -1,22 +1,20 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nedap.archie.datetime.DateTimeParsers;
-import com.nedap.archie.json.DurationDeserializer;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rm.datavalues.quantity.DvAmount;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
 import com.nedap.archie.xml.adapters.DurationXmlAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.temporal.TemporalAmount;
 import java.util.List;
 import java.util.Objects;
@@ -29,7 +27,7 @@ import java.util.Objects;
 @XmlType(name = "DV_DURATION", propOrder = {
 		"value"
 })
-public class DvDuration extends DvAmount<Long> implements SingleValuedDataValue<TemporalAmount> {
+public class DvDuration extends DvAmount<DvDuration, Double> implements SingleValuedDataValue<TemporalAmount> {
 
 	@XmlJavaTypeAdapter(DurationXmlAdapter.class)
 	private TemporalAmount value;
@@ -38,7 +36,7 @@ public class DvDuration extends DvAmount<Long> implements SingleValuedDataValue<
 	}
 
 	public DvDuration(TemporalAmount value) {
-		this.value = value;
+		setValue(value);
 	}
 
 	/**
@@ -47,20 +45,15 @@ public class DvDuration extends DvAmount<Long> implements SingleValuedDataValue<
 	 * @param iso8601Duration
 	 */
 	public DvDuration(String iso8601Duration) {
-		this.value = DateTimeParsers.parseDurationValue(iso8601Duration);
+		setValue(DateTimeParsers.parseDurationValue(iso8601Duration));
 	}
 
-	public DvDuration(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, TemporalAmount value) {
+	public DvDuration(@Nullable List<ReferenceRange<DvDuration>> otherReferenceRanges, @Nullable DvInterval<DvDuration> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, TemporalAmount value) {
 		super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
-		this.value = value;
+		setValue(value);
 	}
 
 	@Override
-//    @XmlElements({
-//            @XmlElement(type=Period.class),
-//            @XmlElement(type=Duration.class)
-//    })    
-    @JsonDeserialize(using=DurationDeserializer.class)
     public TemporalAmount getValue() {
         return value;
     }
@@ -73,8 +66,11 @@ public class DvDuration extends DvAmount<Long> implements SingleValuedDataValue<
     @XmlTransient
     @Override
     @JsonIgnore
-    public Long getMagnitude() {
-        return null; //no magnitude defined in spec
+    public Double getMagnitude() {
+		if(value == null) {
+			return null;
+		}
+		return TimeDefinitions.convertTemporalAmountToSeconds(value);
     }
 
 

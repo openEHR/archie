@@ -1,19 +1,8 @@
 package com.nedap.archie.archetypevalidator;
 
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeSlot;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.flattener.ArchetypeRepository;
-import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.aom.*;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by pieter.bos on 31/03/2017.
@@ -61,7 +50,7 @@ public abstract class ValidatingVisitor extends ArchetypeValidationBase {
         if(cObject instanceof  CComplexObject) {
             validate((CComplexObject) cObject);
         } else if (cObject instanceof  CPrimitiveObject) {
-            validate((CPrimitiveObject) cObject);
+            validate((CPrimitiveObject<?, ?>) cObject);
         } else if(cObject instanceof ArchetypeSlot){
             validate((ArchetypeSlot) cObject);
         } else if(cObject instanceof CComplexObjectProxy){
@@ -90,7 +79,7 @@ public abstract class ValidatingVisitor extends ArchetypeValidationBase {
     protected void validate(CComplexObject cObject) {
     }
 
-    protected void validate(CPrimitiveObject cObject) {
+    protected void validate(CPrimitiveObject<?, ?> cObject) {
     }
 
     protected void validate(CAttribute cAttribute) {

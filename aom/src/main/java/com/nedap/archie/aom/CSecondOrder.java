@@ -1,6 +1,8 @@
 package com.nedap.archie.aom;
 
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlType;
+
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
  */
 @XmlType(name="C_SECOND_ORDER")
 public class CSecondOrder<T extends ArchetypeConstraint> extends ArchetypeModelObject {
+    @Nullable
     private List<T> members = new ArrayList<>();
 
     public T getMember(int i) {

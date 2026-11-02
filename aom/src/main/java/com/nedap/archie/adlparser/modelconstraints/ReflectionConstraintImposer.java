@@ -6,9 +6,7 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rminfo.MetaModel;
-import com.nedap.archie.rminfo.MetaModelInterface;
 import com.nedap.archie.rminfo.ModelInfoLookup;
-import com.nedap.archie.rminfo.RMAttributeInfo;
 
 import java.util.Stack;
 
@@ -24,13 +22,13 @@ public class ReflectionConstraintImposer implements ModelConstraintImposer {
 
     /** Contains complex object structure of the specified model. Attributes NEVER will have children. Sorry bout that :)*/
 
-    private MetaModelInterface lookup;
+    private MetaModel lookup;
 
     public ReflectionConstraintImposer(ModelInfoLookup classLookup) {
         this.lookup = new MetaModel(classLookup, null);
     }
 
-    public ReflectionConstraintImposer(MetaModelInterface metaModel) {
+    public ReflectionConstraintImposer(MetaModel metaModel) {
         this.lookup = metaModel;
     }
 

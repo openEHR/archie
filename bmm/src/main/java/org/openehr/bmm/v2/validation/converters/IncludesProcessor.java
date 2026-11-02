@@ -6,9 +6,9 @@ import org.openehr.bmm.v2.persistence.BmmIncludeSpec;
 import org.openehr.bmm.v2.persistence.PBmmClass;
 import org.openehr.bmm.v2.persistence.PBmmPackage;
 import org.openehr.bmm.v2.persistence.PBmmSchema;
+import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.bmm.v2.validation.BmmSchemaConverter;
 import org.openehr.bmm.v2.validation.BmmValidationResult;
-import org.openehr.bmm.v2.validation.BmmRepository;
 import org.openehr.utils.message.MessageLogger;
 
 import java.util.ArrayList;
@@ -22,15 +22,17 @@ public class IncludesProcessor {
     public List<String> getIncludeIds(PBmmSchema schema) {
 
         return schema.getIncludes().values().stream()
-                .map( includeSpec -> includeSpec.getId()).collect(Collectors.toCollection(ArrayList::new));
+                .map(BmmIncludeSpec::getId).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public void cloneSchemaAndAddIncludes(BmmValidationResult validationResult, BmmRepository repository, MessageLogger logger) {
         //step 1: check that all includes exist
         PBmmSchema schema = validationResult.getOriginalSchema();
-        for(BmmIncludeSpec include: schema.getIncludes().values())
-            if(!repository.containsPersistentSchema(include.getId()))
+        for(BmmIncludeSpec include: schema.getIncludes().values()) {
+            if(!repository.containsPersistentSchema(include.getId())) {
                 logger.addError(BmmMessageIds.ec_bmm_schema_included_schema_not_found, include.getId());
+            }
+        }
 
         if (!logger.hasErrors()) {
             PBmmSchema clone = (PBmmSchema) schema.clone();
@@ -51,8 +53,9 @@ public class IncludesProcessor {
                         logger.addError(BmmMessageIds.ec_bmm_schema_includes_valiidation_failed, schema.getSchemaId(), included.getLogger().toString());
                         validationResult.addFailedMerge(include.getId());
                     }
-                    else
+                    else {
                         mergeIncluded(validationResult, included);
+                    }
                 }
             }
         }
@@ -62,12 +65,14 @@ public class IncludesProcessor {
         PBmmSchema including = includingValidationResult.getSchemaWithMergedIncludes();
         PBmmSchema included = includedValidation.getSchemaWithMergedIncludes();
         //archetype parent class: only merge if nothing already in the higher-level schema
-        if (included.getArchetypeParentClass() != null &&  including.getArchetypeParentClass() == null)
+        if (included.getArchetypeParentClass() != null &&  including.getArchetypeParentClass() == null) {
             including.setArchetypeParentClass(included.getArchetypeParentClass());
+        }
 
         //archetype data value parent class: only merge if nothing already in the higher-level schema
-        if (included.getArchetypeDataValueParentClass() != null && including.getArchetypeDataValueParentClass() == null)
-            including.setArchetypeDataValueParentClass(including.getArchetypeDataValueParentClass());
+        if (included.getArchetypeDataValueParentClass() != null && including.getArchetypeDataValueParentClass() == null) {
+            including.setArchetypeDataValueParentClass(included.getArchetypeDataValueParentClass());
+        }
 
         //archetype closures
         LinkedHashSet<String> newClosurePackages = new LinkedHashSet<>();
@@ -79,9 +84,9 @@ public class IncludesProcessor {
             if (includingValidationResult.getCanonicalPackages().containsKey(packageEntry.getKey())) {
                 PBmmPackage persistedBmmPackage = includingValidationResult.getCanonicalPackages().get(packageEntry.getKey());
                 merge(persistedBmmPackage, packageEntry.getValue());
-            }
-            else
+            } else {
                 includingValidationResult.getCanonicalPackages().put(packageEntry.getKey(), (PBmmPackage) packageEntry.getValue().clone());
+            }
         }
 
         //If a package already exist, merge its classes, for each child package repeat...
@@ -105,10 +110,11 @@ public class IncludesProcessor {
         including.setClasses(new ArrayList<>(newClasses));
         included.getPackages().values().forEach(p -> {
             PBmmPackage sourcePackage = including.getPackages().get(p.getName());
-            if (sourcePackage != null)
+            if (sourcePackage != null) {
                 merge(sourcePackage, p);
-            else
+            } else {
                 including.getPackages().put(p.getName().toUpperCase(), (PBmmPackage) p.clone());
+            }
         });
     }
 }

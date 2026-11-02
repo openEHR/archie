@@ -1,8 +1,11 @@
 package com.nedap.archie.adlparser.treewalkers;
 
-import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlParser;
-import com.nedap.archie.adlparser.antlr.AdlParser.*;
+import com.nedap.archie.adlparser.antlr.AdlParser.Integer_interval_valueContext;
+import com.nedap.archie.adlparser.antlr.AdlParser.Integer_valueContext;
+import com.nedap.archie.adlparser.antlr.AdlParser.Real_interval_valueContext;
+import com.nedap.archie.adlparser.antlr.AdlParser.Real_valueContext;
+import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.base.Interval;

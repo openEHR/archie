@@ -1,0 +1,44 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+	openEHR-EHR-OBSERVATION.to_flatten_child_with_overlay.v1.0.0
+
+specialize
+	openEHR-EHR-OBSERVATION.to_flatten_parent_with_overlay.v1
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Pieter Bos">
+	>
+	copyright = <"none">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"specialized rules test">
+			use = <"testing specialized rules">
+			keywords = <"test">
+			misuse = <"">
+		>
+	>
+
+definition
+	OBSERVATION[id1.1] 	-- blood pressure
+
+rm_overlay
+	rm_visibility = <
+        ["/state"] = <
+            visibility = <"hide">
+        >
+	>
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1.1"] = <
+				text = <"blood pressure observation">
+				description = <"blood pressure observation">
+			>
+		>
+	>

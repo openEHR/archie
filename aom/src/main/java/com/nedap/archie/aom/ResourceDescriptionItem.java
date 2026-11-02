@@ -2,6 +2,7 @@ package com.nedap.archie.aom;
 
 import com.nedap.archie.base.terminology.TerminologyCode;
 
+import javax.annotation.Nullable;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +13,17 @@ import java.util.Map;
 public class ResourceDescriptionItem extends ArchetypeModelObject {
     private TerminologyCode language;
     private String purpose;
+    @Nullable
     private List<String> keywords;
+    @Nullable
     private String use;
+    @Nullable
     private String misuse;
+    @Nullable
     private String copyright;
+    @Nullable
     private Map<String, URI> originalResourceUri;
+    @Nullable
     private Map<String, String> otherDetails;//TODO: string -> object?
 
 

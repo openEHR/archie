@@ -13,12 +13,12 @@ import java.util.List;
  */
 public class VariableReferenceEvaluator implements Evaluator<VariableReference> {
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, VariableReference statement) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, VariableReference statement) {
         return evaluation.getVariableMap().get(statement.getDeclaration().getName());
     }
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(VariableReference.class);
     }
 }

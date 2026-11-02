@@ -3,7 +3,6 @@ package org.openehr.bmm.v2.persistence;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import org.openehr.bmm.core.BmmClass;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.util.ArrayList;
@@ -32,8 +31,8 @@ import java.util.function.Consumer;
 })
 public final class PBmmSchema extends PBmmPackageContainer {
 
-    private Map<String, PBmmClass<BmmClass>> primitiveTypes;
-    private Map<String, PBmmClass<BmmClass>> classDefinitions;
+    private Map<String, PBmmClass> primitiveTypes;
+    private Map<String, PBmmClass> classDefinitions;
     private Map<String, BmmIncludeSpec> includes;
 
     private String rmPublisher;
@@ -60,29 +59,32 @@ public final class PBmmSchema extends PBmmPackageContainer {
     @Deprecated
     private String archetypeVisualizeDescendantsOf;
 
-    public Map<String, PBmmClass<BmmClass>> getPrimitiveTypes() {
-        if (primitiveTypes == null)
+    public Map<String, PBmmClass> getPrimitiveTypes() {
+        if (primitiveTypes == null) {
             primitiveTypes = new CaseInsensitiveLinkedHashMap<>();
+        }
         return primitiveTypes;
     }
 
-    public void setPrimitiveTypes(Map<String, PBmmClass<BmmClass>> primitiveTypes) {
+    public void setPrimitiveTypes(Map<String, PBmmClass> primitiveTypes) {
         this.primitiveTypes = primitiveTypes;
     }
 
-    public Map<String, PBmmClass<BmmClass>> getClassDefinitions() {
-        if (classDefinitions == null)
+    public Map<String, PBmmClass> getClassDefinitions() {
+        if (classDefinitions == null) {
             classDefinitions = new CaseInsensitiveLinkedHashMap<>();
+        }
         return classDefinitions;
     }
 
-    public void setClassDefinitions(Map<String, PBmmClass<BmmClass>> classDefinitions) {
+    public void setClassDefinitions(Map<String, PBmmClass> classDefinitions) {
         this.classDefinitions = classDefinitions;
     }
 
     public Map<String, BmmIncludeSpec> getIncludes() {
-        if (includes == null)
+        if (includes == null) {
             includes = new CaseInsensitiveLinkedHashMap<>();
+        }
         return includes;
     }
 
@@ -173,7 +175,7 @@ public final class PBmmSchema extends PBmmPackageContainer {
     @Deprecated
     public List<String> getArchetypeRmClosurePackages() {
         if(archetypeRmClosurePackages == null) {
-            archetypeRmClosurePackages = new ArrayList();
+            archetypeRmClosurePackages = new ArrayList<>();
         }
         return archetypeRmClosurePackages;
     }
@@ -223,10 +225,11 @@ public final class PBmmSchema extends PBmmPackageContainer {
      * @param className
      * @return
      */
-    public PBmmClass<BmmClass> getClassDefinition(String className) {
-        PBmmClass<BmmClass> result = classDefinitions.get(className);
-        if (result == null)
+    public PBmmClass getClassDefinition(String className) {
+        PBmmClass result = classDefinitions.get(className);
+        if (result == null) {
             result = primitiveTypes.get(className);
+        }
         return result;
     }
 
@@ -236,7 +239,7 @@ public final class PBmmSchema extends PBmmPackageContainer {
      *
      * @param action
      */
-    public void doAllClasses(Consumer<PBmmClass<BmmClass>> action) {
+    public void doAllClasses(Consumer<PBmmClass> action) {
         getPrimitiveTypes().values().forEach(action);
         getClassDefinitions().values().forEach(action);
     }

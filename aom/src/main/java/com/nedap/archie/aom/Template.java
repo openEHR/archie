@@ -1,9 +1,7 @@
 package com.nedap.archie.aom;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +10,10 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="TEMPLATE")
-@XmlRootElement(name="archetype")
+@XmlRootElement(name="template")
 public class Template extends AuthoredArchetype {
 
+    @XmlElement(name="template_overlay")
     private List<TemplateOverlay> templateOverlays = new ArrayList<>();
 
     public List<TemplateOverlay> getTemplateOverlays() {

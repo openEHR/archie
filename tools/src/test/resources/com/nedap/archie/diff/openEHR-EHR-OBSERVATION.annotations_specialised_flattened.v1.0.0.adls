@@ -1,0 +1,90 @@
+archetype (adl_version=2.0.5; rm_release=1.1.0; generated)
+    openEHR-EHR-OBSERVATION.annotations_specialised_flattened.v1.0.0
+
+specialize
+    openEHR-EHR-OBSERVATION.basic_annotations.v1
+
+language
+    original_language = <[ISO_639-1::nl]>
+
+description
+    original_author = <
+        ["name"] = <"vera.prinsen">
+    >
+    lifecycle_state = <"DRAFT">
+    details = <
+        ["nl"] = <
+            language = <[ISO-639_1::nl]>
+            purpose = <"">
+        >
+    >
+
+definition
+    OBSERVATION[id1.1] matches {    -- Annotations Specialised
+        data matches {
+            HISTORY[id2] matches {
+                events matches {
+                    POINT_EVENT[id3] matches {    -- Point event
+                        data matches {
+                            ITEM_TREE[id4] matches {
+                                items matches {
+                                    ELEMENT[id5] occurrences matches {0..1} matches {    -- Text
+                                        value matches {
+                                            DV_TEXT[id6]
+                                        }
+                                    }
+                                    ELEMENT[id7] occurrences matches {0..1} matches {    -- Likert
+                                        value matches {
+                                            DV_COUNT[id8] matches {
+                                                magnitude matches {|0..10|}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nl"] = <
+            ["id1"] = <
+                text = <"Basic Annotations">
+                description = <"">
+                code = <"id1">
+            >
+            ["id3"] = <
+                text = <"Point event">
+                description = <"Point event">
+            >
+            ["id5"] = <
+                text = <"Text">
+                description = <"">
+            >
+            ["id7"] = <
+                text = <"Likert">
+                description = <"">
+            >
+            ["id1.1"] = <
+                text = <"Annotations Specialised">
+                description = <"">
+                code = <"id1">
+            >
+        >
+    >
+
+annotations
+    documentation = <
+        ["nl"] = <
+            ["/data[id2]/events[id3]/data[id4]/items[id7]/value[id8]"] = <
+                ["likertUpperBoundText"] = <"max">
+                ["likertLowerBoundText"] = <"min">
+                ["hideHeader"] = <"yes">
+                ["type"] = <"Likert">
+            >
+        >
+    >

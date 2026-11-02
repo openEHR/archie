@@ -1,0 +1,57 @@
+template (adl_version=2.0.5; rm_release=1.0.4)
+    openEHR-EHR-OBSERVATION.specialized_specialized_template_observation.v1.0.0
+
+specialize
+    openEHR-EHR-OBSERVATION.specialized_template_observation.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"MK">
+    >
+    lifecycle_state = <"unmanaged">
+    details = <
+        ["en"] = <
+            language = <[ISO-639_1::en]>
+            purpose = <"Testing">
+        >
+    >
+
+definition
+    OBSERVATION[id1.1.1] matches {    -- Specialized Test Observation Template
+        /data[id2]/events[id3]/data[id4]/items matches {
+            use_archetype CLUSTER[id7.1, openEHR-EHR-CLUSTER.simple_test_cluster-ovl-2.v1.0.0]
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1.1"] = <
+                text = <"Specialized Test Observation Template">
+                description = <"For testing">
+            >
+        >
+    >
+
+------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-CLUSTER.simple_test_cluster-ovl-2.v1.0.0
+
+specialize
+    openEHR-EHR-CLUSTER.simple_test_cluster-ovl.v1.0.0
+
+definition
+    CLUSTER[id1.1.1] 
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1.1"] = <
+                text = <"Simple test cluster">
+                description = <"For simple testing">
+            >
+        >
+    >

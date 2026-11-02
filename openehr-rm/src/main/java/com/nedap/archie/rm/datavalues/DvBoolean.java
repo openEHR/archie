@@ -1,8 +1,9 @@
 package com.nedap.archie.rm.datavalues;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
+
 import java.util.Objects;
 
 /**
@@ -15,6 +16,13 @@ import java.util.Objects;
 public class DvBoolean extends DataValue implements SingleValuedDataValue<Boolean> {
 
     private Boolean value;
+
+    public DvBoolean() {
+    }
+
+    public DvBoolean(Boolean value) {
+        setValue(value);
+    }
 
     @Override
     public Boolean getValue() {

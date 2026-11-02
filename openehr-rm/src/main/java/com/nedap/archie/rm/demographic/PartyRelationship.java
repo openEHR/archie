@@ -2,20 +2,18 @@ package com.nedap.archie.rm.demographic;
 
 import com.nedap.archie.rm.archetyped.Locatable;
 import com.nedap.archie.rm.datastructures.ItemStructure;
-import com.nedap.archie.rm.support.identification.PartyRef;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
+import com.nedap.archie.rm.support.identification.PartyRef;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
  * Created by pieter.bos on 08/07/16.
  */
+@XmlRootElement(name = "party_relationship")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="PARTY_RELATIONSHIP")
 public class PartyRelationship extends Locatable {

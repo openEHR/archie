@@ -16,9 +16,30 @@ public class CTerminologyCodeSerializer extends ConstraintSerializer<CTerminolog
 
     @Override
     public void serialize(CTerminologyCode cobj) {
-        if (!cobj.getConstraint().isEmpty()) {
+        if (cobj.getConstraint() != null) {
+            if(cobj.getConstraintStatus() != null) {
+                String constraintStatusString = null;
+                switch(cobj.getConstraintStatus()) {
+                    case REQUIRED:
+                        constraintStatusString = "required";
+                        break;
+                    case EXTENSIBLE:
+                        constraintStatusString = "extensible";
+                        break;
+                    case PREFERRED:
+                        constraintStatusString = "preferred";
+                        break;
+                    case EXAMPLE:
+                        constraintStatusString = "example";
+                        break;
+                    default:
+                        throw new RuntimeException("constraint status " + cobj.getConstraintStatus() + " unknown, cannot be serialized");
+                }
+                builder.append(constraintStatusString);
+                builder.append(" ");
+            }
             builder.append("[");
-            String constraint = cobj.getConstraint().get(0);
+            String constraint = cobj.getConstraint();
             builder.append(constraint);
             if (cobj.getAssumedValue() != null && cobj.getAssumedValue().getCodeString()!=null) {
                 builder.append("; ").append(cobj.getAssumedValue().getCodeString());
@@ -28,8 +49,8 @@ public class CTerminologyCodeSerializer extends ConstraintSerializer<CTerminolog
     }
 
     public String getSimpleCommentText(CTerminologyCode cobj) {
-        if (!cobj.getConstraint().isEmpty()) {
-            String constraint = cobj.getConstraint().get(0);
+        if (cobj.getConstraint() != null) {
+            String constraint = cobj.getConstraint();
             if(AOMUtils.isValueSetCode(constraint) || AOMUtils.isValueCode(constraint)) {
                 return serializer.getTermText(cobj, constraint);
             }

@@ -21,6 +21,7 @@ package com.nedap.archie.definitions;
  * Author: Claude Nanjo
  */
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
@@ -58,7 +59,7 @@ public enum VersionStatus {
      */
     BUILD("+");
 
-    private String value;
+    private final String value;
 
     VersionStatus(String value) {
         this.value = value;
@@ -69,6 +70,7 @@ public enum VersionStatus {
         return value;
     }
 
+    @JsonCreator
     public static VersionStatus getEnum(String value) {
         if (value.startsWith("-")) {
             value = value.substring(1);

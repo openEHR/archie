@@ -65,8 +65,6 @@ duration_interval_list_value : duration_interval_value ( ( ',' duration_interval
 term_code_value : TERM_CODE_REF ;
 term_code_list_value : term_code_value ( ( ',' term_code_value )+ | ',' SYM_LIST_CONTINUE ) ;
 
-uri_value : URI ;
-
 relop : SYM_GT | SYM_LT | SYM_LE | SYM_GE ;
 
 //

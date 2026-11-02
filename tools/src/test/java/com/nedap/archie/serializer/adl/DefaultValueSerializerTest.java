@@ -11,20 +11,19 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.TerminologyId;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.InputStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvTextOdin() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
@@ -48,7 +47,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvTextJson() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
@@ -74,7 +73,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvCodedTextJson() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
@@ -101,7 +100,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeDvCodedTextOdin() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.itemAtPath("/items[id2]/value[id21]");
@@ -128,7 +127,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeClusterJson() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.getDefinition();
@@ -157,7 +156,7 @@ public class DefaultValueSerializerTest {
 
     @Test
     public void serializeClusterOdin() throws Exception {
-        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModels());
+        ADLParser adlParser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
         try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-CLUSTER.simple.v1.adls")) {
             Archetype archetype = adlParser.parse(stream);
             CComplexObject cComplexObject = archetype.getDefinition();
@@ -179,7 +178,7 @@ public class DefaultValueSerializerTest {
 
 
             Archetype parsed = adlParser.parse(serialized);
-            assertTrue(adlParser.getErrors().toString(), adlParser.getErrors().hasNoErrors());
+            assertThat(adlParser.getErrors().toString(), adlParser.getErrors().hasNoErrors());
             assertNotNull(parsed.getDefinition().getDefaultValue());
             Cluster defaultValue = (Cluster) ((CComplexObject) parsed.getDefinition()).getDefaultValue();
             assertEquals(2, defaultValue.getItems().size());

@@ -6,14 +6,14 @@ import com.nedap.archie.rm.datastructures.ItemTree;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.HierObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class FolderTest {
 
@@ -25,7 +25,7 @@ public class FolderTest {
 
         ObjectRef<HierObjectId> item = new ObjectRef<>(new HierObjectId("test-ref"), "test-ns", "test-type");
 
-        List<ObjectRef> items = new ArrayList<>();
+        List<ObjectRef<?>> items = new ArrayList<>();
         items.add(item);
 
         List<Folder> folders = new ArrayList<>();

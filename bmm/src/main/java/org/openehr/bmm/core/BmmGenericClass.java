@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Definition of a generic class in an object model.
@@ -41,7 +40,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      */
     private Map<String, BmmParameterType> genericParameters;
 
-    public BmmGenericClass(String aName, String aDocumentation, Boolean abstractFlag) {
+    public BmmGenericClass(String aName, String aDocumentation, boolean abstractFlag) {
         super(aName, aDocumentation, abstractFlag);
         genericParameters = new LinkedHashMap<>();
     }
@@ -57,9 +56,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
      * @return
      */
     public List<BmmParameterType> getGenericParametersList() {
-        List<BmmParameterType> parameters = new ArrayList<>();
-        parameters.addAll(genericParameters.values());
-        return parameters;
+        return new ArrayList<>(genericParameters.values());
     }
 
     /**
@@ -140,9 +137,7 @@ public class BmmGenericClass extends BmmClass implements Serializable {
     @Override
     public BmmGenericType getType() {
         BmmGenericType result = new BmmGenericType(this);
-        genericParameters.forEach((paramName, param) -> {
-            result.addGenericParameter(param);
-        });
+        genericParameters.forEach((paramName, param) -> result.addGenericParameter(param));
         return result;
     }
 

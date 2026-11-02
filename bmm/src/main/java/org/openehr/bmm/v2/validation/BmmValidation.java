@@ -8,5 +8,5 @@ import org.openehr.utils.message.MessageLogger;
  */
 public interface BmmValidation {
 
-    public void validate(BmmValidationResult validationResult, BmmRepository repository, MessageLogger logger, PBmmSchema schema);
+    void validate(BmmValidationResult validationResult, BmmRepository repository, MessageLogger logger, PBmmSchema schema);
 }

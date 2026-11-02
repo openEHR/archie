@@ -10,13 +10,7 @@ import com.nedap.archie.adlparser.antlr.ContainedRegexLexer;
 import com.nedap.archie.adlparser.antlr.ContainedRegexParser;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.primitives.CBoolean;
-import com.nedap.archie.aom.primitives.CDate;
-import com.nedap.archie.aom.primitives.CDateTime;
-import com.nedap.archie.aom.primitives.CDuration;
-import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.aom.primitives.CTime;
+import com.nedap.archie.aom.primitives.*;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.serializer.odin.OdinValueParser;
 import org.antlr.v4.runtime.CharStreams;
@@ -47,7 +41,7 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
         temporalConstraintParser = new TemporalConstraintParser(errors);
     }
 
-    public CPrimitiveObject parsePrimitiveObject(AdlParser.C_primitive_objectContext objectContext) {
+    public CPrimitiveObject<?, ?> parsePrimitiveObject(AdlParser.C_primitive_objectContext objectContext) {
         /*c_integer
                 | c_real
                 | c_date
@@ -116,14 +110,41 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
             String assumedValueString = terminologyCodeContext.AT_CODE().getText();
             assumedValue.setCodeString(assumedValueString);
             result.setAssumedValue(assumedValue);
-            result.addConstraint(assumedValue.getTerminologyIdString());
+            result.setConstraint(assumedValue.getTerminologyIdString());
         } else {
             if(terminologyCodeContext.AC_CODE() != null) {
-                result.addConstraint(terminologyCodeContext.AC_CODE().getText());
+                result.setConstraint(terminologyCodeContext.AC_CODE().getText());
             } else {
-                result.addConstraint(terminologyCodeContext.AT_CODE().getText());
+                result.setConstraint(terminologyCodeContext.AT_CODE().getText());
             }
         }
+
+        if(terminologyCodeContext.identifier() != null) {
+            String constraintStatusText = terminologyCodeContext.identifier().getText();
+            switch (constraintStatusText.toLowerCase()) {
+                case "required":
+                    result.setConstraintStatus(ConstraintStatus.REQUIRED);
+                    break;
+                case "extensible":
+                    result.setConstraintStatus(ConstraintStatus.EXTENSIBLE);
+                    break;
+                case "preferred":
+                    result.setConstraintStatus(ConstraintStatus.PREFERRED);
+                    break;
+                case "example":
+                    result.setConstraintStatus(ConstraintStatus.EXAMPLE);
+                    break;
+                default:
+                    getErrors().addError("constraint status must be one of required, extensible, preferred or example, but was " + constraintStatusText,
+                            "Constraint status incorrect",
+                            terminologyCodeContext.getStart().getLine(),
+                            terminologyCodeContext.getStart().getCharPositionInLine(),
+                            constraintStatusText.length(),
+                            constraintStatusText
+                            );
+            }
+        }
+
         return result;
     }
 
@@ -165,7 +186,7 @@ public class PrimitivesConstraintParser extends BaseTreeWalker {
         return temporalConstraintParser.parseCDate(context);
     }
 
-    public CPrimitiveObject parseRegex(TerminalNode terminalNode) {
+    public CPrimitiveObject<?, ?> parseRegex(TerminalNode terminalNode) {
         ContainedRegexLexer lexer = new ContainedRegexLexer(CharStreams.fromString(terminalNode.getText()));
         ContainedRegexParser parser = new ContainedRegexParser(new CommonTokenStream(lexer));
         ContainedRegexParser.RegexContext regex = parser.regex();

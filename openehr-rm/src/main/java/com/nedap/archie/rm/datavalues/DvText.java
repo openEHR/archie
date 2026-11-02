@@ -2,11 +2,13 @@ package com.nedap.archie.rm.datavalues;
 
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -43,13 +45,13 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
     }
 
     public DvText(String value) {
-        this.value = value;
+        setValue(value);
     }
 
     public DvText(String value, @Nullable CodePhrase language, @Nullable CodePhrase encoding) {
-        this.value = value;
-        this.language = language;
-        this.encoding = encoding;
+        setValue(value);
+        setLanguage(language);
+        setEncoding(encoding);
     }
 
     public List<TermMapping> getMappings() {
@@ -103,6 +105,23 @@ public class DvText extends DataValue implements SingleValuedDataValue<String> {
 
     public void setEncoding(CodePhrase encoding) {
         this.encoding = encoding;
+    }
+
+    @Invariant("Language_valid")
+    public boolean languageValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(language, "languages");
+    }
+    @Invariant("Encoding_valid")
+    public boolean encodingValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(encoding, "character sets");
+    }
+    @Invariant(value = "Mappings_valid", ignored = true)
+    public boolean mappingsValid() {
+        return InvariantUtil.nullOrNotEmpty(mappings);
+    }
+    @Invariant("Formatting_valid")
+    public boolean formattingValid() {
+        return InvariantUtil.nullOrNotEmpty(formatting);
     }
 
     @Override

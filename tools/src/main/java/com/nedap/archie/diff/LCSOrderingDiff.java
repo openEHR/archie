@@ -1,31 +1,27 @@
 package com.nedap.archie.diff;
 
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.CAttribute;
-import com.nedap.archie.aom.CComplexObject;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.SiblingOrder;
+import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModel;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.nedap.archie.diff.DiffUtil.*;
+import static com.nedap.archie.diff.DiffUtil.findMatchingParentCObject;
+import static com.nedap.archie.diff.DiffUtil.getMatchingAttribute;
 
 /**
  * Determines sibling orders using a longest common subsequence-based diff algorithm
  */
 public class LCSOrderingDiff {
 
-    private final MetaModels metaModels;
+    private final MetaModel metaModel;
 
-    LCSOrderingDiff(MetaModels metaModels) {
-        this.metaModels = metaModels;
+    LCSOrderingDiff(MetaModel metaModel) {
+        this.metaModel = metaModel;
     }
 
     public void addSiblingOrder(Archetype result, Archetype flatChild, Archetype flatParent) {
@@ -72,11 +68,11 @@ public class LCSOrderingDiff {
             //descend into children first
             addSiblingOrder(resultAttribute, flatChildAttribute, parentAttribute);
 
-            if(!metaModels.isMultiple(parentAttribute.getParent().getRmTypeName(), parentAttribute.getRmAttributeName())){
+            if(!metaModel.isMultiple(parentAttribute.getParent().getRmTypeName(), parentAttribute.getRmAttributeName())){
                 continue;
             }
 
-            if(!metaModels.isOrdered(parentAttribute.getParent().getRmTypeName(), parentAttribute.getRmAttributeName())){
+            if(!metaModel.isOrdered(parentAttribute.getParent().getRmTypeName(), parentAttribute.getRmAttributeName())){
                 continue;
             }
 
@@ -120,15 +116,15 @@ public class LCSOrderingDiff {
     private LinkedHashMap<SiblingOrder, List<CObject>> createSiblingOrders(CAttribute parentAttribute, CComplexObject flatChild, CAttribute flatChildAttribute, CAttribute resultAttribute) {
         LinkedHashMap<SiblingOrder, List<CObject>> siblingOrders = new LinkedHashMap<>();
 
-        List<String> parentNodeIds = parentAttribute.getChildren().stream().map(cobject -> cobject.getNodeId()).collect(Collectors.toList());
-        List<String> childNodeIds = flatChildAttribute.getChildren().stream().map(cobject -> cobject.getNodeId()).collect(Collectors.toList());
+        List<String> parentNodeIds = parentAttribute.getChildren().stream().map(CObject::getNodeId).collect(Collectors.toList());
+        List<String> childNodeIds = flatChildAttribute.getChildren().stream().map(CObject::getNodeId).collect(Collectors.toList());
         int childSpecializationDepth = flatChild.getArchetype().specializationDepth();
         NodeIdLCS nodeIdLCS = new NodeIdLCS(parentNodeIds, childNodeIds, childSpecializationDepth);
         List<String> lcs = nodeIdLCS.getLCS();
 
-        if(lcs.size() == 0) {
+        if(lcs.isEmpty()) {
             //If there's no empty LCS, it's not possible to add sibling markers
-        }  else {
+        } else {
             for (int i = 0; i < childNodeIds.size(); i++) {
                 String nodeId = childNodeIds.get(i);
                 if (!nodeIdLCS.contains(nodeId)) {
@@ -192,26 +188,25 @@ public class LCSOrderingDiff {
         boolean onlyTheSameParentNodeId = false;
         String firstNodeIdWithSameParent = null;
 
-        for(int j = i - 1; j>= 0; j--) {
-
+        for(int j = i - 1; j >= 0; j--) {
             String otherNodeId = childNodeIds.get(j);
-            if(AOMUtils.getSpecializationDepthFromCode(nodeId) == childSpecializationDepth &&
+            if (AOMUtils.getSpecializationDepthFromCode(nodeId) == childSpecializationDepth &&
                     AOMUtils.codeExistsAtLevel(nodeId, childSpecializationDepth-1) &&
                     AOMUtils.codeAtLevel(otherNodeId, childSpecializationDepth-1).equals(AOMUtils.codeAtLevel(nodeId, childSpecializationDepth-1))) {
                 onlyTheSameParentNodeId = true;
                 firstNodeIdWithSameParent = otherNodeId;
             } else {
-                if (onlyTheSameParentNodeId) {
-                    CObject cObjectInResult = resultAttribute.getChild(nodeId);
-                    SiblingOrder order = DiffUtil.findSiblingOrder(siblingOrders, firstNodeIdWithSameParent);
-                    if(order != null) {
-                        DiffUtil.addSiblingOrder(siblingOrders, order, cObjectInResult);
-                    }
-                    return true;
-                }
-                return false;
+                break;
             }
+        }
 
+        if (onlyTheSameParentNodeId) {
+            CObject cObjectInResult = resultAttribute.getChild(nodeId);
+            SiblingOrder order = DiffUtil.findSiblingOrder(siblingOrders, firstNodeIdWithSameParent);
+            if(order != null) {
+                DiffUtil.addSiblingOrder(siblingOrders, order, cObjectInResult);
+            }
+            return true;
         }
         return false;
     }

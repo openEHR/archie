@@ -1,36 +1,12 @@
 package com.nedap.archie.rminfo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.aom.Archetype;
-import com.nedap.archie.aom.ArchetypeHRID;
-import com.nedap.archie.aom.AuthoredResource;
-import com.nedap.archie.aom.CObject;
-import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.TranslationDetails;
-import com.nedap.archie.aom.primitives.CBoolean;
-import com.nedap.archie.aom.primitives.CDate;
-import com.nedap.archie.aom.primitives.CDateTime;
-import com.nedap.archie.aom.primitives.CDuration;
-import com.nedap.archie.aom.primitives.CInteger;
-import com.nedap.archie.aom.primitives.CReal;
-import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.aom.primitives.CTime;
+import com.nedap.archie.aom.*;
+import com.nedap.archie.aom.primitives.*;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rm.RMObject;
-import com.nedap.archie.rm.archetyped.Archetyped;
-import com.nedap.archie.rm.archetyped.FeederAudit;
-import com.nedap.archie.rm.archetyped.FeederAuditDetails;
-import com.nedap.archie.rm.archetyped.Link;
-import com.nedap.archie.rm.archetyped.Locatable;
-import com.nedap.archie.rm.archetyped.Pathable;
-import com.nedap.archie.rm.archetyped.TemplateId;
-import com.nedap.archie.rm.changecontrol.Contribution;
-import com.nedap.archie.rm.changecontrol.ImportedVersion;
-import com.nedap.archie.rm.changecontrol.OriginalVersion;
-import com.nedap.archie.rm.changecontrol.Version;
-import com.nedap.archie.rm.changecontrol.VersionedObject;
+import com.nedap.archie.rm.archetyped.*;
+import com.nedap.archie.rm.changecontrol.*;
 import com.nedap.archie.rm.composition.*;
 import com.nedap.archie.rm.datastructures.*;
 import com.nedap.archie.rm.datatypes.CodePhrase;
@@ -39,32 +15,15 @@ import com.nedap.archie.rm.datavalues.encapsulated.DvEncapsulated;
 import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
 import com.nedap.archie.rm.datavalues.encapsulated.DvParsable;
 import com.nedap.archie.rm.datavalues.quantity.*;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDate;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvTemporal;
-import com.nedap.archie.rm.datavalues.quantity.datetime.DvTime;
+import com.nedap.archie.rm.datavalues.quantity.datetime.*;
 import com.nedap.archie.rm.datavalues.timespecification.DvGeneralTimeSpecification;
 import com.nedap.archie.rm.datavalues.timespecification.DvPeriodicTimeSpecification;
 import com.nedap.archie.rm.datavalues.timespecification.DvTimeSpecification;
 import com.nedap.archie.rm.demographic.*;
 import com.nedap.archie.rm.directory.Folder;
 import com.nedap.archie.rm.directory.VersionedFolder;
-import com.nedap.archie.rm.ehr.Ehr;
-import com.nedap.archie.rm.ehr.EhrAccess;
-import com.nedap.archie.rm.ehr.EhrStatus;
-import com.nedap.archie.rm.ehr.VersionedComposition;
-import com.nedap.archie.rm.ehr.VersionedEhrAccess;
-import com.nedap.archie.rm.ehr.VersionedEhrStatus;
-import com.nedap.archie.rm.generic.Attestation;
-import com.nedap.archie.rm.generic.AuditDetails;
-import com.nedap.archie.rm.generic.Participation;
-import com.nedap.archie.rm.generic.PartyIdentified;
-import com.nedap.archie.rm.generic.PartyProxy;
-import com.nedap.archie.rm.generic.PartyRelated;
-import com.nedap.archie.rm.generic.PartySelf;
-import com.nedap.archie.rm.generic.RevisionHistory;
-import com.nedap.archie.rm.generic.RevisionHistoryItem;
+import com.nedap.archie.rm.ehr.*;
+import com.nedap.archie.rm.generic.*;
 import com.nedap.archie.rm.integration.GenericEntry;
 import com.nedap.archie.rm.security.AccessControlSettings;
 import com.nedap.archie.rm.support.identification.*;
@@ -84,6 +43,8 @@ import java.util.Map;
  */
 public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
 
+    public static final String RM_VERSION = "1.1.0";
+
     private static ArchieRMInfoLookup instance;
 
     private ArchieRMInfoLookup() {
@@ -91,7 +52,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    protected void addTypes(Class baseClass) {
+    protected void addTypes(Class<?> baseClass) {
         addClass(Interval.class); //extra class from the base package. No RMObject because it is also used in the AOM
         addClass(AuditDetails.class);
         addClass(Ehr.class);
@@ -132,6 +93,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
         addClass(ContentItem.class);
         addClass(DataValue.class);
         addClass(DvOrdinal.class);
+        addClass(DvScale.class);
         addClass(Agent.class);
         addClass(InternetId.class);
         addClass(Role.class);
@@ -212,13 +174,12 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
         addClass(TerminologyId.class);
         addClass(Link.class);
         addClass(Archetyped.class);
-        addClass(ArchetypeHRID.class);
         addClass(AuthoredResource.class);
         addClass(TranslationDetails.class);
     }
 
     @Override
-    protected boolean isNullable(Class clazz, Method getMethod, Field field) {
+    protected boolean isNullable(Class<?> clazz, Method getMethod, Field field) {
         //The Party class has a non-null field that is nullable in its ancestor Actor. Cannot model that in Java
         //with Nullable annotations, or have to add really complicated stuff. This works too.
         if(field != null) {
@@ -241,7 +202,7 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    public Class getClassToBeCreated(String rmTypename) {
+    public Class<?> getClassToBeCreated(String rmTypename) {
         if(rmTypename.equals("EVENT")) {
             //this is an abstract class and cannot be created. Create point event instead
             return PointEvent.class;
@@ -250,12 +211,14 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    public Object convertToConstraintObject(Object object, CPrimitiveObject cPrimitiveObject) {
+    public Object convertToConstraintObject(Object object, CPrimitiveObject<?, ?> cPrimitiveObject) {
         if(cPrimitiveObject instanceof CTerminologyCode) {
-            if(object instanceof DvCodedText) {
+            if(object instanceof DvCodedText && ((DvCodedText) object).getDefiningCode() != null) {
                 return convertCodePhrase(((DvCodedText) object).getDefiningCode());
             } else if (object instanceof CodePhrase) {
                 return convertCodePhrase((CodePhrase) object);
+            } else {
+                return new TerminologyCode();
             }
         }
         return object;
@@ -288,6 +251,15 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
             Locatable locatable = (Locatable) createdObject;
             locatable.setArchetypeNodeId(constraint.getNodeId());
             locatable.setNameAsString(constraint.getMeaning());
+            if(constraint instanceof CArchetypeRoot) {
+                CArchetypeRoot root = (CArchetypeRoot) constraint;
+                if(root.getArchetypeRef() != null) {
+                    Archetyped details = new Archetyped();
+                    details.setArchetypeId(new ArchetypeID(root.getArchetypeRef()));
+                    details.setRmVersion(RM_VERSION);
+                    locatable.setArchetypeDetails(details);
+                }
+            }
         }
     }
 
@@ -348,12 +320,12 @@ public class ArchieRMInfoLookup extends ReflectionModelInfoLookup {
     }
 
     @Override
-    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject cObject) {
+    public boolean validatePrimitiveType(String rmTypeName, String rmAttributeName, CPrimitiveObject<?, ?> cObject) {
         RMAttributeInfo attributeInfo = this.getAttributeInfo(rmTypeName, rmAttributeName);
         if(attributeInfo == null) {
             return true;//cannot validate
         }
-        Class typeInCollection = attributeInfo.getTypeInCollection();
+        Class<?> typeInCollection = attributeInfo.getTypeInCollection();
         if(cObject instanceof CInteger) {
             return typeInCollection.equals(Long.class) || typeInCollection.getName().equals("long");
         } else if(cObject instanceof CReal) {

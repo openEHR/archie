@@ -39,7 +39,7 @@ public class Max implements FunctionImplementation {
             Double max = null;
             List<String> paths = new ArrayList<>();
             for(ValueList list: arguments) {
-                Value value = list.get(i);
+                Value<?> value = list.get(i);
                 if(!value.isNull() && ((max == null) || castToDouble(value) > max)) {
                     max = castToDouble(value);
                 }

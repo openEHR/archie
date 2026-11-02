@@ -6,19 +6,18 @@ package com.nedap.archie.rm.ehr;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import com.nedap.archie.rm.archetyped.*;
 import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.generic.PartySelf;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,18 +42,18 @@ public class EhrStatus extends Locatable {
 
     public EhrStatus(String archetypeNodeId, DvText name, PartySelf subject, boolean isQueryable, boolean isModifiable, @Nullable ItemStructure otherDetails) {
         super(archetypeNodeId, name);
-        this.subject = subject;
-        this.isQueryable = isQueryable;
-        this.isModifiable = isModifiable;
-        this.otherDetails = otherDetails;
+        setSubject(subject);
+        setQueryable(isQueryable);
+        setModifiable(isModifiable);
+        setOtherDetails(otherDetails);
     }
 
     public EhrStatus(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, PartySelf subject, boolean isQueryable, boolean isModifiable, @Nullable ItemStructure otherDetails) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.subject = subject;
-        this.isQueryable = isQueryable;
-        this.isModifiable = isModifiable;
-        this.otherDetails = otherDetails;
+        setSubject(subject);
+        setQueryable(isQueryable);
+        setModifiable(isModifiable);
+        setOtherDetails(otherDetails);
     }
 
     public PartySelf getSubject() {

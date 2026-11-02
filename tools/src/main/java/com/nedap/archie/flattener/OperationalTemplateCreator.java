@@ -3,12 +3,11 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
+import com.nedap.archie.aom.terminology.ValueSet;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.query.ComplexObjectProxyReplacement;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Creates operational templates. Not to be used externally, use the Flattener with the right parameters to
@@ -29,17 +28,22 @@ class OperationalTemplateCreator {
         result.setDefinition(clone.getDefinition());
         result.setDifferential(false);
 
-        result.setRmRelease(clone.getRmRelease());
-        result.setAdlVersion(clone.getAdlVersion());
+        if (clone instanceof AuthoredArchetype) {
+            AuthoredArchetype authoredArchetypeClone = (AuthoredArchetype) clone;
+            result.setRmRelease(authoredArchetypeClone.getRmRelease());
+            result.setAdlVersion(authoredArchetypeClone.getAdlVersion());
+            result.setBuildUid(authoredArchetypeClone.getBuildUid());
+            result.setOtherMetaData(authoredArchetypeClone.getOtherMetaData());
+        }
+
         result.setTerminology(clone.getTerminology());
         result.setGenerated(true);
-        result.setOtherMetaData(clone.getOtherMetaData());
         result.setRules(clone.getRules());
-        result.setBuildUid(clone.getBuildUid());
         result.setDescription(clone.getDescription());
         result.setOriginalLanguage(clone.getOriginalLanguage());
         result.setTranslations(clone.getTranslations());
         result.setAnnotations(clone.getAnnotations());
+        result.setRmOverlay(clone.getRmOverlay());
 
         return result;
     }
@@ -56,16 +60,26 @@ class OperationalTemplateCreator {
         fillComplexObjectProxies(archetype);
     }
 
-    /** Zero occurrences and existence constraint processing when creating OPT templates. Removes attributes */
+    static void expandValueSets(OperationalTemplate operationalTemplate) {
+        List<ArchetypeTerminology> terminologies = Arrays.asList(operationalTemplate.getTerminology());
+       // terminologies.addAll(operationalTemplate.getComponentTerminologies().values());
+        for(ArchetypeTerminology terminology:terminologies) {
+            for(ValueSet valueSet:terminology.getValueSets().values()) {
+                valueSet.setMembers(AOMUtils.getExpandedValueSetMembers(terminology.getValueSets(), valueSet));
+            }
+        }
+    }
+
+    /** Zero occurrences and existence constraint processing when creating OPT templates. Does not remove attributes */
     public void removeZeroOccurrencesConstraints(Archetype archetype) {
         Stack<CObject> workList = new Stack<>();
         workList.push(archetype.getDefinition());
         while (!workList.isEmpty()) {
             CObject object = workList.pop();
-            List<CAttribute> attributesToRemove = new ArrayList<>();
             for (CAttribute attribute : object.getAttributes()) {
                 if (attribute.getExistence() != null && attribute.getExistence().getUpper() == 0 && !attribute.getExistence().isUpperUnbounded()) {
-                    attributesToRemove.add(attribute);
+                    FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, attribute.getChildren());
+                    attribute.setChildren(new ArrayList<>());
                 } else {
                     List<CObject> objectsToRemove = new ArrayList<>();
                     for (CObject child : attribute.getChildren()) {
@@ -74,11 +88,10 @@ class OperationalTemplateCreator {
                         }
                         workList.push(child);
                     }
+                    FlattenerUtil.removeAnnotationsForArchetypeConstraints(archetype, objectsToRemove);
                     attribute.getChildren().removeAll(objectsToRemove);
                 }
-
             }
-            object.getAttributes().removeAll(attributesToRemove);
         }
     }
 
@@ -90,7 +103,7 @@ class OperationalTemplateCreator {
             CObject object = workList.pop();
             if( (object instanceof CComplexObject || object instanceof ArchetypeSlot || object instanceof CComplexObjectProxy)
                     && object.getOccurrences() == null) {
-                object.setOccurrences(object.effectiveOccurrences(flattener.getMetaModels()::referenceModelPropMultiplicity));
+                object.setOccurrences(object.effectiveOccurrences(flattener.getMetaModel()::referenceModelPropMultiplicity));
             }
             for (CAttribute attribute : object.getAttributes()) {
 
@@ -174,11 +187,16 @@ class OperationalTemplateCreator {
         }
     }
 
+    /**
+     * Only fillArchetypeRoot if this is not done yet
+     */
     private void fillArchetypeRoot(CArchetypeRoot root, OperationalTemplate result) {
-        if(flattener.getCreateOperationalTemplate()) {
+        if(flattener.getCreateOperationalTemplate() && ( root.getAttributes() == null || root.getAttributes().isEmpty()) ) {
             String archetypeRef = root.getArchetypeRef();
             String newArchetypeRef = archetypeRef;
-            Archetype archetype = flattener.getRepository().getArchetype(archetypeRef);
+            OverridingArchetypeRepository repository = flattener.getRepository();
+
+            Archetype archetype = repository.getArchetype(archetypeRef);
             if(archetype instanceof TemplateOverlay){
                 //we want to be able to check which archetype this is in the UI. If it's an overlay, that means retrieving the non-operational template
                 //which is a hassle.
@@ -186,9 +204,13 @@ class OperationalTemplateCreator {
                 newArchetypeRef = archetype.getParentArchetypeId();
             }
             if (archetype == null) {
-                throw new IllegalArgumentException("Archetype with reference :" + archetypeRef + " not found.");
+                if(getConfig().isFailOnMissingUsedArchetype()) {
+                    throw new IllegalArgumentException("Archetype with reference :" + archetypeRef + " not found.");
+                } else {
+                    //just skip, as a form of graceful degradation.
+                    return;
+                }
             }
-
             archetype = flattener.getNewFlattener().flatten(archetype);
 
             //
@@ -228,11 +250,18 @@ class OperationalTemplateCreator {
                 }
             }
 
+            if (terminology.getOriginalLanguage() == null && result.getOriginalLanguage() != null) {
+                terminology.setOriginalLanguage(result.getOriginalLanguage().getCodeString());
+            }
+
             result.addComponentTerminology(newNodeId, terminology);
 
-            String prefix = archetype.getArchetypeId().getConceptId() + "_";
+            // Replaces dashes and convert to lower case, as dashes and variables starting with an upper case letter
+            // aren't allowed everywhere.
+            String prefix = archetype.getArchetypeId().getConceptId().replace("-", "_").toLowerCase() + "_";
             flattener.getRulesFlattener().combineRules(archetype, root.getArchetype(), prefix, prefix, rootToFill.getPath(), false);
-            flattener.getAnnotationsFlattener().addAnnotationsWithPathPrefix(rootToFill.getPath(), archetype, result);
+            flattener.getAnnotationsAndOverlaysFlattener().addAnnotationsWithPathPrefix(rootToFill.getPath(), archetype, result);
+            flattener.getAnnotationsAndOverlaysFlattener().addVisibilityWithPathPrefix(rootToFill.getPath(), archetype, result);
             //todo: do we have to put something in the terminology extracts?
             //templateResult.addTerminologyExtract(child.getNodeId(), archetype.getTerminology().);
         }
@@ -242,8 +271,4 @@ class OperationalTemplateCreator {
     private FlattenerConfiguration getConfig() {
         return flattener.getConfiguration();
     }
-
-
-
-
 }

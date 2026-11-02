@@ -9,18 +9,18 @@ import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDuration;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
  */
+@XmlRootElement(name = "interval_event")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "INTERVAL_EVENT", propOrder = {
         "width",
@@ -42,9 +42,9 @@ public class IntervalEvent<Type extends ItemStructure> extends Event<Type> {
 
     public IntervalEvent(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, DvDateTime time, Type data, @Nullable Type state, DvDuration width, DvCodedText mathFunction, @Nullable Long sampleCount) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName, time, data, state);
-        this.width = width;
-        this.sampleCount = sampleCount;
-        this.mathFunction = mathFunction;
+        setWidth(width);
+        setSampleCount(sampleCount);
+        setMathFunction(mathFunction);
     }
 
     public DvDuration getWidth() {
@@ -86,5 +86,10 @@ public class IntervalEvent<Type extends ItemStructure> extends Event<Type> {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), width, sampleCount, mathFunction);
+    }
+
+    @Invariant("Math_function_validity")
+    public boolean mathFunctionValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(mathFunction, "event math function");
     }
 }

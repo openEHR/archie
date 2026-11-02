@@ -1,14 +1,11 @@
 package com.nedap.archie.base;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 import java.time.temporal.TemporalAmount;
 import java.util.Objects;
 
@@ -82,13 +79,20 @@ public class Interval<T> extends OpenEHRBase {
     }
 
     public static <T> Interval<T> lowerUnbounded(T upper, boolean upperIncluded) {
-        Interval<T> result = new Interval<>(null, upper, false, upperIncluded);
+        Interval<T> result = new Interval<T>(null, upper, false, upperIncluded);
         result.setLowerUnbounded(true);
         return result;
     }
 
     public static <T> Interval<T> upperUnbounded(T lower, boolean lowerIncluded) {
-        Interval<T> result = new Interval<>(lower, null, lowerIncluded, false);
+        Interval<T> result = new Interval<T>(lower, null, lowerIncluded, false);
+        result.setUpperUnbounded(true);
+        return result;
+    }
+
+    public static <T> Interval<T> unbounded() {
+        Interval<T> result = new Interval<T>(null, null, false, false);
+        result.setLowerUnbounded(true);
         result.setUpperUnbounded(true);
         return result;
     }
@@ -176,9 +180,7 @@ public class Interval<T> extends OpenEHRBase {
 
 		if (!upperUnbounded) {
             int comparedWithUpper = comparableValue.compareTo(comparableUpper);
-            if (comparedWithUpper > 0 || (!upperIncluded && comparedWithUpper == 0)) {
-                return false;
-            }
+            return comparedWithUpper <= 0 && (upperIncluded || comparedWithUpper != 0);
         }
         return true;
     }
@@ -314,8 +316,8 @@ public class Interval<T> extends OpenEHRBase {
         return Objects.hash(
                 lowerUnbounded,
                 upperUnbounded,
-                lowerUnbounded? false: lowerIncluded,
-                upperUnbounded? false: upperIncluded,
+                !lowerUnbounded && lowerIncluded,
+                !upperUnbounded && upperIncluded,
                 lowerUnbounded? null : lower,
                 upperUnbounded? null : upper);
     }
@@ -356,4 +358,34 @@ public class Interval<T> extends OpenEHRBase {
             this.lowerIncluded = false;
         }
     }
+
+    @Invariant("Lower_included_valid")
+    public boolean lowerIncludedValid() {
+        if(lowerUnbounded) {
+            return !lowerIncluded;
+        }
+        return true;
+    }
+
+    @Invariant("Upper_included_valid")
+    public boolean upperIncludedValid() {
+        if(upperUnbounded) {
+            return !upperIncluded;
+        }
+        return true;
+    }
+
+    @Invariant("Limits_consistent")
+    public boolean limitsConsistent() {
+        if(!lowerUnbounded && !upperUnbounded) {
+            return compareTo(upper, lower) <= 0;
+        }
+        return true;
+    }
+
+    @Invariant(value = "Limits_comparable", ignored = true)
+    public boolean limitsComparable() {
+        return true; //great test, but hard to implement, you'll find out when using this
+    }
+
 }

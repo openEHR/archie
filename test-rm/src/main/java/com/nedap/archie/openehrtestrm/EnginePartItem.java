@@ -1,6 +1,5 @@
 package com.nedap.archie.openehrtestrm;
 
-import java.lang.String;
 import javax.annotation.Nullable;
 
 public class EnginePartItem extends TestRMBase {

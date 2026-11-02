@@ -21,8 +21,8 @@ package org.openehr.bmm.core;
  * Author: Claude Nanjo
  */
 
-
 import org.openehr.bmm.persistence.validation.BasicDefinitions;
+import org.openehr.bmm.persistence.validation.BmmDefinitions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -138,12 +138,13 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
      * @return
      */
     public BmmEffectiveType flattenedConformsToType() {
-        if (conformsToType != null)
+        if (conformsToType != null) {
             return conformsToType;
-        else if (inheritancePrecursor != null)
+        } else if (inheritancePrecursor != null) {
             return inheritancePrecursor.flattenedConformsToType();
-        else
+        } else {
             return null;
+        }
     }
 
     /**
@@ -154,10 +155,11 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
     @Override
     public BmmEffectiveType getEffectiveType() {
         BmmEffectiveType confType = flattenedConformsToType();
-        if (confType != null)
+        if (confType != null) {
             return confType;
-        else
+        } else {
             return anyTypeDefinition;
+        }
     }
 
     /**
@@ -168,10 +170,10 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
     @Override
     public String getTypeSignature() {
         StringBuilder builder = new StringBuilder();
-        builder.append(name);
+        builder.append (name);
         BmmEffectiveType confType = flattenedConformsToType();
         if (confType != null) {
-            builder.append(":" + confType.getTypeName());
+            builder.append (BmmDefinitions.GENERIC_CONSTRAINT_DELIMITER + confType.getTypeName());
         }
         return builder.toString();
     }
@@ -185,10 +187,11 @@ public class BmmParameterType extends BmmUnitaryType implements Serializable {
     public List<String> getFlattenedTypeList() {
         ArrayList<String> result = new ArrayList<>();
         BmmEffectiveType confType = flattenedConformsToType();
-        if (confType != null)
+        if (confType != null) {
             result.addAll(confType.getFlattenedTypeList());
-        else
+        } else {
             result.add(BasicDefinitions.ANY_TYPE);
+        }
         return result;
     }
 

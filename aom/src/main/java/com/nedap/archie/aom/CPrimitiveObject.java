@@ -1,14 +1,18 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
-import com.nedap.archie.rminfo.ModelInfoLookup;
+import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
+import org.openehr.utils.message.I18n;
 
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
+import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.BiFunction;
 
 /**
@@ -23,18 +27,20 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
     public static final String PRIMITIVE_NODE_ID_VALUE = "id9999";
 
+    @Nullable
     private Boolean enumeratedTypeConstraint;
 
     public abstract ValueType getAssumedValue();
 
     public abstract void setAssumedValue(ValueType assumedValue);
 
-    public abstract List<Constraint> getConstraint();
+    public abstract Constraint getConstraint();
 
-    public abstract void setConstraint(List<Constraint> constraint);
+    @JsonIgnore
+    public abstract List<?> getConstraintAsList();
 
-    public abstract void addConstraint(Constraint constraint);
-
+    @JsonAlias("is_enumerated_type_constraint")
+    @RMProperty("is_enumerated_type_constraint")
     public Boolean getEnumeratedTypeConstraint() {
         return enumeratedTypeConstraint;
     }
@@ -55,45 +61,12 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
         }
     }
 
-    /**
-     * True if the given value is a valid value for this constraint
-     * Must be overridden in classes where the AssumedAndDefaultValue is not the actual value.
-     * For example when it is an interval or pattern
-     *
-     * @param value
-     * @return
-     */
-    public boolean isValidValue(ValueType value) {
-        if(getConstraint().isEmpty()) {
-            return true;
-        }
-        for(Constraint constraint:getConstraint()) {
-            if(Objects.equals(constraint, value)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * True if the given value is a valid value for this constraint
-     * first Converts the value to a checkable value using the given ModelInfoLookup
-     * For example when it is an interval or pattern
-     *
-     * @param value
-     * @return
-     */
-    public boolean isValidValue(ModelInfoLookup lookup, Object value) {
-        Object convertedValue = lookup.convertToConstraintObject(value, this);
-        return isValidValue((ValueType) convertedValue);
-    }
-
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("{");
         boolean first = true;
-        for(Constraint constraint:getConstraint()) {
+        for(Object constraint:getConstraintAsList()) {
             if(!first) {
                 result.append(", ");
             }
@@ -111,15 +84,21 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
     }
 
     @Override
-    public boolean cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
+    public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
         if(other instanceof CPrimitiveObject && other.getClass().equals(getClass())) {
-            if(other == null) {
-                return false;
+            if(!occurrencesConformsTo(other)) {
+                return ConformanceCheckResult.fails(ErrorType.VSONCO, I18n.t("Occurrences {0} does not conform to {1}", this.getOccurrences(), other.getOccurrences()));
             }
-            return occurrencesConformsTo(other) && getRmTypeName().equalsIgnoreCase(other.getRmTypeName());
+            if(!getRmTypeName().equalsIgnoreCase(other.getRmTypeName())) {
+                return ConformanceCheckResult.fails(ErrorType.VSONCT, I18n.t("type name {0} does not conform to {1}", this.getRmTypeName(), other.getRmTypeName()));
+            }
         } else {
-            return false;
+            if(other == null) {
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("The primitive object of type {0} does not conform null", getClass().getSimpleName()));
+            }
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("The primitive object of type {0} does not conform to non-primitive object with type {1}", getClass().getSimpleName(), other.getClass().getSimpleName()));
         }
+        return ConformanceCheckResult.conforms();
     }
 
     public String constrainedTypename () {

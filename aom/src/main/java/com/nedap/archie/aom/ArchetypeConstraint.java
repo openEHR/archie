@@ -3,9 +3,9 @@ package com.nedap.archie.aom;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
+import jakarta.xml.bind.annotation.XmlTransient;
 
-import javax.xml.bind.annotation.XmlTransient;
-
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -16,7 +16,8 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
     @JsonIgnore //ignore these field in popular object mappers
     private transient ArchetypeConstraint parent;
     @JsonIgnore //ignore these field in popular object mappers, otherwise we get infinite loops
-    private transient CSecondOrder socParent;
+    @Nullable
+    private transient CSecondOrder<?> socParent;
 
     @JsonIgnore
     @XmlTransient
@@ -30,11 +31,11 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
 
     @JsonIgnore
     @XmlTransient
-    public CSecondOrder getSocParent() {
+    public CSecondOrder<?> getSocParent() {
         return socParent;
     }
 
-    public void setSocParent(CSecondOrder socParent) {
+    public void setSocParent(CSecondOrder<?> socParent) {
         this.socParent = socParent;
     }
 
@@ -47,12 +48,6 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
     }
 
     private void setPath(String path){
-        //setter hack for jackson, unfortunately
-    }
-
-    public abstract String getLogicalPath();
-
-    private void setLogicalPath(String path){
         //setter hack for jackson, unfortunately
     }
 
@@ -71,7 +66,6 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
 
     @JsonIgnore
     public abstract boolean isLeaf();
-
 
     @JsonIgnore
     @XmlTransient

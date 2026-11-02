@@ -1,8 +1,9 @@
 package com.nedap.archie.xml.adapters;
 
 import com.nedap.archie.datetime.DateTimeParsers;
+import com.nedap.archie.datetime.DateTimeSerializerFormatters;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.temporal.TemporalAmount;
 
 /**
@@ -17,6 +18,6 @@ public class DurationXmlAdapter extends XmlAdapter<String, TemporalAmount> {
 
     @Override
     public String marshal(TemporalAmount value) {
-        return value.toString();//java toString of Period and Duration is the ISO-8601 format
+        return DateTimeSerializerFormatters.serializeDuration(value);
     }
 }

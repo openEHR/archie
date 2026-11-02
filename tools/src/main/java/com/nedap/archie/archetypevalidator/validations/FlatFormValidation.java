@@ -4,7 +4,6 @@ import com.nedap.archie.aom.ArchetypeModelObject;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CComplexObject;
 import com.nedap.archie.aom.CComplexObjectProxy;
-import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.archetypevalidator.ErrorType;
@@ -24,7 +23,7 @@ public class FlatFormValidation extends ValidatingVisitor {
     protected void validate(CComplexObjectProxy cObject) {
         //validate that CComplexObjectProxy nodes have a valid path
         List<ArchetypeModelObject> replacements = new AOMPathQuery(cObject.getTargetPath()).findList(ComplexObjectProxyReplacement.getNearestArchetypeRoot(cObject), true);
-        if(replacements.size() == 0) {
+        if(replacements.isEmpty()) {
             addMessageWithPath(ErrorType.VUNP, cObject.path(), I18n.t("Use_node (C_COMPLEX_OBJECT_PROXY) points to a path that cannot be found: {0}", cObject.getTargetPath()));
         } else if (replacements.size() > 1) {
             addMessageWithPath(ErrorType.VUNP, cObject.path(), I18n.t("Use_node (C_COMPLEX_OBJECT_PROXY) points to a path that resolves to more than one object"));
@@ -36,7 +35,7 @@ public class FlatFormValidation extends ValidatingVisitor {
 
                 CComplexObject replacementComplexObject = complexObjectProxyReplacement.getReplacement();
 
-                if(!combinedModels.rmTypesConformant(replacementComplexObject.getRmTypeName(), cObject.getRmTypeName())) {
+                if(!metaModel.rmTypesConformant(replacementComplexObject.getRmTypeName(), cObject.getRmTypeName())) {
                     addMessageWithPath(ErrorType.VUNT, cObject.path(), I18n.t("Use_node (C_COMPLEX_OBJECT_PROXY) points to type {0}, which does not conform to type {1}", replacementComplexObject.getRmTypeName(), cObject.getRmTypeName()));
                 }
             } else {
@@ -79,7 +78,7 @@ public class FlatFormValidation extends ValidatingVisitor {
                     //if not a valid path, fine
                 }
                 if(!AOMUtils.isValidCode(constraintCodeOrPath) && !(
-                        archetypeHasPath || combinedModels.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
+                        archetypeHasPath || metaModel.hasReferenceModelPath(archetype.getDefinition().getRmTypeName(), constraintCodeOrPath)
                 )
                         ) {
                     addMessage(ErrorType.VTTBK, I18n.t("Term binding key {0} points to a path that cannot be found in the archetype", constraintCodeOrPath));

@@ -9,20 +9,19 @@ import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.generic.Participation;
 import com.nedap.archie.rm.generic.PartyProxy;
+import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * Created by pieter.bos on 04/11/15.
  */
+@XmlRootElement(name = "care_entry")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CARE_ENTRY", propOrder = {
         "protocol",
@@ -34,15 +33,15 @@ public abstract class CareEntry extends Entry {
     private ItemStructure protocol;
     @Nullable
     @XmlElement(name = "guideline_id")
-    private ObjectRef guidelineId;
+    private ObjectRef<? extends ObjectId> guidelineId;
 
     public CareEntry() {
     }
 
-    public CareEntry(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef workflowId, @Nullable List<Participation> otherParticipations, @Nullable ItemStructure protocol, @Nullable ObjectRef guidelineId) {
+    public CareEntry(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, CodePhrase language, CodePhrase encoding, PartyProxy subject, @Nullable PartyProxy provider, @Nullable ObjectRef<? extends ObjectId> workflowId, @Nullable List<Participation> otherParticipations, @Nullable ItemStructure protocol, @Nullable ObjectRef<? extends ObjectId> guidelineId) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName, language, encoding, subject, provider, workflowId, otherParticipations);
-        this.protocol = protocol;
-        this.guidelineId = guidelineId;
+        setProtocol(protocol);
+        setGuidelineId(guidelineId);
     }
 
     @Nullable
@@ -56,11 +55,11 @@ public abstract class CareEntry extends Entry {
     }
 
     @Nullable
-    public ObjectRef getGuidelineId() {
+    public ObjectRef<? extends ObjectId> getGuidelineId() {
         return guidelineId;
     }
 
-    public void setGuidelineId(@Nullable ObjectRef guidelineId) {
+    public void setGuidelineId(@Nullable ObjectRef<? extends ObjectId> guidelineId) {
         this.guidelineId = guidelineId;
     }
 

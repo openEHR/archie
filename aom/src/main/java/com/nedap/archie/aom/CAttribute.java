@@ -5,16 +5,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
-import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.query.APathQuery;
+import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.*;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,14 +31,19 @@ public class CAttribute extends ArchetypeConstraint {
 
     @XmlAttribute(name="rm_attribute_name")
     private String rmAttributeName;
+    @Nullable
     private MultiplicityInterval existence;
     @XmlElement(name="differential_path")
+    @Nullable
     private String differentialPath;
     @XmlElement(name="is_multiple")
+    @RMProperty("is_multiple")
     private boolean multiple;
 
+    @Nullable
     private Cardinality cardinality;
 
+    @Nullable
     private List<CObject> children = new ArrayList<>();
 
     public CAttribute() {
@@ -135,21 +136,6 @@ public class CAttribute extends ArchetypeConstraint {
                     return child;
                 }
             }
-        }
-        return null;
-    }
-
-    public CObject getChildByMeaning(String meaning) {
-        meaning = meaning.toLowerCase();
-        for(CObject child:children) {
-            String childMeaning = child.getMeaning();
-            if(childMeaning != null) {
-                childMeaning = childMeaning.toLowerCase();
-                if(meaning.equals(childMeaning)){
-                    return child;
-                }
-            }
-
         }
         return null;
     }
@@ -323,17 +309,6 @@ public class CAttribute extends ArchetypeConstraint {
         return (CObject) super.getParent();
     }
 
-    public String getLogicalPath() {
-        String path = "/" + rmAttributeName;
-        if(getParent() != null) {
-            path = getParent().getLogicalPath() + path;
-        }
-        if(path.startsWith("//")) {
-            return path.substring(1);
-        }
-        return path;
-    }
-
     public CAttribute clone() {
         return (CAttribute) super.clone();
     }
@@ -372,7 +347,7 @@ public class CAttribute extends ArchetypeConstraint {
     @Override
     @JsonIgnore
     public boolean isLeaf() {
-        return children != null && children.size() > 0;
+        return children == null || children.isEmpty();
     }
 
     /**
@@ -492,9 +467,8 @@ public class CAttribute extends ArchetypeConstraint {
     public List<CObject> getChildrenByRmTypeName(String rmTypeName) {
         List<CObject> result = new ArrayList<>();
 
-        for(int i = 0; i < children.size(); i++) {
-            CObject child = children.get(i);
-            if(rmTypeName.equals(child.getRmTypeName())) {
+        for (CObject child : children) {
+            if (rmTypeName.equals(child.getRmTypeName())) {
                 result.add(child);
             }
         }

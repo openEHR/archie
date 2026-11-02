@@ -32,11 +32,14 @@ import java.util.List;
  */
 public class BmmSimpleType extends BmmDefinedType implements Serializable {
 
-    public BmmSimpleType (BmmSimpleClass aBaseClass) {
-        baseClass = aBaseClass;
+    public BmmSimpleType (BmmSimpleClass baseClass) {
+        super(baseClass);
     }
 
-    public BmmSimpleType() {}
+    @Override
+    public BmmSimpleClass getBaseClass() {
+        return (BmmSimpleClass) super.getBaseClass();
+    }
 
     /**
      * Return base_class.type_name.
@@ -45,7 +48,7 @@ public class BmmSimpleType extends BmmDefinedType implements Serializable {
      */
     @Override
     public String getTypeName() {
-        return this.baseClass.getName();
+        return getBaseClass().getName();
     }
 
     /**
@@ -56,7 +59,7 @@ public class BmmSimpleType extends BmmDefinedType implements Serializable {
     @Override
     public List<String> getFlattenedTypeList() {
         ArrayList<String> result = new ArrayList<>();
-        result.add(baseClass.getName());
+        result.add(getBaseClass().getName());
         return result;
     }
 

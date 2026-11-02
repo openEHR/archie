@@ -2,7 +2,6 @@ package com.nedap.archie.serializer.adl.rules;
 
 import com.nedap.archie.rules.Expression;
 import com.nedap.archie.rules.Function;
-import com.nedap.archie.rules.ModelReference;
 import com.nedap.archie.serializer.adl.ADLRulesSerializer;
 
 /**

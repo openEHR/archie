@@ -2,12 +2,12 @@ package com.nedap.archie.rm.datavalues;
 
 import com.google.common.base.MoreObjects;
 import com.nedap.archie.rm.datatypes.CodePhrase;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
@@ -28,12 +28,17 @@ public class DvCodedText extends DvText {
 
     public DvCodedText(String value, CodePhrase definingCode) {
         super(value);
-        this.definingCode = definingCode;
+        setDefiningCode(definingCode);
+    }
+
+    public DvCodedText(String value, String definingCode) {
+        super(value);
+        setDefiningCode(new CodePhrase(definingCode));
     }
 
     public DvCodedText(String value, @Nullable CodePhrase language, @Nullable CodePhrase encoding, CodePhrase definingCode) {
         super(value, language, encoding);
-        this.definingCode = definingCode;
+        setDefiningCode(definingCode);
     }
 
     public CodePhrase getDefiningCode() {
@@ -60,8 +65,7 @@ public class DvCodedText extends DvText {
     }
 
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("code_string", definingCode.getCodeString())
-                .add("terminology_id", definingCode.getTerminologyId())
+        return MoreObjects.toStringHelper(this).add("defining_code", definingCode)
                 .add("value", getValue())
                 .toString();
     }

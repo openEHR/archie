@@ -23,7 +23,7 @@ description
 
 definition
 	ENTRY[id1] matches {
-		value matches {[ac1]}
+		value matches {[ac2]}
 	}
 
 terminology

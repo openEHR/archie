@@ -5,13 +5,15 @@ import com.nedap.archie.rm.datavalues.DvEHRURI;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.encapsulated.DvMultimedia;
 import com.nedap.archie.rm.datavalues.quantity.datetime.DvDateTime;
+import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMProperty;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -40,11 +42,11 @@ public class Attestation extends AuditDetails {
 
     public Attestation(String systemId, PartyProxy committer, DvDateTime timeCommitted, DvCodedText changeType, @Nullable DvText description, @Nullable DvMultimedia attestedView, @Nullable String proof, @Nullable List<DvEHRURI> items, DvText reason, boolean isPending) {
         super(systemId, committer, timeCommitted, changeType, description);
-        this.attestedView = attestedView;
-        this.proof = proof;
-        this.items = items;
-        this.reason = reason;
-        this.isPending = isPending;
+        setAttestedView(attestedView);
+        setProof(proof);
+        setItems(items);
+        setReason(reason);
+        setPending(isPending);
     }
 
     @Nullable
@@ -106,5 +108,18 @@ public class Attestation extends AuditDetails {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), attestedView, proof, items, reason, isPending);
+    }
+
+    @Invariant(value = "Items_valid", ignored = true)
+    public boolean itemsValid() {
+        return InvariantUtil.nullOrNotEmpty(items);
+    }
+
+    @Invariant(value = "Reason_valid", ignored = true)
+    public boolean reasonValid() {
+        if(reason instanceof DvCodedText) {
+            return InvariantUtil.belongsToTerminologyByGroupId((DvCodedText) reason, "attestation reason");
+        }
+        return true;
     }
 }

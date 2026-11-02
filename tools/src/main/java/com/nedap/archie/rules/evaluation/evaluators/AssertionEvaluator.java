@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class AssertionEvaluator implements Evaluator<Assertion> {
     @Override
-    public ValueList evaluate(RuleEvaluation evaluation, Assertion statement) {
+    public ValueList evaluate(RuleEvaluation<?> evaluation, Assertion statement) {
         if(statement.getExpression() != null) {
             ValueList valueList = evaluation.evaluate(statement.getExpression());
             if (valueList.getType() == PrimitiveType.Boolean) {
@@ -33,7 +33,7 @@ public class AssertionEvaluator implements Evaluator<Assertion> {
     }
 
     @Override
-    public List<Class> getSupportedClasses() {
+    public List<Class<?>> getSupportedClasses() {
         return Lists.newArrayList(Assertion.class);
     }
 }

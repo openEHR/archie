@@ -2,54 +2,56 @@ package com.nedap.archie.aom.primitives;
 
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.Interval;
-import com.nedap.archie.rminfo.ModelInfoLookup;
+import org.openehr.utils.message.I18n;
 
+import java.util.List;
 import java.util.function.BiFunction;
 
 /**
  * Created by pieter.bos on 15/10/15.
  */
-public abstract class COrdered<T> extends CPrimitiveObject<Interval<T>, T> {
+public abstract class COrdered<T> extends CPrimitiveObject<List<Interval<T>>, T> {
 
-    @Override
-    public boolean isValidValue(T value) {
-        if(getConstraint().isEmpty()) {
-            return true;
-        }
-        for(Interval<T> constraint:getConstraint()) {
-            if(constraint.has(value)) {
-                return true;
-            }
-        }
-        return false;
+    public abstract List<Interval<T>> getConstraint();
+
+    public List<Interval<T>> getConstraintAsList() {
+        return getConstraint();
     }
 
+    public abstract void setConstraint(List<Interval<T>> constraint);
+
+    public abstract void addConstraint(Interval<T> constraint);
+
     @Override
-    public boolean cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
-        if(!super.cConformsTo(other, rmTypesConformant)) {
-            return false;
+    public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
+        ConformanceCheckResult superResult = super.cConformsTo(other, rmTypesConformant);
+        if (!superResult.doesConform()) {
+            return superResult;
         }
         //now guaranteed to be the same class
 
-        COrdered<?> otherOrdered = (COrdered) other;
+        @SuppressWarnings("unchecked")
+        COrdered<T> otherOrdered = (COrdered<T>) other;
         if(otherOrdered.getConstraint().isEmpty()) {
-            return true;
+            return ConformanceCheckResult.conforms();
         }
 
 
         for(Interval<T> constraint:getConstraint()) {
             boolean found = false;
-            for(Interval otherConstraint:otherOrdered.getConstraint()) {
+            for(Interval<T> otherConstraint:otherOrdered.getConstraint()) {
                 if(otherConstraint.contains(constraint)) {
                     found = true;
                     break;
                 }
             }
             if(!found) {
-                return false;
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("Parent constraint contains no interval that fully contains {0}", constraint));
             }
         }
-        return true;
+        return ConformanceCheckResult.conforms();
     }
 }

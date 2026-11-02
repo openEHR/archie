@@ -5,14 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.nedap.archie.aom.ArchetypeModelObject;
+import jakarta.xml.bind.annotation.*;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by pieter.bos on 15/10/15.
  */
 @JsonPropertyOrder({"text", "description", "other_items"})
-@JsonIgnoreProperties("@type")
+@JsonIgnoreProperties({"@type", "_type"})
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(name="ARCHETYPE_TERM")
 public class ArchetypeTerm extends ArchetypeModelObject implements Map<String, String> {

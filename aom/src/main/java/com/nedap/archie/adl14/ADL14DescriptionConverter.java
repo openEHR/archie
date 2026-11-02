@@ -1,11 +1,17 @@
 package com.nedap.archie.adl14;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.aom.ResourceDescription;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Converts the Description section from ADL1.4 to ADL2
+ * <a href="https://specifications.openehr.org/releases/AM/latest/ADL1.4.html#_description_section">Specifications ADL1.4</a>
+ * <a href="https://specifications.openehr.org/releases/AM/Release-2.3.0/ADL2.html#_description_section">Specifications ADL2</a>
+ */
 public class ADL14DescriptionConverter {
 
     public void convert(Archetype archetype) {
@@ -15,7 +21,11 @@ public class ADL14DescriptionConverter {
         description.setOriginalPublisher(description.getOtherDetails().remove("original_publisher"));
         description.setCustodianNamespace(description.getOtherDetails().remove("custodian_namespace"));
         description.setCustodianOrganisation(description.getOtherDetails().remove("custodian_organisation"));
-        archetype.setBuildUid(description.getOtherDetails().remove("build_uid"));
+        if (archetype instanceof AuthoredArchetype) {
+            ((AuthoredArchetype) archetype).setBuildUid(description.getOtherDetails().remove("build_uid"));
+            ((AuthoredArchetype) archetype).setGenerated(true);
+        }
+
         String references = description.getOtherDetails().remove("references");
         if(references != null) {
             Map<String, String> newReferences = new LinkedHashMap<>();
@@ -30,6 +40,7 @@ public class ADL14DescriptionConverter {
             }
             description.setReferences(newReferences);
         }
+
         String ipAcknowledgements = description.getOtherDetails().remove("ip_acknowledgements");
         if(ipAcknowledgements != null) {
             Map<String, String> acknowledgements = new LinkedHashMap<>();
@@ -49,7 +60,5 @@ public class ADL14DescriptionConverter {
         if(revision != null) {
             archetype.getArchetypeId().setReleaseVersion(revision);
         }
-
-        archetype.setGenerated(true);
     }
 }

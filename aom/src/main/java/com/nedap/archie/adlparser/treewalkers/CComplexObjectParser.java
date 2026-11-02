@@ -1,14 +1,13 @@
 package com.nedap.archie.adlparser.treewalkers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nedap.archie.adlparser.antlr.AdlParser;
-import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.adlparser.antlr.AdlParser.*;
+import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.base.OpenEHRBase;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rules.Assertion;
 import com.nedap.archie.serializer.odin.AdlOdinToJsonConverter;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -25,15 +24,15 @@ import java.util.List;
 public class CComplexObjectParser extends BaseTreeWalker {
 
     private final PrimitivesConstraintParser primitivesConstraintParser;
-    private final MetaModels metaModels;
+    private final MetaModel metaModel;
 
-    public CComplexObjectParser(ANTLRParserErrors errors, MetaModels metaModels) {
+    public CComplexObjectParser(ANTLRParserErrors errors, MetaModel metaModel) {
         super(errors);
         primitivesConstraintParser = new PrimitivesConstraintParser(errors);
-        this.metaModels = metaModels;
+        this.metaModel = metaModel;
     }
 
-    public RulesSection parseRules(Rules_sectionContext context) {
+    public RulesSection parseRules(RulesSectionContext context) {
         RulesSection result = new RulesSection();
 
         result.setContent(context.getText());
@@ -159,24 +158,11 @@ public class CComplexObjectParser extends BaseTreeWalker {
     }
 
     private ObjectMapper getDefaultValueJsonObjectMapper() {
-        if(metaModels == null) {
-            return null;
-        }
-        if(metaModels.getSelectedModel() == null) {
-            return null;
-        }
-        return metaModels.getSelectedModel().getJsonObjectMapper();
+        return metaModel == null ? null : metaModel.getJsonObjectMapper();
     }
 
     private ObjectMapper getDefaultValueOdinObjectMapper() {
-        if(metaModels == null) {
-            return null;
-        }
-        if(metaModels.getSelectedModel() == null) {
-            return null;
-        }
-        return metaModels.getSelectedModel().getOdinInputObjectMapper();
-
+        return metaModel == null ? null : metaModel.getOdinInputObjectMapper();
     }
 
     public static String getFirstAttributeOfPath(String path) {
@@ -209,7 +195,7 @@ public class CComplexObjectParser extends BaseTreeWalker {
             List<C_object_tuple_itemContext> primitiveObjectContexts = tupleContext.c_object_tuple_items().c_object_tuple_item();
             int i = 0;
             for(C_object_tuple_itemContext tupleObjectContext:primitiveObjectContexts) {
-                CPrimitiveObject primitiveObject = null;
+                CPrimitiveObject<?, ?> primitiveObject = null;
                 if(tupleObjectContext.c_primitive_object() != null) {
                     primitiveObject = primitivesConstraintParser.parsePrimitiveObject(tupleObjectContext.c_primitive_object());
                 } else if (tupleObjectContext.CONTAINED_REGEXP() != null) {
@@ -306,14 +292,14 @@ public class CComplexObjectParser extends BaseTreeWalker {
 
     private ArchetypeSlot parseArchetypeSlot(Archetype_slotContext slotContext) {
         ArchetypeSlot slot = new ArchetypeSlot();
-        C_archetype_slot_headContext headContext = slotContext.c_archetype_slot_head();
-        slot.setNodeId(headContext.c_archetype_slot_id().ID_CODE().getText());
-        slot.setRmTypeName(headContext.c_archetype_slot_id().type_id().getText());
-        if(headContext.c_archetype_slot_id().SYM_CLOSED() != null) {
+
+        slot.setNodeId(slotContext.ID_CODE().getText());
+        slot.setRmTypeName(slotContext.type_id().getText());
+        if(slotContext.SYM_CLOSED() != null) {
             slot.setClosed(true);
         }
-        if (headContext.c_occurrences() != null) {
-            slot.setOccurrences(parseMultiplicityInterval(headContext.c_occurrences()));
+        if (slotContext.c_occurrences() != null) {
+            slot.setOccurrences(parseMultiplicityInterval(slotContext.c_occurrences()));
         }
         RulesParser assertionParser = new RulesParser(getErrors());
         if (slotContext.c_excludes() != null) {
@@ -399,6 +385,5 @@ public class CComplexObjectParser extends BaseTreeWalker {
         interval.fixUnboundedIncluded();
         return interval;
     }
-
 
 }

@@ -3,16 +3,15 @@
     <name>
         <value>Test all types</value>
     </name>
-    <!-- the following is currently not supported by ARCHIE unmarshalling as of 14.7.2019 -->
-    <!--<archetype_details>-->
-        <!--<archetype_id>-->
-            <!--<value>openEHR-EHR-COMPOSITION.test_all_types.v1</value>-->
-        <!--</archetype_id>-->
-        <!--<template_id>-->
-            <!--<value>test_all_types.en.v1</value>-->
-        <!--</template_id>-->
-        <!--<rm_version>1.0.2</rm_version>-->
-    <!--</archetype_details>-->
+    <archetype_details>
+        <archetype_id>
+            <value>openEHR-EHR-COMPOSITION.test_all_types.v1</value>
+        </archetype_id>
+        <template_id>
+            <value>test_all_types.en.v1</value>
+        </template_id>
+        <rm_version>1.0.2</rm_version>
+    </archetype_details>
     <language>
         <terminology_id>
             <value>ISO_639-1</value>
@@ -280,6 +279,9 @@
             <code_string>UTF-8</code_string>
         </encoding>
         <subject xsi:type="PARTY_SELF" />
+        <time_asserted xsi:type="DV_DATE_TIME">
+            <value>20190114T183650,154+0000</value>
+        </time_asserted>
         <data archetype_node_id="at0001" xsi:type="ITEM_TREE">
             <name>
                 <value>Arbol</value>

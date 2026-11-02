@@ -8,12 +8,14 @@ import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.generic.PartyProxy;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -50,22 +52,22 @@ public class Composition extends Locatable {
 
     public Composition(String archetypeNodeId, DvText name, @Nullable List<ContentItem> content, CodePhrase language, @Nullable EventContext context, PartyProxy composer, DvCodedText category, CodePhrase territory) {
         super(archetypeNodeId, name);
-        this.language = language;
-        this.territory = territory;
-        this.category = category;
-        this.composer = composer;
-        this.context = context;
-        this.content = content;
+        setLanguage(language);
+        setTerritory(territory);
+        setCategory(category);
+        setComposer(composer);
+        setContext(context);
+        setContent(content);
     }
 
     public Composition(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, @Nullable List<ContentItem> content, CodePhrase language, @Nullable EventContext context, PartyProxy composer, DvCodedText category, CodePhrase territory) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.language = language;
-        this.territory = territory;
-        this.category = category;
-        this.composer = composer;
-        this.context = context;
-        this.content = content;
+        setLanguage(language);
+        setTerritory(territory);
+        setCategory(category);
+        setComposer(composer);
+        setContext(context);
+        setContent(content);
     }
 
     @JsonProperty
@@ -109,9 +111,8 @@ public class Composition extends Locatable {
     }
 
     @JsonIgnore
-    public void setCategory(String codePhrase) {
-        this.category = new DvCodedText();
-        category.setDefiningCode(new CodePhrase(codePhrase));
+    public void setCategory(String value, String codePhrase) {
+        this.category = new DvCodedText(value, codePhrase);
     }
 
     public PartyProxy getComposer() {
@@ -163,5 +164,30 @@ public class Composition extends Locatable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), language, territory, category, composer, context, content);
+    }
+
+    @Invariant("Category_validity")
+    public boolean categoryValid() {
+        return InvariantUtil.belongsToTerminologyByGroupId(category, "composition category");
+    }
+
+    @Invariant("Territory_valid")
+    public boolean territoryValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(territory, "countries");
+    }
+
+    @Invariant("Language_valid")
+    public boolean languageValid() {
+        return InvariantUtil.belongsToTerminologyByOpenEHRId(language, "languages");
+    }
+
+    @Invariant(value="Content valid", ignored=true)
+    public boolean contentValid() {
+        return InvariantUtil.nullOrNotEmpty(content);
+    }
+
+    @Invariant("Is_archetype_root")
+    public boolean archetypeRoot() {
+        return isArchetypeRoot();
     }
 }

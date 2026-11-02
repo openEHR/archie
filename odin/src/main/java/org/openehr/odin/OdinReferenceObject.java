@@ -1,8 +1,7 @@
 package org.openehr.odin;
 
-import java.util.List;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class OdinReferenceObject extends OdinObject {
     private List<String> paths = new ArrayList<>();

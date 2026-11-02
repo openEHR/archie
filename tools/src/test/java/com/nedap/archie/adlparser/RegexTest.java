@@ -2,17 +2,13 @@ package com.nedap.archie.adlparser;
 
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.rules.Assertion;
-import com.nedap.archie.rules.BinaryOperator;
-import com.nedap.archie.rules.Constraint;
-import com.nedap.archie.rules.ModelReference;
-import com.nedap.archie.rules.RuleStatement;
+import com.nedap.archie.rules.*;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by pieter.bos on 31/10/15.
@@ -65,7 +61,7 @@ public class RegexTest extends PrimitivesConstraintParserTest {
             BinaryOperator binaryExpression = (BinaryOperator) rule.getExpression();
             ModelReference ref = (ModelReference) binaryExpression.getLeftOperand();
             assertEquals("relative[id3]/path", ref.getPath());
-            Constraint regexConstraint = (Constraint) binaryExpression.getRightOperand();
+            Constraint<?> regexConstraint = (Constraint<?>) binaryExpression.getRightOperand();
             CString regex = (CString) regexConstraint.getItem();
             assertEquals("/regexp/", regex.getConstraint().get(0));
         }

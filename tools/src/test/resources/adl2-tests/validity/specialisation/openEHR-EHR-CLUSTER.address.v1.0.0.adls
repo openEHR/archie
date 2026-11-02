@@ -33,7 +33,7 @@ definition
 					ELEMENT[id7] matches {	-- Address Type
 						value matches {
 							DV_CODED_TEXT[id17] matches {
-								defining_code matches {[ac1]}		-- Address Type
+								defining_code matches {[ac24]}		-- Address Type
 							}
 						}
 					}
@@ -147,15 +147,15 @@ terminology
 				text = <"AddressValid Period">
 				description = <"The period during which the associated address is applicable to the person / organisation.  ENV 13606 - 4:2000 7.11.11.  This describes the actual period.">
 			>
-			["ac1"] = <
+			["ac24"] = <
 				text = <"Address Type">
 				description = <"The type of address">
 			>
 		>
 	>
 	value_sets = <
-		["ac1"] = <
-			id = <"ac1">
+		["ac24"] = <
+			id = <"ac24">
 			members = <"at12", "at13", "at14", "at15">
 		>
 	>

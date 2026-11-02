@@ -3,18 +3,30 @@ package com.nedap.archie.archetypevalidator.validations;
 import com.google.common.base.Joiner;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.aom.utils.CodeRedefinitionStatus;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.aom.utils.NodeIdUtil;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.archetypevalidator.ValidatingVisitor;
 import com.nedap.archie.rules.Assertion;
 import org.openehr.utils.message.I18n;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public class SpecializedDefinitionValidation extends ValidatingVisitor {
+
+    private Set<String> excludedNodeIds = new HashSet<>();
+
     public SpecializedDefinitionValidation() {
         super();
+    }
+
+    @Override
+    protected void beginValidation() {
+        excludedNodeIds.clear();
     }
 
     @Override
@@ -49,6 +61,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
             return;
         }
 
+        checkExclusionBeforeSpecialization(cObject, parentCObject);
 
         if(parentCObject instanceof ArchetypeSlot) {
             if(((ArchetypeSlot) parentCObject).isClosed()) {
@@ -101,30 +114,40 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
         }
     }
 
+    /**
+     * Give a warning if an object is specialized after excluding it. This would result in
+     * the specialization to be ignored in the operational template.
+     */
+    private void checkExclusionBeforeSpecialization(CObject cObject, CObject parentCObject) {
+        boolean thisNodeIsExclusion = false;
+        if (Objects.equals(cObject.getNodeId(), parentCObject.getNodeId()) &&
+                cObject.getOccurrences() != null && cObject.getOccurrences().isProhibited() &&
+                (parentCObject.getOccurrences() == null || !parentCObject.getOccurrences().isProhibited())
+        ) {
+            excludedNodeIds.add(cObject.getNodeId());
+            thisNodeIsExclusion = true;
+        }
+
+        if (!thisNodeIsExclusion && excludedNodeIds.contains(AOMUtils.codeAtLevel(cObject.getNodeId(), AOMUtils.getSpecializationDepthFromCode(parentCObject.getArchetype().getDefinition().getNodeId())))) {
+            addWarningWithPath(ErrorType.OTHER, cObject.path(),
+                    I18n.t("Object with node id {0} should be specialized before excluding the parent node", cObject.getNodeId()));
+        }
+    }
+
     private boolean hasAssertions(List<Assertion> assertions) {
         return assertions != null && !assertions.isEmpty();
     }
 
     private void validateConformsTo(CObject cObject, CObject parentCObject) {
+        ConformanceCheckResult conformanceCheckResult = cObject.cConformsTo(parentCObject, metaModel::rmTypesConformant);
 
-        if(!cObject.cConformsTo(parentCObject, combinedModels::rmTypesConformant)) {
-            if(!cObject.typeNameConformsTo(parentCObject, combinedModels::rmTypesConformant)) {
-                addMessageWithPath(ErrorType.VSONCT, cObject.path(),
-                        I18n.t("Type {0} does not conform to type {1} in parent", cObject.getRmTypeName(), parentCObject.getRmTypeName()));
-            } else if (!cObject.occurrencesConformsTo(parentCObject)) {
-                addMessageWithPath(ErrorType.VSONCO, cObject.path(),
-                        I18n.t("Occurrences {0} does not conform to occurrences {1} in parent", cObject.getOccurrences(), parentCObject.getOccurrences()));
-            } else if (!cObject.nodeIdConformsTo(parentCObject)) {
-                addMessageWithPath(ErrorType.VSONI, cObject.path(),
-                        I18n.t("Node ID {0} does not conform to node id {1} in parent", cObject.getNodeId(), parentCObject.getNodeId()));
-            } else if (cObject instanceof CPrimitiveObject && parentCObject instanceof CPrimitiveObject) {
-                addMessageWithPath(ErrorType.VPOV, cObject.path(),
-                        I18n.t("Primitive object with RM type {0} does not conform to primitive object with RM type {1} in parent",
-                                cObject.getRmTypeName(),
-                                parentCObject.getRmTypeName()));
+        if(!conformanceCheckResult.doesConform()) {
+            if(conformanceCheckResult.getErrorType() != null) {
+                addMessageWithPath(conformanceCheckResult.getErrorType(), cObject.path(),
+                        conformanceCheckResult.getError());
             } else {
                 addMessageWithPath(ErrorType.VUNK, cObject.path(),
-                        I18n.t("Unknown error in conformance of specialized C_OBJECT"));
+                        I18n.t("Conformance error: {0}", conformanceCheckResult.getError()));
             }
         } else {
             if (cObject instanceof CComplexObject && parentCObject instanceof  CComplexObject) {
@@ -133,7 +156,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
                 if(cComplexObject.getAttributeTuples() != null && parentCComplexObject.getAttributeTuples() != null) {
                     for(CAttributeTuple tuple:cComplexObject.getAttributeTuples()) {
                         CAttributeTuple matchingTuple = AOMUtils.findMatchingTuple(parentCComplexObject.getAttributeTuples(), tuple);
-                        if(matchingTuple != null && ! tuple.cConformsTo(matchingTuple, combinedModels::rmTypesConformant)) {
+                        if(matchingTuple != null && ! tuple.cConformsTo(matchingTuple, metaModel::rmTypesConformant)) {
 
                             //tuple does not conform
                             addMessageWithPath(ErrorType.VTPNC, cObject.path(),
@@ -143,7 +166,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
                                 CAttribute parentAttribute = parentCComplexObject.getAttribute(attribute.getRmAttributeName());
                                 if(parentAttribute != null  && parentAttribute.getSocParent() == null) {
                                     for(CPrimitiveTuple primitiveTuple:tuple.getTuples()) {
-                                        CPrimitiveObject member = primitiveTuple.getMember(tuple.getMemberIndex(attribute.getRmAttributeName()));
+                                        CPrimitiveObject<?, ?> member = primitiveTuple.getMember(tuple.getMemberIndex(attribute.getRmAttributeName()));
                                         if(!hasConformingParent(parentAttribute, member)) {
                                             addMessageWithPath(ErrorType.VTPIN, attribute.getPath(),
                                                     I18n.t("Attribute {0} is a non-tuple attribute in the parent archetype, but a tuple attribute in the current archetype. That is not allowed", attribute.getRmAttributeName()));
@@ -164,7 +187,8 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
 
     private boolean hasConformingParent(CAttribute parentAttribute, CPrimitiveObject<?, ?> member) {
         for(CObject parentCObject:parentAttribute.getChildren()) {
-            if(member.cConformsTo(parentCObject, (a, b) -> combinedModels.rmTypesConformant(a, b))) {
+            ConformanceCheckResult result = member.cConformsTo(parentCObject, (a, b) -> metaModel.rmTypesConformant(a, b));
+            if(result.doesConform()) {
                 return true;
             }
         }
@@ -218,7 +242,7 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
             addMessageWithPath(ErrorType.VARXID, root.getPath(),
                     I18n.t("Node ID {0} specialization depth does not conform to the archetype specialization depth {1}", root.getNodeId(), archetype.specializationDepth()));
             return false;
-        } else if (!AOMUtils.archetypeIdMatchesSlotExpression(root.getArchetypeRef(), slot)) {
+        } else if (!AOMUtils.archetypeRefMatchesSlotExpression(root.getArchetypeRef(), slot)) {
             addMessageWithPath(ErrorType.VARXS, root.path(),
                     I18n.t("Use_archetype {0} does not match the expression of the archetype slot it specialized in the parent", root.getArchetypeRef()));
             return false;
@@ -233,15 +257,12 @@ public class SpecializedDefinitionValidation extends ValidatingVisitor {
         String rootRmTypeName = root.getRmTypeName();
         String rootReferenceRmTypeName = new ArchetypeHRID(root.getArchetypeRef()).getRmClass();
 
-        if(!combinedModels.typeNameExists(rootRmTypeName) || !combinedModels.typeNameExists(rootReferenceRmTypeName)) {
+        if(!metaModel.typeNameExists(rootRmTypeName) || !metaModel.typeNameExists(rootReferenceRmTypeName)) {
             return false;
         }
-        else if(!combinedModels.rmTypesConformant(rootRmTypeName, slotRmTypeName)) {
+        else if(!metaModel.rmTypesConformant(rootRmTypeName, slotRmTypeName)) {
             return false;
-        } else if (!combinedModels.rmTypesConformant(rootReferenceRmTypeName, slotRmTypeName)) {
-            return false;
-        }
-        return true;
+        } else return metaModel.rmTypesConformant(rootReferenceRmTypeName, slotRmTypeName);
     }
 
     /**

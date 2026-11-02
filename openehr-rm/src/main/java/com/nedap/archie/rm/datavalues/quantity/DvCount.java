@@ -1,11 +1,11 @@
 package com.nedap.archie.rm.datavalues.quantity;
 
 import com.nedap.archie.rm.datatypes.CodePhrase;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DV_COUNT")
-public class DvCount extends DvAmount<Long> {
+public class DvCount extends DvAmount<DvCount, Long> {
 
     private Long magnitude;
 
@@ -22,12 +22,12 @@ public class DvCount extends DvAmount<Long> {
     }
 
     public DvCount(Long magnitude) {
-        this.magnitude = magnitude;
+        setMagnitude(magnitude);
     }
 
-    public DvCount(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Long magnitude) {
+    public DvCount(@Nullable List<ReferenceRange<DvCount>> otherReferenceRanges, @Nullable DvInterval<DvCount> normalRange, @Nullable CodePhrase normalStatus, @Nullable Double accuracy, @Nullable Boolean accuracyIsPercent, @Nullable String magnitudeStatus, Long magnitude) {
         super(otherReferenceRanges, normalRange, normalStatus, accuracy, accuracyIsPercent, magnitudeStatus);
-        this.magnitude = magnitude;
+        setMagnitude(magnitude);
     }
 
     @Override

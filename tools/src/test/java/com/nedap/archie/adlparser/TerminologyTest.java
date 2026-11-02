@@ -3,13 +3,13 @@ package com.nedap.archie.adlparser;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.net.URI;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Created by pieter.bos on 19/10/15.
@@ -18,9 +18,9 @@ public class TerminologyTest {
 
     private Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
-        archetype = TestUtil.parseFailOnErrors("/basic.adl");;
+        archetype = TestUtil.parseFailOnErrors("/basic.adl");
     }
 
 
@@ -43,9 +43,9 @@ public class TerminologyTest {
 		>
 	>
          */
-        URI uri = archetype.getTerminology().getTermBinding("openehr", "at1");
+        URI uri = archetype.getTerminology().getTermBinding("openehr", "at17");
         assertEquals(new URI("http://openehr.org/id/433"), uri);
         assertNull(archetype.getTerminology().getTermBinding("openehr", "at2"));
-        assertNull(archetype.getTerminology().getTermBinding("closedehr", "at1"));
+        assertNull(archetype.getTerminology().getTermBinding("closedehr", "at17"));
     }
 }

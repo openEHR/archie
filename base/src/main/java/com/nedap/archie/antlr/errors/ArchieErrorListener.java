@@ -6,12 +6,11 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
-
-import java.util.BitSet;
-
 import org.antlr.v4.runtime.misc.Interval;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.BitSet;
 
 /**
  * Created by pieter.bos on 19/10/15.
@@ -45,7 +44,12 @@ public class ArchieErrorListener implements ANTLRErrorListener {
         if(logEnabled) {
             logger.warn(error);
         }
-        errors.addError(error, line, charPositionInLine);
+        if (offendingSymbol != null) {
+            String offendingSymbolString = offendingSymbol.toString();
+            errors.addError(error, msg, line, charPositionInLine, offendingSymbolString.length(), offendingSymbolString);
+        } else {
+            errors.addError(error, msg, line, charPositionInLine);
+        }
     }
 
     @Override

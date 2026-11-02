@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.nedap.archie.datetime.DateTimeSerializerFormatters;
 
 import java.io.IOException;
+import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
 
 /**
@@ -20,7 +21,13 @@ public class DateTimeSerializer extends JsonSerializer<TemporalAccessor> {
         if(temporalAccessor == null) {
             jsonGenerator.writeString("");
         }
-        jsonGenerator.writeString(DateTimeSerializerFormatters.ISO_8601_DATE_TIME.format(temporalAccessor));
+        if(!temporalAccessor.isSupported(ChronoField.HOUR_OF_DAY) &&
+                !temporalAccessor.isSupported(ChronoField.MINUTE_OF_HOUR) &&
+                !temporalAccessor.isSupported(ChronoField.SECOND_OF_MINUTE)) {
+            jsonGenerator.writeString(DateTimeSerializerFormatters.ISO_8601_DATE.format(temporalAccessor));
+        } else {
+            jsonGenerator.writeString(DateTimeSerializerFormatters.ISO_8601_DATE_TIME.format(temporalAccessor));
+        }
     }
 
 }

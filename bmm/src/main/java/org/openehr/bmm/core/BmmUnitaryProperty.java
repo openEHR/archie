@@ -21,8 +21,6 @@ package org.openehr.bmm.core;
  * Author: Thomas Beale
  */
 
-import com.nedap.archie.base.MultiplicityInterval;
-
 /**
  * Property whose type is unitary.
  *

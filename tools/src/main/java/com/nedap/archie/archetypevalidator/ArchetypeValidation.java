@@ -2,7 +2,7 @@ package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.flattener.FullArchetypeRepository;
-import com.nedap.archie.rminfo.MetaModels;
+import com.nedap.archie.rminfo.MetaModel;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface ArchetypeValidation {
 
-    List<ValidationMessage> validate(MetaModels models, Archetype archetype, Archetype flatParent, FullArchetypeRepository repository, ArchetypeValidationSettings settings);
+    List<ValidationMessage> validate(MetaModel metaModel, Archetype archetype, Archetype flatParent, FullArchetypeRepository repository, ArchetypeValidationSettings settings);
 
 }

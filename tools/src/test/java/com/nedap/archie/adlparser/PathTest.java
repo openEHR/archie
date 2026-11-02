@@ -1,15 +1,13 @@
 package com.nedap.archie.adlparser;
 
-import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CAttribute;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.testutil.TestUtil;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by pieter.bos on 20/10/15.
@@ -18,15 +16,9 @@ public class PathTest {
 
     private Archetype archetype;
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         archetype = TestUtil.parseFailOnErrors("/basic.adl");
-        ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage("en");
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        ArchieLanguageConfiguration.setThreadLocalLogicalPathLanguage(null);
     }
 
     @Test
@@ -58,15 +50,4 @@ public class PathTest {
         assertEquals("/context[id11]/other_context[id2]/items", attribute.getPath());
     }
 
-
-    @Test
-    public void logicalPath() {
-        CObject object = archetype.getDefinition()
-                .getAttribute("context").getChild("id11")
-                .getAttribute("other_context").getChild("id2")
-                .getAttribute("items").getChild("id3")
-                .getAttribute("items").getChild("id4");
-        //id11 and id2 are not translated
-        assertEquals("/context[id11]/other_context[id2]/items[Qualification]/items[OrderID]", object.getLogicalPath());
-    }
 }

@@ -3,11 +3,10 @@ package org.openehr.bmm.v2.persistence;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openehr.bmm.core.BmmClass;
-import org.openehr.bmm.core.BmmModel;
 import org.openehr.bmm.core.BmmProperty;
-import org.openehr.bmm.core.BmmType;
+import org.openehr.bmm.v2.validation.converters.BmmClassProcessor;
 
-public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  extends PBmmBase {
+public abstract class PBmmProperty<T extends PBmmType>  extends PBmmBase {
 
     private String documentation;
     private String name;
@@ -68,11 +67,11 @@ public abstract class PBmmProperty<T extends PBmmType, U extends BmmProperty>  e
         this.typeDef = typeDef;
     }
 
-    public abstract BmmProperty createBmmProperty(BmmModel schema, BmmClass bmmClass);
+    public abstract BmmProperty<?> createBmmProperty(BmmClassProcessor classProcessor, BmmClass bmmClass);
 
     /** set the values to the BmmProperty that come from this class
      */
-    protected void populateImBooleans(BmmProperty property) {
+    protected void populateImBooleans(BmmProperty<?> property) {
         property.setImInfrastructure(nullToFalse(isImInfrastructure));
         property.setImRuntime(nullToFalse(isImRuntime));
     }

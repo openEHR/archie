@@ -2,15 +2,22 @@ package com.nedap.archie.serializer.adl.constraints;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.base.Joiner;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.rminfo.RMObjectMapperProvider;
 import com.nedap.archie.serializer.adl.ADLDefinitionSerializer;
+import org.openehr.odin.jackson.ODINMapper;
+import org.openehr.odin.jackson.ODINPrettyPrinter;
+import org.openehr.odin.jackson3.ODINMapper3;
+import org.openehr.odin.jackson3.ODINPrettyPrinter3;
+import tools.jackson.core.JacksonException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -33,12 +40,11 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
         if (cobj.getNodeId() != null) {
             builder.append("[").append(cobj.getNodeId()).append("]");
         }
-        builder.append(" ");
         appendOccurrences(cobj);
         if (cobj.getAttributes().isEmpty() && cobj.getAttributeTuples().isEmpty() && cobj.getDefaultValue() == null) {
             builder.lineComment(serializer.getTermText(cobj));
         } else {
-            builder.append("matches {");
+            builder.ensureSpace().append("matches {");
             builder.lineComment(serializer.getTermText(cobj));
             buildAttributesAndTuples(cobj);
 
@@ -65,6 +71,8 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
         if(cobj.getDefaultValue() != null) {
             if(cobj.getDefaultValue() instanceof DefaultValueContainer) {
                 serializeDefaultValueContainer((DefaultValueContainer) cobj.getDefaultValue());
+            } else if (serializer.usesJackson3()) {
+                buildDefaultValueJackson3(cobj);
             } else {
                 RMObjectMapperProvider rmObjectMapperProvider = serializer.getRmObjectMapperProvider();
                 if (rmObjectMapperProvider == null ||
@@ -76,19 +84,23 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
                     builder.newUnindentedLine();
                 } else {
                     try {
-                        String format;
-                        String content;
                         if (rmObjectMapperProvider.getJsonObjectMapper() != null) {
-                            format = DefaultValueContainer.JSON;
                             //the writerFor here makes sure type info gets output even for the root type
-                            content = rmObjectMapperProvider.getJsonObjectMapper().writerFor(OpenEHRBase.class).writeValueAsString(cobj.getDefaultValue());
+                            String content = rmObjectMapperProvider.getJsonObjectMapper().writerFor(OpenEHRBase.class).writeValueAsString(cobj.getDefaultValue());
+                            serializeDefaultValueJson(content);
                         } else {
-                            format = DefaultValueContainer.ODIN;
+                            ObjectMapper objectMapper = rmObjectMapperProvider.getOutputOdinObjectMapper();
+                            ObjectWriter objectWriter;
                             //the writerFor here makes sure type info gets output even for the root type
-                            content = rmObjectMapperProvider.getOutputOdinObjectMapper().writerFor(OpenEHRBase.class).writeValueAsString(cobj.getDefaultValue());
+                            if(objectMapper instanceof ODINMapper) {
+                                // If the mapper is a ODINMapper, use the ODINPrettyPrinter to apply the correct indentation depth.
+                                objectWriter = objectMapper.writerFor(OpenEHRBase.class).with(new ODINPrettyPrinter(builder.getIndentDepth()));
+                            } else {
+                                objectWriter = objectMapper.writerFor(OpenEHRBase.class);
+                            }
+                            String content = objectWriter.writeValueAsString(cobj.getDefaultValue());
+                            serializeDefaultValueOdin(content);
                         }
-
-                        serializeDefaultValueContainer(new DefaultValueContainer(format, content));
                     } catch (JsonProcessingException e) {
                         throw new RuntimeException(e);
                     }
@@ -97,27 +109,64 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
         }
     }
 
+    private void buildDefaultValueJackson3(T cobj) {
+        RMObjectMapperProvider provider = serializer.getRmObjectMapperProvider();
+        if (provider == null || (provider.getOutputOdinObjectMapper3() == null && provider.getJsonObjectMapper3() == null)) {
+            //fallback: serialize generic ODIN. This will likely be non-standard!
+            builder.append("_default = ").newIndentedLine().odin(cobj.getDefaultValue()).newUnindentedLine();
+            return;
+        }
+        try {
+            if (provider.getJsonObjectMapper3() != null) {
+                String content = provider.getJsonObjectMapper3().writerFor(OpenEHRBase.class)
+                        .writeValueAsString(cobj.getDefaultValue());
+                serializeDefaultValueJson(content);
+            } else {
+                tools.jackson.databind.ObjectMapper mapper = provider.getOutputOdinObjectMapper3();
+                tools.jackson.databind.ObjectWriter writer = mapper.writerFor(OpenEHRBase.class);
+                if (mapper instanceof ODINMapper3) {
+                    writer = writer.with(new ODINPrettyPrinter3(builder.getIndentDepth()));
+                }
+                serializeDefaultValueOdin(writer.writeValueAsString(cobj.getDefaultValue()));
+            }
+        } catch (JacksonException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     protected void serializeDefaultValueContainer(DefaultValueContainer container) {
+        // This method doesn't apply indentation to keep the original indentation in the container.
         builder.tryNewLine();
         if(container.getFormat() == null || container.getFormat().equalsIgnoreCase(DefaultValueContainer.ODIN)) {
             builder.append("_default = ");
-            builder.newIndentedLine();
-            builder.appendMultipleLines(container.getContent());
-            builder.unindent();
+            builder.append(container.getContent());
         } else {
             builder.append("_default = (");
             builder.append(container.getFormat());
             builder.append(") <#");
-            if(container.getFormat().equalsIgnoreCase(DefaultValueContainer.JSON)) {
-                builder.newIndentedLine();
-                builder.appendMultipleLines(container.getContent());
-                builder.unindent();
-            } else {
-                //don't apply indentation - we have no idea of knowing whether this should indent or not for unknown formats
-                builder.append(container.getContent());
-            }
+            builder.append(container.getContent());
             builder.append("#>");
         }
+    }
+
+    protected void serializeDefaultValueJson(String jsonContent) {
+        builder.tryNewLine();
+        builder.append("_default = (");
+        builder.append(DefaultValueContainer.JSON);
+        builder.append(") <#");
+        builder.newIndentedLine();
+        // This will indent the JSON content to the correct level.
+        builder.appendMultipleLines(jsonContent);
+        builder.unindent();
+        builder.append("#>");
+    }
+
+    protected void serializeDefaultValueOdin(String odinContent) {
+        // This method doesn't apply indentation as it is unsafe to add extra indentation to ODIN.
+        // The ODIN might already be indented correctly by the ODINPrettyPrinter.
+        builder.tryNewLine();
+        builder.append("_default = ");
+        builder.append(odinContent);
     }
 
     private Set<String> getTupleAttributeNames(T cobj) {
@@ -177,6 +226,11 @@ public class CComplexObjectSerializer<T extends CComplexObject> extends Constrai
                 builder.append(",");
             }
 
+            cObjectTuple.getMembers().stream()
+                    .map(serializer::getSimpleCommentText)
+                    .filter(Objects::nonNull)
+                    .findFirst()
+                    .ifPresent(builder::lineComment);
         }
         builder.unindent().newline();
         builder.append("}");

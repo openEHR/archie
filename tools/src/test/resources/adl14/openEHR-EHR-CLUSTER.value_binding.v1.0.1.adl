@@ -1,0 +1,58 @@
+archetype (adl_version=1.4; uid=1.2.36.1.2001.1001.100.137.1.0)
+    openEHR-EHR-CLUSTER.value_binding.v1
+
+concept
+    [at0000]	-- value_binding
+language
+    original_language = <[ISO_639-1::en]>
+description
+    original_author = <
+        ["name"] = <"Pieter Bos">
+    >
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"A test for value binding">
+            use = <"">
+            misuse = <"">
+        >
+    >
+    other_contributors = <>
+    other_details = <
+        ["revision"] = <"1.0.0">
+    >
+
+definition
+
+CLUSTER[at0000] matches {
+    items matches {
+        ELEMENT[at0006] occurrences matches {0..1} matches {	-- Total saturated fatty acids
+            value matches {
+                C_DV_QUANTITY <
+                    list = <
+                        ["1"] = <
+                            units = <"g">
+                            magnitude = <|>=0.0|>
+                        >
+                    >
+                >
+            }
+        }
+    }
+}
+
+ontology
+    term_definitions = <
+        ["en"] = <
+            items = <
+                ["at0000"] = <
+                    text = <"root node">
+                    description = <"Root node">
+                >
+                ["at0006"] = <
+                    text = <"element">
+                    description = <"Element">
+                >
+            >
+        >
+    >

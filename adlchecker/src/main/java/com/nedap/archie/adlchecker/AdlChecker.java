@@ -77,7 +77,7 @@ public class AdlChecker {
             }
         }
 
-        repository.compile(BuiltinReferenceModels.getMetaModels());
+        repository.compile(BuiltinReferenceModels.getMetaModelProvider());
 
         System.out.println("step 2: validations");
 
@@ -111,7 +111,7 @@ public class AdlChecker {
             String fileContent = CharStreams.toString(new InputStreamReader(stream));
             System.out.println("linting " + file.getAbsolutePath());
             System.out.println();
-            TerminologyContentGenerator generator = new TerminologyContentGenerator(BuiltinReferenceModels.getMetaModels());
+            TerminologyContentGenerator generator = new TerminologyContentGenerator(BuiltinReferenceModels.getMetaModelProvider());
             Archetype resultingArchetype = generator.addTerms(fileContent);
             System.out.println(ADLArchetypeSerializer.serialize(resultingArchetype));
             System.out.println();

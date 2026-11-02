@@ -1,21 +1,21 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nedap.archie.datetime.DateTimeParsers;
-import com.nedap.archie.json.DateDeserializer;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
+import com.nedap.archie.rminfo.PropertyType;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.xml.adapters.DateXmlAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;
@@ -31,7 +31,20 @@ import java.util.Objects;
 @XmlType(name = "DV_DATE", propOrder = {
         "value"
 })
-public class DvDate extends DvTemporal<Long> implements SingleValuedDataValue<Temporal> {
+public class DvDate extends DvTemporal<DvDate, Long> implements SingleValuedDataValue<Temporal> {
+    /**
+     * The number of days in a 400 year cycle.
+     */
+    private static final int DAYS_PER_CYCLE = 146097;
+    /**
+     * The number of days from year zero to year 1970.
+     * There are five 400 year cycles from year zero to 2000.
+     * There are 7 leap years from 1970 to 2000.
+     * Year 0000 (we are using ISO, so year zero exists) is a leap year as well.
+     */
+    public static final long DAYS_BETWEEN_0001_AND_1970 = (DAYS_PER_CYCLE * 5L) - (30L * 365L + 7L) - (1L * 365L + 1L);
+
+
     //TODO: in XML this should be a string probably
     @XmlJavaTypeAdapter(DateXmlAdapter.class)
     private Temporal value;
@@ -51,13 +64,12 @@ public class DvDate extends DvTemporal<Long> implements SingleValuedDataValue<Te
      * @param iso8601Date
      */
     public DvDate(String iso8601Date) {
-
         setValue(DateTimeParsers.parseDateValue(iso8601Date));
     }
 
-    public DvDate(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, Temporal value) {
+    public DvDate(@Nullable List<ReferenceRange<DvDate>> otherReferenceRanges, @Nullable DvInterval<DvDate> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, Temporal value) {
         super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus, accuracy);
-        this.value = value;
+        setValue(value);
     }
 
     @Override
@@ -67,14 +79,15 @@ public class DvDate extends DvTemporal<Long> implements SingleValuedDataValue<Te
 //            @XmlElement(type=Year.class)
 //
 //    })
-    @JsonDeserialize(using= DateDeserializer.class)
+    @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.nedap.archie.json.DateDeserializer.class)
+    @tools.jackson.databind.annotation.JsonDeserialize(using = com.nedap.archie.json3.DateDeserializer.class)
     public Temporal getValue() {
         return value;
     }
 
     @Override
     public void setValue(Temporal value) {
-        if(value.isSupported(ChronoField.HOUR_OF_DAY)) {
+        if(value != null && value.isSupported(ChronoField.HOUR_OF_DAY)) {
             //TODO: do we really need this validation?
             throw new IllegalArgumentException("value must only have a year, month or date, but this supports hours: " + value);
         }
@@ -84,15 +97,16 @@ public class DvDate extends DvTemporal<Long> implements SingleValuedDataValue<Te
     @Override
     @JsonIgnore
     @XmlTransient
+    @RMProperty(value = "magnitude", computed = PropertyType.COMPUTED)
     public Long getMagnitude() {
-        return value == null ? null : (long) LocalDate.from(value).toEpochDay();
+        return value == null ? null : (long) LocalDate.from(value).toEpochDay() + DAYS_BETWEEN_0001_AND_1970;
     }
 
     public void setMagnitude(Long magnitude) {
         if(magnitude == null) {
             value = null;
         } else {
-            value = LocalDate.ofEpochDay(magnitude);
+            value = LocalDate.ofEpochDay(magnitude - DAYS_BETWEEN_0001_AND_1970);
         }
     }
 

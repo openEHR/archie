@@ -1,12 +1,12 @@
 package com.nedap.archie.rm.datastructures;
 
 import com.nedap.archie.rm.datavalues.DvText;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ItemListTest {
 

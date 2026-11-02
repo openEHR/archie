@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.nedap.archie.base.OpenEHRBase;
 import com.nedap.archie.query.AOMPathQuery;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by pieter.bos on 15/10/15.
@@ -24,10 +24,12 @@ import java.util.stream.Collectors;
 })
 public class CComplexObject extends CDefinedObject<OpenEHRBase> {
 
-    private List<CAttribute> attributes = new ArrayList();
+    @Nullable
+    private List<CAttribute> attributes = new ArrayList<>();
 
     @XmlElement(name="attributeTuples")
-    private List<CAttributeTuple> attributeTuples = new ArrayList();
+    @Nullable
+    private List<CAttributeTuple> attributeTuples = new ArrayList<>();
 
     @JsonIgnore
     protected transient Archetype archetype;
@@ -49,6 +51,7 @@ public class CComplexObject extends CDefinedObject<OpenEHRBase> {
     }
 
     @Override
+    @JsonIgnore
     public Archetype getArchetype() {
         if(archetype == null) {
             CAttribute parent = getParent();

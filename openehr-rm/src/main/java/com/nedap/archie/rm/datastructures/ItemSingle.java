@@ -9,12 +9,9 @@ import com.nedap.archie.rm.archetyped.Pathable;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,11 +19,12 @@ import java.util.Objects;
  * added constraint is that this contains only one item
  * Created by pieter.bos on 04/11/15.
  */
+@XmlRootElement(name = "item_single")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ITEM_SINGLE", propOrder = {
         "item"
 })
-public class ItemSingle extends ItemStructure<Element> {
+public class ItemSingle extends ItemStructure {
 
     private Element item;
 
@@ -36,12 +34,12 @@ public class ItemSingle extends ItemStructure<Element> {
 
     public ItemSingle(String archetypeNodeId, DvText name, Element item) {
         super(archetypeNodeId, name);
-        this.item = item;
+        setItem(item);
     }
 
     public ItemSingle(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, Element item) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.item = item;
+        setItem(item);
     }
 
     public Element getItem() {

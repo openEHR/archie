@@ -20,7 +20,7 @@ public class CComplexObjectProxySerializer extends ConstraintSerializer<CComplex
                 .append(nodeIdString(cobj.getNodeId()));
         appendOccurrences(cobj);
         builder.ensureSpace().append(cobj.getTargetPath())
-                //.lineComment("Should be comment here - not implemented")
+                .lineComment(serializer.getTermText(cobj))
                 .unindent();
     }
 

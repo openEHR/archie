@@ -1,9 +1,12 @@
 package com.nedap.archie.rm.datavalues;
 
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
+
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
@@ -72,5 +75,10 @@ public class DvIdentifier extends DataValue {
     @Override
     public int hashCode() {
         return Objects.hash(issuer, assigner, id, type);
+    }
+
+    @Invariant("Id_valid")
+    public boolean idValid() {
+        return InvariantUtil.nullOrNotEmpty(id);
     }
 }

@@ -15,11 +15,36 @@ public class BinaryOperatorSerializer extends RuleElementSerializer<BinaryOperat
 
     @Override
     public void serialize(BinaryOperator operator) {
-        serializer.serializeRuleElement(operator.getLeftOperand());
-        builder.append(" ");
-        builder.append(operator.getOperator().getDefaultCode());
-        builder.append(" ");
-        serializer.serializeRuleElement(operator.getRightOperand());
+        switch (operator.getOperator()) {
+            case implies:
+                serializer.serializeRuleElement(operator.getLeftOperand());
+                builder.append(" ");
+                builder.append(operator.getOperator().getDefaultCode());
+                builder.newIndentedLine();
+                serializer.serializeRuleElement(operator.getRightOperand());
+                builder.unindent();
+                break;
+            case eq:
+            case gt:
+            case lt:
+            case ne:
+            case le:
+            case ge:
+                serializer.serializeRuleElement(operator.getLeftOperand());
+                builder.append(" ");
+                builder.append(operator.getOperator().getDefaultCode());
+                builder.append(" ");
+                serializer.getOutputBuilder().indent();
+                serializer.serializeRuleElement(operator.getRightOperand());
+                builder.unindent();
+                break;
+            default:
+                serializer.serializeRuleElement(operator.getLeftOperand());
+                builder.append(" ");
+                builder.append(operator.getOperator().getDefaultCode());
+                builder.append(" ");
+                serializer.serializeRuleElement(operator.getRightOperand());
+        }
 
     }
 }

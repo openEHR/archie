@@ -1,18 +1,16 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.base.terminology.TerminologyCode;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
 import com.nedap.archie.xml.adapters.ResourceDescriptionAdapter;
 import com.nedap.archie.xml.adapters.TranslationDetailsAdapter;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -41,9 +39,12 @@ public abstract class AuthoredResource extends ArchetypeModelObject {
 
     private LanguageSection content = new LanguageSection();
 
+    @Nullable
     private ResourceAnnotations annotations;
 
     @XmlElement(name="is_controlled")
+    @JsonAlias("is_controlled")
+    @RMProperty("is_controlled")
     public Boolean getControlled() {
         return controlled;
     }
@@ -106,7 +107,7 @@ public abstract class AuthoredResource extends ArchetypeModelObject {
     @XmlJavaTypeAdapter(TranslationDetailsAdapter.class)
     @JsonIgnore
     @RMPropertyIgnore
-    public List<TranslationDetails> getTranslationList() { return new ArrayList(content.getTranslations().values());}
+    public List<TranslationDetails> getTranslationList() { return new ArrayList<>(content.getTranslations().values());}
 
     public void setTranslationList(List<TranslationDetails> translationList) {
         LinkedHashMap<String, TranslationDetails> translations = new LinkedHashMap<>();

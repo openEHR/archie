@@ -30,9 +30,11 @@ public class BmmJacksonUtil {
      */
     public static ObjectMapper getObjectMapper() {
         if(objectMapper == null) {
-            objectMapper = new ObjectMapper();
-            configureObjectMapper(objectMapper);
-
+            ObjectMapper newObjectMapper = new ObjectMapper();
+            configureObjectMapper(newObjectMapper);
+            // Assign to the static variable after configuration, so it can't be accessed by other thread before it is
+            // fully configured.
+            objectMapper = newObjectMapper;
         }
         return objectMapper;
     }
@@ -43,7 +45,7 @@ public class BmmJacksonUtil {
      * @param objectMapper
      */
     public static void configureObjectMapper(ObjectMapper objectMapper) {
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         //keywords = <"value"> is indistinguishable from keywords = <"value1", "value2">
         objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         objectMapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
@@ -54,16 +56,16 @@ public class BmmJacksonUtil {
         objectMapper.addHandler(new DeserializationProblemHandler() {
             @Override
             public boolean handleUnknownProperty(DeserializationContext ctxt, JsonParser p, JsonDeserializer<?> deserializer, Object beanOrClass, String propertyName) throws IOException {
-                if (propertyName.equalsIgnoreCase("@type")) {
+                if (propertyName.equalsIgnoreCase("_type")) {
                     return true;
                 }
                 return super.handleUnknownProperty(ctxt, p, deserializer, beanOrClass, propertyName);
             }
         });
 
-        TypeResolverBuilder typeResolverBuilder = new BmmTypeResolverBuilder()
+        TypeResolverBuilder<?> typeResolverBuilder = new BmmTypeResolverBuilder()
                 .init(JsonTypeInfo.Id.NAME, new BmmTypeNaming())
-                .typeProperty("@type")
+                .typeProperty("_type")
                 .typeIdVisibility(true)
                 .inclusion(JsonTypeInfo.As.PROPERTY);
 

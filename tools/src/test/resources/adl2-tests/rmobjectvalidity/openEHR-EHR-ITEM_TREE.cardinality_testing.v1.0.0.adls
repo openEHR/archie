@@ -1,0 +1,52 @@
+archetype (adl_version=2.0.5; rm_release=1.0.4)
+    openEHR-EHR-ITEM_TREE.cardinality_testing.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"MK">
+    >
+    lifecycle_state = <"DRAFT">
+    details = <
+        ["en"] = <
+            language = <[ISO-639_1::en]>
+            purpose = <"Testing">
+        >
+    >
+
+definition
+    ITEM_TREE[id1] matches {    -- Cardinality Testing
+        items cardinality matches {1..2; unique} matches {
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- Text 1
+                value matches {
+                    DV_TEXT[id8]
+                }
+            }
+            ELEMENT[id13] occurrences matches {0..1} matches {    -- Text 2
+                value matches {
+                    DV_TEXT[id14]
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Cardinality Testing">
+                description = <"Cardinality testing">
+                code = <"id1">
+            >
+            ["id7"] = <
+                text = <"Text 1">
+                description = <"">
+            >
+            ["id13"] = <
+                text = <"Text 2">
+                description = <"">
+            >
+        >
+    >

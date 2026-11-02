@@ -13,7 +13,6 @@ description
 definition
     CLUSTER[id1.1] matches {    -- Lipid studies panel
         items matches {
-            after [id3]
             CLUSTER[id3.1] matches {    -- LDL
                 items matches {
                     ELEMENT[id2.1] matches {    -- LDL cholesterol

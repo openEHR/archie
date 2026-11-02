@@ -2,11 +2,11 @@ package com.nedap.archie.rm.datavalues.quantity;
 
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,14 +27,14 @@ public class DvOrdinal extends DvOrdered<DvOrdinal> implements SingleValuedDataV
     }
 
     public DvOrdinal(Long value, DvCodedText symbol) {
-        this.symbol = symbol;
-        this.value = value;
+        setSymbol(symbol);
+        setValue(value);
     }
 
-    public DvOrdinal(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, Long value, DvCodedText symbol) {
+    public DvOrdinal(@Nullable List<ReferenceRange<DvOrdinal>> otherReferenceRanges, @Nullable DvInterval<DvOrdinal> normalRange, Long value, DvCodedText symbol) {
         super(otherReferenceRanges, normalRange);
-        this.symbol = symbol;
-        this.value = value;
+        setSymbol(symbol);
+        setValue(value);
     }
 
     @Override

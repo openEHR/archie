@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class PrimitiveObjectEqualsChecker {
 
-    public static boolean isEqual(CPrimitiveObject childCObject, CPrimitiveObject childCObjectInParent) {
+    public static boolean isEqual(CPrimitiveObject<?, ?> childCObject, CPrimitiveObject<?, ?> childCObjectInParent) {
         if(childCObject == null && childCObjectInParent != null) {
             return false;
         }

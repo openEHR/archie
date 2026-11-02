@@ -12,6 +12,8 @@ public class ValidationMessage {
     private String message;
     private boolean warning;//TODO: migrate to severity enum once we merge them
 
+    public ValidationMessage() {}
+
     public ValidationMessage(ErrorType type) {
         this.type = type;
     }

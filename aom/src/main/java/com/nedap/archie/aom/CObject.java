@@ -1,18 +1,19 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.utils.AOMUtils;
+import com.nedap.archie.aom.utils.ConformanceCheckResult;
+import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.paths.PathSegment;
+import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.*;
+import org.openehr.utils.message.I18n;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,13 +38,17 @@ public abstract class CObject extends ArchetypeConstraint {
     @XmlAttribute(name="rm_type_name")
     private String rmTypeName;
     @XmlElement(name="occurrences")
+    @Nullable
     private MultiplicityInterval occurrences;
     @XmlAttribute(name="node_id")
     private String nodeId;
     @XmlAttribute(name="is_deprecated")
+    @RMProperty("is_deprecated")
+    @Nullable
     private Boolean deprecated;
 
     @XmlElement(name="sibling_order")
+    @Nullable
     private SiblingOrder siblingOrder;
 
 
@@ -71,6 +76,7 @@ public abstract class CObject extends ArchetypeConstraint {
         this.nodeId = nodeId;
     }
 
+    @JsonAlias("is_deprecated")
     public Boolean getDeprecated() {
         return deprecated;
     }
@@ -154,46 +160,6 @@ public abstract class CObject extends ArchetypeConstraint {
         return null;
     }
 
-    private String getLogicalPathMeaning() {
-        if(nodeId == null) {
-            return null;
-        }
-        String meaning = null;
-        Archetype archetype = getArchetype();
-        if(archetype == null) {
-            return null;
-        }
-        ArchetypeTerm termDefinition = archetype.getTerm(this, ArchieLanguageConfiguration.getLogicalPathLanguage());
-        if(termDefinition!=null && termDefinition.getText()!=null) {
-            meaning = termDefinition.getText();
-        }
-        return meaning;
-    }
-
-
-    public String getLogicalPath() {
-        //TODO: this can cause name clashes. Solve them!
-        //TODO: the text can contain []-characters. Replace them?
-        //TODO: lowercase and replace spaces with underscores?
-        if(getParent() == null) {
-            return "/";
-        }
-
-        String nodeName = getLogicalPathMeaning();
-        if(nodeName == null) {
-            nodeName = nodeId;
-        }
-        String path = getParent().getLogicalPath();
-        //TODO: this is a bit slow because we have to walk the tree to the archetype every single time
-        if(nodeName != null) {
-            path += "[" + nodeName + "]";
-        }
-        if(path.startsWith("//")) {
-            return path.substring(1);
-        }
-        return path;
-    }
-
     public boolean isAllowed() {
         if(occurrences == null) {
             return true;
@@ -231,7 +197,7 @@ public abstract class CObject extends ArchetypeConstraint {
      * @return
      */
     public List<CAttribute> getAttributes() {
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     /**
@@ -270,11 +236,14 @@ public abstract class CObject extends ArchetypeConstraint {
      * @param rmTypesConformant
      * @return
      */
-    public boolean cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
-        return nodeIdConformsTo(other) &&
-                occurrencesConformsTo(other)
-                && typeNameConformsTo(other, rmTypesConformant);
-
+    public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
+        if(!nodeIdConformsTo(other)) {
+            return ConformanceCheckResult.fails(ErrorType.VSONI, I18n.t("Node id {0} does not conform to {1}", this.getNodeId(), other.getNodeId()));
+        }
+        if(!typeNameConformsTo(other, rmTypesConformant)) {
+            return ConformanceCheckResult.fails(ErrorType.VSONCT, I18n.t("type name {0} does not conform to {1}", this.getRmTypeName(), other.getRmTypeName()));
+        }
+        return ConformanceCheckResult.conforms();
     }
 
     public boolean typeNameConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {

@@ -1,13 +1,7 @@
 package org.openehr.bmm.v2.validation.validators;
 
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
-import org.openehr.bmm.v2.persistence.PBmmClass;
-import org.openehr.bmm.v2.persistence.PBmmContainerProperty;
-import org.openehr.bmm.v2.persistence.PBmmGenericProperty;
-import org.openehr.bmm.v2.persistence.PBmmProperty;
-import org.openehr.bmm.v2.persistence.PBmmSchema;
-import org.openehr.bmm.v2.persistence.PBmmSingleProperty;
-import org.openehr.bmm.v2.persistence.PBmmSinglePropertyOpen;
+import org.openehr.bmm.v2.persistence.*;
 
 import java.util.List;
 
@@ -20,7 +14,7 @@ public class ConformanceChecker {
      * @param aParentProperty
      * @return
      */
-    public boolean propertyConformsTo(PBmmSchema schema, PBmmProperty aChildProperty, PBmmProperty aParentProperty) {
+    public boolean propertyConformsTo(PBmmSchema schema, PBmmProperty<?> aChildProperty, PBmmProperty<?> aParentProperty) {
         if(aParentProperty instanceof PBmmSingleProperty && ((PBmmSingleProperty) aParentProperty).getTypeRef().getType().equalsIgnoreCase(BmmDefinitions.ANY_TYPE)) {
             return true;
         }
@@ -32,14 +26,7 @@ public class ConformanceChecker {
                 return typeStrictlyConformsTo(schema, aChildSingleProperty.getTypeRef().getType(), aParentSingleProperty.getTypeRef().getType());
             }
             else if (aParentProperty instanceof PBmmSingleProperty) {
-                if (aChildProperty instanceof PBmmSinglePropertyOpen) {
-                    //If both properties have the same name and are both open properties, then they do not conform.
-                    return false;
-                }
-                else if(aChildProperty instanceof PBmmSingleProperty) {
-                    return true;
-                    //TODO FIXME: proper type conformance to constraining generic type needs to be checked here
-                }
+                return false;
             }
             else if (aChildProperty instanceof PBmmContainerProperty && aParentProperty instanceof PBmmContainerProperty) {
                 PBmmContainerProperty aChildContainerProperty = (PBmmContainerProperty)aChildProperty;
@@ -74,7 +61,7 @@ public class ConformanceChecker {
      * @return
      */
     public boolean typeConformsTo(PBmmSchema schema, String type1, String type2) {
-        List<String> typeList1 = null, typeList2 = null;
+        List<String> typeList1, typeList2;
         typeList1 = BmmDefinitions.typeNameAsFlatList(type1);
         typeList2 = BmmDefinitions.typeNameAsFlatList(type2);
         int index = 0;
@@ -84,8 +71,9 @@ public class ConformanceChecker {
                 schema.hasClassOrPrimitiveDefinition(typeList2.get(index))) {
             String typePart1 = typeList1.get(index);
             String typePart2 = typeList2.get(index);
-            if (!(type1.equalsIgnoreCase(typePart2) || isAncestor(schema, typePart1, typePart2)))
+            if (!(type1.equalsIgnoreCase(typePart2) || isAncestor(schema, typePart1, typePart2))) {
                 return false;
+            }
             index++;
 
         }
@@ -102,11 +90,14 @@ public class ConformanceChecker {
     public boolean isAncestor(PBmmSchema schema, String typePart1, String typePart2) {
         PBmmClass classDefinition = schema.getClassDefinition(typePart1);
         List<String> ancestors = classDefinition.getAncestorTypeNames();
-        if (ancestors.contains(typePart2)) //direct ancestor
+        if (ancestors.contains(typePart2)) { //direct ancestor
             return true;
-        for (String ancestor:ancestors)
-            if (isAncestor(schema, typePart1, ancestor)) //recursive check
+        }
+        for (String ancestor:ancestors) {
+            if (isAncestor(schema, typePart1, ancestor)) { //recursive check
                 return true;
+            }
+        }
         return false;
     }
 

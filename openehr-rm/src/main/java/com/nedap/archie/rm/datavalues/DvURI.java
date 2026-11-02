@@ -1,8 +1,10 @@
 package com.nedap.archie.rm.datavalues;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
+import com.nedap.archie.rminfo.Invariant;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
+
 import java.net.URI;
 import java.util.Objects;
 
@@ -22,7 +24,7 @@ public class DvURI extends DataValue implements SingleValuedDataValue<URI> {
     }
 
     public DvURI(URI value) {
-        this.value = value;
+        setValue(value);
     }
 
     /**
@@ -31,7 +33,7 @@ public class DvURI extends DataValue implements SingleValuedDataValue<URI> {
      * @param uri
      */
     public DvURI(String uri) {
-        this.value = URI.create(uri);
+        setValue(URI.create(uri));
     }
 
     @Override
@@ -55,5 +57,10 @@ public class DvURI extends DataValue implements SingleValuedDataValue<URI> {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Invariant(value="Value_valid")
+    public boolean valueValid() {
+        return value == null || !value.toString().isEmpty();
     }
 }

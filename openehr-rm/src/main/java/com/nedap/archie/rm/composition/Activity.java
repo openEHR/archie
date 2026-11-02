@@ -5,15 +5,11 @@ import com.nedap.archie.rm.datastructures.ItemStructure;
 import com.nedap.archie.rm.datavalues.DvText;
 import com.nedap.archie.rm.datavalues.encapsulated.DvParsable;
 import com.nedap.archie.rm.support.identification.UIDBasedId;
+import com.nedap.archie.rminfo.Invariant;
+import com.nedap.archie.rmutil.InvariantUtil;
+import jakarta.xml.bind.annotation.*;
 
 import javax.annotation.Nullable;
-
-import javax.xml.bind.annotation.*;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,18 +39,18 @@ public class Activity extends Locatable {
     public Activity() {
     }
 
-    public Activity(String archetypeNodeId, DvText name, ItemStructure description, @Nullable DvParsable timing, @Nullable String actionArchetypeId) {
+    public Activity(String archetypeNodeId, DvText name, ItemStructure description, @Nullable DvParsable timing, String actionArchetypeId) {
         super(archetypeNodeId, name);
-        this.description = description;
-        this.timing = timing;
-        this.actionArchetypeId = actionArchetypeId;
+        setDescription(description);
+        setTiming(timing);
+        setActionArchetypeId(actionArchetypeId);
     }
 
-    public Activity(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, ItemStructure description, @Nullable DvParsable timing, @Nullable String actionArchetypeId) {
+    public Activity(@Nullable UIDBasedId uid, String archetypeNodeId, DvText name, @Nullable Archetyped archetypeDetails, @Nullable FeederAudit feederAudit, @Nullable List<Link> links, @Nullable Pathable parent, @Nullable String parentAttributeName, ItemStructure description, @Nullable DvParsable timing, String actionArchetypeId) {
         super(uid, archetypeNodeId, name, archetypeDetails, feederAudit, links, parent, parentAttributeName);
-        this.description = description;
-        this.timing = timing;
-        this.actionArchetypeId = actionArchetypeId;
+        setDescription(description);
+        setTiming(timing);
+        setActionArchetypeId(actionArchetypeId);
     }
 
     public ItemStructure getDescription() {
@@ -63,6 +59,7 @@ public class Activity extends Locatable {
 
     public void setDescription(ItemStructure description) {
         this.description = description;
+        setThisAsParent(description, "description");
     }
 
     public DvParsable getTiming() {
@@ -72,13 +69,12 @@ public class Activity extends Locatable {
     public void setTiming(DvParsable timing) {
         this.timing = timing;
     }
-
-    @Nullable
+    
     public String getActionArchetypeId() {
         return actionArchetypeId;
     }
 
-    public void setActionArchetypeId(@Nullable String actionArchetypeId) {
+    public void setActionArchetypeId( String actionArchetypeId) {
         this.actionArchetypeId = actionArchetypeId;
     }
 
@@ -96,5 +92,10 @@ public class Activity extends Locatable {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), description, timing, actionArchetypeId);
+    }
+
+    @Invariant("Action_archetype_id_valid")
+    public boolean actionArchetypeIdValid() {
+        return InvariantUtil.nullOrNotEmpty(actionArchetypeId);
     }
 }

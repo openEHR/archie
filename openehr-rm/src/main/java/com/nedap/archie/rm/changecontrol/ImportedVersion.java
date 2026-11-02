@@ -2,11 +2,13 @@ package com.nedap.archie.rm.changecontrol;
 
 import com.nedap.archie.rm.datavalues.DvCodedText;
 import com.nedap.archie.rm.generic.AuditDetails;
+import com.nedap.archie.rm.support.identification.ObjectId;
 import com.nedap.archie.rm.support.identification.ObjectRef;
 import com.nedap.archie.rm.support.identification.ObjectVersionId;
+import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 /**
@@ -20,9 +22,9 @@ public class ImportedVersion<T> extends Version<T> {
     public ImportedVersion() {
     }
 
-    public ImportedVersion(AuditDetails commitAudit, ObjectRef contribution, @Nullable String signature, OriginalVersion item) {
+    public ImportedVersion(AuditDetails commitAudit, ObjectRef<? extends ObjectId> contribution, @Nullable String signature, OriginalVersion<T> item) {
         super(commitAudit, contribution, signature);
-        this.item = item;
+        setItem(item);
     }
 
     @Override
@@ -51,12 +53,17 @@ public class ImportedVersion<T> extends Version<T> {
     }
 
     @Override
+    @RMProperty("is_branch")
     public boolean isBranch() {
         return item == null ? null : item.isBranch();//TODO: this is probably not right
     }
 
     public OriginalVersion<T> getItem() {
         return item;
+    }
+
+    public void setItem(OriginalVersion<T> item) {
+        this.item = item;
     }
 
     @Override

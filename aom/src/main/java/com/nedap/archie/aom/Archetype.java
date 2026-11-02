@@ -1,31 +1,25 @@
 package com.nedap.archie.aom;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.base.Strings;
 import com.nedap.archie.aom.primitives.CTerminologyCode;
+import com.nedap.archie.aom.rmoverlay.RmAttributeVisibility;
+import com.nedap.archie.aom.rmoverlay.RmOverlay;
 import com.nedap.archie.aom.terminology.ArchetypeTerm;
 import com.nedap.archie.aom.terminology.ArchetypeTerminology;
 import com.nedap.archie.aom.terminology.ValueSet;
 import com.nedap.archie.aom.utils.AOMUtils;
-import com.nedap.archie.aom.utils.ArchetypeParsePostProcesser;
+import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.query.AOMPathQuery;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.xml.adapters.ArchetypeTerminologyAdapter;
+import com.nedap.archie.xml.adapters.RMOverlayXmlAdapter;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.Stack;
+import javax.annotation.Nullable;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -35,7 +29,6 @@ import java.util.stream.Collectors;
  *
  * Created by pieter.bos on 15/10/15.
  */
-@XmlRootElement(name="archetype")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ARCHETYPE", propOrder = {
         "archetypeId",
@@ -44,37 +37,32 @@ import java.util.stream.Collectors;
         "definition",
         "terminology",
         "rules",
-        "buildUid",
-        "rmRelease",
-        "generated",
-        "otherMetaData"
+        "rmOverlay"
 })
-public class Archetype extends AuthoredResource {
+public abstract class Archetype extends AuthoredResource {
 
     @XmlElement(name="parent_archetype_id")
+    @Nullable
     private String parentArchetypeId;
+
     @XmlAttribute(name="is_differential")
+    @RMProperty("is_differential")
     private boolean differential = false;
+
     @XmlElement(name = "archetype_id")
     private ArchetypeHRID archetypeId;
 
     private CComplexObject definition;
+
     @XmlJavaTypeAdapter(ArchetypeTerminologyAdapter.class)
     private ArchetypeTerminology terminology;
+
+    @Nullable
     private RulesSection rules = null;
 
-    @XmlAttribute(name="adl_version")
-    private String adlVersion;
-    @XmlElement(name="build_uid")
-    private String buildUid;
-    @XmlAttribute(name="rm_release")
-    private String rmRelease;
-    @XmlAttribute(name="is_generated")
-    private Boolean generated = false;
-
-    @XmlElement(name="other_meta_data")
-    //TODO: this probably requires a custom XmlAdapter
-    private Map<String, String> otherMetaData = new LinkedHashMap<>();
+    @XmlElement(name="rm_overlay")
+    @XmlJavaTypeAdapter(RMOverlayXmlAdapter.class)
+    private RmOverlay rmOverlay;
 
     public String getParentArchetypeId() {
         return parentArchetypeId;
@@ -84,6 +72,7 @@ public class Archetype extends AuthoredResource {
         this.parentArchetypeId = parentArchetypeId;
     }
 
+    @JsonAlias("is_differential")
     public boolean isDifferential() {
         return differential;
     }
@@ -126,52 +115,6 @@ public class Archetype extends AuthoredResource {
         terminology.setOwnerArchetype(this);
     }
 
-    public String getAdlVersion() {
-        return adlVersion;
-    }
-
-    public void setAdlVersion(String adlVersion) {
-        this.adlVersion = adlVersion;
-    }
-
-    public String getBuildUid() {
-        return buildUid;
-    }
-
-    public void setBuildUid(String buildUid) {
-        this.buildUid = buildUid;
-    }
-
-    public String getRmRelease() {
-        return rmRelease;
-    }
-
-    public void setRmRelease(String rmRelease) {
-        this.rmRelease = rmRelease;
-    }
-
-    public Boolean getGenerated() {
-        return generated;
-    }
-
-    public void setGenerated(Boolean generated) {
-        this.generated = generated;
-    }
-
-    public Map<String, String> getOtherMetaData() {
-        return otherMetaData;
-    }
-
-    public void setOtherMetaData(Map<String, String> otherMetaData) {
-        this.otherMetaData = otherMetaData;
-    }
-
-    public void addOtherMetadata(String text, String value) {
-        if (value != null) {
-            otherMetaData.put(text, value);
-        }
-    }
-
     /**
      * Translation helper function. To be overriden by Operational Templates
      *
@@ -206,7 +149,7 @@ public class Archetype extends AuthoredResource {
 
         Archetype result = (Archetype) super.clone();
         //fix some things that are not handled automatically
-        ArchetypeParsePostProcesser.fixArchetype(result);
+        ArchetypeParsePostProcessor.fixArchetype(result);
         return result;
 
     }
@@ -245,7 +188,7 @@ public class Archetype extends AuthoredResource {
      */
     @JsonIgnore
     public Set<String> getAllUsedCodes() {
-        Stack<CObject> workList = new Stack();
+        Stack<CObject> workList = new Stack<>();
         Set<String> result = new LinkedHashSet<>();
         workList.add(definition);
         while(!workList.isEmpty()) {
@@ -258,8 +201,8 @@ public class Archetype extends AuthoredResource {
             if(cObject instanceof CTerminologyCode) {
                 CTerminologyCode terminologyCode = (CTerminologyCode) cObject;
                 result.addAll(terminologyCode.getValueSetExpanded());
-                if(!terminologyCode.getConstraint().isEmpty()) {
-                    result.add(terminologyCode.getConstraint().get(0));
+                if(terminologyCode.getConstraint() != null) {
+                    result.add(terminologyCode.getConstraint());
                 }
             }
             for(CAttribute attribute:cObject.getAttributes()) {
@@ -275,24 +218,31 @@ public class Archetype extends AuthoredResource {
 
             }
         }
+        if(rmOverlay != null && rmOverlay.getRmVisibility() != null) {
+            for (RmAttributeVisibility value : rmOverlay.getRmVisibility().values()) {
+                if(value.getAlias() != null) {
+                    result.add(value.getAlias().getCodeString());
+                }
+            }
+        }
 
         return result;
     }
 
     @JsonIgnore
     public Set<String> getUsedIdCodes() {
-        return getAllUsedCodes().stream().filter(code -> AOMUtils.isIdCode(code)).collect(Collectors.toSet());
+        return getAllUsedCodes().stream().filter(AOMUtils::isIdCode).collect(Collectors.toSet());
     }
 
     @JsonIgnore
     public Set<String> getUsedValueCodes() {
-        return getAllUsedCodes().stream().filter(code -> AOMUtils.isValueCode(code)).collect(Collectors.toSet());
+        return getAllUsedCodes().stream().filter(AOMUtils::isValueCode).collect(Collectors.toSet());
 
     }
 
     @JsonIgnore
     public Set<String> getUsedValueSetCodes() {
-        return getAllUsedCodes().stream().filter(code -> AOMUtils.isValidValueSetCode(code)).collect(Collectors.toSet());
+        return getAllUsedCodes().stream().filter(AOMUtils::isValidValueSetCode).collect(Collectors.toSet());
     }
 
 
@@ -333,5 +283,13 @@ public class Archetype extends AuthoredResource {
         int maximumIdCode = AOMUtils.getMaximumIdCode(specializationDepth, nodeId, getAllUsedCodes());
         return nodeId + AdlCodeDefinitions.SPECIALIZATION_SEPARATOR + generateSpecializationDepthCodePrefix(specializationDepth-nodeIdSpecializationDepth-1) + (maximumIdCode+1);
 
+    }
+
+    public RmOverlay getRmOverlay() {
+        return rmOverlay;
+    }
+
+    public void setRmOverlay(RmOverlay rmOverlay) {
+        this.rmOverlay = rmOverlay;
     }
 }

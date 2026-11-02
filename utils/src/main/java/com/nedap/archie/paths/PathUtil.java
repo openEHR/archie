@@ -27,6 +27,10 @@ public class PathUtil {
                     result.append(segment.getIndex().toString());
                 }
                 result.append("]");
+            } else if (segment.hasNumberIndex()) {
+                result.append("[");
+                result.append(segment.getIndex());
+                result.append("]");
             }
         }
         return result.toString();

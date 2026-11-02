@@ -1,105 +1,82 @@
-apply plugin: 'maven'
-if(gradle.ext.shouldSign) {
-  apply plugin: 'signing'
+apply plugin: 'maven-publish'
+if (gradle.ext.shouldSign) {
+    apply plugin: 'signing'
+    signing {
+        afterEvaluate { project ->
+            useGpgCmd()
+            sign publishing.publications
+        }
+    }
 }
 
-install {
-  repositories.mavenInstaller {
-    customizePom(pom, project)
-  }
+nexusPublishing {
+    repositories {
+        // see https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/#configuration
+        sonatype {
+            nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+
+            username = project.hasProperty("centralTokenUsername") ? centralTokenUsername : "Unknown username"
+            password = project.hasProperty("centralTokenPassword") ? centralTokenPassword : "Unknown password"
+        }
+    }
 }
 
-if(gradle.ext.shouldSign) {
-  signing {
-      useGpgCmd()
-      sign configurations.archives
-  }  
-}
+//now uploading will have to be configured on a per subproject basis
+subprojects {
 
-//upload to sonatype configuration
-uploadArchives {
-  repositories {
-    mavenDeployer {
-      if(gradle.ext.shouldSign) {
-        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-      }
+    publishing {
 
-      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-        authentication(userName: gradle.ext.ossrhUsernameSafe, password: gradle.ext.ossrhPasswordSafe)
-      }
+        publications {
+            "$project.name"(MavenPublication) {
 
-      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-        authentication(userName: gradle.ext.ossrhUsernameSafe, password: gradle.ext.ossrhPasswordSafe)
-      }
-      customizePom(pom, project)
-      pom.whenConfigured { generatedPom ->
-        if(gradle.ext.isParallel) {
-          logger.error('build error: this build file cannot yet upload to maven central with parallel builds enabled')
-          throw new InvalidUserDataException('build error: this build file cannot yet upload to maven central with parallel builds enabled')
+                afterEvaluate {
+                    from components.java
+                    artifactId = project.name
+                    pom {
+                        name = project.name
+                        description = project.description
+                    }
+                }
+
+                pom {
+
+                    url = "https://github.com/openEHR/archie"
+                    organization {
+                        name = "Nedap Healthcare"
+                        url = "http://www.nedap-healthcare.com"
+                    }
+                    licenses {
+                        license {
+                            name = "Apache License, Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0"
+                            distribution = "repo"
+                        }
+                    }
+                    scm {
+                        url = "https://github.com/openEHR/archie"
+                        connection = "scm:git:git://github.com/openEHR/archie"
+                        developerConnection = "scm:git:git://github.com/openEHR/archie"
+                    }
+                    developers {
+                        developer {
+                            id = "pieterbos"
+                            name = "Pieter Bos"
+                            email = "pieter.bos@nedap.com"
+                        }
+                        developer {
+                            id = "tanja.dejong"
+                            name = "Tanja de Jong"
+                            email = "tanja.dejong@nedap.com"
+                        }
+                    }
+                    issueManagement {
+                        system = "Github"
+                        url = "https://github.com/openEHR/archie/issues"
+                    }
+                }
+            }
         }
-      }
-    }
-  }
-}
-
-
-
-def customizePom(pom, gradleProject) {
-  pom.whenConfigured { generatedPom ->
-
-    //description is required for publishing, so enforce it
-    if(gradleProject.description == null || gradleProject.description == '') {
-      logger.error('build error: description required for release to maven central, but not set for subproject ' + gradleProject.name)
-      throw new InvalidUserDataException('build error: description required for release to maven central, but not set for subproject ' + gradleProject.name)
     }
 
-    // eliminate test-scoped dependencies (no need in maven central poms)
-    generatedPom.dependencies.removeAll { dep ->
-      dep.scope == "test"
-    }
-
-    // sort to make pom dependencies order consistent to ease comparison of older poms
-    generatedPom.dependencies = generatedPom.dependencies.sort { dep ->
-      "$dep.scope:$dep.groupId:$dep.artifactId"
-    }
-
-    // add all items necessary for maven central publication
-    generatedPom.project {
-      name = gradleProject.name
-      description = gradleProject.description
-      url = "https://github.com/openEHR/archie"
-      organization {
-        name = "Nedap Healthcare"
-        url = "http://www.nedap-healthcare.com"
-      }
-      licenses {
-        license {
-          name "Apache License, Version 2.0"
-          url "http://www.apache.org/licenses/LICENSE-2.0"
-          distribution "repo"
-        }
-      }
-      scm {
-        url = "https://github.com/openEHR/archie"
-        connection = "scm:git:git://github.com/openEHR/archie"
-        developerConnection = "scm:git:git://github.com/openEHR/archie"
-      }
-      developers {
-        developer {
-          id = "pieterbos"
-          name = "Pieter Bos"
-          email = "pieter.bos@nedap.com"
-        }
-        developer {
-          id = "tanja.dejong"
-          name = "Tanja de Jong"
-          email = "tanja.dejong@nedap.com"
-        }
-      }
-      issueManagement {
-        system = "Github"
-        url = "https://github.com/openEHR/archie/issues"
-      }
-    }
-  }
 }

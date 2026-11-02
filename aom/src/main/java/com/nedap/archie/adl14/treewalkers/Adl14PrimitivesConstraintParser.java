@@ -1,5 +1,6 @@
 package com.nedap.archie.adl14.treewalkers;
 
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.adlparser.antlr.Adl14Lexer;
 import com.nedap.archie.adlparser.antlr.Adl14Parser;
 import com.nedap.archie.adlparser.antlr.Adl14Parser.Boolean_list_valueContext;
@@ -11,15 +12,8 @@ import com.nedap.archie.adlparser.antlr.ContainedRegexParser;
 import com.nedap.archie.adlparser.treewalkers.BaseTreeWalker;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
 import com.nedap.archie.aom.CPrimitiveObject;
-import com.nedap.archie.aom.primitives.CBoolean;
-import com.nedap.archie.aom.primitives.CDate;
-import com.nedap.archie.aom.primitives.CDateTime;
-import com.nedap.archie.aom.primitives.CDuration;
-import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
-import com.nedap.archie.aom.primitives.CTime;
+import com.nedap.archie.aom.primitives.*;
 import com.nedap.archie.base.terminology.TerminologyCode;
-import com.nedap.archie.serializer.odin.OdinValueParser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -40,7 +34,7 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
         temporalConstraintParser = new Adl14TemporalConstraintParser(errors);
     }
 
-    public CPrimitiveObject parsePrimitiveObject(Adl14Parser.C_primitive_objectContext objectContext) {
+    public CPrimitiveObject<?, ?> parsePrimitiveObject(Adl14Parser.C_primitive_objectContext objectContext) {
         /*c_integer
                 | c_real
                 | c_date
@@ -98,8 +92,8 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
         }
     }
 
-    public CTerminologyCode parseCTerminologyCode(Adl14Parser.C_terminology_codeContext terminologyCodeContext) {
-        CTerminologyCode result = new CTerminologyCode();
+    public CTerminologyCodeADL14 parseCTerminologyCode(Adl14Parser.C_terminology_codeContext terminologyCodeContext) {
+        CTerminologyCodeADL14 result = new CTerminologyCodeADL14();
 
         boolean containsAssumedValue = !terminologyCodeContext.getTokens(Adl14Lexer.SYM_SEMICOLON).isEmpty();
 
@@ -125,7 +119,9 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
                     }
                 } else {
                     //non-local term constraints. Add the text here, will be converted later
-                    result.addConstraint(qualifiedTermCodeContext.getText());
+                    for (int i = 0; i < qualifiedTermCodeContext.identifier().size(); i++) {
+                        result.addConstraint(qualifiedTermCodeContext.identifier(i).getText());
+                    }
                 }
 
             }
@@ -190,7 +186,7 @@ public class Adl14PrimitivesConstraintParser extends BaseTreeWalker {
         return temporalConstraintParser.parseCDate(context);
     }
 
-    public CPrimitiveObject parseRegex(TerminalNode terminalNode) {
+    public CPrimitiveObject<?, ?> parseRegex(TerminalNode terminalNode) {
         ContainedRegexLexer lexer = new ContainedRegexLexer(CharStreams.fromString(terminalNode.getText()));
         ContainedRegexParser parser = new ContainedRegexParser(new CommonTokenStream(lexer));
         ContainedRegexParser.RegexContext regex = parser.regex();

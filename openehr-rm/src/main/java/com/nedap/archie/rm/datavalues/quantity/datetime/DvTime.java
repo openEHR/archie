@@ -1,21 +1,21 @@
 package com.nedap.archie.rm.datavalues.quantity.datetime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nedap.archie.datetime.DateTimeParsers;
-import com.nedap.archie.json.TimeDeserializer;
 import com.nedap.archie.rm.datatypes.CodePhrase;
 import com.nedap.archie.rm.datavalues.SingleValuedDataValue;
 import com.nedap.archie.rm.datavalues.quantity.DvInterval;
 import com.nedap.archie.rm.datavalues.quantity.ReferenceRange;
+import com.nedap.archie.rminfo.PropertyType;
+import com.nedap.archie.rminfo.RMProperty;
 import com.nedap.archie.xml.adapters.TimeXmlAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAccessor;
 import java.util.List;
@@ -34,7 +34,7 @@ import java.util.Objects;
 @XmlType(name = "DV_TIME", propOrder = {
         "value"
 })
-public class DvTime extends DvTemporal<Double> implements SingleValuedDataValue<TemporalAccessor> {
+public class DvTime extends DvTemporal<DvTime, Double> implements SingleValuedDataValue<TemporalAccessor> {
 
     @XmlJavaTypeAdapter(TimeXmlAdapter.class)
     private TemporalAccessor value;
@@ -44,7 +44,7 @@ public class DvTime extends DvTemporal<Double> implements SingleValuedDataValue<
     }
 
     public DvTime(TemporalAccessor value) {
-        this.value = value;
+        setValue(value);
     }
 
     /**
@@ -53,12 +53,12 @@ public class DvTime extends DvTemporal<Double> implements SingleValuedDataValue<
      * @param iso8601Time
      */
     public DvTime(String iso8601Time) {
-        this.value = DateTimeParsers.parseTimeValue(iso8601Time);
+        setValue(DateTimeParsers.parseTimeValue(iso8601Time));
     }
 
-    public DvTime(@Nullable List<ReferenceRange> otherReferenceRanges, @Nullable DvInterval normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, TemporalAccessor value) {
+    public DvTime(@Nullable List<ReferenceRange<DvTime>> otherReferenceRanges, @Nullable DvInterval<DvTime> normalRange, @Nullable CodePhrase normalStatus, @Nullable String magnitudeStatus, @Nullable DvDuration accuracy, TemporalAccessor value) {
         super(otherReferenceRanges, normalRange, normalStatus, magnitudeStatus, accuracy);
-        this.value = value;
+        setValue(value);
     }
 
     @Override
@@ -71,7 +71,8 @@ public class DvTime extends DvTemporal<Double> implements SingleValuedDataValue<
 //            @XmlElement(type=OffsetTime.class),
 //            @XmlElement(type=LocalTime.class)
 //    })    
-    @JsonDeserialize(using=TimeDeserializer.class)
+    @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.nedap.archie.json.TimeDeserializer.class)
+    @tools.jackson.databind.annotation.JsonDeserialize(using = com.nedap.archie.json3.TimeDeserializer.class)
     public TemporalAccessor getValue() {
         return value;
     }
@@ -79,6 +80,7 @@ public class DvTime extends DvTemporal<Double> implements SingleValuedDataValue<
     @Override
     @JsonIgnore
     @XmlTransient
+    @RMProperty(value = "magnitude", computed = PropertyType.COMPUTED)
     public Double getMagnitude() {
         return value == null ? null : (double) LocalTime.from(value).toSecondOfDay();
     }

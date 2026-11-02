@@ -1,0 +1,92 @@
+archetype (adl_version=2.0.5; rm_release=1.1.0)
+    openEHR-EHR-CLUSTER.c_terminology_code.v1.0.0
+
+language
+    original_language = <[ISO_639-1::nl]>
+
+description
+    original_author = <
+        ["name"] = <"vera.prinsen">
+    >
+    lifecycle_state = <"DRAFT">
+    details = <
+        ["nl"] = <
+            language = <[ISO-639_1::nl]>
+            purpose = <"">
+        >
+    >
+
+definition
+    CLUSTER[id1] matches {    -- CTerminologyCode
+        items matches {
+            ELEMENT[id5] occurrences matches {0..1} matches {    -- DV_CODED_TEXT
+                value matches {
+                    DV_CODED_TEXT[id6] matches {
+                        defining_code matches {[ac2]}    -- valueset
+                    }
+                }
+            }
+            ELEMENT[id7] occurrences matches {0..1} matches {    -- DV_ORDINAL
+                value matches {
+                    DV_ORDINAL[id8] matches {
+                        [value, symbol] matches {
+                            [{0}, {[at3]}],    -- term 1
+                            [{1}, {[at4]}]    -- term 2
+                        }
+                    }
+                }
+            }
+            ELEMENT[id9] occurrences matches {0..1} matches {    -- DV_SCALE
+                value matches {
+                    DV_SCALE[id10] matches {
+                        [value, symbol] matches {
+                            [{0.5}, {[at3]}],    -- term 1
+                            [{1.5}, {[at4]}]    -- term 2
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["nl"] = <
+            ["id1"] = <
+                text = <"CTerminologyCode">
+                description = <"">
+                code = <"id1">
+            >
+            ["ac2"] = <
+                text = <"valueset">
+                description = <"">
+            >
+            ["at3"] = <
+                text = <"term 1">
+                description = <"">
+                code = <"">
+            >
+            ["at4"] = <
+                text = <"term 2">
+                description = <"">
+            >
+            ["id5"] = <
+                text = <"DV_CODED_TEXT">
+                description = <"">
+            >
+            ["id7"] = <
+                text = <"DV_ORDINAL">
+                description = <"">
+            >
+            ["id9"] = <
+                text = <"DV_SCALE">
+                description = <"">
+            >
+        >
+    >
+    value_sets = <
+        ["ac2"] = <
+            id = <"ac2">
+            members = <"at3", "at4">
+        >
+    >
