@@ -2,7 +2,6 @@ package com.nedap.archie.aom;
 
 import com.nedap.archie.ArchieLanguageConfiguration;
 import com.nedap.archie.adlparser.ADLParseException;
-import com.nedap.archie.adlparser.ADLParser;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationSettings;
 import com.nedap.archie.archetypevalidator.NodeIdCodeSystemValidation;
 import com.nedap.archie.flattener.Flattener;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.openehr.referencemodels.BuiltinReferenceModels;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -67,8 +65,8 @@ public class ArchetypeTerminologyTest {
         ArchetypeValidationSettings settings = new ArchetypeValidationSettings();
         settings.setNodeIdCodeSystemValidation(NodeIdCodeSystemValidation.AT_CODED);
         repository.setArchetypeValidationSettings(settings);
-        repository.addArchetype(parse("/com/nedap/archie/aom/openEHR-EHR-COMPOSITION.atparent.v1.0.0.adls"));
-        repository.addArchetype(parse("/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.atincluded.v1.0.0.adls"));
+        repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-COMPOSITION.atparent.v1.0.0.adls"));
+        repository.addArchetype(FlattenerTestUtil.parse("/com/nedap/archie/aom/openEHR-EHR-GENERIC_ENTRY.atincluded.v1.0.0.adls"));
 
         //check that they are valid, just to be sure
         repository.compile(BuiltinReferenceModels.getMetaModelProvider());
@@ -86,16 +84,9 @@ public class ArchetypeTerminologyTest {
         //codes of the included archetype still come from its component terminology
         CComplexObject element = opt.itemAtPath("/content[at0001]/data[at0003]/items[at0002]");
         assertEquals("an element", element.getTerm().getText());
-    }
 
-    private Archetype parse(String resourcePath) throws Exception {
-        //FlattenerTestUtil.parse fails on the parser warnings of at-coded archetypes
-        ADLParser parser = new ADLParser(BuiltinReferenceModels.getMetaModelProvider());
-        try (InputStream stream = ArchetypeTerminologyTest.class.getResourceAsStream(resourcePath)) {
-            Archetype archetype = parser.parse(stream);
-            assertTrue(parser.getErrors().hasNoErrors(), parser.getErrors().toString());
-            return archetype;
-        }
+        //at0000 exists in both archetypes. On the use_archetype node it is the root code of the included archetype
+        assertEquals("the generic entry", opt.getTerm(useArchetype, "at0000", "en").getText());
     }
     
     
