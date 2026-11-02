@@ -53,7 +53,10 @@ assumed_string_value: ';' string_value ;
 
 
 // ADL2 term types: [ac3], [ac3; at5], [at5]
-c_terminology_code: (identifier)? '[' ( ( AC_CODE ( ';' AT_CODE )? ) | AT_CODE ) ']' ;
+c_terminology_code: constraint_status? '[' ( ( AC_CODE ( ';' AT_CODE )? ) | AT_CODE ) ']' ;
+
+// constraint strength of a terminology constraint: required, extensible, preferred or example.
+constraint_status: ALPHA_LC_ID ;
 
 c_boolean: ( boolean_value | boolean_list_value ) assumed_boolean_value? ;
 assumed_boolean_value: ';' boolean_value ;
