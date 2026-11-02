@@ -19,6 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -35,6 +36,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     private ModelInfoLookup lookup;
     private ReflectionConstraintImposer constraintImposer;
     private boolean validateInvariants = true;
+    private final Set<String> enabledInvariants;
     private final RmOccurrenceValidator rmOccurrenceValidator;
     private final RmPrimitiveObjectValidator rmPrimitiveObjectValidator;
     private final RmTupleValidator rmTupleValidator;
@@ -53,6 +55,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
         ValidationHelper validationHelper = new ValidationHelper(this.lookup, validationConfiguration);
         validateInvariants = validationConfiguration.isValidateInvariants();
+        enabledInvariants = validationConfiguration.getEnabledInvariants();
         rmOccurrenceValidator = new RmOccurrenceValidator();
         rmPrimitiveObjectValidator = new RmPrimitiveObjectValidator(validationHelper);
         rmTupleValidator = new RmTupleValidator(this.lookup, validationHelper, rmPrimitiveObjectValidator);
@@ -108,8 +111,20 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     }
 
 
+    private boolean isInvariantEnabled(RMTypeInfo typeInfo, InvariantMethod invariantMethod) {
+        if (enabledInvariants == null) {
+            return true;
+        }
+        String invariantName = invariantMethod.getAnnotation().value();
+        if (enabledInvariants.contains(typeInfo.getRmName() + "." + invariantName)) {
+            return true;
+        }
+        RMTypeInfo declaringTypeInfo = lookup.getTypeInfo(invariantMethod.getMethod().getDeclaringClass());
+        return declaringTypeInfo != null && enabledInvariants.contains(declaringTypeInfo.getRmName() + "." + invariantName);
+    }
+
     private List<RMObjectValidationMessage> validateInvariants(RMObjectWithPath objectWithPath, String pathSoFar) {
-        if (!validateInvariants) {
+        if (!validateInvariants && enabledInvariants == null) {
             return Collections.emptyList();
         }
         //pathSoFar ends with an attribute, but objectWithPath contains it, so remove that.
@@ -120,7 +135,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             RMTypeInfo typeInfo = lookup.getTypeInfo(rmObject.getClass());
             if (typeInfo != null) {
                 for (InvariantMethod invariantMethod : typeInfo.getInvariants()) {
-                    if (!invariantMethod.getAnnotation().ignored()) {
+                    if (!invariantMethod.getAnnotation().ignored() && isInvariantEnabled(typeInfo, invariantMethod)) {
                         try {
                             boolean passed = (boolean) invariantMethod.getMethod().invoke(rmObject);
                             if (!passed) {
