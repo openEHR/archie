@@ -28,10 +28,10 @@ import java.util.function.BiFunction;
 public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedObject<ValueType> {
 
     /**
-     * @deprecated Use {@link AdlCodeDefinitions#PRIMITIVE_NODE_ID}.
+     * @deprecated Use {@link AdlCodeDefinitions#ID_CODED_PRIMITIVE_NODE_ID}.
      */
     @Deprecated
-    public static final String PRIMITIVE_NODE_ID_VALUE = AdlCodeDefinitions.PRIMITIVE_NODE_ID;
+    public static final String PRIMITIVE_NODE_ID_VALUE = AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID;
 
     @Nullable
     private Boolean enumeratedTypeConstraint;
@@ -59,7 +59,7 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
 
     public String getNodeId() {
-        return AdlCodeDefinitions.PRIMITIVE_NODE_ID;
+        return AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID;
     }
 
     public void setNodeId(String nodeId) {

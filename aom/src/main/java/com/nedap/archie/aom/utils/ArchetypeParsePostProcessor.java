@@ -35,7 +35,7 @@ public class ArchetypeParsePostProcessor {
         while (!workList.empty()) {
             CObject cObject = workList.pop();
             if (cObject instanceof CPrimitiveObject) {
-                cObject.setNodeId(AdlCodeDefinitions.PRIMITIVE_NODE_ID);//also in the implementation, but check to be sure
+                cObject.setNodeId(AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID);//also in the implementation, but check to be sure
             }
             for (CAttribute attribute : cObject.getAttributes()) {
 

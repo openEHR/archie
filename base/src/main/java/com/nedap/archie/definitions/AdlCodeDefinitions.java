@@ -47,9 +47,9 @@ public class AdlCodeDefinitions {
     public static final String AT_CODED_ROOT_CODE_REGEX_PATTERN = "^at0000(\\.1)*$";
 
     /**
-     * Code id used for C_PRIMITIVE_OBJECT nodes on creation.
+     * Code id for C_PRIMITIVE_OBJECT nodes in id-coded archetypes.
      */
-    public static final String PRIMITIVE_NODE_ID = "id9999";
+    public static final String ID_CODED_PRIMITIVE_NODE_ID = "id9999";
 
     /**
      * Code id for C_PRIMITIVE_OBJECT nodes in at-coded archetypes.
@@ -57,10 +57,16 @@ public class AdlCodeDefinitions {
     public static final String AT_CODED_PRIMITIVE_NODE_ID = "at9999";
 
     /**
+     * @deprecated Use {@link #ID_CODED_PRIMITIVE_NODE_ID} or {@link #AT_CODED_PRIMITIVE_NODE_ID}.
+     */
+    @Deprecated
+    public static final String PRIMITIVE_NODE_ID = ID_CODED_PRIMITIVE_NODE_ID;
+
+    /**
      * True if the code is a primitive node id: id9999 or at9999.
      */
     public static boolean isPrimitiveNodeId(String code) {
-        return PRIMITIVE_NODE_ID.equals(code) || AT_CODED_PRIMITIVE_NODE_ID.equals(code);
+        return ID_CODED_PRIMITIVE_NODE_ID.equals(code) || AT_CODED_PRIMITIVE_NODE_ID.equals(code);
     }
 
 }
