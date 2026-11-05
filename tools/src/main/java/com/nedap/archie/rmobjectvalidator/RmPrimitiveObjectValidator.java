@@ -4,7 +4,6 @@ import com.nedap.archie.aom.CPrimitiveObject;
 import com.nedap.archie.query.RMObjectWithPath;
 import org.openehr.utils.message.I18n;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,29 +14,27 @@ class RmPrimitiveObjectValidator {
         this.validationHelper = validationHelper;
     }
 
-    public List<RMObjectValidationMessage> validate(List<RMObjectWithPath> rmObjects, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
+    public List<RMObjectValidationMessage> validate(List<RMObjectWithPath> rmObjects, ValidationPath pathSoFar, CPrimitiveObject<?, ?> cobject) {
         if(cobject == null) {
-            return new ArrayList<>();
+            return null;
         }
         if (cobject.getSocParent() != null) {
             //validate the tuple, not the primitive object directly
-            return Collections.emptyList();
+            return null;
         }
         if (rmObjects.size() != 1) {
-            List<RMObjectValidationMessage> result = new ArrayList<>();
-            result.add(createValidationMessage(rmObjects, pathSoFar, cobject));
-            return result;
+            return Collections.singletonList(createValidationMessage(rmObjects, pathSoFar.toString(), cobject));
         }
         Object rmObject = rmObjects.get(0).getObject();
         return validate_inner(rmObject, pathSoFar, cobject);
     }
 
-    List<RMObjectValidationMessage> validate_inner(Object rmObject, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
-        List<RMObjectValidationMessage> result = new ArrayList<>();
+    List<RMObjectValidationMessage> validate_inner(Object rmObject, ValidationPath pathSoFar, CPrimitiveObject<?, ?> cobject) {
         if (!validationHelper.isValidValue(cobject, rmObject)) {
-            result.add(createValidationMessage(rmObject, pathSoFar, cobject));
+            return Collections.singletonList(createValidationMessage(rmObject, pathSoFar.toString(), cobject));
+        } else {
+            return null;
         }
-        return result;
     }
 
     private RMObjectValidationMessage createValidationMessage(Object value, String pathSoFar, CPrimitiveObject<?, ?> cobject) {
