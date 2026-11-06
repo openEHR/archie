@@ -63,8 +63,27 @@ public class ADL14NodeIDConverter {
         this.archetype = archetype;
         this.flatParentArchetype = flatParentArchetype;
         this.termConstraintConverter = new ADL14TermConstraintConverter(this, archetype, flatParentArchetype);
-        this.previousConversionApplier = new PreviousConversionApplier(this, archetype, oldLog);
         this.conversionResult = conversionResult;
+        this.previousConversionApplier = new PreviousConversionApplier(this, archetype, oldLogForCodeSystem(oldLog));
+    }
+
+    /**
+     * A previous conversion log of another code system cannot be applied, because its codes are of the wrong code system.
+     */
+    private ADL2ConversionLog oldLogForCodeSystem(ADL2ConversionLog oldLog) {
+        if (oldLog == null) {
+            return null;
+        }
+        ADL14ConversionConfiguration.NodeIdCodeSystem oldCodeSystem = oldLog.getNodeIdCodeSystem() == null ?
+                ADL14ConversionConfiguration.NodeIdCodeSystem.ID_CODED : oldLog.getNodeIdCodeSystem();
+        if (oldCodeSystem != conversionConfiguration.getNodeIdCodeSystem()) {
+            if (conversionResult != null) {
+                conversionResult.getLog().addWarning(ADL14ConversionMessageCode.WARNING_PREVIOUS_CONVERSION_LOG_CODE_SYSTEM_MISMATCH,
+                        oldCodeSystem, conversionConfiguration.getNodeIdCodeSystem());
+            }
+            return null;
+        }
+        return oldLog;
     }
 
     public ADL14ConversionConfiguration getConversionConfiguration() {
@@ -97,7 +116,9 @@ public class ADL14NodeIDConverter {
         generateMissingNodeIds(archetype.getDefinition());
         convertTermDefinitions(archetype, convertedCodes, unnecessaryCodes);
         previousConversionApplier.removeCreatedUnusedTermCodesAndValueSets();
-        return new ADL2ConversionLog(/*convertedCodes*/ null, createdCodes, createdValueSets);
+        ADL2ConversionLog conversionLog = new ADL2ConversionLog(/*convertedCodes*/ null, createdCodes, createdValueSets);
+        conversionLog.setNodeIdCodeSystem(conversionConfiguration.getNodeIdCodeSystem());
+        return conversionLog;
     }
 
     /**
