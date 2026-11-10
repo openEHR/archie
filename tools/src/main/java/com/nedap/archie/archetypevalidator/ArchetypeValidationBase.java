@@ -50,8 +50,7 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
             case AT_CODED:
                 return true;
             case AUTO_DETECT:
-                String rootNodeId = archetype.getDefinition() == null ? null : archetype.getDefinition().getNodeId();
-                return rootNodeId != null && AOMUtils.isAtCode(rootNodeId);
+                return AOMUtils.isAtCoded(archetype);
             case ID_CODED:
             default:
                 return false;

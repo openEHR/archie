@@ -60,6 +60,79 @@ public class PrimitiveNodeIdTest {
             "        >\n" +
             "    >\n";
 
+    private static final String AT_CODED_TEMPLATE =
+            "template (adl_version=2.4.0; rm_release=1.1.0)\n" +
+            "    openEHR-EHR-CLUSTER.primitive_node_ids_template.v1.0.0\n" +
+            "\n" +
+            "specialize\n" +
+            "    openEHR-EHR-CLUSTER.primitive_node_ids.v1.0.0\n" +
+            "\n" +
+            "language\n" +
+            "    original_language = <[ISO_639-1::en]>\n" +
+            "\n" +
+            "description\n" +
+            "    original_author = <[\"name\"] = <\"Test\">>\n" +
+            "    details = <\n" +
+            "        [\"en\"] = <\n" +
+            "            language = <[ISO_639-1::en]>\n" +
+            "            purpose = <\"Test\">\n" +
+            "        >\n" +
+            "    >\n" +
+            "\n" +
+            "definition\n" +
+            "    CLUSTER[at0000.1] matches {\n" +
+            "        items matches {\n" +
+            "            use_archetype CLUSTER[at0003.1, openEHR-EHR-CLUSTER.ovl-primitive_node_ids-001.v1.0.0]\n" +
+            "        }\n" +
+            "    }\n" +
+            "\n" +
+            "terminology\n" +
+            "    term_definitions = <\n" +
+            "        [\"en\"] = <\n" +
+            "            [\"at0000.1\"] = <text = <\"template\"> description = <\"template\">>\n" +
+            "            [\"at0003.1\"] = <text = <\"overlay\"> description = <\"overlay\">>\n" +
+            "        >\n" +
+            "    >\n" +
+            "\n" +
+            "------------------------------------------------------------------------\n" +
+            "template_overlay\n" +
+            "    openEHR-EHR-CLUSTER.ovl-primitive_node_ids-001.v1.0.0\n" +
+            "\n" +
+            "specialize\n" +
+            "    openEHR-EHR-CLUSTER.primitive_node_ids.v1.0.0\n" +
+            "\n" +
+            "definition\n" +
+            "    CLUSTER[at0000.1] matches {\n" +
+            "        /items[at0001]/value[at0002]/magnitude matches {|0..8|}\n" +
+            "        items matches {\n" +
+            "            allow_archetype CLUSTER[at0003.1] matches {\n" +
+            "                include\n" +
+            "                    archetype_id/value matches {/.*\\.v1/}\n" +
+            "            }\n" +
+            "        }\n" +
+            "    }\n" +
+            "\n" +
+            "terminology\n" +
+            "    term_definitions = <\n" +
+            "        [\"en\"] = <\n" +
+            "            [\"at0000.1\"] = <text = <\"overlay\"> description = <\"overlay\">>\n" +
+            "            [\"at0003.1\"] = <text = <\"slot\"> description = <\"slot\">>\n" +
+            "        >\n" +
+            "    >\n";
+
+    @Test
+    public void atCodedPrimitiveNodeIdsInTemplateOverlay() throws Exception {
+        Template template = (Template) new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(AT_CODED_TEMPLATE);
+        TemplateOverlay overlay = template.getTemplateOverlays().get(0);
+
+        CInteger magnitude = (CInteger) overlay.itemAtPath("/items[at0001]/value[at0002]/magnitude[1]");
+        assertEquals("at9999", magnitude.getNodeId());
+
+        ArchetypeSlot slot = overlay.itemAtPath("/items[at0003.1]");
+        CString slotConstraint = (CString) ((Constraint<?>) ((BinaryOperator) slot.getIncludes().get(0).getExpression()).getRightOperand()).getItem();
+        assertEquals("at9999", slotConstraint.getNodeId());
+    }
+
     @Test
     public void atCodedPrimitiveNodeIds() throws Exception {
         Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(AT_CODED_ADL);

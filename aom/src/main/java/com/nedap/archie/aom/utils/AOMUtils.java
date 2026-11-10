@@ -57,14 +57,18 @@ public class AOMUtils {
     }
 
     /**
+     * True if the archetype is at-coded, based on the node id of its root.
+     */
+    public static boolean isAtCoded(Archetype archetype) {
+        CComplexObject definition = archetype == null ? null : archetype.getDefinition();
+        return definition != null && definition.getNodeId() != null && isAtCode(definition.getNodeId());
+    }
+
+    /**
      * The node id of primitive objects in the given archetype: at9999 if it is at-coded, id9999 otherwise.
      */
     public static String getPrimitiveNodeId(Archetype archetype) {
-        CComplexObject definition = archetype == null ? null : archetype.getDefinition();
-        if(definition != null && definition.getNodeId() != null && definition.getNodeId().startsWith(AdlCodeDefinitions.AT_CODE_LEADER)) {
-            return AdlCodeDefinitions.AT_CODED_PRIMITIVE_NODE_ID;
-        }
-        return AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID;
+        return isAtCoded(archetype) ? AdlCodeDefinitions.AT_CODED_PRIMITIVE_NODE_ID : AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID;
     }
 
     public static boolean isValidValueSetCode(String code) {
