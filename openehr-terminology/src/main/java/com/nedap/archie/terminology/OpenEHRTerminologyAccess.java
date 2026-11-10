@@ -121,22 +121,24 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
         }
     }
 
-    private void prepareCache() {
-        TerminologyImpl openehr = this.terminologiesByExternalId.get("openehr");
-        if (openehr == null) {
+    private TerminologyImpl getOpenehrTermonology() {
+        TerminologyImpl openehr = terminologiesByExternalId.get("openehr");
+        if(openehr == null) {
             throw new IllegalStateException("Terminology 'openehr' not found");
-
-        } else {
-            this.termCodeByGroupLanguageCode = openehr.getTermsById().values().stream()
-                    //<<lang, TC>,MLT>
-                    .flatMap(a -> a.getTermCodesByLanguage().entrySet().stream().map(e -> new AbstractMap.SimpleImmutableEntry<>(e, a)))
-                    //<Group,<<Lang, TC>,MLT>>
-                    .flatMap(t -> t.getKey().getValue().getGroupIds().stream().map(g -> new AbstractMap.SimpleImmutableEntry<>(g, t)))
-                    .collect(Collectors.groupingBy(e ->  new GroupLanguageCode(e.getKey(), e.getValue().getKey().getKey(), e.getValue().getKey().getValue().getCodeString()),
-                            Collectors.mapping(e -> e.getValue().getKey().getValue(),
-                                    Collectors.reducing(null, (a, b) -> b))
-                    ));
         }
+        return openehr;
+    }
+
+    private void prepareCache() {
+        this.termCodeByGroupLanguageCode = getOpenehrTermonology().getTermsById().values().stream()
+                //<<lang, TC>,MLT>
+                .flatMap(a -> a.getTermCodesByLanguage().entrySet().stream().map(e -> new AbstractMap.SimpleImmutableEntry<>(e, a)))
+                //<Group,<<Lang, TC>,MLT>>
+                .flatMap(t -> t.getKey().getValue().getGroupIds().stream().map(g -> new AbstractMap.SimpleImmutableEntry<>(g, t)))
+                .collect(Collectors.groupingBy(e ->  new GroupLanguageCode(e.getKey(), e.getValue().getKey().getKey(), e.getValue().getKey().getValue().getCodeString()),
+                        Collectors.mapping(e -> e.getValue().getKey().getValue(),
+                                Collectors.reducing(null, (a, b) -> b))
+                ));
     }
 
     @Override
@@ -205,18 +207,26 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
     @Override
     public List<TermCode> getTermsByOpenEHRGroup(String groupId, String language) {
         //TODO: improve performance with a nice index
-        TerminologyImpl openehr = terminologiesByExternalId.get("openehr");
-        if(openehr == null) {
-            throw new IllegalStateException("Terminology 'openehr' not found");
-        }
-        return openehr.streamAllTermsForLanguage(language)
+        return getOpenehrTermonology()
+                .streamAllTermsForLanguage(language)
                 .filter(t -> t.getGroupIds().contains(groupId))
                 .collect(Collectors.toList());
     }
 
     @Override
     public TermCode getTermByOpenEHRGroup(String groupId, String language, String code) {
-        return termCodeByGroupLanguageCode.get(new GroupLanguageCode(groupId, language, code));
+        if (termCodeByGroupLanguageCode != null) {
+            return termCodeByGroupLanguageCode.get(new GroupLanguageCode(groupId, language, code));
+        } else {
+            // fallback if cache was not initialized
+            return getOpenehrTermonology()
+                    .streamAllTermsForLanguage(language)
+                    .filter(term -> term.getCodeString().equalsIgnoreCase(code))
+                    .filter(t -> t.getGroupIds().contains(groupId))
+                    .findFirst()
+                    .orElse(null);
+        }
+
     }
 
     private static final class GroupLanguageCode {
