@@ -10,17 +10,20 @@ import java.util.Set;
 public class ValidationConfiguration {
     private final boolean validateInvariants;
     private final Set<String> enabledInvariants;
+    private final Set<String> disabledInvariants;
     private final boolean failOnUnknownTerminologyId;
 
     private ValidationConfiguration(Builder builder) {
-        this.validateInvariants = builder.validateInvariants;
+        this.validateInvariants = builder.validateInvariants == null || builder.validateInvariants;
         this.enabledInvariants = builder.enabledInvariants;
+        this.disabledInvariants = builder.disabledInvariants;
         this.failOnUnknownTerminologyId = builder.failOnUnknownTerminologyId;
     }
 
     /**
-     * Get whether to validate invariants or not. If true, all invariants are validated. Ignored if
-     * {@link #getEnabledInvariants()} is set.
+     * Get whether to validate invariants or not. If true, all invariants are validated, unless
+     * {@link #getEnabledInvariants()} or {@link #getDisabledInvariants()} is set, which limit the invariants that
+     * are validated.
      *
      * @return whether to validate invariants or not
      */
@@ -39,6 +42,16 @@ public class ValidationConfiguration {
     }
 
     /**
+     * Get the invariants that are disabled, in the form RM_TYPE_NAME.Invariant_name, for example DV_TEXT.Language_valid.
+     * If set, all other invariants are validated.
+     *
+     * @return the disabled invariants, or null if not set
+     */
+    public Set<String> getDisabledInvariants() {
+        return disabledInvariants;
+    }
+
+    /**
      * Get whether to fail validation or not if an uknown terminology is encountered.
      *
      * @return whether to fail or not
@@ -51,15 +64,16 @@ public class ValidationConfiguration {
      * Builder for {@link ValidationConfiguration}.
      */
     public static class Builder {
-        private boolean validateInvariants = true;
+        private Boolean validateInvariants;
         private Set<String> enabledInvariants;
+        private Set<String> disabledInvariants;
         private boolean failOnUnknownTerminologyId;
 
         /**
          * Set whether to validate invariants or not. If true, all invariants are validated, if false, none are.
          * <p>
-         * Use either this or {@link #enabledInvariants(Set)}, not both. If {@link #enabledInvariants(Set)} is set,
-         * this setting is ignored and only the enabled invariants are validated.
+         * Use only one of this, {@link #enabledInvariants(Set)} and {@link #disabledInvariants(Set)}. Setting more than
+         * one makes {@link #build()} throw an {@link IllegalStateException}.
          * <p>
          * Default value: true
          *
@@ -72,7 +86,11 @@ public class ValidationConfiguration {
 
         /**
          * Validate only the given invariants, for example {@code RMInvariants.DV_TEXT.LANGUAGE_VALID}.
-         * Use either this or {@link #validateInvariants(boolean)}, not both. If set, this takes precedence.
+         * Use only one of this, {@link #validateInvariants(boolean)} and {@link #disabledInvariants(Set)}. Setting more
+         * than one makes {@link #build()} throw an {@link IllegalStateException}.
+         * <p>
+         * Every name must match an invariant that is not ignored, otherwise the {@link RMObjectValidator}
+         * constructor throws an {@link IllegalArgumentException}.
          * <p>
          * Default value: null
          *
@@ -80,6 +98,24 @@ public class ValidationConfiguration {
          */
         public Builder enabledInvariants(Set<String> enabledInvariants) {
             this.enabledInvariants = enabledInvariants == null ? null : Set.copyOf(enabledInvariants);
+            return this;
+        }
+
+        /**
+         * Validate all invariants except the given ones, for example {@code RMInvariants.DV_TEXT.LANGUAGE_VALID}.
+         * Disabling an invariant on a type also disables it on its subtypes.
+         * Use only one of this, {@link #validateInvariants(boolean)} and {@link #enabledInvariants(Set)}. Setting more
+         * than one makes {@link #build()} throw an {@link IllegalStateException}.
+         * <p>
+         * Every name must match an invariant that is not ignored, otherwise the {@link RMObjectValidator}
+         * constructor throws an {@link IllegalArgumentException}.
+         * <p>
+         * Default value: null
+         *
+         * @param disabledInvariants the invariants not to validate
+         */
+        public Builder disabledInvariants(Set<String> disabledInvariants) {
+            this.disabledInvariants = disabledInvariants == null ? null : Set.copyOf(disabledInvariants);
             return this;
         }
 
@@ -97,8 +133,17 @@ public class ValidationConfiguration {
 
         /**
          * Build a new {@link ValidationConfiguration} instance.
+         *
+         * @throws IllegalStateException if more than one of {@link #validateInvariants(boolean)},
+         *                               {@link #enabledInvariants(Set)} and {@link #disabledInvariants(Set)} is set
          */
         public ValidationConfiguration build() {
+            int invariantOptionsSet = (validateInvariants != null ? 1 : 0)
+                    + (enabledInvariants != null ? 1 : 0)
+                    + (disabledInvariants != null ? 1 : 0);
+            if (invariantOptionsSet > 1) {
+                throw new IllegalStateException("Set only one of validateInvariants, enabledInvariants and disabledInvariants");
+            }
             return new ValidationConfiguration(this);
         }
     }
