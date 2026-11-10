@@ -1,6 +1,7 @@
 package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.definitions.AdlCodeDefinitions;
@@ -12,6 +13,7 @@ import org.openehr.utils.message.I18n;
 import javax.annotation.Nullable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 import java.util.Objects;
@@ -36,6 +38,10 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
     @Nullable
     private Boolean enumeratedTypeConstraint;
 
+    // only used for primitive objects outside the definition, such as in slot assertions and rules
+    @XmlTransient
+    private String nodeIdOutsideDefinition;
+
     public abstract ValueType getAssumedValue();
 
     public abstract void setAssumedValue(ValueType assumedValue);
@@ -58,14 +64,22 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
 
 
+    /**
+     * The node id of a primitive object: at9999 in at-coded archetypes, id9999 otherwise.
+     */
     public String getNodeId() {
-        return AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID;
+        Archetype archetype = getArchetype();
+        if(archetype != null) {
+            return AOMUtils.getPrimitiveNodeId(archetype);
+        }
+        return nodeIdOutsideDefinition == null ? AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID : nodeIdOutsideDefinition;
     }
 
     public void setNodeId(String nodeId) {
         if(!AdlCodeDefinitions.isPrimitiveNodeId(nodeId)) {
             throw new UnsupportedOperationException("Cannot set node id on a CPrimitiveObject");
         }
+        this.nodeIdOutsideDefinition = nodeId;
     }
 
     /**
