@@ -60,9 +60,9 @@ abstract class ValidationPath {
             } else {
                 String parentStr =  parent.toString();
                 if (parentStr.endsWith("/")) {
-                    return parent +  p;
+                    return parentStr + p;
                 } else {
-                    return parent + "/" + p;
+                    return parentStr + "/" + p;
                 }
             }
         }
