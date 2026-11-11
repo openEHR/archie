@@ -59,8 +59,8 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         validateInvariants = validationConfiguration.isValidateInvariants();
         enabledInvariants = validationConfiguration.getEnabledInvariants();
         disabledInvariants = validationConfiguration.getDisabledInvariants();
-        checkInvariantsExist(enabledInvariants, "enabled");
-        checkInvariantsExist(disabledInvariants, "disabled");
+        checkInvariantsExist(enabledInvariants, "enabled", true);
+        checkInvariantsExist(disabledInvariants, "disabled", false);
         rmOccurrenceValidator = new RmOccurrenceValidator();
         rmPrimitiveObjectValidator = new RmPrimitiveObjectValidator(validationHelper);
         rmTupleValidator = new RmTupleValidator(this.lookup, validationHelper, rmPrimitiveObjectValidator);
@@ -117,14 +117,19 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
 
     /**
-     * Checks that every configured invariant matches an invariant in the lookup that is not ignored, so that a
-     * typo or an ignored invariant does not silently change what is validated.
+     * Checks that every configured invariant matches an invariant in the lookup, so that a typo does not silently
+     * change what is validated.
+     * <p>
+     * Ignored invariants are never validated. Enabling one is an error, because the user expects it to be checked.
+     * Disabling one only logs a warning, because it is not validated anyway, and an invariant that becomes ignored in
+     * a later version should not break existing configurations.
      *
-     * @param invariants the enabled or disabled invariants, may be null
-     * @param kind       "enabled" or "disabled", used in the error message
-     * @throws IllegalArgumentException if one or more invariants are unknown or ignored
+     * @param invariants    the enabled or disabled invariants, may be null
+     * @param kind          "enabled" or "disabled", used in the messages
+     * @param errorOnDisabledInvariant whether an ignored invariant throws, instead of logging a warning
+     * @throws IllegalArgumentException if one or more invariants are unknown, or ignored when errorOnDisabledInvariant is true
      */
-    private void checkInvariantsExist(Set<String> invariants, String kind) {
+    private void checkInvariantsExist(Set<String> invariants, String kind, boolean errorOnDisabledInvariant) {
         if (invariants == null) {
             return;
         }
@@ -134,7 +139,11 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             if (invariantMethod == null) {
                 errors.add(invariant + " (unknown)");
             } else if (invariantMethod.getAnnotation().ignored()) {
-                errors.add(invariant + " (ignored, so it is never validated)");
+                if (errorOnDisabledInvariant) {
+                    errors.add(invariant + " (ignored, so it is never validated)");
+                } else {
+                    logger.warn("Invariant {} is {}, but it is ignored, so it is never validated anyway", invariant, kind);
+                }
             }
         }
         if (!errors.isEmpty()) {

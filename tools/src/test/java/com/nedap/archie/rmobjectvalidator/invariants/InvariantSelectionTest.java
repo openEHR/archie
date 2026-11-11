@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EnabledInvariantsTest {
+public class InvariantSelectionTest {
 
     @Test
     public void allInvariantsByDefault() {
@@ -180,11 +180,11 @@ public class EnabledInvariantsTest {
     }
 
     @Test
-    public void ignoredDisabledInvariantThrows() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validate(createInvalidText(), new ValidationConfiguration.Builder()
+    public void ignoredDisabledInvariantDoesNotThrow() {
+        List<RMObjectValidationMessage> messages = assertDoesNotThrow(() -> validate(createInvalidText(), new ValidationConfiguration.Builder()
                 .disabledInvariants(Set.of("DV_TEXT.Mappings_valid"))
                 .build()));
-        assertTrue(exception.getMessage().contains("DV_TEXT.Mappings_valid (ignored"), exception.getMessage());
+        assertEquals(2, messages.size(), messages.toString());
     }
 
     @Test

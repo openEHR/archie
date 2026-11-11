@@ -107,8 +107,9 @@ public class ValidationConfiguration {
          * Use only one of this, {@link #validateInvariants(boolean)} and {@link #enabledInvariants(Set)}. Setting more
          * than one makes {@link #build()} throw an {@link IllegalStateException}.
          * <p>
-         * Every name must match an invariant that is not ignored, otherwise the {@link RMObjectValidator}
-         * constructor throws an {@link IllegalArgumentException}.
+         * Every name must match an existing invariant, otherwise the {@link RMObjectValidator} constructor throws an
+         * {@link IllegalArgumentException}. Disabling an ignored invariant only logs a warning, as it is never
+         * validated anyway.
          * <p>
          * Default value: null
          *
