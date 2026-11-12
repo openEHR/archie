@@ -33,7 +33,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     private final APathQueryCache queryCache;
     private final ModelInfoLookup lookup;
     private final ReflectionConstraintImposer constraintImposer;
-    private boolean validateInvariants = true;
+    private final boolean validateInvariants;
     private final RmOccurrenceValidator rmOccurrenceValidator;
     private final RmPrimitiveObjectValidator rmPrimitiveObjectValidator;
     private final RmTupleValidator rmTupleValidator;
@@ -71,18 +71,18 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     public List<RMObjectValidationMessage> validate(OperationalTemplate template, Object rmObject) {
         clearMessages();
         List<RMObjectWithPath> objects = Collections.singletonList(new RMObjectWithPath(rmObject, ""));
-        runArchetypeValidations(messages, objects, ValidationPath.ROOT, template.getDefinition());
+        runArchetypeValidations(this::addMessage, objects, ValidationPath.ROOT, template.getDefinition());
         return getMessages();
     }
 
     public List<RMObjectValidationMessage> validate(Object rmObject) {
         clearMessages();
         List<RMObjectWithPath> objects = Collections.singletonList(new RMObjectWithPath(rmObject, "/"));
-        runArchetypeValidations(messages, objects, ValidationPath.ROOT, null);
+        runArchetypeValidations(this::addMessage, objects, ValidationPath.ROOT, null);
         return getMessages();
     }
 
-    private void runArchetypeValidations(ValidationMessages result, List<RMObjectWithPath> rmObjects, ValidationPath path, CObject cobject) {
+    private void runArchetypeValidations(RMObjectValidationMessageSink result, List<RMObjectWithPath> rmObjects, ValidationPath path, CObject cobject) {
         rmOccurrenceValidator.validate(result, metaModel, rmObjects, path, cobject);
         if (rmObjects.isEmpty()) {
             //if this branch of the archetype tree is null in the reference model, we're done validating
@@ -104,13 +104,12 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                 validateUnconstrainedObjectWithPath(result, path, objectWithPath);
             }
         }
-        else if (cobject instanceof CPrimitiveObject) {
-            result.addAll(rmPrimitiveObjectValidator.validate(rmObjects, path, (CPrimitiveObject<?, ?>) cobject));
+        else if (cobject instanceof CPrimitiveObject<?, ?> cPrimitiveObject) {
+            result.addAll(rmPrimitiveObjectValidator.validate(rmObjects, path, cPrimitiveObject));
         } else if (cobject instanceof ArchetypeSlot) {
-            validateArchetypeSlot(rmObjects, path, cobject, result);
+            validateArchetypeSlot(result, rmObjects, path, cobject);
         } else {
-            if (cobject instanceof CComplexObject) {
-                CComplexObject cComplexObject = (CComplexObject) cobject;
+            if (cobject instanceof CComplexObject cComplexObject) {
                 for (CAttributeTuple tuple : cComplexObject.getAttributeTuples()) {
                     result.addAll(rmTupleValidator.validate(cobject, path, rmObjects, tuple));
                 }
@@ -122,7 +121,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     }
 
 
-    private void validateInvariants(ValidationMessages result, RMObjectWithPath objectWithPath, ValidationPath pathSoFar) {
+    private void validateInvariants(RMObjectValidationMessageSink result, RMObjectWithPath objectWithPath, ValidationPath pathSoFar) {
         if (!validateInvariants) {
             return;
         }
@@ -145,12 +144,12 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
                 try {
                     boolean passed = (boolean) invariantMethod.getMethod().invoke(rmObject);
                     if (!passed) {
-                        result.add(new RMObjectValidationMessage(null, pathSoFar.joinPaths(objectWithPath.getPath()).toString(),
+                        result.addMessage(new RMObjectValidationMessage(null, pathSoFar.joinPaths(objectWithPath.getPath()).toString(),
                                 I18n.t("Invariant {0} failed on type " + typeInfo.getRmName(), invariantMethod.getAnnotation().value()),
                                 RMObjectValidationMessageType.INVARIANT_ERROR));
                     }
                 } catch (IllegalAccessException | InvocationTargetException e) {
-                    result.add(new RMObjectValidationMessage(null, pathSoFar.joinPaths(objectWithPath.getPath()).toString(),
+                    result.addMessage(new RMObjectValidationMessage(null, pathSoFar.joinPaths(objectWithPath.getPath()).toString(),
                             I18n.t("Unexpected error validating invariant {0} on {1}",
                                     invariantMethod.getAnnotation().value(),
                                     typeInfo.getRmName()),
@@ -161,7 +160,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         }
     }
 
-    private void validateUnconstrainedObjectWithPath(ValidationMessages result, ValidationPath path, RMObjectWithPath objectWithPath) {
+    private void validateUnconstrainedObjectWithPath(RMObjectValidationMessageSink result, ValidationPath path, RMObjectWithPath objectWithPath) {
         Object rmObject = objectWithPath.getObject();
         String archetypeId = lookup.getArchetypeIdFromArchetypedRmObject(rmObject);
         if (archetypeId != null) {
@@ -171,7 +170,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         }
     }
 
-    private void validateArchetypeSlot(List<RMObjectWithPath> rmObjects, ValidationPath path, CObject cobject, ValidationMessages result) {
+    private void validateArchetypeSlot(RMObjectValidationMessageSink result, List<RMObjectWithPath> rmObjects, ValidationPath path, CObject cobject) {
         ArchetypeSlot slot = (ArchetypeSlot) cobject;
         for (RMObjectWithPath objectWithPath : rmObjects) {
 
@@ -179,36 +178,42 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
             String archetypeId =  metaModel.getModelInfoLookup().getArchetypeIdFromArchetypedRmObject(object);
 
-            if(archetypeId != null) {
+            if (archetypeId != null) {
                 if(!AOMUtils.archetypeRefMatchesSlotExpression(archetypeId, slot)) {
                     //invalid archetype id, add message
-                    this.addMessage(slot, objectWithPath.getPath(),
+                    result.addMessage(new RMObjectValidationMessage(
+                            slot,
+                            objectWithPath.getPath(),
                             RMObjectValidationMessageIds.rm_ARCHETYPE_ID_SLOT_MISMATCH.getMessage(archetypeId),
-                            RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH);
+                            RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH));
                 }
                 //but do continue validation!
                 validateArchetypedObject(result, cobject, path, objectWithPath, archetypeId);
             } else {
-                this.addMessage(slot, objectWithPath.getPath(),
+                result.addMessage(new RMObjectValidationMessage(
+                        slot,
+                        objectWithPath.getPath(),
                         RMObjectValidationMessageIds.rm_SLOT_WITHOUT_ARCHETYPE_ID.getMessage(),
-                        RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH);
+                        RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH));
                 //but continue validating the RM Objects, of course
                 validateConstrainedObjectWithPath(result, cobject, path, objectWithPath);
             }
         }
     }
 
-    private void validateArchetypedObject(ValidationMessages result, CObject cobject, ValidationPath path, RMObjectWithPath objectWithPath, String archetypeId) {
+    private void validateArchetypedObject(RMObjectValidationMessageSink result, CObject cobject, ValidationPath path, RMObjectWithPath objectWithPath, String archetypeId) {
         OperationalTemplate operationalTemplate = operationalTemplateProvider.getOperationalTemplate(archetypeId);
         if (operationalTemplate != null) {
-            //occurrences already validated, so nothing left to validate from the archetyepe root
+            //occurrences already validated, so nothing left to validate from the archetype root
             //from now on, validate from the root of the found OPT
             CObject newRoot = operationalTemplate.getDefinition();
             validateConstrainedObjectWithPath(result, newRoot, path, objectWithPath);
         } else {
-            this.addMessage(cobject, objectWithPath.getPath(),
+            result.addMessage(new RMObjectValidationMessage(
+                    cobject,
+                    objectWithPath.getPath(),
                     RMObjectValidationMessageIds.rm_ARCHETYPE_NOT_FOUND.getMessage(archetypeId),
-                    RMObjectValidationMessageType.ARCHETYPE_NOT_FOUND);
+                    RMObjectValidationMessageType.ARCHETYPE_NOT_FOUND));
             //but continue validating the RM Objects, of course
             if (cobject != null) {
                 validateConstrainedObjectWithPath(result, cobject, path, objectWithPath);
@@ -218,12 +223,12 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         }
     }
 
-    private void validateConstrainedObjectWithPath(ValidationMessages result, CObject cobject, ValidationPath path, RMObjectWithPath objectWithPath) {
+    private void validateConstrainedObjectWithPath(RMObjectValidationMessageSink result, CObject cobject, ValidationPath path, RMObjectWithPath objectWithPath) {
         Class<?> classInConstraint = this.lookup.getClass(cobject.getRmTypeName());
         if (!classInConstraint.isAssignableFrom(objectWithPath.getObject().getClass())) {
             //not a matching constraint. Cannot validate. add error message and stop validating.
             //If another constraint is present, that one will succeed
-            result.add(new RMObjectValidationMessage(
+            result.addMessage(new RMObjectValidationMessage(
                     cobject,
                     objectWithPath.getPath(),
                     RMObjectValidationMessageIds.rm_INCORRECT_TYPE.getMessage(cobject.getRmTypeName(), objectWithPath.getObject().getClass().getSimpleName()),
@@ -234,7 +239,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         }
     }
 
-    private void validateObjectAttributes(ValidationMessages result, CObject cobject, ValidationPath path, RMObjectWithPath objectWithPath) {
+    private void validateObjectAttributes(RMObjectValidationMessageSink result, CObject cobject, ValidationPath path, RMObjectWithPath objectWithPath) {
         Object rmObject = objectWithPath.getObject();
         List<CAttribute> attributes;
         if (cobject == null) {
@@ -251,7 +256,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         validateCAttributes(result, path, objectWithPath, rmObject, cobject, attributes);
     }
 
-    private void validateCAttributes(ValidationMessages result, ValidationPath path, RMObjectWithPath objectWithPath, Object rmObject, CObject cObject, List<CAttribute> attributes) {
+    private void validateCAttributes(RMObjectValidationMessageSink result, ValidationPath path, RMObjectWithPath objectWithPath, Object rmObject, CObject cObject, List<CAttribute> attributes) {
         //the path contains an attribute, but is missing the [idx] part. So strip the attribute, and add the attribute plus the [idx] part.
         ValidationPath pathSoFar = path.stripLastPathSegment().joinPaths(objectWithPath.getPath());
         for (CAttribute attribute : attributes) {
@@ -259,13 +264,13 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         }
     }
 
-    private void validateAttributes(ValidationMessages result, CAttribute attribute, CObject cobject, Object rmObject, ValidationPath pathSoFar) {
+    private void validateAttributes(RMObjectValidationMessageSink result, CAttribute attribute, CObject cobject, Object rmObject, ValidationPath pathSoFar) {
         String rmAttributeName = attribute.getRmAttributeName();
         RMPathQuery aPathQuery = queryCache.getForAttribute(rmAttributeName);
         Object attributeValue = aPathQuery.find(lookup, rmObject);
         RMObjectValidationMessage emptyObservationError = isObservationEmpty(attribute, rmAttributeName, attributeValue, pathSoFar, cobject);
         if (emptyObservationError != null) {
-            result.add(emptyObservationError);
+            result.addMessage(emptyObservationError);
 
         } else {
             ValidationPath attributePath = pathSoFar.add(rmAttributeName);
@@ -291,15 +296,16 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         }
     }
 
-    private void validateSingleAttribute(ValidationMessages result, CAttribute attribute, Object rmObject, ValidationPath pathSoFar) {
+    private void validateSingleAttribute(RMObjectValidationMessageSink result, CAttribute attribute, Object rmObject, ValidationPath pathSoFar) {
         List<List<RMObjectValidationMessage>> subResults = null;
 
         final ValidationMessages currentMessages = new ValidationMessages();
+        RMObjectValidationMessageSink messageSink = m -> addMessage(currentMessages, m);
 
         for (CObject childCObject : attribute.getChildren()) {
             RMPathQuery aPathQuery = queryCache.getForAttribute(attribute.getRmAttributeName(),  childCObject.getNodeId());
             List<RMObjectWithPath> childNodes = aPathQuery.findList(lookup, rmObject);
-            runArchetypeValidations(currentMessages, childNodes, pathSoFar.add( attribute.getRmAttributeName(), childCObject), childCObject);
+            runArchetypeValidations(messageSink, childNodes, pathSoFar.add( attribute.getRmAttributeName(), childCObject), childCObject);
             if (currentMessages.isEmpty()) {
                 //a single attribute with multiple CObjects means you can choose which CObject you use
                 //for example, a data value can be a string or an integer.
