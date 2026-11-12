@@ -124,12 +124,12 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
      * Disabling one only logs a warning, because it is not validated anyway, and an invariant that becomes ignored in
      * a later version should not break existing configurations.
      *
-     * @param invariants    the enabled or disabled invariants, may be null
-     * @param kind          "enabled" or "disabled", used in the messages
-     * @param errorOnDisabledInvariant whether an ignored invariant throws, instead of logging a warning
-     * @throws IllegalArgumentException if one or more invariants are unknown, or ignored when errorOnDisabledInvariant is true
+     * @param invariants              the enabled or disabled invariants, may be null
+     * @param kind                    "enabled" or "disabled", used in the messages
+     * @param errorOnIgnoredInvariant whether an ignored invariant throws, instead of logging a warning
+     * @throws IllegalArgumentException if one or more invariants are unknown, or ignored when errorOnIgnoredInvariant is true
      */
-    private void checkInvariantsExist(Set<String> invariants, String kind, boolean errorOnDisabledInvariant) {
+    private void checkInvariantsExist(Set<String> invariants, String kind, boolean errorOnIgnoredInvariant) {
         if (invariants == null) {
             return;
         }
@@ -139,7 +139,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             if (invariantMethod == null) {
                 errors.add(invariant + " (unknown)");
             } else if (invariantMethod.getAnnotation().ignored()) {
-                if (errorOnDisabledInvariant) {
+                if (errorOnIgnoredInvariant) {
                     errors.add(invariant + " (ignored, so it is never validated)");
                 } else {
                     logger.warn("Invariant {} is {}, but it is ignored, so it is never validated anyway", invariant, kind);

@@ -12,7 +12,8 @@ public class RMInvariantsTest {
 
     @Test
     public void rmInvariantsIsUpToDate() throws IOException {
-        String committed = Files.readString(RMInvariantsGenerator.getFilePath(), StandardCharsets.UTF_8);
+        String committed = Files.readString(RMInvariantsGenerator.getFilePath(), StandardCharsets.UTF_8)
+                .replace("\r\n", "\n");
         assertEquals(RMInvariantsGenerator.generate(), committed,
                 "RMInvariants is out of date, run RMInvariantsGenerator.main to regenerate it");
     }
