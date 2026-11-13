@@ -14,6 +14,26 @@ import java.util.Map;
  */
 public class ADL14DescriptionConverter {
 
+    /**
+     * True if the value is a 3-part RM release such as 1.1.0, as AOM2 rule VARRV requires.
+     */
+    public static boolean isRmRelease(String value) {
+        return value != null && value.matches("[0-9]+\\.[0-9]+\\.[0-9]+");
+    }
+
+    /**
+     * ADL 1.4 records the RM release in other_details["rm_release"] (ADL 1.4 Extended Meta-data
+     * Guide, SPECPR-225). A valid value moves to the rm_release header item and overrides a
+     * non-standard rm_release in the ADL 1.4 header; an invalid one stays in other_details.
+     */
+    private void convertRmRelease(AuthoredArchetype archetype, ResourceDescription description) {
+        String rmRelease = description.getOtherDetails().get("rm_release");
+        if (rmRelease != null && isRmRelease(rmRelease.trim())) {
+            archetype.setRmRelease(rmRelease.trim());
+            description.getOtherDetails().remove("rm_release");
+        }
+    }
+
     public void convert(Archetype archetype) {
         ResourceDescription description = archetype.getDescription();
         description.setLicence(description.getOtherDetails().remove("licence"));
@@ -24,6 +44,7 @@ public class ADL14DescriptionConverter {
         if (archetype instanceof AuthoredArchetype) {
             ((AuthoredArchetype) archetype).setBuildUid(description.getOtherDetails().remove("build_uid"));
             ((AuthoredArchetype) archetype).setGenerated(true);
+            convertRmRelease((AuthoredArchetype) archetype, description);
         }
 
         String references = description.getOtherDetails().remove("references");
