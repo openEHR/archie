@@ -7,16 +7,19 @@ import com.nedap.archie.aom.AuthoredArchetype;
 import com.nedap.archie.aom.ResourceDescription;
 import com.nedap.archie.aom.Template;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
+import com.nedap.archie.definitions.OpenEhrDefinitions;
 import com.nedap.archie.diff.Differentiator;
 import com.nedap.archie.flattener.Flattener;
 import com.nedap.archie.flattener.InMemoryFullArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModelProvider;
+import org.openehr.utils.message.MessageLogger;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ADL14Converter {
 
@@ -112,11 +115,15 @@ public class ADL14Converter {
         ADL2ConversionLog previousLog = previousConversion == null ? null : previousConversion.getConversionLog(archetype.getArchetypeId().getSemanticId());
         Archetype convertedArchetype = archetype.clone();
 
+        // Choose the rm_release before the description section is converted, as it reads other_details
+        List<Consumer<MessageLogger>> rmReleaseMessages = new ArrayList<>();
+        String rmRelease = resolveRmRelease(convertedArchetype, rmReleaseMessages);
+
         // Convert description section
         new ADL14DescriptionConverter().convert(convertedArchetype);
 
         // Convert or correct adl, rm and archetypeId versions
-        setCorrectVersions(convertedArchetype);
+        setCorrectVersions(convertedArchetype, rmRelease);
 
         // Convert header section
         convertHeader(convertedArchetype);
@@ -126,6 +133,7 @@ public class ADL14Converter {
 
         // Convert nodeId's
         ADL2ConversionResult result = new ADL2ConversionResult(convertedArchetype);
+        rmReleaseMessages.forEach(message -> message.accept(result.getLog()));
         ADL14NodeIDConverter adl14NodeIDConverter = new ADL14NodeIDConverter(metaModelProvider, convertedArchetype, flatParent, conversionConfiguration, previousLog, result);
         ADL2ConversionLog conversionLog = adl14NodeIDConverter.convert();
         result.setConversionLog(conversionLog);
@@ -140,17 +148,58 @@ public class ADL14Converter {
     }
 
     /**
+     * Choose the rm_release of the converted archetype, following the ADL 1.4 Extended Meta-data Guide
+     * (https://specifications.openehr.org/releases/AM/latest/ADL1.4.html#_standardised_items):
+     * other_details["rm_release"], else the rm_release header item, else the configured rm_release.
+     * A valid other_details["rm_release"] is removed, as ADL 2 has the rm_release header item.
+     * With useArchetypeRmRelease set to false, the configured rm_release is always used.
+     */
+    private String resolveRmRelease(Archetype archetype, List<Consumer<MessageLogger>> messages) {
+        String fromOtherDetails = removeRmReleaseFromOtherDetails(archetype, messages);
+        String headerValue = archetype instanceof AuthoredArchetype ? ((AuthoredArchetype) archetype).getRmRelease() : null;
+        String fromHeader = isVersionId(headerValue) ? headerValue : null;
+        if (headerValue != null && fromHeader == null) {
+            messages.add(log -> log.addWarning(ADL14ConversionMessageCode.WARNING_INVALID_RM_RELEASE, headerValue, "the header"));
+        }
+        if (fromOtherDetails != null && fromHeader != null && !fromOtherDetails.equals(fromHeader)) {
+            messages.add(log -> log.addInfo(ADL14ConversionMessageCode.INFO_RM_RELEASE_CONFLICT, fromOtherDetails, fromHeader));
+        }
+        String stated = fromOtherDetails != null ? fromOtherDetails : fromHeader;
+        if (stated == null || !conversionConfiguration.isUseArchetypeRmRelease()) {
+            return conversionConfiguration.getRmRelease();
+        }
+        return stated;
+    }
+
+    private String removeRmReleaseFromOtherDetails(Archetype archetype, List<Consumer<MessageLogger>> messages) {
+        ResourceDescription description = archetype.getDescription();
+        if (description == null || description.getOtherDetails() == null) {
+            return null;
+        }
+        String value = description.getOtherDetails().get(OpenEhrDefinitions.RM_RELEASE);
+        if (value == null) {
+            return null;
+        }
+        if (!isVersionId(value.trim())) {
+            messages.add(log -> log.addWarning(ADL14ConversionMessageCode.WARNING_INVALID_RM_RELEASE, value, "other_details"));
+            return null;
+        }
+        description.getOtherDetails().remove(OpenEhrDefinitions.RM_RELEASE);
+        return value.trim();
+    }
+
+    private static boolean isVersionId(String value) {
+        return value != null && value.matches(OpenEhrDefinitions.VERSION_ID_REGEX);
+    }
+
+    /**
      * Set correct ADL and RM version for the archetype
      * Add minor and patch version to archetypeId if minor version is not set in ADL1.4
      */
-    private void setCorrectVersions(Archetype convertedArchetype) {
+    private void setCorrectVersions(Archetype convertedArchetype, String rmRelease) {
         if (convertedArchetype instanceof AuthoredArchetype) {
-            AuthoredArchetype authoredArchetype = (AuthoredArchetype) convertedArchetype;
-            authoredArchetype.setAdlVersion("2.0.6");
-            // keep the RM release the archetype states (header or other_details); else use the configured one
-            if (!ADL14DescriptionConverter.isRmRelease(authoredArchetype.getRmRelease())) {
-                authoredArchetype.setRmRelease(conversionConfiguration.getRmRelease());
-            }
+            ((AuthoredArchetype) convertedArchetype).setAdlVersion("2.0.6");
+            ((AuthoredArchetype) convertedArchetype).setRmRelease(rmRelease);
         }
         if (convertedArchetype.getArchetypeId().getMinorVersion() == null) {
             convertedArchetype.getArchetypeId().setReleaseVersion(convertedArchetype.getArchetypeId().getReleaseVersion() + ".0.0");
