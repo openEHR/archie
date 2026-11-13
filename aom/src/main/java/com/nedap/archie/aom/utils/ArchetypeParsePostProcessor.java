@@ -41,9 +41,13 @@ public class ArchetypeParsePostProcessor {
     }
 
     /**
-     * Sets the parents in the definition, except in template overlays, and the node ids of primitive objects.
-     * In at-coded archetypes this includes slot assertions and rules, because those cannot find their archetype.
-     * In id-coded archetypes they already default to id9999.
+     * Sets the parents in the definition (not needed for template overlays) and the primitive node ids
+     * (id9999/at9999) that cannot be derived:
+     * <ul>
+     *     <li>Primitive objects in the definition get their node id from their archetype, through their parents.</li>
+     *     <li>Primitive objects in slot assertions and rules have no parent. In at-coded archetypes and template
+     *     overlays they get at9999 here. In id-coded ones nothing is needed, because id9999 is the default.</li>
+     * </ul>
      */
     private static void fixDefinitionAndRules(Archetype archetype, boolean isTemplateOverlay) {
         boolean atCoded = AOMUtils.isAtCoded(archetype);
@@ -55,9 +59,6 @@ public class ArchetypeParsePostProcessor {
         workList.add(archetype.getDefinition());
         while (!workList.empty()) {
             CObject cObject = workList.pop();
-            if (cObject instanceof CPrimitiveObject) {
-                cObject.setNodeId(primitiveNodeId);
-            }
             if (atCoded && cObject instanceof ArchetypeSlot) {
                 ArchetypeSlot slot = (ArchetypeSlot) cObject;
                 setPrimitiveNodeIds(slot.getIncludes(), primitiveNodeId);
