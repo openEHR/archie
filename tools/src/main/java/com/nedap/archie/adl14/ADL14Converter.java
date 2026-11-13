@@ -148,11 +148,11 @@ public class ADL14Converter {
     }
 
     /**
-     * Choose the rm_release of the converted archetype, following the ADL 1.4 Extended Meta-data Guide
-     * (https://specifications.openehr.org/releases/AM/latest/ADL1.4.html#_standardised_items):
-     * other_details["rm_release"], else the rm_release header item, else the configured rm_release.
-     * A valid other_details["rm_release"] is removed, as ADL 2 has the rm_release header item.
-     * With useArchetypeRmRelease set to false, the configured rm_release is always used.
+     * Choose the rm_release of the converted archetype. The ADL 1.4 Extended Meta-data Guide
+     * (https://specifications.openehr.org/releases/AM/latest/ADL1.4.html#_standardised_items) puts it in
+     * other_details["rm_release"] and treats an rm_release header item as equivalent. Archie gives other_details
+     * precedence over the header, and uses the configured rm_release when the archetype states no valid one, or when
+     * useArchetypeRmRelease is false. A valid other_details["rm_release"] is removed, as ADL 2 has the header item.
      */
     private String resolveRmRelease(Archetype archetype, List<Consumer<MessageLogger>> messages) {
         String fromOtherDetails = removeRmReleaseFromOtherDetails(archetype, messages);
@@ -161,12 +161,19 @@ public class ADL14Converter {
         if (headerValue != null && fromHeader == null) {
             messages.add(log -> log.addWarning(ADL14ConversionMessageCode.WARNING_INVALID_RM_RELEASE, headerValue, "the header"));
         }
+        String stated = fromOtherDetails != null ? fromOtherDetails : fromHeader;
+        String configured = conversionConfiguration.getRmRelease();
+        if (stated == null) {
+            return configured;
+        }
+        if (!conversionConfiguration.isUseArchetypeRmRelease()) {
+            if (!stated.equals(configured)) {
+                messages.add(log -> log.addInfo(ADL14ConversionMessageCode.INFO_RM_RELEASE_IGNORED, stated, configured));
+            }
+            return configured;
+        }
         if (fromOtherDetails != null && fromHeader != null && !fromOtherDetails.equals(fromHeader)) {
             messages.add(log -> log.addInfo(ADL14ConversionMessageCode.INFO_RM_RELEASE_CONFLICT, fromOtherDetails, fromHeader));
-        }
-        String stated = fromOtherDetails != null ? fromOtherDetails : fromHeader;
-        if (stated == null || !conversionConfiguration.isUseArchetypeRmRelease()) {
-            return conversionConfiguration.getRmRelease();
         }
         return stated;
     }

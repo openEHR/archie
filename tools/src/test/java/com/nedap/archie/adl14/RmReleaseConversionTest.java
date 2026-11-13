@@ -77,7 +77,10 @@ public class RmReleaseConversionTest {
         ADL14ConversionConfiguration config = config();
         config.setUseArchetypeRmRelease(false);
         String adl = resource(REVIEW).replace(REVIEW_HEADER, "archetype (adl_version=1.4; rm_release=1.0.4)");
-        assertEquals("1.1.0", rmRelease(convert(config, parse(adl)).get(0)));
+        ADL2ConversionResult result = convert(config, parse(adl)).get(0);
+        assertEquals("1.1.0", rmRelease(result));
+        assertTrue(result.getLog().hasInfo(ADL14ConversionMessageCode.INFO_RM_RELEASE_IGNORED));
+        assertFalse(result.getLog().hasInfo(ADL14ConversionMessageCode.INFO_RM_RELEASE_CONFLICT));
     }
 
     @Test
@@ -122,7 +125,7 @@ public class RmReleaseConversionTest {
     private String resource(String name) throws Exception {
         try (InputStream stream = getClass().getResourceAsStream(name)) {
             String adl = new String(stream.readAllBytes(), StandardCharsets.UTF_8);
-            return adl.startsWith("﻿") ? adl.substring(1) : adl;
+            return adl.startsWith("\uFEFF") ? adl.substring(1) : adl;
         }
     }
 }
