@@ -78,7 +78,11 @@ public class ADL14Listener extends Adl14BaseListener {
                 authoredArchetype.setBuildUid(ctx.guid_or_oid().getText());
             }
             if(ctx.meta_data_tag_rm_release() != null) {
-                authoredArchetype.setRmRelease(ctx.VERSION_ID().getText());
+                if(ctx.VERSION_ID() != null) {
+                    authoredArchetype.setRmRelease(ctx.VERSION_ID().getText());
+                } else if (ctx.REAL() != null) {
+                    authoredArchetype.setRmRelease(ctx.REAL().getText());
+                }
             }
             if(ctx.meta_data_tag_is_controlled() != null) {
                 authoredArchetype.setControlled(true);
