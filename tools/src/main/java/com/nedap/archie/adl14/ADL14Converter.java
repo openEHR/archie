@@ -145,8 +145,12 @@ public class ADL14Converter {
      */
     private void setCorrectVersions(Archetype convertedArchetype) {
         if (convertedArchetype instanceof AuthoredArchetype) {
-            ((AuthoredArchetype) convertedArchetype).setAdlVersion("2.0.6");
-            ((AuthoredArchetype) convertedArchetype).setRmRelease(conversionConfiguration.getRmRelease());
+            AuthoredArchetype authoredArchetype = (AuthoredArchetype) convertedArchetype;
+            authoredArchetype.setAdlVersion("2.0.6");
+            // keep the RM release the archetype states (header or other_details); else use the configured one
+            if (!ADL14DescriptionConverter.isRmRelease(authoredArchetype.getRmRelease())) {
+                authoredArchetype.setRmRelease(conversionConfiguration.getRmRelease());
+            }
         }
         if (convertedArchetype.getArchetypeId().getMinorVersion() == null) {
             convertedArchetype.getArchetypeId().setReleaseVersion(convertedArchetype.getArchetypeId().getReleaseVersion() + ".0.0");
