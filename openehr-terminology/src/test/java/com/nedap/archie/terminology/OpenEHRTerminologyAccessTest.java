@@ -10,8 +10,11 @@ import org.junit.jupiter.api.Test;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class OpenEHRTerminologyAccessTest {
 
@@ -39,11 +42,47 @@ public class OpenEHRTerminologyAccessTest {
 
         String json = mapper.writeValueAsString(ac);
         OpenEHRTerminologyAccess parsed = mapper.readValue(json, OpenEHRTerminologyAccess.class);
-        //System.out.println(json);
-        try(InputStream stream = getClass().getResourceAsStream("/openEHR_RM/fullTermFile.json")) {
+
+        assertTermCodesEqual(ac, parsed, a -> a.getTermsByOpenEhrId("countries", "en"));
+        assertTermCodesEqual(ac, parsed, a -> a.getTermsByOpenEHRGroup("composition category", "en"));
+        assertTermCodesEqual(ac, parsed, a -> a.getTerms("openehr", "en"));
+        assertTermCodeEquals(ac, parsed, a -> a.getTermByTerminologyURI("http://openehr.org/id/124", "en"));
+        assertTermCodeEquals(ac, parsed, a -> a.getTermByOpenEHRGroup("composition category", "en", "431"));
+        assertTermCodeEquals(ac, parsed, a -> a.getTerm("openehr", "124", "en"));
+        assertTermCodeEquals(ac, parsed, a -> a.getTerm("openehr", "268", "pt"));
+        assertTermCodeEquals(ac, parsed, a -> a.getTermByOpenEhrId("countries", "NL", "en"));
+
+        try (InputStream stream = getClass().getResourceAsStream("/openEHR_RM/fullTermFile.json")) {
             String includedJson = IOUtils.toString(stream, StandardCharsets.UTF_8);
             assertEquals(json, includedJson, "XML and included terminology have gone out of sync. please regenerate json file!");
         }
+    }
+
+    private static void assertTermCodesEqual(OpenEHRTerminologyAccess expected, OpenEHRTerminologyAccess actual,
+                                             Function<OpenEHRTerminologyAccess, List<TermCode>> lookup) {
+        List<TermCode> expectedValues = lookup.apply(expected);
+        assertFalse(expectedValues.isEmpty());
+        List<TermCode> actualValues = lookup.apply(actual);
+        assertEquals(expectedValues.size(), actualValues.size());
+        for (int i = 0; i < expectedValues.size(); i++) {
+            assertTermCodeEquals(expectedValues.get(i), actualValues.get(i));
+        }
+    }
+
+    private static void assertTermCodeEquals(OpenEHRTerminologyAccess expected, OpenEHRTerminologyAccess actual,
+                                             Function<OpenEHRTerminologyAccess, TermCode> lookup) {
+        assertTermCodeEquals(lookup.apply(expected), lookup.apply(actual));
+    }
+
+    private static void assertTermCodeEquals(TermCode expected, TermCode actual) {
+        assertNotNull(expected);
+        assertNotNull(actual);
+        assertEquals(expected.getTerminologyId(), actual.getTerminologyId());
+        assertEquals(expected.getLanguage(), actual.getLanguage());
+        assertEquals(expected.getCodeString(), actual.getCodeString());
+        assertEquals(expected.getDescription(), actual.getDescription());
+        assertEquals(expected.getGroupName(), actual.getGroupName());
+        assertEquals(expected.getGroupIds(), actual.getGroupIds());
     }
 
     @Test

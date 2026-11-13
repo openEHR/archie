@@ -1,9 +1,7 @@
 package com.nedap.archie.rmobjectvalidator;
 
 import com.nedap.archie.aom.CObject;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -11,35 +9,83 @@ import java.util.List;
  */
 public class RMObjectValidatingProcessor {
 
-    private List<RMObjectValidationMessage> messages = new ArrayList<>();
+    @FunctionalInterface
+    public interface RMObjectValidationMessageSink {
+        void addMessage(RMObjectValidationMessage message);
+
+        default void addAll(List<RMObjectValidationMessage> messages) {
+            if (messages != null) {
+                messages.forEach(this::addMessage);
+            }
+        }
+    }
+
+    protected final ValidationMessages messages = new ValidationMessages();
 
     public List<RMObjectValidationMessage> getMessages() {
-        return messages;
+        return messages.getMessages();
     }
 
     protected void clearMessages() {
         messages.clear();
     }
 
+    protected void addMessage(ValidationMessages result, RMObjectValidationMessage message) {
+        result.addMessage(message);
+    }
+
     protected void addMessage(RMObjectValidationMessage message) {
-        messages.add(message);
+        addMessage(messages, message);
     }
 
     protected void addMessage(CObject cobject, String actualPath, String message) {
-        messages.add(new RMObjectValidationMessage(cobject, actualPath, message));
+        addMessage(messages, new RMObjectValidationMessage(cobject, actualPath, message));
     }
 
     protected void addMessage(CObject cobject, String actualPath, String message, RMObjectValidationMessageType type) {
-        messages.add(new RMObjectValidationMessage(cobject, actualPath, message, type));
+        addMessage(messages, new RMObjectValidationMessage(cobject, actualPath, message, type));
     }
 
-    protected void addAllMessages(Collection<RMObjectValidationMessage> messages) {
-        this.messages.addAll(messages);
+    protected void addAllMessages(List<RMObjectValidationMessage> messages) {
+        messages.forEach(this::addMessage);
     }
 
     protected void addAllMessagesFrom(RMObjectValidatingProcessor other) {
-        addAllMessages(other.getMessages());
+        if (other.messages.messages != null) {
+            other.messages.messages.forEach(this::addMessage);
+        }
+    }
 
+    protected static final class ValidationMessages {
+
+        private List<RMObjectValidationMessage> messages = null;
+
+        public void addMessage(RMObjectValidationMessage message) {
+            if (message == null) {
+                return;
+            }
+            if (this.messages == null) {
+                this.messages = new ArrayList<>();
+            }
+            this.messages.add(message);
+        }
+
+        public List<RMObjectValidationMessage> getMessages() {
+            if (this.messages == null) {
+                this.messages = new ArrayList<>();
+            }
+            return this.messages;
+        }
+
+        public void clear() {
+            if (this.messages != null) {
+                this.messages.clear();
+            }
+        }
+
+        public boolean isEmpty() {
+            return this.messages == null || this.messages.isEmpty();
+        }
     }
 
 }
