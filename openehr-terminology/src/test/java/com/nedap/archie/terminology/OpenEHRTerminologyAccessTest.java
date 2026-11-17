@@ -75,8 +75,6 @@ public class OpenEHRTerminologyAccessTest {
     }
 
     private static void assertTermCodeEquals(TermCode expected, TermCode actual) {
-        assertNotNull(expected);
-        assertNotNull(actual);
         assertEquals(expected.getTerminologyId(), actual.getTerminologyId());
         assertEquals(expected.getLanguage(), actual.getLanguage());
         assertEquals(expected.getCodeString(), actual.getCodeString());

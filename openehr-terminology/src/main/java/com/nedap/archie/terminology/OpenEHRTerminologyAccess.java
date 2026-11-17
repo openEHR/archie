@@ -121,7 +121,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
         }
     }
 
-    private TerminologyImpl getOpenehrTermonology() {
+    private TerminologyImpl getOpenehrTerminology() {
         TerminologyImpl openehr = terminologiesByExternalId.get("openehr");
         if(openehr == null) {
             throw new IllegalStateException("Terminology 'openehr' not found");
@@ -130,7 +130,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
     }
 
     private void prepareCache() {
-        this.termCodeByGroupLanguageCode = getOpenehrTermonology().getTermsById().values().stream()
+        this.termCodeByGroupLanguageCode = getOpenehrTerminology().getTermsById().values().stream()
                 //<<lang, TC>,MLT>
                 .flatMap(a -> a.getTermCodesByLanguage().entrySet().stream().map(e -> new AbstractMap.SimpleImmutableEntry<>(e, a)))
                 //<Group,<<Lang, TC>,MLT>>
@@ -207,7 +207,7 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
     @Override
     public List<TermCode> getTermsByOpenEHRGroup(String groupId, String language) {
         //TODO: improve performance with a nice index
-        return getOpenehrTermonology()
+        return getOpenehrTerminology()
                 .streamAllTermsForLanguage(language)
                 .filter(t -> t.getGroupIds().contains(groupId))
                 .collect(Collectors.toList());
@@ -219,14 +219,13 @@ public class OpenEHRTerminologyAccess implements TerminologyAccess {
             return termCodeByGroupLanguageCode.get(new GroupLanguageCode(groupId, language, code));
         } else {
             // fallback if cache was not initialized
-            return getOpenehrTermonology()
+            return getOpenehrTerminology()
                     .streamAllTermsForLanguage(language)
                     .filter(term -> term.getCodeString().equalsIgnoreCase(code))
                     .filter(t -> t.getGroupIds().contains(groupId))
                     .findFirst()
                     .orElse(null);
         }
-
     }
 
     private static final class GroupLanguageCode {
