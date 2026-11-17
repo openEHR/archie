@@ -153,15 +153,15 @@ public class ArchetypeSlotValidationTest {
 
         List<RMObjectValidationMessage> validated = rmObjectValidator.validate(parentOpt, example);
         assertEquals(3, validated.size(), validated.toString());
-
-        //there must be an archetype id in a slot
+        //but also an observation must have an archetype id (invariant)
         RMObjectValidationMessage rmObjectValidationMessage = validated.get(0);
         assertEquals("/items[id2, 1]", rmObjectValidationMessage.getPath());
-        assertEquals(RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH, rmObjectValidationMessage.getType());
-        //but also an observation must have an archetype id (invariant)
+        assertEquals(RMObjectValidationMessageType.INVARIANT_ERROR, rmObjectValidationMessage.getType());
+
+        //there must be an archetype id in a slot
         rmObjectValidationMessage = validated.get(1);
         assertEquals("/items[id2, 1]", rmObjectValidationMessage.getPath());
-        assertEquals(RMObjectValidationMessageType.INVARIANT_ERROR, rmObjectValidationMessage.getType());
+        assertEquals(RMObjectValidationMessageType.ARCHETYPE_SLOT_ID_MISMATCH, rmObjectValidationMessage.getType());
         //and an element must either have a value or a null flavour (invariant)
         rmObjectValidationMessage = validated.get(2);
         assertEquals("/items[id2, 1]/data[id9]/events[id3, 1]/data[id10]/items[id4.1, 3]", rmObjectValidationMessage.getPath());
