@@ -1,4 +1,4 @@
-archetype (adl_version=2.0.6; rm_release=1.1.0; generated; uid=a965a5e8-12a6-471c-8a8e-98dfb8aa9f1f; build_uid=837261fa-d6a9-441c-b85b-3e1e33aae00d)
+archetype (adl_version=2.4.0; rm_release=1.1.0; generated; uid=a965a5e8-12a6-471c-8a8e-98dfb8aa9f1f; build_uid=837261fa-d6a9-441c-b85b-3e1e33aae00d)
     openEHR-EHR-CLUSTER.exam-abdomen.v0.0.1-alpha
 
 specialize

@@ -10,6 +10,11 @@ public class ArchetypeValidationSettings {
      * Whether to always try to flatten, even on validation errors
      */
     private boolean alwaysTryToFlatten = false;
+    /**
+     * Which node identifier code system (id-coded, at-coded or auto-detected) the validator accepts.
+     * Defaults to {@link NodeIdCodeSystemValidation#ID_CODED} for backwards compatibility.
+     */
+    private NodeIdCodeSystemValidation nodeIdCodeSystemValidation = NodeIdCodeSystemValidation.ID_CODED;
 
     public ArchetypeValidationSettings() {
     }
@@ -28,5 +33,13 @@ public class ArchetypeValidationSettings {
 
     public void setAlwaysTryToFlatten(boolean alwaysTryToFlatten) {
         this.alwaysTryToFlatten = alwaysTryToFlatten;
+    }
+
+    public NodeIdCodeSystemValidation getNodeIdCodeSystemValidation() {
+        return nodeIdCodeSystemValidation;
+    }
+
+    public void setNodeIdCodeSystemValidation(NodeIdCodeSystemValidation nodeIdCodeSystemValidation) {
+        this.nodeIdCodeSystemValidation = nodeIdCodeSystemValidation;
     }
 }

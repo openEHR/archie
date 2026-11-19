@@ -2,12 +2,15 @@ package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
+import com.nedap.archie.definitions.AdlCodeDefinitions;
 import com.nedap.archie.rminfo.ArchieModelNamingStrategy;
 import com.nedap.archie.rminfo.RMProperty;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
 import org.openehr.utils.message.I18n;
 
@@ -25,10 +28,18 @@ import java.util.function.BiFunction;
 @XmlAccessorType(XmlAccessType.FIELD)
 public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedObject<ValueType> {
 
-    public static final String PRIMITIVE_NODE_ID_VALUE = "id9999";
+    /**
+     * @deprecated Use {@link AdlCodeDefinitions#ID_CODED_PRIMITIVE_NODE_ID}.
+     */
+    @Deprecated
+    public static final String PRIMITIVE_NODE_ID_VALUE = AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID;
 
     @Nullable
     private Boolean enumeratedTypeConstraint;
+
+    // only used for primitive objects outside the definition, such as in slot assertions and rules
+    @XmlTransient
+    private String nodeIdOutsideDefinition;
 
     public abstract ValueType getAssumedValue();
 
@@ -51,14 +62,22 @@ public abstract class CPrimitiveObject<Constraint, ValueType> extends CDefinedOb
 
 
 
+    /**
+     * The node id of a primitive object: at9999 in at-coded archetypes, id9999 otherwise.
+     */
     public String getNodeId() {
-        return PRIMITIVE_NODE_ID_VALUE;
+        Archetype archetype = getArchetype();
+        if(archetype != null) {
+            return AOMUtils.getPrimitiveNodeId(archetype);
+        }
+        return nodeIdOutsideDefinition == null ? AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID : nodeIdOutsideDefinition;
     }
 
     public void setNodeId(String nodeId) {
-        if(!nodeId.equals(PRIMITIVE_NODE_ID_VALUE)) {
+        if(!AdlCodeDefinitions.isPrimitiveNodeId(nodeId)) {
             throw new UnsupportedOperationException("Cannot set node id on a CPrimitiveObject");
         }
+        this.nodeIdOutsideDefinition = nodeId;
     }
 
     @Override

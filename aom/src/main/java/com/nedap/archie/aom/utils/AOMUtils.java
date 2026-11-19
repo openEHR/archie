@@ -23,8 +23,9 @@ import java.util.regex.Pattern;
 
 public class AOMUtils {
 
-    private static Pattern idCodePattern = Pattern.compile("(id|at|ac)(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
-    private static Pattern adl14CodePattern = Pattern.compile("(id|at|ac)([0-9]+)(\\.(0|[1-9][0-9]*))*");
+    private static Pattern adlCodePattern = Pattern.compile("(id|at|ac)([0-9]+)(\\.(0|[1-9][0-9]*))*");
+    private static Pattern idCodedCodePattern = Pattern.compile("(id|at|ac)(0(?=\\.)|[1-9][0-9]*)(\\.(0|[1-9][0-9]*))*");
+    private static Pattern atCodedCodePattern = Pattern.compile("(at|ac)([0-9]{4,}|0(?=\\.))(\\.(0|[1-9][0-9]*))*");
 
     public static int getSpecializationDepthFromCode(String code) {
         if(code == null) {
@@ -40,6 +41,16 @@ public class AOMUtils {
         return code.startsWith(AdlCodeDefinitions.ID_CODE_LEADER);
     }
 
+    /**
+     * True if the code is an at-code, as used for the node ids of at-coded archetypes.
+     */
+    public static boolean isAtCode(String code) {
+        return code.startsWith(AdlCodeDefinitions.AT_CODE_LEADER);
+    }
+
+    /**
+     * True if the code is a value code, i.e. a code of a single terminology item.
+     */
     public static boolean isValueCode(String code) {
         return code.startsWith(AdlCodeDefinitions.VALUE_CODE_LEADER);
     }
@@ -48,15 +59,69 @@ public class AOMUtils {
         return code.startsWith(AdlCodeDefinitions.VALUE_SET_CODE_LEADER);
     }
 
-    public static boolean isValidValueSetCode(String code) {
-        return isValidCode(code) && isValueSetCode(code);
+    /**
+     * True if the archetype is at-coded, based on the node id of its root.
+     */
+    public static boolean isAtCoded(Archetype archetype) {
+        CComplexObject definition = archetype == null ? null : archetype.getDefinition();
+        return definition != null && definition.getNodeId() != null && isAtCode(definition.getNodeId());
     }
 
-    public static boolean isValidCode(String code) {
+    /**
+     * The node id of primitive objects in the given archetype: at9999 if it is at-coded, id9999 otherwise.
+     */
+    public static String getPrimitiveNodeId(Archetype archetype) {
+        return isAtCoded(archetype) ? AdlCodeDefinitions.AT_CODED_PRIMITIVE_NODE_ID : AdlCodeDefinitions.ID_CODED_PRIMITIVE_NODE_ID;
+    }
+
+    public static boolean isValidValueSetCode(String code) {
+        return isValidAdlCode(code) && isValueSetCode(code);
+    }
+
+    /**
+     * True if the code is a valid code of either code system.
+     */
+    public static boolean isValidAdlCode(String code) {
         if(code == null) {
             return false;
         }
-        return idCodePattern.matcher(code).matches();
+        return adlCodePattern.matcher(code).matches();
+    }
+
+    /**
+     * True if the code is a valid code of an id-coded archetype, e.g. id1, id1.1, at2 or ac3.
+     */
+    public static boolean isValidIdCodedCode(String code) {
+        if(code == null) {
+            return false;
+        }
+        return idCodedCodePattern.matcher(code).matches();
+    }
+
+    /**
+     * True if the code is a valid code of an at-coded archetype, e.g. at0000, at0001.1, at0.1, ac0001 or ac0.1.
+     */
+    public static boolean isValidAtCodedCode(String code) {
+        if(code == null) {
+            return false;
+        }
+        return atCodedCodePattern.matcher(code).matches();
+    }
+
+    /**
+     * @deprecated Use {@link #isValidIdCodedCode(String)} or {@link #isValidAdlCode(String)}.
+     */
+    @Deprecated
+    public static boolean isValidCode(String code) {
+        return isValidIdCodedCode(code);
+    }
+
+    /**
+     * @deprecated Use {@link #isValidAdlCode(String)}.
+     */
+    @Deprecated
+    public static boolean isValidADL14Code(String code) {
+        return isValidAdlCode(code);
     }
 
     /**
@@ -65,7 +130,7 @@ public class AOMUtils {
      * @return the numeric node id without any prefix
      */
     public static String stripPrefix(String nodeId) {
-        if(AOMUtils.isValidCode(nodeId)) {
+        if(AOMUtils.isValidAdlCode(nodeId)) {
             return nodeId.substring(2);
         }
         return nodeId;
@@ -74,7 +139,7 @@ public class AOMUtils {
     public static String pathAtSpecializationLevel(List<PathSegment> pathSegments, int level) {
         //todo: this doesn't clone the original
         for(PathSegment segment:pathSegments) {
-            if(segment.getNodeId() != null && AOMUtils.isValidCode(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
+            if(segment.getNodeId() != null && AOMUtils.isValidAdlCode(segment.getNodeId()) && AOMUtils.getSpecializationDepthFromCode(segment.getNodeId()) > level) {
                 segment.setNodeId(codeAtLevel(segment.getNodeId(), level));
             }
         }
@@ -83,14 +148,14 @@ public class AOMUtils {
 
     public static String codeAtLevel(String nodeId, int level) {
         NodeIdUtil nodeIdUtil = new NodeIdUtil(nodeId);
-        List<Integer> codes = new ArrayList<>();
-        for(int i = 0; i <= level && i < nodeIdUtil.getCodes().size();i++) {
+        List<String> codes = new ArrayList<>();
+        for(int i = 0; i <= level && i < nodeIdUtil.getCodes().size(); i++) {
             codes.add(nodeIdUtil.getCodes().get(i));
         }
         //remove leading .0 codes - they are not present in the code at the given level
         int numberOfCodesToRemove = 0;
         for(int i = codes.size()-1; i >= 0 ; i--) {
-            if(codes.get(i) == 0) {
+            if("0".equals(codes.get(i))) {
                 numberOfCodesToRemove++;
             } else {
                 break;
@@ -120,7 +185,7 @@ public class AOMUtils {
         if(specialisationDepth > getSpecializationDepthFromCode(nodeId)) {
             return CodeRedefinitionStatus.INHERITED;
         } else {
-            boolean codeDefinedAtThisLevel = codeIndexAtLevel(nodeId, specialisationDepth) > 0;
+            boolean codeDefinedAtThisLevel = !"0".equals(codeIndexAtLevel(nodeId, specialisationDepth));
             if(codeDefinedAtThisLevel) {
                 if(specialisationDepth > 0 && codeExistsAtLevel(nodeId, specialisationDepth-1)) {
                     return CodeRedefinitionStatus.REDEFINED;
@@ -136,7 +201,7 @@ public class AOMUtils {
         }
     }
 
-    public static int codeIndexAtLevel(String nodeId, int specialisationDepth) {
+    public static String codeIndexAtLevel(String nodeId, int specialisationDepth) {
         NodeIdUtil nodeIdUtil = new NodeIdUtil(nodeId);
         if(specialisationDepth < 0 || specialisationDepth >= nodeIdUtil.getCodes().size()) {
             throw new IllegalArgumentException("code is not valid at specialization depth " + specialisationDepth);
@@ -179,7 +244,7 @@ public class AOMUtils {
     public static boolean isPhantomPathAtLevel(List<PathSegment> pathSegments, int specializationDepth) {
         for(int i = pathSegments.size()-1; i >=0; i--) {
             String nodeId = pathSegments.get(i).getNodeId();
-            if(AOMUtils.isValidCode(nodeId) && specializationDepth > AOMUtils.getSpecializationDepthFromCode(nodeId)) {
+            if(AOMUtils.isValidAdlCode(nodeId) && specializationDepth > AOMUtils.getSpecializationDepthFromCode(nodeId)) {
                 return codeExistsAtLevel(nodeId, specializationDepth);
             }
         }
@@ -265,7 +330,7 @@ public class AOMUtils {
     }
 
     public static boolean codesConformant(String childNodeId, String parentNodeId) {
-        return isValidCode(childNodeId) && childNodeId.startsWith(parentNodeId) &&
+        return isValidAdlCode(childNodeId) && childNodeId.startsWith(parentNodeId) &&
                 (childNodeId.length() == parentNodeId.length() || (childNodeId.length() > parentNodeId.length() && childNodeId.charAt(parentNodeId.length()) == AdlCodeDefinitions.SPECIALIZATION_SEPARATOR));
 
     }
@@ -378,26 +443,18 @@ public class AOMUtils {
      * @return
      */
     public static String getCodeInNearestParent(String nodeId) {
-
         NodeIdUtil nodeIdUtil = new NodeIdUtil(nodeId);
 
-        List<Integer> codes = nodeIdUtil.getCodes();
+        List<String> codes = nodeIdUtil.getCodes();
         int newDepth = 0;
         for(int i = codes.size()-2; i >= 0; i--) {
-            if(codes.get(i) != 0) {
+            if(!"0".equals(codes.get(i))) {
                 newDepth = i;
                 break;
             }
         }
         return nodeIdUtil.getPrefix() + Joiner.on('.').join(codes.subList(0, newDepth+1));
 
-    }
-
-    public static boolean isValidADL14Code(String code) {
-        if(code == null) {
-            return false;
-        }
-        return adl14CodePattern.matcher(code).matches();
     }
 
     /**
