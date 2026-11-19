@@ -12,7 +12,6 @@ import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 import org.openehr.bmm.core.*;
 import org.openehr.bmm.persistence.validation.BmmDefinitions;
 import org.threeten.extra.PeriodDuration;
@@ -52,14 +51,6 @@ public  class ExampleJsonInstanceGenerator {
 
     OpenEhrRmInstanceGenerator openEhrRmInstanceGenerator;
 
-    /**
-     * @deprecated Use {@link #ExampleJsonInstanceGenerator(MetaModelProvider, String)} instead.
-     */
-    @Deprecated
-    public ExampleJsonInstanceGenerator(MetaModels models, String language) {
-        this((MetaModelProvider) models, language);
-    }
-
     public ExampleJsonInstanceGenerator(MetaModelProvider metaModelProvider, String language) {
         this.language = language;
         this.metaModelProvider = metaModelProvider;
@@ -74,7 +65,7 @@ public  class ExampleJsonInstanceGenerator {
                 !(rmRelease.equalsIgnoreCase("1.0.4") || rmRelease.equalsIgnoreCase("1.1.0"))) {
             rmRelease = "1.1.0";
         }
-        metaModel = metaModelProvider.selectAndGetMetaModel(archetype, rmRelease);
+        metaModel = metaModelProvider.getMetaModel(archetype, rmRelease);
         aomProfile = metaModel.getAomProfile();
         bmm = metaModel.getBmmModel();
         return generate(archetype.getDefinition());
@@ -447,7 +438,7 @@ public  class ExampleJsonInstanceGenerator {
             terminologyId.put("value", "local");
             String termString = "term";
             ArchetypeTerminology terminology = archetype.getTerminology(child);
-            if(child.getConstraint().isEmpty()) {
+            if(child.isAnyAllowed()) {
                 codeString = "term code";
                 CAttribute attribute = child.getParent();
                 CComplexObject parent = (CComplexObject) attribute.getParent();
@@ -456,7 +447,7 @@ public  class ExampleJsonInstanceGenerator {
                     return potentialResult;
                 }
             } else {
-                String constraint = child.getConstraint().get(0);
+                String constraint = child.getConstraint();
                 if(constraint.startsWith("ac")) {
 
                     ValueSet valueSet = terminology.getValueSets().get(constraint);

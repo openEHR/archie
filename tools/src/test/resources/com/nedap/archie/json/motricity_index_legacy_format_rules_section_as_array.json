@@ -4,10 +4,7 @@
   "description" : {
     "original_author" : { },
     "other_contributors" : [ ],
-    "lifecycle_state" : {
-      "@type" : "TerminologyCode",
-      "code_string" : "unmanaged"
-    },
+    "lifecycle_state" : "unmanaged",
     "copyright" : "Officiële versie: Demeurisse G, Demol O, Robaye E. Motor evaluation in vascular hemiplegia. European Neurology. 1980;19(6):382–9. Nederlandse Versie: van Peppen RPS, Kwakkel G, Harmeling-van der Wel BC. KNGF-richtlijn beroerte. Amersfoort: Koninklijk Nederlands Genootschap voor Fysiotherapie; 2006",
     "ip_acknowledgements" : { },
     "references" : {

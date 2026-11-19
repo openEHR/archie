@@ -1,9 +1,6 @@
 package com.nedap.archie.adl14.treewalkers;
 
-import com.nedap.archie.adl14.aom14.CDVOrdinal;
-import com.nedap.archie.adl14.aom14.CDVOrdinalItem;
-import com.nedap.archie.adl14.aom14.CDVQuantity;
-import com.nedap.archie.adl14.aom14.CDVQuantityItem;
+import com.nedap.archie.adl14.aom14.*;
 import com.nedap.archie.adlparser.antlr.Adl14Parser.*;
 import com.nedap.archie.adlparser.treewalkers.BaseTreeWalker;
 import com.nedap.archie.antlr.errors.ANTLRParserErrors;
@@ -11,7 +8,6 @@ import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.primitives.CInteger;
 import com.nedap.archie.aom.primitives.CReal;
 import com.nedap.archie.aom.primitives.CString;
-import com.nedap.archie.aom.primitives.CTerminologyCode;
 import com.nedap.archie.base.Cardinality;
 import com.nedap.archie.base.Interval;
 import com.nedap.archie.base.MultiplicityInterval;
@@ -203,7 +199,7 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
 
                 CPrimitiveTuple primitiveTuple = new CPrimitiveTuple();
 
-                CTerminologyCode cCode = new CTerminologyCode();
+                CTerminologyCodeADL14 cCode = new CTerminologyCodeADL14();
 
                 TerminologyCode code = TerminologyCode.createFromString(ordinal_termContext.c_terminology_code().getText());
                 cCode.addConstraint(code.getCodeString());
@@ -256,7 +252,7 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
                     if (item.getSymbol() != null) {
                         primitiveTuple.addMember(item.getSymbolAdl2());
                     } else if (hasSymbol) {
-                        CTerminologyCode code = new CTerminologyCode();
+                        CTerminologyCodeADL14 code = new CTerminologyCodeADL14();
                         primitiveTuple.addMember(code);//nothing we can do here!
                     }
 
@@ -273,7 +269,7 @@ public class Adl14CComplexObjectParser extends BaseTreeWalker {
             CDVQuantity cdvQuantity = odinParser.convert(objectContext.domainSpecificExtension().odin_text().getText(), CDVQuantity.class);
             if(cdvQuantity.getProperty() != null) {
                 CAttribute property = new CAttribute("property");
-                CTerminologyCode code = new CTerminologyCode();
+                CTerminologyCodeADL14 code = new CTerminologyCodeADL14();
                 //will be converted later
                 code.addConstraint(cdvQuantity.getProperty().toString());
                 property.addChild(code);

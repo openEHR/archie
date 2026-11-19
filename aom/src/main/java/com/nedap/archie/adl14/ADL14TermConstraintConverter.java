@@ -1,6 +1,6 @@
 package com.nedap.archie.adl14;
 
-import com.google.common.collect.Lists;
+import com.nedap.archie.adl14.aom14.CTerminologyCodeADL14;
 import com.nedap.archie.adl14.log.CreatedCode;
 import com.nedap.archie.adl14.log.ReasonForCodeCreation;
 import com.nedap.archie.aom.*;
@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ADL14TermConstraintConverter {
 
@@ -39,26 +38,31 @@ public class ADL14TermConstraintConverter {
     }
 
     private void convert(CObject cObject) {
-        if (cObject instanceof CTerminologyCode) {
-            convertCTerminologyCode((CTerminologyCode) cObject);
+        if (cObject instanceof CTerminologyCodeADL14) {
+            CTerminologyCodeADL14 cTerminologyCode = (CTerminologyCodeADL14) cObject;
+            convertCTerminologyCode(cTerminologyCode);
+            replaceInParent(cTerminologyCode, toAdl2(cTerminologyCode));
         }
-        for(CAttribute attribute:cObject.getAttributes()) {
-            convert(attribute);
+        for (CAttribute attribute : cObject.getAttributes()) {
+            for (CObject child : attribute.getChildren()) {
+                convert(child);
+            }
         }
         if(cObject instanceof CComplexObject) {
             for (CAttributeTuple tuple : ((CComplexObject) cObject).getAttributeTuples()) {
                 //tuples have not been properly converted to CAttributes in this parsed model, so we can ignore them above
                 Set<Integer> tupleTermCodeIndices = getCTerminologyCodeIndices(tuple);
                 for (Integer index : tupleTermCodeIndices) {
-                    List<CPrimitiveObject<?, ?>> termCodes = tuple.getTuples().stream().map(p -> p.getMember(index)).collect(Collectors.toList());
                     Set<String> atCodes = new LinkedHashSet<>();
-                    for (CPrimitiveObject<?, ?> cPrimitiveObject : termCodes) {
-                        CTerminologyCode cTerminologyCode = (CTerminologyCode) cPrimitiveObject;
-                        convertCTerminologyCode(cTerminologyCode);
-                        if(cTerminologyCode.getConstraint().size() == 1) {
-                            String constraint = cTerminologyCode.getConstraint().get(0);
-                            if(AOMUtils.isValueCode(constraint)) {
-                                atCodes.add(constraint);
+                    for (CPrimitiveTuple primitiveTuple : tuple.getTuples()) {
+                        CPrimitiveObject<?, ?> member = primitiveTuple.getMember(index);
+                        if (member instanceof CTerminologyCodeADL14) {
+                            CTerminologyCodeADL14 cTerminologyCode = (CTerminologyCodeADL14) member;
+                            convertCTerminologyCode(cTerminologyCode);
+                            CTerminologyCode replacement = toAdl2(cTerminologyCode);
+                            primitiveTuple.getMembers().set(index, replacement);
+                            if (replacement.getConstraint() != null && AOMUtils.isValueCode(replacement.getConstraint())) {
+                                atCodes.add(replacement.getConstraint());
                             }
                         }
                     }
@@ -70,12 +74,19 @@ public class ADL14TermConstraintConverter {
         }
     }
 
+    private void replaceInParent(CObject original, CObject replacement) {
+        CAttribute parent = original.getParent();
+        int index = parent.getChildren().indexOf(original);
+        parent.getChildren().set(index, replacement);
+        replacement.setParent(parent);
+    }
+
     private Set<Integer> getCTerminologyCodeIndices(CAttributeTuple tuple) {
         Set<Integer> result = new LinkedHashSet<>();
         for (CPrimitiveTuple primitiveTuple : tuple.getTuples()) {
             int i = 0;
             for (CPrimitiveObject<?, ?> cPrimitiveObject : primitiveTuple.getMembers()) {
-                if(cPrimitiveObject instanceof CTerminologyCode) {
+                if(cPrimitiveObject instanceof CTerminologyCodeADL14) {
                     result.add(i);
                 }
                 i++;
@@ -84,13 +95,7 @@ public class ADL14TermConstraintConverter {
         return result;
     }
 
-    private void convert(CAttribute attribute) {
-        for(CObject object:attribute.getChildren()) {
-            convert(object);
-        }
-    }
-
-    private void convertCTerminologyCode(CTerminologyCode cTerminologyCode) {
+    private void convertCTerminologyCode(CTerminologyCodeADL14 cTerminologyCode) {
         if(cTerminologyCode.getConstraint() != null && !cTerminologyCode.getConstraint().isEmpty()) {
             String firstConstraint = cTerminologyCode.getConstraint().get(0);
             TerminologyCode termCode = TerminologyCode.createFromString(firstConstraint);
@@ -103,7 +108,7 @@ public class ADL14TermConstraintConverter {
                     if (converter.codeSystemIsIdCoded()) {
                         String newCode = converter.convertIntoAtCode(firstConstraint);
                         converter.addConvertedCode(firstConstraint, newCode);
-                        cTerminologyCode.setConstraint(Lists.newArrayList(newCode));
+                        cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(newCode)));
                     }
                 } else {
                     // Create a valueSet for these terminology codes
@@ -121,7 +126,7 @@ public class ADL14TermConstraintConverter {
                     }
 
                     ValueSet valueSet = findOrCreateValueSet(cTerminologyCode.getArchetype(), localCodes, cTerminologyCode);
-                    cTerminologyCode.setConstraint(Lists.newArrayList(valueSet.getId()));
+                    cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(valueSet.getId())));
                 }
             } else if (isLocalCode && AOMUtils.isValueSetCode(termCode.getCodeString())) {
                 if (converter.codeSystemIsIdCoded()) {
@@ -143,7 +148,7 @@ public class ADL14TermConstraintConverter {
 
                         //TODO: check if this is a converted or old term binding - old is unusual, but could be possible!
                         String termBinding = findOrAddTermBindingAndCode(termCode, uri, termBindingsMap);
-                        cTerminologyCode.setConstraint(Lists.newArrayList(termBinding));
+                        cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(termBinding)));
                     } catch (URISyntaxException e) {
                         //TODO
                         logger.error("error converting term", e);
@@ -175,7 +180,7 @@ public class ADL14TermConstraintConverter {
                         }
                     }
                     ValueSet valueSet = findOrCreateValueSet(cTerminologyCode.getArchetype(), new LinkedHashSet<>(atCodes), cTerminologyCode);
-                    cTerminologyCode.setConstraint(Lists.newArrayList(valueSet.getId()));
+                    cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(valueSet.getId())));
 
                 }
             }
@@ -204,14 +209,39 @@ public class ADL14TermConstraintConverter {
         }
     }
 
-    private Map<String, URI> findOrCreateTermBindings(TerminologyCode termCode) {
-        Map<String, URI> termBindings =  archetype.getTerminology().getTermBindings().get(termCode.getTerminologyId());
-
-        if(termBindings == null) {
-            termBindings = new LinkedHashMap<>();
-            archetype.getTerminology().getTermBindings().put(termCode.getTerminologyId(), termBindings);
+    /**
+     * Build an ADL 2 {@link CTerminologyCode} from a converted {@link CTerminologyCodeADL14}.
+     * Copies all relevant CObject/CPrimitiveObject fields and collapses the single-element
+     * post-conversion constraint list into a single String.
+     *
+     * <p>Package-private for unit testing — see ADL14TermConstraintConverterTest.</p>
+     */
+    static CTerminologyCode toAdl2(CTerminologyCodeADL14 source) {
+        CTerminologyCode result = new CTerminologyCode();
+        // rmTypeName is not copied: CPrimitiveObject overrides getRmTypeName() to compute it from the
+        // class name, ignoring the field. Setting it would be a no-op.
+        result.setOccurrences(source.getOccurrences());
+        result.setDeprecated(source.getDeprecated());
+        result.setSiblingOrder(source.getSiblingOrder());
+        result.setEnumeratedTypeConstraint(source.getEnumeratedTypeConstraint());
+        result.setAssumedValue(source.getAssumedValue());
+        result.setDefaultValue(source.getDefaultValue());
+        // Copy the tuple back-pointer too: when this CTerminologyCodeADL14 sits inside a CPrimitiveTuple,
+        // its socParent links back to that tuple. The caller swaps it in via members.set(index, replacement),
+        // which (unlike CPrimitiveTuple.addMember) does not set socParent, so we copy it here.
+        result.setSocParent(source.getSocParent());
+        if (source.getConstraint() != null && !source.getConstraint().isEmpty()) {
+            if (source.getConstraint().size() > 1) {
+                // lists of codes should already have been converted to a value set, so this should not happen
+                throw new IllegalArgumentException("Cannot convert a terminology code constraint with more than one code to ADL 2: " + source.getConstraint());
+            }
+            result.setConstraint(source.getConstraint().get(0));
         }
-        return termBindings;
+        return result;
+    }
+
+    private Map<String, URI> findOrCreateTermBindings(TerminologyCode termCode) {
+        return archetype.getTerminology().getTermBindings().computeIfAbsent(termCode.getTerminologyId(), k -> new LinkedHashMap<>());
     }
 
     private String findOrAddTermBindingAndCode(TerminologyCode termCode, URI uri, Map<String, URI> termBindingsMap) {
@@ -267,12 +297,19 @@ public class ADL14TermConstraintConverter {
                     CAttribute cAttributeInParent = (CAttribute) inParent;
                     if(!cAttributeInParent.getChildren().isEmpty()) {
                         CObject cObject = cAttributeInParent.getChildren().get(0);
-                        if(cObject instanceof CTerminologyCode) {
-                            CTerminologyCode termCodeInParent = (CTerminologyCode) cObject;
+                        if(cObject instanceof CTerminologyCodeADL14) {
+                            CTerminologyCodeADL14 termCodeInParent = (CTerminologyCodeADL14) cObject;
                             if(termCodeInParent.getConstraint() != null && !termCodeInParent.getConstraint().isEmpty()) {
-                                if(termCodeInParent.getConstraint().get(0).startsWith("ac")) {
-                                    idInparent = termCodeInParent.getConstraint().get(0);
+                                String firstConstraint = termCodeInParent.getConstraint().get(0);
+                                if(firstConstraint.startsWith("ac")) {
+                                    idInparent = firstConstraint;
                                 }
+                            }
+                        } else if(cObject instanceof CTerminologyCode) {
+                            CTerminologyCode termCodeInParent = (CTerminologyCode) cObject;
+                            String parentConstraint = termCodeInParent.getConstraint();
+                            if(parentConstraint != null && parentConstraint.startsWith("ac")) {
+                                idInparent = parentConstraint;
                             }
                         }
                     }

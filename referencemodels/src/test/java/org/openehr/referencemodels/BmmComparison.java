@@ -36,7 +36,7 @@ public class BmmComparison {
                             String> bmmToImplementationTypeMap,
                             Map<String, String> typeNamesOverride) {
 
-        this.extraParamsInModel = extraParamsInModel.stream().map(s -> s.toLowerCase()).collect(Collectors.toSet());
+        this.extraParamsInModel = extraParamsInModel.stream().map(String::toLowerCase).collect(Collectors.toSet());
         this.bmmToImplementationTypeMap = new HashMap<>();
         bmmToImplementationTypeMap.forEach((k, v) -> this.bmmToImplementationTypeMap.put(k.toLowerCase(), v));
         this.typeNamesOverride = new HashMap<>();
@@ -103,7 +103,7 @@ public class BmmComparison {
         //ancestor comparison
         for(String ancestor:classDefinition.getAncestors().keySet()) {
             Set<RMTypeInfo> directParentClasses = typeInfo.getDirectParentClasses();
-            Set<String> parentTypeNames = directParentClasses.stream().map((type) -> type.getRmName()).collect(Collectors.toSet());
+            Set<String> parentTypeNames = directParentClasses.stream().map(RMTypeInfo::getRmName).collect(Collectors.toSet());
 
             String ancestorClassName = BmmDefinitions.typeNameToClassKey(ancestor);
             if(!ancestorClassName.equalsIgnoreCase("any") && !parentTypeNames.contains(ancestorClassName)) {

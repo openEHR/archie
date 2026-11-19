@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -18,6 +19,12 @@ public class ADLAuthoredArchetypeSerializer<T extends AuthoredArchetype> extends
 
     public ADLAuthoredArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider, RMObjectMapperProvider rmObjectMapperProvider) {
         super(archetype, flatArchetypeProvider, rmObjectMapperProvider);
+    }
+
+    ADLAuthoredArchetypeSerializer(T archetype, Function<String, Archetype> flatArchetypeProvider,
+            RMObjectMapperProvider rmObjectMapperProvider,
+            Supplier<? extends ADLBuilder> builderSupplier) {
+        super(archetype, flatArchetypeProvider, rmObjectMapperProvider, builderSupplier);
     }
 
     @Override

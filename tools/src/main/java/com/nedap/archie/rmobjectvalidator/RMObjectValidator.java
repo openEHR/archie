@@ -1,6 +1,5 @@
 package com.nedap.archie.rmobjectvalidator;
 
-import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;
@@ -20,6 +19,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -35,38 +36,13 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     private APathQueryCache queryCache = new APathQueryCache();
     private ModelInfoLookup lookup;
     private ReflectionConstraintImposer constraintImposer;
-    private final ValidationConfiguration validationConfiguration;
     private boolean validateInvariants = true;
+    private final Set<String> enabledInvariants;
+    private final Set<String> disabledInvariants;
     private final RmOccurrenceValidator rmOccurrenceValidator;
     private final RmPrimitiveObjectValidator rmPrimitiveObjectValidator;
     private final RmTupleValidator rmTupleValidator;
     private final RmMultiplicityValidator rmMultiplicityValidator;
-
-    /**
-     * Creates an RM Object Validator with the given ModelInfoLook class, and the given OperationalTemplateProvider
-     * The ModelInfoLookup is used for model access, and model specific constructions.
-     * The OperationalTemplateProvider is used to retrieve other referenced archetypes in case of ArchetypeSlots.
-     * @param lookup
-     * @param provider
-     * @deprecated Use {@link #RMObjectValidator(ModelInfoLookup, OperationalTemplateProvider, ValidationConfiguration)} instead.
-     */
-    @Deprecated
-    public RMObjectValidator(ModelInfoLookup lookup, OperationalTemplateProvider provider) {
-        this.lookup = lookup;
-        this.metaModel = new MetaModel(lookup, null);
-        constraintImposer = new ReflectionConstraintImposer(lookup);
-        this.operationalTemplateProvider = provider;
-
-        this.validationConfiguration = null; // Leave this null to indicate that no ValidationConfiguration was provided
-        ValidationConfiguration dummyValidationConfiguration = new ValidationConfiguration.Builder()
-                .failOnUnknownTerminologyId(com.nedap.archie.ValidationConfiguration.isFailOnUnknownTerminologyId())
-                .build();
-        ValidationHelper validationHelper = new ValidationHelper(this.lookup, dummyValidationConfiguration);
-        rmOccurrenceValidator = new RmOccurrenceValidator();
-        rmPrimitiveObjectValidator = new RmPrimitiveObjectValidator(validationHelper);
-        rmTupleValidator = new RmTupleValidator(this.lookup, validationHelper, rmPrimitiveObjectValidator);
-        rmMultiplicityValidator = new RmMultiplicityValidator();
-    }
 
     /**
      * Creates an RM Object Validator with the given ModelInfoLook class, and the given OperationalTemplateProvider
@@ -79,24 +55,16 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
         constraintImposer = new ReflectionConstraintImposer(lookup);
         this.operationalTemplateProvider = provider;
 
-        this.validationConfiguration = validationConfiguration;
         ValidationHelper validationHelper = new ValidationHelper(this.lookup, validationConfiguration);
         validateInvariants = validationConfiguration.isValidateInvariants();
+        enabledInvariants = validationConfiguration.getEnabledInvariants();
+        disabledInvariants = validationConfiguration.getDisabledInvariants();
+        checkInvariantsExist(enabledInvariants, "enabled", true);
+        checkInvariantsExist(disabledInvariants, "disabled", false);
         rmOccurrenceValidator = new RmOccurrenceValidator();
         rmPrimitiveObjectValidator = new RmPrimitiveObjectValidator(validationHelper);
         rmTupleValidator = new RmTupleValidator(this.lookup, validationHelper, rmPrimitiveObjectValidator);
         rmMultiplicityValidator = new RmMultiplicityValidator();
-    }
-
-    /**
-     * @deprecated Use {@link ValidationConfiguration.Builder#validateInvariants(boolean)} instead.
-     */
-    @Deprecated
-    public void setRunInvariantChecks(boolean validateInvariants) {
-        if(this.validationConfiguration != null) {
-            throw new IllegalStateException("validateInvariants is already set via validationConfiguration, cannot set it again via setRunInvariantChecks");
-        }
-        this.validateInvariants = validateInvariants;
     }
 
     public List<RMObjectValidationMessage> validate(OperationalTemplate template, Object rmObject) {
@@ -148,6 +116,84 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
     }
 
 
+    /**
+     * Checks that every configured invariant matches an invariant in the lookup, so that a typo does not silently
+     * change what is validated.
+     * <p>
+     * Ignored invariants are never validated. Enabling one is an error, because the user expects it to be checked.
+     * Disabling one only logs a warning, because it is not validated anyway, and an invariant that becomes ignored in
+     * a later version should not break existing configurations.
+     *
+     * @param invariants              the enabled or disabled invariants, may be null
+     * @param kind                    "enabled" or "disabled", used in the messages
+     * @param errorOnIgnoredInvariant whether an ignored invariant throws, instead of logging a warning
+     * @throws IllegalArgumentException if one or more invariants are unknown, or ignored when errorOnIgnoredInvariant is true
+     */
+    private void checkInvariantsExist(Set<String> invariants, String kind, boolean errorOnIgnoredInvariant) {
+        if (invariants == null) {
+            return;
+        }
+        List<String> errors = new ArrayList<>();
+        for (String invariant : new TreeSet<>(invariants)) {
+            InvariantMethod invariantMethod = findInvariant(invariant);
+            if (invariantMethod == null) {
+                errors.add(invariant + " (unknown)");
+            } else if (invariantMethod.getAnnotation().ignored()) {
+                if (errorOnIgnoredInvariant) {
+                    errors.add(invariant + " (ignored, so it is never validated)");
+                } else {
+                    logger.warn("Invariant {} is {}, but it is ignored, so it is never validated anyway", invariant, kind);
+                }
+            }
+        }
+        if (!errors.isEmpty()) {
+            throw new IllegalArgumentException("Invalid " + kind + " invariants: " + String.join(", ", errors));
+        }
+    }
+
+    /**
+     * Finds the invariant with the given name, in the form RM_TYPE_NAME.Invariant_name, or null if it does not exist.
+     */
+    private InvariantMethod findInvariant(String name) {
+        int separator = name.indexOf('.');
+        if (separator < 0) {
+            return null;
+        }
+        RMTypeInfo typeInfo = lookup.getTypeInfo(name.substring(0, separator));
+        if (typeInfo == null) {
+            return null;
+        }
+        String invariantName = name.substring(separator + 1);
+        return typeInfo.getInvariants().stream()
+                .filter(invariantMethod -> invariantMethod.getAnnotation().value().equals(invariantName))
+                .findFirst()
+                .orElse(null);
+    }
+
+    private boolean isInvariantEnabled(RMTypeInfo typeInfo, InvariantMethod invariantMethod) {
+        if (enabledInvariants != null) {
+            return containsInvariant(enabledInvariants, typeInfo, invariantMethod);
+        }
+        if (disabledInvariants != null) {
+            return !containsInvariant(disabledInvariants, typeInfo, invariantMethod);
+        }
+        return true;
+    }
+
+    /**
+     * Returns whether the given invariant is in the set, either under the type of the validated object or under the
+     * type that declares the invariant. A name on a type therefore also applies to its subtypes, but not the other way
+     * around.
+     */
+    private boolean containsInvariant(Set<String> invariants, RMTypeInfo typeInfo, InvariantMethod invariantMethod) {
+        String invariantName = invariantMethod.getAnnotation().value();
+        if (invariants.contains(typeInfo.getRmName() + "." + invariantName)) {
+            return true;
+        }
+        RMTypeInfo declaringTypeInfo = lookup.getTypeInfo(invariantMethod.getMethod().getDeclaringClass());
+        return declaringTypeInfo != null && invariants.contains(declaringTypeInfo.getRmName() + "." + invariantName);
+    }
+
     private List<RMObjectValidationMessage> validateInvariants(RMObjectWithPath objectWithPath, String pathSoFar) {
         if (!validateInvariants) {
             return Collections.emptyList();
@@ -160,7 +206,7 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
             RMTypeInfo typeInfo = lookup.getTypeInfo(rmObject.getClass());
             if (typeInfo != null) {
                 for (InvariantMethod invariantMethod : typeInfo.getInvariants()) {
-                    if (!invariantMethod.getAnnotation().ignored()) {
+                    if (!invariantMethod.getAnnotation().ignored() && isInvariantEnabled(typeInfo, invariantMethod)) {
                         try {
                             boolean passed = (boolean) invariantMethod.getMethod().invoke(rmObject);
                             if (!passed) {
@@ -365,7 +411,10 @@ public class RMObjectValidator extends RMObjectValidatingProcessor {
 
         if (parentIsEvent && attributeIsData && attributeIsEmpty && attributeShouldNotBeEmpty) {
             String message = "Observation " + RMObjectValidationUtil.getParentObservationTerm(attribute) + " contains no results";
-            result.add(new RMObjectValidationMessage(cobject == null ? null : cobject.getParent().getParent(), pathSoFar, message, RMObjectValidationMessageType.EMPTY_OBSERVATION));
+            //the cobject is the event itself, so report the error on its grandparent - if the cobject is an archetype root, it has none
+            CAttribute cobjectParent = cobject == null ? null : cobject.getParent();
+            CObject grandParent = cobjectParent == null ? null : cobjectParent.getParent();
+            result.add(new RMObjectValidationMessage(grandParent, pathSoFar, message, RMObjectValidationMessageType.EMPTY_OBSERVATION));
         }
         return result;
     }

@@ -1,19 +1,31 @@
 description = "tools that operate on the archie reference models and archetype object model"
 
 dependencies {
-    api project(':grammars')
-    api project(':base')
     api project(':aom')
+    api project(':base')
     api project(':bmm')
     api project(':path-queries')
     api project(':utils')
-    api project(':openehr-terminology')
-    testImplementation project(':openehr-rm')
-    testImplementation project(':archie-utils')
-    testImplementation project(':i18n')
-    testImplementation project(':test-rm')
-    testImplementation project(':referencemodels')
 
-    api(libs.leadpony.justify)
-    api(variantOf(libs.jakarta.json) { classifier("module") })
+    api(libs.jakarta.xml.bind.api)
+    api(libs.jsr305)
+
+    implementation project(':grammars')
+    implementation project(':openehr-terminology')
+
+    implementation(libs.guava)
+    implementation(libs.jackson.databind)
+    implementation(libs.threeten.extra)
+    implementation(libs.zafarkhaja.semver)
+
+    testImplementation project(':archie-utils')
+    // Only needed to run ExampleJsonInstanceGeneratorTest, which exercises the JSON schema validator.
+    testImplementation project(':json-schema-tools')
+    testImplementation project(':openehr-rm')
+    testImplementation project(':referencemodels')
+    testImplementation project(':test-rm')
+
+    testImplementation(libs.commons.io)
+    testImplementation(libs.jackson3.databind)
+    testImplementation(libs.reflections)
 }

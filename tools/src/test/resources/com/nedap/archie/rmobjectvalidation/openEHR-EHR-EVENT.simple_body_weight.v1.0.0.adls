@@ -1,0 +1,43 @@
+archetype (adl_version=2.0.6; rm_release=1.1.0)
+    openEHR-EHR-EVENT.simple_body_weight.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    lifecycle_state = <"draft">
+
+definition
+    EVENT[id1] matches {    -- Any event
+        data existence matches {1} matches {
+            ITEM_TREE[id2] matches {
+                items cardinality matches {1..*; unordered} matches {
+                    ELEMENT[id3] occurrences matches {1} matches {    -- Weight
+                        value matches {
+                            DV_QUANTITY[id9002] matches {
+                                [magnitude, units] matches {
+                                    [{|0.0..1000.0|}, {"kg"}],
+                                    [{|0.0..2000.0|}, {"[lb_av]"}],
+                                    [{|0.0..1000000.0|}, {"g"}]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1"] = <
+                text = <"Body weight">
+                description = <"Measurement of the body weight of an individual.">
+            >
+            ["id3"] = <
+                text = <"Weight">
+                description = <"The weight of the individual.">
+            >
+        >
+    >

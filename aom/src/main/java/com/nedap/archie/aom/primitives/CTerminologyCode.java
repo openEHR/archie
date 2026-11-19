@@ -1,8 +1,8 @@
 package com.nedap.archie.aom.primitives;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nedap.archie.ArchieLanguageConfiguration;
-import com.nedap.archie.ValidationConfiguration;
 import com.nedap.archie.aom.Archetype;
 import com.nedap.archie.aom.CObject;
 import com.nedap.archie.aom.CPrimitiveObject;
@@ -14,16 +14,15 @@ import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.aom.utils.ConformanceCheckResult;
 import com.nedap.archie.archetypevalidator.ErrorType;
 import com.nedap.archie.base.terminology.TerminologyCode;
-import com.nedap.archie.terminology.OpenEHRTerminologyAccess;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 import org.openehr.utils.message.I18n;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -38,7 +37,10 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     @XmlElement(name="assumed_value")
     @Nullable
     private TerminologyCode assumedValue;
-    private List<String> constraint = new ArrayList<>();
+    /**
+     * The at- or ac-code of this constraint. An empty string means no constraint, as described in the specification.
+     */
+    private String constraint = "";
 
     @Nullable
     private ConstraintStatus constraintStatus;
@@ -54,18 +56,37 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     }
 
     @Override
-    public List<String> getConstraint() {
+    public String getConstraint() {
         return this.constraint;
     }
 
     @Override
-    public void setConstraint(List<String> constraint) {
+    public List<String> getConstraintAsList() {
+        return isAnyAllowed() ? Collections.emptyList() : Collections.singletonList(getConstraint());
+    }
+
+    /**
+     * Set the at- or ac-code of this constraint. Use an empty string for no constraint.
+     */
+    public void setConstraint(String constraint) {
         this.constraint = constraint;
     }
 
-    @Override
-    public void addConstraint(String constraint) {
-        this.constraint.add(constraint);
+    /**
+     * JSON setter for the constraint. Archie 3 serialized the constraint as a list, so to still be able to parse that
+     * output, an empty list is accepted as no constraint, and a list with one element as that element.
+     */
+    @JsonProperty("constraint")
+    private void setConstraintFromJson(Object constraint) {
+        if (constraint == null || constraint instanceof String) {
+            setConstraint((String) constraint);
+        } else if (constraint instanceof List<?> list && list.isEmpty()) {
+            setConstraint("");
+        } else if (constraint instanceof List<?> list && list.size() == 1 && list.get(0) instanceof String code) {
+            setConstraint(code);
+        } else {
+            throw new IllegalArgumentException("constraint must be a single code, but was: " + constraint);
+        }
     }
 
     public ConstraintStatus getConstraintStatus() {
@@ -81,43 +102,10 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         return getEffectiveConstraintStatus() == ConstraintStatus.REQUIRED;
     }
 
+    @JsonIgnore
     public ConstraintStatus getEffectiveConstraintStatus() {
         return constraintStatus == null ? ConstraintStatus.REQUIRED : constraintStatus;
     }
-
-    @Override
-    @Deprecated
-    public boolean isValidValue(TerminologyCode value) {
-        if(getConstraint().isEmpty()) {
-            return true;
-        }
-        if(isConstraintRequired()) {
-            if (value == null) return false;
-
-            List<String> values;
-            String terminologyId = value.getTerminologyId();
-            if (terminologyId == null || terminologyId.equalsIgnoreCase("local") || AOMUtils.isValueSetCode(value.getTerminologyId())) {
-                values = this.getValueSetExpanded();
-            } else if (terminologyId.equalsIgnoreCase("openehr")) {
-                values = this.getOpenEHRValueSetExpanded();
-            } else {
-                // This is not a local nor an openehr terminology.
-                // If a term binding is there, we may be able to validate, if external, we wil not be able to.
-                // Return true for now for non-local terminology values.
-                //TODO: implement checking for direct term bindings later
-                return !ValidationConfiguration.isFailOnUnknownTerminologyId();
-            }
-
-            if(values != null && !values.isEmpty()) {
-                return value.getCodeString() != null && values.contains(value.getCodeString());
-            }
-        } else {
-            return true;
-        }
-
-        return false;
-    }
-
 
     /**
      * Get the ArchetypeTerms in the selected meaning and description language for all the possible options if this is a
@@ -137,7 +125,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         ArchetypeTerminology terminology = archetype.getTerminology(this);
         String language = ArchieLanguageConfiguration.getMeaningAndDescriptionLanguage();
         String defaultLanguage = ArchieLanguageConfiguration.getDefaultMeaningAndDescriptionLanguage();
-        for(String constraint:getConstraint()) {
+        if(!isAnyAllowed()) {
             if(constraint.startsWith("at")) {
                 ArchetypeTerm termDefinition = terminology.getTermDefinition(language, constraint);
                 if(termDefinition == null) {
@@ -167,7 +155,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     private void setTerms(List<TerminologyCodeWithArchetypeTerm> terms) {
         //hack for jackson to work
     }
-    
+
     private ArchetypeTerminology getTerminology() {
         Archetype archetype = getArchetype();
         if(archetype != null) {
@@ -182,7 +170,7 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
     public List<String> getValueSetExpanded() {
         List<String> result = new ArrayList<>();
         ArchetypeTerminology terminology = getTerminology();
-        for(String constraint:getConstraint()) {
+        if(!isAnyAllowed()) {
             if(constraint.startsWith("at")) {
                 result.add(constraint);
             } else if (constraint.startsWith("ac")) {
@@ -196,29 +184,6 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         }
         return result;
     }
-    
-    private List<String> getOpenEHRValueSetExpanded() {
-        List<String> atCodes = getValueSetExpanded();
-        ArchetypeTerminology terminology = getTerminology();
-        OpenEHRTerminologyAccess terminologyAccess = OpenEHRTerminologyAccess.getInstance();
-        List<String> result = new ArrayList<>();
-        
-        if(terminology == null) {
-            return result;
-        }
-        
-        for(String atCode : atCodes) {
-            URI termBinding = terminology.getTermBinding("openehr", atCode);
-            if (termBinding != null) {
-                String code = terminologyAccess.parseTerminologyURI(termBinding.toString());
-                if (code != null) {
-                    result.add(code);
-                }
-            }
-        }
-        
-        return result;        
-    }
 
     @Override
     public ConformanceCheckResult cConformsTo(CObject other, BiFunction<String, String, Boolean> rmTypesConformant) {
@@ -228,54 +193,48 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         }
         //now guaranteed to be the same class
         CTerminologyCode otherCode = (CTerminologyCode) other;
-        List<String> valueSet = getValueSetExpanded();
-        List<String> otherValueSet = otherCode.getValueSetExpanded();
 
-        if(constraint.size() != 1) {
-            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
-        }
-        if(otherCode.constraint.size() != 1) {
-            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("parent CTerminology code contains more than one constraint, that is not valid. Constraints are: {0}", constraint));
+        // An unconstrained parent accepts anything
+        if(otherCode.isAnyAllowed()) {
+            return ConformanceCheckResult.conforms();
         }
 
-        if(!getEffectiveConstraintStatus().cConformsTo(otherCode.getEffectiveConstraintStatus()) ) {
-            //PROBLEM: if this child CTerminologyCode has no constraint status, it should override its parent.
-            //it does not here!
-            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminology code constraint status {0} is wider more than parent contraint status {1}", getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus()));
+        // The constraint status can only be narrowed: example -> preferred -> extensible -> required
+        if(!getEffectiveConstraintStatus().cConformsTo(otherCode.getEffectiveConstraintStatus())) {
+            return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("specialized CTerminologyCode constraint status {0} is wider than parent constraint status {1}", getEffectiveConstraintStatus(), otherCode.getEffectiveConstraintStatus()));
         }
-        String thisConstraint = constraint.get(0);
-        String otherConstraint = otherCode.constraint.get(0);
-        Archetype archetype = this.getArchetype();
+
+        // If the parent constraint status is not required, the child automatically conforms
+        if(!otherCode.isConstraintRequired()) {
+            return ConformanceCheckResult.conforms();
+        }
+
+        // From here on, both parent and child constraint status are required
+        String thisConstraint = constraint;
+        String otherConstraint = otherCode.constraint;
         if(AOMUtils.isValidValueSetCode(thisConstraint) && AOMUtils.isValidValueSetCode(otherConstraint)) {
+            List<String> otherValueSet = otherCode.getValueSetExpanded();
             if (otherValueSet.isEmpty()) {
+                // an empty parent value set means there is no value set constraint, so the child conforms
                 return ConformanceCheckResult.conforms();
             }
-
-            if(otherCode.isConstraintRequired()) {
-                //if required, codes can be:
-                // - reused directly
-                // - specialized
-                //this includes the value set codes
-                if (!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
-                    return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}", thisConstraint, otherConstraint));
+            //codes can be:
+            // - reused directly
+            // - specialized
+            //this includes the value set codes
+            if (!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
+                return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value set code {0} does not conform to parent constraint with value set code {1}", thisConstraint, otherConstraint));
+            }
+            // deliberately more lenient than the specification, which requires each value to be in the parent
+            // value set: specializations of the parent values are accepted as well
+            for (String value : getValueSetExpanded()) {
+                if( !AOMUtils.valueSetContainsCodeOrParent(otherValueSet, value)) {
+                    return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} is not contained in {1}, or a direct specialization of one of its values", value, otherValueSet));
                 }
-                for (String value : valueSet) {
-                    if( !AOMUtils.valueSetContainsCodeOrParent(otherValueSet, value)) {
-                        return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} is not contained in {1}, or a direct specialization of one of its values", value, otherValueSet));
-                    }
-                }
-            } else {
-                //if not required, everything goes
-                return ConformanceCheckResult.conforms();
-//                for (String value : valueSet) {
-//                    if(valueSetContainsCodeOrSpecialization(otherValueSet, value) ||
-//                            AOMUtils.getSpecialisationStatusFromCode(value, archetypeSpecialisationDepth) == CodeRedefinitionStatus.ADDED) {
-//                        return false;
-//                    }
-//                }
             }
             return ConformanceCheckResult.conforms();
         } else {
+            // an unconstrained child does not conform, because it is wider than the parent constraint
             if(!AOMUtils.codesConformant(thisConstraint, otherConstraint)) {
                 return ConformanceCheckResult.fails(ErrorType.VPOV, I18n.t("child terminology constraint value code {0} does not conform to parent constraint with value code {1}", thisConstraint, otherConstraint));
             }
@@ -283,17 +242,20 @@ public class CTerminologyCode extends CPrimitiveObject<String, TerminologyCode> 
         }
     }
 
+    /**
+     * @return true if this constraint does not constrain the code, so any code is allowed
+     */
+    @JsonIgnore
+    public boolean isAnyAllowed() {
+        return constraint == null || constraint.isEmpty();
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("{[");
-        boolean first = true;
-        for(String constraint:getConstraint()) {
-            if(!first) {
-                result.append(", ");
-            }
-            first = false;
-            result.append(constraint.toString());
+        if(!isAnyAllowed()) {
+            result.append(constraint);
         }
         result.append("]}");
         return result.toString();

@@ -55,9 +55,7 @@ public class BasicDefinitionObjectValidation extends ValidatingVisitor {
         if(interval.getUpper() != null && interval.getLower() != null &&
             !interval.isLowerUnbounded() &&
             !interval.isUpperUnbounded()){
-            if(interval.getComparableUpper().compareTo(interval.getComparableLower()) < 0){
-                return false;
-            }
+            return interval.getComparableUpper().compareTo(interval.getComparableLower()) >= 0;
         }
         return true;
     }

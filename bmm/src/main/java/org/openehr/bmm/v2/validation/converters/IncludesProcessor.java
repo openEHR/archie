@@ -22,7 +22,7 @@ public class IncludesProcessor {
     public List<String> getIncludeIds(PBmmSchema schema) {
 
         return schema.getIncludes().values().stream()
-                .map( includeSpec -> includeSpec.getId()).collect(Collectors.toCollection(ArrayList::new));
+                .map(BmmIncludeSpec::getId).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public void cloneSchemaAndAddIncludes(BmmValidationResult validationResult, BmmRepository repository, MessageLogger logger) {

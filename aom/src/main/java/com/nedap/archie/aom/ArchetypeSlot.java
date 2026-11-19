@@ -2,10 +2,10 @@ package com.nedap.archie.aom;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.nedap.archie.rules.Assertion;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 

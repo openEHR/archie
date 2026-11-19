@@ -5,8 +5,8 @@ import com.google.common.base.Strings;
 import com.nedap.archie.rm.RMObject;
 import com.nedap.archie.rminfo.Invariant;
 import com.nedap.archie.rminfo.RMProperty;
+import jakarta.xml.bind.annotation.XmlTransient;
 
-import javax.xml.bind.annotation.XmlTransient;
 import java.util.Objects;
 import java.util.regex.Pattern;
 

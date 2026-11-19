@@ -8,7 +8,8 @@
 
 package com.nedap.archie.terminology.openehr;
 
-import javax.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class Group {
      */
     public List<Concept> getConcept() {
         if (concept == null) {
-            concept = new ArrayList<Concept>();
+            concept = new ArrayList<>();
         }
         return this.concept;
     }

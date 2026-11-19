@@ -7,7 +7,7 @@ import com.nedap.archie.serializer.odin.OdinObjectParser;
 
 /**
  * Parser for the terminology section of an archetype
- *
+ * <p>
  * Created by pieter.bos on 19/10/15.
  */
 public class TerminologyParser extends BaseTreeWalker {
@@ -17,8 +17,7 @@ public class TerminologyParser extends BaseTreeWalker {
     }
 
     public ArchetypeTerminology parseTerminology(TerminologySectionContext context) {
-        ArchetypeTerminology terminology = OdinObjectParser.convert(context.odin_text(), ArchetypeTerminology.class);
-        return terminology;
+        return OdinObjectParser.convert(context.odin_text(), ArchetypeTerminology.class);
     }
 
 }

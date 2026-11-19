@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.MappingJsonFactory;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 @SuppressWarnings("resource")
 public class ODINFactory extends JsonFactory
@@ -367,10 +368,9 @@ public class ODINFactory extends JsonFactory
     @Override
     protected ODINGenerator _createGenerator(Writer out, IOContext ctxt) throws IOException {
         int feats = _odinGeneratorFeatures;
-        ODINGenerator gen = new ODINGenerator(ctxt, _generatorFeatures, feats,
-                _objectCodec, out);
         // any other initializations? No?
-        return gen;
+        return new ODINGenerator(ctxt, _generatorFeatures, feats,
+                _objectCodec, out);
     }
 
     @Override
@@ -385,6 +385,6 @@ public class ODINFactory extends JsonFactory
     /**********************************************************
      */
 
-    protected final Charset UTF8 = Charset.forName("UTF-8");
+    protected final Charset UTF8 = StandardCharsets.UTF_8;
 
 }

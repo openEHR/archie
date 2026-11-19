@@ -94,7 +94,7 @@ public class MessageDescriptor {
         StringBuilder builder = new StringBuilder();
         builder.append(severity.name())
                 .append(" ");
-        if (location != null && location.trim().length() > 0) {
+        if (location != null && !location.trim().isEmpty()) {
             builder.append(location).append(": ");
         }
         builder.append("(")

@@ -6,7 +6,6 @@ import com.nedap.archie.aom.CObject;
 import com.nedap.archie.base.MultiplicityInterval;
 import com.nedap.archie.rminfo.MetaModel;
 import com.nedap.archie.rminfo.MetaModelProvider;
-import com.nedap.archie.rminfo.MetaModels;
 
 /**
  * Sets the default occurrences with ADL 1.4 rules ({1..1}), if not explicitly set in a given Archetype.
@@ -21,20 +20,12 @@ public class ADL14DefaultMultiplicitiesSetter {
 
     private final MetaModelProvider metaModelProvider;
 
-    /**
-     * @deprecated Use {@link #ADL14DefaultMultiplicitiesSetter(MetaModelProvider)} instead.
-     */
-    @Deprecated
-    public ADL14DefaultMultiplicitiesSetter(MetaModels metaModels) {
-        this((MetaModelProvider) metaModels);
-    }
-
     public ADL14DefaultMultiplicitiesSetter(MetaModelProvider metaModelProvider) {
         this.metaModelProvider = metaModelProvider;
     }
 
     public void setDefaults(Archetype archetype) {
-        MetaModel metaModel = metaModelProvider.selectAndGetMetaModel(archetype);
+        MetaModel metaModel = metaModelProvider.getMetaModel(archetype);
         correctItemsMultiplicities(metaModel, archetype.getDefinition());
     }
 

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.jsontype.impl.ClassNameIdResolver;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.nedap.archie.base.OpenEHRBase;
+import com.nedap.archie.base.terminology.TerminologyCode;
 import com.nedap.archie.rminfo.ArchieAOMInfoLookup;
 import com.nedap.archie.rminfo.ArchieRMInfoLookup;
 import com.nedap.archie.rminfo.ModelInfoLookup;
@@ -64,6 +65,11 @@ public class OpenEHRTypeNaming extends ClassNameIdResolver {
         if(result == null) {
             //AOM class?
             result = aomInfoLookup.getClass(typeName);
+        }
+        if(result == null && "TerminologyCode".equals(typeName)) {
+            //backwards compatibility: older Archie versions serialized the TERMINOLOGY_CODE type as the simple java
+            //class name "TerminologyCode" instead of the openEHR type name, so still accept that when deserializing.
+            result = TerminologyCode.class;
         }
         if(result != null) {
             TypeFactory typeFactory = (ctxt == null) ? _typeFactory : ctxt.getTypeFactory();

@@ -3,9 +3,9 @@ package com.nedap.archie.aom;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nedap.archie.paths.PathSegment;
 import com.nedap.archie.paths.PathUtil;
+import jakarta.xml.bind.annotation.XmlTransient;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 /**
@@ -48,17 +48,6 @@ public abstract class ArchetypeConstraint extends ArchetypeModelObject {
     }
 
     private void setPath(String path){
-        //setter hack for jackson, unfortunately
-    }
-
-    /**
-     * @deprecated This functionality will be removed.
-     */
-    @Deprecated
-    public abstract String getLogicalPath();
-
-    @Deprecated
-    private void setLogicalPath(String path){
         //setter hack for jackson, unfortunately
     }
 

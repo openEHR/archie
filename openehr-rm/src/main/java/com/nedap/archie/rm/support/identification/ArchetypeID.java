@@ -3,9 +3,9 @@ package com.nedap.archie.rm.support.identification;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nedap.archie.rminfo.RMPropertyIgnore;
+import jakarta.xml.bind.Unmarshaller;
 
 import javax.annotation.Nullable;
-import javax.xml.bind.Unmarshaller;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

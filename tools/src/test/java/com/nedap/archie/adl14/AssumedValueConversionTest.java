@@ -64,7 +64,7 @@ public class AssumedValueConversionTest {
 
         assertNull(cTerminologyCode.getAssumedValue().getTerminologyId());
         assertEquals("at0016", cTerminologyCode.getAssumedValue().getCodeString());
-        assertTrue(archetype.getTerminology().getValueSets().get(cTerminologyCode.getConstraint().get(0)).getMembers().contains("at0016"));
+        assertTrue(archetype.getTerminology().getValueSets().get(cTerminologyCode.getConstraint()).getMembers().contains("at0016"));
 
         InMemoryFullArchetypeRepository repository = new InMemoryFullArchetypeRepository();
         ArchetypeValidationSettings settings = new ArchetypeValidationSettings();

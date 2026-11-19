@@ -3,7 +3,10 @@ package com.nedap.archie.flattener;
 import com.nedap.archie.adlparser.modelconstraints.ReflectionConstraintImposer;
 import com.nedap.archie.aom.*;
 import com.nedap.archie.aom.utils.ArchetypeParsePostProcessor;
-import com.nedap.archie.rminfo.*;
+import com.nedap.archie.rminfo.MetaModel;
+import com.nedap.archie.rminfo.MetaModelProvider;
+import com.nedap.archie.rminfo.ReferenceModels;
+import com.nedap.archie.rminfo.SimpleMetaModelProvider;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,24 +49,8 @@ public class Flattener implements IAttributeFlattenerSupport {
         this(repository, new SimpleMetaModelProvider(models, null));
     }
 
-    /**
-     * @deprecated Use {@link #Flattener(ArchetypeRepository, MetaModelProvider)} instead.
-     */
-    @Deprecated
-    public Flattener(ArchetypeRepository repository, MetaModels models) {
-        this(repository, (MetaModelProvider) models);
-    }
-
     public Flattener(ArchetypeRepository repository, MetaModelProvider metaModelProvider) {
         this(repository, metaModelProvider, FlattenerConfiguration.forFlattened());
-    }
-
-    /**
-     * @deprecated Use {@link #Flattener(ArchetypeRepository, MetaModelProvider, FlattenerConfiguration)} instead.
-     */
-    @Deprecated
-    public Flattener(ArchetypeRepository repository, MetaModels models, FlattenerConfiguration configuration) {
-        this(repository, (MetaModelProvider) models, configuration);
     }
 
     public Flattener(ArchetypeRepository repository, MetaModelProvider metaModelProvider, FlattenerConfiguration configuration) {
@@ -118,7 +105,7 @@ public class Flattener implements IAttributeFlattenerSupport {
             throw new IllegalStateException("You've used this flattener before - single use instance, please create a new one!");
         }
 
-        metaModel = metaModelProvider.selectAndGetMetaModel(toFlatten);
+        metaModel = metaModelProvider.getMetaModel(toFlatten);
 
         //validate that we can legally flatten first
         String parentId = toFlatten.getParentArchetypeId();
@@ -137,7 +124,7 @@ public class Flattener implements IAttributeFlattenerSupport {
             }
             result.getDefinition().setArchetype(result);
             result.setDifferential(false);
-            result.setGenerated(true);
+            if (result instanceof AuthoredArchetype) ((AuthoredArchetype) result).setGenerated(true);
             return result;
         }
 
@@ -217,10 +204,12 @@ public class Flattener implements IAttributeFlattenerSupport {
         }
         result.getDefinition().setArchetype(result);
         result.setDescription(child.getDescription());
-        result.setOtherMetaData(child.getOtherMetaData());
-        result.setBuildUid(child.getBuildUid());
         result.setOriginalLanguage(child.getOriginalLanguage());
         result.setTranslations(child.getTranslations());
+        if (result instanceof AuthoredArchetype && child instanceof AuthoredArchetype) {
+            ((AuthoredArchetype) result).setOtherMetaData(((AuthoredArchetype) child).getOtherMetaData());
+            ((AuthoredArchetype) result).setBuildUid(((AuthoredArchetype) child).getBuildUid());
+        }
 
         if(child instanceof Template && !config.isCreateOperationalTemplate()) {
             Template resultTemplate = (Template) result;
@@ -243,7 +232,7 @@ public class Flattener implements IAttributeFlattenerSupport {
         this.removeSiblingOrder(result);
 
         result.setDifferential(false);//mark this archetype as being flat
-        result.setGenerated(true);
+        if (result instanceof AuthoredArchetype) ((AuthoredArchetype) result).setGenerated(true);
 
         ArchetypeParsePostProcessor.fixArchetype(result);
 
@@ -462,16 +451,6 @@ public class Flattener implements IAttributeFlattenerSupport {
     @Override
     public MetaModel getMetaModel() {
         return metaModel;
-    }
-
-    @Override
-    @Deprecated
-    public MetaModels getMetaModels() {
-        if(metaModelProvider instanceof MetaModels) {
-            return (MetaModels) metaModelProvider;
-        } else {
-            throw new IllegalStateException("MetaModels not available");
-        }
     }
 
     @Override

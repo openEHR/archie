@@ -28,13 +28,17 @@ class OperationalTemplateCreator {
         result.setDefinition(clone.getDefinition());
         result.setDifferential(false);
 
-        result.setRmRelease(clone.getRmRelease());
-        result.setAdlVersion(clone.getAdlVersion());
+        if (clone instanceof AuthoredArchetype) {
+            AuthoredArchetype authoredArchetypeClone = (AuthoredArchetype) clone;
+            result.setRmRelease(authoredArchetypeClone.getRmRelease());
+            result.setAdlVersion(authoredArchetypeClone.getAdlVersion());
+            result.setBuildUid(authoredArchetypeClone.getBuildUid());
+            result.setOtherMetaData(authoredArchetypeClone.getOtherMetaData());
+        }
+
         result.setTerminology(clone.getTerminology());
         result.setGenerated(true);
-        result.setOtherMetaData(clone.getOtherMetaData());
         result.setRules(clone.getRules());
-        result.setBuildUid(clone.getBuildUid());
         result.setDescription(clone.getDescription());
         result.setOriginalLanguage(clone.getOriginalLanguage());
         result.setTranslations(clone.getTranslations());

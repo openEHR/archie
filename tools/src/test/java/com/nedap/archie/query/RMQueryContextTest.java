@@ -34,7 +34,8 @@ public class RMQueryContextTest {
     @BeforeEach
     public void setup() throws Exception {
         ArchieLanguageConfiguration.setThreadLocalDescriptiongAndMeaningLanguage("en");
-        archetype = new ADLParser(new RMConstraintImposer()).parse(getClass().getResourceAsStream("/basic.adl"));
+        archetype = new ADLParser().parse(getClass().getResourceAsStream("/basic.adl"));
+        new RMConstraintImposer().imposeConstraints(archetype.getDefinition());
         testUtil = new TestUtil();
     }
 
