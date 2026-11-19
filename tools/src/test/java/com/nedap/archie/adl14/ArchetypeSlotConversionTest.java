@@ -39,6 +39,27 @@ public class ArchetypeSlotConversionTest {
         }
     }
 
+    @Test
+    public void slotAssertionPrimitiveNodeIdFollowsConvertedCodeSystem() throws Exception {
+        // an ADL 1.4 archetype is at-coded when parsed. After conversion to id-coded, primitives in slot assertions must be id9999
+        assertEquals("id9999", convertedSlotAssertionNodeId(ADL14ConversionConfiguration.NodeIdCodeSystem.ID_CODED, "/protocol/items[1]"));
+        assertEquals("at9999", convertedSlotAssertionNodeId(ADL14ConversionConfiguration.NodeIdCodeSystem.AT_CODED, "/protocol/items[1]"));
+    }
+
+    private String convertedSlotAssertionNodeId(ADL14ConversionConfiguration.NodeIdCodeSystem codeSystem, String slotPath) throws Exception {
+        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        conversionConfiguration.setNodeIdCodeSystem(codeSystem);
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
+        try(InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/adl14/openEHR-EHR-OBSERVATION.respiration.v1.adl")) {
+            ADL2ConversionResultList result = converter.convert(
+                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream, conversionConfiguration)));
+            Archetype archetype = result.getConversionResults().get(0).getArchetype();
+            ArchetypeSlot slot = archetype.itemAtPath(slotPath);
+            BinaryOperator matches = (BinaryOperator) slot.getIncludes().get(0).getExpression();
+            return ((Constraint<?>) matches.getRightOperand()).getItem().getNodeId();
+        }
+    }
+
     private String getPattern(Assertion assertion) {
         BinaryOperator matches = (BinaryOperator) assertion.getExpression();
         Constraint<?> constraint = (Constraint<?>) matches.getRightOperand();
