@@ -35,7 +35,7 @@ public class CodeSystemValidation extends ValidatingVisitor {
     public void validate(CObject cObject) {
         // Only structural node identifiers are relevant. Value codes (at) and value set codes (ac) live inside
         // primitive constraints and the terminology, never as a C_OBJECT node id, so primitive objects (including
-        // C_TERMINOLOGY_CODE and the id9999 primitive node id) are skipped.
+        // C_TERMINOLOGY_CODE and the primitive node id) are skipped.
         if (cObject instanceof CPrimitiveObject) {
             return;
         }
