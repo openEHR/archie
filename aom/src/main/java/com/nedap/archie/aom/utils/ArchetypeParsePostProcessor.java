@@ -45,13 +45,13 @@ public class ArchetypeParsePostProcessor {
      * (id9999/at9999) that cannot be derived:
      * <ul>
      *     <li>Primitive objects in the definition get their node id from their archetype, through their parents.</li>
-     *     <li>Primitive objects in slot assertions and rules have no parent. In at-coded archetypes and template
-     *     overlays they get at9999 here. In id-coded ones nothing is needed, because id9999 is the default.</li>
+     *     <li>Primitive objects in slot assertions and rules have no parent, so they get their node id here. This is
+     *     also done for id-coded archetypes, because the code system of an archetype can change after parsing: an
+     *     ADL 1.4 archetype is at-coded when parsed, and id-coded after conversion.</li>
      * </ul>
      */
     private static void fixDefinitionAndRules(Archetype archetype, boolean isTemplateOverlay) {
-        boolean atCoded = AOMUtils.isAtCoded(archetype);
-        if (archetype.getDefinition() == null || (isTemplateOverlay && !atCoded)) {
+        if (archetype.getDefinition() == null) {
             return;
         }
         String primitiveNodeId = AOMUtils.getPrimitiveNodeId(archetype);
@@ -59,7 +59,7 @@ public class ArchetypeParsePostProcessor {
         workList.add(archetype.getDefinition());
         while (!workList.empty()) {
             CObject cObject = workList.pop();
-            if (atCoded && cObject instanceof ArchetypeSlot) {
+            if (cObject instanceof ArchetypeSlot) {
                 ArchetypeSlot slot = (ArchetypeSlot) cObject;
                 setPrimitiveNodeIds(slot.getIncludes(), primitiveNodeId);
                 setPrimitiveNodeIds(slot.getExcludes(), primitiveNodeId);
@@ -72,7 +72,7 @@ public class ArchetypeParsePostProcessor {
                 setParents(cObject, workList);
             }
         }
-        if (atCoded && archetype.getRules() != null) {
+        if (archetype.getRules() != null) {
             setPrimitiveNodeIds(archetype.getRules().getRules(), primitiveNodeId);
         }
     }
