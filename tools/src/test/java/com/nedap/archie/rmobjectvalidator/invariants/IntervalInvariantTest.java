@@ -26,6 +26,22 @@ public class IntervalInvariantTest {
     }
 
     @Test
+    public void limitsConsistentMissingLimitOnBoundedSide() {
+        //built like a deserializer does (no-arg constructor + setters): lower_unbounded and upper_unbounded keep
+        //their default false, so a missing limit cannot satisfy lower <= upper
+        InvariantTestUtil.assertInvariantInvalid(withLimits(null, 3), "Limits_consistent", "/");
+        InvariantTestUtil.assertInvariantInvalid(withLimits(1, null), "Limits_consistent", "/");
+        InvariantTestUtil.assertInvariantInvalid(withLimits(null, null), "Limits_consistent", "/");
+    }
+
+    private static Interval<Integer> withLimits(Integer lower, Integer upper) {
+        Interval<Integer> interval = new Interval<>();
+        interval.setLower(lower);
+        interval.setUpper(upper);
+        return interval;
+    }
+
+    @Test
     public void lowerIncludedInvalid() {
         Interval<Integer> interval = new Interval<>(1, 4);
         interval.setLowerIncluded(true);

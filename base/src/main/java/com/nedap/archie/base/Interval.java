@@ -171,14 +171,16 @@ public class Interval<T> extends OpenEHRBase {
             return true;
         }
 
-		if (!lowerUnbounded) {
+		//a bounded side without a limit (lower_unbounded = false, lower = null) is reported by Limits_consistent,
+		//here it does not constrain the value
+		if (!lowerUnbounded && comparableLower != null) {
             int comparedWithLower = comparableValue.compareTo(comparableLower);
             if (comparedWithLower < 0 || (!lowerIncluded && comparedWithLower == 0)) {
                 return false;
             }
         }
 
-		if (!upperUnbounded) {
+		if (!upperUnbounded && comparableUpper != null) {
             int comparedWithUpper = comparableValue.compareTo(comparableUpper);
             return comparedWithUpper <= 0 && (upperIncluded || comparedWithUpper != 0);
         }
@@ -378,6 +380,10 @@ public class Interval<T> extends OpenEHRBase {
     @Invariant("Limits_consistent")
     public boolean limitsConsistent() {
         if(!lowerUnbounded && !upperUnbounded) {
+            if (lower == null || upper == null) {
+                //a bounded side needs a limit: lower <= upper cannot hold if one of them is not set
+                return false;
+            }
             return compareTo(upper, lower) <= 0;
         }
         return true;
