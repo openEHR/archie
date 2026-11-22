@@ -19,6 +19,18 @@ public class DvIntervalInvariantTest {
     }
 
     @Test
+    public void missingLimitOnBoundedSide() {
+        //built like a deserializer does: no-arg constructor + setters, unbounded flags keep their default false
+        DvInterval<DvCount> upperOnly = new DvInterval<>();
+        upperOnly.setUpper(new DvCount(5L));
+        InvariantTestUtil.assertInvariantInvalid(upperOnly, "Limits_consistent", "INTERVAL", "/interval");
+
+        DvInterval<DvCount> lowerOnly = new DvInterval<>();
+        lowerOnly.setLower(new DvCount(1L));
+        InvariantTestUtil.assertInvariantInvalid(lowerOnly, "Limits_consistent", "INTERVAL", "/interval");
+    }
+
+    @Test
     public void intervalInvariantsChecked() {
         DvInterval<DvCount> interval = new DvInterval<>(new DvCount(1L), new DvCount(4L));
         interval.setLowerIncluded(true);
