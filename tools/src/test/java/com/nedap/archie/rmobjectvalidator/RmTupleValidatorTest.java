@@ -65,7 +65,7 @@ public class RmTupleValidatorTest {
         rmObjects.add(new RMObjectWithPath(quantity, null));
 
         // Run validation
-        List<RMObjectValidationMessage> result = validator.validate(cObject, "/path/so/far", rmObjects, tuple);
+        List<RMObjectValidationMessage> result = validator.validate(cObject, ValidationPath.ROOT.joinPaths("/path/so/far"), rmObjects, tuple);
 
         // Asserts
         assertEquals(2, result.size());
@@ -115,7 +115,7 @@ public class RmTupleValidatorTest {
         rmObjects.add(new RMObjectWithPath(quantity, null));
 
         // Run validation
-        List<RMObjectValidationMessage> result = validator.validate(cObject, "/path/so/far", rmObjects, tuple);
+        List<RMObjectValidationMessage> result = validator.validate(cObject, ValidationPath.ROOT.joinPaths("/path/so/far"), rmObjects, tuple);
 
         // Asserts
         assertEquals(1, result.size());
@@ -169,7 +169,7 @@ public class RmTupleValidatorTest {
         rmObjects.add(new RMObjectWithPath(quantity, null));
 
         // Run validation
-        List<RMObjectValidationMessage> result = validator.validate(cObject, "/path/so/far", rmObjects, tuple);
+        List<RMObjectValidationMessage> result = validator.validate(cObject, ValidationPath.ROOT.joinPaths("/path/so/far"), rmObjects, tuple);
 
         // Asserts
         assertEquals(1, result.size());
