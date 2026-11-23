@@ -6,19 +6,18 @@ import com.nedap.archie.definitions.AdlCodeDefinitions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class NodeIdUtil {
 
 
     private String prefix;
-    private List<Integer> codes = new ArrayList<>();
+    private List<String> codes = new ArrayList<>();
 
     public NodeIdUtil(String nodeId) {
-        if(AOMUtils.isValidCode(nodeId) || AOMUtils.isValidADL14Code(nodeId)) {
+        if(AOMUtils.isValidAdlCode(nodeId)) {
             String[] split = nodeId.substring(2).split("\\" + AdlCodeDefinitions.SPECIALIZATION_SEPARATOR);
             prefix = nodeId.substring(0, 2);
-            codes.addAll(Arrays.stream(split).map(Integer::parseInt).collect(Collectors.toList()));
+            codes.addAll(Arrays.asList(split));
         }
     }
 
@@ -28,7 +27,7 @@ public class NodeIdUtil {
         }
         if(codes.size() > 1) {
             for(int i = 0; i < codes.size()-1;i++) {
-                if(codes.get(i) > 0) {
+                if(!"0".equals(codes.get(i))) {
                     return true;
                 }
             }
@@ -39,7 +38,6 @@ public class NodeIdUtil {
     public boolean isValid() {
         return prefix != null;
     }
-
 
     public boolean isIdCode() {
         return AdlCodeDefinitions.ID_CODE_LEADER.equals(prefix);
@@ -61,7 +59,7 @@ public class NodeIdUtil {
         this.prefix = prefix;
     }
 
-    public List<Integer> getCodes() {
+    public List<String> getCodes() {
         return codes;
     }
 

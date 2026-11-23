@@ -181,4 +181,50 @@ public class PreviousLogConversionTest {
         }
     }
 
+
+    @Test
+    public void previousLogOfOtherCodeSystemIsNotUsed() throws Exception {
+        ADL14ConversionConfiguration idCodedConfiguration = ConversionConfigForTest.getConfig();
+        ADL2ConversionRunLog log;
+        try(InputStream stream = getClass().getResourceAsStream("openehr-EHR-COMPOSITION.review.v1.adl")) {
+            log = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), idCodedConfiguration).convert(
+                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream, idCodedConfiguration))).getConversionLog();
+        }
+        assertEquals(ADL14ConversionConfiguration.NodeIdCodeSystem.ID_CODED, log.getConvertedArchetypes().values().iterator().next().getNodeIdCodeSystem());
+
+        ADL14ConversionConfiguration atCodedConfiguration = ConversionConfigForTest.getConfig();
+        atCodedConfiguration.setNodeIdCodeSystem(ADL14ConversionConfiguration.NodeIdCodeSystem.AT_CODED);
+        try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-COMPOSITION.review.v1.modified.adl")) {
+            ADL2ConversionResult result = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), atCodedConfiguration).convert(
+                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream, atCodedConfiguration)), log).getConversionResults().get(0);
+
+            assertTrue(result.getLog().getMessageList().stream().anyMatch(m -> m.getCode() == ADL14ConversionMessageCode.WARNING_PREVIOUS_CONVERSION_LOG_CODE_SYSTEM_MISMATCH),
+                    result.getLog().getMessageList().toString());
+
+            // the codes of the id-coded log (id9001, id9002) must not be used
+            for (CObject child : result.getArchetype().<CAttribute>itemAtPath("/category").getChildren()) {
+                assertTrue(child.getNodeId().startsWith("at"), child.getNodeId());
+            }
+        }
+    }
+
+    @Test
+    public void previousLogWithoutCodeSystemIsIdCoded() throws Exception {
+        ADL14ConversionConfiguration conversionConfiguration = ConversionConfigForTest.getConfig();
+        ADL14Converter converter = new ADL14Converter(BuiltinReferenceModels.getMetaModelProvider(), conversionConfiguration);
+        ADL2ConversionRunLog log;
+        try(InputStream stream = getClass().getResourceAsStream("openehr-EHR-COMPOSITION.review.v1.adl")) {
+            log = converter.convert(Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream, conversionConfiguration))).getConversionLog();
+        }
+        // logs from before the code system was stored
+        log.getConvertedArchetypes().values().forEach(archetypeLog -> archetypeLog.setNodeIdCodeSystem(null));
+
+        try(InputStream stream = getClass().getResourceAsStream("openEHR-EHR-COMPOSITION.review.v1.modified.adl")) {
+            ADL2ConversionResult result = converter.convert(
+                    Lists.newArrayList(new ADL14Parser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream, conversionConfiguration)), log).getConversionResults().get(0);
+            CAttribute attribute = result.getArchetype().itemAtPath("/category");
+            assertEquals("id9001", attribute.getChildren().get(1).getNodeId());
+            assertTrue(result.getLog().getMessageList().stream().noneMatch(m -> m.getCode() == ADL14ConversionMessageCode.WARNING_PREVIOUS_CONVERSION_LOG_CODE_SYSTEM_MISMATCH));
+        }
+    }
 }

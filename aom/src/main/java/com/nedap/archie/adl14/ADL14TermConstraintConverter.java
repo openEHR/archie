@@ -103,31 +103,42 @@ public class ADL14TermConstraintConverter {
             if(isLocalCode && AOMUtils.isValueCode(firstConstraint)) {
                 //local codes
                 if(cTerminologyCode.getConstraint().size() == 1) {
-                    //do not create a value set, just convert the code
-                    String newCode = converter.convertValueCode(firstConstraint);
-                    converter.addConvertedCode(firstConstraint, newCode);
-                    cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(newCode)));
+                    // do not create a value set, just convert the code
+                    // if the code system should be at coded, the code stays the same
+                    if (converter.codeSystemIsIdCoded()) {
+                        String newCode = converter.convertIntoAtCode(firstConstraint);
+                        converter.addConvertedCode(firstConstraint, newCode);
+                        cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(newCode)));
+                    }
                 } else {
+                    // Create a valueSet for these terminology codes
                     Set<String> localCodes = new LinkedHashSet<>();
                     for(String code:cTerminologyCode.getConstraint()) {
-                        String newCode = converter.convertValueCode(code);
-                        converter.addConvertedCode(code, newCode);
-                        localCodes.add(newCode);
+                        if (converter.codeSystemIsIdCoded()) {
+                            // If the code system should be id coded, we need to convert the local codes into at codes
+                            String newCode = converter.convertIntoAtCode(code);
+                            converter.addConvertedCode(code, newCode);
+                            localCodes.add(newCode);
+                        } else {
+                            // If the code system should be at coded, we can keep the local codes as they are
+                            localCodes.add(code);
+                        }
                     }
 
                     ValueSet valueSet = findOrCreateValueSet(cTerminologyCode.getArchetype(), localCodes, cTerminologyCode);
                     cTerminologyCode.setConstraint(new ArrayList<>(Collections.singletonList(valueSet.getId())));
                 }
             } else if (isLocalCode && AOMUtils.isValueSetCode(termCode.getCodeString())) {
-                List<String> newConstraint = new ArrayList<>();
-                for(String constraint:cTerminologyCode.getConstraint()) {
-                    TerminologyCode code = TerminologyCode.createFromString(constraint);
-                    String newCode = converter.convertValueSetCode(code.getCodeString());
-                    converter.addConvertedCode(termCode.getCodeString(), newCode);
-                    newConstraint.add(newCode);
+                if (converter.codeSystemIsIdCoded()) {
+                    List<String> newConstraint = new ArrayList<>();
+                    for(String constraint:cTerminologyCode.getConstraint()) {
+                        TerminologyCode code = TerminologyCode.createFromString(constraint);
+                        String newCode = converter.convertValueSetCode(code.getCodeString());
+                        converter.addConvertedCode(termCode.getCodeString(), newCode);
+                        newConstraint.add(newCode);
+                    }
+                    cTerminologyCode.setConstraint(newConstraint);
                 }
-                cTerminologyCode.setConstraint(newConstraint);
-
             } else {
                 if (cTerminologyCode.getConstraint().size() == 1) {
                     try {
@@ -176,8 +187,11 @@ public class ADL14TermConstraintConverter {
             if(cTerminologyCode.getAssumedValue() != null) {
                 TerminologyCode assumedValue = cTerminologyCode.getAssumedValue();
                 if(isLocalCode) {
-                    String newCode = converter.convertValueCode(assumedValue.getCodeString());
-                    assumedValue.setCodeString(newCode);
+                    // if the code system should be at coded, the code stays the same
+                    if (converter.codeSystemIsIdCoded()) {
+                        String newCode = converter.convertIntoAtCode(assumedValue.getCodeString());
+                        assumedValue.setCodeString(newCode);
+                    }
                     assumedValue.setTerminologyId(null);
                 } else {
                     try {
@@ -359,8 +373,14 @@ public class ADL14TermConstraintConverter {
         while(cObject != null) {
             if (cObject.getNodeId() != null) {
                 String oldCode = converter.getOldCodeForNewCode(cObject.getNodeId());
-                if(oldCode != null && archetype.getTerminology().getTermDefinition(language, oldCode) != null) {
+                if (oldCode != null && archetype.getTerminology().getTermDefinition(language, oldCode) != null) {
                     ArchetypeTerm term = archetype.getTerminology().getTermDefinition(language, oldCode);
+                    if(term != null) {
+                        return term;
+                    }
+                } else if (archetype.getTerminology().getTermDefinition(language, cObject.getNodeId()) != null) {
+                    // It is not converted, so just use the node id of the object to find the term
+                    ArchetypeTerm term = archetype.getTerminology().getTermDefinition(language, cObject.getNodeId());
                     if(term != null) {
                         return term;
                     }

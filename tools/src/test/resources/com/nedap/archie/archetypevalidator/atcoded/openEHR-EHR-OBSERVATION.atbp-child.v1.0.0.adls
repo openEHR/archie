@@ -1,0 +1,71 @@
+archetype (adl_version=2.4.0; rm_release=1.1.0)
+    openEHR-EHR-OBSERVATION.atbp-child.v1.0.0
+
+specialize
+    openEHR-EHR-OBSERVATION.atbp.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Test">
+    >
+    lifecycle_state = <"unmanaged">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"Specialised at-coded archetype that redefines codes and introduces new codes">
+        >
+    >
+
+definition
+    OBSERVATION[at0000.1] matches {    -- BP child
+        /data[at0001]/events[at0002]/data[at0003]/items matches {
+            ELEMENT[at0004.1] occurrences matches {1}    -- Systolic (child)
+            ELEMENT[at0006] matches {    -- Position
+                value matches {
+                    DV_CODED_TEXT[at0012] matches {
+                        defining_code matches {[ac0001.1]}
+                    }
+                }
+            }
+            after [at0009]
+            ELEMENT[at0.15] occurrences matches {0..1} matches {    -- Cuff size
+                value matches {
+                    DV_CODED_TEXT[at0.16] matches {
+                        defining_code matches {[ac0.1]}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at0000.1"] = <text = <"BP child"> description = <"BP child">>
+            ["at0004.1"] = <text = <"Systolic (child)"> description = <"Systolic (child)">>
+            ["at0.15"] = <text = <"Cuff size"> description = <"Cuff size">>
+            ["at0.16"] = <text = <"Cuff size value"> description = <"Cuff size value">>
+            ["at0.17"] = <text = <"Adult"> description = <"Adult">>
+            ["at0.18"] = <text = <"Child"> description = <"Child">>
+            ["ac0001.1"] = <text = <"Position values restricted"> description = <"Position values restricted">>
+            ["ac0.1"] = <text = <"Cuff sizes"> description = <"Cuff sizes">>
+        >
+    >
+    term_bindings = <
+        ["SNOMED-CT"] = <
+            ["at0.17"] = <http://snomed.info/id/123456>
+        >
+    >
+    value_sets = <
+        ["ac0001.1"] = <
+            id = <"ac0001.1">
+            members = <"at0007">
+        >
+        ["ac0.1"] = <
+            id = <"ac0.1">
+            members = <"at0.17", "at0.18">
+        >
+    >

@@ -52,9 +52,27 @@ public class ADL14NodeIDConverter {
         this.archetype = archetype;
         this.flatParentArchetype = flatParentArchetype;
         this.termConstraintConverter = new ADL14TermConstraintConverter(this, archetype, flatParentArchetype);
-        this.previousConversionApplier = new PreviousConversionApplier(this, archetype, oldLog);
         this.conversionResult = conversionResult;
+        this.previousConversionApplier = new PreviousConversionApplier(this, archetype, oldLogForCodeSystem(oldLog));
+    }
 
+    /**
+     * A previous conversion log of another code system cannot be applied, because its codes are of the wrong code system.
+     */
+    private ADL2ConversionLog oldLogForCodeSystem(ADL2ConversionLog oldLog) {
+        if (oldLog == null) {
+            return null;
+        }
+        ADL14ConversionConfiguration.NodeIdCodeSystem oldCodeSystem = oldLog.getNodeIdCodeSystem() == null ?
+                ADL14ConversionConfiguration.NodeIdCodeSystem.ID_CODED : oldLog.getNodeIdCodeSystem();
+        if (oldCodeSystem != conversionConfiguration.getNodeIdCodeSystem()) {
+            if (conversionResult != null) {
+                conversionResult.getLog().addWarning(ADL14ConversionMessageCode.WARNING_PREVIOUS_CONVERSION_LOG_CODE_SYSTEM_MISMATCH,
+                        oldCodeSystem, conversionConfiguration.getNodeIdCodeSystem());
+            }
+            return null;
+        }
+        return oldLog;
     }
 
     public ADL14ConversionConfiguration getConversionConfiguration() {
@@ -85,7 +103,9 @@ public class ADL14NodeIDConverter {
         generateMissingNodeIds(archetype.getDefinition());
         convertTermDefinitions(archetype, convertedCodes, unnecessaryCodes);
         previousConversionApplier.removeCreatedUnusedTermCodesAndValueSets();
-        return new ADL2ConversionLog(/*convertedCodes*/ null, createdCodes, createdValueSets);
+        ADL2ConversionLog conversionLog = new ADL2ConversionLog(/*convertedCodes*/ null, createdCodes, createdValueSets);
+        conversionLog.setNodeIdCodeSystem(conversionConfiguration.getNodeIdCodeSystem());
+        return conversionLog;
     }
 
     /**
@@ -141,7 +161,6 @@ public class ADL14NodeIDConverter {
     public static void convertTermDefinitions(Archetype archetype, Map<String, ConvertedCodeResult> convertedCodes, List<String> unnecessaryCodes) {
         archetype.getTerminology().getTermDefinitions().replaceAll((language, terms) -> {
             Map<String, ArchetypeTerm> newTerms = new LinkedHashMap<>();
-
             for (Map.Entry<String, ArchetypeTerm> entry : terms.entrySet()) {
                 String oldCode = entry.getKey();
                 if (!unnecessaryCodes.contains(oldCode)) {
@@ -165,10 +184,7 @@ public class ADL14NodeIDConverter {
 
             return newTerms;
         });
-
-        //the terminology can still contain old unused codes now. The archetype validation will warn about that later
     }
-
 
     /**
      * Replace old id's in term bindings with the new codes
@@ -190,15 +206,19 @@ public class ADL14NodeIDConverter {
                                 newTermbindingsMap.put(newCode, termbindingMap.get(valueOrPath));
                             }
                         } else {
-
                             newTermbindingsMap.put(valueOrPath, termbindingMap.get(valueOrPath));
-                            conversionResult.getLog().addWarningWithLocation(ADL14ConversionMessageCode.WARNING_UNKNOWN_CODE_TYPE_IN_TERMBINDING, valueOrPath, valueOrPath);
+                            if (codeSystemIsIdCoded()) {
+                                conversionResult.getLog().addWarningWithLocation(ADL14ConversionMessageCode.WARNING_UNKNOWN_CODE_TYPE_IN_TERMBINDING, valueOrPath, valueOrPath);
+                            }
                         }
                     } else if (AOMUtils.isValueSetCode(valueOrPath)) {
                         if (convertedCodes.containsKey(valueOrPath)) {
                             for (String newCode : convertedCodes.get(valueOrPath).getConvertedCodes()) {
                                 newTermbindingsMap.put(newCode, termbindingMap.get(valueOrPath));
                             }
+                        } else if (!codeSystemIsIdCoded()) {
+                            // if the code system should be at coded, the code stays the same
+                            newTermbindingsMap.put(valueOrPath, termbindingMap.get(valueOrPath));
                         } else {
                             //unused value set code, this can be converted
                             newTermbindingsMap.put(convertCode(valueOrPath, "ac"), termbindingMap.get(valueOrPath));
@@ -292,7 +312,11 @@ public class ADL14NodeIDConverter {
      * Object needs a new nodeId, generate the next valid nodeId and add in to the terminology
      */
     private void synthesizeNodeId(CObject cObject, String path) {
-        cObject.setNodeId(idCodeGenerator.generateNextIdCode());
+        if (codeSystemIsIdCoded()) {
+            cObject.setNodeId(idCodeGenerator.generateNextIdCode());
+        } else {
+            cObject.setNodeId(idCodeGenerator.generateNextValueCode());
+        }
         CreatedCode createdCode = new CreatedCode(cObject.getNodeId(), ReasonForCodeCreation.C_OBJECT_WITHOUT_NODE_ID);
         createdCode.setRmTypeName(cObject.getRmTypeName());
         createdCode.setPathCreated(path);
@@ -415,16 +439,15 @@ public class ADL14NodeIDConverter {
     }
 
     /**
-     * If the object has a nodeId
+     * If the object has a nodeId & code system should be id coded
      * - replace it with a new nodeId
      * - store the old and new nodeId as a converted code
      */
     private void calculateNewNodeId(CObject cObject) {
-        if (cObject.getNodeId() != null) {
+        if (cObject.getNodeId() != null && codeSystemIsIdCoded()) {
             String oldNodeId = cObject.getNodeId();
             String newNodeId = convertNodeId(oldNodeId);
             addConvertedCode(oldNodeId, newNodeId);
-
             cObject.setNodeId(newNodeId);
         }
     }
@@ -455,7 +478,7 @@ public class ADL14NodeIDConverter {
     /**
      * Convert old code into an at code
      */
-    protected String convertValueCode(String oldCode) {
+    protected String convertIntoAtCode(String oldCode) {
         ConvertedCodeResult convertedCodeResult = convertedCodes.get(oldCode);
         if (convertedCodeResult != null && convertedCodeResult.hasValueCode()) {
             return convertedCodeResult.getValueCode();
@@ -487,18 +510,19 @@ public class ADL14NodeIDConverter {
         nodeIdUtil.setPrefix(newCodePrefix); //will automatically strip the leading zeroes due to integer-parsing
         if (!oldCode.startsWith("at0.") && !oldCode.startsWith("ac0.")) {
             //a bit tricky, since the root of an archetype starts with at0000.0, but that's different from this I guess
-            nodeIdUtil.getCodes().set(0, nodeIdUtil.getCodes().get(0) + 1); //increment with 1, old is 0-based
+            nodeIdUtil.getCodes().set(0, String.valueOf(Integer.parseInt(nodeIdUtil.getCodes().get(0)) + 1)); // increment with 1, old is 0-based
         }
         return nodeIdUtil.toString();
     }
 
     /**
-     * Convert all old codes in a path in the new codes
+     * Convert all old codes in a path in the new codes.
+     * If the code system should be at coded, the code should stay the same.
      */
     public String convertPath(String key) {
         APathQuery aPathQuery = new APathQuery(key);
         for (PathSegment segment : aPathQuery.getPathSegments()) {
-            if (segment.getNodeId() != null) {
+            if (codeSystemIsIdCoded() && segment.getNodeId() != null) {
                 segment.setNodeId(convertNodeId(segment.getNodeId()));
             }
         }
@@ -518,5 +542,12 @@ public class ADL14NodeIDConverter {
 
     protected IdCodeGenerator getIdCodeGenerator() {
         return idCodeGenerator;
+    }
+
+    /**
+     *
+     */
+    public boolean codeSystemIsIdCoded() {
+        return conversionConfiguration.getNodeIdCodeSystem().equals(ADL14ConversionConfiguration.NodeIdCodeSystem.ID_CODED);
     }
 }
