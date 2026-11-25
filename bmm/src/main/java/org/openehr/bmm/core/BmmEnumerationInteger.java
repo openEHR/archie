@@ -22,6 +22,8 @@ package org.openehr.bmm.core;
  */
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Integer-based enumeration type.
@@ -39,5 +41,20 @@ public class BmmEnumerationInteger extends BmmEnumeration<Integer> implements Se
         super();
     }
 
+    /**
+     * Sets the list of names of the enumeration. If no values are supplied, the values
+     * 0...N are used where N+1 is the size of itemNames
+     *
+     * @param itemNames
+     */
+    @Override
+    public void setItemNames(List<String> itemNames) {
+        super.setItemNames(itemNames);
+        ArrayList<Integer> vals = new ArrayList<>();
+        for (int i = 0; i < itemNames.size(); i++ )
+            vals.add(i);
+
+        setItemValues(vals);
+    }
 
 }
