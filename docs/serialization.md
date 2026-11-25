@@ -14,7 +14,7 @@ This works for all kinds of archetypes, including operational templates.
 
 ## JSON
 
-Both archetypes and reference model objects can be serialized to and parsed from JSON using Jackson. `JacksonUtil` provides a fully configured `ObjectMapper`:
+Both archetypes and reference model objects can be serialized to and parsed from JSON using Jackson. For Jackson 3, see the [Jackson 3 example](https://github.com/openEHR/archie/pull/888/changes#jackson-3). For Jackson 2, [JacksonUtil](idea://symbol/JacksonUtil) provides a fully configured [ObjectMapper](idea://symbol/ObjectMapper):
 
 ```java
 String json = JacksonUtil.getObjectMapper().writeValueAsString(archetype);

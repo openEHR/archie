@@ -27,7 +27,7 @@ You can then set attribute values directly on the created objects, or with the `
 
 ## Parsing reference model JSON
 
-Reference model JSON is parsed the same way as archetype JSON:
+Reference model JSON is parsed the same way as [archetype JSON](serialization.md#json):
 
 ```java
 RMObject rmObject = JacksonUtil.getObjectMapper().readValue(json, RMObject.class);
