@@ -33,7 +33,7 @@ Archie requires Java 17 or higher.
 
 ### Adding Archie to your project
 
-The easiest way to get started is to depend on `archie-all`, which contains everything: the AOM, the ADL parser, all tools and the openEHR reference model implementation. See the [Modules](https://github.com/openEHR/archie/pull/888/changes#modules) table for a list of the included artifacts.
+The easiest way to get started is to depend on `archie-all`, which contains everything: the AOM, the ADL parser, all tools and the openEHR reference model implementation. See the [Modules](#modules) table for a list of the included artifacts.
 
 Gradle:
 
