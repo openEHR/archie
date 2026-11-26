@@ -1,5 +1,6 @@
 package com.nedap.archie.adl14.log;
 
+import com.nedap.archie.adl14.ADL14ConversionConfiguration;
 import com.nedap.archie.aom.terminology.ValueSet;
 
 import java.util.LinkedHashMap;
@@ -10,6 +11,7 @@ public class ADL2ConversionLog {
     private String archetypeId;
     private Map<String, CreatedCode> createdCodes = new LinkedHashMap<>();
     private Map<String, ValueSet> createdValueSets = new LinkedHashMap<>();
+    private ADL14ConversionConfiguration.NodeIdCodeSystem nodeIdCodeSystem;
 
     public ADL2ConversionLog() {
 
@@ -36,5 +38,16 @@ public class ADL2ConversionLog {
 
     public void setCreatedValueSets(Map<String, ValueSet> createdValueSets) {
         this.createdValueSets = createdValueSets;
+    }
+
+    /**
+     * The code system of the conversion. Null in logs from before this was stored, which are id-coded.
+     */
+    public ADL14ConversionConfiguration.NodeIdCodeSystem getNodeIdCodeSystem() {
+        return nodeIdCodeSystem;
+    }
+
+    public void setNodeIdCodeSystem(ADL14ConversionConfiguration.NodeIdCodeSystem nodeIdCodeSystem) {
+        this.nodeIdCodeSystem = nodeIdCodeSystem;
     }
 }

@@ -13,13 +13,13 @@ import adl_rules, odin, adl_keywords;
 //  ======================= Top-level Objects ========================
 //
 
-c_complex_object: type_id '[' ( ROOT_ID_CODE | ID_CODE ) ']' c_occurrences? ( SYM_MATCHES '{' c_attribute_def+ '}' )? ;
+c_complex_object: type_id '[' ( ROOT_ID_CODE | node_identifier ) ']' c_occurrences? ( SYM_MATCHES '{' c_attribute_def+ '}' )? ;
 
 // ======================== Components =======================
 
 c_objects: c_non_primitive_object_ordered+ | c_primitive_object ;
 
-sibling_order: ( SYM_AFTER | SYM_BEFORE ) '[' ID_CODE ']' ;
+sibling_order: ( SYM_AFTER | SYM_BEFORE ) '[' node_identifier ']' ;
 
 c_non_primitive_object_ordered: sibling_order? c_non_primitive_object ;
 
@@ -30,11 +30,11 @@ c_non_primitive_object:
     | archetype_slot
     ;
 
-c_archetype_root: SYM_USE_ARCHETYPE type_id '[' ID_CODE (SYM_COMMA archetype_ref)? ']' c_occurrences? ( SYM_MATCHES '{' c_attribute_def+ '}' )? ;
+c_archetype_root: SYM_USE_ARCHETYPE type_id '[' node_identifier (SYM_COMMA archetype_ref)? ']' c_occurrences? ( SYM_MATCHES '{' c_attribute_def+ '}' )? ;
 
-c_complex_object_proxy: SYM_USE_NODE type_id '[' ID_CODE ']' c_occurrences? adl_path ;
+c_complex_object_proxy: SYM_USE_NODE type_id '[' node_identifier ']' c_occurrences? adl_path ;
 
-archetype_slot: SYM_ALLOW_ARCHETYPE type_id '[' ID_CODE ']' (( c_occurrences? ( SYM_MATCHES '{' c_includes? c_excludes? '}' )? ) | SYM_CLOSED ) ;
+archetype_slot: SYM_ALLOW_ARCHETYPE type_id '[' node_identifier ']' (( c_occurrences? ( SYM_MATCHES '{' c_includes? c_excludes? '}' )? ) | SYM_CLOSED ) ;
 
 c_attribute_def:
       c_attribute
@@ -68,3 +68,5 @@ multiplicity_mod : ordering_mod | unique_mod ;
 
 c_occurrences : SYM_OCCURRENCES SYM_MATCHES '{' multiplicity '}' ;
 multiplicity  : INTEGER | '*' | INTEGER SYM_INTERVAL_SEP ( INTEGER | '*' ) ;
+
+node_identifier : ID_CODE | AT_CODE ;
