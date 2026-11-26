@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 11:20+0100\n"
+"POT-Creation-Date: 2026-11-26 12:45+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pieter Bos <pieter.bos@nedap.com>\n"
 "Language-Team: \n"
@@ -56,7 +56,7 @@ msgstr ""
 msgid "ADL version {0} is an invalid format for a version, should be x.x.x-(rc|alpha(x)?)?"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:57
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:65
 msgid "An archetype must use a single node identifier code system, but both id-coded and at-coded node ids are used"
 msgstr ""
 
@@ -277,7 +277,7 @@ msgstr ""
 msgid "Incorrect root node id {0}: it must match the specialization depth of the archetype, which is {1}"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:214
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:235
 #, java-format
 msgid "Invariant {0} failed on type "
 msgstr ""
@@ -343,6 +343,11 @@ msgstr ""
 #: ../aom/src/main/java/com/nedap/archie/aom/CObject.java:241
 #, java-format
 msgid "Node id {0} does not conform to {1}"
+msgstr ""
+
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:57
+#, java-format
+msgid "Node id {0} is not a valid code for the code system of this archetype"
 msgstr ""
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:296
@@ -879,11 +884,11 @@ msgstr ""
 msgid "The validation of the parent archetype failed"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:60
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:68
 msgid "The validator is configured to accept at-coded archetypes, but the archetype uses id-coded node ids"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:63
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:71
 msgid "The validator is configured to accept id-coded archetypes, but the archetype uses at-coded node ids"
 msgstr ""
 
@@ -912,7 +917,7 @@ msgstr ""
 msgid "Type name {0} does not exist"
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:219
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:240
 #, java-format
 msgid "Unexpected error validating invariant {0} on {1}"
 msgstr ""
@@ -1084,7 +1089,7 @@ msgstr ""
 msgid "constraint code validity. Each value set code (ac-code) used in a term constraint in the archetype definition must be defined in the term_definitions part of the terminology of the current archetype."
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RmPrimitiveObjectValidator.java:60
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RmPrimitiveObjectValidator.java:57
 msgid "empty"
 msgstr ""
 

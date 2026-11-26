@@ -81,8 +81,8 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[123] = "In dit attribuut is een differential path gebruikt, maar dat is niet toegestaan in een niet specialiserend archetype";
     t[124] = "An archetype slot was used in the archetype, but no archetype id was present in the data.";
     t[125] = "Een archetype slot is gebruikt in het archetype, maar er is geen archetype id aanwezig in de data.";
-    t[126] = "Object should be type {0}, but was {1}";
-    t[127] = "Object moet van type {0} zijn, maar is van type {1}";
+    t[126] = "Node id {0} is not a valid code for the code system of this archetype";
+    t[127] = "Node id {0} is geen geldige code voor het codesysteem van dit archetype";
     t[128] = "Node id {0} does not conform to {1}";
     t[129] = "Node id {0} komt niet overeen met {1}";
     t[140] = "value-set id defined. The identifying code of a value set must be defined in the term definitions of the terminology of the current archetype";
@@ -137,6 +137,8 @@ public class openehrArchie_nl extends java.util.ResourceBundle {
     t[247] = "node identifier code system validiteit: een archetype moet consistent \u00e9\u00e9n node identifier code system gebruiken, \u00f3f id-coded (id1, id1.1, ...) \u00f3f, sinds ADL 2.4, at-coded (at0000, at0000.1, ...), en dat code system moet overeenkomen met het system dat de validator geconfigureerd is te accepteren.";
     t[250] = "Node id {0} is not valid here because it redefines an object illegally";
     t[251] = "Node id {0} is hier niet geldig omdat het een object herdefinieert waar dat niet is toegestaan";
+    t[252] = "Object should be type {0}, but was {1}";
+    t[253] = "Object moet van type {0} zijn, maar is van type {1}";
     t[256] = "The path {0} referenced in the annotations does not exist in the flat archetype or reference model";
     t[257] = "Het pad {0} gebruikt in de annotations bestaat niet in het flattened archetype of referentiemodel";
     t[260] = "Node id numbers should be unique without their ac, at or id-prefix, to ensure the possibility of converting the archetype to ADL 1.4";
