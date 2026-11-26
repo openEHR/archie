@@ -61,6 +61,35 @@ Compiling validates all archetypes. Each `ValidationResult` lists the errors and
 
 `BuiltinReferenceModels.getMetaModelProvider()` provides the reference model metadata that is needed to validate and flatten archetypes. See [Reference model metadata](advanced.md#reference-model-metadata) for more information.
 
+## At-coded ADL 2 archetypes
+
+Since ADL 2.4, ADL 2 archetypes can use at-codes as node ids, the same codes as ADL 1.4, instead of id-codes. See [Node Identifier and Coding Systems](https://specifications.openehr.org/releases/AM/latest/ADL2.html#_node_identifier_and_coding_systems) in the ADL 2 specification. These are ADL 2 archetypes, not ADL 1.4 archetypes. To convert ADL 1.4 archetypes, see [Converting ADL 1.4 archetypes to ADL 2](adl14-conversion.md).
+
+| | Id-coded ADL 2 | At-coded ADL 2 |
+|---|---|---|
+| Root node id | `id1`, `id1.1`, ... | `at0000`, `at0000.1`, ... |
+| Other node ids | `id2`, `id3.1`, `id0.5`, ... | `at0001`, `at0003.1`, `at0.5`, ... |
+| Value codes | `at1`, `at2.1`, ... | `at0001`, `at0003.1`, ... |
+| Value set codes | `ac1`, `ac0.1`, ... | `ac0001`, `ac0.1`, ... |
+
+The parser accepts both code systems without any configuration. `AOMUtils.isAtCoded(archetype)` tells which code system an archetype uses. In an at-coded archetype, `CPrimitiveObject.getNodeId()` returns `at9999` instead of `id9999`.
+
+By default, the validator only accepts id-coded archetypes. To accept at-coded archetypes, set the code system in the `ArchetypeValidationSettings` of the repository:
+
+```java
+ArchetypeValidationSettings settings = new ArchetypeValidationSettings();
+settings.setNodeIdCodeSystemValidation(NodeIdCodeSystemValidation.AUTO_DETECT);
+repository.setArchetypeValidationSettings(settings);
+```
+
+| `NodeIdCodeSystemValidation` | Accepts |
+|---|---|
+| `ID_CODED` (default) | Only id-coded archetypes |
+| `AT_CODED` | Only at-coded archetypes |
+| `AUTO_DETECT` | Both. The code system of each archetype is detected from its root node id |
+
+The validator reports `INVALID_NODE_ID_CODE_SYSTEM` if an archetype mixes both code systems, or if its code system is not accepted.
+
 ## Operational templates
 
 If you are building an EHR implementation, operational templates are likely the most useful form of archetypes to work with. An operational template is generated from an archetype or template. In an archetype, structures can be reused in several places and other archetypes can be embedded. The operational template replaces these references with a copy of the actual structure, so your tools do not need to resolve them. See [the openEHR OPT2 specification](https://specifications.openehr.org/releases/AM/latest/OPT2.html) for more information.
