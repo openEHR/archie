@@ -118,7 +118,7 @@ The [documentation](#documentation) describes each of these steps in more detail
 
 ## Documentation
 
-- [Archetypes](docs/archetypes.md): parsing, path queries, archetype repositories and validation, operational templates, terminology, diffing and walking the archetype tree
+- [Archetypes](docs/archetypes.md): parsing, path queries, archetype repositories and validation, at-coded ADL 2 archetypes, operational templates, terminology, diffing and walking the archetype tree
 - [Serialization](docs/serialization.md): ADL, JSON, XML, Jackson 3 and ODIN
 - [Reference model](docs/reference-model.md): creating, parsing, querying and validating reference model objects
 - [Converting ADL 1.4 archetypes to ADL 2](docs/adl14-conversion.md)
