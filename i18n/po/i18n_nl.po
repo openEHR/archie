@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 11:20+0100\n"
+"POT-Creation-Date: 2026-11-26 12:45+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pieter Bos <pieter.bos@nedap.com>\n"
 "Language-Team: \n"
@@ -56,7 +56,7 @@ msgstr "Een {0} kan niet een {1} specialiseren"
 msgid "ADL version {0} is an invalid format for a version, should be x.x.x-(rc|alpha(x)?)?"
 msgstr "ADL-versie {0} is in een incorrect formaat. Dit zou een versie in het formaat x.x.x-(rc|alpha(x)?)? moeten zijn"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:57
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:65
 msgid "An archetype must use a single node identifier code system, but both id-coded and at-coded node ids are used"
 msgstr "Een archetype moet één node identifier code system gebruiken, maar er worden zowel id-coded als at-coded node ids gebruikt"
 
@@ -277,7 +277,7 @@ msgstr "In het attribuut tupel zijn {0} members opgenomen, maar het primitive tu
 msgid "Incorrect root node id {0}: it must match the specialization depth of the archetype, which is {1}"
 msgstr "Fout in root node id {0}: Dit moet kloppen met de specialization depth van het archetype, {1}"
 
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:214
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:235
 #, java-format
 msgid "Invariant {0} failed on type "
 msgstr ""
@@ -344,6 +344,11 @@ msgstr "Node id {0} is al gebruikt in pad {1}"
 #, java-format
 msgid "Node id {0} does not conform to {1}"
 msgstr "Node id {0} komt niet overeen met {1}"
+
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:57
+#, java-format
+msgid "Node id {0} is not a valid code for the code system of this archetype"
+msgstr "Node id {0} is geen geldige code voor het codesysteem van dit archetype"
 
 #: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/SpecializedDefinitionValidation.java:296
 #, java-format
@@ -879,11 +884,11 @@ msgstr "De validate van een template overlay is niet geslaagd"
 msgid "The validation of the parent archetype failed"
 msgstr "Het bovenliggende archetype bevat een fout, en valideert daardoor niet. Daardoor kan dit archetype niet gevalideerd worden."
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:60
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:68
 msgid "The validator is configured to accept at-coded archetypes, but the archetype uses id-coded node ids"
 msgstr "De validator is geconfigureerd om at-coded archetypes te accepteren, maar het archetype gebruikt id-coded node ids"
 
-#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:63
+#: ../tools/src/main/java/com/nedap/archie/archetypevalidator/validations/CodeSystemValidation.java:71
 msgid "The validator is configured to accept id-coded archetypes, but the archetype uses at-coded node ids"
 msgstr "De validator is geconfigureerd om id-coded archetypes te accepteren, maar het archetype gebruikt at-coded node ids"
 
@@ -912,7 +917,7 @@ msgstr "Onderdeel van tupel {0} is geen attribuut van type {1}"
 msgid "Type name {0} does not exist"
 msgstr "Type met naam {0} bestaat niet"
 
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:219
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RMObjectValidator.java:240
 #, java-format
 msgid "Unexpected error validating invariant {0} on {1}"
 msgstr "Onverwachte fout bij het valideren van invariant {0} van {1}"
@@ -1084,7 +1089,7 @@ msgstr "code uit terminologie is niet gebruikt in de definitie van het archetype
 msgid "constraint code validity. Each value set code (ac-code) used in a term constraint in the archetype definition must be defined in the term_definitions part of the terminology of the current archetype."
 msgstr ""
 
-#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RmPrimitiveObjectValidator.java:60
+#: ../tools/src/main/java/com/nedap/archie/rmobjectvalidator/RmPrimitiveObjectValidator.java:57
 msgid "empty"
 msgstr "leeg"
 
