@@ -32,8 +32,17 @@ definition
 terminology
     term_definitions = <
         ["en"] = <
-            ["id1"] = <text = <"Root"> description = <"Root">>
-            ["id2"] = <text = <"Element"> description = <"Element">>
-            ["at4"] = <text = <"Value"> description = <"Value">>
+            ["id1"] = <
+                text = <"Root">
+                description = <"Root">
+            >
+            ["id2"] = <
+                text = <"Element">
+                description = <"Element">
+            >
+            ["at4"] = <
+                text = <"Value">
+                description = <"Value">
+            >
         >
     >
