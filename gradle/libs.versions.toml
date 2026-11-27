@@ -2,7 +2,7 @@
 antlr = "4.13.2"
 
 jackson = "2.23.0"
-jackson_annotations = "2.22"
+jackson_annotations = "2.23"
 jackson3 = "3.3.0"
 
 junit = "6.1.3"
