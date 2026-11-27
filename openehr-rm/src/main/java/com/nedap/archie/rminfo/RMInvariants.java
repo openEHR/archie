@@ -62,7 +62,7 @@ public final class RMInvariants {
         }
 
         public static final String ACCURACY_IS_PERCENT_VALIDITY = "DV_AMOUNT.Accuracy_is_percent_validity";
-        public static final String ACCURACY_VALID = "DV_AMOUNT.Accuracy_valid";
+        public static final String ACCURACY_VALIDITY = "DV_AMOUNT.Accuracy_validity";
     }
 
     public static final class DV_EHR_URI {
@@ -95,7 +95,7 @@ public final class RMInvariants {
         private DV_MULTIMEDIA() {
         }
 
-        public static final String COMPRESSION_ALGORITHM_VALID = "DV_MULTIMEDIA.Compression_algorithm_valid";
+        public static final String COMPRESSION_ALGORITHM_VALIDITY = "DV_MULTIMEDIA.Compression_algorithm_validity";
         public static final String INTEGRITY_CHECK_ALGORITHM_VALIDITY = "DV_MULTIMEDIA.Integrity_check_algorithm_validity";
         public static final String INTEGRITY_CHECK_VALIDITY = "DV_MULTIMEDIA.Integrity_check_validity";
         public static final String MEDIA_TYPE_VALID = "DV_MULTIMEDIA.Media_type_valid";
@@ -173,12 +173,12 @@ public final class RMInvariants {
         }
 
         public static final String COMPOSITIONS_VALID = "EHR.Compositions_valid";
-        public static final String CONTRIBUTIONS_VALID = "EHR.Contributions valid";
+        public static final String CONTRIBUTIONS_VALID = "EHR.Contributions_valid";
         public static final String DIRECTORY_IN_FOLDERS = "EHR.Directory_in_folders";
         public static final String DIRECTORY_VALID = "EHR.Directory_valid";
         public static final String EHR_ACCESS_VALID = "EHR.Ehr_access_valid";
         public static final String EHR_STATUS_VALID = "EHR.Ehr_status_valid";
-        public static final String FOLDERSS_VALID = "EHR.Folderss_valid";
+        public static final String FOLDERS_VALID = "EHR.Folders_valid";
     }
 
     public static final class ELEMENT {
@@ -197,7 +197,7 @@ public final class RMInvariants {
         }
 
         public static final String ENCODING_VALID = "ENTRY.Encoding_valid";
-        public static final String IS_ARCHETYPE_ROOT = "ENTRY.Is_archetypeRoot";
+        public static final String IS_ARCHETYPE_ROOT = "ENTRY.Is_archetype_root";
         public static final String LANGUAGE_VALID = "ENTRY.Language_valid";
     }
 

@@ -185,7 +185,7 @@ public class DvMultimedia extends DvEncapsulated {
                 InvariantUtil.belongsToTerminologyByGroupId(mediaType, "MultiMedia");
     }
 
-    @Invariant("Compression_algorithm_valid")
+    @Invariant("Compression_algorithm_validity")
     public boolean compressionAlgorithmValid() {
         return InvariantUtil.belongsToTerminologyByOpenEHRId(compressionAlgorithm, "compression algorithms");
     }
