@@ -36,5 +36,7 @@ public class OpenEhrDefinitions  extends BasicDefinitions {
     public static final String CONTROLLED = "controlled";
     public static final String GENERATED = "generated";
     public static final String RM_RELEASE = "rm_release";
+    /** Valid version id for adl_version and rm_release, as in the ADL grammar VERSION_ID rule (AOM2 VARRV). */
+    public static final String VERSION_ID_REGEX = "\\d+\\.\\d+\\.\\d+((-rc|-alpha)(\\.\\d+)?)?";
     public static final String UID = "uid";
 }

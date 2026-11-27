@@ -5,6 +5,7 @@ import com.nedap.archie.aom.ResourceDescriptionItem;
 import com.nedap.archie.aom.TranslationDetails;
 import com.nedap.archie.archetypevalidator.ArchetypeValidationBase;
 import com.nedap.archie.archetypevalidator.ErrorType;
+import com.nedap.archie.definitions.OpenEhrDefinitions;
 import org.openehr.utils.message.I18n;
 
 import java.util.Objects;
@@ -78,7 +79,6 @@ public class AuthoredArchetypeMetadataChecks extends ArchetypeValidationBase {
     }
 
     private boolean isValidVersion(String version) {
-        //from grammar: DIGIT+ '.' DIGIT+ '.' DIGIT+ ( ( '-rc' | '-alpha' ) ( '.' DIGIT+ )? )? ;
-        return version != null && version.matches("\\d+\\.\\d+\\.\\d+((-rc|-alpha)(\\.\\d+)?)?");
+        return version != null && version.matches(OpenEhrDefinitions.VERSION_ID_REGEX);
     }
 }

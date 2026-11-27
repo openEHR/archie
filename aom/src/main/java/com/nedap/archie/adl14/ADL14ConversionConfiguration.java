@@ -23,9 +23,16 @@ public class ADL14ConversionConfiguration {
 
 
     /**
-     * ADL 1.4 contains no rm release version, 2 does. So one needs to be added. Set to the desired rm_release. Defaults to 1.1.0
+     * The rm_release for converted archetypes that do not state a valid one themselves, in other_details["rm_release"]
+     * or in the rm_release header item. Defaults to 1.1.0
      */
     private String rmRelease = "1.1.0";
+
+    /**
+     * Set to false to always use {@link #getRmRelease()}, ignoring the rm_release the ADL 1.4 archetype states.
+     * The stated rm_release also selects the reference model the conversion uses.
+     */
+    private boolean useArchetypeRmRelease = true;
 
 
     public List<TerminologyUriTemplate> getTerminologyConversionTemplates() {
@@ -70,5 +77,13 @@ public class ADL14ConversionConfiguration {
 
     public void setRmRelease(String rmRelease) {
         this.rmRelease = rmRelease;
+    }
+
+    public boolean isUseArchetypeRmRelease() {
+        return useArchetypeRmRelease;
+    }
+
+    public void setUseArchetypeRmRelease(boolean useArchetypeRmRelease) {
+        this.useArchetypeRmRelease = useArchetypeRmRelease;
     }
 }
