@@ -48,6 +48,14 @@ public class CodeSystemValidation extends ValidatingVisitor {
         } else if (AOMUtils.isAtCode(nodeId)) {
             atCodedNodeIdSeen = true;
         }
+        // The parser accepts the code format of both code systems, such as id02 or at4. A node id with a prefix of
+        // the expected code system must also have its format. A node id with the other prefix is reported in
+        // endValidation.
+        boolean prefixOfExpectedCodeSystem = expectsAtCodedNodeIds() ? AOMUtils.isAtCode(nodeId) : AOMUtils.isIdCode(nodeId);
+        if (prefixOfExpectedCodeSystem && !isValidCodeForCodeSystem(nodeId)) {
+            addMessageWithPath(ErrorType.VATCV, cObject.getPath(),
+                    I18n.t("Node id {0} is not a valid code for the code system of this archetype", nodeId));
+        }
     }
 
     @Override

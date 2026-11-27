@@ -145,6 +145,37 @@ public class AtCodedArchetypeValidationTest {
     }
 
     @Test
+    public void idCodedZeroPaddedNodeIdRejected() throws Exception {
+        // DV_CODED_TEXT[id03] is a single object under a single-valued attribute, so its node id needs no term. The
+        // terminology check therefore does not see it.
+        Archetype archetype = parse(AT_CODED_PATH, "openEHR-EHR-CLUSTER.zero_padded_node_id.v1.0.0.adls");
+        for (NodeIdCodeSystemValidation codeSystem : new NodeIdCodeSystemValidation[] {NodeIdCodeSystemValidation.ID_CODED, NodeIdCodeSystemValidation.AUTO_DETECT}) {
+            ValidationResult result = validate(archetype, codeSystem);
+            assertFalse(result.passes(), result.toString());
+            assertTrue(hasError(result, ErrorType.VATCV), result.toString());
+        }
+        // with a valid node id, the archetype passes
+        ((CObject) archetype.itemAtPath("/items[id2]/value[id03]")).setNodeId("id3");
+        ValidationResult valid = validate(archetype, NodeIdCodeSystemValidation.ID_CODED);
+        assertTrue(valid.passes(), valid.toString());
+    }
+
+    @Test
+    public void atCodedNonPaddedNodeIdRejected() throws Exception {
+        // DV_CODED_TEXT[at2] needs no term, see idCodedZeroPaddedNodeIdRejected
+        Archetype archetype = parse(AT_CODED_PATH, "openEHR-EHR-CLUSTER.unpadded_node_id.v1.0.0.adls");
+        for (NodeIdCodeSystemValidation codeSystem : new NodeIdCodeSystemValidation[] {NodeIdCodeSystemValidation.AT_CODED, NodeIdCodeSystemValidation.AUTO_DETECT}) {
+            ValidationResult result = validate(archetype, codeSystem);
+            assertFalse(result.passes(), result.toString());
+            assertTrue(hasError(result, ErrorType.VATCV), result.toString());
+        }
+        // with a valid node id, the archetype passes
+        ((CObject) archetype.itemAtPath("/items[at0001]/value[at2]")).setNodeId("at0002");
+        ValidationResult valid = validate(archetype, NodeIdCodeSystemValidation.AT_CODED);
+        assertTrue(valid.passes(), valid.toString());
+    }
+
+    @Test
     public void specializedAtCodedValidatesAndFlattens() throws Exception {
         Archetype parent = parse("openEHR-EHR-CLUSTER.exam_adl2_at.v2.1.3.adls");
         Archetype child = parse("openEHR-EHR-CLUSTER.exam-abdomen_adl2_at.v0.0.1-alpha.adls");
