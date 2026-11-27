@@ -1,0 +1,39 @@
+archetype (adl_version=2.4.0; rm_release=1.1.0)
+    openEHR-EHR-CLUSTER.unpadded_node_id.v1.0.0
+
+language
+    original_language = <[ISO_639-1::en]>
+
+description
+    original_author = <
+        ["name"] = <"Test">
+    >
+    lifecycle_state = <"unmanaged">
+    details = <
+        ["en"] = <
+            language = <[ISO_639-1::en]>
+            purpose = <"At-coded archetype with an unpadded node id that needs no term">
+        >
+    >
+
+definition
+    CLUSTER[at0000] matches {    -- Root
+        items matches {
+            ELEMENT[at0001] occurrences matches {0..1} matches {    -- Element
+                value matches {
+                    DV_CODED_TEXT[at2] matches {
+                        defining_code matches {[at0003]}
+                    }
+                }
+            }
+        }
+    }
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["at0000"] = <text = <"Root"> description = <"Root">>
+            ["at0001"] = <text = <"Element"> description = <"Element">>
+            ["at0003"] = <text = <"Value"> description = <"Value">>
+        >
+    >
