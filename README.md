@@ -39,7 +39,7 @@ Gradle:
 
 ```gradle
 dependencies {
-    implementation 'com.nedap.healthcare.archie:archie-all:4.0.0'
+    implementation 'com.nedap.healthcare.archie:archie-all:4.1.0'
 }
 ```
 
@@ -49,11 +49,11 @@ Maven:
 <dependency>
     <groupId>com.nedap.healthcare.archie</groupId>
     <artifactId>archie-all</artifactId>
-    <version>4.0.0</version>
+    <version>4.1.0</version>
 </dependency>
 ```
 
-If you want to work with the AOM and BMM without the openEHR reference model implementation, depend on `com.nedap.healthcare.archie:tools:4.0.0` and `com.nedap.healthcare.archie:referencemodels:4.0.0` instead.
+If you want to work with the AOM and BMM without the openEHR reference model implementation, depend on `com.nedap.healthcare.archie:tools:4.1.0` and `com.nedap.healthcare.archie:referencemodels:4.1.0` instead.
 
 ### Modules
 
