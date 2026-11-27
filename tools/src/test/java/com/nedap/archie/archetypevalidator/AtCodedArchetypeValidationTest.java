@@ -146,71 +146,33 @@ public class AtCodedArchetypeValidationTest {
 
     @Test
     public void idCodedZeroPaddedNodeIdRejected() throws Exception {
-        // DV_CODED_TEXT is a single object under a single-valued attribute, so its node id needs no term. The
+        // DV_CODED_TEXT[id03] is a single object under a single-valued attribute, so its node id needs no term. The
         // terminology check therefore does not see it.
-        Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(
-                codeFormatTestArchetype("id1", "id2", "id03", "at4"));
+        Archetype archetype = parse(AT_CODED_PATH, "openEHR-EHR-CLUSTER.zero_padded_node_id.v1.0.0.adls");
         for (NodeIdCodeSystemValidation codeSystem : new NodeIdCodeSystemValidation[] {NodeIdCodeSystemValidation.ID_CODED, NodeIdCodeSystemValidation.AUTO_DETECT}) {
             ValidationResult result = validate(archetype, codeSystem);
             assertFalse(result.passes(), result.toString());
             assertTrue(hasError(result, ErrorType.VATCV), result.toString());
         }
-        ValidationResult valid = validate(new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(
-                codeFormatTestArchetype("id1", "id2", "id3", "at4")), NodeIdCodeSystemValidation.ID_CODED);
+        // with a valid node id, the archetype passes
+        ((CObject) archetype.itemAtPath("/items[id2]/value[id03]")).setNodeId("id3");
+        ValidationResult valid = validate(archetype, NodeIdCodeSystemValidation.ID_CODED);
         assertTrue(valid.passes(), valid.toString());
     }
 
     @Test
     public void atCodedNonPaddedNodeIdRejected() throws Exception {
-        Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(
-                codeFormatTestArchetype("at0000", "at0001", "at2", "at0003"));
+        // DV_CODED_TEXT[at2] needs no term, see idCodedZeroPaddedNodeIdRejected
+        Archetype archetype = parse(AT_CODED_PATH, "openEHR-EHR-CLUSTER.unpadded_node_id.v1.0.0.adls");
         for (NodeIdCodeSystemValidation codeSystem : new NodeIdCodeSystemValidation[] {NodeIdCodeSystemValidation.AT_CODED, NodeIdCodeSystemValidation.AUTO_DETECT}) {
             ValidationResult result = validate(archetype, codeSystem);
             assertFalse(result.passes(), result.toString());
             assertTrue(hasError(result, ErrorType.VATCV), result.toString());
         }
-        ValidationResult valid = validate(new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(
-                codeFormatTestArchetype("at0000", "at0001", "at0002", "at0003")), NodeIdCodeSystemValidation.AT_CODED);
+        // with a valid node id, the archetype passes
+        ((CObject) archetype.itemAtPath("/items[at0001]/value[at2]")).setNodeId("at0002");
+        ValidationResult valid = validate(archetype, NodeIdCodeSystemValidation.AT_CODED);
         assertTrue(valid.passes(), valid.toString());
-    }
-
-    private static String codeFormatTestArchetype(String rootId, String elementId, String codedTextId, String valueCode) {
-        return "archetype (adl_version=2.4.0; rm_release=1.1.0)\n" +
-                "    openEHR-EHR-CLUSTER.code_format.v1.0.0\n" +
-                "\n" +
-                "language\n" +
-                "    original_language = <[ISO_639-1::en]>\n" +
-                "\n" +
-                "description\n" +
-                "    original_author = <[\"name\"] = <\"Test\">>\n" +
-                "    details = <\n" +
-                "        [\"en\"] = <\n" +
-                "            language = <[ISO_639-1::en]>\n" +
-                "            purpose = <\"Test\">\n" +
-                "        >\n" +
-                "    >\n" +
-                "\n" +
-                "definition\n" +
-                "    CLUSTER[" + rootId + "] matches {\n" +
-                "        items matches {\n" +
-                "            ELEMENT[" + elementId + "] occurrences matches {0..1} matches {\n" +
-                "                value matches {\n" +
-                "                    DV_CODED_TEXT[" + codedTextId + "] matches {\n" +
-                "                        defining_code matches {[" + valueCode + "]}\n" +
-                "                    }\n" +
-                "                }\n" +
-                "            }\n" +
-                "        }\n" +
-                "    }\n" +
-                "\n" +
-                "terminology\n" +
-                "    term_definitions = <\n" +
-                "        [\"en\"] = <\n" +
-                "            [\"" + rootId + "\"] = <text = <\"root\"> description = <\"root\">>\n" +
-                "            [\"" + elementId + "\"] = <text = <\"element\"> description = <\"element\">>\n" +
-                "            [\"" + valueCode + "\"] = <text = <\"value\"> description = <\"value\">>\n" +
-                "        >\n" +
-                "    >\n";
     }
 
     @Test
