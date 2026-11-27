@@ -28,7 +28,7 @@ public class EhrInvariantTest {
     public void invalidContributions() {
         Ehr ehr = createValidEhr();
         ehr.setContributions(createExampleRefList("VERSIONED_COMPOSITION"));
-        InvariantTestUtil.assertInvariantInvalid(ehr, "Contributions valid", "/");
+        InvariantTestUtil.assertInvariantInvalid(ehr, "Contributions_valid", "/");
     }
 
     @Test

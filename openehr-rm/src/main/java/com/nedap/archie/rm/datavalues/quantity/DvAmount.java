@@ -81,7 +81,7 @@ public abstract class DvAmount<DataValueType extends DvAmount<DataValueType, Mag
 
     }
 
-    @Invariant("Accuracy_valid")
+    @Invariant("Accuracy_validity")
     public boolean accuracyValid() {
         if(accuracyIsPercent != null && accuracyIsPercent) {
             return accuracy == null || (accuracy <= 100.0d && accuracy >= 0.0d);
