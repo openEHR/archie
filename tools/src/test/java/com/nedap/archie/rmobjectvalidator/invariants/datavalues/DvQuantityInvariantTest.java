@@ -43,6 +43,25 @@ public class DvQuantityInvariantTest {
     }
 
     @Test
+    public void normalRangeWithOnlyUpperLimit() {
+        //e.g. LDL < 130 mg/dL, value 162 -> H
+        //built like a deserializer does: no-arg constructor + setters
+        DvInterval<DvQuantity> normalRange = new DvInterval<>();
+        normalRange.setUpper(new DvQuantity("mg/dL", 130d, 0L));
+        DvQuantity quantity = new DvQuantity("mg/dL", 162d, 0L);
+        quantity.setNormalStatus(new CodePhrase("openehr_normal_statuses::H"));
+        quantity.setNormalRange(normalRange);
+
+        //lower_unbounded not set: Limits_consistent fails, Normal_range_and_status_consistency must not throw
+        InvariantTestUtil.assertInvariantInvalid(quantity, "Limits_consistent", "INTERVAL", "/normal_range/interval");
+
+        //properly open on the lower side: valid
+        normalRange.setLowerUnbounded(true);
+        normalRange.setLowerIncluded(false);
+        InvariantTestUtil.assertValid(quantity);
+    }
+
+    @Test
     public void invalidPercentage() {
         DvQuantity quantity = createValid();
         quantity.setAccuracyIsPercent(true);
