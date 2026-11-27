@@ -175,7 +175,7 @@ public class Ehr extends RMObject {
         return Objects.hash(systemId, ehrId, contributions, ehrStatus, ehrAccess, compositions, directory, timeCreated, folders);
     }
 
-    @Invariant("Contributions valid")
+    @Invariant("Contributions_valid")
     public boolean contributionsValid() {
         return InvariantUtil.objectRefTypeEquals(contributions, "CONTRIBUTION");
     }
@@ -205,7 +205,7 @@ public class Ehr extends RMObject {
     }
 
 
-    @Invariant("Folderss_valid")
+    @Invariant("Folders_valid")
     public boolean foldersValid() {
         return InvariantUtil.objectRefTypeEquals(folders, "VERSIONED_FOLDER");
 

@@ -66,9 +66,9 @@ public class DvQuantityInvariantTest {
         DvQuantity quantity = createValid();
         quantity.setAccuracyIsPercent(true);
         quantity.setAccuracy(101d);
-        InvariantTestUtil.assertInvariantInvalid(quantity, "Accuracy_valid", "/");
+        InvariantTestUtil.assertInvariantInvalid(quantity, "Accuracy_validity", "/");
         quantity.setAccuracy(-1d);
-        InvariantTestUtil.assertInvariantInvalid(quantity, "Accuracy_valid", "/");
+        InvariantTestUtil.assertInvariantInvalid(quantity, "Accuracy_validity", "/");
         quantity.setAccuracy(0.0d);
         InvariantTestUtil.assertInvariantInvalid(quantity, "Accuracy_is_percent_validity", "/");
     }

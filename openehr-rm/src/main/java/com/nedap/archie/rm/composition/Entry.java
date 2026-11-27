@@ -164,7 +164,7 @@ public abstract class Entry extends ContentItem {
         return InvariantUtil.nullOrNotEmpty(otherParticipations);
     }
 
-    @Invariant(value="Is_archetypeRoot")
+    @Invariant(value="Is_archetype_root")
     public boolean archetypeRoot() {
         return isArchetypeRoot();
     }
