@@ -150,6 +150,31 @@ public class AOMJacksonTest {
 
     @ParameterizedTest
     @MethodSource("mappers")
+    public void primitiveNodeIdFollowsCodeSystem(JsonMapperFactory factory) throws Exception {
+        JsonMapper mapper = factory.create();
+
+        String atCodedJson = mapper.writeValueAsString(parseAdl2("/com/nedap/archie/adl14/openEHR-EHR-OBSERVATION.demo_adl2_at.v1.0.0.adls"));
+        assertTrue(atCodedJson.contains("\"at9999\""));
+        assertFalse(atCodedJson.contains("\"id9999\""));
+
+        // JSON of an at-coded archetype with id9999, as written by older Archie versions, can still be read
+        Archetype fromOlderJson = mapper.readValue(atCodedJson.replace("\"at9999\"", "\"id9999\""), Archetype.class);
+        CAttribute property = fromOlderJson.itemAtPath("/data[at0001]/events[at0002]/data[at0003]/items[at0004]/items[at0012]/value[at9059]/property");
+        assertEquals("at9999", property.getChildren().get(0).getNodeId());
+
+        String idCodedJson = mapper.writeValueAsString(parseAdl2("/com/nedap/archie/adl14/openEHR-EHR-OBSERVATION.demo_adl2_id.v1.0.0.adls"));
+        assertTrue(idCodedJson.contains("\"id9999\""));
+        assertFalse(idCodedJson.contains("\"at9999\""));
+    }
+
+    private Archetype parseAdl2(String resource) throws Exception {
+        try(InputStream stream = getClass().getResourceAsStream(resource)) {
+            return new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("mappers")
     public void motricityIndex(JsonMapperFactory factory) throws Exception {
         try (InputStream stream = getClass().getResourceAsStream("/com/nedap/archie/rules/evaluation/openEHR-EHR-OBSERVATION.motricity_index.v1.0.0.adls")) {
             Archetype archetype = new ADLParser(BuiltinReferenceModels.getMetaModelProvider()).parse(stream);

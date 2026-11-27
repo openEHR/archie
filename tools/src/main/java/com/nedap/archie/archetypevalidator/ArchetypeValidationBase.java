@@ -1,6 +1,7 @@
 package com.nedap.archie.archetypevalidator;
 
 import com.nedap.archie.aom.Archetype;
+import com.nedap.archie.aom.utils.AOMUtils;
 import com.nedap.archie.flattener.ArchetypeRepository;
 import com.nedap.archie.flattener.FullArchetypeRepository;
 import com.nedap.archie.rminfo.MetaModel;
@@ -37,6 +38,31 @@ public abstract class ArchetypeValidationBase implements ArchetypeValidation {
     }
 
     public abstract void validate();
+
+    /**
+     * Resolve the node identifier code system this archetype must be validated against, based on the
+     * {@link ArchetypeValidationSettings} and, when set to auto-detect, the code system of the archetype root node.
+     *
+     * @return true if the archetype is expected to be at-coded, false if it is expected to be id-coded.
+     */
+    protected boolean expectsAtCodedNodeIds() {
+        switch (settings.getNodeIdCodeSystemValidation()) {
+            case AT_CODED:
+                return true;
+            case AUTO_DETECT:
+                return AOMUtils.isAtCoded(archetype);
+            case ID_CODED:
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * Whether the code is valid in the code system this archetype is validated against.
+     */
+    protected boolean isValidCodeForCodeSystem(String code) {
+        return expectsAtCodedNodeIds() ? AOMUtils.isValidAtCodedCode(code) : AOMUtils.isValidIdCodedCode(code);
+    }
 
     public void addMessage(ErrorType errorType) {
         messages.add(new ValidationMessage(errorType));
