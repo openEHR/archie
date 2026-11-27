@@ -27,6 +27,7 @@ public class AtCodedArchetypeValidationTest {
 
     private static final String PATH = "/com/nedap/archie/adl14/";
     private static final String AT_CODED_PATH = "/com/nedap/archie/archetypevalidator/atcoded/";
+    private static final String VALIDATOR_PATH = "/com/nedap/archie/archetypevalidator/";
 
     private ReferenceModels models;
 
@@ -148,7 +149,7 @@ public class AtCodedArchetypeValidationTest {
     public void idCodedZeroPaddedNodeIdRejected() throws Exception {
         // DV_CODED_TEXT[id03] is a single object under a single-valued attribute, so its node id needs no term. The
         // terminology check therefore does not see it.
-        Archetype archetype = parse(AT_CODED_PATH, "openEHR-EHR-CLUSTER.zero_padded_node_id.v1.0.0.adls");
+        Archetype archetype = parse(VALIDATOR_PATH, "openEHR-EHR-CLUSTER.zero_padded_node_id.v1.0.0.adls");
         for (NodeIdCodeSystemValidation codeSystem : new NodeIdCodeSystemValidation[] {NodeIdCodeSystemValidation.ID_CODED, NodeIdCodeSystemValidation.AUTO_DETECT}) {
             ValidationResult result = validate(archetype, codeSystem);
             assertFalse(result.passes(), result.toString());
